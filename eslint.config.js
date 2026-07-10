@@ -48,7 +48,12 @@ export default ts.config(
 		// which the typed-route rule can't verify. Path resolution is still used;
 		// only the query is concatenated.
 		// (`[game]` would be read as a glob char-class, so match the segment with `*`.)
-		files: ['src/routes/dashboard/+page.svelte', 'src/routes/g/*/build/+page.svelte'],
+		files: [
+			'src/routes/dashboard/+page.svelte',
+			'src/routes/g/*/build/+page.svelte',
+			'src/routes/g/*/sheet/+page.svelte',
+			'src/routes/g/*/play/+page.svelte'
+		],
 		rules: {
 			'svelte/no-navigation-without-resolve': 'off'
 		}

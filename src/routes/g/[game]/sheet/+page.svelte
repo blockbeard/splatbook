@@ -6,6 +6,7 @@
 -->
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { getGame } from '$lib/games';
 	import { draftKey, loadDraft } from '$lib/wizard';
@@ -14,6 +15,14 @@
 
 	const game = $derived(getGame(data.gameId)!);
 	const Sheet = $derived(game.sheetComponent!);
+	// Preserve the saved-entity id (if any) when jumping to play mode, so edits
+	// autosave to the same entity instead of the local draft slot.
+	const savedId = $derived(page.url.searchParams.get('id'));
+	const playHref = $derived(
+		savedId
+			? `${resolve('/g/[game]/play', { game: data.gameId })}?id=${savedId}`
+			: resolve('/g/[game]/play', { game: data.gameId })
+	);
 	// A saved entity (loaded by `?id=`) wins; otherwise read the local autosave.
 	const character = $derived(
 		data.saved?.data ??
@@ -34,13 +43,23 @@
 	>
 		← Back to builder
 	</a>
-	<button
-		type="button"
-		onclick={() => window.print()}
-		class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
-	>
-		Print
-	</button>
+	<div class="flex items-center gap-2">
+		{#if game.playComponent}
+			<a
+				href={playHref}
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Play mode
+			</a>
+		{/if}
+		<button
+			type="button"
+			onclick={() => window.print()}
+			class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
+		>
+			Print
+		</button>
+	</div>
 </div>
 
 {#if !character}

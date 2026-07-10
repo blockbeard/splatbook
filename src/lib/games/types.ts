@@ -21,6 +21,18 @@ export interface SheetProps {
 	character: object;
 }
 
+/**
+ * Props the shell passes a game's play-mode component. `character` is the opaque
+ * saved/draft entity; `onChange` hands a new version back for the shell to
+ * autosave. Play mode is the editable counterpart to the read-only sheet — the
+ * game owns what "editing" means (mark HP, spend XP, level up); the shell only
+ * persists whatever the game returns.
+ */
+export interface PlayProps {
+	character: object;
+	onChange: (next: object) => void;
+}
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
 	id: string;
@@ -44,4 +56,7 @@ export interface GameModule {
 	entityMeta?: (draft: object) => { name: string; entityType: string; schemaVersion: number };
 	/** Character-sheet component, rendered from a saved/finished draft. */
 	sheetComponent?: Component<SheetProps>;
+	/** Play-mode component: the editable counterpart to the sheet (trackers,
+	 * advancement). Arrives in phase 5; the shell autosaves whatever it returns. */
+	playComponent?: Component<PlayProps>;
 }

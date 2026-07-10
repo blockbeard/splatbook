@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Play mode: an editable, at-the-table view of a finished character at
+  `/g/<game>/play`, reached from the character sheet. Tap-to-mark HP, XP, and
+  move-trackers; tap a stat to toggle its debility (which shows the reduced
+  effective value and the playbook's debility name). A "Ready to Level Up" cue
+  appears once banked XP clears the threshold (the level-up flow itself lands
+  next). Every edit runs a pure engine function and autosaves — to the database
+  when playing a saved entity, else to the same local draft slot the sheet
+  reads. The shell gained a generic `playComponent` slot alongside the sheet
+  slot; the route stays game-agnostic and persists whatever the game returns.
 - Play-mode state model (engine, pure + unit-tested): the rules over a character
   _in play_. Vitals seed from the playbook the first time a finished character
   enters play (HP fills to max, base damage recorded; re-entry preserves current

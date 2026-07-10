@@ -20,6 +20,7 @@
 	--sb-accent: oklch(50% 0.11 155);
 	--sb-accent-contrast: oklch(98% 0.01 155);
 	--sb-border: oklch(88% 0.012 90);
+	--sb-danger: oklch(55% 0.2 25);
 }
 
 :root.dark {
@@ -30,6 +31,7 @@
 	--sb-accent: oklch(72% 0.12 155);
 	--sb-accent-contrast: oklch(20% 0.03 155);
 	--sb-border: oklch(34% 0.015 270);
+	--sb-danger: oklch(68% 0.17 25);
 }
 
 @theme inline {
@@ -40,6 +42,7 @@
 	--color-accent: var(--sb-accent);
 	--color-accent-contrast: var(--sb-accent-contrast);
 	--color-border: var(--sb-border);
+	--color-danger: var(--sb-danger);
 }
 
 html {

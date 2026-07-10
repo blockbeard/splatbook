@@ -9,11 +9,12 @@
  */
 
 import type { Component } from 'svelte';
-import type { GameModule, SheetProps } from '../types';
+import type { GameModule, PlayProps, SheetProps } from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { stonetopWizardSteps } from './wizard/steps';
 import CharacterSheet from './sheet/CharacterSheet.svelte';
+import PlayMode from './play/PlayMode.svelte';
 
 export const stonetop: GameModule = {
 	id: 'stonetop',
@@ -33,5 +34,6 @@ export const stonetop: GameModule = {
 	// Contained cast: the sheet types `character` as StonetopCharacter, the shell
 	// slot as the opaque `SheetProps` — Svelte props are contravariant, so this is
 	// the single erasure, mirroring `defineWizardStep`.
-	sheetComponent: CharacterSheet as unknown as Component<SheetProps>
+	sheetComponent: CharacterSheet as unknown as Component<SheetProps>,
+	playComponent: PlayMode as unknown as Component<PlayProps>
 };
