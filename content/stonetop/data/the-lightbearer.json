@@ -1,0 +1,301 @@
+{
+  "id": "the-lightbearer",
+  "name": "The Lightbearer",
+  "flavor": "Imagine yourself and your kin in a cave lit by a single torch, entranced by shadow puppet stories. Imagine realizing there is a greater truth, and stepping out of the cave into the true Light of day. Would you not bring that Light back into the darkness, to set your people free?",
+  "source": { "book": "Book I", "pages": [121, 124], "printing": 2 },
+  "backgrounds": [
+    {
+      "id": "auspicious-birth",
+      "name": "Auspicious Birth",
+      "tracker": { "boxes": 1, "label": "debility circle" },
+      "text": "You were born in Stonetop, and that birth was marked by the God of Light. You were born during an eclipse, perhaps, or under the light of a bright new star? Maybe you bear a sun-shaped birthmark?\n\nWhatever the sign, your connection to Helior was clear early on. You've a place of honor in Stonetop, though it'd be a lie to say you don't make some uneasy.\n\nWhen *one of your moves has you mark a debility*, you may mark this background's circle instead, to no ill effect. Clear it when you Make Camp or Convalesce."
+    },
+    {
+      "id": "itinerant-mystic",
+      "name": "Itinerant Mystic",
+      "tracker": { "boxes": 3, "label": "Enigma" },
+      "text": "They think of you as a self-important kook who comes through now and again, speaking in riddles and playing tricks with the light. Sure, they know there's something holy about you, but it's not like you're a priest or anything. Priests talk sense.\n\nWhen you *go off a-wandering*, hold 1 Enigma if you're gone for days, 2 if you're gone for weeks, or 3 if you're gone for months. At the very start of play, hold 3 Enigma. Spend Enigma 1-for-1 to:\n\n- Return from your wandering exactly when and where you are needed, fully Outfitted\n- Know Things as if you rolled a 10+, drawing on what you learned while away\n- Have What You Need to produce an oddly specific yet mundane item of Value 1 or less"
+    },
+    {
+      "id": "soul-on-fire",
+      "name": "Soul on Fire",
+      "text": "You once led a worldly life, full of fear and doubt, base pleasures and petty grudges. But something happened. Injury, illness, a brush with death. Or just a moment of such profound misery and self-loathing that you thought you could fall no further.\n\nThere, in the dark, Helior's light shined upon you, igniting in your soul, lifting you and filling you with a profound sense of purpose.\n\nWhen you *Persuade a group by preaching charity, mercy, and hope and roll a 7+*, aside from the usual effect, choose 1:\n\n- Your name and your message spread\n- Someone approaches you, now or later, eager to know more"
+    }
+  ],
+  "instincts": [
+    { "id": "charity", "name": "Charity", "text": "To go without so that others are better off." },
+    { "id": "hope", "name": "Hope", "text": "To inspire others in the face of adversity." },
+    { "id": "mercy", "name": "Mercy", "text": "To bring relief or comfort, to give second chances." },
+    { "id": "praise", "name": "Praise", "text": "To spread the glory and worship of Helior." },
+    { "id": "righteousness", "name": "Righteousness", "text": "To refuse to suffer an injustice or a lesser evil." },
+    { "id": "custom", "name": "", "custom": true }
+  ],
+  "appearance": [
+    ["a youthful glow", "well-weathered", "old & merry"],
+    ["a lilting voice", "a melodious voice", "a soft voice"],
+    ["beatific", "ethereal", "intense", "jovial", "serene"],
+    ["fine robes", "threadbare cloak", "working clothes"]
+  ],
+  "origins": {
+    "prompt": "Stonetop is your home, or close enough, but where are you (or your family) from originally? Pick 1 and a name to match (or make up something similar).",
+    "options": [
+      { "label": "Stonetop", "names": ["Dai", "Eirian", "Eurig", "Haf", "Haul", "Hefin", "Hulwen", "Tesni"] },
+      { "label": "Barrier Pass", "names": ["Alaqa", "Bat", "Dinget", "Ghoa", "Oyuun", "Sidurgu", "Temur", "Toragana"] },
+      { "label": "Gordin's Delve", "note": "Pick a name from any list", "names": [] },
+      { "label": "Marshedge", "names": ["Adfin", "Callach", "Conlad", "Eadna", "Fionntan", "Niamh", "Orlaith", "Sorsha"] },
+      { "label": "Lygos or some other point south", "names": ["Arash", "Azar", "Hafiz", "Murat", "Roshan", "Shideh", "Zara", "Zohara"] }
+    ]
+  },
+  "stats": {
+    "array": [2, 1, 1, 0, 0, -1],
+    "debilities": [
+      { "name": "weakened", "stats": ["STR", "DEX"] },
+      { "name": "dazed", "stats": ["INT", "WIS"] },
+      { "name": "miserable", "stats": ["CON", "CHA"] }
+    ]
+  },
+  "base": { "damage": "d4", "maxHp": 18 },
+  "moves": {
+    "starting": { "fixed": ["consecrated-flame", "invoke-the-sun-god"], "choose": 1 },
+    "list": [
+      {
+        "id": "a-candle-against-the-dark",
+        "name": "A Candle Against the Dark",
+        "text": "When you *wield a holy light but go otherwise unarmed*, you have 2 Armor."
+      },
+      {
+        "id": "luminous-shield",
+        "name": "Luminous Shield",
+        "childOf": "a-candle-against-the-dark",
+        "requires": { "moves": ["a-candle-against-the-dark"] },
+        "text": "When you *brandish a holy light to turn aside an attack against body, mind, or soul*, roll +CHA: **on a 10+**, the attack is deflected and, if the attacker is in range of your light, they are briefly blinded; **on a 7-9**, the attack is deflected but your holy light flickers and dims, threatening to go out; **on a 6-**, your light snuffs out and the attack is unimpeded."
+      },
+      {
+        "id": "all-is-illuminated",
+        "name": "All is Illuminated",
+        "text": "When you *look closely on another and see their soul laid bare*, roll +WIS: **on a 10+**, ask their player 1 question from the list below, plus \"And what would make them feel loved, beautiful, or worthy?\"; **on a 7-9**, ask them 1 question from the list. In any case, they must answer truthfully.\n\n- Of what are they most ashamed?\n- What do they most desire or covet?\n- What hope have they abandoned?\n- Who or what is most precious to them?"
+      },
+      {
+        "id": "and-behold-a-pale-horse",
+        "name": "And Behold a Pale Horse",
+        "text": "When you *spend the night gazing into a flame*, ask the GM to reveal an impending doom or grim portent that will come to pass unless you intervene, and how you might yet do so."
+      },
+      {
+        "id": "consecrated-flame",
+        "name": "Consecrated Flame",
+        "text": "When you *whisper words of consecration to a flame*, the flame casts a holy light. Holy light is uncomfortable for creatures of darkness to look upon, but does no true harm. The holy light lasts until the flame goes out or until you consecrate another flame, whichever comes first."
+      },
+      {
+        "id": "fire-within",
+        "name": "Fire Within",
+        "text": "When you *are in darkness*, you are able to see by the light of your inner fire. When you *take damage from cold or fire*, reduce that damage by 2."
+      },
+      {
+        "id": "guiding-light",
+        "name": "Guiding Light",
+        "text": "When you *lead one or more NPCs through danger*, roll +CHA: **on a 10+**, you all make it through (Helior be praised); **on a 7-9**, the GM will tell you what's required to get everyone through safely."
+      },
+      {
+        "id": "heliors-unblinking-eye",
+        "name": "Helior's Unblinking Eye",
+        "text": "When you *stare into the sun long enough to lose your vision*, name a person or place that you know and roll +WIS: **on a 10+**, you briefly glimpse your subject as if from a great height, and choose 2 from the list below; **on a 7-9**, you briefly glimpse your subject as if from a great height, and choose 1:\n\n- The glimpse lasts as long as you wish\n- Your point of view shifts to very close range\n- You recover your vision quickly"
+      },
+      {
+        "id": "improved-stat",
+        "name": "Improved Stat",
+        "maxTakes": 3,
+        "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
+      },
+      {
+        "id": "invoke-the-sun-god",
+        "name": "Invoke the Sun God",
+        "text": "When you *imbue a holy light with Helior's power*, choose an Invocation you know and roll +WIS: **on a 10+**, it works as described but you must choose 1 consequence from the list below; **on a 7-9**, it works as described, but you and the GM each choose 1.\n\n- The Invocation has its *reduced* effect\n- The effort taxes you; mark a debility\n- The light is snuffed out when the Invocation is complete, its fuel consumed\n- You must bask in sunlight for an hour or so before using that Invocation again\n\nSee the **Invocations** insert for details."
+      },
+      {
+        "id": "keep-the-home-fires-burning",
+        "name": "Keep the Home-Fires Burning",
+        "text": "When you *build a camp fire and sprinkle it with ash from your own hearth,* anyone who Makes Camp with you is free from nightmares or bad dreams and recovers (extra) HP equal to your CHA."
+      },
+      {
+        "id": "lamplighter",
+        "name": "Lamplighter",
+        "text": "When you *whisper to a flammable object* (a torch, a wick, kindling, etc.), it ignites in moments."
+      },
+      {
+        "id": "piety",
+        "name": "Piety",
+        "tracker": { "boxes": 1, "label": "Blessing" },
+        "text": "When you *spend at least an hour in proper worship to Helior,* hold 1 Blessing. Other faithful PCs who partake in this worship also hold 1 Blessing. At any time, you can spend 1 Blessing to add +1 to a roll you just made in pursuit of a righteous cause."
+      },
+      {
+        "id": "purifying-flames",
+        "name": "Purifying Flames",
+        "text": "When you *wield a holy light against a creature of darkness*, it counts as a weapon (d10 damage, *hand*, *close*, *area*, 2 piercing) and you can choose to roll +WIS to Clash."
+      },
+      {
+        "id": "radiant-countenance",
+        "name": "Radiant Countenance",
+        "text": "When you *give someone your fond attention*, you can then Persuade them with advantage. If they are a follower, you can instead choose to Strengthen Your Bond (as if you paid their cost)."
+      },
+      {
+        "id": "rise-like-the-sun",
+        "name": "Rise Like the Sun",
+        "text": "When you *draw attention to yourself by word or deed*, roll +CHA: **on a 10+**, everyone turns and looks, and you hold their gaze as long as you keep giving them reason to look; **on a 7-9**, everyone turns and looks."
+      },
+      {
+        "id": "springs-first-thaw",
+        "name": "Spring's First Thaw",
+        "text": "When you *spend time (an hour at least, maybe more) seeking to stir hope, kindness, or mercy in an NPC*, roll +CHA: **on a 10+**, you light a fire deep within them and affect a lasting change; **on a 7-9**, you kindle goodness in their heart for now, but they will eventually return to their old ways; **on a 6-**, their heart hardens and, whatever else the GM says, you can't use this move on them again."
+      },
+      {
+        "id": "burn-twice-as-bright",
+        "name": "Burn Twice as Bright",
+        "requires": { "level": 6, "moves": ["invoke-the-sun-god"] },
+        "text": "When you *Invoke the Sun God*, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations."
+      },
+      {
+        "id": "empowered-invocations",
+        "name": "Empowered Invocations",
+        "requires": { "level": 6, "moves": ["invoke-the-sun-god"] },
+        "text": "When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its *empowered* effect."
+      },
+      {
+        "id": "glorious-servant",
+        "name": "Glorious Servant",
+        "requires": { "level": 6, "moves": ["invoke-the-sun-god"] },
+        "text": "When you *Invoke the Sun God and roll a 10+*, you need not choose a consequence; **on a 7-9**, you choose a consequence but the GM does not."
+      },
+      {
+        "id": "hungry-flames",
+        "name": "Hungry Flames",
+        "requires": { "level": 6, "moves": ["purifying-flames"] },
+        "text": "When you *deal damage with a holy light*, you deal +1d6 damage and your target is engulfed in holy light and flames."
+      },
+      {
+        "id": "light-more-light",
+        "name": "Light, More Light",
+        "requires": { "level": 6, "moves": ["consecrated-flame"] },
+        "text": "When you *consecrate a flame,* it burns brighter than normal. A rushlight or candle illuminates to *reach* range, an oil lamp, lantern, or torch out to *near* range, and a bullseye lantern out to *far* range."
+      },
+      {
+        "id": "superior-stat",
+        "name": "Superior Stat",
+        "requires": { "level": 6 },
+        "text": "Increase one of your stats by +1 (to a max of +3)."
+      },
+      {
+        "id": "wielder-of-the-white-flame",
+        "name": "Wielder of the White Flame",
+        "requires": { "level": 6, "moves": ["invoke-the-sun-god"] },
+        "text": "When you *channel Helior's essence into an object you carry*, roll +WIS: **on a 10+**, it ignites with a white flame that casts a holy light (*reach*, *area*) and burns neither you nor the object, and you may Invoke the Sun God right now as if you rolled a 10+; **on a 7-9**, it ignites with a white flame that casts a holy light (*reach*, *area*) and burns neither you nor the object."
+      }
+    ]
+  },
+  "possessions": {
+    "prompt": "Pick 2.",
+    "pick": 2,
+    "fixed": [],
+    "options": [
+      { "name": "Apiary", "text": "beeswax, candles (*close*, *area*, lasts ~1 hr), honey, ◇ bee smokers, ◇ hats & veils, etc." },
+      { "name": "Books & scrolls", "uses": 5, "text": "expend a use to consult your collection and turn a Know Things roll you just made into a 10+." },
+      { "name": "Chandlery", "text": "beeswax, candles (*close*, *area*, lasts ~1 hr), wicks, scented herbs, soap, lye, ash, etc." },
+      { "name": "Distillery", "text": "skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc." },
+      { "name": "Glassworks", "text": "vials, charms, lenses, sand, marbles, bellows, crucible, ◇ lanterns (5 hours, *close*, *area*), etc." },
+      { "name": "Holy relics", "uses": 3, "text": "if you have one in inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence." },
+      { "name": "Luthier's tools", "text": "chisels, files, catgut, various woods, stains, ◇ a lute, ◇ a fiddle, etc." },
+      { "name": "", "writeIn": true, "text": "(discuss with GM)" }
+    ]
+  },
+  "extras": [
+    {
+      "id": "praise-the-day",
+      "title": "Praise the day",
+      "text": "You are the appointed servant of Helior the Daybringer, god of the sun and light, beacon of hope and mercy.",
+      "choices": [
+        {
+          "id": "worship-is",
+          "prompt": "The worship of Helior is… (choose 1)",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "… ancient, widespread, and well-known" },
+            { "label": "… most common in Lygos and the south" },
+            { "label": "… a new thing, still unheard of by many" },
+            { "label": "… an old thing, forgotten by most" },
+            { "label": "… widely persecuted" }
+          ]
+        },
+        {
+          "id": "worshipped-through",
+          "prompt": "He is worshipped through… (choose 1 or 2)",
+          "min": 1,
+          "max": 2,
+          "options": [
+            { "label": "… solemn hymns" },
+            { "label": "… serene meditation" },
+            { "label": "… joyful song" },
+            { "label": "… ascetic denial" },
+            { "label": "… fervent dancing" },
+            { "label": "… formal ceremonies" },
+            { "label": "… drugs & intoxicants" },
+            { "label": "… pain & sacrifice" }
+          ]
+        },
+        {
+          "id": "shrine",
+          "prompt": "In Stonetop's Pavilion of the Gods, Helior's shrine has… (choose 1)",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "… the place of highest honor, even if Tor is more popular" },
+            { "label": "… been well-tended and given due respect" },
+            { "label": "… recently been restored/established, perhaps by you" },
+            { "label": "… seen better days, for certain" }
+          ]
+        },
+        {
+          "id": "predecessor",
+          "prompt": "Your predecessor, the previous Lightbearer… (choose 2 or 3)",
+          "min": 2,
+          "max": 3,
+          "options": [
+            { "label": "… lived long ago, a figure of legend" },
+            { "label": "… was martyred for their faith" },
+            { "label": "… died facing a mighty sorcerer or demon" },
+            { "label": "… wrote many works of sublime beauty" },
+            { "label": "… faced one of the Things Below" },
+            { "label": "… died in their bed, peacefully" },
+            { "label": "… ascended bodily into the heavens" },
+            { "label": "… was reincarnated—as you" }
+          ]
+        },
+        {
+          "id": "came-into-powers",
+          "prompt": "You came into your powers… (choose 1)",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "… through years of study and devotion" },
+            { "label": "… when your predecessor passed them on" },
+            { "label": "… suddenly, at a moment of great need." },
+            { "label": "… after a visitation from Helior or one of his servants" },
+            { "label": "… when you first laid eyes upon the ________" }
+          ]
+        }
+      ]
+    }
+  ],
+  "introductions": {
+    "intro": "Wait here for everyone else. When everyone's ready, take turns introducing your characters. When *someone reveals something and you want to know more*, ask them about it. When *someone asks you a question*, answer it truthfully.",
+    "steps": [
+      { "n": 1, "text": "On your first turn, **introduce yourself** by name, pronouns, background, origin, and appearance." },
+      { "n": 2, "text": "On your second turn, **describe your special possessions** and how you contribute to the village (beyond working the fields)." },
+      { "n": 3, "text": "On your third turn, **praise the day! Tell us of Helior**, his worship and his shrine. Tell us, too, of the prior Lightbearer and how you gained your powers." },
+      { "n": 4, "text": "On your next turn, **answer one of the following**, naming one or more NPCs who live in Stonetop.", "questions": ["Who is your closest kin?", "Who fans the flames of your heart?", "Whose kindness and generosity warm your soul?", "Who needs Helior's light, badly?"] },
+      { "n": 5, "text": "Go around again. Answer another question from 4, or pass. When everyone has passed, go on." },
+      { "n": 6, "text": "On your next turn, **ask your fellow PCs one of these**. When others ask you, answer as you like.", "questions": ["Which one of you is an old and dear friend?", "Which one of you shares my faith?", "Which one of you scoffs at mercy and hope?", "Which one of you will need my guidance soon?"] },
+      { "n": 7, "text": "Go around again. Ask another question from 6, or pass. When everyone has passed, go on." },
+      { "n": 8, "text": "Add your home to the steading playbook. When everyone is done, let spring burst forth!" }
+    ]
+  }
+}

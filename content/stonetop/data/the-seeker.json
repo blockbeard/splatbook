@@ -1,0 +1,295 @@
+{
+  "id": "the-seeker",
+  "name": "The Seeker",
+  "flavor": "Look at us. Huddling behind our walls, hearing evil in every passing noise. Cowards, all. All, but you. You fear not the unknown. You plunge into it, searching. Grasping at what has been lost. What will you find, o Seeker? Signs of a bright new age? Or signs of our doom?",
+  "source": { "book": "Book I", "pages": [133, 136], "printing": 2 },
+  "backgrounds": [
+    {
+      "id": "patriot",
+      "name": "Patriot",
+      "text": "These people are family. Chaos grows all around, but you'll be damned if you'll let your family come to harm. Damned indeed.\n\nYou have sought out and embraced dark power to protect that which you hold dear. Or perhaps that power fell upon you, and you took it up for the greater good. Either way, you seek more.\n\nYou start with the Let's Make a Deal move and are Well Versed in the Things Below (go mark them now). You've also acquired 1 major arcanum.",
+      "grants": { "moves": ["lets-make-a-deal"], "notes": ["Well Versed in the Things Below"] },
+      "choices": [
+        {
+          "id": "arcanum",
+          "prompt": "You've also acquired 1 major arcanum:",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "◇ The Hec'tumel Codex" },
+            { "label": "◇ The Red Scepter" },
+            { "label": "◇ The Staff of the Lidless Orb" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antiquarian",
+      "name": "Antiquarian",
+      "text": "The past has buried many secrets, and you are determined to dig them up. Years of study across the land have led you here, and you are convinced that this town holds the key to your greatest discoveries. What is it you hope to find? What is it that keeps you here?\n\nIn any case, your travels and studies mean that you start with the Polyglot move and that you are Well Versed in the Makers and their arts (go mark them now). You've also acquired 1 major arcanum.",
+      "grants": { "moves": ["polyglot"], "notes": ["Well Versed in the Makers and their arts"] },
+      "choices": [
+        {
+          "id": "arcanum",
+          "prompt": "You've also acquired 1 major arcanum:",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "◇ Noruba's Ice Sphere" },
+            { "label": "◇ The Azure Hand" },
+            { "label": "◇◇ The Mindgem" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "witch-hunter",
+      "name": "Witch Hunter",
+      "text": "You've dedicated your life to rooting out and destroying horrors and their servants. What set you down this path? What did you sacrifice to walk it? What led you to call Stonetop home?\n\nRegardless, you start with the Everything Bleeds move and are Well Versed in (pick 1) the Fae, the Things Below, or the Last Door and what lies beyond (go mark them now). You've also acquired 1 major arcanum.",
+      "grants": { "moves": ["everything-bleeds"], "notes": ["Well Versed in (pick 1) the Fae, the Things Below, or the Last Door and what lies beyond"] },
+      "choices": [
+        {
+          "id": "arcanum",
+          "prompt": "You've also acquired 1 major arcanum:",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "◇ The Demonhide Cloak" },
+            { "label": "The Redwood Effigy" },
+            { "label": "◇◇ The Twisted Spear" }
+          ]
+        }
+      ]
+    }
+  ],
+  "instincts": [
+    { "id": "cunning", "name": "Cunning", "text": "To scheme, manipulate, and plot." },
+    { "id": "curiosity", "name": "Curiosity", "text": "To seek answers that maybe you oughtn't." },
+    { "id": "hubris", "name": "Hubris", "text": "To assume you know best, that you can't fail." },
+    { "id": "mystery", "name": "Mystery", "text": "To avoid straight answers; to keep secrets." },
+    { "id": "vision", "name": "Vision", "text": "To think big and pursue grandiose goals." },
+    { "id": "custom", "name": "", "custom": true }
+  ],
+  "appearance": [
+    ["curiously young", "world-weary", "bent with years"],
+    ["haunted voice", "rich voice", "whispery"],
+    ["ink-stained fingers", "sinewy hands", "soft hands"],
+    ["bony limbed", "lean & lanky", "short", "thick-set"]
+  ],
+  "origins": {
+    "prompt": "Stonetop is your home, or close enough, but where are you (or your family) from originally? Pick 1 and a name to match (or make up something similar).",
+    "options": [
+      { "label": "Stonetop", "names": ["Alis", "Dylan", "Eilwen", "Gerlt", "Gwenda", "Macsen", "Mirgan", "Owena", "Taliesyn", "Twymor"] },
+      { "label": "Barrier Pass", "names": ["Bayanaganengri", "Chakha", "Jetei", "Moog", "Narengawa", "Ogul", "Ozbeg", "Solongo"] },
+      { "label": "The Steplands", "note": "Hillfolk", "names": ["Anook", "Anxo", "Dors", "Jory", "Mari", "Padg", "Pons", "Silf"] },
+      { "label": "Gordin's Delve", "note": "Pick a name from any list", "names": [] },
+      { "label": "Marshedge", "names": ["Aiden", "Barrfind", "Caolan", "Ciara", "Deirbhile", "Moirin", "Tiern", "Reamann"] },
+      { "label": "Lygos or some other point south", "names": ["Dana", "Eliana", "Erez", "Fikri", "Isra", "Persefoni", "Spiro", "Vahid"] }
+    ]
+  },
+  "stats": {
+    "array": [2, 1, 1, 0, 0, -1],
+    "debilities": [
+      { "name": "weakened", "stats": ["STR", "DEX"] },
+      { "name": "dazed", "stats": ["INT", "WIS"] },
+      { "name": "miserable", "stats": ["CON", "CHA"] }
+    ]
+  },
+  "base": { "damage": "d6", "maxHp": 16 },
+  "moves": {
+    "starting": { "fixed": ["well-versed", "work-with-what-youve-got"], "fromBackground": 1 },
+    "list": [
+      {
+        "id": "attuned",
+        "name": "Attuned",
+        "text": "When you *Seek Insight*, you can always ask, \"What here is infused with magic?\" for free, even on a 6-."
+      },
+      {
+        "id": "conduit-of-power",
+        "name": "Conduit of Power",
+        "tracker": { "boxes": 3, "label": "Consequence marks (never clear)" },
+        "text": "When you *would mark a Consequence from a major arcanum*, you can mark 1 box here instead, with no negative effect. (These marks never clear.)"
+      },
+      {
+        "id": "countermeasures",
+        "name": "Countermeasures",
+        "text": "When you *witness a magical effect*, you may ask the GM, \"how can this be countered or interrupted?\" and get an honest answer. You or an ally gain advantage on your next roll to act on the answer."
+      },
+      {
+        "id": "everything-bleeds",
+        "name": "Everything Bleeds",
+        "text": "When you *exploit an unnatural foe's specific weakness or vulnerability*, deal +1d6 damage."
+      },
+      {
+        "id": "everything-burns",
+        "name": "Everything Burns",
+        "text": "When you *inspect a work of artifice or magic for a fatal flaw*, roll +INT: **on a 7+**, the GM will reveal the best way to destroy/sabotage it; **on a 10+**, you or an ally also gain advantage to act on the info."
+      },
+      {
+        "id": "improved-stat",
+        "name": "Improved Stat",
+        "maxTakes": 3,
+        "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
+      },
+      {
+        "id": "initiate-of-the-secret-arts",
+        "name": "Initiate of the Secret Arts",
+        "maxTakes": 3,
+        "requires": { "level": 2, "note": "the Seeker" },
+        "text": "You have a \"Sacred Pouch\" (3 Stock, *magical*), as per the Blessed, but with no remarkable traits. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)"
+      },
+      {
+        "id": "lets-make-a-deal",
+        "name": "Let's Make a Deal",
+        "text": "When you *Seek Insight*, add \"What do they really want or need?\" to the list of questions. When you *Persuade by offering them something that you know they want or need*, treat a 7-9 as a 10+."
+      },
+      {
+        "id": "logbook",
+        "name": "Logbook",
+        "tracker": { "boxes": 2, "label": "uses" },
+        "text": "You have a logbook (2 uses, *slow*) that doesn't take up space in your inventory. When you (and only you) *consult your logbook and expend a use*, you can ignore a Know Things roll you just made and treat the result as a 10+. When *the Seasons Change*, reset your logbook to 2 uses."
+      },
+      {
+        "id": "magpie",
+        "name": "Magpie",
+        "text": "When you *Have What You Need*, you can produce something strange, specific, maybe even valuable or a little bit magical, but if you do, tell us where you got it and 2 of the following:\n\n- How it's not quite right, but maybe it'll do?\n- The trouble you caused back home by getting it\n- Why using it will draw unwanted attention\n- That it's the only thing like this that you've got, and why it'll only work the one time"
+      },
+      {
+        "id": "never-at-a-loss",
+        "name": "Never at a Loss",
+        "text": "When you *Know Things and roll a 6-*, you may choose to not mark XP. If you don't mark XP, the worst that happens is that the GM tells you nothing interesting or useful about the subject, but instead tells you how you could learn more."
+      },
+      {
+        "id": "polyglot",
+        "name": "Polyglot",
+        "text": "When you *first encounter a living language in play*, describe your proficiency with it (if any) and how you came to acquire it.\n\nWhen you *Know Things about any script, text, runes or symbols that you encounter*, you have advantage."
+      },
+      {
+        "id": "cryptologist",
+        "name": "Cryptologist",
+        "childOf": "polyglot",
+        "requires": { "moves": ["polyglot"] },
+        "text": "When you *study encoded, forgotten, or arcane marks or writing*, roll +INT: **on a 10+**, you can fully decipher them in just a few minutes; **on a 7-9**, you get the gist in a few minutes, but fully deciphering them will take you an hour or so."
+      },
+      {
+        "id": "quick-study",
+        "name": "Quick Study",
+        "text": "When you *study something magical that should take months to understand*, it instead takes mere weeks. If it should take weeks, it takes days. If it should take days, it takes only a few hours."
+      },
+      {
+        "id": "safety-first",
+        "name": "Safety First",
+        "tracker": { "boxes": 2, "label": "Protection" },
+        "text": "When you *spend an hour or so preparing your mystical defenses*, hold 2 Protection. When you *are affected by harmful magic*, spend 1 Protection either to gain advantage on any roll to resist it or to halve its damage/effects."
+      },
+      {
+        "id": "sage-advice",
+        "name": "Sage Advice",
+        "text": "When *another PC asks you for guidance*, they get advantage on their next roll to follow your advice."
+      },
+      {
+        "id": "well-versed",
+        "name": "Well Versed",
+        "maxTakes": 3,
+        "text": "Mark 1 topic, in addition to the one noted in your Background. Each additional time you take this move, mark 2 more topics.\n\n- The Last Door, death, and the undead\n- The civilizations of humanity\n- The Fae and their strange ways\n- The Makers and their arts\n- The primordial powers\n- The Things Below\n- The wild world and its spirits\n\nWhen you *Know Things about one of your topics*, you can ask the GM a follow-up question of your choice (even on a 6-)."
+      },
+      {
+        "id": "work-with-what-youve-got",
+        "name": "Work With What You've Got",
+        "text": "When you *cleverly use your environment to harm or impede your foe(s)*, roll +INT: **on a 10+**, pick 2; **on a 7-9**, pick 1:\n\n- Interrupt or thwart their action(s)\n- Create an opportunity that grants you or an ally advantage on the next roll to exploit it\n- Deal damage appropriate to the source (d4 for bruises/scrapes, d6 for bloodshed, d8 if it'd break bones, d10 if it'd kill a common person)"
+      },
+      {
+        "id": "arcane-adept",
+        "name": "Arcane Adept",
+        "requires": { "level": 6 },
+        "text": "When you *wish to invent a spell or magical effect*, detail its workings with the GM and Make a Plan to invent it. If you like, pick one requirement and ask the GM to provide an alternative (for example \"first you must ____\" could become \"first you must ____, or it will take months\")."
+      },
+      {
+        "id": "deep-insight",
+        "name": "Deep Insight",
+        "requires": { "level": 6, "moves": ["attuned"] },
+        "text": "When you *Seek Insight about something magical*, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question."
+      },
+      {
+        "id": "improvise",
+        "name": "Improvise",
+        "requires": { "level": 6, "moves": ["quick-study"] },
+        "text": "When you *wish to use an arcanum's move or option without having unlocked it*, ask the GM what fool risk(s) it requires and/or what consequence(s) you'll incur. If you go for it, roll +INT: **on a 7+**, you get it to work this once—trigger the move or use the option as if you'd unlocked it; and **on a 10+**, also mark one step towards unlocking the arcanum's mysteries."
+      },
+      {
+        "id": "superior-stat",
+        "name": "Superior Stat",
+        "requires": { "level": 6 },
+        "text": "Increase one of your stats by +1 (to a max of +3)."
+      },
+      {
+        "id": "mind-over-magic",
+        "name": "Mind Over Magic",
+        "requires": { "level": 6 },
+        "text": "When you *roll to study or use an arcanum*, you can roll +INT instead of the stat you'd normally roll."
+      },
+      {
+        "id": "overchannel",
+        "name": "Overchannel",
+        "requires": { "level": 6, "moves": ["conduit-of-power"] },
+        "text": "When you *would mark a Consequence from a major arcanum*, you may mark a debility instead."
+      },
+      {
+        "id": "proof-against-detection",
+        "name": "Proof Against Detection",
+        "requires": { "level": 6, "moves": ["safety-first"] },
+        "text": "When you *hold Protection*, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy."
+      }
+    ]
+  },
+  "possessions": {
+    "prompt": "Pick 2, in addition to your scribe's tools.",
+    "pick": 2,
+    "fixed": [
+      { "name": "Scribe's tools", "fixed": true, "text": "parchment, ink, pigments, vials, quills, ◇ a notebook, etc." }
+    ],
+    "options": [
+      { "name": "Books & scrolls", "uses": 5, "text": "expend a use to consult your collection and turn a Know Things roll you just made into a 10+." },
+      { "name": "Distillery", "text": "skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc." },
+      { "name": "Engineer's tools", "text": "rulers, tapes, rods, plumb-bobs, ◇ tripods, ◇ block & tackles, wheelbarrow, etc." },
+      { "name": "Laboratory", "text": "chemics, reagents, vials, measures, ◇ scales, ◇ decanters, etc. Every season, produce d4-1 uses of ◇ naphtha (*thrown*, *area*, *dangerous*, ignores armor)." },
+      { "name": "Paraphernalia", "text": "crystals, incense, talismans, blood, bone, horn, eye of newt, ◇ braziers, ◇◇ a cauldron, etc." },
+      { "name": "Trade contacts", "text": "small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc." },
+      { "name": "", "writeIn": true, "text": "(discuss with GM)" }
+    ]
+  },
+  "extras": [
+    {
+      "id": "collection",
+      "title": "Collection",
+      "text": "In your travels and investigations you have acquired arcana—artifacts of power and mystery.\n\n**Major arcana**: Your Background grants you 1 major arcanum. You've begun to unlock the mysteries of your major arcanum; mark 1 box or circle on the front of its insert. When and how did that happen?\n\n**Minor arcana**: Ask the GM for the Minor Arcana cards. Draw 3 at random and review both sides.\n\nChoose one whose secrets you have unlocked. If it's portable, you either keep it on your person or hidden away somewhere safe. Where is it now? How did you come to master it?\n\nChoose another, which you have not yet mastered. It is either in your possession or in a secret place known only to you. Where is it? How did you find it?\n\nThe third you have not yet found, but you have a lead on it. Give the card back to the GM, but make note of it below. During play, ask the GM what you know about it.",
+      "choices": [
+        {
+          "id": "major-arcana-questions",
+          "prompt": "Answer at least 2 questions about your major arcanum:",
+          "min": 2,
+          "max": 4,
+          "options": [
+            { "label": "Where did you acquire it?" },
+            { "label": "From whose grasp did you wrest it?" },
+            { "label": "Who else wants it?" },
+            { "label": "What did it cost you?" }
+          ]
+        }
+      ]
+    }
+  ],
+  "introductions": {
+    "intro": "Wait here for everyone else. When everyone's ready, take turns introducing your characters. When *someone reveals something and you want to know more*, ask them about it. When *someone asks you a question*, answer it truthfully.",
+    "steps": [
+      { "n": 1, "text": "On your first turn, **introduce yourself** by name, pronouns, background, origin, and appearance." },
+      { "n": 2, "text": "On your second turn, **describe your special possessions** and how you contribute to the village (beyond working the fields)." },
+      { "n": 3, "text": "On your third turn, **describe your major arcana**. Tell us your answers to the questions you chose. Then, **tell us about your minor arcana**, too." },
+      { "n": 4, "text": "On your next turn, **answer one of the following**, naming one or more NPCs who live in Stonetop.", "questions": ["Who is your closest kin?", "Who is your spouse/lover/betrothed?", "Whom do you trust, even more than yourself?", "Whom do you secretly watch over, and why?"] },
+      { "n": 5, "text": "Go around again. Answer another question from 4, or pass. When everyone has passed, go on." },
+      { "n": 6, "text": "On your next turn, **ask your fellow PCs one of these**. When others ask you, answer as you like.", "questions": ["Which one of you led me to a key discovery?", "Which one of you has been at my side the entire way?", "Which one of you most fears the path I tread?", "Which one of you is keeping secrets from me?"] },
+      { "n": 7, "text": "Go around again. Ask another question from 6, or pass. When everyone has passed, go on." },
+      { "n": 8, "text": "Add your home to the steading playbook. When everyone is done, let spring burst forth!" }
+    ]
+  }
+}

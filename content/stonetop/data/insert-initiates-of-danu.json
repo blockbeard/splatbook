@@ -1,0 +1,104 @@
+{
+  "id": "insert-initiates-of-danu",
+  "name": "Initiates of Danu",
+  "type": "insert",
+  "appliesTo": "the-blessed",
+  "requires": { "backgrounds": ["initiate"] },
+  "source": { "book": "Book I", "pages": [145], "printing": 2 },
+  "intro": "Blessed, if you took the Initiate background, then you chose 2 or 3 of the following as your fellow initiates. Mark those you picked and treat them as followers. Cross off the others.",
+  "pick": { "min": 2, "max": 3 },
+  "initiates": [
+    {
+      "id": "enfys",
+      "name": "Enfys, the acolyte",
+      "tags": ["Bird-wise", "innocent", "magical", "well-informed"],
+      "hp": 6, "armor": 0, "damage": "bronze knife d4 (hand)",
+      "instinct": "to get distracted",
+      "moves": ["Speak with birds", "Ask a difficult question", "Wander off"],
+      "cost": "knowledge, secret lore",
+      "loyaltyMax": 3,
+      "choices": [
+        { "prompt": "Pronouns", "options": ["he", "she", "they"], "writeIn": true },
+        { "prompt": "Age", "options": ["just a child", "on the cusp", "a young adult"] },
+        { "prompt": "How they came to Danu", "options": ["carefully chosen", "marked by Danu", "orphaned"] },
+        { "prompt": "Manner", "options": ["carefree", "curious", "moody", "secretive"] }
+      ]
+    },
+    {
+      "id": "olwin",
+      "name": "Olwin, your anointed lover",
+      "tags": ["Fates-wise", "beautiful", "passionate", "magical"],
+      "hp": 6, "armor": 1, "armorNote": "shield", "damage": "iron spear d6 (close, thrown)",
+      "instinct": "to lack discretion",
+      "moves": ["Perform a divination", "Speak a (dire) prophecy", "Make a big deal about something"],
+      "cost": "tenderness, respect",
+      "loyaltyMax": 3,
+      "choices": [
+        { "prompt": "Pronouns", "options": ["he", "she", "they"], "writeIn": true },
+        { "prompt": "Your bond", "options": ["betrothed", "true love", "ceremonial", "complicated"] },
+        { "prompt": "Manner", "options": ["contary", "dramatic", "passionate", "tormented"] },
+        { "prompt": "Rites of…", "options": ["blood", "fire", "sacred union"] }
+      ]
+    },
+    {
+      "id": "afon",
+      "name": "Afon, a fellow initiate",
+      "tags": ["Fae-wise", "devious", "magical", "self-sufficient", "stealthy"],
+      "hp": 8, "armor": 2, "armorNote": "0 vs. iron", "damage": "bronze hatchet d6 (hand)",
+      "instinct": "to act impulsively",
+      "moves": ["Weave a minor glamor", "Appear or disappear unexpectedly", "Speak an uncomfortable truth"],
+      "cost": "wonder, joy",
+      "loyaltyMax": 3,
+      "choices": [
+        { "prompt": "Pronouns", "options": ["he", "she", "they"], "writeIn": true },
+        { "prompt": "Where they live", "options": ["comes and goes", "in the Wood", "a hut near town"] },
+        { "prompt": "Manner", "options": ["aloof", "bawdy and lewd", "unnerving"] },
+        { "prompt": "Rites of…", "options": ["ecstasy", "intoxication", "moonlight"] }
+      ]
+    },
+    {
+      "id": "seren",
+      "name": "Seren the Eldest",
+      "tags": ["Exceptional", "story-wise", "insightful", "frail", "magical"],
+      "hp": 3, "armor": 0, "damage": "walking stick d4 (close)",
+      "instinct": "to hew to tradition",
+      "moves": ["Consult the spirits, or abjure them", "Spin a tale to make a point", "Use shame and guilt as leverage"],
+      "cost": "deference, good sense shown",
+      "loyaltyMax": 3,
+      "choices": [
+        { "prompt": "Pronouns", "options": ["he", "she", "they"], "writeIn": true },
+        { "prompt": "How they're seen", "options": ["dismissed", "pitied", "feared", "venerated"] },
+        { "prompt": "Manner", "options": ["cagey", "friendly but firm", "imperious"] },
+        { "prompt": "Rites of…", "options": ["iron", "secret naming", "winter"] }
+      ]
+    },
+    {
+      "id": "gwendyl",
+      "name": "Gwendyl, your mentor",
+      "tags": ["Herb-wise", "gossipy", "tireless", "healer", "magical"],
+      "hp": 6, "armor": 0, "damage": "iron knife d6 (hand)",
+      "instinct": "to take offense",
+      "moves": ["Tend to the sick, injured, women in labor", "Weave a talisman of fertility or good luck", "Point out a flaw in a person or plan"],
+      "cost": "consideration, affection",
+      "loyaltyMax": 3,
+      "choices": [
+        { "prompt": "Pronouns", "options": ["he", "she", "they"], "writeIn": true },
+        { "prompt": "Household", "options": ["a big family", "has taken you in", "lives alone"] },
+        { "prompt": "Manner", "options": ["blunt", "demanding", "put upon", "suffers no fools"] },
+        { "prompt": "Rites of…", "options": ["earth & soil", "mourning", "petition"] }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "order-followers",
+      "name": "Order Followers",
+      "text": "When you *direct them to make a move and they do so,* roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.\n\nWhen they *are without orders* or they *act on their own initiative*, the GM says what they do and how it goes."
+    },
+    {
+      "id": "strengthen-your-bond",
+      "name": "Strengthen Your Bond",
+      "text": "When you *pay their cost* and you haven't done so recently, they hold +1 Loyalty (max 3).\n\nSpend their Loyalty 1-for-1 to have them:\n\n- Overcome their fear to do as you say\n- Resist acting on their instinct/tags/traits\n- Do something they don't want to do (as long as it's not abhorrent or suicidal)"
+    }
+  ]
+}

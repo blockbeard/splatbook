@@ -1,0 +1,91 @@
+{
+  "id": "insert-inventory",
+  "name": "Inventory",
+  "type": "insert",
+  "appliesTo": "all",
+  "source": { "book": "Book I", "pages": [142], "printing": 2 },
+  "outfit": {
+    "text": "When you *Outfit*, mark a number of ◇ below, on specific items or Undefined.",
+    "loads": [
+      { "name": "light load", "tags": ["quick & quiet"], "marks": "up to 3" },
+      { "name": "normal load", "marks": "4-6" },
+      { "name": "heavy load", "tags": ["noisy", "slow", "hot", "quick to tire"], "marks": "7-9" }
+    ],
+    "undefinedSlots": 9,
+    "undefinedText": "When you *Have What You Need*, move marks from here to ◇ below."
+  },
+  "gear": [
+    { "name": "Supplies", "slots": 1, "uses": "4+Prosperity", "note": "Use supplies to Recover, Make Camp, or have extra *small* items." },
+    { "name": "More supplies", "slots": 1, "uses": "4+Prosperity" },
+    { "name": "Even more supplies", "slots": 1, "uses": "4+Prosperity" },
+    { "name": "Mess kit", "slots": 1, "text": "requires fire & water; makes Supplies last longer" },
+    { "name": "Bedroll", "slots": 1, "text": "recover 1d6 extra HP when you Make Camp" },
+    { "name": "Blanket", "slots": 1, "tags": ["warm"] },
+    { "name": "Change of clothes", "slots": 1 },
+    { "name": "Rope, ~25 ft", "slots": 1 },
+    { "name": "Shovel", "slots": 1 },
+    { "name": "Sledge/litter/travois, roll-out", "slots": 2 },
+    { "name": "Snow-shoes", "slots": 1 },
+    { "name": "Torch", "slots": 1, "text": "lasts ~1 hour", "tags": ["reach", "area", "dangerous"] },
+    { "name": "Oil lamp", "slots": 1, "text": "3 hours", "tags": ["close", "area", "crude"] },
+    { "name": "Extra oil", "slots": 1, "text": "5 hours, for lamp/lantern, useless as a weapon" },
+    { "name": "Firewood", "slots": 2, "text": "enough to last 1 full night", "tags": ["reach", "area"] },
+    { "name": "Hatchet, iron", "slots": 1, "tags": ["hand", "thrown", "x piercing"] },
+    { "name": "Mallet, iron and/or wood", "slots": 1, "tags": ["hand"] },
+    { "name": "Mattock, iron", "slots": 1, "tags": ["close", "x piercing", "messy", "awkward"] },
+    { "name": "Maul, iron", "slots": 2, "tags": ["close", "forceful", "awkward"] },
+    { "name": "Staff", "slots": 1, "tags": ["close"] },
+    { "name": "Spear, iron", "slots": 1, "tags": ["close", "thrown", "x piercing"] },
+    { "name": "Long spear, iron", "slots": 2, "tags": ["reach", "x piercing"] },
+    { "name": "Bow & iron arrows", "slots": 1, "tags": ["near", "x piercing"], "ammo": ["low ammo", "all out"] },
+    { "name": "Extra arrows", "slots": 1, "tags": ["x piercing"], "ammo": ["plenty left", "low ammo", "all out"] },
+    { "name": "Javelins, a few, iron", "slots": 1, "tags": ["thrown", "x piercing", "+1 damage"], "ammo": ["all out"] },
+    { "name": "Shield", "slots": 2, "text": "+1 armor, +1 Readiness on a 7+ to Defend" },
+    { "name": "Thick hides", "slots": 2, "text": "1 armor", "tags": ["warm"] },
+    { "name": "Cloak", "slots": 1, "tags": ["warm"] }
+  ],
+  "writeIns": {
+    "possessions": { "title": "Possessions, items, loot", "lines": [1, 1, 1, 2, 2, 2, 2, 2] },
+    "otherThings": { "title": "Other things", "text": "animals, kits, stashed items, etc." }
+  },
+  "smallItems": {
+    "text": "Fit in a pocket, pouch, or boot. When you *Outfit*, mark small items below equal to 4+Prosperity.",
+    "undefinedSlots": 6,
+    "undefinedText": "When you *Have What You Need*, move a mark from here to items below, or expend supplies to mark an additional item.",
+    "options": [
+      { "name": "Knife or dagger, iron", "tags": ["hand"] },
+      { "name": "Sling", "tags": ["near", "reload", "awkward"], "ammo": ["low ammo", "all out"] },
+      { "name": "Rushlight", "text": "lasts ~15-30 minutes", "tags": ["hand", "crude"] },
+      { "name": "Tinderbox", "tags": ["slow"] },
+      { "name": "Needle & thread" },
+      { "name": "Handful of coppers" },
+      { "name": "Whisky, skin", "uses": 2 },
+      { "name": "Awl" },
+      { "name": "Bowstring" },
+      { "name": "Chalk" },
+      { "name": "Charcoal" },
+      { "name": "Clay jar" },
+      { "name": "Cloth/rag" },
+      { "name": "Comb" },
+      { "name": "Cup" },
+      { "name": "Extra socks" },
+      { "name": "Gloves" },
+      { "name": "Little box" },
+      { "name": "Sack (empty)" },
+      { "name": "Sawdust" },
+      { "name": "Tallow" },
+      { "name": "Twine/cord" },
+      { "name": "Waterskin" },
+      { "name": "Whetstone" },
+      { "name": "Whistle" },
+      { "name": "", "writeIn": true, "count": 10 }
+    ]
+  },
+  "prosperity": [
+    { "value": -1, "note": "Gear is *crude*" },
+    { "value": 0 },
+    { "value": 1, "note": "x = 1 piercing" },
+    { "value": 2, "note": "x = 2 piercing" },
+    { "value": 3, "note": "x = 3 piercing" }
+  ]
+}

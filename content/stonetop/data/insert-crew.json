@@ -1,0 +1,61 @@
+{
+  "id": "insert-crew",
+  "name": "Crew",
+  "type": "insert",
+  "appliesTo": "the-marshal",
+  "source": { "book": "Book I", "pages": [144], "printing": 2 },
+  "intro": "Marshal, your Crew is a half-dozen strong by default. Treat them as a follower with the *group* tag. All starting values here are subject to change in play.",
+  "base": { "hp": "6 each", "armor": 0, "damage": "d6" },
+  "tags": {
+    "text": "Your crew starts with *group*, a tag granted by your background, plus 2 more of your choice.",
+    "fixed": ["group"],
+    "fromBackground": 1,
+    "choose": 2,
+    "options": ["archers", "athletic", "brave", "cunning", "devoted", "hardy", "intimidating", "observant", "patient", "respected", "stealthy", "warriors"],
+    "writeIn": 3,
+    "special": [{ "name": "exceptional", "requires": { "moves": ["heroes-to-the-last"] } }]
+  },
+  "instincts": {
+    "pick": 1,
+    "options": ["To bicker, infight, and hold grudges", "To hew to tradition and superstition", "To indulge their baser instincts", "To lord over others", "To take needless risks", "To take things too far"],
+    "writeIn": true
+  },
+  "cost": {
+    "pick": 1,
+    "loyaltyMax": 3,
+    "options": ["Merry-making, as a group", "Public recognition and respect, honor", "Risks taken, by you, to help them", "Victories won against worthy foes", "Wealth gained for themselves or Stonetop"],
+    "writeIn": true
+  },
+  "inventory": {
+    "text": "3 marks or fewer is a light load; 4-6 is a normal load; 7-9 is a heavy load.",
+    "gear": [
+      { "name": "Hatchet, iron", "slots": 1, "tags": ["hand", "thrown", "x piercing"] },
+      { "name": "Spear, iron", "slots": 1, "tags": ["close", "thrown", "x piercing"] },
+      { "name": "Bow & iron arrows", "slots": 1, "tags": ["near", "x piercing"], "ammo": ["low ammo", "all out"] },
+      { "name": "Shield", "slots": 2, "text": "+1 armor, +1 Readiness on a 7+ to Defend" },
+      { "name": "Thick hides", "slots": 2, "text": "1 armor", "tags": ["warm"] },
+      { "name": "Cloak", "slots": 1, "tags": ["warm"] },
+      { "name": "Supplies", "slots": 1, "uses": "4+Prosperity per crew member", "useTracks": 6 }
+    ],
+    "writeIns": { "lines": [1, 1, 1, 2, 2, 2] }
+  },
+  "individuals": {
+    "text": "When one stands out, give them a name, a tag, and one or more traits.",
+    "portraitBoxes": 6,
+    "names": ["Aled", "Culhwich", "Eira", "Gerat", "Glaw", "Harri", "Lowri", "Mervyn", "Nesta"],
+    "tags": ["animal-lover", "big", "bully", "cynical", "drunkard", "eager", "gambler", "greedy", "grumpy", "gullible", "heartthrob", "honest", "kind", "lewd", "little", "naive", "old", "popular", "proud", "rookie", "reckless", "shameless", "sharp-eyed", "short-tempered"],
+    "traits": ["__'s kid/sibling/parent/cousin/__", "bald", "crush on __", "grudge against __", "hates __", "idolizes __", "jokes", "messy", "missing eye/finger/hand/__", "misses their kids", "nightmares", "recently married", "religious", "scars", "skinny", "sharp-tongued", "sings", "snores", "tells tall tales", "too serious", "troubles at home", "whistles", "whittler"]
+  },
+  "rules": [
+    {
+      "id": "order-followers",
+      "name": "Order Followers",
+      "text": "When you *direct them to make a move and they do so,* roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.\n\nWhen they *are without orders* or they *act on their own initiative*, the GM says what they do and how it goes."
+    },
+    {
+      "id": "strengthen-your-bond",
+      "name": "Strengthen Your Bond",
+      "text": "When you *pay their cost* and you haven't done so recently, they hold +1 Loyalty (max 3).\n\nSpend their Loyalty 1-for-1 to have them:\n\n- Overcome their fear to do as you say\n- Resist acting on their instinct/tags/traits\n- Do something they don't want to do (as long as it's not abhorrent or suicidal)"
+    }
+  ]
+}
