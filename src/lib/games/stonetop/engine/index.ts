@@ -47,6 +47,18 @@ export {
 	isStatArrayComplete
 } from './stats';
 
+export {
+	startingMovesPlan,
+	pickOneMembers,
+	pickOneSelections,
+	freeChosenMoves,
+	fullMoveSet,
+	isStartable,
+	prerequisitesMet,
+	choosableMoves,
+	type StartingMovesPlan
+} from './moves';
+
 import { createCharacter } from './character';
 import { validateCharacter, isComplete } from './validation';
 

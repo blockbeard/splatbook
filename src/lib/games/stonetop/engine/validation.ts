@@ -16,6 +16,13 @@ import type { Playbook } from '../pack-schemas';
 import { SCHEMA_VERSION, type StonetopCharacter } from './character';
 import { isSelectionValid } from './choices';
 import { isStatArrayComplete } from './stats';
+import {
+	freeChosenMoves,
+	fullMoveSet,
+	isStartable,
+	prerequisitesMet,
+	startingMovesPlan
+} from './moves';
 
 /** Which wizard step an issue belongs to — lets the UI route it to the right screen. */
 export type StepId =
@@ -190,6 +197,62 @@ const validateStats: Validator = (character, playbook) => {
 };
 
 /**
+ * Starting moves: one pick per pickOne group, exactly `choose` free moves, and
+ * every chosen move legal at creation (startable, prerequisites met).
+ */
+const validateMoves: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	const plan = startingMovesPlan(character, playbook);
+	const issues: Issue[] = [];
+
+	plan.pickOneGroups.forEach((group, i) => {
+		const picked = group.filter((id) => character.moves.includes(id)).length;
+		if (picked !== 1) {
+			issues.push({
+				step: 'moves',
+				severity: 'error',
+				message: 'Pick exactly one move from each choose-one group.',
+				field: `moves.pickOne.${i}`
+			});
+		}
+	});
+
+	const free = freeChosenMoves(character, plan);
+	if (free.length !== plan.chooseCount) {
+		issues.push({
+			step: 'moves',
+			severity: 'error',
+			message: `Choose ${plan.chooseCount} starting move${plan.chooseCount === 1 ? '' : 's'}.`,
+			field: 'moves'
+		});
+	}
+
+	const have = fullMoveSet(character, plan);
+	const byId = new Map(playbook.moves.list.map((m) => [m.id, m]));
+	for (const id of character.moves) {
+		const move = byId.get(id);
+		if (!move) {
+			issues.push({
+				step: 'moves',
+				severity: 'error',
+				message: `Unknown move "${id}".`,
+				field: `moves.${id}`
+			});
+			continue;
+		}
+		if (!isStartable(move) || !prerequisitesMet(move, have)) {
+			issues.push({
+				step: 'moves',
+				severity: 'error',
+				message: `${move.name} isn't available yet.`,
+				field: `moves.${id}`
+			});
+		}
+	}
+	return issues;
+};
+
+/**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
  * whatever is registered, so wiring never changes as bodies fill in.
@@ -201,7 +264,7 @@ export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
 	appearance: validateAppearance,
 	origin: validateOrigin,
 	stats: validateStats,
-	moves: noIssues,
+	moves: validateMoves,
 	possessions: noIssues,
 	extras: noIssues,
 	introductions: noIssues

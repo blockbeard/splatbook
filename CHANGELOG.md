@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Starting-moves wizard step — the rules-lawyer core. Shows what the playbook
+  and background grant, resolves each "choose one" group, and gates free picks
+  to the count allowed, with level-2+ moves excluded and prerequisite/`childOf`
+  moves disabled until their parent is taken. Engine gains pure, test-first move
+  logic (`startingMovesPlan`, `pickOneSelections`, `freeChosenMoves`,
+  `fullMoveSet`, `isStartable`, `prerequisitesMet`, `choosableMoves`) and a moves
+  validator enforcing one-per-group, the exact choose count, and legality of
+  every chosen move.
 - Stats wizard step: distribute the playbook's fixed six-number array across
   STR/DEX/CON/INT/WIS/CHA, each value used once, with values disabling as they're
   spent and live "all assigned" feedback. Engine gains pure, test-first stat

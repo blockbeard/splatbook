@@ -31,7 +31,14 @@ const playbook = {
 		['tall', 'short']
 	],
 	origins: { prompt: 'Where from?', options: [{ label: 'Stonetop', names: ['Arwel'] }] },
-	stats: { array: [2, 1, 1, 0, 0, -1] }
+	stats: { array: [2, 1, 1, 0, 0, -1] },
+	moves: {
+		starting: { fixed: ['fx'], choose: 1 },
+		list: [
+			{ id: 'fx', name: 'Fixed', text: '…' },
+			{ id: 'opt', name: 'Option', text: '…' }
+		]
+	}
 } as unknown as Playbook;
 
 /** A character with every non-background choice satisfied, for isolating tests. */
@@ -50,6 +57,7 @@ const complete = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => 
 		WIS: { value: 0, debilitated: false },
 		CHA: { value: -1, debilitated: false }
 	},
+	moves: ['opt'],
 	...patch
 });
 
