@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Level-up flow in play mode: once banked XP clears the threshold, a "Level Up"
+  button opens a panel of only the legal moves (per the engine's gates,
+  prerequisites, caps, and replacements), each shown with its rules text. Pick
+  one and confirm; the engine spends the XP, raises the level, records the pick,
+  and the change autosaves. Cancel backs out. Multiple level-ups in a row are
+  supported — the button reappears while enough XP remains.
 - Level-up legality in the engine (pure, heavily unit-tested): given a character
   and its playbook, which moves are legal to take on Level Up, and applying the
   chosen one. Level gates (a `requires.level` move opens as you reach that

@@ -7,14 +7,16 @@
 -->
 <script lang="ts">
 	import type { PlayProps } from '$lib/games/types';
-	import type { Playbook } from '../pack-schemas';
+	import type { Move, Playbook } from '../pack-schemas';
 	import {
 		STAT_KEYS,
+		applyLevelUp,
 		canLevelUp,
 		debilityName,
 		effectiveStat,
 		enterPlay,
 		isDebilitated,
+		levelUpChoices,
 		markXp,
 		migrateCharacter,
 		setDebility,
@@ -25,6 +27,8 @@
 		type StonetopCharacter
 	} from '../engine';
 	import { fetchPlaybook } from '../pack/playbooks';
+	import Markdown from '../wizard/components/Markdown.svelte';
+	import OptionButton from '../wizard/components/OptionButton.svelte';
 
 	let { character, onChange }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
@@ -72,6 +76,38 @@
 	const xpBoxes = $derived(Math.max(xpNeeded, c.xp));
 	const readyToLevel = $derived(canLevelUp(c));
 	const trackerEntries = $derived(Object.entries(c.trackers));
+
+	// Level-up flow: open a panel of legal picks, choose one, confirm.
+	let levelingUp = $state(false);
+	let chosenMoveId = $state<string | null>(null);
+	let levelUpError = $state<string | null>(null);
+
+	const choices = $derived<Move[]>(playbook ? levelUpChoices(c, playbook) : []);
+
+	const startLevelUp = (): void => {
+		levelingUp = true;
+		chosenMoveId = null;
+		levelUpError = null;
+	};
+	const cancelLevelUp = (): void => {
+		levelingUp = false;
+		chosenMoveId = null;
+	};
+	const confirmLevelUp = (): void => {
+		if (!playbook || !chosenMoveId) return;
+		const result = applyLevelUp(c, playbook, { moveId: chosenMoveId });
+		if (result.ok) {
+			onChange(result.character);
+			levelingUp = false;
+			chosenMoveId = null;
+			levelUpError = null;
+		} else {
+			levelUpError =
+				result.reason === 'not-enough-xp'
+					? 'Not enough XP to Level Up.'
+					: 'That move isn’t available.';
+		}
+	};
 </script>
 
 {#snippet boxRow(count: number, filled: number, tap: (i: number) => void, label: string)}
@@ -149,10 +185,63 @@
 			<div class="mt-2">
 				{@render boxRow(xpBoxes, c.xp, setXp, 'XP')}
 			</div>
-			{#if readyToLevel}
-				<p class="mt-2 text-sm font-medium text-accent">Ready to Level Up.</p>
+			{#if readyToLevel && !levelingUp}
+				<button
+					type="button"
+					onclick={startLevelUp}
+					class="mt-3 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
+				>
+					Level Up →
+				</button>
 			{/if}
 		</section>
+
+		{#if levelingUp}
+			<section class="rounded-lg border border-accent bg-accent/5 p-4">
+				<div class="flex items-baseline justify-between">
+					<h2 class="text-lg font-semibold">Level Up to {c.level + 1}</h2>
+					<span class="text-sm text-muted">Spends {xpNeeded} XP · choose a move</span>
+				</div>
+
+				{#if choices.length === 0}
+					<p class="mt-3 text-sm text-muted">No legal moves to take right now.</p>
+				{:else}
+					<div class="mt-3 grid gap-3 sm:grid-cols-2">
+						{#each choices as move (move.id)}
+							<OptionButton
+								selected={chosenMoveId === move.id}
+								onclick={() => (chosenMoveId = move.id)}
+							>
+								<div class="font-semibold">{move.name}</div>
+								<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+							</OptionButton>
+						{/each}
+					</div>
+				{/if}
+
+				{#if levelUpError}
+					<p class="mt-3 text-sm text-danger">{levelUpError}</p>
+				{/if}
+
+				<div class="mt-4 flex items-center gap-2">
+					<button
+						type="button"
+						onclick={confirmLevelUp}
+						disabled={!chosenMoveId}
+						class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+					>
+						Confirm
+					</button>
+					<button
+						type="button"
+						onclick={cancelLevelUp}
+						class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+					>
+						Cancel
+					</button>
+				</div>
+			</section>
+		{/if}
 
 		{#if trackerEntries.length}
 			<section>
