@@ -19,3 +19,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drizzle ORM + better-sqlite3 with an (intentionally) empty schema, `db:push` /
   `db:generate` / `db:migrate` / `db:studio` scripts, and a `/api/health` endpoint
   that pings the database.
+- Multi-stage Dockerfile (adapter-node) and docker-compose with a SQLite volume
+  for the atlas deployment; container healthcheck hits `/api/health`.

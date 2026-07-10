@@ -1,0 +1,28 @@
+services:
+  splatbook:
+    build: .
+    container_name: splatbook
+    ports:
+      - '3000:3000'
+    volumes:
+      - splatbook-data:/data
+    environment:
+      - DATABASE_URL=/data/splatbook.db
+      # ORIGIN must match the public URL or form actions will 403.
+      # Override in a .env file next to this compose file on atlas.
+      - ORIGIN=${ORIGIN:-http://localhost:3000}
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3000/api/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  splatbook-data:

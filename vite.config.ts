@@ -1,5 +1,5 @@
 /// <reference types="vitest/config" />
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
@@ -14,9 +14,8 @@ export default defineConfig({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 
-			// adapter-auto for now; swapped for adapter-node when the Docker deployment lands
-			// (see docs/App Implementation Plan.md, commit 5) and made switchable via env in
-			// phase 8 for Cloudflare Pages.
+			// adapter-node for the atlas/Docker deployment; made switchable via an
+			// ADAPTER env in phase 8 when Cloudflare Pages enters the picture.
 			adapter: adapter()
 		})
 	],
