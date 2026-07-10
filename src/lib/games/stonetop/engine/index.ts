@@ -39,6 +39,14 @@ export {
 	type ChoiceLike
 } from './choices';
 
+export {
+	assignStat,
+	clearStat,
+	assignedValues,
+	remainingValues,
+	isStatArrayComplete
+} from './stats';
+
 import { createCharacter } from './character';
 import { validateCharacter, isComplete } from './validation';
 

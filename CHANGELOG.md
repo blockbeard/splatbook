@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Stats wizard step: distribute the playbook's fixed six-number array across
+  STR/DEX/CON/INT/WIS/CHA, each value used once, with values disabling as they're
+  spent and live "all assigned" feedback. Engine gains pure, test-first stat
+  helpers (`assignStat`, `clearStat`, `assignedValues`, `remainingValues` with
+  multiset arithmetic, `isStatArrayComplete` permutation check) and a stats
+  validator gating on a complete assignment.
 - Instinct, appearance, and origin/name wizard steps. Instinct picks one of the
   playbook's drives, with a write-in option that reveals a text field (new
   `instinctWriteIn` on the character model). Appearance picks one descriptor per

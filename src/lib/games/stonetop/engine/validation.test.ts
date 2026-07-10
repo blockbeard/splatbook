@@ -30,7 +30,8 @@ const playbook = {
 		['young', 'old'],
 		['tall', 'short']
 	],
-	origins: { prompt: 'Where from?', options: [{ label: 'Stonetop', names: ['Arwel'] }] }
+	origins: { prompt: 'Where from?', options: [{ label: 'Stonetop', names: ['Arwel'] }] },
+	stats: { array: [2, 1, 1, 0, 0, -1] }
 } as unknown as Playbook;
 
 /** A character with every non-background choice satisfied, for isolating tests. */
@@ -41,6 +42,14 @@ const complete = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => 
 	appearance: ['young', 'tall'],
 	origin: { option: 'Stonetop', note: '' },
 	name: 'Arwel',
+	stats: {
+		STR: { value: 2, debilitated: false },
+		DEX: { value: 1, debilitated: false },
+		CON: { value: 1, debilitated: false },
+		INT: { value: 0, debilitated: false },
+		WIS: { value: 0, debilitated: false },
+		CHA: { value: -1, debilitated: false }
+	},
 	...patch
 });
 

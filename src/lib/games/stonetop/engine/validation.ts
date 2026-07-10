@@ -15,6 +15,7 @@
 import type { Playbook } from '../pack-schemas';
 import { SCHEMA_VERSION, type StonetopCharacter } from './character';
 import { isSelectionValid } from './choices';
+import { isStatArrayComplete } from './stats';
 
 /** Which wizard step an issue belongs to — lets the UI route it to the right screen. */
 export type StepId =
@@ -172,6 +173,22 @@ const validateOrigin: Validator = (character, playbook) => {
 	return issues;
 };
 
+/** Every stat must hold one value from the playbook's array (a permutation). */
+const validateStats: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	if (!isStatArrayComplete(playbook.stats.array, character.stats)) {
+		return [
+			{
+				step: 'stats',
+				severity: 'error',
+				message: 'Assign every stat from the array.',
+				field: 'stats'
+			}
+		];
+	}
+	return [];
+};
+
 /**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
@@ -183,7 +200,7 @@ export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
 	instinct: validateInstinct,
 	appearance: validateAppearance,
 	origin: validateOrigin,
-	stats: noIssues,
+	stats: validateStats,
 	moves: noIssues,
 	possessions: noIssues,
 	extras: noIssues,

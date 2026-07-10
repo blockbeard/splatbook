@@ -14,6 +14,7 @@ import BackgroundStep from './BackgroundStep.svelte';
 import InstinctStep from './InstinctStep.svelte';
 import AppearanceStep from './AppearanceStep.svelte';
 import OriginStep from './OriginStep.svelte';
+import StatsStep from './StatsStep.svelte';
 
 export const stonetopWizardSteps: readonly WizardStep[] = [
 	defineWizardStep<StonetopCharacter>({
@@ -40,5 +41,10 @@ export const stonetopWizardSteps: readonly WizardStep[] = [
 		id: 'origin',
 		title: 'Origin',
 		component: OriginStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'stats',
+		title: 'Stats',
+		component: StatsStep
 	})
 ];
