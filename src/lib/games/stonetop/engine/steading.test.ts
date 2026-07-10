@@ -29,6 +29,8 @@ import {
 	setList,
 	setPlaces,
 	setTreasure,
+	setResidents,
+	setNeighbors,
 	type SteadingSeed
 } from './steading.ts';
 
@@ -210,6 +212,14 @@ describe('list setters', () => {
 		expect(s.placesOfInterest).toEqual([{ marker: 'G', name: 'The Inn' }]);
 		s = setTreasure(s, { silver: '3 purses', gold: '1 coin' });
 		expect(s.treasure).toEqual({ silver: '3 purses', gold: '1 coin' });
+	});
+
+	it('replaces resident and neighbour rows purely', () => {
+		let s = createSteading();
+		s = setResidents(s, [{ name: 'Aderyn', occupation: 'publican', notes: 'cheery' }]);
+		expect(s.residents).toEqual([{ name: 'Aderyn', occupation: 'publican', notes: 'cheery' }]);
+		s = setNeighbors(s, [{ name: 'Brin', home: 'Marshedge', occupation: 'trader', notes: '' }]);
+		expect(s.neighbors[0].home).toBe('Marshedge');
 	});
 });
 

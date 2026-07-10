@@ -29,6 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   suggesting the next map marker). A fresh steading is seeded once from the
   pack's printed starting entries and marked `seeded`, so lists you empty aren't
   refilled. Write-ins are just added rows.
+- Steading **residents & neighbours** (commit 47): NPC tables. Residents are
+  name / occupation / notes rows with `<datalist>` pickers drawn from the pack's
+  Welsh name list, prefilled occupations, and NPC trait list; neighbours add a
+  home select over the pack's places, with each place's own name list offered
+  for the name field.
 
 ### Changed
 

@@ -28,18 +28,24 @@
 		setList,
 		setPlaces,
 		setTreasure,
+		setResidents,
+		setNeighbors,
 		type SteadingStatKey,
 		type SteadingDebilityKey,
 		type SteadingListKey,
 		type Season,
 		type PlaceOfInterest,
 		type Treasure,
+		type ResidentRow,
+		type NeighborRow,
 		type StonetopSteading
 	} from '../engine/steading';
 	import { fetchSteadingPack } from '../pack/steading';
 	import SteadingImprovements from './SteadingImprovements.svelte';
 	import EditableList from './EditableList.svelte';
 	import PlacesList from './PlacesList.svelte';
+	import ResidentsTable from './ResidentsTable.svelte';
+	import NeighborsTable from './NeighborsTable.svelte';
 
 	let { character, onChange }: PlayProps = $props();
 	const s = $derived(character as StonetopSteading);
@@ -78,6 +84,8 @@
 	const editPlaces = (places: PlaceOfInterest[]): void => onChange(setPlaces(s, places));
 	const editTreasure = (patch: Partial<Treasure>): void =>
 		onChange(setTreasure(s, { ...s.treasure, ...patch }));
+	const editResidents = (rows: ResidentRow[]): void => onChange(setResidents(s, rows));
+	const editNeighbors = (rows: NeighborRow[]): void => onChange(setNeighbors(s, rows));
 
 	// Pack lookups for display text (game strings live in the pack, not here).
 	const debilityInfo = $derived(new Map((pack?.debilities ?? []).map((d) => [d.id, d] as const)));
@@ -298,6 +306,32 @@
 			</div>
 			<div class="mt-2">
 				<SteadingImprovements improvements={pack.improvements} steading={s} onChange={emit} />
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Residents</h2>
+			<p class="text-sm text-muted">{pack.residents.text}</p>
+			<div class="mt-2">
+				<ResidentsTable
+					residents={s.residents}
+					names={pack.residents.names}
+					occupations={pack.residents.prefilledOccupations}
+					traits={pack.residents.npcTraits}
+					onChange={editResidents}
+				/>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Neighbors</h2>
+			<p class="text-sm text-muted">{pack.neighbors.text}</p>
+			<div class="mt-2">
+				<NeighborsTable
+					neighbors={s.neighbors}
+					places={pack.neighbors.places}
+					onChange={editNeighbors}
+				/>
 			</div>
 		</section>
 	</article>

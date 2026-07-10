@@ -327,3 +327,19 @@ export function setPlaces(steading: StonetopSteading, places: PlaceOfInterest[])
 export function setTreasure(steading: StonetopSteading, treasure: Treasure): StonetopSteading {
 	return { ...steading, treasure };
 }
+
+/** A steading with its resident NPC rows replaced. */
+export function setResidents(
+	steading: StonetopSteading,
+	residents: ResidentRow[]
+): StonetopSteading {
+	return { ...steading, residents };
+}
+
+/** A steading with its neighbour NPC rows replaced. */
+export function setNeighbors(
+	steading: StonetopSteading,
+	neighbors: NeighborRow[]
+): StonetopSteading {
+	return { ...steading, neighbors };
+}
