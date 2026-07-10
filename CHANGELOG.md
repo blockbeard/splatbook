@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Play-mode state model (engine, pure + unit-tested): the rules over a character
+  _in play_. Vitals seed from the playbook the first time a finished character
+  enters play (HP fills to max, base damage recorded; re-entry preserves current
+  HP, only re-clamping). Move-trackers (Boon, Resolve, Piety…) reconcile against
+  the moves a character currently holds — a tracker appears when its move is
+  gained and vanishes when it's retired, marks preserved and re-clamped.
+  XP/level helpers implement Stonetop's threshold (Level Up at XP ≥ 6 + twice
+  your level); stat debilities drop a stat's effective value by 1 until treated.
+  `enterPlay` seeds vitals + trackers idempotently, so characters built before
+  play mode gain them without a migration.
 - Playwright end-to-end smoke: sign in with dev-login, build a character in the
   wizard, finish (saving it), reload the saved sheet from the database, and
   confirm the print view drops the app chrome. Runs against the production build

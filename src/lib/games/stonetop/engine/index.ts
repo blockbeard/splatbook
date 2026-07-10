@@ -62,6 +62,24 @@ export {
 	type StartingMovesPlan
 } from './moves';
 
+export {
+	heldMoveIds,
+	xpForNextLevel,
+	canLevelUp,
+	markXp,
+	seedVitals,
+	syncMoveTrackers,
+	enterPlay,
+	setHp,
+	applyDamage,
+	healHp,
+	isDebilitated,
+	setDebility,
+	effectiveStat,
+	effectiveStats,
+	debilityName
+} from './play';
+
 import { createCharacter } from './character';
 import { validateCharacter, isComplete } from './validation';
 
