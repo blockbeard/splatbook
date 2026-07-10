@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Generic wizard shell (`src/lib/wizard/`): a game-agnostic step runner that
+  renders a game module's ordered `WizardStep`s one at a time with a progress
+  bar and Back/Next, and autosaves the working draft to localStorage so a
+  half-built character survives a reload. The shell never inspects the draft's
+  shape — steps read the content pack, the shell just navigates. Pure,
+  unit-tested logic (`navigation`: index clamping, next/prev, progress fraction;
+  `autosave`: namespaced `draftKey`, save/load round-trip over an injected
+  storage, corrupt-JSON tolerance) sits behind a thin `Wizard.svelte`. Steps are
+  registered with `defineWizardStep` (the single contained cast around Svelte's
+  contravariant component props); `GameModule.wizardSteps` is now typed
+  `readonly WizardStep[]`. Stonetop registers no steps yet — those land next.
 - Stonetop engine skeleton (`src/lib/games/stonetop/engine/`): the game's pure
   rules layer, attached to the module's `engine` slot and opaque to the shell. A
   Stonetop-specific character model (playbook/background/instinct/appearance/

@@ -13,6 +13,7 @@
 
 import type { Component } from 'svelte';
 import type { SchemaResolver } from '../packs/harness';
+import type { WizardStep } from '../wizard/types';
 
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
@@ -23,8 +24,9 @@ export interface GameModule {
 	packSchemas: SchemaResolver;
 	/** Pure rules engine — owned by the game, opaque to the shell. Arrives in phase 3. */
 	engine?: unknown;
-	/** Character-wizard step definitions for the wizard shell. Arrives in phase 3. */
-	wizardSteps?: readonly unknown[];
+	/** Ordered character-wizard steps, rendered by the generic wizard shell. Steps
+	 * populate as the phase-3 commits land; built with `defineWizardStep`. */
+	wizardSteps?: readonly WizardStep[];
 	/** Character-sheet component. Arrives in phase 3. */
 	sheetComponent?: Component;
 }
