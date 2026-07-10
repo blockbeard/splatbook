@@ -81,7 +81,11 @@ const moveSchema = z.strictObject({
 			level: z.number().int().optional(),
 			moves: z.array(id).optional(),
 			/** Non-mechanical requirement prose, e.g. "the Blessed". */
-			note: z.string().optional()
+			note: z.string().optional(),
+			/** Gate on a tracker's marks: the Would-be Hero's Superior Stat needs
+			 * all 6 marks in Potential for Greatness. `move` names the tracker-bearing
+			 * move; `count` is the minimum marks required. */
+			tracker: z.strictObject({ move: id, count: z.number().int() }).optional()
 		})
 		.optional(),
 	tracker: trackerSchema.optional(),
@@ -90,7 +94,10 @@ const moveSchema = z.strictObject({
 	/** Taking this move retires the named one. */
 	replaces: id.optional(),
 	/** The Would-be Hero's asterisk rule. */
-	asterisk: z.boolean().optional()
+	asterisk: z.boolean().optional(),
+	/** Taking this move raises one stat by +1, up to `cap` (Improved Stat +2,
+	 * Superior Stat +3). The player picks which stat on Level Up. */
+	statBump: z.strictObject({ cap: z.number().int() }).optional()
 });
 
 const itemSchema = z.strictObject({

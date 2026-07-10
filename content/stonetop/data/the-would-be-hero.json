@@ -141,6 +141,7 @@
       },
       {
         "id": "improved-stat",
+        "statBump": { "cap": 2 },
         "name": "Improved Stat",
         "maxTakes": 3,
         "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
@@ -168,6 +169,7 @@
       },
       {
         "id": "potential-for-greatness",
+        "tracker": { "boxes": 6, "label": "Potential for Greatness" },
         "name": "Potential for Greatness",
         "requires": { "note": "the Would-be Hero" },
         "text": "Once per level, *when you roll a stat and get a 10+*, mark one of the following (note the level during which you marked it). You don't have to mark them in order.\n\n- Increase the stat you rolled by 1, to a max of +2 (at level ___)\n- Increase the stat you rolled by 1, to a max of +2 (at level ___)\n- Increase the stat you rolled by 1, to a max of +2 (at level ___)\n- Increase the stat you rolled by 1, to a max of +2 (at level ___)\n- Increase your max HP by 4 (at level ___)\n- Increase your damage die to a d8 (at level ___)"
@@ -223,8 +225,9 @@
       },
       {
         "id": "superior-stat",
+        "statBump": { "cap": 3 },
         "name": "Superior Stat",
-        "requires": { "note": "all 6 marks in Potential for Greatness" },
+        "requires": { "note": "all 6 marks in Potential for Greatness", "tracker": { "move": "potential-for-greatness", "count": 6 } },
         "text": "Increase one of your stats by +1 (to a max of +3)."
       },
       {

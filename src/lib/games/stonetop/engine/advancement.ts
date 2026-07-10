@@ -23,7 +23,14 @@
 import type { Move, Playbook } from '../pack-schemas';
 import type { StatKey, StonetopCharacter } from './character';
 import { prerequisitesMet, startingMovesPlan } from './moves';
-import { canLevelUp, heldMoveIds, syncMoveTrackers, xpForNextLevel } from './play';
+import {
+	bumpStat,
+	canLevelUp,
+	heldMoveIds,
+	statAtCap,
+	syncMoveTrackers,
+	xpForNextLevel
+} from './play';
 
 /** The move ids a character holds from creation alone (granted + chosen), not advancement. */
 function creationMoves(character: StonetopCharacter, playbook: Playbook): Set<string> {
@@ -76,8 +83,21 @@ export function legalChoices(
 		if (isMaxedOut(character, playbook, move)) return false;
 		if (!prerequisitesMet(move, held)) return false;
 		if (move.replaces && !held.has(move.replaces)) return false;
+		if (!trackerGateMet(character, move)) return false;
 		return true;
 	});
+}
+
+/**
+ * Whether a move's tracker gate is satisfied — the Would-be Hero's Superior
+ * Stat opens only with all 6 marks in Potential for Greatness. Moves without a
+ * `requires.tracker` are ungated.
+ */
+export function trackerGateMet(character: StonetopCharacter, move: Move): boolean {
+	const gate = move.requires?.tracker;
+	if (!gate) return true;
+	const tracker = character.trackers[gate.move];
+	return tracker !== undefined && tracker.marked >= gate.count;
 }
 
 /** The moves a character may pick if it Levels Up now (i.e. reaching level + 1). */
@@ -92,7 +112,8 @@ export interface LevelUpChoice {
 }
 
 /** Why a Level Up was refused, for the UI to surface. */
-export type LevelUpError = 'not-enough-xp' | 'unknown-move' | 'illegal-choice';
+export type LevelUpError =
+	'not-enough-xp' | 'unknown-move' | 'illegal-choice' | 'stat-required' | 'stat-capped';
 
 /** Result of attempting a Level Up: the advanced character, or a reason it failed. */
 export type LevelUpResult =
@@ -117,9 +138,17 @@ export function applyLevelUp(
 		return { ok: false, reason: 'illegal-choice' };
 	}
 
+	// A stat-bump move (Improved/Superior Stat) needs a legal, uncapped stat.
+	if (move.statBump) {
+		if (!choice.stat) return { ok: false, reason: 'stat-required' };
+		if (statAtCap(character, choice.stat, move.statBump.cap)) {
+			return { ok: false, reason: 'stat-capped' };
+		}
+	}
+
 	const newLevel = character.level + 1;
 	const cost = xpForNextLevel(character.level);
-	const advanced: StonetopCharacter = {
+	let advanced: StonetopCharacter = {
 		...character,
 		level: newLevel,
 		xp: character.xp - cost,
@@ -128,5 +157,41 @@ export function applyLevelUp(
 			{ level: newLevel, moveId: move.id, stat: choice.stat, replaced: move.replaces }
 		]
 	};
+	// Apply the stat bump, capped (Improved Stat +2, Superior Stat +3).
+	if (move.statBump && choice.stat) {
+		advanced = bumpStat(advanced, choice.stat, move.statBump.cap) ?? advanced;
+	}
 	return { ok: true, character: syncMoveTrackers(advanced, playbook) };
+}
+
+/** The flag id under which a Would-be Hero records crossing off "Would-be". */
+export const HERO_FLAG = 'would-be-crossed';
+
+/** Moves flagged with the asterisk (the Would-be Hero's level-6 replacements). */
+export function asteriskMoves(playbook: Playbook): Move[] {
+	return playbook.moves.list.filter((m) => m.asterisk);
+}
+
+/** Whether the character holds any asterisk move (so "Would-be" can be crossed off). */
+export function holdsAsteriskMove(character: StonetopCharacter, playbook: Playbook): boolean {
+	const held = heldMoveIds(character, playbook);
+	return asteriskMoves(playbook).some((m) => held.has(m.id));
+}
+
+/** Whether the Would-be Hero has crossed off "Would-be" (become a Hero). */
+export function isWouldBeCrossed(character: StonetopCharacter): boolean {
+	return character.flags?.[HERO_FLAG] === true;
+}
+
+/**
+ * Whether to offer the "cross off Would-be" action: the character holds an
+ * asterisk move (whose first use triggers the rule) and hasn't crossed it yet.
+ */
+export function canCrossOffWouldBe(character: StonetopCharacter, playbook: Playbook): boolean {
+	return holdsAsteriskMove(character, playbook) && !isWouldBeCrossed(character);
+}
+
+/** Set the Would-be crossed-off flag (become a Hero, or undo). Pure. */
+export function crossOffWouldBe(character: StonetopCharacter, on = true): StonetopCharacter {
+	return { ...character, flags: { ...(character.flags ?? {}), [HERO_FLAG]: on } };
 }

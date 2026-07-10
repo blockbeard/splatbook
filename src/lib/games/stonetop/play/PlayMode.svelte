@@ -11,17 +11,21 @@
 	import {
 		STAT_KEYS,
 		applyLevelUp,
+		canCrossOffWouldBe,
 		canLevelUp,
+		crossOffWouldBe,
 		debilityName,
 		effectiveStat,
 		enterPlay,
 		isDebilitated,
+		isWouldBeCrossed,
 		levelUpChoices,
 		markXp,
 		migrateCharacter,
 		setDebility,
 		setHp,
 		setTrackerMarks,
+		statAtCap,
 		xpForNextLevel,
 		type StatKey,
 		type StonetopCharacter
@@ -77,37 +81,58 @@
 	const readyToLevel = $derived(canLevelUp(c));
 	const trackerEntries = $derived(Object.entries(c.trackers));
 
-	// Level-up flow: open a panel of legal picks, choose one, confirm.
+	// Level-up flow: open a panel of legal picks, choose one (and a stat, for
+	// Improved/Superior Stat), confirm.
 	let levelingUp = $state(false);
 	let chosenMoveId = $state<string | null>(null);
+	let chosenStat = $state<StatKey | null>(null);
 	let levelUpError = $state<string | null>(null);
 
 	const choices = $derived<Move[]>(playbook ? levelUpChoices(c, playbook) : []);
+	const chosenMove = $derived<Move | null>(choices.find((m) => m.id === chosenMoveId) ?? null);
+	const needsStat = $derived(Boolean(chosenMove?.statBump));
 
 	const startLevelUp = (): void => {
 		levelingUp = true;
 		chosenMoveId = null;
+		chosenStat = null;
 		levelUpError = null;
 	};
 	const cancelLevelUp = (): void => {
 		levelingUp = false;
 		chosenMoveId = null;
+		chosenStat = null;
+	};
+	const pickMove = (id: string): void => {
+		chosenMoveId = id;
+		chosenStat = null;
 	};
 	const confirmLevelUp = (): void => {
 		if (!playbook || !chosenMoveId) return;
-		const result = applyLevelUp(c, playbook, { moveId: chosenMoveId });
+		const result = applyLevelUp(c, playbook, {
+			moveId: chosenMoveId,
+			stat: chosenStat ?? undefined
+		});
 		if (result.ok) {
 			onChange(result.character);
 			levelingUp = false;
 			chosenMoveId = null;
+			chosenStat = null;
 			levelUpError = null;
+		} else if (result.reason === 'not-enough-xp') {
+			levelUpError = 'Not enough XP to Level Up.';
+		} else if (result.reason === 'stat-required') {
+			levelUpError = 'Choose which stat to raise.';
+		} else if (result.reason === 'stat-capped') {
+			levelUpError = 'That stat is already at its cap.';
 		} else {
-			levelUpError =
-				result.reason === 'not-enough-xp'
-					? 'Not enough XP to Level Up.'
-					: 'That move isn’t available.';
+			levelUpError = 'That move isn’t available.';
 		}
 	};
+
+	const crossOff = (): void => onChange(crossOffWouldBe(c));
+	const showCrossOff = $derived(Boolean(playbook && canCrossOffWouldBe(c, playbook)));
+	const heroCrossed = $derived(isWouldBeCrossed(c));
 </script>
 
 {#snippet boxRow(count: number, filled: number, tap: (i: number) => void, label: string)}
@@ -134,7 +159,21 @@
 	<article class="mx-auto max-w-3xl space-y-8">
 		<header class="border-b-2 border-accent pb-3">
 			<h1 class="text-3xl font-bold tracking-tight">{c.name || 'Unnamed'}</h1>
-			<p class="text-lg text-muted">{playbook.name} · Level {c.level}</p>
+			<p class="text-lg text-muted">
+				{playbook.name} · Level {c.level}{#if heroCrossed}<span
+						class="ml-2 rounded bg-accent px-1.5 py-0.5 text-xs font-semibold text-accent-contrast"
+						>Hero</span
+					>{/if}
+			</p>
+			{#if showCrossOff}
+				<button
+					type="button"
+					onclick={crossOff}
+					class="mt-2 rounded-md border border-accent px-3 py-1 text-sm font-medium text-accent hover:bg-accent/10"
+				>
+					Cross off “Would-be” — you’re a Hero now
+				</button>
+			{/if}
 		</header>
 
 		<section>
@@ -208,14 +247,39 @@
 				{:else}
 					<div class="mt-3 grid gap-3 sm:grid-cols-2">
 						{#each choices as move (move.id)}
-							<OptionButton
-								selected={chosenMoveId === move.id}
-								onclick={() => (chosenMoveId = move.id)}
-							>
+							<OptionButton selected={chosenMoveId === move.id} onclick={() => pickMove(move.id)}>
 								<div class="font-semibold">{move.name}</div>
 								<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
 							</OptionButton>
 						{/each}
+					</div>
+				{/if}
+
+				{#if needsStat && chosenMove?.statBump}
+					<div class="mt-4">
+						<p class="text-sm font-medium">
+							Raise which stat? <span class="text-muted">(max +{chosenMove.statBump.cap})</span>
+						</p>
+						<div class="mt-2 flex flex-wrap gap-2">
+							{#each STAT_KEYS as stat (stat)}
+								{#if c.stats[stat]}
+									{@const capped = statAtCap(c, stat, chosenMove.statBump.cap)}
+									<button
+										type="button"
+										onclick={() => (chosenStat = stat)}
+										disabled={capped}
+										aria-pressed={chosenStat === stat}
+										class="rounded-md border px-3 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 {chosenStat ===
+										stat
+											? 'border-accent bg-accent/10'
+											: 'border-border hover:bg-surface'}"
+									>
+										{stat}
+										<span class="font-mono text-muted">{fmt(effectiveStat(c, stat))}</span>
+									</button>
+								{/if}
+							{/each}
+						</div>
 					</div>
 				{/if}
 
@@ -227,7 +291,7 @@
 					<button
 						type="button"
 						onclick={confirmLevelUp}
-						disabled={!chosenMoveId}
+						disabled={!chosenMoveId || (needsStat && !chosenStat)}
 						class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
 					>
 						Confirm

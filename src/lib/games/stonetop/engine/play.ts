@@ -143,6 +143,30 @@ export function setDebility(
 	};
 }
 
+/** Whether a stat's base value is already at (or above) `cap`. */
+export function statAtCap(character: StonetopCharacter, stat: StatKey, cap: number): boolean {
+	const s = character.stats[stat];
+	return s !== undefined && s.value >= cap;
+}
+
+/**
+ * Raise a stat's base value by 1, not exceeding `cap` (Improved Stat → +2,
+ * Superior Stat → +3). Returns `undefined` if the stat is unassigned or already
+ * at the cap, so the caller can reject an illegal bump.
+ */
+export function bumpStat(
+	character: StonetopCharacter,
+	stat: StatKey,
+	cap: number
+): StonetopCharacter | undefined {
+	const current = character.stats[stat];
+	if (!current || current.value >= cap) return undefined;
+	return {
+		...character,
+		stats: { ...character.stats, [stat]: { ...current, value: current.value + 1 } }
+	};
+}
+
 /**
  * A stat's effective value: its assigned value, minus 1 while debilitated.
  * `undefined` if the stat isn't assigned yet.

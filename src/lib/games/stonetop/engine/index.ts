@@ -79,7 +79,9 @@ export {
 	setDebility,
 	effectiveStat,
 	effectiveStats,
-	debilityName
+	debilityName,
+	statAtCap,
+	bumpStat
 } from './play';
 
 export {
@@ -87,9 +89,16 @@ export {
 	maxTakes,
 	isMaxedOut,
 	meetsLevel,
+	trackerGateMet,
 	legalChoices,
 	levelUpChoices,
 	applyLevelUp,
+	asteriskMoves,
+	holdsAsteriskMove,
+	isWouldBeCrossed,
+	canCrossOffWouldBe,
+	crossOffWouldBe,
+	HERO_FLAG,
 	type LevelUpChoice,
 	type LevelUpError,
 	type LevelUpResult

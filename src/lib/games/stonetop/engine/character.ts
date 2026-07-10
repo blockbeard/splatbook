@@ -136,6 +136,10 @@ export interface StonetopCharacter {
 
 	/** Moves/stat bumps gained through Level Up, in the order taken. */
 	advancement: AdvancementEntry[];
+
+	/** Playbook-specific boolean state that doesn't fit a tracker — currently the
+	 * Would-be Hero's "crossed off Would-be" (see `HERO_FLAG`). Keyed for growth. */
+	flags: Record<string, boolean>;
 }
 
 /**
@@ -167,7 +171,8 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		hp: { current: 0, max: 0 },
 		xp: 0,
 		level: 1,
-		advancement: []
+		advancement: [],
+		flags: {}
 	};
 }
 
@@ -189,7 +194,8 @@ export function migrateCharacter(raw: unknown): StonetopCharacter {
 		stats: r.stats ?? base.stats,
 		hp: r.hp ?? base.hp,
 		trackers: r.trackers ?? base.trackers,
-		advancement: Array.isArray(r.advancement) ? r.advancement : []
+		advancement: Array.isArray(r.advancement) ? r.advancement : [],
+		flags: r.flags ?? {}
 	};
 }
 

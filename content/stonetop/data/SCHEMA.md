@@ -40,8 +40,9 @@ Move:
 | `name` | string | as printed (title case; render however you like) |
 | `text` | string | markdown; bullets as `- ` lines, paragraphs as `\n\n` |
 | `maxTakes` | int? | omit = 1 |
-| `requires` | object? | `{ "level"?: int, "moves"?: [ids], "note"?: string }` — `note` for non-mechanical text like "the Blessed" |
+| `requires` | object? | `{ "level"?: int, "moves"?: [ids], "note"?: string, "tracker"?: { "move": id, "count": int } }` — `note` for non-mechanical text like "the Blessed"; `tracker` gates on a tracker's marks (the Would-be Hero's Superior Stat needs 6 marks in Potential for Greatness) |
 | `tracker` | object? | `{ "boxes": 4, "label": "Boon" }` for use-trackers printed on the sheet |
+| `statBump` | object? | `{ "cap": 2 }` — taking this move raises one stat by +1 up to `cap` (Improved Stat +2, Superior Stat +3); the player picks the stat on Level Up |
 | `childOf` | string? | id of parent move (Borrow Power / Call the Spirits sit under Spirit Tongue) |
 
 ## Shared shapes

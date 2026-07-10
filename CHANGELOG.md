@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Advancement special cases (rules-as-data + engine + play UI):
+  - **Improved / Superior Stat** now raise a stat. Both moves carry a
+    data-driven `statBump` cap (Improved +2, Superior +3); the level-up flow
+    prompts for which stat, offers only stats below the cap, and the engine
+    applies the capped +1 and records which stat was raised.
+  - **Potential for Greatness → Superior Stat gate.** The Would-be Hero's
+    Potential for Greatness is now a 6-box tracker, and its Superior Stat is
+    gated (via a new `requires.tracker` in the pack) on all 6 marks rather than
+    a level — enforced in the legal-choices engine.
+  - **Would-be Hero's asterisk rule.** Once the character holds an asterisk move
+    (the level-6 replacements), play mode offers a "cross off Would-be" action;
+    doing so flags the character a Hero (a new generic `flags` map on the model,
+    filled by the migration).
 - Level-up flow in play mode: once banked XP clears the threshold, a "Level Up"
   button opens a panel of only the legal moves (per the engine's gates,
   prerequisites, caps, and replacements), each shown with its rules text. Pick

@@ -101,6 +101,7 @@
       },
       {
         "id": "improved-stat",
+        "statBump": { "cap": 2 },
         "name": "Improved Stat",
         "maxTakes": 3,
         "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
@@ -191,6 +192,7 @@
       },
       {
         "id": "superior-stat",
+        "statBump": { "cap": 3 },
         "name": "Superior Stat",
         "requires": { "level": 6 },
         "text": "Increase one of your stats by +1 (to a max of +3)."
