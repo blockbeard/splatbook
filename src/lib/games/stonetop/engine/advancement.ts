@@ -164,6 +164,34 @@ export function applyLevelUp(
 	return { ok: true, character: syncMoveTrackers(advanced, playbook) };
 }
 
+/** One advancement rendered for display: level reached, the move's name, the
+ * stat it raised (if any), and the name of any move it retired. */
+export interface AdvancementLogEntry {
+	level: number;
+	moveName: string;
+	stat?: StatKey;
+	replacedName?: string;
+}
+
+/**
+ * The character's advancement history, resolved against the playbook for
+ * display names. Pure; tolerant of an absent log (older blobs) and unknown ids
+ * (falls back to the id). Drives the sheet/play advancement log.
+ */
+export function advancementLog(
+	character: StonetopCharacter,
+	playbook: Playbook
+): AdvancementLogEntry[] {
+	const nameOf = (moveId: string): string =>
+		playbook.moves.list.find((m) => m.id === moveId)?.name ?? moveId;
+	return (character.advancement ?? []).map((a) => ({
+		level: a.level,
+		moveName: nameOf(a.moveId),
+		stat: a.stat,
+		replacedName: a.replaced ? nameOf(a.replaced) : undefined
+	}));
+}
+
 /** The flag id under which a Would-be Hero records crossing off "Would-be". */
 export const HERO_FLAG = 'would-be-crossed';
 

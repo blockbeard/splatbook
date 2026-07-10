@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Advancement log: the character sheet and play mode now show, in order, when
+  each move (and stat bump) was gained — "Level N: <Move>", annotated with the
+  raised stat or the move it replaced. The sheet's move list now reflects the
+  character's current holdings (creation moves plus advancement, minus retired
+  moves) and shows the character's level in the header.
 - Advancement special cases (rules-as-data + engine + play UI):
   - **Improved / Superior Stat** now raise a stat. Both moves carry a
     data-driven `statBump` cap (Improved +2, Superior +3); the level-up flow

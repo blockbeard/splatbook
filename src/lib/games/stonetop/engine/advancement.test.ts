@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createCharacter, migrateCharacter, type StonetopCharacter } from './character';
 import type { Playbook } from '../pack-schemas';
 import {
+	advancementLog,
 	applyLevelUp,
 	isMaxedOut,
 	legalChoices,
@@ -213,6 +214,32 @@ describe('applyLevelUp', () => {
 		});
 		// tracker for the gained move exists; the retired move is gone from held set
 		expect(r.character.trackers['reckoned-with']).toEqual({ label: 'Rep', boxes: 3, marked: 0 });
+	});
+});
+
+describe('advancementLog', () => {
+	it('resolves move names, stat bumps, and retired moves', () => {
+		const c = base({
+			advancement: [
+				{ level: 2, moveId: 'wild-soul' },
+				{ level: 3, moveId: 'improved-stat', stat: 'STR' },
+				{ level: 6, moveId: 'reckoned-with', replaced: 'into-the-lions-den' }
+			]
+		});
+		expect(advancementLog(c, playbook)).toEqual([
+			{ level: 2, moveName: 'Wild Soul', stat: undefined, replacedName: undefined },
+			{ level: 3, moveName: 'Improved Stat', stat: 'STR', replacedName: undefined },
+			{
+				level: 6,
+				moveName: 'A Force to be Reckoned With',
+				stat: undefined,
+				replacedName: "Into the Lion's Den"
+			}
+		]);
+	});
+
+	it('is empty for a fresh character', () => {
+		expect(advancementLog(base(), playbook)).toEqual([]);
 	});
 });
 

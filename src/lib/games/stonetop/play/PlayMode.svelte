@@ -10,6 +10,7 @@
 	import type { Move, Playbook } from '../pack-schemas';
 	import {
 		STAT_KEYS,
+		advancementLog,
 		applyLevelUp,
 		canCrossOffWouldBe,
 		canLevelUp,
@@ -80,6 +81,7 @@
 	const xpBoxes = $derived(Math.max(xpNeeded, c.xp));
 	const readyToLevel = $derived(canLevelUp(c));
 	const trackerEntries = $derived(Object.entries(c.trackers));
+	const advLog = $derived(playbook ? advancementLog(c, playbook) : []);
 
 	// Level-up flow: open a panel of legal picks, choose one (and a stat, for
 	// Improved/Superior Stat), confirm.
@@ -325,6 +327,24 @@
 						</div>
 					{/each}
 				</div>
+			</section>
+		{/if}
+
+		{#if advLog.length}
+			<section>
+				<h2 class="text-lg font-semibold">Advancement</h2>
+				<ul class="mt-2 space-y-1 text-sm text-muted">
+					{#each advLog as entry, i (i)}
+						<li>
+							<span class="font-medium text-text">Level {entry.level}:</span>
+							{entry.moveName}{#if entry.stat}<span class="text-muted">
+									— +1 {entry.stat}</span
+								>{/if}{#if entry.replacedName}<span class="text-muted">
+									(replaced {entry.replacedName})</span
+								>{/if}
+						</li>
+					{/each}
+				</ul>
 			</section>
 		{/if}
 	</article>

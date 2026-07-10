@@ -93,6 +93,7 @@ export {
 	legalChoices,
 	levelUpChoices,
 	applyLevelUp,
+	advancementLog,
 	asteriskMoves,
 	holdsAsteriskMove,
 	isWouldBeCrossed,
@@ -101,7 +102,8 @@ export {
 	HERO_FLAG,
 	type LevelUpChoice,
 	type LevelUpError,
-	type LevelUpResult
+	type LevelUpResult,
+	type AdvancementLogEntry
 } from './advancement';
 
 import { createCharacter } from './character';

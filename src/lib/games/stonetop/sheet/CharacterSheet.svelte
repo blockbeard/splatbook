@@ -9,8 +9,9 @@
 	import type { Move, Playbook } from '../pack-schemas';
 	import {
 		STAT_KEYS,
+		advancementLog,
+		heldMoveIds,
 		isWriteInPossession,
-		startingMovesPlan,
 		type StonetopCharacter
 	} from '../engine';
 	import { fetchPlaybook } from '../pack/playbooks';
@@ -59,10 +60,13 @@
 
 	const moves = $derived.by(() => {
 		if (!playbook) return [];
-		const plan = startingMovesPlan(c, playbook);
-		const ids = [...new Set([...plan.granted, ...c.moves])];
+		// Everything the character currently holds — creation moves plus anything
+		// gained through advancement, minus moves a replacement retired.
+		const ids = [...heldMoveIds(c, playbook)];
 		return ids.map((id) => moveById.get(id)).filter((m): m is Move => Boolean(m));
 	});
+
+	const advLog = $derived(playbook ? advancementLog(c, playbook) : []);
 
 	const possessions = $derived(
 		c.possessions.map((id) =>
@@ -83,7 +87,7 @@
 		<header class="border-b-2 border-accent pb-3">
 			<h1 class="text-3xl font-bold tracking-tight">{c.name || 'Unnamed'}</h1>
 			<p class="text-lg text-muted">
-				{playbook.name}{background ? ` · ${background.name}` : ''}
+				{playbook.name}{background ? ` · ${background.name}` : ''} · Level {c.level}
 			</p>
 			<p class="mt-1 text-sm text-muted">
 				{#if instinctLabel}<span>Instinct: {instinctLabel}</span>{/if}
@@ -139,6 +143,22 @@
 				{/each}
 			</div>
 		</section>
+
+		{#if advLog.length}
+			<section class="mt-6">
+				<h2 class="text-lg font-semibold">Advancement</h2>
+				<ul class="mt-2 space-y-1 text-sm text-muted">
+					{#each advLog as entry, i (i)}
+						<li>
+							<span class="font-medium text-text">Level {entry.level}:</span>
+							{entry.moveName}{#if entry.stat}
+								<span class="text-muted"> — +1 {entry.stat}</span>{/if}{#if entry.replacedName}
+								<span class="text-muted"> (replaced {entry.replacedName})</span>{/if}
+						</li>
+					{/each}
+				</ul>
+			</section>
+		{/if}
 
 		{#if background?.grants?.notes?.length}
 			<section class="mt-6">
