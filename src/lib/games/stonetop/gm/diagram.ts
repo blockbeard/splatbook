@@ -69,14 +69,7 @@ export interface EdgePath {
  * same perpendicular, so a pair of opposite-direction edges (a→b and b→a) bow
  * apart instead of overlapping. Endpoints sit on each box's boundary.
  */
-export function edgePath(
-	a: Point,
-	b: Point,
-	hw: number,
-	hh: number,
-	sep = 7,
-	bow = 26
-): EdgePath {
+export function edgePath(a: Point, b: Point, hw: number, hh: number, sep = 7, bow = 26): EdgePath {
 	const p = perp(a, b);
 	const start = rectBoundaryPoint(a, hw, hh, b);
 	const end = rectBoundaryPoint(b, hw, hh, a);

@@ -615,9 +615,7 @@ export const gmSchema = z.strictObject({
 				items: z.array(z.string())
 			})
 		),
-		edges: z.array(
-			z.strictObject({ from: id, to: id, label: z.string().optional() })
-		)
+		edges: z.array(z.strictObject({ from: id, to: id, label: z.string().optional() }))
 	})
 });
 

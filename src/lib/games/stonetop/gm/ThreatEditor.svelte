@@ -66,7 +66,12 @@
 			)
 		);
 	const removePortent = (i: number): void =>
-		onChange(setGrimPortents(s, s.grimPortents.filter((_, j) => j !== i)));
+		onChange(
+			setGrimPortents(
+				s,
+				s.grimPortents.filter((_, j) => j !== i)
+			)
+		);
 	const flipPortent = (i: number): void => onChange(toggleGrimPortent(s, i));
 
 	const addMove = (move: string): void => {
@@ -155,7 +160,9 @@
 
 	<section>
 		<h2 class="text-lg font-semibold">Impending doom</h2>
-		<p class="text-xs text-muted">If the threat has momentum: the ultimate bad thing, then its grim portents.</p>
+		<p class="text-xs text-muted">
+			If the threat has momentum: the ultimate bad thing, then its grim portents.
+		</p>
 		<textarea
 			value={s.impendingDoom}
 			oninput={(e) => setStr('impendingDoom', e.currentTarget.value)}
@@ -189,7 +196,8 @@
 						type="button"
 						onclick={() => removePortent(i)}
 						aria-label="Remove grim portent"
-						class="shrink-0 rounded border border-border px-2 py-1 text-sm text-muted hover:text-danger">×</button
+						class="shrink-0 rounded border border-border px-2 py-1 text-sm text-muted hover:text-danger"
+						>×</button
 					>
 				</li>
 			{/each}
@@ -219,7 +227,9 @@
 	<section>
 		<h2 class="text-lg font-semibold">GM moves</h2>
 		{#if selectedType}
-			<p class="mt-1 text-xs text-muted">Add from the {selectedType.name} move list, or write your own below.</p>
+			<p class="mt-1 text-xs text-muted">
+				Add from the {selectedType.name} move list, or write your own below.
+			</p>
 			<div class="mt-2 flex flex-wrap gap-1.5">
 				{#each selectedType.moves as move (move)}
 					<button

@@ -15,13 +15,7 @@
  */
 
 import type { Component } from 'svelte';
-import type {
-	EntityTypeModule,
-	GameModule,
-	GmGuideProps,
-	PlayProps,
-	SheetProps
-} from '../types';
+import type { EntityTypeModule, GameModule, GmGuideProps, PlayProps, SheetProps } from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';

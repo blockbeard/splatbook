@@ -10,14 +10,12 @@
 	let { data, children } = $props();
 
 	const activeId = $derived(page.params.section);
-	const href = (id: string) => resolve('/g/[game]/gm/[section]', { game: data.gameId, section: id });
+	const href = (id: string) =>
+		resolve('/g/[game]/gm/[section]', { game: data.gameId, section: id });
 </script>
 
 <div class="flex flex-col gap-8 md:flex-row md:gap-10">
-	<nav
-		class="shrink-0 md:w-64 md:border-r md:border-border md:pr-6"
-		aria-label="GM guide contents"
-	>
+	<nav class="shrink-0 md:w-64 md:border-r md:border-border md:pr-6" aria-label="GM guide contents">
 		<a
 			href={resolve('/g/[game]', { game: data.gameId })}
 			class="block text-sm font-semibold tracking-tight hover:text-accent"

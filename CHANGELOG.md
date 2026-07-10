@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ring layout and edge routing are a pure, unit-tested geometry module
   (`gm/diagram.ts`). The labelled transition list and step text remain beneath
   each diagram as the text-equivalent.
-- **Threat worksheets (phase 7, commit 52).** Stonetop's *third* entity type — a
+- **Threat worksheets (phase 7, commit 52).** Stonetop's _third_ entity type — a
   GM worksheet for a lingering threat: its type, tracker (Homefront / Nearby /
   Distant), instinct, description, impending doom with markable grim portents,
   and optional stakes and moves. Editor-first like a steading (no wizard); a

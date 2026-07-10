@@ -112,9 +112,7 @@ export function toggleGrimPortent(threat: StonetopThreat, index: number): Stonet
 	if (index < 0 || index >= threat.grimPortents.length) return threat;
 	return {
 		...threat,
-		grimPortents: threat.grimPortents.map((g, i) =>
-			i === index ? { ...g, marked: !g.marked } : g
-		)
+		grimPortents: threat.grimPortents.map((g, i) => (i === index ? { ...g, marked: !g.marked } : g))
 	};
 }
 

@@ -30,16 +30,16 @@
 
 	const pos = $derived.by(() => {
 		const points = circularPositions(nodes.length, cx, cy, R);
-		const map = new Map<string, Point>();
-		nodes.forEach((node, i) => map.set(node.id, points[i]));
+		const map: Record<string, Point> = {};
+		nodes.forEach((node, i) => (map[node.id] = points[i]));
 		return map;
 	});
 
 	const routed = $derived(
 		edges
 			.map((edge) => {
-				const a = pos.get(edge.from);
-				const b = pos.get(edge.to);
+				const a = pos[edge.from];
+				const b = pos[edge.to];
 				if (!a || !b) return null;
 				const g = edgePath(a, b, hw, hh);
 				return { d: g.d, at: g.label, label: edge.label };
@@ -92,7 +92,7 @@
 		{/each}
 
 		{#each nodes as node (node.id)}
-			{@const p = pos.get(node.id)}
+			{@const p = pos[node.id]}
 			{#if p}
 				<g>
 					<rect
