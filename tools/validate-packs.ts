@@ -11,7 +11,7 @@ import { listPackRoots } from '../src/lib/packs/fs-loader';
 import { validatePack } from '../src/lib/packs/harness';
 
 // Game modules register their pack schemas as an import side effect.
-// (None yet — the stonetop module arrives with its pack.)
+import '../src/lib/games';
 
 const PACKS_ROOT = 'static/content-packs';
 

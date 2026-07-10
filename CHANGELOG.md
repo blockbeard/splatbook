@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `GameModule` interface and registry — the only door between shell and game code
+  (`id`, `name`, `packSchemas` now; engine/wizard/sheet slots firm up in phase 3).
+  Registering a game wires its pack schemas into the validation harness. Game routes
+  live under `/g/[game]`; header nav links registered games (no picker until game #2).
 - Pack validation harness: Zod schemas for the generic envelope (manifest, document
   tree); game modules register per-file schemas via `registerPackSchemas()`, and
   `npm run validate:packs` checks every pack on disk — unregistered games and

@@ -3,9 +3,14 @@
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import { APP_NAME } from '$lib';
+	import { listGames } from '$lib/games';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
 	let { children } = $props();
+
+	// With a single game registered there is nothing to pick — the shell
+	// shows a direct link and the picker stays hidden until game #2 exists.
+	const games = listGames();
 </script>
 
 <svelte:head>
@@ -19,7 +24,11 @@
 				{APP_NAME}<span class="text-accent">*</span>
 			</a>
 			<nav class="flex items-center gap-4 text-sm text-muted">
-				<!-- Game navigation appears here once modules are registered (phase 1). -->
+				{#each games as game (game.id)}
+					<a href={resolve('/g/[game]', { game: game.id })} class="hover:text-text">
+						{game.name}
+					</a>
+				{/each}
 				<ThemeToggle />
 			</nav>
 		</div>
