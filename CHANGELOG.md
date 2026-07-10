@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `docs/content-packs.md`: pack format reference (envelope, validation, strictness
+  policy) and the first draft of the "adding a new game" walkthrough. Kept current
+  with any commit touching the pack boundary.
 - Round-trip tests for the Stonetop pack: every manifest file parses into its typed
   structure through the harness; playbook/background/instinct/move/insert ids are
   snapshotted so accidental renames fail CI; move references (starting, grants,
