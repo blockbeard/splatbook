@@ -25,6 +25,7 @@
 		"data/the-seeker.json",
 		"data/the-steading.json",
 		"data/the-would-be-hero.json",
-		"rules/book-i.json"
+		"rules/book-i.json",
+		"rules/book-ii.json"
 	]
 }

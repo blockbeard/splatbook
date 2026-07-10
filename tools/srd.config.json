@@ -17,6 +17,13 @@
 						"19 - Mediography",
 						"20 - Index"
 					]
+				},
+				{
+					"id": "book-ii",
+					"title": "Book II: The Wider World",
+					"sourceDir": "Book II The Wider World",
+					"visibility": "gm",
+					"exclude": ["00 - Front Matter", "59 - Index"]
 				}
 			]
 		}

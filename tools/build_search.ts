@@ -36,6 +36,9 @@ for (const pack of config.packs) {
 	for (const file of ruleFiles) {
 		const tree = (await loadPackFile(pack.packRoot, file)) as DocumentTree;
 		for (const section of tree.sections) {
+			// GM-only content is never shipped in the public index (it is served to
+			// every client); a gated index is the phase-9 GM gate's concern.
+			if (section.visibility === 'gm') continue;
 			if (seen.has(section.id)) continue; // MiniSearch ids must be unique across the index
 			seen.add(section.id);
 			docs.push({

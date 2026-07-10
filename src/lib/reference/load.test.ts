@@ -1,6 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { documentTreeSchema, type DocumentTree } from './document-tree';
-import { tocOf, findSection, ancestorsOf, childrenOf, siblingsInOrder } from './load';
+import {
+	tocOf,
+	findSection,
+	ancestorsOf,
+	childrenOf,
+	siblingsInOrder,
+	isVisible,
+	GM_CONTENT_VISIBLE
+} from './load';
 
 const tree: DocumentTree = documentTreeSchema.parse({
 	id: 'book-i',
@@ -70,5 +78,26 @@ describe('siblingsInOrder', () => {
 		expect(siblingsInOrder(tree, 0)).toEqual({ prev: null, next: { id: 'a1', title: 'A1' } });
 		expect(siblingsInOrder(tree, 4).next).toBeNull();
 		expect(siblingsInOrder(tree, 2).prev).toEqual({ id: 'a1', title: 'A1' });
+	});
+});
+
+describe('visibility gate', () => {
+	const gmTree: DocumentTree = documentTreeSchema.parse({
+		id: 'book-ii',
+		title: 'Book II',
+		sections: [{ id: 'lore', title: 'Lore', level: 1, path: [], body: 'secret', visibility: 'gm' }]
+	});
+
+	it('hides gm content while the gate is closed', () => {
+		expect(GM_CONTENT_VISIBLE).toBe(false);
+		expect(isVisible({ visibility: 'player' })).toBe(true);
+		expect(isVisible({ visibility: 'gm' })).toBe(false);
+	});
+
+	it('tocOf with isVisible drops gm sections (a wholly-gm doc becomes empty)', () => {
+		const [doc] = tocOf([gmTree], isVisible);
+		expect(doc.sections).toHaveLength(0);
+		const [playerDoc] = tocOf([tree], isVisible);
+		expect(playerDoc.sections).toHaveLength(5);
 	});
 });

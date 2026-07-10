@@ -137,8 +137,7 @@ def build_document(doc: dict, rules_source: Path, warnings: list[str]) -> dict:
     sections: list[dict] = []
     for path in collect_files(source_dir, exclude):
         for section in parse_file(path, source_dir, used_ids, warnings):
-            if visibility != "player":
-                section["visibility"] = visibility
+            section["visibility"] = visibility
             sections.append(section)
     return {"id": doc["id"], "title": doc["title"], "sections": sections}
 

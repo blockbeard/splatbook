@@ -110,6 +110,16 @@ That file is a derived artifact, **not** listed in the manifest (so the harness
 leaves it alone); it is served statically and loaded in the browser for
 client-side, offline-capable search. Regenerate it whenever the trees change.
 
+**Visibility.** Each section carries a `player`/`gm` flag (a whole document can be
+made GM-only via the config's `visibility`, e.g. Stonetop's Book II). The gate
+lives in one place, `GM_CONTENT_VISIBLE` in `$lib/reference/load` — a hard `false`
+today, so GM sections are dropped from the table of contents, return 404 if
+addressed directly, and are excluded from the public search index entirely. This
+is an application-level hide, not yet access control: the raw `rules/book-ii.json`
+is still fetchable by URL. Phase 9 (campaigns) turns the flag into a real gate
+keyed on campaign-GM membership; that is the point to also stop serving GM trees
+to non-GM clients.
+
 ## Adding a new game (first draft)
 
 *This walkthrough gets refined every time the boundary is exercised, and gets a

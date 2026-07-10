@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- GM-only visibility flag and Book II ingest: Stonetop's Book II (The Wider World,
+  2,003 sections) is now built into the pack as `rules/book-ii.json`, flagged
+  `gm`. A single gate (`GM_CONTENT_VISIBLE` in `$lib/reference/load`, `false` for
+  now) drops GM content from the table of contents, returns 404 for GM sections
+  addressed directly, resolves wikilinks only against visible content, and
+  excludes GM text from the public search index. `build_srd.py` now writes an
+  explicit `visibility` on every section. This is an application-level hide, not
+  access control — phase 9 (campaigns) makes it a real GM gate.
 - Expandable search snippets (`$lib/reference/snippet`): each result now shows the
   first sentence that mentions a query term with the terms highlighted (`<mark>`,
   apostrophe-flexible), a "more" control that expands the snippet in place to its
