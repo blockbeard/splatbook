@@ -33,6 +33,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ring layout and edge routing are a pure, unit-tested geometry module
   (`gm/diagram.ts`). The labelled transition list and step text remain beneath
   each diagram as the text-equivalent.
+- **Threat worksheets (phase 7, commit 52).** Stonetop's *third* entity type — a
+  GM worksheet for a lingering threat: its type, tracker (Homefront / Nearby /
+  Distant), instinct, description, impending doom with markable grim portents,
+  and optional stakes and moves. Editor-first like a steading (no wizard); a
+  chosen type offers its GM-move list to drop into the worksheet, and there's a
+  read-only print sheet. Threats save to the database and appear in the dashboard
+  alongside characters and steadings — the entity-type map absorbed the third
+  type with no shell changes, only a new `threat` entry and its pure engine
+  model (`engine/threat.ts`, unit-tested). Reachable from the game home, the
+  dashboard, and a link in the GM guide's Threats section.
 
 - **Steading builder (phase 6).** Stonetop's second entity type. A
   steading has no build wizard — it's an editable tracker sheet from creation,

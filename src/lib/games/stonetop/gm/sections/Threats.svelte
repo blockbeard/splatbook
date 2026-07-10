@@ -3,16 +3,27 @@
 	lists become interactive in commit 50. -->
 <script lang="ts">
 	import type { GmPlaybook } from '../../pack-schemas';
+	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import Markdown from '../../wizard/components/Markdown.svelte';
 	import StringList from '../blocks/StringList.svelte';
 	import ThreatTypes from '../blocks/ThreatTypes.svelte';
 
 	let { gm }: { gm: GmPlaybook } = $props();
 	const t = $derived(gm.threats);
+	const worksheetHref = $derived(
+		resolve('/g/[game]/[type]/play', { game: page.params.game as string, type: 'threat' })
+	);
 </script>
 
 <section>
 	<div class="text-sm text-muted"><Markdown text={t.text} /></div>
+	<a
+		href={worksheetHref}
+		class="mt-3 inline-block rounded-md border border-accent bg-accent/10 px-3 py-1.5 text-sm font-medium hover:bg-accent/20"
+	>
+		Create a threat worksheet →
+	</a>
 </section>
 
 <section>

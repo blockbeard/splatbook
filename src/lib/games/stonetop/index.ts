@@ -25,11 +25,14 @@ import type {
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';
+import { THREAT_SCHEMA_VERSION, createThreat, type StonetopThreat } from './engine/threat';
 import { stonetopWizardSteps } from './wizard/steps';
 import CharacterSheet from './sheet/CharacterSheet.svelte';
 import PlayMode from './play/PlayMode.svelte';
 import SteadingEditor from './steading/SteadingEditor.svelte';
 import SteadingSheet from './steading/SteadingSheet.svelte';
+import ThreatEditor from './gm/ThreatEditor.svelte';
+import ThreatSheet from './gm/ThreatSheet.svelte';
 import GmGuide from './gm/GmGuide.svelte';
 import { GM_SECTIONS } from './gm/sections';
 
@@ -68,12 +71,28 @@ const steading: EntityTypeModule = {
 	sheetComponent: SteadingSheet as unknown as Component<SheetProps>
 };
 
+// A GM threat worksheet — the third entity type. Editor-first like a steading:
+// no wizard, edited in place from creation, with a read-only print sheet.
+const threat: EntityTypeModule = {
+	label: 'Threat',
+	newDraft: () => createThreat(),
+	entityMeta: (draft) => {
+		const th = draft as StonetopThreat;
+		return {
+			name: th.name?.trim() || 'Unnamed threat',
+			schemaVersion: th.schemaVersion ?? THREAT_SCHEMA_VERSION
+		};
+	},
+	playComponent: ThreatEditor as unknown as Component<PlayProps>,
+	sheetComponent: ThreatSheet as unknown as Component<SheetProps>
+};
+
 export const stonetop: GameModule = {
 	id: 'stonetop',
 	name: 'Stonetop',
 	packSchemas: schemaFor,
 	engine,
-	entityTypes: { character, steading },
+	entityTypes: { character, steading, threat },
 	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,
 	// procedures, interactive tables, flow diagrams. Read-only, so it's not an
 	// entity type — the shell serves it at `/g/stonetop/gm`.
