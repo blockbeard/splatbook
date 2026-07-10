@@ -14,6 +14,7 @@
 
 import type { Playbook } from '../pack-schemas';
 import { SCHEMA_VERSION, type StonetopCharacter } from './character';
+import { isSelectionValid } from './choices';
 
 /** Which wizard step an issue belongs to — lets the UI route it to the right screen. */
 export type StepId =
@@ -60,14 +61,58 @@ const validateSchema: Validator = (character) => {
 
 const noIssues: Validator = () => [];
 
+/** A playbook must be chosen; nothing downstream is meaningful without one. */
+const validatePlaybook: Validator = (character) =>
+	character.playbookId
+		? []
+		: [{ step: 'playbook', severity: 'error', message: 'Choose a playbook.', field: 'playbookId' }];
+
+/** A background must be chosen and each of its nested picks satisfied. */
+const validateBackground: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	if (!character.backgroundId) {
+		return [
+			{
+				step: 'background',
+				severity: 'error',
+				message: 'Choose a background.',
+				field: 'backgroundId'
+			}
+		];
+	}
+	const background = playbook.backgrounds.find((b) => b.id === character.backgroundId);
+	if (!background) {
+		return [
+			{
+				step: 'background',
+				severity: 'error',
+				message: 'Unknown background.',
+				field: 'backgroundId'
+			}
+		];
+	}
+	const issues: Issue[] = [];
+	for (const choice of background.choices ?? []) {
+		if (!isSelectionValid(choice, character.backgroundChoices[choice.id])) {
+			issues.push({
+				step: 'background',
+				severity: 'error',
+				message: `${choice.prompt} (choose ${choice.min}–${choice.max}).`,
+				field: `backgroundChoices.${choice.id}`
+			});
+		}
+	}
+	return issues;
+};
+
 /**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
  * whatever is registered, so wiring never changes as bodies fill in.
  */
 export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
-	playbook: noIssues,
-	background: noIssues,
+	playbook: validatePlaybook,
+	background: validateBackground,
 	instinct: noIssues,
 	appearance: noIssues,
 	origin: noIssues,

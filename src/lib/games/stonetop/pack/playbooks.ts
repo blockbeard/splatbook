@@ -53,3 +53,24 @@ export async function fetchPlaybookSummaries(fetchFn: Fetcher): Promise<Playbook
 		.map(({ id, name, flavor }) => ({ id, name, flavor }))
 		.sort((a, b) => a.name.localeCompare(b.name));
 }
+
+/** Memo cache so steps sharing a chosen playbook fetch it at most once. */
+const playbookCache = new Map<string, Promise<Playbook>>();
+
+/**
+ * Fetch a single full playbook by id (e.g. `the-blessed`), memoised. Later
+ * wizard steps (background onward) all consume the same chosen playbook, so
+ * they call this rather than re-fetching.
+ */
+export function fetchPlaybook(id: string, fetchFn: Fetcher): Promise<Playbook> {
+	const cached = playbookCache.get(id);
+	if (cached) return cached;
+	const url = `${base}/content-packs/${GAME_ID}/data/${id}.json`;
+	const promise = getJson<Playbook>(fetchFn, url).catch((err) => {
+		// Don't cache failures — a transient error shouldn't poison later loads.
+		playbookCache.delete(id);
+		throw err;
+	});
+	playbookCache.set(id, promise);
+	return promise;
+}

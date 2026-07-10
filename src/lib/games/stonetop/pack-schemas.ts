@@ -181,6 +181,11 @@ export const playbookSchema = z.strictObject({
 });
 
 export type Playbook = z.infer<typeof playbookSchema>;
+export type Choice = z.infer<typeof choiceSchema>;
+export type SubChoice = z.infer<typeof subChoiceSchema>;
+export type Move = z.infer<typeof moveSchema>;
+export type Item = z.infer<typeof itemSchema>;
+export type PlaybookSection = z.infer<typeof sectionSchema>;
 
 /**
  * Inserts (followers, crew, inventory, ghost/revenant/thrall…): strict

@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Background wizard step: choose a background, see what it grants (moves, notes,
+  a tracker), and resolve any nested "choose N" picks (e.g. the Blessed's
+  initiates, with a free-text write-in). Adds shared wizard components —
+  `Markdown` (trusted pack markdown), `OptionButton` (selectable card), and
+  `ChoiceGroup` (a controlled sub-choice picker) — and a memoised
+  `fetchPlaybook` so every step downstream of playbook-select shares one fetch.
+  Engine gains pure, unit-tested sub-choice logic (`selectionCount`,
+  `isSelectionValid`, `canPickMore`, `toggleOption`) and real validators for the
+  playbook and background steps (replacing their stubs): a character now needs a
+  playbook, a background, and each background pick within range.
 - Playbook-select step and the character builder route: `/g/<game>/build`
   renders a game's wizard from the registry (steps + a `newDraft` factory, the
   new generic `GameModule` slot for seeding a draft) without importing game

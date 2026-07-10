@@ -31,6 +31,14 @@ export {
 	type Validator
 } from './validation';
 
+export {
+	selectionCount,
+	isSelectionValid,
+	canPickMore,
+	toggleOption,
+	type ChoiceLike
+} from './choices';
+
 import { createCharacter } from './character';
 import { validateCharacter, isComplete } from './validation';
 
