@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Playbook-select step and the character builder route: `/g/<game>/build`
+  renders a game's wizard from the registry (steps + a `newDraft` factory, the
+  new generic `GameModule` slot for seeding a draft) without importing game
+  code, so any game that registers a wizard gets a builder for free. Stonetop's
+  first step lists the nine playbooks with their flavor text (fetched from the
+  pack via `fetchPlaybookSummaries`, which projects id/name/flavor and skips the
+  steading/GM sheets); picking one records it on the draft and the shell
+  autosaves. A "Build a character" link joins "Rules reference" on the game
+  landing page. Loader unit-tested (file filtering, projection, fetch-error).
 - Generic wizard shell (`src/lib/wizard/`): a game-agnostic step runner that
   renders a game module's ordered `WizardStep`s one at a time with a progress
   bar and Back/Next, and autosaves the working draft to localStorage so a

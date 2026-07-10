@@ -27,6 +27,9 @@ export interface GameModule {
 	/** Ordered character-wizard steps, rendered by the generic wizard shell. Steps
 	 * populate as the phase-3 commits land; built with `defineWizardStep`. */
 	wizardSteps?: readonly WizardStep[];
+	/** Seed a blank wizard draft (the game's own entity shape). The shell renders
+	 * it opaquely; the game owns what's inside. Required to run the wizard. */
+	newDraft?: () => object;
 	/** Character-sheet component. Arrives in phase 3. */
 	sheetComponent?: Component;
 }

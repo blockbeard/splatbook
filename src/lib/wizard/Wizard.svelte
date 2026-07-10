@@ -2,14 +2,17 @@
 	The generic wizard shell. Renders a game module's ordered steps one at a
 	time with a progress bar and Back/Next, autosaving the working draft to
 	localStorage so a half-built entity survives a reload. It knows nothing
-	about the draft's shape or the game's rules — those live in the step
-	components and the content pack. See docs/architecture.md.
+	about the draft's shape or the game's rules — it holds the draft opaquely as
+	a plain record and hands it to the step components, which read the content
+	pack. See docs/architecture.md.
 -->
-<script lang="ts" generics="TDraft extends object">
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import type { WizardStep } from './types';
 	import { clampIndex, isFirst, isLast, nextIndex, prevIndex, progress } from './navigation';
 	import { draftKey, loadDraft, saveDraft } from './autosave';
+
+	type Draft = Record<string, unknown>;
 
 	let {
 		steps,
@@ -19,19 +22,20 @@
 		draftId = 'current',
 		onFinish
 	}: {
-		steps: WizardStep<TDraft>[];
-		initialDraft: TDraft;
+		steps: readonly WizardStep[];
+		/** Opaque to the shell (the game's entity shape); held as a record. */
+		initialDraft: object;
 		gameId: string;
 		entityType?: string;
 		draftId?: string;
-		onFinish?: (draft: TDraft) => void;
+		onFinish?: (draft: object) => void;
 	} = $props();
 
 	let index = $state(0);
 	// Seed the working draft once from the prop; the wizard owns it thereafter
 	// (autosave hydration below may replace it). Intentional one-time capture.
 	// svelte-ignore state_referenced_locally
-	let draft = $state<TDraft>(initialDraft);
+	let draft = $state<Draft>(initialDraft as Draft);
 	let hydrated = $state(false);
 
 	const key = $derived(draftKey(gameId, entityType, draftId));
@@ -41,7 +45,7 @@
 	// Restore any autosaved draft once, in the browser, before autosave arms.
 	$effect(() => {
 		if (hydrated || !browser) return;
-		const saved = loadDraft<TDraft>(localStorage, key);
+		const saved = loadDraft<Draft>(localStorage, key);
 		if (saved) draft = saved;
 		hydrated = true;
 	});
@@ -49,12 +53,12 @@
 	// Debounced autosave of the current draft.
 	$effect(() => {
 		if (!browser || !hydrated) return;
-		const snapshot = $state.snapshot(draft) as TDraft;
+		const snapshot = $state.snapshot(draft);
 		const t = setTimeout(() => saveDraft(localStorage, key, snapshot), 300);
 		return () => clearTimeout(t);
 	});
 
-	function update(patch: Partial<TDraft>): void {
+	function update(patch: Partial<Draft>): void {
 		draft = { ...draft, ...patch };
 	}
 
@@ -63,7 +67,7 @@
 	}
 
 	function forward(): void {
-		if (isLast(index, count)) onFinish?.($state.snapshot(draft) as TDraft);
+		if (isLast(index, count)) onFinish?.($state.snapshot(draft));
 		else index = nextIndex(index, count);
 	}
 </script>

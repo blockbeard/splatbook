@@ -11,10 +11,13 @@
 import type { GameModule } from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine } from './engine';
+import { stonetopWizardSteps } from './wizard/steps';
 
 export const stonetop: GameModule = {
 	id: 'stonetop',
 	name: 'Stonetop',
 	packSchemas: schemaFor,
-	engine
+	engine,
+	wizardSteps: stonetopWizardSteps,
+	newDraft: () => engine.createCharacter()
 };
