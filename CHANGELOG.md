@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Round-trip tests for the Stonetop pack: every manifest file parses into its typed
+  structure through the harness; playbook/background/instinct/move/insert ids are
+  snapshotted so accidental renames fail CI; move references (starting, grants,
+  requires, childOf, replaces) are checked to resolve within their playbook.
 - Stonetop content pack (`static/content-packs/stonetop/`): 9 character playbooks,
   9 inserts, the steading, and the GM playbook (2nd printing text, CC BY-SA 4.0,
   attribution Jeremy Strandberg / Lampblack & Brimstone; pack-level LICENSE note).
