@@ -24,6 +24,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   requirements — into checklist groups, decides when requirements are met, and
   drives a Mark-complete toggle. Ticking a requirement is a pure engine op; the
   stat bumps an Improvement grants stay manual on the tracker.
+- Steading **lists** (commit 46): editable Resources, Fortifications, Assets
+  (with silver/gold treasure tallies) and Places of Interest (marker + name,
+  suggesting the next map marker). A fresh steading is seeded once from the
+  pack's printed starting entries and marked `seeded`, so lists you empty aren't
+  refilled. Write-ins are just added rows.
 
 ### Changed
 

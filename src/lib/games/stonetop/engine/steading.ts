@@ -134,6 +134,10 @@ export interface StonetopSteading {
 	size: SteadingSize;
 	season: Season;
 	debilities: Record<SteadingDebilityKey, boolean>;
+	/** Whether the pack's starting Resources/Fortifications/Places/Assets have
+	 * been seeded. False on a fresh draft; the editor seeds once, then sets this
+	 * so an emptied list isn't silently refilled. */
+	seeded: boolean;
 	resources: string[];
 	fortifications: string[];
 	placesOfInterest: PlaceOfInterest[];
@@ -144,6 +148,14 @@ export interface StonetopSteading {
 	residents: ResidentRow[];
 	neighbors: NeighborRow[];
 	safety: SafetyLists;
+}
+
+/** The slice of the steading pack `createSteading` seeds starting content from. */
+export interface SteadingSeed {
+	resources: { starting: string[] };
+	fortifications: { starting: string[] };
+	placesOfInterest: { starting: PlaceOfInterest[] };
+	assets: { starting: string[] };
 }
 
 /** Starting values for the numeric stats, from `STEADING_STATS`. */
@@ -174,6 +186,7 @@ export function createSteading(): StonetopSteading {
 		size: STARTING_SIZE,
 		season: 'spring',
 		debilities: noDebilities(),
+		seeded: false,
 		resources: [],
 		fortifications: [],
 		placesOfInterest: [],
@@ -273,4 +286,44 @@ export function toggleDebility(
 	key: SteadingDebilityKey
 ): StonetopSteading {
 	return setDebility(steading, key, !steading.debilities[key]);
+}
+
+/**
+ * Seed a fresh steading's content lists from the pack's starting entries and
+ * mark it `seeded`. A no-op once seeded, so a steading whose lists the player
+ * later empties isn't silently refilled. Copies the arrays so the pack object
+ * is never shared into saved state.
+ */
+export function seedFromPack(steading: StonetopSteading, pack: SteadingSeed): StonetopSteading {
+	if (steading.seeded) return steading;
+	return {
+		...steading,
+		seeded: true,
+		resources: [...pack.resources.starting],
+		fortifications: [...pack.fortifications.starting],
+		placesOfInterest: pack.placesOfInterest.starting.map((p) => ({ ...p })),
+		assets: [...pack.assets.starting]
+	};
+}
+
+/** The steading's string-list fields (the ones an `EditableList` drives). */
+export type SteadingListKey = 'resources' | 'fortifications' | 'assets';
+
+/** A steading with one string-list field replaced. */
+export function setList(
+	steading: StonetopSteading,
+	key: SteadingListKey,
+	items: string[]
+): StonetopSteading {
+	return { ...steading, [key]: items };
+}
+
+/** A steading with its Places of Interest replaced. */
+export function setPlaces(steading: StonetopSteading, places: PlaceOfInterest[]): StonetopSteading {
+	return { ...steading, placesOfInterest: places };
+}
+
+/** A steading with its treasure tallies set. */
+export function setTreasure(steading: StonetopSteading, treasure: Treasure): StonetopSteading {
+	return { ...steading, treasure };
 }

@@ -24,8 +24,20 @@ import {
 	advanceSeason,
 	isDebilitated,
 	setDebility,
-	toggleDebility
+	toggleDebility,
+	seedFromPack,
+	setList,
+	setPlaces,
+	setTreasure,
+	type SteadingSeed
 } from './steading.ts';
+
+const seed: SteadingSeed = {
+	resources: { starting: ['Farming', 'Hunting'] },
+	fortifications: { starting: ['Village militia'] },
+	placesOfInterest: { starting: [{ marker: 'A', name: 'The Stone' }] },
+	assets: { starting: ['A pair of draft horses'] }
+};
 
 describe('createSteading', () => {
 	it('starts at the printed 2nd-printing values', () => {
@@ -162,6 +174,42 @@ describe('migrateSteading', () => {
 		expect(migrated.resources).toEqual([]);
 		expect(migrated.treasure).toEqual({ silver: '', gold: '' });
 		expect(migrated.safety).toEqual({ excluded: [], veiled: [], specialHandling: [] });
+	});
+});
+
+describe('seedFromPack', () => {
+	it('fills empty lists from the pack and marks seeded', () => {
+		const s = seedFromPack(createSteading(), seed);
+		expect(s.seeded).toBe(true);
+		expect(s.resources).toEqual(['Farming', 'Hunting']);
+		expect(s.fortifications).toEqual(['Village militia']);
+		expect(s.placesOfInterest).toEqual([{ marker: 'A', name: 'The Stone' }]);
+		expect(s.assets).toEqual(['A pair of draft horses']);
+	});
+
+	it('is a no-op once seeded (an emptied list stays empty)', () => {
+		let s = seedFromPack(createSteading(), seed);
+		s = setList(s, 'resources', []); // player clears it
+		s = seedFromPack(s, seed); // should not refill
+		expect(s.resources).toEqual([]);
+	});
+
+	it('copies the pack arrays rather than sharing them', () => {
+		const s = seedFromPack(createSteading(), seed);
+		s.resources.push('Distilling');
+		expect(seed.resources.starting).toEqual(['Farming', 'Hunting']); // untouched
+	});
+});
+
+describe('list setters', () => {
+	it('sets a string list and places and treasure, purely', () => {
+		let s = createSteading();
+		s = setList(s, 'resources', ['Mill']);
+		expect(s.resources).toEqual(['Mill']);
+		s = setPlaces(s, [{ marker: 'G', name: 'The Inn' }]);
+		expect(s.placesOfInterest).toEqual([{ marker: 'G', name: 'The Inn' }]);
+		s = setTreasure(s, { silver: '3 purses', gold: '1 coin' });
+		expect(s.treasure).toEqual({ silver: '3 purses', gold: '1 coin' });
 	});
 });
 

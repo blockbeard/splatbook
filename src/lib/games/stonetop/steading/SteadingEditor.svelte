@@ -24,13 +24,22 @@
 		toggleDebility,
 		isDebilitated,
 		migrateSteading,
+		seedFromPack,
+		setList,
+		setPlaces,
+		setTreasure,
 		type SteadingStatKey,
 		type SteadingDebilityKey,
+		type SteadingListKey,
 		type Season,
+		type PlaceOfInterest,
+		type Treasure,
 		type StonetopSteading
 	} from '../engine/steading';
 	import { fetchSteadingPack } from '../pack/steading';
 	import SteadingImprovements from './SteadingImprovements.svelte';
+	import EditableList from './EditableList.svelte';
+	import PlacesList from './PlacesList.svelte';
 
 	let { character, onChange }: PlayProps = $props();
 	const s = $derived(character as StonetopSteading);
@@ -47,10 +56,13 @@
 		return () => (alive = false);
 	});
 
-	// Migrate an older blob once (idempotent — emits only if it actually changed).
+	// Once the pack is loaded, migrate an older blob and seed a fresh steading's
+	// starting content. Both are idempotent (seed is a no-op once `seeded`), so
+	// this emits exactly once for a new draft and never loops.
 	$effect(() => {
-		const migrated = migrateSteading(s);
-		if (JSON.stringify(migrated) !== JSON.stringify(s)) onChange(migrated);
+		if (!pack) return;
+		const prepared = seedFromPack(migrateSteading(s), pack);
+		if (JSON.stringify(prepared) !== JSON.stringify(s)) onChange(prepared);
 	});
 
 	const fmt = (n: number): string => (n >= 0 ? `+${n}` : `${n}`);
@@ -61,6 +73,11 @@
 	const nudgeSize = (delta: number): void => onChange(bumpSize(s, delta));
 	const pickSeason = (season: Season): void => onChange(setSeason(s, season));
 	const flipDebility = (key: SteadingDebilityKey): void => onChange(toggleDebility(s, key));
+	const editList = (key: SteadingListKey, items: string[]): void =>
+		onChange(setList(s, key, items));
+	const editPlaces = (places: PlaceOfInterest[]): void => onChange(setPlaces(s, places));
+	const editTreasure = (patch: Partial<Treasure>): void =>
+		onChange(setTreasure(s, { ...s.treasure, ...patch }));
 
 	// Pack lookups for display text (game strings live in the pack, not here).
 	const debilityInfo = $derived(new Map((pack?.debilities ?? []).map((d) => [d.id, d] as const)));
@@ -198,6 +215,79 @@
 						{/if}
 					</button>
 				{/each}
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Resources</h2>
+			<div class="mt-2">
+				<EditableList
+					items={s.resources}
+					onChange={(items) => editList('resources', items)}
+					addLabel="Resource"
+					placeholder="Resource"
+					writeInsHint={pack.resources.writeIns}
+				/>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Fortifications</h2>
+			<div class="mt-2">
+				<EditableList
+					items={s.fortifications}
+					onChange={(items) => editList('fortifications', items)}
+					addLabel="Fortification"
+					placeholder="Fortification"
+					writeInsHint={pack.fortifications.writeIns}
+				/>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Places of Interest</h2>
+			<div class="mt-2">
+				<PlacesList
+					places={s.placesOfInterest}
+					writeInMarkers={pack.placesOfInterest.writeInMarkers}
+					onChange={editPlaces}
+				/>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-lg font-semibold">Assets</h2>
+			<p class="text-sm text-muted">{pack.assets.text}</p>
+			<div class="mt-2">
+				<EditableList
+					items={s.assets}
+					onChange={(items) => editList('assets', items)}
+					addLabel="Asset"
+					placeholder="Asset"
+					writeInsHint={pack.assets.writeIns}
+				/>
+			</div>
+			<div class="mt-3 grid gap-3 sm:grid-cols-2">
+				<label class="block">
+					<span class="text-xs font-medium tracking-wide text-muted uppercase">Silver</span>
+					<input
+						type="text"
+						value={s.treasure.silver}
+						oninput={(e) => editTreasure({ silver: e.currentTarget.value })}
+						placeholder="purses, handfuls, coins"
+						class="mt-1 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
+					/>
+				</label>
+				<label class="block">
+					<span class="text-xs font-medium tracking-wide text-muted uppercase">Gold</span>
+					<input
+						type="text"
+						value={s.treasure.gold}
+						oninput={(e) => editTreasure({ gold: e.currentTarget.value })}
+						placeholder="purses, handfuls, coins"
+						class="mt-1 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
+					/>
+				</label>
 			</div>
 		</section>
 
