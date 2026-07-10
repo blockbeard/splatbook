@@ -14,10 +14,26 @@
 		type StonetopCharacter
 	} from '../engine';
 	import { fetchPlaybook } from '../pack/playbooks';
+	import { toExportJSON, toMarkdown, exportFilename } from '../export';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
 	let { character }: SheetProps = $props();
 	const c = $derived(character as StonetopCharacter);
+
+	/** Trigger a client-side download of some text as a file. */
+	function download(filename: string, text: string, mime: string): void {
+		const url = URL.createObjectURL(new Blob([text], { type: mime }));
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = filename;
+		a.click();
+		URL.revokeObjectURL(url);
+	}
+
+	const exportJSON = () =>
+		download(exportFilename(c, 'json'), toExportJSON(c), 'application/json');
+	const exportMarkdown = () =>
+		download(exportFilename(c, 'md'), toMarkdown(c, playbook), 'text/markdown');
 
 	let playbook = $state<Playbook | null>(null);
 	let loadError = $state<string | null>(null);
@@ -77,6 +93,23 @@
 						>{c.appearance.filter(Boolean).join(', ')}</span
 					>{/if}
 			</p>
+			<div class="sheet-export mt-3 flex items-center gap-2 text-sm">
+				<span class="text-muted">Export:</span>
+				<button
+					type="button"
+					onclick={exportJSON}
+					class="rounded border border-border px-2 py-0.5 text-muted hover:text-text"
+				>
+					JSON
+				</button>
+				<button
+					type="button"
+					onclick={exportMarkdown}
+					class="rounded border border-border px-2 py-0.5 text-muted hover:text-text"
+				>
+					Markdown
+				</button>
+			</div>
 		</header>
 
 		<section class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
@@ -145,3 +178,12 @@
 		{/if}
 	</article>
 {/if}
+
+<style>
+	/* The export buttons are screen-only; keep them out of the printed sheet. */
+	@media print {
+		.sheet-export {
+			display: none;
+		}
+	}
+</style>

@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Stonetop character export to JSON and Obsidian-flavoured Markdown, from the
+  sheet (screen-only buttons, hidden when printing). JSON wraps the character in
+  an identifying, re-importable envelope; Markdown emits YAML frontmatter
+  (name, playbook, stats, tags) plus sectioned body (stats, moves with text,
+  background notes, possessions, introductions), rendering by name/text when the
+  playbook is loaded and falling back to ids otherwise. Serializers are pure and
+  unit-tested; PDF export stays deferred until the sheet design settles.
 - Dashboard at `/dashboard` — the signed-in user's saved characters grouped by
   game, each row opening its saved sheet or offering duplicate, archive/
   unarchive, and delete. A "Characters" header link appears when signed in; an
