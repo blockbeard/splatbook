@@ -31,15 +31,18 @@
 		<h2 class="text-xl font-semibold">The application</h2>
 		<p class="mt-2">
 			{APP_NAME} is free software, licensed
-			<a href={appLicense.url} class="underline hover:text-accent">{appLicense.label}</a>. The
-			source is public:
-			<a href={APP_REPO_URL} class="underline hover:text-accent">{APP_REPO_URL}</a>.
+			<a href={appLicense.url} rel="external" class="underline hover:text-accent"
+				>{appLicense.label}</a
+			>. The source is public:
+			<a href={APP_REPO_URL} rel="external" class="underline hover:text-accent">{APP_REPO_URL}</a>.
 		</p>
 		<p class="mt-3 text-sm text-muted">
 			Its architecture is modelled on prior art by Arrowed —
-			{#each INSPIRATIONS as ins, i (ins.url)}<a href={ins.url} class="underline hover:text-accent"
-					>{ins.name}</a
-				>{#if i < INSPIRATIONS.length - 1}{' and '}{/if}{/each}. Thanks to them.
+			{#each INSPIRATIONS as ins, i (ins.url)}<a
+					href={ins.url}
+					rel="external"
+					class="underline hover:text-accent">{ins.name}</a
+				>{#if i < INSPIRATIONS.length - 1}&#32;and&#32;{/if}{/each}. Thanks to them.
 		</p>
 	</section>
 
@@ -81,7 +84,7 @@
 				<a
 					href={KOFI_URL}
 					target="_blank"
-					rel="noopener"
+					rel="noopener external"
 					class="font-medium underline hover:text-accent"
 				>
 					☕ Buy me a coffee on Ko-fi
@@ -92,7 +95,7 @@
 				<a
 					href={DRIVETHRU_AFFILIATE_URL}
 					target="_blank"
-					rel="noopener"
+					rel="noopener external"
 					class="font-medium underline hover:text-accent"
 				>
 					🎲 Shop DriveThruRPG through my affiliate link
