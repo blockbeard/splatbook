@@ -105,6 +105,73 @@ const validateBackground: Validator = (character, playbook) => {
 	return issues;
 };
 
+/** An instinct must be chosen; the write-in instinct needs its text. */
+const validateInstinct: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	if (!character.instinctId) {
+		return [
+			{ step: 'instinct', severity: 'error', message: 'Choose an instinct.', field: 'instinctId' }
+		];
+	}
+	const instinct = playbook.instincts.find((i) => i.id === character.instinctId);
+	if (!instinct) {
+		return [
+			{ step: 'instinct', severity: 'error', message: 'Unknown instinct.', field: 'instinctId' }
+		];
+	}
+	if (instinct.custom && !character.instinctWriteIn.trim()) {
+		return [
+			{
+				step: 'instinct',
+				severity: 'error',
+				message: 'Write your instinct.',
+				field: 'instinctWriteIn'
+			}
+		];
+	}
+	return [];
+};
+
+/** Every appearance line needs exactly one pick. */
+const validateAppearance: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	const issues: Issue[] = [];
+	playbook.appearance.forEach((_line, i) => {
+		if (!character.appearance[i]) {
+			issues.push({
+				step: 'appearance',
+				severity: 'error',
+				message: `Pick an appearance detail (line ${i + 1}).`,
+				field: `appearance.${i}`
+			});
+		}
+	});
+	return issues;
+};
+
+/** An origin must be chosen and the character named. */
+const validateOrigin: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	const issues: Issue[] = [];
+	if (!character.origin.option) {
+		issues.push({
+			step: 'origin',
+			severity: 'error',
+			message: 'Choose an origin.',
+			field: 'origin.option'
+		});
+	}
+	if (!character.name.trim()) {
+		issues.push({
+			step: 'origin',
+			severity: 'error',
+			message: 'Name your character.',
+			field: 'name'
+		});
+	}
+	return issues;
+};
+
 /**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
@@ -113,9 +180,9 @@ const validateBackground: Validator = (character, playbook) => {
 export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
 	playbook: validatePlaybook,
 	background: validateBackground,
-	instinct: noIssues,
-	appearance: noIssues,
-	origin: noIssues,
+	instinct: validateInstinct,
+	appearance: validateAppearance,
+	origin: validateOrigin,
 	stats: noIssues,
 	moves: noIssues,
 	possessions: noIssues,

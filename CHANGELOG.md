@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Instinct, appearance, and origin/name wizard steps. Instinct picks one of the
+  playbook's drives, with a write-in option that reveals a text field (new
+  `instinctWriteIn` on the character model). Appearance picks one descriptor per
+  printed line. Origin chooses where you're from and names the character, with
+  suggested names from the chosen origin as one-tap fills. Engine validators for
+  all three replace their stubs (instinct chosen + write-in text when needed,
+  one pick per appearance line, origin chosen and character named).
 - Background wizard step: choose a background, see what it grants (moves, notes,
   a tracker), and resolve any nested "choose N" picks (e.g. the Blessed's
   initiates, with a free-text write-in). Adds shared wizard components —

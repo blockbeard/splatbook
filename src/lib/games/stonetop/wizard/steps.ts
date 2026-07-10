@@ -11,6 +11,9 @@ import { defineWizardStep, type WizardStep } from '$lib/wizard';
 import type { StonetopCharacter } from '../engine';
 import PlaybookSelect from './PlaybookSelect.svelte';
 import BackgroundStep from './BackgroundStep.svelte';
+import InstinctStep from './InstinctStep.svelte';
+import AppearanceStep from './AppearanceStep.svelte';
+import OriginStep from './OriginStep.svelte';
 
 export const stonetopWizardSteps: readonly WizardStep[] = [
 	defineWizardStep<StonetopCharacter>({
@@ -22,5 +25,20 @@ export const stonetopWizardSteps: readonly WizardStep[] = [
 		id: 'background',
 		title: 'Background',
 		component: BackgroundStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'instinct',
+		title: 'Instinct',
+		component: InstinctStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'appearance',
+		title: 'Appearance',
+		component: AppearanceStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'origin',
+		title: 'Origin',
+		component: OriginStep
 	})
 ];

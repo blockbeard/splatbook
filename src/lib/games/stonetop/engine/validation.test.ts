@@ -3,7 +3,8 @@ import { createCharacter, type StonetopCharacter } from './character';
 import { isComplete, validateCharacter, validators } from './validation';
 import type { Playbook } from '../pack-schemas';
 
-/** A minimal playbook with two backgrounds, one carrying a 2–3 pick. */
+/** A minimal-but-complete playbook: backgrounds (one with a 2–3 pick), instincts
+ * (including a write-in), two appearance lines, and origin options. */
 const playbook = {
 	backgrounds: [
 		{
@@ -20,8 +21,28 @@ const playbook = {
 			]
 		},
 		{ id: 'vessel', name: 'Vessel' }
-	]
+	],
+	instincts: [
+		{ id: 'delight', name: 'Delight' },
+		{ id: 'custom', name: 'Something else', custom: true }
+	],
+	appearance: [
+		['young', 'old'],
+		['tall', 'short']
+	],
+	origins: { prompt: 'Where from?', options: [{ label: 'Stonetop', names: ['Arwel'] }] }
 } as unknown as Playbook;
+
+/** A character with every non-background choice satisfied, for isolating tests. */
+const complete = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => ({
+	...createCharacter('the-blessed'),
+	backgroundId: 'vessel',
+	instinctId: 'delight',
+	appearance: ['young', 'tall'],
+	origin: { option: 'Stonetop', note: '' },
+	name: 'Arwel',
+	...patch
+});
 
 const withPlaybook = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => ({
 	...createCharacter('the-blessed'),
@@ -79,6 +100,41 @@ describe('background validation', () => {
 	it('a background without picks is satisfied by selection alone', () => {
 		const c = withPlaybook({ backgroundId: 'vessel' });
 		expect(validateCharacter(c, playbook).some((i) => i.step === 'background')).toBe(false);
+	});
+});
+
+describe('instinct / appearance / origin validation', () => {
+	it('requires an instinct, and write-in text for the custom one', () => {
+		expect(
+			validateCharacter(complete({ instinctId: null }), playbook).some((i) => i.step === 'instinct')
+		).toBe(true);
+		const custom = complete({ instinctId: 'custom', instinctWriteIn: '  ' });
+		expect(validateCharacter(custom, playbook).some((i) => i.field === 'instinctWriteIn')).toBe(
+			true
+		);
+		const filled = complete({ instinctId: 'custom', instinctWriteIn: 'Curiosity' });
+		expect(validateCharacter(filled, playbook).some((i) => i.step === 'instinct')).toBe(false);
+	});
+
+	it('requires one pick per appearance line', () => {
+		const c = complete({ appearance: ['young'] }); // second line missing
+		expect(validateCharacter(c, playbook).some((i) => i.field === 'appearance.1')).toBe(true);
+	});
+
+	it('requires an origin and a name', () => {
+		expect(
+			validateCharacter(complete({ origin: { option: null, note: '' } }), playbook).some(
+				(i) => i.field === 'origin.option'
+			)
+		).toBe(true);
+		expect(
+			validateCharacter(complete({ name: '  ' }), playbook).some((i) => i.field === 'name')
+		).toBe(true);
+	});
+
+	it('a fully-specified character has no step errors', () => {
+		const issues = validateCharacter(complete(), playbook);
+		expect(issues.filter((i) => i.severity === 'error')).toEqual([]);
 	});
 });
 

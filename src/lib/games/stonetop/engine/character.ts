@@ -68,6 +68,8 @@ export interface StonetopCharacter {
 
 	/** Chosen instinct id. */
 	instinctId: string | null;
+	/** Free text when the chosen instinct is the playbook's write-in option. */
+	instinctWriteIn: string;
 
 	/** One picked descriptor per printed appearance line (index-aligned to the pack). */
 	appearance: (string | null)[];
@@ -120,6 +122,7 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		backgroundId: null,
 		backgroundChoices: {},
 		instinctId: null,
+		instinctWriteIn: '',
 		appearance: [],
 		origin: { option: null, note: '' },
 		stats: {},
