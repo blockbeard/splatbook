@@ -7,8 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-10
+
+Build any Stonetop character end to end and print it — the phase-3 milestone.
+
 ### Added
 
+- Character sheet and print view: `/g/<game>/sheet` renders the finished
+  character (chosen options only, laid out like the printed playbook — header,
+  stats, moves with text, background notes, possessions, introductions) from the
+  autosaved draft, via the game module's new `sheetComponent` slot (typed
+  `SheetProps`; wired with the same contained cast as wizard steps). A toolbar
+  offers Print and a link back to the builder; print CSS drops the app chrome so
+  the sheet prints clean. The builder's Finish now opens the sheet.
 - Introductions and review wizard steps. Introductions renders the playbook's
   numbered round-the-table ritual with optional free-text notes per step. Review
   summarizes every choice (name, playbook, background, instinct, origin,

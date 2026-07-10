@@ -15,6 +15,12 @@ import type { Component } from 'svelte';
 import type { SchemaResolver } from '../packs/harness';
 import type { WizardStep } from '../wizard/types';
 
+/** Props the shell passes a game's character-sheet component. The draft/entity
+ * is opaque to the shell (the game's own shape); the sheet casts it. */
+export interface SheetProps {
+	character: object;
+}
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
 	id: string;
@@ -30,6 +36,6 @@ export interface GameModule {
 	/** Seed a blank wizard draft (the game's own entity shape). The shell renders
 	 * it opaquely; the game owns what's inside. Required to run the wizard. */
 	newDraft?: () => object;
-	/** Character-sheet component. Arrives in phase 3. */
-	sheetComponent?: Component;
+	/** Character-sheet component, rendered from a saved/finished draft. */
+	sheetComponent?: Component<SheetProps>;
 }

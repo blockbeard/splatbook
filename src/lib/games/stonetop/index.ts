@@ -8,10 +8,12 @@
  * code reaches into it with types.
  */
 
-import type { GameModule } from '../types';
+import type { Component } from 'svelte';
+import type { GameModule, SheetProps } from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine } from './engine';
 import { stonetopWizardSteps } from './wizard/steps';
+import CharacterSheet from './sheet/CharacterSheet.svelte';
 
 export const stonetop: GameModule = {
 	id: 'stonetop',
@@ -19,5 +21,9 @@ export const stonetop: GameModule = {
 	packSchemas: schemaFor,
 	engine,
 	wizardSteps: stonetopWizardSteps,
-	newDraft: () => engine.createCharacter()
+	newDraft: () => engine.createCharacter(),
+	// Contained cast: the sheet types `character` as StonetopCharacter, the shell
+	// slot as the opaque `SheetProps` — Svelte props are contravariant, so this is
+	// the single erasure, mirroring `defineWizardStep`.
+	sheetComponent: CharacterSheet as unknown as Component<SheetProps>
 };
