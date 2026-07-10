@@ -11,3 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - SvelteKit 2 scaffold: Svelte 5 (runes forced), TypeScript strict, Vitest.
 - GPL-3.0-or-later license for the application source.
+- Tailwind CSS v4 with semantic theme tokens (`--sb-*` custom properties) that game
+  modules can override per `data-game` scope; light/dark mode with pre-paint script.
+- App shell layout: header, nav placeholder, footer, theme toggle.

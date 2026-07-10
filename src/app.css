@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode: `dark` class on <html>, set by the inline script in app.html
+   and toggled by ThemeToggle. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic theme tokens.
+ *
+ * The shell defines defaults here; a game module themes itself by overriding the
+ * `--sb-*` custom properties under a `[data-game="<gameId>"]` scope in its own CSS —
+ * no Tailwind config changes needed. Components use the mapped utilities
+ * (bg-bg, text-text, border-border, bg-accent, …) and pick up the override for free.
+ */
+:root {
+	--sb-bg: oklch(97.5% 0.006 90);
+	--sb-surface: oklch(100% 0 0);
+	--sb-text: oklch(26% 0.02 60);
+	--sb-muted: oklch(52% 0.02 60);
+	--sb-accent: oklch(50% 0.11 155);
+	--sb-accent-contrast: oklch(98% 0.01 155);
+	--sb-border: oklch(88% 0.012 90);
+}
+
+:root.dark {
+	--sb-bg: oklch(21% 0.012 270);
+	--sb-surface: oklch(26% 0.014 270);
+	--sb-text: oklch(92% 0.01 90);
+	--sb-muted: oklch(68% 0.015 90);
+	--sb-accent: oklch(72% 0.12 155);
+	--sb-accent-contrast: oklch(20% 0.03 155);
+	--sb-border: oklch(34% 0.015 270);
+}
+
+@theme inline {
+	--color-bg: var(--sb-bg);
+	--color-surface: var(--sb-surface);
+	--color-text: var(--sb-text);
+	--color-muted: var(--sb-muted);
+	--color-accent: var(--sb-accent);
+	--color-accent-contrast: var(--sb-accent-contrast);
+	--color-border: var(--sb-border);
+}
+
+html {
+	background-color: var(--sb-bg);
+	color: var(--sb-text);
+}
