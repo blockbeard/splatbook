@@ -2,7 +2,7 @@
 
 Your PC will have at least one insert, a double-sided half-page sheet that you can slip inside your folded playbook. PDFs are included in the playkit on the Lampblack & Brimstone website, but the inserts are also included in this chapter for reference.
 
-Every PC gets the **[[Inserts#Inventory|Inventory]]** sheet. See **[[03 - Playing the Game#**Seasonal gainsSeasonal gain**|Gear and possessions]]** for an explanation on how this insert is used. The back of the insert will vary based on your playbook and choices made.
+Every PC gets the **[[Inserts#Inventory|Inventory]]** sheet. See **[[03 - Playing the Game#Gear and possessions|Gear and possessions]]** for an explanation on how this insert is used. The back of the insert will vary based on your playbook and choices made.
 
 If you are…
 
@@ -17,7 +17,7 @@ The PDF in the playkit is set up to print with the Inventory sheet on one page a
 
 There are also three inserts that can be gained as a result of the Death's Door move and bad decision-making: the **[[Inserts#Ghost|Ghost]]**, the **[[Inserts#Revenant|Revenant]]**, and the **[[Inserts#Thrall|Thrall]]**. These inserts are normally printed out double-sided on a half-sheet of paper. You take one of them only when it becomes relevant.
 
-In addition to the inserts presented in this chapter, you might also get an insert that represents a **[[03 - Playing the Game#**Laoj Davith's Galvanic Infusion**|major arcanum]]**. The Seeker starts play with a major arcanum as indicated by their background; and if you take the Heavy playbook with the "Storm-marked" background, you start play with the Storm Markings major arcanum. You'll find these in Appendix D: Major Arcana (*[[58 - Appendix D - Major Arcana#Major Arcana|Book II]]*).
+In addition to the inserts presented in this chapter, you might also get an insert that represents a **[[03 - Playing the Game#**Major arcana**|major arcanum]]**. The Seeker starts play with a major arcanum as indicated by their background; and if you take the Heavy playbook with the "Storm-marked" background, you start play with the Storm Markings major arcanum. You'll find these in Appendix D: Major Arcana (*[[58 - Appendix D - Major Arcana#appendix d : major arcana|Book II]]*).
 
 ## Inventory
 

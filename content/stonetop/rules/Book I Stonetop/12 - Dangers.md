@@ -299,7 +299,7 @@ You should have a decent grasp on the monster's concept before you move on. Your
 
 *I want two powerful Fae guardians to protect the Green Lord's burial vault. They'll appear in the Hall of Offerings and greet anyone who makes it through the Halls of Humility and Gratitude. I know that they're loyal to their Green Lord master, and that they control access to both its constructed afterlife and its actual, physical burial vault.*
 
-*I work through the procedure for Creating Fae (*[[12 - Fae#**Insults and etiquette**|Book II]]*). I've already decided that their preoccupation is "guarding." I roll a 2 for size ("*large*"), and a 2 and 7 for aspects ("antlered/ hooved" and "treeish"). I roll a 2 on a d6 to see how person-like they are. I'm picturing tall, powerfully built tree-men with woody flesh. blank faces, and elklike antlers.* 
+*I work through the procedure for Creating Fae (*[[12 - Fae#**Creating Fae**|Book II]]*). I've already decided that their preoccupation is "guarding." I roll a 2 for size ("*large*"), and a 2 and 7 for aspects ("antlered/ hooved" and "treeish"). I roll a 2 on a d6 to see how person-like they are. I'm picturing tall, powerfully built tree-men with woody flesh. blank faces, and elklike antlers.* 
 
 *For talents, I roll a 6 ("messing with time, space"). I think that they can teleport intruders around and can vanish or appear as they please within their little domain. I also pick "cursing/ blessing/giving/taking." I think they extract promises from those who come before them, and curse those who break their vows.*
 
@@ -450,7 +450,7 @@ Armor 5 (resilience, skill), 2 vs. iron (hide, skill)
 >
 > Attacks with **[*n*] piercing** ignore *n* points of a foe's armor. Attacks that **ignore armor** treat armor as 0.
 >
-> See [[03 - Playing the Game#**Coins**|Playing the Game]] for more tags & terms.
+> See [[03 - Playing the Game#**Gear terms & tags**|Playing the Game]] for more tags & terms.
 
 | What is the nature of its attack? (pick all that apply) | add |
 | ------------------------------------------------------- | --- |
@@ -521,7 +521,7 @@ Only write special qualities that you think will impact play, above and beyond t
 
 *They have no mouths, but "speak" telepathically. I think they're entirely honest. And I think their presence messes with time and space—things change places without moving, moments take minutes, minutes pass in moments, that sort of thing. Those are all important traits that might influence play, so I write down*
 
-Special qualities: Fae nature (*[[12 - Fae#**Names**|Book II]]*), telepathic; can't lie or mislead; subtly warp space/time.
+Special qualities: Fae nature (*[[12 - Fae#**Fae nature**|Book II]]*), telepathic; can't lie or mislead; subtly warp space/time.
 
 ## **<sup>8</sup> Instinct** What does the monster do that brings it into conflict with others, or leads it to harm others? Write this in the format "to [do something]."
 
@@ -610,7 +610,7 @@ Finally, consider writing one or more custom player-facing moves. If there's som
 
 **Damage** powerful blows d6+3 w/disad vantage (close, reach, forceful)
 
-**Special qualities** Fae nature (*[[12 - Fae#**Names**|Book II]]*), telepathic, can't lie or mislead; subtly warps local time & space
+**Special qualities** Fae nature (*[[12 - Fae#**Fae nature**|Book II]]*), telepathic, can't lie or mislead; subtly warps local time & space
 
 ## **Instinct** to protect its master
 

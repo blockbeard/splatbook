@@ -71,7 +71,7 @@ A typical trip to and from Lygos involves:
 
 Don't play out trips to Lygos in detail! Doing so would take dozens of sessions and could easily derail your campaign. Unless you and your group actively decide to leave Stonetop behind and play a very different sort of game, then you should handle PC trips to Lygos off-camera.
 
-Use **[[16 - Writing Moves and Love Letters#BURGLE|love letters]]** to gloss over such a journey. Work with the player(s) to identify:
+Use **[[16 - Writing Moves and Love Letters#**Writing love letters**|love letters]]** to gloss over such a journey. Work with the player(s) to identify:
 
 - What they hope to accomplish
 - How they plan to go about it
@@ -88,9 +88,9 @@ A few dozen caravans make their way up from Lygos every year. A typical merchant
 - 3-12 separate merchants, each with at least one wagon or cart
 - 2-4 helpers per merchant (often family members)
 - Horses, mules, donkeys, or other beasts of burden
-- **[[29 - Lygos and the South#**HP** 12; **Armor** 0|Caravan guards]]**, ~6 per merchant
+- **[[29 - Lygos and the South#**Assassin**|Caravan guards]]**, ~6 per merchant
 
-Most caravans stop in in Marshedge to trade, but some enterprising souls will veer into the **[[42 - The Steplands#The Steplands|Steplands]]** and trade with the **[[26 - Hillfolk#Hillfolk|Hillfolk]]** directly. Others keep going north to one of the **[[34 - North Manmarch#1d6 signs of violence|Manmarcher's hillforts]]**. A rare few merchants make their way to **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, and some of those stop in Stonetop.
+Most caravans stop in in Marshedge to trade, but some enterprising souls will veer into the **[[42 - The Steplands#The Steplands|Steplands]]** and trade with the **[[26 - Hillfolk#Hillfolk|Hillfolk]]** directly. Others keep going north to one of the **[[34 - North Manmarch#**Hamlet**|Manmarcher's hillforts]]**. A rare few merchants make their way to **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, and some of those stop in Stonetop.
 
 ## . trade opportunities .
 
@@ -98,8 +98,8 @@ If the PCs get a trade opportunity (from the Seasons Change move), a southern me
 
 - A good exchange rate, two or even three Value 2 items for 1 Surplus.
 - 1-4 Value 2 items or even a Value 3 item, in exchange for some creepy arcanum or relic of the past (might have repercussions)
-- A unit of exotic trade goods (Value 3) in exchange for a bundle of **[[23 - The Great Wood#**Cynddaraig**|drake feathers]]**, **[[23 - The Great Wood#**Cynddaraig**|gylglyd flowers]]**, a **[[23 - The Great Wood#**Nailadd**|raselbaedd hide]]**, etc.
-- A suit of armor or weapon of war, forged from **[[36 - Primordial Powers#**Portals**|black iron]]**, as payment for helping them recover some lost or stolen goods (Value 3).
+- A unit of exotic trade goods (Value 3) in exchange for a bundle of **[[23 - The Great Wood#**Feathered drake**|drake feathers]]**, **[[23 - The Great Wood#**Feathered drake**|gylglyd flowers]]**, a **[[23 - The Great Wood#**Raselbaedd**|raselbaedd hide]]**, etc.
+- A suit of armor or weapon of war, forged from **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, as payment for helping them recover some lost or stolen goods (Value 3).
 - An arcanum of **[[36 - Primordial Powers#Artifacts|primordial power]]**, from one of **[[30 - The Makers#The Makers|the Makers]]**, or related to **[[46 - The Things Below#The Things Below|the Things Below]]**.
 
 # **Dangers**

@@ -37,7 +37,7 @@ Choose or roll 1, or 2 and combine.
 
 ## **Regarding spirits**
 
-The following apply not just to spirits of the wild, but also to **[[10 - Death and the Undying#**Pyped**|ghosts]]**, **[[10 - Death and the Undying#**Other revenants**|dool spirits]]**, some **[[36 - Primordial Powers#Primordial powers|primordial powers]]**, the **[[46 - The Things Below#The Things Below|Things Below]]**, and **[[20 - Gods and Religion#**Petitioning the gods**|little gods]]**.
+The following apply not just to spirits of the wild, but also to **[[10 - Death and the Undying#**Pyped**|ghosts]]**, **[[10 - Death and the Undying#**Death and the undying**|dool spirits]]**, some **[[36 - Primordial Powers#Primordial powers|primordial powers]]**, the **[[46 - The Things Below#The Things Below|Things Below]]**, and **[[20 - Gods and Religion#**Little gods**|little gods]]**.
 
 ## **Manifestation**
 
@@ -87,7 +87,7 @@ Once a mortal's consciousness is in the spirit realm, they must find the spirit(
 - … they need a knowledgeable guide or detailed instructions;
 - … they risk getting lost;
 - … the way will be grueling, they risk exhaustion; and/or
-- … they must watch out for **[[10 - Death and the Undying#**Pyped**|specters]]**, **[[10 - Death and the Undying#**Pyped**|wraiths]]**, or other **[[10 - Death and the Undying#**Pyped**|ghosts]]**; **[[10 - Death and the Undying#**Other revenants**|dool spirits]]**; **[[36 - Primordial Powers#**Rift**|fundamentals]]**; **[[36 - Primordial Powers#**Chaos**|voidblights]]**; spirits **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]; or just **elemental spirits** that are territorial, or violent, or powerful and careless.
+- … they must watch out for **[[10 - Death and the Undying#**Pyped**|specters]]**, **[[10 - Death and the Undying#**Pyped**|wraiths]]**, or other **[[10 - Death and the Undying#**Pyped**|ghosts]]**; **[[10 - Death and the Undying#**Death and the undying**|dool spirits]]**; **[[36 - Primordial Powers#**Fundamental**|fundamentals]]**; **[[36 - Primordial Powers#**Primordial powers**|voidblights]]**; spirits **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]; or just **elemental spirits** that are territorial, or violent, or powerful and careless.
 
 Depending on the spirit that they seek, they might also need to surmount/brave/ cross a hazardous stretch of the spirit realm and/or risk drawing the attention of certain spirits. For example, if they sought out the spirit of **[[21 - The Golden Oak#The Golden Oak|the Golden Oak]]**, you might tell them...
 

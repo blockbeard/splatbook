@@ -9,7 +9,7 @@ The village of Stonetop maintains a pavilion of the gods, an open-air structure 
 - **Helior**, the Daybringer [[25 - Helior, the Daybringer|Helior, the Daybringer]]
 - **Tor**, the Rain-maker [[49 - Tor, the Rain-maker|Tor, the Rain-maker]], the Thunderhead, Slayer-of-Beasts
 
-Tor is the most popular god in Stonetop, and associated with the **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** itself, but all four gods receive their proper respect. Depending on the PCs in will feature more prominently in a game
+Tor is the most popular god in Stonetop, and associated with the **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** itself, but all four gods receive their proper respect. Depending on the PCs in will feature more prominently in a game
 
 ## **Questions**
 
@@ -31,9 +31,9 @@ Tor is the most popular god in Stonetop, and associated with the **[[02 - The Vi
 
 The origin of any given god is for you and your table to decide. A god might be…
 
-- … one of the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, there at the dawn of time, or birthed spontaneously from the fabric of existence, or made by the **[[36 - Primordial Powers#**Questions**|First Creators]]** as a steward of the world;
+- … one of the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, there at the dawn of time, or birthed spontaneously from the fabric of existence, or made by the **[[36 - Primordial Powers#**Cosmology**|First Creators]]** as a steward of the world;
 - … a **[[46 - The Things Below#The Things Below|Thing Below]]**, or an emanation of such;
-- … a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, transformed through worship;
+- … a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, transformed through worship;
 - … the child of other gods, or of a god and a mortal;
 - … a mortal, ascended/transcended/reborn;
 - … a mortal, revered in death;
@@ -61,7 +61,7 @@ Devotees might form fellowships with the like-minded, which in time can become i
 
 Religion is an expected part of daily life. You help in the fields, you clean your house, and you give the gods their due. There's no extra benefit for performing the usual rites or offerings. But if you fail to do them, you invite disapproval from your neighbors and misfortune from the gods.
 
-PCs can seek the favor of the gods in order to **[[15 - Homefront#**SEASONS CHANGE EXAMPLES**|Bolster]]**. This involves time and effort, rites and offerings above and beyond what's typical and expected. Be sure to ask the PC for details! What god(s) do they petition? What sort of aid do they seek? What offerings do they make? Consider, too, the consequences. What other work goes undone? How do NPCs react? Etc.
+PCs can seek the favor of the gods in order to **[[15 - Homefront#**Player moves**|Bolster]]**. This involves time and effort, rites and offerings above and beyond what's typical and expected. Be sure to ask the PC for details! What god(s) do they petition? What sort of aid do they seek? What offerings do they make? Consider, too, the consequences. What other work goes undone? How do NPCs react? Etc.
 
 Should a PC seek a specific boon from the gods—a curse lifted, an injury healed, a curse laid upon a foe, an answer or an insight, etc.—then Make a Plan! Some example requirements include:
 
@@ -71,7 +71,7 @@ Choose requirements based on the PC's request, the god(s) they petition and how 
 
 ## **Little gods**
 
-These are the gods of households, of specific places or geographic features, of particular chores or crafts or trades. Many are just **[[41 - Spirits of the Wild#**Communion**|elemental spirits]]** worshipped at a **[[41 - Spirits of the Wild#Sacred sites|sacred site]]**. But others are spirits closely tied to humanity.
+These are the gods of households, of specific places or geographic features, of particular chores or crafts or trades. Many are just **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirits]]** worshipped at a **[[41 - Spirits of the Wild#Sacred sites|sacred site]]**. But others are spirits closely tied to humanity.
 
 Little gods mostly just do their thing, quietly watching over their people or places, keeping things running or causing trouble, as is their wont. A little god can:
 
@@ -154,7 +154,7 @@ various tales end(ed).
 
 **Notes** Crosses arms, puffs up, harrumphs.
 
-See also the following **[[41 - Spirits of the Wild#**Communion**|elemental spirits]]**361):
+See also the following **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirits]]**361):
 
 - Beast wardens (for livestock)
 - Fertility spirits

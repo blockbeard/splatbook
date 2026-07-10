@@ -52,7 +52,7 @@ On any expedition into Ferrier's Fen:
 - You risk getting lost nonetheless
 - The terrain itself is treacherous; you risk injury along the way
 - The way will be grueling; you risk exhausting yourselves/your resources
-- You risk contracting **[[13 - Ferrier's Fen#**Disease**|fen blight]]**
+- You risk contracting **[[13 - Ferrier's Fen#**Fen blight**|fen blight]]**
 - You risk drawing the attention of the suarachan (except in winter)
 
 ## **Fen-walker**
@@ -75,7 +75,7 @@ On any expedition into Ferrier's Fen:
 
 #### **Riona** *prepared*, *agile*, *stubborn*; **Instinct** to assume the worst; **Cost** competence shown.
 
-See also: **People** of Marshedge [[32 - Marshedge#**Ruins of the past**|Marshedge]].
+See also: **People** of Marshedge [[32 - Marshedge#**Names**|Marshedge]].
 
 ## **Questions**
 
@@ -124,9 +124,9 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 ## **1d6** encounter
 
-- 1 A lone **[[13 - Ferrier's Fen#**Fen-troll**|suarachan]]**, hoping to avoid notice
+- 1 A lone **[[13 - Ferrier's Fen#**The Gliomor**|suarachan]]**, hoping to avoid notice
 - 2 A mutated beast, like a deer with eight legs and five eyes, or a two-headed hare
-- 3 One or more **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]** or **[[12 - Fae#Fae|Fae]]**, curious, indifferent, or forlorn
+- 3 One or more **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]** or **[[12 - Fae#Fae|Fae]]**, curious, indifferent, or forlorn
 - 4 Ample game, but unappetizing crawfish, snails, turtles, frogs, fish, etc.
 - 5 Good game, but prone to bolt deer, hare, water fowl, etc.
 - 6 A **[[13 - Ferrier's Fen#Fen-walker|fen-walker]]**, possibly in dire straits
@@ -134,9 +134,9 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 ## **1d6** point of interest
 
 - 1-2 A place corrupted by **[[46 - The Things Below#The Things Below|the Things Below]]**
-- 3 A place **haunted** by death or the undying [[10 - Death and the Undying#**Death's Door**|Death and the Undying]]
+- 3 A place **haunted** by death or the undying [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]]
 - 4 **[[12 - Fae#**Getting there**|Fae domain]]** or **[[53 - Waystones#Waystones|waystone]]**
-- 5 Site sacred to the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- 5 Site sacred to the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 - 6 The abode of the **Willow Witches**  (next page)
 
 # **The Willow Witches**
@@ -270,7 +270,7 @@ l Difficulty with language, unending hunger, paranoia, urge to hide from sight l
 
 - Beasts from the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, often mutated
 - **[[12 - Fae#Fae|Fae]]**, especially those who delight in ugliness and misfortune
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**
 - **Green Lord** remnants [[24 - Green Lords#Names|Names]], especially chimerae and hazardous growth
 - **[[24 - Green Lords#The Unquiet Dead|Llamudwr]]**
 - Spirits or beasts **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]

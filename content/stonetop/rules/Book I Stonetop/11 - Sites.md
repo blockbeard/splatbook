@@ -141,7 +141,7 @@ For larger sites with many areas or rooms, you might rely on a player move to in
 - … **Seek Insight** to explore the site and see what they find;
 - … **Know Things** about a place they've studied, to know where \_\_ might be;
 - … **use a playbook move**, like **[[The Ranger#A SAFE PLACE|Expert Tracker]]** to follow a foe's trail to wherever it leads; or…
-- … **use a custom move** specific to this site (like the **Seek Out** move from [[28 - The Labyrinth#**1d6** crux|The Deeps]], *Book II*).
+- … **use a custom move** specific to this site (like the **Seek Out** move from [[28 - The Labyrinth#**1d6** instinct|The Deeps]], *Book II*).
 
 If no obvious place presents itself, then **pick a GM move you want to make.** Then pick a place in the site where it would make sense for you to make that move, or create such a place on the fly.
 
@@ -362,7 +362,7 @@ If you're prepping in advance, then write this stuff down. If improvising, just 
 
 If you're making a site from scratch, start by deciding what manner of site it is: a Fae domain, a ruin of the Makers, a haunted site, etc. If unsure, refer to the entry for the relevant region and review the sections for "Terrain" and/or "Discoveries" therein.
 
-Once you know the manner of site you're creating, go to the "Sites" section for the appropriate entry. For example, you'll find the entry for **[[18 - Forge Lords#**Ruin**|Forge Lord sites]]**, and **[[10 - Death and the Undying#**Death's Door**|haunted sites]]** in the "Death and the undying" entry. Use the procedures and tables there to develop the site's concept.
+Once you know the manner of site you're creating, go to the "Sites" section for the appropriate entry. For example, you'll find the entry for **[[18 - Forge Lords#**Ruin**|Forge Lord sites]]**, and **[[10 - Death and the Undying#**Death and the undying**|haunted sites]]** in the "Death and the undying" entry. Use the procedures and tables there to develop the site's concept.
 
 Treat the tables as creative prompts. Pick options that make sense or catch your eye, or roll if unsure. If you do roll, try to make sense of the results even if they seem disjointed. Unlikely combinations can lead to some of the most interesting, memorable sites. That said, if a roll really doesn't feel right, then pick something else or roll again. You're not beholden to the dice!
 
@@ -370,7 +370,7 @@ Consider the results in light of what you've already established. Envision the s
 
 If you're creating the site on the fly, you can ask your players to roll the dice. Read the results out loud, or write them down and "Hmm" sagely, revealing them through play. Either way, take a short break to think through the rest of the process.
 
-*The swyn's lair is a Green Lord tomb, so I find the "Sites" section of the Green Lord entry. This is a "ruin," so I start there (*[[24 - Green Lords#**A spirit of the wild, bound** For example:|Book II]]*). The process has me roll or pick a Green Lord theme, and "tombs, mummification, constructed afterlives" is the obvious choice. I roll a 6 for structure, "ziggurat/pyramid/dome" and the purpose is clearly a "tomb." I roll a 1 for architectural elements, "huge slabs of smooth stone…carved with scrollwork and bas relief." Because I want a Green Lord mummy to still be in there, I choose "buried, submerged, and/or overgrown, but mostly intact" for the site's condition.*
+*The swyn's lair is a Green Lord tomb, so I find the "Sites" section of the Green Lord entry. This is a "ruin," so I start there (*[[24 - Green Lords#**Ruins**|Book II]]*). The process has me roll or pick a Green Lord theme, and "tombs, mummification, constructed afterlives" is the obvious choice. I roll a 6 for structure, "ziggurat/pyramid/dome" and the purpose is clearly a "tomb." I roll a 1 for architectural elements, "huge slabs of smooth stone…carved with scrollwork and bas relief." Because I want a Green Lord mummy to still be in there, I choose "buried, submerged, and/or overgrown, but mostly intact" for the site's condition.*
 
 *The procedure then has me pick a Great Wood terrain, so I flip to that table and roll a 4, "clearing, meadow, sparse trees." It also says to populate it with lingering signs, artifacts, and dangers but I'll worry about that later.*
 
@@ -842,7 +842,7 @@ It'll never be perfect. There's always something you'll miss, something that cou
 - Caradoc, you know this song; it's one you sang as a youth—what is it?
 - Vahid, how can you tell this is crinwin mimicry, and not the missing kids?
 
-**Present a discovery**: Glyphs carved into trees that surround hill, faint/worn, left by the Forest Folk (see *[[17 - Forest Folk#**Where did they go?**|Book II]]*); mark this as a place of reverence, and refer to the *premnitsi* ("the receivers") and *istina* (the "truth," or… "oracle?").
+**Present a discovery**: Glyphs carved into trees that surround hill, faint/worn, left by the Forest Folk (see *[[17 - Forest Folk#**Hooks**|Book II]]*); mark this as a place of reverence, and refer to the *premnitsi* ("the receivers") and *istina* (the "truth," or… "oracle?").
 
 ## **Exterior**
 
@@ -855,7 +855,7 @@ Wide, low hill, surrounded by trees. Three oaks (still bare), last year's grasse
 
 ## **Crinwin (outside)**
 
-See *[[07 - Crinwin#**Midden heaps**|Book II]]*for **crinwin & wasps**.
+See *[[07 - Crinwin#**Dangers**|Book II]]*for **crinwin & wasps**.
 
 4 crinwin always on watch in the oaks or nearby trees, often "singing" with the kids' voices. 1d4+2 crinwin sleep in nests. 1d6-1 other crinwin are outside, doing **crinwin stuff** (see [[11 - Sites#Sajra the Swyn|Sajra the Swyn]]).
 
@@ -901,7 +901,7 @@ Dimly lit from outside. Soil and debris piled nearly 4 feet high at entrance, sl
 
 ## **Collapsed hallway (B)**
 
-Caved in when Fae sacked tomb. Eight **[[24 - Green Lords#**Llamudwr**|mummified servants]]** trapped in the rubble. Crinwin have dug out a tunnel that they/Sajra can squeeze through; also leads outside (via one of the burrows). Sajra's trail can be spotted.
+Caved in when Fae sacked tomb. Eight **[[24 - Green Lords#**Mummified Green Lord**|mummified servants]]** trapped in the rubble. Crinwin have dug out a tunnel that they/Sajra can squeeze through; also leads outside (via one of the burrows). Sajra's trail can be spotted.
 
 ## **Central Chamber (C)**
 
@@ -961,7 +961,7 @@ Three 20-foot-tall pillars (trees, basically). Fourth pillar & wall/ceiling coll
 
 Crinwin nests hug the pillars up near the ceiling (easy to miss). If alarm hasn't been raised, then: 3-6 "trusted" crinwin sleep in nests, 1-4 spy on Pryder's hall (F), and 0-5 are here doing **[[11 - Sites#Sajra the Swyn|crinwin stuff]]**.
 
-**Wasps**: Colonizing crinwin nests, pillars. Swarm if agitated. See *[[07 - Crinwin#**Midden heaps**|Book II]]*.
+**Wasps**: Colonizing crinwin nests, pillars. Swarm if agitated. See *[[07 - Crinwin#**Dangers**|Book II]]*.
 
 **Unstable pillars**: Advance this each time a pillar is struck, or as a GM move.
 
@@ -981,7 +981,7 @@ See *[[07 - Crinwin#Crinwin|Book II]]*. ~30 crinwin total, about half are "trust
 
 ## **Sajra the Swyn**
 
-See *[[24 - Green Lords#**Mummified servant**|Book II]]*. When the PCs first approach the tomb, call for Die of Fate.
+See *[[24 - Green Lords#**Rhagedn**|Book II]]*. When the PCs first approach the tomb, call for Die of Fate.
 
 ## **1d6** sajra's disposition
 
@@ -999,7 +999,7 @@ Below the main level, accessed via stairs in **great hall** (G). Consists of:
 - **Hall of Humility**: Magical ward, only the humble will pass (how?).
 - **Hall of Gratitude**: Dreamlike ordeal, shows savage mortal lives before the Green Lords. (Custom move?)
 - **Hall of Offerings**: Guarded by the **[[12 - Dangers#**<sup>11</sup> Optional elements** If the monster has nuanced mo-|Almtakers]]**. Includes portal to Green Lord's false afterlife.
-- **Green Lord's burial vault**: sealed off, no physical access. Holds the body of the **[[24 - Green Lords#**Llamudwr**|mummified Green Lord]]**, its canopic jars, grave goods.
+- **Green Lord's burial vault**: sealed off, no physical access. Holds the body of the **[[24 - Green Lords#**Mummified Green Lord**|mummified Green Lord]]**, its canopic jars, grave goods.
 
 *I don't bother writing up the inner tomb in detail right now, because I don't think the PCs are likely to explore it in the next session. They're here to rescue the kids and maybe fight the crinwin, and that's plenty to keep them busy.*
 

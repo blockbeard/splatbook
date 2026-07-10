@@ -20,7 +20,7 @@ That was a few centuries ago, at least. But the bones of those civilizations rem
 
 ## **Hooks**
 
-- A still-living Maker is found, **[[45 - Tempest Lords#**Radiation**|vitrified]]** or caught in some **[[12 - Fae#**Getting there**|Fae domain]]** or otherwise held in stasis.
+- A still-living Maker is found, **[[45 - Tempest Lords#Vitrification|vitrified]]** or caught in some **[[12 - Fae#**Getting there**|Fae domain]]** or otherwise held in stasis.
 - Someone unearths a stele, with a lengthy decree written in multiple Maker-scripts as well as an archaic but well-known—southern alphabet.
 - Two rival scholars are willing to kill in order to prove their theories about the Makers are correct.
 - Adventurers discover a ruin or tomb, clearly of the Makers, but bearing symbols and decorations unlike those of any of the known Makers. Perhaps there was a sixth type or nation of Makers?
@@ -39,11 +39,11 @@ That was a few centuries ago, at least. But the bones of those civilizations rem
 - The different types of Makers, where each dwelt, their most important themes
 - What happened to each group, broadly
 - The distinct features of each group's writing/architecture/artifacts
-- The special materials—like **[[45 - Tempest Lords#**1d12** condition|aetherium]]** or **[[43 - Stone Lords#Various treasures|makerglass]]** —associated with each group, and their common properties
+- The special materials—like **[[45 - Tempest Lords#**Aetherium**|aetherium]]** or **[[43 - Stone Lords#Various treasures|makerglass]]** —associated with each group, and their common properties
 - The names of a few individuals
 - Which peoples served/followed/were created by them
 - How to use/replicate some of their magic
-- How to read their writing [[30 - The Makers#xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx|The Makers]]
+- How to read their writing [[30 - The Makers#**True nature**|The Makers]]
 
 #### **Very few know:**
 
@@ -66,7 +66,7 @@ When a PC Knows Things about the Makers and gets a 7+, be sure to ask, "How do y
 
 ## Sites
 
-Signs of these ancient civilizations litter the region, many of them surprisingly well-preserved. Some of these ruins are familiar and widely used today, but many are forgotten, avoided, or shunned. For while they contain many wonders of the past, they also hold ancient dangers. Plenty of them are **[[10 - Death and the Undying#**Death's Door**|haunted]]**, or corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**.
+Signs of these ancient civilizations litter the region, many of them surprisingly well-preserved. Some of these ruins are familiar and widely used today, but many are forgotten, avoided, or shunned. For while they contain many wonders of the past, they also hold ancient dangers. Plenty of them are **[[10 - Death and the Undying#**Death and the undying**|haunted]]**, or corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**.
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -136,10 +136,10 @@ If the PCs can't immediately decipher the Markings, then maybe they could…
 
 - … show the writing to a learned elder back home;
 - … Spend a few weeks referencing their collection of Books and Scrolls (if they have one);
-- … confer with an **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]**, probably in **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]** or **[[32 - Marshedge#Marshedge|Marshedge]]**;
+- … confer with an **[[29 - Lygos and the South#**Dangers**|antiquarian]]**, probably in **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]** or **[[32 - Marshedge#Marshedge|Marshedge]]**;
 - … convince the monks up in **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** to help;
 - … seek aid from a **[[26 - Hillfolk#Upland horse|spirit-talker]]** or **[[26 - Hillfolk#Hillfolk rider|hdour]]**;
-- … make a deal with a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, **[[12 - Fae#Fae|Fae]]**, **[[51 - Ustrina#Ustrina|Ustrina]]**, etc.;
+- … make a deal with a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, **[[12 - Fae#Fae|Fae]]**, **[[51 - Ustrina#Ustrina|Ustrina]]**, etc.;
 
 - … find an intact **[[24 - Green Lords#Green Lords|Green Lord]]** tomb and beseech its mummified occupant to help; or
 - … conjure the shade of a Maker or **[[05 - Barrow Builders#Barrow Builders|Barrow Builder]]**, perhaps at the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]**, and bargain for their service.

@@ -37,7 +37,7 @@ Who or what are the Covens? That's for you to decide. But perhaps they…
 
 - … burn in memory of the three conspiracies, or covins, that rose up against the Stone Lords, and the witches who led each one;
 - … were once the "Three Stars" of Tierstered, makerglass gems burning with eternal flame;
-- … are **[[05 - Barrow Builders#**Major arcana**|banefires]]**, each one imprisoning an undead sorcerer;
+- … are **[[05 - Barrow Builders#**Dangers**|banefires]]**, each one imprisoning an undead sorcerer;
 - … are spirit-catchers, enthralling ghosts and keeping them bound;
 - … are ghostly hordes standing vigil over mass graves; or
 - … are some combination of the above; or
@@ -82,7 +82,7 @@ Either way…
 
 #### **Sites**
 
-- **The dam:** A mighty wall between two bluffs on the eastern shore. Granite blocks, mortared in place with makerglass. A huge pipe drains water into the river Sruth. Beware the **[[47 - Three Coven Lake#**Thin ice**|whirlpool]]**.
+- **The dam:** A mighty wall between two bluffs on the eastern shore. Granite blocks, mortared in place with makerglass. A huge pipe drains water into the river Sruth. Beware the **[[47 - Three Coven Lake#**The whirlpool**|whirlpool]]**.
 - **Glassworks:** The westernmost bluff on the south shore, hollowed out. Partly collapsed, wholly looted, still full of cold, echoing furnaces and huge globs of makerglass.
 - **The Academy:** Part of the north bluff. Maker-sized dormitories, workshops, and lecture halls. Gutted and vandalized. Used by Barrow Builders as a fortress.
 - **Amphitheater:** Carved into a bluff, overlooking a large cove on the southern bank. Impossibly good acoustics. The site of countless bloody sacrifices.
@@ -101,7 +101,7 @@ Pick 1 or combine 2, or have someone roll the Die of Fate (d12). If you like, ro
 - 9 Waterfall/pool/travertine
 - 10 **[[05 - Barrow Builders#Barrow|Barrow]]**
 - 11 Walkway/stairs/balcony, carved into the stone
-- 12 stone lord site [[47 - Three Coven Lake#**1d12** shoreline terrain|Three Coven Lake]]
+- 12 stone lord site [[47 - Three Coven Lake#**1d12** stone lord site|Three Coven Lake]]
 
 # **1d12** shoreline terrain
 
@@ -110,7 +110,7 @@ Pick 1 or combine 2, or have someone roll the Die of Fate (d12). If you like, ro
 - 5-6 Drop-off/strong current/undertow
 - 7-8 Jumble of boulders/rubble
 - 9 **[[05 - Barrow Builders#Barrow|Barrow]]**
-- 10 stone lord site [[47 - Three Coven Lake#**1d12** shoreline terrain|Three Coven Lake]]
+- 10 stone lord site [[47 - Three Coven Lake#**1d12** stone lord site|Three Coven Lake]]
 - 11 Island/sandbar and roll d10 again
 - 12 Cove/bay/inlet and roll d10 again
 
@@ -129,14 +129,14 @@ Pick 1 or combine 2, or have someone roll the Die of Fate (d12). If you like, ro
 - 11 Rocky island far from shore, like a great hand holding a broken stone platter. Ancient (?) skulls are heaped on every surface.
 - 12 Makerglass tower, largely intact but fallen sideways into the lake. Full of wonders, algae, eels, stale air pockets, Stone Lord ghosts.
 
-The above are just examples. See [[43 - Stone Lords#**Ruin**|Stone Lords]] if you need to create more or different sites. Most sites were **[[05 - Barrow Builders#**Very few know:**|reclaimed]]** by the Barrow Builders at some point.
+The above are just examples. See [[43 - Stone Lords#**Ruin**|Stone Lords]] if you need to create more or different sites. Most sites were **[[05 - Barrow Builders#**Sites**|reclaimed]]** by the Barrow Builders at some point.
 
 Most sites around Three Coven Lake were long ago stripped of anything valuable. If a site contains some sort of treasure, there must be a reason. It could be…
 
 - … inaccessible (buried, locked, flooded, well-hidden, etc.) ;
 - … **[[46 - The Things Below#**Corrupted being**|corrupted]]** by the power of the Things Below;
-- … dangerously **[[10 - Death and the Undying#**Death's Door**|haunted]]**;
-- … protected by **[[43 - Stone Lords#Some examples:|constructs]]**, **[[43 - Stone Lords#**Bound Entities**|perilous stone]]**, bound spirits, and/or other magic;
+- … dangerously **[[10 - Death and the Undying#**Death and the undying**|haunted]]**;
+- … protected by **[[43 - Stone Lords#**Construct**|constructs]]**, **[[43 - Stone Lords#Perilous stone|perilous stone]]**, bound spirits, and/or other magic;
 - … currently inhabited; or
 - … some combination of the above.
 
@@ -172,11 +172,11 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 | 1d6 | encounter |
 |---|---|
-| 1 | **[[47 - Three Coven Lake#**Thin ice**\|People]]** of some sort |
-| 2 | **[[47 - Three Coven Lake#**Thin ice**\|Witches or their ilk]]** |
-| 3 | The **[[47 - Three Coven Lake#**Thin ice**\|restless dead]]** |
-| 4-5 | **[[47 - Three Coven Lake#**Thin ice**\|Local wildlife]]** |
-| 6 | **[[47 - Three Coven Lake#**Thin ice**\|Other entities]]** |
+| 1 | **[[47 - Three Coven Lake#**The whirlpool**\|People]]** of some sort |
+| 2 | **[[47 - Three Coven Lake#**The whirlpool**\|Witches or their ilk]]** |
+| 3 | The **[[47 - Three Coven Lake#**The whirlpool**\|restless dead]]** |
+| 4-5 | **[[47 - Three Coven Lake#**The whirlpool**\|Local wildlife]]** |
+| 6 | **[[47 - Three Coven Lake#**The whirlpool**\|Other entities]]** |
 
 Pick or roll for their disposition. Let the result suggest the specifics of the encounter.
 
@@ -202,7 +202,7 @@ Pick or roll for their disposition. Let the result suggest the specifics of the 
 
 Hidden away in some vault—guarded by constructs, traps, and spells of misdirection—there stands a slab of white stone, 40' by 40', inscribed with a circle of deep-cut runes.
 
-The circle is a **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, connected to those in the **[[39 - The Ruined Tower|Ruined Tower]]**, the **[[28 - The Labyrinth|Labyrinth]]**, **[[52 - Vor Svetelik|Vor Svetelik]]**, and so forth. It requires a power source. If one is provided, it can be used via **[[57 - Appendix C - Minor Arcana#Opening the Way|Opening the Way]]**.
+The circle is a **[[36 - Primordial Powers#**Primordial powers**|portal]]**, connected to those in the **[[39 - The Ruined Tower|Ruined Tower]]**, the **[[28 - The Labyrinth|Labyrinth]]**, **[[52 - Vor Svetelik|Vor Svetelik]]**, and so forth. It requires a power source. If one is provided, it can be used via **[[57 - Appendix C - Minor Arcana#Opening the Way|Opening the Way]]**.
 
 # **Dangers**
 
@@ -218,11 +218,11 @@ The circle is a **[[36 - Primordial Powers#**Other sites of primordial power**|p
 
 ### **Unnatural hazards**
 
-- **[[43 - Stone Lords#**Major arcana**|Unstable construction]]** from the days of the Stone Lords
-- **[[43 - Stone Lords#**Bound Entities**|Perilous stone]]**
-- **[[05 - Barrow Builders#**Major arcana**|Traps]]** left by the Barrow Builders
+- **[[43 - Stone Lords#**Dangers**|Unstable construction]]** from the days of the Stone Lords
+- **[[43 - Stone Lords#Perilous stone|Perilous stone]]**
+- **[[05 - Barrow Builders#**Dangers**|Traps]]** left by the Barrow Builders
 - **[[46 - The Things Below#**1d12** origin|Corrupted sites]]** and all that they entail
-- **[[11 - The Dread River#**1d6** what taints it|Cursed objects]]**
+- **[[11 - The Dread River#**Dangers**|Cursed objects]]**
 - Darkness and the risk of getting lost, deep inside the bluffs
 
 # **The lake itself**
@@ -275,33 +275,33 @@ When you *get sucked into the pipe*, take 1d10+2 damage with advantage (ignores 
 
 # **Witches or their ilk**
 
-- A **[[10 - Death and the Undying#**Dool spirit**|necromancer]]**, treating with the many many dead
-- A **[[26 - Hillfolk#Hillfolk rider|hdour]]** or **[[46 - The Things Below#**Morgais**|sorcerer]]**, seeking/hoarding power
-- **[[46 - The Things Below#**Morgais**|Cultists]]** and/or a **[[46 - The Things Below#**Morgais**|thrall]]**, living among the ruins
-- A **[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**, quite possibly **[[46 - The Things Below#**Corrupted being**|corrupted]]**
-- A **[[05 - Barrow Builders#**Phantom rider**|deathless one]]**, who's been here all along
+- A **[[10 - Death and the Undying#**Death and the undying**|necromancer]]**, treating with the many many dead
+- A **[[26 - Hillfolk#Hillfolk rider|hdour]]** or **[[46 - The Things Below#**Cultist**|sorcerer]]**, seeking/hoarding power
+- **[[46 - The Things Below#**Cultist**|Cultists]]** and/or a **[[46 - The Things Below#**Cultist**|thrall]]**, living among the ruins
+- A **[[42 - The Steplands#**Gouzadn**|gouzadn]]**, quite possibly **[[46 - The Things Below#**Corrupted being**|corrupted]]**
+- A **[[05 - Barrow Builders#**Deathless ones**|deathless one]]**, who's been here all along
 
 ## **The restless dead**
 
 - A multitude of **[[10 - Death and the Undying#**Pyped**|ghosts]]**, haunting battlefields, mass graves, and sites of more intimate death
-- **[[05 - Barrow Builders#Examples:|Barrow wights]]** guarding some "royal" tomb
-- **[[05 - Barrow Builders#**Monsters**|Phantom riders]]**, still serving their long-dead warlord
+- **[[05 - Barrow Builders#**People**|Barrow wights]]** guarding some "royal" tomb
+- **[[05 - Barrow Builders#**Phantom rider**|Phantom riders]]**, still serving their long-dead warlord
 - A waterlogged **[[10 - Death and the Undying#**Shade**|pyped]]**, diving for bones of the drowned
-- A small army of **[[10 - Death and the Undying#**1d12** weakness|Anan Gllo]]**), in stasis, awaiting fresh blood
-- **[[10 - Death and the Undying#**Necromancer**|Shades]]** bound by old Stone Lord magic
+- A small army of **[[10 - Death and the Undying#**Death and the undying**|Anan Gllo]]**), in stasis, awaiting fresh blood
+- **[[10 - Death and the Undying#**Death and the undying**|Shades]]** bound by old Stone Lord magic
 
 # **Local wildlife**
 
-- **[[42 - The Steplands#1d6 natural beast or spirit|Bat swarms]]**, **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[42 - The Steplands#1d6 natural beast or spirit|grochslons]]**, or **[[42 - The Steplands#1d6 natural beast or spirit|kleztigrs]]**, lairing in bluffs or ruins
-- **[[23 - The Great Wood#**Questions**|Cougars]]**, **[[23 - The Great Wood#**Nailadd**|wolves]]**, or **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]** on the hunt or lurking in wait
-  - **[[14 - The Flats#Aurochs|Aurochs]]**, **[[23 - The Great Wood#**1d6** point of interest|boars]]**, **[[40 - South Manmarch#**1d12** battlefield or remains|horned drakes]]**, or a **[[42 - The Steplands#**Bat swarm**|brawzbedr]]**, foraging or watering at the lake
+- **[[42 - The Steplands#1d6 natural beast or spirit|Bat swarms]]**, **[[23 - The Great Wood#**Cave bear**|cave bears]]**, **[[42 - The Steplands#1d6 natural beast or spirit|grochslons]]**, or **[[42 - The Steplands#1d6 natural beast or spirit|kleztigrs]]**, lairing in bluffs or ruins
+- **[[23 - The Great Wood#**Cougar**|Cougars]]**, **[[23 - The Great Wood#**Raselbaedd**|wolves]]**, or **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]** on the hunt or lurking in wait
+  - **[[14 - The Flats#Aurochs|Aurochs]]**, **[[23 - The Great Wood#**Dangers**|boars]]**, **[[40 - South Manmarch#**Dangers**|horned drakes]]**, or a **[[42 - The Steplands#**Bat swarm**|brawzbedr]]**, foraging or watering at the lake
 - Any of the above, **[[46 - The Things Below#**Corrupted being**|corrupted]]** by the Things Below
 
 ### **Other entities**
 
-- Stone Lord **[[43 - Stone Lords#Some examples:|constructs]]** in various states of repair
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, quite possibly **[[46 - The Things Below#**Corrupted being**|corrupt]]**
-- Watery terrors: **[[11 - The Dread River#**1d6** greater curse|luglfsk]]**, **[[11 - The Dread River#**1d6** greater curse|jellied horrors]]**, **[[24 - Green Lords#The Unquiet Dead|llamudwr]]**, or **[[06 - Blackwater Lake#**Monsters**|servants of Daagon]]**
+- Stone Lord **[[43 - Stone Lords#**Construct**|constructs]]** in various states of repair
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, quite possibly **[[46 - The Things Below#**Corrupted being**|corrupt]]**
+- Watery terrors: **[[11 - The Dread River#**Luglfsk**|luglfsk]]**, **[[11 - The Dread River#**Luglfsk**|jellied horrors]]**, **[[24 - Green Lords#The Unquiet Dead|llamudwr]]**, or **[[06 - Blackwater Lake#**Servants of Daagon**|servants of Daagon]]**
 
 **The Chained Beast**
 

@@ -23,7 +23,7 @@ Slavic-sounding, often diminutives: Analiya, Asya, Avo, Boyko, Danja, Dimvo, Dob
 
 The Forest Folk's ancestors were mortal servants of the **[[24 - Green Lords#Names|Green Lords]]**. They lived nomadic lives among the trees, traveling in small bands and living off the land.
 
-**Something interesting:** The Folk would often commune with **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**, and sometimes had dealings with the **[[12 - Fae#Fae|Fae]]**. Maybe they know where the Folk went?
+**Something interesting:** The Folk would often commune with **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**, and sometimes had dealings with the **[[12 - Fae#Fae|Fae]]**. Maybe they know where the Folk went?
 
 **Something useful:** You know of a place where the Forest Folk used to congregate, not too far from Stonetop, or a Fae they once dealt with frequently, or a sacred site they revered—tell us about it! Also, tell us why you think it's a good place to start investigating what happened to the Folk.
 
@@ -90,7 +90,7 @@ Pick 1 or combine 2, or have someone roll the Die of Fate.
 - 5 … gathered/congregated/held festivals
 - 6 … left signs of what happened to them
 
-Pick or roll for an appropriate **[[23 - The Great Wood#**Hooks**|terrain]]**. Populate it with signs of their presence (below), **[[17 - Forest Folk#**1d6** a place where they...|artifacts]]**, and **[[17 - Forest Folk#Cursed glyphs|dangers]]** of the Forest Folk or the **[[23 - The Great Wood#The Great Wood|Great Wood]]**. Consider combining with another **[[23 - The Great Wood#Discoveries|point of interest]]** from the Great Wood.
+Pick or roll for an appropriate **[[23 - The Great Wood#. steading improvement .|terrain]]**. Populate it with signs of their presence (below), **[[17 - Forest Folk#**Artifacts**|artifacts]]**, and **[[17 - Forest Folk#Cursed glyphs|dangers]]** of the Forest Folk or the **[[23 - The Great Wood#The Great Wood|Great Wood]]**. Consider combining with another **[[23 - The Great Wood#Discoveries|point of interest]]** from the Great Wood.
 
 Signs of the Forest Folk's presence include:
 
@@ -133,7 +133,7 @@ When you *wield the crystal knife as a weapon*, you can harm the manifest form o
  Held in reverence, used with caution, and/or hidden where they could do no harm.
 
 - Artifacts of the **[[24 - Green Lords#Names|Green Lords]]**
-- Items related to the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- Items related to the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 - Gifts of the **[[12 - Fae#Fae|Fae]]**
 - Objects tied to **[[10 - Death and the Undying#Death and the undying|death or the undying]]**
 - Artifacts cursed by **[[46 - The Things Below#The Things Below|the Things Below]]**
@@ -167,12 +167,12 @@ When you *wield the crystal knife as a weapon*, you can harm the manifest form o
  Encroaching on territory vacated by the Forest Folk, or growing now that they are no longer kept in check.
 
 - **[[07 - Crinwin#Crinwin|Crinwin]]**
-- **Beasts** of the Great Wood [[23 - The Great Wood#**1d6** point of interest|The Great Wood]]
-  - **[[24 - Green Lords#**1d12** purpose|Hazardous growths]]** and **[[24 - Green Lords#Bound Entities|chimerae]]**
+- **Beasts** of the Great Wood [[23 - The Great Wood#**Dangers**|The Great Wood]]
+  - **[[24 - Green Lords#**1d12** ability|Hazardous growths]]** and **[[24 - Green Lords#Bound Entities|chimerae]]**
 - **[[12 - Fae#Fae|Fae]]**, released from old oaths and/or keen to claim new territory
 
 #### **Spirits**
 
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of Forest Folk who died badly, or with work unfinished
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]** who dwelt happily alongside the Folk, or who were imprisoned by them
-- **[[46 - The Things Below#**Thrall**|Emanations]]** and spirits **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]), trapped but straining at their bindings.
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of Forest Folk who died badly, or with work unfinished
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]** who dwelt happily alongside the Folk, or who were imprisoned by them
+- **[[46 - The Things Below#**Wretch**|Emanations]]** and spirits **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]), trapped but straining at their bindings.

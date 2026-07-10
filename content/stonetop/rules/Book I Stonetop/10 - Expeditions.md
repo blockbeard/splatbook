@@ -1094,7 +1094,7 @@ Finally, write up any **[[14 - NPCs and Followers#Creating followers|followers]]
 - \* An old Maker-ruin just off the tracks; old Forest Folk glyphs on trees/rocks nearby; half-dozen crinwin are excavating it on Sajra's behalf
 - \* Crinwin, loyal to Sajra the Swyn, on patrol or keeping watch.
 
-*I put sticky flags in* Book II *by the entries for feathered drakes, crinwin, nailadd, and swyn. I write up Thornthumb using the steps for "Creating Fae" (*[[12 - Fae#**Insults and etiquette**|Book II]]*).*
+*I put sticky flags in* Book II *by the entries for feathered drakes, crinwin, nailadd, and swyn. I write up Thornthumb using the steps for "Creating Fae" (*[[12 - Fae#**Creating Fae**|Book II]]*).*
 
 *I create the swyn's lair as a site [[11 - Sites|Sites]] and make notes about the abandoned crinwin nest and the older Maker-ruins. I pick dangers and discoveries for each.* 
 

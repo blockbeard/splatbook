@@ -28,7 +28,7 @@ Slavic-sounding, but with more vowels and softer consonants: Aawnaswasiya, Blaag
 
 The Fomoraij have dwelt beneath the Great Wood for centuries. Their influence can be felt, certainly, and they sometimes send forth minions, but they have not seen the surface since the fall of **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**.
 
-To create a Fomoraij, start with 2 themes from the**[[46 - The Things Below#The Things Below|Things Below]]**. Combine with a constraint that keeps it from emerging, the nature of its lair, and 2-3 forms. Give it a name and perhaps an ominous title. Write it up as a threat (a *villain*, a *beast*, or a *magical entity*). If the PCs are likely to fight it, also write it up as a monster (see example on page [[15 - Fomoraij#INFECTED HAGR|142]]).
+To create a Fomoraij, start with 2 themes from the**[[46 - The Things Below#The Things Below|Things Below]]**. Combine with a constraint that keeps it from emerging, the nature of its lair, and 2-3 forms. Give it a name and perhaps an ominous title. Write it up as a threat (a *villain*, a *beast*, or a *magical entity*). If the PCs are likely to fight it, also write it up as a monster (see example on page [[15 - Fomoraij#**"Typical" Fomoraij**|142]]).
 
 ## **1d12** constraint
 
@@ -123,15 +123,15 @@ Pick 1 or have someone roll.
 #### **Various creations**
 
 - **[[24 - Green Lords#Bound Entities|Chimerae]]**, bred for war or sick amusement
-- **[[24 - Green Lords#**1d12** purpose|Hazardous growths]]**, protecting the Fomoraij's lair or extending its influence
-- **[[10 - Death and the Undying#**Other ghosts**|Revenants]]** of chimerae, possessed by dark spirits
-- **[[07 - Crinwin#Crinwin|Crinwin]]**, **[[24 - Green Lords#**1d12** peril|llamudwr]]**, **[[24 - Green Lords#**Mummified servant**|rhagedn]]**, **[[24 - Green Lords#**Mummified servant**|swyn]]**), or **[[24 - Green Lords#Zrajedak|zrajedak]]**—but somehow different, somehow worse
+- **[[24 - Green Lords#**1d12** ability|Hazardous growths]]**, protecting the Fomoraij's lair or extending its influence
+- **[[10 - Death and the Undying#**Death and the undying**|Revenants]]** of chimerae, possessed by dark spirits
+- **[[07 - Crinwin#Crinwin|Crinwin]]**, **[[24 - Green Lords#**The Unquiet Dead**|llamudwr]]**, **[[24 - Green Lords#**Rhagedn**|rhagedn]]**, **[[24 - Green Lords#**Rhagedn**|swyn]]**), or **[[24 - Green Lords#Zrajedak|zrajedak]]**—but somehow different, somehow worse
 - Almost any of the horrors found in **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**
 
 #### **Attendant spirits**
 
-- **Emanations** of the Things Below [[46 - The Things Below#**Thrall**|The Things Below]]
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, bound into wretched servitude
+- **Emanations** of the Things Below [[46 - The Things Below#**Wretch**|The Things Below]]
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, bound into wretched servitude
 - Bound **[[10 - Death and the Undying#**Pyped**|ghosts]]**, kept on a tight leash
 - Unbound **[[10 - Death and the Undying#**Pyped**|wraiths]]**, like jackals sniffing around a butcher shop
 
@@ -176,9 +176,9 @@ If you like, roll 1d6 for the extent of control.
 - 11 Mobility (jumping, flying, climbing, burrowing, squeezing, etc.)
 - 12 Unnatural resilience/vigor/durability
 
-Should a PC or an important NPC become infected by a Fomoraij (or one of their servants), write it up as a threat (an *affliction*). If a PC willingly becomes an infected servant, consider creating a playbook insert, using the **Thrall** for inspiration (see *[[Inserts#Revenant · Consequences|Book I]]*).
+Should a PC or an important NPC become infected by a Fomoraij (or one of their servants), write it up as a threat (an *affliction*). If a PC willingly becomes an infected servant, consider creating a playbook insert, using the **Thrall** for inspiration (see *[[Inserts#Thrall|Book I]]*).
 
-*I want a big scary servant of Yaarowslow the Many [[15 - Fomoraij#INFECTED HAGR|Fomoraij]], a hagr [[23 - The Great Wood#**Instinct** to lure prey|The Great Wood]] that stumbled on the tainted spring. I roll "a foul substance, injected/ inhaled/imbibed" and think of Yaarowslow's silvery slime. I get "by eating away at what they once were" as a means of control, and imagine the silver slime corrupting it from the inside, replacing its blood and organs and overwhelming its mind with voices and delusions. For gifts, I pick "unnatural resilience/vigor/durability" and "a way to spread its infection and/or its master's influence." I then roll for a third gift and get "an area attack."* 
+*I want a big scary servant of Yaarowslow the Many [[15 - Fomoraij#**"Typical" Fomoraij**|Fomoraij]], a hagr [[23 - The Great Wood#**Instinct** to lure prey|The Great Wood]] that stumbled on the tainted spring. I roll "a foul substance, injected/ inhaled/imbibed" and think of Yaarowslow's silvery slime. I get "by eating away at what they once were" as a means of control, and imagine the silver slime corrupting it from the inside, replacing its blood and organs and overwhelming its mind with voices and delusions. For gifts, I pick "unnatural resilience/vigor/durability" and "a way to spread its infection and/or its master's influence." I then roll for a third gift and get "an area attack."* 
 
 *I update the hagr's stat block to reflect these changes, and end up with this:*
 
@@ -208,7 +208,7 @@ Should a PC or an important NPC become infected by a Fomoraij (or one of their s
 - ä Overawe anyone in its presence
 - ä Twist, mutate, or transform living things with a gesture
 - ä Wield nearby plants and beasts as extensions of itself
-- ä Regenerate wounds from anything but **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**
+- ä Regenerate wounds from anything but **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**
 
 No Fomoraij is truly typical; use the stats above as a starting point. A Fomoraij's constraint [[15 - Fomoraij#**"Typical" Fomoraij**|Fomoraij]] dictates its instinct. Add or change its tags, stats, special qualities, and moves based on the themes [[46 - The Things Below#**Emanation**|The Things Below]], constraint, lair, and forms [[15 - Fomoraij#**"Typical" Fomoraij**|Fomoraij]] that you've identified.
 

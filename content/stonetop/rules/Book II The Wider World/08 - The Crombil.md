@@ -8,7 +8,7 @@ That's for you to decide. Maybe…
 
 - … it's a primordial **[[36 - Primordial Powers#**Other primordial entities**|titan]]**, a remnant of the first age;
 - … the **[[24 - Green Lords#Names|Green Lords]]** made it, as a weapon, or just because they could;
-- … it's the first and oldest **[[18 - Forge Lords#**Singing sword**|draventao]]**, a mighty Forge Lord who succumbed to the fire within;
+- … it's the first and oldest **[[18 - Forge Lords#**Draventao**|draventao]]**, a mighty Forge Lord who succumbed to the fire within;
 - … it's a manifestation of the **[[46 - The Things Below#The Things Below|Things Below]]**, all gluttony and fire and nightmare; or
 - … it's just a big, dumb beast.
 
@@ -18,7 +18,7 @@ That's for you to decide. Maybe…
 - The Crombil will soon wake, and an important site—like a ruin of the Green Lords or a **[[37 - Red Groves#Red Groves|Red Grove]]**—lies in its path. The PCs must act soon to explore or preserve the site before it's destroyed.
 - It's been almost fifty years since the Crombil woke, and its last rampage ended maybe a day or two from Stonetop. Elders remember the smoke and the sounds of destruction, but few ever knew the cause. But now the Crombil stirs, and this time it might head towards Stonetop.
 - The Crombil's periodic rampages have been drawing it towards **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**. This next time, it will plow into the ruined city and release any number of terrors from stasis and imprisonment, perhaps even the **[[15 - Fomoraij#Names|Fomoraij]]** themselves. Perhaps this was their plan all along.
-- **[[46 - The Things Below#**Morgais**|Cultists]]** of the Things Below seek to turn the Crombil into a
+- **[[46 - The Things Below#**Cultist**|Cultists]]** of the Things Below seek to turn the Crombil into a
 
 ## **Signs & portents**
 

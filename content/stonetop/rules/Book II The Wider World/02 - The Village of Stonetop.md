@@ -207,7 +207,7 @@ Homemakers grind grain with quernstones (as the village has no mill), to make fl
 
 Clothes are mostly leather, fur, and handspun wool. Belts, pouches, torcs, and brooches are common. Shoes are cut from single pieces of leather, with tabs that wrap up and around the feet, laced together into a simple sandal or pump. To make "boots," folks add thick wool socks, maybe lined with fur.
 
-Timber is relatively scarce. Because of the **[[23 - The Great Wood#**Winter**|Compact]]**, villagers won't fell a living tree from the Great Wood. Folks scavenge deadfall for firewood and smaller projects, and grow saplings around the fields and Old Wall for spears, bows, and arrows. Large-scale construction requires trading for timber or a logging trip to the **[[16 - The Foothills#The Foothills|Foothills]]**.
+Timber is relatively scarce. Because of the **[[23 - The Great Wood#**The Compact**|Compact]]**, villagers won't fell a living tree from the Great Wood. Folks scavenge deadfall for firewood and smaller projects, and grow saplings around the fields and Old Wall for spears, bows, and arrows. Large-scale construction requires trading for timber or a logging trip to the **[[16 - The Foothills#The Foothills|Foothills]]**.
 
 - Where does \_\_\_ live?
 - What task or chore are you working on?
@@ -259,7 +259,7 @@ Stonetop has no government, just leaders. Everyone knows who they are: the wise,
 
 Able-bodied adults are expected to know how to fight and protect the village when needed. Everyone keeps a spear, a round wooden shield, and maybe a bow.
 
-Folks rotate through guard duty, manning the watchtowers each night. The chief concerns are monsters from the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, especially **[[07 - Crinwin#Crinwin|crinwin]]**, and **[[14 - The Flats#**Hazards**|bandits]]** or **[[26 - Hillfolk#Hillfolk|Hillfolk]]** raiding from the **[[14 - The Flats#The Flats|Flats]]**. Most nights, though, the worst things you have to deal with are boredom, nerves, and bad weather.
+Folks rotate through guard duty, manning the watchtowers each night. The chief concerns are monsters from the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, especially **[[07 - Crinwin#Crinwin|crinwin]]**, and **[[14 - The Flats#**Monsters**|bandits]]** or **[[26 - Hillfolk#Hillfolk|Hillfolk]]** raiding from the **[[14 - The Flats#The Flats|Flats]]**. Most nights, though, the worst things you have to deal with are boredom, nerves, and bad weather.
 
 - Who runs drills for the militia? Where do they typically drill?
 - Have the watchtowers always been there, or are they a recent thing?
@@ -292,10 +292,10 @@ Local decorations are reminiscent of the runes etched in the Stone itself, and o
 - Two youths wish to wed, despite objections from (one of?) their parents
 - Tools left out have gone missing; now things start to vanish from inside homes
 - One villager kills another when a heated argument gets out of hand
-- A flock of starlings and a **[[41 - Spirits of the Wild#**Fadyn**|grwgnach]]** make spring planting impossible
+- A flock of starlings and a **[[41 - Spirits of the Wild#**Grwgnach**|grwgnach]]** make spring planting impossible
 - **[[49 - Tor, the Rain-maker#**Lightning**|Drought]]** strikes the land, threatening ruin and disaster
 - A merchant that the PCs were counting on fails to arrive
-- **[[14 - The Flats#**Hazards**|Bandits]]** threaten to burn the crops unless paid tribute
+- **[[14 - The Flats#**Monsters**|Bandits]]** threaten to burn the crops unless paid tribute
 
 ## **Mysteries**
 
@@ -309,7 +309,7 @@ Where did the Stone come from? Why does it draw lightning from the sky? Who carv
 - … marks **Tor**'s [[49 - Tor, the Rain-maker|Tor, the Rain-maker]] own grave;
 - … was carved from **[[54 - The Whitefang Mountains#Chart a Course|Tor's Fist]]** and placed here by the god himself;
 - … is the petrified remains of **[[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher]]**;
-- … binds an **emanation** of the Things Below [[46 - The Things Below#**Thrall**|The Things Below]];
+- … binds an **emanation** of the Things Below [[46 - The Things Below#**Wretch**|The Things Below]];
 - … channels lightning to power an artifact deep beneath the village;
 - … was brought here by the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]** from far across land and sea;
 - … is some combination of the above; or

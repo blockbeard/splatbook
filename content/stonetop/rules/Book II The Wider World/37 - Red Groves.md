@@ -20,13 +20,13 @@ Half a day east of Stonetop is a copse of trees that turn blood red (leaves, bar
 - … you bear a dying spirit, wishing to pass on; or
 - … you are cloaked in subtle magic.
 
-Redwood serves as a conduit for **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**. Some of the Forest Folks' most powerful totems are made of redwood. Alas, harvesting redwood without the permission of the forest spirits is sure to draw their primal, relentless ire.
+Redwood serves as a conduit for **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**. Some of the Forest Folks' most powerful totems are made of redwood. Alas, harvesting redwood without the permission of the forest spirits is sure to draw their primal, relentless ire.
 
 ## **Why are they so special?**
 
 That's for you to decide. Maybe...
 
-- … they are where **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]** are born and where they come to die;
+- … they are where **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]** are born and where they come to die;
 - … they each imprison some terrible evil;
 - … they each mark the grave of a cham pion of **[[09 - Danu, the Earth Mother#Danu, the Earth Mother|Danu]]**; or
 - … it's different for each grove.
@@ -39,7 +39,7 @@ That's for you to decide. Maybe...
 
 ## **Inhabitants**
 
-Any **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]** might be found here, but each grove hosts at least a few **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]** and is protected by **[[41 - Spirits of the Wild#**HP** 24; **Armor** 0|coedwaig]]**. **[[23 - The Great Wood#Monsters|Butcherbirds]]** frequent the Groves while they are red.
+Any **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]** might be found here, but each grove hosts at least a few **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]** and is protected by **[[41 - Spirits of the Wild#**Coedwaig**|coedwaig]]**. **[[23 - The Great Wood#Monsters|Butcherbirds]]** frequent the Groves while they are red.
 
 ## **The Forest's Wrath**
 

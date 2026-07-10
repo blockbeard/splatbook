@@ -66,7 +66,7 @@ They imitate whatever people(s) they observe, but always get it wrong.
 - "Children" made of sticks and papery mass, clothed in filthy stolen fabric, tucked safely away in a nest or carried about
 - Graves or cairns, empty yet revered or else housing still-living, sickly crinwin
 - A crude shrine to… something?
-- A mundane item or random **[[56 - Appendix B - Artifact Creation#Artifact Creation|artifact]]**, misused or cast aside.
+- A mundane item or random **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|artifact]]**, misused or cast aside.
 
 ## **Something long thought lost**
 

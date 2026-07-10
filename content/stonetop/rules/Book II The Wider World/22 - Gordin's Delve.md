@@ -148,8 +148,8 @@ When PCs Trade & Barter in Gordin's Delve , they use the local Prosperity (+0 by
 | A lock and key | 1 |
 | Silver jewelry | 1 |
 | A small silver mirror | 2 |
-| An object of black iron [[36 - Primordial Powers#**Portals**\|Primordial Powers]] | +2 |
-| An object of orichalcum (see [[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|Forge Lords]]) | +2 |
+| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
+| An object of orichalcum (see [[18 - Forge Lords#**1d6** architectural elements|Forge Lords]]) | +2 |
 
 | food & lodging | value |
 |---|---|
@@ -216,11 +216,11 @@ An assassination, someone important
 
 ## **Secrets**
 
-- **The Red Door** is a well-known feature down in the **[[22 - Gordin's Delve#**Shoddy construction**|First Delve]]**, a 20-foot tall slab of **[[43 - Stone Lords#Various treasures|makerglass]]** , inlaid with hundreds of patterned tiles. Some are missing, allowing the tiles to be slid around. When the tiles are in the exact right spots, the Red Door will open. Hints to the correct arrangement are hidden in old mosaics throughout Gordin's Delve.
+- **The Red Door** is a well-known feature down in the **[[22 - Gordin's Delve#**The Delves**|First Delve]]**, a 20-foot tall slab of **[[43 - Stone Lords#Various treasures|makerglass]]** , inlaid with hundreds of patterned tiles. Some are missing, allowing the tiles to be slid around. When the tiles are in the exact right spots, the Red Door will open. Hints to the correct arrangement are hidden in old mosaics throughout Gordin's Delve.
 - **An established shopkeep** (like a chandler, a publican, an innkeeper, maybe even a barber?) has a habit of killing folks who won't be missed. They're otherwise a pillar of the community.
 - Everyone knows there are **grates in the terraces**, carrying water through chutes and culverts to pour out below Sorrow's Gate. But there's more, a series of cramped tunnels and chutes that connect to some of the old ruins and even the Delves. The sewers are gross, infested with rats or worse, and just big enough to get lost in.
-- **A cult of locals** (some influential) have taken to tossing sacrifices into the underground lake at the bottom of the **[[22 - Gordin's Delve#**Shoddy construction**|Second Delve]]**: coin, flesh, living victims. They've received blessings from **[[46 - The Things Below#**Example names**|Daagon]]** as a result.
-- Every few years, miners in the **[[22 - Gordin's Delve#**Shoddy construction**|Third Delve]]** will unearth a "door" made of **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**. Rarely, they rebury it. Usually, they pry it open, to find nothing but more rock beyond. A powerful earthquake always follows a few days after one of these doors is opened, but few have made the connection.
+- **A cult of locals** (some influential) have taken to tossing sacrifices into the underground lake at the bottom of the **[[22 - Gordin's Delve#**The Delves**|Second Delve]]**: coin, flesh, living victims. They've received blessings from **[[46 - The Things Below#**For We Are Many**|Daagon]]** as a result.
+- Every few years, miners in the **[[22 - Gordin's Delve#**The Delves**|Third Delve]]** will unearth a "door" made of **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**. Rarely, they rebury it. Usually, they pry it open, to find nothing but more rock beyond. A powerful earthquake always follows a few days after one of these doors is opened, but few have made the connection.
 
 ## **Hooks**
 

@@ -19,11 +19,11 @@ Then, pick or roll for one or more themes from the indicated entry. Allow the th
   - 3-4 **[[09 - Danu, the Earth Mother#Danu, the Earth Mother|Danu]]**
   - 5-6 **[[25 - Helior, the Daybringer#Helior, the Daybringer|Helior]]**
   - 7-8 **[[49 - Tor, the Rain-maker#Tor, the Rain-maker|Tor]]**
-  - 9-12 **[[20 - Gods and Religion#**Threshold spirit**|Other gods]]**
+  - 9-12 **[[20 - Gods and Religion#**Other gods**|Other gods]]**
 - 6 The **[[24 - Green Lords#Names|Green Lords]]** or the **[[15 - Fomoraij#Names|Fomoraij]]**\*
 - 7 **[[36 - Primordial Powers#Primordial powers|Primordial powers]]**
 - 8 The **[[38 - Rime Lords#Rime Lords|Rime Lords]]**
-- 9 **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]** or the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**\*
+- 9 **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]** or the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**\*
 - 10 The **[[43 - Stone Lords#Stone Lords|Stone Lords]]**
 - 11 The **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**
 - 12 The **[[46 - The Things Below#The Things Below|Things Below]]**
@@ -39,10 +39,10 @@ Then, pick or roll for one or more themes from the indicated entry. Allow the th
 - 1-3 It's a **mundane** item, relic, or artifact (next column, step 2a)
 - 4-6 It's an object or amount of **[[56 - Appendix B - Artifact Creation#**1d12** less common|strange material]]**, step 2b)
 - 7 It's **[[56 - Appendix B - Artifact Creation#**1d12** less common|priceless]]** step 2c)
-- 8 It has an **[[56 - Appendix B - Artifact Creation#**1d12** priceless because...|extraordinary property]]** step 2d)
-- 9 It houses a **[[56 - Appendix B - Artifact Creation#**1d12** extra characteristic?|spirit or sentience]]** step 2e)
-- 10-11 It's a **[[56 - Appendix B - Artifact Creation#**1d12** spirit/sentience|source of lore]]** step 2f )
-- 12 It produces a **[[56 - Appendix B - Artifact Creation#**1d12** how it's recorded|magical effect]]** step 2g)
+- 8 It has an **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|extraordinary property]]** step 2d)
+- 9 It houses a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|spirit or sentience]]** step 2e)
+- 10-11 It's a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|source of lore]]** step 2f )
+- 12 It produces a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|magical effect]]** step 2g)
 
 #### **2a. Mundane**
 
@@ -74,19 +74,19 @@ Pick one or roll, and follow the instructions for that entry.
 ## **1d12** material
 
 - 1-2 **Makerglass**, most associated with the Stone Lords; pick or roll for its form and characteristic [[43 - Stone Lords#Various treasures|Various treasures]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]** step 4)
-- 3-4 **Aetherium**, found near Tempest Lord sites like the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**; pick or roll for its form and characteristic [[45 - Tempest Lords#**1d12** condition|Tempest Lords]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]** step 4)
-- 5 **Orichalcum**, most associated with the Forge Lords; pick or roll for its variety [[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|Forge Lords]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]** step 4)
+- 3-4 **Aetherium**, found near Tempest Lord sites like the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**; pick or roll for its form and characteristic [[45 - Tempest Lords#**Aetherium**|Tempest Lords]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]** step 4)
+- 5 **Orichalcum**, most associated with the Forge Lords; pick or roll for its variety [[18 - Forge Lords#**1d6** architectural elements|Forge Lords]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]** step 4)
 - 6-7 **Dark ice**, created by the Rime Lords and their disciples; pick or roll for its form and characteristic [[38 - Rime Lords#Dark ice|Dark ice]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]**, step 4)
-- 8 **Black iron**, most associated with **[[36 - Primordial Powers#Primordial powers|primordial powers]]** and **[[03 - Aratis, the Lawkeeper#Aratis, the Lawkeeper|Aratis]]**; pick or roll for its form [[36 - Primordial Powers#**Portals**|Primordial Powers]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]**, step 4)
+- 8 **Black iron**, most associated with **[[36 - Primordial Powers#Primordial powers|primordial powers]]** and **[[03 - Aratis, the Lawkeeper#Aratis, the Lawkeeper|Aratis]]**; pick or roll for its form [[36 - Primordial Powers#**Primordial powers**|Primordial Powers]], then proceed to **[[13 - Discoveries#4 Synthesis|synthesis]]**, step 4)
 - 9-10 **Red crystal**, a manifestation of the Things Below; pick or roll on the next table, and do what it says
-- 11-12 **[[37 - Red Groves#Red Groves|Redwood]]**, a natural tether for **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]** often used by the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**; pick or roll on the next table, and do what it says
+- 11-12 **[[37 - Red Groves#Red Groves|Redwood]]**, a natural tether for **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]** often used by the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**; pick or roll on the next table, and do what it says
 
 ## **1d12** red crystal/redwood
 
 - 1-4 Full of untapped potential (Value 1 or 2 to the right buyer); proceed to **[[13 - Discoveries#3 Form|form]]**, step 3)
 - 5-7 Has an **extraordinary property** (next page, step 2d)
-- 8-10 Houses a **[[56 - Appendix B - Artifact Creation#**1d12** extra characteristic?|spirit or sentience]]** step 2e)
-- 11-12 Produces a **[[56 - Appendix B - Artifact Creation#**1d12** how it's recorded|magical effect]]** step 2g)
+- 8-10 Houses a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|spirit or sentience]]** step 2e)
+- 11-12 Produces a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|magical effect]]** step 2g)
 
 #### **2c. Priceless**
 
@@ -133,9 +133,9 @@ Artifacts with extraordinary properties might also have an additional special ch
 ## **1d12** extra characteristic?
 
 - 1-6 Nope, go pick or roll for its **[[13 - Discoveries#3 Form|form]]** step 3)
-- 7-8 It houses a **[[56 - Appendix B - Artifact Creation#**1d12** extra characteristic?|spirit or sentience]]** step 2e)
-- 9-10 It's a **[[56 - Appendix B - Artifact Creation#**1d12** spirit/sentience|source of lore]]** step 2f )
-- 11-12 It produces a **magical effect**. [[56 - Appendix B - Artifact Creation#**1d12** how it's recorded|Appendix B - Artifact Creation]] step 2g)
+- 7-8 It houses a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|spirit or sentience]]** step 2e)
+- 9-10 It's a **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|source of lore]]** step 2f )
+- 11-12 It produces a **magical effect**. [[56 - Appendix B - Artifact Creation#appendix b : artifact creation|Appendix B - Artifact Creation]] step 2g)
 
 ## appendix b : artifact creation
 
@@ -157,13 +157,13 @@ Then, pick a spirit or sentience appropriate to the binding, origin, and theme. 
 
 - 1 A *corrupted* spirit [[46 - The Things Below#**1d12** origin|The Things Below]], and roll again
 - 2 A **[[10 - Death and the Undying#**Pyped**|ghost]]**
-- 3 A **[[10 - Death and the Undying#**Necromancer**|shade]]** or similar imprint of someone's personality
-- 4 Something from beyond the Last Door, like a **[[10 - Death and the Undying#**Other revenants**|dool spirit]]** or **[[10 - Death and the Undying#**Dool spirit**|gwyllgi]]**
+- 3 A **[[10 - Death and the Undying#**Death and the undying**|shade]]** or similar imprint of someone's personality
+- 4 Something from beyond the Last Door, like a **[[10 - Death and the Undying#**Death and the undying**|dool spirit]]** or **[[10 - Death and the Undying#**Death and the undying**|gwyllgi]]**
 - 5 A **[[12 - Fae#Fae|Fae]]**, oddly enough
-- 6 A **[[20 - Gods and Religion#**Petitioning the gods**|little god]]**
-- 7 A **[[38 - Rime Lords#**Major arcana**|tulpa]]**, or the intellect of a **[[18 - Forge Lords#**Instinct** to burn the living|construct]]**
-- 8 A **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**
-- 9 An **emanation** of a Thing Below [[46 - The Things Below#**Thrall**|The Things Below]]
+- 6 A **[[20 - Gods and Religion#**Little gods**|little god]]**
+- 7 A **[[38 - Rime Lords#**Tulpa**|tulpa]]**, or the intellect of a **[[18 - Forge Lords#**Metal constructs**|construct]]**
+- 8 A **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**
+- 9 An **emanation** of a Thing Below [[46 - The Things Below#**Wretch**|The Things Below]]
 - 10 A fledgling spirit, and roll 1d8+1 again
 - 11 An **[[36 - Primordial Powers#**Other primordial entities**|archon]]** or other **[[36 - Primordial Powers#Primordial powers|primordial entity]]**
 - 12 A multitude of... (roll again)
@@ -183,7 +183,7 @@ Pick or roll for the knowledge imparted and how it's recorded.
 - 3-4 The hazards/secrets/history/location of a mysterious or legendary place
 - 5-6 The workings/secrets/history/location of a magical item or arcanum
 - 7-9 An artifice or technique lost to antiquity
-- 10-12 The workings of a ritual/spell—pick or roll for its function and drawback [[56 - Appendix B - Artifact Creation#**1d12** how it's recorded|Appendix B - Artifact Creation]], then return here
+- 10-12 The workings of a ritual/spell—pick or roll for its function and drawback [[56 - Appendix B - Artifact Creation#appendix b : artifact creation|Appendix B - Artifact Creation]], then return here
 
 ## **1d12** how it's recorded
 
@@ -330,4 +330,4 @@ If the artifact's Value hasn't been established, consider whether it should have
 
 If you expect the artifact will be a source of trouble, also write it up as a threat (a *MacGuffin*, probably, or maybe a *magical entity* or even an *affliction*).
 
-Refer to the artifacts throughout this book for examples. See *[[13 - Discoveries#**Buying artifacts**|Book I]]*for more guidance and some worked examples.
+Refer to the artifacts throughout this book for examples. See *[[13 - Discoveries#**Creating artifacts**|Book I]]*for more guidance and some worked examples.

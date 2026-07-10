@@ -612,7 +612,7 @@ Remember: it's not your job to protect your NPCs, and followers are NPCs! **Let 
 
 If the source of the damage wasn't lethal, then the follower is out of the action until you say otherwise or they regain HP (because of magic, someone's move, or because someone tends to their wounds and they Recover).
 
-Note: a Ranger's animal companion is an exception. They get a special move, **[[Inserts#Prosperity|Loyal to the End]]**, that dictates what happens when they reach 0 HP. No one wants to see the dog die.
+Note: a Ranger's animal companion is an exception. They get a special move, **[[Inserts#Animal Companion|Loyal to the End]]**, that dictates what happens when they reach 0 HP. No one wants to see the dog die.
 
 ## Group followers
 
@@ -676,8 +676,8 @@ Rhianna could decide that Glaw and Eira used up all their supplies and now each 
 
 ## When a *group...*
 
-- ... Clashes or Lets Fly (or Aids a PC in doing so), the attack can hurt multiple foes. They roll the move once, and roll damage separately against each foe (see [[12 - Dangers#**Fighting spirits**|Dangers]]). Consider abstracting the exchange [[12 - Dangers#Abstracting groups|Abstracting groups]].
-- ... Clashes with or Lets Fly at a single foe (or Aids a PC in doing so), they roll the move once (likely with advantage) and roll one attacker's damage, +1 for each additional attacker (see [[12 - Dangers#**Fighting spirits**|Dangers]]).
+- ... Clashes or Lets Fly (or Aids a PC in doing so), the attack can hurt multiple foes. They roll the move once, and roll damage separately against each foe (see [[12 - Dangers#**Multiple combatants**|Dangers]]). Consider abstracting the exchange [[12 - Dangers#Abstracting groups|Abstracting groups]].
+- ... Clashes with or Lets Fly at a single foe (or Aids a PC in doing so), they roll the move once (likely with advantage) and roll one attacker's damage, +1 for each additional attacker (see [[12 - Dangers#**Multiple combatants**|Dangers]]).
 - ... Defends, then the group holds a common pool of Readiness. The PC spends it on behalf of either the group as a whole or an individual member, whichever makes sense.
 - ... Recovers, then each member who regains HP must consume 1 use of Supplies.
 - ... **Seeks Insight**, then the PC can ask 3 questions or 1 question total, not 3 or 1 per member of the group.

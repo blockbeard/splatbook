@@ -25,7 +25,7 @@ Tip: raise your voice a little, like you're talking over background sound
 - A dangerous beast takes to watering near town.
 - The Stream runs dry, despite ample rains
 - Something mysterious (dangerous?) is deposited by the current.
-- Haunting songs are heard on misty days; hot-blooded youths are intent on finding the source (an entrancing Fae, like **[[12 - Fae#**The Four Chieftains**|Blush-of-Dawn]]**).
+- Haunting songs are heard on misty days; hot-blooded youths are intent on finding the source (an entrancing Fae, like **[[12 - Fae#**Blush-of-Dawn**|Blush-of-Dawn]]**).
   - The Quiet Twins appear more frequently, urgently trying to warn of… something.
 
 ## **Inhabitants**

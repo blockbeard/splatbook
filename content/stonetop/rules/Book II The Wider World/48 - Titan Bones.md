@@ -45,7 +45,7 @@ Choose or roll for how long before the Hillfolk arrive, what happens while they 
 | 1d6 | while they wait           |
 
 - 1-2 A **danger** (next page) manifests!
-- 3 **[[31 - The Makers' Roads#**Waysides**|Travelers]]** approach on the road
+- 3 **[[31 - The Makers' Roads#**Fellow travelers**|Travelers]]** approach on the road
 - 4 Folks get antsy/bored/irritable
 - 5 Someone makes a discovery: something odd, out of place, recently unearthed, etc.
 - 6 Time passes pleasantly (how so?)
@@ -74,10 +74,10 @@ Meetings take place on the wayside at the foot of the hill, under the protection
 The fossilized bones on the hill are clearly ancient, and far bigger than anything has a right to be. But what are they the bones of? That's for you and your group to decide, but perhaps they are the bones of…
 
 - … one of the three great beasts vanquished by **[[49 - Tor, the Rain-maker#Tor, the Rain-maker|Tor]]**;
-- … one of the **[[36 - Primordial Powers#**Questions**|First Creators]]**, slain by the **[[46 - The Things Below#The Things Below|Things Below]]** as they were imprisoned;
+- … one of the **[[36 - Primordial Powers#**Cosmology**|First Creators]]**, slain by the **[[46 - The Things Below#The Things Below|Things Below]]** as they were imprisoned;
 - … some fell beast brewed up by the **[[24 - Green Lords#Names|Green Lords]]**;
-- … a mighty **[[43 - Stone Lords#Some examples:|Stone Lord construct]]**, not a creature at all;
-- … a colossal **[[46 - The Things Below#**Thrall**|emanation]]** of the Things Below, a world-ending horror, vitrified by **Stormcatcher**'s [[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher’s tower]] magic;
+- … a mighty **[[43 - Stone Lords#**Construct**|Stone Lord construct]]**, not a creature at all;
+- … a colossal **[[46 - The Things Below#**Wretch**|emanation]]** of the Things Below, a world-ending horror, vitrified by **Stormcatcher**'s [[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher’s tower]] magic;
 - … some combination of the above; or
 - … something else entirely.
 
@@ -89,7 +89,7 @@ Today, Titan Bones is little more than a landmark and a meeting place, but what 
 - … a fortress or trading post of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**;
 - … one of the **Tempest Lords**' [[45 - Tempest Lords|Tempest Lords]] sky-islands, crashed or landed and (temporarily?) unable to fly;
 - … part of **Stormcatcher**'s [[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher’s tower]] domain: a lookout, a laboratory, a power station, etc.;
-- … a fortress from the time of the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**, likely **[[10 - Death and the Undying#**Death's Door**|haunted]]** from the battles fought here;
+- … a fortress from the time of the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**, likely **[[10 - Death and the Undying#**Death and the undying**|haunted]]** from the battles fought here;
 
 - … a **[[46 - The Things Below#**1d12** origin|corrupted site]]**, a place of great evil, now mostly cleansed or at least contained;
 - … some combination of the above; or
@@ -100,13 +100,13 @@ Whatever you decide, consider how that interacts with your decisions about the t
 ## **Dangers**
 
 - A nasty turn of the weather
-- The **[[31 - The Makers' Roads#**Waysides**|nosgalau]]**, calling out to those on the hill
+- The **[[31 - The Makers' Roads#**Fellow travelers**|nosgalau]]**, calling out to those on the hill
 - The **[[10 - Death and the Undying#**Pyped**|ghosts]]** of those who died here or at nearby battlefields
-- A **[[14 - The Flats#**1d12** battlefield or remains|prairie fire]]** lit by an errant cinder
+- A **[[14 - The Flats#**Dangers**|prairie fire]]** lit by an errant cinder
 - **[[40 - South Manmarch#**Horned drake**|Bandits]]**, encamped on the hill or drawn by the signal fire
-- Something big and dangerous, on the hunt or lairing on the hill, like a **[[14 - The Flats#**Bandit**|beznpol]]**, a **[[14 - The Flats#**Beznpol**|frythanc]]**, or a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**
+- Something big and dangerous, on the hunt or lairing on the hill, like a **[[14 - The Flats#**Bandit chief**|beznpol]]**, a **[[14 - The Flats#**Frythanc**|frythanc]]**, or a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**
 - A nest of **[[14 - The Flats#Hlomren|hlomren]]**, infesting the hillside
-- Spirits of the wild: a **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]**, a flock of **[[41 - Spirits of the Wild#Andalau|andalau]]**), or a **[[41 - Spirits of the Wild#**HP** 24; **Armor** 0|fadyn]]**
+- Spirits of the wild: a **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]**, a flock of **[[41 - Spirits of the Wild#Andalau|andalau]]**), or a **[[41 - Spirits of the Wild#**Coedwaig**|fadyn]]**
 - Local **[[39 - The Ruined Tower#Dangers|blue magpies]]**, some real jerks
 - A **rockslide** or **[[42 - The Steplands#1d6 natural beast or spirit|mudslide]]**
 - Something inspired or suggested by the true nature of the titan's bones, and/or the ruins of the past

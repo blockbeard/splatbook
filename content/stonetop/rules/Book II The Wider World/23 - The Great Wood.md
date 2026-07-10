@@ -49,7 +49,7 @@ For generations, the people of Stonetop have kept their promise to the **[[17 - 
 
 What will happen if someone fells a living tree? That's for you to decide. Maybe…
 
-- … they suffer the **[[37 - Red Groves#**Why are they so special?**|Forest's Wrath]]**;
+- … they suffer the **[[37 - Red Groves#**Hooks**|Forest's Wrath]]**;
 - … they risk releasing an evil spirit, held captive by the tree's roots;
 - … the trees house the spirits of dead Forest Folk, and they've just created a **[[10 - Death and the Undying#**Pyped**|specter]]**; or
 - … nothing—unless the Forest Folk return.
@@ -119,25 +119,25 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
 - 3 game (see below)
 - 4 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**
-- 5 A **[[07 - Crinwin#Crinwin|crinwin]]**, **[[12 - Fae#Fae|Fae]]** or **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, curious or indifferent
+- 5 A **[[07 - Crinwin#Crinwin|crinwin]]**, **[[12 - Fae#Fae|Fae]]** or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, curious or indifferent
 - 6 A point of interest (next column)
 
 ### **1d6** game
 
 - 1-3 Mostly harmless but prone to bolt: deer, fowl, rabbits, etc.
-- 4-5 Big and dangerous if provoked: **[[23 - The Great Wood#**1d6** point of interest|boars]]**, **[[23 - The Great Wood#**Nailadd**|wisents]]**, **[[23 - The Great Wood#**Nailadd**|tal gerdwyr]]**, etc.
-- 6 Deadly and easily provoked: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[23 - The Great Wood#**Butcherbird**|ceirwmawr]]**, **[[23 - The Great Wood#**Nailadd**|raselbaedd]]**, etc.
+- 4-5 Big and dangerous if provoked: **[[23 - The Great Wood#**Dangers**|boars]]**, **[[23 - The Great Wood#**Raselbaedd**|wisents]]**, **[[23 - The Great Wood#**Raselbaedd**|tal gerdwyr]]**, etc.
+- 6 Deadly and easily provoked: **[[23 - The Great Wood#**Cave bear**|cave bears]]**, **[[23 - The Great Wood#**Cave bear**|ceirwmawr]]**, **[[23 - The Great Wood#**Raselbaedd**|raselbaedd]]**, etc.
 
 ### **1d6** point of interest
 
 - 1 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]** or the **[[15 - Fomoraij#Names|Fomoraij]]**
 - 2 A place **haunted** by death and the undying [[10 - Death and the Undying#Death and the undying|Death and the undying]]
 - 3 A place bearing traces of the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**
-- 4 A place sacred to the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- 4 A place sacred to the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 - 5 A **[[12 - Fae#**Getting there**|Fae domain]]** or **[[53 - Waystones#Waystones|waystone]]**
 - 6 A ruin or artifact of the **[[24 - Green Lords#Names|Green Lords]]**
 
-If it's been there for at least 10 years, it's likely marked by Forest Folk **[[17 - Forest Folk#**Where did they go?**|glyphs]]**.
+If it's been there for at least 10 years, it's likely marked by Forest Folk **[[17 - Forest Folk#**Hooks**|glyphs]]**.
 
 ## **Dangers**
 
@@ -152,10 +152,10 @@ If it's been there for at least 10 years, it's likely marked by Forest Folk **[[
 
 - **[[07 - Crinwin#Crinwin|Crinwin]]**
 - **[[12 - Fae#Fae|Fae]]**
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the Wild]]**
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the Wild]]**
 - Chimerae and other remnants of **[[24 - Green Lords#Names|the Green Lords]]**
 - Servants of the **[[15 - Fomoraij#Names|Fomoraij]]**
-- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of those who died in the Wood, like the **[[10 - Death and the Undying#**1d12** how tightly bound|Gwraig Wen]]**
+- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of those who died in the Wood, like the **[[10 - Death and the Undying#**Death and the undying**|Gwraig Wen]]**
 - A copse of **dool trees** and its resident spirits [[10 - Death and the Undying#Dool trees|Dool trees]]
 - The **Pale Hunter** and his hounds [[35 - The Pale Hunter|The Pale Hunter]]
 - The **[[08 - The Crombil#Hooks|Crombil]]**, should it wake

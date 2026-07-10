@@ -40,7 +40,7 @@ Pick, or roll 1d12.
 - 2 Storms: thunder and lightning, wrath and fury, power unleashed
 - 3 The heavens: weather and clouds, sky-islands, stars and celestial bodies
 - 4 Sailing: seas and ships, navigation and exploration
-- 5 Machines and devices, **[[45 - Tempest Lords#**1d12** condition|aetherium]]** and stored energy
+- 5 Machines and devices, **[[45 - Tempest Lords#**Aetherium**|aetherium]]** and stored energy
 - 6 Curiosity/experimentation/ invention/hubris
 - 7 Loss of control: unexpected consequences/berserk rage/cataclysmic failure/experiments run amok
 - 8 An empire collapsed: conquering armies, colonies, plunder, lost glory, resentment
@@ -53,7 +53,7 @@ Pick, or have someone roll the Die of Fate.
 ## **1d6** site
 
 - 1-3 **Lingering signs** of their presence (see below)
-- 4-6 A **[[45 - Tempest Lords#**Enigmatic structures** For example:|ruin]]**
+- 4-6 A **[[45 - Tempest Lords#**A ruin**|ruin]]**
 
 #### **Lingering signs**
 
@@ -64,7 +64,7 @@ Pick, or have someone roll the Die of Fate.
 - 1 A place bearing **scars of unchecked power** (next column)
 - 2 **Fragments of a ship or sky-island**  (next page)
 - 3-4 **Enigmatic structures** (next page)
-- 5 An **[[41 - Spirits of the Wild#**Communion**|elemental spirit]]** of sky, storm, weather, etc.; bound and tethered
+- 5 An **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirit]]** of sky, storm, weather, etc.; bound and tethered
 - 6 Ruins of other **[[30 - The Makers#The Makers|Makers]]** or the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**: blasted, shattered, vitrified
 
 ### **Scars of unchecked power** For example:
@@ -73,14 +73,14 @@ Pick, or have someone roll the Die of Fate.
 - A fractal, branching pattern etched in a bare expanse of stone
 - A rune-etched menhir or large hunk of **[[43 - Stone Lords#Makerglass|makerglass]]**, near which some fundamental law or force (time, gravity, space, light, etc.) is warped
 - A barren stretch of glass pebbles, strangely colored and always warm
-- The **[[45 - Tempest Lords#**Radiation**|vitrified]]** remains of a Maker, a monster, a small army, etc. Crude glass shapes hinting at what they once were, flash-frozen in time
+- The **[[45 - Tempest Lords#Vitrification|vitrified]]** remains of a Maker, a monster, a small army, etc. Crude glass shapes hinting at what they once were, flash-frozen in time
 
-Places scarred by such power might very well be **[[45 - Tempest Lords#**Silvery tuning fork**|radioactive]]**, **[[10 - Death and the Undying#**Death's Door**|haunted sites]]**, and/or corrupted by **[[46 - The Things Below#The Things Below|the Things Below]]**.
+Places scarred by such power might very well be **[[45 - Tempest Lords#**Storm-cloud potion**|radioactive]]**, **[[10 - Death and the Undying#**Death and the undying**|haunted sites]]**, and/or corrupted by **[[46 - The Things Below#The Things Below|the Things Below]]**.
 
 ## **Fragments of a ship or sky-island** For example:
 
 - A ship's hull, mostly buried but somehow still intact
-- A torn sail of **[[45 - Tempest Lords#**1d12** condition|aetherium]]** mesh, strapped to a rusty metal cross
+- A torn sail of **[[45 - Tempest Lords#**Aetherium**|aetherium]]** mesh, strapped to a rusty metal cross
 - Strange objects, strewn about and long-buried: a crumpled brass cylinder, an etched metal disk, an oversized ship's wheel, a rudder, etc.
 - A rocky outcrop, the stone alien to the surrounding terrain, tilted at an odd angle
 - A cracked slab of granite, big as the granary and shot through with aetherium, floating a few feet above the ground and spinning listlessly
@@ -97,7 +97,7 @@ Places scarred by such power might very well be **[[45 - Tempest Lords#**Silvery
 
 #### **A ruin**
 
-Pick or roll for themes [[45 - Tempest Lords#**A ruin**|Tempest Lords]], structure, purpose, architectural elements, and condition. Place the ruin in an appropriate terrain (see [[14 - The Flats|The Flats]]  for the **Flats** and [[40 - South Manmarch|South Manmarch]] for the **South Manmarch**, but Tempest Lords ranged far and wide). Populate it with **[[45 - Tempest Lords#**A ruin**|lingering signs]]**, **[[45 - Tempest Lords#**AETHERIUM CRUCIBLE**|artifacts]]** and/or **[[45 - Tempest Lords#**Silvery tuning fork**|dangers]]** of the Tempest Lords or the appropriate region.
+Pick or roll for themes [[45 - Tempest Lords#**A ruin**|Tempest Lords]], structure, purpose, architectural elements, and condition. Place the ruin in an appropriate terrain (see [[14 - The Flats|The Flats]]  for the **Flats** and [[40 - South Manmarch|South Manmarch]] for the **South Manmarch**, but Tempest Lords ranged far and wide). Populate it with **[[45 - Tempest Lords#**A ruin**|lingering signs]]**, **[[45 - Tempest Lords#**Artifacts**|artifacts]]** and/or **[[45 - Tempest Lords#**Storm-cloud potion**|dangers]]** of the Tempest Lords or the appropriate region.
 
 # **1d12** structure
 
@@ -290,11 +290,11 @@ Pick 1 or have someone roll.
 
 ## **Monsters and entities**
 
-- A **[[14 - The Flats#**Shellback drake**|thunder drake]]** or **[[11 - The Dread River#**1d6** greater curse|luglfsk]]**, drawn to aetherium
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, victims of the Tempest Lord's experiments, callousness, or wrath
+- A **[[14 - The Flats#**Thunder drake**|thunder drake]]** or **[[11 - The Dread River#**Luglfsk**|luglfsk]]**, drawn to aetherium
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, victims of the Tempest Lord's experiments, callousness, or wrath
 - An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, ensuring some Tempest Lord artifact goes unused
-- An **[[41 - Spirits of the Wild#**Communion**|elemental spirit]]** or a **[[36 - Primordial Powers#**Rift**|fundamental]]**, tethered to a device or artifice
-- A **[[36 - Primordial Powers#Primordial powers|primordial entity]]** or something **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]], **[[45 - Tempest Lords#**Radiation**|vitrified]]**) and held in stasis.
+- An **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirit]]** or a **[[36 - Primordial Powers#**Fundamental**|fundamental]]**, tethered to a device or artifice
+- A **[[36 - Primordial Powers#Primordial powers|primordial entity]]** or something **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]], **[[45 - Tempest Lords#Vitrification|vitrified]]**) and held in stasis.
 
 ### **Radiation**
 
@@ -331,7 +331,7 @@ Vitrification can be reversed, but you must decide how it's done. Perhaps it inv
 
 ## Elemental vortex
 
-Picture a filigree sphere of aetherium, maybe 6 inches across, a glowing mote swirling at its center. This device-called a matrix-binds an elemental spirit [[41 - Spirits of the Wild#**Communion**|Spirits of the Wild]] and absorbs a particular force, with which the spirit is able to manifest a swirling vortex.
+Picture a filigree sphere of aetherium, maybe 6 inches across, a glowing mote swirling at its center. This device-called a matrix-binds an elemental spirit [[41 - Spirits of the Wild#**Elemental spirits**|Spirits of the Wild]] and absorbs a particular force, with which the spirit is able to manifest a swirling vortex.
 
 A spirit bound to a matrix must follow any orders given in the Tempest Lord's primordial language. As few alive can give them such orders, any matrices encountered will likely be acting on orders from centuries ago.
 

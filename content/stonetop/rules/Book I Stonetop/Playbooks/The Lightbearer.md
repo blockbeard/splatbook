@@ -135,7 +135,7 @@ When you *imbue a holy light with Helior's power*, choose an Invocation you know
 - The light is snuffed out when the Invocation is complete, its fuel consumed
 - You must bask in sunlight for an hour or so before using that Invocation again
 
-See the **[[Inserts#Initiates of Danu|Invocations]]** insert for details.
+See the **[[Inserts#Invocations|Invocations]]** insert for details.
 
 ### KEEP THE HOME-FIRES BURNING
 

@@ -31,7 +31,7 @@ But the Labyrinth holds more than horrors. It holds riches, too. Ore and gems, s
 - Ustrina offer a reward for retrieving a relic from a ruin in the Labyrinth.
 - An old map of the Labyrinth shows a path from Gordin's Delve to Moratia Rubra (the Forge Lords' old capitol).
 - More and more Delvers hear a voiceless call from the Labyrinth. Some heed it.
-- A **[[18 - Forge Lords#**Singing sword**|draventao]]** emerges from its lair in the Labyrinth and preys on loggers, miners, and such.
+- A **[[18 - Forge Lords#**Draventao**|draventao]]** emerges from its lair in the Labyrinth and preys on loggers, miners, and such.
 
 ## **Navigating the Labyrinth**
 
@@ -71,7 +71,7 @@ Pick 1 or combine 2, or have someone roll the Die of Fate (d12).
 | 3-4 | Braided/branching tunnels |
 | 5-6 | Chamber, cavern, or alcove |
 | 7-8 | Steps, terraces, ledges |
-| 9-10 | Forge Lord construction, worked stone passage, or **[[18 - Forge Lords#**Monument or marker**\|ruin]]** |
+| 9-10 | Forge Lord construction, worked stone passage, or **[[18 - Forge Lords#**Ruin**\|ruin]]** |
 | 11-12 | obstruction (see below), and roll 1d10 again |
 
 | 1d12 | obstruction |
@@ -124,14 +124,14 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 5 Foragers, eager to invite guests home
 - 6 Two groups in a tense parley
 
-See [[28 - The Labyrinth#**The Portal Vault**|The Labyrinth]] for more on the thraulgwyn.
+See [[28 - The Labyrinth#**Thraulgwyn**|The Labyrinth]] for more on the thraulgwyn.
 
 ## 1d6 other encounter
 
-- 1 A thrall [[46 - The Things Below#**Morgais**|The Things Below]], terribly marked, living down here all alone
+- 1 A thrall [[46 - The Things Below#**Cultist**|The Things Below]], terribly marked, living down here all alone
 - 2 A swarm of small, cave-dwelling vermin-cave spiders, rockrats, or bats [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]]-alarming and distracting, but essentially harmless
-- 3 A ghost [[10 - Death and the Undying#**Pyped**|Death and the Undying]], revenant [[10 - Death and the Undying#**Other ghosts**|Death and the Undying]], or spirit of the wild [[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the Wild]]: curious or indifferent
-- 4 A metal construct [[18 - Forge Lords#**Instinct** to burn the living|Forge Lords]], following ancient orders or awaiting activation
+- 3 A ghost [[10 - Death and the Undying#**Pyped**|Death and the Undying]], revenant [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]], or spirit of the wild [[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the Wild]]: curious or indifferent
+- 4 A metal construct [[18 - Forge Lords#**Metal constructs**|Forge Lords]], following ancient orders or awaiting activation
 - 5 Adventurers/prospectors from Gordin's Delve, wary, maybe lost
 - 6 Ustrina [[51 - Ustrina|Ustrina]]: surface-bound, returning to the Portal Vault [[28 - The Labyrinth#1d6 discovery|1d6]], or seeking something
 
@@ -141,13 +141,13 @@ See [[28 - The Labyrinth#**The Portal Vault**|The Labyrinth]] for more on the th
 - 2 Potable water, edible fungi, cave fish, rockrats, etc.
 - 3 Portable light source: glimmercaps, red crystal [[46 - The Things Below#**Unnatural phenomena**|The Things Below]], glowing makerglass [[43 - Stone Lords#Various treasures|Various treasures]], etc.
 - 4 A vein of coal/ore/copper/gold/gems
-- 5 An artifact of the Forge Lords [[18 - Forge Lords#**Other materials**|Forge Lords]], Barrow Builders [[05 - Barrow Builders#**1d12** feature|Barrow Builders]], or Things Below [[46 - The Things Below#**Unnatural phenomena**|The Things Below]]
+- 5 An artifact of the Forge Lords [[18 - Forge Lords#**Artifacts**|Forge Lords]], Barrow Builders [[05 - Barrow Builders#**Artifacts**|Barrow Builders]], or Things Below [[46 - The Things Below#**Unnatural phenomena**|The Things Below]]
 - 6 Sign of their objective/quarry
 
 ## **1d6** point of interest
 
-- 1 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**, perhaps a shrine tended by **[[28 - The Labyrinth#Thraulgwyn|thraulgwyn]]**) or **[[46 - The Things Below#**Morgais**|cultists]]**
-- 2 A **[[10 - Death and the Undying#**Death's Door**|haunted site]]**
+- 1 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**, perhaps a shrine tended by **[[28 - The Labyrinth#Thraulgwyn|thraulgwyn]]**) or **[[46 - The Things Below#**Cultist**|cultists]]**
+- 2 A **[[10 - Death and the Undying#**Death and the undying**|haunted site]]**
 - 3 A **notable site** (see below)
 - 4 A **[[28 - The Labyrinth#1d6 thraulgwyn|thraulgwyn settlement]]**
 - 5 A **[[18 - Forge Lords#**Ruin**|Forge Lord site]]**, perhaps inhabited by Ustrina
@@ -156,7 +156,7 @@ See [[28 - The Labyrinth#**The Portal Vault**|The Labyrinth]] for more on the th
 ## **Notable sites**
 
 - Heat, choking air, and a resonant rumble give way to a magma lake, air a-shimmer with heat, toxic gas.
-- A vast subterranean lake, perhaps the same one that connects to the **[[22 - Gordin's Delve#**Shoddy construction**|Second Delve]]**.
+- A vast subterranean lake, perhaps the same one that connects to the **[[22 - Gordin's Delve#**The Delves**|Second Delve]]**.
 - The **Hanging Forest**, a long, wide tunnel full of skinny roots dangling from the surface. Full of crickets and things that eat them.
 - The **Mirrorkeep**, a Forge Lord outpost, largely intact, lined with reflective mosaics. Sits over a bottomless (?) pit.
 - The **Dreaming Breath**, a hot spring pool. Mold and fungi cake nearby stone. The waters restore vigor but cause stupefying euphoria.
@@ -167,9 +167,9 @@ See [[28 - The Labyrinth#**The Portal Vault**|The Labyrinth]] for more on the th
 
 Five hours from the Delves (if you know the shortest route) stands a pair of double doors: 30' tall, bronze, covered in runic wards and reliefs of Forge Lord glories. A cunning lock seals them. Only six keys exist; the **[[51 - Ustrina#Ustrina|Ustrina]]** hold five.
 
-Inside is a vast octagonal space, 60' from floor to angled ceiling. Six of its corners feature 20' tall niches, each housing a large **[[18 - Forge Lords#**Instinct** to burn the living|metal construct]]** that attacks any party that doesn't bear one of the keys.
+Inside is a vast octagonal space, 60' from floor to angled ceiling. Six of its corners feature 20' tall niches, each housing a large **[[18 - Forge Lords#**Metal constructs**|metal construct]]** that attacks any party that doesn't bear one of the keys.
 
-A slab of white stone, 30' tall and 3' thick, stands upright in the center of the vault. Each side is etched with a magic circle. It's a **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, connected to those in the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**, **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**, and so forth. It is fully functional, and can be used via **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**.
+A slab of white stone, 30' tall and 3' thick, stands upright in the center of the vault. Each side is etched with a magic circle. It's a **[[36 - Primordial Powers#**Primordial powers**|portal]]**, connected to those in the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**, **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**, and so forth. It is fully functional, and can be used via **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**.
 
 The Ustrina use this place to travel to Gordin's Delve, and to return to their far-flung homes. No one sect controls the Vault, and they treat it as neutral ground. But that doesn't apply to non-Ustrina.
 
@@ -216,7 +216,7 @@ Here's a typical tribal band:
 
 Each tribal band descends from a particular warlord or sorcerer-king of the Barrow Builders and the disciples who followed them into exile. And each band is likewise corrupted by a different one of the Things Below.
 
-For each tribal band, pick or create the **[[46 - The Things Below#**Emanation**|entity they worship]]**. Pick or roll for a gift and a mark that entity bestows on their people. Then pick or roll an asset and a quirk. Finally, identify 1d6 **artifacts** of the Barrow Builders, **[[18 - Forge Lords#**Other materials**|Forge Lords]]**, or **[[46 - The Things Below#**Unnatural phenomena**|Things Below]]** that they hold as sacred treasures.
+For each tribal band, pick or create the **[[46 - The Things Below#**Emanation**|entity they worship]]**. Pick or roll for a gift and a mark that entity bestows on their people. Then pick or roll an asset and a quirk. Finally, identify 1d6 **artifacts** of the Barrow Builders, **[[18 - Forge Lords#**Artifacts**|Forge Lords]]**, or **[[46 - The Things Below#**Unnatural phenomena**|Things Below]]** that they hold as sacred treasures.
 
 | 1d6 | gift |
 |---|---|
@@ -244,8 +244,8 @@ See [[46 - The Things Below#**1d12** origin|The Things Below]] for more gifts an
 - 2 Means to brew a paralytic poison
 - 3 An additional gift
 - 4 Greater numbers (a *village*, ~150 souls)
-- 5 A pet **[[46 - The Things Below#**Thrall**|emanation]]**
-- 6 Still led by their **[[05 - Barrow Builders#**Phantom rider**|deathless]]** founder, and roll again
+- 5 A pet **[[46 - The Things Below#**Wretch**|emanation]]**
+- 6 Still led by their **[[05 - Barrow Builders#**Deathless ones**|deathless]]** founder, and roll again
 
 # **1d6** quirk
 
@@ -253,7 +253,7 @@ See [[46 - The Things Below#**1d12** origin|The Things Below]] for more gifts an
 - 2 Bear an additional mark
 - 3 Build structures out of bones
 - 4 Venture out to the surface at night
-- 5 Revere **[[28 - The Labyrinth#**Corruption, as one goes deeper**|magma worms]]**
+- 5 Revere **[[28 - The Labyrinth#**Magma worm**|magma worms]]**
 - 6 Intrigued by surface-dwellers
 
 ## Trade & Barter
@@ -288,11 +288,11 @@ When PCs Trade & Barter among a band of thraulgwyn , they use the local Prosperi
 | Vial of paralytic powder ( use, close ) | 1 |
 | Meat provisions, don't ask ( uses) | 1* |
 | Human-hide armor (1 armor) | 1* |
-| pouch of [[18 - Forge Lords#**1d12** variety\|anthracite]] (~10 lumps, each lasts ~8 hours, *close*, *area*) | 2* |
+| pouch of [[18 - Forge Lords#**Anthracite**\|anthracite]] (~10 lumps, each lasts ~8 hours, *close*, *area*) | 2* |
 | Red crystal 'torch'( reach , area , magical) | 3* |
 | Pottery, wool, textiles, wooden items | +1* |
 | Bronze, iron, or steel items/weapons | +1* |
-| An object of black iron [[36 - Primordial Powers#**Portals**\|Primordial Powers]] | +2 |
+| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
 | Scavenged makerglass [[43 - Stone Lords#Various treasures\|Various treasures]] | +2 |
 
 * -1 if sold/traded outside the Labyrinth.
@@ -315,7 +315,7 @@ PCs don't need to roll Trade & Barter for the following, but they will likely ne
 
 # **The Deeps**
 
-The Labyrinth is far from static. Earthquakes, volcanism, and burrowing **[[28 - The Labyrinth#**Corruption, as one goes deeper**|magma worms]]** all wreak havoc upon it. But you could map it. You could learn its ways and find your way back to a place you had been.
+The Labyrinth is far from static. Earthquakes, volcanism, and burrowing **[[28 - The Labyrinth#**Magma worm**|magma worms]]** all wreak havoc upon it. But you could map it. You could learn its ways and find your way back to a place you had been.
 
 But as one goes deeper, things change. The world becomes… softer. Less fixed. And beyond an uncertain point, one enters the Deeps.
 
@@ -364,9 +364,16 @@ Pick or roll for the **[[28 - The Labyrinth#**Nightmare tableaux**|terrain]]**, 
 - 5 An **[[46 - The Things Below#**Unnatural phenomena**|artifact]]** of the Things Below, the tableau's heart
 - 6 Roll twice, combine
 
-## **1d6** instinct 1 To traumatize/punish them 2 To weaken/hurt/degrade them 3 To **corrupt** them [[46 - The Things Below#**Corrupted being**|The Things Below]] 4 To turn them against each other 5 To trap or ensnare them 6 To coalesce into a full-fledged
+## **1d6** instinct
 
-**[[46 - The Things Below#**Thrall**|emanation]]**
+- 1 To traumatize/punish them
+- 2 To weaken/hurt/degrade them
+- 3 To **corrupt** them [[46 - The Things Below#**Corrupted being**|The Things Below]]
+- 4 To turn them against each other
+- 5 To trap or ensnare them
+- 6 To coalesce into a full-fledged
+
+**[[46 - The Things Below#**Wretch**|emanation]]**
 
 Play out the scene with dreamlike logic but very real potential consequences for the PCs. Make liberal use of **[[46 - The Things Below#**Voice of the Eternal Maw**|whispers and visions]]** and **[[46 - The Things Below#**On a 6-**, pick 1:|unnatural phenomena]]**. Should a simulacrum leave the tableau with the PCs, decide for yourself what happens; don't be afraid to get weird.
 
@@ -391,9 +398,9 @@ When you *encounter a danger*, roll the Die of Fate to see what it is.
 
 ## **1d6** danger
 
-- 1 **[[28 - The Labyrinth#**Thraulgwyn raider**|Tcaventes]]**, wandering
-- 2 An **[[46 - The Things Below#**Thrall**|emanation]]**
-- 3 A huge **[[28 - The Labyrinth#**Corruption, as one goes deeper**|magma worm]]**
+- 1 **[[28 - The Labyrinth#**Soithech**|Tcaventes]]**, wandering
+- 2 An **[[46 - The Things Below#**Wretch**|emanation]]**
+- 3 A huge **[[28 - The Labyrinth#**Magma worm**|magma worm]]**
 - 4 A **nightmare tableau** (previous page)
 - 5 An ordeal: heat, cold, hunger, intrusive thoughts, false memories, etc.
 - 6 Someone else lost down here, maybe from a different time, paranoid or at least extremely wary
@@ -402,7 +409,7 @@ When you *escape or otherwise survive the danger and you hold 3+ Progress,* you 
 
 #### **The Utterwell**
 
-At the very bottom of the Deeps stands a throne of **[[36 - Primordial Powers#**Portals**|black iron]]**, the seat of **[[28 - The Labyrinth#**Thraulgwyn raider**|Tcaventes, Shackle and Key]]**. Behind the throne looms a black iron door. An **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]** bolt holds the door fast. The bolt is bound with the **[[58 - Appendix D - Major Arcana#Ineffable Words|Ineffable Word]]** for "seal."
+At the very bottom of the Deeps stands a throne of **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, the seat of **[[28 - The Labyrinth#**Soithech**|Tcaventes, Shackle and Key]]**. Behind the throne looms a black iron door. An **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]** bolt holds the door fast. The bolt is bound with the **[[58 - Appendix D - Major Arcana#Ineffable Words|Ineffable Word]]** for "seal."
 
 The black iron door opens onto the shore of the Utterwell: a sunless sea, still and black as night. No light penetrates its depths, not even the light of Helior. Anyone or anything who enters the sea is gone, consumed by the Things Below.
 
@@ -415,26 +422,26 @@ When you *stand before the Utterwell and call one of the Things Below by name*, 
 - Getting lost
 - Running out of light
 - Cold, especially if they get wet
-- Heat, gas, **[[27 - Huffel Peaks#**Harsh mountain weather**|volcanic activity]]**
+- Heat, gas, **[[27 - Huffel Peaks#**Volcanic activity**|volcanic activity]]**
 - Treacherous footing, slopes, climbs
 - Getting stuck in a squeeze
 - An unexpected drop-off
 - Cave-ins, rock-falls
-- **[[27 - Huffel Peaks#**Harsh mountain weather**|Earthquakes!]]**
+- **[[27 - Huffel Peaks#**Volcanic activity**|Earthquakes!]]**
 - Panic in the face of the above
 
 #### **Monsters and such**
 
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** and **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of those who never got out
-- **[[18 - Forge Lords#**Instinct** to burn the living|Metal constructs]]**, guarding something or on some task
-- **[[27 - Huffel Peaks#**Harsh mountain weather**|Caralandrao]]**, seeking magic
-- **[[27 - Huffel Peaks#**Caralandrao**|Fire drakes]]**, near magma
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** and **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of those who never got out
+- **[[18 - Forge Lords#**Metal constructs**|Metal constructs]]**, guarding something or on some task
+- **[[27 - Huffel Peaks#**Volcanic activity**|Caralandrao]]**, seeking magic
+- **[[27 - Huffel Peaks#**Fire drake**|Fire drakes]]**, near magma
 - A **[[42 - The Steplands#1d6 natural beast or spirit|grochslon]]**, near a stream, lake, or cave mouth
-- Explorers: **[[29 - Lygos and the South#Adventurer|adventurers]]**, an **[[29 - Lygos and the South#Adventurer|antiquarian]]**, a **[[46 - The Things Below#**Morgais**|sorcerer]]**, etc.
+- Explorers: **[[29 - Lygos and the South#Adventurer|adventurers]]**, an **[[29 - Lygos and the South#Adventurer|antiquarian]]**, a **[[46 - The Things Below#**Cultist**|sorcerer]]**, etc.
 - **[[51 - Ustrina#Ustrina|Ustrina]]**, en route or in search of something
-- A **[[18 - Forge Lords#**Singing sword**|draventao]]**, making its lair down here
+- A **[[18 - Forge Lords#**Draventao**|draventao]]**, making its lair down here
 - **[[46 - The Things Below#**1d12** origin|Corrupted beings]]**: bats, rockrats, spirits, any of the above
-- **[[46 - The Things Below#**Thrall**|Emanations]]** of the Things Below, seeping out of the Deeps
+- **[[46 - The Things Below#**Wretch**|Emanations]]** of the Things Below, seeping out of the Deeps
 
 ### **Corruption, as one goes deeper**
 

@@ -34,10 +34,10 @@ Choose or roll 1, or 2 and combine.
 
 ## **Hooks**
 
-- An abandoned house, out near the **[[02 - The Village of Stonetop#The Village of Stonetop|Old Wall]]**, is said to be haunted.
+- An abandoned house, out near the **[[02 - The Village of Stonetop#**The village of Stonetop**|Old Wall]]**, is said to be haunted.
 - A shade gets called up at the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]** and refuses to go back.
 - A haunted grove near the **[[31 - The Makers' Roads#The Makers' Roads|West Road]]** is said to hide buried
-- A **[[10 - Death and the Undying#**Dool spirit**|necromancer]]** comes to town, offering a chance to speak with
+- A **[[10 - Death and the Undying#**Death and the undying**|necromancer]]** comes to town, offering a chance to speak with
 
 ### **Lore**
 
@@ -78,7 +78,7 @@ Choose or roll 1, or 2 and combine.
 
 ## **Death's Door**
 
-When the PCs are dying and they make the **[[07 - Harm and Healing#**Problematic wounds in play**|Death's Door]]** move (*Book I*), they see the Last Door and the Lady of Crows. The move prompts them to describe it, but feel free to ask questions.
+When the PCs are dying and they make the **[[07 - Harm and Healing#**Death and dying**|Death's Door]]** move (*Book I*), they see the Last Door and the Lady of Crows. The move prompts them to describe it, but feel free to ask questions.
 
 - What does the Door look like? Big and grand, small and humble, or what?
 - Is it flung open, or just ajar?
@@ -89,7 +89,7 @@ When the PCs are dying and they make the **[[07 - Harm and Healing#**Problematic
 - What detail catches your attention, that you'd never have expected?
 - How much of this will you remember?
 
-As for the afterlife—the land beyond the Last Door—its true nature is a mystery. But it is home to **[[10 - Death and the Undying#**Other revenants**|dool spirits]]**, **[[10 - Death and the Undying#**Dool spirit**|gwyllgi]]**, and the **[[10 - Death and the Undying#**Necromancer**|shades]]** of the dead. Some of those shades, when called, are eager to stay in the land of the living. So for some, it would seem, the afterlife is not a pleasant place at all.
+As for the afterlife—the land beyond the Last Door—its true nature is a mystery. But it is home to **[[10 - Death and the Undying#**Death and the undying**|dool spirits]]**, **[[10 - Death and the Undying#**Death and the undying**|gwyllgi]]**, and the **[[10 - Death and the Undying#**Death and the undying**|shades]]** of the dead. Some of those shades, when called, are eager to stay in the land of the living. So for some, it would seem, the afterlife is not a pleasant place at all.
 
 ## **Death and the undying**
 
@@ -149,11 +149,11 @@ If the origins involved a death or deaths, pick or roll for the cause of death.
 - 11 Exertion/exhaustion/shock/fright
 - 12 Magic/an entity/a curse
 
-From there, choose the **[[10 - Death and the Undying#**Pyped**|ghosts]]**, **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, or other **[[10 - Death and the Undying#**Other revenants**|dangers]]** that haunt the place, and their **tether**(s) [[10 - Death and the Undying#Tethers|Tethers]] if appropriate. Populate it with **[[10 - Death and the Undying#**Dool trees**|artifacts]]** tied to death and the undying, and dangers or discoveries appropriate to the surrounding area and/or whoever dwelt here in the past.
+From there, choose the **[[10 - Death and the Undying#**Pyped**|ghosts]]**, **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, or other **[[10 - Death and the Undying#**Death and the undying**|dangers]]** that haunt the place, and their **tether**(s) [[10 - Death and the Undying#Tethers|Tethers]] if appropriate. Populate it with **[[10 - Death and the Undying#**Dool trees**|artifacts]]** tied to death and the undying, and dangers or discoveries appropriate to the surrounding area and/or whoever dwelt here in the past.
 
 ## **Dool trees**
 
-Dool trees often grow in or near haunted sites. A grove stands near the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]**, and lone dool trees are often found near **Barrow Builder** tombs [[05 - Barrow Builders|Barrow Builders]]. They are thick and knobby and multi-stemmed. The bark is papery, the color of bleached bone. The **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]** shuns them, and they are often home to **[[10 - Death and the Undying#**Other revenants**|dool spirits]]** if nothing else.
+Dool trees often grow in or near haunted sites. A grove stands near the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]**, and lone dool trees are often found near **Barrow Builder** tombs [[05 - Barrow Builders|Barrow Builders]]. They are thick and knobby and multi-stemmed. The bark is papery, the color of bleached bone. The **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]** shuns them, and they are often home to **[[10 - Death and the Undying#**Death and the undying**|dool spirits]]** if nothing else.
 
 The leaves of a dool tree are deep purple, almost black, shot through with pale white veins. Dried leaves can be steeped to make a bitter tea, which brings on a death-like sleep from which some folk never wake.
 
@@ -181,7 +181,7 @@ When you *wield the sword against a manifest undead spirit*, you can hurt it (de
 
 , *magical*
 
-Threadbare, ancient, but remarkably well-preserved. Embroidered with a stylized aurochs whose horns encompass the sun. It fills you with hope and pride to look upon it, as well it should. For this was the standard of the Heol-Tarv, a heroic band who gave their lives in hopeless battle against the **[[10 - Death and the Undying#**1d12** weakness|Anan Gllo]]**, securing their people's escape.
+Threadbare, ancient, but remarkably well-preserved. Embroidered with a stylized aurochs whose horns encompass the sun. It fills you with hope and pride to look upon it, as well it should. For this was the standard of the Heol-Tarv, a heroic band who gave their lives in hopeless battle against the **[[10 - Death and the Undying#**Death and the undying**|Anan Gllo]]**, securing their people's escape.
 
 When you *unfurl the tattered standard and hold it aloft for all to see*, you and your allies are immune to supernatural fear and unshaken by undead or otherwise unnatural foes.
 
@@ -375,10 +375,10 @@ When *a wraith reduces you to 0 HP and you survive*, your soul is wounded. Reduc
 
 ## **Other ghosts**
 
-- A **[[18 - Forge Lords#**Hazards**|cinderwraith]]**
+- A **[[18 - Forge Lords#**Smoke, fire, and heat**|cinderwraith]]**
 - **[[44 - The Stream#The Stream|The Quiet Twins]]**
-- **[[05 - Barrow Builders#**Monsters**|Phantom riders]]**
-- **[[39 - The Ruined Tower#**Lightning sconce**|Ferocedes Ogran]]**
+- **[[05 - Barrow Builders#**Phantom rider**|Phantom riders]]**
+- **[[39 - The Ruined Tower#**Various entities**|Ferocedes Ogran]]**
 
 # **Death and the undying**
 
@@ -484,7 +484,7 @@ Sometimes, when a great wrong is done, when a good person is cruelly slain, when
 - <sup>ä</sup> Jumble up its memories with those of its host & those whose bones it's eaten
 - <sup>ä</sup> Possess a new corpse, if it can/must
 
-When an untethered **[[10 - Death and the Undying#**Pyped**|ghost]]** or a **[[10 - Death and the Undying#**Necromancer**|shade]]** possesses an empty corpse, it becomes a pyped. They are wretched things, all rotting flesh and lurching movements, hungering for sweet marrow, scavenging on carrion and graves. But hunger can make them bold. Bold enough to hunt the weak and sick at the edge of a village, or a lone traveler caught unawares.
+When an untethered **[[10 - Death and the Undying#**Pyped**|ghost]]** or a **[[10 - Death and the Undying#**Death and the undying**|shade]]** possesses an empty corpse, it becomes a pyped. They are wretched things, all rotting flesh and lurching movements, hungering for sweet marrow, scavenging on carrion and graves. But hunger can make them bold. Bold enough to hunt the weak and sick at the edge of a village, or a lone traveler caught unawares.
 
 Pypeds rise only from corpses that are relatively intact, and which have not undergone proper funeral rites. If a pyped is destroyed, the spirit within will seek a new, viable corpse. A shade must find one before the sun banishes it. An untethered ghost must find one before its memories fade and it becomes a **[[10 - Death and the Undying#**Pyped**|wraith]]**.
 
@@ -508,11 +508,11 @@ But say what you will about Ulliam, he loved his wife and kids. Still does. Drag
 
 ## **Other revenants**
 
-- **Mummified Green Lords** and their **[[24 - Green Lords#**Llamudwr**|servants]]**
-- **[[46 - The Things Below#**Morgais**|Thralls]]** of the Things Below
-- **[[52 - Vor Svetelik#**The Undying**|Nemurvojak]]**
-- **[[05 - Barrow Builders#Examples:|Barrow wights]]**
-- **[[05 - Barrow Builders#**Phantom rider**|Deathless ones]]**
+- **Mummified Green Lords** and their **[[24 - Green Lords#**Mummified Green Lord**|servants]]**
+- **[[46 - The Things Below#**Cultist**|Thralls]]** of the Things Below
+- **[[52 - Vor Svetelik#**Chimerae**|Nemurvojak]]**
+- **[[05 - Barrow Builders#**People**|Barrow wights]]**
+- **[[05 - Barrow Builders#**Deathless ones**|Deathless ones]]**
 
 # **Death and the undying**
 
@@ -523,15 +523,15 @@ But say what you will about Ulliam, he loved his wife and kids. Still does. Drag
 - Creepy effects: flickering torches, cold spots, things going bump in the night
 - Superstition and fear, affecting the behavior of NPCs
 - Rising dread and **[[46 - The Things Below#**On a 6-**, pick 1:|terror]]**, affecting even PCs
-- **[[05 - Barrow Builders#**Major arcana**|Traps]]** placed in old tombs
-- **[[11 - The Dread River#**1d6** what taints it|Curses]]** on tombs or tomb-goods
-- **[[13 - Ferrier's Fen#… **a promise, to be fulfilled now or later**.|Disease]]**, transmitted from fresh or rotting corpses
+- **[[05 - Barrow Builders#**Dangers**|Traps]]** placed in old tombs
+- **[[11 - The Dread River#**Dangers**|Curses]]** on tombs or tomb-goods
+- **[[13 - Ferrier's Fen#**Dangers**|Disease]]**, transmitted from fresh or rotting corpses
 
 #### **Other undead**
 
-- **[[18 - Forge Lords#**Clockwork spider**|Iron hounds]]**
+- **[[18 - Forge Lords#**Iron hound**|Iron hounds]]**
 - **[[12 - Fae#**The Bloody Boots**|Hollow Fae]]**
-- **[[38 - Rime Lords#**Instinct** see below|A false adept]]**
+- **[[38 - Rime Lords#**1d12** instinct|A false adept]]**
 
 ## **Dool spirit**
 

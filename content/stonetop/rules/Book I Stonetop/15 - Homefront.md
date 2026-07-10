@@ -86,7 +86,7 @@ There's a balance to strike, of course. Focus on stuff your group cares about. B
 
 #### **Exploit the setting guide**
 
-The Setting Overview handout and the **[[02 - The Village of Stonetop#The Village of Stonetop|Village of Stonetop]]** entry provide plenty of details that can help bring the community to life.
+The Setting Overview handout and the **[[02 - The Village of Stonetop#**The village of Stonetop**|Village of Stonetop]]** entry provide plenty of details that can help bring the community to life.
 
 When you frame a homefront scene, skim **the Impressions section**. Pick one or two and incorporate them into the scene. It's spring? Set the scene in the fields, planting beans, the PCs coated in cold wet mud. A PC visits their sibling? Mention the smell of fat rendering on the hearth, the rushlights hanging up to dry. Two PCs want a private moment? Frame a scene at night, with one of them manning a watchtower and the other one stopping by.
 
@@ -201,7 +201,7 @@ As the PCs head for home, take a few minutes to consider how things have been go
 
 **If anyone on the expedition was wounded or didn't make it home**, who will be most upset or affected by that?
 
-**What sort of work has been going on?** Refer to the Stonetop **[[02 - The Village of Stonetop#**Questions**|impressions]]** for ideas.
+**What sort of work has been going on?** Refer to the Stonetop **[[02 - The Village of Stonetop#**Impressions**|impressions]]** for ideas.
 
 **Did the PCs Requisition any town assets?** How did the lack of those assets at home affect people's lives (if at all)?
 
@@ -238,7 +238,7 @@ Maybe have them meet an NPC before reaching the village proper. Such an encounte
 
 *Cerys arrives and we have an emotional scene where they tell her what happened. She breaks down crying, but eventually pulls herself together. There's some talk about funerals and wakes, and they decide to head up the switchback path to Stonetop, carrying Garet's shrouded form, singing a hero's funeral song as they go.* 
 
-When the PCs get back to town, use the **[[02 - The Village of Stonetop#**Questions**|impressions]]** of Stonetop to set the scene. **Think offscreen, too.** Include details that point to what's happened while the PCs were away.
+When the PCs get back to town, use the **[[02 - The Village of Stonetop#**Impressions**|impressions]]** of Stonetop to set the scene. **Think offscreen, too.** Include details that point to what's happened while the PCs were away.
 
 **If the PCs are Returning Triumphant**  (page [[10 - Expeditions#What if they… don't?|339]]), then launch into what that looks like. Describe the news spreading, a
 
@@ -1519,7 +1519,7 @@ Coins are rarely used between the residents of Stonetop; they're mostly used for
 
 *Blodwen pleads her case and offers a bezoar in trade (also Value 1). She rolls a 7 to Persuade, and so Glenys reveals something costly, tricky, or distasteful that could convince her. "She thinks this trip is just foolish curiosity. Which it is, right? But if she thought there was some lingering, unnatural evil out there, and that you were secretly going back to deal with it, she'd let you take the bendis root for sure. I don't think she'd even want the bezoar. What do you do?"* 
 
-*The PCs have brought 1 Surplus worth of food and whisky (Value 2) to Gordin's Delve. "This is a trade opportunity, so that 1 Surplus will get you three Value 2 items that are commonly available here. Plus you can each pick a commonly available Value 1 item, too." I give them the list (from the [[22 - Gordin's Delve#**1d12** what brought them|Gordin's Delve]] entry in* Book II*).* 
+*The PCs have brought 1 Surplus worth of food and whisky (Value 2) to Gordin's Delve. "This is a trade opportunity, so that 1 Surplus will get you three Value 2 items that are commonly available here. Plus you can each pick a commonly available Value 1 item, too." I give them the list (from the [[22 - Gordin's Delve#Trade & Barter|Gordin's Delve]] entry in* Book II*).* 
 
 *They pick some spare wagon/cart parts (Value 2). Rhianna asks if they can get, like, a whole bunch of iron tools, spears, and hatchets (Value 0) as one of their Value 2 items, and I'm fine with that. "What about a donkey?" she asks. That's still a special item, and she has to roll. She rolls +1 for the Delve's Prosperity, -2 for the donkey's Value, and with advantage because this is a* town*.* 
 
@@ -1558,7 +1558,7 @@ If your group is amenable, try to hash these things out between sessions. Like, 
 
 **Review your End of Session notes**, particularly the wishes each player made.
 
-**[[02 - The Village of Stonetop#The Village of Stonetop|Flip through the "village of Stonetop" entry]]**. Pick a few impressions or other details you want to feature, and/or some questions you want to ask.
+**[[02 - The Village of Stonetop#**The village of Stonetop**|Flip through the "village of Stonetop" entry]]**. Pick a few impressions or other details you want to feature, and/or some questions you want to ask.
 
 **[[16 - Writing Moves and Love Letters#Writing love letters|Consider writing love letters]]** to kick off the session and quickly establish things that have happened since the last session.
 

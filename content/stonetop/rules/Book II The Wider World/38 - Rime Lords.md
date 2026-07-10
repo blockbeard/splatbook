@@ -48,7 +48,7 @@ Pick, or have someone roll the Die of Fate.
 ## **1d6** site
 
 - 1-3 lingering signs of their presence and influence (see below)
-- 4-6 A **[[38 - Rime Lords#**A monument, or marker** For example:|ruin]]**
+- 4-6 A **[[38 - Rime Lords#**A ruin**|ruin]]**
 
 #### **Lingering signs**
 
@@ -71,7 +71,7 @@ For example:
 - An entire valley—fields, houses, livestock, and villagers—encased in ice
 - A trove of scrolls in some dry mountain cave, chronicling the fall of the Rime Lords and the plight of their surviving disciples
 - A meadow in spring bloom, trapped in stasis, the grass and flowers never fading, never growing
-- One of the last thirteen Rime Lords, alive but in stasis, their spirit perpetuating the glacier that keeps **[[46 - The Things Below#**Hlad, the Devourer, the Eternal Maw**|Y'aaw'kara]]** contained
+- One of the last thirteen Rime Lords, alive but in stasis, their spirit perpetuating the glacier that keeps **[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|Y'aaw'kara]]** contained
 
 ## **An entity, pacified**
 
@@ -80,7 +80,7 @@ For example:
 - Some monster, encased in dark ice
 - A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]** or **[[12 - Fae#Fae|Fae]]**, itself a disciple of the Rime Lords, found meditating
 - A **[[10 - Death and the Undying#**Pyped**|specter]]**, compelled to perform an endless task (counting the snowflakes on a mountain, emptying a river with a thimble, etc.)
-- An **emanation** of the Things Below [[46 - The Things Below#**Thrall**|The Things Below]], terrible and powerful, held in stasis by the will of an ageless, meditating **[[38 - Rime Lords#**Shaksa**|adept]]**
+- An **emanation** of the Things Below [[46 - The Things Below#**Wretch**|The Things Below]], terrible and powerful, held in stasis by the will of an ageless, meditating **[[38 - Rime Lords#**Dangers**|adept]]**
 - A feral **[[38 - Rime Lords#**False adept**|Rime Lord]]**, held in a stasis field and ringed by glyphs, its wolfen eyes open and hate-filled
 
 ## **Thoughtform**
@@ -240,7 +240,43 @@ A tulpa is a constructed **[[41 - Spirits of the Wild#Spirits of the wild|spirit
 
 A tulpa has the *spirit* and *construct* tags, with a move that reflects them manifesting or possessing a physical form. They are animated by more than biology (+4 HP) and usually lack vital organs (+3 HP, +1 Armor). Pick or roll a purpose, size, ability, tether, and disposition. Use these elements to inform how it manifests and behaves.
 
-## **1d12** purpose 1-2 Battle/sparring/protection 3-4 Companionship/advice/diplomacy/ subterfuge 5-6 Labor/mundane tasks/convenience 7-8 Curiosity/instruction/assistance/ practice 9-10 Something obscure, or very specific 11-12 Roll 1d10 twice, combine **1d12** size 1 Cat-sized or smaller (*tiny*) 2-3 Like a human child (*small*) 4-7 Human-sized 8-10 Like a horse, a cart, etc. (*large*) 11-12 Like an elephant, or bigger (*huge*) **1d12** ability 1 Possession (people and/or things) 2 Emotional influence/control 3 Elemental manipulation (ice/wind/ water/etc.) 4 Energy manipulation (light/heat/ cold/darkness/etc.) 5 Invisibility/stealth/observation/ tracking 6 Depths of knowledge/lore/ experience 7 Mind-reading/aura-sense/ true-seeing 8 Illusions/false senses/thoughtforms 9 Strength/speed/prowess/mobility 10 Dangerous physical attack(s) **1d12** tether 1-2 *Immobile* object: unable to leave its presence 3-4 Small, portable object: unable to manipulate it or leave its presence 5-6 Sculpture or construct: can animate it, but cannot leave its presence 7-8 Building or complex: can freely move about within, but cannot leave 9-10 Place or object (roll 1d6 for size/ scale): can travel but must periodically return 11 Living creature/person: can leave their presence for short periods 12 Untethered: free-roaming, independent **1d12** disposition 1 Friendly/polite/helpful 2 Apathetic/bored/lonely 3 Curious/playful/fickle 4 Resentful/duty-bound/compelled 5 Proud/dedicated/honorable 6 Confused/erratic/distraught 7 Boastful/aggressive/hostile 8 Malicious/cruel/devious 9 Timid/shy/meek 10 Focused/obsessive/anxious 11 Roll 1d10, but make it extreme 12 Roll 1d10 twice, combine
+## **1d12** purpose
+
+- 1-2 Battle/sparring/protection
+- 3-4 Companionship/advice/diplomacy/ subterfuge
+- 5-6 Labor/mundane tasks/convenience
+- 7-8 Curiosity/instruction/assistance/ practice
+- 9-10 Something obscure, or very specific
+- 11-12 Roll 1d10 twice, combine
+
+## **1d12** size
+
+- 1 Cat-sized or smaller (*tiny*)
+- 2-3 Like a human child (*small*)
+- 4-7 Human-sized
+- 8-10 Like a horse, a cart, etc. (*large*)
+- 11-12 Like an elephant, or bigger (*huge*)
+
+## **1d12** ability
+
+- 1 Possession (people and/or things)
+- 2 Emotional influence/control
+- 3 Elemental manipulation (ice/wind/ water/etc.)
+- 4 Energy manipulation (light/heat/ cold/darkness/etc.)
+- 5 Invisibility/stealth/observation/ tracking
+- 6 Depths of knowledge/lore/ experience
+- 7 Mind-reading/aura-sense/ true-seeing
+- 8 Illusions/false senses/thoughtforms
+- 9 Strength/speed/prowess/mobility
+- 10 Dangerous physical attack(s)
+
+## **1d12** tether
+
+- 1-2 *Immobile* object: unable to leave its presence
+- 3-4 Small, portable object: unable to manipulate it or leave its presence
+- 5-6 Sculpture or construct: can animate it, but cannot leave its presence
+- 7-8 Building or complex: can freely move about within, but cannot leave
+- 9-10 Place or object (roll 1d6 for size/ scale): can travel but must periodically return
 
 11-12 Roll 1d10 twice, combine
 

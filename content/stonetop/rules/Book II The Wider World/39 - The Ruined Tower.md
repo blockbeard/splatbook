@@ -6,7 +6,7 @@ Everyone from Stonetop knows about the Ruined Tower and the giant-sized tunnels 
 
 ## **Stormcatcher's tower**
 
-Before the tower fell, this was home to Stormcatcher, last (?) of the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**. The tower was like the mast of some mighty ship, catching wind and lightning, holding their power in the **[[39 - The Ruined Tower#**1d6** valuable|Storm Orb]]**, fueling her many magics.
+Before the tower fell, this was home to Stormcatcher, last (?) of the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**. The tower was like the mast of some mighty ship, catching wind and lightning, holding their power in the **[[39 - The Ruined Tower#Shards of the Storm Orb|Storm Orb]]**, fueling her many magics.
 
 For centuries, Stormcatcher's tower stood betwixt the realms of the other **[[30 - The Makers#The Makers|Makers]]**. They would trade with her, and seek her council or her aid. But though the **[[31 - The Makers' Roads#The Makers' Roads|Makers' Roads]]** ran to her very gate, she stood apart from them all.
 
@@ -18,7 +18,7 @@ It could not last. Cultists of **[[39 - The Ruined Tower#**Skittering horror**|O
 
 Stormcatcher unleashed a mighty spell that turned the attackers into glass. But that same spell shattered the Storm Orb. It laid waste to the tower and broke a stretch of the Makers' Roads. It wrought Stormcatcher's doom.
 
-Many of the tower's residents fled through a **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]** beneath the tower. But most were slaughtered by the attackers, or vitrified along with them, or caught in the Storm Orb's explosion. A slim few survivors remained and tried to rebuild, but they soon fell prey to the horrors now loose upon the world.
+Many of the tower's residents fled through a **[[36 - Primordial Powers#**Primordial powers**|portal]]** beneath the tower. But most were slaughtered by the attackers, or vitrified along with them, or caught in the Storm Orb's explosion. A slim few survivors remained and tried to rebuild, but they soon fell prey to the horrors now loose upon the world.
 
 In the centuries since, many have tried to claim the ruin, or plunder its treasures and its secrets. But all have failed, for one reason or another.
 
@@ -72,18 +72,18 @@ To get there from Stonetop, take the West Road 3-4 hours to the **[[31 - The Mak
 
 - It'll take at least a day each way, and a corresponding amount of supplies
 - You'll need to bring light sources (if you intend to explore the tunnels)
-- You need to watch out for **[[31 - The Makers' Roads#**Waysides**|nosgalau]]** and other **[[14 - The Flats#**1d12** battlefield or remains|dangers]]** of the Flats
+- You need to watch out for **[[31 - The Makers' Roads#**Fellow travelers**|nosgalau]]** and other **[[14 - The Flats#**Dangers**|dangers]]** of the Flats
 - If there have been heavy snows, you must wait until the thaw, or…
   - You'll need snowshoes, and…
   - The way will still be grueling; you risk exhausting yourselves and/or your gear
 
 ## **Areas**
 
-- **Overgrown berm**, about 15-20' tall, encircling the tower ~3/4 mile out. Huge dressed stones poke out, similar to the **[[02 - The Village of Stonetop#The Village of Stonetop|Old Wall]]**.
+- **Overgrown berm**, about 15-20' tall, encircling the tower ~3/4 mile out. Huge dressed stones poke out, similar to the **[[02 - The Village of Stonetop#**The village of Stonetop**|Old Wall]]**.
 - **Outer ruins** between the berm and the tower. Once a thriving town, now just a jumble of ruins mostly swallowed by the prairie.
 - **A shallow crater**, stretching ~400' from the tower's northeast edge. Grass/soil/ mud/standing water cover glassy, slaglike bedrock.
 - **The tower itself**: ~300' across. Northeast third is mostly rubble, but to the south and west a few floors remain, with walls ~200' tall.
-- **The upper tunnels** start ~100' below the surface. Heavily looted, very haunted, mostly maintained by a ghostly Forge Lord and his **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|patchwork constructs]]**.
+- **The upper tunnels** start ~100' below the surface. Heavily looted, very haunted, mostly maintained by a ghostly Forge Lord and his **[[39 - The Ruined Tower#**Patchwork construct**|patchwork constructs]]**.
 - **The depths** are even further down, a warren of chambers, halls, stairs, chutes, and burrows, all in various states of repair. Full of infrastructure, artifacts, experiments, prisons, and vitrified horrors.
 
 outer ruins
@@ -163,7 +163,7 @@ The base of the tower is ~300' across; rubble and piled-up soil spread out even 
 
 Human-scale servant passages/rooms parallel the larger chambers and halls.
 
-**Inlays:** Rooms inside the tower once had **[[39 - The Ruined Tower#**Ancient wonders**|aetherium inlays]]** all along their walls and ceilings, but those were gouged away long ago by looters and **[[14 - The Flats#**Shellback drake**|thunder drakes]]**.
+**Inlays:** Rooms inside the tower once had **[[39 - The Ruined Tower#**Ancient wonders**|aetherium inlays]]** all along their walls and ceilings, but those were gouged away long ago by looters and **[[14 - The Flats#**Thunder drake**|thunder drakes]]**.
 
 **Main stairwell:** A **circular shaft** at the tower's center, 30' wide. Goes up to the second floor, down ~100' to the upper tunnels. Human-scale stairs spiral along the outer wall, far too small for Makers. Did they *fly*?
 
@@ -195,7 +195,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 1 Exposed stonework, marred by cataclysmic violence (melted, shattered, etc.)
 - 2 Bits of ancient daily life (pots, tools, utensils, etc.), probably broken, possibly giant-sized
 - 3 Signs of squatters/explorers: bones, litter, graffiti, excavation, crude construction, etc.
-- 4 **[[39 - The Ruined Tower#**1d6** valuable|Vitrified remains]]**
+- 4 **[[39 - The Ruined Tower#Shards of the Storm Orb|Vitrified remains]]**
 - 5 Ancient writing or artwork, faded/ obscured but still legible (*immobile*, *fragile*, Value 0-2)
 - 6 A building/room, undisturbed for centuries, with treasure! [[39 - The Ruined Tower#1d6 discovery|1d6]]) you'd otherwise find only in the depths
 
@@ -205,7 +205,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 2 **[[39 - The Ruined Tower#Dangers|Blue magpies]]**, digging for shinies, foraging, or gossiping, maybe mocking/pranking the PCs
 - 3 Critter(s)—fox, skunk, stoat, hares, prairie dogs, starlings, vultures, etc. —curious, annoying, maybe just cute
 - 4 Larger animal(s)—deer, a ground sloth, wild sheep, maybe some **[[14 - The Flats#Aurochs|aurochs]]**—grazing near the ruins
-- 5 Someone else, exploring/making camp, wary but not hostile: some **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, **adventurers** and an **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]**, **[[46 - The Things Below#**Morgais**|cultists]]**, a **[[46 - The Things Below#**Morgais**|sorcerer]]**, etc.
+- 5 Someone else, exploring/making camp, wary but not hostile: some **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, **adventurers** and an **[[29 - Lygos and the South#**Dangers**|antiquarian]]**, **[[46 - The Things Below#**Cultist**|cultists]]**, a **[[46 - The Things Below#**Cultist**|sorcerer]]**, etc.
 - 6 A hidden entrance to the upper tunnels or the even the depths (a caved-in ceiling, a burrow, a chute, a secret door, etc.)
 
 ## **1d6** valuable
@@ -214,12 +214,12 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 2 A gold ingot (Value 2), once jewelry, fused into a lump
 - 3 A piece of **[[43 - Stone Lords#Various treasures|makerglass]]**, overlooked by prior looters
 - 4 A **shard of the Storm Orb** (next page)
-- 5 A **[[57 - Appendix C - Minor Arcana#A half-buried plaque|half-buried plaque]]**, or some other **[[45 - Tempest Lords#**AETHERIUM CRUCIBLE**|artifact]]** of the Tempest Lords.
-- 6 An **[[05 - Barrow Builders#**1d12** feature|artifact]]** of the Barrow Builders, evidence that they were here, too
+- 5 A **[[57 - Appendix C - Minor Arcana#A half-buried plaque|half-buried plaque]]**, or some other **[[45 - Tempest Lords#**Artifacts**|artifact]]** of the Tempest Lords.
+- 6 An **[[05 - Barrow Builders#**Artifacts**|artifact]]** of the Barrow Builders, evidence that they were here, too
 
 ## Shards of the Storm Orb
 
-It was a filigree sphere of aetherium [[45 - Tempest Lords#**1d12** condition|Tempest Lords]], maybe 50' across. It floated near the tower, a battery and a focus for tremendous elemental power.
+It was a filigree sphere of aetherium [[45 - Tempest Lords#**Aetherium**|Tempest Lords]], maybe 50' across. It floated near the tower, a battery and a focus for tremendous elemental power.
 
 Stormcatcher's final spell caused the Orb to explode. Shards were flung across the Flats [[14 - The Flats#The Flats|The Flats]], into the tower itself, and deep into the soil-to someday be unearthed by erosion, earthquakes, or burrowing beasts.
 
@@ -246,13 +246,13 @@ Shards of the Storm Orb are unstable aetherium ( magical , dangerous ).  If dama
 
 ## Vitrified remains
 
-Stormcatcher's last spell turned anyone it touched into lumps of jagged glass. It was directed at Og'molok [[39 - The Ruined Tower#**Skittering horror**|The Ruined Tower]] and the skittering horrors [[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|The Ruined Tower]], but many of the attacking cultists were caught by the spell as well. So were some of the tower's residents.
+Stormcatcher's last spell turned anyone it touched into lumps of jagged glass. It was directed at Og'molok [[39 - The Ruined Tower#**Skittering horror**|The Ruined Tower]] and the skittering horrors [[39 - The Ruined Tower#**Patchwork construct**|The Ruined Tower]], but many of the attacking cultists were caught by the spell as well. So were some of the tower's residents.
 
 Above ground, vitrified remains are mostly people (attackers or residents), with a few domesticated animals. Most are jagged lumps of black-grey glass, only vaguely recognizable as what they once were, and/ or broken by time or vandalism. These are covered in sharp edges (1d6 damage, messy , 1 piercing).
 
 A few of these vitrified remains, though, are perfect glass statues, the fear or frenzy of their final moments frozen on their faces ( immobile , fragile ,  V alue 3 to the right buyer).
 
-Vitrification [[45 - Tempest Lords#**Radiation**|Tempest Lords]] can be reversed, but it's up to you to decide how.
+Vitrification [[45 - Tempest Lords#Vitrification|Tempest Lords]] can be reversed, but it's up to you to decide how.
 
 ## **Dangers**
 
@@ -263,17 +263,17 @@ Vitrification [[45 - Tempest Lords#**Radiation**|Tempest Lords]] can be reversed
 - Earthquakes and tremors
 - Hidden holes/burrows, twisting an ankle or worse
 - Nasty weather: heat, cold, wind, sleet, hail, rain, snow, thunder (not so much lightning, as the spires draw it all)
-- **[[14 - The Flats#**1d12** battlefield or remains|Prairie fire]]** among the outer ruins
-- Unstable spells, **[[45 - Tempest Lords#**1d12** condition|aetherium]]**, **[[43 - Stone Lords#**Bound Entities**|perilous stone]]**
+- **[[14 - The Flats#**Dangers**|Prairie fire]]** among the outer ruins
+- Unstable spells, **[[45 - Tempest Lords#**Aetherium**|aetherium]]**, **[[43 - Stone Lords#Perilous stone|perilous stone]]**
 
 #### **Monsters and such**
 
-- The **[[31 - The Makers' Roads#**Waysides**|nosgalau]]**, at night
-- **[[14 - The Flats#**Shellback drake**|Thunder drakes]]**, digging for metal, especially aetherium
+- The **[[31 - The Makers' Roads#**Fellow travelers**|nosgalau]]**, at night
+- **[[14 - The Flats#**Thunder drake**|Thunder drakes]]**, digging for metal, especially aetherium
 - Any of the other beasts of the **[[14 - The Flats#The Flats|Flats]]**
-- An encampment of **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, **[[40 - South Manmarch#**Horned drake**|bandits]]**, **[[46 - The Things Below#**Morgais**|cultists]]**, etc.
-- Looters/explorers: **[[29 - Lygos and the South#. trade opportunities .|adventurers]]**, an **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]**, a **[[26 - Hillfolk#Hillfolk rider|hdour]]**, a **[[46 - The Things Below#**Morgais**|sorcerer]]**, etc.
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of those who died when the tower fell, or from some later misadventure
+- An encampment of **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, **[[40 - South Manmarch#**Horned drake**|bandits]]**, **[[46 - The Things Below#**Cultist**|cultists]]**, etc.
+- Looters/explorers: **[[29 - Lygos and the South#**Dangers**|adventurers]]**, an **[[29 - Lygos and the South#**Dangers**|antiquarian]]**, a **[[26 - Hillfolk#Hillfolk rider|hdour]]**, a **[[46 - The Things Below#**Cultist**|sorcerer]]**, etc.
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of those who died when the tower fell, or from some later misadventure
 - A **[[10 - Death and the Undying#**Shade**|pyped]]**, digging up old bones where they can
 
 #### **Blue magpie**
@@ -332,21 +332,21 @@ Most of the rooms and halls below the tower are spacious, vaulted to ~30'. Doorw
 
 The four **[[39 - The Ruined Tower#**1d12** feature|metal spires]]** extend down through the bedrock. They run through a number of underground rooms and passages, as freestanding pillars or embedded in walls.
 
-Most rooms in and below the tower bear **[[45 - Tempest Lords#**1d12** condition|aetherium]]** inlays, spreading out from the metal spires. The inlays distribute power and anchor certain spells. Or at least, they used to.
+Most rooms in and below the tower bear **[[45 - Tempest Lords#**Aetherium**|aetherium]]** inlays, spreading out from the metal spires. The inlays distribute power and anchor certain spells. Or at least, they used to.
 
-The aetherium has been stripped from most of the upper tunnels, either carefully salvaged by **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|patchwork constructs]]** or gouged out by looters. More inlays survive in the depths, but even there, many have been marred by **[[39 - The Ruined Tower#**Lightning sconce**|star-moles]]** or the claws of **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|skittering horrors]]**, or burnt out and reduced to crumbly chalk.
+The aetherium has been stripped from most of the upper tunnels, either carefully salvaged by **[[39 - The Ruined Tower#**Patchwork construct**|patchwork constructs]]** or gouged out by looters. More inlays survive in the depths, but even there, many have been marred by **[[39 - The Ruined Tower#**Various entities**|star-moles]]** or the claws of **[[39 - The Ruined Tower#**Patchwork construct**|skittering horrors]]**, or burnt out and reduced to crumbly chalk.
 
 Where intact, inlays glow and pulse in response to winds above ground. When lightning strikes a spire, the aetherium flashes a bright blue-white. Some inlays are stable, but others are erratic and prone to discharge (1d8 damage, *forceful*, maybe *loud*).
 
 ## **Sites**
 
 - **Central chamber** at the base of the **[[39 - The Ruined Tower#**1d12** feature|main stairwell]]**. Big, wellkept, drains in floor, multiple exits.
-- **Forge** and nearby rooms, haunted by **[[39 - The Ruined Tower#**Lightning sconce**|Ferocedes]]**, packed with tools/parts and constructs in various states of repair.
+- **Forge** and nearby rooms, haunted by **[[39 - The Ruined Tower#**Various entities**|Ferocedes]]**, packed with tools/parts and constructs in various states of repair.
 - **Aetherium crucible**, near the forge. Dusty, unused, broken beyond Ferocedes's ability to fix with what's currently available to him.
 - **Barracks** for soldiers who guarded the **Portal** (next column). Haunted by evacuees who hid and died there.
 - **Latrine** near the barracks, with rattling, moaning, clanging pipes and still-working (!) showers.
 - **Large chamber**, out of the way, the entrance blocked by piled stones. Packed full of vitrified horrors by Ferocedes's constructs.
-- **Frozen room**, a chokepoint filled with **[[38 - Rime Lords#Dark ice|dark ice]]**, encasing dozens of **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|skittering horrors]]** and an **[[51 - Ustrina#Ustrina|Ustrina]]** who served as Stormcatcher's steward.
+- **Frozen room**, a chokepoint filled with **[[38 - Rime Lords#Dark ice|dark ice]]**, encasing dozens of **[[39 - The Ruined Tower#**Patchwork construct**|skittering horrors]]** and an **[[51 - Ustrina#Ustrina|Ustrina]]** who served as Stormcatcher's steward.
 - **Oubliette**, a dead-end hall with multiple cells/vaults. Each holds or held a dangerous artifact or entity in stasis. Some are torn open. The rest are guarded by wards, devices, constructs, magic.
 - **Bottommost chamber**, 400' across, partly flooded. Holds the feet of all four spires, a massive toroidal coil, hundreds of **[[39 - The Ruined Tower#Ancient wonders|vitrified horrors]]**), and the trapped manifestation of **[[39 - The Ruined Tower#**Skittering horror**|Og'molok, the Faceless Horde]]**.
 
@@ -358,7 +358,7 @@ Beyond those doors: an austere room with a dozen vitrified people, blown-out **[
 
 Beyond that: a once-stately sitting room (the furniture used for the barricade), a few more vitrified evacuees. Another door, this one ajar.
 
-One last room. The far wall is a solid white slab, etched with a magic circle. It's a **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, connected to those in the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]**, **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**, and so forth. It is fully functional, and can be used via **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**.
+One last room. The far wall is a solid white slab, etched with a magic circle. It's a **[[36 - Primordial Powers#**Primordial powers**|portal]]**, connected to those in the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]**, **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**, and so forth. It is fully functional, and can be used via **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**.
 
 Layers of wards are etched in the floor, directed towards the portal, guarding against things coming out.
 
@@ -381,7 +381,7 @@ When you need to describe a room or passage, pick a shape and one or more featur
 
 # **1d12** feature
 
-- 1 Obstruction: locked door, rubble, cave-in, barricade, many **[[39 - The Ruined Tower#**1d6** treasure!|vitrified horrors]]**, etc.
+- 1 Obstruction: locked door, rubble, cave-in, barricade, many **[[39 - The Ruined Tower#**Dangers**|vitrified horrors]]**, etc.
 - 2 Fungus/lichen/slime/vermin
 - 3 Drips/leaks/mud/standing water
 - 4 Pipes, valves, pumps
@@ -394,7 +394,7 @@ When you need to describe a room or passage, pick a shape and one or more featur
 - 11 Roll 1d10 twice
 - 12 Roll 1d10 three times
 
-Consider rolling 1d6 for the scope or condition of any room/passage/feature. Fill it with **[[39 - The Ruined Tower#**1d12** wonder|discoveries]]** and/or **[[39 - The Ruined Tower#**1d6** treasure!|dangers]]** as you see fit.
+Consider rolling 1d6 for the scope or condition of any room/passage/feature. Fill it with **[[39 - The Ruined Tower#**Discoveries**|discoveries]]** and/or **[[39 - The Ruined Tower#**Dangers**|dangers]]** as you see fit.
 
 #### **Wonders**
 
@@ -403,8 +403,8 @@ Stormcatcher kept many experiments, curiosities, and dangerous phenomena. Pick 1
 # **1d12** wonder
 
 - 1 A fountain, its hidden pumps powered by aetherium.
-- 2 Nexus of pipes, pumps, boilers. By a stairwell, kept up by **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|patchwork constructs]]**.
-- 3 Deep pit, smooth walls, a **[[11 - The Dread River#**1d6** greater curse|jellied horror]]** trapped below. Used as a midden pit.
+- 2 Nexus of pipes, pumps, boilers. By a stairwell, kept up by **[[39 - The Ruined Tower#**Patchwork construct**|patchwork constructs]]**.
+- 3 Deep pit, smooth walls, a **[[11 - The Dread River#**Luglfsk**|jellied horror]]** trapped below. Used as a midden pit.
 - 4 A huge stone slab, with fittings that make hot, steady flame on demand.
 - 5 Room full of plants (*exotic*, *useful*, *valuable*, *dangerous*). Lit by a makerglass sun, watered by pipes, tended by a fertility spirit.
 - 6 Huge orrery. Bits are melted, fused, burnt out; "stars" stuck in a potent cosmic alignment.
@@ -413,7 +413,7 @@ Stormcatcher kept many experiments, curiosities, and dangerous phenomena. Pick 1
 - 9 Tight-packed aetherium inlays. Hazy images show what anyone in the room is about to do.
 - 10 Sliding tiles in walls/ceiling/floor change gravity's direction and/or intensity in the room.
 - 11 Airless room with small floating black sphere, annihilates any matter it touches.
-- 12 Black lightning crackles between two prongs, ~3' apart. Fine glass dust all around. A **[[45 - Tempest Lords#**Radiation**|vitrifying bolt]]**, just barely contained.
+- 12 Black lightning crackles between two prongs, ~3' apart. Fine glass dust all around. A **[[45 - Tempest Lords#Vitrification|vitrifying bolt]]**, just barely contained.
 
 #### **Discoveries**
 
@@ -441,13 +441,13 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 1 A dangerous entity: imprisoned, bound, in stasis
 - 2 A **[[10 - Death and the Undying#**Shade**|pyped]]**, trawling the depths for bones to sup on
 - 3 The **[[10 - Death and the Undying#**Pyped**|ghost]]** of someone who died in the attack, still running, trying to escape
-- 4 **[[39 - The Ruined Tower#**Lightning sconce**|Star-moles]]**: digging, foraging, or being hunted
+- 4 **[[39 - The Ruined Tower#**Various entities**|Star-moles]]**: digging, foraging, or being hunted
 - 5 Uncanny fungus/lichen/vermin (glowing, humming, feeding on ghosts, etc.), maybe dangerous but not outright hostile
-- 6 A **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|patchwork construct]]**, on some task for Ferocedes
+- 6 A **[[39 - The Ruined Tower#**Patchwork construct**|patchwork construct]]**, on some task for Ferocedes
 
 ## **1d6** opportunity
 
-- 1 Something **[[39 - The Ruined Tower#**Lightning sconce**|Ferocedes]]** would want: a construct's **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|core]]**, a part for the **[[45 - Tempest Lords#AETHERIUM CRUCIBLE|aetherium crucible]]**, etc.
+- 1 Something **[[39 - The Ruined Tower#**Various entities**|Ferocedes]]** would want: a construct's **[[39 - The Ruined Tower#**Patchwork construct**|core]]**, a part for the **[[45 - Tempest Lords#AETHERIUM CRUCIBLE|aetherium crucible]]**, etc.
 - 2 A map/path to a place they seek
 - 3 A hidden door/room/passage (secret, buried, or obscured)
 - 4 A good/safe place to rest
@@ -460,9 +460,9 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 2 Some… (roll 1d6 or pick)
   - 1 …**[[38 - Rime Lords#Dark ice|dark ice]]**
   - 2 …**[[43 - Stone Lords#Various treasures|makerglass]]**
-  - 3 …**[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**
-  - 4 …**[[36 - Primordial Powers#**Portals**|black iron]]**
-  - 5-6 …**[[45 - Tempest Lords#**1d12** condition|aetherium]]**
+  - 3 …**[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**
+  - 4 …**[[36 - Primordial Powers#**Primordial powers**|black iron]]**
+  - 5-6 …**[[45 - Tempest Lords#**Aetherium**|aetherium]]**
 - 3-4 An artifact of the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**
 - 5 An artifact from another group of **[[30 - The Makers#The Makers|Makers]]**: a gift, a trophy, an object of study, or a danger locked away
 - 6 An artifact of **[[36 - Primordial Powers#Primordial powers|primordial power]]** or the **[[46 - The Things Below#The Things Below|Things Below]]**, kept for study and/or safekeeping
@@ -473,7 +473,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 - Getting lost in the maze of tunnels
 - Torches running low, time passing faster than you think
-- **[[43 - Stone Lords#**Major arcana**|Unstable construction]]**, caused by cataclysm, time, earthquakes, excavation, star-moles
+- **[[43 - Stone Lords#**Dangers**|Unstable construction]]**, caused by cataclysm, time, earthquakes, excavation, star-moles
 - Open stairwells, worn-smooth stairs, a lack of railings, a nasty fall
 - The exhausting trudge back up hundreds of stairs
 - Floors wet from rain, snow melt, or leaky pipes, slick and/or muddy
@@ -488,9 +488,9 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - Raw chemics, neatly stowed, spilled, seeping
 - Machines, running erratically, fully able to rend flesh and bone
 - Broken laws of reality, and whatever that does to mind/body/soul
-- **[[45 - Tempest Lords#**Silvery tuning fork**|Radiation]]**, hopefully contained, probably not
-- **[[18 - Forge Lords#**Hazards**|Smoke, fire, and heat]]** in the haunted forge
-- **[[43 - Stone Lords#**Bound Entities**|Perilous stone]]**: stolen, imported, borrowed, replicated
+- **[[45 - Tempest Lords#**Storm-cloud potion**|Radiation]]**, hopefully contained, probably not
+- **[[18 - Forge Lords#**Smoke, fire, and heat**|Smoke, fire, and heat]]** in the haunted forge
+- **[[43 - Stone Lords#Perilous stone|Perilous stone]]**: stolen, imported, borrowed, replicated
 
 ## **Corruption, as one goes deeper**
 
@@ -500,7 +500,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 # **Vitrified horrors**
 
-**[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|Skittering horrors]]**, fused into black, jagged glass by Stormcatcher's last spell. There are more and more as you go deeper. In some places, they clog stairs or passages, making it difficult to squeeze by without your gear or your flesh getting shredded (1d4 to 1d8 damage, *messy*, 1 piercing).
+**[[39 - The Ruined Tower#**Patchwork construct**|Skittering horrors]]**, fused into black, jagged glass by Stormcatcher's last spell. There are more and more as you go deeper. In some places, they clog stairs or passages, making it difficult to squeeze by without your gear or your flesh getting shredded (1d4 to 1d8 damage, *messy*, 1 piercing).
 
 ## **Lightning sconce**
 
@@ -514,13 +514,13 @@ A glowing gem, set in a fixture of aetherium. Found in pairs, or sets of up to s
 
 ## **Various entities**
 
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of looters or residents
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of looters or residents
 - **[[10 - Death and the Undying#**Shade**|Pypeds]]** seeking bones
-- **[[18 - Forge Lords#**Instinct** to burn the living|Metal constructs]]**, lost to Ferocedes, or else greatly prized
-- **[[45 - Tempest Lords#**Radiation**|Elemental vortices]]**, guarding something
-- **Cultists**, a **thrall**, and/or a **[[46 - The Things Below#**Morgais**|sorcerer]]**, eking out a life
-- A **[[05 - Barrow Builders#**Phantom rider**|deathless one]]**, here to claim the tower's secrets, now trapped
-- An **[[36 - Primordial Powers#**Other primordial entities**|archon]]** or **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, bound and possibly put to use.
+- **[[18 - Forge Lords#**Metal constructs**|Metal constructs]]**, lost to Ferocedes, or else greatly prized
+- **[[45 - Tempest Lords#Vitrification|Elemental vortices]]**, guarding something
+- **Cultists**, a **thrall**, and/or a **[[46 - The Things Below#**Cultist**|sorcerer]]**, eking out a life
+- A **[[05 - Barrow Builders#**Deathless ones**|deathless one]]**, here to claim the tower's secrets, now trapped
+- An **[[36 - Primordial Powers#**Other primordial entities**|archon]]** or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, bound and possibly put to use.
 
 ## **Star-mole**
 
@@ -541,7 +541,7 @@ A glowing gem, set in a fixture of aetherium. Found in pairs, or sets of up to s
 
 Big, naked mole-rats, like 5' long, with saggy skin, glowing freckles, and clusters of wriggling feelers on their noses. They eat vermin and fungus that grow near leaking pipes. They also tunnel through bedrock, collapse passages, and expose sealed-off rooms.
 
-Every so often, they wake a **[[39 - The Ruined Tower#**Ferocedes Ogran, ghostly Forge Lord**|skittering horror]]** from its torpor. This spells doom for the colony, unless they can trap it or cut off access to the nest. They'll treat the PCs as a similar threat.
+Every so often, they wake a **[[39 - The Ruined Tower#**Patchwork construct**|skittering horror]]** from its torpor. This spells doom for the colony, unless they can trap it or cut off access to the nest. They'll treat the PCs as a similar threat.
 
 ## **Ferocedes Ogran, ghostly Forge Lord**
 
@@ -585,7 +585,7 @@ Ferocedes once had dozens of constructs to defend and maintain the tower. But th
 
 Each one has an aetherium core (*magical*, *fragile*, Value 2 to the right buyer). Ferocedes can repair minor damage to a core, and/or install it in a new body, but he can't make new ones without the **[[45 - Tempest Lords#AETHERIUM CRUCIBLE|aetherium crucible]]**.
 
-Each construct is generally humanoid, though most lack a "head" and all are made of mismatched parts. Pick or roll a current task for each. Consider picking or rolling for an attribute [[18 - Forge Lords#**Instinct** to burn the living|Forge Lords]] and adjusting its stat block accordingly.
+Each construct is generally humanoid, though most lack a "head" and all are made of mismatched parts. Pick or roll a current task for each. Consider picking or rolling for an attribute [[18 - Forge Lords#**Metal constructs**|Forge Lords]] and adjusting its stat block accordingly.
 
 # **1d6** current task
 
@@ -632,4 +632,4 @@ In the **[[39 - The Ruined Tower#**Og'molok, the Faceless Horde** Threat (*magic
 
 Og'molok, of course, is not truly dead. Just bound, neutered, diminished. It still corrupts the lowest levels beneath the tower, still calls to those who might hear. It is trapped, and it cannot escape. Not yet. Not without help.
 
-l Someone sets out to free it l They learn how to release it from its **vitrified** state (see [[45 - Tempest Lords#**Radiation**|Tempest Lords]]) l They acquire what they need l They begin the process l **Impending doom**: Og'molok and its swarm are loosed upon the world
+l Someone sets out to free it l They learn how to release it from its **vitrified** state (see [[45 - Tempest Lords#Vitrification|Tempest Lords]]) l They acquire what they need l They begin the process l **Impending doom**: Og'molok and its swarm are loosed upon the world

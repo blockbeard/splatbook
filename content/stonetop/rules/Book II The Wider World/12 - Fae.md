@@ -32,7 +32,7 @@ Fae are *dangerous* to mortals. Maybe not hostile (though some are), but alien. 
 - 8 Extremes of beauty/ugliness, blurred lines between them
 - 9 Malleability of one's looks, one's identity, one's true and secret heart
 - 10 Liminality: neither spirit nor flesh, here nor there, this nor that, real nor unreal
-- 11 Deep ties to the natural world and **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- 11 Deep ties to the natural world and **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 - 12 Enslavement by the **[[24 - Green Lords#Names|Green Lords]]**, the war against them, the lasting scars left by both
 
 ### **Hooks**
@@ -122,7 +122,7 @@ Fae are unnaturally tough (Armor 4) and can heal any wound not caused by iron. A
 
 Iron (including steel) is offensive to Fae. Its presence insults them. It disrupts their magic. It burns their skin, ignores their Armor, leaves scars that never fade. Iron can kill a Fae, truly kill them dead.
 
-**[[36 - Primordial Powers#**Portals**|Black iron]]** is even worse. Its presence unravels their magic. Its touch doesn't just burn, it suppurates their flesh (+1d6 damage, ignores armor, messy). It leaves vicious, gaping wounds that never heal and that eventually turn them into **[[12 - Fae#**The Bloody Boots**|Hollow Fae]]**.
+**[[36 - Primordial Powers#**Primordial powers**|Black iron]]** is even worse. Its presence unravels their magic. Its touch doesn't just burn, it suppurates their flesh (+1d6 damage, ignores armor, messy). It leaves vicious, gaping wounds that never heal and that eventually turn them into **[[12 - Fae#**The Bloody Boots**|Hollow Fae]]**.
 
 ### **Magic and the Fae**
 
@@ -140,7 +140,7 @@ Glamours are like poetry. One might glamour an acorn into a gem, or fluttering l
 
 Fae can see through each other's illusions and glamours, but as a rule they play along. Doing otherwise can be insulting.
 
-Glamour affects neither iron nor steel, and the touch of either causes illusions to flicker and fade. The touch of **[[36 - Primordial Powers#**Portals**|black iron]]** dispels both illusions and glamours, like soap dropped in oily water.
+Glamour affects neither iron nor steel, and the touch of either causes illusions to flicker and fade. The touch of **[[36 - Primordial Powers#**Primordial powers**|black iron]]** dispels both illusions and glamours, like soap dropped in oily water.
 
 ## **Language**
 
@@ -245,7 +245,7 @@ memories laid bare
 
 **Fae**
 
-Now, pick or roll for what they were bred to do. If it's unclear, decide what manner of spirit they were bred from; pick or roll a theme from the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**. Pick or roll for their role in the war against the Green Lords and for a lasting mark of their past.
+Now, pick or roll for what they were bred to do. If it's unclear, decide what manner of spirit they were bred from; pick or roll a theme from the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**. Pick or roll for their role in the war against the Green Lords and for a lasting mark of their past.
 
 ## **1d12** bred to...
 
@@ -277,7 +277,7 @@ Pick or create a **[[12 - Fae#**1d12** lasting mark|name]]**, and write up their
 
 *My little wicker-man clearly descends from a plant-spirit. I get an 11 for what he was bred to do ("work/labor/toil…"), a 2 for his role in the war ("victim…"), and a 12 for his lasting mark, followed by a 6 ("fierce protectiveness") and 3 ("enmity"). He's not corrupted.*
 
-*I see him tending to some Green Lord's garden, all the while collecting trinkets and plants and rocks from the soil. He was fiercely protective of his collection and cared little for his fellow Fae. His plot burned and his hoard was lost, and he became a loner and outcast, eschewing the war. A few centuries ago, he found the tomb, called it home, and started to rebuild his hoard of trinkets. But a swyn* [[24 - Green Lords#**Mummified servant**|Green Lords]] *has forced him out, and he desperately wants his stuff back.*
+*I see him tending to some Green Lord's garden, all the while collecting trinkets and plants and rocks from the soil. He was fiercely protective of his collection and cared little for his fellow Fae. His plot burned and his hoard was lost, and he became a loner and outcast, eschewing the war. A few centuries ago, he found the tomb, called it home, and started to rebuild his hoard of trinkets. But a swyn* [[24 - Green Lords#**Rhagedn**|Green Lords]] *has forced him out, and he desperately wants his stuff back.*
 
 *I call him "Thornthumb," for the prickly gardener he is. I write him up like so:*
 
@@ -313,11 +313,11 @@ Once the real-world terrain is established, pick or roll for its entrance . Inte
 - 1 A shimmer, a feeling, little more
 - 2 Megalith(s)/a waystone [[53 - Waystones|Waystones]]
 - 3 A door/gate/opening, natural or made, literal or just an impression
-- 4 A ring of toadstools or some other distinctive pattern of flora (perhaps [[50 - Useful or Valuable Flora#Useful or Valuable Flora|useful or valuable]])
+- 4 A ring of toadstools or some other distinctive pattern of flora (perhaps [[50 - Useful or Valuable Flora#**Useful or valuable flora**|useful or valuable]])
 - 5 A path/a climb/a descent/a fall
 - 6 Only active at certain times (in moonlight, at sunset, in winter, etc.) and roll again
 
-If an entrance in the Great Wood is at least 10 years old, it's likely to be marked by Forest Folk glyphs [[17 - Forest Folk#**Where did they go?**|Forest Folk]].
+If an entrance in the Great Wood is at least 10 years old, it's likely to be marked by Forest Folk glyphs [[17 - Forest Folk#**Hooks**|Forest Folk]].
 
 For the domain itself, pick or roll for a theme [[12 - Fae#1d6 entrance|Fae]], the domain's original purpose , the anchor that maintains it, and 1-2 elements . Maybe roll 1d6 to inform its size and scale.
 
@@ -345,7 +345,7 @@ For the domain itself, pick or roll for a theme [[12 - Fae#1d6 entrance|Fae]], t
 - 5 A vast and shifting place, easy to get lost in, always something new
 - 6 Decay/squalor/disorder, perhaps hidden by glamour or illusion
 
-Populate the domain with Fae and other inhabitants that make sense. Also fill it with **[[12 - Fae#Artifacts|artifacts]]**, and any domain **[[12 - Fae#Dangers|hazards]]** that make sense. **[[12 - Fae#**Fae domain hazards**|Time dilation]]** is a particular concern to mortal visitors!
+Populate the domain with Fae and other inhabitants that make sense. Also fill it with **[[12 - Fae#Artifacts|artifacts]]**, and any domain **[[12 - Fae#Dangers|hazards]]** that make sense. **[[12 - Fae#**Fluid time**|Time dilation]]** is a particular concern to mortal visitors!
 
 *The PCs are exploring a Green Lord's tomb, approaching the burial vault in which the mummified Maker lies. Its spirit lingers on in a Fae domain.* 
 
@@ -392,7 +392,7 @@ The residents of a domain might ignore the requirements of a locked entrance; th
 - Things changing when they look away
 - Getting lost
 - Capricious weather
-- **[[41 - Spirits of the Wild#**Communion**|Elemental spirits]]**, awake and active and full of opinions
+- **[[41 - Spirits of the Wild#**Elemental spirits**|Elemental spirits]]**, awake and active and full of opinions
 - **[[12 - Fae#Illusions and glamours|Illusions and glamours]]**
 - Not being able or allowed to leave
 
@@ -434,7 +434,7 @@ Little ties the Fae together, except for a desire to show off. And for that, the
 
 The Wandering Market is a **[[12 - Fae#**Getting there**|Fae domain]]**, made anew by a different host each time it convenes.
 
-To find the market, one must know when it is happening and find an entrance. The entrances are many, but different each time. Any Fae knows where the nearest entrance lies—pick or roll for the terrain near which it is found [[23 - The Great Wood#**Hooks**|The Great Wood]] for the **[[13 - Ferrier's Fen#**Riona** *prepared*, *agile*, *stubborn*; **Instinct** to assume the worst; **Cost** competence shown.|Great Wood]]**, for **Ferrier's Fen**), and pick some whimsical requirement such as:
+To find the market, one must know when it is happening and find an entrance. The entrances are many, but different each time. Any Fae knows where the nearest entrance lies—pick or roll for the terrain near which it is found [[23 - The Great Wood#. steading improvement .|The Great Wood]] for the **[[13 - Ferrier's Fen#**Questions**|Great Wood]]**, for **Ferrier's Fen**), and pick some whimsical requirement such as:
 
 - Climb the seventh alder tree you find; it's up there
 - Blindfold yourself; follow the bird who calls your name
@@ -499,7 +499,7 @@ If the PCs get a trade opportunity (from the Seasons Change move), the Fae might
 - A secret, a memory, an answer to a mystery, help with a sticky problem, etc.
 - Fantastical trade goods (Value 2 or 3): cloth-of-clouds, mead brewed from dreams, dyes of glamour, etc.
 - A **[[12 - Fae#Artifacts|Fae artifact]]**
-- An artifact of the **[[24 - Green Lords#**1d6** condition|Green Lords]]**, the **[[17 - Forest Folk#**1d6** a place where they...|Forest Folk]]**, the **[[41 - Spirits of the Wild#Artifacts|spirits of the wild]]**, or perhaps the **[[46 - The Things Below#**Unnatural phenomena**|Things Below]]**.
+- An artifact of the **[[24 - Green Lords#**Artifacts**|Green Lords]]**, the **[[17 - Forest Folk#**Artifacts**|Forest Folk]]**, the **[[41 - Spirits of the Wild#Artifacts|spirits of the wild]]**, or perhaps the **[[46 - The Things Below#**Unnatural phenomena**|Things Below]]**.
 
 ### **Artifacts**
 
@@ -555,7 +555,7 @@ If spending Blood results in you Ordering Followers or Deploying, or another PC 
 
 When you *spend the last Blood or the battle ends*, the Red Pennant's color fades and a few (~1 in 6) of those manifested traits will linger, especially in those who fought hardest. It will not function again until you soak it in the blood of fallen foes.
 
-This is the battle standard of the **[[12 - Fae#**The Four Chieftains**|Bloody Boots]]**, their most sacred relic. Don't expect them to just let it go.
+This is the battle standard of the **[[12 - Fae#**Blush-of-Dawn**|Bloody Boots]]**, their most sacred relic. Don't expect them to just let it go.
 
 ## **A sturdy, banded box**
 
@@ -591,14 +591,14 @@ Pick 1 or roll the Die of Fate.
 
 #### **Related entities**
 
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, quite possibly at some Fae's beck and call
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, quite possibly at some Fae's beck and call
 - Any of the dangerous beasts who dwell in the **[[23 - The Great Wood#The Great Wood|Great Wood]]**
 - **[[07 - Crinwin#Crinwin|Crinwin]]**, enchanted or manipulated or deceived
 - Perhaps the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, who might be a Fae himself
-- **[[43 - Stone Lords#Some examples:|Stone Lord constructs]]**, left over from the war
+- **[[43 - Stone Lords#**Construct**|Stone Lord constructs]]**, left over from the war
 - **[[10 - Death and the Undying#**Pyped**|Ghosts]]** of mortals who died in their thrall
-- **[[10 - Death and the Undying#**Necromancer**|Shades]]** of Green Lords that they've called up to torment
-- **[[09 - Danu, the Earth Mother#**Holy places**|Danu's blessed]]**, some of whom will gladly deal with the Fae
+- **[[10 - Death and the Undying#**Death and the undying**|Shades]]** of Green Lords that they've called up to torment
+- **[[09 - Danu, the Earth Mother#**Danu**|Danu's blessed]]**, some of whom will gladly deal with the Fae
 
 #### **Auntie Sallow**
 
@@ -620,7 +620,7 @@ She appears out of the shadows, when the fear rises up to take you. Tall and gri
 
 She was beautiful, once. The minder of a sacred grove. A place of clean water, butterflies, and bees. But then came war. Fire and poison and the sundering of earth. Schemes and lies. Grief and endless pain.
 
-'Twas in grief that **[[46 - The Things Below#**Hlad, the Devourer, the Eternal Maw**|L'bin'bozia]]** found her. Gave her the strength to help. To find the innocent who suffered, the beautiful in despair. To offer succor, and the safety of her master's cool embrace.
+'Twas in grief that **[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|L'bin'bozia]]** found her. Gave her the strength to help. To find the innocent who suffered, the beautiful in despair. To offer succor, and the safety of her master's cool embrace.
 
 ## **The Bear of Winter**
 
@@ -728,7 +728,7 @@ When you **Haggle** with Grimstew [[12 - Fae#HAGGLE|Haggle]], you can't pick eit
 - <sup>ä</sup> Pause in confusion when confronted with who it once was
 - <sup>ä</sup> Open wide, drink in the vitality of the living (inflicting debilities)
 
-A Fae wounded by **[[36 - Primordial Powers#**Portals**|black iron]]** will pray for death. For to survive such a wound is a curse. They grow weak, then confused, then hungry. Soon, they become a walking husk, surrounded by death, inhaling any source of life they find.
+A Fae wounded by **[[36 - Primordial Powers#**Primordial powers**|black iron]]** will pray for death. For to survive such a wound is a curse. They grow weak, then confused, then hungry. Soon, they become a walking husk, surrounded by death, inhaling any source of life they find.
 
 Hollow Fae are no longer vulnerable to mere iron or steel. Debts and promises no longer bind them. They will tear their way free of any Fae domain. Only black iron can destroy them, and what living Fae would be fool enough to try?
 

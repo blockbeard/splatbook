@@ -41,8 +41,8 @@ Use the answers to help decide what Helior's **true nature** is [[20 - Gods and 
 - A devotee of Helior ministers in a nearby town, fomenting dissent.
 - A child is born with a sun-shaped birthmark during a solar eclipse.
 - The spirit of the prior Lightbearer appears to a PC and assigns them a quest.
-- A Manmarcher **[[34 - North Manmarch#**Monsters**|chief]]** acquires a relic of the prior Lightbearer and seeks to auction it off.
-- A charlatan or **[[46 - The Things Below#**Morgais**|sorcerer]]** claims the mantle of Lightbearer.
+- A Manmarcher **[[34 - North Manmarch#**Chief**|chief]]** acquires a relic of the prior Lightbearer and seeks to auction it off.
+- A charlatan or **[[46 - The Things Below#**Cultist**|sorcerer]]** claims the mantle of Lightbearer.
 - Spring fails to come; omens point to Helior being trapped or wounded.
 
 ## **Veneration**
@@ -71,7 +71,7 @@ And how is Helior properly worshipped? It might involve… (pick 1 or 2)
 - Why does the worship of Helior involve the things it does? According to his devotees, why do these things please him so?
 - How do these practices change from community to community?
 - How are the solstices celebrated or observed?
-- If the worship of Helior is foreign/ new/forgotten/persecuted: what other god or gods of the sun are worshipped around here? (See [[20 - Gods and Religion#**Threshold spirit**|Gods and Religion]] for guidance)
+- If the worship of Helior is foreign/ new/forgotten/persecuted: what other god or gods of the sun are worshipped around here? (See [[20 - Gods and Religion#**Other gods**|Gods and Religion]] for guidance)
 
 ## **Places of worship**
 
@@ -164,8 +164,8 @@ Pick 1 or have someone roll.
 ### **Associated entities**
 
 - An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, set to guard a holy site (like the Lightbearer's tomb)
-- A southern **[[29 - Lygos and the South#**HP** 12; **Armor** 0|assassin]]**, paid to murder the Lightbearer or a problematic devotee
-- An elemental **[[41 - Spirits of the Wild#**Communion**|spirit of fire]]**, consecrated by Helior, passionate and righteous
+- A southern **[[29 - Lygos and the South#**Assassin**|assassin]]**, paid to murder the Lightbearer or a problematic devotee
+- An elemental **[[41 - Spirits of the Wild#**Elemental spirits**|spirit of fire]]**, consecrated by Helior, passionate and righteous
 
 ### **Pilgrims**
 

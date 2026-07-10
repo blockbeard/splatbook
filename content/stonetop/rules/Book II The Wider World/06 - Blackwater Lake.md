@@ -26,9 +26,9 @@ Tip: lower your voice; speak slowly, softly, make them lean in to hear you.
 
 ## **Hooks**
 
-- **[[06 - Blackwater Lake#**Monsters**|Servants of Daagon]]** are roaming further from the lake than usual.
-- A **[[46 - The Things Below#**Morgais**|thrall]]** of Daagon drags a victim here to sacrifice.
-- A **deathless one**'s [[05 - Barrow Builders#**Phantom rider**|Barrow Builders]] tether is hidden near the lake.
+- **[[06 - Blackwater Lake#**Servants of Daagon**|Servants of Daagon]]** are roaming further from the lake than usual.
+- A **[[46 - The Things Below#**Cultist**|thrall]]** of Daagon drags a victim here to sacrifice.
+- A **deathless one**'s [[05 - Barrow Builders#**Deathless ones**|Barrow Builders]] tether is hidden near the lake.
 - Hillfolk **[[26 - Hillfolk#Upland horse|spirit-talkers]]** sing a certain song here every 7 years to keep the lake subdued.
 - A dangerous artifact needs to be cast into the Mouth of Daagon.
 - Certain NPCs hear a silent song, calling them to Blackwater Lake.
@@ -96,7 +96,14 @@ To create more barrows, see [[05 - Barrow Builders#Barrow|Barrow]]
 
 For any of these, pick 1 or have someone roll the Die of Fate.
 
-## **1d6** discovery 1 A change of terrain [[06 - Blackwater Lake#**Getting there**|Blackwater Lake]] and roll again 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.) 3 An unnerving tableau (see below) 4 An encounter (see below) 5 An artifact of... (see below) 6 An opportunity (see below) **1d6** unnerving tableau
+## **1d6** discovery
+
+- 1 A change of terrain [[06 - Blackwater Lake#**1d6** discovery|Blackwater Lake]] and roll again
+- 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
+- 3 An unnerving tableau (see below)
+- 4 An encounter (see below)
+- 5 An artifact of... (see below)
+- 6 An opportunity (see below) **1d6** unnerving tableau
 
 - 1 An altar, trappings of ceremony, blood stains, slimy trails
 - 2 Wards/bindings on an open entrance, marred and broken
@@ -107,10 +114,10 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 #### **1d6** encounter
 
-- 1 A **[[46 - The Things Below#**Morgais**|thrall]]** of Daagon, heavily marked, full of shame
-- 2 A lone **[[06 - Blackwater Lake#**Monsters**|servant of Daagon]]**), dragging something of value to the lake
+- 1 A **[[46 - The Things Below#**Cultist**|thrall]]** of Daagon, heavily marked, full of shame
+- 2 A lone **[[06 - Blackwater Lake#**Servants of Daagon**|servant of Daagon]]**), dragging something of value to the lake
 - 3 A **[[26 - Hillfolk#Hillfolk rider|hdour]]**, come to bargain with Daagon or its servants
-- 4 A **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, likely **[[46 - The Things Below#**Corrupted being**|corrupted]]** but still curious or indifferent
+- 4 A **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, likely **[[46 - The Things Below#**Corrupted being**|corrupted]]** but still curious or indifferent
 - 5 A confused wanderer, following a voice in their head
 - 6 **[[26 - Hillfolk#Hillfolk|Hillfolk]]**: exiled, on the hunt, checking wards, etc.
 
@@ -138,7 +145,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - Rocks to climb and a reason to try it
 - Poor footing (mud, unstable rubble, scree, slick wet stone, etc.)
 - **[[42 - The Steplands#1d6 natural beast or spirit|Rockslides]]** on the outer ridge
-- **[[43 - Stone Lords#**Major arcana**|Unstable construction]]** or **[[43 - Stone Lords#**Bound Entities**|perilous stone]]**
+- **[[43 - Stone Lords#**Dangers**|Unstable construction]]** or **[[43 - Stone Lords#Perilous stone|perilous stone]]**
 - **[[46 - The Things Below#**Voice of the Eternal Maw**|Disquiet and unease]]**, **[[46 - The Things Below#**Voice of the Eternal Maw**|whispers and visions]]**, **[[46 - The Things Below#**On a 6-**, pick 1:|unnatural phenomena]]**, and **[[46 - The Things Below#**Corrupted being**|corruption]]**
 
 # **Fog** Fog forms often, especially on breezy, warm days or during still, chilly nights. Sometimes it comes with no warning. And sometimes, reality becomes… malleable… in the fog.
@@ -146,7 +153,7 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - <sup>ä</sup> Have mist start to gather, thicken
 - <sup>ä</sup> Obscure their surroundings, make them struggle to navigate
 - <sup>ä</sup> Separate them, perhaps inexplicably
-- <sup>ä</sup> Hint at/reveal the presence of **[[06 - Blackwater Lake#**Monsters**|servants of Daagon]]**
+- <sup>ä</sup> Hint at/reveal the presence of **[[06 - Blackwater Lake#**Servants of Daagon**|servants of Daagon]]**
 - <sup>ä</sup> Have them end up far from where they should be
 - <sup>ä</sup> Reveal that the landscape has changed, rearranged itself
 
@@ -183,11 +190,11 @@ When you *lose yourself in the Blackwater*, time seems to stop and you find your
 
 ## **Call of Daagon**
 
-**[[46 - The Things Below#**Example names**|Daagon]]** still sings its silent song. It calls out to the weak-willed, and to those who nurse jealousy or greed in their souls. It whispers to them from afar, and compels them towards Blackwater Lake. It urges the weak-willed to enter the water and be devoured. To the jealous and the greedy, it offers power, wealth, or immortality. For a price, of course.
+**[[46 - The Things Below#**For We Are Many**|Daagon]]** still sings its silent song. It calls out to the weak-willed, and to those who nurse jealousy or greed in their souls. It whispers to them from afar, and compels them towards Blackwater Lake. It urges the weak-willed to enter the water and be devoured. To the jealous and the greedy, it offers power, wealth, or immortality. For a price, of course.
 
 **Mouth of Daagon**
 
- At the bottom of the lake, hundreds of feet down, is a Mouth of Daagon. Anything dropped into the deep water will make its way there in time. Valuables left on the shore or cast into the shallows will likely be found by the **[[06 - Blackwater Lake#**Monsters**|servants]]** and delivered to the Mouth on your behalf. Dangerous artifacts left for the servants might be delivered and consumed, or not.
+ At the bottom of the lake, hundreds of feet down, is a Mouth of Daagon. Anything dropped into the deep water will make its way there in time. Valuables left on the shore or cast into the shallows will likely be found by the **[[06 - Blackwater Lake#**Servants of Daagon**|servants]]** and delivered to the Mouth on your behalf. Dangerous artifacts left for the servants might be delivered and consumed, or not.
 
 When *the Mouth swallows something*, Daagon consumes it utterly. When *the Mouth swallows someone*, they are gone, body and soul.
 
@@ -207,12 +214,12 @@ Whatever the reward, it arrives soon: while you sleep, in your dreams, or via vi
 ## **Monsters**
 
 - **[[10 - Death and the Undying#**Shade**|Pypeds]]** or unbound **[[10 - Death and the Undying#**Pyped**|wraiths]]**, desperate and ever-hungry, drawn here by Daagon's call
-- A **[[05 - Barrow Builders#**Phantom rider**|deathless one]]**, dwelling in or bound to a nearby barrow
-- Cultists,sorcerers, or **[[46 - The Things Below#**Morgais**|thralls]]**, bearing many gifts and many marks [[46 - The Things Below#**1d12** origin|The Things Below]]
+- A **[[05 - Barrow Builders#**Deathless ones**|deathless one]]**, dwelling in or bound to a nearby barrow
+- Cultists,sorcerers, or **[[46 - The Things Below#**Cultist**|thralls]]**, bearing many gifts and many marks [[46 - The Things Below#**1d12** origin|The Things Below]]
 - **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, ready to assume the worst about the PCs
-- Stone Lord **[[43 - Stone Lords#Some examples:|constructs]]** in long-buried ruins, probably damaged, behaving erratically, and/or **[[46 - The Things Below#**Corrupted being**|corrupted]]**
-- **[[26 - Hillfolk#Hillfolk rider|Hdours]]**, **adventurers** or **[[29 - Lygos and the South#. trade opportunities .|antiquarians]]**, answering Daagon's call
-- Any number of **[[46 - The Things Below#**1d12** origin|corrupted beings]]** or **[[46 - The Things Below#**Thrall**|emanations]]**), such as the **[[46 - The Things Below#**1d12** origin|Hand of Daagon]]**
+- Stone Lord **[[43 - Stone Lords#**Construct**|constructs]]** in long-buried ruins, probably damaged, behaving erratically, and/or **[[46 - The Things Below#**Corrupted being**|corrupted]]**
+- **[[26 - Hillfolk#Hillfolk rider|Hdours]]**, **adventurers** or **[[29 - Lygos and the South#**Dangers**|antiquarians]]**, answering Daagon's call
+- Any number of **[[46 - The Things Below#**1d12** origin|corrupted beings]]** or **[[46 - The Things Below#**Wretch**|emanations]]**), such as the **[[46 - The Things Below#**1d12** origin|Hand of Daagon]]**
 
 ## **Servants of Daagon**
 
@@ -230,7 +237,7 @@ Whatever the reward, it arrives soon: while you sleep, in your dreams, or via vi
 - ä Snatch up something valued/treasured
 - ä See below
 
-Horrid things, wet and wriggling. Maybe they're **[[46 - The Things Below#**Thrall**|emanations]]** of Daagon, or mortal beings so thoroughly corrupted as to seem utterly alien to this world. They crawl forth. They feast on flesh and bone. They drag home wealth and beauty and treasured things to feed their master's hunger.
+Horrid things, wet and wriggling. Maybe they're **[[46 - The Things Below#**Wretch**|emanations]]** of Daagon, or mortal beings so thoroughly corrupted as to seem utterly alien to this world. They crawl forth. They feast on flesh and bone. They drag home wealth and beauty and treasured things to feed their master's hunger.
 
 Choose or roll for their number appearing and their size. Then pick or roll for 1d4 traits and 1d4 additional moves. Think about things that live in the water. Imagine the creatures implied by the results.
 
@@ -246,7 +253,17 @@ Choose or roll for their number appearing and their size. Then pick or roll for 
 - 4-9 Person-sized, wolf-sized, boarsized, etc. (*close*)
 - 10-12 Horse-sized (*large*; +4 HP, +2 damage, *close*, *reach*)
 
-## **1d12** trait 1-2 Cowardly, hesitant (*craven*) 3-4 Overwhelmed by hunger (*ravenous*; instinct is just "to devour") 5 Surprisingly intelligent (*cunning*) 6 Aggressive (*fierce*; +2 HP, rolls damage with advantage) 7 Blubbery/scaly hide (2 armor) 8 Powerful (*forceful*; +2 damage) 9 Big claws/fangs (*messy*; 1 piercing) 10 *Stealthy* and *cautious* 11 Tentacles/pincers/etc. (*reach*, *grabby*) **1d12** additional move 3-4 <sup>ä</sup>Smother/constrict/engulf prey 5-6 <sup>ä</sup>Mesmerize the weak-willed 7-8 <sup>ä</sup>Heal at a prodigious rate 9-10 <sup>ä</sup>Dissolve organic material 11-12 <sup>ä</sup>Paralyze with venom/poison
+## **1d12** trait
+
+- 1-2 Cowardly, hesitant (*craven*)
+- 3-4 Overwhelmed by hunger (*ravenous*; instinct is just "to devour")
+- 5 Surprisingly intelligent (*cunning*)
+- 6 Aggressive (*fierce*; +2 HP, rolls damage with advantage)
+- 7 Blubbery/scaly hide (2 armor)
+- 8 Powerful (*forceful*; +2 damage)
+- 9 Big claws/fangs (*messy*;  1 piercing)
+- 10 *Stealthy* and *cautious*
+- 11 Tentacles/pincers/etc. (*reach*, *grabby*) **1d12** additional move  3-4 <sup>ä</sup>Smother/constrict/engulf prey  5-6 <sup>ä</sup>Mesmerize the weak-willed  7-8 <sup>ä</sup>Heal at a prodigious rate  9-10 <sup>ä</sup>Dissolve organic material  11-12 <sup>ä</sup>Paralyze with venom/poison
 
 12 Projectiles (*near*)
 

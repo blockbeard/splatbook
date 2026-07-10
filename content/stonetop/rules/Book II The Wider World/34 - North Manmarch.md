@@ -269,16 +269,16 @@ If the PCs get a trade opportunity (from the Seasons Change move), the Manmarche
 
 - Nasty turn in the weather: lashing wind, bitter cold, blistering heat, sleet/ hail/rain/snow; lightning
 - Flash flooding in valleys/on slopes
-- **[[14 - The Flats#**1d12** battlefield or remains|Prairie fire]]** on the plains
+- **[[14 - The Flats#**Dangers**|Prairie fire]]** on the plains
 - **Mudslides** and **[[42 - The Steplands#1d6 natural beast or spirit|rockslides]]** on the hills
 - **[[32 - Marshedge#Dangers|Fire]]** in a hamlet or hillfort
 
 ## **Monsters**
 
-- Predators: **[[14 - The Flats#**Frythanc**|pack drakes]]**, **[[23 - The Great Wood#**Questions**|cougar]]**, **[[23 - The Great Wood#**Cynddaraig**|feathered drakes]]**, or **[[23 - The Great Wood#**Nailadd**|wolves]]**, maybe even a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**
-- Big ornery beasts: **[[23 - The Great Wood#**1d6** point of interest|boar]]**, **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, or **[[14 - The Flats#**Shellback drake**|thunder drakes]]**
-- **Chimerae** of the Green Lords [[24 - Green Lords#**Major arcana**|Green Lords]]), unearthed by recent logging or mining
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, lurking near old battlefields or places of bloody, one-sided slaughter
+- Predators: **[[14 - The Flats#**Hlomren**|pack drakes]]**, **[[23 - The Great Wood#**Cougar**|cougar]]**, **[[23 - The Great Wood#**Feathered drake**|feathered drakes]]**, or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**, maybe even a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**
+- Big ornery beasts: **[[23 - The Great Wood#**Dangers**|boar]]**, **[[23 - The Great Wood#**Cave bear**|cave bears]]**, or **[[14 - The Flats#**Thunder drake**|thunder drakes]]**
+- **Chimerae** of the Green Lords [[24 - Green Lords#**Dangers**|Green Lords]]), unearthed by recent logging or mining
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, lurking near old battlefields or places of bloody, one-sided slaughter
 
 #### **Chief**
 

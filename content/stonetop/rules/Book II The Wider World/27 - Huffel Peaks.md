@@ -62,9 +62,9 @@ Beyond the Huffel Peaks lies a vast expanse of water. But what lies between the 
 ## **Hooks**
 
 - Prospectors find veins of cinnabar near Gordin's Delve, and set about mining the lucrative, toxic stuff
-- A **[[18 - Forge Lords#**Singing sword**|draventao]]** chases a **[[26 - Hillfolk#Hillfolk|Hillfolk]]** band from their winter camp in the mountains
+- A **[[18 - Forge Lords#**Draventao**|draventao]]** chases a **[[26 - Hillfolk#Hillfolk|Hillfolk]]** band from their winter camp in the mountains
 - Scouts and warbands of an unknown people start to appear in the Huffel Peaks
-- A massive volcanic eruption throws ash across the region, causes strange sunsets and weather, spreads panic and superstition, and perhaps sets loose a powerful **emanation** of the Things Below [[46 - The Things Below#**Thrall**|The Things Below]]
+- A massive volcanic eruption throws ash across the region, causes strange sunsets and weather, spreads panic and superstition, and perhaps sets loose a powerful **emanation** of the Things Below [[46 - The Things Below#**Wretch**|The Things Below]]
 
 #### **Terrain**
 
@@ -97,19 +97,25 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 5 A point of interest (next page)
 - 6 A natural resource (next page)
 
-# **1d6** encounter 1 **[[28 - The Labyrinth#Thraulgwyn|Thraulgwyn]]**: come out of the Labyrinth for some reason 2 **[[41 - Spirits of the Wild#Spirits of the wild|Spirit of the wild]]**: curious or indifferent 3-4 **[[51 - Ustrina#Ustrina|Ustrina]]**: travelling, scrounging, on patrol 5 Miners/prospectors/loggers, likely based out of **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**): wary, on edge 6 **[[26 - Hillfolk#Hillfolk|Hillfolk]]**: herding, hunting, encamped, or on patrol
+# **1d6** encounter
+
+- 1 **[[28 - The Labyrinth#Thraulgwyn|Thraulgwyn]]**: come out of the Labyrinth for some reason
+- 2 **[[41 - Spirits of the Wild#Spirits of the wild|Spirit of the wild]]**: curious or indifferent
+- 3-4 **[[51 - Ustrina#Ustrina|Ustrina]]**: travelling, scrounging, on patrol
+- 5 Miners/prospectors/loggers, likely based out of **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**): wary, on edge
+- 6 **[[26 - Hillfolk#Hillfolk|Hillfolk]]**: herding, hunting, encamped, or on patrol
 
 ## **1d6** point of interest
 
 - 1 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**
-- 2 A place **haunted** by death and the undying [[10 - Death and the Undying#**Death's Door**|Death and the Undying]]
+- 2 A place **haunted** by death and the undying [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]]
 - 3 A ruin or artifact of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**, maybe claimed by the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**
 - 4-5 A ruin or artifact of the **[[18 - Forge Lords#Forge Lords|Forge Lords]]**, perhaps inhabited by **[[51 - Ustrina#Ustrina|Ustrina]]**
 - 6 A place sacred to the **[[41 - Spirits of the Wild#Spirits of the wild|spirits of the wild]]**
 
 ## **1d6** resource
 
-- 1 Game, but dangerous to hunt, like a **[[23 - The Great Wood#**Butcherbird**|cave bear]]**, **[[27 - Huffel Peaks#**Caralandrao**|fire drakes]]**, or goats on an impossible slope
+- 1 Game, but dangerous to hunt, like a **[[23 - The Great Wood#**Cave bear**|cave bear]]**, **[[27 - Huffel Peaks#**Fire drake**|fire drakes]]**, or goats on an impossible slope
 - 2-3 Game, not dangerous but prone to bolt: a goat or deer, quail, rabbits, etc.
 - 4 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**
 - 5 A safe place to shelter/a shortcut/ an unexpected path
@@ -161,19 +167,19 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - **[[51 - Ustrina#Ustrina|Ustrina]]**
 - Laborers (miners, woodcutters) from **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**
 - Folk from **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** or the **[[54 - The Whitefang Mountains#The Whitefang Mountains|Whitefang Mountains]]**
-- Some southern adventurer or **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]**, ruin-hunting
+- Some southern adventurer or **[[29 - Lygos and the South#**Dangers**|antiquarian]]**, ruin-hunting
 - **[[28 - The Labyrinth#Thraulgwyn|Thraulgwyn]]**, come up from the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]**
 
 ### **Monsters**
 
-- Predators: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[23 - The Great Wood#**Questions**|cougars]]**, **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]**
-- **[[14 - The Flats#**Beznpol**|Frythanc]]**, nesting or hunting over a wide valley/plateau
-- A **[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**, living far from people
-- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** and **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of those who died up here, recently or in ages past
+- Predators: **[[23 - The Great Wood#**Cave bear**|cave bears]]**, **[[23 - The Great Wood#**Cougar**|cougars]]**, **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]**
+- **[[14 - The Flats#**Frythanc**|Frythanc]]**, nesting or hunting over a wide valley/plateau
+- A **[[42 - The Steplands#**Gouzadn**|gouzadn]]**, living far from people
+- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** and **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of those who died up here, recently or in ages past
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
 - Constructs left by the **[[18 - Forge Lords#Forge Lords|Forge Lords]]** or the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**
-- **[[28 - The Labyrinth#**Corruption, as one goes deeper**|Magma worms]]** near volcanic features
-- A **[[18 - Forge Lords#**Singing sword**|draventao]]**, out for a rare hunt or squatting in some ruin
+- **[[28 - The Labyrinth#**Magma worm**|Magma worms]]** near volcanic features
+- A **[[18 - Forge Lords#**Draventao**|draventao]]**, out for a rare hunt or squatting in some ruin
 
 #### **Caralandrao**
 

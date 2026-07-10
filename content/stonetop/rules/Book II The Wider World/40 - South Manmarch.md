@@ -52,7 +52,7 @@ And yet, the lure of the prairie is great. Every year or so, someone tries to ca
 - A family from Marshedge or the North Manmarch, starting their own farm
 - An ambitious Lygosi merchant, investing in a new trading post or caravansary
 - Some would-be chief or warlord from the **[[34 - North Manmarch#North Manmarch|Manmarchers]]**, building a new hamlet or hillfort
-- The **conquering armies** of the South [[29 - Lygos and the South#**Assassin**|Lygos and the South]], establishing a foothold
+- The **conquering armies** of the South [[29 - Lygos and the South#**Conquering army**|Lygos and the South]], establishing a foothold
 
 Such settlements rarely last. They fall prey to natural disaster or roving beasts, to rivals or bandits, or to the certain wrath of the Hillfolk who claim these lands as theirs.
 
@@ -101,12 +101,25 @@ If you like, roll 1d6 for size/scope/intensity.
 
 For any one of these, pick 1 or have someone roll the Die of Fate.
 
-#### **1d6** discovery 1 Change of terrain (previous page) and roll again 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.) 3 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]** 4 beast (see below) 5 An encounter (see below) 6 A point of interest (next column) **1d6** beast 1-3 Mostly harmless but prone to bolt: deer, hares, prairie dogs, birds, etc. 4-5 A herd: **[[14 - The Flats#**Hazards**|aurochs]]**, goats, sheep, **[[14 - The Flats#**Shellback drake**|wild horses]]**, etc. 6 Something big and majestic: a **[[42 - The Steplands#**Bat swarm**|brawzbedr]]**, a giant ibis, a **[[40 - South Manmarch#**1d12** battlefield or remains|horned drake]]**, a **[[14 - The Flats#**Shellback drake**|thunder drake]]**, etc.
+#### **1d6** discovery
+
+- 1 Change of terrain (previous page) and roll again
+- 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
+- 3 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**
+- 4 beast (see below)
+- 5 An encounter (see below)
+- 6 A point of interest (next column)
+
+#### **1d6** beast
+
+- 1-3 Mostly harmless but prone to bolt: deer, hares, prairie dogs, birds, etc.
+- 4-5 A herd: **[[14 - The Flats#**Monsters**|aurochs]]**, goats, sheep, **[[14 - The Flats#**Thunder drake**|wild horses]]**, etc.
+- 6 Something big and majestic: a **[[42 - The Steplands#**Bat swarm**|brawzbedr]]**, a giant ibis, a **[[40 - South Manmarch#**Dangers**|horned drake]]**, a **[[14 - The Flats#**Thunder drake**|thunder drake]]**, etc.
 
 #### **1d6** encounter
 
 - 1 **[[26 - Hillfolk#Hillfolk|Hillfolk]]**: encamped, herding, hunting, on patrol, come to trade, or maybe on a raid
-- 2 **Merchant** caravan [[29 - Lygos and the South#**There and back again**|Lygos and the South]], coming or going
+- 2 **Merchant** caravan [[29 - Lygos and the South#**Merchants**|Lygos and the South]], coming or going
 - 3 **[[40 - South Manmarch#**Horned drake**|Bandits]]**, encamped, scouting, returning from a raid
 - 4 Settlers, hoping to carve out a home here
 - 5 Someone in dire straits; roll 1d4 again to see who
@@ -130,7 +143,7 @@ For any one of these, pick 1 or have someone roll the Die of Fate.
 - 8-10 Recent: Hillfolk, bandits, travelers, settlers, beasts
 - 11-12 Very recent: the buzzards and crows still feasting
 
-Many such places are **[[10 - Death and the Undying#**Death's Door**|haunted]]** by the dead.
+Many such places are **[[10 - Death and the Undying#**Death and the undying**|haunted]]** by the dead.
 
 # **Dangers**
 
@@ -141,22 +154,22 @@ Many such places are **[[10 - Death and the Undying#**Death's Door**|haunted]]**
 - Flash flooding in valleys/on slopes
 - Lack of shelter, water, or wood for a long-burning fire (try dried aurochs dung, if you can find it)
 - Hidden holes/burrows, twisting an ankle or worse
-- **[[14 - The Flats#**1d12** battlefield or remains|Prairie fire]]**
+- **[[14 - The Flats#**Dangers**|Prairie fire]]**
 
 #### **Monsters**
 
-- Predators: **[[23 - The Great Wood#**Questions**|cougars]]**, **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[14 - The Flats#**Frythanc**|pack drakes]]**, or **[[23 - The Great Wood#**Nailadd**|wolves]]**
-- Big ornery beasts: **[[14 - The Flats#**Hazards**|aurochs]]**, **[[23 - The Great Wood#**1d6** point of interest|boar]]**, or a **[[14 - The Flats#**Shellback drake**|thunder drake]]**
+- Predators: **[[23 - The Great Wood#**Cougar**|cougars]]**, **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[14 - The Flats#**Hlomren**|pack drakes]]**, or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**
+- Big ornery beasts: **[[14 - The Flats#**Monsters**|aurochs]]**, **[[23 - The Great Wood#**Dangers**|boar]]**, or a **[[14 - The Flats#**Thunder drake**|thunder drake]]**
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, lurking near ancient battlefields or ruined settlements
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, lurking near ancient battlefields or ruined settlements
 
 ## **People**
 
 - **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, if they're of a mind to do violence
 - **[[34 - North Manmarch#North Manmarch|North Manmarchers]]**, heading south or defending a new settlement
 - Merchants from **[[32 - Marshedge#Marshedge|Marshedge]]**), heading south or coming home
-- Southern **[[29 - Lygos and the South#**There and back again**|merchants]]** and their caravan guards, plus those traveling with them, like adventurers or an **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]**
-- **[[29 - Lygos and the South#**Assassin**|Armies of the south]]**, coming north to exact vengeance, secure a resource, establish a foothold
+- Southern **[[29 - Lygos and the South#**Merchants**|merchants]]** and their caravan guards, plus those traveling with them, like adventurers or an **[[29 - Lygos and the South#**Dangers**|antiquarian]]**
+- **[[29 - Lygos and the South#**Conquering army**|Armies of the south]]**, coming north to exact vengeance, secure a resource, establish a foothold
 
 #### **Horned drake**
 
@@ -209,4 +222,4 @@ Every group demands a boss; the exiled and forsaken moreso. What makes this lead
 - Fearlessness, borne of a veteran's confidence or amateur's stupidity
 - Fragile alliance with a Hillfolk band
 - A **spirit-of-the-wild** familiar [[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]
-  - A sidekick, in the form of a **[[46 - The Things Below#**Morgais**|sorcerer]]** or **[[26 - Hillfolk#Upland horse|spirit-talker]]**
+  - A sidekick, in the form of a **[[46 - The Things Below#**Cultist**|sorcerer]]** or **[[26 - Hillfolk#Upland horse|spirit-talker]]**

@@ -26,7 +26,7 @@ Add discoveries to the game when…
 - … **your prep demands it**. If you've already decided that there's a particular artifact buried in the pile of rubble, and the PCs dig through that pile, then of course they find the artifact.
 
 - … **the established fiction implies it**. Say you make up some bandits, and the PCs drive them off. If they follow the bandits' tracks back from where they came, it only makes sense that they'd find the bandits' camp.
-- … **the setting guide suggests it**. When the PCs are on the Makers' Roads, you might roll for a **[[31 - The Makers' Roads#**Waysides**|fellow traveler]]** and create an encounter based on the results. When they're off exploring the Foothills, you might roll for a random discovery on that region's tables (*[[16 - The Foothills#**1d12** terrain|Book II]]*).
+- … **the setting guide suggests it**. When the PCs are on the Makers' Roads, you might roll for a **[[31 - The Makers' Roads#**Fellow travelers**|fellow traveler]]** and create an encounter based on the results. When they're off exploring the Foothills, you might roll for a random discovery on that region's tables (*[[16 - The Foothills#**Discoveries**|Book II]]*).
 - … **you think it'd be interesting, fun, or just a good idea**. If the PCs get lost in the Steplands and you want to shake things up, you might put a discovery in their path, like a Hillfolk goatherd, or a creepy looking cave, or whatever else makes sense.
 - … **some combination of the above prompts you to**. Maybe the Ranger Seeks Insight before approaching the Green Lord ruin, asking, "What here is useful or valuable to me?" *Book II* suggests that Forest Folk glyphs mark the area, which could provide useful information, so you present them as the answer to the question.
 
@@ -161,7 +161,7 @@ If you're prepping, you might leave some questions unanswered, or answer them wi
 
 *I'm prepping the expedition for our first adventure. I expect the PCs to follow the trail left by some crinwin dragging young Pryder through the Great Wood, back to a Green Lord tomb wherein our villain (Sajra the swyn) is lairing. I want a couple potential discoveries to introduce along the way, so I review the Great Wood entry in* Book II*.* 
 
-*I look at the* discoveries *table (*[[23 - The Great Wood#**1d12** terrain|Book II]]*) and see "a crinwin, Fae, or spirit of the wild, curious or indifferent." I like the idea of a Fae who was living in the tomb but has been displaced by Sajra. I look up Creating Fae (*[[12 - Fae#**Insults and etiquette**|Book II]]*) and use that for guidance. I end up with Thornthumb, a hollow little plant-man skulking around the Great Wood, fuming over the loss of his home and his hoard. He'd love to see Sajra killed or driven out, but he's also a compulsive hoarder and thief.* 
+*I look at the* discoveries *table (*[[23 - The Great Wood#**Discoveries**|Book II]]*) and see "a crinwin, Fae, or spirit of the wild, curious or indifferent." I like the idea of a Fae who was living in the tomb but has been displaced by Sajra. I look up Creating Fae (*[[12 - Fae#**Creating Fae**|Book II]]*) and use that for guidance. I end up with Thornthumb, a hollow little plant-man skulking around the Great Wood, fuming over the loss of his home and his hoard. He'd love to see Sajra killed or driven out, but he's also a compulsive hoarder and thief.* 
 
 *I'm not sure when or where the PCs will encounter Thornthumb; but I think he'll notice them at some point and either try to steal from them (especially if he learns of the Mindgem) or approach them and offer info about Sajra (if he thinks they can defeat it).*
 
@@ -230,7 +230,7 @@ As with any discovery, try to place artifacts in a way that tells a story. Consi
 
 *Looking over the Green Lords entry in*  Book II*, my eye lands on "a number of corroded bronze hatchets," which I picture interred with those mummified servants—the ones buried in the collapsed hallway. I doubt Thornthumb would have even known about these, or bothered with them if he did.*
 
-*I also spot a large urn (previous page), which I imagine was something made by the Green Lord who's interred here as a way to deal with troublesome Fae. Thornthumb would have steered clear of it, but I can see the crinwin using it to store doodads that Sajra didn't want. So it's stuffed full of rubbish, including some other junky-looking artifacts and maybe even an arcanum like a cracked flute (*[[57 - Appendix C - Minor Arcana#**1d6** today's food is...|Book II]]*). Oh, and it's in that partly-collapsed chamber, the one where the crinwin were nesting. Nice.*
+*I also spot a large urn (previous page), which I imagine was something made by the Green Lord who's interred here as a way to deal with troublesome Fae. Thornthumb would have steered clear of it, but I can see the crinwin using it to store doodads that Sajra didn't want. So it's stuffed full of rubbish, including some other junky-looking artifacts and maybe even an arcanum like a cracked flute (*[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Book II]]*). Oh, and it's in that partly-collapsed chamber, the one where the crinwin were nesting. Nice.*
 
 ## **Identifying artifacts**
 
@@ -374,7 +374,7 @@ It's okay to change or discard some of the details you established earlier, or i
 
 Write something short and sweet, ~30 words or less, including load, tags, and other **game elements** (see [[13 - Discoveries#Tags and game elements|Tags]]). This approach is best for simple, non-magical artifacts, but it can also work for artifacts with a straightforward magical effect.
 
-For examples, see any of the "various treasures" lists, like those of the **[[05 - Barrow Builders#**1d12** feature|Barrow Builders]]** or the **[[43 - Stone Lords#**1d6** condition|Stone Lords]]**.
+For examples, see any of the "various treasures" lists, like those of the **[[05 - Barrow Builders#**Artifacts**|Barrow Builders]]** or the **[[43 - Stone Lords#**Makerglass**|Stone Lords]]**.
 
 *This artifact I've been creating doesn't need much description, so I write down:*
 
@@ -386,7 +386,7 @@ Give the artifact a title, either something descriptive ("a stone cup") or a pro
 
 Consider writing "something interesting" and "something useful" about the artifact, if you suspect that the PCs will Know Things about it.
 
-For examples, see **[[10 - Death and the Undying#**Death and the undying**|a spindle of fine thread]]**, or **[[18 - Forge Lords#**Other materials**|an oversized ring]]**.
+For examples, see **[[10 - Death and the Undying#**Death and the undying**|a spindle of fine thread]]**, or **[[18 - Forge Lords#**Artifacts**|an oversized ring]]**.
 
 *I create another artifact that the PCs could find in the old tomb, something interred with the Green Lord itself.* 
 
@@ -400,7 +400,7 @@ Write a detailed description (as per the previous page). Then write a custom pla
 
 Custom moves are a great way to reflect artifacts with magical powers, especially ones that are unpredictable, unreliable, or dangerous. See [[16 - Writing Moves and Love Letters#Writing moves|Writing moves]] for guidance on **writing custom moves**.
 
-You'll find examples of such artifacts all through *Book II*. See **[[15 - Fomoraij#**1d12** form|bloodshot amber]]**, **[[17 - Forest Folk#**1d6** a place where they...|a crystal knife]]**, and **[[46 - The Things Below#**Various treasures**|a black menhir]]** for a sense of what's possible.
+You'll find examples of such artifacts all through *Book II*. See **[[15 - Fomoraij#**Artifacts**|bloodshot amber]]**, **[[17 - Forest Folk#**Artifacts**|a crystal knife]]**, and **[[46 - The Things Below#**A black menhir**|a black menhir]]** for a sense of what's possible.
 
 ## **As a steading improvement**
 
@@ -408,7 +408,7 @@ If the artifact could benefit the village of Stonetop as a whole, then write it 
 
 Make a Plan with the PCs to establish the requirements, the ongoing costs (if any), and the benefits of completing it. See [[15 - Homefront#Steading improvements|Steading improvements]] for more about **improvements**.
 
-For examples, see the **[[21 - The Golden Oak#**1d6** discovery|golden sapling]]** and **[[24 - Green Lords#**1d6** condition|rhoillyg orchard]]**.
+For examples, see the **[[21 - The Golden Oak#**Treasures of the Golden Oak**|golden sapling]]** and **[[24 - Green Lords#**Artifacts**|rhoillyg orchard]]**.
 
 *I ponder a little bit and then write the following, riffing on the Judge's move, Censure [[The Judge#MANY HANDS MAKE LIGHT WORK|Many Hands Make Light Work]].*
 
@@ -452,7 +452,7 @@ The front of an arcanum describes what the PC can tell at a glance or with a lit
 
 *Stonetop* includes 64 minor and 18 major arcana by default. All of these are reproduced in appendices [[57 - Appendix C - Minor Arcana|c]] and [[58 - Appendix D - Major Arcana|d]] of *Book II*.
 
-The Seeker playbook starts with a major arcanum and two minor arcana. The Heavy starts with **[[58 - Appendix D - Major Arcana#**Halix**|Storm Markings]]** if they take the Storm-marked background.
+The Seeker playbook starts with a major arcanum and two minor arcana. The Heavy starts with **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Storm Markings]]** if they take the Storm-marked background.
 
 ## **Placing arcana**
 
@@ -486,7 +486,7 @@ Some arcana are **[[11 - Sites#Sites|sites]]**, or part of one. Place them where
 
 A few arcana represent tales or specific encounters. Present these to the PCs as **[[13 - Discoveries#Clues|clues]]**), **[[13 - Discoveries#Encounters|encounters]]**, or **[[13 - Discoveries#Opportunities|opportunities]]**. Again, feel free to modify the specifics on the front of the card to meet your needs.
 
-A handful of arcana—notably **Storm Marking**s and the **[[58 - Appendix D - Major Arcana#**Halix**|Ineffable Words]]**—represent a PC being infused with magical power. Offer these as opportunities, or even inflict them as consequences when the PCs are exposed to truly potent magic.
+A handful of arcana—notably **Storm Marking**s and the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Ineffable Words]]**—represent a PC being infused with magical power. Offer these as opportunities, or even inflict them as consequences when the PCs are exposed to truly potent magic.
 
 ## **Identifying arcana**
 
@@ -498,7 +498,7 @@ When the PCs discover an arcanum, you might…
 - … **offer riches at a price** or **tell them the requirements** to learn more about the arcanum, which might involve taking a risk and Defying Danger, or talking to someone, or Seeking Insight. If they do so successfully, give them the card.
 - … **prompt them to Know Things** about the arcanum: **on a 10+**, give them the card and have them read both sides; **on a 7-9**, have them read the front, and show them the back when they have some time to study it or learn more; **on a 6-**, either have them read the front and then have something bad happen, or hint at the arcanum's power and tell them how they could learn more.
 
-A few major arcana lend themselves to a slow reveal. For example, you might tell the PC that rubbing this magic ring calls up a mist. But the first time someone dies in that fog, the ring asks, "May I take this one?" and you give the player the insert for the **[[58 - Appendix D - Major Arcana#Mysteries of the Red Scepter|Ring of Daagon]]**. Judge for yourself whether this would work for any given arcanum, and whether your player(s) would enjoy it.
+A few major arcana lend themselves to a slow reveal. For example, you might tell the PC that rubbing this magic ring calls up a mist. But the first time someone dies in that fog, the ring asks, "May I take this one?" and you give the player the insert for the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Ring of Daagon]]**. Judge for yourself whether this would work for any given arcanum, and whether your player(s) would enjoy it.
 
 ## **Unlocking arcana**
 
@@ -563,7 +563,7 @@ If the PCs share a major arcanum with each other, then in general:
 - Each character must unlock its mysteries individually, tracking their own progress
 - Each character tracks their own consequences individually, meaning they can each suffer the same consequence
 
-Of course, each arcanum is different and there will be exceptions. For example, the consequences for the **[[58 - Appendix D - Major Arcana#**Consequences**|Mindgem]]** all affect the Mighty Servant itself, reflecting how it learns and changes. Thus, multiple PCs giving orders to the Mighty Servant would all be marking off the same list of consequences.
+Of course, each arcanum is different and there will be exceptions. For example, the consequences for the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Mindgem]]** all affect the Mighty Servant itself, reflecting how it learns and changes. Thus, multiple PCs giving orders to the Mighty Servant would all be marking off the same list of consequences.
 
 ## **NPCs using artifacts and arcana**
 
@@ -645,13 +645,13 @@ Write a brief intro, like "To unlock the mysteries of these tablets, you must…
 - … combinations of the above; or…
 - … anything else that makes sense.
 
-See the existing **minor arcana** (*Book II*, [[57 - Appendix C - Minor Arcana#Minor Arcana|appendix c]]) and the **Make a Plan** move (page [[15 - Homefront#MAKE A PLAN|530\)]] for ideas and guidance.
+See the existing **minor arcana** (*Book II*, [[57 - Appendix C - Minor Arcana#appendix c : minor arcana|appendix c]]) and the **Make a Plan** move (page [[15 - Homefront#MAKE A PLAN|530\)]] for ideas and guidance.
 
 It's okay if some requirements are vague, or if they'd require multiple steps. If the players ask how they'd go about achieving such a requirement, prompt them to Know Things, and/or Make a Plan with them.
 
 List the requirements in the order that you'd expect someone to complete them, but be open to the PCs doing them in a different order.
 
-Feel free to play with the formula, too. Maybe this arcanum allows for a choice of requirements (like **[[57 - Appendix C - Minor Arcana#**Ffyrnig Tonic**|"a clear, natural pool,"]]**), or maybe it's unlocked via a custom move (like **[[57 - Appendix C - Minor Arcana#**1d6** today's food is...|"a cracked flute,"]]**).
+Feel free to play with the formula, too. Maybe this arcanum allows for a choice of requirements (like **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|"a clear, natural pool,"]]**), or maybe it's unlocked via a custom move (like **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|"a cracked flute,"]]**).
 
 ## **Unlocked title**
 
@@ -663,7 +663,7 @@ Examples: "Ranaji Kav's Final Technique," or "The White Flame Blade."
 
 Write out the back of the minor arcanum, the custom move(s) and/or follower(s) gained by a PC who unlocks its mysteries. If the arcanum has different tags once it's unlocked, write them here.
 
-Try to reflect the origin, theme(s), and characteristics that you identified when conceptualizing the arcanum. Does it **house a spirit or sentience**, or call one up? Create that entity as a **[[14 - NPCs and Followers#Creating followers|follower]]**. Does it **allow a PC to learn a spell/ ritual**, or does it **produce a magical effect**? Think about how that magic might work, and write a custom move or two reflecting the arcanum's theme(s), function, drawback, and usage (*[[56 - Appendix B - Artifact Creation#**1d12** how it's recorded|Book II]]*).
+Try to reflect the origin, theme(s), and characteristics that you identified when conceptualizing the arcanum. Does it **house a spirit or sentience**, or call one up? Create that entity as a **[[14 - NPCs and Followers#Creating followers|follower]]**. Does it **allow a PC to learn a spell/ ritual**, or does it **produce a magical effect**? Think about how that magic might work, and write a custom move or two reflecting the arcanum's theme(s), function, drawback, and usage (*[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|Book II]]*).
 
 See [[16 - Writing Moves and Love Letters#Writing moves|Writing moves]] for advice on writing **custom player moves**. Use existing minor arcana and playbook moves for inspiration and guidance. And remember: not every move needs to involve a roll!
 
@@ -691,7 +691,7 @@ Each major arcanum works differently, but almost all have these common elements.
 - Its mysteries
 - Its consequences
 
-Refer to the existing major arcana for a sense of structure and what's possible. See **[[03 - Playing the Game#Noruba's Ice Sphere|Noruba's Ice Sphere]]** for one example, and Appendix D (*[[58 - Appendix D - Major Arcana#Major Arcana|Book II]]*) for the rest
+Refer to the existing major arcana for a sense of structure and what's possible. See **[[03 - Playing the Game#Noruba's Ice Sphere|Noruba's Ice Sphere]]** for one example, and Appendix D (*[[58 - Appendix D - Major Arcana#appendix d : major arcana|Book II]]*) for the rest
 
 ## **Title, tags, and description**
 

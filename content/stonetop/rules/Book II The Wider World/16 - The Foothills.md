@@ -113,21 +113,21 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 - 4 A logging crew (4-12 layfolk, plus a few guardians)
 - 5-6 1-4 layfolk hunting or foraging
 
-Consider having someone roll the Die of Fate for their disposition. See [[04 - Barrier Pass#**Folk from elsewhere**|Barrier Pass]] for guardian, monk, and novice stats.
+Consider having someone roll the Die of Fate for their disposition. See [[04 - Barrier Pass#**Guardian**|Barrier Pass]] for guardian, monk, and novice stats.
 
 ### **1d6** encounter
 
 - 1 A **[[24 - Green Lords#Bound Entities|chimera]]**, wary or indifferent but not outright hostile
 - 2 A **[[12 - Fae#Fae|Fae]]**, curious or indifferent
-- 3 A **[[38 - Rime Lords#**Major arcana**|tulpa]]**, likely tethered to a nearby Rime Lord site
+- 3 A **[[38 - Rime Lords#**Tulpa**|tulpa]]**, likely tethered to a nearby Rime Lord site
 - 4 A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]**, curious or indifferent
-- 5 A dangerous beast—like a **[[23 - The Great Wood#**1d6** point of interest|boar]]**, **[[23 - The Great Wood#**Butcherbird**|cave bear]]**, **[[23 - The Great Wood#**Questions**|cougar]]**, **[[54 - The Whitefang Mountains#**1d6** instinct/moves|ice drake]]**), **[[54 - The Whitefang Mountains#**Kyakaara**|mountain apes]]**, or **[[23 - The Great Wood#**Nailadd**|wolves]]**—wary or indifferent, but easily provoked
+- 5 A dangerous beast—like a **[[23 - The Great Wood#**Dangers**|boar]]**, **[[23 - The Great Wood#**Cave bear**|cave bear]]**, **[[23 - The Great Wood#**Cougar**|cougar]]**, **[[54 - The Whitefang Mountains#**1d6** instinct/moves|ice drake]]**), **[[54 - The Whitefang Mountains#**Monk**|mountain apes]]**, or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**—wary or indifferent, but easily provoked
 - 6 Game: good eating but prone to bolt (deer, rabbits, pheasant, etc.)
 
 ### **1d6** point of interest
 
 - 1 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**
-- 2 A place **haunted** by death or the undying [[10 - Death and the Undying#**Death's Door**|Death and the Undying]]
+- 2 A place **haunted** by death or the undying [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]]
 - 3 A site or artifact of the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**
 - 4 A ruin or artifact of the **[[24 - Green Lords#Green Lords|Green Lords]]** or a **[[12 - Fae#**Getting there**|Fae domain]]**
 - 5 A ruin or artifact of the **[[38 - Rime Lords#Rime Lords|Rime Lords]]** or their human disciples
@@ -142,15 +142,15 @@ Consider having someone roll the Die of Fate for their disposition. See [[04 - B
 - Flash flooding, especially in ravines and valleys
 - Harsh weather, especially rain and snow
 - Something tall to climb, and reason to climb it
-- **[[24 - Green Lords#**1d12** purpose|Hazardous growth]]**, from the time of the Green Lords
+- **[[24 - Green Lords#**1d12** ability|Hazardous growth]]**, from the time of the Green Lords
 
 ## **Monsters**
 
-- Ornery beasts: **[[23 - The Great Wood#Monsters|boars]]**, **[[23 - The Great Wood#Monsters|cave bears]]**, **[[54 - The Whitefang Mountains#**1d6** instinct/moves|ice drakes]]**, **[[54 - The Whitefang Mountains#**Kyakaara**|mountain apes]]**, **[[23 - The Great Wood#**Nailadd**|wisents]]**
-- Predators: **[[23 - The Great Wood#Monsters|butcherbirds]]**, **[[23 - The Great Wood#**Questions**|cougars]]**, **[[23 - The Great Wood#**Cynddaraig**|feathered drakes]]**, or **[[23 - The Great Wood#**Nailadd**|wolves]]**
+- Ornery beasts: **[[23 - The Great Wood#Monsters|boars]]**, **[[23 - The Great Wood#Monsters|cave bears]]**, **[[54 - The Whitefang Mountains#**1d6** instinct/moves|ice drakes]]**, **[[54 - The Whitefang Mountains#**Monk**|mountain apes]]**, **[[23 - The Great Wood#**Raselbaedd**|wisents]]**
+- Predators: **[[23 - The Great Wood#Monsters|butcherbirds]]**, **[[23 - The Great Wood#**Cougar**|cougars]]**, **[[23 - The Great Wood#**Feathered drake**|feathered drakes]]**, or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
 - **[[12 - Fae#Fae|Fae]]**
 - A **[[23 - The Great Wood#**Instinct** to lure prey|hagr]]** or two, come up from the Great Wood
-- **[[38 - Rime Lords#**Major arcana**|Tulpas]]**, tied to Rime Lord sites or perhaps to Barrier Pass
+- **[[38 - Rime Lords#**Tulpa**|Tulpas]]**, tied to Rime Lord sites or perhaps to Barrier Pass
 - **[[24 - Green Lords#Bound Entities|Chimerae]]** and other remnants of the Green Lords
 - **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **revenants**

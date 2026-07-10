@@ -1,6 +1,6 @@
 # Green Lords
 
-In the time of the **[[30 - The Makers#The Makers|Makers]]**, the Green Lords ruled the **[[23 - The Great Wood#The Great Wood|Great Wood]]**) and what is now **[[13 - Ferrier's Fen#Ferrier's Fen|Ferrier's Fen]]**). They grew things, bred and cultivated. They bent the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of wild]]** to their will, and brought forth new forms of life—some of which would eventually become the **[[17 - Forest Folk#Names|Forest Folk]]**.
+In the time of the **[[30 - The Makers#The Makers|Makers]]**, the Green Lords ruled the **[[23 - The Great Wood#The Great Wood|Great Wood]]**) and what is now **[[13 - Ferrier's Fen#Ferrier's Fen|Ferrier's Fen]]**). They grew things, bred and cultivated. They bent the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of wild]]** to their will, and brought forth new forms of life—some of which would eventually become the **[[17 - Forest Folk#Names|Forest Folk]]**.
 
 Yet while they mastered life itself, they feared death. They dreaded the bleak eternity waiting behind the **[[10 - Death and the Undying#**Questions**|Last Door]]**. They bred the **[[12 - Fae#Fae|Fae]]** out of spirit and flesh, and harnessed their power to craft false afterlives. And: it worked. Dozens of Green Lords had themselves mummified and entombed, dreaming forever of decadence and wonder.
 
@@ -15,7 +15,7 @@ Slavic-sounding: Athanasi, Bogdana, Chedomir, Dozhena, Darobor, Jigorii, Kresimi
 ## **Hooks**
 
 - An earthquake or wildfire reveals a long-buried Green Lord ruin close to Stonetop.
-- A **[[24 - Green Lords#**1d12** purpose|hazardous growth]]** is aggressively spreading through the Great Wood
+- A **[[24 - Green Lords#**1d12** ability|hazardous growth]]** is aggressively spreading through the Great Wood
 - An old scholar or manuscript shows up, telling of a Green Lord relic that can greatly improve crops.
 - Some fool braves a Green Lord's tomb and returns with a valuable treasure, but they're pursued by mummified servants and infected with a horrible rotting disease.
 
@@ -56,22 +56,29 @@ For example:
 - Grand sculptures of living wood that memorialize long-dead Green Lords
 - Moss, lichen, mold, or fungus that glows, or hums, or gives off heat, etc.
 - Plants made partially of impossible material (flowers/leaves of glass, bark infused with metal, a vine with thorns of bone, a petrified tree that blooms with normal flowers, etc.)
-- An enormous and ancient tree, festooned with **[[23 - The Great Wood#**Cynddaraig**|gylglyd vines]]** that protect some Green Lord artifact.
+- An enormous and ancient tree, festooned with **[[23 - The Great Wood#**Feathered drake**|gylglyd vines]]** that protect some Green Lord artifact.
 
 ## **A spirit of the wild, bound** For example:
 
 - A spirit of winter/hibernation bound to a grotto by vines growing in runic patterns. Other runes fill those who approach with dread. An ancient being lies in torpor within.
-- A clearing or meadow lush with an edible grain, tended by a **[[41 - Spirits of the Wild#**Communion**|fertility spirit]]** bound to a menhir standing in the field's center.
-- An orchard of fruit trees, guarded by a **birdwaig** and her **glasbren** daughters [[41 - Spirits of the Wild#**Major arcana**|Spirits of the Wild]], a long family of spirits and trees bound by an ancient oath to the Green Lords.
+- A clearing or meadow lush with an edible grain, tended by a **[[41 - Spirits of the Wild#**Elemental spirits**|fertility spirit]]** bound to a menhir standing in the field's center.
+- An orchard of fruit trees, guarded by a **birdwaig** and her **glasbren** daughters [[41 - Spirits of the Wild#**The Brennauwed**|Spirits of the Wild]], a long family of spirits and trees bound by an ancient oath to the Green Lords.
 - A ring of five ancient willow trees, each with a rune-carved hollow, surrounding a stretch of mire. A spirit of reclamation and decay is bound within. Anything that enters the mire will soon be sucked into the muck, where it will decompose and dissolve at an alarming rate.
 - A huge stone altar on a treeless hilltop, exposed to the sun. A spirit of growth and vitality is bound within, fed by blood and bestowing gifts of strength.
 - An obelisk of milky white crystal, pushing out of the loamy soil, shot through with tendrils of vine that form looping runes of binding. The spirit bound within can pull forth maladies and afflictions from those who touch it, but the spirit is willful and the process is excruciating.
 
 #### **Ruins**
 
-Pick or roll for theme [[24 - Green Lords#**Ruins**|Green Lords]], structure, purpose, architectural elements, and condition. Place it in an appropriate terrain (see [[23 - The Great Wood#GREAT WOOD TIMBER|Great Wood Timber]] for the **Great Wood** or [[13 - Ferrier's Fen#**Riona** *prepared*, *agile*, *stubborn*; **Instinct** to assume the worst; **Cost** competence shown.|Ferrier's Fen]] for **Ferrier's Fen**). Populate it with **[[24 - Green Lords#**Ruins**|lingering signs]]**, **[[24 - Green Lords#**1d6** condition|artifacts]]** and/or **[[24 - Green Lords#**Major arcana**|dangers]]** of the Green Lords or the appropriate region.
+Pick or roll for theme [[24 - Green Lords#**Ruins**|Green Lords]], structure, purpose, architectural elements, and condition. Place it in an appropriate terrain (see [[23 - The Great Wood#GREAT WOOD TIMBER|Great Wood Timber]] for the **Great Wood** or [[13 - Ferrier's Fen#**Questions**|Ferrier's Fen]] for **Ferrier's Fen**). Populate it with **[[24 - Green Lords#**Ruins**|lingering signs]]**, **[[24 - Green Lords#**Artifacts**|artifacts]]** and/or **[[24 - Green Lords#**Dangers**|dangers]]** of the Green Lords or the appropriate region.
 
-## **1d6** structure 1 Sprawling compound of "smaller" buildings 2 Single, smaller building 3 Earth-covered mound 4 Ancient trees, rooms and structures built into hollows and on crooks 5 Underground vault(s) 6 Ziggurat/pyramid/dome
+## **1d6** structure
+
+- 1 Sprawling compound of "smaller" buildings
+- 2 Single, smaller building
+- 3 Earth-covered mound
+- 4 Ancient trees, rooms and structures built into hollows and on crooks
+- 5 Underground vault(s)
+- 6 Ziggurat/pyramid/dome
 
 ### **1d6** purpose
 
@@ -155,7 +162,7 @@ A plant spirit is bound to the vine and pot. If you befriend it and carry its po
 
 *hand*, *magical*, +1 damage An 8-inch fang, bound to a wooden hilt by fiber that never rots. A cruel-looking thing, with strange carvings along the blade.
 
-**Something interesting:** The fang looks like it came from a **[[23 - The Great Wood#**Questions**|cynddaraig]]**, and the markings are definitely some sort of spell related to blood and soil.
+**Something interesting:** The fang looks like it came from a **[[23 - The Great Wood#**Cougar**|cynddaraig]]**, and the markings are definitely some sort of spell related to blood and soil.
 
 **Something useful:** When you *bury the fang-dagger and water the soil with blood*, the ground buckles and bulges. A minute later, a full-grown cynddaraig bursts from the soil—angry, confused, and hungry. The spell grants no control over the beast and provides no way to dismiss it. The dagger is gone, now a tooth in the rage-drake's maw.
 
@@ -201,10 +208,10 @@ Pick 1 or have someone roll.
 
 #### **Bound Entities**
 
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, forced or enticed to perform a particular task or to protect a particular place
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, forced or enticed to perform a particular task or to protect a particular place
 - **[[12 - Fae#Fae|Fae]]**, loyal and still serving their embalmed masters (possibly bitter and questioning their fate) or rebellious and imprisoned for their crimes
 - Spirits and beasts **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]], either locked away by the Green Lords, or weaponized against the Fae
-- **[[52 - Vor Svetelik#**Nemurvojak**|Plasmic horrors]]**, which once served as blank canvases for fleshweaving
+- **[[52 - Vor Svetelik#**Plasmic horror**|Plasmic horrors]]**, which once served as blank canvases for fleshweaving
 
 #### **Chimerae**
 
@@ -253,7 +260,7 @@ Pick or roll for purpose, ability, size, and composition. Allow purpose, ability
 
 ## **Hazardous growth**
 
-Pick or roll for form and peril, possibly rolling the Die of Fate for size/scope/scale. Maybe consider how it's **[[50 - Useful or Valuable Flora#**Cultivation**|useful/ valuable]]** as well.
+Pick or roll for form and peril, possibly rolling the Die of Fate for size/scope/scale. Maybe consider how it's **[[50 - Useful or Valuable Flora#**Useful or valuable flora**|useful/ valuable]]** as well.
 
 ## **1d12** form
 
@@ -284,7 +291,7 @@ See **Vor Svetelik** (ruined city of the Green Lords, [[52 - Vor Svetelik|Vor Sv
 - **[[10 - Death and the Undying#**Pyped**|Ghosts]]** of the Green Lords and their many servants, who died in battle or sudden cataclysm.
 - **[[10 - Death and the Undying#**Pyped**|Specters]]** of Green Lords who were murdered by trusted servants.
 - **[[10 - Death and the Undying#**Pyped**|Wraiths]]** of Green Lords who were mummified and entombed, only to have their false afterlives ruined by treachery and war.
-- **[[52 - Vor Svetelik#**The Undying**|Nemurvojak]]**, the corpses of mortal servants, reanimated by demon-seed
+- **[[52 - Vor Svetelik#**Chimerae**|Nemurvojak]]**, the corpses of mortal servants, reanimated by demon-seed
 
 ## **Llamudwr**
 

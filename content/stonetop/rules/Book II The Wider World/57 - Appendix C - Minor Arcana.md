@@ -161,7 +161,7 @@ front back **7**
 
 Not far from Marshedge, a ways into Ferrier's Fen, lies a peat mound where no birds nest and flowers will not bloom. Since the town's founding, the people of Marshedge have buried certain criminals here, alive.
 
-Over the years, the land has birthed a spirit that hungers for the dying breaths of the condemned (*[[10 - Death and the Undying#**Necromancer**|Book II]]*). It is young and eager, and can be set to work upon criminals, but only if you...
+Over the years, the land has birthed a spirit that hungers for the dying breaths of the condemned (*[[10 - Death and the Undying#**Death and the undying**|Book II]]*). It is young and eager, and can be set to work upon criminals, but only if you...
 
 - …find a way to communicate with it.
 - …convince it that you will use its mark only to condemn the guilty.

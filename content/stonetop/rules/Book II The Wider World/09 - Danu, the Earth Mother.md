@@ -149,21 +149,21 @@ Ask the Blessed or Ranger what they'd consider a perversion of nature. Consider 
 
 ### **Associated entities**
 
-- Any sort of natural beast or **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, who acknowledge Danu's authority
+- Any sort of natural beast or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, who acknowledge Danu's authority
 - The **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]** in particular, who claim kinship with her
 - Many of the **[[12 - Fae#Fae|Fae]]**, who honor her as a respected elder
-- **[[13 - Ferrier's Fen#**Winter**|Fen-walkers]]**, who know better than to offend her
+- **[[13 - Ferrier's Fen#**Exploring the Fen**|Fen-walkers]]**, who know better than to offend her
 - **[[26 - Hillfolk#Hillfolk rider|Hdour]]**, who know many of her secrets
-- **[[26 - Hillfolk#Upland horse|Spirit-talkers]]** and **[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**, who hear her voice and bear her gifts
-- Perhaps the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]**, the **[[20 - Gods and Religion#**Threshold spirit**|other gods]]**, or the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, any of whom might share a bond of kinship, familiarity, or common cause
+- **[[26 - Hillfolk#Upland horse|Spirit-talkers]]** and **[[42 - The Steplands#**Gouzadn**|gouzadn]]**, who hear her voice and bear her gifts
+- Perhaps the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]**, the **[[20 - Gods and Religion#**Other gods**|other gods]]**, or the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, any of whom might share a bond of kinship, familiarity, or common cause
 
 ### **Signs of her displeasure**
 
-- The **[[37 - Red Groves#**Why are they so special?**|Forest's Wrath]]**
-- **[[13 - Ferrier's Fen#… **a promise, to be fulfilled now or later**.|Disease]]**
-- Volcanic activity and **[[27 - Huffel Peaks#**Harsh mountain weather**|earthquakes]]**, and what they let loose
+- The **[[37 - Red Groves#**Hooks**|Forest's Wrath]]**
+- **[[13 - Ferrier's Fen#**Dangers**|Disease]]**
+- Volcanic activity and **[[27 - Huffel Peaks#**Volcanic activity**|earthquakes]]**, and what they let loose
 - **Mudslides** or **[[42 - The Steplands#1d6 natural beast or spirit|rockslides]]**, out of the blue
 - Perhaps the stirring of the **[[08 - The Crombil#The Crombil|Crombil]]**, decades before its time
-- The ire of various natural beasts or **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- The ire of various natural beasts or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 - Blighted crops/gardens, sickly livestock, scarce game (disadvantage to generate Surplus in summer and autumn)
 - Some manner of curse, upon an individual or a community (threat type *affliction*; **Instinct** to punish)

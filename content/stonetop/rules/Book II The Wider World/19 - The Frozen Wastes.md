@@ -46,10 +46,10 @@ Farther north, the plateau gets even colder, even windier, the steppe giving way
 
 The Frozen Wastes are inhospitable in a way that southerners can barely comprehend. On any expedition into the wastes:
 
-- You need a knowledgeable guide, like a **[[19 - The Frozen Wastes#**Services and favors**|mammoth herder]]**, who knows the ways of this place
+- You need a knowledgeable guide, like a **[[19 - The Frozen Wastes#**Dangers**|mammoth herder]]**, who knows the ways of this place
 - You need lots of firewood or dried dung, for you'll find no fuel and even in the summer the "nights" can be freezing
 - The way will be grueling (from cold and mud and bugs); you risk exhausting yourselves/your supplies
-- You need to watch out for predators, like **[[23 - The Great Wood#**Nailadd**|wolves]]** or mchebra-gris (**kleztigrs**, basically, see [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]])
+- You need to watch out for predators, like **[[23 - The Great Wood#**Raselbaedd**|wolves]]** or mchebra-gris (**kleztigrs**, basically, see [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]])
 - You need to watch out for kettle lakes, easily mistaken for ice or shallow standing water
 - You risk succumbing to the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**, which taints much of the Wastes
 
@@ -100,12 +100,12 @@ For any of these, pick 1 or have someone roll the Die of Fate (d6).
 
 ## **1d6** encounter
 
-- 1 A **[[19 - The Frozen Wastes#**Services and favors**|mammoth herder]]** encampment, now deserted
+- 1 A **[[19 - The Frozen Wastes#**Dangers**|mammoth herder]]** encampment, now deserted
 - 2 Small animals (fox, hares, rodents, birds, etc.)
-- 3 A herd of wild **[[19 - The Frozen Wastes#**Services and favors**|mammoths]]** or **[[19 - The Frozen Wastes#**Services and favors**|caribou]]**, wary, easily spooked/provoked
-- 4 A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]** or perhaps a **[[38 - Rime Lords#**Major arcana**|tulpa]]**, curious or indifferent
-- 5 **[[19 - The Frozen Wastes#**Services and favors**|Mammoth herders]]**, seen in the distance, avoiding you
-- 6 **[[19 - The Frozen Wastes#**Services and favors**|Mammoth herders]]**, approaching warily
+- 3 A herd of wild **[[19 - The Frozen Wastes#**Dangers**|mammoths]]** or **[[19 - The Frozen Wastes#**Dangers**|caribou]]**, wary, easily spooked/provoked
+- 4 A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]** or perhaps a **[[38 - Rime Lords#**Tulpa**|tulpa]]**, curious or indifferent
+- 5 **[[19 - The Frozen Wastes#**Dangers**|Mammoth herders]]**, seen in the distance, avoiding you
+- 6 **[[19 - The Frozen Wastes#**Dangers**|Mammoth herders]]**, approaching warily
 
 ### **Mammoth herders**
 
@@ -133,9 +133,9 @@ Here's a typical band:
 - Hounds and hunting drakes
 - Spears/javelins tipped with dark ice, flint, bone, or bronze (*crude*)
 
-About half of each band are youngsters, with the rest being able-bodied adults. Elders rarely allow themselves to survive long enough to become a burden to the others. A band typically keeps a herd of 10 to 20 adult **[[19 - The Frozen Wastes#**Services and favors**|mammoths]]**, plus a few young. They butcher their own beasts only when desperate, keeping them instead for wool, transport, and labor.
+About half of each band are youngsters, with the rest being able-bodied adults. Elders rarely allow themselves to survive long enough to become a burden to the others. A band typically keeps a herd of 10 to 20 adult **[[19 - The Frozen Wastes#**Dangers**|mammoths]]**, plus a few young. They butcher their own beasts only when desperate, keeping them instead for wool, transport, and labor.
 
-A band spends the warmer months on the Frozen Wastes, but spend the colder months sheltering in the caves, ruins, and forests of the **[[54 - The Whitefang Mountains#The Whitefang Mountains|Whitefang Mountains]]**. They'll trade with **[[54 - The Whitefang Mountains#**Names**|valley farms]]** or **[[54 - The Whitefang Mountains#**Monk**|fortress-monasteries]]** in spring, before heading out into the Wastes, or in autumn, before they encamp for the winter.
+A band spends the warmer months on the Frozen Wastes, but spend the colder months sheltering in the caves, ruins, and forests of the **[[54 - The Whitefang Mountains#The Whitefang Mountains|Whitefang Mountains]]**. They'll trade with **[[54 - The Whitefang Mountains#**Questions**|valley farms]]** or **[[54 - The Whitefang Mountains#**Monk**|fortress-monasteries]]** in spring, before heading out into the Wastes, or in autumn, before they encamp for the winter.
 
 **Something interesting:** Mammoth herders tend to be impeccably polite, with drawn-out, formal greetings and elaborate, almost artistic ways of doing everything from lacing up a parka to butchering a beast.
 
@@ -160,7 +160,7 @@ The following are special items in Stonetop, but commonly available among mammot
 | a substantial piece              | 1*    |
 | a mammoth tusk (immobile)        | 2*    |
 | cartload of mammoth tusks        | 3*    |
-| Dark ice (*magical*, see [[38 - Rime Lords#**1d6** condition\|Rime Lords]]) |       |
+| Dark ice (*magical*, see [[38 - Rime Lords#**Dark ice**\|Rime Lords]]) |       |
 | a small piece (magical)          | 1     |
 | a large chunk (magical)          | 2     |
 | with special characteristics     | +1    |
@@ -230,11 +230,11 @@ warmer climes
 
 - **[[54 - The Whitefang Mountains#**1d6** instinct/moves|Ice drakes]]**, especially in warmer months
 - **[[42 - The Steplands#1d6 natural beast or spirit|Kleztigrs]]**, called "mchebragris" in the local tongue
-- **[[23 - The Great Wood#**Nailadd**|Wolves]]**
-- A **[[14 - The Flats#**Beznpol**|frythanc]]**, nesting in the Whitefangs and preying on caribou or even mammoths
+- **[[23 - The Great Wood#**Raselbaedd**|Wolves]]**
+- A **[[14 - The Flats#**Frythanc**|frythanc]]**, nesting in the Whitefangs and preying on caribou or even mammoths
 - **[[10 - Death and the Undying#**Pyped**|Wraiths]]** of those who died of starvation and want, or corrupted by the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
-- **[[38 - Rime Lords#**Major arcana**|Tulpas]]**, free-roaming or bound to something nearby
+- **[[38 - Rime Lords#**Tulpa**|Tulpas]]**, free-roaming or bound to something nearby
 - **[[54 - The Whitefang Mountains#**Shantyara**|Kyakaara]]**, perhaps what remains of a corrupted band of mammoth herders
 
 # **Caribou**

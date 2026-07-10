@@ -145,7 +145,7 @@ The PCs have just suffered an attack, ignored a threat, or rolled a 6- and you t
 
 There's no hard-and-fast rule, but you should follow your principles and make a GM move that flows from the fiction. Often, you'll pick a GM move (like **put them in a spot** or a monster move like **bash prey to the ground, senseless**), and the specific fiction of your move means that they also take damage or mark a debility.
 
-Other times, you'll know that you want to do something harmful, but won't have a specific move in mind. In that case, have the player roll the damage taken and let that inform the nature and severity of your move. See [[05 - Running the Game#<sup>ä</sup> **Turn their move back on them**|Running the Game]] for more guidance.
+Other times, you'll know that you want to do something harmful, but won't have a specific move in mind. In that case, have the player roll the damage taken and let that inform the nature and severity of your move. See [[05 - Running the Game#<sup>ä</sup> **Hurt someone**|Running the Game]] for more guidance.
 
 Keep in mind the tags of the attacks involved. *Messy* attacks are especially destructive, and should often **hurt them** or **use up their resources** (destroying shields, weapons, or gear). *Forceful* attacks knock victims around; even if they do no damage, they should still change the momentum or positioning of the fight.
 

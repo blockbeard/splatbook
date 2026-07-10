@@ -2,7 +2,7 @@
 
 The **[[42 - The Steplands#The Steplands|Steplands]]** are home to dozens of nomadic bands, collectively called the Hillfolk. The bands are tied together into a bewildering tapestry of kinship and intermarriage and treaty, rivalry and blood feud and long-standing grudge.
 
-Some Hillfolk roam the **[[14 - The Flats#The Flats|Flats]]** in warmer months. Some bands trade with Stonetop, at least on occasion, signaling to them at **[[48 - Titan Bones#Titan Bones|Titan Bones]]**. Others trade with **[[32 - Marshedge#Marshedge|Marshedge]]**, and still others with **[[29 - Lygos and the South#**There and back again**|southern merchants]]**. They have little contact with the **[[34 - North Manmarch#North Manmarch|Manmarchers]]**, and tend to treat them with suspicion.
+Some Hillfolk roam the **[[14 - The Flats#The Flats|Flats]]** in warmer months. Some bands trade with Stonetop, at least on occasion, signaling to them at **[[48 - Titan Bones#Titan Bones|Titan Bones]]**. Others trade with **[[32 - Marshedge#Marshedge|Marshedge]]**, and still others with **[[29 - Lygos and the South#**Merchants**|southern merchants]]**. They have little contact with the **[[34 - North Manmarch#North Manmarch|Manmarchers]]**, and tend to treat them with suspicion.
 
 Their wariness towards the Manmarchers is nothing, though, compared to their contempt for **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**. The Hillfolk view mining metal ores as sacrilege. They'll gladly steal from the Delvers or loot their corpses, but only the most debased Hillfolk trade peacefully with Gordin's Delve. And only the most shunned and shamed will actually move there and call the mining town home.
 
@@ -115,7 +115,7 @@ Ask the PCs, or pick 1 or 2, or roll the Die of Fate.
 - 7 Tend to be large/slender/tall/ short/etc.
 - 8 Especially fierce/friendly/territorial/aggressive/political/etc.
 - 9 Extraordinarily large/fast/clever/ fearless/etc. horses
-- 10 Produce more than their share of spirit-talkers/hdours/**[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**
+- 10 Produce more than their share of spirit-talkers/hdours/**[[42 - The Steplands#**Gouzadn**|gouzadn]]**
 - 11 Guard a greatly feared and cursed ruin/barrow/area
 - 12 Not actually nomadic; they stay in cliff-dwellings all year
 
@@ -159,7 +159,7 @@ If the PCs get a trade opportunity (from the Seasons Change move), a band of Hil
 - A cartload of timber or a dozen sheep/goats (Value 2), in exchange for help with a problem.
 - Horses (Value 3) traded for a similar amount of Surplus (Value 2), plus help with a problem.
 - Someone versed in training and caring for horses, willing to move to Stonetop
-- An arcanum of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**, the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**, the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**, or the**[[46 - The Things Below#The Things Below|Things Below]]**.
+- An arcanum of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**, the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**, the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**, or the**[[46 - The Things Below#The Things Below|Things Below]]**.
 
 ## **Special items**
 
@@ -215,7 +215,7 @@ PCs don't need to roll Trade & Barter for the following, but they might need to 
 
 When the Hillfolk suspect a spirit-talker of sorcery, they exile them. In the worst cases, they bury them alive. Few are willing to deal a death-blow to a hdour, for that's a sure way to get oneself cursed.
 
-Hdour are often in possession of one or more **[[57 - Appendix C - Minor Arcana#An old scroll case , fragile|arcana]]**, which they do not hesitate to use. They are often attended by beasts, **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**, spirits of the **[[10 - Death and the Undying#Death and the undying|dead and undying]]**, and minions of the**[[46 - The Things Below#The Things Below|Things Below]]**.
+Hdour are often in possession of one or more **[[57 - Appendix C - Minor Arcana#An old scroll case , fragile|arcana]]**, which they do not hesitate to use. They are often attended by beasts, **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**, spirits of the **[[10 - Death and the Undying#Death and the undying|dead and undying]]**, and minions of the**[[46 - The Things Below#The Things Below|Things Below]]**.
 
 ## **Hillfolk rider**
 
@@ -246,7 +246,7 @@ When *a Hillfolk rider and their horse attack a foe together*, they deal 1d6+4 d
 - <sup>ä</sup> Take advantage of the terrain
 - <sup>ä</sup> Borrow and wield a friendly spirit's power
 
-Now and then, a young Hillfolk shows signs of being touched by the spirits. The signs often come after a sickness or brush with death. They hear voices that aren't there. They find themselves more comfortable with horse and hound than their fellow people. Sometimes, they lose the human tongue altogether and go feral, becoming a **[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**. But when things go right—when they are guided by an elder, and possessed of great self-control they become a spirit-talker for their band.
+Now and then, a young Hillfolk shows signs of being touched by the spirits. The signs often come after a sickness or brush with death. They hear voices that aren't there. They find themselves more comfortable with horse and hound than their fellow people. Sometimes, they lose the human tongue altogether and go feral, becoming a **[[42 - The Steplands#**Gouzadn**|gouzadn]]**. But when things go right—when they are guided by an elder, and possessed of great self-control they become a spirit-talker for their band.
 
 ## **Upland horse**
 

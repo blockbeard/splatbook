@@ -32,7 +32,7 @@ Use the answers to help decide what Aratis's **true nature** is [[20 - Gods and 
 - A Judge from another settlement arrives and finds things in Stonetop lacking.
 - A true disciple has a vision of a powerful agent of chaos breaking its bonds.
 - While digging stones or excavating a new foundation, folks in Stonetop discover a long-lost Chronicle of Aratis, sealed and mostly intact.
-- Legend tells of the Tower Eternal, made of **[[36 - Primordial Powers#**Portals**|black iron]]**, with doors so heavy only a team of horses can open them. Three hermits, all true disciples of Aratis, guard it and whatever it contains.
+- Legend tells of the Tower Eternal, made of **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, with doors so heavy only a team of horses can open them. Three hermits, all true disciples of Aratis, guard it and whatever it contains.
 
 ## **Shrines & temples**
 
@@ -76,7 +76,7 @@ Judges are charged with maintaining a Chronicle, a history of the community they
 
 Should an NPC Judge (or a communityspanning order of Judges) oppose or cause trouble for the PCs, write them up as a threat (an *institution*).
 
-Remember: NPCs don't have playbooks. An NPC Judge might have tags or moves reminiscent of a PC Judge, or not. See [[03 - Aratis, the Lawkeeper#**Major arcana**|Aratis, the Lawkeeper]] for some potential NPC Judges.
+Remember: NPCs don't have playbooks. An NPC Judge might have tags or moves reminiscent of a PC Judge, or not. See [[03 - Aratis, the Lawkeeper#**Dangers**|Aratis, the Lawkeeper]] for some potential NPC Judges.
 
 # **Aratis**
 
@@ -107,7 +107,7 @@ Should the true disciples of a community oppose or cause trouble for the PCs, wr
 #### **Various treasures**
 
 - A blanket woven in the knot-language of a long-dead sect of Aratis's (*fragile*, Value 0, or 2 to the right buyer)
-- A maul of **[[36 - Primordial Powers#**Portals**|black iron]]**, utterly immune to magic (*close*, *forceful*, *awkward*, +1 damage, Value 2)
+- A maul of **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, utterly immune to magic (*close*, *forceful*, *awkward*, +1 damage, Value 2)
 - A shield of **[[43 - Stone Lords#Various treasures|makerglass]]**, etched with Aratis's symbol (*indestructible*, +1 armor, +1 Readiness of a Defend 7+, Value 2)
 - A helm set with a "jewel" of **[[38 - Rime Lords#Dark ice|dark ice]]**, grants advantage to resist mind-affecting magic (*magical*, Value 2)
 - An old book (*fragile*, Value 2), the Chronicle of a failed settlement, ending mid-sentence
@@ -136,8 +136,8 @@ might be associated with Aratis, or at least revered by her followers.
 
 #### **Associated entities**
 
-- **Ancestral spirits** or other **[[20 - Gods and Religion#**Petitioning the gods**|little gods]]** of home, hearth, and civilization
-- The **tomb-bog spirit** (page [[10 - Death and the Undying#**Necromancer**|85\)]], sent to execute a criminal
+- **Ancestral spirits** or other **[[20 - Gods and Religion#**Little gods**|little gods]]** of home, hearth, and civilization
+- The **tomb-bog spirit** (page [[10 - Death and the Undying#**Death and the undying**|85\)]], sent to execute a criminal
 - An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, called up to smite some agent of chaos
 - Perhaps even the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**) or his hounds
 

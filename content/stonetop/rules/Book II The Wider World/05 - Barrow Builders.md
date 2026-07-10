@@ -6,7 +6,7 @@ Society collapsed. Horror swept the land. Petty tyrants and sorcerer-kings rose 
 
 Fleeting kingdoms rose and fell. Rulers raised grand barrows and had themselves interred with riches, slaves, and followers in tow. Fueled by dark magic and the power of the Things Below, some of these tyrants reigned on even after death.
 
-In time, the power of the Things Below diminished. Subjects rose up and overthrew their masters. Tyrants began to fall. Those who could not be killed were sealed away in barrows. The **[[46 - The Things Below#The Things Below|current age]]** arrived.
+In time, the power of the Things Below diminished. Subjects rose up and overthrew their masters. Tyrants began to fall. Those who could not be killed were sealed away in barrows. The **[[46 - The Things Below#**The current age**|current age]]** arrived.
 
 Many barrows still remain. A few are simple graves. Many are haunted or cursed. Some imprison ancient evil. They dot the World's End, especially in the **[[42 - The Steplands#The Steplands|Steplands]]**. The **[[26 - Hillfolk#Hillfolk|Hillfolk]]** shun them, and warn all travelers away. For they descended from the Barrow Builders, and those who cast them off. They know what horrors those earthen mounds contain.
 
@@ -17,8 +17,8 @@ Breton- or Cornish-inspired, similar to **[[26 - Hillfolk#Hillfolk|Hillfolk name
 ## **Hooks**
 
 - An artifact that the PCs want lies in a haunted barrow mound
-- Some fool unseals a barrow and lets **[[05 - Barrow Builders#**Monsters**|phantom riders]]** loose
-- Someone acquires the tether of a **[[05 - Barrow Builders#**Phantom rider**|deathless one]]**
+- Some fool unseals a barrow and lets **[[05 - Barrow Builders#**Phantom rider**|phantom riders]]** loose
+- Someone acquires the tether of a **[[05 - Barrow Builders#**Deathless ones**|deathless one]]**
 - Hillfolk are furious that one of the barrows was looted
 
 # **Themes**
@@ -79,7 +79,7 @@ To create a Barrow Builder site, pick one or have someone roll the Die of Fate.
 # **1d6** site
 
 - 1 A **[[42 - The Steplands#Caves|cave]]**, in which they or their victims lived/hid/died/ were interred (combine with 1 or 2 themes, [[05 - Barrow Builders#**Barrow**|Barrow Builders]])
-- 2 An old battlefield or mass grave, likely **[[10 - Death and the Undying#**Death's Door**|haunted]]**
+- 2 An old battlefield or mass grave, likely **[[10 - Death and the Undying#**Death and the undying**|haunted]]**
 - 3-4 A **reclaimed Maker-ruin** (see below)
 - 5-6 A **[[05 - Barrow Builders#Barrow|barrow]]**
 
@@ -89,7 +89,7 @@ Choose or roll for its origin. Create the ruin from the appropriate tables, roll
 
 # **1d12** origin
 
-- 1 A **[[24 - Green Lords#1d6 site|Green Lord ruin]]** 2 A **[[38 - Rime Lords#**A monument, or marker** For example:|Rime Lord ruin]]** 3-4 A **[[45 - Tempest Lords#**Enigmatic structures** For example:|Tempest Lord ruin]]** 5-6 A **[[18 - Forge Lords#1d6 site|Forge Lord ruin]]** 7-10 A **[[43 - Stone Lords#1d6 site|Stone Lord ruin]]**
+- 1 A **[[24 - Green Lords#1d6 site|Green Lord ruin]]** 2 A **[[38 - Rime Lords#**A ruin**|Rime Lord ruin]]** 3-4 A **[[45 - Tempest Lords#**A ruin**|Tempest Lord ruin]]** 5-6 A **[[18 - Forge Lords#1d6 site|Forge Lord ruin]]** 7-10 A **[[43 - Stone Lords#1d6 site|Stone Lord ruin]]**
 - 11-12 A ruin of multiple groups (roll 1d10 twice)
 
 Then pick or roll for a theme [[05 - Barrow Builders#**Barrow**|Barrow Builders]] to reflect how the Barrow Builders used it, 1-3 signs of their presence, and its current condition. Populate the site with artifacts and dangers of the Barrow Builders, as well as those of its original owners.
@@ -111,9 +111,9 @@ Then pick or roll for a theme [[05 - Barrow Builders#**Barrow**|Barrow Builders]
 - 9-10 Buried, overgrown, or hidden, but mostly intact
 - 11-12 Fully visible and strangely well-preserved
 
-For more examples, see **[[06 - Blackwater Lake#**1d12** terrain|Blackwater Lake]]** and **[[47 - Three Coven Lake#**1d12** shoreline terrain|Three Coven Lake]]**.
+For more examples, see **[[06 - Blackwater Lake#**1d12** ruin or barrow|Blackwater Lake]]** and **[[47 - Three Coven Lake#**1d12** stone lord site|Three Coven Lake]]**.
 
-*The PCs are searching for the fiery heart of the Mindgem [[58 - Appendix D - Major Arcana#Mysteries of the Mindgem|Mindgem]]. I think it's in a Stone Lord ruin that the Barrow Builders reclaimed. Looking at the tables on [[43 - Stone Lords#1d6 site|1d6]] I end up with a warren of multi-storied, brutalist apartments—housing for laborers—built around a single, giant-sized manor where the overseers dwelt. Maybe this was a plantation, with a small army of lithic servants* [[43 - Stone Lords#**1d12** power|Stone Lords]] *maintaining the complex?* 
+*The PCs are searching for the fiery heart of the Mindgem [[58 - Appendix D - Major Arcana#Mysteries of the Mindgem|Mindgem]]. I think it's in a Stone Lord ruin that the Barrow Builders reclaimed. Looking at the tables on [[43 - Stone Lords#1d6 site|1d6]] I end up with a warren of multi-storied, brutalist apartments—housing for laborers—built around a single, giant-sized manor where the overseers dwelt. Maybe this was a plantation, with a small army of lithic servants* [[43 - Stone Lords#**1d12** sapience|Stone Lords]] *maintaining the complex?* 
 
 *For the Barrow Builders' theme, I roll an 11 ("rulers clinging to power, even from the grave"). For signs, I roll a 5 ("damage/plunder/vandalism/graffiti") and 10 ("crude, human-sized" modifications). For the current condition, I roll a 9 ("buried, overgrown… mostly intact"). I ponder a bit, and come up with this:*
 
@@ -129,7 +129,7 @@ For more examples, see **[[06 - Blackwater Lake#**1d12** terrain|Blackwater Lake
 
 They are the most obvious remnants of these bloody times: dome shaped earthen mounds. Most folks assume they were all tombs, but that's hardly the case.
 
-Pick or roll for themes [[05 - Barrow Builders#**Barrow**|Barrow Builders]], its size, its purpose, 1 or 2 architectural elements, its condition, and a feature. Place the barrow in an appropriate terrain for its region. Fill it with **[[05 - Barrow Builders#**1d12** feature|artifacts]]** and **[[05 - Barrow Builders#**Major arcana**|dangers]]** of the Barrow Builders or the appropriate region.
+Pick or roll for themes [[05 - Barrow Builders#**Barrow**|Barrow Builders]], its size, its purpose, 1 or 2 architectural elements, its condition, and a feature. Place the barrow in an appropriate terrain for its region. Fill it with **[[05 - Barrow Builders#**Artifacts**|artifacts]]** and **[[05 - Barrow Builders#**Dangers**|dangers]]** of the Barrow Builders or the appropriate region.
 
 ## **1d12** size
 
@@ -165,7 +165,7 @@ Even in large barrows, chambers and passages are cramped and claustrophobic, oft
 
 ## **1d12** feature
 
-- 1-2 **[[10 - Death and the Undying#**Death's Door**|Haunted]]**, marked by dool trees
+- 1-2 **[[10 - Death and the Undying#**Death and the undying**|Haunted]]**, marked by dool trees
 - 3-4 Corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**
 - 5 Protective spirit(s)/construct(s)/demon(s)/spell(s)/trap(s)
 - 6 Connects to **[[42 - The Steplands#Caves|caves]]**
@@ -174,7 +174,7 @@ Even in large barrows, chambers and passages are cramped and claustrophobic, oft
 - 9-10 Treasure (roll 1d6 to inform how much remains)
 - 11-12 Roll again, twice
 
-For more examples, see **[[06 - Blackwater Lake#**1d12** terrain|Blackwater Lake]]**.
+For more examples, see **[[06 - Blackwater Lake#**1d12** ruin or barrow|Blackwater Lake]]**.
 
 ## **Artifacts**
 
@@ -188,11 +188,11 @@ The Barrow Builders gladly looted and repurposed whatever treasures they could, 
 ## **Various treasures**
 
 - A rusty Y-shaped pendant (Value 0), symbol of the cult who fed the **[[46 - The Things Below#**1d12** origin|Voice of the Eternal Maw]]**
-- A bronze blade from a **metal construct**'s [[18 - Forge Lords#**Instinct** to burn the living|Forge Lords]] limb, remade into a brutal axe (*close*, *messy*, *awkward*, +1 damage, Value 1)
+- A bronze blade from a **metal construct**'s [[18 - Forge Lords#**Metal constructs**|Forge Lords]] limb, remade into a brutal axe (*close*, *messy*, *awkward*, +1 damage, Value 1)
 - A map (*fragile*) to the barrow of a famously rich warlord
 - Ancient grains in wax-sealed jugs, still good and worth 1 Surplus (*immobile*)
 - A Maker-era gold coin (Value 2), found in a mass grave, the tether for a **[[10 - Death and the Undying#**Pyped**|ghost]]**
-- A fine torc of **[[45 - Tempest Lords#**1d12** condition|aetherium]]** around a skeleton's neck; shocks its wearer if they try to remove it or engage in any sort of violence
+- A fine torc of **[[45 - Tempest Lords#**Aetherium**|aetherium]]** around a skeleton's neck; shocks its wearer if they try to remove it or engage in any sort of violence
 - A spear (*close*, *thrown*, *beautiful*, *indestructible*, 2 piercing, Value 3) made of **[[43 - Stone Lords#Various treasures|makerglass]]**, shaft and all, found in a hero's tomb
 - A Stone Lord's cleft skull, coated in gold and studded with gems (*cumbersome*, Value 4)
 
@@ -253,9 +253,9 @@ Pick 1 or have someone roll.
 
 #### **Hazards**
 
-- **[[43 - Stone Lords#**Major arcana**|Unstable construction]]**
-- **[[43 - Stone Lords#**Bound Entities**|Perilous stone]]**
-- **[[11 - The Dread River#**1d6** what taints it|Cursed objects]]**
+- **[[43 - Stone Lords#**Dangers**|Unstable construction]]**
+- **[[43 - Stone Lords#Perilous stone|Perilous stone]]**
+- **[[11 - The Dread River#**Dangers**|Cursed objects]]**
 - Darkness, deep in a barrow
 - Low ceilings, cramped quarters, poor lines of sight
 
@@ -316,7 +316,7 @@ To create a trap, consider the barrow's purpose and what it contains, and where 
 | 11 | Spirits/constructs/undead/vermin |
 | 12 | Previously triggered/disarmed |
 
-Special materials might include **[[24 - Green Lords#**1d12** purpose|hazardous growths]]**, **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**, **[[36 - Primordial Powers#**Portals**|black iron]]**, **[[38 - Rime Lords#Dark ice|dark ice]]**, **[[43 - Stone Lords#Various treasures|makerglass]]**, **[[45 - Tempest Lords#**1d12** condition|aetherium]]**, **[[46 - The Things Below#**Unnatural phenomena**|red crystal]]**, and/or other things of your devising.
+Special materials might include **[[24 - Green Lords#**1d12** ability|hazardous growths]]**, **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**, **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, **[[38 - Rime Lords#Dark ice|dark ice]]**, **[[43 - Stone Lords#Various treasures|makerglass]]**, **[[45 - Tempest Lords#**Aetherium**|aetherium]]**, **[[46 - The Things Below#**Unnatural phenomena**|red crystal]]**, and/or other things of your devising.
 
 ## Examples:
 
@@ -332,16 +332,16 @@ Special materials might include **[[24 - Green Lords#**1d12** purpose|hazardous 
 ## **People**
 
 - **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, warning away explorers or chasing them off
-- A **[[26 - Hillfolk#Hillfolk rider|hdour]]**, **[[29 - Lygos and the South#Adventurer|antiquarian]]**, or **[[46 - The Things Below#**Morgais**|sorcerer]]**, seeking knowledge/artifacts
+- A **[[26 - Hillfolk#Hillfolk rider|hdour]]**, **[[29 - Lygos and the South#Adventurer|antiquarian]]**, or **[[46 - The Things Below#**Cultist**|sorcerer]]**, seeking knowledge/artifacts
 - **[[29 - Lygos and the South#Adventurer|Adventurers]]**, hunting treasure
-- A **[[10 - Death and the Undying#**Dool spirit**|necromancer]]**, consulting with those long-dead
+- A **[[10 - Death and the Undying#**Death and the undying**|necromancer]]**, consulting with those long-dead
 
 ## **Monsters**
 
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** and **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, haunting barrows, reclaimed ruins, old battlegrounds mass graves
-- **[[43 - Stone Lords#Some examples:|Constructs]]**, stolen from the Stone Lords or made using their arts
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** and **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, haunting barrows, reclaimed ruins, old battlegrounds mass graves
+- **[[43 - Stone Lords#**Construct**|Constructs]]**, stolen from the Stone Lords or made using their arts
 - **[[46 - The Things Below#**1d12** origin|Corrupted beings]]**, ancient pets of ancient sorcerers, or local fauna affected by lingering evil
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, bound by old spells
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, bound by old spells
 
  *Group*, *undead*, *corrupted*, *terrifying*, *hardy*, *hoarder*
 
@@ -376,7 +376,7 @@ For a time, it was common for warriors to pledge both their lives and their deat
 
 In the time of the Barrow Builders, many warlords and sorcerers were obsessed with immortality. A number of them found it—or something like it—through undeath.
 
-To create a deathless one, imagine a warlord (someone similar to a **[[34 - North Manmarch#**Monsters**|Manmarcher chief]]**), a **[[46 - The Things Below#**Morgais**|sorcerer]]**, a **[[10 - Death and the Undying#**Dool spirit**|necromancer]]**, or a **[[26 - Hillfolk#Hillfolk rider|hdour]]**. Consider making them **[[46 - The Things Below#**1d12** origin|corrupted]]** by the Things Below. Add the *undead* tag, and give them +4 HP because they are animated by more than biology.
+To create a deathless one, imagine a warlord (someone similar to a **[[34 - North Manmarch#**Chief**|Manmarcher chief]]**), a **[[46 - The Things Below#**Cultist**|sorcerer]]**, a **[[10 - Death and the Undying#**Death and the undying**|necromancer]]**, or a **[[26 - Hillfolk#Hillfolk rider|hdour]]**. Consider making them **[[46 - The Things Below#**1d12** origin|corrupted]]** by the Things Below. Add the *undead* tag, and give them +4 HP because they are animated by more than biology.
 
 From there, pick or roll for the tether that sustains them, how it sustains them, and its limitation. Then pick or roll for the deathless one's current state. Consider where and how they (or their influence) might be encountered. Let this all inform their story, their personality, and their stat block.
 
@@ -418,9 +418,9 @@ Unless their tether fails or is destroyed, they cannot truly die. Their body wil
 - 11 Secretly active, pursuing schemes
 - 12 Roll 1d10 twice
 
-*I've established that the Mindgem's fiery heart is in the clutches of a deathless sorcerer, whose soul inhabits an arcane device that controls a number of lithic servants* (see [[43 - Stone Lords#**1d12** power|Stone Lords]])*.* 
+*I've established that the Mindgem's fiery heart is in the clutches of a deathless sorcerer, whose soul inhabits an arcane device that controls a number of lithic servants* (see [[43 - Stone Lords#**1d12** sapience|Stone Lords]])*.* 
 
-*[[46 - The Things Below#**Morgais**|I start with a sorcerer]]**[[46 - The Things Below#**Example names**|, corrupted by El'rash-Orra]]**. For gifts, I give him a terrifying gaze and the ability to inflict false sensations. For marks, I give him slow-healing wounds and strange fascinations (he's a voyeur).* 
+*[[46 - The Things Below#**Cultist**|I start with a sorcerer]]**[[46 - The Things Below#**For We Are Many**|, corrupted by El'rash-Orra]]**. For gifts, I give him a terrifying gaze and the ability to inflict false sensations. For marks, I give him slow-healing wounds and strange fascinations (he's a voyeur).* 
 
 *I already decided that he had "anchored his soul" to an arcane device in a Stone Lord manor (*immobile*,* fragile*). For a limitation, I think the device "must be fed/charged/maintained," and that "its destruction results in his final death." For a current state, I think he's "trapped, but with some influence" via the lithic servants he can possess.* 
 

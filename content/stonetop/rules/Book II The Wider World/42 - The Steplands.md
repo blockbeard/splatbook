@@ -51,7 +51,7 @@ Why is the land like this? That's for you and your table to decide, but perhaps�
 
 - … it's a natural result of the thirsty bedrock, the ceaseless southerly wind, the grazing of beasts;
 - … the **Stone Lords**' [[43 - Stone Lords|Stone Lords]] magic still infuses the land, repelling soil and seed, fossilizing roots, devouring minerals;
-- … battles between Stone Lords and the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** blasted the land, and only the hardiest **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]** still dwell here;
+- … battles between Stone Lords and the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** blasted the land, and only the hardiest **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]** still dwell here;
 - … the **[[46 - The Things Below#The Things Below|Things Below]]** sleep fitfully here, breathing in through lakes and sinkholes, sucking at the lifeforce of the soil;
 - … some combination of the above; or
 - … something completely different.
@@ -72,7 +72,7 @@ Why is the land like this? That's for you and your table to decide, but perhaps�
 ## **Hooks**
 
 - Harsh weather threatens PCs on the Highway; a nearby cave might provide shelter
-- A Hillfolk band is plagued by a bloodthirsty **[[42 - The Steplands#**Instinct** to overreact|gouzadn]]**, but a concerned parent begs for their lost child's life to be spared
+- A Hillfolk band is plagued by a bloodthirsty **[[42 - The Steplands#**Gouzadn**|gouzadn]]**, but a concerned parent begs for their lost child's life to be spared
 - A **[[42 - The Steplands#**Bat swarm**|brawzbedr]]** naps on the Highway, blocking a merchant's wagon
 - Someone the PCs care about went to explore a cave and never came out
 
@@ -109,10 +109,10 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 | 1d6 | point of interest |
 |---|---|
 | 1 | A place corrupted by the **[[46 - The Things Below#The Things Below\|Things Below]]** |
-| 2 | A place **[[10 - Death and the Undying#**Death's Door**\|haunted]]** by death or the undying |
+| 2 | A place **[[10 - Death and the Undying#**Death and the undying**\|haunted]]** by death or the undying |
 | 3 | A site or artifact of the **[[05 - Barrow Builders#Barrow Builders\|Barrow Builders]]** |
 | 4 | A **[[26 - Hillfolk#Hillfolk\|Hillfolk]]** encampment or sacred place, occupied or not |
-| 5 | A place sacred to the **[[41 - Spirits of the Wild#Spirits of the Wild\|spirits of the wild]]** |
+| 5 | A place sacred to the **[[41 - Spirits of the Wild#**Spirits of the wild**\|spirits of the wild]]** |
 | 6 | A ruin or artifact of the **[[43 - Stone Lords#Stone Lords\|Stone Lords]]** |
 
 | 1d6 | hillfolk encounter |
@@ -124,14 +124,14 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 | 5 | A whole band, on the move |
 | 6 | A meeting between two or more bands |
 
-For more about Hillfolk bands, see [[26 - Hillfolk#**Lore**\|Hillfolk]].
+For more about Hillfolk bands, see [[26 - Hillfolk#**Nomads**\|Hillfolk]].
 
 | 1d6 | other encounter |
 |---|---|
-| 1 | Deadly beast, not actively hostile but easily provoked: a **[[42 - The Steplands#**Bat swarm**\|brawzbedr]]**, **[[23 - The Great Wood#**Butcherbird**\|cave bear]]**, **[[14 - The Flats#**Shellback drake**\|thunder drake]]**, etc. |
-| 2-3 | Potential game, but big and dangerous if provoked: **[[23 - The Great Wood#**1d6** point of interest\|boars]]**, **[[14 - The Flats#Aurochs\|aurochs]]**, etc. |
+| 1 | Deadly beast, not actively hostile but easily provoked: a **[[42 - The Steplands#**Bat swarm**\|brawzbedr]]**, **[[23 - The Great Wood#**Cave bear**\|cave bear]]**, **[[14 - The Flats#**Thunder drake**\|thunder drake]]**, etc. |
+| 2-3 | Potential game, but big and dangerous if provoked: **[[23 - The Great Wood#**Dangers**\|boars]]**, **[[14 - The Flats#Aurochs\|aurochs]]**, etc. |
 | 4-5 | Game, mostly harmless but prone to bolt: deer, fowl, rabbits, etc. |
-| 6 | **[[41 - Spirits of the Wild#Spirits of the Wild\|Spirit of the wild]]**, curious or indifferent |
+| 6 | **[[41 - Spirits of the Wild#**Spirits of the wild**\|Spirit of the wild]]**, curious or indifferent |
 
 ## **Dangers**
 
@@ -178,12 +178,12 @@ For more about Hillfolk bands, see [[26 - Hillfolk#**Lore**\|Hillfolk]].
 
 ## **Monsters**
 
-- Ornery beasts, all riled up: **[[14 - The Flats#Aurochs|aurochs]]**, **[[23 - The Great Wood#**1d6** point of interest|boar]]**, **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, or **[[14 - The Flats#**Shellback drake**|thunder drakes]]**.
-- Predators: **[[23 - The Great Wood#**Questions**|cougar]]**, **[[23 - The Great Wood#**Cynddaraig**|feathered drakes]]**, **[[14 - The Flats#**Frythanc**|pack drakes]]**, **[[23 - The Great Wood#**Nailadd**|wolves]]**
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**
-- **[[05 - Barrow Builders#**Phantom rider**|Deathless ones]]**, **[[05 - Barrow Builders#Examples:|barrow wights]]**, or **[[05 - Barrow Builders#**Monsters**|phantom riders]]**, lurking in their barrows or set free of them
-- The **[[10 - Death and the Undying#**1d12** how tightly bound|Ghostly Legion]]**, on the hunt or marching mortals to their cave
-- Other **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, victims of tragedy or violence
+- Ornery beasts, all riled up: **[[14 - The Flats#Aurochs|aurochs]]**, **[[23 - The Great Wood#**Dangers**|boar]]**, **[[23 - The Great Wood#**Cave bear**|cave bears]]**, or **[[14 - The Flats#**Thunder drake**|thunder drakes]]**.
+- Predators: **[[23 - The Great Wood#**Cougar**|cougar]]**, **[[23 - The Great Wood#**Feathered drake**|feathered drakes]]**, **[[14 - The Flats#**Hlomren**|pack drakes]]**, **[[23 - The Great Wood#**Raselbaedd**|wolves]]**
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**
+- **[[05 - Barrow Builders#**Deathless ones**|Deathless ones]]**, **[[05 - Barrow Builders#**People**|barrow wights]]**, or **[[05 - Barrow Builders#**Phantom rider**|phantom riders]]**, lurking in their barrows or set free of them
+- The **[[10 - Death and the Undying#**Death and the undying**|Ghostly Legion]]**, on the hunt or marching mortals to their cave
+- Other **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, victims of tragedy or violence
 - One of the other dangerous beasts that roam the Steplands
 
 ## **Brawzbedr**
@@ -272,7 +272,7 @@ Pale, eyeless things that spawn in the lightless lakes below the Steplands. Like
 - ä Pounce on prey from hiding (*reach*, *forceful*, *grabby*)
 - ä Inflict a deadly, bleeding wound
 
-Like a **[[23 - The Great Wood#**Questions**|cougar]]** but twice as big, with 8-inch fangs hanging out of their mouths. Hillfolk tales claim they once were much more common, pets of the Stone Lords even. Now they are (thankfully) rare.
+Like a **[[23 - The Great Wood#**Cougar**|cougar]]** but twice as big, with 8-inch fangs hanging out of their mouths. Hillfolk tales claim they once were much more common, pets of the Stone Lords even. Now they are (thankfully) rare.
 
 **Something interesting:** Some Hillfolk bands "adopt" a kleztigr, making offerings of meat or young goats, sheep, or even horses. The kletztigr follows the band about, protecting them from outsiders.
 
@@ -377,10 +377,10 @@ Choose or have someone roll, up to 3 times. What story does this tell?
 
 - 1 Bats. So many bats [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]]
 - 2 Fish, salamanders, olms, crawfishpale blind things dwelling in dark waters
-- 3 Cave bears [[23 - The Great Wood#**Butcherbird**|The Great Wood]], a kleztigr [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]], or similar large beast, making its den here
+- 3 Cave bears [[23 - The Great Wood#**Cave bear**|The Great Wood]], a kleztigr [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]], or similar large beast, making its den here
 - 4 Grochslon [[42 - The Steplands#1d6 natural beast or spirit|The Steplands]], or some other subterranean predator
 - 5 Spirit, bound to or happily dwelling in this sacred site [[41 - Spirits of the Wild#Sacred sites|Sacred sites]]
-- 6 A malicious spirit, like a troelloff [[41 - Spirits of the Wild#**Grwgnach**|Spirits of the Wild]]
+- 6 A malicious spirit, like a troelloff [[41 - Spirits of the Wild#**The Halfeyd**|Spirits of the Wild]]
 
 ## Discoveries
 

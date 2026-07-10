@@ -49,10 +49,10 @@ The western shore alternates between wetlands, wide-open flood plains, and rugge
 
 ## **Hooks**
 
-- **[[40 - South Manmarch#**Horned drake**|Bandits]]** or **[[46 - The Things Below#**Morgais**|cultists]]**) take up residence in ruins on the Dread River's shores.
-- The PCs acquire a **[[11 - The Dread River#**1d6** what taints it|cursed treasure]]**, originally looted from the Ruins at Road's End.
+- **[[40 - South Manmarch#**Horned drake**|Bandits]]** or **[[46 - The Things Below#**Cultist**|cultists]]**) take up residence in ruins on the Dread River's shores.
+- The PCs acquire a **[[11 - The Dread River#**Dangers**|cursed treasure]]**, originally looted from the Ruins at Road's End.
 - Some fool is mounting an expedition to cross the Dread River.
-  - People from **[[11 - The Dread River#**The Ruins at Road's End**|east of the river]]** land on the western shore.
+  - People from **[[11 - The Dread River#**East of the River**|east of the river]]** land on the western shore.
 
 ## **The Ruins at Road's End**
 
@@ -66,7 +66,7 @@ Throughout the time of the **[[05 - Barrow Builders#Barrow Builders|Barrow-Build
 
 The ruins sprawl for miles along the shore, and similar vestiges of the past are visible across the river. The legs of a once-mighty bridge still poke out from the water. Everyone agrees that great wealth and troves of
 
-lore remain among the crumbling walls. But everyone also agrees that those old cellar holes and skeletal structures—along with anything dug out of them—are **[[11 - The Dread River#**1d6** what taints it|cursed]]**.
+lore remain among the crumbling walls. But everyone also agrees that those old cellar holes and skeletal structures—along with anything dug out of them—are **[[11 - The Dread River#**Dangers**|cursed]]**.
 
 ## **East of the River**
 
@@ -117,9 +117,9 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 # **1d6** encounter
 
-- 1-2 Big and dangerous beast, easily provoked: **[[14 - The Flats#**Hazards**|aurochs]]**, **[[23 - The Great Wood#**1d6** point of interest|boar]]**, a **[[23 - The Great Wood#**Butcherbird**|cave bear]]**), a **[[14 - The Flats#**Shellback drake**|thunder drake]]**, a **[[40 - South Manmarch#**1d12** battlefield or remains|horned drake]]**, etc.
+- 1-2 Big and dangerous beast, easily provoked: **[[14 - The Flats#**Monsters**|aurochs]]**, **[[23 - The Great Wood#**Dangers**|boar]]**, a **[[23 - The Great Wood#**Cave bear**|cave bear]]**), a **[[14 - The Flats#**Thunder drake**|thunder drake]]**, a **[[40 - South Manmarch#**Dangers**|horned drake]]**, etc.
 - 3-4 Game, mostly harmless and prone to bolt: deer, water fowl, rabbits, etc.
-- 5 **[[11 - The Dread River#**1d6** what taints it|People]]**, exploring, in trouble, or hiding out
+- 5 **[[11 - The Dread River#**Dangers**|People]]**, exploring, in trouble, or hiding out
 - 6 **[[41 - Spirits of the Wild#Spirits of the wild|Spirit of the wild]]**, curious or indifferent
 
 # **1d6** point of interest
@@ -150,24 +150,24 @@ For any point of interest, decide or roll to see what taints it (if anything).
 - Poor footing (mud, silt, branches, dropoffs) hidden by water/reeds
 - Winter ice, thinner than it looks
 - Swarms of midges or mosquitos annoying, distracting, painful, diseased
-- Starlings—obscuring, drowning out sound, buffeting, possibly host to a **[[41 - Spirits of the Wild#**Fadyn**|grwgnach]]**
+- Starlings—obscuring, drowning out sound, buffeting, possibly host to a **[[41 - Spirits of the Wild#**Grwgnach**|grwgnach]]**
 
 #### **People**
 
 - **[[40 - South Manmarch#**Horned drake**|Bandits]]**, hiding among the ruins, possibly cursed/corrupted
-- **Cultists**, led by a **[[46 - The Things Below#**Morgais**|sorcerer]]**
+- **Cultists**, led by a **[[46 - The Things Below#**Cultist**|sorcerer]]**
 - **[[34 - North Manmarch#North Manmarch|Manmarchers]]**: outcasts or foolhardy explorers
 - **Adventurers** or **[[29 - Lygos and the South#Adventurer|antiquarians]]**
-- A **[[26 - Hillfolk#Hillfolk rider|hdour]]** or **[[10 - Death and the Undying#**Dool spirit**|necromancer]]**, trawling the ruins for power
+- A **[[26 - Hillfolk#Hillfolk rider|hdour]]** or **[[10 - Death and the Undying#**Death and the undying**|necromancer]]**, trawling the ruins for power
 
 ## **Monsters**
 
-- Beasts: **[[14 - The Flats#**Hazards**|aurochs]]**, a **[[14 - The Flats#**Shellback drake**|thunder drake]]**, **[[23 - The Great Wood#**1d6** point of interest|boars]]**, a **[[23 - The Great Wood#**Butcherbird**|cave bear]]**, a **[[40 - South Manmarch#**1d12** battlefield or remains|horned drake]]**, **[[14 - The Flats#**Shellback drake**|wild horses]]**, etc.
-- Predators: a **[[23 - The Great Wood#**Questions**|cougar]]**, **[[23 - The Great Wood#**Nailadd**|wolves]]**, a **[[42 - The Steplands#1d6 natural beast or spirit|grochslon]]**, a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]**, etc.
-- A **[[24 - Green Lords#**1d12** peril|llamudwr]]**, lurking in wetlands or flooded forests
+- Beasts: **[[14 - The Flats#**Monsters**|aurochs]]**, a **[[14 - The Flats#**Thunder drake**|thunder drake]]**, **[[23 - The Great Wood#**Dangers**|boars]]**, a **[[23 - The Great Wood#**Cave bear**|cave bear]]**, a **[[40 - South Manmarch#**Dangers**|horned drake]]**, **[[14 - The Flats#**Thunder drake**|wild horses]]**, etc.
+- Predators: a **[[23 - The Great Wood#**Cougar**|cougar]]**, **[[23 - The Great Wood#**Raselbaedd**|wolves]]**, a **[[42 - The Steplands#1d6 natural beast or spirit|grochslon]]**, a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**, **[[42 - The Steplands#1d6 natural beast or spirit|spitting drakes]]**, etc.
+- A **[[24 - Green Lords#**The Unquiet Dead**|llamudwr]]**, lurking in wetlands or flooded forests
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
-- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]** of those who died here
-- **[[46 - The Things Below#**Thrall**|Emanations]]** of or creatures **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]), lurking in the river or the ruins
+- The **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]** of those who died here
+- **[[46 - The Things Below#**Wretch**|Emanations]]** of or creatures **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]]), lurking in the river or the ruins
 
 #### **Cursed object**
 
@@ -185,11 +185,11 @@ When you *remove something valuable from the ruins that dot the Dread River*, ro
 ## **1d6** greater curse
 
 - 1 Horrors pursue you, intent on dragging you and the item back to the ruins, killing any who cross their path. Destroy or bind them, and more will come.
-- 2 You contract a **[[13 - Ferrier's Fen#… **a promise, to be fulfilled now or later**.|disease]]**; it merely makes you miserable, but infects those nearby with a deadly sickness.
+- 2 You contract a **[[13 - Ferrier's Fen#**Dangers**|disease]]**; it merely makes you miserable, but infects those nearby with a deadly sickness.
 - 3 Those around you find themselves on edge, their emotions running raw, and are subject to **[[46 - The Things Below#**Voice of the Eternal Maw**|whispers and visions]]**. Unstable folk quickly succumb.
-- 4 You grow thin, haggard, and unwell. Mark a debility each week, which you cannot clear. Should you die, you become a **[[Inserts#Ghost · Consequences|revenant]]**, tethered to the item, obsessed with either protecting it or returning it to where it was found (your choice).
+- 4 You grow thin, haggard, and unwell. Mark a debility each week, which you cannot clear. Should you die, you become a **[[Inserts#Revenant|revenant]]**, tethered to the item, obsessed with either protecting it or returning it to where it was found (your choice).
 - 5 Wherever you go, plants wither, food spoils, crops fail, beasts grow barren and sickly.
-- 6 Those who die in your presence are unable to pass through the Last Door. They linger as **[[10 - Death and the Undying#**Other ghosts**|revenants]]** or **[[10 - Death and the Undying#**Pyped**|ghosts]]**.
+- 6 Those who die in your presence are unable to pass through the Last Door. They linger as **[[10 - Death and the Undying#**Death and the undying**|revenants]]** or **[[10 - Death and the Undying#**Pyped**|ghosts]]**.
 
 Tailor a curse's specifics to the item, to where and with what it was it found. Incorporate the themes and aspects of any relevant entities. And feel free to create entirely new curses, riffing on the options above.
 
@@ -216,7 +216,7 @@ How does one free oneself of a curse? Possibilities include…
 
 Each one is a few feet long, like a cuttlefish crossed with a giant maggot, squirming wet and gray, a face full of feelers whose touch stings like lightning.
 
-They spend most of their lives in the water, congregating near **[[43 - Stone Lords#Power-crystal|power-crystals]]** and **aetherium** artifacts [[45 - Tempest Lords#**1d12** condition|Tempest Lords]] that have been claimed by the river. They seem entranced by the passive energy, almost lulled to sleep. But when they sense something more dynamic, something meatier, they wriggle out of the water fast enough.
+They spend most of their lives in the water, congregating near **[[43 - Stone Lords#Power-crystal|power-crystals]]** and **aetherium** artifacts [[45 - Tempest Lords#**Aetherium**|Tempest Lords]] that have been claimed by the river. They seem entranced by the passive energy, almost lulled to sleep. But when they sense something more dynamic, something meatier, they wriggle out of the water fast enough.
 
 Some Hillfolk claim that luglfsk are just tadpoles, and tell stories of larger, many-legged terrors that fling lightning from face-feelers that stretch as long as a man grows tall. But those are probably just spook-stories to scare travelers. Probably.
 

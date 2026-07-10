@@ -1,6 +1,6 @@
 # Ustrina
 
-These mask-wearing people dwell to the west, deep in the **[[27 - Huffel Peaks#Huffel Peaks|Huffel Peaks]]**. Every now and then, they emerge from the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]** and visit **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, trading finely worked goods, wonders and the odd bit of **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**.
+These mask-wearing people dwell to the west, deep in the **[[27 - Huffel Peaks#Huffel Peaks|Huffel Peaks]]**. Every now and then, they emerge from the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]** and visit **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, trading finely worked goods, wonders and the odd bit of **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**.
 
 - Masks of polished metal, only vaguely humanoid features
 - Voluminous black robes and strangely ornate headdresses
@@ -30,7 +30,7 @@ Portuguese-sounding, but often ending in "-ix": the Avilio, the Brenix, the Caes
 ### **Hooks**
 
 - Ustrina haven't appeared in Gordin's Delve for six months; one of the **[[22 - Gordin's Delve#**1d12** what brought them|Bosses]]** offers a reward for information.
-- Mining crews go missing in the **[[22 - Gordin's Delve#**Shoddy construction**|First Delve]]**; survivors are blaming Ustrina.
+- Mining crews go missing in the **[[22 - Gordin's Delve#**The Delves**|First Delve]]**; survivors are blaming Ustrina.
 - Members of one sect hire someone to rob a group of another sect (discretely, of course).
 - A trio of masked, black-robed figures have been seen poking around the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**, but why?
 - A merchant from Gordin's Delve brings an Ustrina to Stonetop. It wishes to study the Stone or Maker-ruins about town, but a trio of Ustrina (from the same sect) soon follow, looking for it.
@@ -41,14 +41,14 @@ The Ustrina never remove their masks, robes, or gloves. Rumors abound, of course
 
 - Flesh and blood, much like us, but with elaborate traditions of privacy and decorum
 - Mutant scavengers of the Forge Lords' ruins, horrible to behold, disguised when they deal with humanity
-- Naught but **[[41 - Spirits of the Wild#**Communion**|elemental spirits]]**), animating a simple skeleton of bronze
+- Naught but **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirits]]**), animating a simple skeleton of bronze
 - Constructs of impossibly intricate clockwork, animated by glowing soul-gems
 - Ancient servants of the Forge Lords who have slowly replaced flesh with clockwork
 - A bunch of smaller creatures animating an elaborate puppet
 
 ## **Trade missions**
 
-Ustrina come to Gordin's Delve a few times every season, emerging from the **[[22 - Gordin's Delve#**Shoddy construction**|First Delve]]**. Some have contacts in the town, and approach those contacts directly. Others approach individuals seemingly at random, offering to trade.
+Ustrina come to Gordin's Delve a few times every season, emerging from the **[[22 - Gordin's Delve#**The Delves**|First Delve]]**. Some have contacts in the town, and approach those contacts directly. Others approach individuals seemingly at random, offering to trade.
 
 For any given trade mission, pick or roll what they're offering and what they want in return, using the tables on the following page. Their wants and needs are inscrutable, making them difficult to haggle with and fairly easy to offend. They are often willing to make arrangements now and return in a few weeks or even months to make the transaction.
 
@@ -60,8 +60,8 @@ Pick 1 or have someone roll the Die of Fate.
 - 2-3 Finely wrought items (Value 2) like an exquisite bronze statuette, a silver-alloy dagger (*hand*), a goldembroidered cloak (*warm*), a perfectly balanced short sword (*hand*, *close*, +1 damage, 1 piercing), etc.
 - 4-5 A **curiosity or wonder** (next page)
 - 6-7 Precious metals or jewels (Value 3), like a bar of gold, a chest of ancient silver coins, a gem-encrusted gold ring, a few sapphires
-- 8 1d4 small ingots of **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**
-- 9-10 Some **[[18 - Forge Lords#**Other materials**|artifact]]** of the Forge Lords
+- 8 1d4 small ingots of **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**
+- 9-10 Some **[[18 - Forge Lords#**Artifacts**|artifact]]** of the Forge Lords
 - 11 An artifact from one of the other **[[30 - The Makers#The Makers|Makers]]**
 - 12 Some "priceless" treasure (Value 4), like a sapphire the size of your eye, a chest of gold coins, a bejeweled gold crown, a cartload (*immobile*) of fine steel swords (*close*, +1 damage, 1 piercing)
 
@@ -81,9 +81,9 @@ Pick 1 or have someone roll the Die of Fate.
 - 8 A chest or similar amount of... (roll 1d6 or pick)
   - 1 … **[[43 - Stone Lords#Various treasures|makerglass]]**
   - 2 … **[[38 - Rime Lords#Dark ice|dark ice]]**
-  - 3 … **[[45 - Tempest Lords#**1d12** condition|aetherium]]**
+  - 3 … **[[45 - Tempest Lords#**Aetherium**|aetherium]]**
   - 4 … **[[37 - Red Groves#Red Groves|redwood]]**
-  - 5 … **[[36 - Primordial Powers#**Portals**|black iron]]**
+  - 5 … **[[36 - Primordial Powers#**Primordial powers**|black iron]]**
   - 6 … **[[46 - The Things Below#**Unnatural phenomena**|red crystal]]**.
 - 9 1d4 units of a specific exotic trade good, like bolts of silk, pouches of a certain spice, pouches of amber, pairs of aurochs horns, etc. (Value 3)
 - 10 1d4 cartloads of a particular raw material, like timber, tin, a certain type of cut stone (Value 2)

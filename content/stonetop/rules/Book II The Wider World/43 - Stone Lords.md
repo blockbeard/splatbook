@@ -66,7 +66,7 @@ For example:
 - Someone trapped in a stalagmite, their grasping hands, anguished face, and mournful moans just barely discernible
 - A hollow, seamless cube of rune-carved white stone, 6 feet per side, bitterly cold; a dozen **[[10 - Death and the Undying#**Pyped**|specters]]** are sealed within, impotent and mad
 - A stretch of shining black flagstones, showing reflections of people long past; those who open their minds see a parade of memories, clear as day
-- A **[[43 - Stone Lords#Some examples:|construct]]** with a crack in its "head," possessed by an evil spirit; bound in a circle of deeply-cut runes
+- A **[[43 - Stone Lords#**Construct**|construct]]** with a crack in its "head," possessed by an evil spirit; bound in a circle of deeply-cut runes
 - A labyrinth of stone walls, the walkways forming a rune of binding, some sort of demon trapped in the center
 
 ## **Strange geologies**
@@ -93,7 +93,7 @@ For example:
 
 #### **Ruin**
 
-Pick or roll for themes [[43 - Stone Lords#**Ruin**|Stone Lords]], structure, purpose, architectural elements, and condition. Place the ruin in an appropriate terrain (see [[27 - Huffel Peaks|Huffel Peaks]]  for the **[[42 - The Steplands#The Steplands|Huffel Peaks]]**, for the **Steplands**, or [[40 - South Manmarch|South Manmarch]] for the **South Manmarch**). Populate it with **[[43 - Stone Lords#**Ruin**|lingering signs]]**, **[[43 - Stone Lords#Makerglass|artifacts]]** and/or **dangers** of the Stone Lords [[43 - Stone Lords#**Major arcana**|Stone Lords]] or the appropriate region.
+Pick or roll for themes [[43 - Stone Lords#**Ruin**|Stone Lords]], structure, purpose, architectural elements, and condition. Place the ruin in an appropriate terrain (see [[27 - Huffel Peaks|Huffel Peaks]]  for the **[[42 - The Steplands#The Steplands|Huffel Peaks]]**, for the **Steplands**, or [[40 - South Manmarch|South Manmarch]] for the **South Manmarch**). Populate it with **[[43 - Stone Lords#**Ruin**|lingering signs]]**, **[[43 - Stone Lords#Makerglass|artifacts]]** and/or **dangers** of the Stone Lords [[43 - Stone Lords#**Dangers**|Stone Lords]] or the appropriate region.
 
 # **1d6** structure
 
@@ -131,7 +131,7 @@ Most Maker-ruins are sized for giants people two or even three times as tall as 
 - 5 Buried, overgrown, or hidden, but mostly intact
 - 6 Fully visible and strangely well-preserved
 
-Many Stone Lord ruins were **[[05 - Barrow Builders#Reclaimed Maker-ruin|reclaimed]]** by the Barrow Builders at some point. See **[[06 - Blackwater Lake#**1d12** terrain|Blackwater Lake]]** and **[[47 - Three Coven Lake#**1d12** shoreline terrain|Three Coven Lake]]**.
+Many Stone Lord ruins were **[[05 - Barrow Builders#Reclaimed Maker-ruin|reclaimed]]** by the Barrow Builders at some point. See **[[06 - Blackwater Lake#**1d12** ruin or barrow|Blackwater Lake]]** and **[[47 - Three Coven Lake#**1d12** stone lord site|Three Coven Lake]]**.
 
 The PCs cut north from Three Coven Lake and seek out a place to camp. I decide that they find a Stone Lord ruin. I roll 6 for theme (authority/order/hierarchy/tradition), a 5 for structure (chambers dug into the sides of hills), a 6 for purpose (civic life), a 3 for architectural elements (crystals/makerglass), and 4 for condition (buried or hidden, mostly intact). I imagine some sort of belltower, once used to signal the hour and give order to the day.
 
@@ -232,7 +232,7 @@ Pick 1 or have someone roll.
 
 ## **Bound Entities**
 
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**, especially elementals associated with earth, stone, and terrain, yoked by runecraft to serve the Stone Lord's needs
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**, especially elementals associated with earth, stone, and terrain, yoked by runecraft to serve the Stone Lord's needs
 - Spirits and beasts corrupted by **[[46 - The Things Below#The Things Below|the Things Below]]**: petrified, encased in stone, or sealed away behind layers of runes
 - Would-be **[[05 - Barrow Builders#Barrow Builders|sorcerer-kings]]**, petrified or otherwise imprisoned before they could cause too much trouble
 - **[[10 - Death and the Undying#**Pyped**|Ghosts]]**, mindlessly performing duties they were bound to perform in life, unaware that they could want anything else
@@ -334,7 +334,7 @@ Stone Lord constructs are typically blind but able to navigate by sound and sens
 - 9-11 Self-charging, but limited range/ activity
 - 12 Self-powered/indefinite charge
 
-Power sources might include: singing crystals that broadcast energy; ingots of **[[45 - Tempest Lords#**1d12** condition|aetherium]]**; veins of special stone transmitting power through floors; crystals that absorb telluric currents/vibrations; spirits bound in makerglass; etc.
+Power sources might include: singing crystals that broadcast energy; ingots of **[[45 - Tempest Lords#**Aetherium**|aetherium]]**; veins of special stone transmitting power through floors; crystals that absorb telluric currents/vibrations; spirits bound in makerglass; etc.
 
 ## **1d12** sapience
 

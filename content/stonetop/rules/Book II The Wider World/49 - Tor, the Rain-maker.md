@@ -6,7 +6,16 @@ Tor, the Rain-maker, also called the Thunderhead and Slayer-of-Beasts, is one of
 
 Pick, or roll 1d12.
 
-#### **1d12** theme 1-2 Rain/snow/good clean water 3-4 Wind/weather/the sky/clouds 5-6 Storms/thunder/lightning 7 Courage/strength/prowess/endurance 8 Generosity/gift-giving/celebration 9 Exuberance/confidence/folly 10 Surprises/moodiness/whims 11 Wrath/rage/destruction
+#### **1d12** theme
+
+- 1-2 Rain/snow/good clean water
+- 3-4 Wind/weather/the sky/clouds
+- 5-6 Storms/thunder/lightning
+- 7 Courage/strength/prowess/endurance
+- 8 Generosity/gift-giving/celebration
+- 9 Exuberance/confidence/folly
+- 10 Surprises/moodiness/whims
+- 11 Wrath/rage/destruction
 
 12 Prophecy/doom foretold
 
@@ -27,7 +36,7 @@ Use the answers to help decide what Tor's **true nature** is [[20 - Gods and Rel
 
 # **Hooks**
 
-- The PCs encounter a **[[49 - Tor, the Rain-maker#**Lightning**|nine-fingered stranger]]**.
+- The PCs encounter a **[[49 - Tor, the Rain-maker#**Nine-fingered stranger**|nine-fingered stranger]]**.
 - During a violent storm, multiple villagers dream of a terrible beast, unleashed.
 - One of Tor's rites is disrupted; drought afflicts the village.
 - A wandering priest of Tor arrives, offering to cast runes and tell fortunes.
@@ -35,7 +44,7 @@ Use the answers to help decide what Tor's **true nature** is [[20 - Gods and Rel
 
 ## **In Stonetop**
 
-Tor is the most popular god in Stonetop. The **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** is sometimes called his anvil, or the quiver for his javelins. The **[[02 - The Village of Stonetop#The Village of Stonetop|Cistern]]** is sometimes called his drinking horn. The locals use many colorful phrases that invoke his name.
+Tor is the most popular god in Stonetop. The **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** is sometimes called his anvil, or the quiver for his javelins. The **[[02 - The Village of Stonetop#**The village of Stonetop**|Cistern]]** is sometimes called his drinking horn. The locals use many colorful phrases that invoke his name.
 
 What is Tor's shrine like? Perhaps it is…
 
@@ -74,7 +83,7 @@ In any other community that knows and worships Tor, consider/ask:
 - Who conducts rites in his honor?
 - What unfamiliar tales do they tell/rites do they perform/symbols do they use?
 
-If the worship of Tor is unknown to a people: what other god or gods of the sky, storms, weather, and/or violence do they worship? (See [[20 - Gods and Religion#**Threshold spirit**|Gods and Religion]] for guidance.)
+If the worship of Tor is unknown to a people: what other god or gods of the sky, storms, weather, and/or violence do they worship? (See [[20 - Gods and Religion#**Other gods**|Gods and Religion]] for guidance.)
 
 # **Tor**
 
@@ -85,7 +94,7 @@ If the worship of Tor is unknown to a people: what other god or gods of the sky,
 - A fulgurite, sand or soil vitrified by lightning, sacred to Tor (*fragile*, Value 0)
 - The claw/fang/tusk/horn of a great beast, carved with prayers to Tor (Value 0)
 - A pouch of runes, the kind used for divination (Value 0)
-- An ingot of pure **[[45 - Tempest Lords#**1d12** condition|aetherium]]**, left as an offering (Value 1)
+- An ingot of pure **[[45 - Tempest Lords#**Aetherium**|aetherium]]**, left as an offering (Value 1)
 - Aetherium-tipped javelins (thrown, *magical*, *forceful*, *loud*, *dangerous*, +2 damage, all out, Value 2)
 - A large, clear bottle; the pale liquid sealed inside rises when rain, snow, or storms approach (*fragile*, Value 2)
 - A pair of mammoth tusks, carved in **Whitefang Mountain** style [[54 - The Whitefang Mountains|The Whitefang Mountains]], depicting a storm god bearing gifts and slaying beasts (*immobile*, Value 3)
@@ -114,10 +123,10 @@ Pick 1 or have someone roll.
 
 ## **Associated entities**
 
-- **[[41 - Spirits of the Wild#**Communion**|Elemental spirits]]**, especially those of rain, snow, storm, and wind
+- **[[41 - Spirits of the Wild#**Elemental spirits**|Elemental spirits]]**, especially those of rain, snow, storm, and wind
 - **[[41 - Spirits of the Wild#Andalau|Andalau]]**, who love to dance before a storm
-- **[[14 - The Flats#**Beznpol**|Frythanc]]** and **[[14 - The Flats#**Shellback drake**|thunder drakes]]**, who rank among Tor's most honored beasts
-- An **[[45 - Tempest Lords#**Radiation**|elemental vortex]]**, especially of lightning or wind
+- **[[14 - The Flats#**Frythanc**|Frythanc]]** and **[[14 - The Flats#**Thunder drake**|thunder drakes]]**, who rank among Tor's most honored beasts
+- An **[[45 - Tempest Lords#Vitrification|elemental vortex]]**, especially of lightning or wind
 - The **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, perhaps, who might be Tor's child/rival/lover/ etc. or someone whom he cursed
 
 ## **Harsh weather**
@@ -138,7 +147,7 @@ Pick 1 or have someone roll.
 - <sup>ä</sup> Flash in the distance; rumble ominously
 - <sup>ä</sup> Paint the sky with bright-white bolts
 - <sup>ä</sup> BOOM! Deafen and disorient them
-- <sup>ä</sup> A bolt starts a **[[14 - The Flats#**1d12** battlefield or remains|wildfire]]**
+- <sup>ä</sup> A bolt starts a **[[14 - The Flats#**Dangers**|wildfire]]**
 - <sup>ä</sup> Hair stands on end, skin and spine tingle
 - <sup>ä</sup> A bolt strikes nearby (d10+2 damage, *reach*, *area*, *forceful*, *loud*, ignores armor)
 - <sup>ä</sup> A bolt strikes directly (Death's Door)
@@ -147,11 +156,11 @@ Pick 1 or have someone roll.
 
 Rain and snow are Tor's life-giving gifts. But what if he withholds them? Or worse, is unable to give them freely?
 
-l The **[[44 - The Stream#The Stream|Stream]]** dries up, the Cistern runs low l The crops are stunted (generate Surplus with disadvantage) l Everything/one goes unwashed; **disease** spreads [[13 - Ferrier's Fen#… **a promise, to be fulfilled now or later**.|Ferrier's Fen]]
+l The **[[44 - The Stream#The Stream|Stream]]** dries up, the Cistern runs low l The crops are stunted (generate Surplus with disadvantage) l Everything/one goes unwashed; **disease** spreads [[13 - Ferrier's Fen#**Dangers**|Ferrier's Fen]]
 
 l **Impending doom:** Crops and gardens fail, livestock die/are slaughtered (steading marks *lacking* and generates no Surplus)
 
-**Something interesting:** Past droughts have been broken by making the proper offerings/ completing some quest, but the details are unclear—perhaps you could commune with a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]** to learn more?
+**Something interesting:** Past droughts have been broken by making the proper offerings/ completing some quest, but the details are unclear—perhaps you could commune with a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]** to learn more?
 
 **Something useful:** You know what offering needs to be made, or what quest needs to be completed—Make a Plan with the GM to determine the details.
 

@@ -92,7 +92,7 @@ If trouble finds your camp site, you can spend 1 Precaution to reveal a simple d
 
 ### ANIMAL COMPANION
 
-You are accompanied by a beast of uncommon loyalty and cleverness. See the [[Inserts#Prosperity|Animal Companion]] insert for details.
+You are accompanied by a beast of uncommon loyalty and cleverness. See the [[Inserts#Animal Companion|Animal Companion]] insert for details.
 
 #### MAGNIFICENT SPECIMEN
 

@@ -45,7 +45,7 @@ Of late, within the past generation or so, tremors have coursed through differen
 ## **Hooks**
 
 - A local unwittingly offers sacrifice to a corrupted spirit, gaining power; the spirit asks for (and offers) more
-- A conundrum vexes the PCs; consulting **[[46 - The Things Below#**Various treasures**|a black menhir]]** might help
+- A conundrum vexes the PCs; consulting **[[46 - The Things Below#**A black menhir**|a black menhir]]** might help
 - **[[07 - Crinwin#Crinwin|Crinwin]]** have started to worship at a **[[46 - The Things Below#**1d12** origin|corrupted site]]**) becoming corrupted in turn
 - **[[29 - Lygos and the South#Adventurer|An antiquarian]]** is secretly a thrall to a Thing Below, and seeks to unleash a more powerful servant
 - A spot in the fields around Stonetop goes bad, festering like an infected boil, corrupted by a discarded artifact
@@ -66,7 +66,7 @@ Of late, within the past generation or so, tremors have coursed through differen
 - How their power corrupts places, artifacts, people, beasts, and spirits
 - How to bind, cleanse, or ward off their taint/power/minions
 - That unclean things recoil from bendis root smoke, but truly fierce or willful ones can overcome it
-- That bronze is bane to the Things Below, and that **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]** is even more effective
+- That bronze is bane to the Things Below, and that **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]** is even more effective
 - The difference between corrupted beings and emanations
 
 #### **Very few know:**
@@ -86,11 +86,11 @@ Of late, within the past generation or so, tremors have coursed through differen
 
 # **Demons**
 
-In truth, there's no such thing as demons. Or rather, "demon" is not a meaningful term. It's often used to refer to **[[46 - The Things Below#**Thrall**|emanations]]** of or **[[46 - The Things Below#**1d12** origin|beings corrupted]]** by the Things Below. But folks might use the term to apply to any number of supernatural terrors. If it's hostile, magical, and has (or can take) a physical form, someone is likely to call it a demon.
+In truth, there's no such thing as demons. Or rather, "demon" is not a meaningful term. It's often used to refer to **[[46 - The Things Below#**Wretch**|emanations]]** of or **[[46 - The Things Below#**1d12** origin|beings corrupted]]** by the Things Below. But folks might use the term to apply to any number of supernatural terrors. If it's hostile, magical, and has (or can take) a physical form, someone is likely to call it a demon.
 
 ## **Themes**
 
-When you introduce a Thing—or more likely, when you introduce a site, artifact, or danger associated with one—choose or roll 2 or more prompts from the theme table here. Combine the results and see where they take you. Alternatively, pick one of the **[[46 - The Things Below#**Example names**|established Things Below]]**, and use its themes.
+When you introduce a Thing—or more likely, when you introduce a site, artifact, or danger associated with one—choose or roll 2 or more prompts from the theme table here. Combine the results and see where they take you. Alternatively, pick one of the **[[46 - The Things Below#**For We Are Many**|established Things Below]]**, and use its themes.
 
 ## **1d12** theme
 
@@ -309,7 +309,7 @@ discoveries and dangers appropriate to the surrounding area.
 - 1-3 A shunned place: full of **[[46 - The Things Below#**Voice of the Eternal Maw**|disquiet and unease]]**, not actively dangerous but where it's easy to draw upon their power
 - 4-6 A hungry place: full of **[[46 - The Things Below#**Voice of the Eternal Maw**|whispers and visions]]**, calling the unwholesome, trapping and consuming the unwary
 - 7-9 A poisonous place: full of **[[46 - The Things Below#**On a 6-**, pick 1:|unnatural phenomena]]**, corrupting those who visit
-- 10-11 A spawning place: where **[[46 - The Things Below#**Thrall**|emanations]]** congeal and manifest
+- 10-11 A spawning place: where **[[46 - The Things Below#**Wretch**|emanations]]** congeal and manifest
 - 12 A wound in the world: spreading rot, bleeding horror, getting worse
 
 The dangers from a lower level of severity can be found in higher levels, too. A hungry place is full of whispers and visions but perhaps disquiet and unease as well.
@@ -329,7 +329,7 @@ To bind corruption, one might use…
 - … a tree, especially an elder tree;
 - … a large piece of stone/crystal/amber/ **[[38 - Rime Lords#Dark ice|dark ice]]**;
 - … a ring of runes, deeply etched;
-- … a spike/vessel of bronze, **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]**, or **[[36 - Primordial Powers#**Portals**|black iron]]**
+- … a spike/vessel of bronze, **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**, or **[[36 - Primordial Powers#**Primordial powers**|black iron]]**
 - … a **[[12 - Fae#**Getting there**|Fae domain]]**;
 - … a barrow/cairn/vault/urn/vessel, sealed and sanctified;
 - … a perpetual holy flame;
@@ -412,7 +412,7 @@ The spider is hungry when you find it. When you *plunge the hungry spider into a
 
 When you *plunge the sated spider into a person's flesh*, they take 1 damage (ignores armor) and will not age for 1d10 years. If they are middle aged or older, they regain some vigor of their youth. Then, the spider becomes hungry.
 
-Each time someone uses the spider to extend their life, their features change subtly, becoming blander, waxier, more pallid, less specific. Should they die after exceeding their mortal lifespan, they become a **[[10 - Death and the Undying#**Other ghosts**|revenant]]**, hungering for blood.
+Each time someone uses the spider to extend their life, their features change subtly, becoming blander, waxier, more pallid, less specific. Should they die after exceeding their mortal lifespan, they become a **[[10 - Death and the Undying#**Death and the undying**|revenant]]**, hungering for blood.
 
 ## **An obsidian pendant**
 
@@ -538,7 +538,7 @@ The power of the Things Below can infuse a person, beast, or spirit, corrupting 
 - … call on the Things Below for power, intentionally or not
 - … spend time in a **[[46 - The Things Below#**1d12** origin|corrupted site]]**, one that's poisonous or worse
 - … attempt to cleanse someone or something of corruption, and things go wrong
-- … are harmed/infected by an **[[46 - The Things Below#**Unnatural phenomena**|artifact]]** or **[[46 - The Things Below#**Thrall**|emanation]]** of the Things Below, by one of **those who bear their taint** (next page), or by a **[[46 - The Things Below#**1d12** origin|corrupted being]]**.
+- … are harmed/infected by an **[[46 - The Things Below#**Unnatural phenomena**|artifact]]** or **[[46 - The Things Below#**Wretch**|emanation]]** of the Things Below, by one of **those who bear their taint** (next page), or by a **[[46 - The Things Below#**1d12** origin|corrupted being]]**.
 
 Add these to the list of GM moves for afflictions:
 
@@ -547,7 +547,7 @@ Add these to the list of GM moves for afflictions:
 
 ## **PCs and corruption**
 
-If a PC possesses a **major arcana** associated with the **[[46 - The Things Below#**PCs and corruption**|Things Below]]**, then the arcana's mysteries and consequences reflect the PC's growing corruption. Likewise, the **[[Inserts#Revenant · Consequences|Thrall]]** playbook insert reflects a PC being corrupted by the Things Below. If a PC has one of those arcana or inserts, allow its mechanics to drive their corruption. Don't give them additional gifts or marks unless they are corrupted in some additional way.
+If a PC possesses a **major arcana** associated with the **[[46 - The Things Below#**PCs and corruption**|Things Below]]**, then the arcana's mysteries and consequences reflect the PC's growing corruption. Likewise, the **[[Inserts#Thrall|Thrall]]** playbook insert reflects a PC being corrupted by the Things Below. If a PC has one of those arcana or inserts, allow its mechanics to drive their corruption. Don't give them additional gifts or marks unless they are corrupted in some additional way.
 
 Should a PC become corrupted by the Things Below without gaining a major arcana or insert, then ask the player how they want to handle it. Do they see the corruption as a threat to their character, something to rid themselves of and struggle against? If so, write it up as a threat (threat type: *affliction*) and focus on increasingly problematic marks. But if the player wants to explore the power that's now available to them, and the cost of that power, then create a playbook insert for them, using the Thrall insert as inspiration.
 
@@ -593,7 +593,7 @@ If the being is a spirit, alter its manifestation to reflect the themes and aspe
 
 How has corruption changed the being's behavior? Are they merely a conduit for their master's instinct? Do they struggle to maintain their own identity? Has their corruption combined with their original personality in an unusual way? Rewrite their instinct to suit.
 
-*The Seasons Change roll indicates that a threat makes itself known or gets worse. I decide that Iwan, an aggrieved villager, has unwittingly started to dally with a corrupted spirit. I like the idea of an evil glasbren [[41 - Spirits of the Wild#**Major arcana**|Spirits of the Wild]] sensing Iwan's resentments and "courting" him.*
+*The Seasons Change roll indicates that a threat makes itself known or gets worse. I decide that Iwan, an aggrieved villager, has unwittingly started to dally with a corrupted spirit. I like the idea of an evil glasbren [[41 - Spirits of the Wild#**The Brennauwed**|Spirits of the Wild]] sensing Iwan's resentments and "courting" him.*
 
 *I start by working up the glasbren's tree as a corrupted site. I get 4 for a feature (signs of great destruction), an 11 for the cause (seal/binding weakened and roll 1d10 again), and a 4 on the reroll (an artifact/remains festering). For severity, I roll a 9 (a poisonous place). I think some evil artifact was bound by an old tree in the glasbren's grove, but a fire swept through and only the glasbren survived. It's deeply scarred and corrupted by the artifact.*
 

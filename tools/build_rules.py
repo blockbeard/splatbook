@@ -56,7 +56,7 @@ def build_anchor_maps(files: list[Path]) -> tuple[dict, dict, list[str]]:
         headings: list[str] = []
         current: str | None = None
         amap: dict[str, str | None] = {}
-        for line in lines:
+        for idx, line in enumerate(lines):
             m = HEADING_RE.match(line)
             if m:
                 current = m.group(2)
@@ -64,9 +64,19 @@ def build_anchor_maps(files: list[Path]) -> tuple[dict, dict, list[str]]:
                 continue
             for am in re.finditer(r"\^(p\d+[a-z]?)\b", line):
                 anchor = am.group(1)
-                amap[anchor] = current
-                if current and headings.count(current) > 1:
-                    warnings.append(f"{name}: ^{anchor} maps to duplicated heading '{current}'")
+                # anchors sitting right before a heading belong to the section they introduce
+                mapped = current
+                if PAGE_ANCHOR_LINE_RE.match(line):
+                    for nxt in lines[idx + 1 : idx + 3]:
+                        if not nxt.strip():
+                            continue
+                        hm = HEADING_RE.match(nxt)
+                        if hm:
+                            mapped = hm.group(2)
+                        break
+                amap[anchor] = mapped
+                if mapped and headings.count(mapped) > 1:
+                    warnings.append(f"{name}: ^{anchor} maps to duplicated heading '{mapped}'")
         if name in anchor_map:
             warnings.append(f"duplicate note basename: {name} ({path})")
         anchor_map[name] = amap

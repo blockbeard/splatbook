@@ -571,7 +571,7 @@ If you're making a new character to join an ongoing game, you still start at lev
 
 Your special possessions are the unique or interesting things that you own or have access to.
 
-In addition to your special possessions, you have access to common weapons, armor, and gear listed on the **[[Inserts#Inserts|Inventory insert]]**. See the section on **[[03 - Playing the Game#Gear and possessions|Gear and possessions]]** for more info.
+In addition to your special possessions, you have access to common weapons, armor, and gear listed on the **[[Inserts#Inventory|Inventory insert]]**. See the section on **[[03 - Playing the Game#Gear and possessions|Gear and possessions]]** for more info.
 
 Consider how your special possessions reflect your PC's role in the village. You have the tannery (or access to it)? Cool, are you the village tanner, then? Their apprentice? The tanner's close kin? You have a distillery, huh? Do you help run the public house? Or make whisky at home for you and yours? Are you the main distiller, or one of many? Do you have any rivals? That sort of thing.
 ## **Moves**
@@ -609,9 +609,9 @@ If your new PC is a recent arrival in Stonetop, you might skip this procedure en
 
 Every playbook comes with an insert, a half-page sheet that you can slip inside your folded playbook. Copies of these are provided for reference in this book, starting on [[Inserts|Inserts]]
 
-Every playbook gets an insert for tracking your current **[[Inserts#Inserts|inventory]]**, the other side of which is used to track **[[Inserts#WARMTH OF THE SUN|followers]]** or playbook-specific information, such as the Lightbearer's **[[Inserts#Initiates of Danu|invocations]]** or the Marshal's **[[Inserts#Loyal to the end|crew]]**.
+Every playbook gets an insert for tracking your current **[[Inserts#Inventory|inventory]]**, the other side of which is used to track **[[Inserts#Followers|followers]]** or playbook-specific information, such as the Lightbearer's **[[Inserts#Invocations|invocations]]** or the Marshal's **[[Inserts#Crew|crew]]**.
 
-The Blessed and Ranger might have special inserts, if you take a particular background or move. The Seeker gets an additional insert for their **major arcanum** (see *[[58 - Appendix D - Major Arcana#Major Arcana|Book II]]*). So does the Heavy, but only
+The Blessed and Ranger might have special inserts, if you take a particular background or move. The Seeker gets an additional insert for their **major arcanum** (see *[[58 - Appendix D - Major Arcana#appendix d : major arcana|Book II]]*). So does the Heavy, but only
 
 if you pick the **Storm-marked**  background [[The Heavy#Background|Storm-marked]].
 
@@ -896,7 +896,7 @@ As part of introducing your PCs, you'll add their homes to this map. You'll also
 
 ## **Steading improvements**
 
-The steading playbook includes a number of potential **[[The Steading#Map and places of interest|improvements]]** that you can pursue. There are also spots for new improvements, which the GM might reveal to you in play.
+The steading playbook includes a number of potential **[[The Steading#Content|improvements]]** that you can pursue. There are also spots for new improvements, which the GM might reveal to you in play.
 
 Each steading improvement has a list of requirements, which you can complete in whatever order makes sense. You don't have to go in order unless an improvement Once you meet all the requirements for an improvement, the steading gains the listed benefit(s). Some improvements increase steading stats (like Fortunes, Prosperity, or Defenses). Some provide new moves. Some do both.
 
@@ -906,7 +906,7 @@ The GM can threaten or harm steading improvements the same way they can threaten
 
 ## **Assets**
 
-After the improvements, the steading playbook has a section for recording **[[The Steading#Other Improvements|assets]]** that are owned by the residents of Stonetop in common: a pair of draft horses, a couple iron plows, a couple carts, a horse-drawn wagon, and anything else the village gains in play.
+After the improvements, the steading playbook has a section for recording **[[The Steading#Assets|assets]]** that are owned by the residents of Stonetop in common: a pair of draft horses, a couple iron plows, a couple carts, a horse-drawn wagon, and anything else the village gains in play.
 
 This section also includes boxes in which to record any silver or gold coins. These start blank, but should you acquire coins during play and turn them over to the village as a whole, you'd record them here. See [[03 - Playing the Game#Coins|Coins]] for more on **coins**.
 
@@ -914,11 +914,11 @@ If you want to take any of these assets on an expedition, you must first **Requi
 
 ## **NPCs**
 
-Finally, the steading playbook has places to record notable non-player characters (NPCs). There's a section for **[[The Steading#Assets|Residents of Stonetop]]**, and one for **[[The Steading#NPC traits|Notable neighbors of Stonetop]]**.
+Finally, the steading playbook has places to record notable non-player characters (NPCs). There's a section for **[[The Steading#Residents of Stonetop|Residents of Stonetop]]**, and one for **[[The Steading#Notable neighbors of Stonetop|Notable neighbors of Stonetop]]**.
 
 Each time you establish a new NPC (during character introductions or in the course of play), give them a name and note their pronouns. Pick a name from the appropriate list in the steading playbook, or pick an unused name from the front of your playbook.
 
-Note each NPC's occupation, and give each a notable, memorable trait. Pick one of the **[[The Steading#Residents of Stonetop|NPC traits]]** from the steading playbook, or make one up.
+Note each NPC's occupation, and give each a notable, memorable trait. Pick one of the **[[The Steading#Names|NPC traits]]** from the steading playbook, or make one up.
 
 Also note any relationships that are important to understanding the NPC, like "Nolwen's sister" or "Urgben's mother (hates Trystan)."
 
@@ -1369,7 +1369,7 @@ When you Outfit for an expedition [[03 - Playing the Game#OUTFIT|Outfit]], you'l
 
 Every PC has the same Inventory insert. Items that are printed on the insert are commonly available in Stonetop, things that any PC has access to if they need it. You might not own a shovel yourself, but you know someone who does, someone willing to loan it to you or trade you for it. The GM might ask where you got it, but if it's printed on the insert, you can acquire it, no problem.
 
-The insert also has blank spaces, where you can write in other common items or special **[[03 - Playing the Game#**Back home**|possessions]]**.
+The insert also has blank spaces, where you can write in other common items or special **[[03 - Playing the Game#**Special possessions**|possessions]]**.
 
 ## Inventory for Caradoc When you Outfit, mark a number of $\diamondsuit$ below, on specific items or Undefined. For a heavy load (noisy, slow, hot, quick to tire), mark 7-9 Undefined \*\*\* When you Have What You Need, move & from here to \$\display \text{below.} Supplies (4+Prosperity uses ○○○○○) ♦ More supplies (4+Prosperity uses ○○○○○) ♦ Even more supplies (4+Prosperity uses ○○○○○) Use supplies to Recover, Make Camp, or have extra small items. Mess kit (requires fire & water; makes Supplies last longer) **⊗ Bedroll** (recover 1d6 extra HP when you Make Camp) $\Diamond$ Blanket (warm) $\Diamond$ Rope, ~25 ft Sledge/litter/travois, roll-out **∜**Change of clothes ♦ Shovel Torch (lasts ~1 hour; reach, area, dangerous) ♦ Snow-shoes Oil lamp (OOO hours, reach, area, crude) ♦ Extra oil (0000 hours, for lamp/lantern, useless as a weapon) Sirewood (enough to last 1 full night) ♦ Hatchet, iron (hand, thrown, x piercing) ♦ Mallet, iron and/or wood (hand) ♦ Mattock, iron (close, x niercing macri □ Needle & thread ☐ Handful of conners
 
@@ -1532,11 +1532,11 @@ You keep the makerglass shard on your Inventory sheet (it's neat!), but give the
 
 ## Trade & Barter
 
-Commonly available items—things on the Inventory insert, or that could be found in pretty much any Stonetop household—are readily available. Folks trade, loan, and gift these items all the time, and its not worth tracking them. See [[03 - Playing the Game#**Ammo**|Playing the Game]] for a list of example **common items**.
+Commonly available items—things on the Inventory insert, or that could be found in pretty much any Stonetop household—are readily available. Folks trade, loan, and gift these items all the time, and its not worth tracking them. See [[03 - Playing the Game#Common items|Playing the Game]] for a list of example **common items**.
 
 To acquire or sell a special item, though, you must roll to **[[03 - Playing the Game#TRADE & BARTER|Trade & Barter]]**. The result tells you whether you can make the trade easily and fairly (on a 10+), or if there's a catch (on a 7-9), or if the trade just isn't going to happen here and now.
 
-See [[03 - Playing the Game#Household goods|Playing the Game]] for a list of **special items**. For items not on the list, the GM decides whether there's any chance of finding it (or finding a buyer for it). If not, don't roll to Trade & Barter; **[[03 - Playing the Game#MAKE A PLAN|Make a Plan]]** with the GM instead.
+See [[03 - Playing the Game#Special items|Playing the Game]] for a list of **special items**. For items not on the list, the GM decides whether there's any chance of finding it (or finding a buyer for it). If not, don't roll to Trade & Barter; **[[03 - Playing the Game#MAKE A PLAN|Make a Plan]]** with the GM instead.
 
 ## Value
 

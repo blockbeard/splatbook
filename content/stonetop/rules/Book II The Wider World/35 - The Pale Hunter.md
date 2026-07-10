@@ -29,7 +29,7 @@ According to the tale(s) you've heard…
 - What is his relationship with the **[[10 - Death and the Undying#**Death's Door**|Lady of Crows]]**?
 - What hero won his respect, and how? What reward did they earn?
 - What grisly fate befell the hero who dared to stand against him?
-- What **[[20 - Gods and Religion#**Threshold spirit**|observances]]** did the Forest Folk use to appease him?
+- What **[[20 - Gods and Religion#**Other gods**|observances]]** did the Forest Folk use to appease him?
 
 And also…
 
@@ -57,8 +57,8 @@ If the PCs are in the Great Wood on such a night, choose or roll for the Pale Hu
 
 - 1-2 Nothing… yet.
 - 3-4 Paltry prey: a fox/rabbit/boar/deer, **[[07 - Crinwin#Crinwin|crinwin]]**, a fool who crossed his path, etc.
-- 5 Worthy prey: a **[[23 - The Great Wood#**Butcherbird**|ceirwmawr]]**), a **[[23 - The Great Wood#**Nailadd**|raselbaedd]]**, a **[[41 - Spirits of the Wild#**Communion**|beast warden]]**, a **[[12 - Fae#Fae|Fae]]** with whom he's made a bet, etc.
-- 6 Undead prey: a **[[10 - Death and the Undying#**Pyped**|ghost]]** or **[[10 - Death and the Undying#**Other ghosts**|revenant]]**, caught in the open, away from any **[[10 - Death and the Undying#Dool trees|dool trees]]**.
+- 5 Worthy prey: a **[[23 - The Great Wood#**Cave bear**|ceirwmawr]]**), a **[[23 - The Great Wood#**Raselbaedd**|raselbaedd]]**, a **[[41 - Spirits of the Wild#**Elemental spirits**|beast warden]]**, a **[[12 - Fae#Fae|Fae]]** with whom he's made a bet, etc.
+- 6 Undead prey: a **[[10 - Death and the Undying#**Pyped**|ghost]]** or **[[10 - Death and the Undying#**Death and the undying**|revenant]]**, caught in the open, away from any **[[10 - Death and the Undying#Dool trees|dool trees]]**.
 
 When the time is right, **point to a looming danger** (his horn blows, his hounds bay, his prey rushes past). **Offer an opportunity** (to run, to hide, to seek him out, etc.). **Announce trouble** (mist rises, his hounds appear).
 
@@ -91,7 +91,7 @@ When you *deal damage to the Pale Hunter that he might dodge or roll with*, roll
 The Pale Hunter's true nature is for you to decide, but perhaps he is…
 
 - … the **[[36 - Primordial Powers#**Other primordial entities**|incarnation]]** of a primordial entity of cycles and the moon;
-- … a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**;
+- … a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**;
 - … the **[[10 - Death and the Undying#**Pyped**|ghost]]** of a **[[24 - Green Lords#Names|Green Lord]]**, who hunts forever;
 - … a mighty **[[12 - Fae#Fae|Fae]]**;
 - … one of the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**, exalted and accursed;
@@ -167,7 +167,7 @@ Run the hunt as a series of scenes and challenges. If you're unsure what sort of
 - 9 If part of the hunt, a chance for mercy, to let the quarry go; if the quarry, a chance to slip away or catch the Hunter off guard
 - 10 A final mad dash before dawn or to the edge of the Wood
 
-Change the **[[23 - The Great Wood#**Hooks**|terrain]]** with each scene or challenge.
+Change the **[[23 - The Great Wood#. steading improvement .|terrain]]** with each scene or challenge.
 
 ### **Evading the Hunter**
 
@@ -177,8 +177,8 @@ Some ploys that might work include…
 - … crossing running water to throw off his hounds;
 - … masking one's scent with muskweed or some other pungent plant;
 - … distracting him with a ghost, or something that seems to be one;
-- … leading him into the path of a big, territorial creature—like a **[[23 - The Great Wood#**Instinct** to lure prey|hagr]]** or **[[23 - The Great Wood#**Questions**|cynddaraig]]** something to slow him down;
-- … getting help from a **[[12 - Fae#Fae|Fae]]** or a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**; or
+- … leading him into the path of a big, territorial creature—like a **[[23 - The Great Wood#**Instinct** to lure prey|hagr]]** or **[[23 - The Great Wood#**Cougar**|cynddaraig]]** something to slow him down;
+- … getting help from a **[[12 - Fae#Fae|Fae]]** or a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**; or
 - … using magic to trap, ward, or hide from him and his hounds.
 
 #### **Places he won't follow**
@@ -186,7 +186,7 @@ Some ploys that might work include…
 The Hunter's quarry might find refuge...
 
 - … near **[[10 - Death and the Undying#Dool trees|dool trees]]**, which he seems unable to approach;
-- … in certain places marked by Forest Folk **[[17 - Forest Folk#**Where did they go?**|glyphs]]**;
+- … in certain places marked by Forest Folk **[[17 - Forest Folk#**Hooks**|glyphs]]**;
 - … in one of the **[[37 - Red Groves#Red Groves|red groves]]**, perhaps, depending on the Hunter's true nature;
 - … through a **[[53 - Waystones#Waystones|waystone]]**, perhaps, on the Fae paths;
 - … in caves or other places too small for the Hunter to enter (though his hounds probably can); or

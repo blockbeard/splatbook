@@ -7,11 +7,11 @@ Most events are listed in the order they occurred, but events in *italics* and s
 *Eons ago, over a span beyond reckoning.*
 
 - Light fills the void; the **[[46 - The Things Below#The Things Below|Things Below]]** were already there
-- **[[36 - Primordial Powers#**Questions**|First Creators]]** become aware of themselves
+- **[[36 - Primordial Powers#**Cosmology**|First Creators]]** become aware of themselves
 - **?** *[[36 - Primordial Powers#**Other primordial entities**|The first of the great spirits]]* *arise*
 - Things Below stoke the Creators' egos, urge war
 - First Creators forge the world and trap the Things Below inside
-- **[[28 - The Labyrinth#**Thraulgwyn raider**|Tcaventes, Shackle and Key]]**, is set to guard the **[[28 - The Labyrinth#**Tcaventes, Shackle and Key**|Utterwell]]**
+- **[[28 - The Labyrinth#**Soithech**|Tcaventes, Shackle and Key]]**, is set to guard the **[[28 - The Labyrinth#**Tcaventes, Shackle and Key**|Utterwell]]**
 - **?** *The gods* (page [[20 - Gods and Religion#Gods and religion|178\)]] *do many legendary things*
 - **?** *The earliest peoples evolve or are created*
 
@@ -22,7 +22,7 @@ Most events are listed in the order they occurred, but events in *italics* and s
 - Rise of the **Tempest Lords**' civilization [[45 - Tempest Lords|Tempest Lords]]
 - Tempest Lords establish their empire
 - Rise of other **Maker** groups [[30 - The Makers|The Makers]]
-- Tempest Lords found "Northernmost" (the **[[11 - The Dread River#**Winter**|Ruins at Road's End]]**)
+- Tempest Lords found "Northernmost" (the **[[11 - The Dread River#**Questions**|Ruins at Road's End]]**)
 - Tempest Lord homeland sinks, empire crumbles; other Makers grow in power
 - **?** *Construction of the Makers' Roads begins* (page [[31 - The Makers' Roads#The Makers' Roads|270]])
 - **?** *[[24 - Green Lords#Green Lords|Green Lords]]* *[[12 - Fae#Fae|breed the Fae]]*
@@ -55,7 +55,7 @@ Were the civilizations of the **[[29 - Lygos and the South#Lygos and the South|S
 *Centuries ago, over a span of generations.*
 
 - First barrows built to honor freedom fighters
-- **[[46 - The Things Below#**Thrall**|Emanations]]** of the Things Below roam freely, are worshipped/appeased
+- **[[46 - The Things Below#**Wretch**|Emanations]]** of the Things Below roam freely, are worshipped/appeased
 - Warlords/sorcerer-kings vie for power, build more elaborate barrows
 - Battles fought over Three Coven Lake, the Ruins at Road's End, etc.
 - Refugees, enslavement, human sacrifice, all-around bad times
@@ -77,7 +77,7 @@ Were the civilizations of the **[[29 - Lygos and the South#Lygos and the South|S
 
 *The last decade or so.*
 
-- **?** *[[32 - Marshedge#**RECRUIT**|Brennan and the Claws start raiding]]*
+- **?** *[[32 - Marshedge#**Dangers**|Brennan and the Claws start raiding]]*
 - Earthquakes become more common
 - **[[17 - Forest Folk#Forest Folk|Forest Folk]]** disappear
 - **?** *Brennan hired as Marshedge's marshal*

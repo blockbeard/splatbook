@@ -18,7 +18,7 @@ And Vor Svetelik, the Great White City, was left a blighted, infested ruin.
 ## **Hooks**
 
 - An artifact that the PCs desperately want lies in the city's ruins
-- A southern **[[29 - Lygos and the South#. trade opportunities .|antiquarian]]** knows where to find the ruins, and is leading a substantial expedition there, using Stonetop as a basecamp
+- A southern **[[29 - Lygos and the South#**Dangers**|antiquarian]]** knows where to find the ruins, and is leading a substantial expedition there, using Stonetop as a basecamp
 - **[[12 - Fae#The Four Chieftains|A Fae chieftain]]** is besieging the ruins, attempting to finally exterminate the Fomoraij
 - An earthquake cracks open the ruins; horrors vomit forth into the surrounding woods
 
@@ -28,7 +28,7 @@ The ruins of Vor Svetelik lie in the **[[23 - The Great Wood#The Great Wood|Grea
 
 To find the ruins, PCs will need a guide or detailed directions.
 
-- A Fae, a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, or the **[[17 - Forest Folk#Forest Folk|Forest Folk]]** could guide them, but wouldn't want to. All sane beings shun the ruins.
+- A Fae, a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, or the **[[17 - Forest Folk#Forest Folk|Forest Folk]]** could guide them, but wouldn't want to. All sane beings shun the ruins.
 - A Green Lord ruin might contain a map or directions, but the PCs would risk getting lost. Such instructions would be centuries out of date!
 - Magic like the **[[57 - Appendix C - Minor Arcana#A patch of rainbow moss|Sylvan Web]]** could help the PCs find the ruins themselves, though they'd still risk getting lost on the way.
 - The **[[31 - The Makers' Roads#The Makers' Roads|West Road]]** once led from where Stonetop stands to Vor Svetelik. It's broken and long-buried, but could show the way to one who knew what to look for.
@@ -36,7 +36,7 @@ To find the ruins, PCs will need a guide or detailed directions.
 ## **Areas**
 
 - **Outer slopes of the hills surrounding the city**, jagged, overgrown, littered with Forest Folk glyphs and invaders' graves.
-- **Inner slopes of those same hills**, steep and unstable, trees thinning out as one descends. Signs of old battle abound. **[[43 - Stone Lords#Some examples:|Stone Lord constructs]]** still stand watch.
+- **Inner slopes of those same hills**, steep and unstable, trees thinning out as one descends. Signs of old battle abound. **[[43 - Stone Lords#**Construct**|Stone Lord constructs]]** still stand watch.
 - **The city's outskirts**, hiding ruins of manor-houses and plantations.
 - **The city's center**, tightly packed with ruins, corpses, and danger.
 - **The undercity**, old sewers, cisterns, tunnels, basements, and vaults; linked via erosion, collapse, and beast-burrows.
@@ -45,7 +45,7 @@ To find the ruins, PCs will need a guide or detailed directions.
 
 The following can all be found in the city's center, though still some distance apart.
 
-- **The Conservatory**, once a latticed dome of living wood and glass, now burnt, broken, shattered. Bound fertility spirits mournfully tend to **[[24 - Green Lords#**1d12** purpose|hazardous growths]]**.
+- **The Conservatory**, once a latticed dome of living wood and glass, now burnt, broken, shattered. Bound fertility spirits mournfully tend to **[[24 - Green Lords#**1d12** ability|hazardous growths]]**.
 - **The Menagerie**, mostly intact. Cubbies line the walls, each with tissue (fur, tooth, etc.) from a different beast. A plasmic horror dwells in a central pit.
 - **The Great Library**, broken white tower, poking through the canopy. Lower levels largely intact—grand, overgrown. Heavily warded, a few chambers still perfectly preserved. Littered with the remains of invaders.
 - **The Necropolis**, cluster of ziggurats, domes, and monuments near the city's center. Ransacked and vandalized, with few tombs intact. Deeply haunted.
@@ -129,12 +129,12 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 ## **1d6** encounter
 
-- 1 A Fomoraij's **[[15 - Fomoraij#**Major arcana**|infected servant]]**, single-mindedly pursuing some task (digging, building, searching, carving, writing, etc.)
-- 2 A Fomoraij's **[[15 - Fomoraij#**Major arcana**|infected servant]]**, desperately seeking release
-- 3 A **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, curious, indifferent, or just confused
+- 1 A Fomoraij's **[[15 - Fomoraij#**Dangers**|infected servant]]**, single-mindedly pursuing some task (digging, building, searching, carving, writing, etc.)
+- 2 A Fomoraij's **[[15 - Fomoraij#**Dangers**|infected servant]]**, desperately seeking release
+- 3 A **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, curious, indifferent, or just confused
 - 4 Someone or something trapped in stasis (petrified; in a time-pocket, in a magical cell, etc.) but free-able
-- 5 The bound **[[10 - Death and the Undying#**Necromancer**|shade]]** of a Green Lord or their mortal servant, mournful and suspicious but not outright hostile
-- 6 Someone seeking relics or treasure: **[[07 - Crinwin#Crinwin|crinwin]]**, **[[12 - Fae#Fae|Fae]]**, southern adventurers or **[[29 - Lygos and the South#. trade opportunities .|antiquarians]]**, maybe even **[[17 - Forest Folk#Forest Folk|Forest Folk]]**
+- 5 The bound **[[10 - Death and the Undying#**Death and the undying**|shade]]** of a Green Lord or their mortal servant, mournful and suspicious but not outright hostile
+- 6 Someone seeking relics or treasure: **[[07 - Crinwin#Crinwin|crinwin]]**, **[[12 - Fae#Fae|Fae]]**, southern adventurers or **[[29 - Lygos and the South#**Dangers**|antiquarians]]**, maybe even **[[17 - Forest Folk#Forest Folk|Forest Folk]]**
 
 ## **1d6** point of interest
 
@@ -149,12 +149,12 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 Somewhere deep in the ruins is a huge slab of white rock, etched with a magic circle. A large crack mars the stone and the circle, yet they still thrum with power.
 
-The circle is a **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, connected to those beneath the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**), the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]**, near **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, and so forth. The portal can be opened (see **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**), but it is dangerous and unstable.
+The circle is a **[[36 - Primordial Powers#**Primordial powers**|portal]]**, connected to those beneath the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**), the **[[28 - The Labyrinth#The Labyrinth|Labyrinth]]**, near **[[47 - Three Coven Lake#Three Coven Lake|Three Coven Lake]]**, and so forth. The portal can be opened (see **[[57 - Appendix C - Minor Arcana#A time-worn missive|Opening the Way]]**), but it is dangerous and unstable.
 
 When you *open the cracked portal* (from either direction), roll +INT: **on a 10+**, the portal opens but pick 1 from the list below; **on a 7-9**, the portal opens but pick 2:
 
 - Any who traverse it risk serious harm —1d10 damage (*messy*, ignores armor)
-- You draw the attention of some dangerous primordial entity, like an **[[36 - Primordial Powers#**Other primordial entities**|archon]]** or a **[[36 - Primordial Powers#**Chaos**|voidblight]]**
+- You draw the attention of some dangerous primordial entity, like an **[[36 - Primordial Powers#**Other primordial entities**|archon]]** or a **[[36 - Primordial Powers#**Primordial powers**|voidblight]]**
 - The cracks grow bigger; subsequent attempts to use this portal will have a cumulative -1 penalty
 
 **On a 6-**, the cracked portal shatters violently (1d10 damage, *reach*, *area*, *messy*, *forceful*, ignores armor) and leaves a **[[36 - Primordial Powers#**Instinct** to eat and spawn|rift]]** in its place. The other portal cracks (or shatters, if it was already cracked).
@@ -168,7 +168,7 @@ When you *open the cracked portal* (from either direction), roll +INT: **on a 10
 - Spells of war, trapped in stasis, crackling in the air and waiting to spring
 - Weird distortions of time and space
 - Fae **[[12 - Fae#Illusions and glamours|glamours]]**, concealing a place or waiting to ensnare
-- **[[24 - Green Lords#**1d12** purpose|Hazardous growths]]**, run rampant or deployed as defenses
+- **[[24 - Green Lords#**1d12** ability|Hazardous growths]]**, run rampant or deployed as defenses
 
 #### **Podburst vines**
 
@@ -236,20 +236,20 @@ When you *flee a blade wasp swarm*, roll +CON: **on a 10+**, you escape the swar
 - **[[10 - Death and the Undying#**Pyped**|Specters]]** of those subjected to the Green Lords' most terrible experiments
 - **[[12 - Fae#**The Bloody Boots**|Hollow Fae]]**, wounded by iron, abandoned by their fellows
 - **[[10 - Death and the Undying#**Pyped**|Wraiths]]** of Green Lords or their mummified servants, their canopic jars destroyed
-- **Mummies** of Green Lords [[24 - Green Lords#**Llamudwr**|Green Lords]] and their servants [[24 - Green Lords#**Llamudwr**|Green Lords]], safe in their still-standing tombs
+- **Mummies** of Green Lords [[24 - Green Lords#**Mummified Green Lord**|Green Lords]] and their servants [[24 - Green Lords#**Mummified Green Lord**|Green Lords]], safe in their still-standing tombs
 
 ## **Chimerae**
 
-- **[[24 - Green Lords#**1d12** peril|Llamudwr]]**, lurking in darksome waters or flitting through the night sky
-- **[[24 - Green Lords#**Mummified servant**|Rhagedn]]**, still keeping watch
-- **[[24 - Green Lords#**Mummified servant**|Swyn]]**, their entourages in tow, congregating in Vor Svetelik every dozen years
-- **[[24 - Green Lords#**Swyn**|Zrajedak]]** or some other sort of **[[24 - Green Lords#**Major arcana**|chimera]]** bred for war, ensnared by Fae magic or still in stasis, waiting to be deployed
+- **[[24 - Green Lords#**The Unquiet Dead**|Llamudwr]]**, lurking in darksome waters or flitting through the night sky
+- **[[24 - Green Lords#**Rhagedn**|Rhagedn]]**, still keeping watch
+- **[[24 - Green Lords#**Rhagedn**|Swyn]]**, their entourages in tow, congregating in Vor Svetelik every dozen years
+- **[[24 - Green Lords#**Zrajedak**|Zrajedak]]** or some other sort of **[[24 - Green Lords#**Dangers**|chimera]]** bred for war, ensnared by Fae magic or still in stasis, waiting to be deployed
 
 ## **Other creatures**
 
 - Just about any sort of beast found in the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, but twisted and mutated
 - **[[07 - Crinwin#Crinwin|Crinwin]]**, perhaps doing decidedly un-crinwin things
-- The **infected servant** of a Fomoraij [[15 - Fomoraij#**Major arcana**|Fomoraij]]
+- The **infected servant** of a Fomoraij [[15 - Fomoraij#**Dangers**|Fomoraij]]
 - A **Fomoraij** itself [[15 - Fomoraij#Names|Names]], deep in the undercity.
 
 ## **Nemurvojak**

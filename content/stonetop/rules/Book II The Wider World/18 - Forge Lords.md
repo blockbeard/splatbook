@@ -8,7 +8,7 @@ To guard against this curse, the Forge Lords lauded loyalty and generosity. They
 
 Then came the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**. Volcanoes belched forth lava and ash. The Forge Lord's principal city, Moratia Rubra, was destroyed. So were many of their mines, foundries, and estates. Their society plunged into chaos. And the **[[46 - The Things Below#The Things Below|Things Below]]** stoked the flames of vengeance, greed, and paranoia.
 
-Rivalry gave way to murder. Murder gave way to slaughter. Only those who embraced the Change survived. And soon, the Forge Lords were gone. Only **[[18 - Forge Lords#**Singing sword**|draventao]]** remained.
+Rivalry gave way to murder. Murder gave way to slaughter. Only those who embraced the Change survived. And soon, the Forge Lords were gone. Only **[[18 - Forge Lords#**Draventao**|draventao]]** remained.
 
 ## **Names**
 
@@ -18,10 +18,10 @@ Often have titles like *Dominar* ("Master"), *Ogran* ("the Great").
 
 ## **Hooks**
 
-- Miners loot and sell treasure guarded by **[[18 - Forge Lords#**Clockwork spider**|iron hounds]]**, triggering a chain of grisly deaths.
+- Miners loot and sell treasure guarded by **[[18 - Forge Lords#**Iron hound**|iron hounds]]**, triggering a chain of grisly deaths.
 - **[[51 - Ustrina#Ustrina|Ustrina]]** warn the PCs away from a Forge Lord ruin, but why?
-- A scoundrel finds a **draventao**'s lair [[18 - Forge Lords#**Singing sword**|Forge Lords]], wants help looting it.
-- A merchant is secretly hauling a shipment of **[[18 - Forge Lords#**1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears|orichalcum]]** to market.
+- A scoundrel finds a **draventao**'s lair [[18 - Forge Lords#**Draventao**|Forge Lords]], wants help looting it.
+- A merchant is secretly hauling a shipment of **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]** to market.
 - Prospectors find a Forge Lord settlement buried and preserved in pumice.
 
 ## **Themes**
@@ -74,7 +74,7 @@ For example:
 - A mass grave of Ustrina, maybe a Forge Lord or two, buried rather than properly burned.
 - The bones of a great reptilian beast, with rusted plates (armor?) fused to the ribs and spine. The skull is caved in, the teeth pried loose and missing.
 
-Such places might very well be **[[10 - Death and the Undying#**Death's Door**|haunted]]** and/or corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**.
+Such places might very well be **[[10 - Death and the Undying#**Death and the undying**|haunted]]** and/or corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**.
 
 #### **Traces of industry** For example:
 
@@ -106,9 +106,16 @@ For example:
 
 ## **Ruin**
 
-Pick or roll for themes [[18 - Forge Lords#**Ruin**|Forge Lords]], structure, purpose, architectural elements, condition, and ustrina presence. Place it in an appropriate terrain (see [[22 - Gordin's Delve#Gordin's Delve|Gordin’s Delve]] for Gordin's Delve, [[27 - Huffel Peaks|Huffel Peaks]] for the Huffel Peaks, or [[28 - The Labyrinth|The Labyrinth]] for the Labyrinth). Populate it with **[[18 - Forge Lords#**Ruin**|lingering signs]]**, **[[18 - Forge Lords#**Other materials**|artifacts]]**, and/or **[[18 - Forge Lords#**An oversized ring**|dangers]]** of the Forge Lords or the appropriate region.
+Pick or roll for themes [[18 - Forge Lords#**Ruin**|Forge Lords]], structure, purpose, architectural elements, condition, and ustrina presence. Place it in an appropriate terrain (see [[22 - Gordin's Delve#Gordin's Delve|Gordin’s Delve]] for Gordin's Delve, [[27 - Huffel Peaks|Huffel Peaks]] for the Huffel Peaks, or [[28 - The Labyrinth|The Labyrinth]] for the Labyrinth). Populate it with **[[18 - Forge Lords#**Ruin**|lingering signs]]**, **[[18 - Forge Lords#**Artifacts**|artifacts]]**, and/or **[[18 - Forge Lords#**Two mirrors**|dangers]]** of the Forge Lords or the appropriate region.
 
-## **1d6** structure 1 A cluster of smaller buildings 2 A single larger building, built around an open courtyard/garden/pool 3 Large open space 4 Warren-like structure, many connected rooms/buildings 5 Tunnel(s)/vault(s) carved into mountain/bedrock 6 Fortified complex containing a number of the above
+## **1d6** structure
+
+- 1 A cluster of smaller buildings
+- 2 A single larger building, built around an open courtyard/garden/pool
+- 3 Large open space
+- 4 Warren-like structure, many connected rooms/buildings
+- 5 Tunnel(s)/vault(s) carved into mountain/bedrock
+- 6 Fortified complex containing a number of the above
 
 ## **1d6** purpose
 
@@ -121,7 +128,14 @@ Pick or roll for themes [[18 - Forge Lords#**Ruin**|Forge Lords]], structure, pu
 
 *[[22 - Gordin's Delve#Gordin's Delve|The PCs are in Gordin's Delve]]**, seeking an audience with Mutra the Teeth. I think his compound is one of the Forge Lord ruins in town. I'm picturing something carved into the ridges that cradle Gordin's Delve, so I pick "tunnel(s)/vault(s)" for structure, "buried… but mostly intact" for condition, and "none to speak of " for Ustrina presence. I roll a 3 for theme (artistry), a 6 for purpose (pleasure), and a 1 for architectural elements (domes/ arches/columns/arcades). I envision the following:*
 
-## **1d6** architectural elements 1 Domes/arches/columns/arcades 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors 3 Enamel/glaze/gilding/flowing runes 4 Bricks/marble slabs/carved porphyry 5 Statues/reliefs (bronze or marble) 6 Furnaces/crucibles/chimneys/ chains/gears
+## **1d6** architectural elements
+
+- 1 Domes/arches/columns/arcades
+- 2 Ceramics and glasswork: mosaics, tile, urns, stained glass, mirrors
+- 3 Enamel/glaze/gilding/flowing runes
+- 4 Bricks/marble slabs/carved porphyry
+- 5 Statues/reliefs (bronze or marble)
+- 6 Furnaces/crucibles/chimneys/ chains/gears
 
 Most Maker-ruins are sized for giants people two or even three times as tall as humans—but often with smaller-scale rooms, passages, and so forth for their servants.
 
@@ -162,15 +176,15 @@ Orichalcum often melts or vaporizes as it burns away impurity. Proper alloying h
 
 A lustrous, gray-black stone, a form of purified coal. Catches fire like dry wood, but burns hotter, longer, with very little smoke. The Forge Lords used it to fuel their furnaces and kilns, or even to just heat their homes.
 
-Some **[[51 - Ustrina#Ustrina|Ustrina]]** know the secrets to making the stuff (cooking coal, infusing it with flammability leached from other objects), though they (probably?) lack the numbers for extensive coal mining. They occasionally trade anthracite in Gordin's Delve, but only small amounts. The Bosses or southern **[[29 - Lygos and the South#**There and back again**|merchants]]** would start wars to learn how it could be mass produced.
+Some **[[51 - Ustrina#Ustrina|Ustrina]]** know the secrets to making the stuff (cooking coal, infusing it with flammability leached from other objects), though they (probably?) lack the numbers for extensive coal mining. They occasionally trade anthracite in Gordin's Delve, but only small amounts. The Bosses or southern **[[29 - Lygos and the South#**Merchants**|merchants]]** would start wars to learn how it could be mass produced.
 
 ## **Other materials**
 
-Many Forge Lords knew how to make **[[45 - Tempest Lords#**1d12** condition|aetherium]]** and invest it with special characteristics. Indeed, they likely taught the Tempest Lords a thing or two.
+Many Forge Lords knew how to make **[[45 - Tempest Lords#**Aetherium**|aetherium]]** and invest it with special characteristics. Indeed, they likely taught the Tempest Lords a thing or two.
 
 A few Forge Lords could create **[[43 - Stone Lords#Makerglass|makerglass]]**, or at least shape it, but never with the skill and deftness of the Stone Lords.
 
-The Forge Lords prized **[[36 - Primordial Powers#**Portals**|black iron]]**. It can be worked only with fire, strength, and skill—not with magic—and so only master smiths could work it.
+The Forge Lords prized **[[36 - Primordial Powers#**Primordial powers**|black iron]]**. It can be worked only with fire, strength, and skill—not with magic—and so only master smiths could work it.
 
 A few Forge Lords dabbled with **[[46 - The Things Below#**Unnatural phenomena**|red crystal]]**, inspired by the Things Below or just arrogant enough
 
@@ -185,9 +199,9 @@ A few Forge Lords dabbled with **[[46 - The Things Below#**Unnatural phenomena**
 - **An oversized orichalcum spearhead** (Value 2), too big to use but a smith might recast it
 - **A box** holding a clockwork diorama; wind its key and it plays music, the masked figures dance and twirl (*fragile*, *magical*?, Value 3)
 - **A flawless vase** (*fragile*, *beautiful*, Value 4), ~2 feet tall with an iridescent glaze; reminds you of the fragility of life
-- **A pile of coins, jewelry, art, and wonders** (*immobile*, Value 5), a **draventao**'s hoard [[18 - Forge Lords#**Singing sword**|Forge Lords]]
+- **A pile of coins, jewelry, art, and wonders** (*immobile*, Value 5), a **draventao**'s hoard [[18 - Forge Lords#**Draventao**|Forge Lords]]
 
-See also: the **[[51 - Ustrina#**1d12** what they want|curiosities and wonders]]** that Ustrina sometimes bring to Gordin's Delve to trade.
+See also: the **[[51 - Ustrina#**Curiosities and wonders**|curiosities and wonders]]** that Ustrina sometimes bring to Gordin's Delve to trade.
 
 ### **Orichalcum spear**
 
@@ -217,7 +231,13 @@ When you *prick your finger and touch the smaller mirror*, it shows what is refl
 
 Pick 1 or have someone roll.
 
-## **1d6** minor arcanum 1 **[[57 - Appendix C - Minor Arcana#The Fiery Veil|Runes around a ruined hall]]** 2 **[[57 - Appendix C - Minor Arcana#A richly woven rug , magical|A richly woven rug]]** 3 **[[57 - Appendix C - Minor Arcana#A prospector's tale|A metal man]]** 4 **[[57 - Appendix C - Minor Arcana#A prospector's tale|A prospector's tale]]** 5 **[[57 - Appendix C - Minor Arcana#A runic branding iron|A rusty steel blade]]**
+## **1d6** minor arcanum
+
+- 1 **[[57 - Appendix C - Minor Arcana#The Fiery Veil|Runes around a ruined hall]]**
+- 2 **[[57 - Appendix C - Minor Arcana#A richly woven rug , magical|A richly woven rug]]**
+- 3 **[[57 - Appendix C - Minor Arcana#A prospector's tale|A metal man]]**
+- 4 **[[57 - Appendix C - Minor Arcana#A prospector's tale|A prospector's tale]]**
+- 5 **[[57 - Appendix C - Minor Arcana#A runic branding iron|A rusty steel blade]]**
 
  These might very well be associated with the Forge Lords.
 
@@ -231,10 +251,10 @@ Pick 1 or have someone roll.
 ## **Entities**
 
 - **[[51 - Ustrina#Ustrina|Ustrina]]**, of course
-- **[[41 - Spirits of the Wild#**Communion**|Fire spirits]]**, bound to an oven/forge/furnace, likely hungry and weak
-- **[[45 - Tempest Lords#**Earth vortex**|A fire vortex]]**, set to guard a Forge Lord ruin
+- **[[41 - Spirits of the Wild#**Elemental spirits**|Fire spirits]]**, bound to an oven/forge/furnace, likely hungry and weak
+- **[[45 - Tempest Lords#**Fire vortex**|A fire vortex]]**, set to guard a Forge Lord ruin
 - A family of **[[27 - Huffel Peaks#Volcanic activity|caralandrao]]**, scavenging for magic or nesting in a ruin
-- **[[27 - Huffel Peaks#**Caralandrao**|Fire drakes]]** or **[[28 - The Labyrinth#**Corruption, as one goes deeper**|magma worms]]**, basking in the lingering heat of a Forge Lord's furnace
+- **[[27 - Huffel Peaks#**Fire drake**|Fire drakes]]** or **[[28 - The Labyrinth#**Magma worm**|magma worms]]**, basking in the lingering heat of a Forge Lord's furnace
 - The **[[10 - Death and the Undying#**Pyped**|ghosts]]** of those who died in some cataclysm or violent purge
 
 ### **Hazards**
@@ -303,7 +323,7 @@ Forge Lord constructs are animated by more than biology (+4 HP). Most have Armor
 - 1-2 **[[46 - The Things Below#**Unnatural phenomena**|Red crystal]]**
 - 3-4 A spirit, possessing it
 - 5-6 Fire/heat, harnessed by runes
-- 7-8 Energy stored in **[[45 - Tempest Lords#**1d12** condition|aetherium]]**/**[[43 - Stone Lords#Makerglass|makerglass]]**
+- 7-8 Energy stored in **[[45 - Tempest Lords#**Aetherium**|aetherium]]**/**[[43 - Stone Lords#Makerglass|makerglass]]**
 - 9-10 A spark of its creator's power
 - 11-12 Roll 1d10 twice, combine
 
@@ -359,7 +379,7 @@ It stands nearly 60 feet tall, a muscular Forge Lord cast in bronze. Similar sta
 
 The colossus guards the entrance to its master's domain. If someone approaches honorably, speaking in the Forge Lord's tongue, it politely tells them to come again later, for its master is away. Intruders, blowhards, and thieves are dealt with forcibly.
 
-**Something interesting:** Those blueish veins are **[[45 - Tempest Lords#**1d12** condition|aetherium]]**, and likely what animates the statue. Which, alas, means there's no single weak-point. Maybe you could harm this thing by drawing the lightning from it.
+**Something interesting:** Those blueish veins are **[[45 - Tempest Lords#**Aetherium**|aetherium]]**, and likely what animates the statue. Which, alas, means there's no single weak-point. Maybe you could harm this thing by drawing the lightning from it.
 
 **Something useful:** Or you could, you know, just blast it with lightning and overload it.
 
@@ -448,4 +468,20 @@ Pick or roll its particular strength, its metal augmentation, and what it rememb
 - 5 Blood that burns like lit naphtha, d10+1 damage (*hand*, *area*)
 - 6 A venomous stinger in its tail, d12+3 damage (*reach*, *forceful*, 1 piercing, weakens or paralyzes)
 
-## **1d6** augmentation 1 Aetherium wings (Special quality +flies) 2 Clockwork claw with sword-like talons, 1d10+5 damage (*hand*, *close*, *messy*, *forceful*, 1 piercing) 3 Overlapping plates, protecting its belly (Armor 5 instead of 4) 4 Nasty spikes all over, d12+3 damage (*close*, *area*, *forceful*, *messy*, 1 piercing) 5 Implanted bellows, stoking its breath (+2 damage) 6 Roll twice **1d6** what it remembers 1 A word that makes water boil and metal glow red hot (*near*, *reload*) 2 The bosom friend who betrayed it 3 The child it could not save 4 The lover who died to protect it 5 The name by which others called it 6 The lullaby its mother sang to it
+## **1d6** augmentation
+
+- 1 Aetherium wings (Special quality +flies)
+- 2 Clockwork claw with sword-like talons, 1d10+5 damage (*hand*, *close*, *messy*, *forceful*,  1 piercing)
+- 3 Overlapping plates, protecting its belly (Armor  5 instead of 4)
+- 4 Nasty spikes all over, d12+3 damage (*close*, *area*, *forceful*, *messy*,  1 piercing)
+- 5 Implanted bellows, stoking its breath (+2 damage)
+- 6 Roll twice
+
+## **1d6** what it remembers
+
+- 1 A word that makes water boil and metal glow red hot (*near*, *reload*)
+- 2 The bosom friend who betrayed it
+- 3 The child it could not save
+- 4 The lover who died to protect it
+- 5 The name by which others called it
+- 6 The lullaby its mother sang to it

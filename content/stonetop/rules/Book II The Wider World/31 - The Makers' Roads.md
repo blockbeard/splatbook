@@ -41,9 +41,9 @@ The West Road crosses the Highway about 15 miles from town. A copse of **[[10 - 
 
 - They are deranged, confused, muddled, unreasonable
 - They have no intention of returning peacefully to their rest
-- Something slips through the Last Door with them—a **[[10 - Death and the Undying#**Other revenants**|dool spirit]]**, a **[[10 - Death and the Undying#**Dool spirit**|gwyllgi]]**, an unbound **[[10 - Death and the Undying#**Pyped**|wraith]]**, etc.
+- Something slips through the Last Door with them—a **[[10 - Death and the Undying#**Death and the undying**|dool spirit]]**, a **[[10 - Death and the Undying#**Death and the undying**|gwyllgi]]**, an unbound **[[10 - Death and the Undying#**Pyped**|wraith]]**, etc.
 
-For more on **shades**, see [[10 - Death and the Undying#**Necromancer**|Death and the Undying]].
+For more on **shades**, see [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]].
 
 ## **The Broken Roads**
 
@@ -99,7 +99,7 @@ When you *hear the call of the nosgalau*, say whose voice you hear on the wind a
 
 What befalls their victims is for you to decide, but it isn't good. Perhaps they…
 
-- … fall prey to some mundane danger, like a mire or **[[14 - The Flats#**Frythanc**|pack drake]]**;
+- … fall prey to some mundane danger, like a mire or **[[14 - The Flats#**Hlomren**|pack drake]]**;
 - … vanish in the night (the grass twisted in strange patterns), only to reappear elsewhere, muddy and haunted-eyed, with patchy memories; or
 - … find themselves surrounded by faces from their past, concealing the nosgalau's true forms (all wisps and teeth, hatred and hunger).
 

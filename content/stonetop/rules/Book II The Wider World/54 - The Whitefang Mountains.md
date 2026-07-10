@@ -9,8 +9,8 @@ The mountains are tall and jagged, steep and forbidding. Yet they hide almost in
 - Storms around Tor's Fist grow stronger; the colors shift to red and yellow
 - A band of **[[54 - The Whitefang Mountains#**Shantyara**|kyakaara]]** slips out of the mountains and is eyeing Stonetop
 - A southern merchant is intent on finding a mountain village, to trade for ivory and fine wool
-- **[[54 - The Whitefang Mountains#**Kyakaara**|Mountain apes]]** hold an artifact/scrap of lore in their hoard
-- An apprentice **[[54 - The Whitefang Mountains#**Mountain ape**|shantyara]]** needs help retrieving her dead master's sword from the **[[54 - The Whitefang Mountains#**People**|bhoka]]** who killed him
+- **[[54 - The Whitefang Mountains#**Monk**|Mountain apes]]** hold an artifact/scrap of lore in their hoard
+- An apprentice **[[54 - The Whitefang Mountains#**Shantyara**|shantyara]]** needs help retrieving her dead master's sword from the **[[54 - The Whitefang Mountains#**Bhoka**|bhoka]]** who killed him
 
 ## **Impressions**
 
@@ -51,11 +51,11 @@ Almost straight north of Stonetop, this lonely mountain juts above its neighbors
 Clearly Tor's Fist holds some mystery, but its nature is for you to decide. Perhaps the mountain's peak holds…
 
 - … the tomb of **[[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher]]**, or her son, or her lover;
-- … a cleft, from which the **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** itself was carved;
-- … one of the last thirteen **[[38 - Rime Lords#Rime Lords|Rime Lords]]**, still in stasis, protected by powerful **[[38 - Rime Lords#**Major arcana**|tulpas]]**;
+- … a cleft, from which the **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** itself was carved;
+- … one of the last thirteen **[[38 - Rime Lords#Rime Lords|Rime Lords]]**, still in stasis, protected by powerful **[[38 - Rime Lords#**Tulpa**|tulpas]]**;
 - … a potent storm-spirit, **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]], but bound there by ancient Rime Lord magic;
 - … the domain of a powerful, temperamental **[[12 - Fae#Fae|Fae]]**;
-- … a shattered **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, torn open and ruined;
+- … a shattered **[[36 - Primordial Powers#**Primordial powers**|portal]]**, torn open and ruined;
 - … a people of great stature, who worship **[[49 - Tor, the Rain-maker#Tor, the Rain-maker|Tor]]**;
 - … the last of the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**), grumpy and aloof;
 - … some combination of the above; or
@@ -103,34 +103,34 @@ For any of these, pick 1 or have someone roll the Die of Fate.
 
 ## 1d6 encounter
 
-- 1 Monkeys, curious and mischievous, or perhaps signs of mountain apes [[54 - The Whitefang Mountains#**Kyakaara**|The Whitefang Mountains]]
+- 1 Monkeys, curious and mischievous, or perhaps signs of mountain apes [[54 - The Whitefang Mountains#**Monk**|The Whitefang Mountains]]
 - 2 A patrol from a fortress-monastery [[54 - The Whitefang Mountains#**Monk**|The Whitefang Mountains]], suspicious of the PCs
 - 3 Someone in dire straits
 - 4 Villagers/layfolk, traveling or tending herds, wary
-- 5 Mammoth herders [[19 - The Frozen Wastes#**Services and favors**|The Frozen Wastes]], stiffly polite
-- 6 A tulpa [[38 - Rime Lords#**Major arcana**|Rime Lords]], a spirit of the wild [[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]], or a Fae [[12 - Fae|Fae]], curious or indifferent
+- 5 Mammoth herders [[19 - The Frozen Wastes#**Dangers**|The Frozen Wastes]], stiffly polite
+- 6 A tulpa [[38 - Rime Lords#**Tulpa**|Rime Lords]], a spirit of the wild [[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]], or a Fae [[12 - Fae|Fae]], curious or indifferent
 
 #### **1d6** point of interest
 
 - 1 A settlement (see below), overrun/destroyed by **[[54 - The Whitefang Mountains#**Shantyara**|kyakaara]]**
 - 2 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**
-- 3 A place **haunted** by the dead or undying [[10 - Death and the Undying#**Death's Door**|Death and the Undying]]
+- 3 A place **haunted** by the dead or undying [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]]
 - 4 A site sacred to the **[[41 - Spirits of the Wild#Spirits of the wild|spirits of the wild]]** or perhaps a **[[12 - Fae#**Getting there**|Fae domain]]**
 - 5-6 A ruin or artifact of the **[[38 - Rime Lords#Rime Lords|Rime Lords]]**
 
 #### **1d6** natural resource
 
 - 1 Vein of ore/mineral deposits/valuable stone (slate, marble, pigments, etc.)
-- 2 Game, dangerous to hunt: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[19 - The Frozen Wastes#**Services and favors**|mammoth]]**, etc.
+- 2 Game, dangerous to hunt: **[[23 - The Great Wood#**Cave bear**|cave bears]]**, **[[19 - The Frozen Wastes#**Dangers**|mammoth]]**, etc.
 - 3-4 Game, hard to reach/prone to bolt: monkeys, hares, goats, etc.
 - 5 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**
 - 6 Safe place to rest, take shelter
 
 #### **1d12** settlement
 
-- 1-2 Camp of **[[19 - The Frozen Wastes#**Services and favors**|mammoth herders]]**), likely empty/abandoned in warmer months
-- 3-6 **Farm valley** (*hamlet*), [[54 - The Whitefang Mountains#**Names**|The Whitefang Mountains]]
-- 7-8 **Farm valley** (*village*), [[54 - The Whitefang Mountains#**Names**|The Whitefang Mountains]]
+- 1-2 Camp of **[[19 - The Frozen Wastes#**Dangers**|mammoth herders]]**), likely empty/abandoned in warmer months
+- 3-6 **Farm valley** (*hamlet*), [[54 - The Whitefang Mountains#**Questions**|The Whitefang Mountains]]
+- 7-8 **Farm valley** (*village*), [[54 - The Whitefang Mountains#**Questions**|The Whitefang Mountains]]
 - 9-10 Lone dwelling: hermit's cave/hunter's lodge/shepherd's camp/etc.
 - 11-12 **[[54 - The Whitefang Mountains#**Monk**|Fortress-monastery]]**
 
@@ -203,15 +203,15 @@ For each steading, pick or roll what their neighbors say they are. Then pick or 
 | 1d12 | feature |
 |---|---|
 | 1 | Surroundings are tainted by the **[[54 - The Whitefang Mountains#**Shantyara**\|Howling Curse]]** |
-| 2 | A **[[54 - The Whitefang Mountains#**People**\|bhoka]]** dwells nearby |
+| 2 | A **[[54 - The Whitefang Mountains#**Bhoka**\|bhoka]]** dwells nearby |
 | 3 | Homes are made of **[[38 - Rime Lords#Dark ice\|dark ice]]**; inhabitants are inured to cold |
 | 4 | Time passes slower here than outside |
 | 5 | Gifted spirit-walkers defend the steading in dreams |
-| 6 | A famous **[[38 - Rime Lords#**Shaksa**\|adept]]** or **[[38 - Rime Lords#**Instinct** see below\|false adept]]** dwells here |
+| 6 | A famous **[[38 - Rime Lords#**Dangers**\|adept]]** or **[[38 - Rime Lords#**1d12** instinct\|false adept]]** dwells here |
 | 7 | Entrance is secret/well-defended |
 | 8 | **[[12 - Fae#Fae\|Fae]]** live within the steading, hiding or in plain sight |
 | 9 | **[[50 - Useful or Valuable Flora#Useful or valuable flora\|Useful or valuable flora]]** grows in abundance |
-| 10 | **[[38 - Rime Lords#**1d12** purpose 1-2 Battle/sparring/protection 3-4 Companionship/advice/diplomacy/ subterfuge 5-6 Labor/mundane tasks/convenience 7-8 Curiosity/instruction/assistance/ practice 9-10 Something obscure, or very specific 11-12 Roll 1d10 twice, combine **1d12** size 1 Cat-sized or smaller (*tiny*) 2-3 Like a human child (*small*) 4-7 Human-sized 8-10 Like a horse, a cart, etc. (*large*) 11-12 Like an elephant, or bigger (*huge*) **1d12** ability 1 Possession (people and/or things) 2 Emotional influence/control 3 Elemental manipulation (ice/wind/ water/etc.) 4 Energy manipulation (light/heat/ cold/darkness/etc.) 5 Invisibility/stealth/observation/ tracking 6 Depths of knowledge/lore/ experience 7 Mind-reading/aura-sense/ true-seeing 8 Illusions/false senses/thoughtforms 9 Strength/speed/prowess/mobility 10 Dangerous physical attack(s) **1d12** tether 1-2 *Immobile* object: unable to leave its presence 3-4 Small, portable object: unable to manipulate it or leave its presence 5-6 Sculpture or construct: can animate it, but cannot leave its presence 7-8 Building or complex: can freely move about within, but cannot leave 9-10 Place or object (roll 1d6 for size/ scale): can travel but must periodically return 11 Living creature/person: can leave their presence for short periods 12 Untethered: free-roaming, independent **1d12** disposition 1 Friendly/polite/helpful 2 Apathetic/bored/lonely 3 Curious/playful/fickle 4 Resentful/duty-bound/compelled 5 Proud/dedicated/honorable 6 Confused/erratic/distraught 7 Boastful/aggressive/hostile 8 Malicious/cruel/devious 9 Timid/shy/meek 10 Focused/obsessive/anxious 11 Roll 1d10, but make it extreme 12 Roll 1d10 twice, combine\|Gingkara]]** serve and protect the locals |
+| 10 | **[[38 - Rime Lords#**Gingkara**\|Gingkara]]** serve and protect the locals |
 | 11 | Possess a **[[58 - Appendix D - Major Arcana\|major arcana]]** |
 | 12 | Weather is warm/pleasant year-round |
 
@@ -269,15 +269,15 @@ At least a dozen fortress-monasteries remain, scattered throughout the Whitefang
 
 ## **Defenses** +2
 
-- **[[04 - Barrier Pass#**Folk from elsewhere**|Guardians]]**
-- At least one **[[38 - Rime Lords#**Shaksa**|adept]]**
-- One or more **[[38 - Rime Lords#**Major arcana**|tulpas]]**
+- **[[04 - Barrier Pass#**Guardian**|Guardians]]**
+- At least one **[[38 - Rime Lords#**Dangers**|adept]]**
+- One or more **[[38 - Rime Lords#**Tulpa**|tulpas]]**
 - Weapons/armor of bronze, maybe **[[38 - Rime Lords#Dark ice|dark ice]]**
 - Defensible position
 
-A typical fortress-monastery has 25-50 residents, split between **[[04 - Barrier Pass#**Folk from elsewhere**|monks]]** and **[[04 - Barrier Pass#**Folk from elsewhere**|guardians]]**, plus a handful of layfolk. Most receive food and material support from a nearby farm valley or two. In turn, guardians patrol the region and monks (ostensibly) guide, teach, and serve as an example for villagers.
+A typical fortress-monastery has 25-50 residents, split between **[[04 - Barrier Pass#**Guardian**|monks]]** and **[[04 - Barrier Pass#**Guardian**|guardians]]**, plus a handful of layfolk. Most receive food and material support from a nearby farm valley or two. In turn, guardians patrol the region and monks (ostensibly) guide, teach, and serve as an example for villagers.
 
-Place each fortress-monastery in a **[[38 - Rime Lords#**A monument, or marker** For example:|Rime Lord ruin]]**, and create the **[[38 - Rime Lords#**Shaksa**|adept]]** who presides over the monks there. Referring to the previous page, roll or pick what their neighbors say they are, a feature for the fortress-monastery, plus up to 3 things that are true of everyone here and/or no one here. Finally, pick or roll a trait:
+Place each fortress-monastery in a **[[38 - Rime Lords#**A ruin**|Rime Lord ruin]]**, and create the **[[38 - Rime Lords#**Dangers**|adept]]** who presides over the monks there. Referring to the previous page, roll or pick what their neighbors say they are, a feature for the fortress-monastery, plus up to 3 things that are true of everyone here and/or no one here. Finally, pick or roll a trait:
 
 # **1d12** trait
 
@@ -328,12 +328,12 @@ When PCs Trade & Barter in a settlement , they use the local Prosperity (with di
 | a substantial piece | 2 |
 | a mammoth tusk ( immobile ) | 3 |
 | cartload of mammoth tusks | 4 |
-| Dark ice (*magical*, see [[38 - Rime Lords#**1d6** condition\|Rime Lords]]) |  |
+| Dark ice (*magical*, see [[38 - Rime Lords#**Dark ice**\|Rime Lords]]) |  |
 | a small piece ( magical ) | 1 |
 | a large chunk ( magical) | 2 |
 | with special characteristics | +1 |
 | a functional tool or weapon | +2 |
-| An object of black iron [[36 - Primordial Powers#**Portals**\|Primordial Powers]] | +2 |
+| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
 
 * +1 if sold/traded outside the Whitefangs.
 
@@ -395,16 +395,16 @@ l A chunk of snow gives way l It gains mass, momentum; it'll be here in a matter
 
 #### **Monsters**
 
-- Predators: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[23 - The Great Wood#**Questions**|cougars]]**, and **[[23 - The Great Wood#**Nailadd**|wolves]]**
+- Predators: **[[23 - The Great Wood#**Cave bear**|cave bears]]**, **[[23 - The Great Wood#**Cougar**|cougars]]**, and **[[23 - The Great Wood#**Raselbaedd**|wolves]]**
 - **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
 - **[[10 - Death and the Undying#**Pyped**|Wraiths]]** of those who died of starvation and want, or corrupted by the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**
-- **[[38 - Rime Lords#**Major arcana**|Tulpas]]**, free-roaming or bound to something nearby
+- **[[38 - Rime Lords#**Tulpa**|Tulpas]]**, free-roaming or bound to something nearby
 
 ### **People**
 
 - Guardians, monks, or novices from **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]**
-- An **[[38 - Rime Lords#**Shaksa**|adept]]**
-- A **[[38 - Rime Lords#**Instinct** see below|false adept]]**, or their minions
+- An **[[38 - Rime Lords#**Dangers**|adept]]**
+- A **[[38 - Rime Lords#**1d12** instinct|false adept]]**, or their minions
 
 ## **Bhoka**
 
@@ -492,7 +492,7 @@ Ice drake fat and blood never freezes. Properly rendered in a kitchen, it makes 
 
 **Instinct** to make people into monsters
 
-In the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**, the voice of **[[46 - The Things Below#**Hlad, the Devourer, the Eternal Maw**|Y'aaw'kara]]** plunged the north into madness. Whole villages turned against each other. The survivors were reduced to marauding beasts. The **[[38 - Rime Lords#Rime Lords|Rime Lords]]** sacrificed themselves to contain the Howling Curse, but it lingers in places where cruelty and violence have caused great suffering.
+In the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**, the voice of **[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|Y'aaw'kara]]** plunged the north into madness. Whole villages turned against each other. The survivors were reduced to marauding beasts. The **[[38 - Rime Lords#Rime Lords|Rime Lords]]** sacrificed themselves to contain the Howling Curse, but it lingers in places where cruelty and violence have caused great suffering.
 
 Places tainted by the Howling Curse are **[[46 - The Things Below#**1d12** origin|corrupted sites]]**, hungry places or worse, full of **whispers and visions** (see [[46 - The Things Below#**Voice of the Eternal Maw**|The Things Below]]) that push people towards bloodshed, cruelty, and savagery. People tainted by the Howling Curse carry such whispers and visions with them.
 
@@ -572,7 +572,7 @@ Consider creating custom instincts and moves for each group of monks, based on t
 - <sup>ä</sup> Reach out, snatch an intruder by surprise
 - <sup>ä</sup> Crush/rend/break a grabbed foe, d8+2 damage w/advantage (*hand*, *forceful*, *messy*, 1 piercing)
 
-Like orangutans but taller, more powerfully built, with thick, shaggy white hair. They dwell in small bands, in **[[38 - Rime Lords#**A monument, or marker** For example:|Rime Lord ruins]]** or **[[41 - Spirits of the Wild#Sacred sites|sacred sites]]** that are far from any well-trod trails. They venture out to hunt and gather, but avoid people as much as they can.
+Like orangutans but taller, more powerfully built, with thick, shaggy white hair. They dwell in small bands, in **[[38 - Rime Lords#**A ruin**|Rime Lord ruins]]** or **[[41 - Spirits of the Wild#Sacred sites|sacred sites]]** that are far from any well-trod trails. They venture out to hunt and gather, but avoid people as much as they can.
 
 Each band of mountain apes collects things: a particular type of plant or flower, the bones of certain animals, bits of writing, **[[38 - Rime Lords#Dark ice|dark ice]]**, etc. They keep these hoards in a central place, hidden away, revered and treasured even more than their own children or their lives. Particularly large or well-established bands will have an alpha (*large*, *leader*, +6 HP, +1 damage) who does nothing but protect the hoard.
 

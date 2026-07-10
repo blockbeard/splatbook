@@ -45,7 +45,7 @@ Choose or roll 1, or 2 and combine.
 Many aspects of the setting's cosmology are intentionally left vague, for you and your group to flesh out as needed. Here are a few things to ask about or consider:
 
 - How mythic is your cosmos? Like, is the sun a star, orbited by the world? Or does **[[25 - Helior, the Daybringer#Helior, the Daybringer|Helior]]** drive his chariot across the sky? Or what?
-- Do other worlds float in the void? Can they be reached via the spirit world or **[[36 - Primordial Powers#**Other sites of primordial power**|portals]]**?
+- Do other worlds float in the void? Can they be reached via the spirit world or **[[36 - Primordial Powers#**Primordial powers**|portals]]**?
 - What lies beyond the **[[10 - Death and the Undying#**Questions**|Last Door]]**)? Is the afterlife the same for all, or do different fates await each soul?
 - What exactly is the relationship between the First Creators, the great spirits, the gods of forgotten peoples, and the gods worshipped today?
 - Did life evolve over eons? Or did the First Creators populate the world with much of the flora and fauna we know today? Or what?
@@ -61,7 +61,7 @@ The First Creators are unlikely to feature directly in your game. Mostly, they s
 
 Beings of darkness, chaos, and corruption, older even than the First Creators. They are jealous and hateful and full of infinite malice, and so the First Creators bound them in the depths of the earth.
 
-Though imprisoned, they still influence the world. The **[[24 - Green Lords#Names|Green Lords]]** called on them when the **[[12 - Fae#Fae|Fae]]** rebelled. The servants of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]** succumbed to their whispers and ushered in the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**. The **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**) courted them openly and worshipped them as gods. Their influence has lessened in the **[[46 - The Things Below#The Things Below|current age]]**, but it lingers still.
+Though imprisoned, they still influence the world. The **[[24 - Green Lords#Names|Green Lords]]** called on them when the **[[12 - Fae#Fae|Fae]]** rebelled. The servants of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]** succumbed to their whispers and ushered in the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**. The **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**) courted them openly and worshipped them as gods. Their influence has lessened in the **[[46 - The Things Below#**The current age**|current age]]**, but it lingers still.
 
 # **Primordial powers**
 
@@ -71,7 +71,7 @@ Impossibly potent entities, numinous and grand. The First Creators made some as 
 
 Many of these great spirits are aloof, alien, and disinterested in the world (or at least, in this world). Others are active, but shape the world in subtle ways. Their numbers might well include the **[[10 - Death and the Undying#**Death's Door**|Lady of Crows]]**, and some or all of the **major gods** (page [[20 - Gods and Religion#Gods and religion|178]]).
 
-To create a great spirit for your game, decide whether it's worshipped as a god. If it is, create it using the procedure for **[[20 - Gods and Religion#**Threshold spirit**|other gods]]**. Otherwise, pick or roll 2 primordial themes [[36 - Primordial Powers#**1d12** marker|Primordial Powers]] and imagine the entity suggested by the combination. Consider why it goes unworshipped—is it unknown, uncaring, alien, or what?
+To create a great spirit for your game, decide whether it's worshipped as a god. If it is, create it using the procedure for **[[20 - Gods and Religion#**Other gods**|other gods]]**. Otherwise, pick or roll 2 primordial themes [[36 - Primordial Powers#**1d12** marker|Primordial Powers]] and imagine the entity suggested by the combination. Consider why it goes unworshipped—is it unknown, uncaring, alien, or what?
 
 Should one of the great spirits become active in your game, write it up as a threat (a *magical entity*). Even benevolent beings of such cosmic power can't help but cause trouble.
 
@@ -80,7 +80,7 @@ Should one of the great spirits become active in your game, write it up as a thr
 The great spirits sometimes manifest directly in the world. Such incarnations are likely to become figures of myth and legend. For examples, see:
 
 - The **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]**
-- The **[[49 - Tor, the Rain-maker#**Lightning**|Nine-fingered stranger]]** if you assume that Tor is a great spirit
+- The **[[49 - Tor, the Rain-maker#**Nine-fingered stranger**|Nine-fingered stranger]]** if you assume that Tor is a great spirit
 - The **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, if you decide he's a primordial entity
 
 To create an incarnation, first establish what great spirit it's a manifestation of. Then choose or roll for why it incarnated, its manifestation, and 1-3 constraints. Write it up as a monster, and possibly as a threat, with all manner of powerful moves—such beings are not bound by the normal laws of reality. See the examples (previous column) for inspiration.
@@ -200,7 +200,7 @@ Start with the base archon stat block below. Pick or roll for their purpose, the
 
 Archons have unique names with unlikely combinations of sounds, with majestic and enigmatic titles. For example: Qrenithar, Dawn Herald; Klythorim, Arrow of Time; Xezaltran the Inevitable; Jharvakus, the Silent Witness; Phrysthalin, Bearer of Scales; and Lyvontis, the Judge Incorruptible.
 
-For an example, see **[[28 - The Labyrinth#**Thraulgwyn raider**|Tcaventes, Shackle and Key]]**.
+For an example, see **[[28 - The Labyrinth#**Soithech**|Tcaventes, Shackle and Key]]**.
 
 ## **Primordial powers**
 
@@ -225,9 +225,9 @@ thought and matter, omnilingual INSTINCT: to correct mistakes
 
 Legends speak of a time when beasts and beings of impossible scale roamed the world. The god **[[49 - Tor, the Rain-maker#Tor, the Rain-maker|Tor]]** is said to have slain three such beasts, and everyone knows about the skeleton on the side of **[[48 - Titan Bones#Titan Bones|Titan Bones]]**.
 
-Perhaps the First Creators placed these titans in the world. Perhaps they evolved amid the early world's riot of vitality and life. Some could have been incarnations of the great spirits, or **[[46 - The Things Below#**Thrall**|emanations]]** of the Things Below.
+Perhaps the First Creators placed these titans in the world. Perhaps they evolved amid the early world's riot of vitality and life. Some could have been incarnations of the great spirits, or **[[46 - The Things Below#**Wretch**|emanations]]** of the Things Below.
 
-Regardless, titans no longer roam the world like they once did. The **[[08 - The Crombil#Hooks|Crombil]]** might be one, but it wakes only once every few decades. The **[[11 - The Dread River#**Jellied horror**|Suileach]]** might be another, but it is confined to the Dread River. The hidden lands around the **[[21 - The Golden Oak#The Golden Oak|Golden Oak]]** are full of gargantuan beasts, but whether they are truly titans is up to you.
+Regardless, titans no longer roam the world like they once did. The **[[08 - The Crombil#Hooks|Crombil]]** might be one, but it wakes only once every few decades. The **[[11 - The Dread River#**The Suileach**|Suileach]]** might be another, but it is confined to the Dread River. The hidden lands around the **[[21 - The Golden Oak#The Golden Oak|Golden Oak]]** are full of gargantuan beasts, but whether they are truly titans is up to you.
 
 There might be other such titans, hidden away in remote corners of the world, sleeping the centuries away, waiting to rise once more.
 
@@ -241,7 +241,7 @@ There are places in the world marked or marred by primordial power. If such a si
 
 - 1 A veil, hiding it from the world
 - 2-3 Dramatic geology (a peak, a crater, a rift, a geyser, etc.)
-- 4 Desolation/**[[45 - Tempest Lords#**Silvery tuning fork**|radiation]]**
+- 4 Desolation/**[[45 - Tempest Lords#**Storm-cloud potion**|radiation]]**
 - 5 Remains of a **[[36 - Primordial Powers#**Other primordial entities**|titan]]**
 - 6-7 Megalith(s)/petroglyphs/runes/cave paintings/etc.
 - 8-9 Ruin(s) of the **[[30 - The Makers#The Makers|Makers]]**, built near or around it
@@ -262,16 +262,16 @@ Once the site itself is established, pick or roll for a theme [[36 - Primordial 
 ### **1d12** features
 
 - 1 An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, watching over it or what it contains
-- 2 A trapped primordial entity or **[[46 - The Things Below#**Thrall**|emanation]]**
+- 2 A trapped primordial entity or **[[46 - The Things Below#**Wretch**|emanation]]**
 - 3 An abundance of certain spirits
-- 4 The **[[10 - Death and the Undying#**Necromancer**|shade]]** of a dead god or primordial entity, easily called up
+- 4 The **[[10 - Death and the Undying#**Death and the undying**|shade]]** of a dead god or primordial entity, easily called up
 - 5 Anomalies (time loops or fluxes, spatial warps, weird gravity, thoughts projected out loud, etc.)
 - 6 A thin barrier with the spirit world
-- 7 A **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, or a place with the potential for one
+- 7 A **[[36 - Primordial Powers#**Primordial powers**|portal]]**, or a place with the potential for one
 - 8 A font of power; a good place to work particular types of magic
 - 9 Visions/omens/prophecies/insights, sometimes bestowed on visitors
 - 10 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**, something weird, found only here
-- 11 The raw stuff of creation: **[[36 - Primordial Powers#**Portals**|black iron]]**, water of life, **[[36 - Primordial Powers#**Instinct** to eat and spawn|primordial flame]]**, etc.
+- 11 The raw stuff of creation: **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, water of life, **[[36 - Primordial Powers#**Instinct** to eat and spawn|primordial flame]]**, etc.
 - 12 One or more **artifacts** of primordial power [[36 - Primordial Powers#Artifacts|Artifacts]]
 
 If such a site lies near areas that are or were once populated, consider the locals' attitudes towards it (reverence, awe, terror, avoidance, etc.), and what additional signs they might have left.
@@ -282,7 +282,7 @@ If such a site lies near areas that are or were once populated, consider the loc
 
 *I roll a 4 on the Whitefangs terrain table ("waterlogged soil, frozen or muddy") and a 9 for a marker ("ruin of the Makers"). In the Whitefangs, that's probably a Rime Lord ruin.* 
 
-*I roll a 10 for theme ("mythic times, the birth and death of gods and legends") and an 8 for origins ("death of a primordial entity"). For features, I roll a 4 ("the shade of a dead god…"), and pick "one or more artifacts of primordial power" (the Ineffable Words). I create the Rime Lord ruin using the tables on [[38 - Rime Lords#**A monument, or marker** For example:|Rime Lords]] and the dead god using the steps on [[20 - Gods and Religion#**Threshold spirit**|Gods and Religion]]* 
+*I roll a 10 for theme ("mythic times, the birth and death of gods and legends") and an 8 for origins ("death of a primordial entity"). For features, I roll a 4 ("the shade of a dead god…"), and pick "one or more artifacts of primordial power" (the Ineffable Words). I create the Rime Lord ruin using the tables on [[38 - Rime Lords#**A ruin**|Rime Lords]] and the dead god using the steps on [[20 - Gods and Religion#**Other gods**|Gods and Religion]]* 
 
 *I picture a high place, where a demon killed Nangbu—a goddess of writing, wisdom, and prophecy. The Rime Lords carved a temple into the slope, to honor her and commune with her shade, but avalanches buried the temple. What remains is an alpine meadow with a few chunks of Maker-carved stone sticking out of muddy soil. There's a stillness to the air, in which one can sometimes hear a whispering voice.* 
 
@@ -291,7 +291,7 @@ If such a site lies near areas that are or were once populated, consider the loc
 ## **Other sites of primordial power**
 
 - A small lake: cold, acidic, devoid of life. During thick mists, it connects to other times, places, or realities.
-- A hill overlooking a river, where an **[[46 - The Things Below#**Thrall**|emanation]]** is impaled on a rod of black iron. An archon hides the hill and its prisoner from the world.
+- A hill overlooking a river, where an **[[46 - The Things Below#**Wretch**|emanation]]** is impaled on a rod of black iron. An archon hides the hill and its prisoner from the world.
 - The base of a rusty metal tower, 6' wide, rising over a lush meadow that teems with nature spirits. The bones of a titan are buried below.
 - A fallen megalith, half-sunk in peat and mire. When the stars align, a mortal here can ask one question and get a total, overwhelming answer.
 - A lonely peak where, if one is not careful, their spirit will be drawn from their body and up into the void.
@@ -303,7 +303,7 @@ If such a site lies near areas that are or were once populated, consider the loc
 - The **[[28 - The Labyrinth#**Tcaventes, Shackle and Key**|Utterwell]]**.
 - **[[48 - Titan Bones#Titan Bones|Titan Bones]]**, perhaps.
 - Maybe **[[54 - The Whitefang Mountains#Chart a Course|Tor's Fist]]**?
-- Possibly the **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** itself.
+- Possibly the **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** itself.
 
 ## **Primordial powers**
 
@@ -436,10 +436,10 @@ When you *bear the fossilized horn*, you have advantage on any move to impress, 
 
 - Storms, violent weather, **[[57 - Appendix C - Minor Arcana#A cloak, richly embroidered|lightning]]**, flooding
 - **[[54 - The Whitefang Mountains#**Ice drake**|Avalanches]]**, **rockslides** and **[[42 - The Steplands#1d6 natural beast or spirit|mudslides]]**
-- **[[14 - The Flats#**1d12** battlefield or remains|Prairie fire]]** run amok
-- **[[27 - Huffel Peaks#**Harsh mountain weather**|Volcanic activity]]**
-- **[[27 - Huffel Peaks#**Harsh mountain weather**|Earthquakes]]**
-- **[[45 - Tempest Lords#**Silvery tuning fork**|Radiation]]**
+- **[[14 - The Flats#**Dangers**|Prairie fire]]** run amok
+- **[[27 - Huffel Peaks#**Volcanic activity**|Volcanic activity]]**
+- **[[27 - Huffel Peaks#**Volcanic activity**|Earthquakes]]**
+- **[[45 - Tempest Lords#**Storm-cloud potion**|Radiation]]**
 
 #### **Fate**
 
@@ -492,7 +492,7 @@ When primordial power runs amok, it can damage reality itself. Such rifts might 
 - Natural laws like light, heat, gravity, and death behave strangely
 - The world breaks down into chemics/ crystals/raw elements
 - New lifeforms/consciousnesses arise
-- **[[36 - Primordial Powers#**Rift**|Fundamentals]]**, **[[36 - Primordial Powers#**Chaos**|voidblights]]**, or other dangerous spirits enter the world
+- **[[36 - Primordial Powers#**Fundamental**|Fundamentals]]**, **[[36 - Primordial Powers#**Primordial powers**|voidblights]]**, or other dangerous spirits enter the world
 - The Things Below spread their influence (see **[[46 - The Things Below#**1d12** origin|corrupted sites]]**)
 
 Most rifts are temporary, soon sealed by **[[36 - Primordial Powers#**Other primordial entities**|archons]]** or other primordial
@@ -582,6 +582,6 @@ l **Impending doom**: voidblights spread into new colonies, all over the region 
 
 - The **[[46 - The Things Below#The Things Below|Things Below]]**
 - **[[36 - Primordial Powers#**Other primordial entities**|Great spirits]]**, possibly including the **[[10 - Death and the Undying#**Death's Door**|Lady of Crows]]** and some or all of the major **gods** (page [[20 - Gods and Religion#Gods and religion|178\)]]
-- **[[36 - Primordial Powers#**Other primordial entities**|Incarnations]]**, including the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]** and perhaps the **[[49 - Tor, the Rain-maker#**Lightning**|Nine-fingered stranger]]** and/or the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**
-- **[[36 - Primordial Powers#**Other primordial entities**|Archons]]**, including **[[28 - The Labyrinth#**Thraulgwyn raider**|Tcaventes, Shackle and Key]]**
-- **[[36 - Primordial Powers#**Other primordial entities**|Titans]]**, perhaps including the **[[08 - The Crombil#Hooks|Crombil]]** and/or the **[[11 - The Dread River#**Jellied horror**|Suileach]]**
+- **[[36 - Primordial Powers#**Other primordial entities**|Incarnations]]**, including the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]** and perhaps the **[[49 - Tor, the Rain-maker#**Nine-fingered stranger**|Nine-fingered stranger]]** and/or the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**
+- **[[36 - Primordial Powers#**Other primordial entities**|Archons]]**, including **[[28 - The Labyrinth#**Soithech**|Tcaventes, Shackle and Key]]**
+- **[[36 - Primordial Powers#**Other primordial entities**|Titans]]**, perhaps including the **[[08 - The Crombil#Hooks|Crombil]]** and/or the **[[11 - The Dread River#**The Suileach**|Suileach]]**

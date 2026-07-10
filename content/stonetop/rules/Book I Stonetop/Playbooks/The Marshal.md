@@ -88,7 +88,7 @@ Take a move from the Fox, Heavy, Judge, Ranger, or Seeker playbooks, for which y
 ### CREW
 
 *(starting move)*
-You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the [[Inserts#Loyal to the end|Crew]] insert for details.
+You've got a crew of stalwarts, six or so residents of Stonetop with some steel to them. See the [[Inserts#Crew|Crew]] insert for details.
 
 #### VETERAN CREW
 

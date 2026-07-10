@@ -20,7 +20,7 @@
 
 #### **Defenses** +1
 
-- **[[32 - Marshedge#**RECRUIT**|The Guard]]**
+- **[[32 - Marshedge#**Dangers**|The Guard]]**
 - Wooden palisade
 - Bendis root braziers
 
@@ -39,7 +39,7 @@ The town of Marshedge lies along the **[[31 - The Makers' Roads#The Makers' Road
 ## **Places**
 
 - **The Hill**, around which the town huddles, looming over Ferrier's Fen. Riddled with **Maker**-ruins [[30 - The Makers|The Makers]].
-- **The Palisade** surrounds the town, with braziers of bendis root burning day and night. Four members of **[[32 - Marshedge#**Ruins of the past**|the Guard]]** walk the ramparts.
+- **The Palisade** surrounds the town, with braziers of bendis root burning day and night. Four members of **[[32 - Marshedge#**Names**|the Guard]]** walk the ramparts.
 - **The Sruth**, a wide, shallow river that drains lazily past Marshedge and into the Fen. Lined with reeds and willows, the bed made of loose, sucking mud.
 - **The Bridge**, a wooden span across the Sruth where a stretch of road once lay, just wide enough for a wagon. A pair of Guards collect tolls at the gate house.
 - **Low Town**, hovels of the working folk, all around the Hill and Edgemarket. Wattle and daub construction, cramped gardens, dirty kids, lots of livestock. Guards don't patrol here.
@@ -47,7 +47,7 @@ The town of Marshedge lies along the **[[31 - The Makers' Roads#The Makers' Road
 
 - **The Mire**, a muddy slum north of the main palisade, poking into the Fen. Wood walkways stretch between bogs of rice and herbs. Two gates link it to Low Town, each manned by a Guard.
 - **Dropoff**, middle-class homes and shops all around the slope of the Hill. A pair of Guards are always on patrol.
-- **High Town**, a neighborhood of stone buildings with slate roofs atop the Hill. Where the **[[32 - Marshedge#**Ruins of the past**|Old Families]]** live. Ringed by a second palisade, with a pair of Guards always watching the gate.
+- **High Town**, a neighborhood of stone buildings with slate roofs atop the Hill. Where the **[[32 - Marshedge#**Names**|Old Families]]** live. Ringed by a second palisade, with a pair of Guards always watching the gate.
 - **The Garrison**, the Guard's headquarters, just outside High Town. A dozen or so Guards are stationed here at any time, off-duty but on-call.
 - **Eastgate**, where the Highway passes through the palisade and farmers come and go to the fields. A pair of Guards collect tolls from visitors.
 - **Miller's Hill**, a Maker-ruin just east of town, repurposed into a windmill. Everyone mumbles about how the place is haunted. It is.
@@ -91,7 +91,7 @@ Marshedge and Stonetop share a language but the dialects are quite distinct, imp
 
 **The lesser trades**—smiths, bakers, carpenters, thatchers, the miller, and others who keep the town running. (~40 artisans, assistants, and families)
 
-**[[13 - Ferrier's Fen#**Winter**|Fen-walkers]]** ply the wetlands, gathering herbs, hunting game, cutting peat and clay, and keeping tabs on the **[[13 - Ferrier's Fen#**Fen-troll**|suarachan]]**. They recruit from orphans and those with no prospects. Some have (and hide) weird mutations. (~20 souls)
+**[[13 - Ferrier's Fen#**Exploring the Fen**|Fen-walkers]]** ply the wetlands, gathering herbs, hunting game, cutting peat and clay, and keeping tabs on the **[[13 - Ferrier's Fen#**The Gliomor**|suarachan]]**. They recruit from orphans and those with no prospects. Some have (and hide) weird mutations. (~20 souls)
 
 **The Council**, Marshedge's governing body. Includes the head of each Old Family, the master of each Guild, the eldest of the fen-walkers, and Brennan (who has no vote, but pushes them around).
 
@@ -107,7 +107,7 @@ Marshedge and Stonetop share a language but the dialects are quite distinct, imp
 
 - The town charter gives fen-walkers the right to demand aid from any resident, and the responsibility to execute those found to be "corrupted by vile spirits, or congressing with such."
 - Every seven years, one of the Old Families delivers one of their children to the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]**. A fen-walker leaves the child at one of the grand willow trees, never looking back. Rarely, such a child returns, years later, and greatly changed.
-- The miller's wife is a **[[10 - Death and the Undying#**Dool spirit**|necromancer]]**, with a number of ghosts bound in the basement. Brennan knows her secret and has taken to
+- The miller's wife is a **[[10 - Death and the Undying#**Death and the undying**|necromancer]]**, with a number of ghosts bound in the basement. Brennan knows her secret and has taken to
 
 in Marshedge; there's a guild to join, rules to follow, and fees to pay. Surely Brennan and the Guard are compensated for
 
@@ -227,7 +227,7 @@ When you *put out word that you're hiring*, say who you're looking for, what the
 | A consultation with a skilled healer     | 1     |
 | An engineer/foreman, for a big project   | 2     |
 | A skilled healer's care, for a few weeks | 2     |
-| A fen-walker [[13 - Ferrier's Fen#**Winter**\|Ferrier's Fen]] to guide you     |       |
+| A fen-walker [[13 - Ferrier's Fen#**Exploring the Fen**\|Ferrier's Fen]] to guide you     |       |
 | to a known, nearby spot                  | 1     |
 | to a dangerous/unknown spot              | 2     |
 | to a place of almost certain death       | 3     |
@@ -244,10 +244,10 @@ When you *put out word that you're hiring*, say who you're looking for, what the
 
 ## **Things from the fen**
 
-- **[[13 - Ferrier's Fen#… **a promise, to be fulfilled now or later**.|Disease]]**
-- **[[13 - Ferrier's Fen#**Disease**|Fen blight]]**
-- **[[13 - Ferrier's Fen#**Disease**|Fen-trolls]]**
-- **[[13 - Ferrier's Fen#**Fen-troll**|Suarachan]]**
+- **[[13 - Ferrier's Fen#**Dangers**|Disease]]**
+- **[[13 - Ferrier's Fen#**Fen blight**|Fen blight]]**
+- **[[13 - Ferrier's Fen#**Fen blight**|Fen-trolls]]**
+- **[[13 - Ferrier's Fen#**The Gliomor**|Suarachan]]**
 
 #### **Brennan**
 

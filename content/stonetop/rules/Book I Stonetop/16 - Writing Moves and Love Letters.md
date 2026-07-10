@@ -100,15 +100,15 @@ The preferences, personalities, and quirks of your players are constraints, too.
 
 Think about what you want this move to add to the game. For example, your new move might…
 
-- ... grant permission, like how **[[The Blessed#Place of origin and name|Spirit Tongue]]** lets the Blessed talk to spirits and natural beasts.
+- ... grant permission, like how **[[The Blessed#Stats|Spirit Tongue]]** lets the Blessed talk to spirits and natural beasts.
 - ... establish how stuff works, like how the "**attempt to commit violence on the roads**" move [[06 - Player Moves#Custom moves|Custom moves]] says what happens when someone does just that.
 - ... encourage certain behavior, like how **[[The Would-be Hero#BETTER PART OF VALOR|Better Part of Valor]]** pushes the Would-be Hero to avoid fights.
-- ... establish risks and stakes and serious consequences, like how the **[[12 - Dangers#**As an impending doom**|"fall from the boughs of the tree" move]]** says just how bad it'll be.
+- ... establish risks and stakes and serious consequences, like how the **[[12 - Dangers#**As player moves**|"fall from the boughs of the tree" move]]** says just how bad it'll be.
 - ... streamline play, like how **[[10 - Expeditions#OUTFIT|Outfit]]**) and **[[10 - Expeditions#HAVE WHAT YOU NEED|Have What You Need]]**) make packing for a trip easy.
 - ... embellish parts of play, like how **[[10 - Expeditions#KEEP COMPANY|Keep Company]]** fills in scenes that might otherwise be glossed over.
 - ... shape or frame play in a particular way, like how **[[The Fox#BURGLE|Burgle]]** deals with a Fox sneaking off on their own.
-- ... reinforce a theme or mood, like how **[[12 - Fae#**1d12** encounter|Haggle]]** makes deals with the Fae always feel fraught or how **[[06 - Blackwater Lake#Hazards include:|Drowning]]** creates tension as PCs hold their breath.
-- ... get players to buy into adversity, like how the **[[31 - The Makers' Roads#**Waysides**|"call of the nosgalau"]]** move has players say what compels them to leave the roads.
+- ... reinforce a theme or mood, like how **[[12 - Fae#**Moves**|Haggle]]** makes deals with the Fae always feel fraught or how **[[06 - Blackwater Lake#Hazards include:|Drowning]]** creates tension as PCs hold their breath.
+- ... get players to buy into adversity, like how the **[[31 - The Makers' Roads#**Fellow travelers**|"call of the nosgalau"]]** move has players say what compels them to leave the roads.
 
 - ... push players into making interesting, meaningful decisions, like how **[[10 - Expeditions#FORAGE|Forage]]** has players pick between food, a discovery, and safety.
 - ... explore a PC's feelings, thoughts, or past, like how the **[[12 - Dangers#**As a combination**|"Hall of Humility" move]]** has them reveal a moment of humility or one of pride.
@@ -126,7 +126,7 @@ If you move forward with writing a move, you've now got a benchmark to measure y
 
 *The PCs are planning to take the Fae paths again (to find and destroy the tether of the shadowy presence that haunts the Great Wood). They'd prefer not to indebt themselves to Thornthumb again, and so they intend to access the waystones by taking hallucinogenic mushrooms under a full moon.* 
 
-*There's already a move for walking the paths once they access them* (*[[53 - Waystones#**Lore**|Book II]]*)*, but I'd like a custom move to resolve what happens when they take shrooms together in the Great Wood. (Hey look, a trigger!)* 
+*There's already a move for walking the paths once they access them* (*[[53 - Waystones#**Walking the paths**|Book II]]*)*, but I'd like a custom move to resolve what happens when they take shrooms together in the Great Wood. (Hey look, a trigger!)* 
 
 *Because I expect to use this move only once or twice, I don't want to spend too much time writing it. But I am willing to spend a fair bit of table-time using it. It shouldn't overlap significantly with the "walking the paths" move. And, oh yeah, Rhianna's bringing her crew, so I need to account for them.* 
 
@@ -195,7 +195,7 @@ A move's results can be…
 - ... **player-level**, with questions asked and answered, feedback given, revelations made, etc. See **[[10 - Expeditions#KEEP COMPANY|Keep Company]]** or **[[The Lightbearer#ALL IS ILLUMINATED|All Is Illuminated]]**.
 - ... **immediate**, like how **[[06 - Player Moves#CLASH|Clash]]** says what happens here and now.
 - ... **ongoing**, like how **[[06 - Player Moves#DEFEND|Defend]]** gives a player Readiness to spend in a scene, or how a **Muster** (page [[15 - Homefront#MUSTER|534\)]] lasts until certain conditions are met.
-- ... **delayed**, like how the **[[57 - Appendix C - Minor Arcana#**Ward of Still Waters** Strain:|Six Locks of Sajua]]** can lead to a looming visit from the Pale Hunter.
+- ... **delayed**, like how the **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Six Locks of Sajua]]** can lead to a looming visit from the Pale Hunter.
 - ... **combinations of the above**, like how **[[06 - Player Moves#AID|Aid]]** can grant advantage or a fictional change of scope, or how **[[06 - Player Moves#SEEK INSIGHT|Seek Insight]]** has the player ask the GM questions and roll with advantage to act on the answers.
 
 If it helps you to think of these as 10+ or 7-9 results, or items that a player might pick from, then great. But hold your ideas lightly. The goal right now is to identify interesting, potential outcomes.
@@ -268,7 +268,7 @@ Also, practically, it's just easier to have the player making the move make the 
 
 When a move forces another character to feel or react in a particular way, then the move should have that character's player (the GM for NPCs) pick between options. This maintains a player's agency over their PC, and allows the GM to maintain the integrity of NPCs.
 
-For example, on a 10+ to **[[06 - Player Moves#PERSUADE (vs. PCs)|Persuade vs. PCs]]** the targeted player still decides whether to agree (and mark XP) or reveal how they could be convinced. When the Ranger uses **[[The Ranger#PREDATOR|Alpha]]**, the beast or spirit decides how to react. When a PC uses the Red Scepter to **[[58 - Appendix D - Major Arcana#Consequences|Inflame]]** and gets a 10+, the victim picks whether to act as compelled or resist and suffer terrible burns.
+For example, on a 10+ to **[[06 - Player Moves#PERSUADE (vs. PCs)|Persuade vs. PCs]]** the targeted player still decides whether to agree (and mark XP) or reveal how they could be convinced. When the Ranger uses **[[The Ranger#PREDATOR|Alpha]]**, the beast or spirit decides how to react. When a PC uses the Red Scepter to **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Inflame]]** and gets a 10+, the victim picks whether to act as compelled or resist and suffer terrible burns.
 
 #### **Have the GM pick**
 
@@ -337,7 +337,7 @@ Typically, a 10+ is a clean success, a 7-9 is a limited or costly success, and 6
 - ... still have a downside on a 10+, like how **[[The Lightbearer#AND BEHOLD A PALE HORSE|Invoke the Sun God]]** still has the player pick a consequence as a way to limit how often the Lightbearer can use their magic.
 - ... grant a full success on a 7-9 and a little extra on a 10+, as a way to reflect a PC being extra good at something (like **[[The Ranger#A SAFE PLACE|Expert Tracker]]**) or otherwise acting from a position of strength.
 - ... establish an especially mild or brutal result on a 6- (see the examples on the previous page).
-- ... include an extra tier, like how **[[12 - Fae#**1d12** encounter|Haggle]]** has separate results for 12+ and 10-11, to reflect the full range of possible outcomes.
+- ... include an extra tier, like how **[[12 - Fae#**Moves**|Haggle]]** has separate results for 12+ and 10-11, to reflect the full range of possible outcomes.
 - ... invert the tiers entirely, like how the **[[54 - The Whitefang Mountains#**Shantyara**|howling curse]]** is permanent on a 10+, temporary on a 7-9, and fleeting on a 6-. This works because the PC adds +1 for each benefit they gain from the howling curse.
 
 Set the results for each tier however works best for your move.
@@ -346,12 +346,12 @@ Set the results for each tier however works best for your move.
 
 A few moves use a totally different type of roll, and yours can too. For example:
 
-- **[[57 - Appendix C - Minor Arcana#**Witch Bottle** Sway|Wishing Candles]]** has the player roll a Die of Fate to see what their wish costs them, emphasizing the candles' fickle nature.
-- **[[57 - Appendix C - Minor Arcana#**The Tomb-bog's Mark**|Fear of the Flame]]** uses a risk roll, where the player rolls a d6 and a bad thing happens if they roll under some number that grows each time. This a good way to reflect magic that's increasingly risky/costly to use.
-- The **[[57 - Appendix C - Minor Arcana#**Searing Touch**|Horn of Storms]]** has the player roll a pool of dice and assign one die each to the storm's onset, intensity, reach, and duration, with an outcome for each based on the result of the assigned die. This allows you to have multiple axes of effect, each with a different tier effect.
+- **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Wishing Candles]]** has the player roll a Die of Fate to see what their wish costs them, emphasizing the candles' fickle nature.
+- **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Fear of the Flame]]** uses a risk roll, where the player rolls a d6 and a bad thing happens if they roll under some number that grows each time. This a good way to reflect magic that's increasingly risky/costly to use.
+- The **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Horn of Storms]]** has the player roll a pool of dice and assign one die each to the storm's onset, intensity, reach, and duration, with an outcome for each based on the result of the assigned die. This allows you to have multiple axes of effect, each with a different tier effect.
 - The **[[10 - Death and the Undying#**Death and the undying**|Blackened Splinter]]** has the player roll 3d6, with the effect depending on whether they roll over or under the target's current HP. This is a good trick for effects that can straight-up defeat a foe.
 
-You can combine alternative rolls with standard rolls, too, like how the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Power of the Lidless Orb]]** has the player roll +CON to call on an effect, and one of those effects involves a roll vs. the victim's current HP.
+You can combine alternative rolls with standard rolls, too, like how the **[[58 - Appendix D - Major Arcana#APPENDIX D: MAJOR ARCANA|Power of the Lidless Orb]]** has the player roll +CON to call on an effect, and one of those effects involves a roll vs. the victim's current HP.
 
 Feel free to experiment, and try other types of rolls for your moves, too!
 
@@ -379,7 +379,7 @@ Use a bulleted pick list any time there are 3 or more options to pick from, unle
 
 With that said, keep your pick lists short. 2-4 is ideal. 5 or 6 can work, but see if you can condense them. 7 or more options in a single move is usually a bad idea, as it can lead to decision paralysis.
 
-Try to make the different choices parallel, in their language and their scope, scale, timeframe. Don't make one of the choices obviously and always better than the rest. If you have a pick list, consider whether any of your options would benefit from an "else" statement at the end. For example, one option for **[[10 - Expeditions#FORAGE|Forage]]** is "you avoid danger or risk (else, there is some)." The "else" there clarifies that if they don't pick this option, there will be danger or risk. You can also use "else" statements to establish a baseline result in a succinct way, which can be quite useful for magical effects. See **Ice Weaving** and **[[57 - Appendix C - Minor Arcana#**Ward of Still Waters** Strain:|Impudent Polymorph]]** for examples.
+Try to make the different choices parallel, in their language and their scope, scale, timeframe. Don't make one of the choices obviously and always better than the rest. If you have a pick list, consider whether any of your options would benefit from an "else" statement at the end. For example, one option for **[[10 - Expeditions#FORAGE|Forage]]** is "you avoid danger or risk (else, there is some)." The "else" there clarifies that if they don't pick this option, there will be danger or risk. You can also use "else" statements to establish a baseline result in a succinct way, which can be quite useful for magical effects. See **Ice Weaving** and **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Impudent Polymorph]]** for examples.
 
 ## *Okay, here's my full draft:*
 

@@ -20,8 +20,8 @@
 ### **Defenses** +2
 
 - A score of guardians
-- A handful of **[[38 - Rime Lords#**Shaksa**|adepts]]**
-- A number of **[[38 - Rime Lords#**Major arcana**|tulpas]]**
+- A handful of **[[38 - Rime Lords#**Dangers**|adepts]]**
+- A number of **[[38 - Rime Lords#**Tulpa**|tulpas]]**
 - Blunt weapons, nets, bolas, bronze shields and mail
 - Exceptional fortifications
 
@@ -61,9 +61,9 @@ If a PC has visited Barrier Pass, or beyond:
 
 ## **People**
 
-The people of Barrier Pass descend from the **Rime Lords**' [[38 - Rime Lords|Rime Lords]] mortal disciples. Their names are Nepalese- and Tibetan-inspired (see [[54 - The Whitefang Mountains#1d6 encounter|The Whitefang Mountains]]).
+The people of Barrier Pass descend from the **Rime Lords**' [[38 - Rime Lords|Rime Lords]] mortal disciples. Their names are Nepalese- and Tibetan-inspired (see [[54 - The Whitefang Mountains#**1d6** point of interest|The Whitefang Mountains]]).
 
-**The Three Honorable Sages** are powerful **[[38 - Rime Lords#**Shaksa**|adepts]]** who preside over Barrier Pass. Each leads one of the three sects.
+**The Three Honorable Sages** are powerful **[[38 - Rime Lords#**Dangers**|adepts]]** who preside over Barrier Pass. Each leads one of the three sects.
 
 **The Empty Sky sect** values preser vation and stillness; its monks spend much time in meditative stasis. Led by **Gar Torjeng** (**Instinct** to avoid disruption and distraction).
 
@@ -85,7 +85,7 @@ Why are the people of Barrier Pass so unwelcoming or even hostile to southerners
 - … their ancestors fought off the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** and they still hold a grudge;
 - … one of the thirteen surviving **[[38 - Rime Lords#Rime Lords|Rime Lords]]** is hidden in their mountain chambers;
 - … a prophecy foretells doom coming from the south;
-- … the fortress is tainted by **[[46 - The Things Below#**Hlad, the Devourer, the Eternal Maw**|Y'aaw'kara]]**, and any who dwell here must guard against the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**;
+- … the fortress is tainted by **[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|Y'aaw'kara]]**, and any who dwell here must guard against the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**;
 - … some combination of the above; or
 - … something completely different.
 
@@ -160,12 +160,12 @@ Pass , they use the local Prosperity (+0 by default). If they wish to acquire or
 | a substantial piece | 2 |
 | a mammoth tusk ( immobile ) | 3 |
 | cartload of mammoth tusks | 4 |
-| Dark ice (*magical*, see [[38 - Rime Lords#**1d6** condition\|Rime Lords]]) |  |
+| Dark ice (*magical*, see [[38 - Rime Lords#**Dark ice**\|Rime Lords]]) |  |
 | a small piece ( magical ) | 1 |
 | a large chunk ( magical) | 2 |
 | with special characteristics | +1 |
 | a functional tool or weapon | +2 |
-| An object of black iron [[36 - Primordial Powers#**Portals**\|Primordial Powers]] | +2 |
+| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
 
 * +1 if sold/traded outside the Whitefangs
 
@@ -201,14 +201,14 @@ If the PCs get a trade opportunity (from the Seasons Change move), Barrier Pass 
 ## **Secrets**
 
 - Secret paths/doors lead in and out of the compound. Outsiders are blindfolded when taken through them, or condemned to death if they learn of their existence.
-- There is a hidden vault deep in the mountainside, protected by all manner of magics and **[[38 - Rime Lords#**Major arcana**|tulpas]]**. Only a few inhabitants know it exists; fewer know what it contains.
-- One of the monks has started down the path of becoming a **[[38 - Rime Lords#**Instinct** see below|false adept]]**. She is popular and (apparently) quite talented. Only Preshi Kav (Honored Sage of the Unmoved Mountain) suspects anything.
+- There is a hidden vault deep in the mountainside, protected by all manner of magics and **[[38 - Rime Lords#**Tulpa**|tulpas]]**. Only a few inhabitants know it exists; fewer know what it contains.
+- One of the monks has started down the path of becoming a **[[38 - Rime Lords#**1d12** instinct|false adept]]**. She is popular and (apparently) quite talented. Only Preshi Kav (Honored Sage of the Unmoved Mountain) suspects anything.
 
 ## **Hooks**
 
 - The PCs acquire an artifact of the Rime Lords; maybe they can leverage it into opening trade negotiations?
 - A party from Barrier Pass comes to Stonetop, offering ivory/gold/arcana for food/livestock; they are tightlipped, haunted, on edge.
-- A condemned criminal escapes from Barrier Pass and seeks refuge; a **[[54 - The Whitefang Mountains#**Mountain ape**|shantyara]]** pursues them.
+- A condemned criminal escapes from Barrier Pass and seeks refuge; a **[[54 - The Whitefang Mountains#**Shantyara**|shantyara]]** pursues them.
 
 ## **Dangers**
 
@@ -221,23 +221,23 @@ If the PCs get a trade opportunity (from the Seasons Change move), Barrier Pass 
 
 #### **Fortifications**
 
-- Minor **[[38 - Rime Lords#**Major arcana**|tulpas]]** watching the approach, warning the fortress of visitors
+- Minor **[[38 - Rime Lords#**Tulpa**|tulpas]]** watching the approach, warning the fortress of visitors
 - A wall of smooth stone, 50 feet tall and 20 feet wide
 - Walkways and crenelations atop the wall
 - A final approach, 50 feet or so with no protection from the Makers' Roads
 - A massive gate of wood and bronze
 - Beyond the gate, a barbican lined with murder holes
 - Cleverly concealed doors that open only from the inside
-- A pair of **[[38 - Rime Lords#**1d12** purpose 1-2 Battle/sparring/protection 3-4 Companionship/advice/diplomacy/ subterfuge 5-6 Labor/mundane tasks/convenience 7-8 Curiosity/instruction/assistance/ practice 9-10 Something obscure, or very specific 11-12 Roll 1d10 twice, combine **1d12** size 1 Cat-sized or smaller (*tiny*) 2-3 Like a human child (*small*) 4-7 Human-sized 8-10 Like a horse, a cart, etc. (*large*) 11-12 Like an elephant, or bigger (*huge*) **1d12** ability 1 Possession (people and/or things) 2 Emotional influence/control 3 Elemental manipulation (ice/wind/ water/etc.) 4 Energy manipulation (light/heat/ cold/darkness/etc.) 5 Invisibility/stealth/observation/ tracking 6 Depths of knowledge/lore/ experience 7 Mind-reading/aura-sense/ true-seeing 8 Illusions/false senses/thoughtforms 9 Strength/speed/prowess/mobility 10 Dangerous physical attack(s) **1d12** tether 1-2 *Immobile* object: unable to leave its presence 3-4 Small, portable object: unable to manipulate it or leave its presence 5-6 Sculpture or construct: can animate it, but cannot leave its presence 7-8 Building or complex: can freely move about within, but cannot leave 9-10 Place or object (roll 1d6 for size/ scale): can travel but must periodically return 11 Living creature/person: can leave their presence for short periods 12 Untethered: free-roaming, independent **1d12** disposition 1 Friendly/polite/helpful 2 Apathetic/bored/lonely 3 Curious/playful/fickle 4 Resentful/duty-bound/compelled 5 Proud/dedicated/honorable 6 Confused/erratic/distraught 7 Boastful/aggressive/hostile 8 Malicious/cruel/devious 9 Timid/shy/meek 10 Focused/obsessive/anxious 11 Roll 1d10, but make it extreme 12 Roll 1d10 twice, combine|khyagseng]]** guarding the entrance to the Great Hall
+- A pair of **[[38 - Rime Lords#**Gingkara**|khyagseng]]** guarding the entrance to the Great Hall
 
 #### **Folk from elsewhere**
 
-- **[[19 - The Frozen Wastes#**Services and favors**|Mammoth herders]]** or **[[54 - The Whitefang Mountains#**Names**|valley farmers]]**, here to trade, pay tribute, or seek redress
-- An **[[38 - Rime Lords#**Shaksa**|adept]]**, visiting from another fortress-monastery or some cave in the wilds
-- A **[[38 - Rime Lords#**Khyagseng**|mkhalang]]**, claiming to bring tidings but really just stirring up trouble
-- A **[[14 - The Flats#**Hazards**|bandit]]** or criminal from one of the nearby farm valleys, condemned to death, pleading for mercy
+- **[[19 - The Frozen Wastes#**Dangers**|Mammoth herders]]** or **[[54 - The Whitefang Mountains#**Questions**|valley farmers]]**, here to trade, pay tribute, or seek redress
+- An **[[38 - Rime Lords#**Dangers**|adept]]**, visiting from another fortress-monastery or some cave in the wilds
+- A **[[38 - Rime Lords#**Mkhalang**|mkhalang]]**, claiming to bring tidings but really just stirring up trouble
+- A **[[14 - The Flats#**Monsters**|bandit]]** or criminal from one of the nearby farm valleys, condemned to death, pleading for mercy
 - A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]**, come to visit or debate with the Honored Sages
-- A **thrall** of the Things Below [[46 - The Things Below#**Morgais**|The Things Below]]), here under false pretense, urged to spread chaos and woe
+- A **thrall** of the Things Below [[46 - The Things Below#**Cultist**|The Things Below]]), here under false pretense, urged to spread chaos and woe
 
 ### **Guardian**
 

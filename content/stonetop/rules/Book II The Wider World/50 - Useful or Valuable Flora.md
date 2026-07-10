@@ -2,7 +2,7 @@
 
 ## **Useful or valuable flora**
 
-Pick one of the following, or **[[50 - Useful or Valuable Flora#**Cultivation**|create a new kind of flora]]** for the PCs to discover.
+Pick one of the following, or **[[50 - Useful or Valuable Flora#**Useful or valuable flora**|create a new kind of flora]]** for the PCs to discover.
 
 Either way, keep in mind when and where the PCs will encounter this. If you're presenting something useful, it should be useful now (perhaps with a bit of care or effort). Don't present them with an apple tree in winter and claim it's useful. If you're presenting them something valuable, it should either be something they can harvest now, or something that they can feasibly come back and get later.
 
@@ -167,7 +167,7 @@ Next, pick or roll for 1d4 qualities and a distinctive trait .
 
 ## 1d12 distinctive trait
 
-- 1 Always found with some type of hazardous growth [[24 - Green Lords#**1d12** purpose|Green Lords]]
+- 1 Always found with some type of hazardous growth [[24 - Green Lords#**1d12** ability|Green Lords]]
 - 2 Always found with (hidden by?) another, less-useful growth
 - 3 Grows/blooms only in particular/ uncommon/unlikely conditions
 - 4 Grows in a particular pattern

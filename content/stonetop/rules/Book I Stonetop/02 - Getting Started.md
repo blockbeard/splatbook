@@ -178,7 +178,7 @@ While this happens, encourage them to...
 
 As GM, you'll ask a lot of questions, too. See the following pages for suggestions.
 
-Whenever someone wants or needs to add a new NPC to the mix, suggest that they pick one of the unused names from the front of their playbook. Additional names are available in the steading playbook. Also give each NPC an occupation and/or trait (the steading playbook has a list of suggestions, see [[The Steading#Residents of Stonetop|The Steading]]).
+Whenever someone wants or needs to add a new NPC to the mix, suggest that they pick one of the unused names from the front of their playbook. Additional names are available in the steading playbook. Also give each NPC an occupation and/or trait (the steading playbook has a list of suggestions, see [[The Steading#Names|The Steading]]).
 
 Take notes! Add NPCs to the steading playbook as you go, or take more freeform notes for now and update the Residents of Stonetop and Notable Neighbors later.
 

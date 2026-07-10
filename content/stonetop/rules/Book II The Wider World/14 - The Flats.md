@@ -53,9 +53,9 @@ The Gwead will not be tamed. Burn the grasses, plow the soil, tear things up by 
 - When was the last time anyone tried to plant crops beyond the Old Wall?
 - What uncanny fate befell them?
 
-Why can crops be managed within the **[[02 - The Village of Stonetop#The Village of Stonetop|Old Wall]]**, but not beyond? That's for you to decide. Maybe…
+Why can crops be managed within the **[[02 - The Village of Stonetop#**The village of Stonetop**|Old Wall]]**, but not beyond? That's for you to decide. Maybe…
 
-- … magic tied to the **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** makes the land more pliable, easier to tame;
+- … magic tied to the **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** makes the land more pliable, easier to tame;
 - … something buried beneath the Old Wall keeps the Gwead at bay;
 - … something about the soil keeps the Gwead from taking root; or
 - … whoever built the ruins on which Stonetop was founded, they made a pact with the spirits of the Gwead.
@@ -78,7 +78,7 @@ Why can crops be managed within the **[[02 - The Village of Stonetop#The Village
 - A herd of wild horses is seen north of the West Road and east of the Highway, close enough that they might be captured
 - Someone is sick, and the cure requires a rare plant that grows deep in the Flats
 - Gwead-grasses have started taking root inside the Old Wall, getting hard to weed out, and folks are all sorts of worried
-- A traveler's companion was lured off the roads by nosgalau [[31 - The Makers' Roads#**Waysides**|The Makers' Roads]] and hasn't returned; the traveler offers a sizeable reward if the PCs can help
+- A traveler's companion was lured off the roads by nosgalau [[31 - The Makers' Roads#**Fellow travelers**|The Makers' Roads]] and hasn't returned; the traveler offers a sizeable reward if the PCs can help
 
 ## Terrain
 
@@ -114,8 +114,8 @@ For any of these, pick 1 or have someone roll the Die of Fate (d12 or d6).
 
 ## 1d6 encounter
 
-- 1 A shade [[10 - Death and the Undying#**Necromancer**|Death and the Undying]], called up at the Crossroads [[31 - The Makers' Roads#The Makers' Roads|The Makers' Roads]], or the pyped [[10 - Death and the Undying#**Shade**|Death and the Undying]] that it's become
-- 2 A spirit of the wild [[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the Wild]], curious or indifferent
+- 1 A shade [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]], called up at the Crossroads [[31 - The Makers' Roads#The Makers' Roads|The Makers' Roads]], or the pyped [[10 - Death and the Undying#**Shade**|Death and the Undying]] that it's become
+- 2 A spirit of the wild [[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the Wild]], curious or indifferent
 - 3 Critter(s)-fox, skunk, stoat, hares, prairie dogs, starlings, vultures, etc. -curious, annoying, maybe just cute
 - 4 Beast(s)-ground sloth, giant ibis, shellback drake [[14 - The Flats#Klezln|Klezln]]-big, majestic, mostly indifferent
 - 5 A herd: aurochs [[14 - The Flats#Aurochs|Aurochs]], deer, wild sheep, wild horses [[14 - The Flats#Thunder drake|Thunder drake]], etc.
@@ -131,8 +131,8 @@ Scattered far and wide, for miles and miles from the tower itself, as if flung b
 - 2 Worked stone, or chunks thereof
 - 3 Stone covered in scorched runes, possibly a bit of the **[[31 - The Makers' Roads#**The Crossroads**|Broken Roads]]**
 - 4 A jagged piece of "indestructible" **[[43 - Stone Lords#Various treasures|makerglass]]**, cracked and broken
-- 5 **Aetherium** ingot [[45 - Tempest Lords#**1d12** condition|Tempest Lords]], crackling with power
-- 6 A **[[39 - The Ruined Tower#**1d6** valuable|shard of the Storm Orb]]**
+- 5 **Aetherium** ingot [[45 - Tempest Lords#**Aetherium**|Tempest Lords]], crackling with power
+- 6 A **[[39 - The Ruined Tower#Shards of the Storm Orb|shard of the Storm Orb]]**
 
 ### **Point of interest**
 
@@ -143,7 +143,7 @@ Scattered far and wide, for miles and miles from the tower itself, as if flung b
 - 3 A battlefield or remains (next column)
 - 4 Enigmatic terrain: crystalline growth, sheet of smooth/broken glass, geometric patterns, unnatural colors, grass growing in strange patterns, etc.
 - 5 A location important to the **[[30 - The Makers#The Makers|Makers]]**: meeting place, fortification, shrine, etc.
-- 6 A site sacred to the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
+- 6 A site sacred to the **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
 
 ## **Battlefield or remains**
 
@@ -158,7 +158,7 @@ Older ones lie well-buried, so ask yourself how they might be discovered (burrow
 - 8-11 Recent: Hillfolk, bandits, travelers, beasts, etc.
 - 12 Very recent: the buzzards and crows still feasting
 
-Picking through the remains might yield valuables or artifacts, but might rouse the ire of **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Other ghosts**|revenants]]**.
+Picking through the remains might yield valuables or artifacts, but might rouse the ire of **[[10 - Death and the Undying#**Pyped**|ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**.
 
 ## **Dangers**
 
@@ -189,11 +189,11 @@ Picking through the remains might yield valuables or artifacts, but might rouse 
 
 ## **Monsters**
 
-- **[[23 - The Great Wood#**Questions**|Cougars]]** or **[[23 - The Great Wood#**Nailadd**|wolves]]**, come out of the Great Wood
+- **[[23 - The Great Wood#**Cougar**|Cougars]]** or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**, come out of the Great Wood
 - **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, if they're of a mind to do violence
-- **[[41 - Spirits of the Wild#Spirits of the Wild|Spirits of the wild]]**
-- The **[[31 - The Makers' Roads#**Waysides**|nosgalau]]**, whatever they are
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]**, **[[10 - Death and the Undying#**Other ghosts**|revenants]]**, or **[[10 - Death and the Undying#**Necromancer**|shades]]**, called up at the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]** or lurking near old battlefields
+- **[[41 - Spirits of the Wild#**Spirits of the wild**|Spirits of the wild]]**
+- The **[[31 - The Makers' Roads#**Fellow travelers**|nosgalau]]**, whatever they are
+- **[[10 - Death and the Undying#**Pyped**|Ghosts]]**, **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, or **[[10 - Death and the Undying#**Death and the undying**|shades]]**, called up at the **[[31 - The Makers' Roads#The Makers' Roads|Crossroads]]** or lurking near old battlefields
 - **[[39 - The Ruined Tower#Dangers|Blue magpies]]**, messing with the PCs
 
 ## **Aurochs**
@@ -388,7 +388,7 @@ Sometimes, out on the Flats, you'll see what looks to be small hills in the dist
 
 **Something interesting:** Thunder drakes eat mostly grass and shrubs, but they have a taste for certain ores. They spend their time grazing, sleeping, and digging up rocks.
 
-**Something useful:** They particularly savor the taste of copper, and relish **[[45 - Tempest Lords#**1d12** condition|aetherium]]**. If they find a source of it, they'll chew it right up and spend the next few days belching lightning bolts.
+**Something useful:** They particularly savor the taste of copper, and relish **[[45 - Tempest Lords#**Aetherium**|aetherium]]**. If they find a source of it, they'll chew it right up and spend the next few days belching lightning bolts.
 
 When you *are near a thunder drake when it bellows*, roll +CON: **on a 10+**, pick 1; **on a 7-9,** pick 2; **on a 6-**, all 3.
 

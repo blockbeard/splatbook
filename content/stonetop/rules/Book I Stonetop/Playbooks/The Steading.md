@@ -1,6 +1,6 @@
 # The Steading
 
-Pages 154–165 are a version of the steading playbook for Stonetop itself, formatted to fit in this book. A PDF version is included in the playkit at lampblackandbrimstone.com. Use the steading playbook to track your village's stats, debilities, resources, improvements, etc. See **[[03 - Playing the Game#Here's how you can get followers:|Your home]]** for an explanation of each element.
+Pages 154–165 are a version of the steading playbook for Stonetop itself, formatted to fit in this book. A PDF version is included in the playkit at lampblackandbrimstone.com. Use the steading playbook to track your village's stats, debilities, resources, improvements, etc. See **[[03 - Playing the Game#**Your home**|Your home]]** for an explanation of each element.
 
 ## Stonetop
 
