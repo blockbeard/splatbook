@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+
+# Node (future scaffold)
+node_modules/
+build/
+.svelte-kit/
+dist/
+
+# env & local data
+.env
+.env.*
+!.env.example
+local.db
+*.log
