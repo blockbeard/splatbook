@@ -15,7 +15,13 @@
  */
 
 import type { Component } from 'svelte';
-import type { EntityTypeModule, GameModule, PlayProps, SheetProps } from '../types';
+import type {
+	EntityTypeModule,
+	GameModule,
+	GmGuideProps,
+	PlayProps,
+	SheetProps
+} from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';
@@ -24,6 +30,8 @@ import CharacterSheet from './sheet/CharacterSheet.svelte';
 import PlayMode from './play/PlayMode.svelte';
 import SteadingEditor from './steading/SteadingEditor.svelte';
 import SteadingSheet from './steading/SteadingSheet.svelte';
+import GmGuide from './gm/GmGuide.svelte';
+import { GM_SECTIONS } from './gm/sections';
 
 // Contained cast: the sheet/play components type `character` as
 // StonetopCharacter, the shell slot as the opaque `SheetProps`/`PlayProps` —
@@ -65,5 +73,13 @@ export const stonetop: GameModule = {
 	name: 'Stonetop',
 	packSchemas: schemaFor,
 	engine,
-	entityTypes: { character, steading }
+	entityTypes: { character, steading },
+	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,
+	// procedures, interactive tables, flow diagrams. Read-only, so it's not an
+	// entity type — the shell serves it at `/g/stonetop/gm`.
+	gmGuide: {
+		packFile: 'data/the-gm.json',
+		sections: GM_SECTIONS,
+		component: GmGuide as unknown as Component<GmGuideProps>
+	}
 };

@@ -33,5 +33,13 @@
 		>
 			Rules reference
 		</a>
+		{#if data.hasGmGuide}
+			<a
+				href={resolve('/g/[game]/gm', { game: data.gameId })}
+				class="inline-block rounded-md border border-border px-4 py-2 font-medium hover:bg-surface"
+			>
+				GM guide
+			</a>
+		{/if}
 	</div>
 </section>

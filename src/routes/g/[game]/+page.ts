@@ -27,5 +27,5 @@ export const load: PageLoad = ({ params }) => {
 
 	// Only serialisable identity crosses the load boundary; components reach
 	// the full module through the registry themselves.
-	return { gameId: game.id, gameName: game.name, creators };
+	return { gameId: game.id, gameName: game.name, creators, hasGmGuide: !!game.gmGuide };
 };

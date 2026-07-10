@@ -69,6 +69,33 @@ export interface EntityTypeModule {
 	playComponent?: Component<PlayProps>;
 }
 
+/** Props the shell passes a game's GM-guide component. `data` is the game's GM
+ * reference pack (opaque to the shell; the game casts it); `section` is which
+ * page to render — always one of `gmGuide.sections[].id`. */
+export interface GmGuideProps {
+	data: unknown;
+	section: string;
+}
+
+/**
+ * A game's GM-facing reference guide (phase 7): the running-the-game material
+ * that isn't a build/tracker sheet — agenda, moves, procedures, interactive
+ * tables, flow diagrams. Read-only reference, so it sits outside the entity-type
+ * map (nothing is saved). The `sections` list is the serialisable nav the shell
+ * renders in the sidebar and routes on (`/g/[game]/gm/[section]`); the shell
+ * never inspects the pack `data` — the game's `component` renders each section.
+ */
+export interface GmGuideModule {
+	/** Pack-relative path to the guide's reference data, e.g. `data/the-gm.json`.
+	 * The shell fetches `/content-packs/<game>/<packFile>` and hands the parsed
+	 * JSON to `component` as opaque `data` — it never inspects the shape. */
+	packFile: string;
+	/** Ordered nav sections (stable id + display title). */
+	sections: readonly { id: string; title: string }[];
+	/** Renders one section of the guide, given the pack data and the section id. */
+	component: Component<GmGuideProps>;
+}
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
 	id: string;
@@ -82,4 +109,7 @@ export interface GameModule {
 	 * (`character`, `steading`, …). The shell iterates this map; it never hard-codes
 	 * a type. A game needs at least one entry to do anything user-facing. */
 	entityTypes: Record<string, EntityTypeModule>;
+	/** Optional GM reference guide, surfaced at `/g/[game]/gm`. Absent for games
+	 * with no GM material. */
+	gmGuide?: GmGuideModule;
 }

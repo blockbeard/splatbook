@@ -120,6 +120,34 @@ is still fetchable by URL. Phase 9 (campaigns) turns the flag into a real gate
 keyed on campaign-GM membership; that is the point to also stop serving GM trees
 to non-GM clients.
 
+## The GM guide (structured reference)
+
+The rules reference above is generated, uniform document-tree prose. A game's
+**GM guide** is the other kind of reference: heterogeneous, hand-structured data
+— an agenda list, move menus, numbered build procedures, `d6` outcome tables,
+and a flow-of-play node/edge graph — that wants bespoke rendering rather than a
+markdown body. It ships as a single pack file (Stonetop: `data/the-gm.json`,
+validated by `gmSchema`) and is surfaced by the shell at `/g/<game>/gm`.
+
+A game opts in through one optional slot on its `GameModule`:
+
+```ts
+gmGuide: {
+  packFile: 'data/the-gm.json',   // shell fetches /content-packs/<game>/<packFile>
+  sections: GM_SECTIONS,          // [{ id, title }] — the sidebar nav + route ids
+  component: GmGuide              // renders one section from the (opaque) pack data
+}
+```
+
+The shell stays game-agnostic: its `/gm` layout fetches `packFile`, renders the
+`sections` nav, and mounts the game's `component` per section — it never inspects
+the pack shape. The guide is **read-only reference**, so it is deliberately *not*
+an entity type (nothing is saved). Interactive tables (Die of Fate, weather) and
+diagrams are the game component's concern, built from the same typed pack data.
+The GM guide is public today (unlike GM-only *rules* documents, which stay gated
+by `GM_CONTENT_VISIBLE`); if a future game's guide needs gating, that is the
+same phase-9 gate to reuse.
+
 ## Adding a new game (first draft)
 
 *This walkthrough gets refined every time the boundary is exercised, and gets a

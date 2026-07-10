@@ -403,33 +403,227 @@ export type SteadingImprovement = z.infer<typeof improvementSchema>;
 export type SteadingRequires = z.infer<typeof requiresSchema>;
 export type RequirementEntry = z.infer<typeof requirementEntrySchema>;
 
-/** The GM playbook as reference data. Top-level keys pinned; interiors firm up in phase 7. */
+/**
+ * The GM playbook as reference data (phase 7). Firmed up from `the-gm.json`:
+ * every top-level section now has a real shape, so the GM tools render from a
+ * typed `GmPlaybook` rather than poking at `unknown`. The playbook is *reference*
+ * (not a build/tracker sheet like the steading), so most interiors are prose
+ * strings, string lists, and small labelled tables.
+ */
+
+/** A `[label, value]` pair as printed in the GM playbook's option tables
+ * (e.g. `["In large groups (horde)", "3 HP"]`). */
+const labelledValue = z.tuple([z.string(), z.string()]);
+
+/** A `d6` outcome table: a roll range (`"1"`, `"2-3"`) and its result. */
+const rollRow = z.strictObject({ roll: z.string().min(1), result: z.string().min(1) });
+
+/** One numbered procedure step (site/monster/follower creation, the core loop). */
+const gmStepSchema = z.strictObject({
+	n: z.number().int(),
+	name: z.string().min(1),
+	text: markdown.optional(),
+	actions: z.array(z.string()).optional(),
+	items: z.array(z.string()).optional(),
+	note: z.string().optional(),
+	/** Pick-from-these option groups (monster/follower tag & stat tables). */
+	groups: z
+		.array(z.strictObject({ prompt: z.string().min(1), options: z.array(labelledValue) }))
+		.optional(),
+	prompt: z.string().optional(),
+	options: z.array(labelledValue).optional(),
+	tagLists: z
+		.strictObject({
+			useful: z.array(z.string()),
+			problematic: z.array(z.string()),
+			mixedBlessing: z.array(z.string())
+		})
+		.optional(),
+	special: z.record(z.string(), z.string()).optional()
+});
+
 export const gmSchema = z.strictObject({
 	id,
 	name: z.string().min(1),
 	type: z.literal('gm'),
 	source: sourceSchema,
-	agenda: z.unknown(),
-	coreLoop: z.unknown(),
-	gmMoves: z.unknown(),
-	principles: z.unknown(),
-	damageAndDebilities: z.unknown(),
-	content: z.unknown(),
-	threats: z.unknown(),
-	iWonder: z.unknown(),
-	expeditions: z.unknown(),
-	sites: z.unknown(),
-	discoveries: z.unknown(),
-	hazards: z.unknown(),
-	monsters: z.unknown(),
-	npcs: z.unknown(),
-	followers: z.unknown(),
-	homefront: z.unknown(),
-	aftermath: z.unknown(),
-	downtime: z.unknown(),
-	relativeValue: z.unknown(),
-	flowOfPlay: z.unknown()
+	agenda: z.array(z.string().min(1)),
+	coreLoop: z.strictObject({
+		steps: z.array(gmStepSchema),
+		otherThingsToDo: z.array(z.string())
+	}),
+	gmMoves: z.strictObject({
+		general: z.array(z.string()),
+		exploration: z.array(z.string()),
+		homefront: z.array(z.string())
+	}),
+	principles: z.array(z.string().min(1)),
+	damageAndDebilities: z.strictObject({
+		text: markdown,
+		damageLadder: z.array(z.strictObject({ effect: z.string(), die: z.string() })),
+		debilities: z.array(z.strictObject({ name: z.string(), text: z.string() })),
+		recover: markdown,
+		tendingRequirements: z.array(z.string()),
+		tendingNote: z.string()
+	}),
+	content: z.strictObject({
+		text: markdown,
+		lists: z.array(z.strictObject({ id, title: z.string().min(1), note: z.string().optional() }))
+	}),
+	threats: z.strictObject({
+		text: markdown,
+		writeUp: z.array(z.string()),
+		update: z.strictObject({ text: z.string(), items: z.array(z.string()) }),
+		trackers: z.array(z.string().min(1)),
+		trackersNote: z.string(),
+		types: z.array(z.strictObject({ id, name: z.string().min(1), moves: z.array(z.string()) }))
+	}),
+	iWonder: z.strictObject({ text: markdown }),
+	expeditions: z.strictObject({
+		chartACourse: markdown,
+		requirements: z.array(z.string()),
+		challenges: z.array(z.string()),
+		challengesNote: z.string(),
+		whenTheWayIsPerilous: z.strictObject({ text: markdown, table: z.array(rollRow) }),
+		travelTimes: z.array(
+			z.strictObject({ from: z.string().min(1), entries: z.array(labelledValue) })
+		),
+		makeCamp: z.strictObject({
+			questions: z.array(z.string()),
+			note: z.string(),
+			dieOfFate: z.array(rollRow)
+		}),
+		legsOfTravel: z.strictObject({
+			text: markdown,
+			questions: z.array(z.string()),
+			softMoves: z.array(z.string())
+		}),
+		pointsOfInterest: z.strictObject({
+			items: z.array(z.string()),
+			text: markdown,
+			firstVisitQuestions: z.array(z.string()),
+			landmarkNote: markdown
+		}),
+		randomWeather: z.strictObject({
+			note: z.string(),
+			tables: z.array(z.strictObject({ season: z.string().min(1), rows: z.array(labelledValue) }))
+		})
+	}),
+	sites: z.strictObject({
+		text: markdown,
+		considerations: z.array(z.string()),
+		exploration: markdown,
+		creation: z.array(gmStepSchema)
+	}),
+	discoveries: z.strictObject({
+		clues: z.strictObject({ text: markdown, items: z.array(z.string()) }),
+		encounters: z.strictObject({ items: z.array(z.string()) }),
+		opportunities: z.strictObject({ items: z.array(z.string()) }),
+		artifactsAndArcana: markdown
+	}),
+	hazards: z.strictObject({
+		asDescription: markdown,
+		asGmMoves: z.strictObject({ text: markdown, items: z.array(z.string()), note: z.string() }),
+		asImpendingDoom: markdown,
+		asPlayerMoves: z.strictObject({ text: markdown, items: z.array(z.string()) }),
+		ifItDealsDamage: z.strictObject({
+			text: markdown,
+			ladder: z.array(labelledValue),
+			modifiers: z.array(labelledValue)
+		})
+	}),
+	monsters: z.strictObject({
+		steps: z.array(gmStepSchema),
+		monstersAndFollowers: markdown
+	}),
+	npcs: z.strictObject({
+		names: z.strictObject({
+			note: z.string(),
+			lists: z.array(
+				z.strictObject({
+					region: z.string().min(1),
+					sound: z.string(),
+					names: z.array(z.string())
+				})
+			)
+		}),
+		trait: markdown,
+		questions: z.strictObject({
+			locals: z.array(z.string()),
+			outsiders: z.array(z.string()),
+			heardOf: z.array(z.string())
+		}),
+		impressions: z.strictObject({
+			note: z.string(),
+			areas: z.array(z.strictObject({ area: z.string().min(1), options: z.string() }))
+		}),
+		instinct: markdown,
+		tagsAndMoves: markdown,
+		connections: z.array(z.string()),
+		motivations: z.array(z.string()),
+		embodiment: z.array(z.string()),
+		hpArmorDamage: markdown,
+		persuade: z.strictObject({
+			move: markdown,
+			convincers: z.array(z.string()),
+			note: markdown
+		})
+	}),
+	followers: z.strictObject({
+		steps: z.array(gmStepSchema),
+		inPlay: markdown,
+		groupFollowers: markdown,
+		abstractingGroupExchanges: markdown
+	}),
+	homefront: z.strictObject({
+		lifeInStonetop: z.strictObject({
+			people: z.array(z.string()),
+			homeAndHearth: z.array(z.string()),
+			tradeAndCommerce: z.array(z.string()),
+			protectionAndGovernance: z.array(z.string())
+		}),
+		questionsToAsk: z.array(z.string()),
+		seasonalActivities: z.strictObject({
+			spring: z.array(z.string()),
+			summer: z.array(z.string()),
+			autumn: z.array(z.string()),
+			winter: z.array(z.string()),
+			always: z.array(z.string())
+		})
+	}),
+	aftermath: z.array(z.string()),
+	downtime: z.strictObject({
+		items: z.array(z.string()),
+		note: z.string(),
+		makeAPlan: z.strictObject({
+			move: markdown,
+			requirements: z.array(z.string()),
+			note: z.string()
+		})
+	}),
+	relativeValue: z.strictObject({
+		values: z.array(z.strictObject({ value: z.number().int(), worth: z.array(z.string()) })),
+		notes: z.array(z.string())
+	}),
+	flowOfPlay: z.strictObject({
+		note: z.string(),
+		nodes: z.array(
+			z.strictObject({
+				id,
+				name: z.string().min(1),
+				ref: z.string().optional(),
+				items: z.array(z.string())
+			})
+		),
+		edges: z.array(
+			z.strictObject({ from: id, to: id, label: z.string().optional() })
+		)
+	})
 });
+
+export type GmPlaybook = z.infer<typeof gmSchema>;
+export type GmStep = z.infer<typeof gmStepSchema>;
+export type GmRollRow = z.infer<typeof rollRow>;
 
 /** Schema resolver for the harness: pack-relative path → schema. */
 export function schemaFor(relPath: string): z.ZodType | null {

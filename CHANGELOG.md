@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **GM guide (phase 7).** Stonetop's GM playbook is now an in-app reference
+  guide at `/g/stonetop/gm` — read-only, so it's not an entity type. The GM pack
+  schema (`the-gm.json`) is now fully validated (typed `GmPlaybook`) rather than
+  a loose envelope, and the guide renders from it across nine sections: the
+  agenda/principles/core loop, GM moves & harm, threats and their type move
+  lists, expeditions & travel (with the Die-of-Fate and weather tables), sites &
+  discoveries, monster & follower build procedures, NPCs, home/downtime/
+  aftermath, and the flow of play (commit 49). A game opts in through one
+  optional `gmGuide` slot on its `GameModule` (`packFile` + `sections` +
+  `component`); the shell serves and navigates it generically without inspecting
+  the pack shape. `docs/content-packs.md` documents the slot.
+
 - **Steading builder (phase 6).** Stonetop's second entity type. A
   steading has no build wizard — it's an editable tracker sheet from creation,
   reached via "Create a steading" on the game home or a fresh draft in the
