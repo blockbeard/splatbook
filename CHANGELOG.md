@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-10
+
+A character survives a whole campaign arc — the phase-5 milestone. Everything
+since v0.1.0: accounts and persistence (phase 4), then play mode, advancement,
+and the inventory sheet (phase 5).
+
 ### Added
 
 - Inventory / Outfit view in play mode, driven by `insert-inventory.json` (whose
