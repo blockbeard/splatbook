@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Credits & licensing page (phase 8, commit 53).** A public `/credits` page,
+  linked from the footer (alongside a Support link). Three parts: the
+  application's own licence (GPL-3.0-or-later) with a link to the source and
+  credits to the prior art it's modelled on (guild-book, the Registrar); each
+  game's _text_ licence and attribution, pulled live from the pack manifests
+  (`license` / `attribution`), so a new game appears automatically with its
+  CC BY-SA share-alike notice and "independent production" disclaimer; and this
+  deployment's support links — a Ko-fi tip jar and a DriveThruRPG affiliate link
+  with a plain-spoken disclosure (costs the buyer nothing extra, creators are
+  paid in full). The SPDX→label/link/share-alike mapping is a small unit-tested
+  helper (`$lib/credits`); operator links live in `$lib/support`.
 - **GM guide (phase 7).** Stonetop's GM playbook is now an in-app reference
   guide at `/g/stonetop/gm` — read-only, so it's not an entity type. The GM pack
   schema (`the-gm.json`) is now fully validated (typed `GmPlaybook`) rather than

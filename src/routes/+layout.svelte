@@ -61,7 +61,10 @@
 				Splatbook is free software under the
 				<a href="https://www.gnu.org/licenses/gpl-3.0.html" class="underline hover:text-text"
 					>GPL-3.0-or-later</a
-				>. Game text belongs to its respective publishers — see per-game credits.
+				>. Game text belongs to its respective publishers — see
+				<a href={resolve('/credits')} class="underline hover:text-text">credits &amp; licensing</a>.
+				<span aria-hidden="true">·</span>
+				<a href={resolve('/credits') + '#support'} class="underline hover:text-text">Support</a>
 			</p>
 		</div>
 	</footer>
