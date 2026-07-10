@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Client-side rules search (`/g/<game>/reference/search`): a MiniSearch index is
+  built at build time from the document trees (`tools/build_search.ts`, `npm run
+  build:search`) and served as a static `search-index.json`, so search runs
+  entirely in the browser — no server cost, works offline once cached. Live
+  prefix + fuzzy matching over titles, breadcrumbs, and body text with title
+  boosting; results link to sections; a search box sits in the reference sidebar
+  and the query syncs to a shareable `?q=`. Shared index config and markdown→text
+  prep (`$lib/reference/search-fields`) keep the builder and client in agreement;
+  unit-tested including a serialize→load round-trip. Adds `minisearch`.
 - Rules reference section browser (`/g/<game>/reference`): a table-of-contents
   sidebar (nested from heading levels, auto-expanding the active branch), section
   pages with breadcrumb ancestors, in-section child lists, and document-order

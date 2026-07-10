@@ -46,6 +46,19 @@
 		>
 			{data.gameName} rules
 		</a>
+		<form
+			action={resolve('/g/[game]/reference/search', { game: data.gameId })}
+			class="mt-3"
+			role="search"
+		>
+			<input
+				name="q"
+				type="search"
+				placeholder="Search rules…"
+				aria-label="Search the rules"
+				class="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent"
+			/>
+		</form>
 		{#each data.toc as doc (doc.id)}
 			<div class="mt-4">
 				<p class="text-xs font-semibold uppercase tracking-wide text-muted">{doc.title}</p>

@@ -104,6 +104,12 @@ regenerating the rules or editing the config; never hand-edit the JSON.
 A game module opts in by pointing its `schemaFor` resolver at `documentTreeSchema`
 for `rules/*.json` and listing the generated files in its manifest.
 
+A third pipeline stage, `tools/build_search.ts` (`npm run build:search`), flattens
+the document trees into a MiniSearch index written to `<pack>/search-index.json`.
+That file is a derived artifact, **not** listed in the manifest (so the harness
+leaves it alone); it is served statically and loaded in the browser for
+client-side, offline-capable search. Regenerate it whenever the trees change.
+
 ## Adding a new game (first draft)
 
 *This walkthrough gets refined every time the boundary is exercised, and gets a
