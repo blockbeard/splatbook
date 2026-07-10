@@ -16,3 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - App shell layout: header, nav placeholder, footer, theme toggle.
 - ESLint (flat config, typescript-eslint + eslint-plugin-svelte), Prettier with svelte
   and tailwind plugins, and a GitHub Actions CI running lint/check/test/build.
+- Drizzle ORM + better-sqlite3 with an (intentionally) empty schema, `db:push` /
+  `db:generate` / `db:migrate` / `db:studio` scripts, and a `/api/health` endpoint
+  that pings the database.
