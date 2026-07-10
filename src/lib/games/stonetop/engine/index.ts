@@ -21,8 +21,25 @@ export {
 	type ChoiceSelection,
 	type ExtrasSectionState,
 	type AdvancementEntry,
+	type InventoryState,
 	type StonetopCharacter
 } from './character';
+
+export {
+	gearSlots,
+	gearLoad,
+	parseMarks,
+	loadBand,
+	carryingGear,
+	toggleGear,
+	carryingSmall,
+	toggleSmallItem,
+	setUndefinedGear,
+	setUndefinedSmall,
+	assignUndefinedGear,
+	assignUndefinedSmall,
+	carriedGear
+} from './inventory';
 
 export {
 	validateCharacter,

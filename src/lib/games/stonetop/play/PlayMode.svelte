@@ -34,6 +34,7 @@
 	import { fetchPlaybook } from '../pack/playbooks';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
+	import Inventory from './Inventory.svelte';
 
 	let { character, onChange }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
@@ -329,6 +330,10 @@
 				</div>
 			</section>
 		{/if}
+
+		<section>
+			<Inventory character={c} {onChange} />
+		</section>
 
 		{#if advLog.length}
 			<section>

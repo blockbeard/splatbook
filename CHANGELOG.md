@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Inventory / Outfit view in play mode, driven by `insert-inventory.json` (whose
+  insert schema is now firmed up from the loose envelope). Mark the gear and
+  small items you're carrying; the total ◇ load shows your band (light / normal
+  / heavy) and its tags. "Undefined" ◇ pools model marks reserved during Outfit
+  but not yet assigned, and a per-item "← assign" action implements *Have What
+  You Need* — spending undefined marks onto a specific item. Inventory state
+  lives on the character model (filled by the migration); all the load maths and
+  transfers are pure engine functions with unit tests.
 - Advancement log: the character sheet and play mode now show, in order, when
   each move (and stat bump) was gained — "Level N: <Move>", annotated with the
   raised stat or the move it replaced. The sheet's move list now reflects the

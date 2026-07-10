@@ -77,6 +77,19 @@ export interface AdvancementEntry {
 }
 
 /**
+ * The Outfit/Inventory state (driven by `insert-inventory.json`). `gear` and
+ * `smallItems` hold the names currently carried (marked ◇); the `undefined*`
+ * counts are marks reserved during Outfit but not yet assigned to a specific
+ * item — "Have What You Need" moves them onto real items later.
+ */
+export interface InventoryState {
+	gear: string[];
+	smallItems: string[];
+	undefinedGear: number;
+	undefinedSmall: number;
+}
+
+/**
  * The character. Fields are populated as the player moves through the wizard;
  * an in-progress draft simply has `null`/empty fields for steps not yet done.
  */
@@ -140,6 +153,9 @@ export interface StonetopCharacter {
 	/** Playbook-specific boolean state that doesn't fit a tracker — currently the
 	 * Would-be Hero's "crossed off Would-be" (see `HERO_FLAG`). Keyed for growth. */
 	flags: Record<string, boolean>;
+
+	/** Outfit/Inventory marks (driven by the inventory insert). */
+	inventory: InventoryState;
 }
 
 /**
@@ -172,7 +188,8 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		xp: 0,
 		level: 1,
 		advancement: [],
-		flags: {}
+		flags: {},
+		inventory: { gear: [], smallItems: [], undefinedGear: 0, undefinedSmall: 0 }
 	};
 }
 
@@ -195,7 +212,8 @@ export function migrateCharacter(raw: unknown): StonetopCharacter {
 		hp: r.hp ?? base.hp,
 		trackers: r.trackers ?? base.trackers,
 		advancement: Array.isArray(r.advancement) ? r.advancement : [],
-		flags: r.flags ?? {}
+		flags: r.flags ?? {},
+		inventory: r.inventory ?? base.inventory
 	};
 }
 

@@ -207,6 +207,73 @@ export const insertSchema = z.looseObject({
 	source: sourceSchema
 });
 
+/** Tags/ammo lists carried by gear and small items. */
+const tagList = z.array(z.string());
+
+/** The standard Inventory sheet (insert-inventory.json). Firmed up in phase 5
+ * (play mode's Outfit view). `slots` = number of ◇ an item occupies. */
+const gearSchema = z.strictObject({
+	name: z.string().min(1),
+	slots: z.number().int().positive(),
+	uses: z.string().optional(),
+	note: z.string().optional(),
+	text: z.string().optional(),
+	tags: tagList.optional(),
+	ammo: tagList.optional()
+});
+
+const smallItemSchema = z.strictObject({
+	/** Empty string with `writeIn` = blank write-in lines. */
+	name: z.string(),
+	text: z.string().optional(),
+	uses: z.number().int().optional(),
+	tags: tagList.optional(),
+	ammo: tagList.optional(),
+	writeIn: z.literal(true).optional(),
+	/** How many blank write-in lines this entry represents. */
+	count: z.number().int().optional()
+});
+
+export const inventoryInsertSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: z.union([id, z.literal('all')]),
+	source: sourceSchema,
+	outfit: z.strictObject({
+		text: markdown,
+		loads: z.array(
+			z.strictObject({
+				name: z.string().min(1),
+				tags: tagList.optional(),
+				/** Mark range as printed: "up to 3", "4-6", "7-9". */
+				marks: z.string().min(1)
+			})
+		),
+		undefinedSlots: z.number().int().nonnegative(),
+		undefinedText: markdown
+	}),
+	gear: z.array(gearSchema).min(1),
+	writeIns: z.strictObject({
+		possessions: z.strictObject({
+			title: z.string().min(1),
+			lines: z.array(z.number().int())
+		}),
+		otherThings: z.strictObject({ title: z.string().min(1), text: z.string() })
+	}),
+	smallItems: z.strictObject({
+		text: markdown,
+		undefinedSlots: z.number().int().nonnegative(),
+		undefinedText: markdown,
+		options: z.array(smallItemSchema).min(1)
+	}),
+	prosperity: z.array(z.strictObject({ value: z.number().int(), note: z.string().optional() }))
+});
+
+export type InventoryInsert = z.infer<typeof inventoryInsertSchema>;
+export type Gear = z.infer<typeof gearSchema>;
+export type SmallItem = z.infer<typeof smallItemSchema>;
+
 /** The steading sheet. Top-level keys pinned; interiors firm up in phase 6. */
 export const steadingSchema = z.strictObject({
 	id,
@@ -258,6 +325,7 @@ export const gmSchema = z.strictObject({
 export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/the-steading.json') return steadingSchema;
 	if (relPath === 'data/the-gm.json') return gmSchema;
+	if (relPath === 'data/insert-inventory.json') return inventoryInsertSchema;
 	if (/^data\/insert-[a-z-]+\.json$/.test(relPath)) return insertSchema;
 	if (/^data\/the-[a-z-]+\.json$/.test(relPath)) return playbookSchema;
 	// Generated rules reference (build_srd.py): one document tree per book.
