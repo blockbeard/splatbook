@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import { APP_NAME } from '$lib';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
@@ -14,7 +15,7 @@
 <div class="flex min-h-screen flex-col bg-bg text-text">
 	<header class="border-b border-border bg-surface">
 		<div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
-			<a href="/" class="text-lg font-semibold tracking-tight">
+			<a href={resolve('/')} class="text-lg font-semibold tracking-tight">
 				{APP_NAME}<span class="text-accent">*</span>
 			</a>
 			<nav class="flex items-center gap-4 text-sm text-muted">

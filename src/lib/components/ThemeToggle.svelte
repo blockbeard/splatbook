@@ -1,11 +1,9 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+
 	// Initial value is read from the <html> class, which the inline script in
 	// app.html sets before hydration (localStorage, falling back to the OS scheme).
-	let dark = $state(false);
-
-	$effect(() => {
-		dark = document.documentElement.classList.contains('dark');
-	});
+	let dark = $state(browser && document.documentElement.classList.contains('dark'));
 
 	function toggle() {
 		dark = !dark;

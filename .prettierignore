@@ -1,0 +1,17 @@
+# Package manager
+package-lock.json
+
+# Output
+.svelte-kit/
+build/
+dist/
+
+# Game content (generated + licensed text — never reformat)
+content/
+
+# Prose and plans — hand-formatted
+docs/
+CLAUDE.md
+
+# Python tooling
+tools/

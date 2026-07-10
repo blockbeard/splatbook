@@ -15,8 +15,8 @@
 		{APP_NAME}<span class="text-accent">*</span>
 	</h1>
 	<p class="mt-4 text-lg text-muted">
-		A game-agnostic framework for TTRPG companion apps — character builders, campaign trackers,
-		and searchable rules, driven by per-game content packs.
+		A game-agnostic framework for TTRPG companion apps — character builders, campaign trackers, and
+		searchable rules, driven by per-game content packs.
 	</p>
 	<p class="mt-6 rounded border border-border bg-surface px-4 py-3 text-sm text-muted">
 		Under construction. The first game module — <strong class="text-text">Ringwall</strong>, a
