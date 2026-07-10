@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Document-tree format (`$lib/reference/document-tree`): the generic shape any
+  game's rules/SRD text takes in a content pack. A flat, document-ordered list of
+  sections (stable `id`, `title`, heading `level`, ancestor `path`, `body`
+  markdown, optional print `pages`, `player`/`gm` `visibility`); hierarchy is
+  rebuilt from `level` by `buildSectionTree` while search stays linear. Section
+  ids are validated unique within a tree. Round-trip tests cover defaults, strict
+  keys, level bounds, tree-building, and duplicate detection.
 - `docs/content-packs.md`: pack format reference (envelope, validation, strictness
   policy) and the first draft of the "adding a new game" walkthrough. Kept current
   with any commit touching the pack boundary.
