@@ -14,6 +14,7 @@
  */
 
 import { z } from 'zod';
+import { documentTreeSchema } from '../../reference/document-tree';
 
 const id = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'ids are kebab-case');
 /** Prose fields — may carry Markdown emphasis. */
@@ -247,5 +248,7 @@ export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/the-gm.json') return gmSchema;
 	if (/^data\/insert-[a-z-]+\.json$/.test(relPath)) return insertSchema;
 	if (/^data\/the-[a-z-]+\.json$/.test(relPath)) return playbookSchema;
+	// Generated rules reference (build_srd.py): one document tree per book.
+	if (/^rules\/[a-z0-9-]+\.json$/.test(relPath)) return documentTreeSchema;
 	return null;
 }

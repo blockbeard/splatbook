@@ -1,0 +1,24 @@
+{
+	"$comment": "Maps generated rules markdown (itself built by build_rules.py from the vault) into document-tree JSON inside a content pack. Re-run build_srd.py after regenerating the rules. Book II (gm) is added in phase 2's visibility commit.",
+	"packs": [
+		{
+			"packRoot": "static/content-packs/stonetop",
+			"rulesSource": "content/stonetop/rules",
+			"outDir": "rules",
+			"documents": [
+				{
+					"id": "book-i",
+					"title": "Book I: Stonetop",
+					"sourceDir": "Book I Stonetop",
+					"visibility": "player",
+					"exclude": [
+						"00 - Index and Credits",
+						"18 - Acknowledgements",
+						"19 - Mediography",
+						"20 - Index"
+					]
+				}
+			]
+		}
+	]
+}

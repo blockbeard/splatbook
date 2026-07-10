@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- SRD build script (`tools/build_srd.py` + `tools/srd.config.json`): the second
+  stage of the content pipeline, turning the generated rules markdown into
+  document-tree JSON in the pack (`rules/*.json`). Each heading becomes a section;
+  over-long OCR-artifact headings are demoted to body text; back-matter (index,
+  acknowledgements) is excluded via config. Book I ingested as `rules/book-i.json`
+  (1,421 sections), wired into the Stonetop manifest and `schemaFor` resolver, and
+  validated by `npm run validate:packs`. Regenerate with `python3 tools/build_srd.py`.
 - Document-tree format (`$lib/reference/document-tree`): the generic shape any
   game's rules/SRD text takes in a content pack. A flat, document-ordered list of
   sections (stable `id`, `title`, heading `level`, ancestor `path`, `body`

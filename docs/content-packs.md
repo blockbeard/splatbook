@@ -21,7 +21,7 @@ static/content-packs/<gameId>/
   LICENSE.md           ← the pack's own license + attribution note
   SCHEMA.md            ← human-readable schema documentation (convention)
   data/…               ← structured game data (validated)
-  documents/…          ← document trees: rules/SRD text (phase 2)
+  rules/…              ← document trees: rules/SRD text, generated (phase 2)
 ```
 
 `<gameId>` is kebab-case and must match three things: the `id` in the manifest,
@@ -75,10 +75,34 @@ other data refers to, so renames fail CI instead of orphaning references.
 
 Some pack content is generated from external sources rather than hand-written —
 for Stonetop, `content/stonetop/rules/` is produced from the Obsidian vault by
-`tools/build_rules.py` and must never be hand-edited (see `CLAUDE.md`). The
-generated markdown becomes document trees (phase 2). Hand-maintained structured
-data (`data/*.json`) is source, not output; its human-readable schema lives in
-the pack's `SCHEMA.md`.
+`tools/build_rules.py` and must never be hand-edited (see `CLAUDE.md`). Hand-
+maintained structured data (`data/*.json`) is source, not output; its human-
+readable schema lives in the pack's `SCHEMA.md`.
+
+## Document trees (rules reference)
+
+A game's rules/SRD text ships as one or more **document trees** under the pack's
+`rules/` folder, validated by `documentTreeSchema` (`src/lib/reference/document-tree.ts`).
+A tree is a flat, document-ordered list of sections — each with a stable `id`
+(the deep-link target), `title`, heading `level`, ancestor `path`, `body`
+markdown, optional print `pages`, and a `player`/`gm` `visibility` flag. Nesting
+is rebuilt from `level` for a table of contents; search stays a linear scan.
+
+The trees are **generated**, the second stage of the content pipeline:
+
+```
+vault --build_rules.py--> content/<game>/rules/*.md --build_srd.py--> <pack>/rules/*.json
+```
+
+`tools/build_srd.py` reads `tools/srd.config.json`, which maps each source book
+folder to an output document (`id`, `title`, `visibility`, optional `exclude`
+list for back-matter like indexes). Each markdown heading becomes a section whose
+body is the prose directly under it; over-long OCR-artifact "headings" are demoted
+to body text so they stay searchable without polluting the TOC. Re-run after
+regenerating the rules or editing the config; never hand-edit the JSON.
+
+A game module opts in by pointing its `schemaFor` resolver at `documentTreeSchema`
+for `rules/*.json` and listing the generated files in its manifest.
 
 ## Adding a new game (first draft)
 
