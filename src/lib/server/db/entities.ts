@@ -77,11 +77,7 @@ export async function updateEntity(
 }
 
 /** Load one owned entity, or `undefined`. */
-export async function getEntity(
-	db: Db,
-	id: string,
-	userId: string
-): Promise<Entity | undefined> {
+export async function getEntity(db: Db, id: string, userId: string): Promise<Entity | undefined> {
 	const [row] = await db
 		.select()
 		.from(entities)

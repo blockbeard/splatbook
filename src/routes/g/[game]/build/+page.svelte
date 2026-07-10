@@ -28,6 +28,8 @@
 			if (payload) {
 				try {
 					const saved = await saveEntity(payload);
+					// `sheet` is a resolved path; we only append a query string (rule
+					// disabled for this file in eslint.config.js).
 					await goto(`${sheet}?id=${saved.id}`);
 					return;
 				} catch {

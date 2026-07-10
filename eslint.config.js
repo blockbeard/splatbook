@@ -23,6 +23,14 @@ export default ts.config(
 	{
 		languageOptions: {
 			globals: { ...globals.browser, ...globals.node }
+		},
+		rules: {
+			// Allow intentionally-unused args/vars when underscore-prefixed
+			// (e.g. typed-but-unused mock parameters).
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+			]
 		}
 	},
 	{
@@ -33,6 +41,16 @@ export default ts.config(
 				extraFileExtensions: ['.svelte'],
 				parser: ts.parser
 			}
+		}
+	},
+	{
+		// These pages resolve a route then append a `?id=`/`?archived=` query,
+		// which the typed-route rule can't verify. Path resolution is still used;
+		// only the query is concatenated.
+		// (`[game]` would be read as a glob char-class, so match the segment with `*`.)
+		files: ['src/routes/dashboard/+page.svelte', 'src/routes/g/*/build/+page.svelte'],
+		rules: {
+			'svelte/no-navigation-without-resolve': 'off'
 		}
 	}
 );

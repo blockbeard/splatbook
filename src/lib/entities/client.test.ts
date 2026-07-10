@@ -36,8 +36,7 @@ class FakeStorage {
 
 function okFetch(body: unknown = { id: 'srv-1', name: 'X', status: 'draft' }) {
 	return vi.fn(
-		async (_url: string, _init?: RequestInit) =>
-			new Response(JSON.stringify(body), { status: 200 })
+		async (_url: string, _init?: RequestInit) => new Response(JSON.stringify(body), { status: 200 })
 	);
 }
 

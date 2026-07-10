@@ -30,8 +30,7 @@
 		URL.revokeObjectURL(url);
 	}
 
-	const exportJSON = () =>
-		download(exportFilename(c, 'json'), toExportJSON(c), 'application/json');
+	const exportJSON = () => download(exportFilename(c, 'json'), toExportJSON(c), 'application/json');
 	const exportMarkdown = () =>
 		download(exportFilename(c, 'md'), toMarkdown(c, playbook), 'text/markdown');
 

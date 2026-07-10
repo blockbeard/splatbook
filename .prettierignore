@@ -1,6 +1,9 @@
 # Package manager
 package-lock.json
 
+# Generated database migrations (drizzle-kit output)
+drizzle/
+
 # Output
 .svelte-kit/
 build/

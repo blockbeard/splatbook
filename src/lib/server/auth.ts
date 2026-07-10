@@ -86,8 +86,7 @@ function devLogin(): Provider {
 			const email = (String(creds?.email ?? '').trim() || 'dev@localhost').toLowerCase();
 
 			const existing = await db.select().from(users).where(eq(users.email, email)).limit(1);
-			const user =
-				existing[0] ?? (await db.insert(users).values({ email, name }).returning())[0];
+			const user = existing[0] ?? (await db.insert(users).values({ email, name }).returning())[0];
 			return { id: user.id, name: user.name ?? name, email: user.email };
 		}
 	});

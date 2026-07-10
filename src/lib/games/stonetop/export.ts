@@ -26,10 +26,7 @@ export interface CharacterExport {
 }
 
 /** Serialize a character to a pretty JSON string with an identifying envelope. */
-export function toExportJSON(
-	c: StonetopCharacter,
-	now: Date = new Date()
-): string {
+export function toExportJSON(c: StonetopCharacter, now: Date = new Date()): string {
 	const payload: CharacterExport = {
 		format: 'splatbook.stonetop.character',
 		schemaVersion: c.schemaVersion ?? SCHEMA_VERSION,
@@ -96,7 +93,8 @@ export function toMarkdown(c: StonetopCharacter, playbook?: Playbook | null): st
 	// Stats.
 	out.push('## Stats', '');
 	for (const stat of STAT_KEYS) out.push(`- **${stat}** ${fmt(c.stats[stat]?.value)}`);
-	if (playbook) out.push(`- **Max HP** ${playbook.base.maxHp}`, `- **Damage** ${playbook.base.damage}`);
+	if (playbook)
+		out.push(`- **Max HP** ${playbook.base.maxHp}`, `- **Damage** ${playbook.base.damage}`);
 	out.push('');
 
 	// Moves.
@@ -104,7 +102,9 @@ export function toMarkdown(c: StonetopCharacter, playbook?: Playbook | null): st
 		const moveById = new Map(playbook.moves.list.map((m) => [m.id, m]));
 		const plan = startingMovesPlan(c, playbook);
 		const ids = [...new Set([...plan.granted, ...c.moves])];
-		const moves = ids.map((id) => moveById.get(id)).filter((m): m is NonNullable<typeof m> => Boolean(m));
+		const moves = ids
+			.map((id) => moveById.get(id))
+			.filter((m): m is NonNullable<typeof m> => Boolean(m));
 		if (moves.length) {
 			out.push('## Moves', '');
 			for (const move of moves) out.push(`### ${move.name}`, '', move.text.trim(), '');
@@ -141,5 +141,10 @@ export function toMarkdown(c: StonetopCharacter, playbook?: Playbook | null): st
 		out.push('');
 	}
 
-	return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
+	return (
+		out
+			.join('\n')
+			.replace(/\n{3,}/g, '\n\n')
+			.trimEnd() + '\n'
+	);
 }

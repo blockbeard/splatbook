@@ -2,6 +2,9 @@
 	Dashboard — the signed-in user's saved characters (and, later, steadings),
 	grouped by game. Each row opens the saved sheet or offers duplicate / archive
 	/ delete, all driven through the /api/entities endpoints with a reload after.
+	Navigations here resolve the path then append an `?id=`/`?archived=` query;
+	the typed-route lint rule can't see through that, so it's disabled for this
+	file and the builder in eslint.config.js.
 -->
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
@@ -55,9 +58,7 @@
 	<h1 class="text-2xl font-semibold tracking-tight">Your characters</h1>
 	{#if data.signedIn}
 		<a
-			href={data.showArchived
-				? resolve('/dashboard')
-				: `${resolve('/dashboard')}?archived=true`}
+			href={data.showArchived ? resolve('/dashboard') : `${resolve('/dashboard')}?archived=true`}
 			class="text-sm text-muted hover:text-text"
 		>
 			{data.showArchived ? 'Hide archived' : 'Show archived'}
