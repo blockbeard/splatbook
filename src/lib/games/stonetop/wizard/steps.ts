@@ -18,6 +18,8 @@ import StatsStep from './StatsStep.svelte';
 import MovesStep from './MovesStep.svelte';
 import PossessionsStep from './PossessionsStep.svelte';
 import ExtrasStep from './ExtrasStep.svelte';
+import IntroductionsStep from './IntroductionsStep.svelte';
+import ReviewStep from './ReviewStep.svelte';
 
 export const stonetopWizardSteps: readonly WizardStep[] = [
 	defineWizardStep<StonetopCharacter>({
@@ -64,5 +66,15 @@ export const stonetopWizardSteps: readonly WizardStep[] = [
 		id: 'extras',
 		title: 'Details',
 		component: ExtrasStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'introductions',
+		title: 'Introductions',
+		component: IntroductionsStep
+	}),
+	defineWizardStep<StonetopCharacter>({
+		id: 'review',
+		title: 'Review',
+		component: ReviewStep
 	})
 ];

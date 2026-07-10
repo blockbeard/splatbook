@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Introductions and review wizard steps. Introductions renders the playbook's
+  numbered round-the-table ritual with optional free-text notes per step. Review
+  summarizes every choice (name, playbook, background, instinct, origin,
+  appearance, stats, moves, possessions) and runs the full validator, listing
+  anything still missing so the player can jump back — or confirming the
+  character is ready to finish.
 - Extras wizard step: the playbook-specific back-page sections (sacred pouch,
   tall tales, war stories, fear & anger, collection…), fully data-driven from
   the pack — intro text, pick-one-per-line lists, nested choices, and free-text
