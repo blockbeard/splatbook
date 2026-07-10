@@ -1,0 +1,5 @@
+#!/bin/sh
+# Block pushes that would fail CI's lint gate (prettier --check + eslint).
+# Installed via core.hooksPath by the npm prepare script; bypass with --no-verify.
+echo "pre-push: npm run lint"
+npm run lint
