@@ -38,7 +38,8 @@ const playbook = {
 			{ id: 'fx', name: 'Fixed', text: '…' },
 			{ id: 'opt', name: 'Option', text: '…' }
 		]
-	}
+	},
+	possessions: { prompt: 'Pick 1', pick: 1, options: [{ name: 'Torch' }, { name: 'Rope' }] }
 } as unknown as Playbook;
 
 /** A character with every non-background choice satisfied, for isolating tests. */
@@ -58,6 +59,7 @@ const complete = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => 
 		CHA: { value: -1, debilitated: false }
 	},
 	moves: ['opt'],
+	possessions: ['Torch'],
 	...patch
 });
 

@@ -252,6 +252,63 @@ const validateMoves: Validator = (character, playbook) => {
 	return issues;
 };
 
+/** Key for a possession item's nested pick, unique per (item, sub-choice). */
+export function possessionChoiceKey(itemName: string, choiceId: string): string {
+	return `${itemName}#${choiceId}`;
+}
+
+/** Whether a chosen possession is a free-text write-in slot. */
+export function isWriteInPossession(id: string): boolean {
+	return id.startsWith('writein:');
+}
+
+/**
+ * Possessions: exactly `pick` chosen; each write-in slot has text; each chosen
+ * item's own nested picks are satisfied.
+ */
+const validatePossessions: Validator = (character, playbook) => {
+	if (!playbook?.possessions) return [];
+	const { pick, options } = playbook.possessions;
+	const issues: Issue[] = [];
+
+	if (character.possessions.length !== pick) {
+		issues.push({
+			step: 'possessions',
+			severity: 'error',
+			message: `Pick ${pick} possession${pick === 1 ? '' : 's'}.`,
+			field: 'possessions'
+		});
+	}
+
+	const byName = new Map(options.map((o) => [o.name, o]));
+	for (const id of character.possessions) {
+		if (isWriteInPossession(id)) {
+			if (!character.possessionChoices[id]?.writeIn?.trim()) {
+				issues.push({
+					step: 'possessions',
+					severity: 'error',
+					message: 'Fill in your write-in item.',
+					field: `possessions.${id}`
+				});
+			}
+			continue;
+		}
+		const item = byName.get(id);
+		for (const choice of item?.choices ?? []) {
+			const key = possessionChoiceKey(id, choice.id);
+			if (!isSelectionValid(choice, character.possessionChoices[key])) {
+				issues.push({
+					step: 'possessions',
+					severity: 'error',
+					message: `${choice.prompt} (choose ${choice.min}–${choice.max}).`,
+					field: `possessions.${key}`
+				});
+			}
+		}
+	}
+	return issues;
+};
+
 /**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
@@ -265,7 +322,7 @@ export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
 	origin: validateOrigin,
 	stats: validateStats,
 	moves: validateMoves,
-	possessions: noIssues,
+	possessions: validatePossessions,
 	extras: noIssues,
 	introductions: noIssues
 };

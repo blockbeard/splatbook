@@ -25,6 +25,8 @@ export {
 	validateCharacter,
 	isComplete,
 	validators,
+	possessionChoiceKey,
+	isWriteInPossession,
 	type Issue,
 	type Severity,
 	type StepId,

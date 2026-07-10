@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Possessions wizard step: fixed gear is listed, then the player picks the
+  allowed number from the options — some carrying sub-choices (rendered with the
+  shared `ChoiceGroup`) or a free-text write-in slot. The engine validator
+  enforces the exact pick count, filled write-ins, and each item's own nested
+  picks (shared `possessionChoiceKey`/`isWriteInPossession` helpers).
 - Starting-moves wizard step — the rules-lawyer core. Shows what the playbook
   and background grant, resolves each "choose one" group, and gates free picks
   to the count allowed, with level-2+ moves excluded and prerequisite/`childOf`
