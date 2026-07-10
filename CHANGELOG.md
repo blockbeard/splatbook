@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Playwright end-to-end smoke: sign in with dev-login, build a character in the
+  wizard, finish (saving it), reload the saved sheet from the database, and
+  confirm the print view drops the app chrome. Runs against the production build
+  on a freshly-migrated throwaway SQLite database; kept in `e2e/` (separate from
+  the vitest suite) as `npm run test:e2e`, with a dedicated CI job that installs
+  the browser and runs it.
 - Stonetop character export to JSON and Obsidian-flavoured Markdown, from the
   sheet (screen-only buttons, hidden when printing). JSON wraps the character in
   an identifying, re-importable envelope; Markdown emits YAML frontmatter

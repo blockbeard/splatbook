@@ -21,7 +21,13 @@ Thumbs.db
 
 # Local data
 local.db
+e2e-test.db*
 *.log
+
+# Playwright
+/test-results
+/playwright-report
+/playwright/.cache
 
 # Vite
 vite.config.js.timestamp-*
