@@ -16,6 +16,7 @@
 		enterPlay,
 		isDebilitated,
 		markXp,
+		migrateCharacter,
 		setDebility,
 		setHp,
 		setTrackerMarks,
@@ -41,12 +42,12 @@
 		return () => (alive = false);
 	});
 
-	// Seed vitals + sync trackers once the playbook is known. `enterPlay` is
-	// idempotent, so this emits exactly once (and re-syncs trackers if the move
-	// set later changes, e.g. on level up) without looping.
+	// Migrate an older blob, then seed vitals + sync trackers once the playbook is
+	// known. All three are idempotent, so this emits exactly once (and re-syncs
+	// trackers if the move set later changes, e.g. on level up) without looping.
 	$effect(() => {
 		if (!playbook) return;
-		const prepared = enterPlay(c, playbook);
+		const prepared = enterPlay(migrateCharacter(c), playbook);
 		if (JSON.stringify(prepared) !== JSON.stringify(c)) onChange(prepared);
 	});
 

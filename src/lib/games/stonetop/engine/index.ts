@@ -12,6 +12,7 @@ export {
 	SCHEMA_VERSION,
 	STAT_KEYS,
 	createCharacter,
+	migrateCharacter,
 	setTrackerMarks,
 	statValue,
 	type StatKey,
@@ -19,6 +20,7 @@ export {
 	type TrackerState,
 	type ChoiceSelection,
 	type ExtrasSectionState,
+	type AdvancementEntry,
 	type StonetopCharacter
 } from './character';
 
@@ -79,6 +81,19 @@ export {
 	effectiveStats,
 	debilityName
 } from './play';
+
+export {
+	timesTaken,
+	maxTakes,
+	isMaxedOut,
+	meetsLevel,
+	legalChoices,
+	levelUpChoices,
+	applyLevelUp,
+	type LevelUpChoice,
+	type LevelUpError,
+	type LevelUpResult
+} from './advancement';
 
 import { createCharacter } from './character';
 import { validateCharacter, isComplete } from './validation';

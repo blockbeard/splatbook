@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Level-up legality in the engine (pure, heavily unit-tested): given a character
+  and its playbook, which moves are legal to take on Level Up, and applying the
+  chosen one. Level gates (a `requires.level` move opens as you reach that
+  level), prerequisite moves (`requires.moves` / `childOf` must be held),
+  repeat caps (`maxTakes` — Improved Stat ×3, etc.), and replacements (a move
+  with `replaces` retires the named move and is only offered while it's still
+  held). `applyLevelUp` spends the XP cost (6 + twice the current level), gains
+  a level, records the pick in an advancement log, and re-syncs move-trackers so
+  a newly-gained tracker move appears. The character model gains an
+  `advancement[]` log (schema v2) with a tolerant `migrateCharacter` that
+  upgrades older blobs on load.
 - Play mode: an editable, at-the-table view of a finished character at
   `/g/<game>/play`, reached from the character sheet. Tap-to-mark HP, XP, and
   move-trackers; tap a stat to toggle its debility (which shows the reduced

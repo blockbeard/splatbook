@@ -21,10 +21,17 @@ import type { Playbook } from '../pack-schemas';
 import { STAT_KEYS, type StatKey, type StonetopCharacter, type TrackerState } from './character';
 import { startingMovesPlan } from './moves';
 
-/** Every move id a character holds: playbook-granted (fixed + background) ∪ chosen. */
+/**
+ * Every move id a character currently holds: playbook-granted (fixed +
+ * background) ∪ chosen at creation ∪ gained through advancement, minus any
+ * move a later advancement `replaces` (a replacement retires the old move).
+ */
 export function heldMoveIds(character: StonetopCharacter, playbook: Playbook): Set<string> {
 	const plan = startingMovesPlan(character, playbook);
-	return new Set([...plan.granted, ...character.moves]);
+	const advancement = character.advancement ?? [];
+	const held = new Set([...plan.granted, ...character.moves, ...advancement.map((a) => a.moveId)]);
+	for (const a of advancement) if (a.replaced) held.delete(a.replaced);
+	return held;
 }
 
 /** Clamp `n` into `[lo, hi]`. */

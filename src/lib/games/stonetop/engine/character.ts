@@ -12,8 +12,9 @@
  * SvelteKit imports. That is what keeps the rules unit-testable.
  */
 
-/** Bumped whenever the persisted shape changes in a way that needs migration. */
-export const SCHEMA_VERSION = 1;
+/** Bumped whenever the persisted shape changes in a way that needs migration.
+ * v2 (phase 5) adds the `advancement` log. */
+export const SCHEMA_VERSION = 2;
 
 /** Stonetop's six stats, in printed sheet order. */
 export const STAT_KEYS = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'] as const;
@@ -59,6 +60,20 @@ export interface ExtrasSectionState {
 	choices?: Record<string, ChoiceSelection>;
 	lines?: (string | null)[];
 	prompts?: Record<number, string>;
+}
+
+/**
+ * One recorded advancement: a move gained on Level Up (or the special
+ * Would-be Hero cases). `level` is the level the character reached with this
+ * pick; `stat` records which stat an Improved/Superior Stat move bumped; if the
+ * chosen move `replaces` an earlier one, `replaced` names the retired move.
+ * The full list drives the advancement log (commit 41) and take-counting.
+ */
+export interface AdvancementEntry {
+	level: number;
+	moveId: string;
+	stat?: StatKey;
+	replaced?: string;
 }
 
 /**
@@ -118,6 +133,9 @@ export interface StonetopCharacter {
 	/** Advancement, driven in phase 5. */
 	xp: number;
 	level: number;
+
+	/** Moves/stat bumps gained through Level Up, in the order taken. */
+	advancement: AdvancementEntry[];
 }
 
 /**
@@ -148,7 +166,30 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		damage: null,
 		hp: { current: 0, max: 0 },
 		xp: 0,
-		level: 1
+		level: 1,
+		advancement: []
+	};
+}
+
+/**
+ * Upgrade a persisted character blob to the current shape. Tolerant of older
+ * versions and partial drafts: fills any missing field from a fresh character,
+ * keeps whatever the blob already has, and stamps the current `SCHEMA_VERSION`.
+ * Idempotent — a current character passes through unchanged (structurally), so
+ * callers can run it on every load without side effects.
+ */
+export function migrateCharacter(raw: unknown): StonetopCharacter {
+	const r = (raw ?? {}) as Partial<StonetopCharacter>;
+	const base = createCharacter(r.playbookId ?? null);
+	return {
+		...base,
+		...r,
+		schemaVersion: SCHEMA_VERSION,
+		origin: r.origin ?? base.origin,
+		stats: r.stats ?? base.stats,
+		hp: r.hp ?? base.hp,
+		trackers: r.trackers ?? base.trackers,
+		advancement: Array.isArray(r.advancement) ? r.advancement : []
 	};
 }
 
