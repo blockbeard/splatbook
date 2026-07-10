@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `validate:packs` runs again: pack-schema registration moved to a UI-free
+  module (`src/lib/games/schemas.ts`) so the tool no longer drags Svelte
+  components through tsx. `registerGame` still wires schemas for the app shell;
+  new games must register in both places.
+- Playwright smoke: the fresh-database reset now runs inside the
+  `webServer.command` chain (`e2e/reset-db.ts`) instead of `globalSetup`, which
+  fired after the server had already opened (and kept a handle to) the old
+  database file — every CI run failed with "no such table: users".
+- CI workflow: `actions/checkout` and `actions/setup-node` bumped to v5,
+  clearing the Node 20 runner deprecation warning.
+
 ## [0.2.0] - 2026-07-10
 
 A character survives a whole campaign arc — the phase-5 milestone. Everything
@@ -19,8 +32,8 @@ and the inventory sheet (phase 5).
   insert schema is now firmed up from the loose envelope). Mark the gear and
   small items you're carrying; the total ◇ load shows your band (light / normal
   / heavy) and its tags. "Undefined" ◇ pools model marks reserved during Outfit
-  but not yet assigned, and a per-item "← assign" action implements *Have What
-  You Need* — spending undefined marks onto a specific item. Inventory state
+  but not yet assigned, and a per-item "← assign" action implements _Have What
+  You Need_ — spending undefined marks onto a specific item. Inventory state
   lives on the character model (filled by the migration); all the load maths and
   transfers are pure engine functions with unit tests.
 - Advancement log: the character sheet and play mode now show, in order, when

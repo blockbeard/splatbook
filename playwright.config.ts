@@ -4,8 +4,10 @@ import { defineConfig, devices } from '@playwright/test';
  * Playwright smoke config. The e2e specs live in `e2e/` (kept out of the vitest
  * `src/**` glob, so `npm test` stays unit-only and `npm run test:e2e` drives the
  * browser). The web server is the real production build against a throwaway,
- * freshly-migrated SQLite database (see `e2e/global-setup.ts`); serving over
- * plain http://localhost keeps Auth.js cookies non-secure so the dev-login flow
+ * freshly-migrated SQLite database (see `e2e/reset-db.ts`, run in the command
+ * chain below — not globalSetup, which fires after the web server is already
+ * up and holding the old database file open); serving over plain
+ * http://localhost keeps Auth.js cookies non-secure so the dev-login flow
  * works headlessly.
  */
 
@@ -13,7 +15,6 @@ const PORT = 4173;
 
 export default defineConfig({
 	testDir: 'e2e',
-	globalSetup: './e2e/global-setup.ts',
 	timeout: 30_000,
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
@@ -25,7 +26,7 @@ export default defineConfig({
 	},
 	projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 	webServer: {
-		command: 'npm run build && node build/index.js',
+		command: 'npm run build && tsx e2e/reset-db.ts && node build/index.js',
 		port: PORT,
 		reuseExistingServer: !process.env.CI,
 		timeout: 120_000,

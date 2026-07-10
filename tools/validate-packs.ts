@@ -10,8 +10,10 @@
 import { listPackRoots } from '../src/lib/packs/fs-loader';
 import { validatePack } from '../src/lib/packs/harness';
 
-// Game modules register their pack schemas as an import side effect.
-import '../src/lib/games';
+// Games register their pack schemas as an import side effect. This is the
+// UI-free registration module — tsx cannot load the .svelte components that
+// the full game modules in `src/lib/games` pull in.
+import '../src/lib/games/schemas';
 
 const PACKS_ROOT = 'static/content-packs';
 

@@ -1,9 +1,10 @@
 /**
  * Central game-module registration.
  *
- * Importing this module (for its side effects) registers every built-in game.
- * Both the app shell and build tooling (`validate:packs`) import it, so the
- * registry and the validation harness always agree on what games exist.
+ * Importing this module (for its side effects) registers every built-in game
+ * for the app shell. Build tooling (`validate:packs`) imports the UI-free
+ * `./schemas.ts` instead — tsx cannot load the .svelte components bundled
+ * here — so keep the two registration lists in sync when adding a game.
  */
 
 import { registerGame } from './registry';
