@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Content-pack envelope: `PackManifest` type (`id`, `name`, `version`, `license`,
+  `attribution`, `files`) and a node-side loader (`$lib/packs/fs-loader`) that checks
+  the envelope contract — id matches folder, listed files exist — for build tooling
+  and validation. Packs live under `static/content-packs/<gameId>/`.
 - SvelteKit 2 scaffold: Svelte 5 (runes forced), TypeScript strict, Vitest.
 - GPL-3.0-or-later license for the application source.
 - Tailwind CSS v4 with semantic theme tokens (`--sb-*` custom properties) that game
