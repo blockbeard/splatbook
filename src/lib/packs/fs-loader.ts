@@ -8,6 +8,7 @@
 
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { basename, join } from 'node:path';
+import { manifestSchema } from './envelope';
 import { PackError, type PackManifest } from './types';
 
 const MANIFEST = 'manifest.json';
@@ -37,20 +38,13 @@ async function readJson(packRoot: string, relPath: string): Promise<unknown> {
 export async function loadManifest(packRoot: string): Promise<PackManifest> {
 	const data = await readJson(packRoot, MANIFEST);
 
-	if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-		throw new PackError('manifest must be a JSON object', packRoot, MANIFEST);
+	const parsed = manifestSchema.safeParse(data);
+	if (!parsed.success) {
+		const first = parsed.error.issues[0];
+		const at = first.path.length ? ` at "${first.path.join('.')}"` : '';
+		throw new PackError(`invalid manifest${at}: ${first.message}`, packRoot, MANIFEST);
 	}
-	const m = data as Record<string, unknown>;
-	for (const key of ['id', 'name', 'version', 'license', 'attribution'] as const) {
-		if (typeof m[key] !== 'string' || m[key] === '') {
-			throw new PackError(`manifest field "${key}" must be a non-empty string`, packRoot, MANIFEST);
-		}
-	}
-	if (!Array.isArray(m.files) || m.files.some((f) => typeof f !== 'string')) {
-		throw new PackError('manifest field "files" must be an array of strings', packRoot, MANIFEST);
-	}
-
-	const manifest = m as unknown as PackManifest;
+	const manifest: PackManifest = parsed.data;
 
 	if (manifest.id !== basename(packRoot)) {
 		throw new PackError(

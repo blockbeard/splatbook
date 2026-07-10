@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pack validation harness: Zod schemas for the generic envelope (manifest, document
+  tree); game modules register per-file schemas via `registerPackSchemas()`, and
+  `npm run validate:packs` checks every pack on disk — unregistered games and
+  unrecognised files are errors, not warnings. CI-friendly (non-zero exit).
 - Content-pack envelope: `PackManifest` type (`id`, `name`, `version`, `license`,
   `attribution`, `files`) and a node-side loader (`$lib/packs/fs-loader`) that checks
   the envelope contract — id matches folder, listed files exist — for build tooling

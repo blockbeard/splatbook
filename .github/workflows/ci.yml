@@ -27,5 +27,8 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Validate content packs
+        run: npm run validate:packs
+
       - name: Build
         run: npm run build
