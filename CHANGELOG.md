@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Extras wizard step: the playbook-specific back-page sections (sacred pouch,
+  tall tales, war stories, fear & anger, collection…), fully data-driven from
+  the pack — intro text, pick-one-per-line lists, nested choices, and free-text
+  prompts. New typed `ExtrasSectionState` on the character model; the validator
+  requires each line and nested pick (prompts stay optional). Playbooks with no
+  extras skip the step cleanly.
 - Possessions wizard step: fixed gear is listed, then the player picks the
   allowed number from the options — some carrying sub-choices (rendered with the
   shared `ChoiceGroup`) or a free-text write-in slot. The engine validator

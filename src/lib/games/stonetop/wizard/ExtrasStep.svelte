@@ -1,0 +1,113 @@
+<!--
+	Wizard step: extras — the playbook-specific back-page sections (sacred pouch,
+	tall tales, war stories, fear & anger…). Fully data-driven: each section may
+	have intro text, pick-one lines, nested choices, and free-text prompts.
+-->
+<script lang="ts">
+	import type { WizardStepProps } from '$lib/wizard';
+	import type { Playbook } from '../pack-schemas';
+	import type { ChoiceSelection, ExtrasSectionState, StonetopCharacter } from '../engine';
+	import { fetchPlaybook } from '../pack/playbooks';
+	import Markdown from './components/Markdown.svelte';
+	import ChoiceGroup from './components/ChoiceGroup.svelte';
+
+	let { draft, update }: WizardStepProps<StonetopCharacter> = $props();
+
+	let playbook = $state<Playbook | null>(null);
+	let loadError = $state<string | null>(null);
+
+	$effect(() => {
+		const id = draft.playbookId;
+		if (!id) return;
+		let alive = true;
+		fetchPlaybook(id, fetch)
+			.then((p) => alive && (playbook = p))
+			.catch((e) => alive && (loadError = e instanceof Error ? e.message : String(e)));
+		return () => (alive = false);
+	});
+
+	const sections = $derived(playbook?.extras ?? []);
+
+	const stateOf = (id: string): ExtrasSectionState => draft.extras[id] ?? {};
+
+	function patch(id: string, next: Partial<ExtrasSectionState>): void {
+		update({ extras: { ...draft.extras, [id]: { ...stateOf(id), ...next } } });
+	}
+
+	function setLine(id: string, lineCount: number, i: number, value: string): void {
+		const lines = [...(stateOf(id).lines ?? [])];
+		while (lines.length < lineCount) lines.push(null);
+		lines[i] = value;
+		patch(id, { lines });
+	}
+
+	function setChoice(id: string, choiceId: string, sel: ChoiceSelection): void {
+		patch(id, { choices: { ...(stateOf(id).choices ?? {}), [choiceId]: sel } });
+	}
+
+	function setPrompt(id: string, i: number, value: string): void {
+		patch(id, { prompts: { ...(stateOf(id).prompts ?? {}), [i]: value } });
+	}
+</script>
+
+<h2 class="text-2xl font-bold tracking-tight">Details</h2>
+
+{#if !draft.playbookId}
+	<p class="mt-6 text-muted">Choose a playbook first.</p>
+{:else if loadError}
+	<p class="mt-6 text-muted">Couldn’t load the playbook: {loadError}</p>
+{:else if !playbook}
+	<p class="mt-6 text-muted">Loading…</p>
+{:else if sections.length === 0}
+	<p class="mt-6 text-muted">Nothing extra for this playbook — carry on.</p>
+{:else}
+	<div class="mt-6 space-y-8">
+		{#each sections as section (section.id)}
+			{@const state = stateOf(section.id)}
+			<section>
+				<h3 class="text-lg font-semibold">{section.title}</h3>
+				{#if section.text}
+					<div class="mt-1 text-sm text-muted"><Markdown text={section.text} /></div>
+				{/if}
+
+				{#each section.lines ?? [] as line, i (i)}
+					<div class="mt-3 flex flex-wrap gap-2">
+						{#each line as option (option)}
+							{@const on = state.lines?.[i] === option}
+							<button
+								type="button"
+								onclick={() => setLine(section.id, (section.lines ?? []).length, i, option)}
+								aria-pressed={on}
+								class="rounded-full border px-3 py-1.5 text-sm transition-colors {on
+									? 'border-accent bg-accent/5 ring-1 ring-accent'
+									: 'border-border hover:border-accent'}"
+							>
+								{option}
+							</button>
+						{/each}
+					</div>
+				{/each}
+
+				{#each section.choices ?? [] as choice (choice.id)}
+					<ChoiceGroup
+						{choice}
+						selection={state.choices?.[choice.id]}
+						onchange={(sel) => setChoice(section.id, choice.id, sel)}
+					/>
+				{/each}
+
+				{#each section.prompts ?? [] as prompt, i (i)}
+					<label class="mt-3 block text-sm">
+						<span class="text-muted">{prompt}</span>
+						<input
+							type="text"
+							value={state.prompts?.[i] ?? ''}
+							oninput={(e) => setPrompt(section.id, i, e.currentTarget.value)}
+							class="mt-1 w-full rounded-md border border-border bg-surface px-3 py-2 outline-none focus:border-accent"
+						/>
+					</label>
+				{/each}
+			</section>
+		{/each}
+	</div>
+{/if}

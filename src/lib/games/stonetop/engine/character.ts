@@ -50,6 +50,18 @@ export interface ChoiceSelection {
 }
 
 /**
+ * Per-extras-section state (sacred pouch, tall tales, war stories…). A section
+ * may carry nested picks (`choices`), pick-one-per-line lists (`lines`), and
+ * free-text answers (`prompts`); each is optional and present only if that
+ * section uses it. Stored under `StonetopCharacter.extras[sectionId]`.
+ */
+export interface ExtrasSectionState {
+	choices?: Record<string, ChoiceSelection>;
+	lines?: (string | null)[];
+	prompts?: Record<number, string>;
+}
+
+/**
  * The character. Fields are populated as the player moves through the wizard;
  * an in-progress draft simply has `null`/empty fields for steps not yet done.
  */
@@ -90,8 +102,8 @@ export interface StonetopCharacter {
 	possessions: string[];
 	possessionChoices: Record<string, ChoiceSelection>;
 
-	/** Per-extras-section state (sacred pouch, tall tales…); firms up as those steps land. */
-	extras: Record<string, unknown>;
+	/** Per-extras-section state, keyed by section id. */
+	extras: Record<string, ExtrasSectionState>;
 
 	/** Answers captured during the introductions ritual, keyed by step number. */
 	introductions: Record<number, string>;

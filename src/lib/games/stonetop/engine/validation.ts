@@ -310,6 +310,39 @@ const validatePossessions: Validator = (character, playbook) => {
 };
 
 /**
+ * Extras sections (sacred pouch, tall tales…): each section's nested picks must
+ * be in range and each pick-one line answered. Free-text prompts are optional.
+ */
+const validateExtras: Validator = (character, playbook) => {
+	if (!playbook) return [];
+	const issues: Issue[] = [];
+	for (const section of playbook.extras ?? []) {
+		const state = character.extras[section.id];
+		for (const choice of section.choices ?? []) {
+			if (!isSelectionValid(choice, state?.choices?.[choice.id])) {
+				issues.push({
+					step: 'extras',
+					severity: 'error',
+					message: `${section.title}: ${choice.prompt} (choose ${choice.min}–${choice.max}).`,
+					field: `extras.${section.id}.${choice.id}`
+				});
+			}
+		}
+		(section.lines ?? []).forEach((_line, i) => {
+			if (!state?.lines?.[i]) {
+				issues.push({
+					step: 'extras',
+					severity: 'error',
+					message: `${section.title}: pick one (line ${i + 1}).`,
+					field: `extras.${section.id}.line.${i}`
+				});
+			}
+		});
+	}
+	return issues;
+};
+
+/**
  * The validator table, one entry per step. Steps arriving later in phase 3
  * replace their `noIssues` stub with real rules; `validateCharacter` composes
  * whatever is registered, so wiring never changes as bodies fill in.
@@ -323,7 +356,7 @@ export const validators: Record<Exclude<StepId, 'schema'>, Validator> = {
 	stats: validateStats,
 	moves: validateMoves,
 	possessions: validatePossessions,
-	extras: noIssues,
+	extras: validateExtras,
 	introductions: noIssues
 };
 

@@ -18,6 +18,7 @@ export {
 	type StatValue,
 	type TrackerState,
 	type ChoiceSelection,
+	type ExtrasSectionState,
 	type StonetopCharacter
 } from './character';
 

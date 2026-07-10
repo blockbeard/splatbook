@@ -157,6 +157,34 @@ describe('instinct / appearance / origin validation', () => {
 	});
 });
 
+describe('extras validation', () => {
+	/** Playbook with one extras section: a pick-one line and a choose-1. */
+	const pb = {
+		...playbook,
+		extras: [
+			{
+				id: 'pouch',
+				title: 'Sacred pouch',
+				lines: [['heirloom', 'gift']],
+				choices: [{ id: 'trait', prompt: 'Trait?', min: 1, max: 1, options: [{ label: 'warm' }] }]
+			}
+		]
+	} as unknown as Playbook;
+
+	it('requires each extras line and choice', () => {
+		const issues = validateCharacter(complete(), pb);
+		expect(issues.some((i) => i.field === 'extras.pouch.line.0')).toBe(true);
+		expect(issues.some((i) => i.field === 'extras.pouch.trait')).toBe(true);
+	});
+
+	it('passes once the section is filled in', () => {
+		const c = complete({
+			extras: { pouch: { lines: ['heirloom'], choices: { trait: { selected: ['warm'] } } } }
+		});
+		expect(validateCharacter(c, pb).some((i) => i.step === 'extras')).toBe(false);
+	});
+});
+
 describe('isComplete', () => {
 	it('is false for a blank character (no playbook)', () => {
 		expect(isComplete(createCharacter(), null)).toBe(false);
