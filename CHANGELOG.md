@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Stonetop content pack (`static/content-packs/stonetop/`): 9 character playbooks,
+  9 inserts, the steading, and the GM playbook (2nd printing text, CC BY-SA 4.0,
+  attribution Jeremy Strandberg / Lampblack & Brimstone; pack-level LICENSE note).
+  Stonetop Zod schemas written from the pack's SCHEMA.md — playbooks validate
+  strictly; insert/steading/GM interiors stay loose until their phases consume
+  them. First registered game module: `/g/stonetop` resolves.
 - `GameModule` interface and registry — the only door between shell and game code
   (`id`, `name`, `packSchemas` now; engine/wizard/sheet slots firm up in phase 3).
   Registering a game wires its pack schemas into the validation harness. Game routes

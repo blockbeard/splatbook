@@ -1,0 +1,283 @@
+{
+  "id": "the-fox",
+  "name": "The Fox",
+  "flavor": "The elders tell a story about Fox, who knows lots of tricks, and Hedgehog, who knows one: how to curl up into a ball when there's danger. Fox can't eat Hedgehog when he's all curled up, so in the story Fox goes hungry. But you're not that Fox, and this is no story. You want that Hedgehog? Go get a knife.",
+  "source": { "book": "Book I", "pages": [109, 112], "printing": 2 },
+  "backgrounds": [
+    {
+      "id": "the-natural",
+      "name": "The Natural",
+      "text": "You grew up around here, and always picked things up quickly. Reading and numbers, sure, but more. Hide and seek. Throwing stones. Climbing. Fighting. Whatever you tried, you were good at it. As good as anyone else, if not better.\n\nSure, you've got a reputation for bending the rules. Playing dirty. But why play if you don't play to win, right? And who do they come to when there's a problem needs solving? You, that's who.\n\nWhen you *Seek Insight*, you may roll +INT instead of +WIS and add \"What opportunity does no one else see?\" to the list of possible questions.",
+      "grants": { "notes": ["When you *Seek Insight*, you may roll +INT instead of +WIS and add \"What opportunity does no one else see?\" to the list of possible questions."] }
+    },
+    {
+      "id": "a-life-of-crime",
+      "name": "A Life of Crime",
+      "text": "You're new to Stonetop, having left behind a… *colorful* past. How did you get into that life? Why and how did you get out? Who and what did you leave behind?\n\nRegardless, these people have taken you in. Time to lead an honest life, right?\n\nYou start with either Burgle or Light Fingers (your choice) as an extra move, and either a burglar's kit or a hidden stash (your choice) as an additional special possession. Go mark them now.",
+      "choices": [
+        { "id": "crime-move", "prompt": "Extra move (choose 1)", "min": 1, "max": 1, "options": [{ "label": "Burgle", "grantsMove": "burgle" }, { "label": "Light Fingers", "grantsMove": "light-fingers" }] },
+        { "id": "crime-possession", "prompt": "Additional special possession (choose 1)", "min": 1, "max": 1, "options": [{ "label": "Burglar's kit" }, { "label": "Hidden stash" }] }
+      ]
+    },
+    {
+      "id": "the-prodigal-returned",
+      "name": "The Prodigal Returned",
+      "text": "You left long ago, travelling far and living by your wits. Why did you leave? What deeds do you boast of, and which do you regret?\n\nYou always longed to return to Stonetop, and return you have. You're a bit of a celebrity now, and you've got friends (or close enough) strewn about the known world.\n\nWhen you *declare that you know someone outside of Stonetop*, someone who can help, name them and roll +CHA: **on a 10+**, yeah, they can help (tell us why they're willing); **on a 7-9**, they can help but pick 1 from the list below; **on a 6-**, the GM chooses 1 and then some.\n\n- They still hold a grudge\n- They're going to need something from you first\n- They swore off this sort of thing long ago\n- You can't exactly, y'know, trust them"
+    }
+  ],
+  "instincts": [
+    { "id": "conscience", "name": "Conscience", "text": "To feel guilty, to try to do right." },
+    { "id": "freedom", "name": "Freedom", "text": "To chafe against rules, expectations, obligations." },
+    { "id": "comfort", "name": "Comfort", "text": "To enjoy yourself and avoid hardship." },
+    { "id": "prestige", "name": "Prestige", "text": "To impress others, to build a name for yourself." },
+    { "id": "trickery", "name": "Trickery", "text": "To deceive, misdirect, outthink." },
+    { "id": "custom", "name": "", "custom": true }
+  ],
+  "appearance": [
+    ["young pup", "\"responsible\" adult", "cagey old-timer"],
+    ["a pleasant voice", "sharp & nasally", "well-spoken"],
+    ["lithe", "heavyset", "gangly", "like a whippin' stick"],
+    ["a light step", "a brisk stride", "more like a strut"]
+  ],
+  "origins": {
+    "prompt": "Stonetop is your home, or close enough, but where are you (or your family) from originally? Pick 1 and a name to match (or make up something similar).",
+    "options": [
+      { "label": "Stonetop", "names": ["Bran", "Carwyn", "Delyth", "Elin", "Fion", "Geral", "Mair", "Rannon", "Vaughn", "Wynn"] },
+      { "label": "Barrier Pass", "names": ["Anarba", "Batu", "Bugadai", "Hujaghur", "Jigur", "Kete", "Sarantuya", "Tebengri"] },
+      { "label": "Gordin's Delve", "note": "Pick a name from any list.", "names": [] },
+      { "label": "Marshedge", "names": ["Comyna", "Crevan", "Fitz", "Greagir", "Maired", "Nainsi", "Naiclas", "Saraid"] },
+      { "label": "Lygos or some other point south", "names": ["Amit", "Baz", "Dafna", "Mahsa", "Parviz", "Sanaz", "Tzofiya", "Yaniv"] }
+    ]
+  },
+  "stats": {
+    "array": [2, 1, 1, 0, 0, -1],
+    "debilities": [
+      { "name": "weakened", "stats": ["STR", "DEX"] },
+      { "name": "dazed", "stats": ["INT", "WIS"] },
+      { "name": "miserable", "stats": ["CON", "CHA"] }
+    ]
+  },
+  "base": { "damage": "d8", "maxHp": 16 },
+  "moves": {
+    "starting": { "pickOne": [["ambush", "skill-at-arms"], ["danger-sense", "perceptive"]], "choose": 1 },
+    "list": [
+      {
+        "id": "all-in-the-wrist",
+        "name": "All in the Wrist",
+        "tracker": { "boxes": 2, "label": "ammo: a few left / out" },
+        "text": "Any knife or dagger gets the *thrown* tag in your hands. Also, you keep a few iron throwing blades (*near*) on you; they don't take up space in your inventory. Reset your ammo whenever you Outfit."
+      },
+      {
+        "id": "ambush",
+        "name": "Ambush",
+        "text": "When you *get the drop on a nearby foe*, you can deal your damage or opt to roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal damage and pick 1:\n\n- Deal +1d4 damage\n- Stop them from making noise/raising an alarm\n- Slip away before they can react\n- Create an opportunity; you or an ally gains advantage on the next move to act on it"
+      },
+      {
+        "id": "burgle",
+        "name": "Burgle",
+        "text": "When you *sneak off on your own into a dangerous place*, roll +INT: **on a 7+**, you make it back, and the GM says where you got to and what you learned. Then, **on a 10+**, also pick 2; **on a 7-9**, also pick 1:\n\n- You got away clean, rousing no suspicion\n- You swiped something valuable (GM's choice)\n- You set something up to exploit on your return\n- Ask a Seek Insight question about what you saw\n\n**On a 6-**, you either make it back but with trouble in tow, or you're missing in action (your call)."
+      },
+      {
+        "id": "catlike",
+        "name": "Catlike",
+        "text": "When you *carry a light load and act with care*, you move silently. When you *hide in shadows or darkness*, you remain unseen until you draw attention to yourself, move positions, or attack."
+      },
+      {
+        "id": "dabbler",
+        "name": "Dabbler",
+        "maxTakes": 3,
+        "requires": { "level": 2, "note": "the Fox" },
+        "text": "Each time you take this move, choose a move from the Heavy, Marshal, Ranger, or Seeker playbooks for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)"
+      },
+      {
+        "id": "danger-sense",
+        "name": "Danger Sense",
+        "text": "You can always ask the GM, \"Is there an ambush or trap here?\" If they say \"yes,\" roll +INT: **on a 10+**, ask the GM both of the questions below; **on a 7-9**, ask 1; **either way**, gain advantage on your next roll to act on the answer(s).\n\n- What will trigger the ambush or trap?\n- What will happen once it's triggered?\n\n**On a 6-**, don't mark XP; you know there's a trap or ambush, but nothing bad happens just yet."
+      },
+      {
+        "id": "free-running",
+        "name": "Free Running",
+        "text": "When you *carry a light load and move with speed and grace*, gain advantage on any move to surmount or bypass a physical obstacle."
+      },
+      {
+        "id": "improved-stat",
+        "name": "Improved Stat",
+        "maxTakes": 3,
+        "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
+      },
+      {
+        "id": "irresistible",
+        "name": "Irresistible",
+        "text": "When you *interact with someone*, you can ask their player if they find you attractive and get an honest answer (usually \"yes\").\n\nWhen you *Persuade by using your considerable charms as leverage*, you have advantage."
+      },
+      {
+        "id": "laugh-at-danger",
+        "name": "Laugh at Danger",
+        "text": "When you *are about to roll +CON and you make a joke about the adversity you face*, you can roll +CHA instead."
+      },
+      {
+        "id": "light-fingers",
+        "name": "Light Fingers",
+        "text": "When you *perform sleight of hand on an unwary mark*, you succeed and no one's the wiser. If you're being watched, roll +DEX: **on a 10+**, you succeed and no one's the wiser; **on a 7-9**, you succeed OR no one's the wiser (your choice)."
+      },
+      {
+        "id": "perceptive",
+        "name": "Perceptive",
+        "text": "When you *Seek Insight*, you may ask 1 additional question. Even on a 6-, you can ask 1 question (though you might not like how you learn the answer)."
+      },
+      {
+        "id": "rapier-wit",
+        "name": "Rapier Wit",
+        "text": "When you *pierce an NPC's pride with a well-placed quip*, they must do 1 (their choice):\n\n- Attack, doing +1d4 damage if they hit but giving you advantage on your next roll against them\n- Stoop to your level and respond in kind\n- Spend a few moments fuming, sputtering, or controlling their temper"
+      },
+      {
+        "id": "skill-at-arms",
+        "name": "Skill at Arms",
+        "text": "When you *wield a weapon with speed and grace*, roll +DEX to Clash (instead of +STR)."
+      },
+      {
+        "id": "parry-riposte",
+        "name": "Parry & Riposte",
+        "childOf": "skill-at-arms",
+        "requires": { "moves": ["skill-at-arms"] },
+        "text": "When you *Defend with a weapon that you can wield quickly*, you can spend 1 Readiness to both halve an attack's effects/damage and strike back at the attacker (deal your damage with disadvantage), instead of spending 1 Readiness for each."
+      },
+      {
+        "id": "silver-tongued",
+        "name": "Silver Tongued",
+        "tracker": { "boxes": 3, "label": "Nerve" },
+        "text": "When you *use words to avoid suspicion or trouble*, roll +CHA: **on a 10+**, hold 3 Nerve; **on a 7-9**, hold 1 Nerve. You may spend Nerve, 1-for-1, to:\n\n- Move about or maneuver unchallenged\n- Withstand direct scrutiny or questioning\n- Direct suspicion or attention elsewhere"
+      },
+      {
+        "id": "under-your-skin",
+        "name": "Under Your Skin",
+        "text": "When you *engage an NPC in conversation*, you can ask the GM 1 of these and get an honest answer:\n\n- What are they expecting me to do?\n- What, in general, are they trying to hide?\n- What do they want to happen?"
+      },
+      {
+        "id": "battle-dancer",
+        "name": "Battle Dancer",
+        "requires": { "level": 6, "moves": ["skill-at-arms"] },
+        "text": "When you *roll +DEX to Clash*, **on a 12+** you deal your damage, avoid your enemy's attack, and impress/embarrass/overawe your foes."
+      },
+      {
+        "id": "cheap-shot",
+        "name": "Cheap Shot",
+        "requires": { "level": 6, "moves": ["ambush"] },
+        "text": "When you *Ambush with a* **hand** *weapon*, you have advantage on your damage roll."
+      },
+      {
+        "id": "eye-on-the-door",
+        "name": "Eye on the Door",
+        "requires": { "level": 6 },
+        "text": "When *you and your allies need to get out of here*, name your escape route and roll +INT: **on a 10+**, you're gone; **on a 7-9**, you can stay or go, but if you go, it costs you—the GM will tell you what (or who) you leave behind or take with you."
+      },
+      {
+        "id": "pants-on-fire",
+        "name": "Pants on Fire",
+        "requires": { "level": 6 },
+        "text": "When you *Defy Danger, Persuade, or Interfere by being deceitful*, you have advantage.\n\nWhen another move (like Seek Insight) allows a player to ask you a question, you can opt not to answer."
+      },
+      {
+        "id": "second-intent",
+        "name": "Second Intent",
+        "requires": { "level": 6, "moves": ["parry-riposte", "ambush"] },
+        "text": "When you *Defend and spend 1 Readiness to Parry & Riposte*, also pick 1 option from the Ambush list."
+      },
+      {
+        "id": "slippery",
+        "name": "Slippery",
+        "requires": { "level": 6 },
+        "text": "When you *roll to escape being caught or controlled*, treat a 6- as a 7-9. On a 12+, say how you turn the tables or use the circumstances to your advantage."
+      },
+      {
+        "id": "superior-stat",
+        "name": "Superior Stat",
+        "requires": { "level": 6 },
+        "text": "Increase one of your stats by +1 (to a max of +3)."
+      }
+    ]
+  },
+  "possessions": {
+    "prompt": "Pick 2.",
+    "pick": 2,
+    "fixed": [],
+    "options": [
+      { "name": "Burglar's kit", "text": "picks, files, snippers, wire, ◇ prybars, ◇ hacksaws, ◇ a lantern (5 hours, *close*, *area*), ◇ a grappling hook, etc." },
+      { "name": "Carpenter's tools", "text": "chisels, files, nails, pitch, ◇ prybars, ◇ saws, ◇◇ firkins, barrels, etc." },
+      { "name": "Distillery", "text": "skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc." },
+      { "name": "Hidden stash", "uses": 3, "text": "each use produces valuables worth a purse of silvers (Value 2)" },
+      { "name": "Mummer's kit", "text": "juggling balls, whirlybird seeds, motley, ribbons, bells, ◇ puppets, ◇ a fiddle, etc." },
+      { "name": "Scribe's tools", "text": "parchment, ink, pigments, vials, quills, ◇ a notebook, etc." },
+      { "name": "Tannery", "text": "(or access to it): lime, acid, salts, thick gloves, ◇ a boiled leather cuirass (1 armor), etc." },
+      { "name": "Trade contacts", "text": "small amounts of salt, glass, silk, spice, medicinal herbs, pigments, ivory, etc." },
+      { "name": "", "writeIn": true, "text": "(discuss with GM)" }
+    ]
+  },
+  "extras": [
+    {
+      "id": "tall-tales",
+      "title": "Tall tales",
+      "text": "Someone like you gets into all sorts of trouble, whether you mean to or not. Mix and match the following to come up with a couple of your more memorable adventures, and write them down.",
+      "choices": [
+        {
+          "id": "that-time",
+          "prompt": "There was that time that you… (choose 1 per tale)",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "… got lost in (choose 1): the Great Wood / the Flats / the Steplands / Ferrier's Fen / the Foothills / the Huffel Peaks" },
+            { "label": "… were on watch when the crinwin raided" },
+            { "label": "… dared each other to explore the Ruined Tower" },
+            { "label": "… managed to rile up a small band of Hillfolk" },
+            { "label": "… braved the Labyrinth, just a little" },
+            { "label": "… stole that crazy old man's book" },
+            { "label": "… went poking about the old Barrow Mounds" }
+          ]
+        },
+        {
+          "id": "ended-up",
+          "prompt": "And you ended up… (choose 1 or 2 per tale)",
+          "min": 1,
+          "max": 2,
+          "options": [
+            { "label": "… running for your life from ______" },
+            { "label": "… landing a well-placed blow" },
+            { "label": "… interrupting a strange, creepy gathering" },
+            { "label": "… stumbling on a beast, bigger'n anything" },
+            { "label": "… with a sack full of treasure" },
+            { "label": "… getting ______ to fight them for you" },
+            { "label": "… face to face with a ghost/Fae/demon" },
+            { "label": "… finding those strange old runes" },
+            { "label": "… getting to know that fine-looking fellow/lady/person/couple" }
+          ]
+        },
+        {
+          "id": "left-to-show",
+          "prompt": "But all you've got left to show for it is…",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "… a story no one believes." },
+            { "label": "… a nasty scar; wanna see?" },
+            { "label": "… the occasional nightmare." },
+            { "label": "… this map with runes no one can read." },
+            { "label": "… this key that opens who-knows-what." }
+          ]
+        }
+      ]
+    }
+  ],
+  "introductions": {
+    "intro": "Wait here for everyone else. When everyone's ready, take turns introducing your characters. When *someone reveals something and you want to know more*, ask them about it. When *someone asks you a question*, answer it truthfully.",
+    "steps": [
+      { "n": 1, "text": "On your first turn, **introduce yourself** by name, pronouns, background, origin, and appearance." },
+      { "n": 2, "text": "On your second turn, **describe your special possessions** and how you contribute to the village (beyond working the fields)." },
+      { "n": 3, "text": "On your third turn, **tell us your tall tales**. Feel free to embellish and exaggerate to the other players, but always answer the GM truthfully." },
+      { "n": 4, "text": "On your next turn, **answer one of the following**, naming one or more NPCs who live in Stonetop.", "questions": ["Who is your closest kin?", "Who holds the reins to your heart?", "Whose respect means the world to you?", "To whom do you owe a debt that cannot be repaid?"] },
+      { "n": 5, "text": "Go around again. Answer another question from 4, or pass. When everyone has passed, go on." },
+      { "n": 6, "text": "On your next turn, **ask your fellow PCs one of these**. When others ask you, answer as you like.", "questions": ["Which one of you joined me in my latest hijinx?", "Which one of you brings your problems to me?", "Which one of you saved my bacon, mor'n once?", "Which one of you trusts me not one bit?"] },
+      { "n": 7, "text": "Go around again. Ask another question from 6, or pass. When everyone has passed, go on." },
+      { "n": 8, "text": "Add your home to the steading playbook. When everyone is done, let spring burst forth!" }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "insert-ghost",
+  "name": "Ghost",
+  "type": "insert",
+  "appliesTo": "all",
+  "gainedWhen": "When you die but your soul lingers, refusing to pass through the Last Door, you gain this insert, and choose 1 Consequence.",
+  "source": { "book": "Book I", "pages": [148, 149], "printing": 2 },
+  "instincts": {
+    "text": "Lose the Instinct from your playbook, and replace it with one of these (your choice):",
+    "options": [
+      { "id": "denial", "name": "Denial", "text": "To refuse to accept that you are dead." },
+      { "id": "obsession", "name": "Obsession", "text": "To pursue your Terrible Purpose no matter what." },
+      { "id": "ennui", "name": "Ennui", "text": "To bemoan your condition, to wish for release." }
+    ]
+  },
+  "moves": {
+    "text": "You gain all of the following:",
+    "list": [
+      {
+        "id": "unliving",
+        "name": "Unliving",
+        "granted": true,
+        "text": "You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce."
+      },
+      {
+        "id": "disembodied",
+        "name": "Disembodied",
+        "granted": true,
+        "text": "Your body is dead and gone, but you persist as a spirit. You can be harmed only by silver, salt, or that which harms spirits or ghosts.\n\nYou normally go unseen, with the barest influence on the material world and a dim, distorted sense of reality. When you *manifest a ghostly presence in shadows or darkness*, the world becomes clear and pick 1. For each additional option you pick, lose 1d4 HP:\n\n- You appear solid and whole, much as you did in life\n- You can speak clearly and intelligibly\n- Your touch (or ghostly weapons) can harm the living (ignores armor)\n\nYou remain manifest for as long as you concentrate; pain or shock or direct sunlight threaten your concentration, for sure."
+      },
+      {
+        "id": "tethered",
+        "name": "Tethered",
+        "granted": true,
+        "text": "Choose something to which you are bound: your mortal remains, the place where you died, an object of personal significance, etc.\n\nWhen you *are reduced to 0 HP*, mark a consequence and your essence disperses until the next sunset. You reform near your tether with half your max HP. If your tether has been destroyed, mark the Final Consequence."
+      }
+    ]
+  },
+  "terriblePurpose": {
+    "prompt": "Choose 1:",
+    "options": [
+      {
+        "id": "longing",
+        "name": "Longing",
+        "text": "Name the person or persons you refuse to let go of.\n\nWhen you *spend the night watching them*, regain all your HP or clear all your debilities.\n\nWhen they *genuinely return your affections*, free of fear or horror, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen *they rebuff you or recoil from you*, mark a consequence.\n\nWhen they *die peacefully and pass through the Last Door*, so do you.\n\nShould they be *taken from you violently*, mark the Final Consequence."
+      },
+      {
+        "id": "vengeance",
+        "name": "Vengeance",
+        "text": "Name the person or persons who must pay.\n\nWhen you *spend the night wailing, howling, and raging in a lonely place*, regain all your HP or clear all your debilities.\n\nWhen you *make one of them pay and ensure that they know why*, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen they *defeat or escape you*, mark a consequence.\n\nWhen you *kill the last of them*, pass through the Last Door.\n\nShould they *die before you're finished with them*, mark the Final Consequence."
+      },
+      {
+        "id": "duty",
+        "name": "Duty",
+        "text": "Name the task you refuse to leave undone.\n\nWhen you *spend the night working on your task*, regain all your HP or clear all your debilities.\n\nWhen you *achieve a significant milestone towards your task*, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen you *fail to perform your task or suffer a material setback*, mark a consequence.\n\nWhen the *task is finally complete*, pass through the Last Door.\n\nShould the *task become impossible to perform*, mark the Final Consequence."
+      }
+    ]
+  },
+  "consequences": {
+    "text": "When you first take this insert, choose 1. Choose another whenever a move tells you to do so.",
+    "list": [
+      {
+        "id": "bodysnatcher",
+        "name": "Bodysnatcher",
+        "text": "When you *possess an unconscious or willing person*, lose 1d4 HP and control their actions. Use your stats and moves for any actions they take while under your control.\n\nWhen you *force your host to do something contrary to their instinct or something that they find abhorrent*, roll +CHA: **on a 10+**, they do it anyway; **on a 7-9**, they pick 1:\n\n- They resist that action, and you'll never be able to force them to do it or anything similar, but you otherwise remain in control\n- They do it, but it costs you—lose 2d4 HP\n\n**On a 6-**, they force you from their body and you mark a consequence. You'll never be able to possess them again.\n\nWhen *your host takes damage*, you lose an equal amount of HP. If your host dies while you still have HP, you can keep them alive until your possession ends."
+      },
+      {
+        "id": "breakdown",
+        "name": "Breakdown",
+        "text": "You lash out in an unthinking, unfeeling rage that lasts until the next sunrise. Ask the GM what snippets you remember."
+      },
+      {
+        "id": "unstable",
+        "name": "Unstable",
+        "childOf": "breakdown",
+        "requires": { "consequences": ["breakdown"] },
+        "text": "You are prone to episodes of unthinking, unfeeling rage (as per Breakdown). When you *roll a 6-*, the GM can choose to have you enter such a rage."
+      },
+      {
+        "id": "disturbing",
+        "name": "Disturbing",
+        "text": "Your presence (even unseen) disturbs beasts and children. The air around you is notably cooler, especially when you manifest. When you *use intimidation and your disturbing presence to Persuade*, you have advantage."
+      },
+      {
+        "id": "otherworldly",
+        "name": "Otherworldly",
+        "text": "When you *manifest a ghostly form*, strange things happen: statues weep, rocks bleed, plants wither, water pools on ceilings, etc."
+      },
+      {
+        "id": "poltergeist",
+        "name": "Poltergeist",
+        "tracker": { "boxes": 4, "label": "Fury" },
+        "text": "When you *get angry*, lose 1d4 HP and hold that much Fury. Spend Fury, 1-for-1, to:\n\n- Shatter, break, or destroy a number of small mundane objects, or one big object.\n- Hurl an object at someone and roll +DEX: **on a 10+**, deal your damage (*forceful*); **on a 7-9**, deal your damage (*forceful*) but lose 1d4 HP.\n- Attack someone with telekinetic force and roll +INT: **on a 10+**, fling them to a place you can see and pin them there, spending 1 HP each time they make a committed effort to break free; **on a 7-9**, as 10+, but you also lose 1d4 HP."
+      },
+      {
+        "id": "quarry",
+        "name": "Quarry",
+        "text": "The Pale Hunter has caught your scent. Expect a visit, soon."
+      },
+      {
+        "id": "specter",
+        "name": "Specter",
+        "text": "When you *terrify a living person, someone who is unconnected to your Terrible Purpose*, regain 1d8 HP or clear a debility of your choice."
+      }
+    ],
+    "final": {
+      "name": "The Final Consequence",
+      "text": "Your tenuous connection to humanity is lost and you become a monster under the GM's control."
+    }
+  }
+}

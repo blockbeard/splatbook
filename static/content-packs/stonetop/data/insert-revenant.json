@@ -1,0 +1,134 @@
+{
+  "id": "insert-revenant",
+  "name": "Revenant",
+  "type": "insert",
+  "appliesTo": "all",
+  "gainedWhen": "When you die but cling stubbornly to your body, refusing to pass through the Last Door, you gain this insert, and choose 1 Consequence.",
+  "source": { "book": "Book I", "pages": [150, 151], "printing": 2 },
+  "instincts": {
+    "text": "Lose the Instinct from your playbook, and replace it with one of these (your choice):",
+    "options": [
+      { "id": "denial", "name": "Denial", "text": "To refuse to accept that you are dead." },
+      { "id": "obsession", "name": "Obsession", "text": "To pursue your Terrible Purpose no matter what." },
+      { "id": "ennui", "name": "Ennui", "text": "To bemoan your condition, to wish for release." }
+    ]
+  },
+  "moves": {
+    "text": "You gain all of the following:",
+    "list": [
+      {
+        "id": "unliving",
+        "name": "Unliving",
+        "granted": true,
+        "text": "You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce."
+      },
+      {
+        "id": "undying",
+        "name": "Undying",
+        "granted": true,
+        "text": "Neither poison nor disease do you harm. You feel little pain. When you *take damage from cutting, stabbing, or crushing*, take half damage (after armor, rounded up).\n\nWhen you *are reduced to 0 HP*, roll +CON: **on a 10+**, regain half your max HP and choose 1; **on a 7-9**, regain half your max HP and choose 2; **on a 6-**, either regain 1 HP and all 3 apply, or give up this insert and gain the Ghost insert instead.\n\n- Mark a consequence\n- You're out of the action until the next sunset\n- Your body is permanently maimed in some way of the GM's choosing\n\nIf *your body is completely destroyed* (burnt to ash, ground to jelly, etc.), treat it as if you were reduced to 0 HP and rolled a 6-."
+      },
+      {
+        "id": "implacable",
+        "name": "Implacable",
+        "granted": true,
+        "text": "When you *push the limits of your undead body*, lose 1d4 HP and choose 1:\n\n- Perform a feat of inhuman strength\n- Act with uncanny speed and grace\n- Refuse to be moved, held back, or knocked off course"
+      }
+    ]
+  },
+  "terriblePurpose": {
+    "prompt": "Choose 1:",
+    "sameAs": "insert-ghost",
+    "options": [
+      {
+        "id": "longing",
+        "name": "Longing",
+        "text": "Name the person or persons you refuse to let go of.\n\nWhen you *spend the night watching them*, regain all your HP or clear all your debilities.\n\nWhen they *genuinely return your affections*, free of fear or horror, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen *they rebuff you or recoil from you*, mark a consequence.\n\nWhen they *die peacefully and pass through the Last Door*, so do you.\n\nShould they be *taken from you violently*, mark the Final Consequence."
+      },
+      {
+        "id": "vengeance",
+        "name": "Vengeance",
+        "text": "Name the person or persons who must pay.\n\nWhen you *spend the night wailing, howling, and raging in a lonely place*, regain all your HP or clear all your debilities.\n\nWhen you *make one of them pay and ensure that they know why*, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen they *defeat or escape you*, mark a consequence.\n\nWhen you *kill the last of them*, pass through the Last Door.\n\nShould they *die before you're finished with them*, mark the Final Consequence."
+      },
+      {
+        "id": "duty",
+        "name": "Duty",
+        "text": "Name the task you refuse to leave undone.\n\nWhen you *spend the night working on your task*, regain all your HP or clear all your debilities.\n\nWhen you *achieve a significant milestone towards your task*, either regain all your HP and clear your debilities, or clear a consequence.\n\nWhen you *fail to perform your task or suffer a material setback*, mark a consequence.\n\nWhen the *task is finally complete*, pass through the Last Door.\n\nShould the *task become impossible to perform*, mark the Final Consequence."
+      }
+    ]
+  },
+  "consequences": {
+    "text": "When you first take this insert, choose 1. Choose another whenever a move tells you to do so.",
+    "list": [
+      {
+        "id": "breakdown",
+        "name": "Breakdown",
+        "text": "You lash out in an unthinking, unfeeling rage that lasts until the next sunrise. Ask the GM what snippets you remember."
+      },
+      {
+        "id": "unstable",
+        "name": "Unstable",
+        "childOf": "breakdown",
+        "requires": { "consequences": ["breakdown"] },
+        "text": "You are prone to episodes of unthinking, unfeeling rage (as per Breakdown). When you *roll a 6-*, the GM can choose to have you enter such a rage."
+      },
+      {
+        "id": "carrion-stench",
+        "name": "Carrion Stench",
+        "text": "You are followed always by a horrible odor. Natural beasts will shun you; even predators will avoid you and your companions."
+      },
+      {
+        "id": "deathly-visage",
+        "name": "Deathly Visage",
+        "text": "It's clear to all who look upon you that you are dead. When you *use intimidation and your sinister appearance to Persuade*, you have advantage."
+      },
+      {
+        "id": "home-to-vermin",
+        "name": "Home to Vermin",
+        "text": "Bugs, moths, and other vermin have taken up residence in your corpse. They will do you favors if you ask. Treat them as followers: *group*, *tiny*, *gross*, *meek*, *stealthy*; HP 1 each; **Instinct** to get distracted; Cost: genuine affection."
+      },
+      {
+        "id": "nightkin",
+        "name": "Nightkin",
+        "text": "You can see clearly in even absolute darkness, though you see only in black and white and red. Sunlight, alas, blinds you, and direct sunlight burns your skin."
+      },
+      {
+        "id": "quarry",
+        "name": "Quarry",
+        "text": "The Pale Hunter has caught your scent. Expect a visit, soon."
+      },
+      {
+        "id": "strange-appetites",
+        "name": "Strange Appetites",
+        "choices": [
+          {
+            "id": "fare",
+            "prompt": "Pick 1:",
+            "min": 1,
+            "max": 1,
+            "options": [
+              { "label": "still-warm blood" },
+              { "label": "dying breaths" },
+              { "label": "brains" },
+              { "label": "bone & marrow" },
+              { "label": "rotting meat" },
+              { "label": "eyes" }
+            ]
+          }
+        ],
+        "text": "When you *consume your special fare*, heal damage equal to half your max HP or clear a debility."
+      },
+      {
+        "id": "insatiable",
+        "name": "Insatiable",
+        "childOf": "strange-appetites",
+        "requires": { "consequences": ["strange-appetites"] },
+        "text": "When you *have the opportunity to indulge your Strange Appetites*, gain advantage on your next roll if you choose to do so, or Defy Danger if you choose not to (the danger being your overwhelming desires)."
+      }
+    ],
+    "final": {
+      "name": "The Final Consequence",
+      "text": "Your tenuous connection to humanity is lost and you become a monster under the GM's control."
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "id": "the-ranger",
+  "name": "The Ranger",
+  "flavor": "Your true home is out there. Away from the Old Roads, in the wild places, where you've faced storm and beast alike. But unknown forces are at work beyond the Ringwall, and you fear for your kith and kin. These are strange times. Guide them, ranger, and keep them safe when darkness falls.",
+  "source": { "book": "Book I", "pages": [129, 132], "printing": 2 },
+  "backgrounds": [
+    {
+      "id": "mighty-hunter",
+      "name": "Mighty Hunter",
+      "text": "You are a hunter of the Great Wood, the best the town has seen in generations. You know every part of the Wood within a two-day march.\n\nYou start with both the Expert Tracker move and the Stalker move. Go mark them now.",
+      "grants": { "moves": ["expert-tracker", "stalker"] }
+    },
+    {
+      "id": "wide-wanderer",
+      "name": "Wide Wanderer",
+      "text": "You have travelled much of the known world and perhaps parts beyond. Add each of the following to the Neighbors list in the Stonetop playbook, choosing 1 trait for each:\n\n- **Ennis** (from Marshedge)\n- **Shahar** (from Gordin's Delve)\n- **Yannic** (from the Hillfolk)\n- **Tovia** (from Lygos)\n- **Sasca** (from the northern Manmarch)\n\nYou start with the Mental Map move. Mark it now.\n\nWhen you *Know Things about the wider world*, you can roll +WIS instead of +INT.\n\nWhen you *arrive somewhere you've visited before* (your call), tell the GM when you were last here, and the GM will tell you how it's changed.",
+      "grants": { "moves": ["mental-map"] }
+    },
+    {
+      "id": "beast-bonded",
+      "name": "Beast-Bonded",
+      "text": "You grew up civilized, but your soul is bound to a beast of the wild. You're closer to it than to any man or woman. How did this bond come about? How long ago? Regardless, you start with the Animal Companion move. Go mark it now.\n\nWhen you *focus on your animal companion for a few moments*, you can use any of the actions you've marked below, no matter the distance between you. Mark 1 action at 1st level, then another at 3rd, 5th, 7th, and 9th.\n\n- Gauge its distance and direction from you\n- Call it back to your side\n- Sense its emotional state\n- Get a brief impression of what it senses\n- Lend it your strength—lose 1d6 HP, and it regains an equal amount",
+      "grants": { "moves": ["animal-companion"] },
+      "choices": [
+        {
+          "id": "bond-actions",
+          "prompt": "Mark 1 action at 1st level, then another at 3rd, 5th, 7th, and 9th.",
+          "min": 1,
+          "max": 5,
+          "options": [
+            { "label": "Gauge its distance and direction from you" },
+            { "label": "Call it back to your side" },
+            { "label": "Sense its emotional state" },
+            { "label": "Get a brief impression of what it senses" },
+            { "label": "Lend it your strength—lose 1d6 HP, and it regains an equal amount" }
+          ]
+        }
+      ]
+    }
+  ],
+  "instincts": [
+    { "id": "adventure", "name": "Adventure", "text": "To test yourself, to experience new things." },
+    { "id": "independence", "name": "Independence", "text": "To refuse help and push others away." },
+    { "id": "stewardship", "name": "Stewardship", "text": "To value beasts and natural places over people." },
+    { "id": "tenacity", "name": "Tenacity", "text": "To be stubborn, to persist." },
+    { "id": "wonder", "name": "Wonder", "text": "To marvel at beauty, magnificence, splendor." },
+    { "id": "custom", "name": "", "custom": true }
+  ],
+  "appearance": [
+    ["fledgling", "prime specimen", "long in the tooth"],
+    ["barking voice", "growling voice", "sing-song voice"],
+    ["compact & sturdy", "long & lean", "wolfish"],
+    ["shaggy", "threadbare", "well-groomed"]
+  ],
+  "origins": {
+    "prompt": "Stonetop is your home, or close enough, but where are you (or your family) from originally? Pick 1 and a name to match (or make up something similar).",
+    "options": [
+      { "label": "Stonetop", "names": ["Aran", "Bledyn", "Branwen", "Deryn", "Ifur", "Meinir", "Rhys", "Teagan"] },
+      { "label": "Barrier Pass", "names": ["Anarba", "Arslan", "Bolormaa", "Cirina", "Nergui", "Nomolun", "Saran", "Shigi-Qutuqu"] },
+      { "label": "Marshedge", "names": ["Asling", "Conar", "Enna", "Flannan", "Macha", "Mave", "Proinsias", "Rowen"] },
+      { "label": "The Steplands", "note": "Hillfolk", "names": ["Bernd", "Elown", "Irn", "Kani", "Pol", "Nol", "Rozn", "Sterin"] },
+      { "label": "The Manmarch", "names": ["Alfher", "Bertrim", "Dagmar", "Elfrida", "Hramn", "Meike", "Swanhilde", "Wulfrim"] },
+      { "label": "Lygos or some other point south", "names": ["Ari", "Boriz", "Dimitra", "Gorhan", "Nitza", "Selen", "Todora", "Vasil"] }
+    ]
+  },
+  "stats": {
+    "array": [2, 1, 1, 0, 0, -1],
+    "debilities": [
+      { "name": "weakened", "stats": ["STR", "DEX"] },
+      { "name": "dazed", "stats": ["INT", "WIS"] },
+      { "name": "miserable", "stats": ["CON", "CHA"] }
+    ]
+  },
+  "base": { "damage": "d8", "maxHp": 18 },
+  "moves": {
+    "starting": { "fixed": ["home-on-the-range"], "fromBackground": true, "choose": 1 },
+    "list": [
+      {
+        "id": "a-safe-place",
+        "name": "A Safe Place",
+        "tracker": { "boxes": 2, "label": "Precaution" },
+        "text": "When you *select and prepare the party's camp site*, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers.\n\nIf trouble finds your camp site, you can spend 1 Precaution to reveal a simple defense, warning, or trick that you prepared in advance. If you do, tell us how you knew to make that specific preparation."
+      },
+      {
+        "id": "animal-companion",
+        "name": "Animal Companion",
+        "text": "You are accompanied by a beast of uncommon loyalty and cleverness. See the Animal Companion insert for details."
+      },
+      {
+        "id": "magnificent-specimen",
+        "name": "Magnificent Specimen",
+        "childOf": "animal-companion",
+        "maxTakes": 2,
+        "requires": { "moves": ["animal-companion"] },
+        "text": "Each time you take this move, your companion gains 2 additional options of your choice."
+      },
+      {
+        "id": "big-game-hunter",
+        "name": "Big Game Hunter",
+        "text": "When you *strike at the weak spot of a* **large** *or* **huge** *creature*, you deal +2 damage."
+      },
+      {
+        "id": "blot-out-the-sun",
+        "name": "Blot Out the Sun",
+        "text": "When you *Let Fly with a bow*, you can deplete your ammunition (mark the next ammo status after your weapon) before you roll. If you do, choose 1:\n\n- Gain advantage on your damage roll\n- Add the *area* tag to your attack; roll damage separately for each target"
+      },
+      {
+        "id": "call-the-shot",
+        "name": "Call the Shot",
+        "text": "When you *take your time and calmly line up the perfect shot*, either deal your damage or roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal your damage and pick 1.\n\n- Ignore armor or deal +1d4 damage (your call)\n- Stun, hobble, or hinder them\n- Make them trip or drop what they're holding\n- Do no harm; don't deal your damage after all"
+      },
+      {
+        "id": "expert-tracker",
+        "name": "Expert Tracker",
+        "text": "When you *Seek Insight by searching for or studying the signs left by passing creatures*, you can ask \"What happened here recently?\" for free, even on a 6-.\n\nWhen you *follow a creature's trail*, roll +WIS: **on a 7+** you follow it to a significant change in terrain or activity; **on a 10+**, you can ask the GM a reasonable question about your quarry and get a useful answer."
+      },
+      {
+        "id": "home-on-the-range",
+        "name": "Home on the Range",
+        "text": "When *a journey requires you to Defy Danger or Struggle as One*, treat a 6- as a 7-9."
+      },
+      {
+        "id": "improved-stat",
+        "name": "Improved Stat",
+        "maxTakes": 3,
+        "text": "Each time you take this move, increase one of your stats by 1 (to a max of +2)."
+      },
+      {
+        "id": "mental-map",
+        "name": "Mental Map",
+        "text": "You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back.\n\nWhen you *think back on a place you've been*, you can Seek Insight retroactively, as if you were still there."
+      },
+      {
+        "id": "naturalist",
+        "name": "Naturalist",
+        "text": "When you *Know Things about beasts, natural environs, or spirits of the wild*, you have advantage."
+      },
+      {
+        "id": "on-the-hoof",
+        "name": "On the Hoof",
+        "text": "When you *travel through the wilderness*, you can procure 1d6 uses of ◇ provisions each day (roll with disadvantage in winter or barren terrain). Provisions can substitute for supplies when you Make Camp."
+      },
+      {
+        "id": "pack-horse",
+        "name": "Pack Horse",
+        "text": "You can carry up to 4 load with a light load, 7 with a normal load, and 10 with a heavy load."
+      },
+      {
+        "id": "pathfinder",
+        "name": "Pathfinder",
+        "text": "When you *lead your people to Pull Together or Deploy beyond sight of home*, you have advantage."
+      },
+      {
+        "id": "predator",
+        "name": "Predator",
+        "text": "When you *Seek Insight*, add the following to the list of questions you can ask. When *acting on the answer to either question*, deal an extra 1d4 damage.\n\n- Who or what here is the easiest prey?\n- How is ________ weak or vulnerable?"
+      },
+      {
+        "id": "sniff-out-corruption",
+        "name": "Sniff Out Corruption",
+        "text": "When you *Seek Insight*, you can ask, \"What here stinks of the unnatural?\" for free, even on a 6-."
+      },
+      {
+        "id": "stalker",
+        "name": "Stalker",
+        "text": "When *you carry a normal or light load and move with care*, you make no noise and leave no sign of your passing. When you *hide yourself in a natural environment*, you remain unseen until you draw attention to yourself, move positions, or attack."
+      },
+      {
+        "id": "survivalist",
+        "name": "Survivalist",
+        "text": "When you *Forage*, pick 1 extra choice (even on a 6-, pick 1) and add \"Find or fashion some useful item or supply (GM can veto)\" to the list of options."
+      },
+      {
+        "id": "warden-of-the-wild",
+        "name": "Warden of the Wild",
+        "text": "When you *defeat a perversion of nature*, you can ask the GM 2 of the following and get a useful answer:\n\n- Will it come back? If so, how can I stop it?\n- Will its taint spread? If so, how can I contain it?\n- What useful (but grisly) bits can I harvest?\n- What else can I learn about it or its ilk?"
+      },
+      {
+        "id": "wild-speech",
+        "name": "Wild Speech",
+        "text": "The grunts, barks, chirps, and calls of natural beasts are as a language to you. You can understand their intentions and communicate basic ideas. When you *Persuade a beast*, you can choose to roll +WIS."
+      },
+      {
+        "id": "worldly",
+        "name": "Worldly",
+        "maxTakes": 2,
+        "requires": { "level": 2, "note": "the Ranger" },
+        "text": "Take a move from the Blessed, Fox, Heavy, Marshal, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't pick Improved Stat or Superior Stat."
+      },
+      {
+        "id": "alpha",
+        "name": "Alpha",
+        "requires": { "level": 6, "note": "Wild Speech or Spirit Tongue" },
+        "text": "When you *assert dominance over another (beast, spirit, Fae, or person)*, roll +WIS: **on a 7+**, they must pick 1 from the list below; **on a 10+**, you also have advantage on your next roll against them.\n\n- Accept your authority, at least for now\n- Slink away or flee, then avoid you\n- Fight you for dominance"
+      },
+      {
+        "id": "beast-of-legend",
+        "name": "Beast of Legend",
+        "maxTakes": 2,
+        "requires": { "level": 6, "moves": ["magnificent-specimen"] },
+        "text": "Each time you take this move, pick 1:\n\n- They are *exceptional* (and roll +2 instead of +1)\n- They get +4 HP and +1 armor\n- They develop some unique ability or trait"
+      },
+      {
+        "id": "constant-vigilance",
+        "name": "Constant Vigilance",
+        "requires": { "level": 6 },
+        "text": "Unless you're *dazed*, you're never caught off guard—not even when asleep or if you roll a 6-. When you *intercept a sudden threat* (to yourself or an ally), you have advantage on whatever move you make."
+      },
+      {
+        "id": "giant-slayer",
+        "name": "Giant Slayer",
+        "requires": { "level": 6, "moves": ["big-game-hunter"] },
+        "text": "When you *strike at a weak spot of a* **large** *or* **huge** *creature*, you deal another +2 damage (+4 total)."
+      },
+      {
+        "id": "superior-stat",
+        "name": "Superior Stat",
+        "requires": { "level": 6 },
+        "text": "Increase one of your stats by +1 (to a max of +3)."
+      },
+      {
+        "id": "trailblazer",
+        "name": "Trailblazer",
+        "requires": { "level": 6, "note": "replaces Home on the Range" },
+        "text": "When *a journey causes you to Defy Danger or Struggle as One*, on a 10+ you also learn or discover something interesting and useful—ask the GM what."
+      },
+      {
+        "id": "walk-it-off",
+        "name": "Walk It Off",
+        "requires": { "level": 6 },
+        "tracker": { "boxes": 1, "label": "debility" },
+        "text": "When you'd *mark a debility,* you can mark this move instead to no ill effect. Clear it as you would a debility."
+      }
+    ]
+  },
+  "possessions": {
+    "prompt": "Pick 2, in addition to your composite bow.",
+    "pick": 2,
+    "fixed": [
+      { "name": "Composite bow", "fixed": true, "load": 1, "text": "(*far*, +1 damage, *x* piercing; ○ low ammo, ○ all out)" }
+    ],
+    "options": [
+      { "name": "Distillery", "text": "skins of fine whisky (2 uses, grants advantage to Persuade), copper tubes, malt, ◇◇ firkins, stills, barrels, etc." },
+      { "name": "Hideouts", "uses": 3, "text": "expend a use to have a well-stocked, safe shelter nearby; GM can veto." },
+      { "name": "Husbandry tools", "text": "brushes, muzzles, collars, feed, ◇ whips, ◇ bridles, etc. Gain advantage to Persuade domestic beasts (livestock, dogs, etc.)." },
+      { "name": "Hounds", "text": "2-3 followers", "statblock": { "tags": ["trackers", "keen-nosed", "fast"], "hp": 6, "damage": "d6 (*hand*, *grabby*)", "instinct": "to give chase", "cost": "training" } },
+      { "name": "Lay of the land", "uses": 3, "text": "expend a use to know where to find ___, without having to Know Things; GM can veto." },
+      { "name": "Trapping gear", "text": "snares, pelts, musk, bait, etc. When you *Forage*, get +1 use of provisions." },
+      { "name": "", "writeIn": true, "text": "(discuss with GM)" }
+    ]
+  },
+  "extras": [
+    {
+      "id": "something-wicked",
+      "title": "Something wicked this way comes",
+      "text": "You know firsthand that trouble is out there, and like it or not, one of these days the folk of Stonetop are going to have to face it.",
+      "choices": [
+        {
+          "id": "worried-about",
+          "prompt": "What is it that you're so worried about? (choose 1)",
+          "min": 1,
+          "max": 1,
+          "options": [
+            { "label": "A dark, unwholesome presence lurking in the Great Wood" },
+            { "label": "A strange, furtive figure seen near the Ruined Tower" },
+            { "label": "Something big & savage stalking the northern foothills" },
+            { "label": "Whatever's made the lizard-like suarachan of Ferrier's Fen so bold" },
+            { "label": "That of which the Hillfolk refuse to speak" }
+          ]
+        },
+        {
+          "id": "threat-questions",
+          "prompt": "Then, answer at least 3 of the following questions about this threat:",
+          "min": 3,
+          "max": 7,
+          "options": [
+            { "label": "What, exactly, do you think it is?" },
+            { "label": "What did you see, and how close did you have to get to see it?" },
+            { "label": "Whom or what have you lost to it?" },
+            { "label": "What did it leave behind?" },
+            { "label": "What do you think it wants?" },
+            { "label": "Who refuses to believe you?" },
+            { "label": "Who can tell you more, if you can only convince them?" }
+          ]
+        }
+      ]
+    }
+  ],
+  "introductions": {
+    "intro": "Wait here for everyone else. When everyone's ready, take turns introducing your characters. When *someone reveals something and you want to know more*, ask them about it. When *someone asks you a question*, answer it truthfully.",
+    "steps": [
+      { "n": 1, "text": "On your first turn, **introduce yourself** by name, pronouns, background, origin, and appearance." },
+      { "n": 2, "text": "On your second turn, **describe your special possessions** and how you contribute to the village (beyond working the fields)." },
+      { "n": 3, "text": "On your third turn, **tell us what you're worried about** (see \"Something wicked this way comes\")." },
+      { "n": 4, "text": "On your next turn, **answer one of the following**, naming one or more NPCs who live in Stonetop.", "questions": ["Who is your closest kin?", "To whom do you always return home?", "Who would be lost without you?", "Who has much to learn from you?"] },
+      { "n": 5, "text": "Go around again. Answer another question from 4, or pass. When everyone has passed, go on." },
+      { "n": 6, "text": "On your next turn, **ask your fellow PCs one of these**. When others ask you, answer as you like.", "questions": ["Which one of you fears the wider world?", "Which one of you has shown me great beauty?", "Which one of you have I caught sometimes staring out at the horizon?", "Which one of you lacked the stomach to put something out of its misery?"] },
+      { "n": 7, "text": "Go around again. Ask another question from 6, or pass. When everyone has passed, go on." },
+      { "n": 8, "text": "Add your home to the steading playbook. When everyone is done, let spring burst forth!" }
+    ]
+  }
+}

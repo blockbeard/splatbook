@@ -1,0 +1,401 @@
+{
+  "id": "the-gm",
+  "name": "GM Playbook",
+  "type": "gm",
+  "source": { "pdf": "Playbook - The GM.pdf", "printing": 1, "note": "Standalone GM playbook, not reproduced in Book I. Only 1st-printing erratum ('unlcear' → 'unclear') applied." },
+  "agenda": [
+    "Portray a rich, mysterious world",
+    "Punctuate the PCs' lives with adventure",
+    "Play to find out what happens"
+  ],
+  "coreLoop": {
+    "steps": [
+      { "n": 1, "name": "Establish the situation", "actions": ["Frame the action", "Describe the environment", "Give details & specifics", "Ask questions, ask for input", "Portray NPCs and monsters", "Answer questions, clarify"] },
+      { "n": 2, "name": "Make a soft GM move", "text": "Provoke action and/or increase tension." },
+      { "n": 3, "name": "Ask, \"What do you do?\"" },
+      { "n": 4, "name": "Resolve their actions", "actions": ["If they trigger a player move, do what the move says.", "If they roll a 6-, make a hard GM move (establish badness).", "If they ignore trouble, make a hard GM move (establish badness).", "Otherwise, say what happens."] },
+      { "n": 5, "name": "Repeat", "actions": ["Is the situation clear and compelling? Can the PC(s) act? Back to step 3.", "Is the situation clear, but escalating before the PCs act? Back to step 2.", "Is the situation clear, but needs a nudge? Back to step 2.", "Is the situation unclear? Does it need clarification, recapping, or updating? Back to step 1.", "Is the current scene or situation over? Wrap up, look for the next one. Back to step 1."] }
+    ],
+    "otherThingsToDo": ["Take notes", "Draw maps", "Leave blanks", "Keep things moving", "Involve everyone", "Engage your players in world-building", "Sometimes, disclaim decision making"]
+  },
+  "gmMoves": {
+    "general": [
+      "Announce trouble (future or offscreen)",
+      "Reveal an unwelcome truth",
+      "Ask a provocative question",
+      "Put someone in a spot",
+      "Use up their resources",
+      "Turn their move back on them",
+      "Demonstrate a downside",
+      "Hurt someone",
+      "Separate them",
+      "Capture someone",
+      "Offer an opportunity (with or without a cost)",
+      "Tell them the consequences/requirements",
+      "Advance towards impending doom"
+    ],
+    "exploration": [
+      "Provide a choice of paths",
+      "Hint at more than meets the eye",
+      "Offer riches at a price",
+      "Present a discovery",
+      "Point to a looming danger",
+      "Introduce a danger, person, or faction",
+      "Bar the way"
+    ],
+    "homefront": [
+      "Introduce someone interesting",
+      "Reveal simmering tensions",
+      "Present a want or need",
+      "Show how others really feel",
+      "Draw out their feelings",
+      "Change a relationship",
+      "Oppose their wishes",
+      "Remind them of their obligations",
+      "Start a conflict or crisis",
+      "Play them against each other"
+    ]
+  },
+  "principles": [
+    "Follow the rules",
+    "Begin and end with the fiction",
+    "Address the characters, not the players",
+    "Ask questions and build on the answers",
+    "Be a fan of the player characters",
+    "Embrace the fantastic and the mundane",
+    "Exploit the setting guide",
+    "Respect your prep",
+    "Give your characters life",
+    "Think offscreen, too",
+    "Bring it home",
+    "Let things breathe",
+    "Let things burn"
+  ],
+  "damageAndDebilities": {
+    "text": "Deal damage when your GM move has someone getting hurt, banged up, knocked around, injured. If it's *caused by a danger*, deal damage per its stats. Otherwise:",
+    "damageLadder": [
+      { "effect": "Bruises & scrapes; pain; light burns", "die": "d4" },
+      { "effect": "Nasty flesh wounds/bruises/burns", "die": "d6" },
+      { "effect": "Broken bones; deep/wide burns", "die": "d8" },
+      { "effect": "Death or dismemberment", "die": "d10" }
+    ],
+    "debilities": [
+      { "name": "weakened", "text": "fatigued, tired, sluggish, shaky. Disadvantage to STR and DEX." },
+      { "name": "dazed", "text": "out of it, befuddled, not thinking clearly. Disadvantage to INT and WIS." },
+      { "name": "miserable", "text": "distressed, grumpy, unwell, in pain. Disadvantage to CON and CHA." }
+    ],
+    "recover": "When you *take time to catch your breath and tend to what ails you*, expend 1 use of supplies and recover HP equal to 4+Prosperity. You can't gain this benefit again until you take more damage.\n\nWhen you *tend to a debility or a problematic wound*, say how. The GM will either say that it's taken care of or tell you what's required to do so (Defying Danger, expending supplies or some other resource, finding ___, Making Camp, etc.).",
+    "tendingRequirements": [
+      "Knowing Things about how to treat this",
+      "Defying Danger, the danger being... the pain / them thrashing as you work / the wound/condition getting worse / that ___ arrives/happens before you finish / drawing the attention of ___ / that you need to use up/use more ___",
+      "Expending (more) supplies, whisky, etc.",
+      "Finding ___ (an herb, the antivenom, fresh water, something to use as a stent, etc.)",
+      "Making Camp/letting them rest",
+      "Doing something drastic (cauterizing, amputating, field surgery, etc.)"
+    ],
+    "tendingNote": "Combine with \"and\" and \"or\" as you see fit."
+  },
+  "content": {
+    "text": "Keep this in sync with the steading playbook. Review it at the start of each session.\n\nWhen *anyone calls \"time out,\"* play stops. Step out of character, check in with each other, maybe take a break. Discuss what's wrong, player-to-player.\n\nIf *content was included that shouldn't have been*, acknowledge the mistake, fix the fiction, and move on.\n\nIf *someone realizes they need content to be excluded, veiled, or handled in a particular way*, then update the lists. Clarify specifics, now or later, but don't ask for reasons. Fix the fiction. Check in with the player(s). When everyone is ready, move on.",
+    "lists": [
+      { "id": "excluded", "title": "Excluded content", "note": "Not part of the game, on-camera or off" },
+      { "id": "veiled", "title": "Veiled content", "note": "Part of the fiction, but only off-camera" },
+      { "id": "special-handling", "title": "Special handling" }
+    ]
+  },
+  "threats": {
+    "text": "Threats are the lingering problems that cause trouble for the PCs, the steading, the region, or even the world.\n\nWrite up threats after the first session, based on what the players told you as they introduced their characters. Write new threats between sessions when…\n\n- … the Seasons Change move results in a threat, and you choose to create one instead of make an existing one worse.\n- … you introduced a monster, NPC, or thing and you think it might cause trouble later.\n- … you expect the PCs to encounter the threat in an upcoming session.",
+    "writeUp": [
+      "Give it a name and pick its type.",
+      "Add it (and its type) to a threat tracker (Homefront, Nearby, or Distant)",
+      "Give it an instinct (if it doesn't already have one). How does it cause problems for others? Write it as \"to __\" (e.g., \"to enrich himself\").",
+      "Write a quick description, including related threats or NPCs.",
+      "If it has momentum: write its impending doom and 2-4 grim portents.",
+      "Optional: write some stakes questions.",
+      "Optional: pick or write 2-4 GM moves",
+      "Optional: write custom player moves"
+    ],
+    "update": {
+      "text": "Between sessions, review each threat. If...",
+      "items": [
+        "… it is no longer a threat, then cross it off.",
+        "… grim portents occurred, then mark them.",
+        "… the PCs foiled it or changed its course, then update its grim portents and impending doom appropriately.",
+        "… it is moving toward something (but wasn't before), then write an impending doom and grim portents.",
+        "… its instinct or threat type no longer ring true, then revise them.",
+        "… any new stakes questions occur to you, then write them down.",
+        "… it got closer or further away, then move it from one threat tracker to the next."
+      ]
+    },
+    "trackers": ["Homefront", "Nearby", "Distant"],
+    "trackersNote": "The playbook provides three map spreads (the village, the immediate surrounds, the wider region) as threat trackers to write threats onto.",
+    "types": [
+      { "id": "affliction", "name": "Affliction", "moves": ["Worsen or quicken", "Spread to others/suck others in", "Mutate, take on a new form/aspect", "Eat away at something/someone", "Strip someone of honor/dignity", "Drive someone to desperation", "Justify selfishness, neglect", "Drive a wedge between people", "Cause delusion, stubbornness, foolishness", "Sow panic or despair", "Trigger shortages, hoarding", "Prompt violence, hatred, blame"] },
+      { "id": "beast", "name": "Beast", "moves": ["Show up where it's not wanted", "Stalk or pursue prey", "Protect its home or family", "Make a show of strength, aggression", "Build or expand a nest/den/lair", "Modify its environment", "Flee or panic or rage", "Consume something (or someone)", "Grow or diminish, in size or numbers"] },
+      { "id": "institution", "name": "Institution", "moves": ["Sway public opinion", "Put someone in their place", "Change a rule, law, or custom", "Acquire leverage, resources, influence", "Denounce something or someone", "Support a course of action", "Recruit new members or minions", "Squabble amongst themselves", "Change leadership", "Negotiate a deal or treaty", "Send someone else to do their dirty work"] },
+      { "id": "macguffin", "name": "MacGuffin", "moves": ["Reveal a secret", "Draw attention to itself", "Point to something else", "Generate envy/fear/discord", "Weigh heavily, become a burden", "Be the target of theft", "Go missing", "Perform its function, heedlessly", "Fail at the worst possible moment", "Leave its mark on someone or thing", "Become something greater, or lesser"] },
+      { "id": "magical-entity", "name": "Magical entity", "moves": ["Spy on someone, unseen/from afar", "Sense powerful longings/emotions", "Appear in glimpses, dreams, visions", "Offer service, secrets, power", "Demand an oath or sacrifice", "Lay a curse", "Twist a bargain to its favor", "Send forth minions to do its bidding", "Shape its environs, per its nature", "Pursue alien goals", "Foster rivalries with similar powers", "Grow or diminish in strength"] },
+      { "id": "rabble", "name": "Rabble", "moves": ["Grow or gather in numbers", "Claim territory or resources", "Fall under a (new) leader's sway", "Undergo internal turmoil", "Make a show of strength/numbers", "Declare an enemy or an alliance", "Turn on one of their own", "Overwhelm a position or weaker group", "Despoil, loot, pillage, burn", "Refuse to be controlled/contained", "Disperse, scatter, flee"] },
+      { "id": "villain", "name": "Villain", "moves": ["Grasp power, gain followers or allies", "Find someone's weakness", "Make an offer, with strings attached", "Demand concessions, obedience, or respect", "Make threats, veiled or not", "Attack cautiously, holding reserves", "Attack ruthlessly, with little warning", "Reveal preparations made in advance", "Sacrifice another to advance a goal", "Betray an ally or a trust", "Take a prisoner", "Do the unthinkable"] },
+      { "id": "wildcard", "name": "Wildcard", "moves": ["Aggressively pursue their instinct", "Show their worth, or lack thereof", "Display the contents of their heart", "Provide advice/aid, wanted or not", "Reveal a secret, or keep one closely", "Draw attention to themselves/others", "Appear unannounced", "Act strangely (for them)", "Bear witness", "Tell stories (true or not)", "Make/keep/break/demand a promise", "Force an issue or a confrontation", "Stand resolute and refuse to budge"] }
+    ]
+  },
+  "iWonder": {
+    "text": "Keep a running list of open questions that either...\n\n- … you don't know how to answer yet, or\n- … you want to answer via play.\n\nUpdate this list between each session."
+  },
+  "expeditions": {
+    "chartACourse": "When you *wish to travel to a distant place*, name or describe your destination (\"Gordin's Delve,\" \"the hagr's lair,\" or \"wherever these tracks lead\"). If the route is unclear, tell the GM how you intend to reach it. The GM will then tell you what's required, the risks, and how long it will likely take.\n\nWhen you *set out on the journey*, the GM will present each of the challenges one at a time—plus any surprises that you couldn't have seen coming—in whatever order makes the most sense. Address them all and reach your destination.",
+    "requirements": [
+      "You must first travel to ___, and from there to your destination",
+      "You must wait until ___",
+      "You need a knowledgeable guide/accurate map/detailed directions",
+      "It'll take at least ___ days (and a corresponding amount of supplies)",
+      "You'll need to bring ___"
+    ],
+    "challenges": [
+      "You need to watch out for ___",
+      "The way is perilous, plagued with danger",
+      "You risk getting lost",
+      "You must surmount/cross/brave ___",
+      "The terrain itself is treacherous; you risk injury on the way",
+      "The way will be grueling; you risk exhausting yourselves/your resources",
+      "You risk drawing the attention of ___"
+    ],
+    "challengesNote": "Present each challenge once, at a fitting time/place. Once overcome, don't make them deal with it again except as a hard GM move. (\"The way is perilous\" is an exception, see below.)",
+    "whenTheWayIsPerilous": {
+      "text": "On each leg of travel, *point to a looming danger* or *introduce a danger*. Maybe roll a Die of Fate.",
+      "table": [
+        { "roll": "1", "result": "A danger springs on them, unavoidable" },
+        { "roll": "2-3", "result": "Introduce a danger, right in front of them" },
+        { "roll": "4-5", "result": "Point to a looming danger" },
+        { "roll": "6", "result": "Point to a looming danger, but also present a discovery" }
+      ]
+    },
+    "travelTimes": [
+      { "from": "From Stonetop via the Roads to…", "entries": [["the Crossroads", "3-4 hours"], ["the Foothills", "2 days"], ["Titan Bones", "2 days"], ["Gordin's Delve", "4 days"], ["the Steplands", "4 days"], ["Barrier Pass", "5 days"], ["Marshedge", "10 days"]] },
+      { "from": "From Stonetop to…", "entries": [["the cave bears' den", "3-4 hours"], ["the Red Grove", "4-6 hours"], ["the Maw", "5-7 hours"]] },
+      { "from": "From the Crossroads to…", "entries": [["the Ruined Tower", "5-6 hours"]] },
+      { "from": "From the north edge of the Steplands to…", "entries": [["Blackwater Lake", "2-3 days"], ["Three Coven Lake", "3-4 days"]] },
+      { "from": "From Marshedge to…", "entries": [["the ruins on the Dread River", "2 days"], ["the northern Manmarch", "4 days"], ["Three-Coven Lake", "4 days"], ["Lygos", "30 days"]] },
+      { "from": "To Tor's Fist from…", "entries": [["the Foothills", "5 days"], ["Barrier Pass", "6 days"]] }
+    ],
+    "makeCamp": {
+      "questions": ["How will you avoid attention/spot danger?", "How do you plan to keep warm?", "Do you start a fire? What do you use for fuel?"],
+      "note": "If you know something will happen, it happens. If you think something might happen, but aren't sure, then ask someone to roll the Die of Fate.",
+      "dieOfFate": [
+        { "roll": "1", "result": "Something dangerous approaches, inclined to do harm" },
+        { "roll": "2", "result": "Something dangerous approaches, curious but not aggressive" },
+        { "roll": "3", "result": "Something annoying happens (critters in the food, rain, an argument, etc.)" },
+        { "roll": "4-5", "result": "The night passes uneventfully" },
+        { "roll": "6", "result": "They observe something interesting, find something useful, or otherwise gain some small boon; or the night passes uneventfully" }
+      ]
+    },
+    "legsOfTravel": {
+      "text": "**If familiar, short, uneventful:** gloss over it.\n\n**If unfamiliar:** describe it, give impressions.\n\n**To create a sense of time passing:** ask questions and/or have them Keep Company.",
+      "questions": ["What's the most striking thing that you notice?", "What's the best/worst/most unexpected thing about this leg of the journey?", "What have you heard about this area?", "When were you here last? How has it changed?", "How are you dealing with the weather?", "What are you looking forward to?", "What are you thinking/worrying about?"],
+      "softMoves": ["Present a challenge from Chart a Course", "Present some other encounter", "Have an NPC/follower get into/cause trouble", "Stir up conflict between PCs", "Offer an opportunity to do something as they travel, or arrive at next point of interest"]
+    },
+    "pointsOfInterest": {
+      "items": ["Landmarks not yet seen in play", "Where you plan to frame scenes, make moves", "Their destination"],
+      "text": "**If you want to build tension:** frame the scene with the location in sight but at a distance. Otherwise, frame the scene with them already there.\n\n**If unfamiliar:** describe, give impressions. If the PCs know or picked this place, ask them instead?",
+      "firstVisitQuestions": ["What's the most striking thing that you notice?", "What here tells you that this is a place where/of/that ___?", "What have you heard about this place?", "When were you here last? How has it changed?", "How does this place make you feel?", "What are you thinking/worrying about?"],
+      "landmarkNote": "**If this is just a landmark, with no challenges or encounters:** offer an opportunity to do something here or else move on to the next leg of travel. Otherwise, make a soft GM move. \"What do you do?\" Resolve actions. Repeat or move on."
+    },
+    "randomWeather": {
+      "note": "You decide the weather, but if you want, ask a player to roll the Die of Fate.",
+      "tables": [
+        { "season": "Late winter/early spring", "rows": [["1", "Snow/sleet/hail; an early thunderstorm; or cold, soaking rain"], ["2-3", "Cold and windy, maybe some showers"], ["4", "Clouds on the horizon, steady wind; roll again later with disadvantage"], ["5-6", "A fine, sunny spring day; clouds/wind gusts"]] },
+        { "season": "Spring/early summer", "rows": [["1", "Heavy storm (wind, hail, thunder, lightning)"], ["2", "Steady, chilly rain"], ["3-4", "Warm & windy, maybe some brief showers"], ["5-6", "Warm, sunny, pleasant"]] },
+        { "season": "Summer", "rows": [["1", "Heavy storm (wind, hail, thunder, lightning, tornadoes)"], ["2", "Blazing heat, still air, not a cloud in sight"], ["3", "Hot & humid, with brief, drenching thunder storms"], ["4-5", "Hot, muggy, some wind"], ["6", "Warm, sunny, breezy, perfect"]] },
+        { "season": "Late summer/early autumn", "rows": [["1", "Powerful thunderstorm or cold, soaking rain"], ["2", "Windy with a few rain showers"], ["3", "Warm, clouds on horizon, steady wind; roll again later with disadvantage"], ["4-5", "Hot & dry by day; cooler/windy at night"], ["6", "Warm, sunny, breezy, perfect"]] },
+        { "season": "Autumn", "rows": [["1", "Cold, drenching rain and/or sleet"], ["2", "Cold, windy, light rain or early snow"], ["3", "Chilly, windy, clouds on the horizon; roll again later with disadvantage"], ["4-6", "Crisp, breezy"]] },
+        { "season": "Winter", "rows": [["1", "Blizzard: wind, snow, all of it"], ["2", "Intense cold and wind"], ["3", "Very cold, very clear, very still"], ["4", "Cold and snowy, or cold and windy"], ["5", "Some snow, but mostly just dreary"], ["6", "Warm (for winter) and sunny"]] }
+      ]
+    }
+  },
+  "sites": {
+    "text": "Interesting places that…\n\n- … tell a story, via their environment;\n- … are exciting to explore; and\n- … present players with interesting decisions\n\nIn every area/room/scene, include at least one detail or element that reflects the site's story.",
+    "considerations": ["Physical space: dimensions, construction, clearance, obstacles, footing, levels, etc.", "Light sources: who has them, range/tags, who out there sees them, duration", "Senses other than sight: sounds, odors, textures, heat/cold, humidity, feelings, etc.", "Marching order: especially in tight spots", "PCs' equipment: what they have in hand vs. stowed, load, dimensions, noise, etc.", "Followers & NPCs: where they are, what they're doing, how they react", "Physical and mental states: hunger, thirst, fatigue, irritability, confusion, dread, etc.", "Denizens: signs of their presence, how they react to PCs"],
+    "exploration": "When the PCs move on, identify the next interesting scene/situation in the site. Establish the PCs intent, compare to your prep or sense of the site. If the next scene/situation is obvious, great.\n\nIf not, you might…\n\n- … rely on a player move (e.g. Defy Danger to follow directions without getting lost, Seek Insight to see what they find, etc.);\n- … pick a GM move, frame the action where it'd make sense to make that move; or\n- … pick/roll on a relevant table, or use an example site from *Book II*.\n\nTransition directly to the next scene/situation, or zoom out and: describe environment they pass through, ask the PCs questions, portray followers and NPCs, maybe Keep Company, maybe make a soft GM move. Then frame the action at the next scene or situation, and go from there.",
+    "creation": [
+      { "n": 1, "name": "Lay the site's foundation", "items": ["Ask questions, if they'd know of this place", "Build on what you've got: context, established details, things you've decided, your purpose for including the site", "Exploit the setting guide, using the relevant tables, procedures, and examples"] },
+      { "n": 2, "name": "Build up the site's story", "items": ["Look for connections to setting elements, the PCs, stuff players care about, threats, NPCs, past events, open questions.", "Ask yourself questions that arise naturally from all of the above.", "Answer those questions. Make decisions! Look for new connections/questions as you do. Repeat as needed.", "Create a timeline of the site's story. Clarify and revise as needed."] },
+      { "n": 3, "name": "Sketch out the site's contents", "items": ["Populate it with various NPCs/monsters", "Identify dangers & discoveries implied by the site's foundation, story, and denizens", "Establish areas/rooms, as suggested by the foundation, story, denizens, common sense, why the PCs are here. Create new areas or rooms as if they were sites themselves.", "Describe the environment. The kinds of rooms, areas, terrain, features, construction. Specific details. Reflect the site's story!", "Arrange areas/rooms: Group them, create lists to pick from, write down connections between them, draw a nodal diagram, and/or draw a representational map."] },
+      { "n": 4, "name": "Write it up", "items": ["Create maps or visuals, if you have time and you think it'll help.", "Detail areas/rooms: descriptions, impressions, questions, content, story, exits", "Subdivide as needed", "Find/create content: dangers, discoveries, NPCs. Pick from *Book II* or make them up!", "Make lists and tables to pick from/roll on", "Make plans: GM moves, if/thens, Die of Fate tables, custom moves, timetables, impending dooms & grim portents, etc.", "Review and revise. Make it make sense. Fix inconsistencies. Tighten stuff up."], "note": "As much as you like and find helpful." }
+    ]
+  },
+  "discoveries": {
+    "clues": { "text": "Start with a revelation, what the PCs can learn. What could lead to that revelation?", "items": ["Signs left in the environment (tracks, etc.)", "Physical remains (blood, bone, scat, etc.)", "Something out of place", "Writing, art, markings (a note, graffiti, etc.)", "An NPC's/monster's behavior", "Noises, glimpses, scents", "Rumors, reports, tales, gossip", "Flashes, omens, revelations"] },
+    "encounters": { "items": ["Who/what is the encounter with?", "Where/when does it happen?", "What are they doing?", "Why are they here?", "What do they want?", "How do they react to the PCs?", "Why are you putting this encounter in the game? What's at stake?"] },
+    "opportunities": { "items": ["Useful or valuable stuff", "Expendable resources", "A good spot to make camp/set a trap/etc.", "The means to get somewhere", "A chance to ___", "A novel/pleasant experience", "A resource the PCs might come back for", "A place of power", "An arcanum", "Anything else that comes to mind"] },
+    "artifactsAndArcana": "Place them where they make sense, where they tell a story. Be generous with info. Don't imply deeper mysteries if there are none. If there are, make that clear: **hint at more than meets the eye** or **offer an opportunity**.\n\nIf they get a 7+ to Know Things, reveal some combo of what it is/does, what it's worth, how they might activate it or sell it for full value, or how they might learn more. On a 7-9, reveal the trigger of an artifact's move or the front of an arcanum; on a 10+, give them the full move or both the front and back of an arcanum.\n\nIf they can't figure it out, give them a path: **tell the requirements**, Make a Plan, write a love letter, or just tell them after some downtime and ask how they figured it out."
+  },
+  "hazards": {
+    "asDescription": "Just describe what it is, what it looks like, what it does, how it works.",
+    "asGmMoves": { "text": "Write one or more GM moves that reflect some of the following, as makes sense for the hazard:", "items": ["How its presence is foreshadowed or revealed", "How it harms or hinders", "How it escalates or gets worse", "How it thwarts attempts to overcome it"], "note": "If dynamic, changing: give it an **instinct**, written as \"to ___\" (e.g. \"to bury everything\")." },
+    "asImpendingDoom": "Write down the ultimate bad thing that can happen (e.g. tunnel collapses, they roll Death's Door).\n\nWrite 1-4 events describing how it starts and escalates; assign each event one or more check boxes.\n\nOptional: write a trigger that causes it to advance, fictional (\"Each time the pillars are damaged\") or mechanical (\"Each time someone rolls doubles\").",
+    "asPlayerMoves": { "text": "Write a fictional trigger (\"When you *<trigger the hazard>*, …\") and resolution, using any combo of the following that makes sense:", "items": ["___ happens (and ___ is bad)", "Pick X from a list", "Tell us ___", "Lose ___", "Take damage/suffer a debility/Death's Door", "Roll +STAT (or something); on a 10+, ___; on a 7-9, ___; (optionally) on a 6-, ___"] },
+    "ifItDealsDamage": {
+      "text": "**What would it do to a typical person?** (pick 1)",
+      "ladder": [["Bruises & scrapes; pain; light burns", "d4"], ["Nasty flesh wounds, bruises, burns", "d6"], ["Broken bones, bad burns, terrible pain", "d8"], ["Death or dismemberment", "d10"]],
+      "modifiers": [["... armor can't protect them", "ignores armor"], ["... it cuts through leather/hide", "1 piercing, *messy*"], ["... it tears metal apart", "3 piercing, *messy*"], ["... it knocks them around", "*forceful*"], ["... it's big/vicious/scary", "+2 damage"], ["... they've taken precautions", "+disadvantage"], ["... they're caught off-guard", "+advantage"]]
+    }
+  },
+  "monsters": {
+    "steps": [
+      { "n": 1, "name": "Concept", "text": "Picture it. What is it? What does it do? How does it live, eat, fight? If you're unsure, use a theme table from the setting guide. Or, pick a classic fantasy monster and reimagine it for *Stonetop*." },
+      { "n": 2, "name": "Name", "text": "If the monster… has a proper name, call it that. … is a known, mundane thing, then give it a short descriptive name in plain English. … is a thing of rumor and legend, give a name from another language. … is unknown and unnamed, give it a spooky, descriptive title in plain English.\n\nStonetop names sound Welsh. Marshedge names sound Irish. Hillfolk names sound Breton (but clipped, missing vowels). Manmarch names sound German. Barrier Pass names sound Nepali or Tibetan. Lygos names sound Greek, Hebrew, Persian, or Arabic." },
+      { "n": 3, "name": "Tags", "groups": [
+        { "prompt": "How does it usually hunt or fight? (pick 1)", "options": [["In large groups (6 or more)", "horde"], ["In small groups (2-5 per group)", "group"], ["By itself", "solitary"]] },
+        { "prompt": "How big is it? (pick 1)", "options": [["Cat-sized or smaller", "tiny"], ["Like a human child", "small"], ["Adult human-sized", "–"], ["Like a horse, cart, etc.", "large"], ["Like an elephant, or bigger", "huge"]] },
+        { "prompt": "What is its nature? (add all that apply)", "options": [["Lacks physical form", "spirit"], ["Between physical and spiritual", "fae"], ["Made by someone", "construct"], ["Changed by the Things Below", "corrupted"], ["From the first age of creation", "primordial"], ["Dead, but in denial", "undead"]] },
+        { "prompt": "What is it notable for? (add all that apply)", "options": [["Amassing trinkets and treasure", "hoarder"], ["Avoiding fights, fleeing early", "cautious"], ["Intelligence", "cunning or devious"], ["Disturbing/terrible presence", "terrifying"], ["Sneaking, surprising, ambushing", "stealthy"], ["Using spells or magic", "magical"], ["Working well in groups", "organized"], ["Something else", "invent a tag"]] }
+      ] },
+      { "n": 4, "name": "Hit points", "groups": [
+        { "prompt": "How does it hunt or fight? (pick 1)", "options": [["In large groups (horde)", "3 HP"], ["In small groups (group)", "6 HP"], ["By itself (solitary)", "12 HP"]] },
+        { "prompt": "How big is it? (pick 1)", "options": [["Cat-sized or smaller (tiny)", "-2 HP"], ["Human-sized (adult or child)", "+0 HP"], ["Like a horse, cart, etc. (large)", "+4 HP"], ["Like an elephant, or bigger (huge)", "+8 HP"]] },
+        { "prompt": "It… (choose all that apply)", "options": [["… is particularly tough or durable", "+4 HP"], ["… is smiled upon by the fates", "+2 HP"], ["… is animated by more than biology", "+4 HP"], ["… lacks vital organs", "+3 HP"]] }
+      ] },
+      { "n": 5, "name": "Armor", "groups": [
+        { "prompt": "What protects it? (pick 1)", "options": [["Naught but cloth and flesh", "0 armor"], ["Leathers or thick hide", "1 armor"], ["Mail, scales, or similar", "2 armor"], ["Steel, bony plates, carapace", "3 armor"], ["Potent wards/supernatural resilience", "4 armor"]] },
+        { "prompt": "It… (choose all that apply)", "options": [["… is cat-sized or smaller (tiny)", "+1 armor"], ["… bears a shield, or similar", "+1 armor"], ["… is skilled in defense", "+1 armor"], ["… lacks vital organs", "+1 armor"]] }
+      ] },
+      { "n": 6, "name": "Damage", "groups": [
+        { "prompt": "How does it hunt or fight? (pick 1)", "options": [["In large groups (6 or more, horde)", "d6"], ["In small groups (2-5, group)", "d8"], ["By itself (solitary)", "d10"]] },
+        { "prompt": "What's the nature of its attack? (pick all that apply)", "options": [["Useful up close and personal", "hand"], ["Works well at sword's reach", "close"], ["Can keep foes at bay", "reach"], ["Useful at range", "near or far"], ["Can hurt many foes at once", "area"], ["Small and weak", "-1 die size"], ["Vicious and obvious", "+2 damage"], ["Relentless or overwhelming", "advantage"], ["Latches on, pins, grapples", "grabby"], ["Can slice through thick hide", "1 piercing, messy"], ["Can tear metal apart", "3 piercing, messy"], ["Bypasses armor entirely", "ignores armor"], ["Prone to breakage", "crude"]] },
+        { "prompt": "How big is it? (pick 1)", "options": [["Cat-sized or smaller (tiny)", "-2 damage, reduce range"], ["Like a human child (small)", "reduce range"], ["Adult human-sized", "–"], ["Like a horse, cart, etc. (large)", "+1 damage, add a range"], ["Like an elephant, or bigger (huge)", "+3 damage, add a range"]] },
+        { "prompt": "What else applies? (pick all that do)", "options": [["It's impressively strong", "+2 damage, forceful"], ["It strikes deftly and precisely", "+1 piercing"], ["Physical injury is not the worst danger it poses", "-1 die size"], ["It is ancient and noteworthy", "+1 die size"], ["It abhors violence", "disadvantage"]] }
+      ] },
+      { "n": 7, "name": "Special qualities", "text": "Write one for each of the following it possesses:", "items": ["An exceptional/limited sense", "A useful adaptation/defense", "A strange form or composition", "A weakness or vulnerability", "An effect on its environment", "An important trait, not otherwise obvious"] },
+      { "n": 8, "name": "Instinct", "text": "What does it do or want that causes problems? This is its instinct. Write it as, \"to ___\" (e.g., \"to consume the flesh of innocents\")." },
+      { "n": 9, "name": "Moves", "text": "Write moves that fill in the blank: \"The monster can/will ___.\"\n\nIf the monster… is deceptive/sneaky, write a move based on wits or dirty tricks. … uses magic or spells: those powers. … works well in groups: its allies or tactics. … is a *spirit*: how it takes physical form. … poses more than physical danger: the true danger. … defends itself: how it does so. … has a special attack: what that attack does.\n\nIf the monster has less than 3 moves, or you feel like something's missing, write moves based on whatever is notable about its behavior." },
+      { "n": 10, "name": "Description", "text": "How big? What's it look like? How does it move? Compare it to familiar things. Include at least one impression from a sense other than sight." },
+      { "n": 11, "name": "Optional", "text": "Write any of these that will help you portray the monster or use it in play.\n\n**Tactics**: if/then or when/then statements, like… \"If the PCs make noise/draw attention: watch from afar, alert others, wait until night.\" \"If the PCs talk in their presence: learn their voices, to mimic them later.\" \"When night falls: lure someone away with a mimicked voice, kill them, take their stuff.\"\n\n**Something interesting/something useful**: pre-plan things to reveal if PCs Know Things.\n\n**Custom player moves**: particularly good for resolving nasty attacks (mind control, poison, etc.)." }
+    ],
+    "monstersAndFollowers": "When you *convert a monster into a follower*: add any tags you deem appropriate; choose (or make up) a cost, and add a spot to record their Loyalty (max 3); otherwise use it as-is.\n\nWhen you *convert a follower into a monster*, use their stats as-is. If you haven't already done so, write some GM moves for them."
+  },
+  "npcs": {
+    "names": {
+      "note": "Pick one, make one up, or ask a player to.",
+      "lists": [
+        { "region": "Stonetop", "sound": "Welsh", "names": ["Aderyn", "Aeronwen", "Afanen", "Afon", "Alun", "Andras", "Aneirin", "Awstin", "Bedwyr", "Berwyn", "Betrys", "Braith", "Briallen", "Bronwen", "Bryn", "Cadi", "Cadoc", "Cadwygan", "Caron", "Cefin", "Ceinwen", "Ceridwyn", "Cerys", "Colwyn", "Deiniol", "Dilwen", "Dylis", "Eifion", "Eirlys", "Eluned", "Emrys", "Enfys", "Eurwen", "Gaenor", "Garet", "Gethin", "Glyndir", "Heledd", "Hywel", "Ifan", "Iorwerth", "Iwan", "Leuca", "Lewela", "Linos", "Mado", "Maldwyn", "Malon", "Mared", "Marged", "Martyn", "Meirion", "Menwen", "Mererid", "Neirin", "Nia", "Ofydd", "Olwyn", "Owain", "Padrig", "Parry", "Pryce", "Pryder", "Rheinal", "Rhisiart", "Rhosyn", "Rydderch", "Sawyl", "Siana", "Sioned", "Talfryn", "Tegid", "Tiwlip", "Tomos", "Tudyr", "Winifred", "Yorath"] },
+        { "region": "Marshedge", "sound": "Irish", "names": ["Abben", "Ailen", "Brin", "Brogan", "Catlin", "Coln", "Daedre", "Dermos", "Ennin", "Finnen", "Gilor", "Isbeal", "Kiran", "Lile", "Lim", "Mathuin", "Mirne", "Noren", "Owan", "Ragan", "Renan", "Seadha", "Seann", "Tierney", "Ulliam"] },
+        { "region": "Hillfolk", "sound": "Breton, missing vowels, clipped", "names": ["Adm", "Blej", "Cirl", "Davth", "Elst", "Gwilm", "Gwenl", "Henri", "Ines", "Jenfir", "Jown", "Juda", "Kiln", "Laurl", "Loic", "Merrn", "Maikl", "Nanzl", "Nolwn", "Quent", "Reegn", "Ropr", "Sabi", "Stren", "Yanz"] },
+        { "region": "Southern", "sound": "Greek, Hebrew, Persian, Arabic", "names": ["Agatte", "Aref", "Alix", "Baraz", "Canan", "Darya", "Demetra", "Elene", "Elios", "Fotios", "Faruza", "Golza", "Iasos", "Iona", "Kyriakos", "Marika", "Maayan", "Osher", "Natasa", "Nivola", "Rinat", "Stamat", "Thecla", "Zhaleh"] },
+        { "region": "Manmarcher", "sound": "Germanic", "names": ["Alfher", "Bathhilde", "Berkhard", "Bertrim", "Clothar", "Dagmar", "Elfrida", "Ganter", "Gerhild", "Hartig", "Hilde", "Hiltrude", "Hramn", "Ludig", "Luise", "Meike", "Modd", "Sabrinne", "Swanhilde", "Ulrike", "Urrsla", "Weillem", "Wiland", "Wulfrim"] },
+        { "region": "Barrier Pass", "sound": "Tibetan, Nepali", "names": ["Choden", "Dawa", "Dorji", "Duga", "Jamya", "Kunza", "Lhamo", "Norbu", "Nyado", "Passan", "Sonam", "Tashi", "Tenzi", "Tseri", "Wanchu", "Yonta"] }
+      ]
+    },
+    "trait": "Pick an NPC Trait from the steading playbook, make one up, or ask a player to do so.\n\nBuild on that trait, and what you already know about them and their relationship to the PCs. Make connections and coherent contradictions. Breathe life into them!",
+    "questions": {
+      "locals": ["Are you related to them? How?", "What's their family situation? (Married? Kids? Parents? Siblings? Grandparents/kids?)", "Who else are they close to? Who cares about them?", "What do you like/dislike about them?", "What are they respected for?", "What do others say behind their back?", "What's their most notable feature?", "How have they always treated you?", "What do they seem to like or enjoy?", "What do they seem to like/dislike?"],
+      "outsiders": ["When and how did you first meet them?", "When did you last see them?", "What do you know of their family?", "How would you describe them to someone else?", "What do you expect to find yourselves talking/arguing/reminiscing about?", "Why are you (not) looking forward to seeing them again?", "How have they changed since last you met?"],
+      "heardOf": ["What are they known for?", "What's said to be their most notable feature?", "Who do you know who's actually met them?", "How are they different from what you expected?"]
+    },
+    "impressions": {
+      "note": "Give up to 3, from different areas. Most should reflect their nature; maybe 1 should contrast.",
+      "areas": [
+        { "area": "Face", "options": "angular, broken nose, dimpled, freckles, hawk nose, leathery, missing teeth, paint, scar, scowl, soft, sunburnt, tattoo, warts, etc." },
+        { "area": "Eyes", "options": "big, bright, cool, cloudy, dark, deep, droopy, missing, pale, small, squinty, quick, watery, etc." },
+        { "area": "Hair", "options": "bald, curly, greasy, straight, thick, thin, etc." },
+        { "area": "Body", "options": "big, heavyset, little, lithe, meaty, missing __, round, short, stooped, tall, thick, thin, wiry, etc." },
+        { "area": "Presence", "options": "alert, brooding, cheery, elegant, fidgety, friendly, haughty, hunched, intense, serene, etc." },
+        { "area": "Scent", "options": "earthy, musky, floral, ripe, sour, smoky, etc." },
+        { "area": "Clothes", "options": "boots, charms, clean, [color], dirty, furs, ribbons, silk, torc, threadbare, unkempt, etc." },
+        { "area": "Voice", "options": "breathy, clipped, crass, gruff, high, hoarse, lilting, lisping, monotone, mumbly, nasally, quavery, rumbling, shrill, soft, stutter, etc." }
+      ]
+    },
+    "instinct": "**What do they naturally do?** Write it as \"to ___\" (e.g. \"to protect her family\").\n\n**If they're a monster or a threat**, it should bring them into conflict with others.\n\n**If they're a follower**, it should cause trouble for the PC who leads them.\n\n**For anyone else**, it should reflect their basic outlook and how they approach the world.",
+    "tagsAndMoves": "Assign tags as you see fit, adjectives or nouns that describe their nature, capabilities (or lack thereof), or notable traits: *cunning*, *gullible*, *bold*, *cautious*, *warrior*, *farmer*, *devious*, *honest*, etc.\n\nWrite up to 3 GM moves, reflecting a skill or ability, a specific manifestation of a tag, or just something they're likely to do.",
+    "connections": ["What do they think of the PCs?", "Who are they related to? Friends with?", "Who are they loyal to, and why?", "Who do they dislike, and why?"],
+    "motivations": ["What do they fear?", "What angers them?", "What do they long for?", "What do they think they deserve?", "What do they want from the PCs?", "What do they aspire to do or be?"],
+    "embodiment": ["**Pick an actor or character from TV, film, or theater.** Try to portray them.", "**Pick someone you know, personally.** Try to impersonate them, but don't tell anyone.", "**Pick a way of speaking/tweaking your voice**, a catch phrase, or a physical tic or behavior for this NPC. Use it whenever you portray them.", "**Find or create a picture of them.** Display it when portraying this NPC."],
+    "hpArmorDamage": "If you think it will matter, stat them up as if they were monsters or followers, whichever seems more appropriate.",
+    "persuade": {
+      "move": "When you *press or entice an NPC*, say what you want them to do (or not do). If they *have reason to resist*, roll +CHA: **on a 10+**, they either do as you want or reveal the easiest way to convince them; **on a 7-9**, they reveal something you can do to convince them, though it'll likely be costly, tricky, or distasteful.",
+      "convincers": ["A promise/oath/vow", "A chance to do it safely/freely/discretely", "Appeasing or appealing to their ego/honor/conscience/fears", "A convincing deception", "A better/fair/excessive offer", "Helping them/doing it with them", "Violence (or a credible threat thereof)", "Something they want or need (coin/food/booze/etc.)", "Assurance/proof/corroboration", "Pressure/permission/help from ___", "Or anything else that makes sense"],
+      "note": "Make your choices based on your sense of the NPC, their instinct, their motives, and your prep. The PC might not be able to convince them *right now*, but a 7+ should always at least reveal a path forward.\n\nIt's okay to offer alternatives on how the NPC could be convinced. \"He's waiting for a bribe; a few coppers would do it. Or you could rough him up a bit, you're pretty sure that'd work, too.\""
+    }
+  },
+  "followers": {
+    "steps": [
+      { "n": 1, "name": "Basics", "text": "Write them up as an NPC: give them a name, develop their concept, think about how you'll describe them. What distinguishes them from other NPCs? Why do they follow the PCs?" },
+      { "n": 2, "name": "Tags", "text": "Give them 2-4 tags, sometimes more. Tags are adjectives or a nouns that finish the sentence, \"This follower is/is a ___.\" Avoid overly broad tags like *experienced*, *invincible*, *skilled*, etc.\n\nWhen a follower makes a move at a PC's behest, the player rolls but instead of a +STAT, they… add +1 if the follower has at least one relevant tag or move (or +2 if they're also *exceptional*); add +0 if follower has no relevant tags; have disadvantage if any of the follower's tags would get in the way.\n\nTags also inform how the follower behaves, and what they will or won't do without convincing.", "tagLists": { "useful": ["___-wise", "agile", "archer", "athletic", "beautiful", "brave", "cunning", "fast", "fierce", "hardy", "healer", "intimidating", "magical", "observant", "organized", "patient", "respected", "self-sufficient", "sharp-eyed", "stealthy", "tireless", "tracker", "warrior"], "problematic": ["bigoted", "drunkard", "greedy", "gullible", "lecherous", "naive", "proud", "rookie", "reckless", "short-fused", "stubborn", "frail"], "mixedBlessing": ["animal-lover", "annoying", "big", "bully", "callous", "cautious", "devious", "eager", "thieving", "gossipy", "honest", "kind", "little", "shameless", "terrifying"] }, "special": { "exceptional": "Reserve this tag for truly outstanding followers. If they have at least one other relevant tag, they get +2 on rolls instead of +1.", "group": "Multiple followers who share tags, moves, instinct, cost, and other stats. They share a pool of Loyalty, but each member has their own HP and can act individually." } },
+      { "n": 3, "name": "Hit points", "prompt": "How resilient are they? (pick all that apply)", "options": [["Weak/frail/soft", "3 HP"], ["Able-bodied", "6 HP"], ["Tough/strong/hard", "9 HP"], ["They're tiny", "-2 HP"], ["They're large", "+4 HP"], ["The fates smile on them", "+2 HP"]] },
+      { "n": 4, "name": "Armor", "prompt": "What protects them? (pick all that apply)", "options": [["Naught but cloth and flesh", "0 armor"], ["Leathers or thick hide", "1 armor"], ["Mail, scales, or similar", "2 armor"], ["Steel, boney plates, carapace", "3 armor"], ["Layers of magical wards", "4 armor"], ["A shield, or similar", "+1 armor"], ["Skill in defense or keen reflexes", "+1 armor"], ["Their tiny size", "+1 armor"], ["Their lack of vital organs", "+1 armor"]] },
+      { "n": 5, "name": "Damage", "prompt": "How dangerous are they? (pick 1)", "options": [["Not very", "d4 damage"], ["Can defend themselves", "d6 damage"], ["Veteran fighter/predator", "d8 damage"]], "note": "Range and other tags are based on their gear. For beasts, use the tag guidelines for monsters." },
+      { "n": 6, "name": "Instinct", "text": "What do they naturally do that causes trouble for the PC(s) they follow? For example:", "items": ["To take things too far", "To question leadership and authority", "To cling tightly to tradition", "To act impulsively", "To give in to temptation", "To not take things seriously", "To freeze up in the face of danger"] },
+      { "n": 7, "name": "Moves", "text": "Optional. Write up to 3 GM moves, reflecting abilities not covered by a tag, how they use a specific tag, and/or common behaviors (good or bad)." },
+      { "n": 8, "name": "Cost", "text": "Choose one or make something up. When their cost is paid, they hold +1 Loyalty (max 3).", "items": ["Coin, payment, treasure", "Renown, public recognition", "Affection, respect (from you)", "Knowledge (about what?)", "Wrongs righted, good deeds done", "Amusement, entertainment", "Progress (towards a particular goal)"] },
+      { "n": 9, "name": "Equipment", "text": "Decide what gear the follower is carrying, or ask the player to Outfit them as if they were a PC." }
+    ],
+    "inPlay": "Followers are NPCs. They'll usually follow orders or look to their PC for direction. You might ask questions about how they'd likely act. But **you portray them, not the player.**\n\n**Followers trigger player moves only if a PC directs them to do so** (via Order Followers). If they act on their own, you say what happens.\n\nWhen a follower gets scared, tell the player. They can spend 1 Loyalty to have them overcome their fear and do as they're told. Otherwise, consider: **would the follower do this willingly if they weren't scared?**\n\n- If they would: The PC is having them Defy Danger (the danger being that they freeze, panic, or screw up)\n- If they would not: The follower needs to be Persuaded or otherwise convinced.\n\n**Followers might also resist orders** if… they're angry, miserable, shocked, etc.; the order is unreasonable, foolish, degrading, distasteful; and/or the order goes against their instinct, tags, cost, or other traits.\n\nWhen a follower resists an order, make that clear to the player. They can spend the follower's Loyalty, Persuade them, let it go, etc.\n\n**Play up a follower's instinct, tags, and traits as sources of trouble.** The player can spend Loyalty to keep them in line, or Persuade them, or deal with the consequences.\n\n**When a PC has a follower do something off-screen**, resolve it with a single move at most (Defy Danger if it's not otherwise clear). Have the player roll when they'd learn the outcome, or when it becomes important for you the GM to know how things went.\n\n**When a follower Defends** and gets a 7+, the follower holds Readiness but the player decides when/how to spend it. Consider: would the follower actually do that, though? If not, the player must spend 1 Loyalty, too.\n\n**At 0 HP**, a follower is out of action and their fate is in your hands. For lethal damage, pick 1: they're dead, immediately; they trigger Death's Door (the player rolls); they're dying, and will die or roll for Death's Door if no one saves them.",
+    "groupFollowers": "Multiple individuals who share stats (tags, HP, armor, damage, instinct, moves, and cost) and who often act as one. E.g., the Marshal's crew.\n\nThey hold a common pool of Loyalty, which can be spent to affect the whole group or specific members. The group's cost usually must be paid to the group as a whole.\n\nEach member of the group has their own HP; they take damage and regain HP individually.\n\nIf a PC Orders Followers to have a group act as one, the player rolls for the move once (modified by the group's shared tags/moves). When a *group* follower…\n\n- **Clashes or Lets Fly** (or Aids a PC who's doing so), the attack can hurt multiple foes. Roll the move once, but roll damage separately against each foe.\n- **Clashes or Lets Fly at a single foe** (or Aids a PC in doing so), roll the move once (likely with advantage) and roll one attacker's damage, +1 per each additional attacker.\n- **Defends**, then the group holds a common pool of Readiness, to spend on behalf of the group as a whole or an individual member, whichever makes sense.\n- **Recovers**, then each member who regains HP must consume 1 use of supplies.\n- **Seeks Insight**, then the PC can ask 3 or 1 questions total (not per member).\n- **Struggles as One** along with one or more PCs, roll once for the group. On a 6-, decide which member(s) to put in a spot. On a 10+, ask the player who steps up to save a PC.\n- **suffers any sort of cost or consequence**, you decide which member(s) of the group are affected, and how.\n\nWhen an individual member of a group first stands out, flesh them out with a name, a memorable trait, maybe an extra tag. A PC can direct them to act on their own, like a normal follower (with the group's tags, plus their own unique tags or moves, if any).",
+    "abstractingGroupExchanges": "Optional rule for fights between larger groups. Each group deals damage and has HP/armor as per a single individual member. Larger groups deal +1 damage and have +1 armor for each multiple they outnumber their foe by (e.g. 3:1 gets +2 damage and armor). Damage represents casualties; if a group loses half its HP, then half of its members are out of the action. At 0 HP, it's routed, massacred, or otherwise defeated."
+  },
+  "homefront": {
+    "lifeInStonetop": {
+      "people": ["~300 people live in Stonetop (~50 families)", "Most adults work the fields or keep a home; ~a dozen ply the Great Wood", "Few tradesfolk: a smith, tanner, potter, publican, midwife (plus apprentices)", "Other crafts (carpentry, weaving, sewing, distilling, etc.) done on the side"],
+      "homeAndHearth": ["Homes are squat, stone (from the Old Wall), thatched roofs; 1-3 buildings per family", "Each family keeps a garden and livestock", "No mill; folks grind grain with quern-stones", "Most families keep a whisky still", "Water comes from cistern; fill with rain/snow", "Folks wash at the Stream, but rarely go alone"],
+      "tradeAndCommerce": ["Most crops go to the granary for public use", "Mostly barter; coin comes from outsiders", "Merchants come at least once a season (except winter)", "Gordin's Delve brings metal & tools", "Marshedge brings textiles, herbs, glass, finer goods from the south", "By compact with the Forest Folk, no one fells living trees in the Great Wood (but the Forest Folk haven't been seen in a decade)"],
+      "protectionAndGovernance": ["Every able body drills with the militia, keeps a spear handy, takes a turn at the watchtowers", "No nobles, no elected officials; decisions made by the wise, the cunning, the brave"]
+    },
+    "questionsToAsk": ["What task or chore are you working on?", "What's the best/worst thing about this chore?", "What's cooking on the hearthfire?", "What here makes the place feel like home?", "What about your home would you change if you could?", "How does Stonetop mark or celebrate the coming of spring/summer/autumn/winter?", "What's your (least) favorite thing about this season?", "What's your favorite tale of Stonetop's history?", "What's the scariest story that the elders tell?", "How do the villagers mark or celebrate a birth?", "How do the villagers mark one's coming of age?", "What do the villagers do with their dead?"],
+    "seasonalActivities": {
+      "spring": ["Harvesting winter potatoes", "Spreading seed, planting beans/potatoes", "Harrowing soil (to cover seeds, plantings)", "Chasing birds from the fields (child's work)", "Spreading manure & plowing fallow fields", "Kidding goats, sheep", "Picking spring vegetables", "Clearing and planting gardens", "Harvesting/cutting deadfall for firewood", "Fur trapping, light hunting (for meat)"],
+      "summer": ["Haymaking (from Flats-grass, fallow fields)", "Weeding crops/gardens", "Spreading manure & replowing fallow fields", "Weaning goat kids & lambs", "Milking goats, shearing sheep", "Picking summer vegetables", "Berry-picking from gardens and the Wood", "Light hunting/trapping (for meat, not fur)"],
+      "autumn": ["Harvesting beans, barley, oats, potatoes", "Gleaning fallen seed from fields (child's work)", "Threshing, winnowing, sieving, storing crops", "Plowing fallows & planting winter potatoes", "Picking & preserving autumn vegetables", "Breeding goats, sheep", "Foraging for nuts, fruits in the Wood", "Heavy hunting/trapping (fur & meat)", "(If able): harvesting timber from Foothills"],
+      "winter": ["Collecting snow for the cistern", "Distilling & aging whisky", "Tending to livestock, stockpiling manure", "Heavy trapping (for fur)", "Hunting as able (for meat)", "Slaughtering/butchering livestock as needed"],
+      "always": ["Cooking, grinding grain, baking", "Rendering fat, making oil & rushlights", "Cleaning pens, coops, homes, clothes", "Collecting & hauling water, to & from cistern", "Spinning, weaving, sewing, hand-crafts", "Smithing, tanning, pottery, midwifery", "Maintenance (buildings, clothes, tools, etc.)", "Manning the watchtowers at night; drilling"]
+    }
+  },
+  "aftermath": [
+    "Determine what's happened while the PCs were gone or during the crisis. How will you reveal this? Make a to-do list!",
+    "Play out their return or the immediate aftermath of the crisis. Start working through your to-do list. Return Triumphant or Meet With Disaster, if appropriate.",
+    "See what follows. Play out any obvious or urgent scenes. Give each PC a scene with family or important NPCs. Do any other scenes you all want to play out."
+  ],
+  "downtime": {
+    "items": ["Take care of logistics", "Establish goals and intentions", "Frame scenes/situations as needed, to… resolve a player's move/actions; make a GM move/resolve stakes; or play out a desired scene.", "Describe time passing", "Eventually, the Seasons Change"],
+    "note": "Downtime ends when the PCs head off on an expedition (to pursue a goal, or in response to a threat or opportunity) or a crisis erupts in town.",
+    "makeAPlan": {
+      "move": "When you *wish to accomplish some project but aren't sure how to go about it*, tell the GM what you hope to achieve. They'll say what's required. If you're stumped on how to accomplish one of the requirements, tell the GM and Make a Plan for that.",
+      "requirements": ["You must learn/know/decipher ___", "You must find/locate/obtain ___", "You must create/design/fix ___", "You'll need the help/support/approval of ___", "You must wait until/for ___", "You must travel to ___", "It'll take days/weeks/months/years (which means ___ will go undone)", "The best you can get/do is ___", "It will cost ___", "You'll risk ___", "The steading must Pull Together ___ times, each requiring ___"],
+      "note": "Clarify exactly what they hope to achieve and how they plan to go about it. Then tell them as many of the following as makes sense, connected with \"and\" and \"or\" as you see fit."
+    }
+  },
+  "relativeValue": {
+    "values": [
+      { "value": 0, "worth": ["A ◇ purse of copper coins", "A single silver coin", "A favor", "A few days of unskilled labor", "A common, mundane item"] },
+      { "value": 1, "worth": ["A handful of silver coins", "A season (or so) of unskilled labor", "A few days of skilled labor", "A unit of trade goods* (a sack of grain, a ◇ pouch of salt, a ◇◇ stack of pelts, etc.)", "A bit of finery (a ◇ richly embroidered cloak, a silk scarf, a silver comb, etc.)"] },
+      { "value": 2, "worth": ["A ◇ purse of silver coins", "A single gold coin", "A Surplus", "A year (or so) of unskilled labor", "A season (or so) of skilled labor", "A cartload of common trade goods*", "An item of luxury or status (a gold ring, an artful silver torc, a gemstone, etc.)"] },
+      { "value": 3, "worth": ["A handful of gold coins", "A year (or so) of skilled labor", "A good, trained horse or mule", "A precious item (ruby ring, gold torc, etc.)"] },
+      { "value": 4, "worth": ["A ◇ purse of gold coins", "A dozen or so horses", "A \"priceless\" item (huge flawless gemstone, ◇ gold statuette, ◇ bejeweled scepter, etc.)"] }
+    ],
+    "notes": ["*Exotic trade goods are +1 Value.", "A ◇ purse of coins contains ~10 handfuls of coins. A handful is ~10 individual coins, and so a purse has ~100 coins in it.", "Remember, trade is based more on barter, debts, and honor than standard currency."]
+  },
+  "flowOfPlay": {
+    "note": "Over multiple sessions, a game of Stonetop generally follows this pattern.",
+    "nodes": [
+      { "id": "first-adventure", "name": "First adventure", "ref": "Book I, page 251", "items": ["Setup questions", "Set the scene (at home)", "Drop your hook", "See how folks react"] },
+      { "id": "expedition", "name": "Expedition", "ref": "Book I, page 301", "items": ["Preparations", "Legs of travel/points of interest", "Challenges, surprises, resolution"] },
+      { "id": "aftermath", "name": "Aftermath", "ref": "Book I, page 490", "items": ["Determine what's happened", "Play out the return/post-crisis", "See what follows", "Transition to downtime"] },
+      { "id": "crisis", "name": "Crisis", "ref": "Book I, page 499", "items": ["Trouble erupts at home", "Play it out, see what happens", "Quite possibly Meet With Disaster"] },
+      { "id": "downtime", "name": "Downtime", "ref": "Book I, page 496", "items": ["Zoom out, deal with logistics", "Establish goals and intentions", "Play out situations as needed", "Show the passing of time"] },
+      { "id": "seasons-change", "name": "Seasons Change", "ref": "Book I, page 516", "items": ["Zoom out, deal with logistics", "Establish goals and intentions", "Play out situations as needed", "Show the passing of time"] }
+    ],
+    "edges": [
+      { "from": "first-adventure", "to": "expedition", "label": "PCs take the hook" },
+      { "from": "first-adventure", "to": "downtime", "label": "PCs ignore the hook" },
+      { "from": "expedition", "to": "aftermath" },
+      { "from": "aftermath", "to": "downtime" },
+      { "from": "crisis", "to": "aftermath", "label": "PCs stay home" },
+      { "from": "crisis", "to": "expedition", "label": "PCs head out in response" },
+      { "from": "downtime", "to": "expedition", "label": "Opportunity, threat(s), or requirement" },
+      { "from": "downtime", "to": "crisis", "label": "As a hard GM move" },
+      { "from": "downtime", "to": "seasons-change", "label": "Eventually" },
+      { "from": "seasons-change", "to": "crisis", "label": "Threat(s)" },
+      { "from": "seasons-change", "to": "expedition", "label": "Opportunity or threat(s)" },
+      { "from": "seasons-change", "to": "downtime", "label": "Quiet (for now)" }
+    ]
+  }
+}

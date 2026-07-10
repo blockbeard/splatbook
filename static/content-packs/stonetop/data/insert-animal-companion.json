@@ -1,0 +1,94 @@
+{
+  "id": "insert-animal-companion",
+  "name": "Animal Companion",
+  "type": "insert",
+  "appliesTo": "the-ranger",
+  "requires": { "moves": ["animal-companion"] },
+  "source": { "book": "Book I", "pages": [143], "printing": 2 },
+  "intro": "Ranger, you are accompanied by a beast, with whom you have bonded deeply and communicate without words. Treat it as a follower.",
+  "fields": ["name", "hp", "maxHp", "armor", "damage", "damageTags"],
+  "types": [
+    {
+      "id": "bird",
+      "name": "Bird",
+      "examples": ["falcon", "eagle", "owl", "buzzard", "magpie"],
+      "hp": 5, "armor": 1, "armorNote": "size", "damage": "d4", "damageTags": ["hand"],
+      "startingTraits": ["tiny"],
+      "pick": 4,
+      "options": ["improved damage die (d6)", "+4 HP", "+1 armor (agility)", "attack-bird", "cautious", "clever", "fast", "mimic", "sharp-eyed", "stealthy", "thieving", "tireless"],
+      "writeIn": true
+    },
+    {
+      "id": "critter",
+      "name": "Critter",
+      "examples": ["cat", "fox", "possum", "raccoon", "weasel"],
+      "hp": 5, "armor": 1, "armorNote": "size", "damage": "d4", "damageTags": ["hand"],
+      "startingTraits": ["tiny"],
+      "pick": 5,
+      "options": ["+4 HP", "+1 armor (agility)", "agile", "adorable", "annoying", "burrowing", "cautious", "clever", "climber", "dextrous", "keen-eared", "keen-eyed", "keen-nosed", "quick", "stealthy", "stinky", "thieving"],
+      "writeIn": true
+    },
+    {
+      "id": "brute",
+      "name": "Brute",
+      "examples": ["bear", "boar", "wolverine", "aurochs", "drake"],
+      "hp": 12, "armor": 0, "damage": "d6", "damageTags": ["hand"],
+      "startingTraits": ["tough"],
+      "pick": 3,
+      "options": ["+1 armor (hide, scales, etc.)", "damage is +2 damage, forceful", "damage is messy, 1 piercing", "large (+4 HP, +1 damage, +close)", "easy-going", "fearless", "gluttonous", "keen-nosed", "powerful", "protective", "quick", "terrifying"],
+      "writeIn": true
+    },
+    {
+      "id": "predator",
+      "name": "Predator",
+      "examples": ["hound", "wolf", "cougar", "drake"],
+      "hp": 8, "armor": 0, "damage": "d8", "damageTags": ["hand", "grabby"],
+      "startingTraits": ["fierce"],
+      "pick": 3,
+      "options": ["+4 HP", "+1 armor (hide)", "damage is messy, 1 piercing", "agile", "climber", "clever", "enduring", "fast", "keen-eared", "keen-eyed", "pack-hunter", "keen-nosed", "patient", "powerful", "stealthy", "terrifying"],
+      "writeIn": true
+    },
+    {
+      "id": "steed",
+      "name": "Steed",
+      "examples": ["horse", "mule"],
+      "hp": 12, "armor": 0, "damage": "d6+1", "damageTags": ["hand", "close"],
+      "startingTraits": ["large"],
+      "pick": 4,
+      "options": ["+4 HP", "+1 armor (hide)", "damage is +2 damage, forceful", "aggressive", "agile", "beautiful", "calm", "clever", "hardy", "keen-nosed", "powerful", "swift"],
+      "writeIn": true
+    }
+  ],
+  "instincts": {
+    "pick": 1,
+    "options": ["To bully and threaten", "To fill its belly", "To get distracted", "To give chase", "To make mischief", "To startle and panic", "To run rampant"],
+    "writeIn": true
+  },
+  "cost": {
+    "pick": 1,
+    "loyaltyMax": 3,
+    "options": ["Play, grooming, training, affection", "Time off on its own, free to roam", "Cozy quarters, comfort, ample food"],
+    "writeIn": true
+  },
+  "beastOfLegend": {
+    "text": "Each time you take Beast of Legend, pick 1:",
+    "options": ["They are *exceptional* (see Order Followers)", "They get +4 HP and +1 armor", "They develop a unique ability or trait"]
+  },
+  "rules": [
+    {
+      "id": "order-followers",
+      "name": "Order Followers",
+      "text": "When you *direct them to make a move and they do so,* roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.\n\nWhen they *are without orders* or they *act on their own initiative*, the GM says what they do and how it goes."
+    },
+    {
+      "id": "strengthen-your-bond",
+      "name": "Strengthen Your Bond",
+      "text": "When you *pay their cost* and you haven't done so recently, they hold +1 Loyalty (max 3).\n\nSpend their Loyalty 1-for-1 to have them:\n\n- Overcome their fear to do as you say\n- Resist acting on their instinct/tags/traits\n- Do something they don't want to do (as long as it's not abhorrent or suicidal)"
+    },
+    {
+      "id": "loyal-to-the-end",
+      "name": "Loyal to the End",
+      "text": "When *your companion is at 0 HP*, roll +0, with advantage if it holds Loyalty: **on a 10+**, it'll be fine once it regains any HP; **on a 7-9**, it gets the *injured* tag; **on a 6-**, it's injured and will die soon unless someone saves it."
+    }
+  ]
+}

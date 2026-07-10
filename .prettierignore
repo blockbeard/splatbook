@@ -8,6 +8,7 @@ dist/
 
 # Game content (generated + licensed text — never reformat)
 content/
+static/content-packs/
 
 # Prose and plans — hand-formatted
 docs/

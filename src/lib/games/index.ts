@@ -6,7 +6,10 @@
  * registry and the validation harness always agree on what games exist.
  */
 
-// No game modules yet — the stonetop module arrives with its content pack.
+import { registerGame } from './registry';
+import { stonetop } from './stonetop';
+
+registerGame(stonetop);
 
 export { getGame, listGames, registerGame } from './registry';
 export type { GameModule } from './types';

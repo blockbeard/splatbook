@@ -1,0 +1,29 @@
+{
+	"id": "stonetop",
+	"name": "Stonetop",
+	"version": "1.0.0",
+	"license": "CC-BY-SA-4.0",
+	"attribution": "Stonetop by Jeremy Strandberg, published by Lampblack & Brimstone. Game text (2nd printing, errata applied) used under CC BY-SA 4.0. This is an independent production, not affiliated with Lampblack & Brimstone.",
+	"files": [
+		"data/insert-animal-companion.json",
+		"data/insert-crew.json",
+		"data/insert-followers.json",
+		"data/insert-ghost.json",
+		"data/insert-initiates-of-danu.json",
+		"data/insert-inventory.json",
+		"data/insert-invocations.json",
+		"data/insert-revenant.json",
+		"data/insert-thrall.json",
+		"data/the-blessed.json",
+		"data/the-fox.json",
+		"data/the-gm.json",
+		"data/the-heavy.json",
+		"data/the-judge.json",
+		"data/the-lightbearer.json",
+		"data/the-marshal.json",
+		"data/the-ranger.json",
+		"data/the-seeker.json",
+		"data/the-steading.json",
+		"data/the-would-be-hero.json"
+	]
+}
