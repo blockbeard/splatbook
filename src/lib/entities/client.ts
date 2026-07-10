@@ -32,21 +32,24 @@ export interface SavedEntity {
 const DRAFT_PREFIX = 'splatbook:draft:';
 
 /**
- * Build a save payload from a game's draft using its `entityMeta`. Returns
- * `null` if the game can't describe its entities (no `entityMeta`), so callers
- * can skip persistence cleanly rather than guessing at the blob.
+ * Build a save payload from a game's draft using the entity type's `entityMeta`.
+ * `entityType` selects the slot in the game's entity-type map (and becomes the
+ * persisted column). Returns `null` if the game can't describe entities of this
+ * type (unknown type, or no `entityMeta`), so callers can skip persistence
+ * cleanly rather than guessing at the blob.
  */
 export function draftToPayload(
 	gameId: string,
+	entityType: string,
 	draft: object,
 	overrides: Partial<SavePayload> = {}
 ): SavePayload | null {
 	const game = getGame(gameId);
-	const meta = game?.entityMeta?.(draft);
+	const meta = game?.entityTypes[entityType]?.entityMeta?.(draft);
 	if (!meta) return null;
 	return {
 		gameId,
-		entityType: meta.entityType,
+		entityType,
 		name: meta.name,
 		schemaVersion: meta.schemaVersion,
 		data: draft,
@@ -115,7 +118,7 @@ export async function migrateLocalDrafts(
 		} catch {
 			continue;
 		}
-		const payload = draftToPayload(parsed.gameId, draft);
+		const payload = draftToPayload(parsed.gameId, parsed.entityType, draft);
 		if (!payload) continue;
 		try {
 			await saveEntity(payload, fetchFn);

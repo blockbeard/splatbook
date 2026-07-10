@@ -15,12 +15,18 @@
 		phases arrive.
 	</p>
 	<div class="mt-8 flex flex-wrap justify-center gap-3">
-		<a
-			href={resolve('/g/[game]/build', { game: data.gameId })}
-			class="inline-block rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90"
-		>
-			Build a character
-		</a>
+		{#each data.creators as creator, i (creator.entityType)}
+			<a
+				href={creator.via === 'build'
+					? resolve('/g/[game]/[type]/build', { game: data.gameId, type: creator.entityType })
+					: resolve('/g/[game]/[type]/play', { game: data.gameId, type: creator.entityType })}
+				class={i === 0
+					? 'inline-block rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90'
+					: 'inline-block rounded-md border border-border px-4 py-2 font-medium hover:bg-surface'}
+			>
+				Create a {creator.label.toLowerCase()}
+			</a>
+		{/each}
 		<a
 			href={resolve('/g/[game]/reference', { game: data.gameId })}
 			class="inline-block rounded-md border border-border px-4 py-2 font-medium hover:bg-surface"

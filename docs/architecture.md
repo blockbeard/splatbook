@@ -34,9 +34,9 @@ problem to solve, not an exception to grant.
 
 1. **The shell touches game code only through the `GameModule` registry.** No
    `import … from '$lib/games/stonetop/…'` anywhere in shell code. The module
-   interface (`{ id, name, packSchemas, engine, wizardSteps, sheetComponent, … }`)
-   is the entire surface area. If the shell needs something new from a game, the
-   interface grows — explicitly, in its own commit.
+   interface (`{ id, name, packSchemas, engine, entityTypes }`) is the entire
+   surface area. If the shell needs something new from a game, the interface
+   grows — explicitly, in its own commit.
 
 2. **Game modules never import each other.** Stonetop code may not know HMtW
    exists. Shared needs get promoted to the shell (via rule 1), never traded
@@ -62,6 +62,28 @@ What lives inside `data` is the game module's business, versioned by
 `schemaVersion` and migrated by the module's own code. Abstract a concept into the
 shell only when a **second real game** forces it — with two implementations in
 hand, not one and an imagination.
+
+## Entity types
+
+A game contributes one or more **entity types** through
+`GameModule.entityTypes` — a map keyed by the persisted `entityType`
+(`character`, `steading`, …). Each entry
+(`{ label, newDraft?, entityMeta?, wizardSteps?, sheetComponent?, playComponent? }`)
+owns that type's create/edit/render slots; every slot is optional so a type is only
+as large as it needs. A character is built through the wizard
+(`wizardSteps` + `newDraft`), rendered read-only by `sheetComponent`, and edited in
+`playComponent`; a steading skips the wizard entirely — it is an editable tracker
+sheet from birth, so its editor lives in the `playComponent` slot and the shell's
+create action routes straight there.
+
+The shell **iterates the map**; it never hard-codes a type. Routes are
+`/g/[game]/[type]/{build,play,sheet}`; the dashboard, save/load, and landing page
+all read the type from the map key rather than branching on `character`. This
+followed the discipline above: the map arrived only when steadings (phase 6) became
+the second entity type — until then a single flat set of character slots was
+enough. Note this is a second *entity type within one game*, not a second game; the
+"no universal character model" ban still holds — the shapes inside each type stay
+the game's own, opaque to the shell.
 
 ## Theming
 

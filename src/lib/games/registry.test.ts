@@ -11,7 +11,8 @@ const fixtures = join(dirname(fileURLToPath(import.meta.url)), '..', 'packs', 'f
 const module = (id: string, name: string): GameModule => ({
 	id,
 	name,
-	packSchemas: () => z.record(z.string(), z.unknown())
+	packSchemas: () => z.record(z.string(), z.unknown()),
+	entityTypes: {}
 });
 
 afterEach(() => {

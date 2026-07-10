@@ -19,8 +19,8 @@
 	const dateFmt = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' });
 	const when = (iso: string) => dateFmt.format(new Date(iso));
 
-	const openHref = (gameId: string, id: string) =>
-		`${resolve('/g/[game]/sheet', { game: gameId })}?id=${id}`;
+	const openHref = (gameId: string, entityType: string, id: string) =>
+		`${resolve('/g/[game]/[type]/sheet', { game: gameId, type: entityType })}?id=${id}`;
 
 	async function act(id: string, run: () => Promise<Response>) {
 		busy = id;
@@ -88,18 +88,18 @@
 					<li class="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
 						<div class="min-w-0">
 							<a
-								href={openHref(item.gameId, item.id)}
+								href={openHref(item.gameId, item.entityType, item.id)}
 								class="font-medium hover:text-accent hover:underline"
 							>
 								{item.name}
 							</a>
 							<span class="ml-2 text-xs text-muted">
-								{statusLabel(item.status)} · updated {when(item.updatedAt)}
+								{item.typeLabel} · {statusLabel(item.status)} · updated {when(item.updatedAt)}
 							</span>
 						</div>
 						<div class="flex shrink-0 items-center gap-2 text-sm">
 							<a
-								href={openHref(item.gameId, item.id)}
+								href={openHref(item.gameId, item.entityType, item.id)}
 								class="rounded border border-border px-2 py-1 text-muted hover:text-text"
 							>
 								Open

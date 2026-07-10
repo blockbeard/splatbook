@@ -10,6 +10,8 @@ export interface DashboardItem {
 	gameId: string;
 	gameName: string;
 	entityType: string;
+	/** Human label for the entity type ("Character", "Steading"). */
+	typeLabel: string;
 	status: string;
 	/** ISO string — serialisable across the load boundary. */
 	updatedAt: string;

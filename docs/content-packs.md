@@ -137,9 +137,13 @@ abstraction moment, and the shell change happens deliberately, in its own commit
    for your data files and a `schemaFor(relPath)` resolver. Start strict for
    whatever the app will consume first; pin envelopes for the rest.
 3. **Create the module.** `src/lib/games/<gameId>/index.ts` exporting a
-   `GameModule` (`{ id, name, packSchemas }` to begin with — engine, wizard
-   steps, and sheet component join the interface as your game grows into the
-   later phases).
+   `GameModule` (`{ id, name, packSchemas, entityTypes: {} }` to begin with).
+   Each entity type your game offers (character, steading, …) is an entry in
+   `entityTypes`, keyed by its persisted `entityType`; its slots (`label`,
+   `newDraft`, `entityMeta`, `wizardSteps`, `sheetComponent`, `playComponent`)
+   fill in as the game grows into the later phases. All slots are optional — a
+   wizard-built type sets `wizardSteps` + `newDraft`; an editor-first type
+   (steading) leaves `wizardSteps` empty and puts its editor in `playComponent`.
 4. **Register it.** Add one `registerGame(<game>)` line to
    `src/lib/games/index.ts`. This is the only edit outside your two folders.
 5. **Prove it.** `npm run validate:packs` green; add round-trip tests like

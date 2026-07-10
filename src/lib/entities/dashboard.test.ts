@@ -8,6 +8,7 @@ function item(over: Partial<DashboardItem>): DashboardItem {
 		gameId: 'stonetop',
 		gameName: 'Stonetop',
 		entityType: 'character',
+		typeLabel: 'Character',
 		status: 'draft',
 		updatedAt: '2026-07-10T00:00:00.000Z',
 		...over

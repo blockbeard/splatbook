@@ -69,8 +69,8 @@ describe('localDraftKeys', () => {
 });
 
 describe('draftToPayload', () => {
-	it('builds a payload from the real Stonetop entityMeta', () => {
-		const payload = draftToPayload('stonetop', { name: 'Wray', schemaVersion: 1 });
+	it('builds a payload from the real Stonetop character entityMeta', () => {
+		const payload = draftToPayload('stonetop', 'character', { name: 'Wray', schemaVersion: 1 });
 		expect(payload).toMatchObject({
 			gameId: 'stonetop',
 			entityType: 'character',
@@ -80,11 +80,15 @@ describe('draftToPayload', () => {
 	});
 
 	it('returns null for an unknown game', () => {
-		expect(draftToPayload('no-such-game', {})).toBeNull();
+		expect(draftToPayload('no-such-game', 'character', {})).toBeNull();
+	});
+
+	it('returns null for an unknown entity type', () => {
+		expect(draftToPayload('stonetop', 'no-such-type', {})).toBeNull();
 	});
 
 	it('applies overrides (e.g. marking ready)', () => {
-		const payload = draftToPayload('stonetop', { name: 'Wray' }, { status: 'ready' });
+		const payload = draftToPayload('stonetop', 'character', { name: 'Wray' }, { status: 'ready' });
 		expect(payload?.status).toBe('ready');
 	});
 });

@@ -19,15 +19,19 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 
 	const showArchived = url.searchParams.get('archived') === 'true';
 	const rows = await listEntities(db, session.user.id, { includeArchived: showArchived });
-	const items: DashboardItem[] = rows.map((r) => ({
-		id: r.id,
-		name: r.name,
-		gameId: r.gameId,
-		gameName: getGame(r.gameId)?.name ?? r.gameId,
-		entityType: r.entityType,
-		status: r.status,
-		updatedAt: r.updatedAt.toISOString()
-	}));
+	const items: DashboardItem[] = rows.map((r) => {
+		const game = getGame(r.gameId);
+		return {
+			id: r.id,
+			name: r.name,
+			gameId: r.gameId,
+			gameName: game?.name ?? r.gameId,
+			entityType: r.entityType,
+			typeLabel: game?.entityTypes[r.entityType]?.label ?? r.entityType,
+			status: r.status,
+			updatedAt: r.updatedAt.toISOString()
+		};
+	});
 
 	return { signedIn: true, showArchived, groups: groupByGame(items) };
 };

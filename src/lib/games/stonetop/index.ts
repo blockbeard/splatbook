@@ -2,38 +2,45 @@
  * The Stonetop game module — first game in the framework; served as
  * "Ringwall" at `/g/stonetop`.
  *
- * Contributes identity, pack schemas, and (phase 3) the pure rules engine.
- * Wizard steps and sheet component fill their slots as the phase-3 commits
- * land. The shell treats `engine` as opaque; only Stonetop's own step/sheet
+ * Contributes identity, pack schemas, the pure rules engine, and its entity
+ * types. The shell treats `engine` as opaque; only Stonetop's own step/sheet
  * code reaches into it with types.
+ *
+ * Entity types: **character** — built through the wizard, rendered by a sheet,
+ * edited in play mode. (The **steading** type joins the map in phase 6.)
  */
 
 import type { Component } from 'svelte';
-import type { GameModule, PlayProps, SheetProps } from '../types';
+import type { EntityTypeModule, GameModule, PlayProps, SheetProps } from '../types';
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { stonetopWizardSteps } from './wizard/steps';
 import CharacterSheet from './sheet/CharacterSheet.svelte';
 import PlayMode from './play/PlayMode.svelte';
 
-export const stonetop: GameModule = {
-	id: 'stonetop',
-	name: 'Stonetop',
-	packSchemas: schemaFor,
-	engine,
+// Contained cast: the sheet/play components type `character` as
+// StonetopCharacter, the shell slot as the opaque `SheetProps`/`PlayProps` —
+// Svelte props are contravariant, so this is the single erasure, mirroring
+// `defineWizardStep`.
+const character: EntityTypeModule = {
+	label: 'Character',
 	wizardSteps: stonetopWizardSteps,
 	newDraft: () => engine.createCharacter(),
 	entityMeta: (draft) => {
 		const c = draft as StonetopCharacter;
 		return {
 			name: c.name?.trim() || 'Unnamed hero',
-			entityType: 'character',
 			schemaVersion: c.schemaVersion ?? SCHEMA_VERSION
 		};
 	},
-	// Contained cast: the sheet types `character` as StonetopCharacter, the shell
-	// slot as the opaque `SheetProps` — Svelte props are contravariant, so this is
-	// the single erasure, mirroring `defineWizardStep`.
 	sheetComponent: CharacterSheet as unknown as Component<SheetProps>,
 	playComponent: PlayMode as unknown as Component<PlayProps>
+};
+
+export const stonetop: GameModule = {
+	id: 'stonetop',
+	name: 'Stonetop',
+	packSchemas: schemaFor,
+	engine,
+	entityTypes: { character }
 };

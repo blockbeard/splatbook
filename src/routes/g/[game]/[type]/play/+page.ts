@@ -5,7 +5,12 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ params, url, fetch }) => {
 	const game = getGame(params.game);
 	if (!game) error(404, `No such game: "${params.game}"`);
-	if (!game.playComponent) error(404, `${game.name} has no play mode yet`);
+	const type = game.entityTypes[params.type];
+	if (!type?.playComponent) error(404, `${game.name} ${params.type} has no editor yet`);
+
+	// Editor-first types (steadings) have no wizard, so "create new" lands here;
+	// the page seeds a blank draft when there's nothing saved or autosaved.
+	const editorFirst = !type.wizardSteps?.length && !!type.newDraft;
 
 	// `?id=` plays a saved entity from the database (edits autosave back to it);
 	// without it, play mode edits the same local autosave slot the sheet reads.
@@ -19,5 +24,12 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 		}
 	}
 
-	return { gameId: game.id, gameName: game.name, saved };
+	return {
+		gameId: game.id,
+		gameName: game.name,
+		entityType: params.type,
+		typeLabel: type.label,
+		editorFirst,
+		saved
+	};
 };

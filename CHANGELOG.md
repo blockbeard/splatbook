@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **`GameModule` now carries an `entityTypes` map** instead of a single flat set
+  of character slots. Each entity type (`character`, `steading`, …) is keyed by
+  its persisted `entityType` and owns its own optional
+  `label` / `newDraft` / `entityMeta` / `wizardSteps` / `sheetComponent` /
+  `playComponent`. The shell iterates the map rather than hard-coding
+  `character`: routes moved from `/g/[game]/{build,play,sheet}` to
+  `/g/[game]/[type]/{build,play,sheet}`, and the landing page, dashboard, and
+  save/load read the type from the map key. Editor-first types (no wizard) route
+  their "create" action straight to the editor (`playComponent`) and seed a fresh
+  draft there. This is the phase-6 boundary generalization — the second entity
+  type (steading) forced it; `entityMeta` no longer self-reports `entityType`
+  (it's the map key). `docs/architecture.md` and `docs/content-packs.md` updated
+  to match.
+
 ### Fixed
 
 - `validate:packs` runs again: pack-schema registration moved to a UI-free

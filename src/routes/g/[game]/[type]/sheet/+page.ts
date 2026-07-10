@@ -5,7 +5,8 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ params, url, fetch }) => {
 	const game = getGame(params.game);
 	if (!game) error(404, `No such game: "${params.game}"`);
-	if (!game.sheetComponent) error(404, `${game.name} has no character sheet yet`);
+	const type = game.entityTypes[params.type];
+	if (!type?.sheetComponent) error(404, `${game.name} ${params.type} has no sheet yet`);
 
 	// `?id=` renders a saved entity from the database; without it the sheet falls
 	// back to the local autosave slot (client-side, see +page.svelte).
@@ -19,5 +20,13 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 		}
 	}
 
-	return { gameId: game.id, gameName: game.name, saved };
+	return {
+		gameId: game.id,
+		gameName: game.name,
+		entityType: params.type,
+		typeLabel: type.label,
+		hasWizard: !!type.wizardSteps?.length,
+		hasPlay: !!type.playComponent,
+		saved
+	};
 };
