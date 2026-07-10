@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Database schema for accounts and saved entities (phase 4). `users` carries the
+  Auth.js Drizzle-adapter column shape so the coming auth wiring drops straight
+  onto it. `entities` is the one universal persistence model: a saved
+  character/steading is a single opaque JSON `data` blob per row, tagged with
+  `gameId` / `entityType` / `schemaVersion` and a `draft`/`ready`/`archived`
+  status, owned by a user (cascade delete), indexed for the dashboard's
+  by-owner/by-game queries. The shell never parses `data`; the owning game
+  module does. First generated migration under `drizzle/`; round-trip tests run
+  it against in-memory SQLite (blob survives write/read, defaults populate, FK
+  cascade and enforcement hold).
+
 ## [0.1.0] - 2026-07-10
 
 Build any Stonetop character end to end and print it — the phase-3 milestone.
