@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   optional `gmGuide` slot on its `GameModule` (`packFile` + `sections` +
   `component`); the shell serves and navigates it generically without inspecting
   the pack shape. `docs/content-packs.md` documents the slot.
+- GM guide **interactive tables** (commit 50): the Die-of-Fate tables (When the
+  Way is Perilous, Make Camp) and the six seasonal weather tables are rollable —
+  tap to roll a d6 and the matching row lights up. The eight threat types are a
+  picker with a "Suggest a move" random-portent button, and travel times gained
+  a live place filter. The range-parsing and die-roll logic is a small pure
+  module (`gm/roll.ts`) with unit tests; the components are thin shells over it.
 
 - **Steading builder (phase 6).** Stonetop's second entity type. A
   steading has no build wizard — it's an editable tracker sheet from creation,

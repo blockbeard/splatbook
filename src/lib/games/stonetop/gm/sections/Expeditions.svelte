@@ -6,11 +6,16 @@
 	import type { GmPlaybook } from '../../pack-schemas';
 	import Markdown from '../../wizard/components/Markdown.svelte';
 	import StringList from '../blocks/StringList.svelte';
-	import LabelledTable from '../blocks/LabelledTable.svelte';
-	import RollTable from '../blocks/RollTable.svelte';
+	import DieOfFate from '../blocks/DieOfFate.svelte';
+	import TravelTimes from '../blocks/TravelTimes.svelte';
 
 	let { gm }: { gm: GmPlaybook } = $props();
 	const e = $derived(gm.expeditions);
+
+	/** Weather rows are `[rollSpec, description]` tuples; the Die-of-Fate roller
+	 * wants `{ roll, result }`. */
+	const asRollRows = (rows: readonly (readonly [string, string])[]) =>
+		rows.map(([roll, result]) => ({ roll, result }));
 </script>
 
 <section>
@@ -29,19 +34,12 @@
 <section>
 	<h2 class="text-lg font-semibold">When the way is perilous</h2>
 	<div class="mt-1 text-sm text-muted"><Markdown text={e.whenTheWayIsPerilous.text} /></div>
-	<RollTable rows={e.whenTheWayIsPerilous.table} />
+	<DieOfFate rows={e.whenTheWayIsPerilous.table} />
 </section>
 
 <section>
 	<h2 class="text-lg font-semibold">Travel times</h2>
-	<div class="mt-2 space-y-4">
-		{#each e.travelTimes as group, gi (gi)}
-			<div>
-				<p class="text-sm font-medium">{group.from}</p>
-				<LabelledTable rows={group.entries} />
-			</div>
-		{/each}
-	</div>
+	<TravelTimes groups={e.travelTimes} />
 </section>
 
 <section>
@@ -49,7 +47,7 @@
 	<p class="mt-1 text-sm font-medium">Ask:</p>
 	<StringList items={e.makeCamp.questions} />
 	<p class="mt-2 text-xs text-muted">{e.makeCamp.note}</p>
-	<RollTable rows={e.makeCamp.dieOfFate} />
+	<DieOfFate rows={e.makeCamp.dieOfFate} />
 </section>
 
 <section>
@@ -77,7 +75,7 @@
 		{#each e.randomWeather.tables as table (table.season)}
 			<div>
 				<p class="text-sm font-medium">{table.season}</p>
-				<LabelledTable rows={table.rows} />
+				<DieOfFate rows={asRollRows(table.rows)} buttonLabel="Roll weather" />
 			</div>
 		{/each}
 	</div>

@@ -5,6 +5,7 @@
 	import type { GmPlaybook } from '../../pack-schemas';
 	import Markdown from '../../wizard/components/Markdown.svelte';
 	import StringList from '../blocks/StringList.svelte';
+	import ThreatTypes from '../blocks/ThreatTypes.svelte';
 
 	let { gm }: { gm: GmPlaybook } = $props();
 	const t = $derived(gm.threats);
@@ -37,12 +38,8 @@
 
 <section>
 	<h2 class="text-lg font-semibold">Threat types & moves</h2>
-	<div class="mt-2 grid gap-4 sm:grid-cols-2">
-		{#each t.types as type (type.id)}
-			<div class="rounded-md border border-border p-3">
-				<h3 class="font-semibold">{type.name}</h3>
-				<StringList items={type.moves} />
-			</div>
-		{/each}
-	</div>
+	<p class="mt-1 text-sm text-muted">
+		Pick a type to see its moves, or suggest one at random for a portent.
+	</p>
+	<ThreatTypes types={t.types} />
 </section>
