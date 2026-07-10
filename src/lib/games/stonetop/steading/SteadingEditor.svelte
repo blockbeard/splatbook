@@ -30,9 +30,11 @@
 		type StonetopSteading
 	} from '../engine/steading';
 	import { fetchSteadingPack } from '../pack/steading';
+	import SteadingImprovements from './SteadingImprovements.svelte';
 
 	let { character, onChange }: PlayProps = $props();
 	const s = $derived(character as StonetopSteading);
+	const emit = (next: StonetopSteading): void => onChange(next);
 
 	let pack = $state<SteadingPack | null>(null);
 	let loadError = $state<string | null>(null);
@@ -196,6 +198,16 @@
 						{/if}
 					</button>
 				{/each}
+			</div>
+		</section>
+
+		<section>
+			<div class="flex items-baseline justify-between">
+				<h2 class="text-lg font-semibold">Improvements</h2>
+				<span class="text-sm text-muted">Tick what you've built</span>
+			</div>
+			<div class="mt-2">
+				<SteadingImprovements improvements={pack.improvements} steading={s} onChange={emit} />
 			</div>
 		</section>
 	</article>

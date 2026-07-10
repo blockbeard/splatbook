@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   clamped functions. The editor (commit 44) steps stats, walks Size, picks the
   season, and toggles debilities, autosaving as you go. The steading pack schema
   (`the-steading.json`) is now fully validated rather than a loose envelope.
+  Improvements (commit 45) render as collapsible cards: the engine normalises
+  each Improvement's `requires` tree — `all`, choose-N, either-or, nested
+  "establish" picks, sequenced follow-ups, and multi-box "Pull Together"
+  requirements — into checklist groups, decides when requirements are met, and
+  drives a Mark-complete toggle. Ticking a requirement is a pure engine op; the
+  stat bumps an Improvement grants stay manual on the tracker.
 
 ### Changed
 
