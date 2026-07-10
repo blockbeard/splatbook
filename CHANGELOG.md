@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-11
+
+Public **v1.0.0** — the Stonetop companion, complete: build a character through
+the wizard and print the sheet; play, mark trackers, and level up with the rules
+enforced; run a steading across the seasons; read and roll the GM guide and track
+threats; sign in to save everything. Plus a searchable rules reference, a
+credits/licensing page, and a deployment that runs on atlas (adapter-node) today
+and Cloudflare Pages + D1 when it goes public. Built inside the framework boundary
+from day one, so game #2 is "write a module and a pack," not a refactor.
+
 ### Added
 
 - **Credits & licensing page (phase 8, commit 53).** A public `/credits` page,
