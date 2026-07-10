@@ -5,6 +5,7 @@
 <script lang="ts">
 	import type { GmPlaybook } from '../../pack-schemas';
 	import StringList from '../blocks/StringList.svelte';
+	import FlowDiagram from '../blocks/FlowDiagram.svelte';
 
 	let { gm }: { gm: GmPlaybook } = $props();
 	const flow = $derived(gm.flowOfPlay);
@@ -13,6 +14,7 @@
 
 <section>
 	<p class="text-sm text-muted">{flow.note}</p>
+	<FlowDiagram nodes={flow.nodes} edges={flow.edges} />
 </section>
 
 <section>

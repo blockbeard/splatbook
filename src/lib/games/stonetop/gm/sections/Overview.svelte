@@ -5,6 +5,7 @@
 	import type { GmPlaybook } from '../../pack-schemas';
 	import StringList from '../blocks/StringList.svelte';
 	import StepList from '../blocks/StepList.svelte';
+	import CoreLoopDiagram from '../blocks/CoreLoopDiagram.svelte';
 
 	let { gm }: { gm: GmPlaybook } = $props();
 </script>
@@ -22,6 +23,7 @@
 
 <section>
 	<h2 class="text-lg font-semibold">The core loop</h2>
+	<CoreLoopDiagram steps={gm.coreLoop.steps} />
 	<StepList steps={gm.coreLoop.steps} />
 </section>
 

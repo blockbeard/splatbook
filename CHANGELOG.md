@@ -26,6 +26,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   picker with a "Suggest a move" random-portent button, and travel times gained
   a live place filter. The range-parsing and die-roll logic is a small pure
   module (`gm/roll.ts`) with unit tests; the components are thin shells over it.
+- GM guide **flow diagrams** (commit 51): the flow of play renders as a node/edge
+  diagram — the six campaign phases on a ring with curved, labelled, arrowed
+  transitions — and the core loop as a numbered cycle with a "repeat" arc. Both
+  are dependency-free SVG built from the pack's nodes/edges (and step) data; the
+  ring layout and edge routing are a pure, unit-tested geometry module
+  (`gm/diagram.ts`). The labelled transition list and step text remain beneath
+  each diagram as the text-equivalent.
 
 - **Steading builder (phase 6).** Stonetop's second entity type. A
   steading has no build wizard — it's an editable tracker sheet from creation,
