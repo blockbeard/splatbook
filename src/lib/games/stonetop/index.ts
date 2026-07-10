@@ -10,8 +10,8 @@
  * - **character** — built through the wizard, rendered by a sheet, edited in
  *   play mode.
  * - **steading** — no wizard; it's an editable tracker sheet from birth, so its
- *   editor lives in the `playComponent` slot (phase 6). Its read-only print
- *   sheet lands in commit 48.
+ *   editor lives in the `playComponent` slot, with a read-only print sheet in
+ *   the `sheetComponent` slot (phase 6).
  */
 
 import type { Component } from 'svelte';
@@ -23,6 +23,7 @@ import { stonetopWizardSteps } from './wizard/steps';
 import CharacterSheet from './sheet/CharacterSheet.svelte';
 import PlayMode from './play/PlayMode.svelte';
 import SteadingEditor from './steading/SteadingEditor.svelte';
+import SteadingSheet from './steading/SteadingSheet.svelte';
 
 // Contained cast: the sheet/play components type `character` as
 // StonetopCharacter, the shell slot as the opaque `SheetProps`/`PlayProps` —
@@ -54,8 +55,9 @@ const steading: EntityTypeModule = {
 		};
 	},
 	// Editor-first: the tracker sheet is the play component; the read-only print
-	// sheet (sheetComponent) arrives in commit 48.
-	playComponent: SteadingEditor as unknown as Component<PlayProps>
+	// sheet is the sheet component.
+	playComponent: SteadingEditor as unknown as Component<PlayProps>,
+	sheetComponent: SteadingSheet as unknown as Component<SheetProps>
 };
 
 export const stonetop: GameModule = {

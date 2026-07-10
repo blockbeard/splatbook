@@ -51,11 +51,11 @@
 </script>
 
 <svelte:head>
-	<title>Your characters — Splatbook</title>
+	<title>Your sheets — Splatbook</title>
 </svelte:head>
 
 <div class="mb-6 flex items-baseline justify-between gap-4">
-	<h1 class="text-2xl font-semibold tracking-tight">Your characters</h1>
+	<h1 class="text-2xl font-semibold tracking-tight">Your sheets</h1>
 	{#if data.signedIn}
 		<a
 			href={data.showArchived ? resolve('/dashboard') : `${resolve('/dashboard')}?archived=true`}
@@ -71,11 +71,11 @@
 		<button type="button" onclick={() => signIn()} class="text-accent hover:underline">
 			Sign in
 		</button>
-		to save characters and see them here.
+		to save your sheets and see them here.
 	</p>
 {:else if data.groups.length === 0}
 	<p class="text-muted">
-		No saved characters yet. Head to a game and build one — it'll appear here when you finish.
+		Nothing saved yet. Head to a game and build a character or steading — it'll appear here.
 	</p>
 {:else}
 	{#each data.groups as group (group.gameId)}

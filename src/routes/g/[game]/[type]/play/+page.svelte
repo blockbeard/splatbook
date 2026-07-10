@@ -9,6 +9,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/state';
+	import { replaceState } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { getGame } from '$lib/games';
 	import { draftKey, loadDraft, saveDraft } from '$lib/wizard';
@@ -18,7 +20,12 @@
 
 	const type = $derived(getGame(data.gameId)!.entityTypes[data.entityType]);
 	const Play = $derived(type.playComponent!);
-	const savedId = $derived(data.saved?.id ?? null);
+	// The entity's DB id, once it has one. Starts from `?id=`; an editor-first
+	// type (steading) that's created here adopts the id the first save returns.
+	// Deliberate one-time capture — the page reloads when the id changes.
+	// svelte-ignore state_referenced_locally
+	let liveId = $state<string | null>(data.saved?.id ?? null);
+	const signedIn = $derived(!!page.data.session?.user);
 	const localKey = $derived(draftKey(data.gameId, data.entityType, 'current'));
 	const sheetPath = $derived(
 		resolve('/g/[game]/[type]/sheet', { game: data.gameId, type: data.entityType })
@@ -43,17 +50,37 @@
 	let saveState = $state<'idle' | 'saving' | 'saved' | 'error'>('idle');
 	let timer: ReturnType<typeof setTimeout> | undefined;
 
-	/** Persist the current entity — debounced, to the DB or localStorage. */
+	/**
+	 * Persist the current entity — debounced. To the DB when it has an id; for a
+	 * signed-in editor-first type with no id yet, create it in the DB and adopt
+	 * the returned id (so it lands in the dashboard like a character). Otherwise
+	 * fall back to the local autosave slot.
+	 */
 	function persist(next: object): void {
-		if (savedId) {
+		if (liveId) {
 			saveState = 'saving';
-			const payload = draftToPayload(data.gameId, data.entityType, next, { id: savedId });
+			const payload = draftToPayload(data.gameId, data.entityType, next, { id: liveId });
 			if (!payload) {
 				saveState = 'error';
 				return;
 			}
 			saveEntity(payload)
 				.then(() => (saveState = 'saved'))
+				.catch(() => (saveState = 'error'));
+		} else if (signedIn && data.editorFirst) {
+			saveState = 'saving';
+			const payload = draftToPayload(data.gameId, data.entityType, next, { status: 'ready' });
+			if (!payload) {
+				saveState = 'error';
+				return;
+			}
+			saveEntity(payload)
+				.then((saved) => {
+					liveId = saved.id;
+					saveState = 'saved';
+					// Adopt the id in the URL so a reload loads it from the DB.
+					if (browser) replaceState(`${page.url.pathname}?id=${saved.id}`, {});
+				})
 				.catch(() => (saveState = 'error'));
 		} else if (browser) {
 			saveDraft(localStorage, localKey, next);
@@ -81,7 +108,7 @@
 <div class="mb-6 flex items-center justify-between">
 	{#if data.hasSheet}
 		<a
-			href={savedId ? `${sheetPath}?id=${savedId}` : sheetPath}
+			href={liveId ? `${sheetPath}?id=${liveId}` : sheetPath}
 			class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
 		>
 			← {data.typeLabel} sheet

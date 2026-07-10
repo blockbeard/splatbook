@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Steading builder (phase 6, in progress).** Stonetop's second entity type. A
+- **Steading builder (phase 6).** Stonetop's second entity type. A
   steading has no build wizard — it's an editable tracker sheet from creation,
   reached via "Create a steading" on the game home or a fresh draft in the
   editor. The engine model covers the five numeric stats
@@ -34,6 +34,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Welsh name list, prefilled occupations, and NPC trait list; neighbours add a
   home select over the pack's places, with each place's own name list offered
   for the name field.
+- Steading **print sheet & dashboard** (commit 48): a read-only, print-friendly
+  steading sheet (stats, marked debilities, lists, completed Improvements,
+  rosters) in the `sheetComponent` slot. Signed-in steadings now save to the
+  database and appear in the dashboard alongside characters — an editor-first
+  type creates its DB row on first edit and adopts the id, so there's no
+  "Finish" step. The dashboard is now entity-type-agnostic (each row shows its
+  type) and titled "Your sheets".
 
 ### Changed
 
