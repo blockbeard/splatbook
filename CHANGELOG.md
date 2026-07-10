@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Dashboard at `/dashboard` — the signed-in user's saved characters grouped by
+  game, each row opening its saved sheet or offering duplicate, archive/
+  unarchive, and delete. A "Characters" header link appears when signed in; an
+  archived-toggle reveals archived entries; signed-out shows a sign-in prompt.
+  Backed by new item endpoints (`PATCH`/`DELETE /api/entities/<id>` and
+  `POST /api/entities/<id>/duplicate`) over the existing ownership-scoped
+  service; the grouping/formatting helpers are unit-tested.
 - Save and load characters to the database. A `userId`-scoped entity service
   (create/update/get/list/status/delete/duplicate — ownership enforced in every
   query) backs a REST endpoint: `GET/POST /api/entities` and

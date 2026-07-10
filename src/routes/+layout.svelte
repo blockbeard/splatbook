@@ -42,6 +42,9 @@
 						{game.name}
 					</a>
 				{/each}
+				{#if data.session?.user}
+					<a href={resolve('/dashboard')} class="hover:text-text">Characters</a>
+				{/if}
 				<ThemeToggle />
 				<AuthControl />
 			</nav>
