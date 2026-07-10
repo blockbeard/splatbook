@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import MiniSearch from 'minisearch';
-import { toPlainText, excerptOf, miniSearchOptions, type SearchDoc } from './search-fields';
+import { toPlainText, miniSearchOptions, type SearchDoc } from './search-fields';
 import { loadSearchIndex, search } from './search';
 
 describe('toPlainText', () => {
@@ -17,19 +17,6 @@ describe('toPlainText', () => {
 	});
 });
 
-describe('excerptOf', () => {
-	it('truncates with an ellipsis past the limit', () => {
-		const long = 'x'.repeat(300);
-		const out = excerptOf(long);
-		expect(out.endsWith('…')).toBe(true);
-		expect(out.length).toBeLessThanOrEqual(241);
-	});
-
-	it('leaves short text intact', () => {
-		expect(excerptOf('short')).toBe('short');
-	});
-});
-
 const docs: SearchDoc[] = [
 	{
 		id: 'defy-danger',
@@ -37,7 +24,6 @@ const docs: SearchDoc[] = [
 		breadcrumb: 'Player Moves › DEFY DANGER',
 		docTitle: 'Book I',
 		visibility: 'player',
-		excerpt: 'When danger looms and the stakes are high…',
 		body: 'When danger looms and the stakes are high you do something chancy roll'
 	},
 	{
@@ -46,7 +32,6 @@ const docs: SearchDoc[] = [
 		breadcrumb: 'Harm and Healing › MAKE CAMP',
 		docTitle: 'Book I',
 		visibility: 'player',
-		excerpt: 'When you settle in to rest…',
 		body: 'When you settle in to rest and recover hit points make camp'
 	}
 ];
@@ -68,7 +53,7 @@ describe('search', () => {
 		expect(top.id).toBe('make-camp');
 		expect(top.title).toBe('MAKE CAMP');
 		expect(top.breadcrumb).toContain('Harm and Healing');
-		expect(top.excerpt).toContain('rest');
+		expect(top.body).toContain('rest');
 	});
 
 	it('returns nothing for an empty query', () => {

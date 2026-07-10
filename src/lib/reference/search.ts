@@ -20,7 +20,8 @@ export interface SearchHit {
 	breadcrumb: string;
 	docTitle: string;
 	visibility: 'player' | 'gm';
-	excerpt: string;
+	/** Plain-text body, for match-centered snippets. */
+	body: string;
 	score: number;
 	/** Matched query terms, for highlighting. */
 	terms: string[];
@@ -49,7 +50,7 @@ export function search(index: MiniSearch, query: string, limit = 40): SearchHit[
 		breadcrumb: r.breadcrumb,
 		docTitle: r.docTitle,
 		visibility: r.visibility,
-		excerpt: r.excerpt,
+		body: r.body,
 		score: r.score,
 		terms: r.terms
 	}));

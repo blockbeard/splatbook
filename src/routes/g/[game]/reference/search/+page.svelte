@@ -5,12 +5,15 @@
 	import { replaceState } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { loadSearchIndex, search } from '$lib/reference/search';
+	import { queryTerms, highlight, makeSnippet } from '$lib/reference/snippet';
 
 	let { data } = $props();
 
 	let query = $state(page.url.searchParams.get('q') ?? '');
+	let debounced = $state(page.url.searchParams.get('q') ?? '');
 	let index = $state<MiniSearch | null>(null);
 	let loadError = $state<string | null>(null);
+	let expanded = $state<Record<string, boolean>>({});
 
 	// Load the prebuilt index once, in the browser only.
 	$effect(() => {
@@ -21,16 +24,26 @@
 		return () => (alive = false);
 	});
 
-	const results = $derived(index ? search(index, query) : []);
+	// Debounce keystrokes (matches the reference tool's feel) and reset expansions.
+	$effect(() => {
+		const q = query;
+		const t = setTimeout(() => {
+			debounced = q;
+			expanded = {};
+		}, 120);
+		return () => clearTimeout(t);
+	});
+
+	const terms = $derived(queryTerms(debounced));
+	const results = $derived(index ? search(index, debounced) : []);
 
 	// Keep ?q= in the URL so a search is shareable and survives reload.
 	$effect(() => {
 		if (!browser) return;
 		const url = new URL(page.url);
-		if (query) url.searchParams.set('q', query);
+		if (debounced) url.searchParams.set('q', debounced);
 		else url.searchParams.delete('q');
-		// Same-document query-string update (shareable ?q=), not a route change,
-		// so resolve() doesn't apply — the URL is derived from the current one.
+		// Same-document query-string update (shareable ?q=), not a route change.
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		if (url.href !== page.url.href) replaceState(url, page.state);
 	});
@@ -61,16 +74,19 @@
 	<p class="mt-6 text-muted">Couldn’t load the search index: {loadError}</p>
 {:else if !index}
 	<p class="mt-6 text-muted">Loading search…</p>
-{:else if !query.trim()}
+{:else if !debounced.trim()}
 	<p class="mt-6 text-muted">Type to search titles and rules text across {data.gameName}.</p>
 {:else if results.length === 0}
-	<p class="mt-6 text-muted">No matches for “{query}”.</p>
+	<p class="mt-6 text-muted">No matches for “{debounced}”.</p>
 {:else}
 	<p class="mt-6 text-sm text-muted">
 		{results.length}{results.length === 40 ? '+' : ''} result{results.length === 1 ? '' : 's'}
 	</p>
 	<ul class="mt-2 divide-y divide-border">
 		{#each results as hit (hit.id)}
+			{@const snip = makeSnippet(hit.body, terms)}
+			{@const isOpen = expanded[hit.id]}
+			{@const hasMore = snip.full.length > snip.short.length}
 			<li class="py-3">
 				<a href={href(hit.id)} class="block hover:text-accent">
 					<span class="font-medium">{hit.title}</span>
@@ -78,10 +94,32 @@
 						<span class="ml-2 text-xs text-muted">{hit.breadcrumb}</span>
 					{/if}
 				</a>
-				{#if hit.excerpt}
-					<p class="mt-1 line-clamp-2 text-sm text-muted">{hit.excerpt}</p>
+				{#if hit.body}
+					<p class="reference-snippet mt-1 text-sm text-muted">
+						<!-- Trusted: HTML-escaped body with <mark> highlights (snippet.ts). -->
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html highlight(isOpen ? snip.full : snip.short, terms)}
+						{#if hasMore && !isOpen}
+							<button
+								type="button"
+								class="ml-1 text-accent hover:underline"
+								onclick={() => (expanded = { ...expanded, [hit.id]: true })}
+							>
+								more
+							</button>
+						{/if}
+					</p>
 				{/if}
 			</li>
 		{/each}
 	</ul>
 {/if}
+
+<style>
+	.reference-snippet :global(mark) {
+		background-color: color-mix(in oklab, var(--sb-accent) 28%, transparent);
+		color: inherit;
+		border-radius: 2px;
+		padding: 0 1px;
+	}
+</style>

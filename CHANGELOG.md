@@ -9,9 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Expandable search snippets (`$lib/reference/snippet`): each result now shows the
+  first sentence that mentions a query term with the terms highlighted (`<mark>`,
+  apostrophe-flexible), a "more" control that expands the snippet in place to its
+  surrounding sentences, and the title still links to the full section — the
+  snippet → context → full-section progression lifted from Chris's Obsidian rules
+  tool. Keystrokes are debounced. The search index now stores each section's
+  plain-text body so snippets work offline; unit tests cover tokenizing,
+  highlighting (with HTML escaping), and snippet windowing.
 - Client-side rules search (`/g/<game>/reference/search`): a MiniSearch index is
   built at build time from the document trees (`tools/build_search.ts`, `npm run
-  build:search`) and served as a static `search-index.json`, so search runs
+build:search`) and served as a static `search-index.json`, so search runs
   entirely in the browser — no server cost, works offline once cached. Live
   prefix + fuzzy matching over titles, breadcrumbs, and body text with title
   boosting; results link to sections; a search box sits in the reference sidebar

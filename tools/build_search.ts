@@ -18,12 +18,7 @@ import { join } from 'node:path';
 import MiniSearch from 'minisearch';
 import { loadManifest, loadPackFile } from '../src/lib/packs/fs-loader';
 import type { DocumentTree } from '../src/lib/reference/document-tree';
-import {
-	miniSearchOptions,
-	toPlainText,
-	excerptOf,
-	type SearchDoc
-} from '../src/lib/reference/search-fields';
+import { miniSearchOptions, toPlainText, type SearchDoc } from '../src/lib/reference/search-fields';
 
 const CONFIG = 'tools/srd.config.json';
 const INDEX_FILE = 'search-index.json';
@@ -43,15 +38,13 @@ for (const pack of config.packs) {
 		for (const section of tree.sections) {
 			if (seen.has(section.id)) continue; // MiniSearch ids must be unique across the index
 			seen.add(section.id);
-			const plain = toPlainText(section.body);
 			docs.push({
 				id: section.id,
 				title: section.title,
 				breadcrumb: [...section.path, section.title].join(' › '),
 				docTitle: tree.title,
 				visibility: section.visibility,
-				excerpt: excerptOf(plain),
-				body: plain
+				body: toPlainText(section.body)
 			});
 		}
 	}
