@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Rules reference section browser (`/g/<game>/reference`): a table-of-contents
+  sidebar (nested from heading levels, auto-expanding the active branch), section
+  pages with breadcrumb ancestors, in-section child lists, and document-order
+  prev/next. Every heading is its own page with a shareable deep link. Section
+  bodies render from markdown via `marked`, with Obsidian wikilinks resolved to
+  in-app reference links where their target is identifiable and falling back to
+  plain label text otherwise. Loading/navigation helpers (`$lib/reference/load`)
+  and the renderer (`$lib/reference/render`) are unit-tested; `buildSectionTree`
+  is now generic so the lightweight TOC nests the same way full sections do.
+  Adds `marked` as a dependency.
 - SRD build script (`tools/build_srd.py` + `tools/srd.config.json`): the second
   stage of the content pipeline, turning the generated rules markdown into
   document-tree JSON in the pack (`rules/*.json`). Each heading becomes a section;

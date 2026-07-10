@@ -65,10 +65,11 @@ export const documentTreeSchema = z
 export type DocumentSection = z.infer<typeof documentSectionSchema>;
 export type DocumentTree = z.infer<typeof documentTreeSchema>;
 
-/** A section plus its descendants, for rendering a TOC. */
-export interface SectionNode {
-	section: DocumentSection;
-	children: SectionNode[];
+/** A section plus its descendants, for rendering a TOC. Generic so a lightweight
+ * TOC entry (title/level/path, no body) nests the same way a full section does. */
+export interface SectionNode<T extends { level: number } = DocumentSection> {
+	section: T;
+	children: SectionNode<T>[];
 }
 
 /**
@@ -76,11 +77,13 @@ export interface SectionNode {
  * A section is a child of the most recent preceding section with a lower level;
  * sections with no such ancestor become roots. Robust to skipped heading levels.
  */
-export function buildSectionTree(sections: readonly DocumentSection[]): SectionNode[] {
-	const roots: SectionNode[] = [];
-	const stack: SectionNode[] = [];
+export function buildSectionTree<T extends { level: number }>(
+	sections: readonly T[]
+): SectionNode<T>[] {
+	const roots: SectionNode<T>[] = [];
+	const stack: SectionNode<T>[] = [];
 	for (const section of sections) {
-		const node: SectionNode = { section, children: [] };
+		const node: SectionNode<T> = { section, children: [] };
 		while (stack.length && stack[stack.length - 1].section.level >= section.level) {
 			stack.pop();
 		}

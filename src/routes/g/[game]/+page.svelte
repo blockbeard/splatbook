@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+
 	let { data } = $props();
 </script>
 
@@ -12,4 +14,12 @@
 		The home of {data.gameName} — reference, character builder, and campaign tools land here as their
 		phases arrive.
 	</p>
+	<div class="mt-8">
+		<a
+			href={resolve('/g/[game]/reference', { game: data.gameId })}
+			class="inline-block rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90"
+		>
+			Rules reference
+		</a>
+	</div>
 </section>
