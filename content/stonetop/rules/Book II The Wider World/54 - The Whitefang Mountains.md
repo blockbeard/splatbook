@@ -1,0 +1,595 @@
+# The Whitefang Mountains
+
+The Whitefang Mountains form the northern border of the World's End, running from the **[[27 - Huffel Peaks#Huffel Peaks|Huffel Peaks]]** in the northwest, all along the **[[23 - The Great Wood#The Great Wood|Great Wood]]**) and the **[[34 - North Manmarch#North Manmarch|North Manmarch]]**), to the **[[11 - The Dread River#The Dread River|Dread River]]** and beyond in the east. Beyond them lie nothing but the **[[19 - The Frozen Wastes#The Frozen Wastes|Frozen Wastes]]**.
+
+The mountains are tall and jagged, steep and forbidding. Yet they hide almost indescribable beauty: waterfalls, deep pine forests, sweeping meadows. They also hide a surprising number of settlements. **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** is closest to Stonetop, but many more lie beyond.
+
+## **Hooks**
+
+- Storms around Tor's Fist grow stronger; the colors shift to red and yellow
+- A band of **[[54 - The Whitefang Mountains#**Shantyara**|kyakaara]]** slips out of the mountains and is eyeing Stonetop
+- A southern merchant is intent on finding a mountain village, to trade for ivory and fine wool
+- **[[54 - The Whitefang Mountains#**Kyakaara**|Mountain apes]]** hold an artifact/scrap of lore in their hoard
+- An apprentice **[[54 - The Whitefang Mountains#**Mountain ape**|shantyara]]** needs help retrieving her dead master's sword from the **[[54 - The Whitefang Mountains#**People**|bhoka]]** who killed him
+
+## **Impressions**
+
+### **Always**
+
+- Snow-covered peaks, like mighty teeth
+- Wind: howling, whispering, gusting
+- Monkeys screeching and chittering in the valleys, leaping through the trees
+- Prayer-flags fluttering in the wind
+- The elation of reaching a summit; the despair of realizing it was just a ridge, and you're only half-way
+
+## **Spring**
+
+- Slopes and vales bright with rhododendron: purple, red, and orange
+- Trickle and rush of snowmelt
+
+## **Summer**
+
+- Lush green below; stern, colorless peaks above
+- Birdsong echoing and echoing
+
+## **Autumn**
+
+- Meadows turned brown and red and gold
+- Mist filling the valleys, clouds gliding by above
+
+#### **Winter**
+
+- Snow cloaking the valleys, choking passes
+- Tears freezing, sweat soaking you under warm clothes
+
+## **Tor's Fist**
+
+Almost straight north of Stonetop, this lonely mountain juts above its neighbors. It's not the tallest peak in the Whitefangs, but it's tall enough. When summer storms roll up from the south and crash against the mountains, the worst of them swirl around Tor's Fist. They'll lash the peak with lightning, and in the aftermath, green and purple lights dance around the crown.
+
+## **What's up there?**
+
+Clearly Tor's Fist holds some mystery, but its nature is for you to decide. Perhaps the mountain's peak holds…
+
+- … the tomb of **[[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher]]**, or her son, or her lover;
+- … a cleft, from which the **[[02 - The Village of Stonetop#The Village of Stonetop|Stone]]** itself was carved;
+- … one of the last thirteen **[[38 - Rime Lords#Rime Lords|Rime Lords]]**, still in stasis, protected by powerful **[[38 - Rime Lords#**Major arcana**|tulpas]]**;
+- … a potent storm-spirit, **corrupted** by the Things Below [[46 - The Things Below#**1d12** origin|The Things Below]], but bound there by ancient Rime Lord magic;
+- … the domain of a powerful, temperamental **[[12 - Fae#Fae|Fae]]**;
+- … a shattered **[[36 - Primordial Powers#**Other sites of primordial power**|portal]]**, torn open and ruined;
+- … a people of great stature, who worship **[[49 - Tor, the Rain-maker#Tor, the Rain-maker|Tor]]**;
+- … the last of the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**), grumpy and aloof;
+- … some combination of the above; or
+- … something else entirely.
+
+## **Chart a Course**
+
+To reach the summit of Tor's Fist:
+
+ You'll need to wait until late spring or summer to have any chance First you must travel to the **[[16 - The Foothills#The Foothills|Foothills]]** or **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** From there, you must travel to the base of Tor's Fist It'll take at least 5 days (from the Foothills) or 6 days (from Barrier Pass), and a corresponding amount of supplies You need a knowledgeable guide or accurate map You need to bring warm clothes, climbing gear, and fuel for cookfires The terrain is treacherous; you risk injury The way will be grueling; you risk exhausting yourselves/your resources The way is perilous, filled with dangers From the base of Tor's Fist, you can attempt to reach the summit It'll take at least 5 days, lest you get **[[54 - The Whitefang Mountains#**Ice drake**|altitude sickness]]** You need to bring a skilled mountaineer The climb is treacherous and grueling; you risk injury, exhaustion, or both You risk drawing the attention of
+
+> whatever it is that's up there You must brave the final ascent: a sheer climb in heavy winds
+
+## Terrain
+
+Pick 1 or combine 2, or have someone roll the Die of Fate (d12).
+
+## 1d12 terrain
+
+- 1-2 Glacier/snowfield/snowpack
+- 3 Lake/river/stream/waterfall
+- 4 Waterlogged soil, frozen or muddy
+- 5 Forest/woods/stand of trees/shrubs
+- 6 Sheer rock face/bluff/escarpment
+- 7 Summit/peak/false peak
+- 8-9 Steep slope/switchback trails/ridgeline
+- 10 Ravine/canyon/gorge
+- 11 Gentle slope/meadow/valley/pass
+- 12 Cave/cavern/grotto
+
+If you like, roll 1d6 for size/scope/intensity.
+
+## Discoveries
+
+For any of these, pick 1 or have someone roll the Die of Fate.
+
+## 1d6 discovery
+
+- 1 A change of terrain (previous column) and roll again.
+- 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
+- 3 An encounter (see below)
+- 4 A point of interest (next page)
+- 5 A natural resource (next page)
+- 6 A settlement (next page)
+
+## 1d6 encounter
+
+- 1 Monkeys, curious and mischievous, or perhaps signs of mountain apes [[54 - The Whitefang Mountains#**Kyakaara**|The Whitefang Mountains]]
+- 2 A patrol from a fortress-monastery [[54 - The Whitefang Mountains#**Monk**|The Whitefang Mountains]], suspicious of the PCs
+- 3 Someone in dire straits
+- 4 Villagers/layfolk, traveling or tending herds, wary
+- 5 Mammoth herders [[19 - The Frozen Wastes#**Services and favors**|The Frozen Wastes]], stiffly polite
+- 6 A tulpa [[38 - Rime Lords#**Major arcana**|Rime Lords]], a spirit of the wild [[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]], or a Fae [[12 - Fae|Fae]], curious or indifferent
+
+#### **1d6** point of interest
+
+- 1 A settlement (see below), overrun/destroyed by **[[54 - The Whitefang Mountains#**Shantyara**|kyakaara]]**
+- 2 A place corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**
+- 3 A place **haunted** by the dead or undying [[10 - Death and the Undying#**Death's Door**|Death and the Undying]]
+- 4 A site sacred to the **[[41 - Spirits of the Wild#Spirits of the wild|spirits of the wild]]** or perhaps a **[[12 - Fae#**Getting there**|Fae domain]]**
+- 5-6 A ruin or artifact of the **[[38 - Rime Lords#Rime Lords|Rime Lords]]**
+
+#### **1d6** natural resource
+
+- 1 Vein of ore/mineral deposits/valuable stone (slate, marble, pigments, etc.)
+- 2 Game, dangerous to hunt: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[19 - The Frozen Wastes#**Services and favors**|mammoth]]**, etc.
+- 3-4 Game, hard to reach/prone to bolt: monkeys, hares, goats, etc.
+- 5 **[[50 - Useful or Valuable Flora#Useful or valuable flora|Useful or valuable flora]]**
+- 6 Safe place to rest, take shelter
+
+#### **1d12** settlement
+
+- 1-2 Camp of **[[19 - The Frozen Wastes#**Services and favors**|mammoth herders]]**), likely empty/abandoned in warmer months
+- 3-6 **Farm valley** (*hamlet*), [[54 - The Whitefang Mountains#**Names**|The Whitefang Mountains]]
+- 7-8 **Farm valley** (*village*), [[54 - The Whitefang Mountains#**Names**|The Whitefang Mountains]]
+- 9-10 Lone dwelling: hermit's cave/hunter's lodge/shepherd's camp/etc.
+- 11-12 **[[54 - The Whitefang Mountains#**Monk**|Fortress-monastery]]**
+
+### **Mountain folk**
+
+The Whitefangs host a surprising number of settlements. Most are small farming valleys, even more isolated than Stonetop. But there are also a number of fortress-monasteries, like **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]**.
+
+**Something interesting:** The mountain folk's ancestors were disciples of the **[[38 - Rime Lords#Rime Lords|Rime Lords]]**, and Rime Lord teachings still influence the culture. But time, isolation, and competing philosophies have led to vastly different local traditions. An idea or practice that is lauded in one village might be ridiculed in the next. And in the village beyond that? It might get you killed.
+
+**Something useful:** Communities occasionally trade with their nearest neighbors, and folk in one settlement are familiar with the ways of the next—at least well enough to avoid offense or violence. But if you seek a guide or informant, find one who's actually been there, lest you have your ears filled with exaggerated nonsense.
+
+# **Names**
+
+Nepalese- and Tibetan-inspired: Aandha, Araayin, Bisheej, Choden, Dawa, Dhaar, Dorji, Duga, Fayurma, Hopan, Jamya, Jyat, Keshhay, Ksali, Kundari, Kunza, Lhamo, Mitis, Nobu, Nyado, Passan, Pratar, Puyari, Radhaa, Ravar, Sajadr, Sonam, Supar, Tani, Tashi, Tenzi, Tseri, Wanchu, Yonta.
+
+## **Questions**
+
+- Who among you have traveled here before? When and why?
+- Who do you know (in Gordin's Delve, perhaps) who hails from the Whitefangs?
+- Why do you think storms swirl around Tor's Fist? What do you think those strange lights are?
+- Did you once live in a farm valley, or a fortress-monastery?
+- What drove you to leave?
+- What behavior in Stonetop is strictly taboo where you once lived?
+- What practice is common where you once lived, but utterly baffling to folk in Stonetop?
+- How is (are) the language(s) of the mountain folk different from those of Stonetop?
+- Do they worship \_\_\_ up there? If so, how is that worship different than in Stonetop?
+
+## **Farm valleys**
+
+The valleys of the Whitefangs can be surprisingly pleasant. Streams flow almost year-round, freezing over but still running throughout winter. Below the tree line, tall skinny conifers grow in abundance. Many of these vales hold steadings.
+
+#### **Steading names**
+
+Amchatala, Bhatand, Bhungadi, Dhulgad, Dhurankat, Ghumjun, Heledhan, Khutan, Methala, Naungadi, Potyata, Sakokoch, Thulalu, Thundind.
+
+**Size** *hamlet* (~25 to 75 souls) or *village* (~150 to 350 souls)
+
+**Population** -1 to +1
+
+- **Prosperity** -1 to +1
+  - Trade with... ... other farm valleys (food, spouses)
+    - ... mammoth herders (ivory, meat, **dark ice**, see [[38 - Rime Lords#Dark ice|Dark ice]])
+
+### **Resources**
+
+- Farming: terraced fields, barley, lentils
+- Livestock: goats, sheep, milk, meat
+- Fine wool
+- Timber
+- Hunting/fishing
+- Trades: weaving, dyeing, bronzesmithing, etc.
+
+**Defenses** -1 for a *hamlet*, +0 for a *village*
+
+- Some spears, slings, bows
+- Some bronze tools/weapons
+- Protection from a nearby fortress-monastery
+
+For each steading, pick or roll what their neighbors say they are. Then pick or roll up to 2 features and up to 3 things that are true of everyone here and/or no one here. Imagine what a functional steading would look like with these traits. "Odd" behaviors make sense to the locals, and likely help the community survive/cohere/adapt. Ask yourself how!
+
+| 1d12 | neighbors say they are… |
+|---|---|
+| 1-2 | … monstrous/immoral/irresponsible |
+| 3-4 | … treacherous/greedy/lazy |
+| 5-6 | … arrogant/brave/reckless |
+| 7-8 | … boorish/primitive/lazy |
+| 9-10 | … generous/gullible/friendly |
+| 11-12 | … wise/noble/holy |
+
+| 1d12 | feature |
+|---|---|
+| 1 | Surroundings are tainted by the **[[54 - The Whitefang Mountains#**Shantyara**\|Howling Curse]]** |
+| 2 | A **[[54 - The Whitefang Mountains#**People**\|bhoka]]** dwells nearby |
+| 3 | Homes are made of **[[38 - Rime Lords#Dark ice\|dark ice]]**; inhabitants are inured to cold |
+| 4 | Time passes slower here than outside |
+| 5 | Gifted spirit-walkers defend the steading in dreams |
+| 6 | A famous **[[38 - Rime Lords#**Shaksa**\|adept]]** or **[[38 - Rime Lords#**Instinct** see below\|false adept]]** dwells here |
+| 7 | Entrance is secret/well-defended |
+| 8 | **[[12 - Fae#Fae\|Fae]]** live within the steading, hiding or in plain sight |
+| 9 | **[[50 - Useful or Valuable Flora#Useful or valuable flora\|Useful or valuable flora]]** grows in abundance |
+| 10 | **[[38 - Rime Lords#**1d12** purpose 1-2 Battle/sparring/protection 3-4 Companionship/advice/diplomacy/ subterfuge 5-6 Labor/mundane tasks/convenience 7-8 Curiosity/instruction/assistance/ practice 9-10 Something obscure, or very specific 11-12 Roll 1d10 twice, combine **1d12** size 1 Cat-sized or smaller (*tiny*) 2-3 Like a human child (*small*) 4-7 Human-sized 8-10 Like a horse, a cart, etc. (*large*) 11-12 Like an elephant, or bigger (*huge*) **1d12** ability 1 Possession (people and/or things) 2 Emotional influence/control 3 Elemental manipulation (ice/wind/ water/etc.) 4 Energy manipulation (light/heat/ cold/darkness/etc.) 5 Invisibility/stealth/observation/ tracking 6 Depths of knowledge/lore/ experience 7 Mind-reading/aura-sense/ true-seeing 8 Illusions/false senses/thoughtforms 9 Strength/speed/prowess/mobility 10 Dangerous physical attack(s) **1d12** tether 1-2 *Immobile* object: unable to leave its presence 3-4 Small, portable object: unable to manipulate it or leave its presence 5-6 Sculpture or construct: can animate it, but cannot leave its presence 7-8 Building or complex: can freely move about within, but cannot leave 9-10 Place or object (roll 1d6 for size/ scale): can travel but must periodically return 11 Living creature/person: can leave their presence for short periods 12 Untethered: free-roaming, independent **1d12** disposition 1 Friendly/polite/helpful 2 Apathetic/bored/lonely 3 Curious/playful/fickle 4 Resentful/duty-bound/compelled 5 Proud/dedicated/honorable 6 Confused/erratic/distraught 7 Boastful/aggressive/hostile 8 Malicious/cruel/devious 9 Timid/shy/meek 10 Focused/obsessive/anxious 11 Roll 1d10, but make it extreme 12 Roll 1d10 twice, combine\|Gingkara]]** serve and protect the locals |
+| 11 | Possess a **[[58 - Appendix D - Major Arcana\|major arcana]]** |
+| 12 | Weather is warm/pleasant year-round |
+
+## **1d12** everyone here...
+
+- 1 … abides by a caste system
+- 2 … eats some unappetizing food
+- 3 … writes wishes/prayers on rags, flapping in the wind
+- 4 … is accompanied by a clever, loyal pet
+- 5 … is beautiful/strong/skilled in \_\_/etc.
+- 6 … lives communally, with no personal possessions/space/family
+- 7 … reads/studies/debates the teachings of a/the Rime Lord(s)
+- 8 … refers to (certain?) things/people only indirectly, poetically
+- 9 … speaks truth, however blunt/unkind
+- 10 … stops to pray/sing/meditate/ dance at specific times each day
+- 11 … trains as warriors/practices pacifism
+- 12 … wears/bears a particular type of clothing/accessory/decoration
+
+## **1d12** no one here...
+
+- 1 … bears weapons (or type of weapon)
+- 2 … consumes meat/alcohol/\_\_\_
+- 3 … cuts their hair/grooms/bathes
+- 4 … discusses a particular topic/practice
+- 5 … eats/sleeps/has sex/ages past a certain point
+- 6 … fears deep water (they swim, fish, etc.)
+- 7 … goes into the woods/up the mountain/beyond the vale/etc.
+- 8 … speaks aloud/inside/to strangers/etc.
+- 9 … touches another's skin/hair/shadow
+- 10 … shows their skin/face/hair/etc.
+- 11 … speaks ill of others/admits hardship
+- 12 … tolerates a particular color/material
+
+# **Fortress-monasteries**
+
+At least a dozen fortress-monasteries remain, scattered throughout the Whitefang Mountains. **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** is one of the largest and most powerful. Each is dedicated to preserving the teachings of the **[[38 - Rime Lords#Rime Lords|Rime Lords]]**—or at least, preserving their version of them!
+
+**Size** *hamlet* (~25 to 75 souls)
+
+#### **Population** +0
+
+## **Prosperity** +0
+
+ Trade with nearby farm valleys (food, livestock, wool)
+
+## **Resources**
+
+- Tithes from nearby farm valleys
+- Terraced gardens (barley, lentils)
+- Livestock (goats, sheep, milk, meat)
+- Fine wool
+- Parchment, vellum, ink
+- Trades: bronze-smithing, weaving, dyeing, tanning, scribing, etc.
+- Rime Lord artifacts
+
+## **Defenses** +2
+
+- **[[04 - Barrier Pass#**Folk from elsewhere**|Guardians]]**
+- At least one **[[38 - Rime Lords#**Shaksa**|adept]]**
+- One or more **[[38 - Rime Lords#**Major arcana**|tulpas]]**
+- Weapons/armor of bronze, maybe **[[38 - Rime Lords#Dark ice|dark ice]]**
+- Defensible position
+
+A typical fortress-monastery has 25-50 residents, split between **[[04 - Barrier Pass#**Folk from elsewhere**|monks]]** and **[[04 - Barrier Pass#**Folk from elsewhere**|guardians]]**, plus a handful of layfolk. Most receive food and material support from a nearby farm valley or two. In turn, guardians patrol the region and monks (ostensibly) guide, teach, and serve as an example for villagers.
+
+Place each fortress-monastery in a **[[38 - Rime Lords#**A monument, or marker** For example:|Rime Lord ruin]]**, and create the **[[38 - Rime Lords#**Shaksa**|adept]]** who presides over the monks there. Referring to the previous page, roll or pick what their neighbors say they are, a feature for the fortress-monastery, plus up to 3 things that are true of everyone here and/or no one here. Finally, pick or roll a trait:
+
+# **1d12** trait
+
+- 1-2 Oppresses/extorts/ignores nearby villages, rather than serving them
+- 3-4 Recently lost its presiding adept; succession unclear
+- 5-6 Home to multiple sects, each led by a different adept
+- 7-8 Hides/protects one of the last thirteen **[[38 - Rime Lords#Rime Lords|Rime Lords]]**
+- 9-10 Very small (Population -1, only ~10 to 15 souls); roll again with d8
+- 11-12 Relatively large (*village*, up to ~300 residents); roll again with d8
+
+Use the ruin's theme(s), the adept's instinct and moves, and the fortress-monastery's details to inform the philosophy of the local sect(s). Name the sect(s), mixing and matching words from the list below. A fortress-monastery is typically named after its sect or a prominent local feature.
+
+Ape, Avalanche, Black, Breath, Bronze, Clear, Closed, Cloud, Crystal, Dancing, Dark, Day, Deep, East, Empty, Eye, Fire, Fist, Five, Flower, Flowing, Four, Frost, Grey, Hand, Heart, Ice, Implacable, Inner, Lake, Lonely, Mind, Mountain, Night, North, Open, Outer, Pale, Palm, Relentless, River, Silent, Single, Sky, Snow, South, Spirit, Spring, Still, Stone, Storm, Stream, Three, Tranquil, Two, Unmoved, Waking, West, White, Will, Wind, Winter
+
+## Trade & Barter
+
+## Commonly available
+
+The following are special items in Stonetop, but commonly available in the settlements of the Whitefang Mountains-PCs can acquire them here without having to roll for Trade & Barter. They do need to trade something of equal Value. Iron, glass, and southern fineries are usually in demand.
+
+| goods                   | value   |
+|-------------------------|---------|
+| Fine wool               |         |
+| garment                 | 0*      |
+| bolt                    | 1*      |
+| cartload ( immobile )   | 2*      |
+| Parchment, a few sheets | 1       |
+| Ink, vial and quills    | 1       |
+| Empty book, parchment   | 1       |
+
+* +1 if sold/traded outside the Whitefangs.
+
+| livestock                                                                                                                                                                        | value                                                                                                                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Whitefang goat ( sure-footed , curious , wooly ); HP 3; Damage d4 ( hand ) Instinct to explore; can butcher for provisions (6 uses); produces fine wool; sickly in warmer climes | 2                                                                                                                                                      |
+| Sheep ( timid , hardy , wooly ); HP 3; Damage d4 ( hand ); Instinct to follow the herd; can butcher for provisions (6 uses)                                                      | 1                                                                                                                                                      |
+| Sheep hound , follower ( keen-nosed , herder , fierce ); HP 6; Damage d6 ( hand , grabby ); Instinct to bully, threaten; Cost care &grooming                                     | 1                                                                                                                                                      |
+| Special items                                                                                                                                                                    | Special items                                                                                                                                          |
+| The following might be acquired in the settlements of the Whitefang Mountains, in addition to special items from the Moves &Gear handout.PCs must roll                           | The following might be acquired in the settlements of the Whitefang Mountains, in addition to special items from the Moves &Gear handout.PCs must roll |
+
+When PCs Trade & Barter in a settlement , they use the local Prosperity (with disadvantage if it's a hamlet ). On a 6, they don't mark XP; no one here can/wants to trade-maybe try the next settlement?
+
+| goods | value |
+|---|---|
+| Robe/shawl, fine wool, intricately patterned ( warm , beautiful ) | 1* |
+| Ivory |  |
+| a bit of finery | 1 |
+| a substantial piece | 2 |
+| a mammoth tusk ( immobile ) | 3 |
+| cartload of mammoth tusks | 4 |
+| Dark ice (*magical*, see [[38 - Rime Lords#**1d6** condition\|Rime Lords]]) |  |
+| a small piece ( magical ) | 1 |
+| a large chunk ( magical) | 2 |
+| with special characteristics | +1 |
+| a functional tool or weapon | +2 |
+| An object of black iron [[36 - Primordial Powers#**Portals**\|Primordial Powers]] | +2 |
+
+* +1 if sold/traded outside the Whitefangs.
+
+## Services and favors
+
+PCs don't need to roll Trade & Barter for the following, but they might need to Persuade people-even if they offer something of suitable Value. If the PCs are well-regarded by locals, they might get these boons for free, or without needing to Persuade anyone, or at a reduced price.
+
+| service/favor                                                   |   value |
+|-----------------------------------------------------------------|---------|
+| A few nights of simple food and shelter                         |       0 |
+| A day's labor                                                   |       0 |
+| A crew of farmers, working for a week                           |       1 |
+| Consultation with a monk                                        |       1 |
+| Audience with an adept                                          |       2 |
+| Weeks of guided study with a monk                               |       2 |
+| A mountain guide, to lead a trip to... ... a nearby farm-valley |       0 |
+| ... another known, nearby spot                                  |       1 |
+| ... a dangerous/unknown spot                                    |       2 |
+| ... a secret/deadly place                                       |       3 |
+
+## **Avalanche**
+
+ Everyone who lives in these mountains learns to spot the signs.
+
+**Instinct** to gather mass, to bury all in its path
+
+- <sup>ä</sup> Have one cascade down a distant slope, majestic and terrifying
+- <sup>ä</sup> Point out the snowpack, looming on the slopes above
+- <sup>ä</sup> Note how a storm adds mass to the snowpack
+- <sup>ä</sup> Point out the dimples as sun/warmth undermine its structure
+
+When an avalanche starts above them, start the following:
+
+l A chunk of snow gives way l It gains mass, momentum; it'll be here in a matter of minutes l It rushes towards them, imminent l They're buried under snow and ice (d8+2 damage, *forceful*, ignores armor) l They're trapped, disoriented, suffering **hypothermia & frostbite** (see below)
+
+ It gets cold in the mountains. Very, very cold.
+
+- <sup>ä</sup> Start them shivering, despite fire/ warm clothing
+- <sup>ä</sup> Test their endurance on even simple tasks
+- <sup>ä</sup> Have them lose their footing/grip
+- <sup>ä</sup> Inflict a debility
+- <sup>ä</sup> Have frostbite set in (d6 damage, ignores armor)
+- <sup>ä</sup> Have frostbite get worse (+messy)
+- <sup>ä</sup> Compel them to do something foolish (go to sleep, shed clothing, etc.)
+
+### **Altitude sickness**
+
+ Dangerously thin air starts a couple thousand feet below the snowline, and gets worse the higher you go. Locals are accustomed to the thin air, but even they must be careful.
+
+- <sup>ä</sup> Test their endurance to keep going, or just to breathe
+- <sup>ä</sup> Inflict a debility
+- <sup>ä</sup> Reveal that they've missed something
+- <sup>ä</sup> Have them collapse, unable to continue
+- <sup>ä</sup> Fill their lungs with fluid, swell their brains, have them roll for Death's Door
+
+**Something interesting:** Disciples of the Rime Lords practice techniques to thrive in the thin air, but they take months or years to master.
+
+**Something useful:** One can acclimate safely by ascending no more than ~1,000 feet each day, and even then, extreme exertion can be dangerous. A tea steeped from purple drakewort can alleviate symptoms, but an overdose can cause death by suffocation.
+
+#### **Monsters**
+
+- Predators: **[[23 - The Great Wood#**Butcherbird**|cave bears]]**, **[[23 - The Great Wood#**Questions**|cougars]]**, and **[[23 - The Great Wood#**Nailadd**|wolves]]**
+- **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]**
+- **[[10 - Death and the Undying#**Pyped**|Wraiths]]** of those who died of starvation and want, or corrupted by the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**
+- **[[38 - Rime Lords#**Major arcana**|Tulpas]]**, free-roaming or bound to something nearby
+
+### **People**
+
+- Guardians, monks, or novices from **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]**
+- An **[[38 - Rime Lords#**Shaksa**|adept]]**
+- A **[[38 - Rime Lords#**Instinct** see below|false adept]]**, or their minions
+
+## **Bhoka**
+
+*Solitary*, *large*, *cautious*, *magical*, *corrupted*
+
+**HP** 16; **Armor** 1 (hide)
+
+**Damage** talons 1d10+3 (*hand*, *close*, *grabby*, *forceful*)
+
+**Special qualities** blinded by full daylight or holy light, takes +1d4 damage from bronze
+
+## **Instinct** see below
+
+<sup>ä</sup> Slink through trees and shadows
+
+These hulking brutes dwell in dark places: caves, north-facing slopes, and deep mountain forests. They're hairy things, hunched and wild, only vaguely looking like people. They'd be little more than dangerous beasts, easily avoided, if they weren't driven by an obsessive vice—and if they didn't wield the wild elements themselves.
+
+Pick or roll for the bhoka's instinct and the associated moves.
+
+## **1d6** instinct/moves
+
+- 1 **Instinct** to bask in the fear/adoration of others
+  - <sup>ä</sup> Bellow like thunder, terrifying and awesome
+  - <sup>ä</sup> Fling lightning, 1d10+3 damage (*far*, *forceful*, *loud*, *reload*)
+- 2 **Instinct** to steal finery, companionship, and precious things
+  - <sup>ä</sup> Skulk about a steading, choosing its targets
+  - <sup>ä</sup> Turn themselves (and anything they take) into flowing mist
+- 3 **Instinct** to sate its never-ending hunger
+  - <sup>ä</sup> Chomp off a limb and gulp it down, 1d10+5 damage (*hand*, *messy*, 3 piercing)
+  - <sup>ä</sup> Create a maelstrom of wind, sucking everything nearby towards its gaping maw (*near*, *area*, *reload*)
+- 4 **Instinct** to lash out and avenge itself for even the slightest offence
+  - <sup>ä</sup> Snatch someone and fling them against a wall/tree/ally
+  - <sup>ä</sup> Transform into a swirling cloud of wind, hail, sleet, and lightning; 1d10+3 damage (*area*, *reach*, *forceful*, *reload*)
+- 5 **Instinct** to be lazy, to force others into servitude
+  - <sup>ä</sup> Drag someone off into the night
+  - <sup>ä</sup> Freeze things: flesh, moisture, the very air
+- 6 Roll again twice
+
+Also, pick or roll one:
+
+## **1d6** special trait
+
+- 1 *Huge* (+4 HP, +2 damage)
+- 2 Four or even six arms (+*area* to its damage)
+- 3 Lashing tongue/tail, 1d8+1 damage (*reach*, *grabby*)
+- 4 Scales of ice/rock (Armor 3)
+- 5 Wings (can fly)
+- 6 Regenerates wounds, unless from ritually prepared weapons
+
+**Something interesting:** The people of the Whitefangs fear bhoka and are well aware of the dangers they pose, but they never hunt them. They seem content to drive them off or appease them.
+
+**Something useful:** The monks claim that bhoka descended from **[[38 - Rime Lords#Rime Lords|Rime Lords]]** who were corrupted by the **[[46 - The Things Below#The Things Below|Things Below]]**. They cannot abide the sound of the Rime Lords' meditative chants, recoiling and fleeing from anyone who performs such a chant without faltering.
+
+## **Guardian**
+
+*Group*, *organized*, *hardy*, *skilled* **HP** 10; **Armor** 2 (hides, shields) **Damage** bronze or dark ice-tipped weapons 1d8 (tags by weapon) **Instinct** to protect their charges
+
+- <sup>ä</sup> Use the terrain to their advantage
+- <sup>ä</sup> Take a blow meant for another
+- <sup>ä</sup> Perform a feat of endurance, agility, or will (*reload*)
+
+The fortress-monasteries of the Whitefangs each maintain a cadre of warriors, recruited from local farm valleys, bands of mammoth herders, or failed novices. They focus more on the arts of battle than the esoteric ways of the monks.
+
+## **Ice drake**
+
+*Horde*, *small*, *cautious*, *stealthy*
+
+**HP** 3; **Armor** 0
+
+**Damage** claws, beak, or wing-buffet d4 (*hand*)
+
+**Special qualities** cold-proof, camouflaged, winged
+
+**Instinct** to spook easily and overreact
+
+- <sup>ä</sup> Burrow/dig into snow or ice, to forage or hide
+- <sup>ä</sup> Shake off a blast of clinging, freezing mist, 1d4 damage (*close*, *area*, *reload*)
+- <sup>ä</sup> Scatter and flee to the skies
+
+Like cranes, long-legged and long-necked, with long whipping tails. They're hardly a threat in warmer months. But in winter when their scales and feathers grow laden with hoarfrost—shepherds watch for their sign and avoid them. Wander into their midst, and you'll get coated in a clinging, frozen mist that often leads to **[[54 - The Whitefang Mountains#**Ice drake**|hypothermia & frostbite]]**.
+
+Ice drake fat and blood never freezes. Properly rendered in a kitchen, it makes an oil used to insulate leather and wool garments. A flock of 8-12 drakes yields a jar of ice drake oil (Value 1 locally, Value 3 in the south).
+
+## **The Howling Curse** Threat (*affliction*)
+
+**Instinct** to make people into monsters
+
+In the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**, the voice of **[[46 - The Things Below#**Hlad, the Devourer, the Eternal Maw**|Y'aaw'kara]]** plunged the north into madness. Whole villages turned against each other. The survivors were reduced to marauding beasts. The **[[38 - Rime Lords#Rime Lords|Rime Lords]]** sacrificed themselves to contain the Howling Curse, but it lingers in places where cruelty and violence have caused great suffering.
+
+Places tainted by the Howling Curse are **[[46 - The Things Below#**1d12** origin|corrupted sites]]**, hungry places or worse, full of **whispers and visions** (see [[46 - The Things Below#**Voice of the Eternal Maw**|The Things Below]]) that push people towards bloodshed, cruelty, and savagery. People tainted by the Howling Curse carry such whispers and visions with them.
+
+When you *give in to the bloodlust of the Howling Curse*, pick up to 3 options that are not yet permanent:
+
+l Your fingers grow long, your grip grows terribly strong (*grabby*, *forceful*) l You grow stringy and gaunt, and revel in pain; gain +1 armor l You hunch and giggle; gain +4 HP (even above your max), and your instinct becomes "Cruelty: to hurt others." l Your eyes turn feral; you can see in the dark, but red is the only color you see l Your jaw distends, you grow fangs (*hand*, *messy*), and you gain a taste for blood and raw meat
+
+When the *violence comes to an end*, roll +1 for each option you have chosen. If you wrought great carnage, roll with advantage. **On a 10+**, the options you chose are permanent, and you are now tainted by the Howling Curse (if you weren't already); **on a 7-9**, the options you chose linger until you vent your rage on a person or thing of your choice; **on a 6-**, don't mark XP, and both the rage and the options you chose fade as you catch your breath—only nightmares will remain.
+
+When all five options above are permanent, you become a **kyakaara** (next page) and cease to be a PC. Tell the GM to write you up as a monster and as a threat.
+
+## **Kyakaara**
+
+ *Horde*, *hardy*, *organized*, *fearless*, *sadistic*, *terrifying*, *corrupted*
+
+**HP** 10; **Armor** 1 (toughness)
+
+**Damage** rending fingers/claws d4+2 w/ advantage (*hand*, *grabby*, *forceful*, *messy*, 1 piercing), or crude weapons d6 w/ advantage (tags by weapon)
+
+**Special qualities** inured to cold, take +1d4 damage from bronze, see only in shades of red
+
+**Instinct** to delight in pain, savor fear, and indulge in every cruelty
+
+- <sup>ä</sup> Drive their prey to panic
+- <sup>ä</sup> Maim or traumatize someone
+- <sup>ä</sup> Surround, harry, dogpile, drag down
+- <sup>ä</sup> Drag off a captive, to eat or torture
+
+These are the Howlers, the Ones-Who-Laugh, those who have succumbed to the **Howling Curse** (previous page). They are gaunt and hairy, dressed in rags, with jaws that have grown into snarling, fang-filled snouts. They pierce their own flesh. They hunch and howl and cackle.
+
+During the **[[55 - Appendix A - Ages of the World#Time of Cataclysm|Time of Cataclysm]]**), kyakaara roamed freely; now they are thankfully rare. Treat them as a threat, beasts, with the following grim portents and impending doom.
+
+l They take up residence near a community and stalk likely victims l They kidnap locals, forcing them to commit atrocities upon each other l Surviving captives become kyakaara; their numbers swell
+
+l **Impending doom**: They overrun the community, slaughter many, corrupt the rest, then set out towards the
+
+## **Monk**
+
+ *Group*, *cautious*, *disciplined*, *hardy*, *magical*
+
+**HP** 10; **Armor** 0
+
+**Damage** staff d8 with disadvantage (*close*) **Special qualities** spirit sight; inured to hunger, cold, deprivation
+
+**Instinct** to preserve their version of the Rime Lords' teaching
+
+- <sup>ä</sup> Demonstrate their willpower
+- <sup>ä</sup> Take an extreme, unyielding position/stance/course of action
+- <sup>ä</sup> Do something impossible, in line with their sect's teachings
+
+Consider creating custom instincts and moves for each group of monks, based on the teachings and practices of the **fortressmonastery** and sect from which they hail [[54 - The Whitefang Mountains#**Monk**|The Whitefang Mountains]].
+
+## **Novice**
+
+*Group*, *cautious*, *disciplined*, *meek*
+
+**HP** 6; **Armor** 0
+
+**Damage** staff d8 with disadvantage (*close*) **Special qualities** inconsistent spirit sight **Instinct** to veer between their masters' teachings and their base needs
+
+- <sup>ä</sup> Do what their superiors ask
+- <sup>ä</sup> Hesitate, balk, flinch
+- <sup>ä</sup> Show great promise, or great weakness
+
+## **Mountain ape**
+
+*Group*, *cautious*, *stealthy*, *hoarder* **HP** 6; **Armor** 1 (thick fur, hide)
+
+**Damage** grasping hands d8+2 (*reach*, *close*, *grabby*, *forceful*)
+
+**Special qualities** arboreal, cold proof, keen senses of smell and hearing
+
+**Instinct** to keep their secrets
+
+- <sup>ä</sup> Hide in the trees or snowdrifts
+- <sup>ä</sup> Try to lure/spook intruders away
+- <sup>ä</sup> Reach out, snatch an intruder by surprise
+- <sup>ä</sup> Crush/rend/break a grabbed foe, d8+2 damage w/advantage (*hand*, *forceful*, *messy*, 1 piercing)
+
+Like orangutans but taller, more powerfully built, with thick, shaggy white hair. They dwell in small bands, in **[[38 - Rime Lords#**A monument, or marker** For example:|Rime Lord ruins]]** or **[[41 - Spirits of the Wild#Sacred sites|sacred sites]]** that are far from any well-trod trails. They venture out to hunt and gather, but avoid people as much as they can.
+
+Each band of mountain apes collects things: a particular type of plant or flower, the bones of certain animals, bits of writing, **[[38 - Rime Lords#Dark ice|dark ice]]**, etc. They keep these hoards in a central place, hidden away, revered and treasured even more than their own children or their lives. Particularly large or well-established bands will have an alpha (*large*, *leader*, +6 HP, +1 damage) who does nothing but protect the hoard.
+
+## **Shantyara**
+
+*Solitary*, *emotionless*, *clever*, *stealthy*, *hardy*, *skilled*, *terrifying*
+
+**HP** 18; **Armor** 2 (thick hides/furs, skill) **Damage** orichalcum sword d10+2 w/advantage (*close*, *messy*, 2 piercing) or bronze knife d10 w/advantage (*hand*, 1 piercing) **Special qualities** spirit-sight; immune to
+
+mental manipulation; inured to cold, hunger, pain, deprivation; hard to surprise **Instinct** to cleanse the world of the
+
+Howling Curse <sup>ä</sup> Stalk a suspect with perfect patience
+
+<sup>ä</sup> Condemn the tainted for all to hear <sup>ä</sup> Try to avoid bloodshed for the
+
+<sup>ä</sup> Mercilessly cut down the condemned, and any who protect them
+
+<sup>ä</sup> Deftly counter an attack they see coming
+
+untainted Only a handful of these "tranquil killers" remain, three or four at most. They wander the Whitefangs, hunting **[[54 - The Whitefang Mountains#**Shantyara**|kyakaara]]** and anyone else corrupted by the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**. They are welcome in any settlement, but that welcome is often stilted, formal, fraught. Few are comfortable under a shantyara's piercing gaze.
