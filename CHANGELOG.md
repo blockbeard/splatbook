@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Stonetop engine skeleton (`src/lib/games/stonetop/engine/`): the game's pure
+  rules layer, attached to the module's `engine` slot and opaque to the shell. A
+  Stonetop-specific character model (playbook/background/instinct/appearance/
+  origin/stats/moves/possessions/extras/introductions plus box trackers, HP, and
+  advancement), stamped with a `SCHEMA_VERSION` the module will migrate against.
+  Pure helpers (`createCharacter`, `setTrackerMarks` clamping to `[0, boxes]`,
+  `statValue`) and a validation framework: one `Validator` per wizard step keyed
+  by `StepId`, composed by `validateCharacter` into severity-tagged `Issue`s with
+  `isComplete` gating on errors. Only the schema-version check has teeth today;
+  the per-step validators are empty stubs that firm up as their steps land
+  (21–28). No UI/DB/SvelteKit imports; unit-tested.
 - GM-only visibility flag and Book II ingest: Stonetop's Book II (The Wider World,
   2,003 sections) is now built into the pack as `rules/book-ii.json`, flagged
   `gm`. A single gate (`GM_CONTENT_VISIBLE` in `$lib/reference/load`, `false` for
