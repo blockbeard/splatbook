@@ -36,6 +36,12 @@ export interface GameModule {
 	/** Seed a blank wizard draft (the game's own entity shape). The shell renders
 	 * it opaquely; the game owns what's inside. Required to run the wizard. */
 	newDraft?: () => object;
+	/**
+	 * Surface the columns the shell persists for a saved entity without the shell
+	 * ever parsing the opaque `data` blob: a display `name`, the `entityType`
+	 * (character/steading/…), and the game's own `schemaVersion` for this shape.
+	 * Required for a game's entities to be saved/loaded. */
+	entityMeta?: (draft: object) => { name: string; entityType: string; schemaVersion: number };
 	/** Character-sheet component, rendered from a saved/finished draft. */
 	sheetComponent?: Component<SheetProps>;
 }

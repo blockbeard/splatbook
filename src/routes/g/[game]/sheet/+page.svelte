@@ -14,8 +14,12 @@
 
 	const game = $derived(getGame(data.gameId)!);
 	const Sheet = $derived(game.sheetComponent!);
+	// A saved entity (loaded by `?id=`) wins; otherwise read the local autosave.
 	const character = $derived(
-		browser ? loadDraft<object>(localStorage, draftKey(data.gameId, 'character', 'current')) : null
+		data.saved?.data ??
+			(browser
+				? loadDraft<object>(localStorage, draftKey(data.gameId, 'character', 'current'))
+				: null)
 	);
 </script>
 

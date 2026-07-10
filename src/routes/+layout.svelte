@@ -1,17 +1,29 @@
 <script lang="ts">
 	import '../app.css';
+	import { browser } from '$app/environment';
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import { APP_NAME } from '$lib';
 	import { listGames } from '$lib/games';
+	import { migrateLocalDrafts } from '$lib/entities/client';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import AuthControl from '$lib/components/AuthControl.svelte';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	// With a single game registered there is nothing to pick — the shell
 	// shows a direct link and the picker stays hidden until game #2 exists.
 	const games = listGames();
+
+	// On sign-in, push any drafts built while logged out up to the database
+	// (once per account, best-effort). See $lib/entities/client.
+	let migratedFor = $state<string | null>(null);
+	$effect(() => {
+		const uid = data.session?.user?.id;
+		if (!browser || !uid || migratedFor === uid) return;
+		migratedFor = uid;
+		void migrateLocalDrafts(localStorage);
+	});
 </script>
 
 <svelte:head>

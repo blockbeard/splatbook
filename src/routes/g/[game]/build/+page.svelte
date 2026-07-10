@@ -7,8 +7,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import { getGame } from '$lib/games';
 	import { Wizard } from '$lib/wizard';
+	import { draftToPayload, saveEntity } from '$lib/entities/client';
 
 	let { data } = $props();
 
@@ -17,9 +19,23 @@
 	const steps = $derived(game.wizardSteps ?? []);
 	const initialDraft = $derived(game.newDraft!());
 
-	// On Finish, the draft is already autosaved; the sheet reads the same slot.
-	const finish = (): void => {
-		if (game.sheetComponent) goto(resolve('/g/[game]/sheet', { game: data.gameId }));
+	// On Finish: if signed in, persist the finished character and open its saved
+	// sheet; otherwise fall back to the local autosave slot the sheet also reads.
+	const finish = async (draft: object): Promise<void> => {
+		const sheet = resolve('/g/[game]/sheet', { game: data.gameId });
+		if (page.data.session?.user) {
+			const payload = draftToPayload(data.gameId, draft, { status: 'ready' });
+			if (payload) {
+				try {
+					const saved = await saveEntity(payload);
+					await goto(`${sheet}?id=${saved.id}`);
+					return;
+				} catch {
+					// Network hiccup — fall through to the local sheet so work isn't lost.
+				}
+			}
+		}
+		if (game.sheetComponent) await goto(sheet);
 	};
 </script>
 

@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Save and load characters to the database. A `userId`-scoped entity service
+  (create/update/get/list/status/delete/duplicate — ownership enforced in every
+  query) backs a REST endpoint: `GET/POST /api/entities` and
+  `GET /api/entities/<id>`, both session-guarded. Finishing the builder while
+  signed in persists the character and opens its saved sheet (`?id=`); the sheet
+  loads a saved entity by id, else the local autosave. Drafts built while logged
+  out migrate to the database on sign-in (best-effort, once per account). The
+  shell never parses the blob — a new `GameModule.entityMeta` hook has the game
+  supply name/entityType/schemaVersion. Service, client helpers, and migration
+  logic are unit-tested; ownership isolation is covered explicitly.
 - Authentication via Auth.js (`@auth/sveltekit` + Drizzle adapter). A zero-config
   **dev-login** provider is on by default so local work needs no OAuth setup;
   Google and Discord switch on automatically when their id/secret env vars are
