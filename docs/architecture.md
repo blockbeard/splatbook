@@ -34,9 +34,10 @@ problem to solve, not an exception to grant.
 
 1. **The shell touches game code only through the `GameModule` registry.** No
    `import … from '$lib/games/stonetop/…'` anywhere in shell code. The module
-   interface (`{ id, name, packSchemas, engine, entityTypes }`) is the entire
-   surface area. If the shell needs something new from a game, the interface
-   grows — explicitly, in its own commit.
+   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide? }`) is the
+   entire surface area. If the shell needs something new from a game, the interface
+   grows — explicitly, in its own commit (as `entityTypes` did in phase 6 and
+   `gmGuide` in phase 7).
 
 2. **Game modules never import each other.** Stonetop code may not know HMtW
    exists. Shared needs get promoted to the shell (via rule 1), never traded
@@ -81,9 +82,20 @@ The shell **iterates the map**; it never hard-codes a type. Routes are
 all read the type from the map key rather than branching on `character`. This
 followed the discipline above: the map arrived only when steadings (phase 6) became
 the second entity type — until then a single flat set of character slots was
-enough. Note this is a second *entity type within one game*, not a second game; the
-"no universal character model" ban still holds — the shapes inside each type stay
-the game's own, opaque to the shell.
+enough. Threats (phase 7) then slotted in as a *third* type with no shell change,
+which is the map earning its keep. Note these are extra *entity types within one
+game*, not extra games; the "no universal character model" ban still holds — the
+shapes inside each type stay the game's own, opaque to the shell.
+
+## The GM guide slot
+
+The other way the `GameModule` interface has grown is the optional `gmGuide` slot
+(phase 7): a game's GM-facing *reference* — agenda, moves, procedures, interactive
+tables, flow diagrams. It is deliberately **not** an entity type, because nothing is
+saved; it sits outside `entityTypes`. It declares a pack file, an ordered list of nav
+`sections`, and a `component` that renders one section; the shell serves and routes it
+at `/g/[game]/gm` without inspecting the pack shape. Same discipline as everything
+else: a new registry slot, added explicitly, that a game opts into or omits.
 
 ## Theming
 
@@ -95,8 +107,9 @@ scope; it never introduces raw colors in components. Light/dark is a class on
 
 ## Persistence
 
-- Drizzle ORM. better-sqlite3 locally and on atlas; D1 when the Cloudflare
-  deployment lands (phase 8). Schema in `src/lib/server/db/schema.ts`.
+- Drizzle ORM. better-sqlite3 locally and on atlas; D1 for the Cloudflare
+  deployment, selected by the `ADAPTER` env var (phase 8). Schema in
+  `src/lib/server/db/schema.ts`; deployment in `docs/deployment.md`.
 - Server-only code lives under `src/lib/server/` (SvelteKit enforces the
   client/server boundary on that path).
 - Entities use the blob model above. Structured columns are reserved for things
@@ -129,4 +142,5 @@ scope; it never introduces raw colors in components. Light/dark is a class on
 When game #2 arrives, adding it must touch only `content/<gameId>/` (or
 `static/content-packs/<gameId>/`) and `src/lib/games/<gameId>/`. If it needs shell
 changes, that is the extraction moment: do the abstraction then, with two real
-games in hand — not preemptively with one.
+games in hand — not preemptively with one. The step-by-step is
+`docs/adding-a-game.md`, written against the real Stonetop module.

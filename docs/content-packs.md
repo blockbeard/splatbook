@@ -148,36 +148,13 @@ The GM guide is public today (unlike GM-only *rules* documents, which stay gated
 by `GM_CONTENT_VISIBLE`); if a future game's guide needs gating, that is the
 same phase-9 gate to reuse.
 
-## Adding a new game (first draft)
+## Adding a new game
 
-*This walkthrough gets refined every time the boundary is exercised, and gets a
-full rewrite against reality when game #2 actually lands (plan, commit 56). The
-test of the framework: all of this touches only `static/content-packs/<gameId>/`
-and `src/lib/games/<gameId>/` — if a step needs a shell change, that is the
-abstraction moment, and the shell change happens deliberately, in its own commit.*
-
-1. **Make the pack.** `static/content-packs/<gameId>/` with `manifest.json`
-   (id = folder name), `LICENSE.md` recording the text's license and attribution
-   — check the publisher's fan-content / licensing position *first* — and your
-   data files under `data/`. Write a `SCHEMA.md` as you go; it is the document
-   you will thank yourself for.
-2. **Write the schemas.** `src/lib/games/<gameId>/pack-schemas.ts`: Zod schemas
-   for your data files and a `schemaFor(relPath)` resolver. Start strict for
-   whatever the app will consume first; pin envelopes for the rest.
-3. **Create the module.** `src/lib/games/<gameId>/index.ts` exporting a
-   `GameModule` (`{ id, name, packSchemas, entityTypes: {} }` to begin with).
-   Each entity type your game offers (character, steading, …) is an entry in
-   `entityTypes`, keyed by its persisted `entityType`; its slots (`label`,
-   `newDraft`, `entityMeta`, `wizardSteps`, `sheetComponent`, `playComponent`)
-   fill in as the game grows into the later phases. All slots are optional — a
-   wizard-built type sets `wizardSteps` + `newDraft`; an editor-first type
-   (steading) leaves `wizardSteps` empty and puts its editor in `playComponent`.
-4. **Register it.** Add one `registerGame(<game>)` line to
-   `src/lib/games/index.ts`. This is the only edit outside your two folders.
-5. **Prove it.** `npm run validate:packs` green; add round-trip tests like
-   `src/lib/games/stonetop/pack.test.ts` (parse every file, snapshot ids,
-   check cross-references). `/g/<gameId>` now resolves, and the header nav
-   becomes a game picker the moment a second game exists.
-
-What you do *not* do: import another game's module, put game strings in app
-code, or bend a shell abstraction to fit — rules 1–3 in `architecture.md`.
+This file is the **pack-format reference** — the manifest, validation, document
+trees, and the GM-guide pack shape above. The end-to-end **walkthrough** for adding
+a game (pack → schemas → engine → module → register → prove), written against the
+real Stonetop module, is `docs/adding-a-game.md`. The boundary it keeps: everything
+touches only `static/content-packs/<gameId>/` and `src/lib/games/<gameId>/`, plus
+the two one-line registrations — if a step needs a shell change, that is the
+abstraction moment, made deliberately in its own commit (rules 1–3 in
+`architecture.md`).
