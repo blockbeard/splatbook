@@ -274,24 +274,134 @@ export type InventoryInsert = z.infer<typeof inventoryInsertSchema>;
 export type Gear = z.infer<typeof gearSchema>;
 export type SmallItem = z.infer<typeof smallItemSchema>;
 
-/** The steading sheet. Top-level keys pinned; interiors firm up in phase 6. */
+/** One Resources/Fortifications-style starting list with its write-in count. */
+const startingListSchema = z.strictObject({
+	starting: z.array(z.string().min(1)),
+	writeIns: z.number().int().nonnegative()
+});
+
+/** A steading numeric stat: a start value and an optional printed range. */
+const steadingStatSchema = z.strictObject({
+	start: z.number().int(),
+	range: z.tuple([z.number().int(), z.number().int()]).optional()
+});
+
+/**
+ * One Improvement requirement entry: a plain string, or a `{ text, boxes }`
+ * multi-box "Pull Together" requirement (the boxes are the ◇ to tick).
+ */
+const requirementEntrySchema = z.union([
+	z.string().min(1),
+	z.strictObject({ text: z.string().min(1), boxes: z.number().int().positive().optional() })
+]);
+
+/**
+ * The `requires` block of an Improvement. Every combinator the printed sheet
+ * uses: `all` (do them all), `either`/`orAll` (this one OR all of those),
+ * `pick` N of `options`, `andThen` follow-ups, `andEstablish` a nested pick,
+ * `perTactic` drilling across `tactics`, and `inOrder` for sequenced steps.
+ */
+const requiresSchema = z.strictObject({
+	all: z.array(requirementEntrySchema).optional(),
+	either: z.array(requirementEntrySchema).optional(),
+	orAll: z.array(requirementEntrySchema).optional(),
+	pick: z.number().int().positive().optional(),
+	options: z.array(requirementEntrySchema).optional(),
+	andThen: z.array(requirementEntrySchema).optional(),
+	andEstablish: z
+		.strictObject({ pick: z.number().int().positive(), options: z.array(requirementEntrySchema) })
+		.optional(),
+	perTactic: z.string().min(1).optional(),
+	tactics: z.array(requirementEntrySchema).optional(),
+	inOrder: z.boolean().optional()
+});
+
+/** One catalogue Improvement: flavour summary, requirement tree, effects text. */
+const improvementSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	summary: z.string().min(1),
+	requires: requiresSchema,
+	effects: markdown
+});
+
+/** The steading sheet — the second entity type's pack data (phase 6). */
 export const steadingSchema = z.strictObject({
 	id,
 	name: z.string().min(1),
 	type: z.literal('steading'),
 	source: sourceSchema,
-	stats: z.unknown(),
-	resources: z.unknown(),
-	fortifications: z.unknown(),
-	debilities: z.unknown(),
-	placesOfInterest: z.unknown(),
-	content: z.unknown(),
-	improvements: z.array(z.unknown()).min(1),
-	otherImprovements: z.unknown(),
-	assets: z.unknown(),
-	residents: z.unknown(),
-	neighbors: z.unknown()
+	stats: z.strictObject({
+		fortunes: steadingStatSchema,
+		surplus: steadingStatSchema,
+		size: z.strictObject({
+			start: z.string().min(1),
+			options: z.array(
+				z.strictObject({ id, label: z.string().min(1), note: z.string().optional() })
+			)
+		}),
+		population: steadingStatSchema,
+		prosperity: steadingStatSchema,
+		defenses: steadingStatSchema
+	}),
+	resources: startingListSchema,
+	fortifications: startingListSchema,
+	debilities: z.array(
+		z.strictObject({
+			id,
+			name: z.string().min(1),
+			cause: z.string().min(1),
+			effect: z.string().min(1)
+		})
+	),
+	placesOfInterest: z.strictObject({
+		starting: z.array(z.strictObject({ marker: z.string().min(1), name: z.string().min(1) })),
+		writeInMarkers: z.array(z.string().min(1))
+	}),
+	content: z.strictObject({
+		text: markdown,
+		lists: z.array(z.strictObject({ id, title: z.string().min(1), note: z.string().optional() }))
+	}),
+	improvements: z.array(improvementSchema).min(1),
+	otherImprovements: z.strictObject({
+		text: z.string().min(1),
+		blankCards: z.number().int().nonnegative(),
+		cardFields: z.array(z.string().min(1))
+	}),
+	assets: z.strictObject({
+		text: z.string().min(1),
+		starting: z.array(z.string().min(1)),
+		writeIns: z.number().int().nonnegative(),
+		treasure: z.strictObject({
+			silver: z.array(z.string().min(1)),
+			gold: z.array(z.string().min(1))
+		})
+	}),
+	residents: z.strictObject({
+		text: z.string().min(1),
+		columns: z.array(z.string().min(1)),
+		prefilledOccupations: z.array(z.string().min(1)),
+		names: z.array(z.string().min(1)),
+		npcTraits: z.array(z.string().min(1))
+	}),
+	neighbors: z.strictObject({
+		text: z.string().min(1),
+		columns: z.array(z.string().min(1)),
+		places: z.array(
+			z.strictObject({
+				name: z.string().min(1),
+				note: z.string().optional(),
+				namesNote: z.string().optional(),
+				names: z.array(z.string().min(1))
+			})
+		)
+	})
 });
+
+export type SteadingPack = z.infer<typeof steadingSchema>;
+export type SteadingImprovement = z.infer<typeof improvementSchema>;
+export type SteadingRequires = z.infer<typeof requiresSchema>;
+export type RequirementEntry = z.infer<typeof requirementEntrySchema>;
 
 /** The GM playbook as reference data. Top-level keys pinned; interiors firm up in phase 7. */
 export const gmSchema = z.strictObject({

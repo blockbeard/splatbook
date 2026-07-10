@@ -79,12 +79,21 @@
 </svelte:head>
 
 <div class="mb-6 flex items-center justify-between">
-	<a
-		href={savedId ? `${sheetPath}?id=${savedId}` : sheetPath}
-		class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
-	>
-		← {data.typeLabel} sheet
-	</a>
+	{#if data.hasSheet}
+		<a
+			href={savedId ? `${sheetPath}?id=${savedId}` : sheetPath}
+			class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+		>
+			← {data.typeLabel} sheet
+		</a>
+	{:else}
+		<a
+			href={resolve('/g/[game]', { game: data.gameId })}
+			class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+		>
+			← {data.gameName}
+		</a>
+	{/if}
 	<span class="text-sm text-muted" aria-live="polite">{savedLabel}</span>
 </div>
 

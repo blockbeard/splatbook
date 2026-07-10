@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Steading builder (phase 6, in progress).** Stonetop's second entity type. A
+  steading has no build wizard — it's an editable tracker sheet from creation,
+  reached via "Create a steading" on the game home or a fresh draft in the
+  editor. The engine model covers the five numeric stats
+  (Fortunes/Surplus/Population/Prosperity/Defenses) with their printed ranges,
+  the Size ladder, the four-season cycle, and the three debilities, all as pure
+  clamped functions. The editor (commit 44) steps stats, walks Size, picks the
+  season, and toggles debilities, autosaving as you go. The steading pack schema
+  (`the-steading.json`) is now fully validated rather than a loose envelope.
+
 ### Changed
 
 - **`GameModule` now carries an `entityTypes` map** instead of a single flat set

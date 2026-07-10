@@ -30,6 +30,7 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 		entityType: params.type,
 		typeLabel: type.label,
 		editorFirst,
+		hasSheet: !!type.sheetComponent,
 		saved
 	};
 };
