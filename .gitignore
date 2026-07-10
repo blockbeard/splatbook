@@ -1,15 +1,28 @@
-# OS
-.DS_Store
+node_modules
 
-# Node (future scaffold)
-node_modules/
-build/
-.svelte-kit/
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
 dist/
 
-# env & local data
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
 .env.*
 !.env.example
+!.env.test
+
+# Local data
 local.db
 *.log
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

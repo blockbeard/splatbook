@@ -10,12 +10,22 @@ by Jeremy Strandberg / Lampblack & Brimstone.
 
 ## Status
 
-Pre-scaffold. This repo currently contains the plan, the Stonetop content data, and the
-vault→content conversion tooling. The application scaffold begins at commit 1 of
-`docs/App Implementation Plan.md`.
+Phase 0 (bootstrap) in progress — see `docs/App Implementation Plan.md` for the
+commit-by-commit plan.
+
+## Development
+
+```
+npm install
+npm run dev      # dev server
+npm run check    # svelte-check, TypeScript strict
+npm test         # vitest
+npm run build    # production build
+```
 
 ## Layout
 
+- `src/` — the SvelteKit app: shell code in `src/lib/`, game modules (later) in `src/lib/games/`
 - `docs/` — implementation plan and design decisions
 - `content/stonetop/data/` — structured game data (playbooks, inserts, steading, GM) as JSON
 - `content/stonetop/rules/` — rules text (markdown), **generated** from the source vault by
@@ -36,7 +46,7 @@ page-number anchors to section links, and verifies that every cross-reference re
 
 ## Licensing
 
-- Application source: GPL-3.0-or-later (LICENSE to be added with the scaffold).
+- Application source: [GPL-3.0-or-later](LICENSE).
 - Stonetop text (`content/stonetop/`): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/),
   © Jeremy Strandberg / Lampblack & Brimstone. Splatbook is an independent production and is
   not affiliated with Lampblack & Brimstone. No Stonetop artwork is reproduced.
