@@ -23,6 +23,8 @@
 		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
+		"@auth/drizzle-adapter": "^1.11.2",
+		"@auth/sveltekit": "^1.11.2",
 		"better-sqlite3": "^12.11.1",
 		"drizzle-orm": "^0.45.2",
 		"marked": "^14.1.4",

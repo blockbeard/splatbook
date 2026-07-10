@@ -5,6 +5,7 @@
 	import { APP_NAME } from '$lib';
 	import { listGames } from '$lib/games';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import AuthControl from '$lib/components/AuthControl.svelte';
 
 	let { children } = $props();
 
@@ -30,6 +31,7 @@
 					</a>
 				{/each}
 				<ThemeToggle />
+				<AuthControl />
 			</nav>
 		</div>
 	</header>

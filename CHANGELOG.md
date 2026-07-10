@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Authentication via Auth.js (`@auth/sveltekit` + Drizzle adapter). A zero-config
+  **dev-login** provider is on by default so local work needs no OAuth setup;
+  Google and Discord switch on automatically when their id/secret env vars are
+  set (and `AUTH_DEV_LOGIN=false` retires dev-login for production). Credentials
+  forces the JWT session strategy, so the user id is threaded token → session
+  (`session.user.id` typed via augmentation); the adapter still persists
+  users/accounts. Added the adapter tables (accounts/sessions/verification
+  tokens, second migration), the server hooks handle, a root layout load
+  exposing the session, and a header sign-in/out control. Provider gating and
+  the id plumbing are unit-tested.
 - Database schema for accounts and saved entities (phase 4). `users` carries the
   Auth.js Drizzle-adapter column shape so the coming auth wiring drops straight
   onto it. `entities` is the one universal persistence model: a saved
