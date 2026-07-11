@@ -24,8 +24,10 @@
 	const game = $derived(getGame(data.gameId)!);
 	const type = $derived(game.entityTypes[data.entityType]);
 	const Play = $derived(type.playComponent!);
-	// The game's dice presets (if it has any) drive the shell roller.
-	const dicePresets = $derived(game.dice?.presets ?? null);
+	// The dice panel belongs to the entity type being played: a character offers
+	// its stat rolls; a steading offers none (it rolls its own moves, on its sheet).
+	const dice = $derived(type.dice ?? null);
+	const dicePresets = $derived(dice?.presets ?? null);
 	// A character attached to a campaign logs its rolls to the shared log; a loose
 	// one just rolls locally — rolling is not a privilege of being in a campaign.
 	const campaignId = $derived(data.saved?.campaignId ?? null);
@@ -109,8 +111,8 @@
 	 * or nothing in play, the bare notation is the right roll. */
 	function rollPreset(preset: DicePreset, mode: RollMode): void {
 		const resolved =
-			game.dice?.resolve && character
-				? game.dice.resolve(preset, character)
+			dice?.resolve && character
+				? dice.resolve(preset, character)
 				: { label: preset.label, notation: preset.notation };
 		makeRoll(resolved.label, resolved.notation, mode);
 	}

@@ -16,9 +16,11 @@
 		STEADING_DEBILITY_KEYS,
 		SIZE_LADDER,
 		SEASONS,
+		advanceSeason,
 		bumpStat,
 		bumpSize,
 		setSeason,
+		steadingRollStat,
 		statAtMin,
 		statAtMax,
 		toggleDebility,
@@ -41,13 +43,16 @@
 		type StonetopSteading
 	} from '../engine/steading';
 	import { fetchSteadingPack } from '../pack/steading';
+	import { fetchSteadingMoves } from '../pack/moves';
+	import { rollForSteadingStat } from '../dice';
+	import Markdown from '../wizard/components/Markdown.svelte';
 	import SteadingImprovements from './SteadingImprovements.svelte';
 	import EditableList from './EditableList.svelte';
 	import PlacesList from './PlacesList.svelte';
 	import ResidentsTable from './ResidentsTable.svelte';
 	import NeighborsTable from './NeighborsTable.svelte';
 
-	let { character, onChange }: PlayProps = $props();
+	let { character, onChange, roll }: PlayProps = $props();
 	const s = $derived(character as StonetopSteading);
 	const emit = (next: StonetopSteading): void => onChange(next);
 
@@ -89,6 +94,32 @@
 
 	// Pack lookups for display text (game strings live in the pack, not here).
 	const debilityInfo = $derived(new Map((pack?.debilities ?? []).map((d) => [d.id, d] as const)));
+
+	// The moves a steading rolls. A steading rolls only its own moves — never a
+	// character's stats — and the one the whole table makes together is the change
+	// of seasons, so it leads.
+	let moves = $state<{ id: string; name: string; text: string }[]>([]);
+	$effect(() => {
+		let alive = true;
+		fetchSteadingMoves(fetch)
+			.then((packed) => {
+				if (!alive) return;
+				const list = [...packed.moves];
+				list.sort((a, b) => Number(b.id === 'seasons-change') - Number(a.id === 'seasons-change'));
+				moves = list;
+			})
+			.catch(() => {
+				// The moves are a convenience; losing them must not take the sheet down.
+			});
+		return () => (alive = false);
+	});
+
+	const rollMove = (move: { name: string; text: string }): void => {
+		const stat = steadingRollStat(move);
+		if (!stat) return;
+		const { label, notation } = rollForSteadingStat(s, stat, move.name);
+		roll?.(label, notation);
+	};
 	const sizeNote = $derived(
 		new Map((pack?.stats.size.options ?? []).map((o) => [o.id, o.note ?? ''] as const))
 	);
@@ -180,7 +211,16 @@
 		</section>
 
 		<section>
-			<h2 class="text-lg font-semibold">Season</h2>
+			<div class="flex items-baseline justify-between">
+				<h2 class="text-lg font-semibold">Season</h2>
+				<button
+					type="button"
+					onclick={() => onChange(advanceSeason(s))}
+					class="rounded-md border border-border px-3 py-1 text-sm font-medium hover:bg-surface"
+				>
+					Next season →
+				</button>
+			</div>
 			<div class="mt-2 flex flex-wrap gap-2" role="group" aria-label="Season">
 				{#each SEASONS as season (season)}
 					<button
@@ -197,6 +237,33 @@
 				{/each}
 			</div>
 		</section>
+
+		{#if moves.length}
+			<section>
+				<h2 class="text-lg font-semibold">Steading moves</h2>
+				<div class="mt-2 space-y-3">
+					{#each moves as move (move.id)}
+						{@const stat = steadingRollStat(move)}
+						<div class="rounded-lg border border-border p-3">
+							<div class="flex flex-wrap items-baseline justify-between gap-2">
+								<h3 class="font-semibold">{move.name}</h3>
+								{#if roll && stat}
+									<button
+										type="button"
+										onclick={() => rollMove(move)}
+										class="rounded-md border border-accent px-2 py-0.5 text-xs font-medium text-accent hover:bg-accent/10"
+									>
+										Roll +{STEADING_STATS[stat].label}
+										<span class="font-mono">{fmt(s.stats[stat])}</span>
+									</button>
+								{/if}
+							</div>
+							<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+						</div>
+					{/each}
+				</div>
+			</section>
+		{/if}
 
 		<section>
 			<div class="flex items-baseline justify-between">

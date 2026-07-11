@@ -1,29 +1,42 @@
 /**
- * Loading the basic moves from the served content pack. Like the playbook and
+ * Loading the move lists from the served content pack: the basic moves every
+ * character can make, and the moves a steading rolls. Like the playbook and
  * insert loaders, pack JSON is validated at build/CI, so the runtime trusts it.
  */
 
 import { base } from '$app/paths';
-import type { BasicMoves } from '../pack-schemas';
+import type { BasicMoves, SteadingMoves } from '../pack-schemas';
 
 const GAME_ID = 'stonetop';
 
 type Fetcher = (input: string, init?: RequestInit) => Promise<Response>;
 
-let cache: Promise<BasicMoves> | null = null;
+const cache = new Map<string, Promise<unknown>>();
 
-/** Fetch the basic moves every character can make (memoised). */
-export function fetchBasicMoves(fetchFn: Fetcher): Promise<BasicMoves> {
-	if (cache) return cache;
-	const url = `${base}/content-packs/${GAME_ID}/data/basic-moves.json`;
-	cache = fetchFn(url)
+function fetchMoves<T>(file: string, fetchFn: Fetcher): Promise<T> {
+	const cached = cache.get(file);
+	if (cached) return cached as Promise<T>;
+
+	const url = `${base}/content-packs/${GAME_ID}/data/${file}`;
+	const promise = fetchFn(url)
 		.then((res) => {
 			if (!res.ok) throw new Error(`stonetop: failed to load ${url} (${res.status})`);
-			return res.json() as Promise<BasicMoves>;
+			return res.json() as Promise<T>;
 		})
 		.catch((err) => {
-			cache = null; // don't cache a transient failure
+			cache.delete(file); // don't cache a transient failure
 			throw err;
 		});
-	return cache;
+	cache.set(file, promise);
+	return promise;
+}
+
+/** The basic moves every character can make (memoised). */
+export function fetchBasicMoves(fetchFn: Fetcher): Promise<BasicMoves> {
+	return fetchMoves<BasicMoves>('basic-moves.json', fetchFn);
+}
+
+/** The moves a steading rolls — Seasons Change, Deploy, Muster… (memoised). */
+export function fetchSteadingMoves(fetchFn: Fetcher): Promise<SteadingMoves> {
+	return fetchMoves<SteadingMoves>('steading-moves.json', fetchFn);
 }

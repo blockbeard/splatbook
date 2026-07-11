@@ -34,10 +34,11 @@ beforeAll(async () => {
 
 describe('stonetop pack round-trip', () => {
 	it('has the expected inventory of files', () => {
-		expect(manifest.files).toHaveLength(23);
+		expect(manifest.files).toHaveLength(24);
 		expect(manifest.files.filter((f) => /insert-/.test(f))).toHaveLength(9);
 		expect(manifest.files.filter((f) => /^rules\//.test(f))).toHaveLength(2);
 		expect(manifest.files).toContain('data/basic-moves.json');
+		expect(manifest.files).toContain('data/steading-moves.json');
 	});
 
 	it('passes the validation harness end to end', async () => {

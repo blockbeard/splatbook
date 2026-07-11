@@ -5,6 +5,7 @@
 	sheet route.
 -->
 <script lang="ts">
+	import { printSheet } from '$lib/print';
 	import { resolve } from '$app/paths';
 	import { getGame } from '$lib/games';
 
@@ -32,17 +33,19 @@
 	</a>
 	<div class="flex items-center gap-2">
 		{#if data.steading?.canEdit && editHref}
+			<!-- Not "Edit": it's the steading's play sheet — where you tap its stats,
+			     turn the season and roll its moves. Calling it Edit hid it. -->
 			<a
 				href={editHref}
-				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+				class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
 			>
-				Edit steading
+				Open tracker
 			</a>
 		{/if}
 		{#if data.steading}
 			<button
 				type="button"
-				onclick={() => window.print()}
+				onclick={() => printSheet()}
 				class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
 			>
 				Print

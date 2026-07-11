@@ -16,6 +16,7 @@
 
 import type { DiceModule, DicePreset, ResolvedRoll } from '../../dice';
 import { STAT_KEYS, effectiveStat, type StatKey, type StonetopCharacter } from './engine';
+import { STEADING_STATS, type SteadingStatKey, type StonetopSteading } from './engine/steading';
 
 /** The basic 2d6 move roll and the six stat rolls. */
 const presets: DicePreset[] = [
@@ -58,3 +59,19 @@ function resolve(preset: DicePreset, entity: object): ResolvedRoll {
 }
 
 export const stonetopDice: DiceModule = { presets, resolve };
+
+/**
+ * A steading's roll: `2d6` plus one of *its* stats, never a character's. The
+ * steading rolls only its own moves — at the change of seasons, +Fortunes.
+ */
+export function rollForSteadingStat(
+	steading: StonetopSteading,
+	stat: SteadingStatKey,
+	moveName: string
+): ResolvedRoll {
+	const modifier = steading.stats[stat] ?? 0;
+	return {
+		label: `${moveName} +${STEADING_STATS[stat].label} (${formatModifier(modifier)})`,
+		notation: `2d6${formatModifier(modifier)}`
+	};
+}

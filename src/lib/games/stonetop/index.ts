@@ -43,6 +43,9 @@ const character: EntityTypeModule = {
 	label: 'Character',
 	wizardSteps: stonetopWizardSteps,
 	summary: stonetopSummary,
+	// PbtA move rolls (2d6 + stat) — the character's, not the game's: a steading
+	// rolls nothing of the sort.
+	dice: stonetopDice,
 	newDraft: () => engine.createCharacter(),
 	entityMeta: (draft) => {
 		const c = draft as StonetopCharacter;
@@ -93,8 +96,6 @@ export const stonetop: GameModule = {
 	packSchemas: schemaFor,
 	engine,
 	entityTypes: { character, steading, threat },
-	// PbtA move rolls (2d6 + stat) offered as generic dice presets (phase 10).
-	dice: stonetopDice,
 	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,
 	// procedures, interactive tables, flow diagrams. Read-only, so it's not an
 	// entity type — the shell serves it at `/g/stonetop/gm`.

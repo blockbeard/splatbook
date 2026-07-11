@@ -79,6 +79,14 @@ export interface EntityTypeModule {
 	 * Absent → the wizard shows no rail.
 	 */
 	summary?: WizardSummary;
+	/**
+	 * Named rolls for *this* entity type — the shell lists them in its dice panel
+	 * and rolls them generically. They live here rather than on the game because a
+	 * roll belongs to the thing being played: a character rolls its stats, a
+	 * steading rolls its own moves and has no business offering "Roll +STR".
+	 * Absent → the shell shows no dice panel for this type.
+	 */
+	dice?: DiceModule;
 	/** Read-only sheet, rendered from a saved/finished draft (print view). */
 	sheetComponent?: Component<SheetProps>;
 	/** Play/editor component: the editable counterpart to the sheet. The shell
@@ -129,7 +137,4 @@ export interface GameModule {
 	/** Optional GM reference guide, surfaced at `/g/[game]/gm`. Absent for games
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;
-	/** Optional dice presets — named, ready-to-roll expressions the shell can list
-	 * and roll generically (phase 10). Absent for a game with no preset rolls. */
-	dice?: DiceModule;
 }

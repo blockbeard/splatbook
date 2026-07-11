@@ -172,15 +172,16 @@ function noDebilities(): Record<SteadingDebilityKey, boolean> {
 	return d;
 }
 
-/**
- * A fresh steading at its printed starting stats. Content lists start empty; the
- * editor seeds the pack's starting Resources/Fortifications/Places/Assets on
- * first creation (so a returning saved steading isn't re-seeded).
- */
 /** The village the game is about. A campaign can track a second steading, so the
  * name stays editable — but the first one you make is almost always this one. */
 export const DEFAULT_STEADING_NAME = 'Stonetop';
 
+/**
+ * A fresh steading at its printed starting stats, named for the village the game
+ * is about. Content lists start empty; the editor seeds the pack's starting
+ * Resources/Fortifications/Places/Assets on first creation (so a returning saved
+ * steading isn't re-seeded).
+ */
 export function createSteading(): StonetopSteading {
 	return {
 		schemaVersion: STEADING_SCHEMA_VERSION,
@@ -346,4 +347,20 @@ export function setNeighbors(
 	neighbors: NeighborRow[]
 ): StonetopSteading {
 	return { ...steading, neighbors };
+}
+
+/**
+ * Which steading stat a move rolls, read from its printed text ("rolls
+ * +Fortunes", "roll +Defenses").
+ *
+ * The same trick the character sheet uses for its moves, and for the same
+ * reason: the roll is already written into the move, so storing it a second time
+ * in the pack only creates something to disagree with. Matched on `roll +` so
+ * that a move which merely *mentions* a stat in its outcomes (Seasons Change
+ * hands out Population) isn't mistaken for one that rolls it.
+ */
+export function steadingRollStat(move: { text: string }): SteadingStatKey | null {
+	const match = move.text.match(/rolls?\s*\+(Fortunes|Surplus|Population|Prosperity|Defenses)\b/i);
+	if (!match) return null;
+	return match[1].toLowerCase() as SteadingStatKey;
 }

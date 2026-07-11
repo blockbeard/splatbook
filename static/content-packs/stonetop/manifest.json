@@ -6,6 +6,7 @@
 	"attribution": "Stonetop by Jeremy Strandberg, published by Lampblack & Brimstone. Game text (2nd printing, errata applied) used under CC BY-SA 4.0. This is an independent production, not affiliated with Lampblack & Brimstone.",
 	"files": [
 		"data/basic-moves.json",
+		"data/steading-moves.json",
 		"data/insert-animal-companion.json",
 		"data/insert-crew.json",
 		"data/insert-followers.json",

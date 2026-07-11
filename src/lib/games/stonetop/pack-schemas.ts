@@ -625,25 +625,32 @@ export type GmRollRow = z.infer<typeof rollRow>;
 
 /** Schema resolver for the harness: pack-relative path → schema. */
 /**
- * The basic moves — the ones every character can make, lifted out of the rules
- * prose into data by `tools/build_basic_moves.ts`. Deliberately the same
- * `{ id, name, text }` shape a playbook move has, so the sheet renders (and
- * rolls) both through one code path; which stat a move rolls is read from its
- * text, not stored twice.
+ * A moves file: the basic moves every character can make, and the moves a
+ * *steading* rolls. Both are lifted out of the rules prose by
+ * `tools/build_moves.ts`, and both are deliberately the same `{ id, name, text }`
+ * shape a playbook move has — so a sheet renders (and rolls) any of them through
+ * one code path. Which stat a move rolls is read from its text, not stored twice.
  */
-export const basicMovesSchema = z.strictObject({
-	id: z.literal('basic-moves'),
-	name: z.string().min(1),
-	type: z.literal('moves'),
-	/** Where the generator lifted these from, for the next regeneration. */
-	source: z.strictObject({ file: z.string().min(1), section: z.string().min(1) }),
-	moves: z.array(z.strictObject({ id, name: z.string().min(1), text: markdown })).min(1)
-});
+function movesFileSchema<T extends string>(fileId: T) {
+	return z.strictObject({
+		id: z.literal(fileId),
+		name: z.string().min(1),
+		type: z.literal('moves'),
+		/** Where the generator lifted these from, for the next regeneration. */
+		source: z.strictObject({ file: z.string().min(1), section: z.string().min(1) }),
+		moves: z.array(z.strictObject({ id, name: z.string().min(1), text: markdown })).min(1)
+	});
+}
+
+export const basicMovesSchema = movesFileSchema('basic-moves');
+export const steadingMovesSchema = movesFileSchema('steading-moves');
 
 export type BasicMoves = z.infer<typeof basicMovesSchema>;
+export type SteadingMoves = z.infer<typeof steadingMovesSchema>;
 
 export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/basic-moves.json') return basicMovesSchema;
+	if (relPath === 'data/steading-moves.json') return steadingMovesSchema;
 	if (relPath === 'data/the-steading.json') return steadingSchema;
 	if (relPath === 'data/the-gm.json') return gmSchema;
 	if (relPath === 'data/insert-inventory.json') return inventoryInsertSchema;
