@@ -14,10 +14,18 @@ compatibility_date = "2025-07-01"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".svelte-kit/cloudflare"
 
+# Non-secret runtime config for the public site. Secrets (AUTH_SECRET, the OAuth
+# client ids/secrets) are set with `wrangler pages secret put` and never live here.
+[vars]
+# SvelteKit form actions 403 unless this matches the address the browser used.
+ORIGIN = "https://splatbook.app"
+# Dev-login is a passwordless "sign in as anyone" door. It must be off in public.
+AUTH_DEV_LOGIN = "false"
+
 # The SvelteKit app reaches this database through `platform.env.DB` at runtime.
 [[d1_databases]]
 binding = "DB"
 database_name = "splatbook"
-database_id = "REPLACE_AFTER_wrangler_d1_create"
+database_id = "e25dc659-028e-4716-8410-94d850bb8647"
 # drizzle-kit writes SQLite migrations here; D1 speaks SQLite, so the same files apply.
 migrations_dir = "drizzle"
