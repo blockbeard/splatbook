@@ -50,6 +50,7 @@ export default ts.config(
 		// (`[game]` would be read as a glob char-class, so match the segment with `*`.)
 		files: [
 			'src/routes/dashboard/+page.svelte',
+			'src/routes/campaigns/*/+page.svelte',
 			'src/routes/g/*/*/build/+page.svelte',
 			'src/routes/g/*/*/sheet/+page.svelte',
 			'src/routes/g/*/*/play/+page.svelte'

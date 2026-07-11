@@ -14,11 +14,12 @@
  * Server-only.
  */
 
-import { and, desc, eq } from 'drizzle-orm';
+import { and, asc, desc, eq } from 'drizzle-orm';
 import type { Db } from './entities.ts';
 import {
 	campaigns,
 	campaignMembers,
+	users,
 	type Campaign,
 	type CampaignMember,
 	type CampaignRole
@@ -90,6 +91,41 @@ export async function listCampaignsForUser(db: Db, userId: string): Promise<Camp
 		.where(eq(campaignMembers.userId, userId))
 		.orderBy(desc(campaigns.updatedAt));
 	return rows.map((r) => ({ ...r.campaign, role: r.role }));
+}
+
+/** A seat at the table, with just enough of the user for a roster. */
+export interface CampaignMemberView {
+	userId: string;
+	name: string | null;
+	email: string;
+	role: CampaignRole;
+	joinedAt: Date;
+}
+
+/**
+ * The campaign's roster — every member with their display name, ordered GM-first
+ * then by join time. Not user-scoped: the caller must have confirmed the viewer
+ * is a member before showing this.
+ */
+export async function listCampaignMembers(
+	db: Db,
+	campaignId: string
+): Promise<CampaignMemberView[]> {
+	return (
+		db
+			.select({
+				userId: users.id,
+				name: users.name,
+				email: users.email,
+				role: campaignMembers.role,
+				joinedAt: campaignMembers.joinedAt
+			})
+			.from(campaignMembers)
+			.innerJoin(users, eq(users.id, campaignMembers.userId))
+			.where(eq(campaignMembers.campaignId, campaignId))
+			// `gm` sorts before `player`, so ascending role puts the GM first.
+			.orderBy(asc(campaignMembers.role), asc(campaignMembers.joinedAt))
+	);
 }
 
 /** Outcome of presenting an invite token. */

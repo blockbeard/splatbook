@@ -11,8 +11,18 @@
 import { error, redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
 import { db } from '$lib/server/db';
-import { getCampaign, membershipOf, rotateInviteToken } from '$lib/server/db/campaigns';
-import { getEntity, listEntities, setEntityCampaign } from '$lib/server/db/entities';
+import {
+	getCampaign,
+	membershipOf,
+	rotateInviteToken,
+	listCampaignMembers
+} from '$lib/server/db/campaigns';
+import {
+	getEntity,
+	listEntities,
+	listCampaignEntities,
+	setEntityCampaign
+} from '$lib/server/db/entities';
 import { getGame } from '$lib/games';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -48,6 +58,27 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		attachedElsewhere: c.campaignId != null && c.campaignId !== campaign.id
 	}));
 
+	// Party at a glance: every member, and the characters attached to the campaign
+	// grouped under their owner. A character links to its sheet only for its owner
+	// (the sheet route is owner-scoped); others show as read-only names.
+	const [members, partyChars, steadings] = await Promise.all([
+		listCampaignMembers(db, campaign.id),
+		listCampaignEntities(db, campaign.id, 'character'),
+		listCampaignEntities(db, campaign.id, 'steading')
+	]);
+	const party = members.map((m) => ({
+		userId: m.userId,
+		name: m.name ?? m.email,
+		role: m.role,
+		isYou: m.userId === userId,
+		characters: partyChars
+			.filter((c) => c.userId === m.userId)
+			.map((c) => ({ id: c.id, name: c.name || 'Unnamed character', mine: c.userId === userId }))
+	}));
+	const steading = steadings[0]
+		? { id: steadings[0].id, name: steadings[0].name || 'Unnamed steading' }
+		: null;
+
 	return {
 		campaign: {
 			id: campaign.id,
@@ -58,6 +89,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		role: seat.role,
 		isGm,
 		myCharacters,
+		party,
+		steading,
 		// The invite capability is GM-only; players never receive the token.
 		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null
 	};

@@ -19,7 +19,8 @@ import {
 	membershipOf,
 	listCampaignsForUser,
 	rotateInviteToken,
-	joinCampaign
+	joinCampaign,
+	listCampaignMembers
 } from './campaigns.ts';
 
 function freshDb(): Db {
@@ -139,5 +140,25 @@ describe('joinCampaign', () => {
 	it('returns undefined for a bad token', async () => {
 		await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
 		expect(await joinCampaign(db, 'not-a-token', player)).toBeUndefined();
+	});
+});
+
+describe('listCampaignMembers', () => {
+	it('lists members GM-first with their display names', async () => {
+		const [namedGm] = await db
+			.insert(schema.users)
+			.values({ email: 'wray@x', name: 'Mr. Wray' })
+			.returning();
+		const campaign = await createCampaign(db, {
+			gameId: 'stonetop',
+			name: 'R',
+			ownerId: namedGm.id
+		});
+		await joinCampaign(db, campaign.inviteToken, player);
+
+		const roster = await listCampaignMembers(db, campaign.id);
+		expect(roster.map((m) => m.role)).toEqual(['gm', 'player']);
+		expect(roster[0].name).toBe('Mr. Wray');
+		expect(roster[1].email).toBe('player@x');
 	});
 });

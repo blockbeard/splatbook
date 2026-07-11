@@ -7,12 +7,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 
 	let { data, form } = $props();
 
 	// The action can hand back a fresh invite path; fall back to the loaded one.
 	const invitePath = $derived(form?.rotated?.path ?? data.invite?.path ?? null);
 	const inviteUrl = $derived(invitePath ? new URL(invitePath, page.url.origin).href : null);
+
+	const sheetHref = (type: string, id: string) =>
+		`${resolve('/g/[game]/[type]/sheet', { game: data.campaign.gameId, type })}?id=${id}`;
 
 	let copied = $state(false);
 	async function copy() {
@@ -71,6 +75,54 @@
 		</form>
 	</section>
 {/if}
+
+<section class="mt-6">
+	<h2 class="text-sm font-semibold">Party</h2>
+	<ul class="mt-2 divide-y divide-border rounded-md border border-border">
+		{#each data.party as member (member.userId)}
+			<li class="px-4 py-3">
+				<div class="flex items-center justify-between gap-4">
+					<span class="font-medium">
+						{member.name}
+						{#if member.isYou}<span class="text-xs text-muted">(you)</span>{/if}
+					</span>
+					<span class="text-xs text-muted uppercase" class:text-accent={member.role === 'gm'}>
+						{member.role}
+					</span>
+				</div>
+				{#if member.characters.length > 0}
+					<ul class="mt-1 ml-1 text-sm">
+						{#each member.characters as char (char.id)}
+							<li class="text-muted">
+								{#if char.mine}
+									<a href={sheetHref('character', char.id)} class="hover:text-accent">{char.name}</a
+									>
+								{:else}
+									{char.name}
+								{/if}
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="mt-1 ml-1 text-xs text-muted italic">No character attached yet.</p>
+				{/if}
+			</li>
+		{/each}
+	</ul>
+</section>
+
+<section class="mt-6">
+	<h2 class="text-sm font-semibold">Campaign steading</h2>
+	{#if data.steading}
+		<p class="mt-2 text-sm">
+			<a href={sheetHref('steading', data.steading.id)} class="hover:text-accent">
+				{data.steading.name}
+			</a>
+		</p>
+	{:else}
+		<p class="mt-1 text-xs text-muted">No steading yet.</p>
+	{/if}
+</section>
 
 <section class="mt-6">
 	<h2 class="text-sm font-semibold">Your characters</h2>

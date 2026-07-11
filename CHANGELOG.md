@@ -31,6 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   lists your characters for that game with attach / move-here / remove controls.
   New service functions (`joinCampaign`, `setEntityCampaign`, `listCampaignEntities`)
   with unit tests.
+- **Campaign dashboard (phase 9, commit 61).** The campaign page now leads with
+  party-at-a-glance: every member (GM-first) with the characters they've attached
+  to the campaign, plus a campaign-steading slot. Your own characters link to
+  their sheets; teammates' show as read-only names (sheets stay owner-scoped).
+  New `listCampaignMembers` roster query with a test.
 
 ## [1.0.0] - 2026-07-11
 
