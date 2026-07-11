@@ -92,6 +92,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `rollResultSchema` before storage), while a character in no campaign just rolls
   locally. No `PlayProps` change — the roller is shell furniture beside the game's
   play component. The live shared-log view lands in commit 68.
+- **Live roll log (phase 10, commit 68).** The campaign page now shows the shared
+  roll log — every member's rolls, newest first, with the roller, the label, the
+  dice (dropped ones struck through) and total, and a relative timestamp. It's
+  seeded server-side from the page load and kept live by a small `RollLog`
+  component that polls a session- and membership-guarded `GET` endpoint
+  (`/api/campaigns/[id]/rolls`) every few seconds; polling pauses while the tab is
+  hidden and never overlaps a slow response. A short poll is deliberate — plenty
+  for a table, with SSE/Durable Objects reserved for if it ever feels laggy. The
+  wire shape (`RollLogEntry`) is shared by the endpoint and the page load.
 
 ## [1.0.0] - 2026-07-11
 

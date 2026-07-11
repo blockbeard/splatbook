@@ -24,6 +24,7 @@ import {
 	listCampaignEntities,
 	setEntityCampaign
 } from '$lib/server/db/entities';
+import { listCampaignRolls, toLogEntry } from '$lib/server/db/rolls';
 import { getGame } from '$lib/games';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -62,10 +63,11 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	// Party at a glance: every member, and the characters attached to the campaign
 	// grouped under their owner. A character links to its sheet only for its owner
 	// (the sheet route is owner-scoped); others show as read-only names.
-	const [members, partyChars, steadings] = await Promise.all([
+	const [members, partyChars, steadings, rolls] = await Promise.all([
 		listCampaignMembers(db, campaign.id),
 		listCampaignEntities(db, campaign.id, 'character'),
-		listCampaignEntities(db, campaign.id, 'steading')
+		listCampaignEntities(db, campaign.id, 'steading'),
+		listCampaignRolls(db, campaign.id)
 	]);
 	const party = members.map((m) => ({
 		userId: m.userId,
@@ -92,6 +94,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		myCharacters,
 		party,
 		steading,
+		// Seed the live roll log; the client polls the same endpoint to keep it fresh.
+		rolls: rolls.map(toLogEntry),
 		// The invite capability is GM-only; players never receive the token.
 		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null
 	};

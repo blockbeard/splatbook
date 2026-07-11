@@ -8,6 +8,7 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import RollLog from '$lib/components/RollLog.svelte';
 
 	let { data, form } = $props();
 
@@ -110,6 +111,8 @@
 		{/each}
 	</ul>
 </section>
+
+<RollLog campaignId={data.campaign.id} initial={data.rolls} />
 
 <section class="mt-6">
 	<h2 class="text-sm font-semibold">Campaign steading</h2>

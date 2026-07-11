@@ -117,7 +117,12 @@ component, so no `PlayProps` change and no game vocabulary in the shell. Rolls
 always show locally; when the played character is attached to a campaign the roll
 is also persisted to that campaign's log via `/api/campaigns/[id]/rolls` (the
 browser-computed `RollResult` is re-validated server-side by `rollResultSchema`
-before it's stored). A loose character just rolls locally.
+before it's stored). A loose character just rolls locally. The campaign page
+then shows the **live roll log** (commit 68) — the whole table's shared history,
+seeded server-side and kept fresh by a small component that polls `GET
+/api/campaigns/[id]/rolls` every few seconds (pausing while the tab is hidden).
+Polling is a deliberate choice for a self-hosted tabletop tool; SSE or Durable
+Objects would be the upgrade only if it ever feels laggy.
 
 ## Theming
 

@@ -17,6 +17,7 @@
 
 import { and, desc, eq, sql } from 'drizzle-orm';
 import type { RollResult } from '$lib/dice';
+import type { RollLogEntry } from '$lib/rolls';
 import type { Db } from './entities.ts';
 import { campaignMembers, rolls, users, type Roll } from './schema.ts';
 
@@ -100,4 +101,16 @@ export async function listCampaignRolls(
 		.orderBy(desc(rolls.createdAt), sql`${rolls}.rowid desc`)
 		.limit(limit);
 	return rows;
+}
+
+/** Map a `RollView` to the client-facing `RollLogEntry` (used by the log GET
+ * endpoint and the campaign page load, so both send the same shape). */
+export function toLogEntry(r: RollView): RollLogEntry {
+	return {
+		id: r.id,
+		actorName: r.actorName ?? 'Unknown',
+		label: r.label,
+		result: r.result,
+		at: r.createdAt.getTime()
+	};
 }
