@@ -148,6 +148,30 @@ The GM guide is public today (unlike GM-only *rules* documents, which stay gated
 by `GM_CONTENT_VISIBLE`); if a future game's guide needs gating, that is the
 same phase-9 gate to reuse.
 
+## The dice slot (module presets, not pack data)
+
+Dice are the one `GameModule` slot that is **code, not pack content**. The shell
+owns a generic dice core (`$lib/dice`: `XdY±mod` notation, an injectable-rng
+`roll`, advantage/disadvantage); a game opts in through an optional `dice` slot
+that supplies **presets** — named, ready-to-roll expressions:
+
+```ts
+dice: {
+  presets: [
+    { id: 'roll-dex', label: 'Roll +DEX', notation: '2d6', meta: { stat: 'DEX' } }
+    // …
+  ]
+}
+```
+
+Each preset is an id, a game-visible `label` (the game's words, per rule 3), a
+base `notation` the generic core parses, and an opaque `meta` bag only the game's
+own UI reads (Stonetop stores which stat the roll adds). The presets live in the
+module (`src/lib/games/<gameId>/dice.ts`), not the pack, because they are
+structural rather than licensed text; a game's stat vocabulary is drawn from its
+engine so it can't drift. See `architecture.md`, "The dice slot". Later phase-10
+commits add the per-campaign roll log and the sheet's roll UI on top of this core.
+
 ## Adding a new game
 
 This file is the **pack-format reference** — the manifest, validation, document

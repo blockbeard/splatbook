@@ -34,10 +34,10 @@ problem to solve, not an exception to grant.
 
 1. **The shell touches game code only through the `GameModule` registry.** No
    `import … from '$lib/games/stonetop/…'` anywhere in shell code. The module
-   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide? }`) is the
-   entire surface area. If the shell needs something new from a game, the interface
-   grows — explicitly, in its own commit (as `entityTypes` did in phase 6 and
-   `gmGuide` in phase 7).
+   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide?, dice? }`) is
+   the entire surface area. If the shell needs something new from a game, the
+   interface grows — explicitly, in its own commit (as `entityTypes` did in phase 6,
+   `gmGuide` in phase 7, and `dice` in phase 10).
 
 2. **Game modules never import each other.** Stonetop code may not know HMtW
    exists. Shared needs get promoted to the shell (via rule 1), never traded
@@ -96,6 +96,20 @@ saved; it sits outside `entityTypes`. It declares a pack file, an ordered list o
 `sections`, and a `component` that renders one section; the shell serves and routes it
 at `/g/[game]/gm` without inspecting the pack shape. Same discipline as everything
 else: a new registry slot, added explicitly, that a game opts into or omits.
+
+## The dice slot
+
+The third optional `GameModule` slot is `dice` (phase 10). The shell owns the
+**generic dice core** — `$lib/dice`: parsing `XdY±mod` notation, rolling with an
+injectable rng, and advantage/disadvantage (roll an extra die per term, keep the
+best/worst) — all pure and game-agnostic, no game vocabulary in it. A game
+contributes only **presets** through the slot: named, ready-to-roll expressions
+(`{ presets: DicePreset[] }`), each an id, a game-visible `label`, a base
+`notation`, and an opaque `meta` bag the shell never reads. Stonetop's are its
+PbtA move rolls (`2d6` plus a stat, the stat named in `meta`). This keeps rule 3
+intact — the labels are the game's words, sourced from the game — while the shell
+lists and rolls presets without learning what a "stat" is. The roll *log* and the
+sheet's roll UI (commits 66–68) build on this core; the core lands first and alone.
 
 ## Theming
 

@@ -29,6 +29,7 @@ import ThreatEditor from './gm/ThreatEditor.svelte';
 import ThreatSheet from './gm/ThreatSheet.svelte';
 import GmGuide from './gm/GmGuide.svelte';
 import { GM_SECTIONS } from './gm/sections';
+import { stonetopDice } from './dice';
 
 // Contained cast: the sheet/play components type `character` as
 // StonetopCharacter, the shell slot as the opaque `SheetProps`/`PlayProps` —
@@ -87,6 +88,8 @@ export const stonetop: GameModule = {
 	packSchemas: schemaFor,
 	engine,
 	entityTypes: { character, steading, threat },
+	// PbtA move rolls (2d6 + stat) offered as generic dice presets (phase 10).
+	dice: stonetopDice,
 	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,
 	// procedures, interactive tables, flow diagrams. Read-only, so it's not an
 	// entity type — the shell serves it at `/g/stonetop/gm`.

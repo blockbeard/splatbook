@@ -17,6 +17,7 @@
 import type { Component } from 'svelte';
 import type { SchemaResolver } from '../packs/harness';
 import type { WizardStep } from '../wizard/types';
+import type { DiceModule } from '../dice';
 
 /** Props the shell passes a game's entity-sheet component. The draft/entity is
  * opaque to the shell (the game's own shape); the sheet casts it. */
@@ -112,4 +113,7 @@ export interface GameModule {
 	/** Optional GM reference guide, surfaced at `/g/[game]/gm`. Absent for games
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;
+	/** Optional dice presets — named, ready-to-roll expressions the shell can list
+	 * and roll generically (phase 10). Absent for a game with no preset rolls. */
+	dice?: DiceModule;
 }

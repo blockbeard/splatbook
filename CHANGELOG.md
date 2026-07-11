@@ -54,6 +54,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   whole loop across two accounts: a GM creates a campaign, a second person opens
   the invite link, signs in, joins as a player, and then appears in the GM's
   party roster — plus a check that running a campaign opens the reference GM gate.
+- **Dice engine (phase 10, commit 65).** A generic, game-agnostic dice core in
+  the shell (`$lib/dice`): a notation parser for `XdY±mod` (multiple dice terms,
+  signed flat modifiers, whitespace/case tolerant, malformed input rejected) and a
+  `roll` function with an injectable rng — so every result is deterministically
+  testable — that also does advantage/disadvantage the way that generalises the
+  d20 rule: roll one extra die per term and drop the lowest (advantage) or highest
+  (disadvantage), keeping dropped dice in the result for display. No game
+  vocabulary lives in the core. Games contribute only **presets** through a new
+  optional `GameModule.dice` slot — named, ready-to-roll expressions
+  (`{ id, label, notation, mode?, meta? }`) the shell can list and roll without
+  learning the game's rules; the game-specific bits (which stat a roll adds) ride
+  in an opaque `meta` bag. Stonetop registers its PbtA move rolls — a plain `2d6`
+  and one `Roll +STAT` per stat, the stats drawn from the engine's `STAT_KEYS` so
+  they can't drift. Pure and unit-tested; the per-campaign roll log and the sheet's
+  roll UI (commits 66–68) build on this core. `docs/architecture.md` and
+  `docs/content-packs.md` document the slot.
 
 ## [1.0.0] - 2026-07-11
 
