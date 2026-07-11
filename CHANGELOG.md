@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `campaign_members` (one seat per (campaign, user) with a `gm`/`player` role,
   enforced by a composite primary key). Both foreign keys cascade on account
   deletion. Migration `0002` and round-trip schema tests included.
+- **Campaign create + invite (phase 9, commit 59).** A `/campaigns` area: list
+  the campaigns you're seated in (with your GM/player role) and start a new one
+  (which seats you as GM). Each campaign page carries a copyable invite link
+  built from an unguessable token; the GM can rotate the token to revoke
+  outstanding invites. Campaign access is membership-gated in the service layer —
+  a non-member gets a 404, not a peek. New `campaigns` service (create, lookups,
+  per-user listing, token rotation) with unit tests, plus a Campaigns nav link.
 
 ## [1.0.0] - 2026-07-11
 

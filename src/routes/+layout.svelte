@@ -44,6 +44,7 @@
 				{/each}
 				{#if data.session?.user}
 					<a href={resolve('/dashboard')} class="hover:text-text">Characters</a>
+					<a href={resolve('/campaigns')} class="hover:text-text">Campaigns</a>
 				{/if}
 				<ThemeToggle />
 				<AuthControl />
