@@ -28,7 +28,7 @@ import { getGame } from '$lib/games';
 import type { Actions, PageServerLoad } from './$types';
 
 /** The path a newcomer follows to join (made absolute in the browser). */
-export const joinPath = (token: string) => `/campaigns/join/${token}`;
+const joinPath = (token: string) => `/campaigns/join/${token}`;
 
 /** Load a member's session + campaign seat, or fail closed. Shared by load + actions. */
 async function requireSeat(id: string, locals: App.Locals) {

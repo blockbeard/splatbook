@@ -50,6 +50,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `/campaigns/<id>/steading` — read-only, rendered by the game's own steading
   sheet — while the owner gets an Edit link to the normal editor. The shell
   creates it game-agnostically via the module's `newDraft`/`entityMeta`.
+- **Invite/join e2e + polish (phase 9, commit 64).** A Playwright spec drives the
+  whole loop across two accounts: a GM creates a campaign, a second person opens
+  the invite link, signs in, joins as a player, and then appears in the GM's
+  party roster — plus a check that running a campaign opens the reference GM gate.
 
 ## [1.0.0] - 2026-07-11
 
