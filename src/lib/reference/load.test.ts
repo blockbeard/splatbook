@@ -1,14 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { documentTreeSchema, type DocumentTree } from './document-tree';
-import {
-	tocOf,
-	findSection,
-	ancestorsOf,
-	childrenOf,
-	siblingsInOrder,
-	isVisible,
-	GM_CONTENT_VISIBLE
-} from './load';
+import { tocOf, findSection, ancestorsOf, childrenOf, siblingsInOrder, isVisible } from './load';
 
 const tree: DocumentTree = documentTreeSchema.parse({
 	id: 'book-i',
@@ -88,16 +80,21 @@ describe('visibility gate', () => {
 		sections: [{ id: 'lore', title: 'Lore', level: 1, path: [], body: 'secret', visibility: 'gm' }]
 	});
 
-	it('hides gm content while the gate is closed', () => {
-		expect(GM_CONTENT_VISIBLE).toBe(false);
+	it('hides gm content by default (gate closed) and shows it when open', () => {
+		// Fails closed: no flag means player-only.
 		expect(isVisible({ visibility: 'player' })).toBe(true);
 		expect(isVisible({ visibility: 'gm' })).toBe(false);
+		// Gate open (viewer is a campaign GM): gm content becomes visible.
+		expect(isVisible({ visibility: 'gm' }, true)).toBe(true);
+		expect(isVisible({ visibility: 'player' }, true)).toBe(true);
 	});
 
-	it('tocOf with isVisible drops gm sections (a wholly-gm doc becomes empty)', () => {
-		const [doc] = tocOf([gmTree], isVisible);
-		expect(doc.sections).toHaveLength(0);
-		const [playerDoc] = tocOf([tree], isVisible);
+	it('tocOf drops gm sections for players but keeps them for GMs', () => {
+		const [closed] = tocOf([gmTree], (s) => isVisible(s));
+		expect(closed.sections).toHaveLength(0);
+		const [open] = tocOf([gmTree], (s) => isVisible(s, true));
+		expect(open.sections).toHaveLength(1);
+		const [playerDoc] = tocOf([tree], (s) => isVisible(s));
 		expect(playerDoc.sections).toHaveLength(5);
 	});
 });

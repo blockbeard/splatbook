@@ -36,6 +36,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   to the campaign, plus a campaign-steading slot. Your own characters link to
   their sheets; teammates' show as read-only names (sheets stay owner-scoped).
   New `listCampaignMembers` roster query with a test.
+- **Reference GM gate (phase 9, commit 62).** The phase-2 hardcoded
+  `GM_CONTENT_VISIBLE = false` is now a real permission: GM-only rules (Book II)
+  appear in the table of contents, section pages, and search **only** for a
+  viewer who GMs a campaign in that game (`isGmOfAnyCampaign`, computed
+  server-side and threaded to the reference loads as `gmContentVisible`). Search
+  gained a separate GM-only index (`search-index-gm.json`), built alongside the
+  player index and loaded only when the gate is open; GM hits are tagged in
+  results. `isVisible` now fails closed (hidden unless explicitly granted).
 
 ## [1.0.0] - 2026-07-11
 

@@ -128,6 +128,28 @@ export async function listCampaignMembers(
 	);
 }
 
+/**
+ * Whether the user runs (is GM of) at least one campaign for a given game. This
+ * is the reference GM gate (commit 62): only someone GMing a game's table may
+ * see that game's GM-only rules. A single-row existence check — the answer is a
+ * boolean, not a list.
+ */
+export async function isGmOfAnyCampaign(db: Db, userId: string, gameId: string): Promise<boolean> {
+	const [row] = await db
+		.select({ id: campaigns.id })
+		.from(campaignMembers)
+		.innerJoin(campaigns, eq(campaigns.id, campaignMembers.campaignId))
+		.where(
+			and(
+				eq(campaignMembers.userId, userId),
+				eq(campaignMembers.role, 'gm'),
+				eq(campaigns.gameId, gameId)
+			)
+		)
+		.limit(1);
+	return row != null;
+}
+
 /** Outcome of presenting an invite token. */
 export interface JoinResult {
 	campaign: Campaign;

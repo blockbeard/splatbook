@@ -27,11 +27,35 @@ export interface SearchHit {
 	terms: string[];
 }
 
-/** Fetch and deserialize a game's search index. */
+/** Fetch and deserialize a game's (player) search index. */
 export async function loadSearchIndex(gameId: string, fetchFn: Fetcher): Promise<MiniSearch> {
 	const res = await fetchFn(`${base}/content-packs/${gameId}/search-index.json`);
 	if (!res.ok) throw new Error(`search: failed to load index for "${gameId}" (${res.status})`);
 	return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+}
+
+/**
+ * Fetch the GM-only search index (Book II). Loaded only when the reference GM
+ * gate is open (`gmContentVisible`); returns `null` if the game ships no GM index
+ * (a 404), so a game without GM content search just falls back to the player one.
+ */
+export async function loadGmSearchIndex(
+	gameId: string,
+	fetchFn: Fetcher
+): Promise<MiniSearch | null> {
+	const res = await fetchFn(`${base}/content-packs/${gameId}/search-index-gm.json`);
+	if (res.status === 404) return null;
+	if (!res.ok) throw new Error(`search: failed to load GM index for "${gameId}" (${res.status})`);
+	return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+}
+
+/**
+ * Merge hits from the player and (optional) GM indexes into one score-ordered
+ * list, capped at `limit`. Ids are unique across the two indexes, so no dedupe
+ * is needed — GM sections live only in the GM index.
+ */
+export function mergeHits(player: SearchHit[], gm: SearchHit[], limit = 40): SearchHit[] {
+	return [...player, ...gm].sort((a, b) => b.score - a.score).slice(0, limit);
 }
 
 /** Run a query. Empty query returns nothing; prefix + light fuzz for a live-search feel. */

@@ -22,26 +22,38 @@ import { miniSearchOptions, toPlainText, type SearchDoc } from '../src/lib/refer
 
 const CONFIG = 'tools/srd.config.json';
 const INDEX_FILE = 'search-index.json';
+/** GM-only sections go in a separate index, loaded only for campaign GMs (commit 62). */
+const GM_INDEX_FILE = 'search-index-gm.json';
 
 const config = JSON.parse(await readFile(CONFIG, 'utf-8')) as {
 	packs: { packRoot: string }[];
 };
 
+async function writeIndex(packRoot: string, file: string, docs: SearchDoc[]): Promise<void> {
+	const mini = new MiniSearch(miniSearchOptions);
+	mini.addAll(docs);
+	const out = join(packRoot, file);
+	await writeFile(out, JSON.stringify(mini));
+	console.log(`${out}: ${docs.length} sections indexed`);
+}
+
 for (const pack of config.packs) {
 	const manifest = await loadManifest(pack.packRoot);
 	const ruleFiles = manifest.files.filter((f) => f.startsWith('rules/')).sort();
 
-	const docs: SearchDoc[] = [];
+	// Two indexes: the default one players load, and a GM-only one gated behind
+	// campaign-GM membership (the reference GM gate). Splitting them keeps the
+	// player-facing index free of GM text; the GM index is served the same way
+	// Book II's tree already is, and loaded only when the gate is open.
+	const playerDocs: SearchDoc[] = [];
+	const gmDocs: SearchDoc[] = [];
 	const seen = new Set<string>();
 	for (const file of ruleFiles) {
 		const tree = (await loadPackFile(pack.packRoot, file)) as DocumentTree;
 		for (const section of tree.sections) {
-			// GM-only content is never shipped in the public index (it is served to
-			// every client); a gated index is the phase-9 GM gate's concern.
-			if (section.visibility === 'gm') continue;
 			if (seen.has(section.id)) continue; // MiniSearch ids must be unique across the index
 			seen.add(section.id);
-			docs.push({
+			(section.visibility === 'gm' ? gmDocs : playerDocs).push({
 				id: section.id,
 				title: section.title,
 				breadcrumb: [...section.path, section.title].join(' › '),
@@ -52,9 +64,6 @@ for (const pack of config.packs) {
 		}
 	}
 
-	const mini = new MiniSearch(miniSearchOptions);
-	mini.addAll(docs);
-	const out = join(pack.packRoot, INDEX_FILE);
-	await writeFile(out, JSON.stringify(mini));
-	console.log(`${out}: ${docs.length} sections indexed`);
+	await writeIndex(pack.packRoot, INDEX_FILE, playerDocs);
+	await writeIndex(pack.packRoot, GM_INDEX_FILE, gmDocs);
 }

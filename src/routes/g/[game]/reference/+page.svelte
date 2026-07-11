@@ -16,6 +16,11 @@
 	Browse or search the {data.gameName} rules. Pick a chapter below, or use the contents on the left; every
 	heading has its own page and shareable link.
 </p>
+{#if data.gmContentVisible}
+	<p class="mt-2 text-xs text-accent">
+		You run a {data.gameName} campaign, so GM-only rules (Book II) are included here.
+	</p>
+{/if}
 
 {#each data.toc as doc (doc.id)}
 	<section class="mt-8">

@@ -20,7 +20,8 @@ import {
 	listCampaignsForUser,
 	rotateInviteToken,
 	joinCampaign,
-	listCampaignMembers
+	listCampaignMembers,
+	isGmOfAnyCampaign
 } from './campaigns.ts';
 
 function freshDb(): Db {
@@ -160,5 +161,18 @@ describe('listCampaignMembers', () => {
 		expect(roster.map((m) => m.role)).toEqual(['gm', 'player']);
 		expect(roster[0].name).toBe('Mr. Wray');
 		expect(roster[1].email).toBe('player@x');
+	});
+});
+
+describe('isGmOfAnyCampaign (reference GM gate)', () => {
+	it('is true only for a GM of a campaign in that game', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		await joinCampaign(db, campaign.inviteToken, player);
+
+		expect(await isGmOfAnyCampaign(db, gm, 'stonetop')).toBe(true);
+		// A player is not a GM.
+		expect(await isGmOfAnyCampaign(db, player, 'stonetop')).toBe(false);
+		// GMing stonetop doesn't unlock a different game's GM rules.
+		expect(await isGmOfAnyCampaign(db, gm, 'other-game')).toBe(false);
 	});
 });

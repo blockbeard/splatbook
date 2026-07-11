@@ -115,6 +115,20 @@ scope; it never introduces raw colors in components. Light/dark is a class on
 - Entities use the blob model above. Structured columns are reserved for things
   the *shell* queries: ids, names, game/entity type, timestamps, campaign links.
 
+## Campaigns and the GM gate
+
+- Campaigns are shell furniture (like entities): a game-tagged table with
+  members (`gm`/`player`) and an invite token. An entity carries an optional
+  `campaignId`, so a character belongs to at most one campaign by construction.
+- **The reference GM gate** (phase 9) keys "may I see this game's GM-only rules
+  (Book II)?" to "do I GM a campaign for this game?" (`isGmOfAnyCampaign`),
+  computed server-side and threaded to the reference loads as `gmContentVisible`.
+  This is a *display* permission layered on the existing client-side reference
+  model — document trees and the GM search index are served statically and
+  filtered in the browser. It is the right rule for a self-hosted tool; withholding
+  GM text at the network layer would require server-rendered reference pages, a
+  later hardening step rather than a phase-9 concern.
+
 ## Naming conventions
 
 - **Game ids**: lowercase, hyphen-free, short — `stonetop`, `hmtw`, `daggerheart`.

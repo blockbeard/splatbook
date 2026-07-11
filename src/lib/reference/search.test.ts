@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import MiniSearch from 'minisearch';
 import { toPlainText, miniSearchOptions, type SearchDoc } from './search-fields';
-import { loadSearchIndex, search } from './search';
+import { loadSearchIndex, loadGmSearchIndex, search, mergeHits, type SearchHit } from './search';
 
 describe('toPlainText', () => {
 	it('resolves wikilinks to their label and strips markdown', () => {
@@ -65,5 +65,33 @@ describe('search', () => {
 		const fakeFetch = async () => new Response(json, { status: 200 });
 		const loaded = await loadSearchIndex('stonetop', fakeFetch);
 		expect(search(loaded, 'danger').map((h) => h.id)).toContain('defy-danger');
+	});
+});
+
+describe('GM index (reference gate)', () => {
+	it('loadGmSearchIndex returns null when the game ships no GM index', async () => {
+		const fakeFetch = async () => new Response('not found', { status: 404 });
+		expect(await loadGmSearchIndex('stonetop', fakeFetch)).toBeNull();
+	});
+
+	const hit = (id: string, score: number, visibility: 'player' | 'gm' = 'player'): SearchHit => ({
+		id,
+		title: id,
+		breadcrumb: id,
+		docTitle: 'Book',
+		visibility,
+		body: '',
+		score,
+		terms: []
+	});
+
+	it('mergeHits orders player + gm hits by score and caps the count', () => {
+		const player = [hit('p-hi', 9), hit('p-lo', 2)];
+		const gm = [hit('gm-mid', 5, 'gm')];
+		const merged = mergeHits(player, gm);
+		expect(merged.map((h) => h.id)).toEqual(['p-hi', 'gm-mid', 'p-lo']);
+
+		const many = Array.from({ length: 50 }, (_, i) => hit(`p${i}`, i));
+		expect(mergeHits(many, [], 40)).toHaveLength(40);
 	});
 });

@@ -31,16 +31,17 @@ export interface SectionRef {
 }
 
 /**
- * Whether GM-only rules are visible to the current viewer. A hard `false` for
- * now — Book II is ingested and flagged but hidden everywhere. Phase 9 (campaigns)
- * turns this into a real gate keyed on campaign-GM membership; centralising it
- * here means that becomes a one-place change.
+ * Section-visibility predicate for the current viewer. GM-only sections (Book II)
+ * are hidden unless `gmVisible` is true — the phase-9 gate, computed server-side
+ * from campaign-GM membership (`isGmOfAnyCampaign`) and threaded down through the
+ * reference layout's `gmContentVisible`. Defaults to hidden, so any caller that
+ * forgets to pass the flag fails closed.
  */
-export const GM_CONTENT_VISIBLE = false;
-
-/** Section-visibility predicate for the current viewer. */
-export function isVisible(section: Pick<DocumentSection, 'visibility'>): boolean {
-	return section.visibility !== 'gm' || GM_CONTENT_VISIBLE;
+export function isVisible(
+	section: Pick<DocumentSection, 'visibility'>,
+	gmVisible = false
+): boolean {
+	return section.visibility !== 'gm' || gmVisible;
 }
 
 async function getJson<T>(fetchFn: Fetcher, url: string): Promise<T> {

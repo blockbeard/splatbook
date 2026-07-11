@@ -4,7 +4,7 @@
 	import { browser } from '$app/environment';
 	import { replaceState } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { loadSearchIndex, search } from '$lib/reference/search';
+	import { loadSearchIndex, loadGmSearchIndex, search, mergeHits } from '$lib/reference/search';
 	import { queryTerms, highlight, makeSnippet } from '$lib/reference/snippet';
 
 	let { data } = $props();
@@ -12,6 +12,8 @@
 	let query = $state(page.url.searchParams.get('q') ?? '');
 	let debounced = $state(page.url.searchParams.get('q') ?? '');
 	let index = $state<MiniSearch | null>(null);
+	// GM-only index, loaded only when the reference GM gate is open for this viewer.
+	let gmIndex = $state<MiniSearch | null>(null);
 	let loadError = $state<string | null>(null);
 	let expanded = $state<Record<string, boolean>>({});
 
@@ -21,6 +23,16 @@
 		loadSearchIndex(data.gameId, fetch)
 			.then((i) => alive && (index = i))
 			.catch((e) => alive && (loadError = e instanceof Error ? e.message : String(e)));
+		return () => (alive = false);
+	});
+
+	// A campaign GM additionally searches Book II.
+	$effect(() => {
+		if (!data.gmContentVisible) return;
+		let alive = true;
+		loadGmSearchIndex(data.gameId, fetch)
+			.then((i) => alive && (gmIndex = i))
+			.catch(() => {}); // GM search is additive; failing to load it just omits Book II
 		return () => (alive = false);
 	});
 
@@ -35,7 +47,9 @@
 	});
 
 	const terms = $derived(queryTerms(debounced));
-	const results = $derived(index ? search(index, debounced) : []);
+	const results = $derived(
+		index ? mergeHits(search(index, debounced), gmIndex ? search(gmIndex, debounced) : []) : []
+	);
 
 	// Keep ?q= in the URL so a search is shareable and survives reload.
 	$effect(() => {
@@ -90,6 +104,13 @@
 			<li class="py-3">
 				<a href={href(hit.id)} class="block hover:text-accent">
 					<span class="font-medium">{hit.title}</span>
+					{#if hit.visibility === 'gm'}
+						<span
+							class="ml-2 rounded border border-accent px-1 py-0.5 text-[10px] tracking-wide text-accent uppercase"
+						>
+							GM
+						</span>
+					{/if}
 					{#if hit.breadcrumb !== hit.title}
 						<span class="ml-2 text-xs text-muted">{hit.breadcrumb}</span>
 					{/if}
