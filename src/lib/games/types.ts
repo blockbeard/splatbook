@@ -137,6 +137,9 @@ export interface SessionProps {
 	save: (id: string, data: object) => Promise<void>;
 	/** Roll, logged to the campaign (as the steading, at the change of seasons). */
 	roll?: (label: string, notation: string) => void;
+	/** A stable localStorage key, scoped to this campaign, for whatever the game's
+	 * flow wants to keep on this device (session notes). */
+	notesKey: string;
 }
 
 export interface GameModule {

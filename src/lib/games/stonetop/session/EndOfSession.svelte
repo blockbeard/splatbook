@@ -28,7 +28,7 @@
 	import { fetchEndOfSession, fetchSteadingMoves } from '../pack/moves';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
-	let { characters, steading, save, roll }: SessionProps = $props();
+	let { characters, steading, save, roll, notesKey }: SessionProps = $props();
 
 	let move = $state<EndOfSession | null>(null);
 	let loadError = $state<string | null>(null);
@@ -54,7 +54,25 @@
 	});
 
 	let answers = $state<EndOfSessionAnswers>(emptyAnswers());
+
+	// The session notes are the GM's own jottings — there's no campaign-notes
+	// table to put them in, and inventing one is a bigger question than this
+	// screen. So they live in this browser, keyed to the campaign: they survive a
+	// reload and the next session, which is what "keep" has to mean until there's
+	// somewhere better to keep them.
 	let notes = $state('');
+	let notesLoaded = $state(false);
+	$effect(() => {
+		if (notesLoaded) return;
+		notes = localStorage.getItem(notesKey) ?? '';
+		notesLoaded = true;
+	});
+	$effect(() => {
+		if (!notesLoaded) return;
+		const text = notes;
+		const t = setTimeout(() => localStorage.setItem(notesKey, text), 300);
+		return () => clearTimeout(t);
+	});
 	let saving = $state(false);
 	let saved = $state(false);
 	let saveError = $state<string | null>(null);
@@ -193,7 +211,8 @@
 		<section>
 			<h2 class="text-lg font-semibold">Notable events</h2>
 			<p class="text-sm text-muted">
-				What happened, what was praised, what the table wished for. Yours to keep.
+				What happened, what was praised, what the table wished for. Kept in this browser, for this
+				campaign.
 			</p>
 			<textarea
 				bind:value={notes}

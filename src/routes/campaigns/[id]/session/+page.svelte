@@ -70,7 +70,13 @@
 		<a href={backHref} class="text-accent hover:underline">campaign page</a> first.
 	</p>
 {:else}
-	<Session characters={data.characters} steading={data.steading} {save} roll={makeRoll} />
+	<Session
+		characters={data.characters}
+		steading={data.steading}
+		{save}
+		roll={makeRoll}
+		notesKey={`splatbook:session-notes:${data.campaign.id}`}
+	/>
 {/if}
 
 <RollSurface entry={latest} logged onDismiss={() => (latest = null)} />
