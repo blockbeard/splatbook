@@ -142,6 +142,46 @@ Build Stonetop first and completely, inside that boundary. Don't abstract anythi
 68. `feat(campaigns): live log via polling` — 2–5s poll is fine for a table; upgrade to SSE/Durable Objects only if it feels laggy.
 69. `chore: v2.0.0`.
 
+## Phase 11 — Table-ready polish (v2.1, commits 70–88)
+
+*Drafted 2026-07-11 from a round of play-testing feedback after v2.0. Everything below is UI/UX debt against a working engine — no new phases of the framework promise, just making Ringwall pleasant to sit down with at the table. Two design questions raised in the feedback are answered inline (commits 84 and 85); flag anything you'd re-scope before I start.*
+
+**Theming & the front door.** The shell already reads the OS scheme on first paint and has a toggle, so the gap is narrower than it looks: once you flip the toggle it's stuck on that choice forever and can never follow the OS again, and there's no per-game skin yet (the `[data-game]` hook is documented in `app.css` but nothing sets the attribute or ships an override).
+
+70. `feat(shell): tri-state theme — system / light / dark` — the control cycles system → light → dark instead of a sticky binary; "system" attaches a `matchMedia('(prefers-color-scheme: dark)')` listener so it tracks the OS live, and clears the stored override. Update the inline `app.html` script to honour a stored "system" value. Persist the three-way choice.
+71. `feat(shell): real landing page` — retire the "under construction" notice. Home becomes a genuine front door: one line on what Splatbook is, a card/CTA into **Ringwall** (Stonetop) — build a character, open the reference — and a sign-in prompt. The framework blurb moves to small print.
+72. `feat(stonetop): per-game theme` — ship `src/lib/games/stonetop/theme.css` overriding the `--sb-*` tokens under `[data-game="stonetop"]`, adapted from the vault snippet (`~/Documents/RPG Vaults/Stonetop/.obsidian/snippets/stonetop-theme.css`): EB Garamond body, paper backgrounds (`#faf9f7`), near-black ink, forest-green accent (`#2a4a2a`), plus a dark-mode variant. Set `data-game="stonetop"` on the `/g/[game]` layout so every Stonetop route inherits it; self-host or link the font. Keep the CC BY-SA attribution note.
+73. `feat(stonetop): campaigns link on the game landing` — add a Campaigns CTA to `/g/[game]` alongside the builder/reference/GM links (signed-in → the campaigns list; signed-out → sign-in prompt). Right now campaigns are only reachable from the global nav.
+
+**Character builder.** The wizard asks a question per screen with no memory of what came before, and the review screen lists problems but gives you no way back to fix them.
+
+74. `feat(wizard): choices-so-far rail` — a generic, always-visible summary panel (collapsible drawer on mobile) that the shell renders next to each step, fed by a per-game `summary(draft)` hook on the game module. Updates live as choices are made.
+75. `feat(stonetop): wizard summary provider` — Stonetop implements `summary()` — playbook, background, instinct, stats, chosen moves, possessions — with human labels for the rail in 74.
+76. `feat(wizard): review jumps to its sections` — give each wizard step a stable id; make every review row and every validation error a link back to the step that owns it, so "Assign your stats" on the review screen takes you straight to the stats step.
+
+**Character play sheet.** This is where most of the feedback lands.
+
+77. `feat(stonetop): stat tap rolls; debilities get their own control` — clicking a stat currently toggles its debility; make a stat *tap roll +stat* instead, and move debilities to explicit per-stat toggles. Resolves the two conflicting asks (tap-to-roll, and buttons for debility rather than tapping the stat).
+78. `feat(play): solo rolling + result surface` — rolls work off-campaign too: the result shows inline (small toast/line on the sheet), and still logs when a campaign is attached. Reuses the phase-10 dice engine.
+79. `feat(campaigns): rolls fronted by character name` — the roll surface and the shared log lead with the **character** name, with the player's name in small subtext; persist the character label with the roll so the log reads right for everyone.
+80. `feat(play): bank XP past the level threshold` — let XP mark beyond `xpForNextLevel` (you often earn the last point mid-session and keep going); boxes and the "x / y to level" line reflect banked XP, and Level Up stays available.
+81. `feat(play): overload warning at load 10+` — when carried load hits its cap (10+), the inventory view shows an "overloaded — drop something" note; wire it to the existing load model in the inventory engine.
+82. `feat(play): available moves on the sheet` — list the character's moves first (starting + playbook + advanced), then the general/basic moves, each rollable where it has a stat. If the basic moves aren't yet in the pack, add a `data/basic-moves.json` to the Stonetop pack (with schema + round-trip test) as part of this commit.
+83. `feat(stonetop): character sheet PDF export` — a PDF of the printed sheet (server-rendered from the print view, or client print-to-PDF with a dedicated stylesheet), with a download button on the sheet and play views. Completes the export deferred back in commit 34.
+
+**Steading.** *Design answers:* Yes — a steading rolls, but only for its own moves. At the change of seasons you roll **+Fortunes**, and other steading moves key off the steading stats; it never rolls STR/DEX/etc. So the steading needs roll buttons for its steading-appropriate rolls and nothing else. And a steading is currently a Stonetop-only entity type — the framework *could* let another game register a steading-like entity later, but none does today, and a Stonetop campaign is literally about the village of Stonetop, so pre-filling the name is right (kept editable, since a campaign might track a second steading).
+
+84. `feat(stonetop): steading name defaults to "Stonetop"` — `createSteading()` seeds `name: 'Stonetop'` (still editable).
+85. `feat(steading): steading play sheet with steading rolls` — a real interactive tracker view parallel to the character play mode (tap stats, toggle the three debilities, advance season) reachable directly rather than only via "Edit", with roll buttons for the steading moves — change-of-seasons **roll+Fortunes** first — and no character-stat rolls. Read-only print sheet stays as the printable version.
+
+**End of session.** The one genuinely new workflow.
+
+86. `feat(stonetop): end-of-session model` — engine for the end-of-session move (the three questions → XP awards) plus the season/Fortunes prompt for the campaign steading. Pure functions + tests.
+87. `feat(play): end-of-session flow` — a guided "End session" panel: answer the end-of-session questions (award XP to each character), jot notable events, and optionally roll the steading's Fortunes / advance its season; writes through to the character and the campaign-owned steading.
+88. `docs + chore: v2.1.0` — update `content-packs.md` (new `summary()` hook, per-game theme convention, any pack additions) and `architecture.md` where the boundary moved; changelog; tag.
+
+**Milestone: Ringwall is pleasant to run a real session from — themed, self-explanatory front to back, with a character and a steading you can roll from and close a session on. `v2.1.0`.**
+
 ## Sequencing notes
 
 - Phases 0–4 are ordered dependencies. After that, 5/6/7 can be reshuffled by enthusiasm — steading before play mode is fine.

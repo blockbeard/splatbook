@@ -6,11 +6,14 @@
 		<meta name="text-scale" content="scale" />
 		<script>
 			// Apply the theme before first paint to avoid a flash of the wrong scheme.
+			// Mirrors $lib/theme: anything other than an explicit light/dark override
+			// means "follow the OS".
 			try {
-				const theme =
-					localStorage.getItem('theme') ??
-					(matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-				if (theme === 'dark') document.documentElement.classList.add('dark');
+				const pref = localStorage.getItem('theme');
+				const dark =
+					pref === 'dark' ||
+					(pref !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+				if (dark) document.documentElement.classList.add('dark');
 			} catch {
 				/* no localStorage (privacy mode) — default to light */
 			}
