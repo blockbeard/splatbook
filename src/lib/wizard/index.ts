@@ -5,6 +5,13 @@
  */
 
 export { default as Wizard } from './Wizard.svelte';
-export { defineWizardStep, type WizardStep, type WizardStepProps } from './types';
+export {
+	defineWizardStep,
+	type WizardStep,
+	type WizardStepProps,
+	type WizardSummary,
+	type WizardSummaryItem,
+	type WizardSummarySection
+} from './types';
 export { clampIndex, nextIndex, prevIndex, isFirst, isLast, progress } from './navigation';
 export { draftKey, saveDraft, loadDraft, clearDraft, type DraftStorage } from './autosave';

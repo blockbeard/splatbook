@@ -17,7 +17,44 @@ export interface WizardStepProps<TDraft extends object = Record<string, unknown>
 	draft: TDraft;
 	/** Merge a partial change into the draft; the shell autosaves the result. */
 	update: (patch: Partial<TDraft>) => void;
+	/** Jump to another step by id — how a review screen sends you back to fix
+	 * something. Unknown ids are ignored. */
+	goTo: (stepId: string) => void;
 }
+
+/**
+ * One line in the choices-so-far rail: what was chosen, and which step owns it.
+ *
+ * The shell renders these; it does not know what any of them mean. `value` is
+ * already human-readable (the game resolved ids to names against its pack), and
+ * an absent/blank value renders as "not chosen yet" rather than being hidden —
+ * seeing what is still open is half the point of the rail.
+ */
+export interface WizardSummaryItem {
+	/** Human label, e.g. "Playbook". */
+	label: string;
+	/** Human value, e.g. "The Blessed". Blank/undefined means "not chosen yet". */
+	value?: string;
+	/** The step that owns this choice; makes the row a link back to it. */
+	stepId?: string;
+}
+
+/** A titled group of summary rows. */
+export interface WizardSummarySection {
+	title: string;
+	items: readonly WizardSummaryItem[];
+}
+
+/**
+ * A game's summary of the draft so far, for the wizard's rail.
+ *
+ * Async because resolving ids to human labels means reading the content pack
+ * (which the game fetches and memoises); the shell awaits and re-renders as the
+ * draft changes.
+ */
+export type WizardSummary = (
+	draft: object
+) => readonly WizardSummarySection[] | Promise<readonly WizardSummarySection[]>;
 
 /** One step in the wizard: an id, a title for the progress UI, and its component. */
 export interface WizardStep<TDraft extends object = Record<string, unknown>> {

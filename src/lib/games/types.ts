@@ -16,7 +16,7 @@
 
 import type { Component } from 'svelte';
 import type { SchemaResolver } from '../packs/harness';
-import type { WizardStep } from '../wizard/types';
+import type { WizardStep, WizardSummary } from '../wizard/types';
 import type { DiceModule } from '../dice';
 
 /** Props the shell passes a game's entity-sheet component. The draft/entity is
@@ -63,6 +63,13 @@ export interface EntityTypeModule {
 	 * types built through a create-flow (characters); absent for editor-first
 	 * types (steadings). Built with `defineWizardStep`. */
 	wizardSteps?: readonly WizardStep[];
+	/**
+	 * The draft summarised for the wizard's choices-so-far rail: already-human
+	 * label/value rows, each tagged with the step that owns it. The shell lays
+	 * them out and links them back; it never inspects the draft to build them.
+	 * Absent → the wizard shows no rail.
+	 */
+	summary?: WizardSummary;
 	/** Read-only sheet, rendered from a saved/finished draft (print view). */
 	sheetComponent?: Component<SheetProps>;
 	/** Play/editor component: the editable counterpart to the sheet. The shell

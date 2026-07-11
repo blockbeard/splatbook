@@ -52,6 +52,7 @@
 		{initialDraft}
 		gameId={data.gameId}
 		entityType={data.entityType}
+		summary={type.summary}
 		onFinish={finish}
 	/>
 </section>
