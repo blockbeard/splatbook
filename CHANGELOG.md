@@ -70,6 +70,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   they can't drift. Pure and unit-tested; the per-campaign roll log and the sheet's
   roll UI (commits 66–68) build on this core. `docs/architecture.md` and
   `docs/content-packs.md` document the slot.
+- **Roll log (phase 10, commit 66).** A new shell table, `rolls`, records every
+  dice roll made in a campaign as shared history: keyed by campaign (not by
+  roller), with the roller (`actorId`), the game-supplied `label` (e.g.
+  `Roll +DEX`), and the dice engine's `RollResult` stored whole — a shape the
+  shell owns and reads back, unlike a game's opaque entity `data`. Both foreign
+  keys cascade (a roll dies with its campaign or its roller's account). The new
+  `rolls` service appends (member-guarded — you can only add to a table you sit
+  at) and lists a campaign's log newest-first with each roller's name, breaking
+  same-millisecond ties on the monotonic rowid so insertion order is preserved.
+  Migration `0004`, with service and cascade tests. The roll UI (commit 67) and
+  the live polling view (commit 68) build on this.
 
 ## [1.0.0] - 2026-07-11
 

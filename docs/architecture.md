@@ -134,6 +134,12 @@ scope; it never introduces raw colors in components. Light/dark is a class on
 - Campaigns are shell furniture (like entities): a game-tagged table with
   members (`gm`/`player`) and an invite token. An entity carries an optional
   `campaignId`, so a character belongs to at most one campaign by construction.
+- **The roll log** (phase 10) is the campaign's shared dice history: a `rolls`
+  table keyed by campaign, each row carrying the roller, a game-supplied label,
+  and the dice engine's `RollResult`. Unlike a game's opaque entity `data`, the
+  shell owns the `RollResult` shape (it produced it) and reads it back to render
+  the log. Writes are member-guarded in the service; the live view polls (phase
+  10, commit 68).
 - **The reference GM gate** (phase 9) keys "may I see this game's GM-only rules
   (Book II)?" to "do I GM a campaign for this game?" (`isGmOfAnyCampaign`),
   computed server-side and threaded to the reference loads as `gmContentVisible`.

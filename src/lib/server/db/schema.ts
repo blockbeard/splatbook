@@ -20,6 +20,7 @@
 
 import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text, index, primaryKey } from 'drizzle-orm/sqlite-core';
+import type { RollResult } from '$lib/dice';
 
 /**
  * A user account. Column shape follows the Auth.js Drizzle adapter defaults —
@@ -203,6 +204,41 @@ export const campaignMembers = sqliteTable(
 	]
 );
 
+/**
+ * The roll log — every dice roll made in a campaign (phase 10). Shared table
+ * history: a group at one table wants to see each other's rolls, so a roll is
+ * owned by the *campaign*, not the roller. `actorId` is who rolled (cascades on
+ * account deletion, like their entities); `label` is the game-supplied line
+ * ("Roll +DEX", later "Defy Danger +DEX"), and `result` is the shell dice
+ * engine's `RollResult` stored whole — the shell owns that shape (it produced
+ * it), so unlike `entities.data` it may read it back to render the breakdown.
+ */
+export const rolls = sqliteTable(
+	'rolls',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		/** The campaign whose log this roll belongs to; cascades when it's deleted. */
+		campaignId: text('campaign_id')
+			.notNull()
+			.references(() => campaigns.id, { onDelete: 'cascade' }),
+		/** Who rolled; cascades so deleting the account tidies their rolls. */
+		actorId: text('actor_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		/** Human label for the roll — the game's words (e.g. `Roll +DEX`). */
+		label: text('label').notNull(),
+		/** The dice engine's `RollResult` (notation, mode, dice, modifier, total). */
+		result: text('result', { mode: 'json' }).notNull().$type<RollResult>(),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	// The log is always read newest-first for one campaign.
+	(t) => [index('rolls_campaign_idx').on(t.campaignId, t.createdAt)]
+);
+
 /** Row types inferred from the tables, for the save/load service (commit 32). */
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -212,3 +248,5 @@ export type Campaign = typeof campaigns.$inferSelect;
 export type NewCampaign = typeof campaigns.$inferInsert;
 export type CampaignMember = typeof campaignMembers.$inferSelect;
 export type NewCampaignMember = typeof campaignMembers.$inferInsert;
+export type Roll = typeof rolls.$inferSelect;
+export type NewRoll = typeof rolls.$inferInsert;
