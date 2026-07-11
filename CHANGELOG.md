@@ -7,6 +7,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-07-11
+
+Table-ready polish, drafted from a round of play-testing after v2.0. No new
+phases of the framework promise — this is Ringwall becoming pleasant to actually
+sit down and run: themed, self-explanatory front to back, with a character and a
+steading you can roll from and a session you can close.
+
+### Added
+
+- **Tri-state theme (commit 70).** The theme control cycles system → light →
+  dark instead of a sticky binary. "System" is the default and stays live,
+  tracking the OS through a `matchMedia` listener; the pre-paint script honours
+  the same stored value.
+- **A real landing page (commit 71).** Home is a front door rather than an
+  "under construction" notice: what Splatbook is, a card per registered game
+  (build / reference / run) generated from the registry, and a sign-in prompt
+  that says what an account buys you.
+- **Stonetop's own skin (commit 72).** EB Garamond (self-hosted, OFL),
+  uncoated-paper backgrounds, near-black ink, a Great Wood green, and a dark
+  variant for the table at night. The game themes itself under
+  `html[data-game="stonetop"]`; the shell's only contribution is stamping the
+  attribute (server-side, so it's right on the first paint).
+- **Campaigns on the game landing (commit 73).**
+- **The wizard's choices-so-far rail (commits 74–75).** A summary panel beside
+  every step — sticky on desktop, a drawer on mobile — that updates as you
+  choose and links each row back to the step that owns it. Fed by a generic
+  `summary(draft)` hook on the entity type; Stonetop resolves ids to the names on
+  the page by reading its pack.
+- **Review jumps to its sections (commit 76).** Every row and every validation
+  error on the review screen is a link back to the step that fixes it.
+- **Stat taps roll; debilities get their own control (commit 77).** Tapping a
+  stat rolls +that stat — the thing you do a hundred times a session — and the
+  debility moves to its own toggle, labelled with its name from the pack.
+- **Solo rolling and a result surface (commit 78).** Rolling no longer depends on
+  being in a campaign, and the result floats over the sheet instead of hiding in
+  a panel you've scrolled past. Fronted by the character's name.
+- **Rolls fronted by the character (commit 79).** The roll surface and the shared
+  log lead with the character; the account name is small print. Stored with the
+  roll, so the log still reads right after a rename.
+- **XP banks past the level threshold (commit 80).** You earn the point that
+  levels you mid-session and keep playing; there is now somewhere to put it, and
+  the surplus carries over the level-up.
+- **Overload warning at load 10+ (commit 81).** Past the heaviest band the sheet
+  says so, instead of showing a dash.
+- **Moves on the sheet (commit 82).** Your moves first, then the basic ones, each
+  rollable where its text says what it rolls. Adds `data/basic-moves.json` to the
+  pack, lifted out of the rules prose by `tools/build_moves.ts`.
+- **Character sheet PDF export (commit 83).** Completes the export deferred in
+  commit 34: a print stylesheet that _is_ the PDF's design, with a button on the
+  sheet and play views. No headless browser, so it works on every deploy target.
+- **The steading is named Stonetop (commit 84),** and is still editable.
+- **A steading play sheet with steading rolls (commit 85).** Tap its stats, turn
+  the season, mark its debilities, and roll its own moves — the change of seasons
+  (+Fortunes) first. Adds `data/steading-moves.json`.
+- **End of session (commits 86–87).** The GM runs the move: the table answers the
+  two personal prompts per character and the four group questions, and the XP is
+  marked on every sheet at once. Notable events are kept, and if the season
+  turned, the steading rolls its Fortunes and advances. Engine is pure and
+  tested; an e2e test drives the whole loop and asserts the XP that lands on the
+  sheet.
+
+### Changed
+
+- **Dice moved from the game to the entity type.** A roll belongs to the thing
+  being played: a character rolls its stats, a steading rolls its own moves and
+  no longer offers "Roll +STR".
+- **`registerGame` replaces a repeat id rather than throwing,** the same contract
+  `registerPackSchemas` already had — the dev server re-evaluates SSR modules and
+  must survive it. Two different games claiming one id is still a bug, now caught
+  where it can originate (`BUILT_IN_GAMES`, asserted unique).
+- The campaign's steading link says "Open tracker", not "Edit steading".
+
+### Fixed
+
+- **The dev server served every page as a client-side 500.** Game modules call
+  `registerPackSchemas` on import, which dragged the node-only pack `fs-loader`
+  into the client bundle, where Vite externalises `node:fs/promises` and
+  hydration died. Production builds tree-shook it away, which is why only `npm
+run dev` showed it. The loader is now imported lazily, inside the one function
+  that needs it and never runs in a browser.
+- **"Roll +DEX" rolled a flat `2d6`,** silently throwing the stat away: the
+  modifier lives inside the character, which the shell holds opaquely and could
+  not read. The dice module gained a `resolve` hook; Stonetop resolves against
+  `effectiveStat`, so a marked debility is priced in and the dice can't disagree
+  with the sheet.
+- **Printing hid the character's name.** The print rule hid `header` by element,
+  which matched the _sheet's_ header too.
+- Session notes said "yours to keep" and kept nothing.
+
 ## [2.0.0] - 2026-07-11
 
 Shared play — **campaigns and dice**. A GM starts a campaign and invites players

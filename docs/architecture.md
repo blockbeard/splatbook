@@ -34,10 +34,11 @@ problem to solve, not an exception to grant.
 
 1. **The shell touches game code only through the `GameModule` registry.** No
    `import … from '$lib/games/stonetop/…'` anywhere in shell code. The module
-   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide?, dice? }`) is
-   the entire surface area. If the shell needs something new from a game, the
-   interface grows — explicitly, in its own commit (as `entityTypes` did in phase 6,
-   `gmGuide` in phase 7, and `dice` in phase 10).
+   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide?,
+   sessionComponent? }`) is the entire surface area. If the shell needs something
+   new from a game, the interface grows — explicitly, in its own commit (as
+   `entityTypes` did in phase 6, `gmGuide` in phase 7, `dice` in phase 10, and
+   `sessionComponent` in phase 11).
 
 2. **Game modules never import each other.** Stonetop code may not know HMtW
    exists. Shared needs get promoted to the shell (via rule 1), never traded
@@ -69,7 +70,8 @@ hand, not one and an imagination.
 A game contributes one or more **entity types** through
 `GameModule.entityTypes` — a map keyed by the persisted `entityType`
 (`character`, `steading`, …). Each entry
-(`{ label, newDraft?, entityMeta?, wizardSteps?, sheetComponent?, playComponent? }`)
+(`{ label, newDraft?, entityMeta?, wizardSteps?, summary?, dice?, sheetComponent?,
+playComponent? }`)
 owns that type's create/edit/render slots; every slot is optional so a type is only
 as large as it needs. A character is built through the wizard
 (`wizardSteps` + `newDraft`), rendered read-only by `sheetComponent`, and edited in
@@ -99,22 +101,38 @@ else: a new registry slot, added explicitly, that a game opts into or omits.
 
 ## The dice slot
 
-The third optional `GameModule` slot is `dice` (phase 10). The shell owns the
-**generic dice core** — `$lib/dice`: parsing `XdY±mod` notation, rolling with an
-injectable rng, and advantage/disadvantage (roll an extra die per term, keep the
-best/worst) — all pure and game-agnostic, no game vocabulary in it. A game
-contributes only **presets** through the slot: named, ready-to-roll expressions
-(`{ presets: DicePreset[] }`), each an id, a game-visible `label`, a base
-`notation`, and an opaque `meta` bag the shell never reads. Stonetop's are its
-PbtA move rolls (`2d6` plus a stat, the stat named in `meta`). This keeps rule 3
-intact — the labels are the game's words, sourced from the game — while the shell
-lists and rolls presets without learning what a "stat" is. The roll *log* and the
-sheet's roll UI (commits 66–68) build on this core; the core lands first and alone.
+Dice hang off the **entity type**, not the game (`EntityTypeModule.dice`, moved
+there in phase 11). A roll belongs to the thing being played: a Stonetop
+character rolls its stats; a steading rolls its own moves and has no business
+offering "Roll +STR". A type with no `dice` gets no dice panel.
 
-The **roll UI** (commit 67) is a shell component (`DiceRoller`) that takes a
-game's presets and rolls them with the core — mounted beside the game's play
-component, so no `PlayProps` change and no game vocabulary in the shell. Rolls
-always show locally; when the played character is attached to a campaign the roll
+The shell owns the **generic dice core** — `$lib/dice`: parsing `XdY±mod`
+notation, rolling with an injectable rng, and advantage/disadvantage (roll an
+extra die per term, keep the best/worst) — all pure and game-agnostic, no game
+vocabulary in it. A game contributes **presets**: named, ready-to-roll
+expressions, each an id, a game-visible `label`, a base `notation`, and an opaque
+`meta` bag the shell never reads.
+
+A preset's *dynamic* part — the stat in "Roll +DEX" — cannot be resolved by the
+shell, because the number lives inside the game's own character shape, which the
+shell holds opaquely. So the module also offers `resolve(preset, entity)`: the
+shell hands both back and rolls whatever the game returns. Stonetop resolves
+against `effectiveStat`, so a marked debility is already priced in and the dice
+can never disagree with the sheet. (Before phase 11 there was no such hook, and
+"Roll +DEX" quietly rolled a flat `2d6`.)
+
+A game's sheet can also roll *directly*, through `PlayProps.roll(label,
+notation)` — how tapping a stat or a move rolls it. The game supplies the words
+and the dice; the shell owns the randomness, the result surface and the log. This
+keeps rule 3 intact — the labels are the game's words — while the shell never
+learns what a "stat" is.
+
+The **roll UI** is a shell component (`DiceRoller`) that takes an entity type's
+presets and asks the host to roll them — it does not roll itself, so a preset
+button and a tapped stat land in the same result surface and the same log. The
+result appears in a floating `RollSurface`, fronted by the *character's* name
+(the shell gets that from the entity's name column, never by reading the blob).
+Rolls always show locally, campaign or no campaign; when the played character is attached to a campaign the roll
 is also persisted to that campaign's log via `/api/campaigns/[id]/rolls` (the
 browser-computed `RollResult` is re-validated server-side by `rollResultSchema`
 before it's stored). A loose character just rolls locally. The campaign page
@@ -126,11 +144,21 @@ Objects would be the upgrade only if it ever feels laggy.
 
 ## Theming
 
-The shell defines semantic design tokens as `--sb-*` CSS custom properties in
-`src/app.css`, mapped into Tailwind utilities via `@theme inline`. A game module
-themes itself by overriding the custom properties under a `[data-game="<gameId>"]`
-scope; it never introduces raw colors in components. Light/dark is a class on
-`<html>` (`dark`), set pre-paint by the inline script in `app.html`.
+The shell defines semantic `--sb-*` tokens (`app.css`) and maps them to Tailwind
+utilities; components use `bg-bg`, `text-text`, `border-border`… and never a raw
+colour. A game themes itself by overriding those tokens under
+`html[data-game="<gameId>"]` **in its own CSS**, imported from its own module —
+the shell's only contribution is stamping `data-game` on `<html>` (server-side in
+`hooks.server.ts`, so the theme is right on the first paint, and in the
+`/g/[game]` layout so it survives client-side navigation). A game that ships no
+theme gets the shell's defaults. The selectors are `html[data-game=…]` rather than
+bare attribute selectors because the shell's tokens sit on `:root`, which has
+identical specificity — bare selectors would win or lose on bundle order alone.
+
+Theme *preference* is three-way (system / light / dark). "System" is the default
+and stays live, tracking the OS through a `matchMedia` listener. Printing drops
+the dark class for the duration, so a sheet prints as paper and ink whatever the
+screen is doing.
 
 ## Persistence
 
@@ -183,6 +211,35 @@ scope; it never introduces raw colors in components. Light/dark is a class on
 - `CHANGELOG.md` (Keep a Changelog) and `docs/content-packs.md` (once it exists)
   are updated in the same commit as the change they describe. A stale boundary doc
   is a bug.
+
+## The wizard summary hook
+
+The wizard shell renders a **choices-so-far rail** beside every step (phase 11).
+It is fed by `EntityTypeModule.summary(draft)`, which returns already-human
+label/value rows, each tagged with the step id that owns it. The shell lays them
+out and links each row back to its step; it never inspects the draft to build
+them — resolving an id like `the-blessed` to "The Blessed" means reading the
+content pack, which is the game's job. The hook may be async for exactly that
+reason. Steps also receive `goTo(stepId)`, which is what lets the review screen
+turn every row and every validation error into a way back to the step that fixes
+it.
+
+## The end-of-session slot
+
+`GameModule.sessionComponent` (phase 11) is the game's end-of-session ritual,
+surfaced by the shell at `/campaigns/[id]/session`. The division is the usual
+one: the shell brings the table (the campaign's characters and steading, held
+opaquely), a write-through, and the dice; the game brings the questions and what
+they are worth. The shell computes no awards — it persists exactly the blob the
+game's engine handed it.
+
+That write-through is the one place someone writes an entity they do not own, and
+the guard is correspondingly narrow (`updateCampaignEntityData`): the entity must
+be attached to a campaign where the caller is seated **as GM**. A player cannot
+write another player's character even at the same table; an unattached character
+cannot be touched; a GM of another campaign gets nothing. It exists because at the
+end of a session the GM marks XP on the whole party, and the party's characters
+belong to their players.
 
 ## What "done" looks like for the framework
 

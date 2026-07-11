@@ -79,6 +79,26 @@ for Stonetop, `content/stonetop/rules/` is produced from the Obsidian vault by
 maintained structured data (`data/*.json`) is source, not output; its human-
 readable schema lives in the pack's `SCHEMA.md`.
 
+Three data files are the exception, generated *from the pack's own rules tree* by
+`tools/build_moves.ts` (phase 11) and likewise not hand-edited:
+
+| File | What it holds |
+| --- | --- |
+| `data/basic-moves.json` | The moves every character can make. |
+| `data/steading-moves.json` | The Homefront moves that roll a *steading* stat. |
+| `data/end-of-session.json` | The end-of-session move, split into personal prompts, group questions, and closing prose. |
+
+They exist because the play sheets need these moves as **data**, while the rules
+carry them as prose — and retyping licensed text by hand is how text drifts from
+its source. Each carries a `source` block naming the rules file and section it was
+lifted from. Round-trip tests assert the shipped files parse and still say what
+the rules say, so a regeneration that mangles them fails CI.
+
+Note what is *not* stored: which stat a move rolls. That is read from the move's
+own text ("roll +STR", "rolls +Fortunes"), so a playbook move and a basic move are
+rollable by exactly the same rule, and the pack has no second copy of a fact to
+disagree with.
+
 ## Document trees (rules reference)
 
 A game's rules/SRD text ships as one or more **document trees** under the pack's
@@ -148,29 +168,60 @@ The GM guide is public today (unlike GM-only *rules* documents, which stay gated
 by `GM_CONTENT_VISIBLE`); if a future game's guide needs gating, that is the
 same phase-9 gate to reuse.
 
-## The dice slot (module presets, not pack data)
+## The dice slot (module code, not pack data)
 
-Dice are the one `GameModule` slot that is **code, not pack content**. The shell
-owns a generic dice core (`$lib/dice`: `XdY±mod` notation, an injectable-rng
-`roll`, advantage/disadvantage); a game opts in through an optional `dice` slot
-that supplies **presets** — named, ready-to-roll expressions:
+Dice are **code, not pack content**, and they hang off the **entity type**, not
+the game (`EntityTypeModule.dice`; moved there in phase 11, because a roll belongs
+to the thing being played — a steading rolls its own moves, never "+STR"). The
+shell owns a generic dice core (`$lib/dice`: `XdY±mod` notation, an injectable-rng
+`roll`, advantage/disadvantage); a type opts in by supplying **presets** and a
+resolver:
 
 ```ts
 dice: {
   presets: [
     { id: 'roll-dex', label: 'Roll +DEX', notation: '2d6', meta: { stat: 'DEX' } }
     // …
-  ]
+  ],
+  // The modifier lives inside the game's own character shape, which the shell
+  // holds opaquely — so the shell hands both back and rolls what it gets.
+  resolve: (preset, entity) => ({ label: 'Roll +DEX (+2)', notation: '2d6+2' })
 }
 ```
 
 Each preset is an id, a game-visible `label` (the game's words, per rule 3), a
-base `notation` the generic core parses, and an opaque `meta` bag only the game's
-own UI reads (Stonetop stores which stat the roll adds). The presets live in the
-module (`src/lib/games/<gameId>/dice.ts`), not the pack, because they are
-structural rather than licensed text; a game's stat vocabulary is drawn from its
-engine so it can't drift. See `architecture.md`, "The dice slot". Later phase-10
-commits add the per-campaign roll log and the sheet's roll UI on top of this core.
+base `notation` the generic core parses, and an opaque `meta` bag only the game
+reads (Stonetop stores which stat the roll adds). A game's sheet can also roll
+directly through `PlayProps.roll(label, notation)` — that is what tapping a stat
+or a move does. The presets live in the module
+(`src/lib/games/<gameId>/dice.ts`), not the pack, because they are structural
+rather than licensed text; a game's stat vocabulary is drawn from its engine so it
+can't drift. See `architecture.md`, "The dice slot".
+
+## The wizard summary hook
+
+`EntityTypeModule.summary(draft)` feeds the wizard's choices-so-far rail: it
+returns already-human `{ label, value, stepId }` rows, grouped into titled
+sections. The shell renders them and links each back to the step that owns it; it
+never inspects the draft. Resolving an id to a name means reading the pack, so the
+hook may be async (Stonetop's reads the chosen playbook, memoised).
+
+## Per-game theming
+
+A game themes itself: ship a `theme.css` in the module, import it from the
+module's own entry, and override the shell's `--sb-*` tokens under
+`html[data-game="<gameId>"]` (plus `html.dark[data-game="<gameId>"]` for the dark
+variant). The shell stamps `data-game` on `<html>` for that game's routes and does
+nothing else; a game with no theme gets the shell's defaults. Fonts are
+self-hosted (Stonetop uses `@fontsource/eb-garamond`) so a pack's look doesn't
+depend on a third-party CDN.
+
+## The end-of-session slot
+
+`GameModule.sessionComponent` is the game's end-of-session ritual, surfaced by the
+shell at `/campaigns/[id]/session`. The shell supplies the table (characters +
+steading, opaque), a GM-authorised `save`, and `roll`; the game asks the questions
+and computes the awards. The shell persists exactly the blob the game hands it.
 
 ## Adding a new game
 
