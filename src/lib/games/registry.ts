@@ -12,11 +12,19 @@ import type { GameModule } from './types';
 
 const games = new Map<string, GameModule>();
 
-/** Register a game module. Ids must be unique; re-registration is a bug, not an update. */
+/**
+ * Register a game module, replacing any earlier registration of the same id —
+ * the same no-op-replacement contract `registerPackSchemas` already has.
+ *
+ * Replacement rather than a duplicate-id throw because the dev server
+ * re-evaluates SSR modules (a game importing its own theme CSS is enough to
+ * trigger it) and re-runs registration with a freshly constructed module
+ * object; throwing there would 500 every request after the first. Two
+ * *different* games claiming one id is still a bug — `BUILT_IN_GAMES` is
+ * asserted unique in `index.test.ts`, which is where such a collision could
+ * actually originate.
+ */
 export function registerGame(module: GameModule): void {
-	if (games.has(module.id)) {
-		throw new Error(`game "${module.id}" is already registered`);
-	}
 	games.set(module.id, module);
 	registerPackSchemas(module.id, module.packSchemas);
 }

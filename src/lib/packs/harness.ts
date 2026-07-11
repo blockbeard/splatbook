@@ -9,7 +9,6 @@
  */
 
 import type { z } from 'zod';
-import { loadManifest, loadPackFile } from './fs-loader';
 import { PackError, type PackManifest } from './types';
 
 /**
@@ -38,8 +37,18 @@ export interface PackValidationResult {
 	errors: string[];
 }
 
-/** Validate one pack folder: envelope first, then every listed file against its game's schemas. */
+/**
+ * Validate one pack folder: envelope first, then every listed file against its
+ * game's schemas.
+ *
+ * The filesystem loader is imported lazily, and deliberately. Registration
+ * (`registerPackSchemas`) runs in the browser — every game module calls it on
+ * import — so a static `./fs-loader` import puts `node:fs/promises` in the
+ * client graph, where Vite externalises it and hydration dies on first access.
+ * Validation itself only ever runs under node (tooling and tests).
+ */
 export async function validatePack(packRoot: string): Promise<PackValidationResult> {
+	const { loadManifest, loadPackFile } = await import('./fs-loader');
 	const result: PackValidationResult = { packRoot, errors: [] };
 
 	let manifest: PackManifest;

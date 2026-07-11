@@ -33,9 +33,13 @@ describe('registry', () => {
 		expect(listGames().map((g) => g.id)).toEqual(['alpha', 'zeta']);
 	});
 
-	it('rejects duplicate ids', () => {
+	// The dev server re-evaluates SSR modules and re-runs registration with a
+	// fresh module object; that has to be survivable, not fatal.
+	it('replaces an earlier registration of the same id', () => {
 		registerGame(module('twice', 'Twice'));
-		expect(() => registerGame(module('twice', 'Twice Again'))).toThrow(/already registered/);
+		registerGame(module('twice', 'Twice Again'));
+		expect(getGame('twice')?.name).toBe('Twice Again');
+		expect(listGames()).toHaveLength(1);
 	});
 
 	it('wires the game pack schemas into the validation harness', async () => {
