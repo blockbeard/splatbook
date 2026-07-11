@@ -14,7 +14,7 @@ import type { RollResult } from '$lib/dice';
 import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
 import { createCampaign, joinCampaign } from './campaigns.ts';
-import { logRoll, listCampaignRolls } from './rolls.ts';
+import { logRoll, listCampaignRolls, toLogEntry } from './rolls.ts';
 
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
@@ -69,6 +69,31 @@ describe('logRoll', () => {
 		expect(row?.label).toBe('Roll +DEX');
 		expect(row?.result.total).toBe(9);
 		expect(row?.createdAt).toBeInstanceOf(Date);
+	});
+
+	// The log leads with the character, so the name has to survive the roll —
+	// including a later rename, which is why it's stored rather than joined.
+	it('stores the character who rolled, as they were called at the time', async () => {
+		await logRoll(db, {
+			campaignId,
+			actorId: player,
+			characterName: 'Ryn',
+			label: 'Roll +DEX',
+			result: sampleResult(9)
+		});
+
+		const [entry] = await listCampaignRolls(db, campaignId);
+		expect(entry.characterName).toBe('Ryn');
+		expect(entry.actorName).toBe('Bram');
+		expect(toLogEntry(entry).characterName).toBe('Ryn');
+	});
+
+	it('leaves the character blank for a roll made with none in play', async () => {
+		await logRoll(db, { campaignId, actorId: gm, label: 'Roll 2d6', result: sampleResult(7) });
+
+		const [entry] = await listCampaignRolls(db, campaignId);
+		expect(entry.characterName).toBeNull();
+		expect(toLogEntry(entry).characterName).toBeUndefined();
 	});
 
 	it('refuses a non-member and writes nothing', async () => {

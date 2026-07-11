@@ -26,6 +26,8 @@ export interface NewRollInput {
 	campaignId: string;
 	/** The member who rolled. */
 	actorId: string;
+	/** The character they rolled as, if any — stored as it read at roll time. */
+	characterName?: string | null;
 	/** The game-supplied label for the roll (e.g. `Roll +DEX`). */
 	label: string;
 	/** The dice engine's outcome, stored whole. */
@@ -37,6 +39,7 @@ export interface RollView {
 	id: string;
 	actorId: string;
 	actorName: string | null;
+	characterName: string | null;
 	label: string;
 	result: RollResult;
 	createdAt: Date;
@@ -65,6 +68,7 @@ export async function logRoll(db: Db, input: NewRollInput): Promise<Roll | undef
 		.values({
 			campaignId: input.campaignId,
 			actorId: input.actorId,
+			characterName: input.characterName ?? null,
 			label: input.label,
 			result: input.result
 		})
@@ -88,6 +92,7 @@ export async function listCampaignRolls(
 			id: rolls.id,
 			actorId: rolls.actorId,
 			actorName: users.name,
+			characterName: rolls.characterName,
 			label: rolls.label,
 			result: rolls.result,
 			createdAt: rolls.createdAt
@@ -109,6 +114,7 @@ export function toLogEntry(r: RollView): RollLogEntry {
 	return {
 		id: r.id,
 		actorName: r.actorName ?? 'Unknown',
+		characterName: r.characterName ?? undefined,
 		label: r.label,
 		result: r.result,
 		at: r.createdAt.getTime()

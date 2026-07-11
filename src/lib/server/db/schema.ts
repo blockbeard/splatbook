@@ -227,6 +227,15 @@ export const rolls = sqliteTable(
 		actorId: text('actor_id')
 			.notNull()
 			.references(() => users.id, { onDelete: 'cascade' }),
+		/**
+		 * Which character rolled — the name the table knows you by, and what the log
+		 * leads with. Denormalised on purpose: it's the character's name *at the
+		 * moment of the roll*, so the log still reads right after a rename, and the
+		 * entry survives the character being deleted. Null for a roll made with no
+		 * character in play (a GM rolling loose), where the account name is all
+		 * there is.
+		 */
+		characterName: text('character_name'),
 		/** Human label for the roll — the game's words (e.g. `Roll +DEX`). */
 		label: text('label').notNull(),
 		/** The dice engine's `RollResult` (notation, mode, dice, modifier, total). */

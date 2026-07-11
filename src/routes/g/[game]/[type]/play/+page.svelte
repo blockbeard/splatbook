@@ -100,7 +100,7 @@
 		fetch(`/api/campaigns/${campaignId}/rolls`, {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({ label, result })
+			body: JSON.stringify({ label, result, characterName })
 		}).catch(() => {});
 	}
 

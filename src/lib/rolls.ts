@@ -10,7 +10,11 @@ import type { RollResult } from '$lib/dice';
 
 export interface RollLogEntry {
 	id: string;
+	/** The account that rolled — the small print under the character's name. */
 	actorName: string;
+	/** The character who rolled, as they were called at the time. Absent when the
+	 * roll was made with no character in play. */
+	characterName?: string;
 	label: string;
 	result: RollResult;
 	/** When the roll was made, epoch milliseconds. */

@@ -68,8 +68,14 @@
 		<ul class="mt-2 divide-y divide-border rounded-md border border-border" aria-live="polite">
 			{#each entries as e (e.id)}
 				<li class="flex items-baseline justify-between gap-3 px-4 py-2.5 text-sm">
+					<!-- The table knows each other by their characters, so the log leads with
+					     the character and keeps the account name as small print. A roll made
+					     with no character in play has only the account name to give. -->
 					<span class="min-w-0">
-						<span class="font-medium">{e.actorName}</span>
+						<span class="font-medium">{e.characterName ?? e.actorName}</span>
+						{#if e.characterName}
+							<span class="text-xs text-muted">({e.actorName})</span>
+						{/if}
 						<span class="text-muted"> · {e.label}</span>
 						{#if e.result.mode !== 'normal'}
 							<span class="text-xs text-muted">({e.result.mode})</span>

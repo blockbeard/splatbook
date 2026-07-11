@@ -32,6 +32,9 @@ export const GET: RequestHandler = async ({ locals, params }) => {
 
 const body = z.strictObject({
 	label: z.string().min(1).max(120),
+	/** Who rolled, in the fiction. Optional: a roll with no character in play
+	 * (a GM rolling loose) is still a roll. */
+	characterName: z.string().min(1).max(120).nullish(),
 	result: rollResultSchema
 });
 
@@ -45,6 +48,7 @@ export const POST: RequestHandler = async ({ locals, params, request }) => {
 	const row = await logRoll(db, {
 		campaignId: params.id,
 		actorId: session.user.id,
+		characterName: parsed.data.characterName,
 		label: parsed.data.label,
 		result: parsed.data.result
 	});
