@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-07-11
+
+Shared play — **campaigns and dice**. A GM starts a campaign and invites players
+by link; characters attach to it, the party sees each other at a glance, and a
+GM-owned steading and the reference GM gate come with the seat. On top of that, a
+generic dice engine with per-game presets, a roller on the play sheet, and a live
+shared roll log the whole table watches.
+
 ### Added
 
 - **Campaigns — tables & membership (phase 9, commit 58).** Two new shell tables,
