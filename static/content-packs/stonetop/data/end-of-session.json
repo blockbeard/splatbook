@@ -1,0 +1,41 @@
+{
+	"id": "end-of-session",
+	"name": "End of Session",
+	"type": "move",
+	"source": {
+		"file": "rules/book-i.json",
+		"section": "03-playing-the-game--end-of-session"
+	},
+	"personal": [
+		{
+			"id": "personal-1",
+			"text": "When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP."
+		},
+		{
+			"id": "personal-2",
+			"text": "Say how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP."
+		}
+	],
+	"questions": [
+		{
+			"id": "q1",
+			"text": "Did we learn more about the world or its history?"
+		},
+		{
+			"id": "q2",
+			"text": "Did we defeat a threat to Stonetop or the region?"
+		},
+		{
+			"id": "q3",
+			"text": "Did we improve our standing with our neighbors?"
+		},
+		{
+			"id": "q4",
+			"text": "Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?"
+		}
+	],
+	"closing": [
+		"Praise something about the session (in the fiction or around the table) that you enjoyed or appreciated.",
+		"Finally, offer up a wish for future sessions: more \\_\\_, less \\_\\_, a chance to \\_\\_, handling \\_\\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes."
+	]
+}

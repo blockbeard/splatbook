@@ -27,6 +27,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 const RULES = 'static/content-packs/stonetop/rules/book-i.json';
 const BASIC_START = '03-playing-the-game--basic-moves';
 const HOMEFRONT_START = '03-playing-the-game--homefront-moves';
+const END_OF_SESSION = '03-playing-the-game--end-of-session';
 
 /** The steading's own stats — a homefront move that rolls one of these is a
  * steading move; one that doesn't is a character's business. */
@@ -142,4 +143,57 @@ await writePack(
 		moves: steading
 	},
 	steading.length
+);
+
+/**
+ * The end-of-session move, split into the parts a guided flow needs: the two
+ * prompts each player answers for themselves ("If you can, mark XP"), and the
+ * questions the table answers together (every "yes" is an XP for everyone).
+ *
+ * The split is structural, not editorial: the personal prompts are the
+ * paragraphs that end in "mark XP", the group questions are the bullet list, and
+ * the rest (praise, a wish) is prose the flow shows but scores nothing for.
+ */
+const eos = all.find((s) => s.id === END_OF_SESSION);
+if (!eos?.body) throw new Error(`${RULES}: no end-of-session move (${END_OF_SESSION})`);
+
+const paragraphs = eos.body
+	.split(/\n\s*\n/)
+	.map((p) => p.trim())
+	.filter(Boolean);
+
+const personal = paragraphs
+	.filter((p) => !p.startsWith('-') && /mark XP/i.test(p))
+	.map((text, i) => ({ id: `personal-${i + 1}`, text }));
+
+const questions = eos.body
+	.split('\n')
+	.map((line) => line.trim())
+	.filter((line) => line.startsWith('- '))
+	.map((line, i) => ({ id: `q${i + 1}`, text: line.slice(2).trim() }));
+
+// Everything with no XP attached: praise, and a wish for future sessions.
+const closing = paragraphs.filter(
+	(p) => !p.startsWith('-') && !/mark XP/i.test(p) && !/^Answer these questions/i.test(p) && !/^For more information/i.test(p)
+);
+
+if (personal.length === 0 || questions.length === 0) {
+	throw new Error(`${RULES}: end-of-session move parsed to nothing (${personal.length} prompts, ${questions.length} questions)`);
+}
+
+await writePack(
+	'end-of-session.json',
+	{
+		id: 'end-of-session',
+		name: 'End of Session',
+		type: 'move',
+		source: { file: 'rules/book-i.json', section: END_OF_SESSION },
+		/** Each answered for yourself; "if you can, mark XP". */
+		personal,
+		/** Answered as a group; for each "yes", everyone marks XP. */
+		questions,
+		/** Prose the flow shows at the end; nothing is scored for it. */
+		closing
+	},
+	personal.length + questions.length
 );

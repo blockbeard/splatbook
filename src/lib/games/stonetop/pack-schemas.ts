@@ -643,6 +643,24 @@ function movesFileSchema<T extends string>(fileId: T) {
 }
 
 export const basicMovesSchema = movesFileSchema('basic-moves');
+
+/**
+ * The end-of-session move, split into the parts a guided flow needs: the prompts
+ * each player answers about their own character ("if you can, mark XP"), the
+ * questions the table answers together (every "yes" is an XP for everyone), and
+ * the closing prose that scores nothing.
+ */
+export const endOfSessionSchema = z.strictObject({
+	id: z.literal('end-of-session'),
+	name: z.string().min(1),
+	type: z.literal('move'),
+	source: z.strictObject({ file: z.string().min(1), section: z.string().min(1) }),
+	personal: z.array(z.strictObject({ id, text: markdown })).min(1),
+	questions: z.array(z.strictObject({ id, text: markdown })).min(1),
+	closing: z.array(markdown)
+});
+
+export type EndOfSession = z.infer<typeof endOfSessionSchema>;
 export const steadingMovesSchema = movesFileSchema('steading-moves');
 
 export type BasicMoves = z.infer<typeof basicMovesSchema>;
@@ -651,6 +669,7 @@ export type SteadingMoves = z.infer<typeof steadingMovesSchema>;
 export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/basic-moves.json') return basicMovesSchema;
 	if (relPath === 'data/steading-moves.json') return steadingMovesSchema;
+	if (relPath === 'data/end-of-session.json') return endOfSessionSchema;
 	if (relPath === 'data/the-steading.json') return steadingSchema;
 	if (relPath === 'data/the-gm.json') return gmSchema;
 	if (relPath === 'data/insert-inventory.json') return inventoryInsertSchema;

@@ -5,7 +5,7 @@
  */
 
 import { base } from '$app/paths';
-import type { BasicMoves, SteadingMoves } from '../pack-schemas';
+import type { BasicMoves, EndOfSession, SteadingMoves } from '../pack-schemas';
 
 const GAME_ID = 'stonetop';
 
@@ -39,4 +39,9 @@ export function fetchBasicMoves(fetchFn: Fetcher): Promise<BasicMoves> {
 /** The moves a steading rolls — Seasons Change, Deploy, Muster… (memoised). */
 export function fetchSteadingMoves(fetchFn: Fetcher): Promise<SteadingMoves> {
 	return fetchMoves<SteadingMoves>('steading-moves.json', fetchFn);
+}
+
+/** The end-of-session move: personal prompts, group questions, closing prose. */
+export function fetchEndOfSession(fetchFn: Fetcher): Promise<EndOfSession> {
+	return fetchMoves<EndOfSession>('end-of-session.json', fetchFn);
 }

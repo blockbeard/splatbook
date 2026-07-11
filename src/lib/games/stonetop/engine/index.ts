@@ -138,3 +138,11 @@ export const engine = {
 } as const;
 
 export type StonetopEngine = typeof engine;
+
+export {
+	applyEndOfSession,
+	emptyAnswers,
+	turnSeason,
+	xpFor,
+	type EndOfSessionAnswers
+} from './session';
