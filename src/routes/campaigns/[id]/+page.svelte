@@ -71,3 +71,41 @@
 		</form>
 	</section>
 {/if}
+
+<section class="mt-6">
+	<h2 class="text-sm font-semibold">Your characters</h2>
+	{#if data.myCharacters.length === 0}
+		<p class="mt-1 text-xs text-muted">
+			You have no {data.campaign.gameName} characters yet. Build one, then attach it here.
+		</p>
+	{:else}
+		<ul class="mt-2 divide-y divide-border rounded-md border border-border">
+			{#each data.myCharacters as c (c.id)}
+				<li class="flex items-center justify-between gap-4 px-4 py-2.5">
+					<span class="min-w-0 truncate">{c.name || 'Unnamed character'}</span>
+					{#if c.attachedHere}
+						<form method="POST" action="?/detach" use:enhance>
+							<input type="hidden" name="entityId" value={c.id} />
+							<button type="submit" class="text-xs text-accent hover:underline">
+								Attached · remove
+							</button>
+						</form>
+					{:else}
+						<form method="POST" action="?/attach" use:enhance>
+							<input type="hidden" name="entityId" value={c.id} />
+							<button
+								type="submit"
+								class="text-xs text-muted hover:text-accent hover:underline"
+								title={c.attachedElsewhere
+									? 'This will move the character from its current campaign'
+									: undefined}
+							>
+								{c.attachedElsewhere ? 'Move here' : 'Attach'}
+							</button>
+						</form>
+					{/if}
+				</li>
+			{/each}
+		</ul>
+	{/if}
+</section>

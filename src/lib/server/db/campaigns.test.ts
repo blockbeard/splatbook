@@ -9,6 +9,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
+import { eq } from 'drizzle-orm';
 import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
 import {
@@ -17,7 +18,8 @@ import {
 	getCampaignByToken,
 	membershipOf,
 	listCampaignsForUser,
-	rotateInviteToken
+	rotateInviteToken,
+	joinCampaign
 } from './campaigns.ts';
 
 function freshDb(): Db {
@@ -108,5 +110,34 @@ describe('rotateInviteToken', () => {
 		expect(await rotateInviteToken(db, campaign.id, player)).toBeUndefined();
 		// The original token still works.
 		expect((await getCampaign(db, campaign.id))?.inviteToken).toBe(campaign.inviteToken);
+	});
+});
+
+describe('joinCampaign', () => {
+	it('seats a newcomer as a player', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		const result = await joinCampaign(db, campaign.inviteToken, player);
+		expect(result?.joined).toBe(true);
+		expect(result?.role).toBe('player');
+		expect((await membershipOf(db, campaign.id, player))?.role).toBe('player');
+	});
+
+	it('is idempotent for an existing member and never demotes the GM', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		// GM opens their own invite link.
+		const result = await joinCampaign(db, campaign.inviteToken, gm);
+		expect(result?.joined).toBe(false);
+		expect(result?.role).toBe('gm');
+		// Still exactly one seat for the GM.
+		const seats = await db
+			.select()
+			.from(schema.campaignMembers)
+			.where(eq(schema.campaignMembers.campaignId, campaign.id));
+		expect(seats).toHaveLength(1);
+	});
+
+	it('returns undefined for a bad token', async () => {
+		await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		expect(await joinCampaign(db, 'not-a-token', player)).toBeUndefined();
 	});
 });

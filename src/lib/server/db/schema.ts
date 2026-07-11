@@ -108,6 +108,13 @@ export const entities = sqliteTable(
 		entityType: text('entity_type').notNull(),
 		/** Display name for lists; the shell reads this, never `data`. */
 		name: text('name').notNull().default(''),
+		/**
+		 * The campaign this entity is attached to, if any (phase 9). A character
+		 * belongs to at most one campaign — a single nullable column makes that
+		 * true by construction. `set null` on delete so an entity outlives its
+		 * campaign (it just detaches) rather than being cascaded away.
+		 */
+		campaignId: text('campaign_id').references(() => campaigns.id, { onDelete: 'set null' }),
 		/** The game module's own serialized shape. Opaque to the shell. */
 		data: text('data', { mode: 'json' }).notNull(),
 		/** The game module's schema version for `data`; it migrates on bump. */
@@ -124,7 +131,9 @@ export const entities = sqliteTable(
 	(t) => [
 		// The dashboard always scopes by owner, usually narrowing to one game.
 		index('entities_user_idx').on(t.userId),
-		index('entities_user_game_type_idx').on(t.userId, t.gameId, t.entityType)
+		index('entities_user_game_type_idx').on(t.userId, t.gameId, t.entityType),
+		// The campaign party view lists every entity attached to one campaign.
+		index('entities_campaign_idx').on(t.campaignId)
 	]
 );
 

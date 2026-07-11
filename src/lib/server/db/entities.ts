@@ -131,6 +131,47 @@ export async function deleteEntity(db: Db, id: string, userId: string): Promise<
 }
 
 /**
+ * Attach an owned entity to a campaign (or detach with `campaignId = null`).
+ * Owner-scoped, so a caller can only move their own entity; a character belongs
+ * to at most one campaign, so this replaces any previous attachment. The caller
+ * is responsible for having verified campaign membership and a matching `gameId`
+ * first — this is the low-level write, not the policy. Returns the updated row,
+ * or `undefined` if the entity isn't the user's.
+ */
+export async function setEntityCampaign(
+	db: Db,
+	id: string,
+	userId: string,
+	campaignId: string | null
+): Promise<Entity | undefined> {
+	const [row] = await db
+		.update(entities)
+		.set({ campaignId, updatedAt: new Date() })
+		.where(and(eq(entities.id, id), eq(entities.userId, userId)))
+		.returning();
+	return row;
+}
+
+/**
+ * Every entity attached to a campaign, across all members — the party view's
+ * source (commit 61). NOT user-scoped: the caller must have already confirmed
+ * the viewer is a member of `campaignId`. Optionally narrowed to one entity type.
+ */
+export async function listCampaignEntities(
+	db: Db,
+	campaignId: string,
+	entityType?: string
+): Promise<Entity[]> {
+	const conds = [eq(entities.campaignId, campaignId)];
+	if (entityType) conds.push(eq(entities.entityType, entityType));
+	return db
+		.select()
+		.from(entities)
+		.where(and(...conds))
+		.orderBy(desc(entities.updatedAt));
+}
+
+/**
  * Duplicate an owned entity into a fresh draft ("… (copy)"). Returns the new
  * row, or `undefined` if the source isn't the user's.
  */

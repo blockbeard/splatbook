@@ -92,6 +92,36 @@ export async function listCampaignsForUser(db: Db, userId: string): Promise<Camp
 	return rows.map((r) => ({ ...r.campaign, role: r.role }));
 }
 
+/** Outcome of presenting an invite token. */
+export interface JoinResult {
+	campaign: Campaign;
+	/** The viewer's role after joining — `player` for a newcomer, or their existing role. */
+	role: CampaignRole;
+	/** True only when this call created the seat (false if they were already in). */
+	joined: boolean;
+}
+
+/**
+ * Join a campaign by presenting its invite token. Idempotent: an existing member
+ * (including the GM opening their own link) is returned as-is rather than
+ * demoted or duplicated. Returns `undefined` for an unknown/empty token, so the
+ * route can 404 without confirming which tokens exist.
+ */
+export async function joinCampaign(
+	db: Db,
+	token: string,
+	userId: string
+): Promise<JoinResult | undefined> {
+	const campaign = await getCampaignByToken(db, token);
+	if (!campaign) return undefined;
+
+	const existing = await membershipOf(db, campaign.id, userId);
+	if (existing) return { campaign, role: existing.role, joined: false };
+
+	await db.insert(campaignMembers).values({ campaignId: campaign.id, userId, role: 'player' });
+	return { campaign, role: 'player', joined: true };
+}
+
 /**
  * Rotate a campaign's invite token, invalidating any outstanding link. Guarded
  * to the owner: returns the updated campaign, or `undefined` if the caller

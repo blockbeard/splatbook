@@ -22,6 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   outstanding invites. Campaign access is membership-gated in the service layer —
   a non-member gets a 404, not a peek. New `campaigns` service (create, lookups,
   per-user listing, token rotation) with unit tests, plus a Campaigns nav link.
+- **Join flow + attach characters (phase 9, commit 60).** Opening an invite link
+  (`/campaigns/join/<token>`) shows a join confirmation and seats you as a
+  player; it's idempotent (the GM opening their own link isn't demoted) and
+  prompts sign-in first when needed, returning to the same link. Entities gained
+  an optional `campaign_id` (migration `0003`, `set null` on campaign delete), so
+  a character belongs to at most one campaign by construction — the campaign page
+  lists your characters for that game with attach / move-here / remove controls.
+  New service functions (`joinCampaign`, `setEntityCampaign`, `listCampaignEntities`)
+  with unit tests.
 
 ## [1.0.0] - 2026-07-11
 

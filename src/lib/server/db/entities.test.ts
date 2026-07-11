@@ -8,6 +8,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
+import { eq } from 'drizzle-orm';
 import * as schema from './schema.ts';
 import {
 	createEntity,
@@ -17,6 +18,8 @@ import {
 	setEntityStatus,
 	deleteEntity,
 	duplicateEntity,
+	setEntityCampaign,
+	listCampaignEntities,
 	type Db
 } from './entities.ts';
 
@@ -125,5 +128,62 @@ describe('duplicate', () => {
 		expect(copy?.status).toBe('draft');
 		expect(copy?.data).toEqual(created.data);
 		expect(copy?.id).not.toBe(created.id);
+		// A duplicate starts unattached even if the source was in a campaign.
+		expect(copy?.campaignId).toBeNull();
+	});
+});
+
+describe('campaign attachment', () => {
+	async function makeCampaign(ownerId: string, gameId = 'stonetop') {
+		const [c] = await db.insert(schema.campaigns).values({ gameId, ownerId }).returning();
+		return c.id;
+	}
+
+	it('attaches and detaches an owned entity, at most one campaign at a time', async () => {
+		const first = await makeCampaign(alice);
+		const second = await makeCampaign(alice);
+		const hero = await createEntity(db, characterInput(alice));
+
+		const attached = await setEntityCampaign(db, hero.id, alice, first);
+		expect(attached?.campaignId).toBe(first);
+
+		// Moving replaces rather than accumulates — a single column can't hold two.
+		const moved = await setEntityCampaign(db, hero.id, alice, second);
+		expect(moved?.campaignId).toBe(second);
+
+		const detached = await setEntityCampaign(db, hero.id, alice, null);
+		expect(detached?.campaignId).toBeNull();
+	});
+
+	it("won't attach another user's entity", async () => {
+		const campaign = await makeCampaign(alice);
+		const hero = await createEntity(db, characterInput(alice));
+		expect(await setEntityCampaign(db, hero.id, bob, campaign)).toBeUndefined();
+		expect((await getEntity(db, hero.id, alice))?.campaignId).toBeNull();
+	});
+
+	it('lists every attached entity for a campaign, across owners', async () => {
+		const campaign = await makeCampaign(alice);
+		const aliceHero = await createEntity(db, characterInput(alice, 'Alice Hero'));
+		const bobHero = await createEntity(db, characterInput(bob, 'Bob Hero'));
+		const loner = await createEntity(db, characterInput(alice, 'Unattached'));
+		await setEntityCampaign(db, aliceHero.id, alice, campaign);
+		await setEntityCampaign(db, bobHero.id, bob, campaign);
+
+		const party = await listCampaignEntities(db, campaign, 'character');
+		expect(party.map((e) => e.name).sort()).toEqual(['Alice Hero', 'Bob Hero']);
+		expect(party.map((e) => e.id)).not.toContain(loner.id);
+	});
+
+	it('detaches (set null) rather than deletes when a campaign is removed', async () => {
+		const campaign = await makeCampaign(alice);
+		const hero = await createEntity(db, characterInput(alice));
+		await setEntityCampaign(db, hero.id, alice, campaign);
+
+		await db.delete(schema.campaigns).where(eq(schema.campaigns.id, campaign));
+
+		const survivor = await getEntity(db, hero.id, alice);
+		expect(survivor).toBeDefined();
+		expect(survivor?.campaignId).toBeNull();
 	});
 });

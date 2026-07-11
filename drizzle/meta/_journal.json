@@ -22,6 +22,13 @@
       "when": 1783728400505,
       "tag": "0002_last_molecule_man",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1783728924413,
+      "tag": "0003_hesitant_pixie",
+      "breakpoints": true
     }
   ]
 }
