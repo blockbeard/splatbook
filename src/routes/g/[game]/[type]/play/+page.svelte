@@ -15,11 +15,31 @@
 	import { getGame } from '$lib/games';
 	import { draftKey, loadDraft, saveDraft } from '$lib/wizard';
 	import { draftToPayload, saveEntity } from '$lib/entities/client';
+	import DiceRoller from '$lib/components/DiceRoller.svelte';
+	import type { RollResult } from '$lib/dice';
 
 	let { data } = $props();
 
-	const type = $derived(getGame(data.gameId)!.entityTypes[data.entityType]);
+	const game = $derived(getGame(data.gameId)!);
+	const type = $derived(game.entityTypes[data.entityType]);
 	const Play = $derived(type.playComponent!);
+	// The game's dice presets (if it has any) drive the shell roller.
+	const dicePresets = $derived(game.dice?.presets ?? null);
+	// A character attached to a campaign logs its rolls to the shared log; a loose
+	// one just rolls locally.
+	const campaignId = $derived(data.saved?.campaignId ?? null);
+
+	/** A roll happened. It's already shown locally; persist it to the campaign
+	 * log when this character belongs to one (best-effort — a failed log never
+	 * disrupts play). */
+	function onRoll(entry: { label: string; result: RollResult }): void {
+		if (!campaignId || !browser) return;
+		fetch(`/api/campaigns/${campaignId}/rolls`, {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify(entry)
+		}).catch(() => {});
+	}
 	// The entity's DB id, once it has one. Starts from `?id=`; an editor-first
 	// type (steading) that's created here adopts the id the first save returns.
 	// Deliberate one-time capture — the page reloads when the id changes.
@@ -133,4 +153,9 @@
 	</p>
 {:else}
 	<Play {character} {onChange} />
+	{#if dicePresets}
+		<div class="mt-6">
+			<DiceRoller presets={dicePresets} {onRoll} logged={!!campaignId} />
+		</div>
+	{/if}
 {/if}

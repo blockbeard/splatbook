@@ -15,12 +15,25 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 	// `?id=` plays a saved entity from the database (edits autosave back to it);
 	// without it, play mode edits the same local autosave slot the sheet reads.
 	const id = url.searchParams.get('id');
-	let saved: { id: string; name: string; data: unknown } | null = null;
+	let saved: {
+		id: string;
+		name: string;
+		data: unknown;
+		campaignId: string | null;
+	} | null = null;
 	if (id) {
 		const res = await fetch(`/api/entities/${id}`);
 		if (res.ok) {
 			const entity = await res.json();
-			saved = { id: entity.id, name: entity.name, data: entity.data };
+			// `campaignId` decides whether rolls persist to a shared log (commit 67):
+			// a character attached to a campaign logs its rolls; a loose one rolls
+			// locally.
+			saved = {
+				id: entity.id,
+				name: entity.name,
+				data: entity.data,
+				campaignId: entity.campaignId ?? null
+			};
 		}
 	}
 

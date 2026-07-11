@@ -111,6 +111,14 @@ intact — the labels are the game's words, sourced from the game — while the 
 lists and rolls presets without learning what a "stat" is. The roll *log* and the
 sheet's roll UI (commits 66–68) build on this core; the core lands first and alone.
 
+The **roll UI** (commit 67) is a shell component (`DiceRoller`) that takes a
+game's presets and rolls them with the core — mounted beside the game's play
+component, so no `PlayProps` change and no game vocabulary in the shell. Rolls
+always show locally; when the played character is attached to a campaign the roll
+is also persisted to that campaign's log via `/api/campaigns/[id]/rolls` (the
+browser-computed `RollResult` is re-validated server-side by `rollResultSchema`
+before it's stored). A loose character just rolls locally.
+
 ## Theming
 
 The shell defines semantic design tokens as `--sb-*` CSS custom properties in

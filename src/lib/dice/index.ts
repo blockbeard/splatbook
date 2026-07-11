@@ -13,3 +13,4 @@ export {
 } from './notation';
 export { roll, rollDie, type Rng, type RollMode, type DieRoll, type RollResult } from './roll';
 export { type DicePreset, type DiceModule } from './presets';
+export { rollResultSchema } from './result-schema';

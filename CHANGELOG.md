@@ -81,6 +81,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   same-millisecond ties on the monotonic rowid so insertion order is preserved.
   Migration `0004`, with service and cascade tests. The roll UI (commit 67) and
   the live polling view (commit 68) build on this.
+- **Dice UI on the sheet (phase 10, commit 67).** Play mode now carries a dice
+  roller: a generic shell component (`DiceRoller`) driven by the game's `dice`
+  presets — so it holds no game vocabulary, the labels and notation come from the
+  module. It rolls with the shell engine, has a normal / advantage / disadvantage
+  switch, and shows recent results inline (dropped dice struck through). Rolling
+  always shows a local result; when the character is attached to a campaign the
+  roll is also POSTed to the shared log (`/api/campaigns/[id]/rolls`, session- and
+  membership-guarded, with the browser-supplied `RollResult` validated by
+  `rollResultSchema` before storage), while a character in no campaign just rolls
+  locally. No `PlayProps` change — the roller is shell furniture beside the game's
+  play component. The live shared-log view lands in commit 68.
 
 ## [1.0.0] - 2026-07-11
 
