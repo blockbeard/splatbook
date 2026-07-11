@@ -18,9 +18,11 @@
 		debilityName,
 		effectiveStat,
 		enterPlay,
+		heldMoveIds,
 		isDebilitated,
 		isWouldBeCrossed,
 		levelUpChoices,
+		movesRollStats,
 		bankedXp,
 		markXp,
 		migrateCharacter,
@@ -34,6 +36,7 @@
 	} from '../engine';
 	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
+	import { fetchBasicMoves } from '../pack/moves';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
@@ -85,6 +88,13 @@
 		roll?.(label, notation);
 	};
 
+	/** Roll a move: same 2d6+stat, labelled with the move so the log reads
+	 * "Clash +STR (+1)" rather than a bare stat roll. */
+	const rollMove = (move: { name: string }, stat: StatKey): void => {
+		const { label, notation } = rollForStat(c, stat, move.name);
+		roll?.(label, notation);
+	};
+
 	const fmt = (n: number | undefined): string =>
 		n === undefined ? '—' : n >= 0 ? `+${n}` : `${n}`;
 
@@ -97,6 +107,27 @@
 	const readyToLevel = $derived(canLevelUp(c));
 	const trackerEntries = $derived(Object.entries(c.trackers));
 	const advLog = $derived(playbook ? advancementLog(c, playbook) : []);
+
+	// The moves this character holds — starting, playbook picks and advancement —
+	// in the playbook's own printed order.
+	const myMoves = $derived.by(() => {
+		if (!playbook) return [];
+		const held = heldMoveIds(c, playbook);
+		return playbook.moves.list.filter((m) => held.has(m.id));
+	});
+
+	// The basic moves everyone can make, from the pack.
+	let basicMoves = $state<{ id: string; name: string; text: string }[]>([]);
+	$effect(() => {
+		let alive = true;
+		fetchBasicMoves(fetch)
+			.then((pack) => alive && (basicMoves = pack.moves))
+			.catch(() => {
+				// The basic moves are a convenience; failing to load them must not take
+				// the sheet down with them.
+			});
+		return () => (alive = false);
+	});
 
 	// Level-up flow: open a panel of legal picks, choose one (and a stat, for
 	// Improved/Superior Stat), confirm.
@@ -151,6 +182,32 @@
 	const showCrossOff = $derived(Boolean(playbook && canCrossOffWouldBe(c, playbook)));
 	const heroCrossed = $derived(isWouldBeCrossed(c));
 </script>
+
+{#snippet moveCard(move: { id: string; name: string; text: string })}
+	{@const stats = movesRollStats(move)}
+	<div class="rounded-lg border border-border p-3">
+		<div class="flex flex-wrap items-baseline justify-between gap-2">
+			<h4 class="font-semibold">{move.name}</h4>
+			<!-- A move is rollable when its text says what it rolls. Defy Danger prints
+			     six options, so it gets six buttons; Aid prints none, so it gets none. -->
+			{#if roll && stats.length}
+				<div class="flex flex-wrap gap-1">
+					{#each stats as stat (stat)}
+						<button
+							type="button"
+							onclick={() => rollMove(move, stat)}
+							class="rounded-md border border-accent px-2 py-0.5 text-xs font-medium text-accent hover:bg-accent/10"
+						>
+							Roll +{stat}
+							<span class="font-mono">{fmt(effectiveStat(c, stat))}</span>
+						</button>
+					{/each}
+				</div>
+			{/if}
+		</div>
+		<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+	</div>
+{/snippet}
 
 {#snippet boxRow(count: number, filled: number, tap: (i: number) => void, label: string)}
 	<div class="flex flex-wrap gap-1" role="group" aria-label={label}>
@@ -362,6 +419,28 @@
 				</div>
 			</section>
 		{/if}
+
+		<!-- Your moves first, then the ones everyone has: at the table you reach for
+		     your playbook's moves, and fall back to the basic ones. Both come from the
+		     pack in the same shape, so both render — and roll — through one path. -->
+		<section>
+			<h2 class="text-lg font-semibold">Moves</h2>
+
+			<div class="mt-2 space-y-3">
+				{#each myMoves as move (move.id)}
+					{@render moveCard(move)}
+				{/each}
+			</div>
+
+			{#if basicMoves.length}
+				<h3 class="mt-6 text-sm font-medium tracking-wide text-muted uppercase">Basic moves</h3>
+				<div class="mt-2 space-y-3">
+					{#each basicMoves as move (move.id)}
+						{@render moveCard(move)}
+					{/each}
+				</div>
+			{/if}
+		</section>
 
 		<section>
 			<Inventory character={c} {onChange} />

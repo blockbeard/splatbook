@@ -1,0 +1,61 @@
+{
+	"id": "basic-moves",
+	"name": "Basic moves",
+	"type": "moves",
+	"source": {
+		"file": "rules/book-i.json",
+		"section": "03-playing-the-game--basic-moves"
+	},
+	"moves": [
+		{
+			"id": "aid",
+			"name": "Aid",
+			"text": "When you *help someone who has not yet rolled*, the GM picks 1:\n\n- They can accomplish more than they could alone\n- They gain advantage on their roll.\n\nEither way, you are exposed to any risk, cost, or consequence associated with their roll.\n\nFor more information, see [[06 - Player Moves#AID|Aid]]."
+		},
+		{
+			"id": "clash",
+			"name": "Clash",
+			"text": "When you *fight in melee or close quarters*, roll +STR: **on a 10+**, your maneuver works as expected (deal your damage) and pick 1.\n\n- Avoid, prevent, or counter your enemy's attack\n- Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack\n\n**On a 7-9**, your maneuver works, mostly (deal your damage) but you suffer your enemy's attack.\n\nFor more information, see [[06 - Player Moves#CLASH|Clash]]."
+		},
+		{
+			"id": "defend",
+			"name": "Defend",
+			"text": "When you *take up a defensive stance*  or *jump in to protect others*, roll +CON: **on a 10+**, hold 3 Readiness (or 4 if you bear a shield); **on a 7-9**, hold 1 Readiness (or 2 with a shield). You can spend Readiness 1-for-1 to:\n\n- Suffer an attack's damage/effects instead of your ward\n- Halve an attack's effect or damage\n- Draw all attention from your ward to yourself\n- Strike back at an attacker (deal your damage, with disadvantage)\n\nWhen you *go on the offense, cease to focus on defense, or the threat passes*, lose any Readiness that you hold.\n\nFor more information, see [[06 - Player Moves#DEFEND|Defend]]."
+		},
+		{
+			"id": "defy-danger",
+			"name": "Defy Danger",
+			"text": "When *danger looms, the stakes are high, and you do something chancy*, check if another move applies. If not, roll...\n\n- ... +STR to power through or test your might\n- ... +DEX to employ speed, agility, or finesse\n- ... +CON to endure or hold steady\n- ... +INT to apply expertise or enact a clever plan\n- ... +WIS to exert willpower or rely on your senses\n- ... +CHA to charm, bluff, impress, or fit in\n\n**On a 10+**, you pull it off as well as one could hope; **on a 7-9**, you can do it, but the GM will present a lesser success, a cost, or a consequence (and maybe a choice between them, or a chance to back down).\n\nFor more information, see [[06 - Player Moves#DEFY DANGER|Defy Danger]]."
+		},
+		{
+			"id": "interfere",
+			"name": "Interfere",
+			"text": "When you try to foil another PC's action and neither of you back down, roll...\n\n- ... +STR to power through or test your might\n- ... +DEX to employ speed, agility, or finesse\n- ... +CON to endure or hold steady\n- ... +INT to apply expertise or enact a clever plan\n- ... +WIS to exert willpower or rely on your senses\n- ... +CHA to charm, bluff, impress, or fit in\n\n**On a 10+**, they pick 1 from the list below; **on a 7-9**, they pick 1 from the list below but you are left off-balance, exposed, or otherwise vulnerable.\n\n- Do it anyway, but with disadvan tage on their (next) roll\n- Relent, change course, or other wise allow their move to be foiled\n\nFor more information, see [[06 - Player Moves#INTERFERE|Interfere]]."
+		},
+		{
+			"id": "know-things",
+			"name": "Know Things",
+			"text": "When you *consult your accumulated knowledge*, roll +INT: **on a 10+**, the GM will tell you something interesting and useful about the topic at hand; **on a 7-9**, the GM will tell you something interesting—it's on you to make it useful; **either way**, the GM might ask \"how do you know this?\"\n\nFor more information, see [[06 - Player Moves#KNOW THINGS|Know Things]]."
+		},
+		{
+			"id": "let-fly",
+			"name": "Let Fly",
+			"text": "When you *take an easy shot with a ranged weapon*, deal your damage. If *the shot is tricky or you're under pressure*, first roll +DEX: **on a 10+**, you have a clear shot, deal your damage; **on a 7-9**, pick 1:\n\n- Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses)\n- Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage\n- Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage\n- Rush the shot and deal your damage, leading to a cost or complication of the GM's choice\n\nFor more information, see [[06 - Player Moves#LET FLY|Let Fly]]."
+		},
+		{
+			"id": "persuade-vs-npcs",
+			"name": "Persuade (vs. NPCs)",
+			"text": "When you *press or entice an NPC*, say what you want them to do (or not do). If they *have reason to resist*, roll +CHA: **on a 10+**, they either do as you want or reveal the easiest way to convince them; **on a 7-9**, they reveal something you can do to convince them, though it'll likely be costly, tricky, or distasteful.\n\nFor more information, see [[06 - Player Moves#PERSUADE (vs. NPCs)|PERSUADE (vs. NPCs)]]."
+		},
+		{
+			"id": "persuade-vs-pcs",
+			"name": "Persuade (vs. PCs)",
+			"text": "When you *press or entice a PC and they resist*, ask their player: \"Could I possibly get you to do this, yes or no?\" If they say \"no,\" let it drop.\n\nIf they say \"yes,\" you can roll +CHA: **on a 10+**, they mark XP if they do what you want, and if they don't, they must say how you could convince them; **on a 7-9**, they mark XP if they do what you want (but can refuse or make a counter-offer if they like).\n\nFor more information, see [[06 - Player Moves#PERSUADE (vs. PCs)|PERSUADE (vs. PCs)]]."
+		},
+		{
+			"id": "seek-insight",
+			"name": "Seek Insight",
+			"text": "When you *study a situation or person*, looking to the GM for insight, roll +WIS: **on a 10+**, ask the GM 3 questions from the list below; **on a 7-9**, ask 1; **either way**, take advantage on your next move to act on the answers.\n\n- What happened here recently?\n- What is about to happen?\n- What should I be on the lookout for?\n- What here is useful or valuable to me?\n- Who or what is really in control here?\n- What here is not what it appears to be?\n\nFor more information, see [[06 - Player Moves#SEEK INSIGHT|Seek Insight]]."
+		}
+	]
+}

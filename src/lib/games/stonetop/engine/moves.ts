@@ -12,7 +12,7 @@
  */
 
 import type { Move, Playbook } from '../pack-schemas';
-import type { StonetopCharacter } from './character';
+import type { StatKey, StonetopCharacter } from './character';
 
 /** Creation level — moves requiring level ≥ 2 are advancement moves, not startable. */
 const START_LEVEL = 1;
@@ -101,4 +101,26 @@ export function choosableMoves(character: StonetopCharacter, playbook: Playbook)
 	return playbook.moves.list.filter(
 		(m) => !granted.has(m.id) && !pickOne.has(m.id) && isStartable(m)
 	);
+}
+
+/**
+ * Which stats a move rolls, read from its printed text.
+ *
+ * Stonetop writes the roll into the move ("roll +STR", or Defy Danger's list of
+ * "... +DEX to employ speed..."), and that text is the same field on a playbook
+ * move and on a basic move — so the sheet can offer a roll button on either
+ * without the pack having to say twice which stat applies, and without the two
+ * ever disagreeing. A move with no roll in its text (Aid) yields none, and is
+ * shown but not rollable.
+ *
+ * Order follows the text, so Defy Danger's buttons read in the order the book
+ * lists them.
+ */
+export function movesRollStats(move: Pick<Move, 'text'>): StatKey[] {
+	const found = move.text.matchAll(/\+(STR|DEX|CON|INT|WIS|CHA)\b/g);
+	const stats: StatKey[] = [];
+	for (const [, stat] of found) {
+		if (!stats.includes(stat as StatKey)) stats.push(stat as StatKey);
+	}
+	return stats;
 }

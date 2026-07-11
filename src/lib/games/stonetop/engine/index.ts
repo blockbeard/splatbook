@@ -73,6 +73,7 @@ export {
 
 export {
 	startingMovesPlan,
+	movesRollStats,
 	pickOneMembers,
 	pickOneSelections,
 	freeChosenMoves,
