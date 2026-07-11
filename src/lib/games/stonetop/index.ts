@@ -24,6 +24,7 @@ import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';
 import { THREAT_SCHEMA_VERSION, createThreat, type StonetopThreat } from './engine/threat';
 import { stonetopWizardSteps } from './wizard/steps';
+import { stonetopSummary } from './wizard/summary';
 import CharacterSheet from './sheet/CharacterSheet.svelte';
 import PlayMode from './play/PlayMode.svelte';
 import SteadingEditor from './steading/SteadingEditor.svelte';
@@ -41,6 +42,7 @@ import { stonetopDice } from './dice';
 const character: EntityTypeModule = {
 	label: 'Character',
 	wizardSteps: stonetopWizardSteps,
+	summary: stonetopSummary,
 	newDraft: () => engine.createCharacter(),
 	entityMeta: (draft) => {
 		const c = draft as StonetopCharacter;
