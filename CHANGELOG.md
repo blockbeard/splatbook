@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The Cloudflare/D1 deployment path.** The database is now resolved **per
+  request** (`event.locals.db`) — D1 through `platform.env.DB` on Cloudflare, the
+  SQLite file on node/atlas — because the Workers runtime has no long-lived
+  process to hold a connection and cannot bundle `better-sqlite3` at all. Auth.js
+  is likewise built per request, since its Drizzle adapter needs a database that
+  doesn't exist until a request arrives. No module imports a `db` singleton any
+  more. Verified end to end against a real Workers runtime with local D1.
+
 ## [2.1.0] - 2026-07-11
 
 Table-ready polish, drafted from a round of play-testing after v2.0. No new

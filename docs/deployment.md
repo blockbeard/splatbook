@@ -8,9 +8,9 @@ One repo, three targets, chosen by the `ADAPTER` env var:
 | **atlas + Docker**    | `node`       | `better-sqlite3` on a volume | your table (current v1 path) |
 | Cloudflare Pages + D1 | `cloudflare` | D1 (`platform.env.DB`)    | public, when you go wide     |
 
-The near-term production path is **atlas + Docker**. Cloudflare is documented at
-the end for when the site goes public; it needs one code change that isn't in the
-repo yet (see "Going public on Cloudflare").
+**atlas + Docker** runs the private table; **Cloudflare Pages + D1** runs the
+public site at `splatbook.app`. Both are live paths — the database is resolved per
+request (`event.locals.db`), so the same code serves either.
 
 ## Environment
 
@@ -65,40 +65,59 @@ Tunnel** (`cloudflared`) — no inbound ports, your home IP stays hidden, and
 Cloudflare caches the static assets. This keeps the table-only deployment private
 and simple; uptime is your box's uptime.
 
-## Going public on Cloudflare (Pages + D1)
+## Cloudflare Pages + D1 (the public site)
 
-Cloudflare's serverless runtime can't run `better-sqlite3` (a native module), so
-the database is D1, reached per-request through `platform.env.DB`. `wrangler.toml`
-already declares the Pages output dir and the `DB` binding.
+Cloudflare's runtime can't run `better-sqlite3` (a native module) and has no
+long-lived process to hold a connection, so the database is **D1, resolved per
+request** from `platform.env.DB` (`src/lib/server/db/index.ts` → `locals.db`).
+That code is in the repo and verified; nothing further is needed to go live.
 
-**One code change is still required** and is deliberately not in the repo, because
-it can only be verified against a live D1 instance: the server currently uses a
-module-level `better-sqlite3` singleton (`src/lib/server/db/index.ts`), which the
-Workers bundle can't include. To go live:
+Two settings are load-bearing and were learned the hard way:
 
-1. Make the database request-scoped. Resolve it from `event.platform.env.DB` with
-   `drizzle-orm/d1` and hand it to consumers via `event.locals.db` (set in
-   `src/hooks.server.ts`); keep the better-sqlite3 path for `ADAPTER=node` behind
-   a lazy/dynamic import so the Workers bundle never pulls in the native module.
-   Update the five `import { db } from '$lib/server/db'` call sites
-   (`/api/entities*`, `/api/health`, `/dashboard`) and Auth.js (the `DrizzleAdapter`
-   must be constructed per request rather than at module load).
-2. Add the adapter and a D1 database:
-   ```sh
-   npm i -D @sveltejs/adapter-cloudflare
-   wrangler d1 create splatbook          # paste the id into wrangler.toml
-   wrangler d1 migrations apply splatbook # applies drizzle/*.sql
-   ```
-3. Set production secrets in the Pages project: `AUTH_SECRET`, `AUTH_DEV_LOGIN=false`,
-   the OAuth credentials, and `ORIGIN=https://splatbook.app`.
-4. Build and deploy:
-   ```sh
-   ADAPTER=cloudflare npm run build
-   wrangler pages deploy .svelte-kit/cloudflare
-   ```
-5. Point `splatbook.app` at the Pages project (custom domain + TLS are included).
+- `compatibility_flags = ["nodejs_compat"]` in `wrangler.toml`. Auth.js reaches
+  for node builtins; without the flag the build succeeds and **sign-in throws at
+  runtime**.
+- `better-sqlite3` is imported through a non-literal specifier so the bundler
+  cannot see it statically. Make it a literal and the Workers build tries to
+  include the native module and fails.
 
-Realtime dice (phase 10) can stay on polling on the free tier; only long-lived
+### Go live
+
+```sh
+wrangler login
+wrangler d1 create splatbook              # paste the id into wrangler.toml
+wrangler d1 migrations apply splatbook --remote
+ADAPTER=cloudflare npm run build
+wrangler pages deploy .svelte-kit/cloudflare --project-name splatbook
+```
+
+Then, in the Pages project (dashboard or `wrangler pages secret put`):
+
+- `AUTH_SECRET` — `openssl rand -base64 33`
+- `AUTH_DEV_LOGIN=false` — **essential**: dev-login is a passwordless "sign in as
+  anyone" door. It is on by default because local work needs it.
+- `ORIGIN=https://splatbook.app` — SvelteKit form actions **403** if this doesn't
+  match the address the browser used.
+- OAuth credentials for at least one provider, or nobody can sign in.
+
+Bind the D1 database to the Pages project (`DB`), add `splatbook.app` as a custom
+domain (TLS included), and add the callback URLs at each OAuth provider:
+`https://splatbook.app/auth/callback/google`, `…/discord`. A Google consent screen
+left in **Testing** mode only admits accounts listed as test users — publish it, or
+expect players to bounce.
+
+### Preview it locally, on the real runtime
+
+Worth doing before any deploy — the node dev server will not show you a Workers
+problem:
+
+```sh
+wrangler d1 migrations apply splatbook --local
+ADAPTER=cloudflare npm run build
+AUTH_SECRET=dev AUTH_DEV_LOGIN=true wrangler pages dev .svelte-kit/cloudflare
+```
+
+Realtime dice (phase 10) stay on polling on the free tier; only long-lived
 websockets would need Durable Objects (paid).
 
 ## Migrations
