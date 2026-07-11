@@ -186,7 +186,19 @@
 			← {data.gameName}
 		</a>
 	{/if}
-	<span class="text-sm text-muted" aria-live="polite">{savedLabel}</span>
+	<div class="flex items-center gap-3">
+		<span class="text-sm text-muted" aria-live="polite">{savedLabel}</span>
+		{#if data.hasSheet && character}
+			<!-- What you want a PDF *of* is the sheet, not the play controls — so the
+			     PDF button hands off to the sheet view, which prints itself on arrival. -->
+			<a
+				href={liveId ? `${sheetPath}?id=${liveId}&print=1` : `${sheetPath}?print=1`}
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Save as PDF
+			</a>
+		{/if}
+	</div>
 </div>
 
 {#if !character}

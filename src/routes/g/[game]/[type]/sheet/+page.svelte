@@ -11,6 +11,7 @@
 	import { resolve } from '$app/paths';
 	import { getGame } from '$lib/games';
 	import { draftKey, loadDraft } from '$lib/wizard';
+	import { printSheet } from '$lib/print';
 
 	let { data } = $props();
 
@@ -35,6 +36,18 @@
 				? loadDraft<object>(localStorage, draftKey(data.gameId, data.entityType, 'current'))
 				: null)
 	);
+
+	// Arriving with `?print=1` means "the play view sent me here to make a PDF":
+	// print once the sheet is actually on the page. Guarded so it fires once.
+	let printed = $state(false);
+	$effect(() => {
+		if (printed || !browser || !character) return;
+		if (page.url.searchParams.get('print') !== '1') return;
+		printed = true;
+		// A frame's grace so the sheet (and its fonts) are laid out before the
+		// print dialog snapshots the page.
+		requestAnimationFrame(() => setTimeout(() => printSheet(), 150));
+	});
 </script>
 
 <svelte:head>
@@ -70,10 +83,10 @@
 		{/if}
 		<button
 			type="button"
-			onclick={() => window.print()}
+			onclick={() => printSheet()}
 			class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
 		>
-			Print
+			Print / Save as PDF
 		</button>
 	</div>
 </div>
@@ -90,16 +103,3 @@
 {:else}
 	<Sheet {character} />
 {/if}
-
-<style>
-	@media print {
-		.sheet-toolbar {
-			display: none;
-		}
-		/* Drop the app chrome so only the sheet prints. */
-		:global(body > div > header),
-		:global(body > div > footer) {
-			display: none;
-		}
-	}
-</style>

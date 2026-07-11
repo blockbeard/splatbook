@@ -49,3 +49,59 @@ html {
 	background-color: var(--sb-bg);
 	color: var(--sb-text);
 }
+
+/*
+ * Print — which is also "Save as PDF", the only PDF export the app has (see
+ * $lib/print.ts). What prints is the sheet: the shell chrome goes, the sheet
+ * keeps its game's paper-and-ink theme, and nothing that belongs together is
+ * split across a page break.
+ */
+@media print {
+	@page {
+		size: A4 portrait;
+		margin: 14mm;
+	}
+
+	html {
+		/* Let the paper be the background; print the ink. */
+		background: #fff;
+	}
+
+	body {
+		/* Keep the game's accent rules and filled boxes visible on paper rather
+		   than letting the browser helpfully strip every background. */
+		print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+	}
+
+	/* The app frame is not part of the sheet. Marked explicitly on the shell's
+	   header and footer rather than by element: a sheet has a <header> of its own,
+	   carrying the character's name, and that has to print. */
+	.app-chrome,
+	.sheet-toolbar {
+		display: none !important;
+	}
+
+	main {
+		max-width: none;
+		padding: 0;
+	}
+
+	/* A move, a section, a stat block: keep each whole. */
+	section,
+	article,
+	li,
+	tr {
+		break-inside: avoid;
+	}
+
+	h1,
+	h2,
+	h3 {
+		break-after: avoid;
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
