@@ -30,8 +30,27 @@ export interface DicePreset {
 	meta?: Record<string, unknown>;
 }
 
+/** What a preset actually rolls, once the entity in play is taken into account. */
+export interface ResolvedRoll {
+	/** The label to log and show — the game's words, e.g. `"Roll +DEX (+2)"`. */
+	label: string;
+	/** Concrete notation including any dynamic modifier, e.g. `"2d6+2"`. */
+	notation: string;
+}
+
 /** A game's dice contribution: the presets it offers. Attached to the optional
  * `GameModule.dice` slot; absent for a game with no preset rolls. */
 export interface DiceModule {
 	presets: readonly DicePreset[];
+	/**
+	 * Resolve a preset against the entity being played — how a preset's dynamic
+	 * modifier (the `meta.stat` a "Roll +DEX" carries) becomes a real number.
+	 *
+	 * The shell cannot do this itself: the modifier lives inside the game's own
+	 * character shape, which is opaque to it. So the shell hands the preset and
+	 * the entity back to the game and rolls whatever it returns. Without this
+	 * hook (or with no entity in play) the shell rolls the preset's bare
+	 * notation, which is right for a preset with no dynamic part.
+	 */
+	resolve?: (preset: DicePreset, entity: object) => ResolvedRoll;
 }

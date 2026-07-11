@@ -36,6 +36,15 @@ export interface SheetProps {
 export interface PlayProps {
 	character: object;
 	onChange: (next: object) => void;
+	/**
+	 * Ask the shell to roll — the game supplies the words and the dice, the shell
+	 * owns the randomness, the result surface and the campaign log. A sheet calls
+	 * this when a stat or a move is tapped: `roll('Roll +DEX', '2d6+1')`.
+	 *
+	 * Absent when the host has no roll surface (e.g. the read-only sheet route),
+	 * so a play component must treat it as optional.
+	 */
+	roll?: (label: string, notation: string) => void;
 }
 
 /**

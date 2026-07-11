@@ -1,53 +1,49 @@
 <!--
 	Dice roller — generic shell UI over the dice core (`$lib/dice`). Given a
 	game's dice presets (the `GameModule.dice` slot), it shows a button per preset
-	and rolls it with the shell engine, so no game vocabulary lives here: the
+	and the advantage/disadvantage switch, so no game vocabulary lives here: the
 	labels are the game's words, the notation is what the engine parses.
 
-	Rolling always shows a local result (newest first, with dropped dice struck
-	through for advantage/disadvantage). If `onRoll` is supplied the roll is also
-	handed up — the play page persists it to the campaign log when the character
-	belongs to a campaign; without one, the roll stays local. The three-way
-	advantage/disadvantage switch maps to the engine's `mode`.
+	It does not roll. The host does — the same `roll()` a game's sheet calls when
+	you tap a stat — so that a roll made here and a roll made from the sheet land
+	in one place: one result surface, one campaign log. This component is the
+	button panel and the session's recent list.
+
+	A preset's `meta.stat` names a character stat the host resolves into the
+	modifier at roll time; a host without a character (no `resolve`) rolls the
+	bare notation.
 -->
 <script lang="ts">
-	import { roll, type DicePreset, type RollMode, type RollResult } from '$lib/dice';
+	import type { DicePreset, RollMode, RollResult } from '$lib/dice';
 
 	interface RollEntry {
 		label: string;
 		result: RollResult;
+		key: number;
 	}
 
 	let {
 		presets,
 		onRoll,
+		recent = [],
 		logged = false
 	}: {
 		presets: readonly DicePreset[];
-		/** Called with each roll; the shell decides whether to persist it. */
-		onRoll?: (entry: RollEntry) => void;
+		/** Ask the host to roll this preset in this mode. */
+		onRoll: (preset: DicePreset, mode: RollMode) => void;
+		/** This session's rolls, newest first — supplied by the host. */
+		recent?: readonly RollEntry[];
 		/** True when rolls are being written to a shared campaign log (shows a hint). */
 		logged?: boolean;
 	} = $props();
 
 	let mode = $state<RollMode>('normal');
-	// Recent rolls this session, newest first — immediate feedback; the shared
-	// log (with everyone's rolls) is the campaign view.
-	let recent = $state<(RollEntry & { key: number })[]>([]);
-	let nextKey = 0;
 
 	const modes: { value: RollMode; label: string; hint: string }[] = [
 		{ value: 'disadvantage', label: 'Disadv', hint: 'Roll an extra die, keep the worst' },
 		{ value: 'normal', label: 'Normal', hint: 'Straight roll' },
 		{ value: 'advantage', label: 'Adv', hint: 'Roll an extra die, keep the best' }
 	];
-
-	function doRoll(preset: DicePreset): void {
-		const result = roll(preset.notation, { mode });
-		const entry: RollEntry = { label: preset.label, result };
-		recent = [{ ...entry, key: nextKey++ }, ...recent].slice(0, 8);
-		onRoll?.(entry);
-	}
 </script>
 
 <section class="rounded-lg border border-border bg-surface p-4" aria-label="Dice roller">
@@ -78,7 +74,7 @@
 		{#each presets as preset (preset.id)}
 			<button
 				type="button"
-				onclick={() => doRoll(preset)}
+				onclick={() => onRoll(preset, mode)}
 				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-bg"
 			>
 				{preset.label}

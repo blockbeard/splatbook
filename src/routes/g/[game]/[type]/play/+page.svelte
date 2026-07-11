@@ -16,7 +16,8 @@
 	import { draftKey, loadDraft, saveDraft } from '$lib/wizard';
 	import { draftToPayload, saveEntity } from '$lib/entities/client';
 	import DiceRoller from '$lib/components/DiceRoller.svelte';
-	import type { RollResult } from '$lib/dice';
+	import RollSurface from '$lib/components/RollSurface.svelte';
+	import { roll as rollDice, type DicePreset, type RollMode, type RollResult } from '$lib/dice';
 
 	let { data } = $props();
 
@@ -26,20 +27,9 @@
 	// The game's dice presets (if it has any) drive the shell roller.
 	const dicePresets = $derived(game.dice?.presets ?? null);
 	// A character attached to a campaign logs its rolls to the shared log; a loose
-	// one just rolls locally.
+	// one just rolls locally — rolling is not a privilege of being in a campaign.
 	const campaignId = $derived(data.saved?.campaignId ?? null);
 
-	/** A roll happened. It's already shown locally; persist it to the campaign
-	 * log when this character belongs to one (best-effort — a failed log never
-	 * disrupts play). */
-	function onRoll(entry: { label: string; result: RollResult }): void {
-		if (!campaignId || !browser) return;
-		fetch(`/api/campaigns/${campaignId}/rolls`, {
-			method: 'POST',
-			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify(entry)
-		}).catch(() => {});
-	}
 	// The entity's DB id, once it has one. Starts from `?id=`; an editor-first
 	// type (steading) that's created here adopts the id the first save returns.
 	// Deliberate one-time capture — the page reloads when the id changes.
@@ -69,6 +59,61 @@
 	);
 	let saveState = $state<'idle' | 'saving' | 'saved' | 'error'>('idle');
 	let timer: ReturnType<typeof setTimeout> | undefined;
+
+	interface RollEntry {
+		label: string;
+		result: RollResult;
+		actorName?: string;
+		key: number;
+	}
+
+	let recent = $state<RollEntry[]>([]);
+	let latest = $state<RollEntry | null>(null);
+	let nextKey = 0;
+
+	// A roll leads with *who* rolled — the character, not the account. The shell
+	// gets that name without reading the game's opaque blob: it's the saved
+	// entity's own name column, or what the game's `entityMeta` calls the draft.
+	const characterName = $derived(
+		data.saved?.name ?? (character ? (type.entityMeta?.(character)?.name ?? null) : null)
+	);
+
+	/**
+	 * Roll, surface it, and — when this character sits at a campaign — log it.
+	 * Everything rolls through here: the preset buttons and whatever the game's
+	 * sheet taps (a stat, a move). Rolling works with no campaign at all; logging
+	 * is the extra a campaign buys, and is best-effort — a failed write must never
+	 * interrupt play.
+	 */
+	function makeRoll(label: string, notation: string, mode: RollMode = 'normal'): void {
+		const result = rollDice(notation, { mode });
+		const entry: RollEntry = {
+			label,
+			result,
+			actorName: characterName ?? undefined,
+			key: nextKey++
+		};
+		recent = [entry, ...recent].slice(0, 8);
+		latest = entry;
+
+		if (!campaignId || !browser) return;
+		fetch(`/api/campaigns/${campaignId}/rolls`, {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ label, result })
+		}).catch(() => {});
+	}
+
+	/** A preset button. The game resolves the preset's dynamic modifier against
+	 * the character — a stat it holds and the shell can't read. With no resolver,
+	 * or nothing in play, the bare notation is the right roll. */
+	function rollPreset(preset: DicePreset, mode: RollMode): void {
+		const resolved =
+			game.dice?.resolve && character
+				? game.dice.resolve(preset, character)
+				: { label: preset.label, notation: preset.notation };
+		makeRoll(resolved.label, resolved.notation, mode);
+	}
 
 	/**
 	 * Persist the current entity — debounced. To the DB when it has an id; for a
@@ -152,10 +197,11 @@
 		{/if}
 	</p>
 {:else}
-	<Play {character} {onChange} />
+	<Play {character} {onChange} roll={makeRoll} />
 	{#if dicePresets}
 		<div class="mt-6">
-			<DiceRoller presets={dicePresets} {onRoll} logged={!!campaignId} />
+			<DiceRoller presets={dicePresets} onRoll={rollPreset} {recent} logged={!!campaignId} />
 		</div>
 	{/if}
+	<RollSurface entry={latest} logged={!!campaignId} onDismiss={() => (latest = null)} />
 {/if}
