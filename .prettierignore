@@ -22,3 +22,6 @@ tools/
 
 # Deliberately malformed test fixture
 src/lib/packs/fixtures/not-json/
+
+# In-repo git worktrees (local dev convention; never part of a checkout's own lint)
+.worktrees/

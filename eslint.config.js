@@ -11,6 +11,8 @@ export default ts.config(
 			'.svelte-kit/',
 			'dist/',
 			'node_modules/',
+			// In-repo git worktrees are separate checkouts; don't lint into them.
+			'.worktrees/',
 			// Game content and pipeline output are data, not lintable source.
 			'content/'
 		]
