@@ -31,12 +31,13 @@
 		type StatKey,
 		type StonetopCharacter
 	} from '../engine';
+	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
 
-	let { character, onChange }: PlayProps = $props();
+	let { character, onChange, roll }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
 
 	let playbook = $state<Playbook | null>(null);
@@ -74,6 +75,14 @@
 		emit(setTrackerMarks(c, id, tapTo(marked, i)));
 	const toggleDebility = (stat: StatKey): void =>
 		emit(setDebility(c, stat, !isDebilitated(c, stat)));
+
+	// Tapping a stat rolls it — the thing you do a hundred times a session. The
+	// debility is a state you set occasionally, so it gets its own small control
+	// rather than sharing the tap target.
+	const rollStat = (stat: StatKey): void => {
+		const { label, notation } = rollForStat(c, stat);
+		roll?.(label, notation);
+	};
 
 	const fmt = (n: number | undefined): string =>
 		n === undefined ? '—' : n >= 0 ? `+${n}` : `${n}`;
@@ -192,28 +201,42 @@
 		<section>
 			<div class="flex items-baseline justify-between">
 				<h2 class="text-lg font-semibold">Stats</h2>
-				<span class="text-sm text-muted">Tap a stat to mark its debility</span>
+				<span class="text-sm text-muted">Tap a stat to roll it</span>
 			</div>
 			<div class="mt-2 flex flex-wrap gap-3">
 				{#each STAT_KEYS as stat (stat)}
 					{#if c.stats[stat]}
 						{@const deb = isDebilitated(c, stat)}
-						<button
-							type="button"
-							onclick={() => toggleDebility(stat)}
-							aria-pressed={deb}
-							class="min-w-16 rounded-md border px-3 py-2 text-center transition-colors {deb
+						{@const name = debilityName(playbook, stat) ?? 'debilitated'}
+						<div
+							class="min-w-20 rounded-md border text-center transition-colors {deb
 								? 'border-danger bg-danger/10'
-								: 'border-border hover:bg-surface'}"
+								: 'border-border'}"
 						>
-							<div class="font-mono text-xl font-bold">{fmt(effectiveStat(c, stat))}</div>
-							<div class="text-xs font-medium text-muted">{stat}</div>
-							{#if deb}
-								<div class="text-[0.65rem] text-danger">
-									{debilityName(playbook, stat) ?? 'debilitated'}
-								</div>
-							{/if}
-						</button>
+							<button
+								type="button"
+								onclick={() => rollStat(stat)}
+								disabled={!roll}
+								class="w-full rounded-t-md px-3 pt-2 pb-1 hover:bg-surface disabled:hover:bg-transparent"
+								title="Roll +{stat}"
+							>
+								<div class="font-mono text-xl font-bold">{fmt(effectiveStat(c, stat))}</div>
+								<div class="text-xs font-medium text-muted">{stat}</div>
+							</button>
+							<!-- The debility: its own control, so marking one can't be mistaken for
+							     rolling and rolling can't be mistaken for marking one. -->
+							<button
+								type="button"
+								onclick={() => toggleDebility(stat)}
+								aria-pressed={deb}
+								title={deb ? `Clear ${name}` : `Mark ${name}`}
+								class="w-full rounded-b-md border-t px-2 py-1 text-[0.65rem] transition-colors {deb
+									? 'border-danger/40 text-danger'
+									: 'border-border text-muted hover:bg-surface'}"
+							>
+								{deb ? name : 'Debility'}
+							</button>
+						</div>
 					{/if}
 				{/each}
 			</div>
