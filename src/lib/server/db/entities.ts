@@ -14,12 +14,17 @@
  */
 
 import { and, desc, eq, ne } from 'drizzle-orm';
-import type { BetterSQLite3Database } from 'drizzle-orm/better-sqlite3';
+import type { BaseSQLiteDatabase } from 'drizzle-orm/sqlite-core';
 import { campaignMembers, entities, type Entity, type EntityStatus } from './schema.ts';
 import * as schema from './schema.ts';
 
-/** Any drizzle SQLite connection over our schema (better-sqlite3 today, D1 later). */
-export type Db = BetterSQLite3Database<typeof schema>;
+/**
+ * Any drizzle SQLite connection over our schema. Deliberately the *base* type
+ * rather than a driver's: the same services now run on better-sqlite3 (node and
+ * atlas, synchronous) and on D1 (Cloudflare, asynchronous). Every call site
+ * already awaits its queries, which both drivers satisfy.
+ */
+export type Db = BaseSQLiteDatabase<'sync' | 'async', unknown, typeof schema>;
 
 /** Fields a caller supplies when creating a saved entity. */
 export interface NewEntityInput {

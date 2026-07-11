@@ -10,7 +10,6 @@
 
 import { error, redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
-import { db } from '$lib/server/db';
 import {
 	getCampaign,
 	membershipOf,
@@ -35,9 +34,9 @@ const joinPath = (token: string) => `/campaigns/join/${token}`;
 async function requireSeat(id: string, locals: App.Locals) {
 	const session = await locals.auth();
 	if (!session?.user?.id) redirect(303, resolve('/campaigns'));
-	const campaign = await getCampaign(db, id);
+	const campaign = await getCampaign(locals.db, id);
 	if (!campaign) error(404, 'No such campaign.');
-	const seat = await membershipOf(db, campaign.id, session.user.id);
+	const seat = await membershipOf(locals.db, campaign.id, session.user.id);
 	if (!seat) error(404, 'No such campaign.');
 	return { userId: session.user.id, campaign, seat };
 }
@@ -48,7 +47,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 	// The viewer's own characters for this game, with their attachment state, so
 	// they can attach one to (or detach it from) this campaign.
-	const mine = await listEntities(db, userId, {
+	const mine = await listEntities(locals.db, userId, {
 		gameId: campaign.gameId,
 		entityType: 'character'
 	});
@@ -64,10 +63,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	// grouped under their owner. A character links to its sheet only for its owner
 	// (the sheet route is owner-scoped); others show as read-only names.
 	const [members, partyChars, steadings, rolls] = await Promise.all([
-		listCampaignMembers(db, campaign.id),
-		listCampaignEntities(db, campaign.id, 'character'),
-		listCampaignEntities(db, campaign.id, 'steading'),
-		listCampaignRolls(db, campaign.id)
+		listCampaignMembers(locals.db, campaign.id),
+		listCampaignEntities(locals.db, campaign.id, 'character'),
+		listCampaignEntities(locals.db, campaign.id, 'steading'),
+		listCampaignRolls(locals.db, campaign.id)
 	]);
 	const party = members.map((m) => ({
 		userId: m.userId,
@@ -107,7 +106,7 @@ export const actions: Actions = {
 	rotate: async ({ params, locals }) => {
 		const session = await locals.auth();
 		if (!session?.user?.id) error(401, 'Sign in.');
-		const rotated = await rotateInviteToken(db, params.id, session.user.id);
+		const rotated = await rotateInviteToken(locals.db, params.id, session.user.id);
 		if (!rotated) error(403, 'Only the campaign owner can rotate the invite.');
 		return { rotated: { path: joinPath(rotated.inviteToken) } };
 	},
@@ -115,19 +114,19 @@ export const actions: Actions = {
 	attach: async ({ params, request, locals }) => {
 		const { userId, campaign } = await requireSeat(params.id, locals);
 		const entityId = String((await request.formData()).get('entityId') ?? '');
-		const entity = await getEntity(db, entityId, userId);
+		const entity = await getEntity(locals.db, entityId, userId);
 		// Own it, and it must belong to this campaign's game.
 		if (!entity || entity.gameId !== campaign.gameId) {
 			error(400, 'That character can’t be attached to this campaign.');
 		}
-		await setEntityCampaign(db, entityId, userId, campaign.id);
+		await setEntityCampaign(locals.db, entityId, userId, campaign.id);
 		return { attach: { ok: true } };
 	},
 
 	detach: async ({ params, request, locals }) => {
 		const { userId } = await requireSeat(params.id, locals);
 		const entityId = String((await request.formData()).get('entityId') ?? '');
-		await setEntityCampaign(db, entityId, userId, null);
+		await setEntityCampaign(locals.db, entityId, userId, null);
 		return { detach: { ok: true } };
 	},
 
@@ -136,7 +135,7 @@ export const actions: Actions = {
 		if (seat.role !== 'gm') error(403, 'Only the GM can create the campaign steading.');
 
 		// One steading per campaign — if one already exists, just go to it.
-		const existing = await listCampaignEntities(db, campaign.id, 'steading');
+		const existing = await listCampaignEntities(locals.db, campaign.id, 'steading');
 		if (existing.length === 0) {
 			// The shell stays game-agnostic: the game module supplies the initial
 			// steading blob (`newDraft`) and its display meta (`entityMeta`).
@@ -146,7 +145,7 @@ export const actions: Actions = {
 			}
 			const draft = type.newDraft();
 			const meta = type.entityMeta(draft);
-			const created = await createEntity(db, {
+			const created = await createEntity(locals.db, {
 				userId,
 				gameId: campaign.gameId,
 				entityType: 'steading',
@@ -155,7 +154,7 @@ export const actions: Actions = {
 				schemaVersion: meta.schemaVersion,
 				status: 'ready'
 			});
-			await setEntityCampaign(db, created.id, userId, campaign.id);
+			await setEntityCampaign(locals.db, created.id, userId, campaign.id);
 		}
 		redirect(303, resolve('/campaigns/[id]/steading', { id: campaign.id }));
 	}

@@ -16,7 +16,7 @@
  * exported for unit testing; the wiring below is exercised by e2e.
  */
 
-import { SvelteKitAuth } from '@auth/sveltekit';
+import { SvelteKitAuth, type SvelteKitAuthConfig } from '@auth/sveltekit';
 import Credentials from '@auth/sveltekit/providers/credentials';
 import Google from '@auth/sveltekit/providers/google';
 import Discord from '@auth/sveltekit/providers/discord';
@@ -24,7 +24,8 @@ import type { Provider } from '@auth/sveltekit/providers';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { eq } from 'drizzle-orm';
 import { env } from '$env/dynamic/private';
-import { db } from './db/index.ts';
+import { getDb } from './db/index.ts';
+import type { Db } from './db/entities.ts';
 import { users, accounts, sessions, verificationTokens } from './db/schema.ts';
 
 /** The env vars that decide which sign-in methods are available. */
@@ -73,7 +74,7 @@ export function applySessionId<S extends { user?: { id?: string } }>(
  * user row, and signs in as it. No password — it exists only where you've
  * chosen to enable it.
  */
-function devLogin(): Provider {
+function devLogin(db: Db): Provider {
 	return Credentials({
 		id: 'dev',
 		name: 'Dev Login',
@@ -93,10 +94,10 @@ function devLogin(): Provider {
 }
 
 /** Build the enabled providers for this environment. */
-function buildProviders(e: AuthEnv): Provider[] {
+function buildProviders(e: AuthEnv, db: Db): Provider[] {
 	const ids = enabledProviderIds(e);
 	const providers: Provider[] = [];
-	if (ids.includes('dev')) providers.push(devLogin());
+	if (ids.includes('dev')) providers.push(devLogin(db));
 	if (ids.includes('google')) {
 		providers.push(Google({ clientId: e.AUTH_GOOGLE_ID, clientSecret: e.AUTH_GOOGLE_SECRET }));
 	}
@@ -116,20 +117,31 @@ const authEnv: AuthEnv = {
 	AUTH_DISCORD_SECRET: env.AUTH_DISCORD_SECRET
 };
 
-export const { handle, signIn, signOut } = SvelteKitAuth({
-	adapter: DrizzleAdapter(db, {
-		usersTable: users,
-		accountsTable: accounts,
-		sessionsTable: sessions,
-		verificationTokensTable: verificationTokens
-	}),
-	providers: buildProviders(authEnv),
-	secret: env.AUTH_SECRET,
-	trustHost: true,
-	// Credentials forces JWT; the id is carried on the token (see callbacks).
-	session: { strategy: 'jwt' },
-	callbacks: {
-		jwt: ({ token, user }) => applyTokenId(token, user),
-		session: ({ session, token }) => applySessionId(session, token)
-	}
+/**
+ * Auth.js is configured **per request**, not at module load: its Drizzle adapter
+ * needs a database, and on Cloudflare the database only exists once a request
+ * arrives with its D1 binding (see `db/index.ts`). `hooks.server.ts` resolves it
+ * onto `locals.db` before this handle runs; a direct hit on `/auth/*` that
+ * somehow arrives without it falls back to resolving one from the platform.
+ */
+export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
+	const db = event.locals.db ?? (await getDb(event.platform));
+
+	return {
+		adapter: DrizzleAdapter(db, {
+			usersTable: users,
+			accountsTable: accounts,
+			sessionsTable: sessions,
+			verificationTokensTable: verificationTokens
+		}),
+		providers: buildProviders(authEnv, db),
+		secret: env.AUTH_SECRET,
+		trustHost: true,
+		// Credentials forces JWT; the id is carried on the token (see callbacks).
+		session: { strategy: 'jwt' },
+		callbacks: {
+			jwt: ({ token, user }) => applyTokenId(token, user),
+			session: ({ session, token }) => applySessionId(session, token)
+		}
+	} satisfies SvelteKitAuthConfig;
 });

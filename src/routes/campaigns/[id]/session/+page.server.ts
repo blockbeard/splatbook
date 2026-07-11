@@ -16,7 +16,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import { z } from 'zod';
 import { resolve } from '$app/paths';
-import { db } from '$lib/server/db';
 import { getCampaign, membershipOf } from '$lib/server/db/campaigns';
 import { listCampaignEntities, updateCampaignEntityData } from '$lib/server/db/entities';
 import { getGame } from '$lib/games';
@@ -26,9 +25,9 @@ import type { Actions, PageServerLoad } from './$types';
 async function requireGm(id: string, locals: App.Locals) {
 	const session = await locals.auth();
 	if (!session?.user?.id) redirect(303, resolve('/campaigns'));
-	const campaign = await getCampaign(db, id);
+	const campaign = await getCampaign(locals.db, id);
 	if (!campaign) error(404, 'No such campaign.');
-	const seat = await membershipOf(db, campaign.id, session.user.id);
+	const seat = await membershipOf(locals.db, campaign.id, session.user.id);
 	// A non-member gets the same 404 as a stranger; a player gets told plainly.
 	if (!seat) error(404, 'No such campaign.');
 	if (seat.role !== 'gm') error(403, 'Only the GM can end the session.');
@@ -39,8 +38,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const { campaign } = await requireGm(params.id, locals);
 
 	const [characters, steadings] = await Promise.all([
-		listCampaignEntities(db, campaign.id, 'character'),
-		listCampaignEntities(db, campaign.id, 'steading')
+		listCampaignEntities(locals.db, campaign.id, 'character'),
+		listCampaignEntities(locals.db, campaign.id, 'steading')
 	]);
 
 	const game = getGame(campaign.gameId);
@@ -93,7 +92,7 @@ export const actions: Actions = {
 			error(400, 'Malformed entity data.');
 		}
 
-		const updated = await updateCampaignEntityData(db, parsed.data.entityId, userId, data);
+		const updated = await updateCampaignEntityData(locals.db, parsed.data.entityId, userId, data);
 		// Not this GM's table, or not attached to it at all.
 		if (!updated) error(403, 'That entity is not yours to write.');
 		return { saved: updated.id };

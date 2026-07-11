@@ -11,7 +11,6 @@
 
 import { json, error } from '@sveltejs/kit';
 import { z } from 'zod';
-import { db } from '$lib/server/db';
 import { getEntity, updateEntity, deleteEntity } from '$lib/server/db/entities';
 import type { RequestHandler } from './$types';
 
@@ -23,7 +22,7 @@ async function requireUserId(locals: App.Locals): Promise<string> {
 
 export const GET: RequestHandler = async ({ locals, params }) => {
 	const userId = await requireUserId(locals);
-	const entity = await getEntity(db, params.id, userId);
+	const entity = await getEntity(locals.db, params.id, userId);
 	if (!entity) error(404, 'No such entity.');
 	return json(entity);
 };
@@ -41,14 +40,14 @@ export const PATCH: RequestHandler = async ({ locals, params, request }) => {
 	const userId = await requireUserId(locals);
 	const parsed = patchBody.safeParse(await request.json());
 	if (!parsed.success) error(400, 'Malformed update.');
-	const updated = await updateEntity(db, params.id, userId, parsed.data);
+	const updated = await updateEntity(locals.db, params.id, userId, parsed.data);
 	if (!updated) error(404, 'No such entity.');
 	return json(updated);
 };
 
 export const DELETE: RequestHandler = async ({ locals, params }) => {
 	const userId = await requireUserId(locals);
-	const removed = await deleteEntity(db, params.id, userId);
+	const removed = await deleteEntity(locals.db, params.id, userId);
 	if (!removed) error(404, 'No such entity.');
 	return new Response(null, { status: 204 });
 };

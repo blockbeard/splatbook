@@ -14,7 +14,6 @@
 import { json, error } from '@sveltejs/kit';
 import { z } from 'zod';
 import { rollResultSchema } from '$lib/dice';
-import { db } from '$lib/server/db';
 import { membershipOf } from '$lib/server/db/campaigns';
 import { logRoll, listCampaignRolls, toLogEntry } from '$lib/server/db/rolls';
 import type { RequestHandler } from './$types';
@@ -23,10 +22,10 @@ export const GET: RequestHandler = async ({ locals, params }) => {
 	const session = await locals.auth();
 	if (!session?.user?.id) error(401, 'Sign in to view the roll log.');
 	// Not a member (or no such campaign) → 404, same as the campaign page.
-	const seat = await membershipOf(db, params.id, session.user.id);
+	const seat = await membershipOf(locals.db, params.id, session.user.id);
 	if (!seat) error(404, 'No such campaign.');
 
-	const rolls = await listCampaignRolls(db, params.id);
+	const rolls = await listCampaignRolls(locals.db, params.id);
 	return json({ rolls: rolls.map(toLogEntry) });
 };
 
@@ -45,7 +44,7 @@ export const POST: RequestHandler = async ({ locals, params, request }) => {
 	const parsed = body.safeParse(await request.json().catch(() => null));
 	if (!parsed.success) error(400, 'Malformed roll.');
 
-	const row = await logRoll(db, {
+	const row = await logRoll(locals.db, {
 		campaignId: params.id,
 		actorId: session.user.id,
 		characterName: parsed.data.characterName,

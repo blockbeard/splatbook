@@ -11,7 +11,6 @@
 
 import { error, redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
-import { db } from '$lib/server/db';
 import { getCampaign, membershipOf } from '$lib/server/db/campaigns';
 import { listCampaignEntities } from '$lib/server/db/entities';
 import { getGame } from '$lib/games';
@@ -21,12 +20,12 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const session = await locals.auth();
 	if (!session?.user?.id) redirect(303, resolve('/campaigns'));
 
-	const campaign = await getCampaign(db, params.id);
+	const campaign = await getCampaign(locals.db, params.id);
 	if (!campaign) error(404, 'No such campaign.');
-	const seat = await membershipOf(db, campaign.id, session.user.id);
+	const seat = await membershipOf(locals.db, campaign.id, session.user.id);
 	if (!seat) error(404, 'No such campaign.');
 
-	const [steading] = await listCampaignEntities(db, campaign.id, 'steading');
+	const [steading] = await listCampaignEntities(locals.db, campaign.id, 'steading');
 
 	return {
 		campaign: {

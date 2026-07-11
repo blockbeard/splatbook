@@ -5,7 +5,6 @@
  * than 401. `?archived=true` includes archived entities.
  */
 
-import { db } from '$lib/server/db';
 import { listEntities } from '$lib/server/db/entities';
 import { getGame } from '$lib/games';
 import { groupByGame, type DashboardItem } from '$lib/entities/dashboard';
@@ -18,7 +17,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 	}
 
 	const showArchived = url.searchParams.get('archived') === 'true';
-	const rows = await listEntities(db, session.user.id, { includeArchived: showArchived });
+	const rows = await listEntities(locals.db, session.user.id, { includeArchived: showArchived });
 	const items: DashboardItem[] = rows.map((r) => {
 		const game = getGame(r.gameId);
 		return {

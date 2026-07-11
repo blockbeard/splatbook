@@ -5,14 +5,13 @@
  */
 
 import { json, error } from '@sveltejs/kit';
-import { db } from '$lib/server/db';
 import { duplicateEntity } from '$lib/server/db/entities';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ locals, params }) => {
 	const session = await locals.auth();
 	if (!session?.user?.id) error(401, 'Sign in to duplicate characters.');
-	const copy = await duplicateEntity(db, params.id, session.user.id);
+	const copy = await duplicateEntity(locals.db, params.id, session.user.id);
 	if (!copy) error(404, 'No such entity.');
 	return json(copy, { status: 201 });
 };

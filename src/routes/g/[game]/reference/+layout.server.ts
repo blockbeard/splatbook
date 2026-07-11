@@ -12,14 +12,13 @@
  * later step, noted in docs/architecture.md.
  */
 
-import { db } from '$lib/server/db';
 import { isGmOfAnyCampaign } from '$lib/server/db/campaigns';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ params, locals }) => {
 	const session = await locals.auth();
 	const gmContentVisible = session?.user?.id
-		? await isGmOfAnyCampaign(db, session.user.id, params.game)
+		? await isGmOfAnyCampaign(locals.db, session.user.id, params.game)
 		: false;
 	return { gmContentVisible };
 };

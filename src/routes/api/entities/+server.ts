@@ -12,7 +12,6 @@
 
 import { json, error } from '@sveltejs/kit';
 import { z } from 'zod';
-import { db } from '$lib/server/db';
 import { createEntity, updateEntity, listEntities } from '$lib/server/db/entities';
 import type { RequestHandler } from './$types';
 
@@ -34,7 +33,7 @@ async function requireUserId(locals: App.Locals): Promise<string> {
 
 export const GET: RequestHandler = async ({ locals, url }) => {
 	const userId = await requireUserId(locals);
-	const rows = await listEntities(db, userId, {
+	const rows = await listEntities(locals.db, userId, {
 		gameId: url.searchParams.get('game') ?? undefined,
 		entityType: url.searchParams.get('type') ?? undefined,
 		includeArchived: url.searchParams.get('archived') === 'true'
@@ -49,7 +48,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const body = parsed.data;
 
 	if (body.id) {
-		const updated = await updateEntity(db, body.id, userId, {
+		const updated = await updateEntity(locals.db, body.id, userId, {
 			name: body.name,
 			data: body.data,
 			schemaVersion: body.schemaVersion,
@@ -59,7 +58,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		return json(updated);
 	}
 
-	const created = await createEntity(db, {
+	const created = await createEntity(locals.db, {
 		userId,
 		gameId: body.gameId,
 		entityType: body.entityType,

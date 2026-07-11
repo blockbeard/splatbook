@@ -1,10 +1,23 @@
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
 import { handle as auth } from '$lib/server/auth';
+import { getDb } from '$lib/server/db';
 
 /** Game ids are kebab-case (registry.ts). Anything else never matches a theme,
  * and this value goes into an HTML attribute — so refuse to interpolate it. */
 const GAME_ID = /^[a-z0-9-]+$/;
+
+/**
+ * Resolve the database for this request and put it on `locals`.
+ *
+ * On Cloudflare there is no long-lived process to hold a connection: D1 arrives
+ * per request through `platform.env.DB`. On node it's the same SQLite file every
+ * time. Routes take `locals.db` and never learn which they got.
+ */
+const database: Handle = async ({ event, resolve }) => {
+	event.locals.db = await getDb(event.platform);
+	return resolve(event);
+};
 
 /**
  * Stamp `data-game` on <html> for a game's routes, server-side, so a module's
@@ -26,6 +39,5 @@ const gameTheme: Handle = async ({ event, resolve }) => {
 	});
 };
 
-// Auth.js installs `event.locals.auth()` and mounts the `/auth/*` endpoints
-// (sign-in page, provider callbacks, sign-out).
-export const handle = sequence(auth, gameTheme);
+// The database first: Auth.js needs it to build its adapter for the request.
+export const handle = sequence(database, auth, gameTheme);

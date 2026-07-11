@@ -9,6 +9,9 @@
 
 name = "splatbook"
 compatibility_date = "2025-07-01"
+# Auth.js (@auth/core) reaches for node builtins; without this the Workers runtime
+# throws at sign-in rather than at build time.
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".svelte-kit/cloudflare"
 
 # The SvelteKit app reaches this database through `platform.env.DB` at runtime.
