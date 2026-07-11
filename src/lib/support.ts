@@ -8,6 +8,13 @@
  * `href` hides that option.
  */
 
+/**
+ * Where users reach the operator — the contact required by the privacy policy
+ * and by Google's OAuth consent screen. A domain alias rather than a personal
+ * mailbox, so it can be redirected (or burned) without editing the site.
+ */
+export const CONTACT_EMAIL = 'hello@splatbook.app';
+
 /** "Buy me a coffee" tip jar. */
 export const KOFI_URL = 'https://ko-fi.com/miniblin';
 

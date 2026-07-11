@@ -66,6 +66,10 @@
 				<a href={resolve('/credits')} class="underline hover:text-text">credits &amp; licensing</a>.
 				<span aria-hidden="true">·</span>
 				<a href="{resolve('/credits')}#support" class="underline hover:text-text">Support</a>
+				<span aria-hidden="true">·</span>
+				<a href={resolve('/privacy')} class="underline hover:text-text">Privacy</a>
+				<span aria-hidden="true">·</span>
+				<a href={resolve('/terms')} class="underline hover:text-text">Terms</a>
 			</p>
 		</div>
 	</footer>

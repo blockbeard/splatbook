@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Privacy policy and terms of service** (`/privacy`, `/terms`, linked from the
+  footer). Google's OAuth consent screen will not leave Testing mode without both
+  URLs, and it fetches them to check they resolve — so the public site could not
+  admit anyone beyond a hand-listed set of test users until these existed. Written
+  to be true rather than boilerplate: they claim no analytics and no third-party
+  tracking, which is currently the case. **If a migration ever adds a table holding
+  personal data, or a tracking script lands, `/privacy` must change with it.**
 - **The Cloudflare/D1 deployment path.** The database is now resolved **per
   request** (`event.locals.db`) — D1 through `platform.env.DB` on Cloudflare, the
   SQLite file on node/atlas — because the Workers runtime has no long-lived
