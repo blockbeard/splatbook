@@ -44,6 +44,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   gained a separate GM-only index (`search-index-gm.json`), built alongside the
   player index and loaded only when the gate is open; GM hits are tagged in
   results. `isVisible` now fails closed (hidden unless explicitly granted).
+- **Campaign-owned steading (phase 9, commit 63).** A GM can create a steading
+  the whole party shares; it's an ordinary steading entity attached to the
+  campaign, so it also appears on the GM's dashboard. Every member sees it at
+  `/campaigns/<id>/steading` — read-only, rendered by the game's own steading
+  sheet — while the owner gets an Edit link to the normal editor. The shell
+  creates it game-agnostically via the module's `newDraft`/`entityMeta`.
 
 ## [1.0.0] - 2026-07-11
 

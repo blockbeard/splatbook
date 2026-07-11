@@ -19,6 +19,7 @@ import {
 } from '$lib/server/db/campaigns';
 import {
 	getEntity,
+	createEntity,
 	listEntities,
 	listCampaignEntities,
 	setEntityCampaign
@@ -122,5 +123,34 @@ export const actions: Actions = {
 		const entityId = String((await request.formData()).get('entityId') ?? '');
 		await setEntityCampaign(db, entityId, userId, null);
 		return { detach: { ok: true } };
+	},
+
+	createSteading: async ({ params, locals }) => {
+		const { userId, campaign, seat } = await requireSeat(params.id, locals);
+		if (seat.role !== 'gm') error(403, 'Only the GM can create the campaign steading.');
+
+		// One steading per campaign — if one already exists, just go to it.
+		const existing = await listCampaignEntities(db, campaign.id, 'steading');
+		if (existing.length === 0) {
+			// The shell stays game-agnostic: the game module supplies the initial
+			// steading blob (`newDraft`) and its display meta (`entityMeta`).
+			const type = getGame(campaign.gameId)?.entityTypes['steading'];
+			if (!type?.newDraft || !type.entityMeta) {
+				error(400, 'This game has no steading to create.');
+			}
+			const draft = type.newDraft();
+			const meta = type.entityMeta(draft);
+			const created = await createEntity(db, {
+				userId,
+				gameId: campaign.gameId,
+				entityType: 'steading',
+				name: meta.name,
+				data: draft,
+				schemaVersion: meta.schemaVersion,
+				status: 'ready'
+			});
+			await setEntityCampaign(db, created.id, userId, campaign.id);
+		}
+		redirect(303, resolve('/campaigns/[id]/steading', { id: campaign.id }));
 	}
 };

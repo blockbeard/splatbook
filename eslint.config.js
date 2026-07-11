@@ -51,6 +51,7 @@ export default ts.config(
 		files: [
 			'src/routes/dashboard/+page.svelte',
 			'src/routes/campaigns/*/+page.svelte',
+			'src/routes/campaigns/*/steading/+page.svelte',
 			'src/routes/g/*/*/build/+page.svelte',
 			'src/routes/g/*/*/sheet/+page.svelte',
 			'src/routes/g/*/*/play/+page.svelte'

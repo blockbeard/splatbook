@@ -1,8 +1,8 @@
 <!--
-	Campaign page. Everyone seated sees the campaign; the GM also sees the invite
-	link (a copyable, absolute URL built from the current origin) and can rotate
-	it to revoke outstanding invites. Party roster + steading arrive in later
-	commits.
+	Campaign page. Everyone seated sees the party roster (members + attached
+	characters) and the campaign steading; each member can attach their own
+	characters. The GM additionally sees the invite link (copyable, rotatable) and
+	can create the campaign steading.
 -->
 <script lang="ts">
 	import { enhance } from '$app/forms';
@@ -115,10 +115,23 @@
 	<h2 class="text-sm font-semibold">Campaign steading</h2>
 	{#if data.steading}
 		<p class="mt-2 text-sm">
-			<a href={sheetHref('steading', data.steading.id)} class="hover:text-accent">
+			<a
+				href={resolve('/campaigns/[id]/steading', { id: data.campaign.id })}
+				class="hover:text-accent"
+			>
 				{data.steading.name}
 			</a>
 		</p>
+	{:else if data.isGm}
+		<p class="mt-1 text-xs text-muted">No steading yet. Create one the whole party can see.</p>
+		<form method="POST" action="?/createSteading" use:enhance class="mt-2">
+			<button
+				type="submit"
+				class="rounded-md border border-border px-3 py-1.5 text-sm hover:text-accent"
+			>
+				Create campaign steading
+			</button>
+		</form>
 	{:else}
 		<p class="mt-1 text-xs text-muted">No steading yet.</p>
 	{/if}
