@@ -13,7 +13,9 @@
 		carryingGear,
 		carryingSmall,
 		gearLoad,
+		isOverloaded,
 		loadBand,
+		maxLoad,
 		setUndefinedGear,
 		setUndefinedSmall,
 		toggleGear,
@@ -44,6 +46,8 @@
 	);
 	const load = $derived(insert ? gearLoad(character, insert) : 0);
 	const band = $derived(insert ? loadBand(load, insert) : null);
+	const overloaded = $derived(insert ? isOverloaded(character, insert) : false);
+	const max = $derived(insert ? maxLoad(insert) : 0);
 	// Small-item options excluding the blank write-in lines.
 	const smallOptions = $derived(insert ? insert.smallItems.options.filter((o) => o.name) : []);
 </script>
@@ -72,11 +76,19 @@
 	<div class="space-y-6">
 		<div class="flex items-baseline justify-between">
 			<h2 class="text-lg font-semibold">Inventory</h2>
-			<span class="text-sm text-muted">
-				Load {load} · {band?.name ?? '—'}{#if band?.tags?.length}
+			<span class="text-sm {overloaded ? 'font-medium text-danger' : 'text-muted'}">
+				Load {load} · {band?.name ?? 'overloaded'}{#if band?.tags?.length}
 					<span class="italic">({band.tags.join(', ')})</span>{/if}
 			</span>
 		</div>
+
+		{#if overloaded}
+			<!-- Past the heaviest band there is no band to be in: the sheet says so
+			     rather than quietly showing a dash. -->
+			<p class="rounded-md border border-danger bg-danger/10 px-3 py-2 text-sm text-danger">
+				Overloaded — you're carrying {load} of a maximum {max}. Drop something.
+			</p>
+		{/if}
 
 		<section>
 			<h3 class="text-sm font-medium text-muted">Gear (each ◇ = 1 load)</h3>

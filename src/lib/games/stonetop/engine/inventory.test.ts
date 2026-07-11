@@ -6,6 +6,8 @@ import {
 	assignUndefinedSmall,
 	carriedGear,
 	gearLoad,
+	isOverloaded,
+	maxLoad,
 	gearSlots,
 	loadBand,
 	parseMarks,
@@ -73,6 +75,28 @@ describe('gear load and band', () => {
 	it('reads an item’s slot cost', () => {
 		expect(gearSlots(insert, 'Shield')).toBe(2);
 		expect(gearSlots(insert, 'Nonexistent')).toBe(0);
+	});
+});
+
+describe('overload', () => {
+	it('takes the cap from the heaviest band the pack prints', () => {
+		expect(maxLoad(insert)).toBe(9);
+	});
+
+	it('is not overloaded anywhere inside the bands', () => {
+		let c = fresh();
+		c = setUndefinedGear(c, 9, insert);
+		expect(gearLoad(c, insert)).toBe(9);
+		expect(isOverloaded(c, insert)).toBe(false);
+	});
+
+	it('is overloaded one ◇ past the heaviest band', () => {
+		let c = fresh();
+		c = setUndefinedGear(c, 9, insert); // the cap
+		c = toggleGear(c, 'Bedroll'); // 10 — nothing left to be
+		expect(gearLoad(c, insert)).toBe(10);
+		expect(isOverloaded(c, insert)).toBe(true);
+		expect(loadBand(gearLoad(c, insert), insert)).toBeNull();
 	});
 });
 

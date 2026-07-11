@@ -55,6 +55,23 @@ export function loadBand(
 	return null;
 }
 
+/**
+ * The most ◇ any band accounts for — the carrying cap. Read off the pack's own
+ * bands (heavy tops out at 7-9, so 9) rather than hard-coded, so a pack that
+ * prints different bands moves the cap with it.
+ */
+export function maxLoad(insert: InventoryInsert): number {
+	return Math.max(...insert.outfit.loads.map((band) => parseMarks(band.marks)[1]));
+}
+
+/**
+ * Carrying more than the heaviest band allows. Past the cap there is no band to
+ * be in — you're over-encumbered and something has to go.
+ */
+export function isOverloaded(character: StonetopCharacter, insert: InventoryInsert): boolean {
+	return gearLoad(character, insert) > maxLoad(insert);
+}
+
 /** Whether a gear item is currently carried. */
 export function carryingGear(character: StonetopCharacter, name: string): boolean {
 	return inv(character).gear.includes(name);

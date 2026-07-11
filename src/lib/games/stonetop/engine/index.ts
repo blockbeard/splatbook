@@ -28,6 +28,8 @@ export {
 export {
 	gearSlots,
 	gearLoad,
+	isOverloaded,
+	maxLoad,
 	parseMarks,
 	loadBand,
 	carryingGear,
