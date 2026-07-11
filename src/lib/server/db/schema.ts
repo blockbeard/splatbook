@@ -128,8 +128,78 @@ export const entities = sqliteTable(
 	]
 );
 
+/**
+ * A campaign — the shared table a GM and their players gather around (phase 9).
+ * Generic shell furniture, like `entities`: campaigns belong to a game (`gameId`)
+ * but the shell never reads game data. The `ownerId` is the creator (always a GM
+ * member too, see `campaignMembers`); `inviteToken` is the unguessable secret in
+ * the join link and can be rotated to revoke outstanding invites.
+ */
+export const campaigns = sqliteTable(
+	'campaigns',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		/** Which game module this campaign is played with (e.g. `stonetop`). */
+		gameId: text('game_id').notNull(),
+		/** Display name for lists. */
+		name: text('name').notNull().default(''),
+		/** The creator; cascades so deleting the account tidies their campaigns. */
+		ownerId: text('owner_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		/** Secret carried in the invite link; rotate to revoke outstanding invites. */
+		inviteToken: text('invite_token')
+			.notNull()
+			.unique()
+			.$defaultFn(() => crypto.randomUUID()),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`),
+		updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [index('campaigns_owner_idx').on(t.ownerId)]
+);
+
+/** A member's role in a campaign. `gm` runs it (edit rights, GM-only rules); `player` sits at the table. */
+export const CAMPAIGN_ROLES = ['gm', 'player'] as const;
+export type CampaignRole = (typeof CAMPAIGN_ROLES)[number];
+
+/**
+ * Campaign membership — a user's seat at a campaign, with a role. One row per
+ * (campaign, user): the composite primary key makes a double-join impossible,
+ * and both foreign keys cascade so deleting either side clears the membership.
+ */
+export const campaignMembers = sqliteTable(
+	'campaign_members',
+	{
+		campaignId: text('campaign_id')
+			.notNull()
+			.references(() => campaigns.id, { onDelete: 'cascade' }),
+		userId: text('user_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		role: text('role', { enum: CAMPAIGN_ROLES }).notNull(),
+		joinedAt: integer('joined_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [
+		primaryKey({ columns: [t.campaignId, t.userId] }),
+		// "Which campaigns am I in?" — the dashboard's per-user lookup.
+		index('campaign_members_user_idx').on(t.userId)
+	]
+);
+
 /** Row types inferred from the tables, for the save/load service (commit 32). */
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Entity = typeof entities.$inferSelect;
 export type NewEntity = typeof entities.$inferInsert;
+export type Campaign = typeof campaigns.$inferSelect;
+export type NewCampaign = typeof campaigns.$inferInsert;
+export type CampaignMember = typeof campaignMembers.$inferSelect;
+export type NewCampaignMember = typeof campaignMembers.$inferInsert;

@@ -15,6 +15,13 @@
       "when": 1783708838310,
       "tag": "0001_sweet_wendell_vaughn",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1783728400505,
+      "tag": "0002_last_molecule_man",
+      "breakpoints": true
     }
   ]
 }

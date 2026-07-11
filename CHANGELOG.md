@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Campaigns — tables & membership (phase 9, commit 58).** Two new shell tables,
+  generic like `entities`: `campaigns` (a game-tagged table a group gathers
+  around, with an `ownerId` and a rotatable, unguessable `inviteToken`) and
+  `campaign_members` (one seat per (campaign, user) with a `gm`/`player` role,
+  enforced by a composite primary key). Both foreign keys cascade on account
+  deletion. Migration `0002` and round-trip schema tests included.
+
 ## [1.0.0] - 2026-07-11
 
 Public **v1.0.0** — the Stonetop companion, complete: build a character through
