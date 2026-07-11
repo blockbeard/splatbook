@@ -15,7 +15,7 @@
 
 import { and, desc, eq, ne } from 'drizzle-orm';
 import type { BetterSQLite3Database } from 'drizzle-orm/better-sqlite3';
-import { entities, type Entity, type EntityStatus } from './schema.ts';
+import { campaignMembers, entities, type Entity, type EntityStatus } from './schema.ts';
 import * as schema from './schema.ts';
 
 /** Any drizzle SQLite connection over our schema (better-sqlite3 today, D1 later). */
@@ -191,4 +191,48 @@ export async function duplicateEntity(
 		schemaVersion: source.schemaVersion,
 		status: 'draft'
 	});
+}
+
+/**
+ * Write an entity's data blob on behalf of a campaign's GM.
+ *
+ * The only path by which someone writes an entity they don't own, and it exists
+ * for one reason: at the end of a session the GM awards XP to the whole party,
+ * and the party's characters belong to the players. So the guard is narrow — the
+ * entity must be attached to a campaign the caller is seated at **as GM**.
+ * Ownership is otherwise untouched: the player still owns their character, and a
+ * character that isn't attached to the campaign can't be touched at all.
+ *
+ * The blob itself is opaque here, as everywhere: the *game* computed it in the
+ * browser (it owns the rules); the shell only persists what it was handed.
+ * Returns `undefined` when the caller isn't the GM of the entity's campaign.
+ */
+export async function updateCampaignEntityData(
+	db: Db,
+	id: string,
+	gmUserId: string,
+	data: unknown
+): Promise<Entity | undefined> {
+	const [row] = await db
+		.select({ campaignId: entities.campaignId })
+		.from(entities)
+		.where(eq(entities.id, id))
+		.limit(1);
+	if (!row?.campaignId) return undefined;
+
+	const [seat] = await db
+		.select({ role: campaignMembers.role })
+		.from(campaignMembers)
+		.where(
+			and(eq(campaignMembers.campaignId, row.campaignId), eq(campaignMembers.userId, gmUserId))
+		)
+		.limit(1);
+	if (seat?.role !== 'gm') return undefined;
+
+	const [updated] = await db
+		.update(entities)
+		.set({ data, updatedAt: new Date() })
+		.where(eq(entities.id, id))
+		.returning();
+	return updated;
 }

@@ -20,8 +20,10 @@ import {
 	duplicateEntity,
 	setEntityCampaign,
 	listCampaignEntities,
+	updateCampaignEntityData,
 	type Db
 } from './entities.ts';
+import { createCampaign, joinCampaign } from './campaigns.ts';
 
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
@@ -185,5 +187,81 @@ describe('campaign attachment', () => {
 		const survivor = await getEntity(db, hero.id, alice);
 		expect(survivor).toBeDefined();
 		expect(survivor?.campaignId).toBeNull();
+	});
+});
+
+describe('updateCampaignEntityData', () => {
+	/** Alice GMs a campaign; Bob plays, with his character attached to it. */
+	async function table() {
+		const campaign = await createCampaign(db, {
+			gameId: 'stonetop',
+			name: 'Ringwall',
+			ownerId: alice
+		});
+		await joinCampaign(db, campaign.inviteToken, bob);
+		const bobsCharacter = await createEntity(db, {
+			userId: bob,
+			gameId: 'stonetop',
+			entityType: 'character',
+			name: 'Ryn',
+			schemaVersion: 1,
+			data: { xp: 2 }
+		});
+		await setEntityCampaign(db, bobsCharacter.id, bob, campaign.id);
+		return { campaign, bobsCharacter };
+	}
+
+	// The reason this path exists: at end of session the GM awards XP to the whole
+	// party, and the party's characters belong to the players.
+	it('lets the GM write a player’s character attached to their campaign', async () => {
+		const { bobsCharacter } = await table();
+
+		const updated = await updateCampaignEntityData(db, bobsCharacter.id, alice, { xp: 5 });
+		expect(updated?.data).toEqual({ xp: 5 });
+		// Bob still owns it.
+		expect(updated?.userId).toBe(bob);
+	});
+
+	it('refuses a player writing another player’s character', async () => {
+		const { campaign } = await table();
+		const alicesCharacter = await createEntity(db, {
+			userId: alice,
+			gameId: 'stonetop',
+			entityType: 'character',
+			name: 'Vera',
+			schemaVersion: 1,
+			data: { xp: 0 }
+		});
+		await setEntityCampaign(db, alicesCharacter.id, alice, campaign.id);
+
+		// Bob is a player, not the GM — even at the same table.
+		expect(await updateCampaignEntityData(db, alicesCharacter.id, bob, { xp: 99 })).toBeUndefined();
+		const [row] = await db
+			.select()
+			.from(schema.entities)
+			.where(eq(schema.entities.id, alicesCharacter.id));
+		expect(row.data).toEqual({ xp: 0 });
+	});
+
+	it('refuses an entity that is attached to no campaign', async () => {
+		const loose = await createEntity(db, {
+			userId: bob,
+			gameId: 'stonetop',
+			entityType: 'character',
+			name: 'Loose',
+			schemaVersion: 1,
+			data: { xp: 1 }
+		});
+		expect(await updateCampaignEntityData(db, loose.id, alice, { xp: 9 })).toBeUndefined();
+	});
+
+	it('refuses a GM of some other campaign', async () => {
+		const { bobsCharacter } = await table();
+		const [carol] = await db.insert(schema.users).values({ email: 'carol@x' }).returning();
+		await createCampaign(db, { gameId: 'stonetop', name: 'Elsewhere', ownerId: carol.id });
+
+		expect(
+			await updateCampaignEntityData(db, bobsCharacter.id, carol.id, { xp: 9 })
+		).toBeUndefined();
 	});
 });

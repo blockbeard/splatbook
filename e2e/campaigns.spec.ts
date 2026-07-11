@@ -11,7 +11,8 @@ import { test, expect, type Page } from '@playwright/test';
 /** Sign in through the dev-login provider as a named account. */
 async function signIn(page: Page, name: string, email: string) {
 	await page.goto('/');
-	await page.getByRole('button', { name: 'Sign in' }).click();
+	// The header's control — the landing page has a Sign in prompt of its own.
+	await page.getByRole('navigation').getByRole('button', { name: 'Sign in' }).click();
 	await page.waitForURL(/\/auth\/signin/);
 	await page.locator('input[name="name"]').fill(name);
 	await page.locator('input[name="email"]').fill(email);

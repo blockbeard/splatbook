@@ -97,7 +97,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		// Seed the live roll log; the client polls the same endpoint to keep it fresh.
 		rolls: rolls.map(toLogEntry),
 		// The invite capability is GM-only; players never receive the token.
-		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null
+		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null,
+		// Whether this game has an end-of-session move for the GM to run.
+		hasSessionMove: !!getGame(campaign.gameId)?.sessionComponent
 	};
 };
 

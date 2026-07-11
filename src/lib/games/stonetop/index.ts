@@ -15,7 +15,14 @@
  */
 
 import type { Component } from 'svelte';
-import type { EntityTypeModule, GameModule, GmGuideProps, PlayProps, SheetProps } from '../types';
+import type {
+	EntityTypeModule,
+	GameModule,
+	GmGuideProps,
+	PlayProps,
+	SessionProps,
+	SheetProps
+} from '../types';
 // The game's own skin. Scoped to `[data-game="stonetop"]`, which the shell
 // stamps on the game's routes — inert everywhere else.
 import './theme.css';
@@ -32,6 +39,7 @@ import SteadingSheet from './steading/SteadingSheet.svelte';
 import ThreatEditor from './gm/ThreatEditor.svelte';
 import ThreatSheet from './gm/ThreatSheet.svelte';
 import GmGuide from './gm/GmGuide.svelte';
+import EndOfSession from './session/EndOfSession.svelte';
 import { GM_SECTIONS } from './gm/sections';
 import { stonetopDice } from './dice';
 
@@ -103,5 +111,7 @@ export const stonetop: GameModule = {
 		packFile: 'data/the-gm.json',
 		sections: GM_SECTIONS,
 		component: GmGuide as unknown as Component<GmGuideProps>
-	}
+	},
+	// The end-of-session move, run by the GM at `/campaigns/[id]/session`.
+	sessionComponent: EndOfSession as unknown as Component<SessionProps>
 };

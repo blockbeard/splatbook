@@ -10,7 +10,8 @@ import { test, expect } from '@playwright/test';
 test('create, save, reload, and print a character', async ({ page }) => {
 	// --- Sign in via the dev-login provider ---
 	await page.goto('/');
-	await page.getByRole('button', { name: 'Sign in' }).click();
+	// The header's control — the landing page has a Sign in prompt of its own.
+	await page.getByRole('navigation').getByRole('button', { name: 'Sign in' }).click();
 	await page.waitForURL(/\/auth\/signin/);
 	// Auth.js's default sign-in page renders the dev provider's credential fields.
 	await page.locator('input[name="name"]').fill('E2E Player');

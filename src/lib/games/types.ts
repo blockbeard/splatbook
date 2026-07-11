@@ -121,6 +121,24 @@ export interface GmGuideModule {
 	component: Component<GmGuideProps>;
 }
 
+/**
+ * Props the shell passes a game's end-of-session component.
+ *
+ * The shell brings the table (the campaign's characters and steading, held
+ * opaquely), a GM-authorised way to write them back, and the dice; the game
+ * brings the ritual — which questions get asked and what they're worth. The
+ * shell never computes an award: `save` persists exactly the blob the game
+ * hands it.
+ */
+export interface SessionProps {
+	characters: { id: string; name: string; data: object }[];
+	steading: { id: string; name: string; data: object } | null;
+	/** Persist a changed entity. Rejects if the write is refused. */
+	save: (id: string, data: object) => Promise<void>;
+	/** Roll, logged to the campaign (as the steading, at the change of seasons). */
+	roll?: (label: string, notation: string) => void;
+}
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
 	id: string;
@@ -137,4 +155,10 @@ export interface GameModule {
 	/** Optional GM reference guide, surfaced at `/g/[game]/gm`. Absent for games
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;
+	/**
+	 * The game's end-of-session ritual, surfaced by the shell at
+	 * `/campaigns/[id]/session`. Absent for a game with no such move — the shell
+	 * then offers no End session button.
+	 */
+	sessionComponent?: Component<SessionProps>;
 }

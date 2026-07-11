@@ -38,9 +38,21 @@
 
 <div class="mb-6 flex items-baseline justify-between gap-4">
 	<h1 class="text-2xl font-semibold tracking-tight">{data.campaign.name}</h1>
-	<span class="text-xs text-muted uppercase" class:text-accent={data.isGm}>
-		{data.role} · {data.campaign.gameName}
-	</span>
+	<div class="flex items-baseline gap-3">
+		{#if data.isGm && data.hasSessionMove}
+			<!-- Ending the session marks XP on characters their players own, so it's
+			     the GM's button. -->
+			<a
+				href={resolve('/campaigns/[id]/session', { id: data.campaign.id })}
+				class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
+			>
+				End session
+			</a>
+		{/if}
+		<span class="text-xs text-muted uppercase" class:text-accent={data.isGm}>
+			{data.role} · {data.campaign.gameName}
+		</span>
+	</div>
 </div>
 
 {#if data.isGm && inviteUrl}
