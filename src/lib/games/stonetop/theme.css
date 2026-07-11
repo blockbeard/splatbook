@@ -1,0 +1,56 @@
+/*
+ * Stonetop's skin.
+ *
+ * The game themes itself the way `app.css` documents: override the `--sb-*`
+ * tokens under `[data-game="stonetop"]` and every shell component picks it up
+ * through the mapped utilities. Nothing here is imported by the shell — the
+ * game module imports this file, and the shell only stamps `data-game` on the
+ * <html> element of the game's routes.
+ *
+ * Adapted from the Obsidian snippet used with the Stonetop vault, in turn drawn
+ * from the look of Book I: Stonetop by Jeremy Strandberg (Lampblack &
+ * Brimstone): uncoated paper, near-black ink, and a Great Wood green. Trade
+ * dress and text remain theirs — see /credits.
+ */
+
+@import '@fontsource/eb-garamond/400.css';
+@import '@fontsource/eb-garamond/400-italic.css';
+@import '@fontsource/eb-garamond/600.css';
+@import '@fontsource/eb-garamond/700.css';
+
+/* `html[data-game=…]` rather than a bare attribute selector: the shell's tokens
+   live on `:root`, which has identical specificity, so a bare `[data-game]` rule
+   would win or lose on bundle order alone. The element qualifier settles it. */
+html[data-game='stonetop'] {
+	--sb-bg: #faf9f7;
+	--sb-surface: #ffffff;
+	--sb-text: #111111;
+	--sb-muted: #555555;
+	--sb-accent: #2a4a2a;
+	--sb-accent-contrast: #ffffff;
+	--sb-border: rgba(0, 0, 0, 0.14);
+	--sb-danger: #8c2f22;
+
+	font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+	/* Garamond runs small; buy back the x-height the shell's sans assumes. */
+	font-size: 1.0625rem;
+}
+
+/* Night at the table: ink and paper inverted, not a different palette —
+   warm dark brown-grey with the same forest accent, lifted to stay legible. */
+html.dark[data-game='stonetop'] {
+	--sb-bg: #17150f;
+	--sb-surface: #201d16;
+	--sb-text: #ece5d8;
+	--sb-muted: #a89f8d;
+	--sb-accent: #7fa46a;
+	--sb-accent-contrast: #14170f;
+	--sb-border: rgba(236, 229, 216, 0.16);
+	--sb-danger: #d98b74;
+}
+
+/* Headings in the display weight the book uses. */
+html[data-game='stonetop'] :is(h1, h2, h3) {
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}

@@ -16,6 +16,9 @@
 
 import type { Component } from 'svelte';
 import type { EntityTypeModule, GameModule, GmGuideProps, PlayProps, SheetProps } from '../types';
+// The game's own skin. Scoped to `[data-game="stonetop"]`, which the shell
+// stamps on the game's routes — inert everywhere else.
+import './theme.css';
 import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';
