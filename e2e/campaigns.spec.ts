@@ -57,9 +57,11 @@ test('a GM invites a player, who joins and appears in the party', async ({ brows
 	await player.waitForURL(/\/campaigns\/join\//);
 	await player.getByRole('button', { name: 'Join as player' }).click();
 
-	// Joined: on the campaign page, seated as a player.
+	// Joined: on the campaign page, seated as a player — the roster row for
+	// this member carries the exact role badge.
 	await player.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
-	await expect(player.getByText('player', { exact: false })).toBeVisible();
+	const seat = player.locator('li', { hasText: 'E2E Player' });
+	await expect(seat.getByText('player', { exact: true })).toBeVisible();
 	// A player never sees the invite controls.
 	await expect(player.getByLabel('Invite link')).toHaveCount(0);
 
