@@ -21,6 +21,7 @@
 		isDebilitated,
 		isWouldBeCrossed,
 		levelUpChoices,
+		bankedXp,
 		markXp,
 		migrateCharacter,
 		setDebility,
@@ -88,7 +89,11 @@
 		n === undefined ? '—' : n >= 0 ? `+${n}` : `${n}`;
 
 	const xpNeeded = $derived(xpForNextLevel(c.level));
-	const xpBoxes = $derived(Math.max(xpNeeded, c.xp));
+	// Always leave one empty box past what's marked: the point that levels you
+	// usually lands mid-session and the session keeps going, so there has to be
+	// somewhere to put the next one. The surplus carries over the level-up.
+	const xpBoxes = $derived(Math.max(xpNeeded, c.xp + 1));
+	const banked = $derived(bankedXp(c));
 	const readyToLevel = $derived(canLevelUp(c));
 	const trackerEntries = $derived(Object.entries(c.trackers));
 	const advLog = $derived(playbook ? advancementLog(c, playbook) : []);
@@ -245,7 +250,11 @@
 		<section>
 			<div class="flex items-baseline justify-between">
 				<h2 class="text-lg font-semibold">XP</h2>
-				<span class="font-mono text-sm text-muted">{c.xp} / {xpNeeded} to level</span>
+				<!-- The separator carries its own spaces: Svelte trims whitespace at the
+				     edges of a block, so " · " written as markup would come out glued on. -->
+				<span class="font-mono text-sm text-muted">
+					{c.xp} / {xpNeeded} to level{#if banked > 0}{` · ${banked} banked`}{/if}
+				</span>
 			</div>
 			<div class="mt-2">
 				{@render boxRow(xpBoxes, c.xp, setXp, 'XP')}

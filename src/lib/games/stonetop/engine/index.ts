@@ -86,6 +86,7 @@ export {
 	xpForNextLevel,
 	canLevelUp,
 	markXp,
+	bankedXp,
 	seedVitals,
 	syncMoveTrackers,
 	enterPlay,

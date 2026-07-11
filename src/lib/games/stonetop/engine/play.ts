@@ -52,9 +52,16 @@ export function canLevelUp(character: StonetopCharacter): boolean {
 	return character.xp >= xpForNextLevel(character.level);
 }
 
-/** Mark (or, with a negative delta, erase) XP. Never drops below 0. */
+/** Mark (or, with a negative delta, erase) XP. Never drops below 0, and has no
+ * ceiling: you often earn the point that levels you mid-session and keep playing,
+ * so XP banks past the threshold and the surplus carries over the level-up. */
 export function markXp(character: StonetopCharacter, delta = 1): StonetopCharacter {
 	return { ...character, xp: Math.max(0, character.xp + delta) };
+}
+
+/** XP held beyond what the next level costs — what carries over when you spend it. */
+export function bankedXp(character: StonetopCharacter): number {
+	return Math.max(0, character.xp - xpForNextLevel(character.level));
 }
 
 /**

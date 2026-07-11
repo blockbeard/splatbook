@@ -3,6 +3,7 @@ import { createCharacter, type StonetopCharacter } from './character';
 import type { Playbook } from '../pack-schemas';
 import {
 	applyDamage,
+	bankedXp,
 	canLevelUp,
 	debilityName,
 	effectiveStat,
@@ -70,6 +71,28 @@ describe('markXp', () => {
 		expect(markXp(c).xp).toBe(1);
 		expect(markXp(c, 3).xp).toBe(3);
 		expect(markXp({ ...c, xp: 2 }, -5).xp).toBe(0);
+	});
+
+	// You earn the point that levels you mid-session and keep playing; XP has to
+	// have somewhere to go before you stop to spend it.
+	it('banks past the level threshold', () => {
+		const c = { ...seeded(), level: 1, xp: 8 }; // 8 is the threshold at level 1
+		expect(markXp(c).xp).toBe(9);
+		expect(markXp(c, 3).xp).toBe(11);
+	});
+});
+
+describe('bankedXp', () => {
+	it('is nothing until the threshold is cleared', () => {
+		const c = seeded();
+		expect(bankedXp({ ...c, level: 1, xp: 0 })).toBe(0);
+		expect(bankedXp({ ...c, level: 1, xp: 8 })).toBe(0);
+	});
+
+	it('counts the surplus held past the threshold', () => {
+		const c = seeded();
+		expect(bankedXp({ ...c, level: 1, xp: 11 })).toBe(3);
+		expect(bankedXp({ ...c, level: 2, xp: 11 })).toBe(1); // level 2 costs 10
 	});
 });
 
