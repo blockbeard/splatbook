@@ -42,6 +42,13 @@ const seed: SteadingSeed = {
 };
 
 describe('createSteading', () => {
+	// A Stonetop campaign is about the village of Stonetop: asking you to type its
+	// name is a question with one answer. It stays editable — a campaign might
+	// track a second steading.
+	it('seeds the name of the village the game is about', () => {
+		expect(createSteading().name).toBe('Stonetop');
+	});
+
 	it('starts at the printed 2nd-printing values', () => {
 		const s = createSteading();
 		expect(s.schemaVersion).toBe(STEADING_SCHEMA_VERSION);

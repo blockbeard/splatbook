@@ -177,11 +177,15 @@ function noDebilities(): Record<SteadingDebilityKey, boolean> {
  * editor seeds the pack's starting Resources/Fortifications/Places/Assets on
  * first creation (so a returning saved steading isn't re-seeded).
  */
+/** The village the game is about. A campaign can track a second steading, so the
+ * name stays editable — but the first one you make is almost always this one. */
+export const DEFAULT_STEADING_NAME = 'Stonetop';
+
 export function createSteading(): StonetopSteading {
 	return {
 		schemaVersion: STEADING_SCHEMA_VERSION,
 		entityType: 'steading',
-		name: '',
+		name: DEFAULT_STEADING_NAME,
 		stats: startingStats(),
 		size: STARTING_SIZE,
 		season: 'spring',
