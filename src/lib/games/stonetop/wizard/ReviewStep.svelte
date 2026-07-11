@@ -10,7 +10,7 @@
 	import { STAT_KEYS, isWriteInPossession, startingMovesPlan, validateCharacter } from '../engine';
 	import { fetchPlaybook } from '../pack/playbooks';
 
-	let { draft }: WizardStepProps<StonetopCharacter> = $props();
+	let { draft, goTo }: WizardStepProps<StonetopCharacter> = $props();
 
 	let playbook = $state<Playbook | null>(null);
 	let loadError = $state<string | null>(null);
@@ -63,6 +63,21 @@
 	);
 </script>
 
+<!-- Every label is a way back to the step that owns it: reviewing is only useful
+     if noticing a problem and fixing it are the same gesture. -->
+{#snippet jump(label: string, stepId: string)}
+	<dt class="font-medium">
+		<button
+			type="button"
+			onclick={() => goTo(stepId)}
+			class="text-muted underline decoration-dotted underline-offset-2 hover:text-accent"
+			title="Back to {label}"
+		>
+			{label}
+		</button>
+	</dt>
+{/snippet}
+
 <h2 class="text-2xl font-bold tracking-tight">Review</h2>
 
 {#if !draft.playbookId}
@@ -77,17 +92,17 @@
 		<p class="text-muted">{playbook.name}{backgroundLabel ? ` · ${backgroundLabel}` : ''}</p>
 
 		<dl class="mt-4 grid gap-x-4 gap-y-2 text-sm sm:grid-cols-[8rem_1fr]">
-			<dt class="font-medium text-muted">Instinct</dt>
+			{@render jump('Instinct', 'instinct')}
 			<dd>{instinctLabel || '—'}</dd>
-			<dt class="font-medium text-muted">Origin</dt>
+			{@render jump('Origin', 'origin')}
 			<dd>{draft.origin.option || '—'}</dd>
-			<dt class="font-medium text-muted">Appearance</dt>
+			{@render jump('Appearance', 'appearance')}
 			<dd>{draft.appearance.filter(Boolean).join(', ') || '—'}</dd>
-			<dt class="font-medium text-muted">Stats</dt>
+			{@render jump('Stats', 'stats')}
 			<dd class="font-mono">{statLine}</dd>
-			<dt class="font-medium text-muted">Moves</dt>
+			{@render jump('Moves', 'moves')}
 			<dd>{moveList.join(', ') || '—'}</dd>
-			<dt class="font-medium text-muted">Possessions</dt>
+			{@render jump('Possessions', 'possessions')}
 			<dd>{possessionList.join(', ') || '—'}</dd>
 		</dl>
 	</div>
@@ -97,9 +112,19 @@
 	{:else}
 		<div class="mt-4">
 			<p class="font-medium">Still to do:</p>
-			<ul class="mt-1 list-disc pl-5 text-sm text-muted">
+			<ul class="mt-1 space-y-1 text-sm">
 				{#each errors as issue (issue.step + issue.field + issue.message)}
-					<li>{issue.message}</li>
+					<li>
+						<!-- The issue already knows which step owns it (engine/validation.ts),
+						     so the fix is one click from the complaint. -->
+						<button
+							type="button"
+							onclick={() => goTo(issue.step)}
+							class="text-left text-muted underline decoration-dotted underline-offset-2 hover:text-accent"
+						>
+							{issue.message}
+						</button>
+					</li>
 				{/each}
 			</ul>
 		</div>
