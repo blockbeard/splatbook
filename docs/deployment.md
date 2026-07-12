@@ -1,16 +1,26 @@
 # Deployment
 
-One repo, three targets, chosen by the `ADAPTER` env var:
+One repo, three environments, chosen by the `ADAPTER` env var:
 
-| Target                | `ADAPTER`    | Database                  | Use                          |
-| --------------------- | ------------ | ------------------------- | ---------------------------- |
-| Local dev             | `node`       | `better-sqlite3` file     | your machine                 |
-| **atlas + Docker**    | `node`       | `better-sqlite3` on a volume | your table (current v1 path) |
-| Cloudflare Pages + D1 | `cloudflare` | D1 (`platform.env.DB`)    | public, when you go wide     |
+| Environment    | Where                 | `ADAPTER`    | Database                     |
+| -------------- | --------------------- | ------------ | ---------------------------- |
+| **dev**        | your machine          | `node`       | `better-sqlite3` file        |
+| **staging**    | atlas + Docker        | `node`       | `better-sqlite3` on a volume |
+| **production** | Cloudflare + D1       | `cloudflare` | D1 (`platform.env.DB`)       |
 
-**atlas + Docker** runs the private table; **Cloudflare Pages + D1** runs the
-public site at `splatbook.app`. Both are live paths — the database is resolved per
-request (`event.locals.db`), so the same code serves either.
+**Production** is the public site at `splatbook.app`. **Staging** on atlas is
+where a build soaks before it ships; its data is disposable by definition —
+nothing real lives there (confirmed 2026-07-12). The database is resolved per
+request (`event.locals.db`), so the same code serves every environment.
+
+One honesty note about staging: it runs the node adapter on sqlite, so it
+proves *features*, not *platform behavior*. Workers/D1-specific failures (the
+request-scoped database lesson) only surface in production or under
+`wrangler dev` — for adapter-touching changes, check there too.
+
+Monitoring lives on **Argus** (the house watchdog): Uptime Kuma watches
+staging today and production once its check is added — deliberately a third
+box, sharing no failure domain with either deployment.
 
 ## Environment
 
