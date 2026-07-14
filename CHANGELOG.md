@@ -9,6 +9,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Typed insert schemas** (commit 100). The seven inserts commits 102-105
+  build UI against — Followers, Crew, Animal Companion, Initiates of Danu,
+  Invocations, Ghost, Revenant, Thrall — get real Zod shapes in
+  `pack-schemas.ts`, replacing the loose envelope-only `insertSchema` for
+  those files (it stays as the fallback for any future unmodeled insert).
+  Ghost and Revenant validate against one shared `undeadInsertSchema`: both
+  replace the playbook Instinct, grant a fixed move set, pick a Terrible
+  Purpose, and track Consequences toward a shared Final Consequence — same
+  structure, different book content. Small shapes repeat across the
+  follower-like inserts (Followers/Crew/Animal Companion/Initiates all print
+  "Order Followers"/"Strengthen Your Bond") and are shared rather than
+  copied per file.
+
+  Two real vocabulary gaps turned up reading the actual pack JSON, both
+  filled: the ghost/revenant consequence lists gate some entries on an
+  earlier pick (`Unstable` requires `Breakdown` already chosen) — the same
+  `childOf`/prerequisite shape moves already use, now generalized to
+  `requires: { consequences: [...] }` since the gated pool differs; and
+  cross-checking our move vocabulary (`requires`/`replaces`/`maxTakes`)
+  against Hearthfire's (`requires`, `requiresLevel`, `requiresConsequences`,
+  `requiresMarks`, `excludes`) found one real gap — mutual exclusion — added
+  to `moveSchema` as `excludes` even though no current Book I move uses it
+  yet, so the day one does it's a data change, not a schema change mid-UI.
+  `requiresConsequences`/`requiresMarks` are Major Arcana-specific
+  (commit 105's problem, not this one) and weren't spliced in speculatively.
+
+  `pack.test.ts`'s existing round-trip test (every manifest file resolves to
+  a schema and parses) now exercises all seven at full strictness for free;
+  a new snapshot captures each insert's meaningful interior ids (invocation
+  names, initiate ids, consequence ids…), and a new test confirms every
+  ghost/revenant consequence's `childOf`/`requires` reference resolves
+  within its own list — the same dangling-reference check playbooks already
+  get. 448/448 tests passing (2 new), tsc/eslint/prettier/validate:packs
+  clean.
+
 - **Insert attachment model** (commit 99). `StonetopCharacter.inserts` — a
   map from insert id (`insert-crew`, `insert-followers`…) to that insert's
   own state blob, present in the map means attached — plus pure

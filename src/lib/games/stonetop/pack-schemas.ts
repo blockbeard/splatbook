@@ -93,6 +93,12 @@ const moveSchema = z.strictObject({
 	childOf: id.optional(),
 	/** Taking this move retires the named one. */
 	replaces: id.optional(),
+	/** Taking this move rules out ever taking these (mutual exclusion — distinct
+	 * from `replaces`, which retires a move you already have; `excludes` blocks
+	 * a pick outright). Matches Hearthfire's vocabulary (`excludes`); not yet
+	 * used by any Book I move, added now per the phase-14 vocabulary check so
+	 * the day one shows up it's a data change, not a schema change mid-UI. */
+	excludes: z.array(id).optional(),
 	/** The Would-be Hero's asterisk rule. */
 	asterisk: z.boolean().optional(),
 	/** Taking this move raises one stat by +1, up to `cap` (Improved Stat +2,
@@ -216,6 +222,10 @@ const gearSchema = z.strictObject({
 	name: z.string().min(1),
 	slots: z.number().int().positive(),
 	uses: z.string().optional(),
+	/** Tracked-use box count for `uses` (e.g. Crew's Supplies: "4+Prosperity
+	 * per crew member" over 6 boxes) — separate from `uses` because the label
+	 * is a formula, not a number, so the box count needs its own field. */
+	useTracks: z.number().int().positive().optional(),
 	note: z.string().optional(),
 	text: z.string().optional(),
 	tags: tagList.optional(),
@@ -273,6 +283,338 @@ export const inventoryInsertSchema = z.strictObject({
 export type InventoryInsert = z.infer<typeof inventoryInsertSchema>;
 export type Gear = z.infer<typeof gearSchema>;
 export type SmallItem = z.infer<typeof smallItemSchema>;
+
+/**
+ * Typed insert schemas (commit 100). `insertSchema` above stays the loose
+ * fallback for a future/unmodeled insert file; these are the seven that
+ * commits 102-104 actually build UI against, firmed to their real interiors.
+ * `insert-inventory.json` already has its own strict schema above.
+ *
+ * A few shapes repeat across inserts (followers, crew, initiates, and the
+ * animal companion all print the same "Order Followers" / "Strengthen Your
+ * Bond" rules text; Ghost and Revenant are structurally identical, differing
+ * only in their book content) — shared here so one change updates every
+ * insert that uses it, rather than drifting between copies.
+ */
+
+/** `appliesTo`'s value: a specific playbook id, or every character. */
+const insertAppliesTo = z.union([id, z.literal('all')]);
+
+/** Envelope-level gate beyond `appliesTo` (Animal Companion needs the move,
+ * Initiates of Danu needs the background) — data for the same auto-attach
+ * rules `autoAttachedInsertIds` (commit 99) evaluates in the engine. */
+const insertRequiresSchema = z.strictObject({
+	moves: z.array(id).optional(),
+	backgrounds: z.array(id).optional()
+});
+
+/** "Order Followers" / "Strengthen Your Bond" / Animal Companion's "Loyal to
+ * the End" — printed rules text attached to a follower-like insert. */
+const insertRuleSchema = z.strictObject({ id, name: z.string().min(1), text: markdown });
+
+/** Crew's tags and Animal Companion's cost/instincts: pick N of a printed
+ * option list, plus a write-in count or flag. */
+const pickFromListSchema = z.strictObject({
+	pick: z.number().int(),
+	options: z.array(z.string().min(1)).min(1),
+	writeIn: z.union([z.boolean(), z.number().int()]).optional()
+});
+
+/** Same shape as `pickFromListSchema` plus the Loyalty cap every follower
+ * cost-list insert prints. */
+const followerCostSchema = z.strictObject({
+	pick: z.number().int(),
+	loyaltyMax: z.number().int(),
+	options: z.array(z.string().min(1)).min(1),
+	writeIn: z.union([z.boolean(), z.number().int()]).optional()
+});
+
+export const insertFollowersSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	source: sourceSchema,
+	intro: markdown,
+	followerBlock: z.strictObject({
+		count: z.number().int(),
+		fields: z.array(z.string().min(1)).min(1),
+		flags: z.array(z.string().min(1)),
+		moveLines: z.number().int(),
+		cost: z.boolean(),
+		loyaltyMax: z.number().int(),
+		gearLines: z.array(z.number().int()),
+		notes: z.boolean()
+	}),
+	reference: z.strictObject({
+		playersAgenda: z.array(z.string().min(1)),
+		playersPrinciples: z.array(z.string().min(1)),
+		whenInDoubt: z.array(z.string().min(1)),
+		triggeringMoves: markdown,
+		holdAndSpend: markdown
+	})
+});
+export type FollowersInsert = z.infer<typeof insertFollowersSchema>;
+
+export const insertCrewSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	source: sourceSchema,
+	intro: markdown,
+	base: z.strictObject({
+		hp: z.string().min(1),
+		armor: z.number().int(),
+		damage: z.string().min(1)
+	}),
+	tags: z.strictObject({
+		text: markdown,
+		fixed: z.array(z.string().min(1)),
+		fromBackground: z.number().int(),
+		choose: z.number().int(),
+		options: z.array(z.string().min(1)).min(1),
+		writeIn: z.number().int(),
+		/** A tag gated behind a move, e.g. *exceptional* via Heroes to the Last. */
+		special: z.array(
+			z.strictObject({
+				name: z.string().min(1),
+				requires: z.strictObject({ moves: z.array(id) })
+			})
+		)
+	}),
+	instincts: pickFromListSchema,
+	cost: followerCostSchema,
+	inventory: z.strictObject({
+		text: markdown,
+		gear: z.array(gearSchema).min(1),
+		writeIns: z.strictObject({ lines: z.array(z.number().int()) })
+	}),
+	individuals: z.strictObject({
+		text: markdown,
+		portraitBoxes: z.number().int(),
+		names: z.array(z.string().min(1)).min(1),
+		tags: z.array(z.string().min(1)).min(1),
+		traits: z.array(z.string().min(1)).min(1)
+	}),
+	rules: z.array(insertRuleSchema).min(1)
+});
+export type CrewInsert = z.infer<typeof insertCrewSchema>;
+
+export const insertAnimalCompanionSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	requires: insertRequiresSchema.optional(),
+	source: sourceSchema,
+	intro: markdown,
+	fields: z.array(z.string().min(1)).min(1),
+	types: z
+		.array(
+			z.strictObject({
+				id,
+				name: z.string().min(1),
+				examples: z.array(z.string().min(1)).min(1),
+				hp: z.number().int(),
+				armor: z.number().int(),
+				armorNote: z.string().optional(),
+				damage: z.string().min(1),
+				damageTags: z.array(z.string().min(1)),
+				startingTraits: z.array(z.string().min(1)),
+				pick: z.number().int(),
+				options: z.array(z.string().min(1)).min(1),
+				writeIn: z.boolean().optional()
+			})
+		)
+		.min(1),
+	instincts: pickFromListSchema,
+	cost: followerCostSchema,
+	beastOfLegend: z.strictObject({ text: markdown, options: z.array(z.string().min(1)).min(1) }),
+	rules: z.array(insertRuleSchema).min(1)
+});
+export type AnimalCompanionInsert = z.infer<typeof insertAnimalCompanionSchema>;
+
+export const insertInitiatesOfDanuSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	requires: insertRequiresSchema.optional(),
+	source: sourceSchema,
+	intro: markdown,
+	pick: z.strictObject({ min: z.number().int(), max: z.number().int() }),
+	initiates: z
+		.array(
+			z.strictObject({
+				id,
+				name: z.string().min(1),
+				tags: z.array(z.string().min(1)).min(1),
+				hp: z.number().int(),
+				armor: z.number().int(),
+				armorNote: z.string().optional(),
+				damage: z.string().min(1),
+				instinct: z.string().min(1),
+				moves: z.array(z.string().min(1)).min(1),
+				cost: z.string().min(1),
+				loyaltyMax: z.number().int(),
+				choices: z
+					.array(
+						z.strictObject({
+							prompt: z.string().min(1),
+							options: z.array(z.string().min(1)).min(1),
+							writeIn: z.boolean().optional()
+						})
+					)
+					.optional()
+			})
+		)
+		.min(1),
+	rules: z.array(insertRuleSchema).min(1)
+});
+export type InitiatesOfDanuInsert = z.infer<typeof insertInitiatesOfDanuSchema>;
+
+export const insertInvocationsSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	source: sourceSchema,
+	intro: markdown,
+	startKnowing: z.number().int(),
+	learnAt: z.string().min(1),
+	invocations: z
+		.array(
+			z.strictObject({
+				id,
+				name: z.string().min(1),
+				/** Only one Invocation may be active at a time. */
+				ongoing: z.literal(true).optional(),
+				text: markdown,
+				reduced: markdown,
+				empowered: markdown
+			})
+		)
+		.min(1)
+});
+export type InvocationsInsert = z.infer<typeof insertInvocationsSchema>;
+
+/** Ghost and Revenant's shared shape: both replace the playbook Instinct,
+ * grant a fixed set of moves, pick a Terrible Purpose, and track Consequences
+ * toward a shared Final Consequence. The book content differs; the structure
+ * doesn't, so both files validate against this one schema. */
+const namedTextOptionSchema = z.strictObject({ id, name: z.string().min(1), text: markdown });
+
+const undeadInsertSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	gainedWhen: markdown,
+	source: sourceSchema,
+	instincts: z.strictObject({
+		text: markdown,
+		options: z.array(namedTextOptionSchema).min(1)
+	}),
+	moves: z.strictObject({
+		text: markdown,
+		list: z
+			.array(
+				z.strictObject({
+					id,
+					name: z.string().min(1),
+					granted: z.literal(true).optional(),
+					text: markdown,
+					tracker: trackerSchema.optional()
+				})
+			)
+			.min(1)
+	}),
+	terriblePurpose: z.strictObject({
+		prompt: z.string().min(1),
+		/** Revenant reprints Ghost's Terrible Purpose options verbatim; this
+		 * names the insert they're shared with rather than duplicating the
+		 * `requires`/`childOf` graph checks against a second copy. */
+		sameAs: id.optional(),
+		options: z.array(namedTextOptionSchema).min(1)
+	}),
+	consequences: z.strictObject({
+		text: markdown,
+		list: z
+			.array(
+				z.strictObject({
+					id,
+					name: z.string().min(1),
+					text: markdown,
+					tracker: trackerSchema.optional(),
+					/** A consequence that only appears once its parent is marked
+					 * (Unstable requires Breakdown, Insatiable requires Strange
+					 * Appetites) — the same child/prerequisite shape moves use,
+					 * gated on consequence ids instead of move ids. */
+					childOf: id.optional(),
+					requires: z.strictObject({ consequences: z.array(id) }).optional(),
+					choices: z.array(subChoiceSchema).optional()
+				})
+			)
+			.min(1),
+		final: z.strictObject({ name: z.string().min(1), text: markdown })
+	})
+});
+export const insertGhostSchema = undeadInsertSchema;
+export const insertRevenantSchema = undeadInsertSchema;
+export type GhostInsert = z.infer<typeof undeadInsertSchema>;
+export type RevenantInsert = GhostInsert;
+
+export const insertThrallSchema = z.strictObject({
+	id,
+	name: z.string().min(1),
+	type: z.literal('insert'),
+	appliesTo: insertAppliesTo,
+	gainedWhen: markdown,
+	source: sourceSchema,
+	master: z.strictObject({
+		text: markdown,
+		prompt: z.string().min(1),
+		writeIn: z.literal(true)
+	}),
+	impulse: z.strictObject({
+		text: markdown,
+		options: z.array(z.string().min(1)).min(1),
+		writeIn: z.literal(true)
+	}),
+	instincts: z.strictObject({
+		text: markdown,
+		options: z.array(namedTextOptionSchema).min(1)
+	}),
+	moves: z.strictObject({
+		text: markdown,
+		list: z
+			.array(
+				z.strictObject({
+					id,
+					name: z.string().min(1),
+					granted: z.literal(true).optional(),
+					text: markdown,
+					tracker: trackerSchema.optional()
+				})
+			)
+			.min(1)
+	}),
+	marks: z.strictObject({
+		text: markdown,
+		list: z
+			.array(
+				z.strictObject({
+					id,
+					name: z.string().min(1),
+					text: markdown,
+					maxHpPenalty: z.number().int().positive().optional()
+				})
+			)
+			.min(1)
+	})
+});
+export type ThrallInsert = z.infer<typeof insertThrallSchema>;
 
 /** One Resources/Fortifications-style starting list with its write-in count. */
 const startingListSchema = z.strictObject({
@@ -673,6 +1015,14 @@ export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/the-steading.json') return steadingSchema;
 	if (relPath === 'data/the-gm.json') return gmSchema;
 	if (relPath === 'data/insert-inventory.json') return inventoryInsertSchema;
+	if (relPath === 'data/insert-followers.json') return insertFollowersSchema;
+	if (relPath === 'data/insert-crew.json') return insertCrewSchema;
+	if (relPath === 'data/insert-animal-companion.json') return insertAnimalCompanionSchema;
+	if (relPath === 'data/insert-initiates-of-danu.json') return insertInitiatesOfDanuSchema;
+	if (relPath === 'data/insert-invocations.json') return insertInvocationsSchema;
+	if (relPath === 'data/insert-ghost.json') return insertGhostSchema;
+	if (relPath === 'data/insert-revenant.json') return insertRevenantSchema;
+	if (relPath === 'data/insert-thrall.json') return insertThrallSchema;
 	if (/^data\/insert-[a-z-]+\.json$/.test(relPath)) return insertSchema;
 	if (/^data\/the-[a-z-]+\.json$/.test(relPath)) return playbookSchema;
 	// Generated rules reference (build_srd.py): one document tree per book.

@@ -14,7 +14,20 @@ import { loadManifest, loadPackFile } from '../../packs/fs-loader';
 import { validatePack } from '../../packs/harness';
 import type { PackManifest } from '../../packs/types';
 import '../index'; // register game modules (wires stonetop schemas into the harness)
-import { playbookSchema, insertSchema, schemaFor, type Playbook } from './pack-schemas';
+import {
+	playbookSchema,
+	insertSchema,
+	insertFollowersSchema,
+	insertCrewSchema,
+	insertAnimalCompanionSchema,
+	insertInitiatesOfDanuSchema,
+	insertInvocationsSchema,
+	insertGhostSchema,
+	insertRevenantSchema,
+	insertThrallSchema,
+	schemaFor,
+	type Playbook
+} from './pack-schemas';
 
 const packRoot = join(
 	dirname(fileURLToPath(import.meta.url)),
@@ -94,6 +107,79 @@ describe('stonetop id snapshots', () => {
 			inserts[insert.id] = insert.appliesTo;
 		}
 		expect(inserts).toMatchSnapshot();
+	});
+
+	it('typed insert interiors are stable (commit 100)', async () => {
+		const ids: Record<string, unknown> = {};
+
+		const followers = insertFollowersSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-followers.json')
+		);
+		ids[followers.id] = { fields: followers.followerBlock.fields };
+
+		const crew = insertCrewSchema.parse(await loadPackFile(packRoot, 'data/insert-crew.json'));
+		ids[crew.id] = { rules: crew.rules.map((r) => r.id) };
+
+		const animalCompanion = insertAnimalCompanionSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-animal-companion.json')
+		);
+		ids[animalCompanion.id] = { types: animalCompanion.types.map((t) => t.id) };
+
+		const initiates = insertInitiatesOfDanuSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-initiates-of-danu.json')
+		);
+		ids[initiates.id] = { initiates: initiates.initiates.map((i) => i.id) };
+
+		const invocations = insertInvocationsSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-invocations.json')
+		);
+		ids[invocations.id] = { invocations: invocations.invocations.map((i) => i.id) };
+
+		const ghost = insertGhostSchema.parse(await loadPackFile(packRoot, 'data/insert-ghost.json'));
+		ids[ghost.id] = {
+			moves: ghost.moves.list.map((m) => m.id),
+			terriblePurpose: ghost.terriblePurpose.options.map((o) => o.id),
+			consequences: ghost.consequences.list.map((c) => c.id)
+		};
+
+		const revenant = insertRevenantSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-revenant.json')
+		);
+		ids[revenant.id] = {
+			moves: revenant.moves.list.map((m) => m.id),
+			terriblePurposeSameAs: revenant.terriblePurpose.sameAs,
+			consequences: revenant.consequences.list.map((c) => c.id)
+		};
+
+		const thrall = insertThrallSchema.parse(
+			await loadPackFile(packRoot, 'data/insert-thrall.json')
+		);
+		ids[thrall.id] = {
+			moves: thrall.moves.list.map((m) => m.id),
+			marks: thrall.marks.list.map((m) => m.id)
+		};
+
+		expect(ids).toMatchSnapshot();
+	});
+
+	it("ghost and revenant's consequence childOf/requires references resolve within their own list", async () => {
+		for (const [file, schema] of [
+			['data/insert-ghost.json', insertGhostSchema],
+			['data/insert-revenant.json', insertRevenantSchema]
+		] as const) {
+			const insert = schema.parse(await loadPackFile(packRoot, file));
+			const consequenceIds = new Set(insert.consequences.list.map((c) => c.id));
+			const missing: string[] = [];
+			for (const consequence of insert.consequences.list) {
+				if (consequence.childOf && !consequenceIds.has(consequence.childOf)) {
+					missing.push(`${consequence.id} childOf → ${consequence.childOf}`);
+				}
+				for (const ref of consequence.requires?.consequences ?? []) {
+					if (!consequenceIds.has(ref)) missing.push(`${consequence.id} requires → ${ref}`);
+				}
+			}
+			expect(missing, `${insert.id}: dangling consequence references`).toEqual([]);
+		}
 	});
 
 	it('move references inside each playbook resolve to moves in the same playbook', async () => {

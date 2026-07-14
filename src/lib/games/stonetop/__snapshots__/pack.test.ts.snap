@@ -424,3 +424,117 @@ exports[`stonetop id snapshots > playbook ids and their choice/move ids are stab
   },
 }
 `;
+
+exports[`stonetop id snapshots > typed insert interiors are stable (commit 100) 1`] = `
+{
+  "insert-animal-companion": {
+    "types": [
+      "bird",
+      "critter",
+      "brute",
+      "predator",
+      "steed",
+    ],
+  },
+  "insert-crew": {
+    "rules": [
+      "order-followers",
+      "strengthen-your-bond",
+    ],
+  },
+  "insert-followers": {
+    "fields": [
+      "name",
+      "tags",
+      "hp",
+      "maxHp",
+      "armor",
+      "damage",
+      "instinct",
+    ],
+  },
+  "insert-ghost": {
+    "consequences": [
+      "bodysnatcher",
+      "breakdown",
+      "unstable",
+      "disturbing",
+      "otherworldly",
+      "poltergeist",
+      "quarry",
+      "specter",
+    ],
+    "moves": [
+      "unliving",
+      "disembodied",
+      "tethered",
+    ],
+    "terriblePurpose": [
+      "longing",
+      "vengeance",
+      "duty",
+    ],
+  },
+  "insert-initiates-of-danu": {
+    "initiates": [
+      "enfys",
+      "olwin",
+      "afon",
+      "seren",
+      "gwendyl",
+    ],
+  },
+  "insert-invocations": {
+    "invocations": [
+      "bath-of-healing-light",
+      "blinding-light",
+      "cleansing-light",
+      "cold-light-of-day",
+      "dancing-light",
+      "go-back-to-the-shadow",
+      "hold-back-the-darkness",
+      "moth-to-a-flame",
+      "terrible-as-the-dawn",
+      "warmth-of-the-sun",
+    ],
+  },
+  "insert-revenant": {
+    "consequences": [
+      "breakdown",
+      "unstable",
+      "carrion-stench",
+      "deathly-visage",
+      "home-to-vermin",
+      "nightkin",
+      "quarry",
+      "strange-appetites",
+      "insatiable",
+    ],
+    "moves": [
+      "unliving",
+      "undying",
+      "implacable",
+    ],
+    "terriblePurposeSameAs": "insert-ghost",
+  },
+  "insert-thrall": {
+    "marks": [
+      "a-festering-rot",
+      "child-of-the-deeps",
+      "death-mask",
+      "quicksilver-dreams",
+      "ravenous",
+      "red-wrath",
+      "shadows-cold-embrace",
+      "speak-truth-whisper-secrets",
+      "torments-blessing",
+    ],
+    "moves": [
+      "favor",
+      "urges",
+      "dark-succor",
+      "unholy-vessel",
+    ],
+  },
+}
+`;
