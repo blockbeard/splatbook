@@ -6,8 +6,10 @@
 	is just the live state a player pokes at during a session.
 -->
 <script lang="ts">
+	import { page } from '$app/state';
+	import { replaceState } from '$app/navigation';
 	import type { PlayProps } from '$lib/games/types';
-	import type { Move, Playbook } from '../pack-schemas';
+	import type { InventoryInsert, Move, Playbook } from '../pack-schemas';
 	import {
 		STAT_KEYS,
 		advancementLog,
@@ -20,6 +22,7 @@
 		enterPlay,
 		heldMoveIds,
 		isDebilitated,
+		isOverloaded,
 		isWouldBeCrossed,
 		levelUpChoices,
 		movesRollStats,
@@ -37,12 +40,63 @@
 	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
 	import { fetchBasicMoves } from '../pack/moves';
+	import { fetchInventory } from '../pack/inserts';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
 
 	let { character, onChange, roll }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
+
+	/**
+	 * The tab bar (commit 101): Sheet keeps vitals/stats/XP/trackers/
+	 * advancement; Moves and Inventory moved whole into their own tabs. Future
+	 * commits (102-106) add one tab per attached insert plus a "+" tab to
+	 * attach more — this three-tab set is the base the rest build onto.
+	 *
+	 * `?tab=` makes the active tab shareable and survives a reload: reading
+	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
+	 * picks it up on load, and `replaceState` — a same-document URL update,
+	 * not a navigation — keeps it in sync on every tap without adding history
+	 * entries a player would have to click Back through.
+	 */
+	type TabId = 'sheet' | 'moves' | 'inventory';
+	const TABS: { id: TabId; label: string }[] = [
+		{ id: 'sheet', label: 'Sheet' },
+		{ id: 'moves', label: 'Moves' },
+		{ id: 'inventory', label: 'Inventory' }
+	];
+	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
+	const activeTab = $derived<TabId>(
+		(() => {
+			const requested = page.url.searchParams.get('tab');
+			return isTabId(requested) ? requested : 'sheet';
+		})()
+	);
+	function selectTab(id: TabId): void {
+		const url = new URL(page.url);
+		url.searchParams.set('tab', id);
+		// Same-document query update, not a route change.
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
+		replaceState(url, page.state);
+	}
+
+	// Inventory's attention badge: overloaded. Loaded independently of the
+	// Inventory tab's own component (which fetches the same insert) so the
+	// badge can render in the tab bar even when that tab isn't the active
+	// one — `fetchInventory` memoises, so this doesn't cost a second request.
+	let inventoryInsert = $state<InventoryInsert | null>(null);
+	$effect(() => {
+		let alive = true;
+		fetchInventory(fetch)
+			.then((i) => alive && (inventoryInsert = i))
+			.catch(() => {
+				// The badge is a convenience; failing to load it must not take
+				// the sheet down with it.
+			});
+		return () => (alive = false);
+	});
+	const inventoryOverloaded = $derived(inventoryInsert ? isOverloaded(c, inventoryInsert) : false);
 
 	let playbook = $state<Playbook | null>(null);
 	let loadError = $state<string | null>(null);
@@ -250,217 +304,245 @@
 			{/if}
 		</header>
 
-		<section>
-			<div class="flex items-baseline justify-between">
-				<h2 class="text-lg font-semibold">HP</h2>
-				<span class="font-mono text-sm text-muted">{c.hp.current} / {c.hp.max}</span>
-			</div>
-			<div class="mt-2">
-				{@render boxRow(c.hp.max, c.hp.current, setCurrentHp, 'HP')}
-			</div>
-		</section>
-
-		<section>
-			<div class="flex items-baseline justify-between">
-				<h2 class="text-lg font-semibold">Stats</h2>
-				<span class="text-sm text-muted">Tap a stat to roll it</span>
-			</div>
-			<div class="mt-2 flex flex-wrap gap-3">
-				{#each STAT_KEYS as stat (stat)}
-					{#if c.stats[stat]}
-						{@const deb = isDebilitated(c, stat)}
-						{@const name = debilityName(playbook, stat) ?? 'debilitated'}
-						<div
-							class="min-w-20 rounded-md border text-center transition-colors {deb
-								? 'border-danger bg-danger/10'
-								: 'border-border'}"
-						>
-							<button
-								type="button"
-								onclick={() => rollStat(stat)}
-								disabled={!roll}
-								class="w-full rounded-t-md px-3 pt-2 pb-1 hover:bg-surface disabled:hover:bg-transparent"
-								title="Roll +{stat}"
-							>
-								<div class="font-mono text-xl font-bold">{fmt(effectiveStat(c, stat))}</div>
-								<div class="text-xs font-medium text-muted">{stat}</div>
-							</button>
-							<!-- The debility: its own control, so marking one can't be mistaken for
-							     rolling and rolling can't be mistaken for marking one. -->
-							<button
-								type="button"
-								onclick={() => toggleDebility(stat)}
-								aria-pressed={deb}
-								title={deb ? `Clear ${name}` : `Mark ${name}`}
-								class="w-full rounded-b-md border-t px-2 py-1 text-[0.65rem] transition-colors {deb
-									? 'border-danger/40 text-danger'
-									: 'border-border text-muted hover:bg-surface'}"
-							>
-								{deb ? name : 'Debility'}
-							</button>
-						</div>
-					{/if}
-				{/each}
-			</div>
-		</section>
-
-		<section>
-			<div class="flex items-baseline justify-between">
-				<h2 class="text-lg font-semibold">XP</h2>
-				<!-- The separator carries its own spaces: Svelte trims whitespace at the
-				     edges of a block, so " · " written as markup would come out glued on. -->
-				<span class="font-mono text-sm text-muted">
-					{c.xp} / {xpNeeded} to level{#if banked > 0}{` · ${banked} banked`}{/if}
-				</span>
-			</div>
-			<div class="mt-2">
-				{@render boxRow(xpBoxes, c.xp, setXp, 'XP')}
-			</div>
-			{#if readyToLevel && !levelingUp}
+		<nav class="flex gap-1 overflow-x-auto border-b border-border" aria-label="Character sections">
+			{#each TABS as tab (tab.id)}
 				<button
 					type="button"
-					onclick={startLevelUp}
-					class="mt-3 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
+					onclick={() => selectTab(tab.id)}
+					aria-current={activeTab === tab.id ? 'page' : undefined}
+					class="shrink-0 border-b-2 px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors {activeTab ===
+					tab.id
+						? 'border-accent text-accent'
+						: 'border-transparent text-muted hover:text-text'}"
 				>
-					Level Up →
+					{tab.label}
+					{#if tab.id === 'inventory' && inventoryOverloaded}
+						<span
+							class="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-danger align-middle"
+							aria-label="needs attention"
+						></span>
+					{/if}
 				</button>
-			{/if}
-		</section>
+			{/each}
+		</nav>
 
-		{#if levelingUp}
-			<section class="rounded-lg border border-accent bg-accent/5 p-4">
+		{#if activeTab === 'sheet'}
+			<section>
 				<div class="flex items-baseline justify-between">
-					<h2 class="text-lg font-semibold">Level Up to {c.level + 1}</h2>
-					<span class="text-sm text-muted">Spends {xpNeeded} XP · choose a move</span>
+					<h2 class="text-lg font-semibold">HP</h2>
+					<span class="font-mono text-sm text-muted">{c.hp.current} / {c.hp.max}</span>
 				</div>
-
-				{#if choices.length === 0}
-					<p class="mt-3 text-sm text-muted">No legal moves to take right now.</p>
-				{:else}
-					<div class="mt-3 grid gap-3 sm:grid-cols-2">
-						{#each choices as move (move.id)}
-							<OptionButton selected={chosenMoveId === move.id} onclick={() => pickMove(move.id)}>
-								<div class="font-semibold">{move.name}</div>
-								<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
-							</OptionButton>
-						{/each}
-					</div>
-				{/if}
-
-				{#if needsStat && chosenMove?.statBump}
-					<div class="mt-4">
-						<p class="text-sm font-medium">
-							Raise which stat? <span class="text-muted">(max +{chosenMove.statBump.cap})</span>
-						</p>
-						<div class="mt-2 flex flex-wrap gap-2">
-							{#each STAT_KEYS as stat (stat)}
-								{#if c.stats[stat]}
-									{@const capped = statAtCap(c, stat, chosenMove.statBump.cap)}
-									<button
-										type="button"
-										onclick={() => (chosenStat = stat)}
-										disabled={capped}
-										aria-pressed={chosenStat === stat}
-										class="rounded-md border px-3 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 {chosenStat ===
-										stat
-											? 'border-accent bg-accent/10'
-											: 'border-border hover:bg-surface'}"
-									>
-										{stat}
-										<span class="font-mono text-muted">{fmt(effectiveStat(c, stat))}</span>
-									</button>
-								{/if}
-							{/each}
-						</div>
-					</div>
-				{/if}
-
-				{#if levelUpError}
-					<p class="mt-3 text-sm text-danger">{levelUpError}</p>
-				{/if}
-
-				<div class="mt-4 flex items-center gap-2">
-					<button
-						type="button"
-						onclick={confirmLevelUp}
-						disabled={!chosenMoveId || (needsStat && !chosenStat)}
-						class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-					>
-						Confirm
-					</button>
-					<button
-						type="button"
-						onclick={cancelLevelUp}
-						class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
-					>
-						Cancel
-					</button>
+				<div class="mt-2">
+					{@render boxRow(c.hp.max, c.hp.current, setCurrentHp, 'HP')}
 				</div>
 			</section>
-		{/if}
 
-		{#if trackerEntries.length}
 			<section>
-				<h2 class="text-lg font-semibold">Trackers</h2>
-				<div class="mt-2 space-y-3">
-					{#each trackerEntries as [id, t] (id)}
-						<div>
-							<div class="text-sm font-medium">{t.label}</div>
-							<div class="mt-1">
-								{@render boxRow(
-									t.boxes,
-									t.marked,
-									(i) => markTracker(id, t.boxes, t.marked, i),
-									t.label
-								)}
+				<div class="flex items-baseline justify-between">
+					<h2 class="text-lg font-semibold">Stats</h2>
+					<span class="text-sm text-muted">Tap a stat to roll it</span>
+				</div>
+				<div class="mt-2 flex flex-wrap gap-3">
+					{#each STAT_KEYS as stat (stat)}
+						{#if c.stats[stat]}
+							{@const deb = isDebilitated(c, stat)}
+							{@const name = debilityName(playbook, stat) ?? 'debilitated'}
+							<div
+								class="min-w-20 rounded-md border text-center transition-colors {deb
+									? 'border-danger bg-danger/10'
+									: 'border-border'}"
+							>
+								<button
+									type="button"
+									onclick={() => rollStat(stat)}
+									disabled={!roll}
+									class="w-full rounded-t-md px-3 pt-2 pb-1 hover:bg-surface disabled:hover:bg-transparent"
+									title="Roll +{stat}"
+								>
+									<div class="font-mono text-xl font-bold">{fmt(effectiveStat(c, stat))}</div>
+									<div class="text-xs font-medium text-muted">{stat}</div>
+								</button>
+								<!-- The debility: its own control, so marking one can't be mistaken for
+							     rolling and rolling can't be mistaken for marking one. -->
+								<button
+									type="button"
+									onclick={() => toggleDebility(stat)}
+									aria-pressed={deb}
+									title={deb ? `Clear ${name}` : `Mark ${name}`}
+									class="w-full rounded-b-md border-t px-2 py-1 text-[0.65rem] transition-colors {deb
+										? 'border-danger/40 text-danger'
+										: 'border-border text-muted hover:bg-surface'}"
+								>
+									{deb ? name : 'Debility'}
+								</button>
 							</div>
-						</div>
+						{/if}
 					{/each}
 				</div>
 			</section>
+
+			<section>
+				<div class="flex items-baseline justify-between">
+					<h2 class="text-lg font-semibold">XP</h2>
+					<!-- The separator carries its own spaces: Svelte trims whitespace at the
+				     edges of a block, so " · " written as markup would come out glued on. -->
+					<span class="font-mono text-sm text-muted">
+						{c.xp} / {xpNeeded} to level{#if banked > 0}{` · ${banked} banked`}{/if}
+					</span>
+				</div>
+				<div class="mt-2">
+					{@render boxRow(xpBoxes, c.xp, setXp, 'XP')}
+				</div>
+				{#if readyToLevel && !levelingUp}
+					<button
+						type="button"
+						onclick={startLevelUp}
+						class="mt-3 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90"
+					>
+						Level Up →
+					</button>
+				{/if}
+			</section>
+
+			{#if levelingUp}
+				<section class="rounded-lg border border-accent bg-accent/5 p-4">
+					<div class="flex items-baseline justify-between">
+						<h2 class="text-lg font-semibold">Level Up to {c.level + 1}</h2>
+						<span class="text-sm text-muted">Spends {xpNeeded} XP · choose a move</span>
+					</div>
+
+					{#if choices.length === 0}
+						<p class="mt-3 text-sm text-muted">No legal moves to take right now.</p>
+					{:else}
+						<div class="mt-3 grid gap-3 sm:grid-cols-2">
+							{#each choices as move (move.id)}
+								<OptionButton selected={chosenMoveId === move.id} onclick={() => pickMove(move.id)}>
+									<div class="font-semibold">{move.name}</div>
+									<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+								</OptionButton>
+							{/each}
+						</div>
+					{/if}
+
+					{#if needsStat && chosenMove?.statBump}
+						<div class="mt-4">
+							<p class="text-sm font-medium">
+								Raise which stat? <span class="text-muted">(max +{chosenMove.statBump.cap})</span>
+							</p>
+							<div class="mt-2 flex flex-wrap gap-2">
+								{#each STAT_KEYS as stat (stat)}
+									{#if c.stats[stat]}
+										{@const capped = statAtCap(c, stat, chosenMove.statBump.cap)}
+										<button
+											type="button"
+											onclick={() => (chosenStat = stat)}
+											disabled={capped}
+											aria-pressed={chosenStat === stat}
+											class="rounded-md border px-3 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 {chosenStat ===
+											stat
+												? 'border-accent bg-accent/10'
+												: 'border-border hover:bg-surface'}"
+										>
+											{stat}
+											<span class="font-mono text-muted">{fmt(effectiveStat(c, stat))}</span>
+										</button>
+									{/if}
+								{/each}
+							</div>
+						</div>
+					{/if}
+
+					{#if levelUpError}
+						<p class="mt-3 text-sm text-danger">{levelUpError}</p>
+					{/if}
+
+					<div class="mt-4 flex items-center gap-2">
+						<button
+							type="button"
+							onclick={confirmLevelUp}
+							disabled={!chosenMoveId || (needsStat && !chosenStat)}
+							class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-accent-contrast hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+						>
+							Confirm
+						</button>
+						<button
+							type="button"
+							onclick={cancelLevelUp}
+							class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+						>
+							Cancel
+						</button>
+					</div>
+				</section>
+			{/if}
+
+			{#if trackerEntries.length}
+				<section>
+					<h2 class="text-lg font-semibold">Trackers</h2>
+					<div class="mt-2 space-y-3">
+						{#each trackerEntries as [id, t] (id)}
+							<div>
+								<div class="text-sm font-medium">{t.label}</div>
+								<div class="mt-1">
+									{@render boxRow(
+										t.boxes,
+										t.marked,
+										(i) => markTracker(id, t.boxes, t.marked, i),
+										t.label
+									)}
+								</div>
+							</div>
+						{/each}
+					</div>
+				</section>
+			{/if}
+
+			{#if advLog.length}
+				<section>
+					<h2 class="text-lg font-semibold">Advancement</h2>
+					<ul class="mt-2 space-y-1 text-sm text-muted">
+						{#each advLog as entry, i (i)}
+							<li>
+								<span class="font-medium text-text">Level {entry.level}:</span>
+								{entry.moveName}{#if entry.stat}<span class="text-muted">
+										— +1 {entry.stat}</span
+									>{/if}{#if entry.replacedName}<span class="text-muted">
+										(replaced {entry.replacedName})</span
+									>{/if}
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
 		{/if}
 
-		<!-- Your moves first, then the ones everyone has: at the table you reach for
+		{#if activeTab === 'moves'}
+			<!-- Your moves first, then the ones everyone has: at the table you reach for
 		     your playbook's moves, and fall back to the basic ones. Both come from the
 		     pack in the same shape, so both render — and roll — through one path. -->
-		<section>
-			<h2 class="text-lg font-semibold">Moves</h2>
+			<section>
+				<h2 class="text-lg font-semibold">Moves</h2>
 
-			<div class="mt-2 space-y-3">
-				{#each myMoves as move (move.id)}
-					{@render moveCard(move)}
-				{/each}
-			</div>
-
-			{#if basicMoves.length}
-				<h3 class="mt-6 text-sm font-medium tracking-wide text-muted uppercase">Basic moves</h3>
 				<div class="mt-2 space-y-3">
-					{#each basicMoves as move (move.id)}
+					{#each myMoves as move (move.id)}
 						{@render moveCard(move)}
 					{/each}
 				</div>
-			{/if}
-		</section>
 
-		<section>
-			<Inventory character={c} {onChange} />
-		</section>
+				{#if basicMoves.length}
+					<h3 class="mt-6 text-sm font-medium tracking-wide text-muted uppercase">Basic moves</h3>
+					<div class="mt-2 space-y-3">
+						{#each basicMoves as move (move.id)}
+							{@render moveCard(move)}
+						{/each}
+					</div>
+				{/if}
+			</section>
+		{/if}
 
-		{#if advLog.length}
+		{#if activeTab === 'inventory'}
 			<section>
-				<h2 class="text-lg font-semibold">Advancement</h2>
-				<ul class="mt-2 space-y-1 text-sm text-muted">
-					{#each advLog as entry, i (i)}
-						<li>
-							<span class="font-medium text-text">Level {entry.level}:</span>
-							{entry.moveName}{#if entry.stat}<span class="text-muted">
-									— +1 {entry.stat}</span
-								>{/if}{#if entry.replacedName}<span class="text-muted">
-									(replaced {entry.replacedName})</span
-								>{/if}
-						</li>
-					{/each}
-				</ul>
+				<Inventory character={c} {onChange} />
 			</section>
 		{/if}
 	</article>

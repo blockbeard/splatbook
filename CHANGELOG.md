@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Tabbed play sheet** (commit 101, opening Phase 14's UI work). PlayMode
+  restructures into a Sheet · Moves · Inventory tab bar — Sheet keeps
+  vitals/stats/XP/trackers/advancement; Moves and Inventory moved whole into
+  their own tabs. `?tab=` makes the active tab shareable and survives a
+  reload: reading `page.url` on load picks it up (no `onMount` needed,
+  works identically through SSR and hydration) and `replaceState` keeps it
+  in sync on every tap without adding history entries. The Inventory tab
+  carries an attention badge when overloaded, loaded independently of the
+  tab's own component so it renders even when that tab isn't active —
+  `fetchInventory` memoises, so this doesn't cost a second request. This is
+  the three-tab base the rest of Phase 14 builds onto: commits 102-106 add
+  one tab per attached insert plus a "+" tab to attach more.
+
+  New e2e coverage (`play-tabs.spec.ts`) — the play route had none before
+  this: switching tabs updates the URL, and a reload lands back on the tab
+  that was open. 448/448 unit tests still passing (no engine changes),
+  tsc/eslint/prettier clean.
+
 - **Typed insert schemas** (commit 100). The seven inserts commits 102-105
   build UI against — Followers, Crew, Animal Companion, Initiates of Danu,
   Invocations, Ghost, Revenant, Thrall — get real Zod shapes in
