@@ -39,6 +39,26 @@ describe('tocOf', () => {
 		const [doc] = tocOf([tree], (s) => s.level === 1);
 		expect(doc.sections.map((s) => s.id)).toEqual(['a', 'b']);
 	});
+
+	it('carries chapters through, and each section keeps its chapter id', () => {
+		const withChapters: DocumentTree = documentTreeSchema.parse({
+			id: 'book-i',
+			title: 'Book I',
+			chapters: [{ id: 'a', number: 1, title: 'A' }],
+			sections: [
+				{ id: 'a', title: 'A', level: 1, path: [], body: '', chapter: 'a' },
+				{ id: 'a1', title: 'A1', level: 2, path: ['A'], body: '', chapter: 'a' }
+			]
+		});
+		const [doc] = tocOf([withChapters]);
+		expect(doc.chapters).toEqual([{ id: 'a', number: 1, title: 'A' }]);
+		expect(doc.sections.map((s) => s.chapter)).toEqual(['a', 'a']);
+	});
+
+	it('defaults chapters to an empty array for a tree with none', () => {
+		const [doc] = tocOf([tree]);
+		expect(doc.chapters).toEqual([]);
+	});
 });
 
 describe('findSection', () => {

@@ -8,19 +8,26 @@
  */
 
 import { base } from '$app/paths';
-import type { DocumentSection, DocumentTree } from './document-tree';
+import type { DocumentChapter, DocumentSection, DocumentTree } from './document-tree';
 import type { PackManifest } from '$lib/packs/types';
 
 /** The subset of `fetch` a SvelteKit `load` provides. */
 type Fetcher = (input: string, init?: RequestInit) => Promise<Response>;
 
 /** A lightweight table-of-contents entry — a section without its body/pages. */
-export type TocSection = Pick<DocumentSection, 'id' | 'title' | 'level' | 'path' | 'visibility'>;
+export type TocSection = Pick<
+	DocumentSection,
+	'id' | 'title' | 'level' | 'path' | 'visibility' | 'chapter'
+>;
 
-/** One document's TOC: its id/title plus its sections, stripped of bodies. */
+/** One document's TOC: its id/title/chapters plus its sections, stripped of bodies. */
 export interface TocDocument {
 	id: string;
 	title: string;
+	/** Chapters in reading order (one per source file) — the spine for the
+	 * landing page's chapter cards and the sidebar's collapsible entries.
+	 * Empty for a tree generated before commit 90/91's reimport. */
+	chapters: DocumentChapter[];
 	sections: TocSection[];
 }
 
@@ -66,12 +73,14 @@ export function tocOf(
 	return trees.map((t) => ({
 		id: t.id,
 		title: t.title,
-		sections: t.sections.filter(include).map(({ id, title, level, path, visibility }) => ({
+		chapters: t.chapters ?? [],
+		sections: t.sections.filter(include).map(({ id, title, level, path, visibility, chapter }) => ({
 			id,
 			title,
 			level,
 			path,
-			visibility
+			visibility,
+			chapter
 		}))
 	}));
 }

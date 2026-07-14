@@ -25,10 +25,16 @@
 {#each data.toc as doc (doc.id)}
 	<section class="mt-8">
 		<h2 class="text-lg font-semibold">{doc.title}</h2>
+		<!-- Chapters are already in reading order (build_srd.py walks source files
+		     sorted the same way); this is the book's own table of contents, one
+		     card per source file, not a filtered slice of the section list. -->
 		<ul class="mt-3 grid gap-2 sm:grid-cols-2">
-			{#each doc.sections.filter((s) => s.level === 1) as section (section.id)}
+			{#each doc.chapters as chapter (chapter.id)}
 				<li>
-					<a href={href(section.id)} class="text-accent hover:underline">{section.title}</a>
+					<a href={href(chapter.id)} class="text-accent hover:underline">
+						{#if chapter.number}<span class="text-muted">{chapter.number}.</span>{/if}
+						{chapter.title}
+					</a>
 				</li>
 			{/each}
 		</ul>

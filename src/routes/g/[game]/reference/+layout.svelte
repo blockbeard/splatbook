@@ -1,35 +1,34 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { buildSectionTree, type SectionNode } from '$lib/reference/document-tree';
-	import type { TocSection } from '$lib/reference/load';
+	import type { TocDocument, TocSection } from '$lib/reference/load';
 
 	let { data, children } = $props();
 
 	const activeId = $derived(page.params.section);
 
-	/** Ids of the active section's ancestors, so their branches render expanded. */
-	function ancestorIds(sections: TocSection[], id: string | undefined): string[] {
-		const out: string[] = [];
-		if (!id) return out;
-		const idx = sections.findIndex((s) => s.id === id);
-		if (idx === -1) return out;
-		let level = sections[idx].level;
-		for (let i = idx - 1; i >= 0 && level > 1; i--) {
-			if (sections[i].level < level) {
-				out.push(sections[i].id);
-				level = sections[i].level;
-			}
+	/**
+	 * The chapter owning the active section, across every doc — the one
+	 * disclosure that should render open. Reads straight off the section's own
+	 * `chapter` id (commit 90); no ancestor-walking needed.
+	 */
+	const activeChapterId = $derived.by(() => {
+		for (const doc of data.toc) {
+			const section = doc.sections.find((s) => s.id === activeId);
+			if (section) return section.chapter;
 		}
-		return out;
-	}
+		return undefined;
+	});
 
-	// Ids whose disclosure branch should render open: the active section and its
-	// ancestors. A plain array (read-only, recomputed) — no reactive Set needed.
-	const openIds = $derived([
-		activeId,
-		...data.toc.flatMap((doc) => ancestorIds(doc.sections, activeId))
-	]);
+	/**
+	 * A chapter's own h2 sections. The sidebar is capped at h2 — a chapter's
+	 * deeper headings (h3+) are reachable from the section page itself, via its
+	 * "In this section" child list and in-page links, not listed here. A nav
+	 * that lists every h5 is a list, not a map.
+	 */
+	function h2sOf(doc: TocDocument, chapterId: string): TocSection[] {
+		return doc.sections.filter((s) => s.chapter === chapterId && s.level === 2);
+	}
 
 	const href = (id: string) =>
 		resolve('/g/[game]/reference/[section]', { game: data.gameId, section: id });
@@ -63,8 +62,49 @@
 			<div class="mt-4">
 				<p class="text-xs font-semibold uppercase tracking-wide text-muted">{doc.title}</p>
 				<ul class="mt-1 text-sm">
-					{#each buildSectionTree(doc.sections) as node (node.section.id)}
-						{@render tocNode(node)}
+					{#each doc.chapters as chapter (chapter.id)}
+						{@const h2s = h2sOf(doc, chapter.id)}
+						{@const active = chapter.id === activeId}
+						<li>
+							{#if h2s.length}
+								<details open={chapter.id === activeChapterId}>
+									<summary class="cursor-pointer list-none">
+										<a
+											href={href(chapter.id)}
+											class="hover:text-accent"
+											class:text-accent={active}
+											class:font-medium={active}
+										>
+											{chapter.title}
+										</a>
+									</summary>
+									<ul class="border-l border-border pl-3">
+										{#each h2s as section (section.id)}
+											{@const sectionActive = section.id === activeId}
+											<li>
+												<a
+													href={href(section.id)}
+													class="block py-0.5 hover:text-accent"
+													class:text-accent={sectionActive}
+													class:font-medium={sectionActive}
+												>
+													{section.title}
+												</a>
+											</li>
+										{/each}
+									</ul>
+								</details>
+							{:else}
+								<a
+									href={href(chapter.id)}
+									class="block py-0.5 hover:text-accent"
+									class:text-accent={active}
+									class:font-medium={active}
+								>
+									{chapter.title}
+								</a>
+							{/if}
+						</li>
 					{/each}
 				</ul>
 			</div>
@@ -75,40 +115,6 @@
 		{@render children()}
 	</div>
 </div>
-
-{#snippet tocNode(node: SectionNode<TocSection>)}
-	{@const active = node.section.id === activeId}
-	<li>
-		{#if node.children.length}
-			<details open={openIds.includes(node.section.id)}>
-				<summary class="cursor-pointer list-none">
-					<a
-						href={href(node.section.id)}
-						class="hover:text-accent"
-						class:text-accent={active}
-						class:font-medium={active}
-					>
-						{node.section.title}
-					</a>
-				</summary>
-				<ul class="border-l border-border pl-3">
-					{#each node.children as child (child.section.id)}
-						{@render tocNode(child)}
-					{/each}
-				</ul>
-			</details>
-		{:else}
-			<a
-				href={href(node.section.id)}
-				class="block py-0.5 hover:text-accent"
-				class:text-accent={active}
-				class:font-medium={active}
-			>
-				{node.section.title}
-			</a>
-		{/if}
-	</li>
-{/snippet}
 
 <style>
 	.reference-toc :global(summary::-webkit-details-marker) {

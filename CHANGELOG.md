@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Chapters are the reference's spine** (commit 92). The rules landing page
+  now lists each book's actual chapters (commit 90's `chapters` list, in
+  reading order — a card per source file, like the book's own contents page)
+  instead of a filtered slice of level-1 sections, which broke down before
+  the vault cleanup once OCR turned every stray `#` into a spurious "chapter."
+  The sidebar's disclosure tree is now chapter-shaped too: one collapsible
+  entry per chapter, capped at its own h2 children — a section's `chapter` id
+  (commit 90) picks which chapter owns it and which one auto-expands, no more
+  ancestor-walking `level`/`path`. Deeper headings (h3+) stay reachable from
+  the section page itself (its existing "In this section" child list), not
+  listed in the sidebar — a nav that lists every h5 is a list, not a map.
+  `TocSection`/`TocDocument` (`$lib/reference/load`) grow `chapter`/`chapters`
+  to carry this through from the trees.
+
 - **Book I & II reimported from the cleaned vault** (commit 91). `rules/book-i.json`
   goes from 1421 to 1309 sections (29 chapters), `book-ii.json` from 2003 to 1764
   (58 chapters) — the drop is moves and monsters consolidating into their own
