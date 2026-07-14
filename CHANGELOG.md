@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Chapters in the document tree** (commit 90). `build_srd.py` now emits a
+  document-ordered `chapters` list — one node per source file, `id` (the
+  file-slug prefix its section ids are built from), `title`, and an optional
+  `number`, both parsed from the filename (`03 - Playing the Game.md` →
+  number 3, title "Playing the Game"; an unnumbered file, e.g. a
+  `Playbooks/*.md` entry, is still its own chapter). Every emitted section now
+  carries a matching `chapter` id. `documentTreeSchema` grows both fields —
+  `chapters` on the tree, `chapter` on each section, both optional so
+  yesterday's committed trees (regenerated in commit 91) still validate — plus
+  a cross-check that a section's `chapter` names a chapter that actually
+  exists. Previously file identity was smeared into section-id prefixes and
+  lost to the UI; this makes it a first-class node the reference browser can
+  key its chapter list off (commit 92).
+
 - **Callout-aware rules pipeline** (commit 89). `build_rules.py` and
   `build_srd.py` now recognize an Obsidian callout that opens with a heading
   (`> [!move] ## **CLASH**`) as a section, the same as a plain `#…` heading —
@@ -19,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   verifier — previously only `[[File#Heading]]` was checked. Verified
   end-to-end against the cleaned Stonetop vault: 0 callout/heading-related
   link problems (2 pre-existing, unrelated gaps remain — a missing `20 -
-  Index` note and a `.canvas` embed, neither in scope here).
+Index` note and a `.canvas` embed, neither in scope here).
 
 ### Fixed
 

@@ -105,9 +105,21 @@ A game's rules/SRD text ships as one or more **document trees** under the pack's
 `rules/` folder, validated by `documentTreeSchema` (`src/lib/reference/document-tree.ts`).
 A tree is a flat, document-ordered list of sections — each with a stable `id`
 (the deep-link target), `title`, heading `level`, ancestor `path`, `body`
-markdown, optional print `pages`, optional `kind`, and a `player`/`gm`
-`visibility` flag. Nesting is rebuilt from `level` for a table of contents;
-search stays a linear scan.
+markdown, optional print `pages`, optional `kind`, optional `chapter`, and a
+`player`/`gm` `visibility` flag. Nesting is rebuilt from `level` for a table of
+contents; search stays a linear scan.
+
+**`chapters` and `chapter`.** Each source file is a first-class chapter node:
+the tree carries a document-ordered `chapters` list (`documentChapterSchema`)
+with an `id` (the file-slug prefix its section ids are built from), a `title`,
+and an optional `number` — both parsed from the filename by `build_srd.py`
+(`03 - Playing the Game.md` → number 3, title "Playing the Game"; a file with
+no leading number, e.g. a `Playbooks/*.md` entry, is still its own chapter,
+just unnumbered). Every section carries a matching `chapter` id back into that
+list. Both fields are optional on the schema — a tree with no `chapters` (or a
+section with no `chapter`) still validates — because the schema change and the
+content regen are deliberately separate commits (phase 12); the pipeline
+itself always emits both once a tree is rebuilt.
 
 **`kind`.** A heading can come from an Obsidian callout instead of a plain
 `#…` line — `> [!move] ## **CLASH**` opens a section exactly like a heading

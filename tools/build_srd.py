@@ -3,9 +3,12 @@
 
 Second stage of the content pipeline (vault --build_rules.py--> markdown
 --build_srd.py--> document trees). One document tree per configured book; each
-markdown heading becomes a section whose `body` is the prose directly under it
-(children are their own sections). Hierarchy is carried by heading `level` and
-the ancestor `path`, matching `$lib/reference/document-tree`.
+source file becomes a first-class **chapter** node (number + title parsed from
+its filename, e.g. `03 - Playing the Game`), and each markdown heading in it
+becomes a section whose `body` is the prose directly under it (children are
+their own sections), tagged with the chapter it came from. Hierarchy is
+carried by heading `level` and the ancestor `path`, matching
+`$lib/reference/document-tree`.
 
   python3 tools/build_srd.py [--config tools/srd.config.json]
 
@@ -30,6 +33,10 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
 # is commit 93's job, not this script's.
 CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(#{1,6})\s+(.+?)\s*#*\s*$")
 EMPHASIS_RE = re.compile(r"[*_`]")
+# A chapter file's stem carries its number: "03 - Playing the Game" -> (3,
+# "Playing the Game"). Files with no leading number (e.g. Playbooks/*.md)
+# are still chapters -- just unnumbered, titled from the bare stem.
+CHAPTER_NUM_RE = re.compile(r"^(\d+)\s*-\s*(.+)$")
 # The generated rules occasionally carry an OCR artifact from the source PDF:
 # a heading line that runs on into a whole paragraph or inventory blob. Real
 # headings are short (p99 ~83 chars); anything past this is demoted to body
@@ -72,6 +79,18 @@ def file_slug(source_dir: Path, path: Path) -> str:
     """Stable id prefix from a file's path within the document, keeping subfolders."""
     rel = path.relative_to(source_dir).with_suffix("")
     return "-".join(slugify(part) for part in rel.parts)
+
+
+def chapter_meta(path: Path) -> tuple[int | None, str]:
+    """-> (number, title) parsed from a source file's stem.
+
+    "03 - Playing the Game" -> (3, "Playing the Game"). A stem with no
+    leading "NN - " (e.g. a Playbooks/*.md file) has no chapter number --
+    the file is still its own chapter, titled from the bare stem."""
+    m = CHAPTER_NUM_RE.match(path.stem)
+    if m:
+        return int(m.group(1)), clean_title(m.group(2).strip())
+    return None, clean_title(path.stem)
 
 
 def collect_files(source_root: Path, exclude: set[str]) -> list[Path]:
@@ -158,12 +177,21 @@ def build_document(doc: dict, rules_source: Path, warnings: list[str]) -> dict:
     visibility = doc.get("visibility", "player")
     exclude = set(doc.get("exclude", []))
     used_ids: set[str] = set()
+    chapters: list[dict] = []
     sections: list[dict] = []
     for path in collect_files(source_dir, exclude):
+        chapter_id = file_slug(source_dir, path)
+        number, title = chapter_meta(path)
+        chapter: dict = {"id": chapter_id, "title": title}
+        if number is not None:
+            chapter["number"] = number
+        chapters.append(chapter)
+
         for section in parse_file(path, source_dir, used_ids, warnings):
             section["visibility"] = visibility
+            section["chapter"] = chapter_id
             sections.append(section)
-    return {"id": doc["id"], "title": doc["title"], "sections": sections}
+    return {"id": doc["id"], "title": doc["title"], "chapters": chapters, "sections": sections}
 
 
 def main() -> None:

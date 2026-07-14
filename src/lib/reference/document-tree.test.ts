@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
 	documentTreeSchema,
 	documentSectionSchema,
+	documentChapterSchema,
 	buildSectionTree,
 	findSection,
 	type DocumentSection
@@ -66,6 +67,29 @@ describe('documentSectionSchema', () => {
 		expect(parsed.kind).toBeUndefined();
 	});
 
+	it('accepts an explicit chapter id', () => {
+		const parsed = documentSectionSchema.parse({
+			id: 'clash',
+			title: 'CLASH',
+			level: 2,
+			path: [],
+			body: '',
+			chapter: '06-player-moves'
+		});
+		expect(parsed.chapter).toBe('06-player-moves');
+	});
+
+	it('leaves chapter undefined when absent', () => {
+		const parsed = documentSectionSchema.parse({
+			id: 'the-forge',
+			title: 'The Forge',
+			level: 2,
+			path: [],
+			body: ''
+		});
+		expect(parsed.chapter).toBeUndefined();
+	});
+
 	it('rejects an out-of-range heading level', () => {
 		expect(() =>
 			documentSectionSchema.parse({ id: 'x', title: 'X', level: 7, path: [], body: '' })
@@ -76,6 +100,29 @@ describe('documentSectionSchema', () => {
 		expect(() =>
 			documentSectionSchema.parse({ id: 'x', title: 'X', level: 1, path: [], body: '', extra: 1 })
 		).toThrow();
+	});
+});
+
+describe('documentChapterSchema', () => {
+	it('accepts a numbered chapter', () => {
+		const parsed = documentChapterSchema.parse({
+			id: '03-playing-the-game',
+			number: 3,
+			title: 'Playing the Game'
+		});
+		expect(parsed.number).toBe(3);
+	});
+
+	it('leaves number undefined for an unnumbered file (e.g. a Playbooks entry)', () => {
+		const parsed = documentChapterSchema.parse({
+			id: 'playbooks-the-blessed',
+			title: 'The Blessed'
+		});
+		expect(parsed.number).toBeUndefined();
+	});
+
+	it('rejects unknown keys (strict)', () => {
+		expect(() => documentChapterSchema.parse({ id: 'x', title: 'X', extra: 1 })).toThrow();
 	});
 });
 
@@ -92,6 +139,7 @@ describe('documentTreeSchema', () => {
 		const parsed = documentTreeSchema.parse(input);
 		expect(parsed.sections).toHaveLength(2);
 		expect(parsed.sections[1].visibility).toBe('player');
+		expect(parsed.chapters).toBeUndefined();
 	});
 
 	it('rejects duplicate section ids', () => {
@@ -103,6 +151,44 @@ describe('documentTreeSchema', () => {
 		const result = documentTreeSchema.safeParse(dup);
 		expect(result.success).toBe(false);
 		expect(result.error?.issues[0].message).toMatch(/duplicate section id/);
+	});
+
+	it('round-trips chapters alongside sections that reference them', () => {
+		const input = {
+			id: 'book-i',
+			title: 'Book I: Stonetop',
+			chapters: [
+				{ id: '03-playing-the-game', number: 3, title: 'Playing the Game' },
+				{ id: 'playbooks-the-blessed', title: 'The Blessed' }
+			],
+			sections: [
+				section({ id: 'moves', title: 'Player Moves', level: 1, chapter: '03-playing-the-game' }),
+				section({
+					id: 'the-blessed',
+					title: 'The Blessed',
+					level: 1,
+					chapter: 'playbooks-the-blessed'
+				})
+			]
+		};
+		const parsed = documentTreeSchema.parse(input);
+		expect(parsed.chapters).toHaveLength(2);
+		expect(parsed.sections.map((s) => s.chapter)).toEqual([
+			'03-playing-the-game',
+			'playbooks-the-blessed'
+		]);
+	});
+
+	it('rejects a section referencing an unknown chapter', () => {
+		const bad = {
+			id: 'book-i',
+			title: 'Book I',
+			chapters: [{ id: '01-welcome', number: 1, title: 'Welcome' }],
+			sections: [section({ id: 'moves', level: 1, chapter: 'nope' })]
+		};
+		const result = documentTreeSchema.safeParse(bad);
+		expect(result.success).toBe(false);
+		expect(result.error?.issues[0].message).toMatch(/unknown chapter/);
 	});
 });
 

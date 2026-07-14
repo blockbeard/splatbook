@@ -40,8 +40,29 @@ export const documentSectionSchema = z.strictObject({
 	 * (commit 93) and future filtering. Absent for a plain `#…` heading.
 	 */
 	kind: z.string().optional(),
+	/**
+	 * The chapter (source file) this section came from — an id into the
+	 * tree's `chapters` list. Optional until the phase-12 reimport (commit
+	 * 91) regenerates the trees; the pipeline itself always emits it now.
+	 */
+	chapter: z.string().min(1).optional(),
 	/** Visibility; defaults to player-visible. */
 	visibility: z.enum(VISIBILITY).default('player')
+});
+
+/**
+ * One source file, promoted to a first-class node: the chapter it opened.
+ * Number and title are parsed from the filename (`03 - Playing the Game.md`
+ * → number 3, title "Playing the Game"); a file with no leading number (e.g.
+ * a Playbooks/*.md entry) is still its own chapter, just unnumbered.
+ */
+export const documentChapterSchema = z.strictObject({
+	/** Stable id — the file-slug prefix this chapter's section ids are built from. */
+	id: z.string().min(1),
+	/** Chapter number parsed from the filename, if the file carries one. */
+	number: z.number().int().positive().optional(),
+	/** Chapter title parsed from the filename. */
+	title: z.string().min(1)
 });
 
 /** A whole document tree — one book or SRD section of a game's rules. */
@@ -51,6 +72,11 @@ export const documentTreeSchema = z
 		id: z.string().min(1),
 		/** Display title (e.g. "Book I: Stonetop"). */
 		title: z.string().min(1),
+		/**
+		 * Chapters in document order, one per source file. Optional until the
+		 * phase-12 reimport (commit 91); the current pipeline always emits it.
+		 */
+		chapters: z.array(documentChapterSchema).optional(),
 		/** Sections in document order. */
 		sections: z.array(documentSectionSchema)
 	})
@@ -66,9 +92,23 @@ export const documentTreeSchema = z
 			}
 			seen.add(section.id);
 		});
+
+		if (tree.chapters) {
+			const chapterIds = new Set(tree.chapters.map((c) => c.id));
+			tree.sections.forEach((section, i) => {
+				if (section.chapter !== undefined && !chapterIds.has(section.chapter)) {
+					ctx.addIssue({
+						code: 'custom',
+						message: `section "${section.id}" references unknown chapter "${section.chapter}"`,
+						path: ['sections', i, 'chapter']
+					});
+				}
+			});
+		}
 	});
 
 export type DocumentSection = z.infer<typeof documentSectionSchema>;
+export type DocumentChapter = z.infer<typeof documentChapterSchema>;
 export type DocumentTree = z.infer<typeof documentTreeSchema>;
 
 /** A section plus its descendants, for rendering a TOC. Generic so a lightweight
