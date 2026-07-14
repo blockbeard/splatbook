@@ -43,6 +43,13 @@
       "when": 1783763091923,
       "tag": "0005_huge_queen_noir",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1784067357739,
+      "tag": "0006_user_preferences",
+      "breakpoints": true
     }
   ]
 }

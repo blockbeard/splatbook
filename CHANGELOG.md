@@ -9,6 +9,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **User preferences** (commit 96, opening Phase 13). A small generic
+  `preferences` table (`userId`, `key`, `value`, composite primary key) —
+  `$lib/server/db/preferences`'s `getPreferences`/`setPreference`/
+  `clearPreference` — plus a `preferences` handle in `hooks.server.ts` that
+  loads a signed-in viewer's whole map onto `locals.prefs` once per request
+  (after `auth`, before route handling), so a server-rendered page can read
+  a preference without its own round trip. `PUT /api/preferences` is the
+  write path. A signed-out reader gets the same key/value shape in
+  `localStorage` instead (`$lib/preferences/client`, namespaced
+  `splatbook:pref:<key>`) — deliberately with no migrate-on-sign-in the way
+  drafts get: a preference set while signed out is a browser default, not a
+  server intent, so switching accounts on a shared machine can't leak one
+  account's preference into another's row. `$lib/preferences`'s
+  `REFERENCE_SHOW_SETTING` constant is the first key, ready for commit 97's
+  spoiler opt-in to consume; this commit only builds the plumbing.
+
+  Also: this sandbox's `better-sqlite3` mac-arm64 binary now has a real
+  fix, not just a workaround-the-workaround. `bindings.js` always resolves
+  the native addon from a fixed path
+  (`node_modules/better-sqlite3/build/Release/better_sqlite3.node`), so a
+  second copy elsewhere never helped — but `$HOME` (unlike the project
+  mount) supports normal file operations, so building a real Linux binary
+  there (`npm pack` + `npm install --ignore-scripts` + `npm run
+  build-release`, using the sandbox's gcc/g++/make/python3) and
+  bind-mounting its `build/` directory over the broken one, inside the same
+  `unshare --mount` session already used for `.svelte-kit`/`node_modules/
+  .vite`, took the full suite from 46 failing (every `db/*.test.ts` file)
+  to **431/431 passing**. Documented in `CLAUDE.md` for the rest of this
+  phase, which touches the database heavily.
+
 - **Games at the root — `/stonetop`, "Ringwall" retired** (commit 95,
   closing Phase 12). Game routes move from `/g/[game]` to `/[game=game]`:
   `src/params/game.ts` is a new matcher accepting only a registered game id

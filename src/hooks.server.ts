@@ -2,6 +2,7 @@ import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
 import { handle as auth } from '$lib/server/auth';
 import { getDb } from '$lib/server/db';
+import { getPreferences } from '$lib/server/db/preferences';
 
 /** Game ids are kebab-case (registry.ts). Anything else never matches a theme,
  * and this value goes into an HTML attribute — so refuse to interpolate it. */
@@ -16,6 +17,21 @@ const GAME_ID = /^[a-z0-9-]+$/;
  */
 const database: Handle = async ({ event, resolve }) => {
 	event.locals.db = await getDb(event.platform);
+	return resolve(event);
+};
+
+/**
+ * Load the signed-in viewer's preferences onto `locals` (phase 13), so a
+ * server-rendered page (the reference's spoiler gate, commit 97) can read
+ * them without its own round trip. Runs after `auth` — it needs the session
+ * to know whose preferences to load — and short-circuits to `{}` for a
+ * signed-out request rather than querying with no `userId`.
+ */
+const preferences: Handle = async ({ event, resolve }) => {
+	const session = await event.locals.auth();
+	event.locals.prefs = session?.user?.id
+		? await getPreferences(event.locals.db, session.user.id)
+		: {};
 	return resolve(event);
 };
 
@@ -40,4 +56,5 @@ const gameTheme: Handle = async ({ event, resolve }) => {
 };
 
 // The database first: Auth.js needs it to build its adapter for the request.
-export const handle = sequence(database, auth, gameTheme);
+// Preferences after auth (needs the session); gameTheme last (order-independent).
+export const handle = sequence(database, auth, preferences, gameTheme);

@@ -248,6 +248,34 @@ export const rolls = sqliteTable(
 	(t) => [index('rolls_campaign_idx').on(t.campaignId, t.createdAt)]
 );
 
+/**
+ * A user's saved preference — one flat namespace of `key` -> `value` string
+ * pairs (phase 13). Generic on purpose, like `entities.data`: a preference's
+ * *meaning* (`reference.showSetting`, and whatever follows it) belongs to
+ * whichever feature reads it, not to this table. Composite primary key
+ * (`userId`, `key`) makes "one row per user per key" true by construction, so
+ * writing a preference is a plain upsert rather than a select-then-branch.
+ * Signed-out readers get the same key/value shape in `localStorage`
+ * (`$lib/preferences/client`) instead of a row here; there is nothing to
+ * migrate on sign-in the way drafts are — a preference set while signed out
+ * is a browser default, not a server intent, so it doesn't need to survive
+ * the account existing.
+ */
+export const preferences = sqliteTable(
+	'preferences',
+	{
+		userId: text('user_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		key: text('key').notNull(),
+		value: text('value').notNull(),
+		updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [primaryKey({ columns: [t.userId, t.key] })]
+);
+
 /** Row types inferred from the tables, for the save/load service (commit 32). */
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -259,3 +287,5 @@ export type CampaignMember = typeof campaignMembers.$inferSelect;
 export type NewCampaignMember = typeof campaignMembers.$inferInsert;
 export type Roll = typeof rolls.$inferSelect;
 export type NewRoll = typeof rolls.$inferInsert;
+export type Preference = typeof preferences.$inferSelect;
+export type NewPreference = typeof preferences.$inferInsert;
