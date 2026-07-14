@@ -1,10 +1,10 @@
 # Sites
 
-Environmental storytelling 
-Running sites 
-Exploring sites 
-Creating sites 
-The Green Lord's Tomb
+| In this chapter | |
+|---|---|
+| [[#Environmental storytelling\|Environmental storytelling]] | [[#Running sites\|Running sites]] |
+| [[#Exploring sites\|Exploring sites]] | [[#Creating sites\|Creating sites]] |
+| [[#THE GREEN LORD'S TOMB\|THE GREEN LORD'S TOMB]] |  |
 
 Sites are interesting places that the PCs can explore. They might be the destination of an expedition, a point of interest along the way, or just an incidental discovery. They are places where adventure happens!
 
@@ -47,27 +47,28 @@ For example, let's say your site was a Stone Lord temple to Aratis, then pervert
 
 Now, what if a sorcerer has recently been here to claim the site's power? Then that stone slab would be ajar. The sorcerer's footprints might be visible in the dust. If the PCs approached the altar, they'd smell the rotting corpse of a recent victim. If they weren't careful, they'd get attacked by some unnatural vermin, drawn to the offal.
 
-## **"What here tells you...?"**
+> [!box] **"What here tells you...?"**
+> 
+> Consider asking your players to paint the scene for you. Identify a detail or element of the site's story and ask, "What here tells you \_\_?" Let them do the environmental storytelling.
+> 
+> For example, "What here tells you that…
+> 
+> - … this place has been sealed up for centuries?"
+> - … this was once a shrine to Aratis?"
+> - … that the shrine was defiled and used for human sacrifice?"
+> 
+> This approach engages players, but don't overuse it. Save it for when you know what you want to establish, but you don't care about the specifics and you're happy to build on what the players give you.
+> 
+> This technique isn't for everyone. It blurs **[[05 - Running the Game#^the-line|the Line]]** and some players will feel like you're asking them to do your job. Others might freeze up, or introduce zany details that don't fit. But with the right group, it can be magical.
+> 
+> In each room, area, or scene, **try to include at least one detail or element that reflects the site's story**. Even if your players don't pick up on it, or they never piece the story together, that sort of detail will make the site feel richer and more mysterious.
+> ^what-here-tells-you
 
-Consider asking your players to paint the scene for you. Identify a detail or element of the site's story and ask, "What here tells you \_\_?" Let them do the environmental storytelling.
-
-For example, "What here tells you that…
-
-- … this place has been sealed up for centuries?"
-- … this was once a shrine to Aratis?"
-- … that the shrine was defiled and used for human sacrifice?"
-
-This approach engages players, but don't overuse it. Save it for when you know what you want to establish, but you don't care about the specifics and you're happy to build on what the players give you.
-
-This technique isn't for everyone. It blurs **[[05 - Running the Game#The Line|the Line]]** and some players will feel like you're asking them to do your job. Others might freeze up, or introduce zany details that don't fit. But with the right group, it can be magical.
-
-In each room, area, or scene, **try to include at least one detail or element that reflects the site's story**. Even if your players don't pick up on it, or they never piece the story together, that sort of detail will make the site feel richer and more mysterious.
-
-# **Running sites**
+## **Running sites**
 
 When the PCs explore a site, you run the game normally and follow the **[[05 - Running the Game#The core loop|core loop]]**. You play out a series of scenes and situations, as always. They just happen to take place in that site.
 
-# **Considerations**
+### **Considerations**
 
 As PCs explore sites—as you establish the situation, make GM moves, and resolve PC actions—keep in mind:
 
@@ -75,19 +76,19 @@ As PCs explore sites—as you establish the situation, make GM moves, and resolv
 
 Its rough dimensions, its construction, the height of ceilings and width of passages, obstacles, footing, slopes, different levels. You can use maps to help describe and clarify the site's layout and where things are.
 
-## **Light sources**
+#### **Light sources**
 
 Who's carrying them? What are their tags? How far can they see? What out in the dark can see them? How long will their light sources last, and is that long enough?
 
-# **Senses other than sight**
+#### **Senses other than sight**
 
 Sounds of course, but also odors and textures, heat and cold and humidity, air pressure and movement.
 
-## **Marching order**
+#### **Marching order**
 
 Who's going first, who's next, and who's bringing up the rear? This is especially important in cramped quarters or when something attacks.
 
-### **Equipment**
+#### **Equipment**
 
 What does everyone have in hand, or at the ready? How heavy a load are they carrying? If it's a heavy load, how much does that suck? Do they have room to swing that *awkward* maul in here? Can they fit through that tunnel with their shield?
 
@@ -103,25 +104,26 @@ Hunger and thirst, fatigue, irritability, disorientation, dread. How do the PCs 
 
 Who or what else is here? What signs of their presence might the PCs find? Would they notice the PCs? If so, how would they react? Are they hostile or wary or curious, or what?
 
-# **Light sources & tags**
+> [!box] **Light sources & tags**
+> 
+> Here's a quick reference:
+> 
+> *Hand*: E.g., a rushlight. Illuminates no farther than your reach. Barely enough to navigate or read by.
+> 
+> *Close, area*: E.g., a candle, oil lamp, or lantern. Casts light a few feet, enough for 2 people to navigate by.
+> 
+> *Reach, area*: E.g., a torch. Illuminates out to ~10 feet, enough for a small party to navigate by.
+> 
+> *Crude*: E.g., a rushlight, an oil lamp. Prone to flicker or snuff out when moved quickly or in light wind.
+> 
+> *Dangerous*: E.g., a torch. A big open flame, smoky, prone to catch things on fire if not careful.
+> 
+> *Slow*: E.g., a tinderbox. It takes at least a few minutes to start a new fire!
+> 
+> Lamp oil is useless as a weapon. It takes time and effort to light, doesn't burn very hot, and goes out if spilled.
+> ^light-sources-tags
 
-Here's a quick reference:
-
-*Hand*: E.g., a rushlight. Illuminates no farther than your reach. Barely enough to navigate or read by.
-
-*Close, area*: E.g., a candle, oil lamp, or lantern. Casts light a few feet, enough for 2 people to navigate by.
-
-*Reach, area*: E.g., a torch. Illuminates out to ~10 feet, enough for a small party to navigate by.
-
-*Crude*: E.g., a rushlight, an oil lamp. Prone to flicker or snuff out when moved quickly or in light wind.
-
-*Dangerous*: E.g., a torch. A big open flame, smoky, prone to catch things on fire if not careful.
-
-*Slow*: E.g., a tinderbox. It takes at least a few minutes to start a new fire!
-
-Lamp oil is useless as a weapon. It takes time and effort to light, doesn't burn very hot, and goes out if spilled.
-
-## **Exploring sites**
+### **Exploring sites**
 
 Most sites are made up of multiple discrete areas or rooms. Some sites are so big that these areas or rooms are divided into zones or smaller sites.
 
@@ -140,8 +142,8 @@ For larger sites with many areas or rooms, you might rely on a player move to in
 - … **Defy Danger** to find the specific place (the danger being they get lost and/or stumble into a danger);
 - … **Seek Insight** to explore the site and see what they find;
 - … **Know Things** about a place they've studied, to know where \_\_ might be;
-- … **use a playbook move**, like **[[The Ranger#A SAFE PLACE|Expert Tracker]]** to follow a foe's trail to wherever it leads; or…
-- … **use a custom move** specific to this site (like the **Seek Out** move from [[28 - The Labyrinth#**1d6** instinct|The Deeps]], *Book II*).
+- … **use a playbook move**, like **[[The Ranger#EXPERT TRACKER|Expert Tracker]]** to follow a foe's trail to wherever it leads; or…
+- … **use a custom move** specific to this site (like the **Seek Out** move from [[28 - The Labyrinth#The Deeps|The Deeps]], *Book II*).
 
 If no obvious place presents itself, then **pick a GM move you want to make.** Then pick a place in the site where it would make sense for you to make that move, or create such a place on the fly.
 
@@ -166,7 +168,7 @@ Or, to heck with it. **Introduce a danger** or **present a discovery** at some p
 
 *The PCs and Andras are at Three Coven Lake, atop the dam and surveying the sprawling ruins. I present a choice of paths: climb the bluff to the north and check out the rooms carved into it, or explore the gentler southern shore. They stay clear of the water and go north.* 
 
-*I haven't had time to fully prep, so, I skim the Three Coven Lake entry. There's lots of terrain and smaller sites I could pick from, but that's not inherently interesting. I decide to introduce a danger, person, or faction. I roll an*[[47 - Three Coven Lake#**1d6** discovery| encounter ]]*. I get a 6 ("other entities") and then pick "Stone Lord constructs." I roll a* disposition *of "curious." I think a lithic servant is spying on the PCs (on behalf of some other entity?). I'm not sure where this encounter will occur, so I look at the* bluffs terrain *table (*[[47 - Three Coven Lake#**1d6** discovery|Book II]]*) and roll an "overhang" and "walkway/ stairs… carved into the stone."* 
+*I haven't had time to fully prep, so, I skim the Three Coven Lake entry. There's lots of terrain and smaller sites I could pick from, but that's not inherently interesting. I decide to introduce a danger, person, or faction. I roll an*[[47 - Three Coven Lake#1d6 discovery| encounter ]]*. I get a 6 ("other entities") and then pick "Stone Lord constructs." I roll a* disposition *of "curious." I think a lithic servant is spying on the PCs (on behalf of some other entity?). I'm not sure where this encounter will occur, so I look at the* bluffs terrain *table (*[[47 - Three Coven Lake#Areas|Book II]]*) and roll an "overhang" and "walkway/ stairs… carved into the stone."* 
 
 *Okay, cool, but I think it'll take a bit of a hike to get there. They set a marching order, and I start transitioning to the scene. "So, you head up into the bluffs, climbing this crumbling, rock-strewn stairway. It's a slog, and Andras keeps wincing on his leg."*
 
@@ -178,21 +180,21 @@ Or, to heck with it. **Introduce a danger** or **present a discovery** at some p
 
 *"This is no good," says Rhianna. "I Read the Land. What's the best spot for an ambush? I want to catch this thing." We decide that they could draw it into a chamber in the bluffs that Rhianna spots up ahead—and that's where we frame the next scene!*
 
-## **GM exploration moves**
+### **GM exploration moves**
 
 Use these GM moves heavily as the PCs explore a site. These are the same moves that you use while **[[10 - Expeditions#Running the journey|running a journey]]**, but here we'll discuss using them in more local, focused areas.
 
 Your exploration moves are:
 
-- <sup>ä</sup> Provide a choice of paths
-- <sup>ä</sup> Hint at more than meets the eye
-- <sup>ä</sup> Offer riches at a price
-- <sup>ä</sup> Present a discovery
-- <sup>ä</sup> Point to a looming danger
-- <sup>ä</sup> Introduce a danger, person, or faction
-- <sup>ä</sup> Bar the way
+- ▸ Provide a choice of paths
+- ▸ Hint at more than meets the eye
+- ▸ Offer riches at a price
+- ▸ Present a discovery
+- ▸ Point to a looming danger
+- ▸ Introduce a danger, person, or faction
+- ▸ Bar the way
 
-## <sup>ä</sup> **Provide a choice of paths**
+#### ▸ **Provide a choice of paths**
 
 Use this move to prompt the PCs to move on, signaling that there's nothing more of interest here. Use to it remind them of their options when they decide to move on themselves. Or, use it to force a decision.
 
@@ -202,7 +204,7 @@ The choice of paths should be meaningful. Know where each path leads (at least i
 
 *"So, what do you think? Do you want to head north and take those stairs up into the bluffs? Or pick your way down to the south shore and check out those ruins poking out of the lake? Or what?"*
 
-## <sup>ä</sup> **Hint at more than meets the eye**
+#### ▸ **Hint at more than meets the eye**
 
 Think about something you want to reveal to the PCs, but that wouldn't be obvious. Then think about what telltale signs could point to it. Describe that. See what the PCs do. They'll often ask questions, Know Things, or Seek Insight—or all three!
 
@@ -214,7 +216,7 @@ This move is a great way to telegraph a discovery—especially a **[[13 - Discov
 
 *"Okay, so Blodwen, you're patching up Caradoc. I presume you've got the lantern on the cave floor next to you? Well, as you finish, you notice the flame like, pulling, towards the back of the cave. Like there's a draft, maybe? What do you do?"*
 
-## <sup>ä</sup> **Offer riches at a price**
+#### ▸ **Offer riches at a price**
 
 Present something valuable to the PCs be it actual treasure, information, a needed supply, etc.—but also present a danger that makes it costly or difficult to get. See if they think it's worth it.
 
@@ -222,7 +224,7 @@ Present something valuable to the PCs be it actual treasure, information, a need
 
 *"Yeah, Vahid, these are Tempest Lord runes. Not only that, this is some sort of formula or spell, related to… thunder? But you can't tell more than that without digging it up, which will take time and make noise. You'll risk a run-in with that beast whose scat Caradoc found earlier. What do you do?"*
 
-## <sup>ä</sup> **Present a discovery**
+#### ▸ **Present a discovery**
 
 Pick a discovery—a clue, an encounter, an opportunity, an artifact or arcanum, or even another, smaller site. Maybe roll on a table from *Book II* to decide what it is. Put it in front of the PCs, and see what they do. Refer to the **Discoveries** chapter [[13 - Discoveries|Discoveries]] for guidance and more examples.
 
@@ -230,7 +232,7 @@ Pick a discovery—a clue, an encounter, an opportunity, an artifact or arcanum,
 
 *"'Hey, guys?' says Andras. He's looking at a wall in the back, and when you get closer you see it's a map. Of the whole city, from back before it fell. Here, let me sketch it out. It looks like… this."*
 
-## <sup>ä</sup> **Point to a looming danger**
+#### ▸ **Point to a looming danger**
 
 Use this move to telegraph a threat, a monster, or a hazard, to reveal and reflect its presence in the site.
 
@@ -238,7 +240,7 @@ Use this move to telegraph a threat, a monster, or a hazard, to reveal and refle
 
 *"So, Vahid, you're checking out that side passage? Cool. As you approach, you see that it's blocked by a solid slab of stone. And then there's this eerie, like, 'whoosh' and everyone's lanterns sputter. You all feel a chill, and Vahid, your breath is fogging up. What do you do?"*
 
-## <sup>ä</sup> **Introduce a danger, person, or faction**
+#### ▸ **Introduce a danger, person, or faction**
 
 Put a danger directly in the PCs' way. As a hard move, have it catch them unawares. Or, have them encounter a denizen of the site, or a group thereof. The line between "person" and "danger" isn't always clear.
 
@@ -246,7 +248,7 @@ Put a danger directly in the PCs' way. As a hard move, have it catch them unawar
 
 *"A 2? Huh. Well. You step closer to the barrow entrance, but then URK—your foot's caught on something. You look down and see a reddish vine, coiled around your ankle and calf, covered in inch-long thorns, some of which are stuck in you. But you barely feel it. What do you do?"*
 
-## <sup>ä</sup> **Bar the way**
+#### ▸ **Bar the way**
 
 Make this move to deny access to part of a site. It could be something that's been there all along, like a locked door or a chasm. Or you could cut the PCs off as they explore, via a cave-in, a trap, a bridge collapsing behind them, etc.
 
@@ -258,19 +260,20 @@ Or not. Sometimes the way is shut, and they have to turn back for now.
 
 *"What's the best way through? Well, not that way. The passage is just gone, like rubble and rock and dust floating in the air. If you want to rejoin the others, you'll need to loop around, back through the shrine and the central chamber. What do you do?"*
 
-## **Use other moves, too!**
+> [!box] **Use other moves, too!**
+> 
+> Don't forget to use your standard GM moves while the PCs explore a site, as well as **[[09 - Threats#Threat types in play|threat moves]]** and moves from hazards and monsters. For example:
+> 
+> - ▸ **Announce trouble:** "You hear footsteps approaching."
+> - ▸ **Use up their resources:** "It's been an hour: mark off your light sources."
+> - ▸ **Demonstrate a downside:** "Your axe catches on the low ceiling, and the thing darts in and chomps your leg for 1d8 damage."
+> - ▸ **Separate them:** "Too slow, I guess—you tumble into the tunnel below, alone. Oh, and take 1d8 damage."
+> - ▸ **Tell them the consequences/ requirements and ask:** "You'll have to Defy Danger, and you risk a nasty, bone-breaking fall; do you do it?"
+> - ▸ **Advance towards impending doom:** "It's no use! You're caught in the swirling current and can't swim free—the whirlpool is getting closer!"
+> - ▸ **Hurt them:** "ZZZOLT, there's a flash of light and pain and now you're slumped against the wall, singed and aching—take 1d6+2 damage, ignores armor, and marked *dazed*."
+> ^use-other-moves-too
 
-Don't forget to use your standard GM moves while the PCs explore a site, as well as **[[09 - Threats#**Stakes in play**|threat moves]]** and moves from hazards and monsters. For example:
-
-- <sup>ä</sup> **Announce trouble:** "You hear footsteps approaching."
-- <sup>ä</sup> **Use up their resources:** "It's been an hour: mark off your light sources."
-- <sup>ä</sup> **Demonstrate a downside:** "Your axe catches on the low ceiling, and the thing darts in and chomps your leg for 1d8 damage."
-- <sup>ä</sup> **Separate them:** "Too slow, I guess—you tumble into the tunnel below, alone. Oh, and take 1d8 damage."
-- <sup>ä</sup> **Tell them the consequences/ requirements and ask:** "You'll have to Defy Danger, and you risk a nasty, bone-breaking fall; do you do it?"
-- <sup>ä</sup> **Advance towards impending doom:** "It's no use! You're caught in the swirling current and can't swim free—the whirlpool is getting closer!"
-- <sup>ä</sup> **Hurt them:** "ZZZOLT, there's a flash of light and pain and now you're slumped against the wall, singed and aching—take 1d6+2 damage, ignores armor, and marked *dazed*."
-
-# **Creating sites**
+## **Creating sites**
 
 You won't always create sites the same way, or to the same level of detail. Sometimes, you'll improvise a site in play; other times, you'll carefully prep them between sessions. Often, you'll do a bit of both.
 
@@ -278,21 +281,18 @@ Regardless of how much you're prepping vs. improvising, you want your site to **
 
 Here's how to do that:
 
-## **1) Lay the foundation**
-
+#### **1) Lay the foundation**
 - Ask questions
 - Build on what you've got
 - Exploit the setting guide
 
 ### **2) Build up its story**
-
 - Look for connections
 - Ask yourself questions
 - Answer those questions
 - Create a timeline
 
 #### **3) Sketch out the site's contents**
-
 - Populate it
 - Identify dangers and discoveries
 - Establish areas/rooms
@@ -300,7 +300,6 @@ Here's how to do that:
 - Arrange areas/rooms
 
 #### **4)Write it up as much as you like**
-
 - Create a map or visual (maybe)
 - Detail each area/room
 - Subdivide as needed
@@ -318,11 +317,11 @@ You don't need to do this entire process, or do it all at once. If pressed for t
 
 *Instead, I create a few other areas the PCs might encounter first: a haunted workshop, a broken obsidian mirror, and the home of an exiled Hillfolk spirit-talker (the sorcerer's rival). I'll flesh out the sorcerer's complex after the next session.*
 
-## **1 Foundation**
+### **1. Foundation**
 
  Start with a core concept for the site and its story, something with a few compelling details that you can build on while improvising or as you continue to prep. This should be brief: a few sentences and an evocative title, no more.
 
-## **Ask questions**
+#### **Ask questions**
 
 If you're establishing the site during play, and the PCs might know about it, defer to them. Has a PC been here before? Ask what it's like! Would a PC have heard of it? Ask what they've heard.
 
@@ -332,11 +331,11 @@ As always, incorporate the players' answers into the fiction but feel free to pu
 
 *Earlier, we established that Rhianna thinks the crinwin are headed to a big Maker-ruin. She and her pa followed a rabid wolf there in her youth. They found it near the ruin, but got spooked. "What spooked you off?" I asked. This was before the Forest Folk left, and she said they'd found the wolf 's burnt bones near the entrance, like an offering, and they wanted nothing to do with that!* 
 
-## **Build on what you've got**
+#### **Build on what you've got**
 
 Think through what you know about this site. What can you assume from context? What have you told the players and what have they told you? What have you already decided, in your heart of hearts?
 
-If there's a resource that you want to build on or adapt—like an image or map, a module from another RPG, or an **[[02 - Getting Started#Adventure starters|adventure starter]]**—think about that, too!
+If there's a resource that you want to build on or adapt—like an image or map, a module from another RPG, or an **[[02 - Getting Started#^adventure-starters|adventure starter]]**—think about that, too!
 
 Why are you putting this site in the game? For color? To break up a journey? Because this is where the PCs can find what they're looking for? Or what? Do your reasons imply anything more about this site?
 
@@ -356,13 +355,13 @@ If you're prepping in advance, then write this stuff down. If improvising, just 
 
 • The tomb is basically intact
 
-## **Exploit the setting guide**
+#### **Exploit the setting guide**
 
 *Book II* is full of example sites and tools to help you create your own. Use it for inspiration and to help make sites that fit the larger *Stonetop* setting.
 
 If you're making a site from scratch, start by deciding what manner of site it is: a Fae domain, a ruin of the Makers, a haunted site, etc. If unsure, refer to the entry for the relevant region and review the sections for "Terrain" and/or "Discoveries" therein.
 
-Once you know the manner of site you're creating, go to the "Sites" section for the appropriate entry. For example, you'll find the entry for **[[18 - Forge Lords#**Ruin**|Forge Lord sites]]**, and **[[10 - Death and the Undying#**Death and the undying**|haunted sites]]** in the "Death and the undying" entry. Use the procedures and tables there to develop the site's concept.
+Once you know the manner of site you're creating, go to the "Sites" section for the appropriate entry. For example, you'll find the entry for **[[18 - Forge Lords#1d12 theme|Forge Lord sites]]**, and **[[10 - Death and the Undying#Haunted sites|haunted sites]]** in the "Death and the undying" entry. Use the procedures and tables there to develop the site's concept.
 
 Treat the tables as creative prompts. Pick options that make sense or catch your eye, or roll if unsure. If you do roll, try to make sense of the results even if they seem disjointed. Unlikely combinations can lead to some of the most interesting, memorable sites. That said, if a roll really doesn't feel right, then pick something else or roll again. You're not beholden to the dice!
 
@@ -370,17 +369,17 @@ Consider the results in light of what you've already established. Envision the s
 
 If you're creating the site on the fly, you can ask your players to roll the dice. Read the results out loud, or write them down and "Hmm" sagely, revealing them through play. Either way, take a short break to think through the rest of the process.
 
-*The swyn's lair is a Green Lord tomb, so I find the "Sites" section of the Green Lord entry. This is a "ruin," so I start there (*[[24 - Green Lords#**Ruins**|Book II]]*). The process has me roll or pick a Green Lord theme, and "tombs, mummification, constructed afterlives" is the obvious choice. I roll a 6 for structure, "ziggurat/pyramid/dome" and the purpose is clearly a "tomb." I roll a 1 for architectural elements, "huge slabs of smooth stone…carved with scrollwork and bas relief." Because I want a Green Lord mummy to still be in there, I choose "buried, submerged, and/or overgrown, but mostly intact" for the site's condition.*
+*The swyn's lair is a Green Lord tomb, so I find the "Sites" section of the Green Lord entry. This is a "ruin," so I start there (*[[24 - Green Lords#A spirit of the wild, bound|Book II]]*). The process has me roll or pick a Green Lord theme, and "tombs, mummification, constructed afterlives" is the obvious choice. I roll a 6 for structure, "ziggurat/pyramid/dome" and the purpose is clearly a "tomb." I roll a 1 for architectural elements, "huge slabs of smooth stone…carved with scrollwork and bas relief." Because I want a Green Lord mummy to still be in there, I choose "buried, submerged, and/or overgrown, but mostly intact" for the site's condition.*
 
 *The procedure then has me pick a Great Wood terrain, so I flip to that table and roll a 4, "clearing, meadow, sparse trees." It also says to populate it with lingering signs, artifacts, and dangers but I'll worry about that later.*
 
 *I ponder a bit and write down:*
 
-## THE GREEN LORD'S TOMB
+## **The Green Lord's Tomb**
 
 A dome-shaped tomb, mostly intact, with a few old oaks growing out of it. Looks like a small hill, with bits of worked stone poking out of the soil. Inside are wide-open halls of white marble with intricate scrollwork, leading to the still-intact burial vault of a Green Lord. Forest Folk used to leave it offerings. A Fae, Thornthumb, used to live in the outer halls, but was displaced last autumn by Sajra and its crinwin minions.
 
-## **2 Story**
+### **2. Story**
 
 Sites should tell stories, even if those stories are relatively simple. A site's story informs how you describe it and what the PCs might find within.
 
@@ -388,7 +387,7 @@ Sites should tell stories, even if those stories are relatively simple. A site's
 
 **If you're doing this during play**, keep it short and simple. Go with the obvious connections, questions, and answers.
 
-## **Look for connections**
+#### **Look for connections**
 
 Start with the site's **[[11 - Sites#Build on what you've got|foundation]]**, the details already established, and the questions you've started asking yourself. Consider how those things connect to:
 
@@ -403,7 +402,7 @@ Start with the site's **[[11 - Sites#Build on what you've got|foundation]]**, th
 
 Let these connections prompt questions, suggest answers, or just inspire new ideas. Think about how all these elements fit together in your site.
 
-## **Ask yourself questions**
+#### **Ask yourself questions**
 
 Think about what you've got so far, and start asking questions. Write them down! Ask yourself about…
 
@@ -416,7 +415,7 @@ Think about what you've got so far, and start asking questions. Write them down!
 - … **timing**. "How long have the crinwin been here?" "How long was the barrow sealed before Winoc opened it?"
 - … **anything else** that feels important.
 
-## **Answer those questions**
+#### **Answer those questions**
 
 Start answering your questions, in whatever order makes sense or whatever order the answers occur to you.
 
@@ -428,17 +427,17 @@ Start answering your questions, in whatever order makes sense or whatever order 
 
 Let your answers spawn new questions. Answer them. If new connections occur to you and prompt new ideas, consider using them. Don't be afraid to revise and adapt your answers or even your foundation if you need to.
 
-## **Create a timeline**
+#### **Create a timeline**
 
 As the site's story becomes clear to you, start to create a timeline of key events. Put them in a relative order: this happened, then this, and then this. Vague times are usually fine (centuries ago, decades ago, years ago, last winter, last week, etc.).
 
 **If your site is more than a decade or so old**, refer to ages of the world (*[[55 - Appendix A - Ages of the World#Ages of the World|Book II]]*). Try to align your site's timeline with that of the setting.
 
-## **If you're prepping the site in advance**,
+**If you're prepping the site in advance**,
 
 then write this timeline down in as much detail as you find useful. It's typically a bullet list of key events, but you can include details like the motives or experiences of actors in the site's story. If you're so inclined, you might even draw maps or illustrations of the place at various points in time to visualize how it has changed.
 
-## **If you're improvising a site during play**,
+**If you're improvising a site during play**,
 
 then keep things high-level. Focus on the details relevant to play. If you're creating a Stone Lord ruin that's been haunted by a ghost for a few decades, then gloss over the ruin's origins and spend more time on the ghost's death and subsequent events.
 
@@ -487,40 +486,40 @@ When you think you're done, read over the timeline from beginning to end. Look f
 
 *When I'm done, the timeline looks like this:*
 
-## IN THE TIME OF THE MAKERS (millennia ago)
+#### IN THE TIME OF THE MAKERS (millennia ago)
 
 - Tomb is built, Green Lord interred
 - Centuries later: Fae revolt starts! Guardian Fae stay loyal, but rebels ransack the tomb's outer tunnels, burn most mummified servants
 - Thornthumb displaced by war; finds tomb, moves in to outer tunnels, hides the ruin with plants and growth
 - War ends, tomb is largely forgotten
 
-### OVER THE NEXT FEW CENTURIES
+#### OVER THE NEXT FEW CENTURIES
 
 - Forest Folk sometimes petition Green Lord's spirit for knowledge/aid
 - Thornthumb collects tolls from Forest Folk petitioners; his hoard grows
 
-### LAST TWENTY YEARS OR SO
+#### LAST TWENTY YEARS OR SO
 
 - Rhianna & pa find burnt wolf here
 - Forest Folk disappear; crinwin and nailadd populations grow
 - Sajra is hatched in Vor Svetelik
 
-# LAST AUTUMN
+#### LAST AUTUMN
 
 - Sajra arrives at tomb with crinwin thralls in tow; makes Thornthumb, promise to stay away from the tomb, Sajra, its servants and possessions
 - Sajra enthralls local crinwin; they make nests outside the tomb
 
-### LAST WINTER INTO SPRING
+#### LAST WINTER INTO SPRING
 
 - Crinwin kidnap Tiwlip from the Woods
 - Crinwin raid Stonetop, kidnap Wynfor and bring him back to the tomb
 - Since thaw: crinwin have started excavating other ruins near tomb
 
-### NOW
+#### NOW
 
 • Crinwin have kidnapped Pryder, are dragging him towards the tomb.
 
-## **3 Contents**
+### **3. Contents**
 
  Decide what the PCs might find as they explore the site: its inhabitants, the areas within it, the dangers and discoveries that make it interesting, and the connective tissue that holds it all together.
 
@@ -528,7 +527,7 @@ When you think you're done, read over the timeline from beginning to end. Look f
 
 **If you're prepping between sessions**, then do the following steps in whatever order makes sense. Take multiple passes. Start high-level, with generalities. Then review what you've got. Consolidate where you can. Look for what's missing and for interesting interactions. Revise. Make decisions and create stuff as needed.
 
-## **Populate it**
+#### **Populate it**
 
 Who or what lives or dwells here? Who or what is visiting, exploring, or just passing through? You probably already know this, but make a list.
 
@@ -538,7 +537,7 @@ If there are multiple denizens, then think about the relationships between group
 
 If you expect the PCs to communicate with any denizens, then create them as **[[14 - NPCs and Followers#Creating NPCs|NPCs]]**, with tags, traits, an instinct, roleplaying notes, etc.
 
-## **Identify dangers & discoveries**
+#### **Identify dangers & discoveries**
 
 Make a list of the dangers and discoveries implied by the site's foundation, story, and occupants. This might include:
 
@@ -548,13 +547,13 @@ Make a list of the dangers and discoveries implied by the site's foundation, sto
 - Other, smaller **[[11 - Sites|sites]]**
 - Non-hostile **[[13 - Discoveries#Encounters|encounters]]** with the site's denizens
 - **[[13 - Discoveries#Opportunities|Opportunities]]**
-- **[[13 - Discoveries#Opportunities|Artifacts]]** and **[[13 - Discoveries#Arcana|arcana]]** found within the site
+- **[[13 - Discoveries#Artifacts|Artifacts]]** and **[[13 - Discoveries#Arcana|arcana]]** found within the site
 
 Refer to the relevant entries in *Book II*, or make your own as needed.
 
-The goal here is to identify the elements that you want to include, and those that you need to to account for. Don't worry just yet about placing them within the site, or writing them up in detail. You can do that now, if it helps you make decisions or answer questions. But it's often best to wait until you're doing the site's final **[[11 - Sites#4 Write-up|write-up]]**.
+The goal here is to identify the elements that you want to include, and those that you need to to account for. Don't worry just yet about placing them within the site, or writing them up in detail. You can do that now, if it helps you make decisions or answer questions. But it's often best to wait until you're doing the site's final **[[11 - Sites#4. Write-up|write-up]]**.
 
-## **Establish areas/rooms**
+#### **Establish areas/rooms**
 
 Write out the distinct rooms or places that are suggested by your site's foundation and story, by its denizens, and by common sense. A small site might have just one area, but most sites have at least a few.
 
@@ -562,9 +561,9 @@ If the site was built for a specific purpose, start there. What rooms or areas w
 
 Think about why the PCs are here in the first place. If they're looking for something, what room or area is it in? Why is it there, specifically? What does that tell you about the site?
 
-If you need to invent a new area or room (to hold a danger or discovery, or to just fill out the site), then create it as a new site using the tools in *Book II*. If the PCs are exploring a Stone Lord ruin and you need to place a broken construct somewhere, then roll up a new **[[43 - Stone Lords#**Ruin**|Stone Lord site]]**, treat it as an area within the larger site, and place the construct there.
+If you need to invent a new area or room (to hold a danger or discovery, or to just fill out the site), then create it as a new site using the tools in *Book II*. If the PCs are exploring a Stone Lord ruin and you need to place a broken construct somewhere, then roll up a new **[[43 - Stone Lords#1d12 theme|Stone Lord site]]**, treat it as an area within the larger site, and place the construct there.
 
-## **Describe the environment**
+#### **Describe the environment**
 
 Envision the site, or the individual area or room you're working on. Make some notes as to how you'll describe it.
 
@@ -578,7 +577,7 @@ If it helps you to draw maps or pictures at this point, go for it!
 
 *I start sketching out the contents of my Green Lord tomb with the following lists:*
 
-### DENIZENS
+#### DENIZENS
 
 - Sajra the swyn
 - "Trusted" crinwin. Nests inside, came here with Sajra and lord over the others. Collect Sajra's castoff junk, mimic its voice. Jealous of the kids.
@@ -599,7 +598,7 @@ If it helps you to draw maps or pictures at this point, go for it!
 - Ensnaring plants (from Thornthumb)
 - Unstable construction, Book II p. 390
 
-# DISCOVERIES
+### DISCOVERIES
 
 - Thornthumb/Sajra's hoard (create!) Grave goods interred with the Green Lord (create!)
 - The crinwin's trash hoard (create!)
@@ -618,7 +617,7 @@ If it helps you to draw maps or pictures at this point, go for it!
 - Wherever the children are kept (???)
 - "Trusted" Crinwin nests (where?)
 
-# ENVIRONMENT (OUTSIDE)
+### ENVIRONMENT (OUTSIDE)
 
 - Forest Folk glyphs carved into trees nearby, faded
 - Hill, worked stone poking out of soil
@@ -645,9 +644,9 @@ If it helps you to draw maps or pictures at this point, go for it!
 - Halls of Humility & Gratitude (dreamlike tests)
 - Hall of Offerings (guardian Fae, leads to false afterlife)
 
-*I'm not sure what exactly these will entail; I'll come back to them later. I do spend time creating the Almtakers [[12 - Dangers#**<sup>11</sup> Optional elements** If the monster has nuanced mo-|Dangers]], the Fae who guard the Hall of Offerings. It seems important to understand them, even if they never appear in play.* 
+*I'm not sure what exactly these will entail; I'll come back to them later. I do spend time creating the Almtakers [[12 - Dangers#Dangers|Dangers]], the Fae who guard the Hall of Offerings. It seems important to understand them, even if they never appear in play.* 
 
-*Now, where is Sajra's lair? It would be the grandest place that remained in the outer tomb. But what? I go back to the Green Lord sites and roll up a new one to represent this room. I get a theme of "spirits of the wild… bound or put to use" and a purpose of "Esoteric (laboratory, shrine, surgery, etc.)," and more stone slabs and carvings for architectural elements. I roll a theme from the spirits of the wild (*[[41 - Spirits of the Wild#**Sacred sites**|Book II]]*): "water/ streams/ponds/lakes."* 
+*Now, where is Sajra's lair? It would be the grandest place that remained in the outer tomb. But what? I go back to the Green Lord sites and roll up a new one to represent this room. I get a theme of "spirits of the wild… bound or put to use" and a purpose of "Esoteric (laboratory, shrine, surgery, etc.)," and more stone slabs and carvings for architectural elements. I roll a theme from the spirits of the wild (*[[41 - Spirits of the Wild#Spirits of the wild|Book II]]*): "water/ streams/ponds/lakes."* 
 
 *Okay, I think this was a shrine (to Danu?), featuring a natural spring and tended by the spring's spirit. The Fae and Thornthumb left it intact, but Sajra has claimed it as its den. Ooh, and Sajra's presence is starting to corrupt the place. Cool! (I add "Spirit of the spring" to my list of denizens.)*
 
@@ -659,7 +658,7 @@ If it helps you to draw maps or pictures at this point, go for it!
 
 *For the "inside" criwin nests, my first idea is to have them be in the entrance hall. But I don't really want them to be the first thing the PCs encounter inside. I'd like to build up some tension! The nests can be in a great hall just outside the inner vault, big and grand, now partially collapsed and strewn with rubble. The crinwin nests are built on (old, rotting) pillar-trees.*
 
-## **Arrange areas/rooms**
+#### **Arrange areas/rooms**
 
 Look at your rooms and areas and think about how they're arranged. Where else can you get to from each area? What (if anything) lies between them?
 
@@ -719,7 +718,9 @@ I put the inner vault below the main level of the tomb and add a central chamber
 
 I draw the site out as a nodal diagram, adding a few burrowed tunnels to the outside—I don't think Sajra or the crinwin would be happy with only one exit!
 
-# **4 Write-up**
+![[Green Lord's Tomb.canvas]]
+
+### **4. Write-up**
 
  Once you've identified the site's contents, organize your notes and write things up in as much detail as you find useful, valuable, or fun.
 
@@ -729,7 +730,7 @@ The nature of your write-up will vary from site to site, and every GM's approach
 
 Remember: you're writing this for yourself. Don't bother with flowery language unless you plan to read it out loud. Your write-up doesn't need to be pretty or even complete; it needs to be functional.
 
-# **Create maps or visuals (maybe)**
+#### **Create maps or visuals (maybe)**
 
 If you don't already have one, consider making (or using) a map or visual aid to represent the site. This might be a nodal diagram like the one on the previous page, pictures, a representative map, or even 3D terrain if that's your jam.
 
@@ -752,13 +753,13 @@ Then write out the details and decisions that you want to remember about that ar
 
 For the contents, include whatever details you need: numbers, where they're found, behaviors, tactics, etc. (see **"Make plans"** on the next page). For content that has its own stat block or write-up, include a page reference, a copy of that write-up, or a link as appropriate.
 
-### **Subdivide as needed**
+#### **Subdivide as needed**
 
 If there are details that you find yourself writing for multiple areas or rooms, pull that out into its own entry.
 
 Likewise, if certain dangers, discoveries, or NPCs might be found throughout the site, or are complex enough to warrant it, then give them their own heading.
 
-## **Find/create content**
+#### **Find/create content**
 
 If you need to add something to an area or the site as a whole, either pick something from *Book II* (and tweak it as needed) or create it from scratch. Refer to:
 
@@ -773,9 +774,9 @@ If you need to add something to an area or the site as a whole, either pick some
 - **[[14 - NPCs and Followers#Creating NPCs|Creating NPCs]]**
 - **[[16 - Writing Moves and Love Letters#Writing moves|Writing moves]]**
 
-If you realize you need to create a new area, treat it like a smaller site. Lay its **[[11 - Sites#Build on what you've got|foundation]]**. Build up its **[[11 - Sites#**Find/create content**|story]]**. Sketch out its **[[11 - Sites#Identify dangers & discoveries|contents]]**, and then write it up as needed.
+If you realize you need to create a new area, treat it like a smaller site. Lay its **[[11 - Sites#Build on what you've got|foundation]]**. Build up its **[[11 - Sites#THE GREEN LORD'S TOMB|story]]**. Sketch out its **[[11 - Sites#Identify dangers & discoveries|contents]]**, and then write it up as needed.
 
-## **Make lists and tables**
+#### **Make lists and tables**
 
 Some content exists in a quantum state. The sentries walk a perimeter. The cave bears might be out foraging. The ruin is vast and you can't be bothered to plot out where each danger, discovery, or NPC is at every moment.
 
@@ -785,7 +786,7 @@ If you like, turn the list into a table. Assign numbers 1-6 or 1-12 to the optio
 
 For examples, see the many regional and site entries in *Book II*.
 
-## **Make plans**
+#### **Make plans**
 
 Think about how NPCs or monsters are likely to react to the PCs, or what might happen when the PCs enter an area, or how long after X will Y happen. Reflect this in your notes as…
 
@@ -795,11 +796,11 @@ Think about how NPCs or monsters are likely to react to the PCs, or what might h
 - … a list of possibilities;
 - … a Die of Fate table;
 - … a custom player move;
-- … an **impending doom** and a series of **[[09 - Threats#5 Impending doom|grim portents]]**;
+- … an **impending doom** and a series of **[[09 - Threats#Grim portents|grim portents]]**;
 - … a timeline or timetable of events; or…
 - … a combination of the above.
 
-## **Review and revise**
+#### **Review and revise**
 
 When you think you're done, read through your write-up. Is anything missing? Add it. Is anything no longer needed? Cut it.
 
@@ -835,16 +836,16 @@ It'll never be perfect. There's always something you'll miss, something that cou
 
 ## **The Green Lord's Tomb**
 
-## **As they approach**
+### **As they approach**
 
 **Hint at more than meets the eye**: PCs hear children singing (crinwin imitating Tiwlip & Wynfor's voices, but multiples of the same voice).
 
 - Caradoc, you know this song; it's one you sang as a youth—what is it?
 - Vahid, how can you tell this is crinwin mimicry, and not the missing kids?
 
-**Present a discovery**: Glyphs carved into trees that surround hill, faint/worn, left by the Forest Folk (see *[[17 - Forest Folk#**Hooks**|Book II]]*); mark this as a place of reverence, and refer to the *premnitsi* ("the receivers") and *istina* (the "truth," or… "oracle?").
+**Present a discovery**: Glyphs carved into trees that surround hill, faint/worn, left by the Forest Folk (see *[[17 - Forest Folk#Where did they go?|Book II]]*); mark this as a place of reverence, and refer to the *premnitsi* ("the receivers") and *istina* (the "truth," or… "oracle?").
 
-## **Exterior**
+### **Exterior**
 
 Wide, low hill, surrounded by trees. Three oaks (still bare), last year's grasses, some briar, shrubs. Sparse saplings dot the hill.
 
@@ -853,9 +854,9 @@ Wide, low hill, surrounded by trees. Three oaks (still bare), last year's grasse
 - A faint odor: rotting cabbage, bad eggs
 - Faint hum of… bees? No. Wasps!
 
-## **Crinwin (outside)**
+#### **Crinwin (outside)**
 
-See *[[07 - Crinwin#**Dangers**|Book II]]*for **crinwin & wasps**.
+See *[[07 - Crinwin#Midden heaps|Book II]]*for **crinwin & wasps**.
 
 4 crinwin always on watch in the oaks or nearby trees, often "singing" with the kids' voices. 1d4+2 crinwin sleep in nests. 1d6-1 other crinwin are outside, doing **crinwin stuff** (see [[11 - Sites#Sajra the Swyn|Sajra the Swyn]]).
 
@@ -869,7 +870,7 @@ See *[[07 - Crinwin#**Dangers**|Book II]]*for **crinwin & wasps**.
 
 **If PCs molest a crinwin nest**: Crinwin in nest burst out, wasps swarm. Try to daze or confound PCs, then flee.
 
-## **Entrances**
+#### **Entrances**
 
 **Main entrance**: Recessed into the north side of hill, at end of a ditch full of briar. Briar obscures a 15 foot archway, partially filled by soil and rubble. Leads to entrance chamber (A). PCs can enter if they cut the briar back or don't mind getting scratched (1d4 damage), but they risk agitating a nest
 
@@ -877,7 +878,7 @@ See *[[07 - Crinwin#**Dangers**|Book II]]*for **crinwin & wasps**.
 
 **Burrows** (S): Dug into the hill or rubble about 18 inches across, visible only when right next to them. Used by crinwin and Sajra. Too small for PCs or Pryder. Wynfor, Tiwlip, and Thornthumb could theoretically squeeze through them.
 
-## **Interior**
+### **Interior**
 
 White marble construction. Scrollwork and bas relief of plants/chimerae, often marred or busted. Dark unless otherwise noted, but marble reflects/amplifies light.
 
@@ -889,7 +890,7 @@ White marble construction. Scrollwork and bas relief of plants/chimerae, often m
 
 **Hallways** are 10 feet wide and lined with burial niches: 8 to 24 per hall, human-sized but a few larger. No bodies, but some have displays of junk (bones, potsherds, rocks, maybe a bit of Value 1 finery with some flaw), set up by the crinwin to mimic Sajra's horde.
 
-## **Entrance chamber (A)**
+#### **Entrance chamber (A)**
 
 Dimly lit from outside. Soil and debris piled nearly 4 feet high at entrance, sloping down into the room. Beyond, the floor is filthy, muddy.
 
@@ -899,15 +900,15 @@ Dimly lit from outside. Soil and debris piled nearly 4 feet high at entrance, sl
 
 **Tracks**: Crinwin tracks in dirt, signs of them dragging Pryder towards central chamber (C). Faint, wavy marks in dirt, like a big snake trail, from Sajra going to/ from shrine (E).
 
-## **Collapsed hallway (B)**
+#### **Collapsed hallway (B)**
 
-Caved in when Fae sacked tomb. Eight **[[24 - Green Lords#**Mummified Green Lord**|mummified servants]]** trapped in the rubble. Crinwin have dug out a tunnel that they/Sajra can squeeze through; also leads outside (via one of the burrows). Sajra's trail can be spotted.
+Caved in when Fae sacked tomb. Eight **[[24 - Green Lords#Mummified servant|mummified servants]]** trapped in the rubble. Crinwin have dug out a tunnel that they/Sajra can squeeze through; also leads outside (via one of the burrows). Sajra's trail can be spotted.
 
-## **Central Chamber (C)**
+#### **Central Chamber (C)**
 
 Ceilings vaulted to 20 feet, coated in soot. Very faded scorch marks on floor. Empty burial niches line walls. Large (smashed, empty) sarcophagi; one in SE corner most intact, stuffed with bones, snail shells, bug husks, and a huge snake skin (Sajra's). A small channel, set into the floor, carries water from the shrine (E), through this chamber, into the mossy chamber (D).
 
-## **Mossy Chamber (D)**
+#### **Mossy Chamber (D)**
 
 Dimly lit by glowing makerglass, flush in the ceiling (gouges from crinwin trying to remove it). Crazy-quilt patterns of colored moss cover walls, floor, ceiling. Channel in floor enters from east, encircles chamber, irrigating soil under the mossy carpet.
 
@@ -924,7 +925,7 @@ Dimly lit by glowing makerglass, flush in the ceiling (gouges from crinwin tryin
 
 **Critters**: Ants, snails, frogs, moths, gnats. Wasps/crinwin often prey on them.
 
-## **Shrine (E)**
+#### **Shrine (E)**
 
 **Rectangular pool**: spring-fed, a foot deep, and glows gently (glow fades when water leaves pool). Channel set into floor carries water to west. An altar dominates the east wall, but the icons have been replaced by items from Sajra's hoard.
 
@@ -945,13 +946,13 @@ Spirit of the spring (solitary, spirit, anxious): Instinct to fuss over everythi
 
 Sajra is unlikely to be here when the PCs are. See **Sajra the Swyn** (next page).
 
-## Pryder's hallway (F)
+#### Pryder's hallway (F)
 
 Pryder sleeps here in a burial niche. 1d4+2 "new" crinwin (the ones who brought him here) keep watch. 1d4 "trusted" crinwin look on from near great hall (G).
 
 Pryder (woods-wise, handsome, concussed): HP 0 of 6; Damage d6 if armed; Instinct to see the good in things. Notes: Asleep per Sajra's command. Head wound, cuts/ bruises, feverish. Slow, tires quickly, but mind is free.
 
-## Great hall (G)
+#### Great hall (G)
 
 Three 20-foot-tall pillars (trees, basically). Fourth pillar & wall/ceiling collapsed long ago. Stairwell yawns in center of room, goes down to **intact inner tomb**.
 
@@ -961,13 +962,13 @@ Three 20-foot-tall pillars (trees, basically). Fourth pillar & wall/ceiling coll
 
 Crinwin nests hug the pillars up near the ceiling (easy to miss). If alarm hasn't been raised, then: 3-6 "trusted" crinwin sleep in nests, 1-4 spy on Pryder's hall (F), and 0-5 are here doing **[[11 - Sites#Sajra the Swyn|crinwin stuff]]**.
 
-**Wasps**: Colonizing crinwin nests, pillars. Swarm if agitated. See *[[07 - Crinwin#**Dangers**|Book II]]*.
+**Wasps**: Colonizing crinwin nests, pillars. Swarm if agitated. See *[[07 - Crinwin#Midden heaps|Book II]]*.
 
 **Unstable pillars**: Advance this each time a pillar is struck, or as a GM move.
 
 Pillar cracks/buckles, dirt pours down Stones fall (1d6+1 damage, forceful) Pillar breaks, big stone slabs fall (1d8+3 damage, area, forceful) Impending doom: Ceiling collapses, burying anyone still inside (Death's Door); connecting tunnels blocked off
 
-## **Crinwin**
+#### **Crinwin**
 
 See *[[07 - Crinwin#Crinwin|Book II]]*. ~30 crinwin total, about half are "trusted" (replace *cautious* with *zealous*). "New" crinwin flee if half their numbers are lost; "trusted" crinwin fight to death.
 
@@ -979,11 +980,11 @@ See *[[07 - Crinwin#Crinwin|Book II]]*. ~30 crinwin total, about half are "trust
 
 **If caught unawares**, will be doing **crinwin stuff**: eating/processing food, expanding or repairing nests, fighting over junk, bullying each other, mimicking Sajra or the kids, talking/singing in their voices.
 
-## **Sajra the Swyn**
+#### **Sajra the Swyn**
 
-See *[[24 - Green Lords#**Rhagedn**|Book II]]*. When the PCs first approach the tomb, call for Die of Fate.
+See *[[24 - Green Lords#Mummified servant|Book II]]*. When the PCs first approach the tomb, call for Die of Fate.
 
-## **1d6** sajra's disposition
+#### **1d6** sajra's disposition
 
 - 1-3 In shrine (E), alert.
 - 4-5 Not in tomb, off hunting. Will be back in 1d6 hours, or 30-60 min after crinwin start "wolf howling."
@@ -991,16 +992,16 @@ See *[[24 - Green Lords#**Rhagedn**|Book II]]*. When the PCs first approach the 
 
 Uses tunnels to flank. Targets loners/small groups. Prioritizes itself, then its ego, then its hoard/lair/kids; crinwin are expendable.
 
-## **Intact inner tomb**
+### **Intact inner tomb**
 
 Below the main level, accessed via stairs in **great hall** (G). Consists of:
 
 - **Antechamber**: Hexagonal room, 20 feet across. Featureless white marble. Can't proceed with iron/steel.
 - **Hall of Humility**: Magical ward, only the humble will pass (how?).
 - **Hall of Gratitude**: Dreamlike ordeal, shows savage mortal lives before the Green Lords. (Custom move?)
-- **Hall of Offerings**: Guarded by the **[[12 - Dangers#**<sup>11</sup> Optional elements** If the monster has nuanced mo-|Almtakers]]**. Includes portal to Green Lord's false afterlife.
-- **Green Lord's burial vault**: sealed off, no physical access. Holds the body of the **[[24 - Green Lords#**Mummified Green Lord**|mummified Green Lord]]**, its canopic jars, grave goods.
+- **Hall of Offerings**: Guarded by the **[[12 - Dangers#11. Optional elements|Almtakers]]**. Includes portal to Green Lord's false afterlife.
+- **Green Lord's burial vault**: sealed off, no physical access. Holds the body of the **[[24 - Green Lords#Mummified Green Lord|mummified Green Lord]]**, its canopic jars, grave goods.
 
 *I don't bother writing up the inner tomb in detail right now, because I don't think the PCs are likely to explore it in the next session. They're here to rescue the kids and maybe fight the crinwin, and that's plenty to keep them busy.*
 
-*Between sessions, though, I write custom moves for the Halls of Humility and Gratitude (see [[12 - Dangers#**As a combination**|Dangers]]), and then lay the foundation for the Green Lord's false afterlife as a Fae domain (see *[[12 - Fae#**Getting there**|Book II]]*). But I don't bother doing any more than that. The false afterlife is a dreamlike realm where almost anything could happen, and the burial vault is just a burial with an extremely powerful mummy. And none of it matters unless the PCs get past the Almtakers. I feel like I can improvise just fine if they do!*
+*Between sessions, though, I write custom moves for the Halls of Humility and Gratitude (see [[12 - Dangers#Dangers|Dangers]]), and then lay the foundation for the Green Lord's false afterlife as a Fae domain (see *[[12 - Fae#THORNTHUMB|Book II]]*). But I don't bother doing any more than that. The false afterlife is a dreamlike realm where almost anything could happen, and the burial vault is just a burial with an extremely powerful mummy. And none of it matters unless the PCs get past the Almtakers. I feel like I can improvise just fine if they do!*

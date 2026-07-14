@@ -1,10 +1,8 @@
 # Major Arcana
 
-## appendix d : major arcana
-
 **Staff of the Lidless Orb**
 
-*, close*, *magical*, *awkward*
+◇, *close*, *magical*, *awkward*
 
 A sphere of greenish glass, etched with a cat's-eye design and set atop a staff of rough, pitted black iron. The orb catches the light and seems to glow, and the pupil seems to widen in the dark and narrow to a slit in daylight.
 
@@ -27,97 +25,96 @@ When you *make the last mark*, you unlock the mysteries of the Staff and can use
 
 When you *would mark a circle but have already marked all three*, mark a new effect for Power of the Lidless Orb. You can now produce that effect.
 
-## APPENDIX D: MAJOR ARCANA
+### Mysteries of the Staff of the Lidless Orb
 
-## Mysteries of the Staff of the Lidless Orb
+## **Moves**
 
-| Moves                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |  |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--|
-| W                       | POWER OF THE LIDLESS ORB When you bear the staff and call upon the power of the Orb, choose one of the effects that you have marked:                                                                                                                                                                                                                                                                                                           |  |
-| 0                       | Cast your sight afar, seeing either a time in the past of your current locale or the present of a distant place which you have previously visited. While you maintain the effect, you are blind to the world around you.                                                                                                                                                                                                                       |  |
-|                         | Hold the Orb before another creature's gaze and steal its sense of sight, blinding them until you use this effect again. When you see through the Lidless Orb, you can choose to see using the currently stolen sense of sight.                                                                                                                                                                                                                |  |
-|                         | Hold the Orb before a mortal being's gaze, keeping it transfixed, mesmerized, and receptive to your suggestions. A weak-willed creature will obey outright; a strong-willed one might require convincing.                                                                                                                                                                                                                                      |  |
-|                         | Point the Orb at a living victim and roll 2d4. If you roll higher than the victim's current HP, it's debilitated with nausea and vertigo while you remain in its presence (and possibly for some time thereafter). Otherwise, the victim reels momentarily but soon recovers.                                                                                                                                                                  |  |
-| dec                     | ter you've chosen the effect, roll +CON: **on a 10+** , the effect occurs as described; **on a 7-9** , you cide either to mark a Consequence and have the effect occur, or to have the effect fail; **on a 6-** , ask e GM what happens (which may or may not involve marking a Consequence).                                                                                                                                         |  |
-| $\overline{\mathbf{c}}$ | onsequences                                                                                                                                                                                                                                                                                                                                                                                                                                    |  |
-| 0                       | One of your eyes becomes strange, bulging, painful, and discolored. Your vision is more-or-less unaffected.                                                                                                                                                                                                                                                                                                                                    |  |
-|                         | ☐ Your other eye withers, atrophies, and goes pale and empty. Painful warts sprout all around the socket. Permanently mark the <i>miserable</i> debility.                                                                                                                                                                                                                                                                                      |  |
-|                         | You begin to sprout warty, scale-like protrusions all over. These continue to grow until you gain +1 armor, but mortals who see these growths tend to be repulsed.                                                                                                                                                                                                                                                                             |  |
-|                         | You become incapable of seeing beauty. Your senses are unaltered, but nothing strikes you as beautiful. Grotesque and horrific sights still move you and hold a strange fascination.  Replace your instinct with "Disgust: To marvel at things horrific and grotesque."  You can clearly see the ugliness in other people. When you first meet an NPC, you can ask the GM "What secret shame or guilt do they bear?" and get an honest answer. |  |
+### **POWER OF THE LIDLESS ORB**
 
-□□□ You become aware of El'rash-Orra, the Many Eyes, gazing up at you from Below. It whispers to you a task; refuse it—now or later—and the Lidless Orb goes dark, useless to you.
+When you *bear the staff and call upon the power of the Orb*, choose one of the effects that you have marked:
 
-## appendix d : major arcana
+- Cast your sight afar, seeing either a time in the past of your current locale or the present of a distant place which you have previously visited. While you maintain the effect, you are blind to the world around you.
+- Hold the Orb before another creature's gaze and steal its sense of sight, blinding them until you use this effect again. When you see through the Lidless Orb, you can choose to see using the currently stolen sense of sight.
+- Hold the Orb before a mortal being's gaze, keeping it transfixed, mesmerized, and receptive to your suggestions. A weak-willed creature will obey outright; a strong-willed one might require convincing.
+- Point the Orb at a living victim and roll 2d4. If you roll higher than the victim's current HP, it's debilitated with nausea and vertigo while you remain in its presence (and possibly for some time thereafter). Otherwise, the victim reels momentarily but soon recovers.
 
-## **Twisted Spear** *, reach*, *magical*
+After you've chosen the effect, roll +CON: **on a 10+**, the effect occurs as described; **on a 7-9**, you decide either to mark a Consequence and have the effect occur, or to have the effect fail; **on a 6-**, ask the GM what happens (which may or may not involve marking a Consequence).
 
-A knobby length of wood, pale as death and hard as steel, tapering to a needle point. The shaft is scored and notched, the tip stained with blood and soot.
+## **Consequences**
 
-The Spear is a potent weapon against spirits and demons. They cannot bear its touch and its presence makes them deeply ill at ease.
+- One of your eyes becomes strange, bulging, painful, and discolored. Your vision is more-or-less unaffected.
+  - ☐ Your other eye withers, atrophies, and goes pale and empty. Painful warts sprout all around the socket. Permanently mark the *miserable* debility.
+- You begin to sprout warty, scale-like protrusions all over. These continue to grow until you gain +1 armor, but mortals who see these growths tend to be repulsed.
+- You become incapable of seeing beauty. Your senses are unaltered, but nothing strikes you as beautiful. Grotesque and horrific sights still move you and you hold a strange fascination.
+  - Replace your instinct with "Disgust: To marvel at things horrific and grotesque."
+  - You can clearly see the ugliness in other people. When you first meet an NPC, you can ask the GM "What secret shame or guilt do they bear?" and get an honest answer.
+- ☐☐☐ You become aware of El'rash-Orra, the Many Eyes, gazing up at you from Below. It whispers to you a task; refuse it—now or later—and the Lidless Orb goes dark, useless to you.
 
-When you *wield the Twisted Spear as a weapon*, you ignore magical protections and can harm spirits, demons, and insubstantial creatures.
-
-When you *first plunge the Spear into a spirit or demon*, your mind reels with strange visions. These tasks become known to you:
-
-- Impale a foul spirit with the Spear, and keep it skewered until it burns away to nothing.
-- Visit the elder tree from which the Spear was carved, and water its roots with your blood.
-- Face the Pale Hunter and survive the encounter.
-- Spend a fortnight in the wild, eating nothing, naked and unarmed except for the Spear.
-- Pierce your own hand through with the Spear, giving it a shard of your soul and reducing your max HP by 1d4+1.
-
-When you *complete a task*, mark it off.
-
-When you *have marked 3 tasks*, you unlock the mysteries of the Twisted Spear. Choose one of the moves on the reverse; you can use that move as long as you wield the Spear. Each time you mark a task thereafter, gain another move from the reverse.
-
-## appendix d : major arca
-
-## Mysteries of the Twisted Spear
-
-## Moves
-
-## WHISPERS
-
-When you grip the shaft of the Twisted Spear , you can ask the GM, 'What spirits are active here?' and get an honest answer.
-
-## PROMISE OF DOOM
-
-When you hold the Twisted Spear and speak aloud an oath to destroy a spirit or demon , you do +2d4 damage against them and -4 damage to everything else. This lasts until you destroy them or forsake your oath. If you forsake your oath, mark a consequence.
-
-## ROOTS OF THE ELDER TREE
-
-When you stand with your feet firmly on the ground and strike a spirit, ghost, or demon , you can mark a consequence to send your target coursing through you and into the depths of the earth, where it is bound fast.
-
-## DARKNESS LINGERS
-
-When you strike down a spirit or demon , ask the GM for one of its moves and write it down; it is held in the Twisted Spear. When you use the stolen move , roll +CON: on a 10+ , you do it, just like that; on a 7-9 , you do it, but choose 1:
-
-- The move is lost, bleeding away from the Spear
-
-- Mark a consequence
-
-## Consequences
-
-- Deep beneath the elder tree from which the Spear was carved, something dark and terrible shifts and strains at the roots that bind it.
-
-- From now on, the first time you Make Camp each session, roll +WIS: on a 10+ , your dreams are unpleasant and claustrophobic, but your sleep is restful; on a 7-9 , you dream of that which is bound by the elder tree from which the Spear was carved-take disadvantage on your next roll, but ask the GM what you learn; on a 6- , the thing bound by the tree sees you, too. You awake, unrested, and will get no rest this night.
-
-- You are overwhelmed by a vision of the thing bound by the Spear's tree, its past and its terrible desires.
-
-- The elder tree from which the Spear was carved shudders and cracks, still whole but wounded and weakened.
-
-- A lesser evil escapes from the roots of the tree. Ask the GM what is now loose in the world.
-
-- The tree grows sick and weak, losing its leaves and sprouting only a few in spring.
-
-- Some natural thing is tainted by the dark power beneath the tree, and goes forth to wreak evil.
-
-- The tree dies. Its prisoners escape. And the Spear loses all power.
-
-## appendix d : major arcana
+> [!arcanum] #### **Twisted Spear**
+> ◇◇, *reach, magical*
+>
+>
+> A knobby length of wood, pale as death and hard as steel, tapering to a needle point. The shaft is scored and notched, the tip stained with blood and soot.
+>
+> The Spear is a potent weapon against spirits and demons. They cannot bear its touch and its presence makes them deeply ill at ease.
+>
+> When you *wield the Twisted Spear as a weapon*, you ignore magical protections and can harm spirits, demons, and insubstantial creatures.
+>
+> When you *first plunge the Spear into a spirit or demon*, your mind reels with strange visions. These tasks become known to you:
+>
+> - ☐ Impale a foul spirit with the Spear, and keep it skewered until it burns away to nothing.
+> - ☐ Visit the elder tree from which the Spear was carved, and water its roots with your blood.
+> - ☐ Face the Pale Hunter and survive the encounter.
+> - ☐ Spend a fortnight in the wild, eating nothing, naked and unarmed except for the Spear.
+> - ☐ Pierce your own hand through with the Spear, giving it a shard of your soul and reducing your max HP by 1d4+1.
+>
+> When you *complete a task*, mark it off.
+>
+> When you *have marked 3 tasks*, you unlock the mysteries of the Twisted Spear. Choose one of the moves on the reverse; you can use that move as long as you wield the Spear. Each time you mark a task thereafter, gain another move from the reverse.
+>
+> > [!arcanum-secret]- **Mysteries of the Twisted Spear**
+> >
+> > ### **Moves**
+> >
+> > > [!move] #### ☐ **WHISPERS**
+> > >
+> > > When you *grip the shaft of the Twisted Spear*, you can ask the GM, "What spirits are active here?" and get an honest answer.
+> > > ^whispers
+> >
+> > > [!move] #### ☐ **PROMISE OF DOOM**
+> > >
+> > > When you *hold the Twisted Spear and speak aloud an oath to destroy a spirit or demon*, you do +2d4 damage against them and -4 damage to everything else. This lasts until you destroy them or forsake your oath. If you forsake your oath, mark a consequence.
+> > > ^promise-of-doom
+> >
+> > > [!move] #### ☐ **ROOTS OF THE ELDER TREE**
+> > >
+> > > When you *stand with your feet firmly on the ground and strike a spirit, ghost, or demon*, you can mark a consequence to send your target coursing through you and into the depths of the earth, where it is bound fast.
+> > > ^roots-of-the-elder-tree
+> >
+> > > [!move] #### ☐ **DARKNESS LINGERS**
+> > >
+> > > When you *strike down a spirit or demon*, ask the GM for one of its moves and write it down; it is held in the Twisted Spear. When you *use the stolen move*, roll +CON: **on a 10+**, you do it, just like that; **on a 7-9**, you do it, but choose 1:
+> > >
+> > > - The move is lost, bleeding away from the Spear
+> > > - Mark a consequence
+> > > ^darkness-lingers
+> >
+> > #### **Consequences**
+> >
+> > ☐ Deep beneath the elder tree from which the Spear was carved, something dark and terrible shifts and strains at the roots that bind it.
+> > ☐ From now on, the first time you Make Camp each session, roll +WIS: **on a 10+**, your dreams are unpleasant and claustrophobic, but your sleep is restful; **on a 7-9**, you dream of that which is bound by the elder tree—take disadvantage on your next roll, but ask the GM what you learn; **on a 6-**, the thing bound by the tree sees you, too. You awake, unrested, and will get no rest this night.
+> > ☐ You are overwhelmed by a vision of the thing bound by the Spear's tree, its past and its terrible desires.
+> > ☐ The elder tree from which the Spear was carved shudders and cracks, still whole but wounded and weakened.
+> > ☐ A lesser evil escapes from the roots of the tree. Ask the GM what is now loose in the world.
+> > ☐ The tree grows sick and weak, losing its leaves and sprouting only a few in spring.
+> > ☐ Some natural thing is tainted by the dark power beneath the tree, and goes forth to wreak evil.
+> > ☐ The tree dies. Its prisoners escape. And the Spear loses all power.
+> > ^mysteries-of-the-twisted-spear
+> ^twisted-spear
 
 ## **Demonhide Cloak**
 
-, 1 armor, *warm*, *magical*
+◇, 1 armor, *warm*, *magical*
 
 A tattered cloak, stitched from a motley patchwork of unfamiliar hides and leather. Shifting odors waft from it: damp earth, ozone, musk, sulfur, rust, rot.
 
@@ -132,8 +129,6 @@ When you *wrap the Cloak tightly about your person*, you pass unnoticed by all s
 When you *flay the hide from a demon, tan it, and sew it onto the cloak*, mark 1:
 
 When you *make the last mark*, you unlock the mysteries of the Cloak and can use The Flesh Remembers (see reverse).
-
-# appendix d : major arcana
 
 ### **Mysteries of the Demonhide Cloak**
 
@@ -157,7 +152,7 @@ When you *take the appearance of a demon*, roll +CON: **on a 10+**, hold 3 Guise
 - Shrug off harm that your demonic form could ignore
 - Maneuver in a way consistent with your demonic form: flying, leaping, oozing, flitting as a shadow, etc.
 
-# **Consequences**
+## **Consequences**
 
 - You experience an overwhelming vision, from the point of view of a demon sewn into the Cloak. Ask the GM what you see and when you come to.
 - A number of seams fray and tear. The Cloak loses its powers until you sew a new piece of demon flesh into it.
@@ -167,19 +162,17 @@ When you *take the appearance of a demon*, roll +CON: **on a 10+**, hold 3 Guise
 
  **The Cloak** *bloodthirsty, demon-wise*, *extraordinary*, *magical*
 
-**Cost** chaos and wanton destruction (Loyalty )
+**Cost** chaos and wanton destruction (Loyalty ○○○)
 
-**Instinct** to bicker and argue (with you, with itself )
+**Instinct** to bicker and argue (with you, with itself)
 
 - <sup>ä</sup> Reveal a dark and terrible secret, or part of one
 - <sup>ä</sup> Manifest a minor demonic effect
 - <sup>ä</sup> Possess you in your sleep
 
-## appendix d : major arcana
-
 ## **Noruba's Ice Sphere**
 
-*, magical*, *awkward*
+◇, *magical*, *awkward*
 
 A perfect sphere of dark ice, the size of a fist, never melting, hard as stone, and set like a gaudy gem at the end of a finely wrought torc. Or not a torc, perhaps, but maybe a ring that once sat upon some giant's finger?
 
@@ -204,22 +197,16 @@ After the GM answers, roll +INT: **on a 10+**, hold 2 Acumen; **on a 7-9**, hold
 
 When you *make the last mark*, you unlock the mysteries of the Ice Sphere and can use Mindwalking (see reverse).
 
-> front **4**
+### **Mysteries of Noruba's Ice Sphere**
 
-# appendix d : major arcana
-
-#### **Mysteries of Noruba's Ice Sphere**
-
-| Moves |  |
-|-------|--|
-|-------|--|
+## **Moves**
 
 #### **MINDWALKING**
 
 When you *use the Ice Sphere as a psychic anchor*, your consciousness leaves your body and walks the world as a spirit, invisible and insubstantial. Roll +INT: **on a 10+**, hold 3 Power; **on a 7-9**, hold 2 Power; **on a 6-**, hold 2 Power and mark a Consequence. While mindwalking, you may spend your Power, 1-for-1 to:
 
 - Manifest as a ghostly voice and/or presence
-- Manipulate an unattended item (small or , no bigger)
+- Manipulate an unattended item (small or ◇, no bigger)
 - Return instantly to the Ice Sphere from any distance
 
 For every 2 Consequences you mark, gain one of the following moves:
@@ -240,7 +227,7 @@ When you *mindwalk*, you may spend 1 Power to become able to communicate mentall
 
 When you *mindwalk*, you may spend 1 Power to animate a mass of loose material (gravel, snow, leaves, etc.) into a body no larger than your own. When you would roll STR, DEX, or CON in this form, use INT instead. This form has 10 HP. When reduced to 0 HP, it dissipates and you return to your physical body.
 
-# **Consequences**
+## **Consequences**
 
 - You draw the attention of some powerful, hungry entity of the spirit world. It has your scent.
 - Your physical body withers and fades—permanently mark the *weakened* debility
@@ -250,11 +237,9 @@ When you *mindwalk*, you may spend 1 Power to animate a mass of loose material (
   - When you take damage from fire, roll twice and take the higher result.
 - When you *roll 6- at Death's Door*, you have no choice: gain the Ghost insert (with the Ice Sphere as your tether).
 
-## appendix d : major arcana
+**Mindgem** ◇◇, *slow*, *indestructible*
 
-**Mindgem** *, slow*, *indestructible*
-
-A chunk of makerglass the size of a human head; inspection reveals facets within facets, a thousandfold. When you *touch the glass with bare skin and open your mind to it*, you contact the intelligence within lonely, confused, longing for meaning and connection.
+A chunk of makerglass the size of a human head; inspection reveals facets within facets, a thousandfold. When you *touch the glass with bare skin and open your mind to it*, you contact the intelligence within—lonely, confused, longing for meaning and connection.
 
 It will happily speak with you, mind-to-mind. It knows much about the past, but naught of its own history or purpose. At least, not yet.
 
@@ -264,7 +249,7 @@ When you *consult the Mindgem about the Makers, their arts, or their history*, a
 - It takes a long time—hours or even days—to get the answer
 - Your mind is left reeling; take disadvantage on your next roll
 
-## **On a 6-**, choose 1:
+**On a 6-**, choose 1:
 
 - It wastes your time with irrelevant histories and data
 - It answers now, but refuses to answer further questions until you make progress towards restoring its body (or, if its body is assembled, until you pay its Cost).
@@ -272,30 +257,19 @@ When you *consult the Mindgem about the Makers, their arts, or their history*, a
 The Mindgem knows that a body was crafted for it, and that it has likely survived—at least in part. It longs for the body to be whole, and to interact with the world. To assemble the Mindgem's body and unlock its mysteries:
 
 - Recover its chassis of white granite, which weighs well over a ton
-- Recover its "heart," a chunk of makerglass that forever burns with terrible heat (*indestructible*, *dangerous*)
-- Recover and repair the intricate bronze helm (*awkward, big*) that serves as a casing for the Mindgem
+- Recover its ◇ "heart," a chunk of makerglass that forever burns with terrible heat (*indestructible*, *dangerous*)
+- Recover and repair the intricate ◇◇ bronze helm (*awkward, big*) that serves as a casing for the Mindgem
 - Puzzle out how to assemble all the pieces
 
 When you've completed all the requirements, gain the Mighty Servant (see reverse).
 
-front
+### **Mysteries of the Mindgem**
 
-# appendix d : major arcana
-
-#### **Mysteries of the Mindgem**
-
-| - | •  | • |    |
-|---|----|---|----|
-| £ | 7₩ | ч | à. |
-|   | •  | и | w  |
-| • | 77 | ▼ | Ŧ  |
-|   |    |   |    |
-
-#### **The Mighty Servant**
+### **The Mighty Servant**
 
  *large*, *construct*, *Maker-wise*, *beautiful*, *meek*, *hardy*, *slow*, *strong*, *exceptional*
 
-**Special qualities** living stone, tireless **Cost** wonder, excitement, joy, discovery (Loyalty )
+**Special qualities** living stone, tireless **Cost** wonder, excitement, joy, discovery (Loyalty ○○○)
 
 **Instinct** to misunderstand
 
@@ -304,7 +278,7 @@ front
 
 **Damage** stone fists d10+1 (*hand, close*, disadvantage)
 
-When *the Mighty Servant makes a move at your behest* (see Order Followers), on a 6-, in addition to whatever the GM says, mark a consequence.
+When *the Mighty Servant makes a move at your behest* (see Order Followers), **on a 6-**, in addition to whatever the GM says, mark a consequence.
 
 ## **Consequences**
 
@@ -312,20 +286,19 @@ When *the Mighty Servant makes a move at your behest* (see Order Followers), on 
 - It begins to understand (or perhaps it remembers) lies and deception. It gains the *devious* tag and this move:
   - <sup>ä</sup> Reveal an earlier deception or half-truth
 - It develops a sense of pride; cross off the *meek* tag.
-- It realizes its potential as a weapon. Replace the *slow* tag with the *warrior* tag, and its damage becomes 1d10+5 (*hand, close, messy, forceful*, 3 piercing)
+- It realizes its potential as a weapon. Replace the *slow* tag with the *warrior* tag, and its damage becomes d10+5 (*hand, close, messy, forceful*, 3 piercing)
   - It becomes aggressive and reckless in battle. Its attacks gain the *area* and *dangerous* tags.
 - It remembers its original purpose. The GM will pick 1 or have you roll 1d4 on the table below to determine the Servant's new cost (replacing "wonder, excitement, joy").
 
-### **1d4** purpose cost
+| 1d4 | Purpose | Cost |
+|---|---|---|
+| 1 | To punish | Victory against Hillfolk, sorcerers, the Things Below |
+| 2 | To preserve | Acquiring artifacts of the past, safely hiding them away |
+| 3 | To purge | Destroying artifacts of the Green Lords or Things Below |
+| 4 | To build | Progress towards building an enormous, enigmatic edifice |
 
-- 1 To punish Victory against Hillfolk, sorcerers, the Things Below
-- 2 To preserve Acquiring artifacts of the past, safely hiding them away
-- 3 To purge Destroying artifacts of the Green Lords or Things Below
-- 4 To build Progress towards building an enormous, enigmatic edifice
-- Its instinct becomes "to pursue its purpose." You must Persuade it to do anything unrelated to that purpose, and it will flat-out refuse to act against its purpose.
-- It wanders off in pursuit of its purpose, implacably pursuing it. It is no longer a follower, though you might still be able to Persuade it.
-
-## appendix d : major arcana
+  - Its instinct becomes "to pursue its purpose." You must Persuade it to do anything unrelated to that purpose, and it will flat-out refuse to act against its purpose.
+  - It wanders off in pursuit of its purpose, implacably pursuing it. It is no longer a follower, though you might still be able to Persuade it.
 
 ## **Whispering Rocks**
 
@@ -341,21 +314,19 @@ When you *make the last mark*, you unlock the mysteries of the rocks, and are ab
 
 When *one of the rocks is shattered*, cross off one of the Shadow Magic options; it is no longer available.
 
-## appendix d : major arca
-
-## Mysteries of the Whispering Rocks
+### Mysteries of the Whispering Rocks
 
 ## Moves
 
 ## SHADOW MAGIC
 
-When you hold a Whispering Rock and call out the shadows within , choose one thing which you wish to do:
+When you *hold a Whispering Rock and call out the shadows within*, choose one thing which you wish to do:
 
 - Cloak yourself in shadows and silence, moving unseen and unnoticed as long as you draw no attention to yourself and avoid the sun or sacred light
 - Name someone you know or to whom you have an arcane link (hair, clothing, or the like); you can see them, hear them, and whisper to them as if from a nearby shadow
 - Name someone you can see; the nearby shadows ensnare them, doing no harm but hampering their sight and movement
 
-Then, roll +CON: on a 10+ , the effect lasts as long as you wish, but you have disadvantage on all rolls while you maintain it; on a 7-9 , either mark a consequence and the effect lasts as on a 10+, or the effect flickers out after mere moments (your choice which); on a 6, ask the GM what happens (which may or may not involve marking a consequence).
+Then, roll +CON: **on a 10+**, the effect lasts as long as you wish, but you have disadvantage on all rolls while you maintain it; **on a 7-9**, either mark a consequence and the effect lasts as on a 10+, or the effect flickers out after mere moments (your choice which); **on a 6-**, ask the GM what happens (which may or may not involve marking a consequence).
 
 ## Consequences
 
@@ -367,15 +338,13 @@ Then, roll +CON: on a 10+ , the effect lasts as long as you wish, but you have d
 
 - You skin turns deathly pale or coal black (your choice) and chill to the touch. The sun burns your skin, but you go unharmed by even the bitterest cold.
 
-- You begin to suffer from dark and troubling dreams. When you Make Camp , roll +WIS: on a 10+ , a useful secret is revealed by your nightmares-ask the GM to describe them; on a 7-9 , you get as good a night's sleep as you can; on a 6- , you get no rest for the night.
+- You begin to suffer from dark and troubling dreams. When you *Make Camp*, roll +WIS: **on a 10+**, a useful secret is revealed by your nightmares—ask the GM to describe them; **on a 7-9**, you get as good a night's sleep as you can; **on a 6-**, you get no rest for the night.
 
-- The spirits in the rocks take purchase in your soul. When the spirits compel you to action , mark XP if you comply. If you resist, roll +WIS: on a 10+ , you quickly shake off the compulsion; on a 7-9 , it takes a few moments to break free; on a 6- , you come to your senses some time later, having done the-gods-know-what.
-
-## appendix d : major arcana
+- The spirits in the rocks take purchase in your soul. When *the spirits compel you to action*, mark XP if you comply. If you resist, roll +WIS: **on a 10+**, you quickly shake off the compulsion; **on a 7-9**, it takes a few moments to break free; **on a 6-**, you come to your senses some time later, having done the-gods-know-what.
 
 ## **Blood-quenched Sword**
 
-*, close*, +1 damage, 1 piercing, *messy*, *magical*
+◇, *close*, +1 damage, 1 piercing, *messy*, *magical*
 
 An ancient blade of deep red bronze, its pommel etched with symbols like those that the Hillfolk use to decorate their drinking horns. It thrums in its scabbard, wanting nothing more than to be drawn and to burn like a fire, quenching itself in the blood of foes.
 
@@ -389,19 +358,19 @@ When you *sheathe the Sword after using it to kill a living, bleeding foe*, mark
 
 When you *make the last mark*, you unlock the Sword's mysteries; gain Unquenched (see reverse).
 
-## Mysteries of the Blood-quenched Sword
+### Mysteries of the Blood-quenched Sword
 
 ## Moves
 
 ## UNQUENCHED
 
-When you Clash with a living, bleeding foe with the Blood-quenched Sword , you may mark a Consequence to shift the result up one step (a 6- becomes a 7-9; a 7-9 becomes a 10-11; a 10-11 becomes 12+). You can do this only once per roll.
+When you *Clash with a living, bleeding foe with the Blood-quenched Sword*, you may mark a Consequence to shift the result up one step (a 6- becomes a 7-9; a 7-9 becomes a 10-11; a 10-11 becomes 12+). You can do this only once per roll.
 
-When you have marked 3 consequences , you gain A Flickering Flame.
+When you *have marked 3 consequences*, you gain A Flickering Flame.
 
 ## A FLICKERING FLAME
 
-When you wield the Blood-quenched Blade and leap headlong into battle against multiple foes , roll +CON: on a 10+ , hold 3 Speed; on a 7-9 , hold 2 Speed; on a 6, hold 2 Speed, and mark a consequence.
+When you *wield the Blood-quenched Blade and leap headlong into battle against multiple foes*, roll +CON: **on a 10+**, hold 3 Speed; **on a 7-9**, hold 2 Speed; **on a 6-**, hold 2 Speed, and mark a consequence.
 
 During this battle, you may spend Speed, 1-for-1 to do the following:
 
@@ -416,9 +385,9 @@ When you stop fighting, lose all Speed.
 
 You lose yourself in a blood-rage, no longer distinguishing between friend, foe, and bystander.
 
-When you attack the nearest living creature , you have advantage on damage rolls.
+When you *attack the nearest living creature*, you have advantage on damage rolls.
 
-When you attempt to stay your hand , roll +WIS: on a 10+ , you do so, and can choose to calm yourself and end the rage with a few moments focus; on a 7-9 , you stay your hand, but must choose a different target for your rage; on a 6- , attack without mercy or doubt.
+When you *attempt to stay your hand*, roll +WIS: **on a 10+**, you do so, and can choose to calm yourself and end the rage with a few moments focus; **on a 7-9**, you stay your hand, but must choose a different target for your rage; **on a 6-**, attack without mercy or doubt.
 
 - Pick someone who survives this battle (friend or foe). You are convinced that they covet the Blood-quenched Sword. Until you put them in their place, you are either dazed or miserable (your choice).
 
@@ -426,15 +395,13 @@ When you attempt to stay your hand , roll +WIS: on a 10+ , you do so, and can ch
 
 - You can no longer sleep or rest without the Blood-quenched Sword at hand.
 
-- You no longer gain sustenance from food. When you slay a living, bleeding creature with the Sword , hold 1 Sustenance (max 3). When you would consume a ration, lose 1 Sustenance instead.
+- You no longer gain sustenance from food. When you *slay a living, bleeding creature with the Sword*, hold 1 Sustenance (max 3). When you would consume a ration, lose 1 Sustenance instead.
 
 - You can always ask the GM 'Does this NPC disrespect me or intend to do me harm?' and the GM will answer honestly 'Yes' or 'No.' If they answer 'Yes,' gain advantage to end their life and take disadvantage to do anything else.
 
-## appendix d : major arcana
-
 ## **Shield of the Wisent Witch**
 
-*,* +1 armor, *close*, *forceful*, *magical*, +1 Readiness on a 7+ to Defend
+◇◇, +1 armor, *close*, *forceful*, *magical*, +1 Readiness on a 7+ to Defend
 
 A shield of horn-oak, glossy from long use, shod in bronze and adorned with a stylized wisent skull. It's heavier than it looks, but its heft gives you a feeling of confidence, like anyone would be a fool to mess with a titan such as you.
 
@@ -450,16 +417,16 @@ When you *make the last mark*, you unlock the shield's mysteries, and can use Sp
 
 ## SPIRITS OF THE HERD
 
-When you proudly bear the Shield of the Wisent Witch and call upon the spirits of the herd , choose 1 of the following effects:
+When you *proudly bear the Shield of the Wisent Witch and call upon the spirits of the herd*, choose 1 of the following effects:
 
 - So long as you bear the Shield and until one of you speaks in the tongues of men, you and any allies that you mark with mud from the forest floor take on the visage of a herd of wisents. While this spell lasts, you and your allies cover ground at great speed and can graze rather than consuming supplies/provisions.
-- As you charge your foes, conjure a herd of stampeding wisent to join you. Treat the herd as a weapon (+2d4 damage, forceful , messy , area , dangerous , terrifying ) as you Clash. The herd vanishes once the charge's momentum is spent.
+- As you charge your foes, conjure a herd of stampeding wisent to join you. Treat the herd as a weapon (+2d4 damage, *forceful*, *messy*, *area*, *dangerous*, *terrifying*) as you Clash. The herd vanishes once the charge's momentum is spent.
 - Hold 3 Might. You can spend Might 1-for-1 to:
 - Plow past, over, or through an opponent or obstacle
 - Tear free from any physical restraint
 - Shrug off a physical blow, unfazed and unharmed
 
-After choosing an effect, roll +CON: on a 10+ , the effect occurs as described; on a 7-9 , the effect occurs, but only if you mark 1 Consequence; on a 6, mark 1 Consequence, and the effect occurs-but the GM will tell you what goes wrong.
+After choosing an effect, roll +CON: **on a 10+**, the effect occurs as described; **on a 7-9**, the effect occurs, but only if you mark 1 Consequence; **on a 6-**, mark 1 Consequence, and the effect occurs—but the GM will tell you what goes wrong.
 
 ## Consequences
 
@@ -473,27 +440,25 @@ After choosing an effect, roll +CON: on a 10+ , the effect occurs as described; 
 
 - You make an inordinate amount of noise; your voice booms, your feet stomp heavily, even your breathing is loud.
 
-- Your attacks all gain the forceful tag (and become more so if they already were forceful ) and large weapons lose the awkward tag. Alas, you hardly know your own strength and must be careful to avoid breaking things (including your friends).
+- Your attacks all gain the forceful tag (and become more so if they already were forceful) and large weapons lose the awkward tag. Alas, you hardly know your own strength and must be careful to avoid breaking things (including your friends).
 
 - Predators sense that you would be delicious and will choose to attack and eat you before just about any other potential prey.
 
-- You become territorial and overly defensive of your allies. When someone or thing disrespects you, challenges your authority, or directly threatens your allies , you have disadvantage to do anything other than set them straight.
+- You become territorial and overly defensive of your allies. When someone or thing *disrespects you, challenges your authority, or directly threatens your allies*, you have disadvantage to do anything other than set them straight.
 
-## appendix d : major arca
-
-## Mysteries of the Shield of the Wisent Witch
-
-## appendix d : major arcana
+### Mysteries of the Shield of the Wisent Witch
 
 ## **Hec'tumel Codex**
 
-*, crude*, *slow*, *magical*
+◇, *crude*, *slow*, *magical*
 
 A dozen copper plates, green with age and bound with loops of reddish metal wire. The outer plates are embossed with strange images of man and beast while the inner plates are etched with arcane diagrams and annotated in some forgotten script.
 
 When you *first run your fingers over the inscriptions*, your dreams that night are filled with images of a pale, reptilian creature with skulls for eyes, slithering through darksome caverns. You awake with an alien incantation on your tongue, its words emblazoned in your mind. You can Cast a Codex Spell, and know Call the Pale Lizard.
 
-## **CAST A CODEX SPELL***Casting penalty*
+## **CAST A CODEX SPELL**
+
+*Casting penalty* ○○○○○
 
 When you *cast a spell learned from the Hec'tumel Codex*, roll +INT: **on a 10+**, the spell works as described; **on a 7-9**, the spell works, but choose 1 from the list below; **on a 6-**, mark a consequence (see reverse) in addition to whatever the GM says.
 
@@ -506,27 +471,23 @@ When *Hec'tumel spends the night teaching you a spell from the Codex*, mark 1:
 
 Each time you *make a mark*, choose one of the **Codex Spells** (see reverse)—you can now cast it. When you *make the last mark*, you have unlocked the mysteries of the Codex and gain the Darksome Vessel move (see reverse).
 
-> front **9**
-
-## appendix d : major arca
-
-## Mysteries of the Hec'tumel Codex
+### Mysteries of the Hec'tumel Codex
 
 ## Spells of the Codex
 
-- Call Up the Dead. Touch a corpse; you conjure its shade, which must truthfully answer 3 questions. Empowered: Bind the shade to a tether as a revenant or a ghost; it must perform 3 tasks before being freed from your service.
+- Call Up the Dead. Touch a corpse; you conjure its shade, which must truthfully answer 3 questions. **Empowered:** Bind the shade to a tether as a revenant or a ghost; it must perform 3 tasks before being freed from your service.
 
-- Serpentine. Your soul slithers from your mouth in the form of an albino viper ( tiny , stealthy , quick , venomous ), leaving your body insensate until you slither back in. Use your normal stats while in this form. Empowered: Rather than your soul leaving your body, you physically trans- form into a man-sized serpent (2 armor, stealthy , quick , venomous , forceful , grabby ).
+- Serpentine. Your soul slithers from your mouth in the form of an albino viper (*tiny*, *stealthy*, *quick*, *venomous*), leaving your body insensate until you slither back in. Use your normal stats while in this form. **Empowered:** Rather than your soul leaving your body, you physically transform into a man-sized serpent (2 armor, *stealthy*, *quick*, *venomous*, *forceful*, *grabby*).
 
-- Snuff the Spirit. Name a living victim within near range and roll 2d6. If the victim has fewer current HP than your roll, it dies suddenly. Empowered: each living creature near your victim is also affected.
+- Snuff the Spirit. Name a living victim within near range and roll 2d6. If the victim has fewer current HP than your roll, it dies suddenly. **Empowered:** each living creature near your victim is also affected.
 
-- Torpor. Lock eyes with someone and whisper soothing words. They start to fall asleep. If they resist, roll 3d4-if your roll exceeds their current HP , they fail. Once asleep, they do not age, need not eat/drink, and suffer no harm from poison or disease. They cannot be roused until they hear their name thrice-spoken. Empowered : Over 3d6 days, all physical harm heals, lost limbs (etc.) regenerate, poisons & diseases are cured, and the infirmities of age reverse.
+- Torpor. Lock eyes with someone and whisper soothing words. They start to fall asleep. If they resist, roll 3d4-if your roll exceeds their current HP , they fail. Once asleep, they do not age, need not eat/drink, and suffer no harm from poison or disease. They cannot be roused until they hear their name thrice-spoken. **Empowered:** Over 3d6 days, all physical harm heals, lost limbs (etc.) regenerate, poisons & diseases are cured, and the infirmities of age reverse.
 
 ## Moves
 
 ## DARKSOME VESSEL
 
-When you cast a Codex spell , on a 12+ you can choose the Empowered effect. When you choose to mark a consequence before casting a spell , don't roll; you get a 12+.
+When you *cast a Codex spell*, **on a 12+** you can choose the Empowered effect. When you *choose to mark a consequence before casting a spell*, don't roll; you get a 12+.
 
 ## Consequences
 
@@ -544,11 +505,7 @@ When you cast a Codex spell , on a 12+ you can choose the Empowered effect. When
 
 - Anything that you perceive, Hec'tumel perceives it too.
 
-back
-
-## appendix d : major arcana
-
-## **Red Scepter** *, magical*
+## **Red Scepter** ◇, *magical*
 
 A bronze rod, tipped with a glowing red crystal and carved with openwork shapes of hungry, leering faces.
 
@@ -573,21 +530,21 @@ When you *make the last mark*, you unlock the Scepter's mysteries and gain Burni
 
 ## BURNING HATRED (near, magical, reload)
 
-When you point the Red Scepter at an object of your hatred and erase 1 charge , roll +CHA: on a 10+ , the Scepter deals 2d4 damage ( messy , ignores armor), manifested as blistering burns; on a 7-9 , as a 10+ but pick 1:
+When you *point the Red Scepter at an object of your hatred and erase 1 charge*, roll +CHA: **on a 10+**, the Scepter deals 2d4 damage (*messy*, ignores armor), manifested as blistering burns; **on a 7-9**, as a 10+ but pick 1:
 
 - Mark a consequence
 - Spend a few seconds chanting and muttering before dealing damage
 - Cause any exposed, combustible items in range to burst into flames
 
-On a 6, the GM says what happens (which may or may not involve marking a consequence).
+**On a 6-**, the GM says what happens (which may or may not involve marking a consequence).
 
-When you mark 3 Consequences , you gain Fanning the Flames.
+When you *mark 3 Consequences*, you gain Fanning the Flames.
 
 ## FANNING THE FLAMES
 
-When you use Inflame , you can incite everyone who can hear you into violent action, not just an individual. If you do, roll once for the entire crowd, but each target makes their own choices. On a 7-9 , you must also choose a Consequence; on a 6, the GM chooses a Consequence for you in addition to whatever else happens.
+When you *use Inflame*, you can incite everyone who can hear you into violent action, not just an individual. If you do, roll once for the entire crowd, but each target makes their own choices. **On a 7-9**, you must also choose a Consequence; **on a 6-**, the GM chooses a Consequence for you in addition to whatever else happens.
 
-When you use Burning Hatred , you can mark a consequence to target not just the person or thing you hate but also everything near them. Roll +CHA once but roll damage for each victim. Any combustibles on your targets also erupt into flame.
+When you *use Burning Hatred*, you can mark a consequence to target not just the person or thing you hate but also everything near them. Roll +CHA once but roll damage for each victim. Any combustibles on your targets also erupt into flame.
 
 ## Consequences
 
@@ -601,17 +558,15 @@ When you use Burning Hatred , you can mark a consequence to target not just the 
 
 - To gain any future charge, the blood-letting must be brutal, messy, and wanton.
 
-- Henceforth, when you incite someone to violence with the Scepter and they act as you suggest , they lose themselves to primal bloodlust. They feel no pain and revel in carnage until they are killed, restrained, or crippled.
+- Henceforth, when you *incite someone to violence with the Scepter and they act as you suggest*, they lose themselves to primal bloodlust. They feel no pain and revel in carnage until they are killed, restrained, or crippled.
 
-- When you use Burning Hatred , something on your person or within reach also catches fire.
+- When you *use Burning Hatred*, something on your person or within reach also catches fire.
 
 - You always hear a dim howling in the back of your mind. When the wind blows, the howling grows in volume, making it difficult to hear anything other than insults or plans to commit violence.
 
-- When you Persuade using anything other than threats, pain, or violence , the best you can get is a 7-9.
+- When you *Persuade using anything other than threats, pain, or violence*, the best you can get is a 7-9.
 
-## Mysteries of the Red Scepter
-
-## appendix d : major arcana
+### Mysteries of the Red Scepter
 
 ## **Ring of Daagon**
 
@@ -627,55 +582,51 @@ When you *have used the Ring to summon an obscuring fog and a named creature die
 
 When you *make the last mark*, you unlock the ring's mysteries and may Call Up the Deep Ones (see reverse) while wearing the ring. The ring itself becomes a follower.
 
-## **The Ring**
+### **The Ring**
 
  *deep-wise*, *greedy*, *patient*, *knowledgeable*, *magical* 
 
-**Cost** devouring fallen, named creatures (Loyalty ) **Instinct** to give nothing (not even secrets or info) away
+**Cost** devouring fallen, named creatures (Loyalty ○○○) **Instinct** to give nothing (not even secrets or info) away
 
 - <sup>ä</sup> Speak mind-to-mind
 - <sup>ä</sup> Reveal a secret, for a price
 - <sup>ä</sup> Know someone's desires
 
-front
-
-## appendix d : major arca
-
-## Mysteries of the Ring of Daagon
+### Mysteries of the Ring of Daagon
 
 ## Moves
 
 ## CALL UP THE DEEP ONES
 
-When you stand in heavy fog or before deep water and call on the servants of Daagon to serve you , spend 1 Loyalty or mark a consequence and they appear. Treat them as followers, sharing a pool of Loyalty with the Ring itself. You can always choose to mark a consequence in lieu of spending their Loyalty.
+When you *stand in heavy fog or before deep water and call on the servants of Daagon to serve you*, spend 1 Loyalty or mark a consequence and they appear. Treat them as followers, sharing a pool of Loyalty with the Ring itself. You can always choose to mark a consequence in lieu of spending their Loyalty.
 
-## Servant of Daagon
+### Servant of Daagon
 
 terrifying , violent , wretched
 
 Instinct to devour
 
-Each time you Call Up the Deep Ones , roll five d4s and assign each to a different aspect:
+Each time you *Call Up the Deep Ones*, roll five d4s and assign each to a different aspect:
 
-\_\_\_\_\_ Tags: 1 = + craven ; 2 = + ravenous ; 3 = + cunning ; 4 = + exceptional (roll +2 for moves instead of +1)
+\_\_\_\_\_ Tags: 1 = +*craven*; 2 = +*ravenous*; 3 = +*cunning*; 4 = +*exceptional* (roll +2 for moves instead of +1)
 
-\_\_\_\_\_ No. Appearing: 1 = horde (quantity 2d6, HP 3, damage 1d6); 2-3 = group (quantity 1d6+1), HP 6, damage 1d8); 4 = solitary (HP 12, damage 1d10).
+\_\_\_\_\_ No. Appearing: 1 = horde (quantity 2d6, HP 3, damage 1d6); 2-3 = group (quantity 1d6+1, HP 6, damage 1d8); 4 = solitary (HP 12, damage 1d10).
 
-\_\_\_\_\_ Size: 1 = small (-2 HP, -2 damage, hand ); 2-3 = medium ( close ); 4 = large (+4 HP, +1 damage, close , reach ).
+\_\_\_\_\_ Size: 1 = small (-2 HP, -2 damage, *hand*); 2-3 = medium (*close*); 4 = large (+4 HP, +1 damage, *close*, *reach*).
 
 \_\_\_\_\_ Traits: choose a number equal to the assigned die.
 
 blubbery/scaly hide (2 armor)
 
-+ stealthy and + cautious
++*stealthy* and +*cautious*
 
-powerful (+2 damage, forceful )
+powerful (+2 damage, *forceful*)
 
-tentacles/pincers, etc. ( reach , grabby )
+tentacles/pincers, etc. (*reach*, *grabby*)
 
-big claws/fangs (1 piercing, messy )
+big claws/fangs (1 piercing, *messy*)
 
-projectiles (+ near )
+projectiles (+*near*)
 
 \_\_\_\_\_
 
@@ -693,7 +644,7 @@ Moves: choose a number equal to the assigned die.
 
 ä Paralyze them with venom
 
-When you send them back whence they came , roll +CHA: on a 10+ , they go, now; on a 7-9 , they go, but take their time and likely do some harm on their way; on a 6- , spend their Loyalty or mark a consequence and they'll eventually go (as on a 7-9); otherwise, this batch breaks free of your control and are no longer followers.
+When you *send them back whence they came*, roll +CHA: **on a 10+**, they go, now; **on a 7-9**, they go, but take their time and likely do some harm on their way; **on a 6-**, spend their Loyalty or mark a consequence and they'll eventually go (as on a 7-9); otherwise, this batch breaks free of your control and are no longer followers.
 
 ## Consequences
 
@@ -709,11 +660,9 @@ Only raw flesh nourishes you, but you are immune to food-borne illness.
 
 The ring's Cost becomes 'Living, helpless, intelligent sacrifices.'
 
-## appendix d : major arcana
-
 ## **Rune-laden Scales**
 
-, 2 armor, *magical*
+◇◇, 2 armor, *magical*
 
 An ancient vest of bluish steel, each scale etched with a silvery rune similar to those found among the ruins near Barrier Pass. A working of the Makers, no doubt, or at least of their most gifted students. The armor is surprisingly light and supple. The scales are always cold to the touch, and often edged in frost.
 
@@ -729,25 +678,25 @@ When you *make the last mark*, you unlock the mysteries of the armor. Gain a mov
 
 ## INDOMITABLE
 
-When you wear the Scales and stand fast against a magical attack , you can mark a consequence after you roll to add 3 to the result.
+When you *wear the Scales and stand fast against a magical attack*, you can mark a consequence after you roll to add 3 to the result.
 
 ## MAGNET
 
-When you witness a magical attack , you can either spend 1 Readiness (from the Defend move) or mark a consequence to redirect the magic so that it affects only you. You can then stand fast against it.
+When you *witness a magical attack*, you can either spend 1 Readiness (from the Defend move) or mark a consequence to redirect the magic so that it affects only you. You can then stand fast against it.
 
 ## POWER SINK
 
-When you wear the Rune-laden Scales and stand fast against a magical attack , on a 12+ the armor drains the attacker's power. That form of attack is lost to them, though they might regain it with time, study, or effort.
+When you *wear the Rune-laden Scales and stand fast against a magical attack*, **on a 12+** the armor drains the attacker's power. That form of attack is lost to them, though they might regain it with time, study, or effort.
 
-When you wear the Rune-laden Scales and spend time in quiet communion with the elements , the power absorbed by the armor dissipates harmlessly.
+When you *wear the Rune-laden Scales and spend time in quiet communion with the elements*, the power absorbed by the armor dissipates harmlessly.
 
-If you trigger Power Sink again before dissipating the absorbed power , mark XP, ask the GM what happens, and brace yourself for the worst.
+If you *trigger Power Sink again before dissipating the absorbed power*, mark XP, ask the GM what happens, and brace yourself for the worst.
 
 ## PROOF AGAINST HARM
 
 The Rune-laden Scales now provide you 3 armor, even against piercing and attacks that normally ignore armor.
 
-When you wear the Rune-laden Scales and find yourself at Death's Door , you may mark a consequence before you roll to automatically get a 10+.
+When you *wear the Rune-laden Scales and find yourself at Death's Door*, you may mark a consequence before you roll to automatically get a 10+.
 
 ## Consequences
 
@@ -755,25 +704,21 @@ When you wear the Rune-laden Scales and find yourself at Death's Door , you may 
 
 - Mere minions and mindless horrors will no longer suffice. You only mark 1 for destroying a potent agent of chaos, such as a mighty demon or sorcerer.
 
-- When you use or knowingly submit to chaotic magic , the Rune-laden Scales cease to benefit you or anyone you consider to be a friend or ally.
+- When you *use or knowingly submit to chaotic magic*, the Rune-laden Scales cease to benefit you or anyone you consider to be a friend or ally.
 
-- When you kill a living creature out of anger, fear, or passion , even an agent of chaos, take disad- vantage on all rolls until you ceremonially atone and purify yourself.
+- When you *kill a living creature out of anger, fear, or passion*, even an agent of chaos, take disadvantage on all rolls until you ceremonially atone and purify yourself.
 
-- When you take any violent action out of anger, fear, or passion , even against an agent of chaos, take disadvantage on all rolls until you ceremonially atone and purify yourself.
+- When you *take any violent action out of anger, fear, or passion*, even against an agent of chaos, take disadvantage on all rolls until you ceremonially atone and purify yourself.
 
 - You come to the attention of one of the mightiest of the Things Below, and they make your doom-or your corruption-a priority.
 
 - You ascend into a vision state, in which you meet the spirit of the last hero to wear the Scales. Should you refuse the quest they offer, the Rune-laden Scales cease to function.
 
-## appendix d : major arca
-
-## Mysteries of the Rune-laden Scales
-
-## appendix d : major arcana
+### Mysteries of the Rune-laden Scales
 
 ## **Blackwood Fetishes**
 
-*, magical*, *indestructible*
+◇, *magical*, *indestructible*
 
 A pair of wooden figurines, carved from blackwood and worn smooth with age and use. A whitish shaft has been driven into the top of each figurine's head, and the eyes and forehead of each are stained a rusty, reddish color.
 
@@ -787,11 +732,9 @@ When you *learn the name of one of the bound spirits*, or the sign that draws th
 
 When you *make the last mark*, you unlock the mysteries of the Blackwood Fetishes and can use Call Forth and Command (see reverse).
 
-# appendix d : major arcana
+### **Mysteries of the Blackwood Fetishes**
 
-# **Mysteries of the Blackwood Fetishes**
-
-# **Moves**
+## **Moves**
 
 ## **CALL FORTH AND COMMAND**
 
@@ -799,13 +742,13 @@ When you *mark both figurines with your own blood and call both Astor and Halix 
 
 When you *dismiss either Astor or Halix*, both return to their figurines until you call them forth again.
 
-When e*ither Astor or Halix is banished or reduced to 0 HP*, they both return to their respective fetish. They cannot be called forth again until the next new moon.
+When *either Astor or Halix is banished or reduced to 0 HP*, they both return to their respective fetish. They cannot be called forth again until the next new moon.
 
 *In life, Astor was a hunter, low-born but handsome and proud. Halix was the lordly heir of Astor's people: spoiled, manipulative, vain. Halix took Astor as one of many furtive lovers, making an insincere blood-oath that one day they would wed.*
 
 *Their clan fell under the sway of a sorcerer. Astor snuck away to warn the Makers of rebellion, but Halix sided with the sorcerer. The sorcerer used the blood-oath between them to work foul magic, wrenching Astor's soul from their body and binding it. To their surprise, Halix's soul was likewise bound. The sorcerer used them as spies and assassins, leaving Astor's once-noble soul bitter and distrustful. Halix, though, revels in immortality and delights in the opportunities afforded by this undead state.* 
 
-# **Astor**
+### **Astor**
 
  *undead*, *spirit*, *hunter*, *cunning*, *jealous*, *sarcastic*, *warrior*
 
@@ -815,7 +758,7 @@ When e*ither Astor or Halix is banished or reduced to 0 HP*, they both return to
 - <sup>ä</sup> Manifest a ghostly presence (harmed only by silver or salt)
 - <sup>ä</sup> Make a pessimistic observation
 
-**Damage** ghostly spear d8 (*reach*, ignores armor) **Cost** proof of honor, nobility (Loyalty )
+**Damage** ghostly spear d8 (*reach*, ignores armor) **Cost** proof of honor, nobility (Loyalty ○○○)
 
 ### **Halix**
 
@@ -830,9 +773,7 @@ When e*ither Astor or Halix is banished or reduced to 0 HP*, they both return to
 
 **Damage** ghostly touch d4 (*hand*, ignores armor) or host's weapon d6 (tags vary)
 
-**Cost** pleasures of the flesh (Loyalty )
-
-## appendix d : major arcana
+**Cost** pleasures of the flesh (Loyalty ○○○)
 
 *implanted*, *magical* A series of branching, tree-like markings coursing up and down your skin. Usually pale blue, almost
 
@@ -855,27 +796,27 @@ When you *would make a mark but have already marked all 3*, set your Fury to 3.
 
 ## STORM'S FURY
 
-When you begin to roil with anger , your markings crackle with electricity and the air thrums with pressure. Roll +CON: on a 10+ , hold 3 Fury; on a 7-9 , hold 2 Fury; on a 6, hold 2 Fury but also mark a consequence.
+When you *begin to roil with anger*, your markings crackle with electricity and the air thrums with pressure. Roll +CON: **on a 10+**, hold 3 Fury; **on a 7-9**, hold 2 Fury; **on a 6-**, hold 2 Fury but also mark a consequence.
 
 You may spend Fury 1-for-1 to manifest one of the following:
 
-- Imbue your next strike with the force of thunder (+1d6 damage, forceful , loud )
+- Imbue your next strike with the force of thunder (+1d6 damage, *forceful*, *loud*)
 - Move like lightning, closing the distance between you and a nearby foe before they can react
 - Bellow like the storm itself, drawing no small amount of attention and making craven foes cringe in fear
 
-When you have marked 3 consequences , you gain Chosen of the Storm-bringer.
+When you *have marked 3 consequences*, you gain Chosen of the Storm-bringer.
 
 ## CHOSEN OF THE STORM-BRINGER
 
 Add these to the list of potential manifestations granted by Storm's Fury:
 
-- Roll +CON to Let Fly with a bolt of lightning (2d6 damage, thrown , forceful , loud , dangerous , ignores armor)
+- Roll +CON to Let Fly with a bolt of lightning (2d6 damage, *thrown*, *forceful*, *loud*, *dangerous*, ignores armor)
 - Make a prodigious leap, buoyed by the wind
-- Summon a powerful gale with you at its center-dirt and debris swirl about, the wind is deafening, people must brace themselves to keep from getting bowled over, projectiles careen off course-and take disadvantage on all rolls as long as you sustain it
+- Summon a powerful gale with you at its center—dirt and debris swirl about, the wind is deafening, people must brace themselves to keep from getting bowled over, projectiles careen off course—and take disadvantage on all rolls as long as you sustain it
 
 ## Consequences
 
-- Lightning begins to arc off of you, striking objects and creatures nearby at random for 2d6 damage ( near , forceful , loud , ignores armor). This lasts until you calm down.
+- Lightning begins to arc off of you, striking objects and creatures nearby at random for 2d6 damage (*near*, *forceful*, *loud*, ignores armor). This lasts until you calm down.
 
 - A gale of winds forms around you, as with Chosen of the Storm-bringer (even if you can't normally use that move). You can't dismiss it easily; the effects (including the disadvantage) continue until you calm down.
 
@@ -883,17 +824,13 @@ Add these to the list of potential manifestations granted by Storm's Fury:
 
 - From now on, when you gain Fury, gain +1 Fury. But you also have disadvantage on rolls to control your temper.
 
-- A storm forms (or worsens) in your immediate area. It arrives unnaturally fast,  but not miraculously so.
+- A storm forms (or worsens) in your immediate area. It arrives unnaturally fast, but not miraculously so.
 
-- A terrible storm begins to form in your immediate area and pummels the entire region. Blizzards, tornados, floods-it's bad.
+- A terrible storm begins to form in your immediate area and pummels the entire region. Blizzards, tornados, floods—it's bad.
 
 - A terrible storm forms (as above) and the weather remains freakish for a few months. Your steading takes -2 to its next roll to generate Surplus, and its next Fortunes roll for Seasons Change is automatically a 6-. Other communities in the region likewise suffer.
 
-## appendix d : major arca
-
-## Mysteries of the Storm Markings
-
-## appendix d : major arcana
+### Mysteries of the Storm Markings
 
 ## **Ineffable Words**
 
@@ -912,8 +849,6 @@ When you *enter an ecstatic delirium and allow the Ineffable Words to pour forth
 When you *spend weeks in ascetic contemplation of the incommunicable words within you*, roll +WIS: **on a 10+**, you gain insight into the power within you—mark 1 below; **on a 7-9**, gain advantage on your next attempt to contemplate the words.
 
 When you *make the last mark*, you unlock the mysteries of the Ineffable Words and can Speak the Unutterable (see reverse). Choose 1 Word that you have mastered and erase all marks above. Thereafter, when you *make the last mark*, choose another Word to master and erase all marks.
-
-# appendix d : major arcana
 
 ### **Mysteries of the Ineffable Words**
 
@@ -939,8 +874,6 @@ When you *speak an Ineffable Word that you have mastered*, roll +CON: **on a 10+
 - The Word tears reality, leaving a rift from which primordial power pours into the world. Expect all manner of strange and chaotic effects.
 - You rouse an eternal, ancient being of Order. It seeks you out, implacably, to reprimand you for your reckless use of such primordial power.
 
-## appendix d : major arcana
-
 ## **Redwood Effigy**
 
 *magical*
@@ -961,11 +894,7 @@ Record the diverted harm on the image of the effigy above: a brief description o
 
 When you *make the last mark*, you unlock the effigy's mysteries and gain Suffering Unleashed (see reverse).
 
-> front **16**
-
-# appendix d : major arcana
-
-#### **Mysteries of the Redwood Effigy**
+### **Mysteries of the Redwood Effigy**
 
 ## **Moves**
 
@@ -1005,8 +934,6 @@ You can sense, speak, and even work magic through the effigy as though it were a
 
 When you *would mark a consequence but they've all been marked*, pick a harm stored in the effigy at random. Erase that harm and suffer it now (it can't be diverted).
 
-## appendix d : major arcana
-
 ## **Hungering Maw of Hlad**
 
 *magical*
@@ -1021,17 +948,15 @@ If *your victim struggles*, roll +CON: **on a 10+**, deal 1d10 damage (ignores a
 
 When you *use the ring to reduce an intelligent victim to 0 HP*, roll 1d6:
 
-## **1d6** effect
-
-- 1-2 Their soul is wounded but they'll live, suffering from unnatural, compulsive hungers; should they die in this state, they become a wraith.
-- 3-4 Their soul is wounded and their body gives up; they become a wraith.
-- 5-6 Their soul is consumed and utterly destroyed by the ring—mark 1 below.
+| 1d6 | Effect |
+|---|---|
+| 1-2 | Their soul is wounded but they'll live, suffering from unnatural, compulsive hungers; should they die in this state, they become a wraith. |
+| 3-4 | Their soul is wounded and their body gives up; they become a wraith. |
+| 5-6 | Their soul is consumed and utterly destroyed by the ring—mark 1 below. |
 
 When you *make the last mark*, you unlock the ring's mysteries. Gain Siphon (see reverse) and erase all the marks. Each time you mark the third circle, gain another move from the reverse. If you *have all the moves*, mark a consequence instead.
 
-# appendix d : major arcana
-
-#### **Mysteries of the Hungering Maw of Hlad**
+### **Mysteries of the Hungering Maw of Hlad**
 
 **Moves**
 
@@ -1046,7 +971,7 @@ When you *raise your ringed hand and will the ring to consume someone's life-for
 
 ## **INESCAPABLE PULL**
 
-You can use Siphon at up to *near* range, and on a 10+ you can can choose to drag the victim closer.
+You can use Siphon at up to *near* range, and **on a 10+** you can choose to drag the victim closer.
 
 ## **MAELSTROM**
 
@@ -1056,7 +981,7 @@ When you *use Siphon*, you can mark a consequence before rolling to affect a num
 
 When you *wear the ring and press it firmly against a work of mortal artifice*, mark a debility and then roll +CON: **on a 10+**, the artifice fails or is ruined (say how); **on a 7-9**, it is ruined (as per a 10+) but also mark a consequence; **on a 6-**, the GM says what happens (which may or may not involve marking a consequence.)
 
-# **Consequences**
+## **Consequences**
 
 - A powerful earthquake strikes the area. Each time you choose this option, the quake is longer, more powerful, more destructive.
 - The ring fuses to your flesh and bone and can no longer be removed without cutting off your finger.
@@ -1065,13 +990,11 @@ When you *wear the ring and press it firmly against a work of mortal artifice*, 
 - The ring opens a gaping vortex, sucking in the life-force of everything around it (d10 damage, *near*, *area*, *grabby*, ignores armor) and weakening stone and metal and wood. You can, perhaps, close the vortex through a force of will.
 - The earth shakes. The ring tears at your life-force (1d10 damage, *messy*, ignores armor, mark all three debilities). The ring is gone and your hand is left a withered and palsied thing. And somewhere, a hole has opened in the world.
 
-## appendix d : major arcana
-
 ## **Azure Hand**
 
-*, close*, *magical*, *awkward*
+◇, *close*, *magical*, *awkward*
 
-A thick staff of gray metal, topped with a plate of aetherium in the shape of a stylized hand. The palm is embossed with a cloud and lightning bolt, and the whole thing is more than a little topheavy. It smells of ozone, and your spine never ceases to tingle in its presence.
+A thick staff of gray metal, topped with a plate of aetherium in the shape of a stylized hand. The palm is embossed with a cloud and lightning bolt, and the whole thing is more than a little top-heavy. It smells of ozone, and your spine never ceases to tingle in its presence.
 
 When you *bear the Azure Hand*, you sense sources, currents, and reservoirs of energy much like you sense the pull of gravity or the position of your own hand. You can closely study such energy and Seek Insight about it.
 
@@ -1088,21 +1011,17 @@ Each time you mark 1, ask the GM how the power goes out of control.
 
 When you *make the last mark*, you unlock the mysteries of the Azure Hand—choose one of the moves on the reverse, and erase all marks above.
 
-> front **18**
-
-## appendix d : major arca
-
-## Mysteries of the Azure Hand
+### Mysteries of the Azure Hand
 
 ## Moves
 
 ## BATTERY
 
-When you gather elemental power about the Azure Hand , you can choose to store the energy in the staff itself. It no longer requires your touch or focus to maintain. You cannot do this again until you use up the energy contained within (see reverse).
+When you *gather elemental power about the Azure Hand*, you can choose to store the energy in the staff itself. It no longer requires your touch or focus to maintain. You cannot do this again until you use up the energy contained within (see reverse).
 
 ## EYE OF THE STORM
 
-When you grasp the Azure Hand and impose your will on the elements around you , roll +CON: on a 10+ , the elements calm or diminish in their power, and choose 2 from the list below; on a 7-9 , the elements calm or diminish, and choose 1.
+When you *grasp the Azure Hand and impose your will on the elements around you*, roll +CON: **on a 10+**, the elements calm or diminish in their power, and choose 2 from the list below; **on a 7-9**, the elements calm or diminish, and choose 1.
 
 - You suffer no consequence (otherwise, mark one)
 
@@ -1114,7 +1033,7 @@ When you grasp the Azure Hand and impose your will on the elements around you , 
 
 (Requires: Battery, Eye of the Storm)
 
-When you have captured a tremendous elemental force (like that from a storm or wildfire) and then channel it into the eddies of air or earth , pick 1 from the list below and roll +INT: on a 10+ , it comes to pass; on a 7-9 , it will come to pass if you choose to mark a consequence; on a 6- , mark a consequence and prepare for the worst.
+When you *have captured a tremendous elemental force (like that from a storm or wildfire) and then channel it into the eddies of air or earth*, pick 1 from the list below and roll +INT: **on a 10+**, it comes to pass; **on a 7-9**, it will come to pass if you choose to mark a consequence; **on a 6-**, mark a consequence and prepare for the worst.
 
 - A potent storm or earthquake builds, unleashing itself within the next few hours.
 
@@ -1130,8 +1049,8 @@ When you have captured a tremendous elemental force (like that from a storm or w
 
 - Your eyes become a solid bluish white, darkening or brightening with your mood. You now see energy patterns, glowing brightly, which can obscure facial expressions and other details unless you focus.
 
-- Your skin takes on a bluish tint; your hair is steaked with white; the air about you thrums with power. Sensitive beings can easily sense your presence, even from afar.
+- Your skin takes on a bluish tint; your hair is streaked with white; the air about you thrums with power. Sensitive beings can easily sense your presence, even from afar.
 
 - Henceforth, any storm in your presence is unnaturally strong. If you spend a summer or a winter in a steading or within a day's march of one, the steading loses 1d4-1 Surplus due to storms.
 
-- Your body pulses with barely controlled energy. Henceforth, when you roll +CON and get a 6- , you unleash bolts of elemental power all about you (1d10 damage, near , area , forceful , dangerous ) in addition to whatever else the GM says.
+- Your body pulses with barely controlled energy. Henceforth, when you *roll +CON and get a 6-*, you unleash bolts of elemental power all about you (1d10 damage, *near*, *area*, *forceful*, *dangerous*) in addition to whatever else the GM says.

@@ -1,11 +1,10 @@
 # Discoveries
 
-Clues 
-Sites 
-Encounters 
-Opportunities 
-Artifacts 
-Arcana
+| In this chapter             |                                   |
+| --------------------------- | --------------------------------- |
+| [[#Clues\|Clues]]           | [[13 - Discoveries#Sites\|Sites]] |
+| [[#Encounters\|Encounters]] | [[#Opportunities\|Opportunities]] |
+| [[#Artifacts\|Artifacts]]   | [[#Arcana\|Arcana]]               |
 
 **Discoveries** are the interesting things that PCs encounter, stuff that isn't immediately dangerous but that prompts investigation, interaction, and decisions. They include:
 
@@ -26,7 +25,7 @@ Add discoveries to the game when…
 - … **your prep demands it**. If you've already decided that there's a particular artifact buried in the pile of rubble, and the PCs dig through that pile, then of course they find the artifact.
 
 - … **the established fiction implies it**. Say you make up some bandits, and the PCs drive them off. If they follow the bandits' tracks back from where they came, it only makes sense that they'd find the bandits' camp.
-- … **the setting guide suggests it**. When the PCs are on the Makers' Roads, you might roll for a **[[31 - The Makers' Roads#**Fellow travelers**|fellow traveler]]** and create an encounter based on the results. When they're off exploring the Foothills, you might roll for a random discovery on that region's tables (*[[16 - The Foothills#**Discoveries**|Book II]]*).
+- … **the setting guide suggests it**. When the PCs are on the Makers' Roads, you might roll for a **[[31 - The Makers' Roads#Fellow travelers|fellow traveler]]** and create an encounter based on the results. When they're off exploring the Foothills, you might roll for a random discovery on that region's tables (*[[16 - The Foothills#1d12 terrain|Book II]]*).
 - … **you think it'd be interesting, fun, or just a good idea**. If the PCs get lost in the Steplands and you want to shake things up, you might put a discovery in their path, like a Hillfolk goatherd, or a creepy looking cave, or whatever else makes sense.
 - … **some combination of the above prompts you to**. Maybe the Ranger Seeks Insight before approaching the Green Lord ruin, asking, "What here is useful or valuable to me?" *Book II* suggests that Forest Folk glyphs mark the area, which could provide useful information, so you present them as the answer to the question.
 
@@ -44,7 +43,7 @@ Clues point the PCs towards some sort of knowledge, conclusion, or revelation. T
 
 Present clues when PCs Seek Insight, as a way to **begin and end with the fiction** as you answer their questions. Use them to **announce trouble** or **hint at more than meets the eye**, to **offer an opportunity**, or to make any other GM move that involves imparting knowledge or establishing facts.
 
-## **Creating clues**
+### **Creating clues**
 
 If a provocative, juicy clue just occurs to you, or something in *Book II* suggests a clue that resonates, then ask yourself whether it contradicts your prep or any established truths. If not, use it!
 
@@ -69,7 +68,7 @@ If you're stumped, maybe tell the players the revelation and ask how they figure
 
 *She studies the scene, Seeking Insight and asking, "What should I be on the lookout for?" I tell her that these were full-grown drakes, two of them driving the wisent towards a third waiting in ambush. I ask how she figures that out. "Mostly from reading the tracks. And, like, knowing about drakes. Hey, you said this was recent, right? Like in the last day? So they're probably not hungry right now. If we hustle, we can probably clear their territory before they start hunting again. Yeah?" Totally!*
 
-## **Prepping clues**
+### **Prepping clues**
 
 As you prep for a session, try to identify any **crucial revelations** that the PCs need in order to accomplish their current goals or to make important decisions. For each revelation, create at least one clue, ideally two or three. The players need this info to meaningfully engage with the game, right? Make sure that there are plenty of ways for them to get it.
 
@@ -99,13 +98,14 @@ SOMETHING USEFUL: That spot on the map/wherever these constructs come from… th
 
 If you like, think about other revelations that you might make—information that's not crucial, but that could offer the PCs an opportunity, or that would illuminate the world or your NPCs. Create clues for these revelations, too!
 
+## Sites
 Sites are interesting places that the PCs might want to explore. There's a whole chapter devoted to **[[11 - Sites#Sites|Sites]]**.
 
 But sites can be discoveries, too! As the PCs trek through the Steplands, they might stumble on a Stone Lord ruin. If they explore that ruin, there might be smaller sites within—a shrine to Aratis, perhaps, itself containing a Chronicle from the days of the Makers. Sites within sites within sites!
 
 To create a site, or an area within one:
 
-## **1) Lay the foundation**
+#### **1) Lay the foundation**
 
 - Ask questions
 - Build on what you've got
@@ -126,7 +126,7 @@ To create a site, or an area within one:
 - Describe the environment
 - Arrange areas/rooms
 
-## **4)Write it up as much as you like**
+#### **4)Write it up as much as you like**
 
 - Create a map or visual (maybe)
 - Detail each area/room
@@ -141,7 +141,7 @@ See [[11 - Sites#Creating sites|Creating sites]] for the full process, and [[11 
 
 When the PCs cross paths with someone or something that isn't immediately hostile or dangerous, that's an encounter. This usually means people, but an encounter can be with beasts, spirits, constructs, or anything else the PCs can interact with.
 
-## **Building encounters**
+### **Building encounters**
 
 Answer each of these questions, in whatever order makes sense. As the encounter evolves in your mind, feel free to go back and tweak or change earlier answers.
 
@@ -161,7 +161,7 @@ If you're prepping, you might leave some questions unanswered, or answer them wi
 
 *I'm prepping the expedition for our first adventure. I expect the PCs to follow the trail left by some crinwin dragging young Pryder through the Great Wood, back to a Green Lord tomb wherein our villain (Sajra the swyn) is lairing. I want a couple potential discoveries to introduce along the way, so I review the Great Wood entry in* Book II*.* 
 
-*I look at the* discoveries *table (*[[23 - The Great Wood#**Discoveries**|Book II]]*) and see "a crinwin, Fae, or spirit of the wild, curious or indifferent." I like the idea of a Fae who was living in the tomb but has been displaced by Sajra. I look up Creating Fae (*[[12 - Fae#**Creating Fae**|Book II]]*) and use that for guidance. I end up with Thornthumb, a hollow little plant-man skulking around the Great Wood, fuming over the loss of his home and his hoard. He'd love to see Sajra killed or driven out, but he's also a compulsive hoarder and thief.* 
+*I look at the* discoveries *table (*[[23 - The Great Wood#1d12 terrain|Book II]]*) and see "a crinwin, Fae, or spirit of the wild, curious or indifferent." I like the idea of a Fae who was living in the tomb but has been displaced by Sajra. I look up Creating Fae (*[[12 - Fae#Insults and etiquette|Book II]]*) and use that for guidance. I end up with Thornthumb, a hollow little plant-man skulking around the Great Wood, fuming over the loss of his home and his hoard. He'd love to see Sajra killed or driven out, but he's also a compulsive hoarder and thief.* 
 
 *I'm not sure when or where the PCs will encounter Thornthumb; but I think he'll notice them at some point and either try to steal from them (especially if he learns of the Mindgem) or approach them and offer info about Sajra (if he thinks they can defeat it).*
 
@@ -169,7 +169,7 @@ If you're prepping, you might leave some questions unanswered, or answer them wi
 
 **Create the NPCs** if you haven't already, following the steps on [[14 - NPCs and Followers#Creating NPCs|Creating NPCs]]. If there's more than one NPC, decide which one(s) the PCs are most likely to interact with and focus on them. Portray the others as a group, zooming in with more detail only as you need to.
 
-## **Running encounters**
+### **Running encounters**
 
 Run encounters like any other part of the game. Follow the **[[05 - Running the Game#The core loop|core loop]]**. Frame the action with the encounter about to start, or just starting, or already underway. Describe the environment and portray your characters. Make a soft GM move, ask what the PCs do, and resolve their actions. Repeat until the encounter resolves itself or becomes a new situation.
 
@@ -206,7 +206,7 @@ Artifacts are things laden with meaning, power, or value. They're objects that t
 
 *Book II* contains over a hundred artifacts that you can drop into your game. Some are just brief descriptions and a few tags, like "A makerglass jar with a threaded lid, seals airtight (*indestructible*, Value 2)." Other artifacts have more formal writeups, often with custom moves. Like this:
 
-## **A large urn**
+#### **A large urn**
 
  *Immobile, magical*
 
@@ -216,7 +216,7 @@ A handful of artifacts are presented as **[[15 - Homefront#Steading improvements
 
 If the PCs take an artifact with them, make sure that someone adds it to their inventory and is accounting for its load (if any). If they bring it home, prompt the players to decide whether it becomes someone's special possession or an asset of the village as a whole.
 
-## **Placing artifacts**
+### **Placing artifacts**
 
 Put artifacts in the game where they make sense. That sealed tomb that the PCs are exploring probably has grave goods! The sorcerer that they're hunting probably has a few magic artifacts at her disposal.
 
@@ -230,9 +230,9 @@ As with any discovery, try to place artifacts in a way that tells a story. Consi
 
 *Looking over the Green Lords entry in*  Book II*, my eye lands on "a number of corroded bronze hatchets," which I picture interred with those mummified servants—the ones buried in the collapsed hallway. I doubt Thornthumb would have even known about these, or bothered with them if he did.*
 
-*I also spot a large urn (previous page), which I imagine was something made by the Green Lord who's interred here as a way to deal with troublesome Fae. Thornthumb would have steered clear of it, but I can see the crinwin using it to store doodads that Sajra didn't want. So it's stuffed full of rubbish, including some other junky-looking artifacts and maybe even an arcanum like a cracked flute (*[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|Book II]]*). Oh, and it's in that partly-collapsed chamber, the one where the crinwin were nesting. Nice.*
+*I also spot a large urn (previous page), which I imagine was something made by the Green Lord who's interred here as a way to deal with troublesome Fae. Thornthumb would have steered clear of it, but I can see the crinwin using it to store doodads that Sajra didn't want. So it's stuffed full of rubbish, including some other junky-looking artifacts and maybe even an arcanum like a cracked flute (*[[57 - Appendix C - Minor Arcana#^1d6|Book II]]*). Oh, and it's in that partly-collapsed chamber, the one where the crinwin were nesting. Nice.*
 
-## **Identifying artifacts**
+### **Identifying artifacts**
 
 When the PCs find an artifact, describe it! Tell them what they've found, and what's obvious at a glance.
 
@@ -257,7 +257,7 @@ Many of the artifacts in *Book II* include "something interesting" and "somethin
 Ultimately, you want the players to know what an artifact does and how to use it, so that they can make meaningful decisions. If the PCs can't figure this out now, give them a path toward doing so, such as…
 
 - … **telling them the requirements**. "Old Gorlas knows about the Fae, he could maybe tell you." Or, "You'll need to bring it home and consult your scrolls."
-- … **[[15 - Homefront#MAKE A PLAN|Making a Plan]]** with them to learn what it the artifact is or does.
+- … **[[15 - Homefront#^make-a-plan|Making a Plan]]** with them to learn what it the artifact is or does.
 - … divulging the info via a **[[16 - Writing Moves and Love Letters#Writing love letters|love letter]]**.
 - … revealing the info after a bit of downtime. Maybe ask the player how the PC learned it.
 - … some combination of the above.
@@ -266,7 +266,7 @@ Once a PC figures an artifact out, give the player its tags, write-up, and any c
 
 Arcana have their own considerations; see [[13 - Discoveries#Arcana|Arcana]] for details.
 
-## **Artifacts in play**
+### **Artifacts in play**
 
 Some artifacts are simply interesting or valuable. But others have extraordinary properties or generate magical effects. When questions arise about an artifact (like how it works, what's involved with using it, what it can/can't do, etc.), **talk it out with the players**. Consider the artifacts' description, what's implied about it, and the specific details already established in play. Extrapolate an answer together.
 
@@ -280,7 +280,7 @@ If the PCs want to leverage an artifact to achieve some long-term goal, then Mak
 
 *My instinct is to give him only a half answer, but that's not cool. Instead, I just give him the description (from [[13 - Discoveries#Opportunities|Opportunities]]). "And before you ask," I say, "no, there aren't any pearls in there. Just a bunch of junk. Though, there is a cracked flute in there made of redwood…"*
 
-## **Artifacts as threats**
+### **Artifacts as threats**
 
 **Think about how NPCs react to artifacts**. Are they intrigued? Freaked out? Jealous? Does word of it spread to other towns? If the way people react to an artifact becomes a source of trouble, then write it up as a **[[09 - Threats#Threats|threat]]**, a *MacGuffin*).
 
@@ -288,7 +288,7 @@ Likewise, **if the artifact itself is a source of trouble**, write it up as a th
 
 If the PCs want to destroy, disenchant, or seal away a dangerous artifact, then think about its tags, the established fiction, and what makes sense for your game. A *fragile* artifact should be easy to destroy; one that's *indestructible* should be much harder to un-make. But destroying either one like unleashing a hostile spirit or corrupting the nearby locale. Encourage the PCs to Know Things, or Seek
 
-## **Selling artifacts**
+### **Selling artifacts**
 
 If an artifact has a listed Value, then PCs can Trade & Barter to sell it as if it were a special item. If they know or suspect that it's magical, they can try to leverage that for a better price—or they might need to hide its magical nature in order to close the deal. Magic creeps some folks out!
 
@@ -303,7 +303,7 @@ Artifacts with no listed Value count as unique items: they can't be sold via Tra
 
 Trying to sell valuable or powerful artifacts is a fraught enterprise, a great way to turn those artifacts into *MacGuffin* threats. If the PCs refuse an offer, then the other party might try to steal the artifact (or send goons to do so). Even if the trade is successful, word might get out that Stonetop has such things, or that the PCs know where to find them, and that can lead to all sorts of unwanted attention.
 
-## **Buying artifacts**
+### **Buying artifacts**
 
 As a rule, specific and/or magical artifacts are unique items—the PCs can't just Trade & Barter to acquire them.
 
@@ -314,7 +314,7 @@ If a PC wants to acquire such an artifact, they might:
 - Put out word that they're looking for such a thing, and then choose a "trade opportunity" when Seasons Change
 - Tell the GM what they're after, and then choose "interesting news" when Seasons change
 
-## **Creating artifacts**
+### **Creating artifacts**
 
 *See [[56 - Appendix B - Artifact Creation|Appendix B: Artifact Creation]] for the full process.*
 
@@ -332,7 +332,7 @@ These steps are presented in order, but they can generally work in whatever orde
 
 *I'm coming up with other artifacts for the PCs to find in the Green Lord's tomb, and decide to create one from scratch—something that maybe got missed by Thornthumb when he cleared the place out. It could be very large, something he couldn't move. Or something small that he missed. Or maybe it's made of iron, so he left it behind? I don't know, but I'll find out!* 
 
-## **1 Origin and theme**
+### **1. Origin and theme**
 
  Pick or roll for the artifact's origin, the people who made it or the power to whom it's most closely tied (the Stone Lords, the Fae, the Things Below, etc.).
 
@@ -342,7 +342,7 @@ Each of the possible origins in *Book II* has a table of related themes. Pick fr
 
 *Looking at the* origins *table, "the Green Lords" seems like the obvious choice. I roll on the Green Lords'* themes *table and get a 2, "Plants and growing things, grandiose and/or unusual."* 
 
-## **2 Nature**
+### **2. Nature**
 
  Pick or roll for the artifact's nature: a mundane item, a strange material, the tether for a spirit or sentience, etc.
 
@@ -350,7 +350,7 @@ Each result on the nature table points to another table, or set of tables, to de
 
 *I roll a 3 for this artifact's nature, so it's a mundane item. That directs me to the*  why they might care *table, where I get a 6: "it's inherently valuable—silver, trade goods, etc. (Value 2)." That then directs me to pick or roll for its form.*
 
-### **3 Form**
+### **3. Form**
 
  If it's not already obvious, pick or roll for the artifact's size (*small*, , , *immobile*), tags (like *fragile* or *crude*), and whether it's particularly hard to access or otherwise take advantage of.
 
@@ -358,7 +358,7 @@ From there, pick from or roll on the what is it tables. Interpret these results 
 
 *I roll a 4 for size ("a item"), a 9 for what it is ("something less common"), and a 3 for the specific, less-common thing ("Curiosity: a wonder, device, enigma, doohickey, toy, etc."). Huh.*
 
-# **4 Synthesis**
+### **4. Synthesis**
 
  Take the details you've established so far and imagine the artifact that they suggest. Fill in missing details and make decisions. What is this artifact, exactly? What was it originally for? How did it come to be, or be *here*? You don't need the artifact's full history, but try to envision something that makes sense and that at least hints at a story.
 
@@ -366,15 +366,15 @@ It's okay to change or discard some of the details you established earlier, or i
 
 *So: a mundane curiosity, inherently valuable, with a theme of "plants and growing things." I picture a silver sphere, the size of a fist, with a filigree vine-and-leaf pattern. It was probably just a pretty thing, a grave good buried with the Green Lord that rolled behind a plinth or some rubble.*
 
-## **5 Write-up**
+### **5. Write-up**
 
  Once you have a clear picture of the artifact in your mind, write it up as one of the following.
 
 #### **As a brief description**
 
-Write something short and sweet, ~30 words or less, including load, tags, and other **game elements** (see [[13 - Discoveries#Tags and game elements|Tags]]). This approach is best for simple, non-magical artifacts, but it can also work for artifacts with a straightforward magical effect.
+Write something short and sweet, ~30 words or less, including load, tags, and other **game elements** (see [[13 - Discoveries#^tags-and-game-elements|Tags]]). This approach is best for simple, non-magical artifacts, but it can also work for artifacts with a straightforward magical effect.
 
-For examples, see any of the "various treasures" lists, like those of the **[[05 - Barrow Builders#**Artifacts**|Barrow Builders]]** or the **[[43 - Stone Lords#**Makerglass**|Stone Lords]]**.
+For examples, see any of the "various treasures" lists, like those of the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** or the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**.
 
 *This artifact I've been creating doesn't need much description, so I write down:*
 
@@ -382,11 +382,11 @@ Silver filigree sphere, fist-sized, vine-and-plant patterns (beautiful, Value 2)
 
 #### **As a detailed description**
 
-Give the artifact a title, either something descriptive ("a stone cup") or a proper name ("the Red Pennant"). Assign it tags, load (if any), and other **game elements** (see [[13 - Discoveries#Tags and game elements|Tags]]). Then write a few sentences about it, what it looks like, what it does (if anything), what that involves, and why it's useful, interesting, and/or valuable.
+Give the artifact a title, either something descriptive ("a stone cup") or a proper name ("the Red Pennant"). Assign it tags, load (if any), and other **game elements** (see [[13 - Discoveries#^tags-and-game-elements|Tags]]). Then write a few sentences about it, what it looks like, what it does (if anything), what that involves, and why it's useful, interesting, and/or valuable.
 
 Consider writing "something interesting" and "something useful" about the artifact, if you suspect that the PCs will Know Things about it.
 
-For examples, see **[[10 - Death and the Undying#**Death and the undying**|a spindle of fine thread]]**, or **[[18 - Forge Lords#**Artifacts**|an oversized ring]]**.
+For examples, see **[[10 - Death and the Undying#Death and the undying|a spindle of fine thread]]**, or **[[18 - Forge Lords#An oversized ring|an oversized ring]]**.
 
 *I create another artifact that the PCs could find in the old tomb, something interred with the Green Lord itself.* 
 
@@ -394,51 +394,53 @@ For examples, see **[[10 - Death and the Undying#**Death and the undying**|a spi
 
 *Interesting! Apparently, this Green Lord revered Aratis, the god of civilization and order. Redwood is "a natural tether for spirits of the wild," and fire is often a symbol of chaos. But taming fire is a very "civilized" thing to do, and the Green Lords did harness spirits to do their bidding. I think this is a brazier, binding a fire spirit sanctified to Aratis.*
 
-## **As player moves**
+#### **As player moves**
 
 Write a detailed description (as per the previous page). Then write a custom player move to reflect how the artifact works or what PCs can do with it.
 
 Custom moves are a great way to reflect artifacts with magical powers, especially ones that are unpredictable, unreliable, or dangerous. See [[16 - Writing Moves and Love Letters#Writing moves|Writing moves]] for guidance on **writing custom moves**.
 
-You'll find examples of such artifacts all through *Book II*. See **[[15 - Fomoraij#**Artifacts**|bloodshot amber]]**, **[[17 - Forest Folk#**Artifacts**|a crystal knife]]**, and **[[46 - The Things Below#**A black menhir**|a black menhir]]** for a sense of what's possible.
+You'll find examples of such artifacts all through *Book II*. See **[[15 - Fomoraij#Bloodshot amber|bloodshot amber]]**, **[[17 - Forest Folk#Crystal knife|a crystal knife]]**, and **[[46 - The Things Below#A black menhir|a black menhir]]** for a sense of what's possible.
 
-## **As a steading improvement**
+#### **As a steading improvement**
 
 If the artifact could benefit the village of Stonetop as a whole, then write it up as a steading improvement. This is a good way to reflect resources (like a mine or a water source), improvements to the food supply (a new crop, weather magic, etc.), or other artifacts with far-reaching benefits.
 
 Make a Plan with the PCs to establish the requirements, the ongoing costs (if any), and the benefits of completing it. See [[15 - Homefront#Steading improvements|Steading improvements]] for more about **improvements**.
 
-For examples, see the **[[21 - The Golden Oak#**Treasures of the Golden Oak**|golden sapling]]** and **[[24 - Green Lords#**Artifacts**|rhoillyg orchard]]**.
+For examples, see the **[[21 - The Golden Oak#GOLDEN SAPLING|golden sapling]]** and **[[24 - Green Lords#RHOILLYG ORCHARD|rhoillyg orchard]]**.
 
 *I ponder a little bit and then write the following, riffing on the Judge's move, Censure [[The Judge#MANY HANDS MAKE LIGHT WORK|Many Hands Make Light Work]].*
 
-## REDWOOD BRAZIER
+> [!box] REDWOOD BRAZIER
+> 
+> ( , magical, near, area) A shallow wooden bowl, about 3' wide. Lustrous red, carved with icons of Aratis. Inside is charred, but intact.
+> 
+> When you light a fire in the brazier and awaken the spirit of sanctified flame within, mortals and Fae in its presence feel a sense of solemn awe. When anyone violates decorum in the presence of the flame, they are filled with… (they pick 1)
+> 
+> - Shame, and act accordingly
+> - Doubt, and hesitate or pause
+> - Fear, and seek to hide or escape
+> ^redwood-brazier
 
-( , magical, near, area) A shallow wooden bowl, about 3' wide. Lustrous red, carved with icons of Aratis. Inside is charred, but intact.
-
-When you light a fire in the brazier and awaken the spirit of sanctified flame within, mortals and Fae in its presence feel a sense of solemn awe. When anyone violates decorum in the presence of the flame, they are filled with… (they pick 1)
-
-- Shame, and act accordingly
-- Doubt, and hesitate or pause
-- Fear, and seek to hide or escape
-
-## **As an arcanum**
+#### **As an arcanum**
 
 If you envision the artifact providing a lasting or reusable benefit, but only after the PCs spend time and effort unlocking it, then consider writing it up as a **[[13 - Discoveries#Creating minor arcana|minor arcanum]]**.
 
 If you envision a magical artifact growing in power as a PC learns to use it, but also having serious, lasting consequences, and you're up for the challenge, then write it up as a **[[13 - Discoveries#Creating major arcana|major arcanum]]**.
 
-## **Tags and game elements**
-
-Regardless of how you're writing up an artifact, include a list of relevant **[[03 - Playing the Game#Gear terms & tags|gear terms & tags]]**, such as: +1 armor, *awkward*, *crude*, *dangerous*, *fragile*, requires \_\_\_, *slow*, uses, etc.
-
-If it can be used as a weapon or a light source, include range tags (*close*, *area*, etc.) and other weapon traits (like "2 piercing" or "ignores armor").
-
-If it takes up space in inventory, put or at the start of the tag list (or just before the object itself in a simple description). If it's too big to just carry on your person, give it the *immobile* tag.
-
-Artifacts might have additional tags not found on mundane items, such as:
-
-*beautiful*: draws attention, makes some people want it *fireproof*: unharmed by heat or flame *implanted*: it's part of you, or must become so before you can use it *indestructible*: can't be broken or marred by mundane force or art *loud*: makes a lot of noise *magical*: imbued with unnatural power *terrifying*: people and beasts freak out in its presence
+> [!box] ## **Tags and game elements**
+> 
+> Regardless of how you're writing up an artifact, include a list of relevant **[[03 - Playing the Game#Gear terms & tags|gear terms & tags]]**, such as: +1 armor, *awkward*, *crude*, *dangerous*, *fragile*, requires \_\_\_, *slow*, uses, etc.
+> 
+> If it can be used as a weapon or a light source, include range tags (*close*, *area*, etc.) and other weapon traits (like "2 piercing" or "ignores armor").
+> 
+> If it takes up space in inventory, put or at the start of the tag list (or just before the object itself in a simple description). If it's too big to just carry on your person, give it the *immobile* tag.
+> 
+> Artifacts might have additional tags not found on mundane items, such as:
+> 
+> *beautiful*: draws attention, makes some people want it *fireproof*: unharmed by heat or flame *implanted*: it's part of you, or must become so before you can use it *indestructible*: can't be broken or marred by mundane force or art *loud*: makes a lot of noise *magical*: imbued with unnatural power *terrifying*: people and beasts freak out in its presence
+> ^tags-and-game-elements
 
 ## **Arcana**
 
@@ -448,19 +450,36 @@ The front of an arcanum describes what the PC can tell at a glance or with a lit
 
 **Minor arcana** are small cards, like the one shown here. They provide no real benefit until the PC unlocks them. Once unlocked, the PC gains access to all the benefits on the back.
 
-**Major arcana** are half-page playbook inserts; see [[03 - Playing the Game#Noruba's Ice Sphere|Noruba’s Ice Sphere]]  for an example. Each offers one or more "free" custom moves. A PC who unlocks its mysteries gains more powers, but using those powers has consequences.
+**Major arcana** are half-page playbook inserts; see [[58 - Appendix D - Major Arcana#Noruba's Ice Sphere|Noruba’s Ice Sphere]]  for an example. Each offers one or more "free" custom moves. A PC who unlocks its mysteries gains more powers, but using those powers has consequences.
 
 *Stonetop* includes 64 minor and 18 major arcana by default. All of these are reproduced in appendices [[57 - Appendix C - Minor Arcana|c]] and [[58 - Appendix D - Major Arcana|d]] of *Book II*.
 
-The Seeker playbook starts with a major arcanum and two minor arcana. The Heavy starts with **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Storm Markings]]** if they take the Storm-marked background.
+The Seeker playbook starts with a major arcanum and two minor arcana. The Heavy starts with **[[58 - Appendix D - Major Arcana#Mysteries of the Storm Markings|Storm Markings]]** if they take the Storm-marked background.
 
-## **Placing arcana**
+### **Placing arcana**
 
 Be thoughtful about how often you introduce new arcana. Between unlocking them, using them, and dealing with their consequences, they can have a huge impact on the game. Give the players too many and they'll be overwhelmed with options. Give them too few, and you'll be missing out on a fun part of *Stonetop*. Don't be stingy with arcana, but don't hand them out like candy, either!
 
-Most arcana are **[[13 - Discoveries#Opportunities|artifacts]]**; place them as such. Try to place them in a way that implies a story or at least illuminates part of the setting.
+Most arcana are **[[13 - Discoveries#Artifacts|artifacts]]**; place them as such. Try to place them in a way that implies a story or at least illuminates part of the setting.
 
-## . minor arcanum . **A half-buried plaque** , *cumbersome*, *magical* A bronze plate poking out of the soil, somewhere in the Flats or near the Dread River. It's dented, a bit warped, with Maker-runes and esoteric diagrams etched into the surface. How the heck did it end up here? The plate contains the workings of a spell, which you can learn but… …you must first dig up & clean the plate. …you must decipher the Maker-runes. …it'll take a few weeks of study. …you risk harm to your voice, your hearing, and/or your neighbors as you practice. **6** front
+>[!MINOR ARCANUM]
+>#### **A half-buried plaque**
+>◇◇, *cumbersome*, *magical*
+>A bronze plate poking out of the soil, somewhere in the Flats or near the Dread River. It's dented, a bit warped, with Maker-runes and esoteric diagrams etched into the surface. How the heck did it end up here?
+>
+>The plate contains the workings of a spell, which you can learn but…
+>... you must first dig up & clean the plate.
+>... you must decipher the Maker-runes.
+>... it'll take a few weeks of study.
+>... you risk harm to your voice, your hearing, and/or your neighbors as you practice.
+> >[!MINOR ARCANUM]- #### **Thunderous Bellow**
+> >When you *channel the storm primeval and utter a thunderous bellow*, take 1d6 damage (ignores armor) and roll +CON: **on a 10+**, everyone nearby (except you) must choose 2; **on a 7-9**, everyone nearby (except you) must choose 1.
+> >
+> >- Drop what they're carrying and cover their ears
+> >- Be deafened and disoriented for a few moments
+> >- Stagger a few steps away from you
+> > ^thunderous-bellow
+> ^a-half-buried-plaque
 
 *Caradoc and Vahid take a short trip to the Ruined Tower in early autumn, to poke around and see what they find. Caradoc spends a few hours scouting out the outer ruins, Seeking Insight. He asks, "What here is useful or valuable to me?"*
 
@@ -472,23 +491,13 @@ Most arcana are **[[13 - Discoveries#Opportunities|artifacts]]**; place them as 
 
 *"Okay," I tell Caradoc, "In the rubble near the tower, you find this bronze plate poking out of the soil…"*
 
-## **Thunderous Bellow** When you *channel the storm primeval*
-
-minor arcanum .
-
-*and utter a thunderous bellow*, take 1d6 damage (ignores armor) and roll +CON: **on a 10+**, everyone nearby (except you) must choose 2; **on a 7-9**, everyone nearby (except you) must choose 1.
-
-- Drop what they're carrying and cover their ears
-- Be deafened and disoriented for a few moments
-- Stagger a few steps away from you
-
 Some arcana are **[[11 - Sites#Sites|sites]]**, or part of one. Place them where they make sense, and feel free to tweak the details on the front of the card. The "runes around a ruined hall" arcanum describes a throne room, but maybe a smithy makes more sense in your game?
 
 A few arcana represent tales or specific encounters. Present these to the PCs as **[[13 - Discoveries#Clues|clues]]**), **[[13 - Discoveries#Encounters|encounters]]**, or **[[13 - Discoveries#Opportunities|opportunities]]**. Again, feel free to modify the specifics on the front of the card to meet your needs.
 
-A handful of arcana—notably **Storm Marking**s and the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Ineffable Words]]**—represent a PC being infused with magical power. Offer these as opportunities, or even inflict them as consequences when the PCs are exposed to truly potent magic.
+A handful of arcana—notably **Storm Marking**s and the **[[58 - Appendix D - Major Arcana#Ineffable Words|Ineffable Words]]**—represent a PC being infused with magical power. Offer these as opportunities, or even inflict them as consequences when the PCs are exposed to truly potent magic.
 
-## **Identifying arcana**
+### **Identifying arcana**
 
 Be generous with info about arcana. You want the players to know what's involved in unlocking them and using them. They need that info to make informed decisions. That's why arcana are handouts; you're meant to give them to the players.
 
@@ -498,9 +507,9 @@ When the PCs discover an arcanum, you might…
 - … **offer riches at a price** or **tell them the requirements** to learn more about the arcanum, which might involve taking a risk and Defying Danger, or talking to someone, or Seeking Insight. If they do so successfully, give them the card.
 - … **prompt them to Know Things** about the arcanum: **on a 10+**, give them the card and have them read both sides; **on a 7-9**, have them read the front, and show them the back when they have some time to study it or learn more; **on a 6-**, either have them read the front and then have something bad happen, or hint at the arcanum's power and tell them how they could learn more.
 
-A few major arcana lend themselves to a slow reveal. For example, you might tell the PC that rubbing this magic ring calls up a mist. But the first time someone dies in that fog, the ring asks, "May I take this one?" and you give the player the insert for the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Ring of Daagon]]**. Judge for yourself whether this would work for any given arcanum, and whether your player(s) would enjoy it.
+A few major arcana lend themselves to a slow reveal. For example, you might tell the PC that rubbing this magic ring calls up a mist. But the first time someone dies in that fog, the ring asks, "May I take this one?" and you give the player the insert for the **[[58 - Appendix D - Major Arcana#Ring of Daagon|Ring of Daagon]]**. Judge for yourself whether this would work for any given arcanum, and whether your player(s) would enjoy it.
 
-## **Unlocking arcana**
+### **Unlocking arcana**
 
 To unlock their mysteries, many arcana (especially minor arcana) ask the PCs to invest significant time and effort. They have requirements like, "spend a few weeks deciphering the glyphs," or, "acquire the special ingredients," or "risk lasting harm to your physique and health."
 
@@ -534,7 +543,7 @@ Whatever approach you take to handling a risky requirement, respect the outcomes
 
 *But Vahid gets an 8, so I offer him a choice between a cost and a lesser success. "You can cast the spell," I tell him, "But to truly master it, you'll need to cast it so many times that you permanently harm your voice. Like, all raspy and prone to coughing fits. Your singing voice will be shot. Or you can stop early. You'll be able to use Thunderous Bellow, but you'll have disadvantage and the* dangerous *tag. What do you do?" He hems and haws a bit, but ultimately opts to keep his voice intact—for now.*
 
-## **Consequences**
+### **Consequences**
 
 Each major arcanum has a list of potential consequences, with one or more checkboxes next to each one. Players mark a consequence when one of the arcanum's moves says to, or when you tell them to do so as a hard GM move.
 
@@ -548,13 +557,13 @@ Many consequences involve permanent changes to the PC or the world. These might 
 
 If all consequences have been marked, decide as a group whether that means there are no more consequences to accrue (thus making some moves impossible to trigger and other moves safer to use), or if future consequences mean that you make a hard GM move, in line with the consequences seen previously in play. The answer might be different for each major arcanum, or even for each move. Talk it out, together.
 
-## **Sharing arcana**
+### **Sharing arcana**
 
 PCs can share arcana with each other, or even with NPCs, as long as it makes sense to do so.
 
 If the PCs share a minor arcanum with each other, work with them to figure out how the requirements might change.
 
-*The next winter, after a year of strife, Caradoc asks Vahid to teach him the Thunderous Bellow spell [[13 - Discoveries#Thunderous Bellow When you channel the storm primeval|Thunderous Bellow]]. Vahid agrees! They've already met the first two requirements (digging up the plaque and deciphering the runes), but it'll still take a few weeks of study and Caradoc still risks harming his voice, hearing, or neighbors as he learns.* 
+*The next winter, after a year of strife, Caradoc asks Vahid to teach him the Thunderous Bellow spell [[13 - Discoveries#^thunderous-bellow|Thunderous Bellow]]. Vahid agrees! They've already met the first two requirements (digging up the plaque and deciphering the runes), but it'll still take a few weeks of study and Caradoc still risks harming his voice, hearing, or neighbors as he learns.* 
 
 *"Can I Aid?" asks Vahid. He sure can in fact, he needs to. Caradoc can't read Maker runes! Vahid's Aid is allowing Caradoc do more than he could alone; it doesn't grant advantage when Caradoc Defies Danger.*
 
@@ -563,30 +572,31 @@ If the PCs share a major arcanum with each other, then in general:
 - Each character must unlock its mysteries individually, tracking their own progress
 - Each character tracks their own consequences individually, meaning they can each suffer the same consequence
 
-Of course, each arcanum is different and there will be exceptions. For example, the consequences for the **[[58 - Appendix D - Major Arcana#appendix d : major arcana|Mindgem]]** all affect the Mighty Servant itself, reflecting how it learns and changes. Thus, multiple PCs giving orders to the Mighty Servant would all be marking off the same list of consequences.
+Of course, each arcanum is different and there will be exceptions. For example, the consequences for the **[[58 - Appendix D - Major Arcana#Mysteries of the Mindgem|Mindgem]]** all affect the Mighty Servant itself, reflecting how it learns and changes. Thus, multiple PCs giving orders to the Mighty Servant would all be marking off the same list of consequences.
 
-## **NPCs using artifacts and arcana**
+> [!box] **NPCs using artifacts and arcana**
+> 
+> At some point, an NPC or monster will get their hands on a magical artifact or arcanum. The PCs might give it to them, or teach them to use it or the spell it imparts. Or, the NPC might acquire/steal/borrow it from the PCs. Or it might be in the NPC's possession to begin with.
+> 
+> Most magical artifacts and all arcana are written to be player-facing, often with custom moves or procedures that assume a PC is using them. So how does that work when an NPC or monster is the active party?
+> 
+> First, consider whether the NPC or monster can use the artifact/arcanum at all. Not everyone has the talent, learning, or aptitude to learn spells or command magical effects. Of course, some magical artifacts just work and anyone can use them.
+> 
+> If an antagonistic NPC or monster is learning to use an artifact/arcanum, you can reflect that as an impending doom and grim portents, or even write up the artifact/arcanum itself as a threat (a *MacGuffin*, probably).
+> 
+> If one or more friendly NPCs are learning to use an artifact or arcanum, and that's something the PCs want to happen, then Make a Plan to lay out the requirements. If their mastery of this magic would provide some lasting benefit to the village, then write it up as a **[[15 - Homefront#Steading improvements|steading improvement]]**.
+> 
+> To reflect a monster or NPC using a magical artifact or arcanum, you might…
+> 
+> - … just **imagine how it works in their hands**, and incorporate that into your descriptions and GM moves when you portray them;
+> - … **reflect it in their stat block**, as one or more tags, special qualities, moves, or combinations thereof;
+> - … **[[16 - Writing Moves and Love Letters#Writing moves|write custom player moves]]** for what happens when they use the artifact against the PCs, and/or…
+> - … **write it up as a threat** (probably an *affliction*, a *magical entity*, or a *MacGuffin*) if the NPC's use of the artifact is going to cause long-term trouble. This is a particularly good choice for major arcana—their consequences make great grim portents!
+> 
+> As you do all this, don't worry about replicating the artifact or arcanum exactly. Magic is weird and fickle, and might work differently for different people or entities. Aim to capture the feel of the requirements, moves, and drawbacks, but don't fret too much over consistency.
+> ^npcs-using-artifacts-and-arcana
 
-At some point, an NPC or monster will get their hands on a magical artifact or arcanum. The PCs might give it to them, or teach them to use it or the spell it imparts. Or, the NPC might acquire/steal/borrow it from the PCs. Or it might be in the NPC's possession to begin with.
-
-Most magical artifacts and all arcana are written to be player-facing, often with custom moves or procedures that assume a PC is using them. So how does that work when an NPC or monster is the active party?
-
-First, consider whether the NPC or monster can use the artifact/arcanum at all. Not everyone has the talent, learning, or aptitude to learn spells or command magical effects. Of course, some magical artifacts just work and anyone can use them.
-
-If an antagonistic NPC or monster is learning to use an artifact/arcanum, you can reflect that as an impending doom and grim portents, or even write up the artifact/arcanum itself as a threat (a *MacGuffin*, probably).
-
-If one or more friendly NPCs are learning to use an artifact or arcanum, and that's something the PCs want to happen, then Make a Plan to lay out the requirements. If their mastery of this magic would provide some lasting benefit to the village, then write it up as a **[[15 - Homefront#Steading improvements|steading improvement]]**.
-
-To reflect a monster or NPC using a magical artifact or arcanum, you might…
-
-- … just **imagine how it works in their hands**, and incorporate that into your descriptions and GM moves when you portray them;
-- … **reflect it in their stat block**, as one or more tags, special qualities, moves, or combinations thereof;
-- … **[[16 - Writing Moves and Love Letters#Writing moves|write custom player moves]]** for what happens when they use the artifact against the PCs, and/or…
-- … **write it up as a threat** (probably an *affliction*, a *magical entity*, or a *MacGuffin*) if the NPC's use of the artifact is going to cause long-term trouble. This is a particularly good choice for major arcana—their consequences make great grim portents!
-
-As you do all this, don't worry about replicating the artifact or arcanum exactly. Magic is weird and fickle, and might work differently for different people or entities. Aim to capture the feel of the requirements, moves, and drawbacks, but don't fret too much over consistency.
-
-# **Creating minor arcana**
+### **Creating minor arcana**
 
 Write up an artifact as a minor arcanum when…
 
@@ -615,15 +625,15 @@ Write a short, simple phrase describing what the arcanum appears to be. A minor 
 
 Examples: "A set of clay tablets," or "A broken glass sword."
 
-# **Tags and others elements**
+### **Tags and others elements**
 
-List the arcanum's tags, load, and other **game elements**. See [[13 - Discoveries#Tags and game elements|Tags]] for guidance.
+List the arcanum's tags, load, and other **game elements**. See [[13 - Discoveries#^tags-and-game-elements|Tags]] for guidance.
 
-# **Brief description**
+### **Brief description**
 
 What is it? How do the PCs encounter it and perceive it? How does it make them feel? Keep it short, like 75 words or less, but also make it as punchy as you can.
 
-# **Requirements**
+### **Requirements**
 
 Write a brief intro, like "To unlock the mysteries of these tablets, you must…" Follow that with a series of checkbox steps. The requirements might involve…
 
@@ -645,25 +655,25 @@ Write a brief intro, like "To unlock the mysteries of these tablets, you must…
 - … combinations of the above; or…
 - … anything else that makes sense.
 
-See the existing **minor arcana** (*Book II*, [[57 - Appendix C - Minor Arcana#appendix c : minor arcana|appendix c]]) and the **Make a Plan** move (page [[15 - Homefront#MAKE A PLAN|530\)]] for ideas and guidance.
+See the existing **minor arcana** (*Book II*, [[57 - Appendix C - Minor Arcana#Minor Arcana|appendix c]]) and the **Make a Plan** move (page [[15 - Homefront#^make-a-plan|530\)]] for ideas and guidance.
 
 It's okay if some requirements are vague, or if they'd require multiple steps. If the players ask how they'd go about achieving such a requirement, prompt them to Know Things, and/or Make a Plan with them.
 
 List the requirements in the order that you'd expect someone to complete them, but be open to the PCs doing them in a different order.
 
-Feel free to play with the formula, too. Maybe this arcanum allows for a choice of requirements (like **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|"a clear, natural pool,"]]**), or maybe it's unlocked via a custom move (like **[[57 - Appendix C - Minor Arcana#appendix c : minor arcana|"a cracked flute,"]]**).
+Feel free to play with the formula, too. Maybe this arcanum allows for a choice of requirements (like **[[57 - Appendix C - Minor Arcana#^ffyrnig-tonic|"a clear, natural pool,"]]**), or maybe it's unlocked via a custom move (like **[[57 - Appendix C - Minor Arcana#^1d6|"a cracked flute,"]]**).
 
-## **Unlocked title**
+### **Unlocked title**
 
 Write something grand and significantsounding, or at least something distinct. Write them in Title Case, as proper nouns. You can get ~20 characters in one line, or ~40 characters in two lines.
 
 Examples: "Ranaji Kav's Final Technique," or "The White Flame Blade."
 
-## **Mysteries**
+### **Mysteries**
 
 Write out the back of the minor arcanum, the custom move(s) and/or follower(s) gained by a PC who unlocks its mysteries. If the arcanum has different tags once it's unlocked, write them here.
 
-Try to reflect the origin, theme(s), and characteristics that you identified when conceptualizing the arcanum. Does it **house a spirit or sentience**, or call one up? Create that entity as a **[[14 - NPCs and Followers#Creating followers|follower]]**. Does it **allow a PC to learn a spell/ ritual**, or does it **produce a magical effect**? Think about how that magic might work, and write a custom move or two reflecting the arcanum's theme(s), function, drawback, and usage (*[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|Book II]]*).
+Try to reflect the origin, theme(s), and characteristics that you identified when conceptualizing the arcanum. Does it **house a spirit or sentience**, or call one up? Create that entity as a **[[14 - NPCs and Followers#Followers|follower]]**. Does it **allow a PC to learn a spell/ ritual**, or does it **produce a magical effect**? Think about how that magic might work, and write a custom move or two reflecting the arcanum's theme(s), function, drawback, and usage (*[[56 - Appendix B - Artifact Creation#1d12 how it's recorded|Book II]]*).
 
 See [[16 - Writing Moves and Love Letters#Writing moves|Writing moves]] for advice on writing **custom player moves**. Use existing minor arcana and playbook moves for inspiration and guidance. And remember: not every move needs to involve a roll!
 
@@ -671,7 +681,7 @@ Edit aggressively, boiling your text down to the bare essentials while maintaini
 
 Don't be afraid to modify an arcanum after you see it in play. If it's unclear, disruptive, or otherwise unfun, talk to the players and change it. An arcanum isn't actually a set of runes carved in stone—it's just a little piece of paper and you're allowed to make revisions.
 
-# **Creating major arcana**
+### **Creating major arcana**
 
 A major arcanum is a half-page playbook **[[03 - Playing the Game#Inserts|insert]]**. Write up a discovery as a major arcanum only if…
 
@@ -691,13 +701,13 @@ Each major arcanum works differently, but almost all have these common elements.
 - Its mysteries
 - Its consequences
 
-Refer to the existing major arcana for a sense of structure and what's possible. See **[[03 - Playing the Game#Noruba's Ice Sphere|Noruba's Ice Sphere]]** for one example, and Appendix D (*[[58 - Appendix D - Major Arcana#appendix d : major arcana|Book II]]*) for the rest
+Refer to the existing major arcana for a sense of structure and what's possible. See **[[58 - Appendix D - Major Arcana#Noruba's Ice Sphere|Noruba's Ice Sphere]]** for one example, and Appendix D (*[[58 - Appendix D - Major Arcana#Major Arcana|Book II]]*) for the rest
 
-## **Title, tags, and description**
+### **Title, tags, and description**
 
 Give your major arcanum a Proper Title, something capitalized, evocative, maybe a little ominous. The "Misty Mirror" and "The Everflame" are good examples.
 
-List its tags and other **[[13 - Discoveries#Tags and game elements|game elements]]**, including its load (if any).
+List its tags and other **[[13 - Discoveries#^tags-and-game-elements|game elements]]**, including its load (if any).
 
 Write a brief description of what it is and how it appears to the PCs. Make it as clear and punchy as you can, hinting at the arcanum's power. But also, keep it short and concise. Aim for 75 words or less.
 
@@ -707,7 +717,7 @@ Draw it or find a picture to represent it, something to place at the top of the 
 
 Write the starting move(s), the ones that are easily accessible to a PC who acquires the arcanum. These should be useful and compelling, something the player(s) will be excited (or at least tempted) to use.
 
-#### **How it's unlocked**
+### **How it's unlocked**
 
 Write the requirements as a distinct move, as a checklist, or as part of the arcanum's initial move(s). These requirements might involve…
 
@@ -721,7 +731,7 @@ Write the requirements as a distinct move, as a checklist, or as part of the arc
 - … some combination of the above; or
 - … anything else that makes sense.
 
-## **Mysteries**
+### **Mysteries**
 
 Write the extra move(s), options, and/or followers that a PC can gain by unlocking the arcanum. They should be quite potent, but using them should require or at least risk marking consequences.
 
@@ -736,7 +746,7 @@ See [[16 - Writing Moves and Love Letters#Writing moves|Writing moves]] for advi
 
 Keep the mysteries as concise as you can. They need to share one side of a half-page insert with the consequences; you've got ~200 words to work with, 300 at most.
 
-## **Consequences**
+### **Consequences**
 
 Create 5-10 consequences that a PC might incur when they use the arcanum's mysteries. If you write 6 or fewer, give some of them multiple checkboxes to indicate that they can be suffered multiple times. A major arcanum should have ~8 checkboxes total.
 
@@ -760,7 +770,7 @@ Consequences might involve…
 
 It can help to think of a major arcanum as a **[[09 - Threats#Threats|threat]]**, with the consequences acting as grim portents and impending dooms that the player gets (has) to pick.
 
-## **Edit and revise**
+### **Edit and revise**
 
 Look at what you've got so far, and revise mercilessly. The arcanum's starting moves, its mysteries and the way they're unlocked, and its consequences should all reflect its concept and themes. They should suggest a story, but not dictate one. The pieces should all work together, tempting both player and PC to keep using the arcanum, despite the inevitable costs.
 

@@ -1,7 +1,5 @@
 # Gods and Religion
 
-## **Gods and religion**
-
 The village of Stonetop maintains a pavilion of the gods, an open-air structure with shrines to four main gods:
 
 - **Aratis**, the Lawkeeper [[03 - Aratis, the Lawkeeper|Aratis, the Lawkeeper]]
@@ -9,14 +7,17 @@ The village of Stonetop maintains a pavilion of the gods, an open-air structure 
 - **Helior**, the Daybringer [[25 - Helior, the Daybringer|Helior, the Daybringer]]
 - **Tor**, the Rain-maker [[49 - Tor, the Rain-maker|Tor, the Rain-maker]], the Thunderhead, Slayer-of-Beasts
 
-Tor is the most popular god in Stonetop, and associated with the **[[02 - The Village of Stonetop#**The village of Stonetop**|Stone]]** itself, but all four gods receive their proper respect. Depending on the PCs in will feature more prominently in a game
+Tor is the most popular god in Stonetop, and associated with the **[[02 - The Village of Stonetop#The Stone|Stone]]** itself, but all four gods receive their proper respect. Depending on the PCs in your game, some of the gods may be more important than others. Aratis, for example, will feature more prominently in a game with a Judge PC than a game without one.
+
+Other communities might worship some or all of these gods, perhaps by different names, perhaps with different aspects and traditions. Or they might have different gods entirely, gods unknown or unworshipped in Stonetop.
 
 ## **Questions**
 
 - Who tends the pavilion of the gods?
 - Are Stonetop's gods part of a coherent pantheon? Or a mix of gods from different cultures?
 - What little gods are revered by your family/in Stonetop/where you grew up?
-- What other gods are known in Stonetop? Do any have shrines in the pavilion? Which god, if any, do you consider
+- What other gods are known in Stonetop? Do any have shrines in the pavilion?
+- Which god, if any, do you consider your patron?
 
 ## **Hooks**
 
@@ -31,9 +32,9 @@ Tor is the most popular god in Stonetop, and associated with the **[[02 - The Vi
 
 The origin of any given god is for you and your table to decide. A god might be…
 
-- … one of the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, there at the dawn of time, or birthed spontaneously from the fabric of existence, or made by the **[[36 - Primordial Powers#**Cosmology**|First Creators]]** as a steward of the world;
+- … one of the **[[36 - Primordial Powers#Great spirits|great spirits]]**, there at the dawn of time, or birthed spontaneously from the fabric of existence, or made by the **[[36 - Primordial Powers#The First Creators|First Creators]]** as a steward of the world;
 - … a **[[46 - The Things Below#The Things Below|Thing Below]]**, or an emanation of such;
-- … a **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, transformed through worship;
+- … a **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, transformed through worship;
 - … the child of other gods, or of a god and a mortal;
 - … a mortal, ascended/transcended/reborn;
 - … a mortal, revered in death;
@@ -57,44 +58,48 @@ There are, however, some mortals who feel a profound connection to their god(s).
 
 Devotees might form fellowships with the like-minded, which in time can become institutions: formal priesthoods, mystery cults, temples, and the like. Such institutions can be powerful forces in the world. They might preserve knowledge, legitimize leaders, protect innocents, or otherwise stabilize societies. But they might also grow corrupt, fat on power and privilege, run by cynics rather than true devotees.
 
-## **Petitioning the gods**
+### **Petitioning the gods**
 
 Religion is an expected part of daily life. You help in the fields, you clean your house, and you give the gods their due. There's no extra benefit for performing the usual rites or offerings. But if you fail to do them, you invite disapproval from your neighbors and misfortune from the gods.
 
-PCs can seek the favor of the gods in order to **[[15 - Homefront#**Player moves**|Bolster]]**. This involves time and effort, rites and offerings above and beyond what's typical and expected. Be sure to ask the PC for details! What god(s) do they petition? What sort of aid do they seek? What offerings do they make? Consider, too, the consequences. What other work goes undone? How do NPCs react? Etc.
+PCs can seek the favor of the gods in order to **[[15 - Homefront#Putting the results in play|Bolster]]**. This involves time and effort, rites and offerings above and beyond what's typical and expected. Be sure to ask the PC for details! What god(s) do they petition? What sort of aid do they seek? What offerings do they make? Consider, too, the consequences. What other work goes undone? How do NPCs react? Etc.
 
 Should a PC seek a specific boon from the gods—a curse lifted, an injury healed, a curse laid upon a foe, an answer or an insight, etc.—then Make a Plan! Some example requirements include:
 
- You must learn the proper rites/offerings You must obtain a specific sacred object You'll need the help of a particular spirit You'll need to wait for an auspicious date/time You must travel to a particular sacred site The rites will take hours/day/weeks You must make an appropriate sacrifice (Value 2 at least) You risk angering the god(s)
+- You must learn the proper rites/offerings
+- You must obtain a specific sacred object
+- You'll need the help of a particular spirit
+- You'll need to wait for an auspicious date/time
+- You must travel to a particular sacred site
+- The rites will take hours/day/weeks
+- You must make an appropriate sacrifice (Value 2 at least)
+- You risk angering the god(s)
 
 Choose requirements based on the PC's request, the god(s) they petition and how they are typically worshipped, the PC's relationship to the god(s), and how active the gods are in your particular game.
 
 ## **Little gods**
 
-These are the gods of households, of specific places or geographic features, of particular chores or crafts or trades. Many are just **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirits]]** worshipped at a **[[41 - Spirits of the Wild#Sacred sites|sacred site]]**. But others are spirits closely tied to humanity.
+These are the gods of households, of specific places or geographic features, of particular chores or crafts or trades. Many are just **[[41 - Spirits of the Wild#Elemental spirits|elemental spirits]]** worshipped at a **[[41 - Spirits of the Wild#Sacred sites|sacred site]]**. But others are spirits closely tied to humanity.
 
 Little gods mostly just do their thing, quietly watching over their people or places, keeping things running or causing trouble, as is their wont. A little god can:
 
-- <sup>ä</sup> Reveal what it knows, from its own perspective, to those who can speak to it
-- <sup>ä</sup> Calm/annoy/frighten animals or children
-- <sup>ä</sup> Move/hide/reveal an unattended item
-- <sup>ä</sup> Express displeasure through accidents, misfortunes, neglect
-- <sup>ä</sup> Fend off other spirits
+- Reveal what it knows, from its own perspective, to those who can speak to it
+- Calm/annoy/frighten animals or children
+- Move/hide/reveal an unattended item
+- Express displeasure through accidents, misfortunes, neglect
+- Fend off other spirits
 
-Little gods manifest only to small children or at the beck and call of someone like a Blessed or **[[26 - Hillfolk#Upland horse|spirit-talker]]**. When they do manifest, treat them more like NPCs than monsters.
+Little gods manifest only to small children or at the beck and call of someone like a Blessed or **[[26 - Hillfolk#Spirit-talker|spirit-talker]]**. When they do manifest, treat them more like NPCs than monsters.
 
 Here are some example little gods. Feel free to modify them, expand on them, and ask the PCs questions about them.
 
-# **Ancestral spirits**
+### **Ancestral spirits**
 
  *Group*, *spirit*, *protective*, *conservative* **Instinct** to protect their family's honor. **Manifests** in dreams, as drafty whispers. **Expects** an altar, prayers, incense/libations. **Notes** Like grandparents who don't quite get you.
 
 ### **Garden spirits**
 
- *Horde*, *spirit*, *coy*, *needy* **Instinct** (roll 1d4) 1 = to languish;
-
-- 2 = to run rampant; 3 = to show off;
-- 4 = to give back.
+ *Horde*, *spirit*, *coy*, *needy* **Instinct** (roll 1d4) 1 = to languish; 2 = to run rampant; 3 = to show off; 4 = to give back.
 
 **Manifests** as flower-folk and little creatures. **Expects** first fruits, water, blood.
 
@@ -108,23 +113,21 @@ Here are some example little gods. Feel free to modify them, expand on them, and
 
 **Manifests** as an echo in the dark, as a misty figure.
 
-**Expects** water, snow, coins, wishes. **Notes** Desperately wants to know how
+**Expects** water, snow, coins, wishes. **Notes** Desperately wants to know how various tales end(ed).
 
-various tales end(ed).
-
-#### **God of weaving**
+### **God of weaving**
 
  *Solitary*, *spirit*, *exacting*, *insightful* **Instinct** to reward diligence, to punish perfectionism.
 
 **Manifests** as a spider, as idle thoughts. **Expects** one perfect bit of fabric to dwell in, at least one minor flaw in everything else. **Notes** A trickster (tangles yarn, snaps your warp), sometimes a wise councilor.
 
-# **God of whisky**
+### **God of whisky**
 
  *Solitary*, *spirit*, *secretive*, *grandiose* **Instinct** to take its sweet time.
 
 **Manifests** as a vaporous figure. **Expects** the head & tail of each batch. **Notes** Passionate about flavors, smells.
 
-## **Hearth spirit**
+### **Hearth spirit**
 
  *Solitary*, *spirit*, *friendly*, *nurturing* **Instinct** to belong.
 
@@ -144,7 +147,7 @@ various tales end(ed).
 
 **Expects** bowls of goat's milk, bits of bread. **Notes** Complain loudly to each other, grumble about leaving if things don't improve.
 
-## **Threshold spirit**
+### **Threshold spirit**
 
  *Solitary*, *spirit*, *protective*, *vigilant*
 
@@ -154,7 +157,7 @@ various tales end(ed).
 
 **Notes** Crosses arms, puffs up, harrumphs.
 
-See also the following **[[41 - Spirits of the Wild#**Elemental spirits**|elemental spirits]]**361):
+See also the following **[[41 - Spirits of the Wild#Elemental spirits|elemental spirits]]**:
 
 - Beast wardens (for livestock)
 - Fertility spirits
@@ -162,26 +165,26 @@ See also the following **[[41 - Spirits of the Wild#**Elemental spirits**|elemen
 - Rock/stone spirits (for the Stone or the Ringwall)
 - Stream/creek spirit (for the Stream).
 
-# **Other gods**
+## **Other gods**
 
 To create a new god, choose or roll for 1 or 2 themes, who they are relevant to, their standing, and up to 3 observances.
 
-# **1d12** theme
+### **1d12** theme
 
 - 1 Thresholds/change/trickery/chaos
-- 2 Competition/violence/murder/ warfare
-- 3 Moon/stars/night/sleep/dreams/ revelation
+- 2 Competition/violence/murder/warfare
+- 3 Moon/stars/night/sleep/dreams/revelation
 - 4 Skill/crafts/learning/writing/wisdom
 - 5 Travel/trade/navigation/enterprise
 - 6 Luck/prosperity/fortune/fate
-- 7 Hearth/home/marriage/family/ community/civilization
+- 7 Hearth/home/marriage/family/community/civilization
 - 8 Fertility/birth/vigor/sickness/death
-- 9 Agriculture/hunting/seasons/ weather
+- 9 Agriculture/hunting/seasons/weather
 - 10 Music/art/beauty/passion/revelry
 - 11 Bravery/justice/oaths/protection
 - 12 Fire/rebirth/hope/light/sun
 
-# **1d12** relevant to
+### **1d12** relevant to
 
 - 1-2 A specific household/family
 - 3-4 A particular village/band/clan
@@ -192,7 +195,7 @@ To create a new god, choose or roll for 1 or 2 themes, who they are relevant to,
 
 A deity who is relevant to multiple peoples might have different standing and observances among each.
 
-# **1d12** standing
+### **1d12** standing
 
 - 1-2 Obscure, forgotten, misunderstood
 - 3-5 Avoided, propitiated, appeased
@@ -201,13 +204,13 @@ A deity who is relevant to multiple peoples might have different standing and ob
 - 10-11 Given due respect and honor
 - 12 Adored, praised, heaped with gratitude
 
-# **1d12** observance
+### **1d12** observance
 
 - 1 Charity/the care of \_\_/ the cultivation of \_\_
-- 2 Dancing/intoxication/ ecstatic practice
+- 2 Dancing/intoxication/ecstatic practice
 - 3 Divination/augury/prophecy
-- 4 Elaborate prayers/ceremonies/ gatherings
-- 5 Fashioning of icons/symbols/ monuments
+- 4 Elaborate prayers/ceremonies/gatherings
+- 5 Fashioning of icons/symbols/monuments
 - 6 Fasting/ascetic denial/extreme endurance
 - 7 Libations/offerings of material wealth (burnt, buried, etc.)
 - 8 Pilgrimage/hermitage
@@ -215,7 +218,7 @@ A deity who is relevant to multiple peoples might have different standing and ob
 - 10 Taboo/proscribed behaviors
 - 11-12 Roll 1d10 again, twice, but one of them is done in secret
 
-From there, envision the god's specific sphere of influence, how it is depicted, its rites, its myths, and its **[[20 - Gods and Religion#**1d12** observance|true nature]]**.
+From there, envision the god's specific sphere of influence, how it is depicted, its rites, its myths, and its **[[20 - Gods and Religion#True nature|true nature]]**.
 
 To name your god, use one of these methods:
 
@@ -226,7 +229,7 @@ Then give them one or more titles, kennings, or honorifics to reflect their port
 
 If this god will cause ongoing trouble for the PCs or the village, write it up as a threat (a *magical entity*).
 
-*[[47 - Three Coven Lake#Three Coven Lake|The PCs are approaching Three Coven Lake]]**[[26 - Hillfolk#Hillfolk|, and I've decided that a group of Hillfolk]]* *called The White Hand patrol the area. Their god tells them to keep outsiders away and to keep the horrors of the lake at bay. I consider having them worship Helior, but decide to make up a new god instead.*
+*[[47 - Three Coven Lake#Three Coven Lake|The PCs are approaching Three Coven Lake]]* *[[26 - Hillfolk#Hillfolk|, and I've decided that a group of Hillfolk]]* *called The White Hand patrol the area. Their god tells them to keep outsiders away and to keep the horrors of the lake at bay. I consider having them worship Helior, but decide to make up a new god instead.*
 
 *I start by picking a theme of "bravery/justice/oaths/protection," but also roll a second theme for flavor. I get a 12, focusing on "fire/rebirth". Then I roll a 6 for relevance ("minority within a larger people"), an 8 for standing ('invoked only when needed"), and 8 for observances ("pilgrimage/hermitage"). I could use a bit more, so I roll another observance: 5 ("fashioning of monuments"). I look at the possible true natures, ponder a bit, and settle on this:*
 

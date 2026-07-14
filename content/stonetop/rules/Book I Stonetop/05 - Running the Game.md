@@ -1,15 +1,12 @@
 # Running the Game
 
-Your agenda 
-The core loop 
-The spotlight 
-Scenes and loose play 
-Your GM moves 
-Example of play 
-Your principles 
-Other things to do 
-GMing is a practice 
-Prep
+| In this chapter | |
+|---|---|
+| [[#Your agenda\|Your agenda]] | [[#The core loop\|The core loop]] |
+| [[#The spotlight\|The spotlight]] | [[#Scenes and loose play\|Scenes and loose play]] |
+| [[#Your GM moves\|Your GM moves]] | [[#Example of play\|Example of play]] |
+| [[#Your principles\|Your principles]] | [[#Other things to do\|Other things to do]] |
+| [[#GMing is a practice\|GMing is a practice]] | [[#Prep\|Prep]] |
 
 There are dozens of ways to GM a roleplaying game. There's a particular way to run *Stonetop*. This is how. The rest of the game is built on this approach.
 
@@ -35,11 +32,19 @@ Finally, most importantly, **play to find out what happens**. It's your job to p
 
 And the reward is this: to be genuinely surprised by the story that—naturally, organically, magically—unfolds. A tale you could never weave by yourself.
 
-# **The core loop**
+> [!box] **Improvisation & prep**
+> 
+> Yes, you're making all this stuff up (or asking the players to). You'll do some **prep** in advance (see [[05 - Running the Game#Prep|Prep]]) or pull from the setting guide, but during play you improvise many of the specifics.
+> 
+> Once a detail is established, treat it like it's been true all along. Build and riff on it. Look for connections. Ask yourself the obvious questions and decide on the (probably obvious) answers. Weave it all together into a rich, mysterious world.
+> 
+> ^improvisation-prep
+
+## **The core loop**
 
 When you run this game, this is what you *do*. There's more to it, of course, but this is the underlying structure of the conversation between you and the players.
 
-#### **1) Establish the situation**
+### **1) Establish the situation**
 
 - Frame the action
 - Describe the environment
@@ -47,19 +52,19 @@ When you run this game, this is what you *do*. There's more to it, of course, bu
 - Ask questions, ask for input
 - Portray NPCs and monsters Answer questions, clarify
 
-## **2) Make a soft GM move**
+### **2) Make a soft GM move**
 
 Provoke action and/or increase tension.
 
 ### **3) Ask "What do you do?"**
 
-## **4) Resolve their actions**
+### **4) Resolve their actions**
 
 - If they trigger a player move, do what the move says.
 - If they roll a 6- or they ignore trouble, make a hard GM move (establish badness).
 - Otherwise, say what happens.
 
-#### **5) Repeat**
+### **5) Repeat**
 
 - Is the situation clear and compelling? Can the PCs act? Back to step 3.
 - Is the situation clear, but escalating before the PCs act? Back to step 2.
@@ -73,7 +78,7 @@ But beneath it all is this structure, this loop. If you ever feel lost, and you 
 
 Now, let's look at each step in detail.
 
-# **1 Establish the situation**
+### **1. Establish the situation**
 
 It's your job to establish the situations that the PCs find themselves in. Do any or all of the following, as needed, in whatever order makes sense.
 
@@ -101,13 +106,7 @@ Include the occasional non-essential detail. In a social scene, mention how the 
 
 Use maps, props, and comparisons to convey space and relationships. Sketch the room. Use tokens or meeples. Refer to real-world spaces ("He's about where Bob is, relative to you."). Similes and metaphors are your friends!
 
-## **Improvisation & prep**
-
-Yes, you're making all this stuff up (or asking the players to). You'll do some **prep** in advance (see [[05 - Running the Game#Prep|Prep]]) or pull from the setting guide, but during play you improvise many of the specifics.
-
-Once a detail is established, treat it like it's been true all along. Build and riff on it. Look for connections. Ask yourself the obvious questions and decide on the (probably obvious) answers. Weave it all together into a rich, mysterious world.
-
-## **Ask questions**
+#### **Ask questions**
 
 You don't have to provide all the details yourself. One of your principles [[05 - Running the Game#Your principles|Your principles]] is to **ask questions and build on the answers**. Invite the players to contribute to the scene by asking their characters about stuff that they know, feel, or have experienced. "Caradoc, what's the most overwhelming smell in the tannery?" Or "Vahid, you've been to this pool before. What's it look like? Describe it for us."
 
@@ -117,19 +116,19 @@ Ask questions about what they're doing and what they're up to, about how they sp
 
 Ask questions about what they're thinking and what they're feeling. "Vahid, what's on your mind?" "Rhianna, what's got you the most worried right now?"
 
-## **Portray NPCs and monsters**
+#### **Portray NPCs and monsters**
 
 If there are non-player characters (NPCs) involved, describe them. Say what they're doing. If the PCs interact with them, say how the NPCs respond. Speak in their voice and say what they say. If that's daunting for you, or you just want to cut to the chase, then *describe* what they say rather than actually saying it.
 
 If the situation includes monsters—beasts, spirits, crinwin, and the like—then portray them, too. Describe them: how big they are, how they move, what they sound and smell like. Say what they do, what they're focused on. Say how they respond to the PCs.
 
-## **Answer questions, clarify**
+#### **Answer questions, clarify**
 
 The players will interrupt you and ask questions. Be honest and generous with truth and detail. If the answer wouldn't be clear to the PCs, say so and tell them what it'd take to figure that out. Your job is to **portray a rich and mysterious world**, not to make them jump through hoops and figure out what you're thinking.
 
 Sometimes, the players will say something that indicates a misunderstanding of the situation. "I slice the back of his leg," the Fox says, when you pictured the violence happening on the other side of the public room with the PCs watching. When that sort of thing happens, **clarify the situation with the players**. Explain how you see things, but also be willing to adjust your sense of the situation to match theirs. "Huh? No, this is happening on the other side of the pub. I don't think you'd have let it get to this point if you were right there, do you?"
 
-## **2 Make a soft GM move**
+### **2. Make a soft GM move**
 
 The situation is clear? Good. Now, make a soft GM move—say something to provoke action and/or increase tension. Pick one of your **[[05 - Running the Game#Your GM moves|GM moves]]** and do that.
 
@@ -141,7 +140,7 @@ In a social scene, your NPCs might ask for something or demand something. They m
 
 Soft moves don't always provoke action. Sometimes, they **just crank up the tension**. You might use up their stuff, foreshadow trouble, or add trouble to a scene in a way that can't be acted on right away. "You've been down here for a while, your torches are starting to get low." Or "There's another tremor. A bit of dirt falls from the ceiling. What do you do?"
 
-## **3 "What do you do?"**
+### **3. "What do you do?"**
 
  After you make a soft GM move, ask **"What do you do?"** This hands the conversation back to the player(s) and prompts them to say something.
 
@@ -151,13 +150,14 @@ If they say something that doesn't make sense—something you think is impossibl
 
 If they ask questions, answer them. If the answers aren't obvious, **tell them the requirements**. "You'll have to poke around a bit and Seek Insight." Then put the ball back in their court: "What do you do?"
 
-## **Players jumping in**
+> [!box] **Players jumping in**
+> 
+> Players might seize the initiative and declare an action before you ask "What do you do?" or even before you've made a soft GM move. Great! It means they're engaged, and the situation is compelling enough that they want to act on it. You can jump straight to resolving their action.
+> 
+> With that said: don't let players dominate the conversation. If you're in the middle of making a move, or think that something would happen before they could act, or want to give someone else a chance to act, then tell them to hold their horses!
+> ^players-jumping-in
 
-Players might seize the initiative and declare an action before you ask "What do you do?" or even before you've made a soft GM move. Great! It means they're engaged, and the situation is compelling enough that they want to act on it. You can jump straight to resolving their action.
-
-With that said: don't let players dominate the conversation. If you're in the middle of making a move, or think that something would happen before they could act, or want to give someone else a chance to act, then tell them to hold their horses!
-
-## **4 Resolve their action**
+### **4. Resolve their action**
 
 The player says what their character does. Establish how the situation changes, and/or what their action reveals about the situation.
 
@@ -173,7 +173,7 @@ If they do something that doesn't trigger a player move, then they're looking to
 
 **Otherwise**, say what happens and how that changes the situation. Maybe just say "Okay" and then either shift the **[[05 - Running the Game#The spotlight|spotlight]]** or say "Then what do you do?"
 
-## **Hard GM moves**
+#### **Hard GM moves**
 
 Make a hard GM move when a PC...
 
@@ -186,7 +186,7 @@ When they roll a 6-, your hard move will often involve the PC's action failing. 
 
 A hard move should always establish badness, but **you decide just how bad it is**. Use the situation, the fiction, the description of the player's actions, and so forth to inform your hard moves. Sometimes, a hard move isn't much worse than a soft one.
 
-**5 Repeat**
+### **5. Repeat**
 
  You've resolved the PC's action. The situation is changed, or further revealed, and play snowballs from there.
 
@@ -222,13 +222,14 @@ It's okay if players interrupt each other, or kibitz, or have their characters a
 
 With that said: don't be afraid to shut down an overly eager or aggressive player with a polite-yet-firm reprimand. "Andrew, you're being rude. I'm talking to Jamie right now."
 
-## **Split the party**
-
-It's going to happen. The PCs will split up—intentionally or because you **separate them** or **capture someone**—and now you've got two smaller groups. It's okay. Splitting the party can be a lot of fun.
-
-Splitting the party means that you're juggling multiple conversations and scenes at once. Move the spotlight back-and-forth between the different scenes, the way a film editor smashcuts between scenes in a movie.
-
-Don't linger too long on one group. Try to keep everyone involved and interested in what's going on in the other scenes. You might cut between scenes on every "action" or player move, or resolve a few "loops" of conversation between each cut. There's a rhythm and an art to this, and different types of scenes benefit from different approaches. Exploration and dialogue benefit from longer cuts. High-tension, high-action scenes work well with short, quick cuts and lots of cliffhangers.
+> [!box] **Split the party**
+> 
+> It's going to happen. The PCs will split up—intentionally or because you **separate them** or **capture someone**—and now you've got two smaller groups. It's okay. Splitting the party can be a lot of fun.
+> 
+> Splitting the party means that you're juggling multiple conversations and scenes at once. Move the spotlight back-and-forth between the different scenes, the way a film editor smashcuts between scenes in a movie.
+> 
+> Don't linger too long on one group. Try to keep everyone involved and interested in what's going on in the other scenes. You might cut between scenes on every "action" or player move, or resolve a few "loops" of conversation between each cut. There's a rhythm and an art to this, and different types of scenes benefit from different approaches. Exploration and dialogue benefit from longer cuts. High-tension, high-action scenes work well with short, quick cuts and lots of cliffhangers.
+> ^split-the-party
 
 ## **Scenes and loose play**
 
@@ -258,25 +259,25 @@ A lot of in-fiction time passes during loose play, especially while the PCs trav
 
 When it's time to make a GM move and you're not sure what to say, pick one of these and do it. **These are your basic GM moves**:
 
-- <sup>ä</sup> Announce trouble (future or offscreen)
-- <sup>ä</sup> Reveal an unwelcome truth
-- <sup>ä</sup> Ask a provocative question
-- <sup>ä</sup> Put someone in a spot
-- <sup>ä</sup> Use up their resources
-- <sup>ä</sup> Turn their move back on them
-- <sup>ä</sup> Demonstrate a downside
-- <sup>ä</sup> Hurt someone
-- <sup>ä</sup> Separate them
-- <sup>ä</sup> Capture someone
-- <sup>ä</sup> Offer an opportunity (with or without a cost)
-- <sup>ä</sup> Tell them the consequences/ requirements (then ask)
-- <sup>ä</sup> Advance towards impending doom
+- ▸ Announce trouble (future or offscreen)
+- ▸ Reveal an unwelcome truth
+- ▸ Ask a provocative question
+- ▸ Put someone in a spot
+- ▸ Use up their resources
+- ▸ Turn their move back on them
+- ▸ Demonstrate a downside
+- ▸ Hurt someone
+- ▸ Separate them
+- ▸ Capture someone
+- ▸ Offer an opportunity (with or without a cost)
+- ▸ Tell them the consequences/ requirements (then ask)
+- ▸ Advance towards impending doom
 
 These aren't technical terms. When you **reveal an unwelcome truth**, you just *do that*. You establish something in the fiction that the characters wish wasn't true. When you **hurt someone**, you say how someone gets hurt.
 
 Your GM moves should inspire and empower you; they shouldn't constrain you. Use them when you're unsure of what to do, or when you're in a rut and want to change things up. Don't stress yourself making sure that every move you make matches something from this list.
 
-## **Making Your Move**
+### **Making Your Move**
 
 Whenever the situation is clear and **you want to push the action along**, make a soft move. Say something that prompts the PCs to act and/or increases the tension. Make soft moves all the time, as part of the core loop of the game.
 
@@ -286,41 +287,42 @@ You can also make a GM move **when a player's move prompts you to add something 
 
 Always **make a move that follows from the established situation and/or your prep**. If they're tracking crinwin through the woods and they roll a 6-, it'd be a perfectly fine move to reveal that they're lost. But it'd be weird and uncool to say "Rocks fall out of the sky and smash you, everyone take 1d10 damage!"
 
-## Along the same lines, **your moves should reflect the specifics of the situation**.
-
+Along the same lines, **your moves should reflect the specifics of the situation.**
 Say that a PC faces a charging aurochs, triggers Clash, and rolls a 6-. If the PC is a mighty-thewed Heavy who braced his spear against the charge, then your hard move would look very different than if the PC was a willowy Fox who tried to dodge the charge and stab it like a matador.
 
 **Don't say the name of your move**, just say what happens in the fiction. Don't say, "You rolled a 4 so I'm separating you." Say "Rhianna, you wake up and realize that Caradoc's not on watch. He doesn't come back anytime soon. His blanket is discarded by the edge of the firelight."
 
-## **Other GM moves**
+> [!box] **Other GM moves**
+> 
+> You have other lists of GM moves available to you, too.
+> 
+> Use your **exploration moves** when the PCs are on an **[[10 - Expeditions#Expeditions|expedition]]** or **exploring a site** (see [[11 - Sites#GM exploration moves|GM exploration moves]]).
+> 
+> Use **threat moves** to bring a threat or its influence into a scene, or when it's already involved [[09 - Threats#Threat types in play|Threats]].
+> 
+> Use **homefront moves** when the PCs are at home or spending time in another steading, to make interesting stuff happen there (see [[15 - Homefront|Homefront]]).
+> 
+> Use moves specific to a **danger** [[12 - Dangers#As GM moves|as a GM move]],  [[12 - Dangers#8. Instinct|monster instinct)]], or an **[[14 - NPCs and Followers#NPCs|NPC]]** when those elements are in play.
+> 
+> ^other-gm-moves
 
-You have other lists of GM moves available to you, too.
+### **Examples of GM moves**
 
-Use your **exploration moves** when the PCs are on an **[[10 - Expeditions#Exploration moves|expedition]]** or **exploring a site** (see [[11 - Sites#GM exploration moves|GM exploration moves]]).
-
-Use **threat moves** to bring a threat or its influence into a scene, or when it's already involved [[09 - Threats#**Stakes in play**|Threats]].
-
-Use **homefront moves** when the PCs are at home or spending time in another steading, to make interesting stuff happen there (see [[15 - Homefront|Homefront]]).
-
-Use moves specific to a **danger** \(pages [[12 - Dangers#As GM moves|386]] [[12 - Dangers#<sup>8</sup> Instinct What does the monster do that brings it into conflict with others, or leads it to harm others? Write this in the format "to [do something]."|401\)]], or an **[[14 - NPCs and Followers#NPCs & Followers|NPC]]** when those elements are in play.
-
-# **Examples of GM moves**
-
-### <sup>ä</sup> **Announce trouble (future or offscreen)**
+### ▸ **Announce trouble (future or offscreen)**
 
 This is one of your most versatile moves. Trouble almost always provokes a reaction, or at least gets folks worrying and cranks up the tension.
 
 As a hard move, you can turn a previously peaceful scene into a fight or conflict, or maybe make it clear that the PCs' actions will have consequences later.
 
-### *"WHOOMP WHOOMP WHOOMP!*
+>*"WHOOMP WHOOMP WHOOMP!*
+>
+>*Rhianna, there's a banging at your door, waking you up from that much-needed sleep. Lowri's calling your name and you hear the watch-bells clanging. What do you do?"*
+>
+>*"As Caradoc and Blodwen leave, this nasty piece of work watches them go. He's got a face full of scars, a cruel sneer, and a knife at his hip. He nudges the guy next to him, nods at the door, and they get up and go. What do you do?"*
+>
+>*"Glenys gives you a hard stare for a few moments, then she's like, 'FINE.' And she huffs and stomps off. She's out of your hair for now, but you just know that you're going to have to deal with that later."*
 
-*Rhianna, there's a banging at your door, waking you up from that much-needed sleep. Lowri's calling your name and you hear the watch-bells clanging. What do you do?"*
-
-*"As Caradoc and Blodwen leave, this nasty piece of work watches them go. He's got a face full of scars, a cruel sneer, and a knife at his hip. He nudges the guy next to him, nods at the door, and they get up and go. What do you do?"*
-
-*"Glenys gives you a hard stare for a few moments, then she's like, 'FINE.' And she huffs and stomps off. She's out of your hair for now, but you just know that you're going to have to deal with that later."*
-
-#### <sup>ä</sup> **Reveal an unwelcome truth**
+#### ▸ **Reveal an unwelcome truth**
 
 Establish something as true, something that they really wish wasn't. Maybe it was true all along but you're just revealing it now. Or maybe (especially as a hard move) you're deciding right now that this bad thing is true and letting them know. Both ways work.
 
@@ -332,7 +334,7 @@ This is a great move to use when they Know Things or Seek Insight. On a 7+, you 
 
 *"Oof, a 6-? Well, you search the hills for the rest of the day and... I guess you don't find her? No, wait. You know what? You do find Cadi. Maybe half a mile from the logging camp, you find her body. Something stabbed her, impaled her right through the gut."*
 
-## <sup>ä</sup> **Ask a provocative question**
+#### ▸ **Ask a provocative question**
 
 Ask a question that spurs a decision or response, even if it's just an emotional response or a decision not to act. You can ask the question yourself or put it in the mouth of one of your NPCs. Alternately: ask a question that asserts badness but that gives the player a chance to author it.
 
@@ -342,7 +344,7 @@ Ask a question that spurs a decision or response, even if it's just an emotional
 
 *"Oof, a 4? Well, I think you manage to offend her, like really hurt her feelings. What do you say or do that does that?"*
 
-## <sup>ä</sup> **Put someone in a spot**
+#### ▸ **Put someone in a spot**
 
 This is a more aggressive version of **announcing trouble**—they've got to do something, now, or it'll get ugly.
 
@@ -354,7 +356,7 @@ This is a more aggressive version of **announcing trouble**—they've got to do 
 
 *"So, it's like you said, the drake calms as you place your hand on its snout, and it's like a mewling kitten. But Caradoc, you're watching from the brush, and as Blodwen's calming that one, you spy another drake, behind her to her right, slinking up. It's about to pounce on her, you're sure of it, what do you do?"*
 
-## <sup>ä</sup> **Use up their resources**
+#### ▸ **Use up their resources**
 
 Something happens that whittles away at their stuff, or that takes it away from them entirely. "Resources" here can be...
 
@@ -369,14 +371,14 @@ As a soft move, use this move to ratchet up the tension. Those 4 HP might not me
 
 When you use up a specific resource, the loss can be temporary ("he swats the knife out of your hand, it goes flying across the room") or permanent ("the blow shatters your shield").
 
-You'll often find yourself making this move along with other moves, and that's okay. HP, in particular, get used up part and parcel with other moves (see the **Dealing Damage and Inflicting Debilities** sidebar, [[05 - Running the Game#Dealing damage and inflicting debilities|Dealing damage and]].)
+You'll often find yourself making this move along with other moves, and that's okay. HP, in particular, get used up part and parcel with other moves (see the **Dealing Damage and Inflicting Debilities** sidebar, [[05 - Running the Game#^dealing-damage-and-inflicting-debilities|Dealing damage and]].)
 *"It's been like an hour since you came down here. I think your torch is getting low. Like, you've got maybe ten minutes of light left? What do you do?"* 
 
 *"Yeah, so your grip slips and down you tumble, smacking against branches all the way, WAM WACK WHOOMP. You land flat on your back, and you're pretty sure you felt something break in your pack. Lose 2 uses of supplies and take 1d6 of damage, ignoring armor. What do you do?"*
 
 *"Yup, he was totally standing right behind you as you said that last bit. You look back and he's just beet red, on the verge of crying or yelling, you're not sure. But he just turns and stomps off into the fields. I think he just lost any Loyalty he was holding. What do you do?"*
 
-## <sup>ä</sup> **Demonstrate a downside**
+#### ▸ **Demonstrate a downside**
 
 Show the limits of their moves, or the baggage that comes with being (e.g.) the Heavy. Show them just how a *crude* weapon fares against an iron sword or shield. Show them why wearing *warm* armor in the blazing sun is a bad idea. Show them why it's hard to be short, or tall, or young, or old, or whatever.
 
@@ -386,7 +388,7 @@ Show the limits of their moves, or the baggage that comes with being (e.g.) the 
 
 *"Your spear jabs in, and the aurochs bellows, but then it rears and twists and the spear's shaft snaps off. You're left holding half of a stick."*
 
-## <sup>ä</sup> **Turn their move back on them**
+#### ▸ **Turn their move back on them**
 
 This is a good one to use on a 6-. Take the move they were making, and flip it somehow. Maybe you give the advantage to their foes, maybe you have them come up with something bad for you to work with, maybe their move constrains their options instead of expanding them. Get creative.
 
@@ -396,7 +398,7 @@ This is a good one to use on a 6-. Take the move they were making, and flip it s
 
 *"Yeah, she's just not buying it. There's no way you're going to convince her to squeal on Mutra. In fact, she starts twisting the conversation around, asking you questions, tripping you up, getting you flustered. What do you think it'd take for her to get you to spill the beans on where Vahid has the Heart hidden?"*
 
-## <sup>ä</sup> **Hurt someone**
+#### ▸ **Hurt someone**
 
 Inflict a specific, problematic injury or wound on a PC or an NPC they care about. Something more than just losing HP. Something painful, bloody, consequential, or all three.
 
@@ -424,15 +426,16 @@ For more about HP, damage, debilities, and problematic wounds, see the **Harm an
 
 *"Oh dear. 9 damage? And you're still up? Yeah, um... I think as you try to wrench your arm free, it, um… crap, I think it just chomps down hard and there's just this searing pain and you go staggering back. You're free, but you look down and your right arm is just gone. Blood is spurting, you feel cold, and you think you might faint. What do you do?"*
 
-## **Dealing damage and inflicting debilities**
+> [!box] ## **Dealing damage and inflicting debilities**
+> 
+> "Dealing damage" isn't a GM move by itself; it's a thing that happens as part of another GM move. When you make a move that involves a character getting banged up, hurt, knocked around, or injured, then deal damage to them as part of that move. Tell the player how much damage they take (usually a die roll, based on the monster that inflicted it or the circumstances surrounding it). They lose that many HP. If they're reduced to 0, they're out of the action and quite likely at Death's Door.
+> 
+> Likewise, you don't have a move for "inflict a debility." You can inflict a debility when you **hurt someone** or **use up their resources**, when you make any other move that would result in them being *weakened*, *dazed*, or *miserable* ("You realize that your hands are shaking, your legs wobbling… mark *weakened*").
+> 
+> For more on damage and debilities, see the **Harm and Healing** chapter [[07 - Harm and Healing#Harm & Healing|Harm & Healing]].
+> ^dealing-damage-and-inflicting-debilities
 
-"Dealing damage" isn't a GM move by itself; it's a thing that happens as part of another GM move. When you make a move that involves a character getting banged up, hurt, knocked around, or injured, then deal damage to them as part of that move. Tell the player how much damage they take (usually a die roll, based on the monster that inflicted it or the circumstances surrounding it). They lose that many HP. If they're reduced to 0, they're out of the action and quite likely at Death's Door.
-
-Likewise, you don't have a move for "inflict a debility." You can inflict a debility when you **hurt someone** or **use up their resources**, when you make any other move that would result in them being *weakened*, *dazed*, or *miserable* ("You realize that your hands are shaking, your legs wobbling… mark *weakened*").
-
-For more on damage and debilities, see the **Harm and Healing** chapter [[07 - Harm and Healing#Harm & Healing|Harm & Healing]].
-
-## <sup>ä</sup> **Separate them**
+#### ▸ **Separate them**
 
 Split the party. Put foes or obstacles between them. Have someone fall behind. Have a follower or other NPC go missing. Send someone tumbling down the slope, taking them out of the fight. That sort of thing.
 
@@ -444,7 +447,7 @@ This move often pairs well with **put them in a spot**. Because what's worse tha
 
 *"Okay, cool, so Vahid you're a bit further down the hall, right? With Lowri holding the lantern for you? Well, as you start to make out the runes—something about 'portal' or 'doorway' or maybe 'road'—there's this CUH-CLUNK that you feel in your chest, everyone does, and then a screeching metal-on-metal sound and this steel curtain drops from the ceiling, cutting off the hallway. BOOM. Vahid, you and Lowri are on the far side of it, by yourselves, dust billowing all over. What do you do?"*
 
-## <sup>ä</sup> **Capture someone**
+#### ▸ **Capture someone**
 
 On a soft version of this move, capture them but stay in the scene, giving them a chance to escape (or others a chance to rescue them). On a hard version, maybe cut straight to the next scene—captured, bound, dragged off who knows where—and just gloss over the details of how they got there.
 
@@ -454,7 +457,7 @@ On a soft version of this move, capture them but stay in the scene, giving them 
 
  *"Yeah, Vahid, Lowri is like waving the torch around in the dark and you're both peering out, looking for whatever made that noise, and we the audience see this shadowy form loom up behind you with these long, spindly fingers. Those fingers clamp down over your mouth, Vahid, and another shape grabs Lowri. There's a brief struggle and then the camera like pans down to the lantern on the floor, on its side, cracked and flickering. We hear sounds of you two getting dragged away. Rhianna, while this is happening…"*
 
-## <sup>ä</sup> **Offer an opportunity (with or without a cost)**
+#### ▸ **Offer an opportunity (with or without a cost)**
 
 Give them an opening, a chance to act. The opportunity can be specific ("If you act now, you'll have the drop on them.") or general ("They don't seem to have spotted you, what do you do?"). It can come with a definite cost ("...but it'll make a bunch of noise and raise the alarm.") or a potential cost ("...but you'll have to hurry to make it in time") or no cost at all.
 
@@ -466,7 +469,7 @@ You'll often make this move without realizing it. When you just hand a player th
 
 *"What here is useful or valuable to you? That glowing blue crystal set in the wall. If you smash it, it'll unleash all sorts of chaos, just the distraction you need."*
 
-## <sup>ä</sup> **Tell them the consequences/ requirements (then ask)**
+#### ▸ **Tell them the consequences/ requirements (then ask)**
 
 Use this move as an interrupt, as a way to clarify the fiction and set the stakes when they say they want to do a thing. "If you do that, you realize that \_\_, right?"
 
@@ -482,7 +485,7 @@ Use this move, also, to give them a path forward when the way is otherwise block
 
 *"That thing is made of solid stone. Your arrows aren't going to do squat, Rhianna. You want to hurt this thing, or even slow it down, you're going to need to hit it with something big and heavy."*
 
-## <sup>ä</sup> **Advance towards impending doom**
+#### ▸ **Advance towards impending doom**
 
 **[[09 - Threats#Threats|Threats]]** and **[[12 - Dangers#Hazards|hazards]]** might have impending dooms, each with a series of grim portents leading up to them. When you make this move, you decide that one of those grim portents has come to pass, and show it to the characters.
 
@@ -496,7 +499,7 @@ Rarely, you might chuckle evilly and tick a box, and say that they've got a bad 
 
 *"Caradoc, as you drift off to sleep, you find yourself dreaming. A really weird, vivid dream. It's like when you were in that old Maker-tomb and looking up, but… different. More claustrophobic. Like you're buried in dirt, have been forever, and there's this light above, far away. But it's… enough, you know? Something to move towards? And so you stretch, and claw through the dirt, towards the light, and you snap awake and holy crap, everything's shaking and it's an earthquake! What do you do?"*
 
-## **Example of play**
+### **Example of play**
 
 *Everyone's arrived. We've chatted, gotten comfortable, and we're ready to get started. The session starts in loose play. I ask if anyone wants to recap. Rhianna's player does.* 
 
@@ -602,7 +605,7 @@ These principles are your guidelines, your best practices, your rules of behavio
 
 Following your principles isn't always easy. Sometimes it's unclear what a given principle looks like in the moment. Sometimes, the principles will conflict. A big part of your job is to interpret these principles and apply them as you think best. You'll often do this instinctively, and how exactly you follow your principles is a big part of your own personal style of GMing.
 
-## **Follow the rules**
+#### **Follow the rules**
 
 There are many rules, especially in the form of player moves: basic moves and follower moves, special moves, exploration moves, and steading moves. Each playbook has moves. Inserts have moves. Arcana have moves. Dangers, discoveries, threats, and locations can all have player-facing moves.
 
@@ -614,7 +617,7 @@ You don't get to invoke a player move unless its trigger is actually met. You *d
 
 It's okay if, in service of your other principles, you suggest something in the spirit of the rules instead of following their exact letter, but be up front about it and get consent. "You got a 7-9 to Clash? Roll your damage. 9!? Yikes. So, I know it says you expose yourself to your enemy's attack but I'm thinking the 'attack' in this case is that your axe gets wedged into his skull and it's gonna take a bit to get it free. That okay with you?"
 
-## **Begin and end with the fiction**
+#### **Begin and end with the fiction**
 
 Remember: "the fiction" is the shared, imagined space that you and the players establish through conversation, and the various characters' actions and relative positions within that imaginary space.
 
@@ -624,17 +627,17 @@ Likewise, when you make a GM move, make a move that flows from the fiction as es
 
 Beginning and ending with the fiction is a crucial part of **portraying a rich and mysterious world**. If you skimp on the fiction and just focus on the mechanics, you'll find that your world is bland, boring, and anemic.
 
-**Bad:** *"You attack the hagr? Cool, roll to Clash. A 10? Do you evade its attack or deal extra damage? Okay, roll your damage +1d6. 7 damage? It's still up and hits you back for 1d10+3* forceful*, knocking you down. It's coming at you again, what do you do?"* 
+>**Bad:** *"You attack the hagr? Cool, roll to Clash. A 10? Do you evade its attack or deal extra damage? Okay, roll your damage +1d6. 7 damage? It's still up and hits you back for 1d10+3* forceful, *knocking you down. It's coming at you again, what do you do?"* 
+>
+>**Good:** *"You attack the hagr? Cool, what's that look like? Stabbing up into its gut? Yeah, sure, roll Clash. A 10? Do you evade its attack or deal extra damage? Okay, roll your damage +1d6. 7 damage? So like you said, you stab it in its gut and the hagr doubles over, howling in pain, but before you can get away it just uncoils and backhands you across the face. Take d10+3 damage as you go flying and land in a heap, head spinning. You hear it lumbering towards you, grunting in pain and anger. What do you do?"*
 
-**Good:** *"You attack the hagr? Cool, what's that look like? Stabbing up into its gut? Yeah, sure, roll Clash. A 10? Do you evade its attack or deal extra damage? Okay, roll your damage +1d6. 7 damage? So like you said, you stab it in its gut and the hagr doubles over, howling in pain, but before you can get away it just uncoils and backhands you across the face. Take d10+3 damage as you go flying and land in a heap, head spinning. You hear it lumbering towards you, grunting in pain and anger. What do you do?"*
-
-## **Address the characters, not the players**
+#### **Address the characters, not the players**
 
 Ask the *characters* what they do. Tell the *characters* what they see and hear. Tell the *characters* what's obvious to them. Don't say, "Brian, what is Vahid doing to keep awake?" Say instead: "Vahid, what are you doing to keep awake?" Don't tell Jamie, "Rhianna can tell that he's lying." Say (in Iwan's whiny voice) "No way, Rhianna, you know I'd never do that," and then (in your own voice), "But he looks away and you can just tell he's full of crap."
 
 By speaking this way, you keep the game focused on the fiction. You push the players to think, speak, and respond as their characters. You establish fiction as the characters perceive it, because that's who you're addressing.
 
-## **Ask questions and build on the answers**
+#### **Ask questions and build on the answers**
 
 Ask questions all the time, all over the place.
 
@@ -674,17 +677,18 @@ But also: give them opportunities, both to shine in the moment and to make thing
 
 *Stonetop* gives the player characters lots of agency. Respect that. Don't shortchange them out of their moves or their rolls. See what they do with their power, status, and competence. **Play to find out what happens.**
 
-## **The Line**
+> [!box] ## **The Line**
+> 
+> In *Stonetop* and games like it, there's a line between what the players are responsible for and what you as the GM are responsible for. The players are in charge of their characters: what they do and say; what they feel and think; how they live; their past experiences. As the GM, you're in charge of the world: the environment, the NPCs, the dangers and the discoveries.
+> 
+> Some of the questions described here blur the Line. When you ask Vahid what the missing children all have in common, you're really asking Vahid's player to do something that's generally the responsibility of the GM: make up details about the world.
+> 
+> The trick is to **address the characters, not the players**. Don't ask the player to make up what they find in the next room or how an NPC reacts or how the trap hurts them. Ask the *character* about something they know, something they have heard, something they have experienced. This puts the request back on their side of the Line. It's a sleight of mind, but it's an effective one.
+> 
+> Even so, blurring the Line can be uncomfortable or off-putting for some players. Some players are totally fine with making up details about the world, but others will find that it takes away from their sense of immersion or makes the world feel hollow and made up. Adjust the questions you ask, and how you ask them, to fit your and your players' preferences.
+> ^the-line
 
-In *Stonetop* and games like it, there's a line between what the players are responsible for and what you as the GM are responsible for. The players are in charge of their characters: what they do and say; what they feel and think; how they live; their past experiences. As the GM, you're in charge of the world: the environment, the NPCs, the dangers and the discoveries.
-
-Some of the questions described here blur the Line. When you ask Vahid what the missing children all have in common, you're really asking Vahid's player to do something that's generally the responsibility of the GM: make up details about the world.
-
-The trick is to **address the characters, not the players**. Don't ask the player to make up what they find in the next room or how an NPC reacts or how the trap hurts them. Ask the *character* about something they know, something they have heard, something they have experienced. This puts the request back on their side of the Line. It's a sleight of mind, but it's an effective one.
-
-Even so, blurring the Line can be uncomfortable or off-putting for some players. Some players are totally fine with making up details about the world, but others will find that it takes away from their sense of immersion or makes the world feel hollow and made up. Adjust the questions you ask, and how you ask them, to fit your and your players' preferences.
-
-## **Embrace the fantastic and the mundane**
+#### **Embrace the fantastic and the mundane**
 
 The world is filled with fantastic elements: spirits, monsters, fickle Fae, the ancient works of the Makers, the darkness of the Things Below. Play up these elements. Use them to make the world mysterious.
 
@@ -692,7 +696,7 @@ But at the same time, ground the game in human concerns: the turn of seasons, th
 
 **Contrast the fantastic and the mundane against each other**. If an adventure revolves around a supernatural threat or opportunity, then be sure to include perfectly mundane challenges, dangers, and discoveries. If a session involves mostly mundane concerns (like a trade mission to Marshedge or an aurochs hunt), sprinkle in some fantastic elements. The interplay between the two makes the world that much richer and more mysterious.
 
-## **Exploit the setting guide**
+#### **Exploit the setting guide**
 
 *Stonetop* comes with a lot of established setting, but it leaves a lot of blanks for you and your players to fill in during play. The setting is intended to serve as a springboard for your creativity. It helps set a tone and gives you all a common starting point. It provides details to riff on. It hints at answers but doesn't always give them. Use the established setting to **portray a rich and mysterious world**.
 
@@ -700,7 +704,7 @@ Use the setting guide to inspire, but don't feel beholden to it. If your players
 
 With that said: **be thoughtful about what you change or discard**. It's safer to change specific details than to change broad themes. If the Fox says that Brennan used to run a gang in Marshedge and killed his way to power (as opposed to the setting guide's story about how he was a bandit who the council hired as their marshal), then no big deal. But if you and the Seeker decide that the Makers were gnome-sized tinkers instead of inscrutable titans, then you'll need to rethink all sorts of setting details (the size of the roads, the scale of the Ruined Tower, the themes associated with each type of Maker, and so forth).
 
-## **Respect your prep**
+#### **Respect your prep**
 
 Between sessions, you'll make preparations (i.e. "prep"). You'll write up threats and NPCs. You'll create or choose dangers and discoveries. You'll think of encounters and design locations to explore.
 
@@ -714,7 +718,7 @@ Then, during play, **respect your prep**. Treat it as fictional truth. Describe 
 
 See [[05 - Running the Game#Prep|Prep]] for more on **prep**.
 
-## **Give your characters life**
+#### **Give your characters life**
 
 Name your NPCs. Give them distinct personalities. Wants, needs, and quirks. Opinions and beliefs. If you can manage it, portray them with distinct voices or mannerisms. Bring them to life and play them as if they were real people.
 
@@ -726,7 +730,7 @@ Give your non-human characters life, too. Describe how they look, of course, but
 
 Beasts, spirits, even the utterly alien Things Below—they've all got personalities. Develop a sense of their motives and how they act under pressure. For beasts, think about their ecologies. For the undead, what keeps them from passing through the Last Door? For magical entities, think about the strange rules they follow. For all of the above: put those details on screen, or at least hint at them. It goes a long way towards **portraying a rich and mysterious world**.
 
-## **Think offscreen, too**
+#### **Think offscreen, too**
 
 When you establish the situation, answer questions, or make moves, think about events off-screen. What are your NPCs and monsters doing? What have they done? What traces did they leave? What have they been up to that becomes evident? What are they doing now that might become relevant later? Weave the answers into what you say.
 
@@ -734,7 +738,7 @@ Think, too, about what the PCs are doing and how it would shape off-screen event
 
 Thinking offscreen helps you **portray a rich and mysterious world**, because the world will feel larger than the PCs. It helps you **punctuate the characters' lives with adventure**, because off-screen threats and opportunities quickly become things for the PCs to deal with. And it helps you **play to find out what happens**, because it gets you thinking about consequences and cause/effect on a broader scale.
 
-## **Bring it home**
+#### **Bring it home**
 
 Make the village of Stonetop itself the foundation of your game, the beginning and end of the PCs' adventures. Threaten the town, its livelihood, or its citizens. Give them chances to make progress towards improvements, or to finally put down lingering threats.
 
@@ -746,13 +750,13 @@ When the PCs return home, consider what has happened while they were gone and de
 
 Between adventures, ask the characters about their day-to-day lives and relationships. Show how the town changes in response to its troubles and the opportunities the PCs have seized. Describe NPCs growing older, having children, aspiring to more, settling for less. Show how they've been affected by the PCs' adventures. Bring it home.
 
-## **Let things breathe**
+#### **Let things breathe**
 
 Allow stretches of time to pass between adventures, or even between individual moves. It's a big world out there, and the PCs have mundane, daily tasks to attend to. Avoid the temptation to follow the PCs lives from day to day, hour to hour. Have weeks or months go by with a single statement: "The next three weeks keep you all occupied with the harvest, and then..."
 
 When a threat looms, it need not be immediate and dire. You can show signs of it stirring but keep it distant and remote. Ask the PCs what they do about it, but you can resolve their response over days or weeks. Zoom in and frame a scene only when the fiction calls for immediate, specific action; zoom back out as soon as that's over. Let the threat simmer until it boils over and becomes something the PCs have to deal with.
 
-## **Let things burn**
+#### **Let things burn**
 
 As much as you like your plans, as much as you come to love some of your NPCs, as much as the players will grow attached: protect no one and nothing.
 
@@ -789,22 +793,22 @@ Add to existing maps, too. Put the PCs' homes on the steading map. Add points of
 
 **Sometimes, disclaim decision making.** Put an outcome in the character's hands ("He's a bloody mess, but not dead. You can still save him. Do you?"). Discuss an outcome with the players ("What do you think? Is Andras alive or dead?"). Let the dice decide ("You know what, roll Death's Door for him."). Let your NPCs decide, based on their instincts, their wants and needs, your notes, and your own sense of their internal logic. ("No, he's not the type to come back as a ghost, so… yeah, he's dead.")
 
-## **The Die of Fate**
+> [!box] **The Die of Fate**
+> One way to disclaim decision making is to let the dice decide. Often, that means letting the results of a player's move determine what happens. But you can also use the Die of Fate.
+> 
+> The Die of Fate is just a die roll, usually a d6, with a lower result meaning bad and a higher result meaning good. Have a player roll the Die of Fate when you don't have a particular opinion on what should happen or how something should go, and/or when it's just a matter of luck. How's the weather today? What do they encounter en route? How many uses of supplies can they loot? In general, a 1-2 is bad, a 3-4 is neutral or mixed, and 5-6 is pretty good.
+> 
+> Sometimes, you'll prep a set of results for the Die of Fate. For example, what happens when they make camp?
+> 
+> - 1 Crinwin attack camp!
+> - 2-3 Crinwin try to lure someone out of camp.
+> - 4-5 They're out there, just watching you.
+> - 6 You avoid their notice.
+> 
+> Don't feel limited to a d6, especially not when you've got a table of results set up in advance. If you've got 12 interesting outcomes, have them roll a d12.
+> ^the-die-of-fate
 
-One way to disclaim decision making is to let the dice decide. Often, that means letting the results of a player's move determine what happens. But you can also use the Die of Fate.
-
-The Die of Fate is just a die roll, usually a d6, with a lower result meaning bad and a higher result meaning good. Have a player roll the Die of Fate when you don't have a particular opinion on what should happen or how something should go, and/or when it's just a matter of luck. How's the weather today? What do they encounter en route? How many uses of supplies can they loot? In general, a 1-2 is bad, a 3-4 is neutral or mixed, and 5-6 is pretty good.
-
-Sometimes, you'll prep a set of results for the Die of Fate. For example, what happens when they make camp?
-
-- 1 Crinwin attack camp!
-- 2-3 Crinwin try to lure someone out of camp.
-- 4-5 They're out there, just watching you.
-- 6 You avoid their notice.
-
-Don't feel limited to a d6, especially not when you've got a table of results set up in advance. If you've got 12 interesting outcomes, have them roll a d12.
-
-## **What not to do**
+### **What not to do**
 
 **Don't plan a storyline or a plot.** Don't plan the PCs' character arcs. Don't plan dramatic moments, where the PCs arrive *just* as this particular thing happens (regardless of how long they took to get there or what they did before). Don't assume the PCs will take a certain course of action, or that they'll succeed or fail at a particular task. All of that flies in the face of **playing to find out what happens**. That's you deciding what will happen, in advance, by yourself. Absolutely not what you're here to do.
 
@@ -832,7 +836,7 @@ Running *Stonetop* specifically is its own skill, its own practice. Even if you'
 
 The point is: running *Stonetop* isn't exactly easy, but **you get better at it by doing it, by reflecting on how things went, and by trying to do better next time**.
 
-During the first adventure, focus on your **[[05 - Running the Game#Your agenda|agenda]]**, on following the **[[05 - Running the Game#The core loop|core loop]]**, and on recognizing the triggers of the **[[06 - Player Moves#Basic Moves|basic player moves]]**. Lean on your prep—that's what it's for—and take your time. Expect things to be a little rocky as you and your players learn the rules. Don't worry about punchy descriptions or voicing NPCs or sticking to every single principle.
+During the first adventure, focus on your **[[05 - Running the Game#Your agenda|agenda]]**, on following the **[[05 - Running the Game#The core loop|core loop]]**, and on recognizing the triggers of the **[[06 - Player Moves#^basic-moves-section|basic player moves]]**. Lean on your prep—that's what it's for—and take your time. Expect things to be a little rocky as you and your players learn the rules. Don't worry about punchy descriptions or voicing NPCs or sticking to every single principle.
 
 After the first "in character" session, ask your players for feedback. What did they enjoy? What felt rocky? What do they want to see more of in future sessions? Ask for clarification if you need it, but don't get defensive and don't try to explain yourself. Try to be humble and receptive.
 
@@ -876,7 +880,7 @@ The ongoing, recurring problems that cause trouble for the PCs. Things that are 
 
 When you want to push the PCs into the field with a threat or an opportunity, it pays to prepare a hook. A hook involves: setup questions, a plan for framing initial scenes, some specific GM moves you plan to make, and some possible reactions. See the **First Adventure** chapter [[08 - First Adventure|First Adventure]] for guidelines on preparing a hook.
 
-If you know (or suspect) that the PCs will leave town, you might prepare your choices for the **Chart a Course** move [[10 - Expeditions#CHART A COURSE|Chart a Course]]. Consider drawing a map, prepping points of interest, and roughly imagining a few encounters that they might have en route. See the "**What to prep"** section of the Expeditions chapter [[10 - Expeditions#What to prep|What to prep]] for details.
+If you know (or suspect) that the PCs will leave town, you might prepare your choices for the **Chart a Course** move [[10 - Expeditions#Resolving Chart a Course|Chart a Course]]. Consider drawing a map, prepping points of interest, and roughly imagining a few encounters that they might have en route. See the "**What to prep"** section of the Expeditions chapter [[10 - Expeditions#What to prep|What to prep]] for details.
 
 Think about each important place you expect the PCs to explore or encounter during a session. What's it like? How will you describe it? What questions will you ask about it? What's its story? Do you need a map or a visual aid? Are there dangers or discoveries within? See [[11 - Sites|Sites]] for ideas.
 

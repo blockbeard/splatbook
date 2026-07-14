@@ -1,6 +1,6 @@
 # Mediography
 
-## **Mediography**
+### **Mediography**
 
 The following works directly inspired *Stonetop*'s mechanics, techniques, setting, themes, and approach to information design.
 
@@ -15,7 +15,7 @@ The following works directly inspired *Stonetop*'s mechanics, techniques, settin
 - *Trilemma Adventures*, Michael Prescott, Trilemma Adventures, 2019
 - *Ars Magica*, Mark Rein-Hagen & Jonathan Tweet, Lion Rampant Games, 1987
 
-## **Blogs**
+### **Blogs**
 
 You can find a lot of writing about *Stonetop* and its development at Jeremy's blog, *Spouting Lore* (2018-2023). Additionally, the following essays and series either influenced techniques and approaches presented in this game or demonstrate the game in action.
 
@@ -29,7 +29,7 @@ You can find a lot of writing about *Stonetop* and its development at Jeremy's b
 - "Dungeon Checklist," Arnold K., *Goblin Punch*
 - "PTFO: Stonetop" (solo actual-play series), SGH, *PTFO* on Substack, 2022-present
 
-## **Touchstones**
+### **Touchstones**
 
 There's no one thing you can point at and say "*Stonetop* is just like this." But here's some stuff that you might look to for vibes.
 
@@ -56,7 +56,7 @@ There's no one thing you can point at and say "*Stonetop* is just like this." Bu
 - *A Wizard of Earthsea* (book), Ursula K. Le Guin, Parnassus Press, 1968
 - The Driftless region of Wisconsin, and Texas Hill Country
 
-## **And also...**
+### **And also...**
 
 The following influenced or inspired certain specific elements of *Stonetop*, or resonate strongly with some of its themes. Maybe they'll inspire you, too.
 
@@ -90,6 +90,6 @@ The following influenced or inspired certain specific elements of *Stonetop*, or
 - *Under Hollow Hills* (RPG), Meguey Baker & D. Vincent Baker, lumpley games, 2021
 - *The Wardstone Chronicles* (book series), Joseph Delaney, Greenwillow Books, 2004-2013
 
-## caveat emptor
+#### caveat emptor
 
 All of the above are relevant and potentially useful as inspiration, but they're not necessarily all good. And some of the creators held and espoused hurtful beliefs, which permeates their work. Others have done or been accused of terrible things. People, like art and our consumption of it, are complicated.

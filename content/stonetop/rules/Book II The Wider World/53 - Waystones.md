@@ -1,17 +1,18 @@
 # Waystones
 
-The **[[23 - The Great Wood#The Great Wood|Great Wood]]** and **[[13 - Ferrier's Fen#Ferrier's Fen|Ferrier's Fen]]** are dotted with massive markers of pale gray stone, moss-covered and largely overgrown, deeply etched with the curling, branching runes of the **[[24 - Green Lords#Names|Green Lords]]**. **Fae** magic [[12 - Fae|Fae]] binds the waystones together.
+The **[[23 - The Great Wood#The Great Wood|Great Wood]]** and **[[13 - Ferrier's Fen#Ferrier's Fen|Ferrier's Fen]]** are dotted with massive markers of pale gray stone, moss-covered and largely overgrown, deeply etched with the curling, branching runes of the **[[24 - Green Lords#Green Lords|Green Lords]]**. **Fae** magic [[12 - Fae|Fae]] binds the waystones together.
 
 ## **Lore**
 
 **Something interesting:** The waystones mark entrances to the Fae paths. If one can access the paths, they can quickly travel great distances. The paths, however, are fraught with peril. Tales tell of travelers being lost or entrapped for years or even centuries.
 
-**Something useful:** To step onto the Fae paths, you must leave behind all iron and
+**Something useful:** To step onto the Fae paths, you must leave behind all iron and steel, plus one of the following:
 
-- Be able to see through Fae magic and glamours, via **[[57 - Appendix C - Minor Arcana#A small, strange book fragile|Old Mother's Wine]]** or a similar effect
-  - Go at a certain time (under a \_\_ moon, at midnight, at sunrise, etc.) and either...
-- ... have Fae blood in your veins; or
-- ... open your mind with drugs/alcohol/ delirium/exhaustion/etc.
+- Follow the footsteps of a Fae guide
+- Be able to see through Fae magic and glamours, via **[[57 - Appendix C - Minor Arcana#^a-small-strange-book|Old Mother's Wine]]** or a similar effect
+- Go at a certain time (under a \_\_ moon, at midnight, at sunrise, etc.) and either...
+  - ... have Fae blood in your veins; or
+  - ... open your mind with drugs/alcohol/delirium/exhaustion/etc.
 
 Each waystone connects to at least one other, and most connect to a few. When you step on the path, you see the routes laid out before you, and can sense roughly where in the mortal realm each of the adjoining waystones lies.
 
@@ -42,7 +43,7 @@ When *a follower loses their way and no one saves them*, their fate is in the GM
 | 5 | Something of great beauty or wonder |
 | 6 | Something of great value, or a chance to learn something of great import |
 
-## **Stepping off the paths**
+### **Stepping off the paths**
 
 When one steps off the Fae paths, they might find themselves in any number of Fae domains. It's nearly impossible for a mortal to navigate between them, as the ways are ruled by dreamlike logic and secrets and ancient Fae pacts. A guide is all but essential, but even the Fae might struggle to access or escape certain realms.
 

@@ -2,10 +2,12 @@
 
 **Size** *town* (~700 to 800 souls)
 
-## **Population** +2
+**Population +2**
 
 ## Prosperity +0
-  - Trade with... ... Marshedge (wheat, flax, rope, textiles, herbs, glass)
+
+- Trade with...
+    - ... Marshedge (wheat, flax, rope, textiles, herbs, glass)
     - ... Stonetop (barley, potatoes, furs, whisky)
 
 ## **Resources**
@@ -51,7 +53,7 @@ There's no town council, not even a militia to speak of. And unlike Stonetop, th
 
 No one is from here originally. Even folks born here, their parents or grandparents came from somewhere else. For any NPC, pick or roll where they're from and what brought them. Pick a name based on their origins, maybe with an epithet like "the Knife," "Gaptooth," "Limper," "Boils," "the Yellow," or "Go-Between."
 
-## **1d12** where they're from
+### **1d12** where they're from
 
 - 1-2 Lygos, or other points south
 - 3-5 Marshedge
@@ -61,7 +63,7 @@ No one is from here originally. Even folks born here, their parents or grandpare
 - 10 Barrier Pass (or beyond)
 - 11-12 Grew up here; reroll for parents
 
-## **1d12** what brought them
+### **1d12** what brought them
 
 - 1-3 Seeking their fortune
 - 4-5 To join family/friends
@@ -98,9 +100,9 @@ There are very few full-time homemakers in Gordin's Delve; almost everybody work
 
 ## Trade & Barter
 
-## Commonly available
+### Commonly available
 
-The following are special items in Stonetop, but commonly available in Gordin's Delve-PCs can acquire them here without having to roll. They do need to trade something of equal Value. Stonetop trade goods (whisky,  furs, barley, potatoes) are always in demand.
+The following are special items in Stonetop, but commonly available in Gordin's Delve—PCs can acquire them here without having to roll. They do need to trade something of equal Value. Stonetop trade goods (whisky, furs, barley, potatoes) are always in demand.
 
 | weapons & armor | value |
 |---|---|
@@ -108,26 +110,26 @@ The following are special items in Stonetop, but commonly available in Gordin's 
 | Common weapons (steel, 1 piercing) | 1 |
 | Weapons of war (iron or bronze) | 1 |
 | Weapons of war (steel, 1 piercing) | 2 |
-| Hauberk/cuirass/scale (2 armor , warm, clumsy ) | 2 |
+| ◇◇ Hauberk/cuirass/scale (2 armor, *warm*, *clumsy*)                   | 2     |
 
 | goods                                                               | value |
 | ------------------------------------------------------------------- | ----- |
-| Lantern ( hours , reach , area )                                    | 0     |
+| ◇ Lantern (○○○○○ *hours*, *reach*, *area*)                                  | 0     |
 | Small metal tool (chisel, file, shears, etc.)                       | 0     |
-| Block & tackle                                                      | 0     |
-| Metal tools (drill, prybar, saw, etc.)                              | 0     |
-| Mirror, hand-held, polished bronze                                  | 1     |
+| ◇ Block & tackle                                                      | 0     |
+| ◇ Metal tools (drill, prybar, saw, etc.)                              | 0     |
+| ◇ Mirror, hand-held, polished bronze                                  | 1     |
 | Wheelbarrow                                                         | 1     |
 | Cart (requires donkey/mule/horse)                                   | 2     |
-| Spare parts for cart/wagon (wheels, axles, struts, uses, immobile ) | 2     |
-| Cartload of timber ( immobile )                                     | 2     |
+| Spare parts for cart/wagon (wheels, axles, struts, ○○○ uses, *immobile*)| 2     |
+| Cartload of timber (*immobile*)                                     | 2     |
 | Cartload of copper/lead/tin/iron                                    | 2     |
 
 | coin | value |
 |---|---|
-| Purse of coppers (~10 handfuls) | 0 |
+| ◇ Purse of coppers (~10 handfuls) | 0 |
 | Handful of silvers | 1 |
-| Purse of silvers (~10 handfuls) | 2 |
+| ◇ Purse of silvers (~10 handfuls) | 2 |
 
 | food & lodging | value |
 |---|---|
@@ -137,26 +139,26 @@ The following are special items in Stonetop, but commonly available in Gordin's 
 | Lodgings, decent (for a small party up to a week, food included) | 1 |
 | Night of fine living (for one) | 1 |
 
-## Special items
+### Special items
 
 The following might be acquired in Gordin's Delve, in addition to special items from the Moves & Gear handout. PCs must roll Trade & Barter to acquire them.
 
-When PCs Trade & Barter in Gordin's Delve , they use the local Prosperity (+0 by default) with advantage because it's a town . On a 6, they don't mark XP; they must talk to one of the Bosses if they want to acquire/sell it.
+When PCs Trade & Barter in Gordin's Delve, they use the local Prosperity (+0 by default) with advantage because it's a *town*. On a 6-, they don't mark XP; they must talk to one of the Bosses if they want to acquire/sell it.
 
 | goods | value |
 |---|---|
 | A lock and key | 1 |
 | Silver jewelry | 1 |
 | A small silver mirror | 2 |
-| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
-| An object of orichalcum (see [[18 - Forge Lords#**1d6** architectural elements|Forge Lords]]) | +2 |
+| An object of black iron [[36 - Primordial Powers#Primordial Powers\|Primordial Powers]] | +2 |
+| An object of orichalcum (see [[18 - Forge Lords#Forge Lords|Forge Lords]]) | +2 |
 
 | food & lodging | value |
 |---|---|
 | Humble, cramped apartment to call your own | 2 |
 | Modest house or shop | 3 |
 
-## .   trade opportunities   .
+### .   trade opportunities   .
 
 If the PCs get a trade opportunity (from the Seasons Change move), Gordin's Delve might offer the following:
 
@@ -170,7 +172,7 @@ If the PCs get a trade opportunity (from the Seasons Change move), Gordin's Delv
 
 ## ASK AROUND
 
-When you spend a purse of coppers and a few hours asking around town , say what you hope to learn and roll +CHA: on a 10+ , you get a clear and useful answer; on a 7-9 , you get an answer but pick 1:
+When you *spend a purse of coppers and a few hours asking around town*, say what you hope to learn and roll +CHA: **on a 10+**, you get a clear and useful answer; **on a 7-9**, you get an answer but pick 1:
 
 - It's incomplete, contradictory, or unclear, but the GM will say how you could learn more
 - It'll cost you another purse of coppers
@@ -178,7 +180,7 @@ When you spend a purse of coppers and a few hours asking around town , say what 
 
 ## CAROUSE
 
-When you spend a handful of silvers having a good time , roll +CHA: on a 10+ , pick 2; on a 7-9 , pick 1:
+When you *spend a handful of silvers having a good time*, roll +CHA: **on a 10+**, pick 2; **on a 7-9**, pick 1:
 
 - You spread a rumor or tale far and wide
 - You make a loyal new friend
@@ -187,13 +189,13 @@ When you spend a handful of silvers having a good time , roll +CHA: on a 10+ , p
 
 ## RECRUIT
 
-When you put out word that you're hiring , say who you're looking for, what the job is, and what you're offering (the GM will veto if you're being unreasonable). Then roll and add…
+When you *put out word that you're hiring*, say who you're looking for, what the job is, and what you're offering (the GM will veto if you're being unreasonable). Then roll and add…
 
-- …   +1 if your offer is generous;
-- …   +1 if the work conditions aren't terrible;
-- …   +1 if you've got a solid reputation hereabouts.
+- … +1 if your offer is generous;
+- … +1 if the work conditions aren't terrible;
+- … +1 if you've got a solid reputation hereabouts.
 
-On a 10+ , you find someone, but pick 1; on a 7-9 , you find someone but pick 2.
+**On a 10+**, you find someone, but pick 1; **on a 7-9**, you find someone but pick 2.
 
 - They lack some of the skills you wanted
 - They suffer from some impairment or vice (GM's choice)
@@ -207,20 +209,19 @@ On a 10+ , you find someone, but pick 1; on a 7-9 , you find someone but pick 2.
 | A guide into the slopes/Delves, for a day                             | 0     |
 | A crew of miners/woodcutters, for a week                              | 1     |
 | A prospector, to take you to a secret or dangerous part of the Delves | 1     |
-| Atrustworthy live-in servant, for a season                            | 1     |
+| A trustworthy live-in servant, for a season                          | 1     |
 | A bodyguard/muscle, for a few days                                    | 1     |
 | A targeted killing, discrete                                          | 1     |
 | An engineer/foreman, for a big project                                | 2     |
-
-An assassination, someone important
+| An assassination, someone important                                  | 2     |
 
 ## **Secrets**
 
-- **The Red Door** is a well-known feature down in the **[[22 - Gordin's Delve#**The Delves**|First Delve]]**, a 20-foot tall slab of **[[43 - Stone Lords#Various treasures|makerglass]]** , inlaid with hundreds of patterned tiles. Some are missing, allowing the tiles to be slid around. When the tiles are in the exact right spots, the Red Door will open. Hints to the correct arrangement are hidden in old mosaics throughout Gordin's Delve.
+- **The Red Door** is a well-known feature down in the **[[22 - Gordin's Delve#Shoddy construction|First Delve]]**, a 20-foot tall slab of **[[43 - Stone Lords#Makerglass|makerglass]]**, inlaid with hundreds of patterned tiles. Some are missing, allowing the tiles to be slid around. When the tiles are in the exact right spots, the Red Door will open. Hints to the correct arrangement are hidden in old mosaics throughout Gordin's Delve.
 - **An established shopkeep** (like a chandler, a publican, an innkeeper, maybe even a barber?) has a habit of killing folks who won't be missed. They're otherwise a pillar of the community.
 - Everyone knows there are **grates in the terraces**, carrying water through chutes and culverts to pour out below Sorrow's Gate. But there's more, a series of cramped tunnels and chutes that connect to some of the old ruins and even the Delves. The sewers are gross, infested with rats or worse, and just big enough to get lost in.
-- **A cult of locals** (some influential) have taken to tossing sacrifices into the underground lake at the bottom of the **[[22 - Gordin's Delve#**The Delves**|Second Delve]]**: coin, flesh, living victims. They've received blessings from **[[46 - The Things Below#**For We Are Many**|Daagon]]** as a result.
-- Every few years, miners in the **[[22 - Gordin's Delve#**The Delves**|Third Delve]]** will unearth a "door" made of **[[18 - Forge Lords#**1d6** architectural elements|orichalcum]]**. Rarely, they rebury it. Usually, they pry it open, to find nothing but more rock beyond. A powerful earthquake always follows a few days after one of these doors is opened, but few have made the connection.
+- **A cult of locals** (some influential) have taken to tossing sacrifices into the underground lake at the bottom of the **[[22 - Gordin's Delve#Shoddy construction|Second Delve]]**: coin, flesh, living victims. They've received blessings from **[[46 - The Things Below#Hand of Daagon|Daagon]]** as a result.
+- Every few years, miners in the **[[22 - Gordin's Delve#Shoddy construction|Third Delve]]** will unearth a "door" made of **[[18 - Forge Lords#Orichalcum|orichalcum]]**. Rarely, they rebury it. Usually, they pry it open, to find nothing but more rock beyond. A powerful earthquake always follows a few days after one of these doors is opened, but few have made the connection.
 
 ## **Hooks**
 
@@ -232,92 +233,100 @@ An assassination, someone important
 - Ustrina offer gold and silver for something unsavory (fresh blood, corpses, slaves, etc.)
 - Logging crews have gone missing, and the folks who went to check on them never came back. Are Hillfolk raiders to blame? Bandits? Or something worse?
 
-### **Dangers**
+## **Dangers**
 
 ### **Living conditions**
 
 - Hunger, if you can't afford food
 - Exposure to **[[27 - Huffel Peaks#Harsh mountain weather|harsh mountain weather]]**, if you can't afford shelter
 - Sickness and disease, from close quarters and poor hygiene
-- **[[42 - The Steplands#1d6 natural beast or spirit|Mudslides]]**, especially on the slopes
+- **[[42 - The Steplands#Mudslide|Mudslides]]**, especially on the slopes
 - Workplace accidents (or "accidents")
 - General apathy from those who could help
 
-## **Folks from elsewhere**
+### **Folks from elsewhere**
+
+Such as:
 
 - **[[02 - The Village of Stonetop#The village of Stonetop|Stonetop]]**
 - **[[32 - Marshedge#Marshedge|Marshedge]]**
 - The **[[34 - North Manmarch#North Manmarch|Manmarch]]**, [[40 - South Manmarch#South Manmarch|350\)]]
-- **[[29 - Lygos and the South|Lygos]]** or other points south 
+- **[[29 - Lygos and the South|Lygos]]** or other points south
 - **[[04 - Barrier Pass#Barrier Pass|Barrier Pass]]** or beyond
-- **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, cast out by
+- **[[26 - Hillfolk#Hillfolk|Hillfolk]]**, cast out by their people
+- **[[51 - Ustrina|Ustrina]]**, here to trade (probably)
 
-### **Alley cutthroats**
+> [!monster] ## **Alley cutthroats**
+>
+>  *Group*, *stealthy*, *cautious*, *organized*
+>
+> **HP** 6; **Armor** 0
+>
+> **Damage** wicked knife d8 (*hand*)
+>
+> **Instinct** to prey on the unwary
+>
+> - Pick out a likely mark
+> - Jump someone
+> - Fight dirty
+> - Leave no witnesses
 
- *Group*, *stealthy*, *cautious*, *organized*
+> [!monster] ## **Desperate souls**
+>
+>
+> *Group*, *craven*, *meek*, *opportunistic*
+>
+> **HP** 6; **Armor** 0
+>
+> **Damage** brick, makeshift club, rusty knife d6 (*hand*, *crude*)
+>
+> **Instinct** to do what they must
+>
+> - Do something unsavory, if there's food or coin in it
+> - Tell someone what they think they want to hear
+> - Demonstrate their humanity in a small—or sometimes enormous—way
 
-**HP** 6; **Armor** 0
+> [!monster] ## **Dawa Eyegouger**
+>
+>  *Solitary*, *brutal*, *fearless*, *drunkard*
+>
+> **HP** 16; **Armor** 0
+>
+> **Damage** knife or fingers d8 (*hand*, *messy*, 1 piercing, advantage)
+>
+> **Instinct** to get this over with
+>
+> - Ignore pain, doubt
+> - Explode into sudden violence
+> - Fight dirty, mean, without remorse
+>
+> A goatherder from north of Barrier Pass, with orange irises and too-long fingers (marks of the **[[54 - The Whitefang Mountains#Ice drake|Howling Curse]]**). She turned up in Gordin's Delve years back, and one of the Bosses put her to work as an enforcer. They keep her sauced and happy, until there's work to be done. Then they dry her out, point out the target, and stand back.
 
-**Damage** wicked knife d8 (*hand*)
+> [!monster] ## **Laborers**
+>
+> *Horde*, *hardy*
+>
+> **HP** 7; **Armor** 0
+>
+> **Damage** fists, boots d4 (*hand*) or pickax d6 (*close*, *messy*, 1 piercing)
+>
+>
+> **Instinct** to cling to what they've got
+>
+> - Make a show of toughness, solidarity
+> - Dogpile someone (*grabby*, *forceful*)
+> - Break and run when things go sideways
 
-**Instinct** to prey on the unwary
-
-- ä Pick out a likely mark
-- ä Jump someone
-- ä Fight dirty
-- ä Leave no witnesses
-
-### **Desperate souls**
-
-*Group*, *craven*, *meek*, *opportunistic*
-
-**HP** 6; **Armor** 0
-
-**Damage** brick, makeshift club, rusty knife d6 (*hand*, *crude*)
-
-**Instinct** to do what they must
-
-- ä Do something unsavory, if there's food or coin in it
-- ä Tell someone what they think they want to hear
-- ä Demonstrate their humanity in a small—or sometimes enormous—way
-
-## **Dawa Eyegouger**
-
- *Solitary*, *brutal*, *fearless*, *drunkard*
-
-**HP** 16; **Armor** 0
-
-**Damage** knife or fingers d8 (*hand*, *messy*, 1 piercing, advantage)
-
-**Instinct** to get this over with
-
-- ä Ignore pain, doubt
-- ä Explode into sudden violence
-- ä Fight dirty, mean, without remorse
-
-A goatherder from north of Barrier Pass, with orange irises and too-long fingers (marks of the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**). She turned up in Gordin's Delve years back, and one of the Bosses put her to work as an enforcer. They keep her sauced and happy, until there's work to be done. Then they dry her out, point out the target, and stand back.
-
-## **Laborers**
-
-*Horde*, *hardy*
-
-**HP** 7; **Armor** 0
-
-**Damage** fists, boots d4 (*hand*) or pickax d6 (*close*, *messy*, 1 piercing)
-
-**Instinct** to cling to what they've got
-
-- ä Make a show of toughness, solidarity
-- ä Dogpile someone (*grabby*, *forceful*)
-- ä Break and run when things go sideways
-
-## **Shoddy construction**
+### **Shoddy construction**
 
  Gordin's Delve is a weird mix of piled stone and crude carpentry, lashed onto Maker-ruins that have stood for hundreds of years. It's all very slapdash and precarious.
 
-- <sup>ä</sup> Things creak, sway, and teeter ominously
-- <sup>ä</sup> A wall/support/floor gives way, putting someone in danger
-- <sup>ä</sup> Someone falls from a height/is buried
+- Things creak, sway, and teeter ominously
+- A wall/support/floor gives way, putting someone in danger
+- Someone falls from a height/is buried under rubble
+- Something catches fire
+- A structure collapses, weakening others
+- A home/shop is destroyed, someone's savings/livelihood/family is lost
 
 ## **The Delves**
 
@@ -325,13 +334,11 @@ The Arms feature three archways, each over 30 feet tall. Each arch leads to a tu
 
 **The First Delve** opens where the two Arms meet. It stretches half a mile from the surface, then becomes a series of switchback tunnels, one after the other, down and down and down. The main tunnel ends with a cave-in, but side passages and chambers connect to the Labyrinth. **Forge Lord** carvings [[18 - Forge Lords|Forge Lords]] decorate the walls, and rich veins of copper and hematite (iron ore) have been found.
 
-**The Second Delve** opens on the righthand slope (facing uphill). The delve goes straight, sloping down for about 300 feet, then turns left at a landing. Another 300 feet, there's another landing, another left turn. The pattern repeats dozens of
-
-times, ending at a ledge that overlooks a subterranean lake. Miners brick up the end of the passage, but their walls rarely stand for long. Ancient side passages spoke outward from this delve; many have led to rich (though inconvenient) copper veins.
+**The Second Delve** opens on the righthand slope (facing uphill). The delve goes straight, sloping down for about 300 feet, then turns left at a landing. Another 300 feet, there's another landing, another left turn. The pattern repeats dozens of times, ending at a ledge that overlooks a subterranean lake. Miners brick up the end of the passage, but their walls rarely stand for long. Ancient side passages spoke outward from this delve; many have led to rich (though inconvenient) copper veins.
 
 **The Third Delve** opens on the lefthand Arm. The main tunnel forks and turns frequently, soon becoming one great big twisting mess of tunnels and chambers. Many of these lower tunnels connect with the Labyrinth. Hematite veins have been found at the end of many such tunnels, and turned into active mines.
 
-## Impressions
+### Impressions
 
 - Vast, arched tunnels, stretching well beyond your torchlight
 - Echoing sounds of picks on rock, carts rumbling, voices grumbling, your own footsteps
@@ -340,11 +347,11 @@ times, ending at a ledge that overlooks a subterranean lake. Miners brick up the
 - Constant, warm breeze flowing up, like gentle breath
 - Crude, cramped scale of new excavations, propped up with timbers
 
-## Chance encounters
+### Chance encounters
 
 Choose or have someone roll the Die of Fate.
 
-## 1d6 encounter
+### 1d6 encounter
 
 - 1 Cultist or worshiper of the Things Below [[46 - The Things Below#The Things Below|The Things Below]]
 - 2 A shady, strange, or desperate character, out of place
@@ -354,7 +361,7 @@ Choose or have someone roll the Die of Fate.
 
 For disposition, choose or have someone roll:
 
-## 1d6 disposition
+### 1d6 disposition
 
 - 1 Planning treachery or betrayal
 - 2 Aggressively unfriendly, even hostile
@@ -362,11 +369,11 @@ For disposition, choose or have someone roll:
 - 4-5 Wary, tight-lipped, suspicious
 - 6 Friendly enough
 
-## Discoveries
+### Discoveries
 
 Pick 1 or have someone roll the Die of Fate.
 
-## 1d6 discovery
+### 1d6 discovery
 
 - 1 signs of violence/disaster (below)
 - 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
@@ -375,7 +382,7 @@ Pick 1 or have someone roll the Die of Fate.
 - 5 A vein of copper, hematite (iron ore), or galena (silver/lead ore)
 - 6 A ruin or artifact of the Forge Lords [[18 - Forge Lords|Forge Lords]]
 
-## 1d6 signs of violence/disaster
+### 1d6 signs of violence/disaster
 
 - 1 A scene of wanton carnage
 - 2 A dead monster from the Labyrinth [[28 - The Labyrinth|The Labyrinth]], bloody trail leading off
@@ -389,7 +396,7 @@ Pick 1 or have someone roll the Die of Fate.
 - Getting lost
 - Pockets of bad air: stale, poisonous, smoke- or dust-filled
 - Cave-ins, especially in more recent excavations
-- Laborers [[22 - Gordin's Delve#Dangers|Gordin's Delve]], with something to hide or protect
-- Ghosts (see [[10 - Death and the Undying#**Pyped**|Death and the Undying]]), victims of   cave-ins or previous violence
+- Laborers [[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]], with something to hide or protect
+- Ghosts (see [[10 - Death and the Undying#Death and the Undying|Death and the Undying]]), victims of cave-ins or previous violence
 - Traps or wards protecting Forge Lord compounds [[18 - Forge Lords|Forge Lords]]
 - Monsters come up from the Labyrinth [[28 - The Labyrinth|The Labyrinth]]

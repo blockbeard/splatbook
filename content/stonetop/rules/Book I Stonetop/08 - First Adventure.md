@@ -1,13 +1,13 @@
 # First Adventure
 
-Goals Structure 
-Background 
-Setup questions 
-Setting the scene 
-Dropping the hook 
-Heading out
+| In this chapter                           |                                                   |
+| ----------------------------------------- | ------------------------------------------------- |
+| [[08 - First Adventure#**Goals**\|Goals]] | [[08 - First Adventure#**Structure**\|Structure]] |
+| [[#Background\|Background]]               | [[#Setup questions\|Setup questions]]             |
+| [[#Setting the scene\|Setting the scene]] | [[#Dropping the hook\|Dropping the hook]]         |
+| [[#Heading out\|Heading out]]             |                                                   |
 
-# **Goals**
+## **Goals**
 
 Introductions are complete. Spring has sprung forth. You've got a rich tapestry of characters, relationships, and backstories. It's time for the first adventure! Let's put all that stuff into play and see the PCs in action.
 
@@ -21,11 +21,11 @@ Your goals for the first adventure are:
 - Play up both the mundane and the mysterious
 - Draw them back home
 
-## **Paint a picture of daily life**
+### **Paint a picture of daily life**
 
 Your first adventure should start in Stonetop and help make it real. The setup and the initial scenes should show off mundane slices of life and reinforce the fact that this is the PCs' home—and that it's a home worth fighting for.
 
-#### **Explore relationships**
+### **Explore relationships**
 
 Take those NPCs and relationships that were established during introductions and push them into the spotlight. How does Caradoc treat his sweetheart? How does Blodwen feel about Rhianna's promise to keep her safe?
 
@@ -33,11 +33,11 @@ Don't just explore relationships that were explicitly established during introdu
 
 Keep an eye out for surprises, too! It might not have come up during introductions, but maybe when you play Garet (one of Rhianna's crew), you find that he's flirting with Blodwen. That's great! Run with it and see where that goes.
 
-## **Identify what's important to them**
+### **Identify what's important to them**
 
 There's nothing like a crisis to make someone's priorities come to the forefront. Keep an eye on the decisions that characters make, and where their interests lie. That'll be all sorts of fodder for later.
 
-## **Push them into the field**
+### **Push them into the field**
 
 Whatever you do, don't spend very long in Stonetop itself. Get them into the field, on an adventure, as soon as possible.
 
@@ -49,17 +49,17 @@ Yes, you are—just not right now. Right now, your job is to get the action roll
 
 No: get them out of town. Get them adventuring on the town's behalf, sweating and bleeding for their kith and kin. Don't let Stonetop itself be a major source of conflict—yet.
 
-## **Establish details, leave blanks**
+### **Establish details, leave blanks**
 
 Both in the village and in the wider world, you want to be asking questions like crazy and establishing all sorts of concrete details. Who lives in those houses just outside the Ringwall? What flowers grow all around the old Fae waystones? Where did Vahid get that fancy lantern?
 
 But leave blanks, too. Leave some details to wonder about, some mysteries to fill in later. How did the Silent Twins die? What is hiding in the Maw? Why *is* Elios such a joyless prick?
 
-## **Play up both the mundane and the mysterious**
+### **Play up both the mundane and the mysterious**
 
 *Stonetop* adventures should include a healthy dose of both mundane concerns and mysterious elements. If the adventure hook is mundane (like a chance to capture some wild horses), lace the adventure with strangeness and magic. If the hook is mysterious, pay attention to mundane details like weather and supplies and the fact that someone's mother is worried sick.
 
-## **Draw them back home**
+### **Draw them back home**
 
 Whatever the first adventure is, it should end with them returning to Stonetop. This should happen pretty naturally, but avoid things like trapping the whole party in some Fae's demesne or having them follow a bunch of slavers to Lygos. Let them go home. Encourage them to go home. The whole premise of the game falls apart if they don't.
 
@@ -73,20 +73,20 @@ Regardless of whether you use an adventure starter or a custom adventure, the fi
 - **4)** Assuming the PCs take the hook, they'll **make preparations**: they'll Chart a Course, Outfit, Requisition, recruit followers to join them, etc.
 - **5)** They will likely **travel** towards the focal point of the adventure. The journey will likely be an adventure itself. They might even be forced to turn back, letting the opportunity slip away or the problem get worse.
 - **6)** The journey (probably) leads them to the **resolution** of the adventure: the danger or opportunity that spurred them out the door in the first place. They explore, talk to NPCs, sneak, fight, make a daring escape, etc.
-
-## **Adventure starters**
-
-Adventure starters are pre-made first adventures that you can use to kickstart your game. You can make characters and jump into the first adventure all in one session!
-
-With that said: adventure starters bypass the full introduction process described in the Getting Started chapter. Starters include their own abbreviated setup procedures, and delay establishing a lot of details about the village and the world until after the first adventure is complete.
-
-Even if you don't use an adventure starter in full, you might find them useful as examples and sources of threats, dangers, discoveries, and maps.
-
-You can find these adventure starters at www.lampblackandbrimstone.com
-
-**7)** Then there's the **aftermath**: the journey home, the triumphant (or notso) return, the reactions of their friends, family, and neighbors, and a return to day-to-day life. But there will be questions unanswered, threats still at large, further opportunities to explore—the source of future adventures!
+- **7)** Then there's the **aftermath**: the journey home, the triumphant (or notso) return, the reactions of their friends, family, and neighbors, and a return to day-to-day life. But there will be questions unanswered, threats still at large, further opportunities to explore—the source of future adventures!
 
 Of course, the PCs might not take your hook. Or, they might get distracted by something that happens on the journey, and decide its more important than whatever you expected the focal point to be. That's all fine! Follow your agenda and principles, make moves, and keep asking them what they do.
+
+> [!box] **Adventure starters**
+> 
+> Adventure starters are pre-made first adventures that you can use to kickstart your game. You can make characters and jump into the first adventure all in one session!
+> 
+> With that said: adventure starters bypass the full introduction process described in the Getting Started chapter. Starters include their own abbreviated setup procedures, and delay establishing a lot of details about the village and the world until after the first adventure is complete.
+> 
+> Even if you don't use an adventure starter in full, you might find them useful as examples and sources of threats, dangers, discoveries, and maps.
+> 
+> You can find these adventure starters at www.lampblackandbrimstone.com
+> ^adventure-starters
 
 ## **Background**
 
@@ -104,11 +104,11 @@ Having this information planned in advance helps you **portray a rich and myster
 
 *I've got a lot to work with. Let's see where this goes!*
 
-## **Identify the central threat or opportunity**
+### **Identify the central threat or opportunity**
 
 The first adventure will center around an opportunity or a threat. The "spring bursts forth" roll (and the player's choice) at the end of introductions will tell you which.
 
-## **On a 10+, an opportunity**
+#### **On a 10+, an opportunity**
 
 If they rolled a 10+ on their Seasons Change roll, they will have chosen "interesting news" or "valuable insight" or "trade opportunity." All three choices represent an opportunity. The opportunity should be both...
 
@@ -143,7 +143,7 @@ Now, who could offer such a thing? What do they want in exchange? And why are th
 
 *Vahid wants to find the intricate helm that would serve as the Mindgem's head. Had he rolled a 10+, he might have asked for an opportunity to acquire it. The Ustrina could have found it and sold it to someone in Gordin's Delve, someone who knows Vahid is interested in this sort of thing. Of course, they'd ask a pretty penny for it, or more likely, some service only Vahid could grant...*
 
-## **On a 7-9, a threat and a gain**
+#### **On a 7-9, a threat and a gain**
 
 If they rolled a 7-9, then a threat to the steading presents itself (or gets worse). But they also will have chosen a seasonal gain. The threat will be the main focus of the first adventure, but how it presents itself should be influenced by whatever seasonal gain they chose.
 
@@ -190,7 +190,7 @@ If they chose "population boom," then tie the threat to a new arrival, or to one
 
 *Had Vahid picked this option, I could say that a number of Caradoc's peers take it upon themselves to go find the missing children, only to encounter the swyn itself and its crinwin servants. One or two youths could fall under the swyn's sway, and the others would return to the village injured and shaken.*
 
-## **On a 6-, threats abound**
+#### **On a 6-, threats abound**
 
 Things are going to start bad and they're going to get worse.
 
@@ -211,7 +211,7 @@ These recent events—or the hook (when you drop it)—will almost certainly tri
 
 *Swyn are collectors, so I think: the crinwin are collecting children for their master. Since the raid, search parties have failed to find the child and have been attacked themselves. At least one of the searchers was killed. More raids have happened, targeting the homes nearest to the Great Wood. Trappers and hunters have been attacked and refuse to go out into the Wood. And most recently, another child will have been taken from the steading just before dawn.*
 
-## **Write up your threat(s)**
+### **Write up your threat(s)**
 
 If your initial adventure involves a threat, then flesh it out using the guidelines in the **Threats** chapter [[09 - Threats|Threats]]. Try to come up with an impending doom, and make the first grim portent the hook for your first adventure.
 
@@ -221,7 +221,7 @@ Think, too, about other threats identified during introductions that could overl
 
 *Vahid rolled a 7-9 for Seasons Change and my central threat is the swyn that's driving the crinwin to steal children. I write it up like so:*
 
-## Sajra the Swyn (*villain*)
+#### Sajra the Swyn (*villain*)
 
 **INSTINCT** to indulge its ego.
 
@@ -237,7 +237,7 @@ STAKES: Will Wynfor's parents forgive Caradoc? Who will fall under Sajra's sway?
 
 *The crinwin themselves are also a threat, a rabble (Instinct to covet). But I don't go into more detail. It's really the swyn that's the threat.*
 
-## **Refine your hook**
+### **Refine your hook**
 
 You've identified the central opportunity or threat for the adventure. You've got some idea how that threat will manifest, based on the results of the first Seasons Change move.
 
@@ -274,7 +274,7 @@ If you have time, write these questions down as part of your prep. Write in penc
 
 You might also end up writing a "love letter" or two, instead of or in addition to some of your questions.
 
-## **Establish key details**
+### **Establish key details**
 
 What details need to be established before you start play? What needs to be true for your hook to make sense? What obvious questions arise as you think about those things? Ask leading questions that establish those things, but at the same time give the players some creative control.
 
@@ -298,7 +298,7 @@ But also: your players will come up with details that you never would. And even 
 - *Who was the youth who went missing in the Wood a few weeks before that nighttime raid by the crinwin?*
 - *Why did you all give up searching for her?*
 
-## **Highlight setting elements**
+### **Highlight setting elements**
 
 Next, identify any unique setting elements (like the Makers, the wards on the roads, the Pale Hunter, the widespread fear of water, etc.) that will play a significant role in the hook, or that would directly inform the PCs' reactions to the hook. Write a question about each of those elements, just to make sure it's something that the players are familiar with.
 
@@ -314,7 +314,7 @@ If there's a setting element that you're pretty sure will come up, but that won'
 
 *Likewise, I know that the swyn is hiding in the tomb of a mummified Green Lord, so I consider asking some questions about the Green Lords or their ruins out in the Wood. But on second thought, it's not relevant yet—and it wouldn't make any sense to ask about it.*
 
-## **Foreshadow**
+### **Foreshadow**
 
 Ask yourself if there's anything that you want to foreshadow: a threat, a motive, a consequence, a discovery, etc. Write a question or two that points in that direction, without being too obvious.
 
@@ -326,7 +326,7 @@ Foreshadowing questions are tricky! If you can't come up with a way to be subtle
 
 *I'd like to hint at the swyn itself, but I can't think of any way to ask a question about it that won't be a dead giveaway that, yup, the swyn is the boss. So I leave that out.*
 
-## **Make things personal**
+### **Make things personal**
 
 Ask questions of each character, so that all the players are involved. Try to balance the number of questions you're asking to each. If there's an imbalance, try asking one character what they think about another character's answer or past behaviors—and feel free to make it all sorts of loaded. For example: "Vahid, why do you think Rhianna was wrong to call off the search for the first missing girl?"
 
@@ -367,38 +367,37 @@ As you revise the questions, also think about the order in which you'll ask them
 
  "*Caradoc, why are you so certain that the missing children are alive?"*
 
-## Love letters
+> [!box] ## **Love letters**
+> 
+> Consider writing one or more "love letters" to go along with these questions. Each such love letter should...
+> 
+> - ... address a particular PC;
+> - ... **establish some experience** that the PC has had (or is still having);
+> - ... ask them to describe something about that experience;
+> - ... have them make a roll and, based on the result, give the player...
+>   - ... **insight into or influence** over the starting situation, and/or...
+>   - ... some sort of resource to use in the upcoming adventure.
+> 
+> Write the love letter on an index card. print it out before play, or send it to the player online. Have the player read it aloud during whatever part of the setup makes sense.
+> 
+> I'd like to foreshadow the swyn, but asking about it directly would be too obvious. Instead, I write this love letter to Blodwen. It establishes a few potential culprits (including the swyn) and gives her the option to learn more in play.
+> ^love-letters
 
-Consider writing one or more "love letters" to go along with these questions. Each such love letter should...
-
-- ... address a particular PC;
-- ... **establish some experience** that the PC has had (or is still having);
-- ... ask them to describe something about that experience;
-- ... have them make a roll and, based on the result, give the player...
-  - ... **insight into or influence** over the starting situation, and/or...
-  - ... some sort of resource to use in the upcoming adventure.
-
-Write the love letter on an index card. print it out before play, or send it to the player online. Have the player read it aloud during whatever part of the setup makes sense.
-
-I'd like to foreshadow the swyn, but asking about it directly would be too obvious. Instead, I write this love letter to Blodwen. It establishes a few potential culprits (including the swyn) and gives her the option to learn more in play.
-
-seven the Crone has told you countless tales of unnatural creatures in the Wood. Lately, though, Dear Blodwen, she's been bringing up things that steal away children, such as:
-
-\* Fae, like the white Billies (eternal revelers), Blush-of-Dawn (who seeks adoration),
-
-- \* The glasbren, beautiful tree spirits who've been known to entrance comely mortals and Auntie Sallow (who "protects" the innocent)
-- \* Swyn, big snakes with monkey-like faces, hypnotic eyes, and mesmerizing voices
-- \* The Fomorajj, of which she barely whispers, ancient evils hiding in the earth old Seven does drone on, and she ravely tells a story the same way twice, so let's see how well
-
-you've been listening. Roll +INT: on a 10+ hold 2 stories; on a 7-9, hold 1 story. when you spend I story and tell us the name of one of seven's tales, ask the GM a question
-
-about one of the creatures described above. The GM will tell you something interesting, useful,
-
-On a 6, hold I story but when you spend it, the GM will tell you two versions of the story with and relevant, as revealed by the tale.
-
-conflicting information, only one of which is true.
-
-xoxo - your GM
+> [!Love Letter]
+> 
+> Dear Blodwen, 
+> Seven the Crone has told you countless tales of unnatural creatures in the Wood. Lately, though, she's been bringing up things that steal away children, such as:
+> 
+> - Fae, like the white Billies (eternal revelers), Blush-of-Dawn (who seeks adoration),
+> - The glasbren, beautiful tree spirits who've been known to entrance comely mortals and Auntie Sallow (who "protects" the innocent)
+> - Swyn, big snakes with monkey-like faces, hypnotic eyes, and mesmerizing voices
+> - The Fomorajj, of which she barely whispers, ancient evils hiding in the earth 
+> 
+> Old Seven does drone on, and she ravely tells a story the same way twice, so let's see how well you've been listening. Roll +INT: on a 10+ hold 2 stories; on a 7-9, hold 1 story. when you spend I story and tell us the name of one of seven's tales, ask the GM a question about one of the creatures described above. The GM will tell you something interesting, useful, and relevant, as revealed by the tale.
+> 
+> On a 6, hold I story but when you spend it, the GM will tell you two versions of the story with conflicting information, only one of which is true.
+> 
+> xoxo - your GM
 
 For more guidance, see Writing love letters [[16 - Writing Moves and Love Letters#Writing moves|Writing]].
 
@@ -414,16 +413,16 @@ Next, ask questions that establish details and explore daily life. What are you 
 
 Once the scene is set, spend some time making homefront moves and seeing how the PCs react. These GM moves are discussed fully in the **Homefront** chapter [[15 - Homefront|Homefront]], but for now, work off this list:
 
-- <sup>ä</sup> Introduce someone interesting
-- <sup>ä</sup> Reveal simmering tensions
-- <sup>ä</sup> Present a want or need
-- <sup>ä</sup> Show how others really feel
-- <sup>ä</sup> Draw out their feelings
-- <sup>ä</sup> Change a relationship
-- <sup>ä</sup> Oppose their wishes
-- <sup>ä</sup> Remind them of their obligations
-- <sup>ä</sup> Start a conflict or crisis
-- <sup>ä</sup> Play them against each other
+- ▸ Introduce someone interesting
+- ▸ Reveal simmering tensions
+- ▸ Present a want or need
+- ▸ Show how others really feel
+- ▸ Draw out their feelings
+- ▸ Change a relationship
+- ▸ Oppose their wishes
+- ▸ Remind them of their obligations
+- ▸ Start a conflict or crisis
+- ▸ Play them against each other
 
 Avoid serious conflicts or dramatic reveals. It's okay to have a PC argue with their spouse if that's something they often do, but don't, like, spring the fact that the spouse has been having an affair! You're establishing daily life (including daily drama), not setting things on fire. Not yet.
 
@@ -462,7 +461,7 @@ These aren't the only things you'll say or ask, and you can adjust them as neede
 
 *Play them against each other: Eira, Rhianna's lieutenant, complains to her that Vahid has been creeping on her.*
 
-## *Ask a provocative question:*
+#### *Ask a provocative question:*
 
 *"Remember that time you got lured off into the Woods by some crinwin? Whose voice were they mimicking, that got you to follow them?"*
 
@@ -476,7 +475,7 @@ For preparation, write down the moves you intend to make and how they'll manifes
 
 None of this prep is set in stone! You'll often need to adapt and improvise based on the details established during setup and the initial scene. Stay loose!
 
-## **Reactions**
+### **Reactions**
 
 After you've dropped your hook, it's time to explore everyone's reactions. If your hook is compelling, the PCs will likely head out to deal with things. But before (or maybe as) they make preparations, show how others respond to the hook and the PCs' intended course of action.
 
@@ -538,7 +537,7 @@ Again, none of this is set in stone! Adapt as needed to reflect the events in pl
 
 *Play them against each other: "Rhianna, are you really going to let Blodwen and Caradoc come along?"*
 
-## **If they ignore the hook**
+### **If they ignore the hook**
 
 Most likely, the PCs will take your hook and go deal with the threat and/or seize the opportunity. But what if they don't?
 
@@ -578,7 +577,7 @@ When prepping the first adventure, think about what will happen if the PCs do no
 
 Eventually, they'll be off on an adventure! Here's how that usually plays out.
 
-## **Preparations**
+### **Preparations**
 
 When the PCs announce their intentions to head out and pursue the opportunity or deal with the threat, they'll often trigger these moves:
 
@@ -588,11 +587,11 @@ When the PCs announce their intentions to head out and pursue the opportunity or
 
 As they make these moves, sprinkle in various homefront and other GM moves as appropriate. For example, when they Chart a Course, maybe **ask a provocative question** to the Ranger about the dangers they might find. When they Outfit, maybe **introduce someone interesting**, like the publican who provides them with whisky for the road.
 
-The PCs might also Trade & Barter, Know Things, Seek Insight, or Persuade. They might recruit some **[[14 - NPCs and Followers#Followers|followers]]**, or have some folks insist on coming along. They might set the town to work while they're gone and have them **[[15 - Homefront#PULL TOGETHER|Pull Together]]**, or **Muster** the town's defenses (page [[15 - Homefront#MUSTER|534]]).
+The PCs might also Trade & Barter, Know Things, Seek Insight, or Persuade. They might recruit some **[[14 - NPCs and Followers#Followers|followers]]**, or have some folks insist on coming along. They might set the town to work while they're gone and have them **[[15 - Homefront#^pull-together|Pull Together]]**, or **Muster** the town's defenses (page [[15 - Homefront#^muster|534]]).
 
 See the **Expeditions** chapter [[10 - Expeditions|Expeditions]] for more details.
 
-## **Travel**
+### **Travel**
 
 After preparations, they'll head toward the threat or opportunity. This involves you...
 
@@ -605,7 +604,7 @@ You'll repeat these as necessary, zooming in and out as you make GM moves and th
 
 Travel (and the prep you might do for it) is detailed in the **Expeditions** chapter (see [[10 - Expeditions|Expeditions]]).
 
-## **Resolution**
+### **Resolution**
 
 Eventually, probably, the PCs will get where they're going and attempt to deal with the threat or seize the opportunity. You'll zoom in on the action, describe the situation, and make GM moves. The PCs will respond and trigger their moves. We'll all find out what happens together.
 
@@ -616,7 +615,7 @@ When prepping the adventure, list the sites, dangers, and discoveries that you e
 - **[[13 - Discoveries#Discoveries|Discoveries]]**
 - **[[14 - NPCs and Followers#NPCs & Followers|NPCs & Followers]]**
 
-## **Aftermath**
+### **Aftermath**
 
 At some point, the PCs will call it quits and decide to head home. Maybe they've seized the opportunity or put down the threat. Maybe not, and they either lost their chance or are too exhausted to continue. This is the aftermath.
 

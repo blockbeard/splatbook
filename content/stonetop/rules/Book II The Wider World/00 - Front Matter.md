@@ -1,8 +1,15 @@
 # Front Matter
 
-## **Book II**
+# **Book II**
 
-## written by Jeremy Strandberg
+## Credits
+Text machine extracted from pdf, then cleaned and formatted by Chris Wilson. 
+2nd printing errata applied. 
+The original text is licensed under CC BY-SA 4.0 and the same license applies to this material.
+This is an independent production, not affiliated with Lampblack & Brimstone.  
+Any mistakes in this extracted text are my own. 
+## Original credits
+written by Jeremy Strandberg
 
 illustrated by
 
@@ -10,7 +17,7 @@ Lucie Arnoux
 
 arranged by Jason Lutes
 
-proofread by Angel Green Rob Rendell Matt Wetherbee John Pham, Steven Quillen, Dennis Taylor 
+proofread by Angel Green, Rob Rendell, Matt Wetherbee, John Pham, Steven Quillen, Dennis Taylor
 
 &
 
@@ -22,7 +29,7 @@ All artwork herein is © 2026 by Lucie Arnoux.
 
 published by Lampblack & Brimstone
 
-## Contents
+# Contents
 
 | [[01 - Welcome to the World's End\|Welcome to the World's End]] | [[15 - Fomoraij\|Fomoraij]]                                            |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -54,6 +61,6 @@ published by Lampblack & Brimstone
 | [[41 - Spirits of the Wild\|Spirits of the Wild]]               | [[56 - Appendix B - Artifact Creation\|Appendix B: Artifact Creation]] |
 | [[42 - The Steplands\|The Steplands]]                           | [[57 - Appendix C - Minor Arcana\|Appendix C: Minor Arcana]]           |
 | [[43 - Stone Lords\|Stone Lords]]                               | [[58 - Appendix D - Major Arcana\|Appendix D: Major Arcana]]           |
-| [[44 - The Stream\|The Stream]]                                 | [[59 - Index\|Index]]                                                  |
+| [[44 - The Stream\|The Stream]]                                 |                                                                        |
 | [[45 - Tempest Lords\|Tempest Lords]]                           |                                                                        |
 |                                               |                                                      |

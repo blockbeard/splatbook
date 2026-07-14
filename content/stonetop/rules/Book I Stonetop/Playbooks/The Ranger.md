@@ -2,6 +2,9 @@
 
 *Your true home is out there. Away from the Old Roads, in the wild places, where you've faced storm and beast alike. But unknown forces are at work beyond the Ringwall, and you fear for your kith and kin. These are strange times. Guide them, ranger, and keep them safe when darkness falls.*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 129–132)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-129-132
+
 ## Background
 
 Choose 1.
@@ -83,34 +86,34 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Home on the Range, any moves from your Background, plus 1 of your choice.
 
-### A SAFE PLACE
+##### A SAFE PLACE
 
 *(Precaution tracker: 2)*
 When you *select and prepare the party's camp site*, hold 1 Precaution, or 2 Precaution if you are well-versed with this area and its dangers.
 
 If trouble finds your camp site, you can spend 1 Precaution to reveal a simple defense, warning, or trick that you prepared in advance. If you do, tell us how you knew to make that specific preparation.
 
-### ANIMAL COMPANION
+##### ANIMAL COMPANION
 
 You are accompanied by a beast of uncommon loyalty and cleverness. See the [[Inserts#Animal Companion|Animal Companion]] insert for details.
 
-#### MAGNIFICENT SPECIMEN
+##### MAGNIFICENT SPECIMEN
 
 *(Requires Animal Companion; may be taken twice)*
 Each time you take this move, your companion gains 2 additional options of your choice.
 
-### BIG GAME HUNTER
+##### BIG GAME HUNTER
 
 When you *strike at the weak spot of a* **large** *or* **huge** *creature*, you deal +2 damage.
 
-### BLOT OUT THE SUN
+##### BLOT OUT THE SUN
 
 When you *Let Fly with a bow*, you can deplete your ammunition (mark the next ammo status after your weapon) before you roll. If you do, choose 1:
 
 - Gain advantage on your damage roll
 - Add the *area* tag to your attack; roll damage separately for each target
 
-### CALL THE SHOT
+##### CALL THE SHOT
 
 When you *take your time and calmly line up the perfect shot*, either deal your damage or roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal your damage and pick 1.
 
@@ -119,64 +122,64 @@ When you *take your time and calmly line up the perfect shot*, either deal your 
 - Make them trip or drop what they're holding
 - Do no harm; don't deal your damage after all
 
-### EXPERT TRACKER
+##### EXPERT TRACKER
 
 When you *Seek Insight by searching for or studying the signs left by passing creatures*, you can ask "What happened here recently?" for free, even on a 6-.
 
 When you *follow a creature's trail*, roll +WIS: **on a 7+** you follow it to a significant change in terrain or activity; **on a 10+**, you can ask the GM a reasonable question about your quarry and get a useful answer.
 
-### HOME ON THE RANGE
+##### HOME ON THE RANGE
 
 *(starting move)*
 When *a journey requires you to Defy Danger or Struggle as One*, treat a 6- as a 7-9.
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### MENTAL MAP
+##### MENTAL MAP
 
 You can always retrace your steps and can accurately gauge distances and directions. You might not know the way forward but can always find your way back.
 
 When you *think back on a place you've been*, you can Seek Insight retroactively, as if you were still there.
 
-### NATURALIST
+##### NATURALIST
 
 When you *Know Things about beasts, natural environs, or spirits of the wild*, you have advantage.
 
-### ON THE HOOF
+##### ON THE HOOF
 
 When you *travel through the wilderness*, you can procure 1d6 uses of ◇ provisions each day (roll with disadvantage in winter or barren terrain). Provisions can substitute for supplies when you Make Camp.
 
-### PACK HORSE
+##### PACK HORSE
 
 You can carry up to 4 load with a light load, 7 with a normal load, and 10 with a heavy load.
 
-### PATHFINDER
+##### PATHFINDER
 
 When you *lead your people to Pull Together or Deploy beyond sight of home*, you have advantage.
 
-### PREDATOR
+##### PREDATOR
 
 When you *Seek Insight*, add the following to the list of questions you can ask. When *acting on the answer to either question*, deal an extra 1d4 damage.
 
 - Who or what here is the easiest prey?
 - How is \_\_\_\_\_\_\_\_ weak or vulnerable?
 
-### SNIFF OUT CORRUPTION
+##### SNIFF OUT CORRUPTION
 
 When you *Seek Insight*, you can ask, "What here stinks of the unnatural?" for free, even on a 6-.
 
-### STALKER
+##### STALKER
 
 When *you carry a normal or light load and move with care*, you make no noise and leave no sign of your passing. When you *hide yourself in a natural environment*, you remain unseen until you draw attention to yourself, move positions, or attack.
 
-### SURVIVALIST
+##### SURVIVALIST
 
 When you *Forage*, pick 1 extra choice (even on a 6-, pick 1) and add "Find or fashion some useful item or supply (GM can veto)" to the list of options.
 
-### WARDEN OF THE WILD
+##### WARDEN OF THE WILD
 
 When you *defeat a perversion of nature*, you can ask the GM 2 of the following and get a useful answer:
 
@@ -185,16 +188,16 @@ When you *defeat a perversion of nature*, you can ask the GM 2 of the following 
 - What useful (but grisly) bits can I harvest?
 - What else can I learn about it or its ilk?
 
-### WILD SPEECH
+##### WILD SPEECH
 
 The grunts, barks, chirps, and calls of natural beasts are as a language to you. You can understand their intentions and communicate basic ideas. When you *Persuade a beast*, you can choose to roll +WIS.
 
-### WORLDLY
+##### WORLDLY
 
 *(Requires level 2+ and the Ranger; may be taken twice)*
 Take a move from the Blessed, Fox, Heavy, Marshal, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. You can't pick Improved Stat or Superior Stat.
 
-### ALPHA
+##### ALPHA
 
 *(Requires level 6+, and Wild Speech or Spirit Tongue)*
 When you *assert dominance over another (beast, spirit, Fae, or person)*, roll +WIS: **on a 7+**, they must pick 1 from the list below; **on a 10+**, you also have advantage on your next roll against them.
@@ -203,7 +206,7 @@ When you *assert dominance over another (beast, spirit, Fae, or person)*, roll +
 - Slink away or flee, then avoid you
 - Fight you for dominance
 
-### BEAST OF LEGEND
+##### BEAST OF LEGEND
 
 *(Requires level 6+ and Magnificent Specimen; may be taken twice)*
 Each time you take this move, pick 1:
@@ -212,27 +215,27 @@ Each time you take this move, pick 1:
 - They get +4 HP and +1 armor
 - They develop some unique ability or trait
 
-### CONSTANT VIGILANCE
+##### CONSTANT VIGILANCE
 
 *(Requires level 6+)*
 Unless you're *dazed*, you're never caught off guard—not even when asleep or if you roll a 6-. When you *intercept a sudden threat* (to yourself or an ally), you have advantage on whatever move you make.
 
-### GIANT SLAYER
+##### GIANT SLAYER
 
 *(Requires level 6+ and Big Game Hunter)*
 When you *strike at a weak spot of a* **large** *or* **huge** *creature*, you deal another +2 damage (+4 total).
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).
 
-### TRAILBLAZER
+##### TRAILBLAZER
 
 *(Requires level 6+; replaces Home on the Range)*
 When *a journey causes you to Defy Danger or Struggle as One*, on a 10+ you also learn or discover something interesting and useful—ask the GM what.
 
-### WALK IT OFF
+##### WALK IT OFF
 
 *(Requires level 6+; tracker: 1)*
 When you'd *mark a debility,* you can mark this move instead to no ill effect. Clear it as you would a debility.

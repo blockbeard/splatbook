@@ -1,13 +1,11 @@
 # Getting Started
 
-Get ready 
-Review the setting 
-Set expectations 
-Discuss tone and content 
-Create characters 
-Intro the PCs 
-Let spring burst forth 
-After the session
+| In this chapter | |
+|---|---|
+| [[#Get ready\|Get ready]] | [[#Review the setting\|Review the setting]] |
+| [[#Set expectations\|Set expectations]] | [[#Discuss tone and content\|Discuss tone and content]] |
+| [[#Create characters\|Create characters]] | [[#Intro the PCs\|Intro the PCs]] |
+| [[#Let spring burst forth\|Let spring burst forth]] | [[#After the session\|After the session]] |
 
 ## **Get ready**
 
@@ -15,7 +13,7 @@ Make sure that everyone is on board with the concept of *Stonetop*: that they'll
 
 Prior to the first session, ask your players to read the **Setting Overview** handout, at least the first page. Encourage them to think about any content that they want to exclude, veil, or handle in a particular way (see [[02 - Getting Started#Discuss tone and content|Discuss tone]]). Consider posting a shared document online where you and your players can record these things anonymously.
 
-Set the expectation that the first session will mostly involve creating characters and the village itself. It's still *play*, and quite fun, but it's not the immersive, portrayingyour-character type of play that they might expect. (This is different if you choose to use an **adventure starter**, see [[02 - Getting Started#Adventure starters|Adventure starters]])
+Set the expectation that the first session will mostly involve creating characters and the village itself. It's still *play*, and quite fun, but it's not the immersive, portraying-your-character type of play that they might expect. (This is different if you choose to use an **[[02 - Getting Started#^adventure-starters|Adventure starters]]**.
 
 It's fine if players want to look over the character playbooks beforehand, but discourage anyone from making decisions just yet. Character creation should be done together, as a group.
 
@@ -112,18 +110,6 @@ Finally, ask if anyone has **special requests** regarding specific content. Is t
 
 Discuss, negotiate, and compromise as needed, trying to find common ground that works for everyone, and note these special requests in the steading playbook.
 
-## **Making corrections**
-
-Mistakes will happen. When excluded content comes up in play, or veiled content gets included on-screen, whoever notices should call "time out" and point out what happened. Don't make a big deal about it; acknowledge the mistake, fix the fiction if necessary, and move on.
-
-Likewise, if anyone realizes mid-session that some particular content is bothering them, they can call a time out. Identify the content that needs to be handled differently (clarifying as needed, but not asking for reasons). Update the steading playbook. Fix the fiction. Check in with the player and make sure they're okay. When everyone's ready, continue.
-
-If you or a player realize that you're uncomfortable with content that came up during a previous session, discuss it before the next session. Update the steading playbook and fix the fiction as needed.
-
-"Fix the fiction" means: decide as a group what happened *instead*. This isn't meant to undo the consequences of players' rolls or decisions, but rather to bring the fiction back in line with the comfort level of the group.
-
-If a player consistently ignores the group's content guidelines, talk to them about it between sessions. If they persist, stop playing with them.
-
 ## Create characters
 
 After you review the setting, set expectations, and establish content guidelines, it's time to make characters! Do this together, during the first session.
@@ -162,7 +148,20 @@ No, they don't add their STR or DEX to their damage rolls.
 - **What does "advantage" mean?**  They roll an extra die and discard the lowest. Usually, that means rolling 3d6 and keeping the 2 best dice. If they have "disadvantage," they roll an extra die and discard the highest (usually 3d6, keep the 2 worst). If they have advantage or disadvantage on a damage roll, they roll their damage die twice and keep the best/worst roll (and then add any bonus dice from moves).
 - **Should I fill in the back page, too?** Yes. They should complete the left column of their playbook's back page, making choices or answering questions as they wish, within the content guidelines established by the group.
 
-If you're using an **adventure starter** (see [[02 - Getting Started#Adventure starters|Adventure starters]]), you might have specific instructions for certain playbooks.
+If you're using an **adventure starter** (see [[02 - Getting Started#^adventure-starters|Adventure starters]]), you might have specific instructions for certain playbooks.
+
+>[!box] ### **Making corrections**
+>
+> ^making-corrections
+Mistakes will happen. When excluded content comes up in play, or veiled content gets included on-screen, whoever notices should call "time out" and point out what happened. Don't make a big deal about it; acknowledge the mistake, fix the fiction if necessary, and move on.
+>
+Likewise, if anyone realizes mid-session that some particular content is bothering them, they can call a time out. Identify the content that needs to be handled differently (clarifying as needed, but not asking for reasons). Update the steading playbook. Fix the fiction. Check in with the player and make sure they're okay. When everyone's ready, continue.
+>
+If you or a player realize that you're uncomfortable with content that came up during a previous session, discuss it before the next session. Update the steading playbook and fix the fiction as needed.
+>
+"Fix the fiction" means: decide as a group what happened *instead*. This isn't meant to undo the consequences of players' rolls or decisions, but rather to bring the fiction back in line with the comfort level of the group.
+>
+If a player consistently ignores the group's content guidelines, talk to them about it between sessions. If they persist, stop playing with them.
 
 ## **Intro the PCs**
 
@@ -178,17 +177,19 @@ While this happens, encourage them to...
 
 As GM, you'll ask a lot of questions, too. See the following pages for suggestions.
 
-Whenever someone wants or needs to add a new NPC to the mix, suggest that they pick one of the unused names from the front of their playbook. Additional names are available in the steading playbook. Also give each NPC an occupation and/or trait (the steading playbook has a list of suggestions, see [[The Steading#Names|The Steading]]).
+Whenever someone wants or needs to add a new NPC to the mix, suggest that they pick one of the unused names from the front of their playbook. Additional names are available in the steading playbook. Also give each NPC an occupation and/or trait (the steading playbook has a list of suggestions, see [[The Steading#The Steading|The Steading]]).
 
 Take notes! Add NPCs to the steading playbook as you go, or take more freeform notes for now and update the Residents of Stonetop and Notable Neighbors later.
 
-## **Adventure starters**
+> [!box] ## **Adventure starters**
+> 
+> If you want to start an adventure right away, during the first session, then download an adventure starter from www.lampblackandbrimstone.com.
+> 
+> Each starter presents abbreviated steps for character creation and introductions, and then launches into a specific adventure. The results won't be as unique or fleshed out as what you get with the standard process, but you'll get to the action more quickly!
+> ^adventure-starters
 
-If you want to start an adventure right away, during the first session, then download an adventure starter from www.lampblackandbrimstone.com.
-
-Each starter presents abbreviated steps for character creation and introductions, and then launches into a specific adventure. The results won't be as unique or fleshed out as what you get with the standard process, but you'll get to the action more quickly!
-
-**<sup>1</sup> Vital info** Choose someone to go first. They'll introduce themselves by name, pronouns, background (and playbook, if unclear), origin, and appearance.
+### 1. Vital info 
+Choose someone to go first. They'll introduce themselves by name, pronouns, background (and playbook, if unclear), origin, and appearance.
 
 Ask questions based on their playbook and background. Use the following questions as a guide, but of course ask whatever your curiosity demands. Encourage the other players to do so as well: "Anyone else curious about anything that was just mentioned?"
 
@@ -200,7 +201,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Who else, if anyone, came with you?
 - How long ago was this? Decades? Years? Months? Days?
 
-# **The Blessed**
+#### **The Blessed**
 
 ### **Initiate**
 
@@ -226,9 +227,9 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Do you have a mentor? Or are you self taught, going by instinct and insight?
 - Do you hold some formal position as a servant of Danu?
 
-# **The Fox**
+#### **The Fox**
 
-## **The Natural**
+### **The Natural**
 
 - What mundane craft, trade, or skill do you excel at, better than anyone?
 - What well-earned reputation do you have?
@@ -251,16 +252,16 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - What brought you home? When?
 - What has changed most while you were away?
 
-### **The Heavy**
+#### **The Heavy**
 
-## **Sheriff**
+### **Sheriff**
 
 - Is this a formal position, or just something everyone agrees on?
 - How long have you acted as sheriff?
 - Who, if anyone, did this job before you?
 - Just where exactly did you learn how to fight so well?
 
-## **Blood-soaked Past**
+### **Blood-soaked Past**
 
 - How did you earn your grim reputation?
 - What did people used to call you, back in your dark bloody days?
@@ -268,14 +269,14 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Who here knows about your past?
 - Who have you, personally, lost to violence?
 
-# **Storm-marked**
+**Storm-marked**
 
 - When did the marks manifest? How?
 - Are they a symbol of your strength, speed, and courage? Or the source?
 - Are the marks a blessing? Or a curse?
 - How do folks in Stonetop generally treat you?
 
-### **The Judge**
+#### **The Judge**
 
 ### **Legacy**
 
@@ -284,14 +285,14 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - How were you chosen as the prior Judge's apprentice?
 - What is the symbol of your authority (hammer, shield, or helm)? Where does the Chronicle say it came from?
 
-## **Missionary**
+### **Missionary**
 
 - Where are you from, originally? Where did you do your apprenticeship?
 - How were you chosen as an apprentice?
 - How long were you an apprentice? How long have you been a full Judge?
 - Of the Judges in the other steadings (Devin, Haeris, etc.)…
   - ...which was your mentor?
-- ...which was a fellow apprentice?
+  - ...which was a fellow apprentice?
   - ...which is reliable but inflexible?
   - ...which is clever but ambitious?
   - ...which lacks the necessary mettle?
@@ -305,9 +306,9 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - What is the symbol of your authority (hammer, shield, or helm)? Where and how did you acquire it?
 - How did you establish yourself as Stonetop's Judge?
 
-### **The Lightbearer**
+#### **The Lightbearer**
 
-## **Auspicious Birth**
+### **Auspicious Birth**
 
 - How was your birth marked by Helior?
 - How did your connection to Helior shape your youth?
@@ -315,7 +316,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Who in town resents you, or at least what you represent?
 - Who in town is your most devoted disciple?
 
-## **Itinerant Mystic**
+### **Itinerant Mystic**
 
 - What is it that keeps drawing you back to Stonetop?
 - Where else do you regularly travel to?
@@ -323,7 +324,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Why is it that some folk from Stonetop are always so happy to see you?
 - Why is it that some folk from Stonetop can't wait to see you go?
 
-# **Soul on Fire**
+**Soul on Fire**
 
 - What sort of vice or iniquity once ruled your life?
 - What brought you so low, only to find succor in Helior's light?
@@ -332,7 +333,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 
 #### **The Marshal**
 
-## **Scion**
+### **Scion**
 
 - Who ran the militia before you?
 - When did you take charge?
@@ -340,7 +341,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - What is the nature of your crew? Why are they so respected?
 - How do you recruit or initiate members?
 
-## **Penitent**
+### **Penitent**
 
 - Where did you and your crew operate, before? What kind of bloody business did you all get up to?
 - What caused you to set that life aside?
@@ -360,20 +361,20 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 
 #### **The Ranger**
 
-## **Mighty Hunter**
+### **Mighty Hunter**
 
 - How long have you plied the Wood? Who first taught you their ways?
 - Did you ever meet the Forest Folk, before they disappeared? Where do you think they went?
 - What deed are you most renowned for?
 
-# **Wide Wanderer**
+**Wide Wanderer**
 
 - What drives you to wander, when others stay safely at home?
 - Why do you call Stonetop home? Why do you always return here?
 - Of the folks you added to the list of neighbors (Tirny, Eser, etc.)… ...which one wants you dead? ...which one is always glad to see you? ...which one owes you a life debt?
 - What's one place you've always wanted to visit, but have never been?
 
-## **Beast-bonded**
+### **Beast-bonded**
 
 - What type of beast is your companion? What's its name? Tell us about it!
 - How long ago did you bond with your companion, and how did it happen?
@@ -383,7 +384,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 
 #### **The Seeker**
 
-## **Patriot**
+### **Patriot**
 
 - What grim event convinced you that Stonetop and the people you love are in danger?
 - Who else knows about your arcana and the powers you tamper with?
@@ -425,7 +426,7 @@ It's okay to leave blanks! If someone isn't sure about a detail, or doesn't want
 - Is your destiny a curse? A blessing? Do you even believe in it?
 - Who knows about your destiny? How much? How much do they believe?
 
-# **2 Special possessions**
+### **2. Special possessions**
 
  The next step is to establish each character's special possessions, and how they contribute to the village. During this round, you're trying to figure out where the PCs fit into daily life.
 
@@ -442,7 +443,7 @@ Ask the questions below, plus whatever else you're curious about. Take notes, an
 - Are you the town's smith/tanner, or their apprentice, or what?
 - How long have you been doing this? How'd you get started?
 
-## **Tools (carpenter's, husbandry, etc.)**
+### **Tools (carpenter's, husbandry, etc.)**
 
 - Do you earn your keep with these tools? Or is it something you do on the side?
 - Where did you get them? How did you learn to use them?
@@ -460,7 +461,7 @@ Ask the questions below, plus whatever else you're curious about. Take notes, an
 - How long have you been doing this?
 - How good is your stuff? Whose is better?
 
-## **Anything else**
+### **Anything else**
 
 - How did you come to possess that? When?
 - What do others know/think about it?
@@ -470,7 +471,7 @@ Ask the questions below, plus whatever else you're curious about. Take notes, an
 
  Can you read and write? If so, who taught you, and when?
 
-# **3 World building**
+### **3. World building**
 
  The next round has each player describe the specific choices they've made in the left column on the back of their playbook. Each playbook has a different set of prompts and questions.
 
@@ -478,13 +479,13 @@ This step helps your group develop their specific version of the *Stonetop* worl
 
 Here are some things to ask each character. You don't have to ask them all, and you certainly aren't limited to these.
 
-# **The Blessed**
+#### **The Blessed**
 
 #### **Sacred Pouch**
 
  How did you get your sacred pouch? What's it made from, and how is it adorned?
 
-## **The Earth Mother**
+### **The Earth Mother**
 
 - Is Danu generally worshipped, avoided, petitioned, or appeased?
 - Why do the villagers leave the offerings that they do? Why are these things sacred to Danu? What do they symbolize?
@@ -505,9 +506,9 @@ Here are some things to ask each character. You don't have to ask them all, and 
 - For each thing that folks are less keen to discuss: What's the story, there? Who, what, where, and when?
 - For the things keeping them up at night: Who else have you shared this with? Who are you keeping it from?
 
-### **The Judge**
+#### **The Judge**
 
-## **The Chronicle**
+### **The Chronicle**
 
 - How was the Chronicle built/discovered?
 - Who is welcome in the Chronicle?
@@ -521,9 +522,9 @@ Here are some things to ask each character. You don't have to ask them all, and 
 - How do Aratis's true disciples feel about the reverence of other gods?
 - What was the most recent dispute you've been called on to settle? How did you rule?
 
-### **The Lightbearer**
+#### **The Lightbearer**
 
-## **Praise the Day**
+### **Praise the Day**
 
 Ask them about any apparent contradictions. For example, if the worship of Helior is widely persecuted but his shrine in Stonetop is given the place of highest honor... how do they explain that?
 
@@ -533,7 +534,7 @@ Ask them about any apparent contradictions. For example, if the worship of Helio
 - Were there other Lightbearers before them?
 - Which invocations do you know?
 
-### **The Marshal**
+#### **The Marshal**
 
 ### **War Stories**
 
@@ -544,18 +545,18 @@ Ask for details. Drill down on their answers to fill in any gaps in your sense o
 - How do you think it would it have gone, had you not been there?
 - What are your crew's tags, instinct, and cost? Who are these people? (No need to name each one just yet, but who are they in general or as a group?)
 
-## **The Ranger**
+#### **The Ranger**
 
-# **Something Wicked This Way Comes**
+**Something Wicked This Way Comes**
 
 Ask for details, but leave some questions unanswered. The threat should feel mysterious, at least at the outset.
 
 - Where exactly did this happen? When?
 - Why do you think that?
 
-### **The Seeker**
+#### **The Seeker**
 
-# **Collection**
+**Collection**
 
 Ask about their major arcana, the minor arcana they have unlocked, and the minor arcana they have not yet mastered:
 
@@ -565,7 +566,7 @@ Ask about their major arcana, the minor arcana they have unlocked, and the minor
 - When did you (start to) unlock its secrets?
 - What do you hope to accomplish with it?
 
-### **The Would-be Hero**
+#### **The Would-be Hero**
 
 ### **Fear & Anger**
 
@@ -573,7 +574,7 @@ Ask about their major arcana, the minor arcana they have unlocked, and the minor
 - When did you first experience it?
 - What is the source of your anger? Why does \_\_\_ fill you with righteous fury?
 
-# **4&5 NPC connections**
+### **4&5 NPC connections**
 
  The next step creates more connections between the PCs and NPCs in the village. Go around and on each player's turn, have them pick any one question from step 4, answering it with the name of one or
 
@@ -593,7 +594,7 @@ Before you move on to step 6, **ask each PC the following** (unless the answers 
 
  Are your parents still alive? Your grandparents? Siblings?
 
-# **6&7 PC connections**
+### **6&7 PC connections**
 
  In step 6, the players start to flesh out the relationships between their PCs.
 
@@ -605,11 +606,12 @@ As always, ask follow-up questions to flesh out the details. "So, Ari, you've be
 
 When everyone has gone once, repeat the process, with each player asking another question or passing. When everyone has passed, move on.
 
-# **Only two players?**
-
-If you have only two players, the questions in step 6 ("Which one of you...?") won't work as written. Here's an alternative.
-
-On each player's turn, have them pick two questions from their list and pose them to the other PC as an either/or, rephrasing as needed. For example, the Blessed might ask "Do you doubt the power of Danu, or have you participated in a sacred rite with me?" The other player then chooses. Have them go back and forth like this, as many times as they want.
+> [!box] **Only two players?**
+> 
+> If you have only two players, the questions in step 6 ("Which one of you...?") won't work as written. Here's an alternative.
+> 
+> On each player's turn, have them pick two questions from their list and pose them to the other PC as an either/or, rephrasing as needed. For example, the Blessed might ask "Do you doubt the power of Danu, or have you participated in a sacred rite with me?" The other player then chooses. Have them go back and forth like this, as many times as they want.
+> ^only-two-players
 
 **8 Homes** Finally, on the first page of the Stonetop steading playbook, add a point of interest for each PC's home. Ask questions,
 
@@ -653,7 +655,7 @@ Whatever they tell you, write it down. Try to work it into the first adventure.
 
 You've got a pile of NPCs, relationships, events, and details. Now you need to turn them into something coherent and useful for both you and your players. You also need to plan the first adventure.
 
-## **Organize your notes**
+### **Organize your notes**
 
 Take some time to update the Residents of Stonetop and the Notable neighbors on the steading playbook. Include each NPC who was established, with their occupation, connection(s) to the PCs or other NPCs, and perhaps a notable trait. (You can leave the trait off for now, and ask the players about them in play.)
 
@@ -669,13 +671,13 @@ Flip through *Book II* and look for **potential connections** to the PCs and the
 
 **Share your updated list of NPCs and your timeline with the players**. Ask them to review it before the next session, to help get everyone on the same page. Point out any lingering questions for them to answer, and any changes that you've made. Ask for feedback, and incorporate it as appropriate.
 
-## **Identify threats**
+### **Identify threats**
 
 Look over your notes again and identify the sources of trouble or ongoing problems for the PCs or the village. **[[09 - Threats#Threats|Write these up as threats]]**, to whatever level of detail makes sense right now.
 
 If your notes imply a threat, but the threat's nature isn't entirely clear, add it to your "I wonder..." list.
 
-## **"I wonder…"**
+### **"I wonder…"**
 
 Keep a running list of open questions things that you wonder about, but either…
 
@@ -688,9 +690,9 @@ Refer to these questions **as you prepare adventures**. Use the list to help ide
 
 Refer to this list **during your sessions**, when you need something interesting to say. Can you say something that answers one of these questions? Or that hints at the answer? Can you turn one of these questions back on the characters, and ask them to give you the answers?
 
-## **Update these questions between sessions**. If a question has been answered, remove it. If a new question occurs to you, add it to the list.
+**Update these questions between sessions**. If a question has been answered, remove it. If a new question occurs to you, add it to the list.
 
-## **Plan the first adventure**
+### **Plan the first adventure**
 
 Look at your notes, your threats, your "I wonder..." list, and the results of that first Seasons Change roll, and use them to prepare your first adventure. See [[08 - First Adventure|First Adventure]] for guidance.
 

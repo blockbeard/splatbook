@@ -4,15 +4,23 @@ Aratis is one of the four main **[[20 - Gods and Religion#Gods and religion|gods
 
 If one of your initial PCs has the Judge playbook, they will answer many of the questions in this section via their presence, their background, and the decisions they make during character creation and introductions. Defer to that PC as the expert on Aratis in your game, but don't forget to ask other PCs for their opinions and experiences, too.
 
-# **Themes**
+## **Themes**
 
 Choose or roll 1 or 2, and combine.
 
 ### **1d12** theme
 
-1-2 Civilization/society/settlements 3-4 Laws/rules/traditions 5-6 Chronicles/record-keeping/writing 7 Judgement/arbitration/wisdom 8 Cooperation/organization/peace 9 Authority/responsibility/duty 10 Truth/promises/oaths/honor 11 Hospitality/sanctity/generosity 12 Defense/resolve/punishment
+- 1-2 Civilization/society/settlements
+- 3-4 Laws/rules/traditions
+- 5-6 Chronicles/record-keeping/writing
+- 7 Judgement/arbitration/wisdom
+- 8 Cooperation/organization/peace
+- 9 Authority/responsibility/duty
+- 10 Truth/promises/oaths/honor
+- 11 Hospitality/sanctity/generosity
+- 12 Defense/resolve/punishment
 
-### **Questions**
+## **Questions**
 
 According to the tales:
 
@@ -24,19 +32,19 @@ According to the tales:
 - Who was the first Judge? What great deed is attributed to them?
 - What is said to be contained in the Tower Eternal?
 
-Use the answers to help decide what Aratis's **true nature** is [[20 - Gods and Religion#**1d12** observance|Gods and Religion]].
+Use the answers to help decide what Aratis's **true nature** is [[20 - Gods and Religion#Gods and Religion|Gods and Religion]].
 
-# **Hooks**
+## **Hooks**
 
 - The Judge makes an unpopular ruling; an influential NPC wants them gone.
 - A Judge from another settlement arrives and finds things in Stonetop lacking.
 - A true disciple has a vision of a powerful agent of chaos breaking its bonds.
 - While digging stones or excavating a new foundation, folks in Stonetop discover a long-lost Chronicle of Aratis, sealed and mostly intact.
-- Legend tells of the Tower Eternal, made of **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, with doors so heavy only a team of horses can open them. Three hermits, all true disciples of Aratis, guard it and whatever it contains.
+- Legend tells of the Tower Eternal, made of **[[36 - Primordial Powers#Black iron|black iron]]**, with doors so heavy only a team of horses can open them. Three hermits, all true disciples of Aratis, guard it and whatever it contains.
 
 ## **Shrines & temples**
 
-Aratis has a shrine in Stonetop's pavilion of the gods. Outside of Stonetop: consider whether this community hosts a shrine or temple to Aratis. Small shrines to Aratis might also be found at **waysides** along the Makers' Roads [[31 - The Makers' Roads#**The Crossroads**|The Makers' Roads]], or perhaps at spots where different groups of **[[26 - Hillfolk#Hillfolk|Hillfolk]]** gather and meet.
+Aratis has a shrine in Stonetop's pavilion of the gods. Outside of Stonetop: consider whether this community hosts a shrine or temple to Aratis. Small shrines to Aratis might also be found at **waysides** along the Makers' Roads [[31 - The Makers' Roads#The Makers' Roads|The Makers' Roads]], or perhaps at spots where different groups of **[[26 - Hillfolk#Hillfolk|Hillfolk]]** gather and meet.
 
 For any given shrine or temple:
 
@@ -74,11 +82,9 @@ Judges are charged with maintaining a Chronicle, a history of the community they
 - How far back do they go?
 - How well organized are they?
 
-Should an NPC Judge (or a communityspanning order of Judges) oppose or cause trouble for the PCs, write them up as a threat (an *institution*).
+Should an NPC Judge (or a community-spanning order of Judges) oppose or cause trouble for the PCs, write them up as a threat (an *institution*).
 
-Remember: NPCs don't have playbooks. An NPC Judge might have tags or moves reminiscent of a PC Judge, or not. See [[03 - Aratis, the Lawkeeper#**Dangers**|Aratis, the Lawkeeper]] for some potential NPC Judges.
-
-# **Aratis**
+Remember: NPCs don't have playbooks. An NPC Judge might have tags or moves reminiscent of a PC Judge, or not. See [[03 - Aratis, the Lawkeeper#Aratis, the Lawkeeper|Aratis, the Lawkeeper]] for some potential NPC Judges.
 
 ## **True disciples**
 
@@ -104,13 +110,13 @@ Should the true disciples of a community oppose or cause trouble for the PCs, wr
 
 ## **Artifacts**
 
-#### **Various treasures**
+### **Various treasures**
 
 - A blanket woven in the knot-language of a long-dead sect of Aratis's (*fragile*, Value 0, or 2 to the right buyer)
-- A maul of **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, utterly immune to magic (*close*, *forceful*, *awkward*, +1 damage, Value 2)
-- A shield of **[[43 - Stone Lords#Various treasures|makerglass]]**, etched with Aratis's symbol (*indestructible*, +1 armor, +1 Readiness of a Defend 7+, Value 2)
-- A helm set with a "jewel" of **[[38 - Rime Lords#Dark ice|dark ice]]**, grants advantage to resist mind-affecting magic (*magical*, Value 2)
-- An old book (*fragile*, Value 2), the Chronicle of a failed settlement, ending mid-sentence
+- A maul of **[[36 - Primordial Powers#Black iron|black iron]]**, utterly immune to magic (*close*, *forceful*, *awkward*, +1 damage, Value 2)
+- A ◇◇ shield of **[[43 - Stone Lords#Makerglass|makerglass]]**, etched with Aratis's symbol (*indestructible*, +1 armor, +1 Readiness of a Defend 7+, Value 2)
+- A ◇ helm set with a "jewel" of **[[38 - Rime Lords#Dark ice|dark ice]]**, grants advantage to resist mind-affecting magic (*magical*, Value 2)
+- An old ◇ book (*fragile*, Value 2), the Chronicle of a failed settlement, ending mid-sentence
 - A very large sapphire, perfectly cut and polished, a symbol of Aratis floating in its depths (Value 4)
 
 #### **Minor arcana**
@@ -119,11 +125,11 @@ Pick 1 or have someone roll.
 
 ### **1d6** minor arcanum
 
-- 1 **[[57 - Appendix C - Minor Arcana#A grim peat mound|A grim peat mound]]**
-- 2 **[[57 - Appendix C - Minor Arcana#Peacebond|A sealed cave]]**
-- 3 **[[57 - Appendix C - Minor Arcana#A timeless vault|A timeless vault]]**
-- 4 **[[57 - Appendix C - Minor Arcana#A crumbling arch|A crumbling arch]]**
-- 5 **[[57 - Appendix C - Minor Arcana#Sigil of Authority Authority:|A silvery signet ring]]**
+- 1 **[[57 - Appendix C - Minor Arcana#^a-grim-peat-mound|A grim peat mound]]**
+- 2 **[[57 - Appendix C - Minor Arcana#^peacebond|A sealed cave]]**
+- 3 **[[57 - Appendix C - Minor Arcana#^a-timeless-vault|A timeless vault]]**
+- 4 **[[57 - Appendix C - Minor Arcana#^a-crumbling-arch|A crumbling arch]]**
+- 5 **[[57 - Appendix C - Minor Arcana#^sigil-of-authority|A silvery signet ring]]**
 - 6 Some other dangerous minor arcanum, with potential to spread chaos, locked away for safekeeping.
 
 #### **Major arcana**
@@ -134,48 +140,50 @@ might be associated with Aratis, or at least revered by her followers.
 
 ## **Dangers**
 
-#### **Associated entities**
+### **Associated entities**
 
-- **Ancestral spirits** or other **[[20 - Gods and Religion#**Little gods**|little gods]]** of home, hearth, and civilization
-- The **tomb-bog spirit** (page [[10 - Death and the Undying#**Death and the undying**|85\)]], sent to execute a criminal
-- An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, called up to smite some agent of chaos
-- Perhaps even the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**) or his hounds
+- **Ancestral spirits** or other **[[20 - Gods and Religion#Little gods|little gods]]** of home, hearth, and civilization
+- The **tomb-bog spirit** (page [[10 - Death and the Undying#Necromancer|85\)]], sent to execute a criminal
+- An **[[36 - Primordial Powers#Archons|archon]]**, called up to smite some agent of chaos
+- Perhaps even the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]** or his hounds
 
-#### **Judge of Aratis**
-
-*Group*, *leader*, *organized*
-
-**HP** 8; **Armor** 2 (shield, leather cuirass) **Damage** mallet d8 (*hand*) or maul d8+2 (*close*, *forceful*, *awkward*)
-
-**Special qualities** bound by the requirements of a **true disciple** (previous page), at least publicly
-
-**Stalwart instinct** to see things as black and white (+*tough*, +4 HP)
-
-- ä Decry someone/thing, publicly
-- ä Enforce a law/tradition/contract, even despite good sense
-- ä Inspire others with their resolve **Ambitious instinct** to advance their own
-
-agenda (+*cunning*)
-
-- ä Make a reasonable-sounding ruling, to their own advantage
-- ä Suss out someone's motives
-- ä Keep calm under pressure or scrutiny
-
-**Circumspect instinct** to try to make everyone happy (+*friendly*, +*cautious*, deals damage with disadvantage)
-
-- ä Stall, delay, make excuses
-- ä See both sides of an issue
-- ä Find a different way
+> [!monster] ## **Judge of Aratis**
+>
+> *Group*, *leader*, *organized*
+>
+> **HP** 8; **Armor** 2 (shield, leather cuirass)
+>
+> **Damage** mallet d8 (*hand*) or maul d8+2 (*close*, *forceful*, *awkward*)
+>
+> **Special qualities** bound by the requirements of a **true disciple** (previous page), at least publicly
+>
+> **Stalwart instinct** to see things as black and white (+*tough*, +4 HP)
+>
+> - Decry someone/thing, publicly
+> - Enforce a law/tradition/contract, even despite good sense
+> - Inspire others with their resolve
+>
+> **Ambitious instinct** to advance their own agenda (+*cunning*)
+>
+> - Make a reasonable-sounding ruling, to their own advantage
+> - Suss out someone's motives
+> - Keep calm under pressure or scrutiny
+>
+> **Circumspect instinct** to try to make everyone happy (+*friendly*, +*cautious*, deals damage with disadvantage)
+>
+> - Stall, delay, make excuses
+> - See both sides of an issue
+> - Find a different way
 
 ### **Oathbreaker's curse**
 
- When you *swear a proper oath before a shrine of Aratis*, in full view of witnesses and with an appropriate offering, you are oathbound. Make note of what you promised, and the nature of the curse you invite should you forswear yourself.
+When you *swear a proper oath before a shrine of Aratis*, in full view of witnesses and with an appropriate offering, you are oathbound. Make note of what you promised, and the nature of the curse you invite should you forswear yourself.
 
 When you *forswear your oath*, hold 3 Ruin. While you hold Ruin, you have disadvantage whenever you or a companion rolls the Die of Fate.
 
-When you *roll a 10+ on a move*, you can spend 1 Ruin to turn the 10+ into a 6 instead. The GM can refuse; if they do, you retain your Ruin. If they accept, the results should reflect the nature of the curse you invited upon yourself.
+When you *roll a 10+ on a move*, you can spend 1 Ruin to turn the 10+ into a 6- instead. The GM can refuse; if they do, you retain your Ruin. If they accept, the results should reflect the nature of the curse you invited upon yourself.
 
-# **Chaos**
+## **Chaos**
 
 A PC Judge can use their Censure move to denounce another as "an agent of chaos." When they do, the move works regardless of what you think. You can ask questions about their motivations or their thinking, but they're the Judge, not you.
 

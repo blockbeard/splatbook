@@ -1,8 +1,9 @@
 # Dangers
 
-**Hazards 
-Monsters 
-Running combat**
+| In this chapter | |
+|---|---|
+| [[#Hazards\|Hazards]] | [[#Monsters\|Monsters]] |
+| [[#Running combat\|Running combat]] |  |
 
 **Dangers** are likely to hurt the PCs or the things they care about. There are two basic types of danger:
 
@@ -14,7 +15,7 @@ PCs usually encounter dangers when they're on an expedition, or when things get 
 
 Like any element of the fiction, dangers can be improvised. Much of this chapter, though, focuses on preparing dangers in advance. The last chunk of the chapter deals with running fights.
 
-## **Dangers vs. threats**
+### **Dangers vs. threats**
 
 Dangers may or may not also be **threats** (see [[09 - Threats#Writing a threat|Writing a threat]]). Threats are ongoing problems, things that will come back to haunt the PCs later; they might not be dangerous, but they're always troublesome. Dangers are immediate problems: things that can hurt or hinder the PCs during a scene, here and now.
 
@@ -26,7 +27,7 @@ Lots of threats are also things that the PCs might fight. If they are, write up 
 
 Hazards are environmental dangers. They can impede or harm the PCs but lack initiative and intent. Hazards can't really be fought and slain with spear and shield; they must be avoided, endured, thwarted, or overcome.
 
-## **Improvising a hazard**
+### **Improvising a hazard**
 
 Hazards don't always need game mechanics or stats. You'll often just improvise them.
 
@@ -40,7 +41,7 @@ You can also introduce hazards in response to a player move. A new hazard is a g
 
 Remember that on a 6-, when you make a hard GM move and establish badness, you decide just how bad it is. That means you can introduce a hazard and immediately have it cause harm or badness, as long as it makes sense in the fiction. But you don't have to. So when the Fox rolls a 6- to Burgle a chest, you might jump straight to **hurting them** with a poison needle trap. But you could also **introduce a danger** and say that they notice these arcane runes around the lip, and clearly some sort of harmful magic will be unleashed if the chest is opened, what do you do?
 
-When a hazard is present during a fight or any other sort of action scene, keep including it in the fiction and keep making moves with it. A hazard is part of the environment and the **[[03 - Playing the Game#The GM, dice, and moves|fictional positioning]]** of the characters; its presence limits what the PCs can do and informs the results of their actions.
+When a hazard is present during a fight or any other sort of action scene, keep including it in the fiction and keep making moves with it. A hazard is part of the environment and the **[[03 - Playing the Game#Fictional positioning|fictional positioning]]** of the characters; its presence limits what the PCs can do and informs the results of their actions.
 
 *Vahid, Caradoc, Blodwen, Rhianna, and Andras are exploring the ruins around Three Coven Lake. They're climbing a set of wide, ancient stairs going up the side of a bluff. It'd be a nasty fall into rocky water, but the stairs so far have been well-built and stable.*
 
@@ -60,7 +61,7 @@ When a hazard is present during a fight or any other sort of action scene, keep 
 
 *"I really want to check that out," says Vahid. After some discussion, they produce some rope and tie each other together, then scamper over the ledge one at a time, using the handholds to brace themselves. The rope means that they're Defying Danger as a group, so we resolve this using Struggle as One (and decide that everyone gets advantage on their rolls for acting on the answers from Seeking Insight).*
 
-## Damage from hazards
+### Damage from hazards
 
 **If a hazard (improvised or prepared) deals damage**, ask yourself what it could likely do to a normal person.
 
@@ -89,8 +90,9 @@ Apply disadvantage to the damage roll if the PCs knew (or suspected) about the h
 > If a hazard (or other source of harm) would definitely, absolutely kill a normal person, then it shouldn't deal damage to the PCs—it should immediately reduce them to 0 HP and trigger the Death's Door move. If they survive, then that means they caught a break. You can and should still **hurt them**, badly.
 >
 > **Telegraph this sort of hazard very clearly.** "If you fall, I'll probably give you one chance to catch yourself. But if that fails, it's a 60-foot drop onto jagged rocks and shallow water. You won't be taking HP damage, you'll be rolling Death's Door. You sure you want to do this?"
+> ^certain-death
 
-## **Preparing hazards**
+### **Preparing hazards**
 
 If you're preparing an expedition or a point of interest in advance, you might want to prepare some hazards. Prep hazards for all the reasons you prep anything: to give yourself interesting stuff to say, to speed up play, to shore up your weaknesses, to hone your craft, and to give yourself permission to play hard and visit badness on the PCs.
 
@@ -108,7 +110,7 @@ There's no hard and fast rule for when to use each approach. Use whichever one s
 
 *Book II* presents many hazards prepared with these approaches. Use them as-is or refer to them as examples.
 
-## **As a detailed description**
+#### **As a detailed description**
 
 Think about the hazard and its specific fictional details: Where is it? What does it look like? How does it work? What triggers it? What does it do? You might just visualize it in your mind, or jot some notes down, or even draw a picture or diagram.
 
@@ -130,7 +132,7 @@ This approach is also good for physical obstacles, especially ones that aren't p
 
 *I think that the seeds are stored in an impossibly well-preserved wooden chest. If anyone disturbs the clasp without first pressing two particular knots in the wood, a thorn will shoot out of the clasp and prick whoever is handling it. The thorn carries a lethal poison (d10 damage, ignores armor, will quickly necrotize flesh and stop a heart if not treated). There's a dead crinwin in the room with a withered black hand; it tried to open the chest earlier.*
 
-## **As GM moves**
+#### **As GM moves**
 
 Think about how the hazard works and more importantly—how you intend to use it in play. Write out a series of fairly specific GM moves that reflect as many of the following as make sense:
 
@@ -158,7 +160,7 @@ Why use this approach? Mostly, because it helps you hone your craft. You can thi
 
 *I'm not seeing this hazard as doing damage—it just restrains prey, makes it bliss out and stop struggling, and then slowly suffocates it. I figure that anyone who gets injected with the euphoric poison will need to Defy Danger to do anything other than relax and enjoy themselves.*
 
-## **As an impending doom**
+#### **As an impending doom**
 
 Write a series of increasingly bad events, ending with some final doom.
 
@@ -181,7 +183,7 @@ UNSTABLE PILLARS: Advance this each time a pillar is struck, or as a GM move.
 - OO Pillar breaks, stone slabs fall (1d8+3 damage, area, forceful)
 - O IMPENDING DOOM: Ceiling collapses, burying anyone still inside (Death's Door); connecting tunnels blocked off
 
-## **As player moves**
+#### **As player moves**
 
 Write a custom player-facing move to reflect the hazard (or part of it), like "When you *breathe in the horrible stench of the Maw*, roll +CON…." When the PCs encounter the hazard and the move becomes relevant, share it with the players. Resolve it like you would any other player-facing move.
 
@@ -193,7 +195,7 @@ Remember: everything **begins and ends with the fiction**. If the PCs come up wi
 
 See **[[16 - Writing Moves and Love Letters#Writing moves|Writing moves]]** for guidance.
 
-## **As a combination**
+#### **As a combination**
 
 Many hazards will work best as a combination of these approaches. You might start with a detailed description of a trapped chamber, then add a player-facing move for what happens when they try to bypass the trap in a particular way. Or you might write up a series of GM moves and an instinct for a wildfire, plus a countdown describing how the fire spreads. Get creative.
 
@@ -203,44 +205,46 @@ Many hazards will work best as a combination of these approaches. You might star
 
 *Sajra's lair is an old Green Lord tomb, and the mummified Maker is still ensconced in its central vault. To reach the vault, one must pass through the Hall of Humility and the Hall of Gratitude. They are warded with Fae magic to ensure that those who approach the vault do so with proper respect. I decide to write these hazards as custom moves.*
 
-## **When you enter the Hall of Humility, choose 1:**
+#### **When you enter the Hall of Humility, choose 1:**
 
 - \* Tell us of a moment that left you feeling humbled and small before the natural world; you may then proceed to the Hall of Gratitude.
 - \* Tell us of a personal triumph, a moment that fills you with pride and self-satisfaction; you then exit the Hall of Humility and find yourself back in the antechamber.
 
 When you **enter the Hall of Gratitude**, you see a shifting tableau of ancient peoples living and learning at the feet of tall, magnificent beings. Roll +WIS: on a 10+, you witness someone learning a skill or trade that is nowadays taken for granted—describe the scene, then move on to the Hall of Offering; on a 7-9, you find yourself living one of these ancient lives—describe the task you are performing for the Makers and how you realize that this life isn't yours, then mark dazed and move on to the Hall of Offering; on a 6-, the tableau shifts and you find yourself living a life of savagery, brutality, sickness, hunger, and want—tell us a hardship you experience most cruelly, and mark all three debilities. Then tell us how you find your true self again, and move on to the Hall of Offering.
 
-## **Monster format**
+### **Monster format**
 
 Almanac entries in *The Wider World* include many monster write-ups like this—use them when you can, either as-is or slightly modified.
 
 - **0 Icon**: A quick visual identifier for different monster types (see [[12 - Dangers#Monster types|Monster types]]). You don't need to include these in monsters you write up.
 - **1 Name**: What the monster is called (by itself, by the people who deal with it most, or by you, the GM, for your own reference).
-- **2 Tags**: Terms that help describe the monster. All monsters have an organization tag (*solitary*, *group*, or *horde*) that indicates how they hunt and fight; many have a size tag (*tiny*, *small*, *large*, or *huge*) that describe how big they are. Other tags describe a monster's basic nature (e.g. *construct*, *spirit*, *undead*), its traits (e.g. *stealthy*, *terrifying*), or its behaviors (e.g. *organized*, *cautious*). See [[12 - Dangers#Tags|What is it notable for?]] for context.
+- **2 Tags**: Terms that help describe the monster. All monsters have an organization tag (*solitary*, *group*, or *horde*) that indicates how they hunt and fight; many have a size tag (*tiny*, *small*, *large*, or *huge*) that describe how big they are. Other tags describe a monster's basic nature (e.g. *construct*, *spirit*, *undead*), its traits (e.g. *stealthy*, *terrifying*), or its behaviors (e.g. *organized*, *cautious*). See [[12 - Dangers#3. Tags|What is it notable for?]] for context.
 - **3 Hit points (HP) and Armor**: How much damage the monster can take, and how well protected it is. When a monster is reduced to 0 HP, it's out of the action (unconscious, disabled, dying, or dead your call). When a monster suffers damage, reduce that damage by its armor. The description after the armor rating describes its source, and any exceptions.
 
-**Crinwin 1 0**
- *Horde*, *small*, *hoarder*, *cautious*, *stealthy*
-**HP** 3; **Armor** 1 (reflexes) **3**
+>[!box] **Crinwin 1**
+> *Horde*, *small*, *hoarder*, *cautious*, *stealthy*
+>**HP** 3; **Armor** 1 (reflexes)
+>
+>**Damage** claws, rocks, choking d6 (*hand*) **Special quality** climbs/jumps like a squirrel **Instinct** to covet
+>
+>
+>▸ Mimic noises, words, cries for help
+>
+>▸ Hide or vanish into the trees
+>
+>▸ Snatch something and dart away
+>
+>- They've always been there, in the Wood, lurking in the trees. For generations, the Forest Folk hunted them and kept their numbers in check. No longer.
+>  - Out-of-place noises: partial bird calls, off-season insect buzz, a bear's growl from the treetops, snippets of nonsense speech
+>  - Figures scurrying, leaping, swinging through the branches
+>  - Sinewy strong fingers around your throat
+>  - Clammy, blackish blood; too cold and putrid to be natural
+>  - **Something interesting**: there's something that everyone agrees will keep crinwin at bay (a smell, a charm, a sound, a little ritual, etc.). What is it, and why are you sure that it's next to worthless?
+>
+>**Something useful**: there really is something that keeps crinwin at bay, but it involves something uncommon, impractical, or both. What is it, and why isn't it common knowledge (or at least commonly accepted)?
+> ^crinwin-1
 
-**Damage** claws, rocks, choking d6 (*hand*) **Special quality** climbs/jumps like a squirrel **Instinct** to covet **5**
-
-ä Mimic noises, words, cries for help
-
-ä Hide or vanish into the trees
-
-ä Snatch something and dart away
-
-- They've always been there, in the Wood, lurking in the trees. For generations, the Forest Folk hunted them and kept their numbers in check. No longer. **8**
-  - Out-of-place noises: partial bird calls, off-season insect buzz, a bear's growl from the treetops, snippets of nonsense speech
-  - Figures scurrying, leaping, swinging through the branches
-  - Sinewy strong fingers around your throat
-  - Clammy, blackish blood; too cold and putrid to be natural
-  - **Something interesting**: there's something that everyone agrees will keep crinwin at bay (a smell, a charm, a sound, a little ritual, etc.). What is it, and why are you sure that it's next to worthless? **9**
-
-**Something useful**: there really is something that keeps crinwin at bay, but it involves something uncommon, impractical, or both. What is it, and why isn't it common knowledge (or at least commonly accepted)?
-
-- **4 Damage**: how the monster typically attacks, the damage it does, and the tags associated with that damage (see [[12 - Dangers#Tags|What is the nature of]] for descriptions).
+- **4 Damage**: how the monster typically attacks, the damage it does, and the tags associated with that damage (see [[12 - Dangers#3. Tags|What is the nature of]] for descriptions).
 - **5 Special qualities**: (optional) innate traits that impact play but aren't otherwise obvious or described by tags. Special qualities can be advantageous ("echolocation" or "immune to heat/fire"), disadvantageous ("blind" or "vulnerable to water/cold"), or neutral ("made of crystalline rock"). These aren't GM moves, per se, but they can and should inform the fiction that you establish and the GM moves that you make.
 - **6 Instinct**: what the monster typically does that brings it into conflict with others. Use its instinct as a guide to its behavior. When you're unsure what a monster would do, go with what its instinct suggests.
 - **7 Moves:** GM moves that you can make with this monster. You're not limited to these moves—you can and will use all your standard GM moves like **announce trouble** or **use up their resources**—but monster moves describe specific ways that the monster fights or causes trouble.
@@ -275,19 +279,22 @@ To create a monster:
 
 If you're improvising a monster during play, just quickly conceptualize it (step 1) and then calculate its HP, armor, and damage (steps 4-6). Use your standard GM moves to run it for now. Write it up in full between sessions, if it still matters.
 
-## **Monster types**
+### **Monster types**
 
 These icons are used to classify the different creatures appearing in *Book II: The Wider World and Other Wonders*.
 
-human individual spirit/construct Maker
-
-human group Fae emanation
-
-spirit corrupted/ Fomoraij unknown origin
-
+human individual 
+spirit/construct 
+Maker
+human group
+Fae 
+emanation
+spirit 
+corrupted/ Fomoraij 
+unknown origin
 construct
 
-## **1 Concept**
+### **1. Concept**
 
  Before you do anything else, imagine the monster. What is it? What does it look like? What does it do? Does it live alone or with others? How does it fight, eat, and live?
 
@@ -299,13 +306,14 @@ You should have a decent grasp on the monster's concept before you move on. Your
 
 *I want two powerful Fae guardians to protect the Green Lord's burial vault. They'll appear in the Hall of Offerings and greet anyone who makes it through the Halls of Humility and Gratitude. I know that they're loyal to their Green Lord master, and that they control access to both its constructed afterlife and its actual, physical burial vault.*
 
-*I work through the procedure for Creating Fae (*[[12 - Fae#**Creating Fae**|Book II]]*). I've already decided that their preoccupation is "guarding." I roll a 2 for size ("*large*"), and a 2 and 7 for aspects ("antlered/ hooved" and "treeish"). I roll a 2 on a d6 to see how person-like they are. I'm picturing tall, powerfully built tree-men with woody flesh. blank faces, and elklike antlers.* 
+*I work through the procedure for Creating Fae (*[[12 - Fae#Insults and etiquette|Book II]]*). I've already decided that their preoccupation is "guarding." I roll a 2 for size ("*large*"), and a 2 and 7 for aspects ("antlered/ hooved" and "treeish"). I roll a 2 on a d6 to see how person-like they are. I'm picturing tall, powerfully built tree-men with woody flesh. blank faces, and elklike antlers.* 
 
 *For talents, I roll a 6 ("messing with time, space"). I think that they can teleport intruders around and can vanish or appear as they please within their little domain. I also pick "cursing/ blessing/giving/taking." I think they extract promises from those who come before them, and curse those who break their vows.*
 
 *Looking over the remaining tables, I think these Fae were bred from tree spirits to help protect their Green Lord's afterlife. They remained loyal during the Fae rebellion, and maintain a fierce protectiveness--hence the tomb being intact.*
 
-**<sup>2</sup> Name** You'll want a way to refer to the monster, at least in your own notes. Write it down.
+### **2. Name** 
+You'll want a way to refer to the monster, at least in your own notes. Write it down.
 
 **If the monster has a proper name that it goes by**, call it that, maybe with a short description. For example, "Sajra the Swyn" or "Daedre the Red, bandit leader." Pick proper names from an appropriate name list or almanac entry, or make up something similar.
 
@@ -329,7 +337,7 @@ You should have a decent grasp on the monster's concept before you move on. Your
 
 *The Forest Folk would have had their own (Slavic-sounding) name for the Almtakers, which folks from Stonetop might know. I play around with an English-Bulgarian dictionary, and find that "receivers" can translate to "priemnitsi." I like that: "the Priemnitsi."*
 
-## Tags
+### 3. Tags
 Assemble a list of tags by answering the following questions.
 
 | How does it hunt or fight? (pick 1) | tag        |
@@ -371,7 +379,8 @@ If the creature possesses some other quality that can be easily described in one
 
 *If the Almtakers fight, they fight as a pair, so I give them the* group *tag. They're maybe 12 feet tall and quite massive, so I give them the* large *tag. They're obviously* Fae*, and notable both for using magic and working well together. I write down their tags as:* group, large, Fae, magical, organized.
 
-**<sup>4</sup> Hit points** Determine the monster's maximum HP by answering the following questions:
+### **4. Hit points** 
+Determine the monster's maximum HP by answering the following questions:
 
 | How does it hunt or fight? (pick 1) | hp |
 |-------------------------------------|----|
@@ -379,7 +388,7 @@ If the creature possesses some other quality that can be easily described in one
 | In small groups (2-5, group)        | 6  |
 | By itself (solitary)                | 12 |
 
-Just to be clear: each monster in a *horde* has 3 HP, and each monster in a *group* has 6 HP. This isn't a shared pool of HP (unless you choose to abstract a group; see [[12 - Dangers#Abstracting groups|Abstracting groups]]).
+Just to be clear: each monster in a *horde* has 3 HP, and each monster in a *group* has 6 HP. This isn't a shared pool of HP (unless you choose to abstract a group; see [[12 - Dangers#^abstracting-groups|Abstracting groups]]).
 
 | How big is it? (pick 1)            | hp  |
 | ---------------------------------- | --- |
@@ -398,15 +407,16 @@ Just to be clear: each monster in a *horde* has 3 HP, and each monster in a *gro
 
 *The Almtakers fight as a pair, with the*  group *tag, so they start with 6 HP each. They're also* large*, giving them +4 HP. The Fae have strange forms, but they are still living things with discernible anatomy: they bleed, have hearts, brains, joints, and so forth. But these Fae—with their woody flesh and massive frames are particularly tough. I give them +4 HP, for a total of 14 HP each.*
 
-**<sup>5</sup> Armor** Answer the following:
+### **5. Armor** Answer the following:
 
-| What is it protected by? (pick 1) | armor |
-| --------------------------------- | ----- |
-| Naught but cloth and flesh        | 0 |
-| Leathers or thick hide            | 1 |
-| Mail, scale, or similar           | 2 |
-| Steel armor, boney plates, carapace | 3 |
-| Potent magical wards or supernatural resilience | 4 |
+| What is it protected by? (pick 1)               | armor |
+| ----------------------------------------------- | ----- |
+| Naught but cloth and flesh                      | 0     |
+| Leathers or thick hide                          | 1     |
+| Mail, scale, or similar                         | 2     |
+| Steel armor, boney plates, carapace             | 3     |
+| Potent magical wards or supernatural resilience | 4     |
+|                                                 |       |
 
 | What else applies? (pick all that do) | armor |
 | ------------------------------------- | ----- |
@@ -423,7 +433,9 @@ Armor 5 (resilience, skill), 2 vs. iron (hide, skill)
 
 *Yikes. These things are tough.*
 
-## **<sup>6</sup> Damage** What is the monster's typical form of attack? Write it down, along with the monster's damage rating and appropriate tags. To determine them, answer the following:
+### **6. Damage**
+
+What is the monster's typical form of attack? Write it down, along with the monster's damage rating and appropriate tags. To determine them, answer the following:
 
 | How does it hunt or fight? (pick 1) | damage |
 | ----------------------------------- | ------ |
@@ -450,7 +462,8 @@ Armor 5 (resilience, skill), 2 vs. iron (hide, skill)
 >
 > Attacks with **[*n*] piercing** ignore *n* points of a foe's armor. Attacks that **ignore armor** treat armor as 0.
 >
-> See [[03 - Playing the Game#**Gear terms & tags**|Playing the Game]] for more tags & terms.
+> See [[03 - Playing the Game#Playing the Game|Playing the Game]] for more tags & terms.
+> ^attack-tags-terms
 
 | What is the nature of its attack? (pick all that apply) | add |
 | ------------------------------------------------------- | --- |
@@ -500,9 +513,9 @@ If the monster has multiple, distinct modes of attack, write each down with its 
 
 Powerful blows: d6+3 damage w/disadvantage (*close*, *reach*, *forceful*).
 
-## **<sup>7</sup> Special qualities** Consider writing a special quality
+### **7. Special qualities**
 
-for each of the following that the monster possesses.
+Consider writing a special quality for each of the following that the monster possesses.
 
 - An exceptional/limited sense (like "sees heat instead of light")
 - A useful adaptation/defense (like "im mune to fire")
@@ -521,9 +534,11 @@ Only write special qualities that you think will impact play, above and beyond t
 
 *They have no mouths, but "speak" telepathically. I think they're entirely honest. And I think their presence messes with time and space—things change places without moving, moments take minutes, minutes pass in moments, that sort of thing. Those are all important traits that might influence play, so I write down*
 
-Special qualities: Fae nature (*[[12 - Fae#**Fae nature**|Book II]]*), telepathic; can't lie or mislead; subtly warp space/time.
+Special qualities: Fae nature (*[[12 - Fae#Names|Book II]]*), telepathic; can't lie or mislead; subtly warp space/time.
 
-## **<sup>8</sup> Instinct** What does the monster do that brings it into conflict with others, or leads it to harm others? Write this in the format "to [do something]."
+### **8. Instinct**
+
+What does the monster do that brings it into conflict with others, or leads it to harm others? Write this in the format "to [do something]."
 
 Good instincts describe a general pattern of behavior rather than a specific action. "To gorge itself " is a good instinct; "to swallow prey whole" is too specific (that's more like a move). With that said, try to write instincts that are distinctive. "To hunt" is an okay instinct; "to relentlessly pursue its prey" is better.
 
@@ -531,7 +546,8 @@ It's possible that a monster might have multiple instincts, like a cave bear's "
 
 *The Almtakers guard the entrance to their Green Lord master's burial vault and constructed afterlife. They'll challenge anyone who approaches, judging them, demanding an offering, and extracting a vow of peace and respect. Ultimately, this behavior all stems from a simple instinct:* to protect its master.
 
-**<sup>9</sup> Moves** Each monster should have a few GM moves. Write these moves so that they finish the sentence "the monster can/ will \_\_." For example: "surround and harry prey" or "smash through obstacles" or "sound the alarm."
+### **9. Moves** 
+Each monster should have a few GM moves. Write these moves so that they finish the sentence "the monster can/ will \_\_." For example: "surround and harry prey" or "smash through obstacles" or "sound the alarm."
 
 If the monster… (choose all that apply)
 
@@ -563,9 +579,9 @@ Write moves that will help you use this monster at the table. A loosely-worded m
 - > Require an oath of good intentions
 - > Lay a wasting curse on oath-breakers
 
-## **<sup>10</sup> Description** Write as much or as little of a
+### **10. Description**
 
-description of your monster as you like. Remember, the audience here is you, using the monster during play. Write your description with that in mind.
+Write as much or as little of a description of your monster as you like. Remember, the audience here is you, using the monster during play. Write your description with that in mind.
 
 Think about how you'll describe the monster to your players during play. How big is it, what does it look like, how does it move, etc. Use similes and comparisons to familiar objects ("it's like a huge elk-centaur, with big old antlers on a skull head, exposed ribs and an extra pair of creepy little T-rex arms"). Maybe sketch something out, or find pictures online to show your players.
 
@@ -588,13 +604,13 @@ Many monsters are also NPCs; if they'll be talking to the PCs, consider coming u
 - \* Weird, dreamlike presence. "Wasn't it just over there?"
 - \* "Voice:" quiet, breathy. Repeat every few words, like an echo.
 
-## **<sup>11</sup> Optional elements** If the monster has nuanced mo-
+### **11. Optional elements**
 
-tivations or behaviors, consider writing out tactics for the monster, as a series of "if-then" conditions and behaviors. This can help you **portray your characters with integrity**, and speed up play.
+If the monster has nuanced motivations or behaviors, consider writing out tactics for the monster, as a series of "if-then" conditions and behaviors. This can help you **portray your characters with integrity**, and speed up play.
 
 To write tactics, think about how and where the PCs are most likely to encounter the monster. Write an "if " or "when" statement for that, and what the monster will likely do as a response. What are the PCs likely to do next, and how would that affect the monster's behavior? Write another if/then for that. Keep following the likely forks in the paths, writing ifs/thens until you've covered the likely results: the monster attacking, the monster fleeing, the monster agreeing to let them go, etc.
 
-If you expect the players to Know Things about the monster, then maybe prepare "something interesting" (for a 7-9 result) and "something useful" (for a 10+) in advance. See **[[06 - Player Moves#KNOW THINGS|Know Things]]** for guidance. Remember, though: these notes are for your benefit. Don't bother prepping stuff you can improvise at the table, or things that are obviously implied by the monster's stats. Prep lore to fill in gaps that aren't otherwise apparent, or to pre-plan just how much information you'll give on a 7-9 or a 10+.
+If you expect the players to Know Things about the monster, then maybe prepare "something interesting" (for a 7-9 result) and "something useful" (for a 10+) in advance. See **[[06 - Player Moves#^know-things|Know Things]]** for guidance. Remember, though: these notes are for your benefit. Don't bother prepping stuff you can improvise at the table, or things that are obviously implied by the monster's stats. Prep lore to fill in gaps that aren't otherwise apparent, or to pre-plan just how much information you'll give on a 7-9 or a 10+.
 
 Finally, consider writing one or more custom player-facing moves. If there's something the monster might do to the PCs, or an effect it might have on them, and a custom player-facing move would help you resolve it in play, then write it up. Player-facing moves are particularly good for resolving nasty attacks or touchy, unpleasant effects. Mind control, instant "kill" powers (like petrification), and poison are all good candidates. See **[[16 - Writing Moves and Love Letters#Writing moves|Writing moves]]** for guidance.
 
@@ -604,54 +620,56 @@ Finally, consider writing one or more custom player-facing moves. If there's som
 
 *When I'm done, the Almtakers' write-up looks like this:*
 
-## THE ALMTAKERS, guardian Fae (group, large, Fae, magical, organized)
-
-**HP** 14; **Armor** 5 (resilience, skill), 2 vs. iron (hide, skill)
-
-**Damage** powerful blows d6+3 w/disad vantage (close, reach, forceful)
-
-**Special qualities** Fae nature (*[[12 - Fae#**Fae nature**|Book II]]*), telepathic, can't lie or mislead; subtly warps local time & space
-
-## **Instinct** to protect its master
-
-- > Lock eyes, then teleport them away
-- > Act in tandem, without hesitation
-- > Require an oath of good intentions
-- > Lay a wasting curse on oath-breakers
-
-12 feet tall, humanoid, skin like wood.
-
-Tree-trunk forearms, goat legs, antlers. No mouth, three glowing white eyes.
-
-Move like gorillas, or on crutches—plant their big forearms and swing legs forward. Creaking wood sound.
-
-Weird, dreamlike presence. "Wasn't it just over there?"
-
-"Voice:" quiet, breathy. Repeat every few words, like an echo.
-
-**Something interesting:** the Forest Folk spoke of the Priemnitsi, or "Receivers," who took offerings on behalf of a great oracle. Could these Fae be them?
-
-**Something useful:** this place exists out of time, cut off from the world. Gifts of things that are new since the time of the Green Lords (or vivid memories of such things) would be well-received.
-
-**When you attempt to deceive the Almtakers** (even if you're technically telling the truth), roll +WIS: on a 10+, you hide your intentions and they're none the wiser; on a 7-9, they're suspicious and they probe a bit—either come clean now or double-down and try to deceive them even more; on a 6-, they've seen right through you.
-
+> [!box] THE ALMTAKERS, guardian Fae (group, large, Fae, magical, organized)
+> 
+> **HP** 14; **Armor** 5 (resilience, skill), 2 vs. iron (hide, skill)
+> 
+> **Damage** powerful blows d6+3 w/disad vantage (close, reach, forceful)
+> 
+> **Special qualities** Fae nature (*[[12 - Fae#Names|Book II]]*), telepathic, can't lie or mislead; subtly warps local time & space
+> 
+> **Instinct** to protect its master
+> 
+> - > Lock eyes, then teleport them away
+> - > Act in tandem, without hesitation
+> - > Require an oath of good intentions
+> - > Lay a wasting curse on oath-breakers
+> 
+> 12 feet tall, humanoid, skin like wood.
+> 
+> Tree-trunk forearms, goat legs, antlers. No mouth, three glowing white eyes.
+> 
+> Move like gorillas, or on crutches—plant their big forearms and swing legs forward. Creaking wood sound.
+> 
+> Weird, dreamlike presence. "Wasn't it just over there?"
+> 
+> 
+> "Voice:" quiet, breathy. Repeat every few words, like an echo.
+> 
+> **Something interesting:** the Forest Folk spoke of the Priemnitsi, or "Receivers," who took offerings on behalf of a great oracle. Could these Fae be them?
+> 
+> **Something useful:** this place exists out of time, cut off from the world. Gifts of things that are new since the time of the Green Lords (or vivid memories of such things) would be well-received.
+> 
+> **When you attempt to deceive the Almtakers** (even if you're technically telling the truth), roll +WIS: on a 10+, you hide your intentions and they're none the wiser; on a 7-9, they're suspicious and they probe a bit—either come clean now or double-down and try to deceive them even more; on a 6-, they've seen right through you.
+> 
+> ^the-almtakers-guardian-fae-group-large-fae-magical-organized
 ## **Running combat**
 
 Remember, "monster" is just a term for something that the PCs might end up fighting. It includes hostile (or potentially hostile) people as well as spirits and beasts and honest-to-goodness *monsters*.
 
 Regardless of their nature, monsters have personalities—or at least patterns of behavior—that are more nuanced than just "kill the PCs." Every monster has an instinct. Most have a sense of self-preservation. Many have wants, needs, fears, or weaknesses that the PCs can leverage they're *characters* as well as monsters.
 
-## **Portray your characters with integrity**.
+**Portray your characters with integrity**.
 
 Consider what this monster—with *this* instinct and *these* motives, facing *these* PCs who are acting in *this* way—would do. Then have it do that. Hint at the monster's story and its inner life. Present monsters who might not actually want to fight, or who can be reasoned with, or scared away.
 
-## But also, **portray monsters as** *monsters*.
+But also, **portray monsters as** *monsters*.
 
 Try to capture the fear of facing down a hungry predator or a big angry beast. Play up the tension, desperation, and bloody consequences of a fight with another human being. Think about what it'd be like to encounter a hungry ghost, or an otherworldy Fae, or a demon made of boundless hate and jealousy, and try to convey that to your players. Make your monsters scary.
 
 **Let things burn**. Don't protect your monsters, and don't protect your NPCs, and don't protect the PCs. If the fiction and the dice and your sense of what would happen all point toward injury or death, then go with it. Don't fudge things in pursuit of some grand story. Play to find out what happens.
 
-## **Introducing monsters**
+### **Introducing monsters**
 
 Whenever it's time to make a GM move, you can **introduce a danger** and put a monster in the scene.
 
@@ -669,7 +687,7 @@ Exactly how you introduce a monster will depend on the situation, the monster's 
 
 *But suppose they Seek Insight and get a 6-, or just ignore my veiled threat and blunder on. In that case, I'll introduce a danger hard and painfully. "Caradoc, this guy comes out of a dark side-alley and snags your right arm, twists, and shoves you face-first into a wall. Take 1d8 damage. Blodwen, you see a second guy step forward, sneering, a glint of metal in his hand. What do you do?"*
 
-## **The flow of battle**
+### **The flow of battle**
 
 Fighting foes is a big part of the game, but combat isn't a distinct mode of play. There's no moment where you say "roll for initiative" and different rules kick in. There's no orderly round-robin where everyone takes one action on their turn.
 
@@ -703,7 +721,7 @@ Suffering a monster's attack doesn't (just) mean that they take damage. It means
 
 *He rolls a 4, and I start thinking about hurting him and breaking his nose on the wall. But Caradoc invokes Impetuous Youth, bumping his result up to a 7-9 (at the cost of losing his knife). He stabs the thug and deals damage (3 of the thug's 6 HP) but also suffers the thug's attack. I decide to turn his move back on him. "He yells and lets go of your right arm. But then he grabs your left arm, the one with the knife, and like twists it up and over like this, kicking your legs out and smashing you down. Take 1d8 damage, and oh yeah, your knife goes flying from your hand."*
 
-A PC's actions are informed by **[[03 - Playing the Game#The GM, dice, and moves|fictional positioning]]**: where they are, what they're doing, where their enemies are and what they're doing, momentum, terrain, lighting, weapons, reach, room to maneuver, and everything else that we've established about this situation.
+A PC's actions are informed by **[[03 - Playing the Game#Fictional positioning|fictional positioning]]**: where they are, what they're doing, where their enemies are and what they're doing, momentum, terrain, lighting, weapons, reach, room to maneuver, and everything else that we've established about this situation.
 
 Fictional positioning affects whether a PC's actions trigger a move, and which move is triggered, and whether an action is even feasible. It also affects the range of possible results, both good and bad. A strong fictional position can mitigate the bad results of a roll, and a desperate fictional position can mean that a 6- is really, really bad.
 
@@ -753,7 +771,7 @@ Regularly ask yourself, "Would this monster keep fighting?" Use its instinct as 
 
 *I'm thinking that's Persuade, but really, he's got no reason to resist. They've clearly won, and this guy's more of a knife-inthe-dark type than a fight-to-the-death type. "He stops struggling," I say, "and his eyes bug out at you, Blodwen. He nods a little. Caradoc, do you let him go?"*
 
-## **Foes they can't hurt**
+### **Foes they can't hurt**
 
 Sometimes, the PCs can't feasibly attack their foe. The monster might have a special quality (like "made of stone") or tag (like *huge*) that makes them effectively invulnerable to the PCs' weapons. It might have a move (like "swat arrows from the air") that counters attacks. Fictional positioning might make an attack extra dangerous or impossible (it's got a *reach* weapon and the PC has a *hand* weapon).
 
@@ -783,17 +801,18 @@ Reward creativity and effort. If they have an idea or a move that would work—e
 
 *"Cool, roll to Clash!"*
 
-## **Fighting spirits**
+> [!box] ## **Fighting spirits**
+> 
+> Spirits are hard to fight because, by default, they lack a physical form. Most mundane attacks have no effect and pass right through them. And yet the most dangerous spirits can still attack physical creatures, even without manifesting!
+> 
+> Some spirits (like ghosts) are vulnerable to certain materials. The PCs might also acquire items (like the Twisted Spear) or moves (like the Lightbearer's Purifying Flames) that can directly harm spirits. A spirit reduced to 0 HP this way is destroyed or at least dispersed for the time being.
+> 
+> Many spirits can manifest or possess a physical form. The PCs can hurt such a form, but reducing its HP to 0 simply destroys the form and/or forces the spirit back into its intangible state.
+> 
+> You might find it useful to track a spirit's "manifest" HP separately from its "true" HP. If the PCs attack a manifest spirit with something that could harm its true form, those attacks damage both sets of HP.
+> ^fighting-spirits
 
-Spirits are hard to fight because, by default, they lack a physical form. Most mundane attacks have no effect and pass right through them. And yet the most dangerous spirits can still attack physical creatures, even without manifesting!
-
-Some spirits (like ghosts) are vulnerable to certain materials. The PCs might also acquire items (like the Twisted Spear) or moves (like the Lightbearer's Purifying Flames) that can directly harm spirits. A spirit reduced to 0 HP this way is destroyed or at least dispersed for the time being.
-
-Many spirits can manifest or possess a physical form. The PCs can hurt such a form, but reducing its HP to 0 simply destroys the form and/or forces the spirit back into its intangible state.
-
-You might find it useful to track a spirit's "manifest" HP separately from its "true" HP. If the PCs attack a manifest spirit with something that could harm its true form, those attacks damage both sets of HP.
-
-## **Multiple combatants**
+### **Multiple combatants**
 
 When the PCs face multiple foes (and they often will), break up the action into multiple smaller engagements—the Ranger fights one crinwin, the Fox fights another, the Marshal and his crew deal with the rest of them. This isn't anything formal. It's just a natural way to manage the scene.
 
@@ -827,35 +846,35 @@ Clever tactics can make a huge difference when dealing with multiple combatants.
 
 *I could tell her that it got a lick in before it went down, but whatever. "Good point. 1d6 damage to each of you." She takes 4 damage herself. Garet takes 1 and Eira takes 5. They're all still up, but Eira's in trouble. I let that inform my move and I put her in a spot. "Okay, so Eira got tripped by hers and it's on her chest, smashing her head against the wall. She looks out of it and, Rhianna, you've still got a crinwin in your face. Meanwhile, Caradoc…"*
 
-## **Abstracting groups**
+> [!box] ## **Abstracting groups**
+> 
+> If the PCs have a group of followers, then you'll often want to abstract their actions in combat. Resolve the group's actions with as few individual moves as possible. For example, if the Marshal's crew of six opens fire on a horde of 20 crinwin, have the Marshal make a single Let Fly roll to see how it goes.
+> 
+> If the group deals damage to another group, or takes damage from another group, then you can roll damage once per side and abstract the results. A group deals damage and has HP and armor as though it was one individual member of the group. For example, the marshal's crew of six would deal 1d6 damage, have 8 HP, and 1 armor from their hide armor. The horde of crinwin would deal 1d6 damage, have 3 HP, and have 1 armor from their agility and reflexes.
+> 
+> If one group outnumbers the other, they get a +1 bonus to damage and armor for every multiplier past 1. For example, the 20 crinwin outnumber the crew of six by about 3:1, so they'd get a +2 bonus to damage and armor.
+> 
+> Damage represents casualties. If one group loses half its HP, then about half that group's numbers are out the action. Adjust the bonuses to damage and armor accordingly! So if the crew of six dealt 4 damage to the crinwin when they Let Fly, that'd do 1 damage after armor and reduce the crinwin from 3 HP to 2 HP. One third of the crinwin (let's say seven of them) would be out of the action, reducing their advantage to only about 2:1. Their bonus to damage and armor is now only +1.
+> 
+> Shift the spotlight between the group and individual PCs. Switch the scale and "zoom" of the action accordingly.
+> 
+> 
+> Foes that are engaged by individual PCs aren't really part of a group. So if one PC ran in and attacked two crinwin while another PC Defended and drew the attention of another three, the Marshal's crew of six would be left contending with only eight crinwin (20 to start, less 7 dead from Letting Fly, less 5 occupied by PCs). That's basically even numbers, so the crinwin have lost their bonus to armor and damage.
+> 
+> A group reduced to 0 HP is routed, massacred, or otherwise defeated. The fate of individuals within each group is up to you.
+> ^abstracting-groups
 
-If the PCs have a group of followers, then you'll often want to abstract their actions in combat. Resolve the group's actions with as few individual moves as possible. For example, if the Marshal's crew of six opens fire on a horde of 20 crinwin, have the Marshal make a single Let Fly roll to see how it goes.
-
-If the group deals damage to another group, or takes damage from another group, then you can roll damage once per side and abstract the results. A group deals damage and has HP and armor as though it was one individual member of the group. For example, the marshal's crew of six would deal 1d6 damage, have 8 HP, and 1 armor from their hide armor. The horde of crinwin would deal 1d6 damage, have 3 HP, and have 1 armor from their agility and reflexes.
-
-If one group outnumbers the other, they get a +1 bonus to damage and armor for every multiplier past 1. For example, the 20 crinwin outnumber the crew of six by about 3:1, so they'd get a +2 bonus to damage and armor.
-
-Damage represents casualties. If one group loses half its HP, then about half that group's numbers are out the action. Adjust the bonuses to damage and armor accordingly! So if the crew of six dealt 4 damage to the crinwin when they Let Fly, that'd do 1 damage after armor and reduce the crinwin from 3 HP to 2 HP. One third of the crinwin (let's say seven of them) would be out of the action, reducing their advantage to only about 2:1. Their bonus to damage and armor is now only +1.
-
-Shift the spotlight between the group and individual PCs. Switch the scale and "zoom" of the action accordingly.
-
-Foes that are engaged by individual PCs aren't really part of a group. So if one PC ran in and attacked two crinwin while another PC Defended and drew the attention of another three, the Marshal's crew of six would be left contending with only eight crinwin (20 to start, less 7 dead from Letting Fly, less 5 occupied by PCs). That's basically even numbers, so the crinwin have lost their bonus to armor and damage.
-
-A group reduced to 0 HP is routed, massacred, or otherwise defeated. The fate of individuals within each group is up to you.
-
-## **Keeping fights interesting**
+### **Keeping fights interesting**
 
 Fights should be exciting, dynamic, and tense. The players should never feel like they're just "trading blows" or trying to deplete a foe's HP. Players shouldn't get bored waiting for "their turn," and the outcome should never be entirely certain.
 
-## **Make soft GM moves all the damn time**.
+**Make soft GM moves all the damn time**.
 
 After every player move, describe the situation and make a soft move: say something that provokes action or raises the tension. Then ask someone, "What do you do?" Sometimes, your soft move will be **offering an opportunity** for a PC to act freely, or to follow up on a previous move's success. It's easy to do this accidentally, though, which results in the monsters seeming to just stand there and not do anything. Be intentional!
 
 **Make your moves—especially your monster attacks—colorful, descriptive, and specific**. Don't just say, "It attacks you," say "It swoops down at you, talons out like this, coming right at your face! What do you do?" **Demand the same of the players**. If they say "I stab it with my spear," then reply with "Okay, cool, what's that look like?" If the player seems uncertain, or hesitant to commit, then offer them choices. "Are you, like, running at it? Bracing yourself? Are you going for its gut or its wings or its face, or what?" If you can't visualize the action, ask for more detail.
 
-## **Consider the momentum of the action**
-
-and other elements of fictional positioning. Incorporate them into your descriptions and your GM moves. So if your soft move was "it swoops at your face, talons out" and their response was "I brace myself and drive my long spear into its gut!" and they get a 7-9 to Clash, then the results should take all that into account. "Yeah, you impale it, but its momentum yanks the spear out of your hands and they both tumble over here, next to the edge. Roll your damage!"
+**Consider the momentum of the action** and other elements of fictional positioning. Incorporate them into your descriptions and your GM moves. So if your soft move was "it swoops at your face, talons out" and their response was "I brace myself and drive my long spear into its gut!" and they get a 7-9 to Clash, then the results should take all that into account. "Yeah, you impale it, but its momentum yanks the spear out of your hands and they both tumble over here, next to the edge. Roll your damage!"
 
 Vary your GM moves, especially when a monster's attack lands. Don't always **hurt them** or **put them in a spot**. Lean on your monster moves to add variety. Sometimes, look at your list of GM moves and pick something you haven't done in a while, just to keep things fresh. No matter what move you choose: if it involves roughing up the PCs, or it could maybe take them out of the fight, then deal damage along with the move.
 
@@ -877,8 +896,9 @@ When a PC "whiffs" a damage roll, **respect the fiction of their attack** and th
 
 Finally, remember that this isn't easy. **GMing is a practice**, not something you master. You'll likely start out forgetting to do all of this stuff, and that's fine. Reflect a little bit after each session on what was fun and exciting about your fights, and what seemed to drag. Ask yourself what you could have done differently, and try to do that next time. Keep pushing yourself to improve!
 
-## **Maps, tokens, and minis**
-
-It's often helpful to visually represent a battle, especially one with lots of combatants and distinct zones. This could be anything from a crude sketch of the battlefield to a fullfledged diorama with 3D minis and terrain. Visualizations like this are great for establishing the situation and making sure that everyone is on the same page.
-
-Be careful, though, not to let the map dominate the game. Use the map to visualize and communicate, but keep the focus on the conversation. **Begin and end with the fiction**, not with meeples on the table or squiggles on the whiteboard! If someone says "I circle around to the north and then attack that guy up there," pull them back into the fiction with something like, "As soon as you get to about here he snarls and charges you, ax raised like this—you still attack? Cool, what does that look like?"
+> [!box] **Maps, tokens, and minis**
+> 
+> It's often helpful to visually represent a battle, especially one with lots of combatants and distinct zones. This could be anything from a crude sketch of the battlefield to a fullfledged diorama with 3D minis and terrain. Visualizations like this are great for establishing the situation and making sure that everyone is on the same page.
+> 
+> Be careful, though, not to let the map dominate the game. Use the map to visualize and communicate, but keep the focus on the conversation. **Begin and end with the fiction**, not with meeples on the table or squiggles on the whiteboard! If someone says "I circle around to the north and then attack that guy up there," pull them back into the fiction with something like, "As soon as you get to about here he snarls and charges you, ax raised like this—you still attack? Cool, what does that look like?"
+> ^maps-tokens-and-minis

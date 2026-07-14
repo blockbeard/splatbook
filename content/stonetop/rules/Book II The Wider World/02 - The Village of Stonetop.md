@@ -1,13 +1,12 @@
 # The Village of Stonetop
 
-# **The village of Stonetop**
-
 **Size** village (~300 souls)
 
-## **Population** +0
+**Population +0**
 
 - **Prosperity** +0
-  - Trade with... ... Gordin's Delve (metal, tools)
+  - Trade with...
+    - ... Gordin's Delve (metal, tools)
     - ... Marshedge (textiles, herbs, glass)
 
 #### **Resources**
@@ -32,7 +31,7 @@ A farming village on the eastern edge of the **[[14 - The Flats#The Flats|Flats]
 
 The PCs call this village home. It's a tightknit community, poor but a good place to live. Everyone is expected to pull their weight, but few think badly of those who suffer misfortune. The town pulls together; its community is its strength.
 
-# **Places**
+## **Places**
 
 - The **Stone** is well over 50 feet tall and etched in faded runes. It seems older than even the **Maker**-ruins [[30 - The Makers|The Makers]] upon which the village was founded. When storms roll in, lightning strikes the Stone repeatedly.
 - The **Cistern** is an underground vault, clearly an artifact of the Makers. Locals fill it with rain, snow, and water from the **[[44 - The Stream#The Stream|Stream]]**.
@@ -58,9 +57,9 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Where do children most like to play?
 - Where do teens sneak off to for romance?
 
-### **Impressions**
+## **Impressions**
 
-#### **Always**
+### **Always**
 
 - The air: tingling, slight smell of ozone
 - People and beasts: unfazed by loud noises
@@ -82,11 +81,11 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Manning the watchtowers at night
 - Drilling with spear and shield
 
-## **Spring**
+### **Spring**
 
 - Drip drip drip of snow melting from roofs, collecting in jugs and puddles
 - Petrichor smell on a southerly breeze
-- Hopeful green poking through deadbrown grass and soil
+- Hopeful green poking through dead-brown grass and soil
 - Bare skin reveling in the still-chilly sun; cheerful voices; smiles and songs
 
 #### **Activities**
@@ -102,12 +101,12 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Harvesting/cutting deadfall for firewood
 - Fur trapping, light hunting (for meat)
 
-#### **Questions**
+## **Questions**
 
 - What do you most look forward to each spring?
 - What rites precede the planting of the fields?
 
-#### **Summer**
+### **Summer**
 
 - Blinding sun outside, cave-like dark inside
 - Crops swaying and rippling in the breeze
@@ -115,7 +114,7 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Dark storm clouds looming in the south, rumbling, flashing
 - CRACKOOM of thunder, blinding flash as lightning touches the Stone
 
-### **Activities**
+#### **Activities**
 
 - Haymaking (from Flats-grass, fallow fields)
 - Weeding crops/gardens
@@ -126,12 +125,12 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Berry-picking from gardens and the Wood
 - Light hunting/trapping (for meat, not fur)
 
-# **Questions**
+## **Questions**
 
 - What project have you been putting off that you hope to get done this summer?
 - How does the village observe midsummer?
 
-# **Autumn**
+### **Autumn**
 
 - Crops bobbing heavy with seed, the Great Wood aflame with color
 - Work-song, shouts and laughter, grunts of effort
@@ -150,12 +149,12 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Heavy hunting/trapping (fur & meat)
 - (If able): harvesting timber from the **[[16 - The Foothills#The Foothills|Foothills]]**
 
-# **Questions**
+## **Questions**
 
 - What is your favorite autumn food or drink?
 - How does the village celebrate the harvest?
 
-# **Winter**
+### **Winter**
 
 - Roofs covered in thick white blankets
 - Trodden-down paths in the snow, brown and gray
@@ -163,7 +162,7 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Families gathered 'round the hearth, hands busy with inside chores
 - Yeasty smell of fermenting barley
 
-# **Activities**
+#### **Activities**
 
 - Collecting snow for the Cistern
 - Distilling & aging whisky
@@ -172,7 +171,7 @@ The PCs call this village home. It's a tightknit community, poor but a good plac
 - Hunting as able (for meat)
 - Slaughtering/butchering livestock as needed
 
-# **Questions**
+## **Questions**
 
 - What's the worst/best part of these long cold nights?
 - How do locals mark midwinter/the new year?
@@ -207,17 +206,18 @@ Homemakers grind grain with quernstones (as the village has no mill), to make fl
 
 Clothes are mostly leather, fur, and handspun wool. Belts, pouches, torcs, and brooches are common. Shoes are cut from single pieces of leather, with tabs that wrap up and around the feet, laced together into a simple sandal or pump. To make "boots," folks add thick wool socks, maybe lined with fur.
 
-Timber is relatively scarce. Because of the **[[23 - The Great Wood#**The Compact**|Compact]]**, villagers won't fell a living tree from the Great Wood. Folks scavenge deadfall for firewood and smaller projects, and grow saplings around the fields and Old Wall for spears, bows, and arrows. Large-scale construction requires trading for timber or a logging trip to the **[[16 - The Foothills#The Foothills|Foothills]]**.
+Timber is relatively scarce. Because of the **[[23 - The Great Wood#The Compact|Compact]]**, villagers won't fell a living tree from the Great Wood. Folks scavenge deadfall for firewood and smaller projects, and grow saplings around the fields and Old Wall for spears, bows, and arrows. Large-scale construction requires trading for timber or a logging trip to the **[[16 - The Foothills#The Foothills|Foothills]]**.
 
 - Where does \_\_\_ live?
 - What task or chore are you working on?
 - What's the best/worst thing about this chore?
 - What's cooking on the hearth?
-- What here makes the place feel
+- What here makes the place feel like home?
+- What about your home would you change if you could?
 
 ## **Trade & commerce**
 
-Stonetop's economy is based on cooperation and sharing, trade and barter, gifts and favors, debts and honor. "Shops" aren't a thing and prices aren't fixed. Coins are rarely used between neighbors; that stuff 's for outsiders and passing merchants. Crops from the fields go to the granary, to be rationed out to households.
+Stonetop's economy is based on cooperation and sharing, trade and barter, gifts and favors, debts and honor. "Shops" aren't a thing and prices aren't fixed. Coins are rarely used between neighbors; that stuff's for outsiders and passing merchants. Crops from the fields go to the granary, to be rationed out to households.
 
 Each family tends its own gardens (vegetables, gourds, fruits, and herbs) and livestock (chickens, goats, sheep, some pigs). Folks practice trades part-time (spinning, weaving, sewing, leatherwork, thatching, carpentry, distilling whisky, stonecutting, husbandry, etc.). Neighbors swap goods and favors freely, with little worry about trades being "fair." If you need a thing that someone isn't using, they'll probably let you borrow or even take it. Maybe you help them fix their roof next month, or your husband sends over a jug of his next batch of whisky.
 
@@ -228,11 +228,11 @@ Merchants come through at least once each season (except winter). Those coming f
 - What sorts of livestock does your household keep?
 - What from your (family's) garden are you (they) most proud of?
 - Who taught you how to \_\_\_?
-- Who in the village is the best weaver/ carpenter/\_\_\_?
+- Who in the village is the best weaver/carpenter/\_\_\_?
 - Who in town has a reputation as a layabout?
 - Who tends to handle trade with outsiders?
 
-## **Whisky**
+### **Whisky**
 
 Distilling whisky is a local tradition. Most households have a basic still and make a batch or two each year. Ferment some barley mash, distill it into moonshine, age it for a few weeks in a ceramic jug with toasted wood chips. Repeat. A handful of locals (like the publican, perhaps?) have larger operations with charred wooden firkins or barrels.
 
@@ -259,7 +259,7 @@ Stonetop has no government, just leaders. Everyone knows who they are: the wise,
 
 Able-bodied adults are expected to know how to fight and protect the village when needed. Everyone keeps a spear, a round wooden shield, and maybe a bow.
 
-Folks rotate through guard duty, manning the watchtowers each night. The chief concerns are monsters from the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, especially **[[07 - Crinwin#Crinwin|crinwin]]**, and **[[14 - The Flats#**Monsters**|bandits]]** or **[[26 - Hillfolk#Hillfolk|Hillfolk]]** raiding from the **[[14 - The Flats#The Flats|Flats]]**. Most nights, though, the worst things you have to deal with are boredom, nerves, and bad weather.
+Folks rotate through guard duty, manning the watchtowers each night. The chief concerns are monsters from the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, especially **[[07 - Crinwin#Crinwin|crinwin]]**, and **[[14 - The Flats#Bandit|bandits]]** or **[[26 - Hillfolk#Hillfolk|Hillfolk]]** raiding from the **[[14 - The Flats#The Flats|Flats]]**. Most nights, though, the worst things you have to deal with are boredom, nerves, and bad weather.
 
 - Who runs drills for the militia? Where do they typically drill?
 - Have the watchtowers always been there, or are they a recent thing?
@@ -292,10 +292,10 @@ Local decorations are reminiscent of the runes etched in the Stone itself, and o
 - Two youths wish to wed, despite objections from (one of?) their parents
 - Tools left out have gone missing; now things start to vanish from inside homes
 - One villager kills another when a heated argument gets out of hand
-- A flock of starlings and a **[[41 - Spirits of the Wild#**Grwgnach**|grwgnach]]** make spring planting impossible
-- **[[49 - Tor, the Rain-maker#**Lightning**|Drought]]** strikes the land, threatening ruin and disaster
+- A flock of starlings and a **[[41 - Spirits of the Wild#Grwgnach|grwgnach]]** make spring planting impossible
+- **[[49 - Tor, the Rain-maker#Drought|Drought]]** strikes the land, threatening ruin and disaster
 - A merchant that the PCs were counting on fails to arrive
-- **[[14 - The Flats#**Monsters**|Bandits]]** threaten to burn the crops unless paid tribute
+- **[[14 - The Flats#Bandit|Bandits]]** threaten to burn the crops unless paid tribute
 
 ## **Mysteries**
 
@@ -307,26 +307,26 @@ Where did the Stone come from? Why does it draw lightning from the sky? Who carv
 
 - … is a shard of **[[36 - Primordial Powers#Primordial powers|primordial power]]**, once revered by the Makers;
 - … marks **Tor**'s [[49 - Tor, the Rain-maker|Tor, the Rain-maker]] own grave;
-- … was carved from **[[54 - The Whitefang Mountains#Chart a Course|Tor's Fist]]** and placed here by the god himself;
+- … was carved from **[[54 - The Whitefang Mountains#Tor's Fist|Tor's Fist]]** and placed here by the god himself;
 - … is the petrified remains of **[[39 - The Ruined Tower#Stormcatcher's tower|Stormcatcher]]**;
-- … binds an **emanation** of the Things Below [[46 - The Things Below#**Wretch**|The Things Below]];
+- … binds an **emanation** of the Things Below [[46 - The Things Below#The Things Below|The Things Below]];
 - … channels lightning to power an artifact deep beneath the village;
 - … was brought here by the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]** from far across land and sea;
 - … is some combination of the above; or
 - … something else entirely.
 
-#### **The Cistern**
+### **The Cistern**
 
 What's down there, really? What did **[[30 - The Makers#The Makers|the Makers]]** build it for? Perhaps…
 
 - … it connects to a complex of chambers and tunnels;
 - … some evil thing slumbers in the water;
-- … it hides an arcanum, like a variant of the **[[57 - Appendix C - Minor Arcana#A timeless vault|Preserving Runes]]** or the **[[57 - Appendix C - Minor Arcana#Ward of Still Waters Strain:|Ward of Still Waters]]**;
+- … it hides an arcanum, like a variant of the **[[57 - Appendix C - Minor Arcana#^a-timeless-vault|Preserving Runes]]** or the **[[57 - Appendix C - Minor Arcana#^ward-of-still-waters|Ward of Still Waters]]**;
 - … it's just a big vault for storing water (the Makers needed to drink, too);
 - … some combination of the above; or
 - … something else entirely.
 
-## **Ruins of the past**
+### **Ruins of the past**
 
 What was this place, in the time of the Makers? Perhaps it was…
 
@@ -338,9 +338,9 @@ What was this place, in the time of the Makers? Perhaps it was…
 - … some combination of the above, perhaps changing over time; or
 - … something else entirely.
 
-The answer should reflect and be reflected in other details. If this was a Stone Lord border-fort, then chunks of the Old Wall could be found at the base of the bluff, down in the Great Wood. If this was a Tempest Lord outpost, then stones from the Old Wall would bear carvings like
+The answer should reflect and be reflected in other details. If this was a Stone Lord border-fort, then chunks of the Old Wall could be found at the base of the bluff, down in the Great Wood. If this was a Tempest Lord outpost, then stones from the Old Wall would bear carvings like those in the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**.
 
-## **Origins**
+### **Origins**
 
 The village has been here for a dozen generations at least, but the true origins of its people are shrouded in mystery and conflicting folktales.
 
@@ -348,7 +348,7 @@ Whence came the people of Stonetop? What led them to settle here? Perhaps they w
 
 - … subjects of **[[39 - The Ruined Tower#The Ruined Tower|Stormcatcher]]**, who fled here when her tower fell;
 - … freed servants of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]** and refugees from the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]**;
-- … migrants from east of the **[[11 - The Dread River#The Dread River|Dread River]]**, distant kin to the **[[34 - North Manmarch#North Manmarch|Manmarchers]]** and [[40 - South Manmarch|South Manmarch]])
+- … migrants from east of the **[[11 - The Dread River#The Dread River|Dread River]]**, distant kin to the **[[34 - North Manmarch#The Manmarchers|Manmarchers]]** and [[40 - South Manmarch|South Manmarch]])
 - … migrants from across the **[[27 - Huffel Peaks#Huffel Peaks|Huffel Peaks]]**, who fled the boiling seas and found succor here;
 - … a people out of time and space, emerging from the portal beneath the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**;
 - … some combination of the above; or

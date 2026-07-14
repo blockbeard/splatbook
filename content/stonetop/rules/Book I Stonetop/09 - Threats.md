@@ -1,9 +1,9 @@
 # Threats
 
-When to write up threats 
-Writing a threat 
-Example threats 
-Updating threats
+| In this chapter | |
+|---|---|
+| [[#When to write up threats\|When to write up threats]] | [[#Writing a threat\|Writing a threat]] |
+| [[#Example threats\|Example threats]] | [[#Updating threats\|Updating threats]] |
 
 A **threat** is an ongoing problem that will cause trouble for the PCs if left unchecked. When you recognize or decide that something—an NPC, a monster, a situation—is going to be a worsening or recurring issue, it's probably worth writing it up as a threat.
 
@@ -29,46 +29,39 @@ Nia is an example of an NPC who has become a threat. She's not a villain or even
 
 Here's another example:
 
-## THORNTHUMB (*magical entity*) **Instinct** to acquire
+>[!box] #### THORNTHUMB (*magical entity*)
+>
+>**Instinct** to acquire
+>
+>Dwelt in the Green Lord's Tomb. Tried to steal from PCs, but they caught him. Helped them kill Sajra. Grudgingly promised Vahid not to try to steal from, harm, or trap them. Lusts after the Mindgem. Scared of Rhianna. Thinks Caradoc is an easy mark. Blodwen owes him for the flower he gave her.
+>
+>When you *send word to Thornthumb* via spirits, birds, or beasts, say when and where in the Wood you'd like to meet. At the appointed time and place, roll +INT: **on a 10+**, he shows; **on a 7-9**, he shows, but the GM picks 1:
+>
+>- He's insulted by the summons
+>- You are now beholden to him
+>- A debt he owes you is now fulfilled  
+> ^thornthumb-magical-entity
 
-Dwelt in the Green Lord's Tomb. Tried to steal from PCs, but they caught him. Helped them kill Sajra. Grudgingly promised Vahid not to try to steal from, harm, or trap them. Lusts after the Mindgem. Scared of Rhianna. Thinks Caradoc is an easy mark. Blodwen owes him for the flower he gave her.
-
-When you *send word to Thornthumb* via spirits, birds, or beasts, say when and where in the Wood you'd like to meet. At the appointed time and place, roll +INT: **on a 10+**, he shows; **on a 7-9**, he shows, but the GM picks 1:
-
-- He's insulted by the summons
-- You are now beholden to him
-
-now fulfilled Thornthumb was a monster that the PCs met in
-
-A debt he owes you is
-
-play. They captured him, allied with him, were betrayed by him, and extracted a promise from him to let them be. But he's still out there, and he's the type of guy to hold a grudge. He's a threat.
+Thornthumb was a monster that the PCs met in play. They captured him, allied with him, were betrayed by him, and extracted a promise from him to let them be. But he's still out there, and he's the type of guy to hold a grudge. He's a threat.
 
 And one last example:
 
-## ANWEN (*villain*)
+>[!box] #### ANWEN (*villain*)
+>
+>**Instinct** to maintain order at all costs
+>
+>Exiled from Stonetop years back, after poisoning folk (weak ones) during a harsh winter (less mouths to feed). Runs a bar/brothel in Gordin's Delve; fingers in lots of pies. **Ropr** (*beast*, to keep Anwen's favor) is her #2. Soft spot for **Iona** (*wildcard*, to live comfortably).
+>
+>#### **GM moves:**
+>
+>- ▸ Find someone's weakness
+>- ▸ Sacrifice another to advance a goal
+>- ▸ Have someone killed
+> ^anwen-villain
 
-**Instinct** to maintain order at all costs
+Anwen hasn't shown up on screen yet. She was a player's answer to "Who's the worst person you know of in Gordin's Delve, and why are they so scary?" She's not a problem yet, but the PCs are headed to Gordin's Delve, and she sure will be. She and her minions are threats.
 
-Exiled from Stonetop years back, after poisoning folk (weak ones) during a harsh winter (less mouths to feed). Runs a bar/brothel in Gordin's Delve; fingers in lots of pies. **Ropr** (*beast*, to keep Anwen's favor) is her #2. Soft spot for **Iona** (*wildcard*, to live comfortably).
-
-## **GM moves:**
-
-- <sup>ä</sup> Find someone's weakness
-- <sup>ä</sup> Sacrifice another to advance a goal
-- <sup>ä</sup> Have someone killed
-
-Anwen hasn't shown up on screen yet. She was a player's answer to "Who's the worst person you know of in Gordin's Delve, and why are they so scary?" She's not a
-
-are threats.
-
-problem yet, but the PCs are headed to Gordin's Delve, and she sure will be. She and her minions
-
-> Writing up threats is a way to track loose ends and simmering conflicts, which
-
-> > helps you **portray a rich and mysterious world**. Threats provide problems and bad outcomes to spring on the PCs, making it easier to **punctuate their lives with adventure**. And
-
-a threat's write-up makes it easier to portray that threat with integrity, helping you **play to see what happens**.
+Writing up threats is a way to track loose ends and simmering conflicts, which helps you **portray a rich and mysterious world**. Threats provide problems and bad outcomes to spring on the PCs, making it easier to **punctuate their lives with adventure**. And a threat's write-up makes it easier to portray that threat with integrity, helping you **play to see what happens**.
 
 ## **When to write up threats**
 
@@ -76,21 +69,21 @@ Threats are prep: you write them up between sessions. When you write up a threat
 
 Specifically, you should write up threats…
 
-## **After introductions**
+### **After introductions**
 
 Review your **[[02 - Getting Started#Let spring burst forth|notes from the first session]]**, looking for problems established by the players. Write these up as threats at whatever level of detail makes sense.
 
-*During introductions, the players told me about a recent raid by crinwin, about Blodwen's overbearing mother, Tegwen, and the Mindgem. I add them to the threat trackers (as a* rabble*, a* wildcard*, and a* supernatural entity*), but wait to* 
+*During introductions, the players told me about a recent raid by crinwin, about Blodwen's overbearing mother, Tegwen, and the Mindgem. I add them to the threat trackers (as a* rabble, *a* wildcard, and a supernatural entity), *but wait to flesh them out until I know more* 
 
-## **When Seasons Change**
+### **When Seasons Change**
 
-The Seasons Change move sometimes tells you to introduce or worsen a threat, or that threats abound. This might prompt you to create a new threat, one that the PCs haven't encountered before. The threat's **[[09 - Threats#1 Name & type|type]]**, **[[09 - Threats#Writing a threat|instinct]]**, and **[[09 - Threats#5 Impending doom|grim portents]]** will help you to flesh out the hook of any related adventure.
+The Seasons Change move sometimes tells you to introduce or worsen a threat, or that threats abound. This might prompt you to create a new threat, one that the PCs haven't encountered before. The threat's **[[09 - Threats#1. Name & type|type]]**, **[[09 - Threats#3. Instinct|instinct]]**, and **[[09 - Threats#Grim portents|grim portents]]** will help you to flesh out the hook of any related adventure.
 
 *Vahid rolled a 7-9 on the first Seasons Change, which means their first adventure will involve a threat. I decided that the crinwin have come under the sway of a swyn (a big, hypnotic, monkey-faced snake) and they are stealing children to add to the swyn's collection.*
 
 *The swyn is the real source of the trouble, so I write it up as a threat (a* villain*).*
 
-## **After a session**
+### **After a session**
 
 If someone introduced an element (NPC, monster, situation, etc.) during a session, and it might cause trouble later, write it up as a threat while it's still fresh in your mind. Or at least make note of it, and write it up in full later. This will serve as a reminder to bring it up in future sessions.
 
@@ -98,7 +91,7 @@ If someone introduced an element (NPC, monster, situation, etc.) during a sessio
 
 *I write it up as a threat (a* magical entity*).*
 
-## **When preparing an adventure**
+### **When preparing an adventure**
 
 When you just know that a new threat is going to show up, and you already have a notion of what it looks like, it's a good idea to write it up before your next session. This could happen when the players tell you that they're going to do X, and you know that doing X will mean encountering Y, and Y feels like trouble. Or it could happen when you end a session on a cliffhanger (like with a missed homefront roll, or with something scary approaching) and between sessions you decide that you'll introduce a new threat.
 
@@ -117,7 +110,7 @@ To write up a threat, follow these steps. The most important steps come first; t
 - **7)** Optional: pick or write **GM moves** to further define its behavior/capabilities.
 - **8)** Optional: write custom player moves.
 
-## **1 Name & type**
+### **1. Name & type**
 
  Give your threat a straightforward name, that easily distinguishes it from any other threats you're already tracking.
 
@@ -125,7 +118,7 @@ Every threat also has a **type**, which describes its fundamental nature, its pl
 
 It will usually be obvious which type a new threat belongs to. If its not obvious, skim the moves for each type and pick the type that fits best.
 
-## **Threat types in play**
+#### **Threat types in play**
 
 Each threat type comes with a series of GM moves, which reflect how that type of threat typically causes trouble. You can use a threat's special moves whenever the threat is involved, on screen or off. You're not limited to those moves—you can, of course, still use all your standard GM moves like **reveal an unwelcome truth** or **put them in a spot**—but the threat moves are a great inspiration for how that type of
 
@@ -135,257 +128,238 @@ Each threat type comes with a series of GM moves, which reflect how that type of
 
 *Sajra the Swyn is a big, hypnotic, monkey-headed snake, narcissistic, a collector with exacting tastes, capable of turning the weak-willed into fawning servants. Looking at the list of threat types, I briefly consider making it a* magical entity*, but that doesn't feel right. No, it's pretty clearly a* villain*.*
 
-### threat type
-
-# *Affliction*
-
-*Afflictions* aren't people or monsters or tangible things. They're behaviors, circumstances, or conditions that make people suffer, bring them into conflict, or just make them worry and fret.
-
-*Afflictions* can affect just an individual or two (even a specific PC), a group, a population, or even an entire region.
-
-## **GM moves for** *afflictions***:**
-
-- <sup>ä</sup> Worsen or quicken
-- <sup>ä</sup> Spread to others/suck others in
-- <sup>ä</sup> Mutate, take on a new form/aspect
-- <sup>ä</sup> Eat away at something/someone
-- <sup>ä</sup> Strip someone of honor/dignity
-- <sup>ä</sup> Drive someone to desperation
-- <sup>ä</sup> Justify selfishness, neglect
-- <sup>ä</sup> Drive a wedge between people
-- <sup>ä</sup> Cause delusion, stubbornness, foolishness
-- <sup>ä</sup> Sow panic or despair
-- <sup>ä</sup> Trigger shortages, hoarding
-- <sup>ä</sup> Prompt violence, hatred, blame
-
-### **Example** *afflictions***:**
-
-- The black pox (**Instinct** to infect and spread)
-- Braith's feud with Thecla (**Instinct** to make people pick sides)
-- The drought (**Instinct** to deplete resources)
-- Quicksilver taint (**Instinct** to cause delusions)
-- "A woman's place" (**Instinct** to place limitations, on everyone)
-- Resentment toward the Hillfolk (Instinct to prevent cooperation)
-- The slave trade (**Instinct** to deny humanity)
-
-### threat type
-
-# *Beast*
-
-*Beasts* are monsters, animals, or NPCs driven by basic need and instinct. Most often, they're literally beasts (natural or not). They might be smart, maybe as smart or smarter than most people, but they go around following their stomach or their loins or their big stupid ego.
-
-A *beast* threat could reflect a single, specific creature, a family/pack/herd, or even an entire species.
-
-## **GM moves for** *beasts***:**
-
-- <sup>ä</sup> Show up where it's not wanted
-- <sup>ä</sup> Stalk or pursue prey
-- <sup>ä</sup> Protect its home or family
-- <sup>ä</sup> Make a show of strength, aggression
-- <sup>ä</sup> Build or expand a nest/den/lair
-- <sup>ä</sup> Modify its environment
-- <sup>ä</sup> Flee or panic or rage
-- <sup>ä</sup> Consume something (or someone)
-- <sup>ä</sup> Grow or diminish, in size or numbers
-
-# **Example** *beasts***:**
-
-- The cave bears (**Instinct** to fill their bellies, protect their young)
-- The wisent herd, protected by a pact with the PCs (**Instinct** to act with impunity)
-- Grigor Rocksplitter (**Instinct** to make sure everyone knows how great he is)
-- The frythrancs (**Instinct** to dominate their territory)
-- The nailadd swarm (**Instinct** to breed and spread out)
-- Orub the Hagr (**Instinct** to com pulsively shape his environment)
-
-#### threat type
-
-## *Institution*
-
-*Institutions* are people, groups, or positions that have power within a community (or multiple communities). They could be formal things, like a cult or a government, or just positions of respect (like a council of elders). An institution often has a specific leader, but not always.
-
-An *institution* transcends the individuals who comprise it, and its instinct reflects the purpose or behavior of the institution as a whole. But it acts via individuals, usually ones invested in its continuing influence.
-
-### **GM moves for** *institutions***:**
-
-- <sup>ä</sup> Sway public opinion
-- <sup>ä</sup> Put someone in their place
-- <sup>ä</sup> Change a rule, law, or custom
-- <sup>ä</sup> Acquire leverage, resources, influence
-- <sup>ä</sup> Denounce something or someone
-- <sup>ä</sup> Support a course of action
-- <sup>ä</sup> Recruit new members or minions
-- <sup>ä</sup> Squabble amongst themselves
-- <sup>ä</sup> Change leadership
-- <sup>ä</sup> Negotiate a deal or treaty
-- <sup>ä</sup> Send someone else to do their dirty work
-
-## **Example** *institutions***:**
-
-- Aratis's priesthood (**Instinct** to preserve civilization, at all costs)
-- Marshedge Town Council (**Instinct** to maintain the status quo)
-- The Cult of Azm Har (**Instinct** to hoard knowledge, power, people)
-- The nascent town council (**Instinct** to keep the PCs in check)
-- The Ferrite Union (**Instinct** to undermine the Bosses' control)
-
-#### threat type
-
-# *MacGuffin*
-
-*MacGuffins* are things—objects, places, even secrets—that stir up conflict. A *MacGuffin* might have power to cause trouble itself, or it could simply be something valuable that gets people fighting over it.
-
-If there's a thing in your game that you think is a source of trouble, it's probably a *MacGuffin*.
-
-When choosing an instinct for a *MacGuffin*, focus on how it causes trouble rather than what it does. The aetherium weather vane adjusts the weather, but it's a threat because others covet it.
-
-## **GM moves for** *MacGuffins***:**
-
-- <sup>ä</sup> Reveal a secret
-- <sup>ä</sup> Draw attention to itself
-- <sup>ä</sup> Point to something else
-- <sup>ä</sup> Generate envy/fear/discord
-- <sup>ä</sup> Weigh heavily, become a burden
-- <sup>ä</sup> Be the target of theft
-- <sup>ä</sup> Go missing
-- <sup>ä</sup> Perform its function, heedlessly
-- <sup>ä</sup> Fail at the worst possible moment
-- <sup>ä</sup> Leave its mark on someone or thing
-- <sup>ä</sup> Become something greater, or lesser
-
-#### **Example** *MacGuffins***:**
-
-- The Chronicle's vault of artifacts (**Instinct** to harbor badness)
-- The Lore Tree of Yevena (**Instinct** to reveal dangerous secrets)
-- The Blood-quenched Sword (**Instinct** to encourage violence)
-- The aetherium weather vane (**Instinct** to inspire jealousy)
-
-#### threat type
-
-# *Magical entity*
-
-*Magical entities* include spirits, many Fae, the Things Below, even gods or their agents. They are beings that live and breathe magic and power, for whom mundane concerns like food and shelter are alien or superfluous.
-
-*Magical entities* are often bound by strange, seemingly arbitrary limitations and laws. They must often act on the world subtly or through intermediaries.
-
-## **GM moves for** *magical entities***:**
-
-- <sup>ä</sup> Spy on someone, unseen/from afar
-- <sup>ä</sup> Sense powerful longings/emotions
-- <sup>ä</sup> Appear in glimpses, dreams, visions
-- <sup>ä</sup> Offer service, secrets, power
-- <sup>ä</sup> Demand an oath or sacrifice
-- <sup>ä</sup> Lay a curse
-- <sup>ä</sup> Twist a bargain to its favor
-- <sup>ä</sup> Send forth minions to do its bidding
-- <sup>ä</sup> Shape its environs, per its nature
-- <sup>ä</sup> Pursue alien goals
-- <sup>ä</sup> Foster rivalries with similar powers
-- <sup>ä</sup> Grow or diminish in strength
-
-### **Example** *magical entities***:**
-
-- Hec'tumel, Slithering One! Pale Serpent! Death Is Its Eyes! (**Instinct** to smother life, hope, and light)
-- Mother-of-Spiders (**Instinct** to see her many children spread)
-- False idol spirit (**Instinct** to break free of its bondage)
-- Blush-of-Dawn the Fae (**Instinct** to be adored)
-- The shade of Nikalor (**Instinct** to enjoy the pleasures of the flesh)
-- Yevena, mummified Green Lord (**Instinct** to preserve its glorious afterlife)
-
-#### threat type
-
-# *Rabble*
-
-A *rabble* is a group, with or without a leader, united by emotion, blood, or circumstance rather than by of any sort of common purpose or goal.
-
-A *rabble*'s instinct represents how the group as a whole behaves. Any given individual within the group might not share the instinct and might even oppose it.
-
-#### **GM moves for** *rabble***:**
-
-- <sup>ä</sup> Grow or gather in numbers
-- <sup>ä</sup> Claim territory or resources
-- <sup>ä</sup> Fall under a (new) leader's sway
-- <sup>ä</sup> Undergo internal turmoil
-- <sup>ä</sup> Make a show of strength/numbers
-- <sup>ä</sup> Declare an enemy or an alliance
-- <sup>ä</sup> Turn on one of their own
-- <sup>ä</sup> Overwhelm a position or a weaker group
-- <sup>ä</sup> Despoil, loot, pillage, burn
-- <sup>ä</sup> Refuse to be controlled/contained
-- <sup>ä</sup> Disperse, scatter, flee
-
-## **Example** *rabble***:**
-
-- Hillfolk refugees (**Instinct** to not fit in)
-- The slave rebellion (**Instinct** to throw off their shackles)
-- Daedre the Red's bandits (**Instinct** to do whatever the hell they want)
-- The Seven Brothers, Fae revellers (**Instinct** to drag others into their wanton excess)
-- Heledd's family (**Instinct** to close ranks and protect their own)
-- The secret cult of the false idol (**Instinct** to pursue power, fortune, and respect)
-
-#### threat type
-
-# *Villain*
-
-*Villains* are just the worst. They are individuals with the ruthlessness, drive, and power to make life awful for any number of other people.
-
-*Villains* often act via minions or intermediaries. When they get involved directly, they always try to act from a position of strength or personal safety. They often have a backup plan or two.
-
-## **GM moves for** *villains***:**
-
-- <sup>ä</sup> Grasp power, recklessly
-- <sup>ä</sup> Gain followers or allies
-- <sup>ä</sup> Find someone's weakness
-- <sup>ä</sup> Make an offer, with strings attached
-- <sup>ä</sup> Demand concessions, obedience, or respect
-- <sup>ä</sup> Make threats, veiled or not
-- <sup>ä</sup> Outmaneuver their enemies
-- <sup>ä</sup> Attack cautiously, holding reserves
-- <sup>ä</sup> Attack ruthlessly, with little warning
-- <sup>ä</sup> Reveal preparations made in advance
-- <sup>ä</sup> Sacrifice another to advance a goal
-- <sup>ä</sup> Betray an ally or a trust
-- <sup>ä</sup> Take a prisoner
-- <sup>ä</sup> Do the unthinkable
-
-### **Example** *villains***:**
-
-- Brennan (**Instinct** to maintain or increase his power)
-- Marc, Hillfolk slaver (**Instinct** to glorify himself and his clan)
-- Iwan, schmuck-turned-sorcerer (**Instinct** to get what he thinks the world owes him)
-- The Eyeless Crinwin (**Instinct** to set free the Living Darkness)
-- Mozairog Mind-on-Fire (**Instinct** to return the Fomoraij to glory)
-
-#### threat type
-
-# *Wildcard*
-
-*Wildcards* are individuals who cause trouble because they're a mystery. Or because the PCs care about them but can't trust them. Or because they're opposed to the PCs, but aren't necessarily bad people. If you feel like an NPC is a threat, but none of the other threat types seem to fit, make them a *wildcard*.
-
-Make "triangles" between *wildcards* and the PCs. Play up the old friendship between the Heavy and Esylt the town busybody. Then have Esylt undermine the Judge's authority, sit back, and watch the sparks fly.
-
-### **GM moves for** *wildcards***:**
-
-- <sup>ä</sup> Aggressively pursue their instinct
-- <sup>ä</sup> Show their worth, or lack thereof
-- <sup>ä</sup> Display the contents of their heart
-- <sup>ä</sup> Provide advice/aid, wanted or not
-- <sup>ä</sup> Reveal a secret, or keep one closely
-- <sup>ä</sup> Draw attention to themselves/others
-- <sup>ä</sup> Appear unannounced
-- <sup>ä</sup> Act strangely (for them)
-- <sup>ä</sup> Bear witness
-- <sup>ä</sup> Tell stories (true or not)
-- <sup>ä</sup> Make/keep/break/demand a promise
-- <sup>ä</sup> Force an issue or a confrontation
-- <sup>ä</sup> Stand resolute and refuse to budge
-
-## **Example** *wildcards***:**
-
-- Esylt, the town busybody (**Instinct** to cling to how things "should" be)
-- Afon, Fae-touched Initiate of Danu (**Instinct** to act impulsively)
-- Andras (**Instinct** to try to impress Rhianna and Blodwen)
-- Muirdoc, the pretty boy (**Instinct** to toy with hearts)
-
-## **2 Threat tracker** Your GM playbook has three spreads for tracking threats:
+> [!box]
+> 
+> ### threat type
+> 
+> #### *Affliction*
+> 
+> *Afflictions* aren't people or monsters or tangible things. They're behaviors, circumstances, or conditions that make people suffer, bring them into conflict, or just make them worry and fret.
+> 
+> *Afflictions* can affect just an individual or two (even a specific PC), a group, a population, or even an entire region.
+> 
+> #### **GM moves for** *afflictions***:**
+> 
+> - ▸ Worsen or quicken
+> - ▸ Spread to others/suck others in
+> - ▸ Mutate, take on a new form/aspect
+> - ▸ Eat away at something/someone
+> - ▸ Strip someone of honor/dignity
+> - ▸ Drive someone to desperation
+> - ▸ Justify selfishness, neglect
+> - ▸ Drive a wedge between people
+> - ▸ Cause delusion, stubbornness, foolishness
+> - ▸ Sow panic or despair
+> - ▸ Trigger shortages, hoarding
+> - ▸ Prompt violence, hatred, blame
+> 
+> ### **Example** *afflictions***:**
+> 
+> - The black pox (**Instinct** to infect and spread)
+> - Braith's feud with Thecla (**Instinct** to make people pick sides)
+> - The drought (**Instinct** to deplete resources)
+> - Quicksilver taint (**Instinct** to cause delusions)
+> - "A woman's place" (**Instinct** to place limitations, on everyone)
+> - Resentment toward the Hillfolk (Instinct to prevent cooperation)
+> - The slave trade (**Instinct** to deny humanity)
+> 
+> ^threat-type
+
+> [!box] threat type
+> 
+> #### *Beast*
+> 
+> *Beasts* are monsters, animals, or NPCs driven by basic need and instinct. Most often, they're literally beasts (natural or not). They might be smart, maybe as smart or smarter than most people, but they go around following their stomach or their loins or their big stupid ego.
+> 
+> A *beast* threat could reflect a single, specific creature, a family/pack/herd, or even an entire species.
+> 
+> #### **GM moves for** *beasts***:**
+> 
+> - ▸ Show up where it's not wanted
+> - ▸ Stalk or pursue prey
+> - ▸ Protect its home or family
+> - ▸ Make a show of strength, aggression
+> - ▸ Build or expand a nest/den/lair
+> - ▸ Modify its environment
+> - ▸ Flee or panic or rage
+> - ▸ Consume something (or someone)
+> - ▸ Grow or diminish, in size or numbers
+> 
+> #### **Example** *beasts***:**
+> 
+> - The cave bears (**Instinct** to fill their bellies, protect their young)
+> - The wisent herd, protected by a pact with the PCs (**Instinct** to act with impunity)
+> - Grigor Rocksplitter (**Instinct** to make sure everyone knows how great he is)
+> - The frythrancs (**Instinct** to dominate their territory)
+> - The nailadd swarm (**Instinct** to breed and spread out)
+> - Orub the Hagr (**Instinct** to com pulsively shape his environment)
+> 
+> ^threat-type-stats
+
+> [!box] threat type
+> 
+> #### *Institution*
+> 
+> *Institutions* are people, groups, or positions that have power within a community (or multiple communities). They could be formal things, like a cult or a government, or just positions of respect (like a council of elders). An institution often has a specific leader, but not always.
+> 
+> An *institution* transcends the individuals who comprise it, and its instinct reflects the purpose or behavior of the institution as a whole. But it acts via individuals, usually ones invested in its continuing influence.
+> 
+> ### **GM moves for** *institutions***:**
+> 
+> - ▸ Sway public opinion
+> - ▸ Put someone in their place
+> - ▸ Change a rule, law, or custom
+> - ▸ Acquire leverage, resources, influence
+> - ▸ Denounce something or someone
+> - ▸ Support a course of action
+> - ▸ Recruit new members or minions
+> - ▸ Squabble amongst themselves
+> - ▸ Change leadership
+> - ▸ Negotiate a deal or treaty
+> - ▸ Send someone else to do their dirty work
+> 
+> #### **Example** *institutions***:**
+> 
+> - Aratis's priesthood (**Instinct** to preserve civilization, at all costs)
+> - Marshedge Town Council (**Instinct** to maintain the status quo)
+> - The Cult of Azm Har (**Instinct** to hoard knowledge, power, people)
+> - The nascent town council (**Instinct** to keep the PCs in check)
+> - The Ferrite Union (**Instinct** to undermine the Bosses' control)
+> 
+> [!box] threat type
+> 
+> #### *MacGuffin*
+> 
+> *MacGuffins* are things—objects, places, even secrets—that stir up conflict. A *MacGuffin* might have power to cause trouble itself, or it could simply be something valuable that gets people fighting over it.
+> 
+> If there's a thing in your game that you think is a source of trouble, it's probably a *MacGuffin*.
+> 
+> When choosing an instinct for a *MacGuffin*, focus on how it causes trouble rather than what it does. The aetherium weather vane adjusts the weather, but it's a threat because others covet it.
+> 
+> #### **GM moves for** *MacGuffins***:**
+> 
+> - ▸ Reveal a secret
+> - ▸ Draw attention to itself
+> - ▸ Point to something else
+> - ▸ Generate envy/fear/discord
+> - ▸ Weigh heavily, become a burden
+> - ▸ Be the target of theft
+> - ▸ Go missing
+> - ▸ Perform its function, heedlessly
+> - ▸ Fail at the worst possible moment
+> - ▸ Leave its mark on someone or thing
+> - ▸ Become something greater, or lesser
+> 
+> #### **Example** *MacGuffins***:**
+> 
+> - The Chronicle's vault of artifacts (**Instinct** to harbor badness)
+> - The Lore Tree of Yevena (**Instinct** to reveal dangerous secrets)
+> - The Blood-quenched Sword (**Instinct** to encourage violence)
+> - The aetherium weather vane (**Instinct** to inspire jealousy)
+> 
+> ^threat-type-3
+> ^threat-type-4
+
+> [!box] threat type
+> 
+> #### *Rabble*
+> 
+> A *rabble* is a group, with or without a leader, united by emotion, blood, or circumstance rather than by of any sort of common purpose or goal.
+> 
+> A *rabble*'s instinct represents how the group as a whole behaves. Any given individual within the group might not share the instinct and might even oppose it.
+> 
+> #### **GM moves for** *rabble***:**
+> 
+> - ▸ Grow or gather in numbers
+> - ▸ Claim territory or resources
+> - ▸ Fall under a (new) leader's sway
+> - ▸ Undergo internal turmoil
+> - ▸ Make a show of strength/numbers
+> - ▸ Declare an enemy or an alliance
+> - ▸ Turn on one of their own
+> - ▸ Overwhelm a position or a weaker group
+> - ▸ Despoil, loot, pillage, burn
+> - ▸ Refuse to be controlled/contained
+> - ▸ Disperse, scatter, flee
+> 
+> #### **Example** *rabble***:**
+> 
+> - Hillfolk refugees (**Instinct** to not fit in)
+> - The slave rebellion (**Instinct** to throw off their shackles)
+> - Daedre the Red's bandits (**Instinct** to do whatever the hell they want)
+> - The Seven Brothers, Fae revellers (**Instinct** to drag others into their wanton excess)
+> - Heledd's family (**Instinct** to close ranks and protect their own)
+> - The secret cult of the false idol (**Instinct** to pursue power, fortune, and respect)
+> 
+> ^threat-type-5
+
+> [!box] threat type
+> 
+> #### *Villain*
+> 
+> *Villains* are just the worst. They are individuals with the ruthlessness, drive, and power to make life awful for any number of other people.
+> 
+> *Villains* often act via minions or intermediaries. When they get involved directly, they always try to act from a position of strength or personal safety. They often have a backup plan or two.
+> 
+> #### **GM moves for** *villains***:**
+> 
+> - ▸ Grasp power, recklessly
+> - ▸ Gain followers or allies
+> - ▸ Find someone's weakness
+> - ▸ Make an offer, with strings attached
+> - ▸ Demand concessions, obedience, or respect
+> - ▸ Make threats, veiled or not
+> - ▸ Outmaneuver their enemies
+> - ▸ Attack cautiously, holding reserves
+> - ▸ Attack ruthlessly, with little warning
+> - ▸ Reveal preparations made in advance
+> - ▸ Sacrifice another to advance a goal
+> - ▸ Betray an ally or a trust
+> - ▸ Take a prisoner
+> - ▸ Do the unthinkable
+> 
+> ### **Example** *villains***:**
+> 
+> - Brennan (**Instinct** to maintain or increase his power)
+> - Marc, Hillfolk slaver (**Instinct** to glorify himself and his clan)
+> - Iwan, schmuck-turned-sorcerer (**Instinct** to get what he thinks the world owes him)
+> - The Eyeless Crinwin (**Instinct** to set free the Living Darkness)
+> - Mozairog Mind-on-Fire (**Instinct** to return the Fomoraij to glory)
+> 
+> [!box] threat type
+> 
+> #### *Wildcard*
+> 
+> *Wildcards* are individuals who cause trouble because they're a mystery. Or because the PCs care about them but can't trust them. Or because they're opposed to the PCs, but aren't necessarily bad people. If you feel like an NPC is a threat, but none of the other threat types seem to fit, make them a *wildcard*.
+> 
+> Make "triangles" between *wildcards* and the PCs. Play up the old friendship between the Heavy and Esylt the town busybody. Then have Esylt undermine the Judge's authority, sit back, and watch the sparks fly.
+> 
+> ### **GM moves for** *wildcards***:**
+> 
+> - ▸ Aggressively pursue their instinct
+> - ▸ Show their worth, or lack thereof
+> - ▸ Display the contents of their heart
+> - ▸ Provide advice/aid, wanted or not
+> - ▸ Reveal a secret, or keep one closely
+> - ▸ Draw attention to themselves/others
+> - ▸ Appear unannounced
+> - ▸ Act strangely (for them)
+> - ▸ Bear witness
+> - ▸ Tell stories (true or not)
+> - ▸ Make/keep/break/demand a promise
+> - ▸ Force an issue or a confrontation
+> - ▸ Stand resolute and refuse to budge
+> 
+> #### **Example** *wildcards***:**
+> 
+> - Esylt, the town busybody (**Instinct** to cling to how things "should" be)
+> - Afon, Fae-touched Initiate of Danu (**Instinct** to act impulsively)
+> - Andras (**Instinct** to try to impress Rhianna and Blodwen)
+> - Muirdoc, the pretty boy (**Instinct** to toy with hearts)
+> ^threat-type-6
+> ^threat-type-7
+
+### **2. Threat tracker** Your GM playbook has three spreads for tracking threats:
 
 - **Homefront threats**, for NPCs or groups that live in town, for afflictions that directly affect them, or for anything else located there.
 - **Nearby threats**, for threats that dwell within a couple days travel of home.
@@ -397,9 +371,9 @@ As you continue to write up this threat, you might find it useful to add key det
 
 *Sajra's lair is a Maker-ruin about a day and a half from town in the Great Wood, so I add it to the Nearby Threats tracker, on the right hand side. I write down "Sajra the Swyn (*villain*)" and draw a line to a likely spot in the woods.*
 
-## **3 Instinct**
+### **3. Instinct**
 
- Every threat has an **instinct**, written in the format "to <do something>." This is the primary behavior that makes it a problem, that causes it to come into conflict with or harm others. If it didn't have this instinct, it wouldn't be a threat.
+ Every threat has an **instinct**, written in the format "to \<do something\>." This is the primary behavior that makes it a problem, that causes it to come into conflict with or harm others. If it didn't have this instinct, it wouldn't be a threat.
 
 Many other game elements (like dangers and some NPCs) will already have an instinct assigned. If such an element becomes a long-term threat, then either use its existing instinct or write up a new instinct to reflect how its typical behavior has changed or become more problematic.
 
@@ -409,13 +383,13 @@ Whatever instinct you chose, write it down in your notes, under the threat's nam
 
 *According to the bestiary, a swyn's instinct is "to indulge its ego." That's perfectly horrid, and can lead to all sorts of villainous behavior (like collecting children). I reuse that for this specific threat's instinct.*
 
-## **Instincts in play**
+#### **Instincts in play**
 
 Use a threat's instinct to guide how it behaves and reacts. If you're unsure what a threat would do, look to its instinct. Have it do that.
 
 When doing prep, use a threat's instinct to inform the sort of trouble it causes and to help you frame your adventure hooks.
 
-## **4 Description**
+### **4. Description**
 
  Jot down some notes, including any or all of the following that seem important:
 
@@ -442,11 +416,11 @@ When writing a threat's description, you might identify blanks—details that ha
 
 *At this point, my write-up looks like this:*
 
-## SAJRA THE SWYN (villain) INSTINCT to indulge its ego
+#### SAJRA THE SWYN (villain) INSTINCT to indulge its ego
 
 Recently moved into a ruined Green Lord's tomb about 1½ days from town (from where?). Has dominated a few nests of crinwin (rabble; to covet); they've been stealing children for it. Has Wynfor (Caradoc's nephew) and another child (who?).
 
-## **5 Impending doom**
+### **5. Impending doom**
 
  If the threat has momentum—if it's changing, pursuing an agenda, or getting worse—then ask yourself: what irrevocable bad thing will happen if it proceeds unchecked? That is its **impending doom**.
 
@@ -460,7 +434,7 @@ Don't overthink it! Just ask yourself: "Where is this going?" and write that dow
 
 *Sajra is newly arrived to the area, and it's assembling servants (the crinwin) and collecting children. It's driven by its terrible ego, and wants to be adored. If left unchecked, Sajra will eventually try to take control of Stonetop. And if the PCs don't stop it, Sajra will succeed. So its impending doom is: "Subjugates the people of Stonetop."*
 
-## **Grim portents**
+#### **Grim portents**
 
 Once you've established that a threat has an impending doom, and what it is, come up with 2-4 grim portents. These are milestones, steps along the way that will demonstrate the threat's progression. Grim portents should be concrete, observable things: things the PCs can see, or get word of, or feel the effects of. And—crucially grim portents should be something the PCs can react to and possibly prevent.
 
@@ -468,7 +442,7 @@ Just to be clear: grim portents are things that happen in the world around the P
 
 Similarly, a grim portent can be an event that involves the PCs, but it should never dictate an outcome. "The cultists attack the PCs in their homes" is great. You can safely assume the PCs will at some point be home, and who knows how the attack will play out? "The cultists capture the PCs" is not okay, because it assumes that cultists succeed at capturing them. Again, that's a railroad.
 
-## **Writing grim portents**
+#### **Writing grim portents**
 
 If you're having trouble coming up with grim portents, look at the GM moves for the threat type. If the threat is a monster or a follower, look at their moves, too. Those moves represent what the threat does and how it causes trouble. Use them—along with the threat's instinct—to inspire your grim portents.
 
@@ -476,7 +450,7 @@ Here's another trick: work backwards. Start at the impending doom, and ask yours
 
 As you write your grim portents, you'll probably find yourself changing your mind and maybe even rewriting the impending doom. That's fine! But try to keep things loose; a high-level outline is way more useful and flexible than a detailed plan.
 
-## **Dooms and portents in play**
+#### **Dooms and portents in play**
 
 Grim portents and impending dooms are your plans. They're what will happen unless the PCs intervene.
 
@@ -500,7 +474,7 @@ One of your basic GM moves is **advance towards impending doom**. Look at the gr
 - O Reveals itself, demands servitude
 - O IMPENDING DOOM: Subjugates the town, killing or mesmerizing any opposition
 
-## **6 Stakes** (optional)
+### **6. Stakes** (optional)
 
  Ask yourself some questions about the threat and the people affected by it. What do you wonder about? What do you want to discover in play? These questions become your **stakes**.
 
@@ -530,7 +504,7 @@ Not every threat needs stakes. When you first introduce a threat, you might not 
 
 *That last one, though, isn't a stakes question—it's a detail about the past. I add the first two to my threat write-up as stakes, and add a question about why Sajra arrived to the description.*
 
-## **Stakes in play**
+#### **Stakes in play**
 
 By making something a stakes question, you are resolving not to answer it yourself. Instead, you are disclaiming responsibility, letting yourself be surprised by how things turn out. Here's how you do that.
 
@@ -562,13 +536,15 @@ The point of this process—writing stakes that you're interested in, putting th
 
 *I still haven't answered the question decisively ("can the link be broken?"), but it won't be answered now. I decide to let it simmer and we'll answer the question later.*
 
-**7 GM moves** (optional) If you want to further define how the threat behaves or what it's capable of, pick or write 2-4 GM moves.
+## **7. GM moves** (optional) 
+If you want to further define how the threat behaves or what it's capable of, pick or write 2-4 GM moves.
 
-Start by looking at the GM moves for the threat's **[[09 - Threats#**Stakes in play**|type]]**[[09 - Threats#**Stakes in play**|-287\)]]. If any of them seem particularly appropriate for this threat, add them to its write-up. Likewise, if the threat is also a monster, identify any monster moves that help you understand how it causes trouble over time, and add those to the write-up.
+Start by looking at the GM moves for the threat's **[[09 - Threats#1. Name & type|type]]**. If any of them seem particularly appropriate for this threat, add them to its write-up. Likewise, if the threat is also a monster, identify any monster moves that help you understand how it causes trouble over time, and add those to the write-up.
 
 Finally, ask yourself if there's anything that you think this threat can or will do that isn't clearly defined, and that you want to remind yourself of or give yourself permission to do. Write these as GM moves, so that they complete the sentence: "the threat can/will \_\_."
 
-**8 Player moves** (optional) Sometimes a threat will suggest a unique player-facing move, one that's only triggered when interacting with the threat, its minions, or its domain. For example, "When you *remove a canopic jar from the sarcophagus*, roll +CHA…."
+## **8. Player moves** (optional) 
+Sometimes a threat will suggest a unique player-facing move, one that's only triggered when interacting with the threat, its minions, or its domain. For example, "When you *remove a canopic jar from the sarcophagus*, roll +CHA…."
 
 If a threat is also a monster, a hazard, an artifact or arcanum, it might already have some player-facing moves associated with it. Add these moves (or a reminder about them) to your notes if you think it'll be helpful.
 
@@ -578,7 +554,7 @@ See the **Writing Moves & Love Letters** chapter [[16 - Writing Moves and Love L
 
 *As a monster, Sajra already has GM moves and even a player-facing move for "When the swyn compels you to act against your will…." Most of these will be relevant only when the PCs face Sajra directly, at which point I'll have its monster stats handy. But a couple of its GM moves describe its capabilities as a big-picture threat, so I add those to my write-up. My threat now looks like this:*
 
-## SAJRA THE SWYN (villain) INSTINCT to indulge its ego
+#### SAJRA THE SWYN (villain) INSTINCT to indulge its ego
 
 Recently moved into a ruined Green Lord's tomb about 1½ days from town (from where?). Has dominated a few nests of crinwin (rabble; to covet); they've been stealing children for it. Has Wynfor (Caradoc's nephew) and another child (who?).
 
@@ -590,175 +566,186 @@ Recently moved into a ruined Green Lord's tomb about 1½ days from town (from wh
 
 STAKES: Will Wynfor's parents forgive Caradoc? What will become of the stolen children brought under Sajra's control?
 
-## GM MOVES
-
+GM MOVES
 - > Plant a suggestion in another's mind
 - > Turn the weak-willed into fawning servants
 
-# Example threats
+### Example threats
 
 The threats here and on the following pages are more examples. These threats might not exist in your game, and if they do, they might look very different. Use them as inspiration, nothing more.
 
-## TEGWEN (wildcard)
-
-**Instinct** to undermine others' worth
-
-Blodwen's mother, jealous of her importance to the village and her relationship with Gwendyl and Seren. Resents Rhianna. Distrusts Vahid. Thinks Caradoc is a fool.
-
-**Stakes:** How far will she go to control Blodwen? How much will Blodwen put up with?
-
-### GM moves:
-
-- ➤ Provide (unwanted?) advice or aid
-- ➤ Force an issue or a confrontation
-- ➤ Wield guilt like a weapon
-
-## GARET'S WOUND (affliction)
-
-**Instinct** to keep Garet in danger
-
-Garet's leg got mauled by feathered drakes; Blodwen patched him up but he's still walking on it. Could get bad.
-
-Wound isn't healing well, Garet is weak and slow
-
-Wound gets infected, needs to be amputated
-
-Garet becomes feverish, delirious **Impending doom:** Garet dies
-
-**Stakes:** What decisions will Rhianna make? How will Blodwen handle it?
-
-## MUTRA THE TEETH (villain)
-
-**Instinct** to acquire
-
-A boss in Gordin's Delve. His crews mine, salvage artifacts. Bought Green Lord stuff from Vahid, Rhianna; wants to know/acquire more.
-
-Pays merchants, travelers to scope out Stonetop
-
-Embeds agent(s) in Stonetop Agent(s) identify key treasure(s) Mutra demands treasure(s) for a pittance, or else
-
-**Impending doom:** Agent(s) kill someone, steal treasure(s)
-
-#### GM moves:
-
-- ➤ Interrupt trade with Gordin's Delve
-- ➤ Turn old allies against Stonetop
-
-### **CRINWIN** (rabble)
-
-**Instinct** to covet humanity
-
-Free of Sajra's control, they'll become more obsessed with Stonetop.
-
-Reestablish nests, numbers
-Attacks on folks in the Wood
-Nighttime raids on village, stealing stuff and killing livestock
-More/bigger nests nearby, anyone in the Wood is attacked/abducted
-Impending doom: Full on invasion, with intent to move in, take over
-
-When you *Deploy the village militia against crinwin raids*, add this to the list of choices for a 7-9:
-
-- The crinwin steal 1d4 Surplus
-- An important item goes missing
-
-# THE PALE CRINWIN (wildcard)
-
-**Instinct** to learn more and more
-
-A curious, "friendly" crinwin somewhat exiled from its peers. Vahid communicated with "him," sort of. It's fascinated with writing, drawings.
-
-**Stakes:** Will the PCs figure out how to reliably communicate with "him?" Will the villagers accept crinwin as anything but vermin or monsters?
-
-When you try to communicate with the pale crinwin through noises or pantomime, describe what you're trying to convey and roll +INT: on a 10+, message received; on a 7-9, he gets the gist but not the details; on a 6-, hoo boy does he get it wrong.
-
-## NAILADD SWARM (beasts)
-
-**Instinct** to breed and spread out.
-
-Giant spiders, spreading out via the waystones at the behest of the Mother-of-Spiders.
-
-> Nearest waystone is infested, nailadd hunting near Stonetop Game is scarce, hunters/trappers are attacked, stay in town Spiders raid Stonetop, killing some, dragging off others **Impending doom:** Overrun and infest the village!
-
-**Stakes:** Will Blodwen bring herself to help kill them? Will Andras overcome his fear of spiders?
-
-## FARMERS GUILD (rabble)
-
-**Instinct** to improve their lot in life
-
-Idealists led by Dermos and Tierney, maybe 100 backers. Want a spot on the Marshedge town council to start.
-
-> Council refuses to recognize them Guild organizes a strike in protest Brennan has Claws/new recruits break strike, kill Dermos/Tierney Resentment grows, loyalists from the watch side with farmers **Impending doom:** Riots, looting, killing, Marshedge in flames
-
-Stakes: Will Dermos and Brin get together? Will Kiran follow orders or his conscience?
-
-## THE MARSHEDGE COUNCIL
-
-(institution)
-
-**Instinct** to preserve the status quo.
-
-The head of each guild (including the fen-walkers) and a rep from each of the Old Families. **Brennan** isn't on the council but he surely influences it.
-
-#### GM moves:
-
-- Cut off Stonetop's supply of something
-- Stall, bicker, refuse to make decisions
-
-# THE WHITE HAND (institution)
-
-**Instinct** to contain the evil of the lakes, no matter what it takes
-
-A holy sect of Hillfolk who patrol the Steplands.
-
-**Stakes:** How will the PCs react to them, if they learn of their purpose?
-
-### GM moves:
-
-- ➤ Denounce trespassers as unclean
-- ➤ Sense the taint of corruption
-- > Spread word among the Hillfolk
-- Outmaneuver their prey
-
-### THE MINDGEM'S HEART
-
-(MacGuffin)
-
-**Instinct** to empower, ignite, awaken
-
-A chunk of makerglass that burns with terrible heat, recovered from Three Coven Lake. Currently kept in Vahid's hearth.
-
-**Stakes:** What will Vahid do with the Heart? How will Maire react to its presence in Vahid's house?
-
-#### GM moves:
-
-- ➤ Perform its function, heedlessly
-- Draw attention to itself
-- ➤ Catch something on fire
-- Provide a potent supply of magical energy
-
-### TRADE EMBARGO (affliction)
-
-**Instinct** to punish Stonetop
-
-After the PCs sided with the Farmers Guild, Brennan had the council cut off trade with Stonetop.
-
-When you *Outfit from Stonetop*, start with 1 fewer small item than normal, and supplies each have 1 fewer use.
-
-When you *Recover using supplies from Stonetop*, you or your patient recover 1 HP less than normal.
-
-When you *Trade or Barter for* anything that would come through Marshedge, you have disadvantage.
-
-## THE SHADOWY PRESENCE
-
-(magical entity)
-
-**Instinct** to devour life, light, warmth
-
-The wraith of a Green Lord. Bound beneath that mound the PCs found near the spider ziggurat. It tasted Caradoc's blood, so he's tied to it. Awakened by the Mindgem's Heart.
-
-> Earthquake sets it free Rampages through Great Wood, mindlessly stalking/feeding Catches "scent" of the Heart, moves towards Stonetop Starts attacking villagers at night Impending doom: Devours the Heart, becoming a permanent vortex of death and darkness
-
-**Stakes:** How will its link to Caradoc affect what happens?
+>[!box] #### TEGWEN (wildcard)
+>
+>**Instinct** to undermine others' worth
+>
+>Blodwen's mother, jealous of her importance to the village and her relationship with Gwendyl and Seren. Resents Rhianna. Distrusts Vahid. Thinks Caradoc is a fool.
+>
+>**Stakes:** How far will she go to control Blodwen? How much will Blodwen put up with?
+>
+>#### GM moves:
+>
+>- ▸ Provide (unwanted?) advice or aid
+>- ▸ Force an issue or a confrontation
+>- ▸ Wield guilt like a weapon
+> ^tegwen-wildcard
+
+>[!box] #### GARET'S WOUND (affliction)
+>
+>**Instinct** to keep Garet in danger
+>
+>Garet's leg got mauled by feathered drakes; Blodwen patched him up but he's still walking on it. Could get bad.
+>
+>Wound isn't healing well, Garet is weak and slow
+>
+>Wound gets infected, needs to be amputated
+>
+>Garet becomes feverish, delirious **Impending doom:** Garet dies
+>
+>**Stakes:** What decisions will Rhianna make? How will Blodwen handle it?
+> ^garets-wound-affliction
+
+>[!box] #### MUTRA THE TEETH (villain)
+>
+>**Instinct** to acquire
+>
+>A boss in Gordin's Delve. His crews mine, salvage artifacts. Bought Green Lord stuff from Vahid, Rhianna; wants to know/acquire more.
+>
+>Pays merchants, travelers to scope out Stonetop
+>
+>Embeds agent(s) in Stonetop Agent(s) identify key treasure(s) Mutra demands treasure(s) for a pittance, or else
+>
+>**Impending doom:** Agent(s) kill someone, steal treasure(s)
+>
+>#### GM moves:
+>
+>- ▸ Interrupt trade with Gordin's Delve
+>- ▸ Turn old allies against Stonetop
+> ^mutra-the-teeth-villain
+
+>[!box] ### **CRINWIN** (rabble)
+>
+>**Instinct** to covet humanity
+>
+>Free of Sajra's control, they'll become more obsessed with Stonetop.
+>
+>Reestablish nests, numbers
+>Attacks on folks in the Wood
+>Nighttime raids on village, stealing stuff and killing livestock
+>More/bigger nests nearby, anyone in the Wood is attacked/abducted
+>Impending doom: Full on invasion, with intent to move in, take over
+>
+>When you *Deploy the village militia against crinwin raids*, add this to the list of choices for a 7-9:
+>
+>- The crinwin steal 1d4 Surplus
+>- An important item goes missing
+> ^crinwin-rabble
+
+>[!box] #### THE PALE CRINWIN (wildcard)
+>
+>**Instinct** to learn more and more
+>
+>A curious, "friendly" crinwin somewhat exiled from its peers. Vahid communicated with "him," sort of. It's fascinated with writing, drawings.
+>
+>**Stakes:** Will the PCs figure out how to reliably communicate with "him?" Will the villagers accept crinwin as anything but vermin or monsters?
+>
+>When you try to communicate with the pale crinwin through noises or pantomime, describe what you're trying to convey and roll +INT: on a 10+, message received; on a 7-9, he gets the gist but not the details; on a 6-, hoo boy does he get it wrong.
+> ^the-pale-crinwin-wildcard
+
+>[!box] #### NAILADD SWARM (beasts)
+>
+>**Instinct** to breed and spread out.
+>
+>Giant spiders, spreading out via the waystones at the behest of the Mother-of-Spiders.
+>
+>Nearest waystone is infested, nailadd hunting near Stonetop Game is scarce, hunters/trappers are attacked, stay in town Spiders raid Stonetop, killing some, dragging off others **Impending doom:** Overrun and infest the village!
+>
+>**Stakes:** Will Blodwen bring herself to help kill them? Will Andras overcome his fear of spiders?
+> ^nailadd-swarm-beasts
+
+>[!box] #### FARMERS GUILD (rabble)
+>
+>**Instinct** to improve their lot in life
+>
+>Idealists led by Dermos and Tierney, maybe 100 backers. Want a spot on the Marshedge town council to start.
+>
+>Council refuses to recognize them Guild organizes a strike in protest Brennan has Claws/new recruits break strike, kill Dermos/Tierney Resentment grows, loyalists from the watch side with farmers **Impending doom:** Riots, looting, killing, Marshedge in flames
+>
+>Stakes: Will Dermos and Brin get together? Will Kiran follow orders or his conscience?
+> ^farmers-guild-rabble
+
+>[!box] ## THE MARSHEDGE COUNCIL
+>
+>(institution)
+>
+>**Instinct** to preserve the status quo.
+>
+>The head of each guild (including the fen-walkers) and a rep from each of the Old Families. **Brennan** isn't on the council but he surely influences it.
+>
+>#### GM moves:
+>
+>- Cut off Stonetop's supply of something
+>- Stall, bicker, refuse to make decisions
+> ^the-marshedge-council
+
+>[!box] #### THE WHITE HAND (institution)
+>
+>**Instinct** to contain the evil of the lakes, no matter what it takes
+>
+>A holy sect of Hillfolk who patrol the Steplands.
+>
+>**Stakes:** How will the PCs react to them, if they learn of their purpose?
+>
+>#### GM moves:
+>
+>- ▸ Denounce trespassers as unclean
+>- ▸ Sense the taint of corruption
+>- ▸ Spread word among the Hillfolk
+>- ▸ Outmaneuver their prey
+> ^the-white-hand-institution
+
+>[!box] ### THE MINDGEM'S HEART
+>
+>(MacGuffin)
+>
+>**Instinct** to empower, ignite, awaken
+>
+>A chunk of makerglass that burns with terrible heat, recovered from Three Coven Lake. Currently kept in Vahid's hearth.
+>
+>**Stakes:** What will Vahid do with the Heart? How will Maire react to its presence in Vahid's house?
+>
+>#### GM moves:
+>
+>- ▸ Perform its function, heedlessly
+>- Draw attention to itself
+>- ▸ Catch something on fire
+>- Provide a potent supply of magical energy
+> ^the-mindgems-heart
+
+>[!box] ### TRADE EMBARGO (affliction)
+>
+>**Instinct** to punish Stonetop
+>
+>After the PCs sided with the Farmers Guild, Brennan had the council cut off trade with Stonetop.
+>
+>When you *Outfit from Stonetop*, start with 1 fewer small item than normal, and supplies each have 1 fewer use.
+>
+>When you *Recover using supplies from Stonetop*, you or your patient recover 1 HP less than normal.
+>
+>When you *Trade or Barter for* anything that would come through Marshedge, you have disadvantage.
+> ^trade-embargo-affliction
+
+>[!box] ## THE SHADOWY PRESENCE
+>
+>(magical entity)
+>
+>**Instinct** to devour life, light, warmth
+>
+>The wraith of a Green Lord. Bound beneath that mound the PCs found near the spider ziggurat. It tasted Caradoc's blood, so he's tied to it. Awakened by the Mindgem's Heart.
+>
+>Earthquake sets it free Rampages through Great Wood, mindlessly stalking/feeding Catches "scent" of the Heart, moves towards Stonetop Starts attacking villagers at night Impending doom: Devours the Heart, becoming a permanent vortex of death and darkness
+>
+>**Stakes:** How will its link to Caradoc affect what happens?
+> ^the-shadowy-presence
 
 ## **Updating threats**
 

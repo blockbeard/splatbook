@@ -1,14 +1,13 @@
 # NPCs & Followers
 
-NPCs 
-NPCs in play 
-Creating NPCs 
-Followers 
-Follower moves 
-ORDER FOLLOWERS 
-STRENGTHEN YOUR BOND
-
-**Followers in play Creating followers Updating followers Losing followers**
+| In this chapter | |
+|---|---|
+| [[#NPCs\|NPCs]] | [[#NPCs in play\|NPCs in play]] |
+| [[#Creating NPCs\|Creating NPCs]] | [[#Followers\|Followers]] |
+| [[#Follower moves\|Follower moves]] | [[#^order-followers\|ORDER FOLLOWERS]] |
+| [[#^strengthen-your-bond\|STRENGTHEN YOUR BOND]] | [[#Followers in play\|Followers in play]] |
+| [[#Creating followers\|Creating followers]] | [[#Updating followers\|Updating followers]] |
+| [[#Losing followers\|Losing followers]] |  |
 
 ## **NPCs**
 
@@ -18,7 +17,7 @@ Many NPCs are also **[[09 - Threats#Threats|threats]]** that cause ongoing troub
 
 If an NPC takes orders from a PC, deferring to them and generally doing what the PC says, then that NPC is a **follower**. Players can trigger moves like Clash or Seek Insight via their followers, and followers can hold Loyalty that makes them more likely to do what a PC wants. Followers are discussed in detail starting on [[14 - NPCs and Followers#Followers|Followers]]
 
-## **NPCs in play**
+### **NPCs in play**
 
 Part of your job as the GM is to portray NPCs. What they do, what they say, how they feel—that's all up to you! Practically, you portray NPCs as part of the **core loop** of play [[05 - Running the Game#The core loop|The core loop]].
 
@@ -32,7 +31,7 @@ When PCs do something that doesn't trigger a move, you say what happens, and "wh
 
 The point is: portraying NPCs—framing scenes with them, describing them, making moves with them, saying how they react is a big part of running the game.
 
-## **Modes of portrayal**
+### **Modes of portrayal**
 
 When you portray an NPC, you can **speak in their voice**, in first-person ("I… just don't know if I can keep… doing this"). Or, you can **summarize what they say** and how they say it, in third-person ("She tears up and says she can't keep doing this—it's awkward").
 
@@ -46,19 +45,20 @@ Try to **be mindful and intentional about how you use modes of portrayal**. Pick
 
 Challenge yourself! If your instinct is to always summarize what NPCs say, try a bit of first-personal portrayal. If you find that you always speak in-character, try summarizing conversations instead. **[[05 - Running the Game#GMing is a practice|GMing is a practice]]**, and you only get better at things you try!
 
-## **Multiple NPCs at once**
+> [!box] **Multiple NPCs at once**
+> 
+> You'll inevitably have some scenes where multiple NPCs are in conflict or at least have conflicting opinions. In such scenes, you need to balance **giving your NPCs life** with **being a fan of the PCs**.
+> 
+> Try to keep the conversation centered on the PCs. Have NPCs appeal to them and get them to take sides.
+> 
+> If that doesn't make sense, then focus on conveying the gist of the conflict. Use third-person summaries more than first-person portrayal. Very few GMs can make an extended scene of "NPCs talking to each other" work.
+> 
+> That doesn't mean you should avoid first-person portrayals when NPCs are in conflict. It just means that you should do so sparingly. Frame the conflict with a few lines of dialogue from each NPC, and then zoom out to summarize the conversation and the salient points.
+> 
+> When you *do* portray multiple NPCs in the same scene, be as clear as you can about when each NPC is talking. Having distinct voices or mannerisms for each NPC can really help with this. Another trick is to shift your head/body from side to side as you switch characters, leaning left and looking right as NPC #1, and the opposite as NPC #2.
+> ^multiple-npcs-at-once
 
-You'll inevitably have some scenes where multiple NPCs are in conflict or at least have conflicting opinions. In such scenes, you need to balance **giving your NPCs life** with **being a fan of the PCs**.
-
-Try to keep the conversation centered on the PCs. Have NPCs appeal to them and get them to take sides.
-
-If that doesn't make sense, then focus on conveying the gist of the conflict. Use third-person summaries more than first-person portrayal. Very few GMs can make an extended scene of "NPCs talking to each other" work.
-
-That doesn't mean you should avoid first-person portrayals when NPCs are in conflict. It just means that you should do so sparingly. Frame the conflict with a few lines of dialogue from each NPC, and then zoom out to summarize the conversation and the salient points.
-
-When you *do* portray multiple NPCs in the same scene, be as clear as you can about when each NPC is talking. Having distinct voices or mannerisms for each NPC can really help with this. Another trick is to shift your head/body from side to side as you switch characters, leaning left and looking right as NPC #1, and the opposite as NPC #2.
-
-## **Dialogue scenes**
+### **Dialogue scenes**
 
 Many scenes will be dialogue scenes, scenes where one or more PCs are talking to an NPC, and that's the extent of the action.
 
@@ -74,7 +74,7 @@ Remember to **be honest and generous with the truth and detail**. When you make 
 
 When the purpose of a scene has been resolved, or when the dialogue starts to fizzle out or swirl, **wrap up the scene**. Step out of character, transition to the next scene, move the spotlight, and/or shift into loose play.
 
-## **Creating NPCs**
+### **Creating NPCs**
 
 Remember that one of your principles is to **give your characters life**.
 
@@ -103,7 +103,7 @@ You might also add details to treat them as a **[[14 - NPCs and Followers#Follow
 
 You'll often improvise these details in play and flesh out the NPC between sessions. But if you expect an NPC to appear in an upcoming session, prep some or all of these details in advance. As always, though, **prep only as much as you find useful and valuable**.
 
-## **1 Name**
+### **1. Name**
 
  Give the NPC a name, or ask the players to do so. Choose from the appropriate name list or *Book II* entry, or use a name with a similar sound or origin.
 
@@ -119,11 +119,11 @@ Add the NPC's name to the steading playbook.
 
 *Prior to leaving on a trade mission to Gordin's Delve, Rhianna Musters the village to guard against crinwin. She gets a 10 and picks "1 or 2 individuals show real potential; ask the GM who and how." I don't have anyone in mind, so I look at the list of Stonetop names and say "Uh… let's say that Andras catches your eye to replace good old Garet. And, oh, Elios. He's someone you can leave in charge while you're gone." I add both names as residents of Stonetop in the steading playbook.*
 
-# **2 Concept**
+### **2. Concept**
 
  Figure out who this person is. What are the most obvious and important things about them? What are their pronouns? How old they are? Where are they from? If you had to describe them in just a few words, what would they be?
 
-### **Build on what's established**
+#### **Build on what's established**
 
 Start with what you already know about this NPC and extrapolate. If the NPC is written up as a follower, monster, or threat, then their concept is already well-established and you just need to fill in some details. But if you're making up this NPC from scratch, you'll need to do more work.
 
@@ -135,9 +135,9 @@ Hold your ideas lightly for now. As you ask questions and choose traits for this
 
 #### **Ask questions**
 
-Many NPCs will be people who the PCs would know, or least know of, so ask your players about them. They'll care more about NPCs that they help create! Keep **[[05 - Running the Game#The Line|the Line]]** in mind. Ask the characters questions that they'd be able to answer. The closer the PCs are to an NPC, the more questions you should ask.
+Many NPCs will be people who the PCs would know, or least know of, so ask your players about them. They'll care more about NPCs that they help create! Keep **[[05 - Running the Game#^the-line|the Line]]** in mind. Ask the characters questions that they'd be able to answer. The closer the PCs are to an NPC, the more questions you should ask.
 
-# **For locals or people PCs know well:**
+**For locals or people PCs know well:**
 
 - Are you related to them? How?
 - What's their family situation? (Married? Kids? Parents? Siblings?)
@@ -149,7 +149,7 @@ Many NPCs will be people who the PCs would know, or least know of, so ask your p
 - How have they always treated you?
 - What do they seem to like/dislike?
 
-## **For outsiders, but ones the PCs know:**
+**For outsiders, but ones the PCs know:**
 
 - When/how did you first meet them?
 - When did you last see them?
@@ -158,7 +158,7 @@ Many NPCs will be people who the PCs would know, or least know of, so ask your p
 - Why do you (not) look forward to seeing them again?
 - How have they changed since last you met?
 
-# **For folks the PCs have heard of but don't actually know:**
+**For folks the PCs have heard of but don't actually know:**
 
 - What are they known for?
 - What is said to be their most notable trait?
@@ -177,7 +177,7 @@ Build on the answers your players give you. Clarify and ask follow-up questions,
 
 *I then ask Vahid what he dislikes about Elios. And he's like "Ugh. He's the worst. Can't take a joke. No sense of humor at all."* 
 
-## **Assign memorable traits**
+#### **Assign memorable traits**
 
 Give the NPC at least one specific, memorable trait and play that trait up. These traits become your touchstones for portraying them. Folks might not remember that the publican's daughter is named "Tegid," but they'll remember "the girl who runs everywhere."
 
@@ -193,7 +193,7 @@ ELIOS (he/him): farmer, humorless, ex-mercenary, Blodwen's uncle
 
 *I love it. I add "just married" to his write up, and make a note to figure out who his new wife is, too!*
 
-## **3 Impressions**
+### **3. Impressions**
 
  At this point, you should have a solid concept for the NPC, enough that you can start portraying them.
 
@@ -201,7 +201,7 @@ If you're creating this NPC on the fly, frame a scene with them (if you haven't 
 
 If you're prepping the NPC in advance, decide on these impressions now and write them down, to whatever level of detail you find helpful. Bring them up when you first put the NPC on screen.
 
-## **Impression examples**
+#### **Impression examples**
 
 **Face:** angular, broken nose, dimpled, freckles, hawk nose, leathery, missing teeth, paint, scar, scowl, soft, sunburnt, tattoo, warts, etc.
 
@@ -229,7 +229,7 @@ Most impressions should reflect an NPC's concept—they're a way to show rather 
 
 *I give some impressions that play up his role. "He's got this deep, almost monotone voice that folks kind of lean in to hear, and a scar on his face that you assume he got in his days down south." Then, to make him a little more human, I add, "And as he watches folks practice, you realize that he's, like, fidgeting with a… locket? Probably a gift from his new wife."*
 
-## **4 Additional details**
+### **4. Additional details**
 
  Fill in the rest of an NPC's details only as they become important and relevant to the story or to how you portray them.
 
@@ -237,7 +237,7 @@ If you're making the NPC up on the fly, you likely won't have time or the mental
 
 If you're prepping an NPC in advance, think about the following areas and make some decisions about them. But remember: prep only what's useful and valuable to *you*.
 
-## **Embodiment**
+#### **Embodiment**
 
 Consider one or more of these tricks to help embody the NPC. Tricks like these can help make the NPC distinctive, even if you're not a natural performer.
 
@@ -250,7 +250,7 @@ These tricks are relatively easy to use on the fly, while improvising a new NPC.
 
 *As the scene unfolds, and Rhianna starts telling Elios her plans and how she wants him to be in charge, I lean into that "deep, almost monotone voice" that I described him having. I lower my pitch and keep my tone flat. I realize that I'm doing the voice of Eeyore, the sorrowful donkey from*  Winnie-the-Pooh*, and that seems right. I jot down "Eeyore voice" in my notes.*
 
-## **Instinct**
+#### **Instinct**
 
 Between sessions, consider writing an instinct for your NPC. Write them in this format: "to [do something]."
 
@@ -264,7 +264,7 @@ Use an NPC's instinct to guide how they behave and react. If you're unsure what 
 
 *After the session, I think about Elios a bit and write this instinct for him:* To complain but get the job done.
 
-## **Connections to others**
+#### **Connections to others**
 
 When you have time—usually between sessions—think about how this NPC gets along with others. Ask yourself some or all of the following:
 
@@ -289,7 +289,7 @@ Respects Rhianna. Kind to Blodwen. Vahid is a dangerous weirdo. Loyal to his wif
 
 *I need to flesh out his wife, but it can wait until I need her for a scene.*
 
-## **Motivations**
+#### **Motivations**
 
 If you want to really flesh out an NPC's internal life and motivations, ask yourself some or all of the following:
 
@@ -308,13 +308,13 @@ Unless you really enjoy this kind of prep, save these questions for NPCs whose i
 
 *Such answers would imply a looming confrontation between Elios and Rhianna, where he might demand that she rein in Caradoc and Vahid or else step down from the role of marshal.*
 
-## **Game stats**
+#### **Game stats**
 
 If you think that an NPC…
 
 - … **might get into a fight with the PCs**, stat them up as a **[[12 - Dangers#Monsters|monster]]**.
 - … **will cause ongoing trouble**, write them up as a **[[09 - Threats#Threats|threat]]**.
-- … **will regularly act on a PC's orders**, stat them up as a **[[14 - NPCs and Followers#Creating followers|follower]]**.
+- … **will regularly act on a PC's orders**, stat them up as a **[[14 - NPCs and Followers#Followers|follower]]**.
 - … **needs HP, armor, and a damage die, but isn't a monster or follower**, then use the follower guidelines anyhow [[14 - NPCs and Followers#Creating followers|Creating followers]]. Or just wing it.
 
 An NPC might not need these stats when you first create or conceive of them, but that might change over time. A friendly NPC might start following a PC's lead and become a follower. Or they might become a source of ongoing trouble and become a threat. Or both. Both is good.
@@ -341,90 +341,105 @@ Followers also have two additional stats: a **cost** and **Loyalty**.
 
 A follower's cost describes what keeps them following a PC's lead. It's usually a few words, like "coin, payment, treasure" or "affection, respect" or "training." When a PC pays the follower's cost, the follower holds Loyalty.
 
-Loyalty is a currency the followers can hold. The follower's player can spend that Loyalty to get the follower to ignore fear, behave themselves, or do something they'd rather not do. See the **Strengthen Your Bond** move [[14 - NPCs and Followers#STRENGTHEN YOUR BOND|Strengthen Your Bond]] for details.
+Loyalty is a currency the followers can hold. The follower's player can spend that Loyalty to get the follower to ignore fear, behave themselves, or do something they'd rather not do. See the **Strengthen Your Bond** move [[14 - NPCs and Followers#^strengthen-your-bond|Strengthen Your Bond]] for details.
 
 Here's an example follower:
 
-## RHIANNA'S CREW, the hunters
-
-*Group*, *archers*, *observant*, *stealthy*, *respected*, *woods-wise*
-
-**HP** 6; **Armor** 0
-
-**Damage** hatchet 1d6 (*hand*) or bow 1d6 (*near*, low ammo, out)
-
-**Instinct** to hew to tradition and superstition
-
-**Cost** merry-making, as a group (Loyalty )
-
-Eira (lieutenant, cynical), Lowri (snores, sharp-eyed), Harri (skinny, old), Garet (dead), two others.
+>[!box] #### RHIANNA'S CREW, the hunters
+>
+>*Group*, *archers*, *observant*, *stealthy*, *respected*, *woods-wise*
+>
+>**HP** 6; **Armor** 0
+>
+>**Damage** hatchet 1d6 (*hand*) or bow 1d6 (*near*, low ammo, out)
+>
+>**Instinct** to hew to tradition and superstition
+>
+>**Cost** merry-making, as a group (Loyalty )
+>
+>Eira (lieutenant, cynical), Lowri (snores, sharp-eyed), Harri (skinny, old), Garet (dead), two others.
+> ^rhiannas-crew-the-hunters
 
 As the Marshal, Rhianna starts with a crew and gets to define who they are. Her crew are the town's hunters. We generally treat them as a group, but Eira, Lowri, Harri, and poor departed Garet have all been established as individuals.
 
 After Garet's death, Rhianna recruited:
 
-ANDRAS, apprentice hunter
-
-*Archer*, *observant*, *eager*, *rookie*
-
-**HP** 6; **Armor** 0 **Damage** hatchet 1d6 (*hand*) or bow 1d6 (*near*, low ammo, out)
-
-**Instinct** to try to impress Rhianna **Cost** recognition (Loyalty )
-
-Young man, Padraig's son. Sweet on Blodwen. Tries real hard, asks lots of questions.
+>[!box] #### ANDRAS, apprentice hunter
+>
+>*Archer*, *observant*, *eager*, *rookie*
+>
+>**HP** 6; **Armor** 0 **Damage** hatchet 1d6 (*hand*) or bow 1d6 (*near*, low ammo, out)
+>
+>**Instinct** to try to impress Rhianna **Cost** recognition (Loyalty )
+>
+>Young man, Padraig's son. Sweet on Blodwen. Tries real hard, asks lots of questions.
+> ^andras-apprentice-hunter
 
 He caught her eye when she Mustered the village before a trip to Gordin's Delve. Over time, Andras became more and more competent, eventually merging with Rhianna's crew of hunters.
 
-## Here's another example:
+Here's another example:
 
 (Loyalty )
 
-## FFLUR, a draft horse *Large*, *powerful*, *keen-nosed*, *hardy* **HP** 10; **Armor** 0 **Damage** hoofs 1d6+3 (*hand*, *close*, *forceful*) **Instinct** to panic **Cost** extensive care, grooming
-
-A chestnut mare, maybe 12 years old. Always hungry. More sensible than Celyn, but still a horse.
+>[!box] #### FFLUR, a draft horse
+>
+>*Large*, *powerful*, *keen-nosed*, *hardy*
+>
+>**HP** 10; **Armor** 0
+>
+>**Damage** hoofs 1d6+3 (*hand*, *close*, *forceful*)
+>
+>**Instinct** to panic
+>
+>**Cost** extensive care, grooming (Loyalty ○○○)
+>
+>A chestnut mare, maybe 12 years old. Always hungry. More sensible than Celyn, but still a horse.
+> ^fflur-a-draft-horse
 
 Fflur is one of the town's two horses, listed on the steading playbook as assets. The PCs Requisitioned her and a cart for their trip to Gordin's Delve, but it was Blodwen's player who named her.
 
 The horses are important to the town, and Blodwen can talk to animals, so the players and I were interested in Fflur as a character. We decided to treat her as a follower. Because Blodwen can speak to her and she took the most interest, we agreed to treat Fflur as Blodwen's follower, specifically.
 
-## And one more:
+And one more:
 
-## ANDALAU OF THE FLUTE, dancing
+>[!box] #### ANDALAU OF THE FLUTE, dancing
+>
+>wind spirit
+>
+>*Spirit*, *tiny*, *stealthy*, *mischievous*
+>
+>**HP** 8; **Armor** 0
+>
+>**Damage** none
+>
+>**Instinct** to play and frolic
+>
+>- ▸ Manifest as a fluttering gust of wind (harmed only by salt)
+>- ▸ Deliver a whispery message
+>- ▸ Throw things about (dust, leaves, etc.)
+>- ▸ Annoy or spook someone
+>
+>**Cost** entertainment (Loyalty )
+>
+>When you play a tune to make the wind itself dance, the andalau manifests, holding 1 Loyalty. When you dismiss the spirit while it holds no Loyalty, the flute splits and falls apart; the andalau is set free.
+> ^andalau-of-the-flute-dancing
 
-wind spirit
+Vahid discovered a cracked flute of yew wood—a **[[03 - Playing the Game#Minor arcana|minor arcana]]**—in the Green Lord's tomb. After a few weeks of practice and misadventure, he can now summon the andalau that's bound to the flute. It'll generally do what he says, but it's a fickle thing and he has to keep it happy or the flute will shatter and become worthless.
 
-*Spirit*, *tiny*, *stealthy*, *mischievous*
-
-**HP** 8; **Armor** 0
-
-**Damage** none
-
-**Instinct** to play and frolic
-
-- <sup>ä</sup> Manifest as a fluttering gust of wind (harmed only by salt)
-- <sup>ä</sup> Deliver a whispery message
-- <sup>ä</sup> Throw things about (dust, leaves, etc.)
-- <sup>ä</sup> Annoy or spook someone
-
-**Cost** entertainment (Loyalty )
-
-When you play a tune to make the wind itself dance, the andalau manifests, holding 1 Loyalty. When you dismiss the spirit while it holds no Loyalty, the flute splits and falls apart; the andalau is set free.
-
-Vahid discovered a cracked flute of yew wood—a **[[03 - Playing the Game#Arcana|minor arcana]]**—in the Green Lord's tomb. After a few weeks of practice and misadventure, he can now summon the andalau that's bound to the flute. It'll generally do what he says, but it's a fickle thing and he has to keep it happy or the flute will shatter and become worthless.
-
-## **Follower moves**
+### **Follower moves**
 
 These moves become relevant when PCs interact with their followers.
 
-## **ORDER FOLLOWERS**
-
-When you *direct your follower to do something that would trigger a player move*, and they do it, they trigger the move. If the move involves rolling, you roll for them. Instead of rolling +STAT, roll and…
-
-- … if they have at least one appropriate tag or move, add +1, or +2 if they're also *exceptional*;
-- … if they have no relevant tag or move, add +0; and
-- … if any of their tags would get in the way, roll with disadvantage.
-
-When a follower is without orders or they act on their own initiative, the GM says what they do and decides how it goes.
+> [!move] ## **ORDER FOLLOWERS**
+> 
+> When you *direct your follower to do something that would trigger a player move*, and they do it, they trigger the move. If the move involves rolling, you roll for them. Instead of rolling +STAT, roll and…
+> 
+> - … if they have at least one appropriate tag or move, add +1, or +2 if they're also *exceptional*;
+> - … if they have no relevant tag or move, add +0; and
+> - … if any of their tags would get in the way, roll with disadvantage.
+> 
+> When a follower is without orders or they act on their own initiative, the GM says what they do and decides how it goes.
+> ^order-followers
 
 Followers are NPCs—they don't usually trigger player-facing moves. You might **put them in a spot** and have a follower rush in to attack a foe they can't beat, but that's just you making a soft GM move. You tell the players that this happens and ask, "What do you do?" No one rolls Clash for the reckless follower!
 
@@ -462,17 +477,18 @@ Try to resolve follower actions with as few moves and rolls as possible. Zoom ou
 
 Note that followers don't have access to the PC's playbook moves. The Marshal can order a follower to give a rousing speech, but they won't trigger We Happy Few. The Ranger might have Big Game Hunter, but their pet wolf doesn't deal +2 damage vs. *large* foes as a result.
 
-## **STRENGTHEN YOUR BOND**
-
-When you *pay your follower's cost*, and you haven't done so recently, they hold +1 Loyalty (max 3).
-
-Spend your follower's Loyalty 1-for-1 to have them:
-
-- Overcome their fear to do as you say
-- Resist acting on their instinct/ tags/traits
-- Do something they don't want to do (as long as it's not abhorrent or suicidal)
-
-When a follower is without orders or they act on their own initiative, the GM says what they do and decides how it goes.
+> [!move] ## **STRENGTHEN YOUR BOND**
+> 
+> When you *pay your follower's cost*, and you haven't done so recently, they hold +1 Loyalty (max 3).
+> 
+> Spend your follower's Loyalty 1-for-1 to have them:
+> 
+> - Overcome their fear to do as you say
+> - Resist acting on their instinct/ tags/traits
+> - Do something they don't want to do (as long as it's not abhorrent or suicidal)
+> 
+> When a follower is without orders or they act on their own initiative, the GM says what they do and decides how it goes.
+> ^strengthen-your-bond
 
 Each follower has a cost, like "genuine affection" or "coin, payment, treasure" or "training." When a PC pays that cost when they provide it directly or ensure that the follower receives it—then the follower gains Loyalty.
 
@@ -480,7 +496,7 @@ Paying a follower's cost should be a meaningful moment. Ideally, it should invol
 
 The PC and/or follower should have a significant scene "on camera" before they can Strengthen Their Bond again. If a PC pays a cost like "training" multiple times over a stretch of downtime or loose play, then the follower holds only +1 Loyalty.
 
-## **Loyalty**
+### **Loyalty**
 
 When a follower's cost is paid, they hold +1 Loyalty, up to 3. If a follower holds 3 Loyalty, then Strengthen Your Bond doesn't trigger.
 
@@ -518,9 +534,9 @@ It's easy to think of a follower's cost and Loyalty as transactional: I did this
 
 *"You know, there might be some baklava left at Vahid's," says Blodwen. "I spend that Loyalty to get her to do something she doesn't want to do." But, now that she's feeling better, I think Gwendyl would be fine going to the party, and I tell Blodwen to hold onto that Loyalty.*
 
-## **Followers in play**
+### **Followers in play**
 
-Followers are NPCs. They fall on your side of **[[05 - Running the Game#The Line|the Line]]**, and **it's your responsibility—not the players'—to portray them**, to say what they do and what they say. A little blurring of the Line is natural, but if a player portrays a follower like they're a second PC, pause the game and reset expectations.
+Followers are NPCs. They fall on your side of **[[05 - Running the Game#^the-line|the Line]]**, and **it's your responsibility—not the players'—to portray them**, to say what they do and what they say. A little blurring of the Line is natural, but if a player portrays a follower like they're a second PC, pause the game and reset expectations.
 
 As with any NPC, **[[05 - Running the Game#The core loop|use followers as part of the core loop]]**. Include them when you establish the situation. Make GM moves (soft or hard) with them or against them. Decide how they react to the PCs' words and deeds—and that goes for all the PCs, not just the PC they follow!
 
@@ -530,7 +546,7 @@ The more established the follower is, the more you should **ask questions and bu
 
 Remember, though: **Order Followers triggers only when the PC** *directs* **a follower**. If you ask the player what they think their follower would do, and you agree that, yeah, they do that—that's not Ordering Followers, and the follower doesn't trigger any moves. You just decide what happens.
 
-## **The burden of leadership**
+### **The burden of leadership**
 
 Followers can be useful, but they should also be sources of stress and conflict.
 
@@ -552,7 +568,7 @@ When you decide that a follower doesn't want to do as they're told, then reveal 
 
 The player can then choose to spend the follower's Loyalty (if they hold any) to have them "do something they don't want to do." Or the PC can Persuade the follower, or use a different move to convince them. Or they could let it drop and do something else. Whatever they do, **follow the rules** and the dice and portray the follower with integrity, and **play to find out what happens**.
 
-## **Play up a follower's instinct, tags, and traits as a source of trouble for the PCs**.
+**Play up a follower's instinct, tags, and traits as a source of trouble for the PCs**.
 
 Does the Ranger's wolf have an instinct of "to fill its belly?" Then have it chomp on the obvious bait, or refuse to leave a carcass uneaten. Is one of the Marshal's crew a gambler? Have her leave her post to join a game of dice, or have a creditor from Gordin's Delve show up to collect. The player can spend 1 Loyalty to have their follower "resist acting on their instinct/ tags/traits," but if they don't, they need to convince them to stop or else deal with the consequences.
 
@@ -568,7 +584,7 @@ Emphasizing a follower's fear, foibles, and troublesome behaviors makes their Lo
 
 *Vahid tells Rhianna that he can lead them to the ruins, and she has everyone get ready to go. But when her* superstitious *crew realizes that they're following a fickle spirit on a game of "hot and cold," they dig their heels in. Now Rhianna has to convince them to go along with this plan. If she had let the crew celebrate last night, it would have paid their cost and she could just spend their Loyalty. But she didn't, and they hold no Loyalty, so now she's going to need to Persuade them.*
 
-## **Off-screen orders**
+### **Off-screen orders**
 
 **When a player sends a follower off-screen to do something**, resolve it with a single move (at most!). The PC won't be there to give follow-up direction when things snowball, so zoom out and pick a single move to represent the off-screen action. Resolve that one move. Let all the other things that could go right or wrong color the outcome.
 
@@ -578,7 +594,7 @@ In general, have the player roll for their follower's off-screen move when the P
 
 Sometimes, though, you want to know the results up front, so that you can weave it into unfolding events. Say the Marshal has her crew sneak around to flank a foe. You might have the Marshal roll Defy Danger right away, and then reveal the results maybe a scene or two later. "A 7, huh? Okay, cool, cool." Then, after the PCs have snuck up on the bandit camp and are about to attack: "There's a commotion to the north, and one figure drags another out of the brush. Oh crap, they've got Hari! Everyone in camp is going to see what the fuss is about. What do you do?"
 
-## **Followers in fights**
+### **Followers in fights**
 
 Followers can have a big impact on fights. They can help even the odds or allow the PCs to overwhelm a single foe. But followers can also complicate the situation by panicking, getting into trouble, or acting rashly.
 
@@ -590,9 +606,9 @@ Clear communication is hard during a fight! It's loud, you don't have much time 
 
 If a PC's orders are vague, ask what they intend and how the follower would know that. Give them leeway if they've worked with the follower a long time. The Marshal's crew have drilled and fought side-byside for years, so "Hari, behind you!" could convey "Hari, a foe is behind you, turn and attack it!" But with a new follower, a warning like that would only get them to dodge, at best!
 
-For examples of **followers in fights**, see pages [[06 - Player Moves#**AID**|213]] [[06 - Player Moves#**LET FLY**|223]], [[12 - Dangers#**Multiple combatants**|415]], [[14 - NPCs and Followers#**Followers in fights**|463]] and [[14 - NPCs and Followers#Group followers|472]]
+For examples of **followers in fights**, see pages [[06 - Player Moves#^aid|AID]] [[06 - Player Moves#^let-fly|LET FLY]], [[12 - Dangers#Multiple combatants|Multiple combatants]], [[14 - NPCs and Followers#^order-followers|ORDER FOLLOWERS]] and [[14 - NPCs and Followers#Group followers|Group followers]]
 
-## **When followers Defend**
+### **When followers Defend**
 
 When a PC Orders Followers to Defend and gets a 7+, the *follower* holds Readiness but the player decides when and how they spend it.
 
@@ -600,7 +616,7 @@ When a player spends their follower's Readiness, consider whether the follower w
 
 When a PC Defends and a follower Aids them, that PC holds the Readiness but they can spend it to have the *follower* suffer the damage/effects of an attack, or to have the *follower* draw all attention from their ward to themselves. Ask the player what this looks like. If they're slyly using the follower as a meat shield, then the follower doesn't get much say in the matter (but they might have lots to say if they survive). If the player just expects the follower to take one for the team, well… that might require spending Loyalty, too.
 
-## **Followers at 0 HP**
+### **Followers at 0 HP**
 
 When a follower is reduced to 0 HP, their fate is in your hands. If the source of damage was potentially lethal, then they're out of the action and you pick 1:
 
@@ -612,9 +628,9 @@ Remember: it's not your job to protect your NPCs, and followers are NPCs! **Let 
 
 If the source of the damage wasn't lethal, then the follower is out of the action until you say otherwise or they regain HP (because of magic, someone's move, or because someone tends to their wounds and they Recover).
 
-Note: a Ranger's animal companion is an exception. They get a special move, **[[Inserts#Animal Companion|Loyal to the End]]**, that dictates what happens when they reach 0 HP. No one wants to see the dog die.
+Note: a Ranger's animal companion is an exception. They get a special move, **[[Inserts#Small items|Loyal to the End]]**, that dictates what happens when they reach 0 HP. No one wants to see the dog die.
 
-## Group followers
+### Group followers
 
 A follower with the *group* tag represents multiple individuals who share stats and often act as one. The Marshal's crew is the most obvious example. Other groups include the posse of villagers that the PCs recruit to deal with the crinwin, or the trio of wraiths bound to that tattered mantle (the one adorned with teeth).
 
@@ -674,17 +690,18 @@ She then has the rest of her crew each turn one undefined into unity supplies, f
 
 Rhianna could decide that Glaw and Eira used up all their supplies and now each carry only five & total, but it doesn't really matter at this point. If it becomes important later (like, if one of the crew members gets separated from the group), we can decide then who was carrying what.
 
-## When a *group...*
+> [!box] When a *group...*
+> 
+> - ... Clashes or Lets Fly (or Aids a PC in doing so), the attack can hurt multiple foes. They roll the move once, and roll damage separately against each foe (see [[41 - Spirits of the Wild#Dangers|Dangers]]). Consider abstracting the exchange [[12 - Dangers#^abstracting-groups|Abstracting groups]].
+> - ... Clashes with or Lets Fly at a single foe (or Aids a PC in doing so), they roll the move once (likely with advantage) and roll one attacker's damage, +1 for each additional attacker (see [[41 - Spirits of the Wild#Dangers|Dangers]]).
+> - ... Defends, then the group holds a common pool of Readiness. The PC spends it on behalf of either the group as a whole or an individual member, whichever makes sense.
+> - ... Recovers, then each member who regains HP must consume 1 use of Supplies.
+> - ... **Seeks Insight**, then the PC can ask 3 questions or 1 question total, not 3 or 1 per member of the group.
+> - ... Struggles as One along with one or more PCs, roll once for the group. On a 6-, decide which member(s) of the group to put in a spot. On a 10+, ask the player who steps up to save someone, and how.
+> - ... incurs a cost, suffers an attack, is put in danger, draws unwanted attention, etc. you decide which member(s) are affected, and how.
+> ^when-a-group
 
-- ... Clashes or Lets Fly (or Aids a PC in doing so), the attack can hurt multiple foes. They roll the move once, and roll damage separately against each foe (see [[12 - Dangers#**Multiple combatants**|Dangers]]). Consider abstracting the exchange [[12 - Dangers#Abstracting groups|Abstracting groups]].
-- ... Clashes with or Lets Fly at a single foe (or Aids a PC in doing so), they roll the move once (likely with advantage) and roll one attacker's damage, +1 for each additional attacker (see [[12 - Dangers#**Multiple combatants**|Dangers]]).
-- ... Defends, then the group holds a common pool of Readiness. The PC spends it on behalf of either the group as a whole or an individual member, whichever makes sense.
-- ... Recovers, then each member who regains HP must consume 1 use of Supplies.
-- ... **Seeks Insight**, then the PC can ask 3 questions or 1 question total, not 3 or 1 per member of the group.
-- ... Struggles as One along with one or more PCs, roll once for the group. On a 6-, decide which member(s) of the group to put in a spot. On a 10+, ask the player who steps up to save someone, and how.
-- ... incurs a cost, suffers an attack, is put in danger, draws unwanted attention, etc. you decide which member(s) are affected, and how.
-
-## **Creating followers**
+### **Creating followers**
 
 PCs can gain followers...
 
@@ -703,7 +720,7 @@ Before you write someone up as a follower, ask yourself:
 - Do you want to let the dice decide their fate when their PC sends them into danger (as opposed to deciding what happens yourself )?
 - Are you okay with the extra bookkeeping, mechanics, and spotlight time that a follower entails?
 
-## **If you answer "no" to any of the above,**
+**If you answer "no" to any of the above,**
 
 then don't treat the NPC as a follower. This is not a hard-and-fast rubric, though. Your group might want to treat the village horses as followers, but other groups might not.
 
@@ -726,7 +743,7 @@ Note: you don't have to treat someone or something as a follower just because th
 If you decide that a monster becomes a follower, then they already have stats. To convert a monster into a follower:
 
 - **1)** Add any tags that you see fit, to reflect its nature or capabilities.
-- **2)** Choose (or make up) a **cost**, using the examples on [[14 - NPCs and Followers#8 Cost|Cost]] for guidance.
+- **2)** Choose (or make up) a **cost**, using the examples on [[14 - NPCs and Followers#8. Cost|Cost]] for guidance.
 - **3)** Add a spot to track its Loyalty (max 3).
 
 Otherwise, use its stats as-is.
@@ -745,7 +762,7 @@ If stats don't already exist for the follower, then you need to make them. To do
 
 This procedure is detailed on the following pages.
 
-## **1 Basics**
+### **1. Basics**
 
  If you haven't already done so, flesh this follower out as an NPC. Give them a name, develop their concept, and think about how you'll describe them. Add additional details if they seem important or valuable. See [[14 - NPCs and Followers#Creating NPCs|Creating NPCs]] for guidelines.
 
@@ -753,17 +770,17 @@ This procedure is detailed on the following pages.
 
 *First, we flesh him out as an NPC. I ask some questions of the PCs, and we learn that he's Padraig's son and just a few months younger than Caradoc. Caradoc's player also suggests that he fancies Blodwen, but hasn't worked up the courage to say anything about it. That's plenty to work with!*
 
-**2 Tags**
+## **2. Tags**
 
  Give each follower 2-4 tags, sometimes more. Tags are adjectives or nouns, and they should finish the sentence, "This follower is/is a \_\_."
 
-Tags **serve as a guide when you portray the follower**, informing how they act or what they will/won't want to do. Tags also affect **[[14 - NPCs and Followers#**1 Basics**|what a player rolls when they Order Followers]]**.
+Tags **serve as a guide when you portray the follower**, informing how they act or what they will/won't want to do. Tags also affect **[[14 - NPCs and Followers#Followers|what a player rolls when they Order Followers]]**.
 
 Avoid overly broad tags like *experienced*, *invincible*, *skilled*, *incompetent*, etc. You want tags that apply some of the time, not all of the time!
 
 Give followers a mix of tags that are useful, problematic, and mixed blessings. Morecompetent followers should have more useful tags and fewer problematic ones, but even highly skilled followers can have some unpleasant quirks.
 
-If the follower is truly outstanding, then give them the *exceptional* tag (see [[14 - NPCs and Followers#**1 Basics**|NPCs and Followers]]). Such followers should be rare; save this tag for the best of the best.
+If the follower is truly outstanding, then give them the *exceptional* tag (see [[14 - NPCs and Followers#Followers|NPCs and Followers]]). Such followers should be rare; save this tag for the best of the best.
 
 If you're creating a *group* follower, then pick tags that apply to the entire group. As individual members stand out, consider giving each one a unique tag of their own.
 
@@ -771,15 +788,16 @@ If you're creating a *group* follower, then pick tags that apply to the entire g
 
 *Those are both useful traits, so I add*  eager *(a mixed blessing) and* rookie *(definitely problematic).*
 
-## **Tag examples**
+> [!box] **Tag examples**
+> 
+> **Useful tags:** *agile*, *archer*, *athletic*, *beautiful*, *brave*, *cunning*, *fast*, *fierce*, *hardy*, *healer*, *intimidating*, *magical*, *observant*, *organized*, *patient*, *respected*, *self-sufficient*, *sharp-eyed*, *stealthy*, *tireless*, *tracker*, *warrior*, *\_\_\_-wise*
+> 
+> **Problematic tags:** *bigoted*, *drunk*, *greedy*, *gullible*, *lecherous*, *naive*, *proud*, *rookie*, *reckless*, *short-fused*, *stubborn*, *frail*
+> 
+> **Mixed blessing tags:** *animal-lover*, *annoying*, *big*, *bully*, *callous*, *cautious*, *devious*, *eager*, *thieving*, *gossipy*, *honest*, *kind*, *little*, *shameless*, *terrifying*
+> ^tag-examples
 
-**Useful tags:** *agile*, *archer*, *athletic*, *beautiful*, *brave*, *cunning*, *fast*, *fierce*, *hardy*, *healer*, *intimidating*, *magical*, *observant*, *organized*, *patient*, *respected*, *self-sufficient*, *sharp-eyed*, *stealthy*, *tireless*, *tracker*, *warrior*, *\_\_\_-wise*
-
-**Problematic tags:** *bigoted*, *drunk*, *greedy*, *gullible*, *lecherous*, *naive*, *proud*, *rookie*, *reckless*, *short-fused*, *stubborn*, *frail*
-
-**Mixed blessing tags:** *animal-lover*, *annoying*, *big*, *bully*, *callous*, *cautious*, *devious*, *eager*, *thieving*, *gossipy*, *honest*, *kind*, *little*, *shameless*, *terrifying*
-
-# **3 Hit points**
+### **3. Hit points**
 
  Determine the follower's maximum HP by answering the following questions:
 
@@ -798,29 +816,28 @@ If you're creating a *group* follower, then pick tags that apply to the entire g
 
 *Andras strikes me as able-bodied—a healthy young man with the strength to pull a bow. He's not* tiny *nor* large*, and I've no reason to think the fates smile on him, so he has 6 HP.*
 
-## **4 Armor**
+### **4. Armor**
 
 Answer the following:
 
-| What protects them? (pick 1)  | armor |
-|-------------------------------|-------|
-| Naught but cloth and flesh    | 0     |
-| Leathers or thick hide        | 1     |
-| Mail, scale, or similar       | 2     |
-| Steel, boney plates, carapace | 3     |
-| Potent magical wards or       | 4     |
-| supernatural resilience       |       |
+| What protects them? (pick 1)                    | armor |
+| ----------------------------------------------- | ----- |
+| Naught but cloth and flesh                      | 0     |
+| Leathers or thick hide                          | 1     |
+| Mail, scale, or similar                         | 2     |
+| Steel, boney plates, carapace                   | 3     |
+| Potent magical wards or supernatural resilience | 4     |
 
-| What else applies? (pick all that do) armor |    |  |
-|---------------------------------------------|----|--|
-| They are tiny                               | +1 |  |
-| They bear a shield or similar               | +1 |  |
-| They are skilled in defense                 | +1 |  |
-| They lack vital organs                      | +1 |  |
+| What else applies? (pick all that do) | armor |
+| ------------------------------------- | ----- |
+| They are tiny                         | +1    |
+| They bear a shield or similar         | +1    |
+| They are skilled in defense           | +1    |
+| They lack vital organs                | +1    |
 
 *Andras is just a young man, with no special skills or protections. He has 0 armor unless Rhianna opts to Outfit him with thick hides or a shield.*
 
-**<sup>5</sup> Damage** Answer the following:
+## **5. Damage** Answer the following:
 
 | How dagerous are they? (pick 1) | damage |
 |---------------------------------|--------|
@@ -828,11 +845,11 @@ Answer the following:
 | Can defend themselves           | d6     |
 | Veteran fighter or predator     | d8     |
 
-Range and other tags are based on their gear. For monstrous followers, use the damage guidelines for **[[12 - Dangers#Tags|monsters]]**.
+Range and other tags are based on their gear. For monstrous followers, use the damage guidelines for **[[12 - Dangers#Monsters|monsters]]**.
 
 *Again, Andras is an able-bodied youth who's good with a bow. He's a rookie, but I think he can defend himself just fine. He does 1d6 damage.*
 
-## **6 Instinct**
+### **6. Instinct**
 
  What does the follower do naturally that causes trouble for the PC they follow? Write their instinct in this format: "to [do something]." Example instincts for followers include:
 
@@ -846,25 +863,27 @@ Range and other tags are based on their gear. For monstrous followers, use the d
 
 *I want to play up Andras's eagerness, which I like as a contrast to Caradoc, who's growing out of his "impetuous youth" shtick. I double-down on his*  eager *tag and give him an instinct of "to try to impress Rhianna." That should be slightly exasperating and it's likely to push him into doing some dumb stuff, without making him a complete liability.*
 
-## **7 Moves** (optional) Write up to 3 GM moves. Write them so that they complete the sentence:
+### **7. Moves** (optional)
+
+ Write up to 3 GM moves. Write them so that they complete the sentence:
 
 "The follower can/will \_\_\_." For example:
 
-- <sup>ä</sup> Sniff out trouble on the wind
-- <sup>ä</sup> Weave a minor glamour
-- <sup>ä</sup> Wander off on their own
+- ▸ Sniff out trouble on the wind
+- ▸ Weave a minor glamour
+- ▸ Wander off on their own
 
 A follower's moves can reflect abilities not covered by a tag, or how they use a specific tag, and/or common behaviors (good or bad).
 
-These moves are mostly for you and this step is completely optional, but the player sees them and they can affect what the player rolls when they **[[14 - NPCs and Followers#ORDER FOLLOWERS|Order Followers]]**.
+These moves are mostly for you and this step is completely optional, but the player sees them and they can affect what the player rolls when they **[[14 - NPCs and Followers#^order-followers|Order Followers]]**.
 
 *I consider giving Andras some GM moves like "moon over Blodwen" or "make a rookie mistake," but frankly I don't feel like I need them. Those moves wouldn't affect any rolls that Rhianna makes on his behalf, and they aren't materially different from his tags or traits. So, no moves, at least for now.*
 
-## **8 Cost**
+### **8. Cost**
 
  A follower's cost describes what keeps them following a PC's lead. It's usually a few words, like "coin, payment, treasure" or "affection, respect" or "training."
 
-Choose one from the list below, or make something up. When their cost is paid, they hold +1 Loyalty (max 3), per the **Strengthen Your Bond** move [[14 - NPCs and Followers#STRENGTHEN YOUR BOND|Strengthen Your Bond]].
+Choose one from the list below, or make something up. When their cost is paid, they hold +1 Loyalty (max 3), per the **Strengthen Your Bond** move [[14 - NPCs and Followers#^strengthen-your-bond|Strengthen Your Bond]].
 
 - Coin, payment, treasure
 - Renown, public recognition
@@ -876,7 +895,7 @@ Choose one from the list below, or make something up. When their cost is paid, t
 
 *Andras is a young man, eager and a rookie, with an instinct of "to try to impress Rhianna." I think that a word of praise from Rhianna, especially in public, would mean the world to this kid. And so I make that his cost: "Recognition."*
 
-## **9 Equipment**
+### **9. Equipment**
 
  Either decide what gear the follower is carrying, or ask the player to Outfit them as if they were a PC.
 
@@ -884,7 +903,7 @@ Choose one from the list below, or make something up. When their cost is paid, t
 
 I write this down on an index card and hand it to Rhianna's player when he shows up for their departure:
 
-## ANDRAS, apprentice hunter
+#### ANDRAS, apprentice hunter
 
 Archer, observant, eager, rookie HP 6; Armor 0 Damage knife 1d6 (hand) or bow 1d6 (near, O low ammo, O out) Instinct: to try to impress Rhianna Cost: recognition (Loyalty OOO)
 
@@ -894,7 +913,7 @@ Young man, Padraig's son. Sweet on Blodwen. Tries real hard, asks lots of questi
 
 *Caradoc gives him some grief about bringing a cloak when the weather is still so warm (for autumn). Rhianna, though, nods approvingly. "You know how to cook, kid?" He starts talking up the (small) handful of dishes he can make and she's like "Yeah, great, kid," and she adds a mess kit and two undefined s to his gear.*
 
-## **Updating followers**
+### **Updating followers**
 
 Followers can change over time. They might change mechanically, like when the Marshal takes the "Veteran Crew" move. But often, they'll change naturally over the course of play.
 
@@ -910,11 +929,11 @@ Between sessions, review any followers that the PCs have. For each one, if…
 - … **they no longer look to the PC for leadership, or would no longer take orders from them**, then they're not a follower anymore (see next column).
 - … **they shift their loyalty from one PC to another** (or their current leader passes off responsibility for them to another PC), then tell the players, and maybe demonstrate it via a scene in the next session. Tell the players to update their notes accordingly.
 
-## **Losing followers**
+### **Losing followers**
 
 Followers might die, of course. But they might also stop being followers for a number of reasons.
 
-## **The relationship between follower and PC might be temporary or situational**.
+**The relationship between follower and PC might be temporary or situational**.
 
 When it no longer makes sense for them to take orders from the PC, they stop being a follower. They might return to follower status again, but for now, they have their own life to live!
 

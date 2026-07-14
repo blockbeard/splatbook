@@ -2,6 +2,9 @@
 
 *Most people hope for a quiet life. They spend their days a-worrying: about a leaky roof, a sick child, their crops. But you aren't like most people—you're on a different path. A path to adventure! There's greatness in you. Let's hope you live long enough for everyone else to see it.*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 137–140)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-137-140
+
 ## Background
 
 Choose 1.
@@ -74,10 +77,10 @@ Choose 1.
 
 Choose 1 on each line, or make something up:
 
-still a child / young & beautiful / all grown up
-confident voice / earnest voice / quiet voice
-big / scrawny / sinewy / slender / thick
-back unbowed / jaw firmly set / soulful eyes
+- still a child / young & beautiful / all grown up
+- confident voice / earnest voice / quiet voice
+- big / scrawny / sinewy / slender / thick
+- back unbowed / jaw firmly set / soulful eyes
 
 ## Place of origin and name
 
@@ -110,7 +113,7 @@ Debilities: STR/DEX — **weakened** · INT/WIS — **dazed** · CON/CHA — **m
 
 You start with Anger is a Gift, Potential for Greatness, and 2 other moves of your choice.
 
-### ANGER IS A GIFT
+##### ANGER IS A GIFT
 
 *(starting move · Resolve tracker: 2)*
 
@@ -122,17 +125,17 @@ When you **burn with righteous anger** (see Fear & Anger on back of playbook), h
 - Strike hard (+1d4 damage, *forceful*)
 - Keep your footing, position, and/or your course despite what befalls you
 
-#### SPEAK TRUTH TO POWER
+##### SPEAK TRUTH TO POWER
 
 *(Requires Anger is a Gift)*
 
 When you **demand that someone does what is clearly good and right**, you have advantage to Persuade. If they refuse, gain +1 Resolve.
 
-### BETTER PART OF VALOR
+##### BETTER PART OF VALOR
 
 When you **are outnumbered or facing a foe bigger than you**, you have advantage to hide from, escape from, or sneak past them.
 
-### I GET KNOCKED DOWN
+##### I GET KNOCKED DOWN
 
 When you **take damage despite your best efforts to avoid it**, you can choose to halve the damage but pick 1 of the following:
 
@@ -142,31 +145,31 @@ When you **take damage despite your best efforts to avoid it**, you can choose t
 
 Whatever you choose, the GM will describe the details.
 
-#### BUT I GET UP AGAIN
+##### BUT I GET UP AGAIN
 
 *(Requires I Get Knocked Down)*
 
 When you **use I Get Knocked Down**, you have advantage on your next roll against whatever dealt the damage and your next blow against them does +1d4 damage.
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### IN OVER YOUR HEAD
+##### IN OVER YOUR HEAD
 
 When **another PC rescues you from danger**, mark XP.
 
-### IRON WILL
+##### IRON WILL
 
 When you **are subject to mind control or magic that affects your feelings**, you can take 1d4 damage (ignoring armor) to disregard its influence.
 
-### INQUIRING MINDS
+##### INQUIRING MINDS
 
 When you **seek out and receive honest advice**, gain advantage on your next roll to follow that advice.
 
-### NEVER GONNA KEEP ME DOWN
+##### NEVER GONNA KEEP ME DOWN
 
 *(per-session tracker: 1)*
 
@@ -174,7 +177,7 @@ When you **have 5 or fewer current HP**, you impose disadvantage on any damage y
 
 Once per session, when you are at Death's Door, don't roll. You get a 10+.
 
-### POTENTIAL FOR GREATNESS
+##### POTENTIAL FOR GREATNESS
 
 *(starting move · Requires the Would-be Hero)*
 
@@ -210,25 +213,25 @@ Pick 2.
 
 *The first time you use any move marked with an asterisk (\*), cross off "Would-be" on the front page.*
 
-### RESOURCEFUL
+##### RESOURCEFUL
 
 When you **Defy Danger and roll a 6-**, ask the GM a question from Seek Insight after they describe what happens. Gain advantage on your next roll to act on the answer.
 
-### SOMETHING TO REMEMBER ME BY
+##### SOMETHING TO REMEMBER ME BY
 
 When you **spend Readiness (from Defend) to strike back at an attacker**, you deal +1d4 damage and scar, mark, or diminish them in some way (the GM will say how, or ask you to).
 
-### TOUGH LOVE
+##### TOUGH LOVE
 
 When you **honestly think another PC is in the wrong and call them on it**, they have disadvantage on any rolls against you until you two work it out.
 
-### UNDERESTIMATED
+##### UNDERESTIMATED
 
 As long as you **avoid overt hostility**, no enemy will consider you a threat.
 
 When you **first make your move against an enemy who underestimates you**, you have advantage.
 
-### UP WITH PEOPLE
+##### UP WITH PEOPLE
 
 *(Rapport trackers: 2 / 1)*
 
@@ -239,13 +242,13 @@ When you **converse with someone** (PC or NPC) you can hold 2 Rapport with them.
 - What lesson would you have me learn?
 - What do you think of me, truly?
 
-### VERSATILE
+##### VERSATILE
 
 *(Requires level 2+, the Would-be Hero · may be taken 4 times)*
 
 Choose a move from any other playbook, as long as you meet its requirements. You can pick from a different playbook each time. You can't take Improved Stat or Superior Stat.
 
-### A FORCE TO BE RECKONED WITH\*
+##### A FORCE TO BE RECKONED WITH\*
 
 *(Requires level 6+; replaces Underestimated)*
 
@@ -253,7 +256,7 @@ Any intelligent creature who looks you in the eye or hears the steel in your voi
 
 When you **Defy Danger against something trying to harm or constrain you**, on a 12+ you turn the tables on them (the GM will say how, or ask you to).
 
-### BIG DAMN HERO\*
+##### BIG DAMN HERO\*
 
 *(Requires level 6+; replaces In Over Your Head)*
 
@@ -261,19 +264,19 @@ When you **first leap into danger to protect someone**, don't roll to Defend. In
 
 When you **Defend**, you can spend 1 Readiness to lock eyes with an attacker; they have disadvantage on damage rolls against you and your ward for the rest of the fight.
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires all 6 marks in Potential for Greatness)*
 
 Increase one of your stats by +1 (to a max of +3).
 
-### UNDAUNTED\*
+##### UNDAUNTED\*
 
 *(Requires level 6+; replaces Better Part of Valor)*
 
 When you **are outnumbered or facing a foe bigger than you**, you get +1 armor and deal +1d6 damage.
 
-### VOICE OF EXPERIENCE\*
+##### VOICE OF EXPERIENCE\*
 
 *(Requires level 6+; replaces Inquiring Minds)*
 

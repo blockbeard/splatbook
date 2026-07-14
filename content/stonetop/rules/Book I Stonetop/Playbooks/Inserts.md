@@ -1,5 +1,8 @@
 # Inserts
 
+> [!abstract]- Printable inserts (2nd-printing PDF, Book I pp. 141–153)
+> ^printable-inserts-2nd-printing-pdf-book-i-pp-141-153
+
 Your PC will have at least one insert, a double-sided half-page sheet that you can slip inside your folded playbook. PDFs are included in the playkit on the Lampblack & Brimstone website, but the inserts are also included in this chapter for reference.
 
 Every PC gets the **[[Inserts#Inventory|Inventory]]** sheet. See **[[03 - Playing the Game#Gear and possessions|Gear and possessions]]** for an explanation on how this insert is used. The back of the insert will vary based on your playbook and choices made.
@@ -17,7 +20,7 @@ The PDF in the playkit is set up to print with the Inventory sheet on one page a
 
 There are also three inserts that can be gained as a result of the Death's Door move and bad decision-making: the **[[Inserts#Ghost|Ghost]]**, the **[[Inserts#Revenant|Revenant]]**, and the **[[Inserts#Thrall|Thrall]]**. These inserts are normally printed out double-sided on a half-sheet of paper. You take one of them only when it becomes relevant.
 
-In addition to the inserts presented in this chapter, you might also get an insert that represents a **[[03 - Playing the Game#**Major arcana**|major arcanum]]**. The Seeker starts play with a major arcanum as indicated by their background; and if you take the Heavy playbook with the "Storm-marked" background, you start play with the Storm Markings major arcanum. You'll find these in Appendix D: Major Arcana (*[[58 - Appendix D - Major Arcana#appendix d : major arcana|Book II]]*).
+In addition to the inserts presented in this chapter, you might also get an insert that represents a **[[03 - Playing the Game#Minor arcana|major arcanum]]**. The Seeker starts play with a major arcanum as indicated by their background; and if you take the Heavy playbook with the "Storm-marked" background, you start play with the Storm Markings major arcanum. You'll find these in Appendix D: Major Arcana (*[[58 - Appendix D - Major Arcana#Major Arcana|Book II]]*).
 
 ## Inventory
 
@@ -114,13 +117,14 @@ When you **Outfit**, mark small items below equal to 4+Prosperity.
 
 Plus blank write-in lines.
 
-### Prosperity
-
-- [ ] -1 — Gear is *crude*
-- [ ] +0
-- [ ] +1 — *x* = 1 piercing
-- [ ] +2 — *x* = 2 piercing
-- [ ] +3 — *x* = 3 piercing
+>[!box] ### Prosperity
+>
+>- [ ] -1 — Gear is *crude*
+>- [ ] +0
+>- [ ] +1 — *x* = 1 piercing
+>- [ ] +2 — *x* = 2 piercing
+>- [ ] +3 — *x* = 3 piercing
+> ^prosperity
 
 ## Animal Companion
 
@@ -176,25 +180,26 @@ Each time you take Beast of Legend, pick 1:
 - [ ] They get +4 HP and +1 armor
 - [ ] They develop a unique ability or trait
 
-### Order followers
-
-When you **direct them to make a move and they do so,** roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.
-
-When they **are without orders** or they **act on their own initiative**, the GM says what they do and how it goes.
-
-### Strengthen your bond
-
-When you **pay their cost** and you haven't done so recently, they hold +1 Loyalty (max 3).
-
-Spend their Loyalty 1-for-1 to have them:
-
-- Overcome their fear to do as you say
-- Resist acting on their instinct/tags/traits
-- Do something they don't want to do (as long as it's not abhorrent or suicidal)
-
-### Loyal to the end
-
-When **your companion is at 0 HP**, roll +0, with advantage if it holds Loyalty: **on a 10+**, it'll be fine once it regains any HP; **on a 7-9**, it gets the *injured* tag; **on a 6-**, it's injured and will die soon unless someone saves it.
+>[!move] ### Order followers
+>
+>When you **direct them to make a move and they do so,** roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.
+>
+>When they **are without orders** or they **act on their own initiative**, the GM says what they do and how it goes.
+>
+>### Strengthen your bond
+>
+>When you **pay their cost** and you haven't done so recently, they hold +1 Loyalty (max 3).
+>
+>Spend their Loyalty 1-for-1 to have them:
+>
+>- Overcome their fear to do as you say
+>- Resist acting on their instinct/tags/traits
+>- Do something they don't want to do (as long as it's not abhorrent or suicidal)
+>
+>### Loyal to the end
+>
+>When **your companion is at 0 HP**, roll +0, with advantage if it holds Loyalty: **on a 10+**, it'll be fine once it regains any HP; **on a 7-9**, it gets the *injured* tag; **on a 6-**, it's injured and will die soon unless someone saves it.
+> ^order-followers
 
 ## Crew
 
@@ -268,21 +273,22 @@ When one stands out, give them a name, a tag, and one or more traits. (Six portr
 
 **Traits:** \_\_'s kid/sibling/parent/cousin/\_\_, bald, crush on \_\_, grudge against \_\_, hates \_\_, idolizes \_\_, jokes, messy, missing eye/finger/hand/\_\_, misses their kids, nightmares, recently married, religious, scars, skinny, sharp-tongued, sings, snores, tells tall tales, too serious, troubles at home, whistles, whittler
 
-### Order followers
-
-When you **direct them to make a move and they do so,** roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.
-
-When they **are without orders** or they **act on their own initiative**, the GM says what they do and how it goes.
-
-### Strengthen your bond
-
-When you **pay their cost** and you haven't done so recently, they hold +1 Loyalty (max 3).
-
-Spend their Loyalty 1-for-1 to have them:
-
-- Overcome their fear to do as you say
-- Resist acting on their instinct/tags/traits
-- Do something they don't want to do (as long as it's not abhorrent or suicidal)
+>[!move] ### Order followers
+>
+>When you **direct them to make a move and they do so,** roll +1 instead of +STAT if any of their tags apply (or +2 if they're also *exceptional*). If no tags apply, roll +0. If any of their tags would get in the way, roll with disadvantage.
+>
+>When they **are without orders** or they **act on their own initiative**, the GM says what they do and how it goes.
+>
+>### Strengthen your bond
+>
+>When you **pay their cost** and you haven't done so recently, they hold +1 Loyalty (max 3).
+>
+>Spend their Loyalty 1-for-1 to have them:
+>
+>- Overcome their fear to do as you say
+>- Resist acting on their instinct/tags/traits
+>- Do something they don't want to do (as long as it's not abhorrent or suicidal)
+> ^order-followers-2
 
 ## Initiates of Danu
 
@@ -326,7 +332,7 @@ Lightbearer, you start knowing 2 Invocations. Each time you reach an even-number
 
 While one Invocation is *ongoing*, you can't use another. You can end an Invocation whenever you wish, and it will end immediately if your holy light is extinguished. An invocation's range is equal to that of its light source.
 
-### BATH OF HEALING LIGHT
+##### BATH OF HEALING LIGHT
 
 Cup your hands around your light and focus it. Your patient... (pick 2):
 
@@ -343,7 +349,7 @@ Cup your hands around your light and focus it. Your patient... (pick 2):
 - Fully recovers from a problematic wound
 - Is cured of a dire affliction, poison, or disease
 
-### BLINDING LIGHT
+##### BLINDING LIGHT
 
 *(ongoing)*
 
@@ -353,7 +359,7 @@ Your light blazes. Any in range who look at it are temporarily blinded. Those no
 
 **Empowered**: if you wish, your allies are unaffected.
 
-### CLEANSING LIGHT
+##### CLEANSING LIGHT
 
 Your light flares, dispelling magical effects within range. Potent, lasting magics are merely suppressed, and slowly return to power once removed from your light.
 
@@ -361,7 +367,7 @@ Your light flares, dispelling magical effects within range. Potent, lasting magi
 
 **Empowered**: the invocation is *ongoing*; while it lasts, any magical effects created in or brought into range are dispelled/suppressed.
 
-### COLD LIGHT OF DAY
+##### COLD LIGHT OF DAY
 
 *(ongoing)*
 
@@ -371,7 +377,7 @@ All in your light appears as it really is, without the benefit of illusion, shap
 
 **Empowered**: illusions in the light are dispelled and shapeshifters in the light are momentarily stunned.
 
-### DANCING LIGHT
+##### DANCING LIGHT
 
 *(ongoing)*
 
@@ -381,7 +387,7 @@ Your light takes to the air, floating as you direct it, untethered from its fuel
 
 **Empowered**: you can use another Invocation through the Dancing Light while it is *ongoing*.
 
-### GO BACK TO THE SHADOW
+##### GO BACK TO THE SHADOW
 
 Spirits of darkness in your light take 2d8 damage (ignores armor). Roll damage for each spirit separately. A spirit reduced to 0 HP is either banished from this world or back to whatever tethers it here.
 
@@ -389,7 +395,7 @@ Spirits of darkness in your light take 2d8 damage (ignores armor). Roll damage f
 
 **Empowered**: a spirit reduced to 0 HP is either utterly destroyed OR it's banished from the world and anything tethering it here is destroyed (GM's choice).
 
-### HOLD BACK THE DARKNESS
+##### HOLD BACK THE DARKNESS
 
 *(ongoing)*
 
@@ -399,7 +405,7 @@ Spirits and creatures of darkness are repelled by your light and cannot approach
 
 **Empowered**: affected entities that are forced into range of your light are vulnerable to mundane weapons, their supernatural defenses suppressed.
 
-### MOTH TO A FLAME
+##### MOTH TO A FLAME
 
 *(ongoing)*
 
@@ -409,7 +415,7 @@ Name an individual or type of mortal creature. They gaze raptly at your light an
 
 **Empowered**: the effect continues for a few moments after they first take damage. Taking damage a second time ends the effect immediately.
 
-### TERRIBLE AS THE DAWN
+##### TERRIBLE AS THE DAWN
 
 *(ongoing)*
 
@@ -419,7 +425,7 @@ Name an individual or type of mortal creature. Your light fills them with dread,
 
 **Empowered**: even the brave must cower or flee.
 
-### WARMTH OF THE SUN
+##### WARMTH OF THE SUN
 
 *(ongoing)*
 
@@ -435,45 +441,46 @@ While in your light, you and your allies are free of fear and doubt, and unharme
 
 Two blank follower blocks, each with: Name, Tags, HP, *exceptional* / *group* checkboxes, Max. HP, Armor, Damage, Instinct, Moves (three lines), Cost, **Loyalty** (max 3), Gear (◇ and ◇◇ lines), and Notes.
 
-### Player's Agenda
-
-- Portray a compelling character
-- Engage with the fictional world
-- Play to find out what happens
-
-### Player's Principles
-
-- Begin and end with the fiction
-- Connect with the other PCs
-- Show us what's important to you
-- Have goals and pursue them
-- Be bold, take risks
-- Embrace difficulty, setback, and failure
-- Participate in worldbuilding
-- Build on what others have said
-- Give others a chance to shine
-- Participate in the conversation
-
-### When in doubt…
-
-- Visualize the situation
-- Ask the GM for clarification
-- What do you want? What's your goal?
-- Consider your strengths and weaknesses
-- Look to others for ideas
-- Go with the obvious choice, the interesting choice, the meaningful choice... not always the "right" choice (remember, you get XP on a miss!)
-
-### Triggering moves
-
-If you want to do it, then do it in the fiction. Tell us how you do it, what it looks like. Be specific.
-
-But remember: if you do it in the fiction, then you have to do it. "I rush past the hagr to grab the glowing sword" and the GM says that's Defy Danger with DEX. It's okay to say, "Oh, really? I guess I don't do that." But if you want to rush past the hagr, make with the dice.
-
-### Hold and spend
-
-When a move says, "hold X Currency (until/while/so long as \_\_)," then note the Currency you hold and spend it as described by the move. Spending held Currency usually means you just do it, no roll required.
-
-Sometimes, though, spending held Currency will allow you to trigger a move (and thus roll) when otherwise you just couldn't have done it.
+>[!box] ### Player's Agenda
+>
+>- Portray a compelling character
+>- Engage with the fictional world
+>- Play to find out what happens
+>
+>### Player's Principles
+>
+>- Begin and end with the fiction
+>- Connect with the other PCs
+>- Show us what's important to you
+>- Have goals and pursue them
+>- Be bold, take risks
+>- Embrace difficulty, setback, and failure
+>- Participate in worldbuilding
+>- Build on what others have said
+>- Give others a chance to shine
+>- Participate in the conversation
+>
+>### When in doubt…
+>
+>- Visualize the situation
+>- Ask the GM for clarification
+>- What do you want? What's your goal?
+>- Consider your strengths and weaknesses
+>- Look to others for ideas
+>- Go with the obvious choice, the interesting choice, the meaningful choice... not always the "right" choice (remember, you get XP on a miss!)
+>
+>### Triggering moves
+>
+>If you want to do it, then do it in the fiction. Tell us how you do it, what it looks like. Be specific.
+>
+>But remember: if you do it in the fiction, then you have to do it. "I rush past the hagr to grab the glowing sword" and the GM says that's Defy Danger with DEX. It's okay to say, "Oh, really? I guess I don't do that." But if you want to rush past the hagr, make with the dice.
+>
+>### Hold and spend
+>
+>When a move says, "hold X Currency (until/while/so long as \_\_)," then note the Currency you hold and spend it as described by the move. Spending held Currency usually means you just do it, no roll required.
+>
+>Sometimes, though, spending held Currency will allow you to trigger a move (and thus roll) when otherwise you just couldn't have done it.
+> ^players-agenda
 
 ## Ghost
 
@@ -491,13 +498,13 @@ Lose the Instinct from your playbook, and replace it with one of these (your cho
 
 You gain all of the following:
 
-#### UNLIVING
+##### UNLIVING
 
 *(granted)*
 
 You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce.
 
-#### DISEMBODIED
+##### DISEMBODIED
 
 *(granted)*
 
@@ -511,7 +518,7 @@ You normally go unseen, with the barest influence on the material world and a di
 
 You remain manifest for as long as you concentrate; pain or shock or direct sunlight threaten your concentration, for sure.
 
-#### TETHERED
+##### TETHERED
 
 *(granted)*
 
@@ -593,13 +600,13 @@ Lose the Instinct from your playbook, and replace it with one of these (your cho
 
 You gain all of the following:
 
-#### UNLIVING
+##### UNLIVING
 
 *(granted)*
 
 You do not breathe. You need not eat nor drink nor sleep. You do not heal normally. You gain no benefit from magical healing, Make Camp, Recover or Convalesce.
 
-#### UNDYING
+##### UNDYING
 
 *(granted)*
 
@@ -613,7 +620,7 @@ When you **are reduced to 0 HP**, roll +CON: **on a 10+**, regain half your max 
 
 If **your body is completely destroyed** (burnt to ash, ground to jelly, etc.), treat it as if you were reduced to 0 HP and rolled a 6-.
 
-#### IMPLACABLE
+##### IMPLACABLE
 
 *(granted)*
 
@@ -688,7 +695,7 @@ Lose the Instinct from your playbook, and replace it with one of these (your cho
 
 You gain all of the following:
 
-#### FAVOR
+##### FAVOR
 
 *(granted · Favor tracker: 3)*
 
@@ -697,7 +704,7 @@ Your Favor starts at 0 and can go no higher than 3. When you **have 3 Favor and 
 - Ask a question of your master and gain advantage on your next roll to act on the answer.
 - Gain a new Mark of your choice. Then ask the GM to choose a Mark that you don't have, and cross it off—you can never gain it.
 
-#### URGES
+##### URGES
 
 *(granted)*
 
@@ -711,7 +718,7 @@ When **the GM compels you to act on your impulse**, gain 1 Favor if you act as b
 
 When you **act on your impulse without being compelled to do so**, and your actions cause you or your allies trouble, gain 1 Favor.
 
-#### DARK SUCCOR
+##### DARK SUCCOR
 
 *(granted)*
 
@@ -723,7 +730,7 @@ When you **are dying or killed outright,** your master intercedes on your behalf
 
 Regardless, reset your Favor to 0.
 
-#### UNHOLY VESSEL
+##### UNHOLY VESSEL
 
 *(granted)*
 

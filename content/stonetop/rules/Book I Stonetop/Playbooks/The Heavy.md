@@ -2,6 +2,9 @@
 
 *These are good people. Hard-working, honest. They look out for each other. But sometimes, looking out for each other ain't enough. Sometimes, good people need someone to stick up for them. Someone who's not afraid to get a little bloody. To get heavy. Yeah, someone like you.*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 113–116)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-113-116
+
 ## Background
 
 Choose 1.
@@ -76,33 +79,33 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Dangerous, Hard to Kill, and either Armored OR Uncanny Reflexes.
 
-### ARMORED
+##### ARMORED
 
 When you *carry a shield*, mark only 1 load (instead of 2). Also, you can ignore the *cumbersome* tag on any armor you wear.
 
 If you take this move at the start of play, add an iron hauberk, bronze cuirass, or scale coat to your inventory (all are 2 load, 2 armor, *warm*, *cumbersome*).
 
-### BATTLE JOY
+##### BATTLE JOY
 
 When you *spill blood—yours or another's—and lose yourself in battle*, you ignore fear, pain, mind-control, and the effects of debilities as long as you keep fighting.
 
 When *the action stops*, roll +CON: **on a 10+**, that was a rush, regain 1d4 HP; **on a 7-9**, you're winded and out of it, but you'll be fine with a few minutes' rest; **on a 6-**, mark a debility but don't mark XP.
 
-#### BERSERKER
+##### BERSERKER
 
 *(Requires Battle Joy)*
 While *in your Battle Joy*, add the *area* tag to your melee attacks, lashing out at anyone nearby (friend and foe alike). Roll damage separately for each target.
 
-### CARVED OUT OF WOOD
+##### CARVED OUT OF WOOD
 
 Increase your max HP by 4.
 
-### DANGEROUS
+##### DANGEROUS
 
 *(starting move; requires the Heavy)*
 When you *deal your damage*, you have advantage.
 
-### FORMIDABLE
+##### FORMIDABLE
 
 When you *wade into battle*, you can choose to roll +CHA: **on a 10+**, both; **on a 7-9**, pick 1:
 
@@ -111,54 +114,54 @@ When you *wade into battle*, you can choose to roll +CHA: **on a 10+**, both; **
 
 **On a 6-**, pick 1 but ask the GM what you've missed.
 
-### FROSTY
+##### FROSTY
 
 When you *Defy Danger by keeping calm and carrying on*, **on a 10+** you can also ask the GM a question that you could ask when Seeking Insight. You have advantage on your next move to act on the answer.
 
-### GUARDIAN
+##### GUARDIAN
 
 When you *Defend*, hold 1 extra Readiness. Even on a 6-, hold 1 Readiness (plus whatever the GM says).
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### INTIMIDATING
+##### INTIMIDATING
 
 When you *Persuade using violence or threats*, you have advantage.
 
-### HARD TO KILL
+##### HARD TO KILL
 
 *(starting move)*
 When you *are at Death's Door,* you can roll +CON or +nothing (your choice). **On a 7-9**, you can mark a debility of your choice to regain 1 HP.
 
-#### UNSTOPPABLE
+##### UNSTOPPABLE
 
 *(Requires Hard to Kill; tracker: 5)*
 When you *are reduced to 0 HP in battle*, you can keep fighting. Each time you take damage while at 0 HP, mark 1. If you would regain HP while fighting, clear one mark instead.
 
 When you *stop fighting*, roll for Death's Door with a -1 penalty for each circle marked. If you survive, clear all your circles.
 
-### MUSCLEBOUND
+##### MUSCLEBOUND
 
 *(Requires Strength +2 or higher)*
 When you *make a hand-to-hand or thrown attack*, it's *forceful* and *messy*. If it would already be *forceful* and/or *messy*, it's even more so.
 
-### PAYBACK
+##### PAYBACK
 
 When you *deal damage to a foe that has harmed you or one of your allies*, deal +1d4 damage.
 
-### RELENTLESS
+##### RELENTLESS
 
 When you *Clash and your foe survives*, you gain advantage the next time you Clash with them.
 
-### SEASONED WARRIOR
+##### SEASONED WARRIOR
 
 *(Requires level 2+ and the Heavy; may be taken 3 times)*
 Take a move from the Fox, Marshal, Ranger, or Seeker playbooks, for which you otherwise qualify. You can pick from a different playbook each time. (You can't pick Improved Stat or Superior Stat.)
 
-### SITUATIONAL AWARENESS
+##### SITUATIONAL AWARENESS
 
 When you *Seek Insight*, add the following to the list of questions you can ask:
 
@@ -168,29 +171,29 @@ When you *Seek Insight*, add the following to the list of questions you can ask:
 
 When *a fight breaks out*, ask the GM 1 question that you could ask when Seeking Insight.
 
-### UNCANNY REFLEXES
+##### UNCANNY REFLEXES
 
 When you *are unarmored and carrying a normal or light load*, you impose disadvantage on any damage you take that you could dodge or roll with.
 
-### UNFETTERED
+##### UNFETTERED
 
 When you *are subject to physical or mental restraint*, you may mark a debility to immediately break free of that restraint.
 
-### TERROR ON THE FIELD
+##### TERROR ON THE FIELD
 
 When you *reduce a foe to 0 HP*, describe how you take them out. If you fell them in a particularly brutal or impressive manner, their allies are impressed, dismayed, or frightened and respond accordingly.
 
-### BRINGER OF RUIN
+##### BRINGER OF RUIN
 
 *(Requires level 6+)*
 When you *roll a 12+ to Clash and your foe survives*, name something they possess (like their sword, their position, a limb, their dignity, etc.), but nothing that would kill them outright. Whatever you name, it is broken, shattered, lost. Tell us how.
 
-### CUT FROM GRANITE
+##### CUT FROM GRANITE
 
 *(Requires level 6+ and Carved Out of Wood)*
 Gain +1 armor (stacks with other sources) and increase your max HP by another 2 (+6 HP total).
 
-### MIGHTY THEWS
+##### MIGHTY THEWS
 
 *(Requires level 6+ and Musclebound)*
 When you *perform a feat of extraordinary strength* (bursting chains, smashing through a wall, heaving a boulder, etc.), you do it (OH YEAH!) but pick 1:
@@ -199,22 +202,22 @@ When you *perform a feat of extraordinary strength* (bursting chains, smashing t
 - You cause unwanted damage or harm
 - It takes a toll (mark a debility)
 
-### NEMESIS
+##### NEMESIS
 
 *(Requires level 6+ and Relentless)*
 When you *Clash and your foe survives*, all of your future attacks against them do +1d6 damage.
 
-### STEADFAST GUARDIAN
+##### STEADFAST GUARDIAN
 
 *(Requires level 6+ and Guardian)*
 While you *hold Readiness (from Defend)*, you can always suffer the damage/effects of an attack instead of your ward; no need to spend Readiness, you can just do it.
 
-### STONE COLD
+##### STONE COLD
 
 *(Requires level 6+ and Frosty)*
 When you *Defy Danger (or Struggle as One) by keeping calm and carrying on*, treat a 6- as a 7-9.
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).

@@ -2,8 +2,9 @@
 
 > [!note] Restructured chapter
 > The playbooks, inserts, and steading playbook each live in their own note in the `Playbooks` folder, with the 2nd-printing PDF embedded and the extracted text (errata applied) below it. This note keeps the chapter introduction.
+> ^restructured-chapter
 
-## **This chapter is addressed to players, but GMs should read it, too!**
+#### **This chapter is addressed to players, but GMs should read it, too!**
 
 The contents of this chapter are available as PDFs in a downloadable playkit at www.lampblackandbrimstone.com. They are included here for reference, not for use during play.
 
@@ -29,9 +30,10 @@ For an explanation of each component of a PC playbook, see **[[03 - Playing the 
 
 Each PC also has at least one **insert**. The standard inserts are collected in [[Inserts]]. The village's own playbook is [[The Steading]].
 
-## **The GM has a playbook, too**
-
-When you download the playkit from lampblackandbrimstone.com, you'll also find a PDF of the GM playbook, a collection of rules, maps, and tools for the GM to quickly reference during play and prep. It's a summary of content found elsewhere in this book and *Book II*, and thus is not included in this chapter. In this vault it's embedded in [[The GM]].
+> [!box] **The GM has a playbook, too**
+> 
+> When you download the playkit from lampblackandbrimstone.com, you'll also find a PDF of the GM playbook, a collection of rules, maps, and tools for the GM to quickly reference during play and prep. It's a summary of content found elsewhere in this book and *Book II*, and thus is not included in this chapter. In this vault it's embedded in [[The GM]].
+> ^the-gm-has-a-playbook-too
 
 When you have questions about particular moves or other elements of a playbook (how they work, what exactly \_\_ means, what constitutes "a creature of darkness," etc.), talk it out with the GM and the other players. Consider what's already been established or implied, and work it out as a group.
 

@@ -1,8 +1,15 @@
 # Homefront
 
-**Bringing the village to life Running the homefront Homefront moves The steading playbook Seasons Change Player moves**
-
-> BOLSTER CONVALESCE DEPLOY LEVEL UP MAKE A PLAN MEET WITH DISASTER MUSTER PULL TOGETHER TRADE & BARTER
+| In this chapter | |
+|---|---|
+| [[#Bringing the village to life\|Bringing the village to life]] | [[#Running the homefront\|Running the homefront]] |
+| [[#Homefront moves\|Homefront moves]] | [[#The steading playbook\|The steading playbook]] |
+| [[#Seasons Change\|Seasons Change]] | [[#Player moves\|Player moves]] |
+| [[#^bolster\|BOLSTER]] | [[#^convalesce\|CONVALESCE]] |
+| [[#^deploy\|DEPLOY]] | [[#^level-up\|LEVEL UP]] |
+| [[03 - Playing the Game#^make-a-plan\|MAKE A PLAN]] | [[#^meet-with-disaster\|MEET WITH DISASTER]] |
+| [[#^muster\|MUSTER]] | [[#^pull-together\|PULL TOGETHER]] |
+| [[#^trade-barter\|TRADE & BARTER]] |  |
 
 The **homefront** is what happens before, after, and between adventures. It's what happens in the village of Stonetop and its immediate surroundings. It's where you get to see the PCs living their lives, and the impact of the PCs' efforts.
 
@@ -32,11 +39,11 @@ Following your **[[05 - Running the Game#Your principles|principles]]** will hel
 - Let things breathe
 - Let things burn
 
-## **Follow the rules**
+#### **Follow the rules**
 
 Player moves—especially the **[[15 - Homefront#Player moves|homefront player moves]]**—will introduce unexpected opportunities, challenges, and turns of events. Let those surprises illuminate the village and make it feel real. Life is full of surprises. Your version of Stonetop should be, too!
 
-## **Begin and end with the fiction**
+#### **Begin and end with the fiction**
 
 When players trigger a homefront move, ask how they do it. They Requisition the horses? Cool, who do they talk to and what's their pitch? They Muster the village? What does it look like? A town meeting? A speech at the public house? Or what?
 
@@ -46,11 +53,11 @@ When the steading playbook changes, reflect those changes in the fiction, too. I
 
 Show players how the game's mechanics change the village, and the village will feel dynamic and alive. Show players how their moves and their decisions affect the village, and they'll start to feel responsible for it.
 
-## **Address the characters, not the players**
+#### **Address the characters, not the players**
 
 Describe things from the characters' points of view. Direct questions to the characters rather than the players. Don't tell Brian that folks are scared of Vahid; say, "Vahid, you can tell you're making folks nervous how so?" Focus on how the PCs experience the village, and the village will seem that much more alive.
 
-## **Ask questions and build on the answers**
+#### **Ask questions and build on the answers**
 
 Whenever you wonder something about the village or about daily life, consider asking the PCs about it.
 
@@ -86,34 +93,35 @@ There's a balance to strike, of course. Focus on stuff your group cares about. B
 
 #### **Exploit the setting guide**
 
-The Setting Overview handout and the **[[02 - The Village of Stonetop#**The village of Stonetop**|Village of Stonetop]]** entry provide plenty of details that can help bring the community to life.
+The Setting Overview handout and the **[[02 - The Village of Stonetop#The Village of Stonetop|Village of Stonetop]]** entry provide plenty of details that can help bring the community to life.
 
 When you frame a homefront scene, skim **the Impressions section**. Pick one or two and incorporate them into the scene. It's spring? Set the scene in the fields, planting beans, the PCs coated in cold wet mud. A PC visits their sibling? Mention the smell of fat rendering on the hearth, the rushlights hanging up to dry. Two PCs want a private moment? Frame a scene at night, with one of them manning a watchtower and the other one stopping by.
 
-## **Extrapolate from what's established**,
+**Extrapolate from what's established**,
 
 especially with things that strike you and the players as odd or anachronistic. The villagers don't fell living trees from the Great Wood. How does that affect construction and tools? Do houses have doors? Where do folks get wood for spears, bows, and arrows? They can't *fell* trees, but can they coppice them? Decide for yourself or (better yet) ask the PCs!
 
-### **It's okay to change or ignore things**. *Exploit* the setting guide, don't feel constrained by it. With that said, think about what you're changing and what ripple effects that change might have. Little details (like swapping Stonetop's whisky for mead) are safer to change than core assumptions (like the village's egalitarian culture).
+**It's okay to change or ignore things**. *Exploit* the setting guide, don't feel constrained by it. With that said, think about what you're changing and what ripple effects that change might have. Little details (like swapping Stonetop's whisky for mead) are safer to change than core assumptions (like the village's egalitarian culture).
 
-## **Handling misconceptions**
+> [!box] **Handling misconceptions**
+> 
+> Elements of *Stonetop*'s setting can be counterintuitive for players steeped in the tropes of more traditional fantasy RPGs. For example, you might find your players assuming that…
+> 
+> - ... locals pay each other with coin (coin is for outsiders; locals swap goods and favors, give gifts, owe each other, help each other out).
+> - ... folks need jobs to get by (you're expected to pull your weight, but folks help each other out; no one starves unless all are starving).
+> - ... the village boasts a variety of trades (there's only a few fulltime tradesfolk; most crafts are done by homemakers or other folk as they have time).
+> - ... there are shops (nope), a mill (nuh-uh), an inn (no), multiple taverns (heck no), etc.
+> 
+> Watch out for such misconceptions. If a player mentions "needing coin," or says they run a shop, or otherwise reveals a disconnect between their assumptions and the default setting, then call attention to it. Don't just tell them they're wrong, talk it out!
+> 
+> "So, there aren't shops in Stonetop. Like, folks come to you if they want salt or spices, but I think they'd just come by your house. We can say it's set up like a shop, if you like, but few folks here know what a shop is."
+> 
+> ^handling-misconceptions
+#### **Respect your prep**
 
-Elements of *Stonetop*'s setting can be counterintuitive for players steeped in the tropes of more traditional fantasy RPGs. For example, you might find your players assuming that…
+In particular: write up **[[09 - Threats#Threats|threats]]** and then use them in play. The town busybody might be an *institution*. The bright kid who idolizes the Seeker? A *wildcard*. The Stone itself? Probably a *MacGuffin*. Make binding decisions about these threats. Write impending dooms that involve the village and leave lasting marks upon it. Write stakes that involve NPCs that you and the players care about. And then put those threats on screen. See how the PCs react to them. Follow through.
 
-- ... locals pay each other with coin (coin is for outsiders; locals swap goods and favors, give gifts, owe each other, help each other out).
-- ... folks need jobs to get by (you're expected to pull your weight, but folks help each other out; no one starves unless all are starving).
-- ... the village boasts a variety of trades (there's only a few fulltime tradesfolk; most crafts are done by homemakers or other folk as they have time).
-- ... there are shops (nope), a mill (nuh-uh), an inn (no), multiple taverns (heck no), etc.
-
-Watch out for such misconceptions. If a player mentions "needing coin," or says they run a shop, or otherwise reveals a disconnect between their assumptions and the default setting, then call attention to it. Don't just tell them they're wrong, talk it out!
-
-"So, there aren't shops in Stonetop. Like, folks come to you if they want salt or spices, but I think they'd just come by your house. We can say it's set up like a shop, if you like, but few folks here know what a shop is."
-
-## **Respect your prep**
-
-In particular: write up **[[09 - Threats#Writing a threat|threats]]** and then use them in play. The town busybody might be an *institution*. The bright kid who idolizes the Seeker? A *wildcard*. The Stone itself? Probably a *MacGuffin*. Make binding decisions about these threats. Write impending dooms that involve the village and leave lasting marks upon it. Write stakes that involve NPCs that you and the players care about. And then put those threats on screen. See how the PCs react to them. Follow through.
-
-## **Give your characters life**
+#### **Give your characters life**
 
 Populate the village with NPCs who are distinct and memorable, believable and compelling (see **Creating NPCs** for guidance, [[14 - NPCs and Followers#Creating NPCs|Creating NPCs]]). Keep track of the NPCs you establish, and bring them back into play over time. Show how they change and grow, how they're affected by the PCs' actions.
 
@@ -135,7 +143,7 @@ When the PCs arrive home, show the players what's been happening. Describe the t
 
 Show players that the village changes while the PCs aren't around, and it will feel much more real, much more alive.
 
-## **Bring it home**
+#### **Bring it home**
 
 Make the village the foundation of the game. Get the players to help create and define the village and the NPCs who live there. Give them a chance to care. Then threaten the village, offer opportunities to make things better, and **show how the PCs' decisions and efforts change the village**, for good or for ill.
 
@@ -143,7 +151,7 @@ With that said: don't just show how the PCs are important to the village. **Show
 
 Make it clear that the village of Stonetop isn't just a home base, it's *home*. And make it a home worth protecting, a home worth fighting for.
 
-### **Let things breathe**
+#### **Let things breathe**
 
 Your job is to *punctuate* **the PCs lives with adventure**. There should be stretches of time in which very little happens. Gloss over days, weeks, or months. Let the PCs work on long-term projects or just live their lives. Maybe a season passes with no more than some description and a little Q&A. Stonetop comes to life over time, as the seasons change and characters age and long-term mechanics start to kick in.
 
@@ -151,13 +159,13 @@ Your players might fight this, wittingly or not. They might want to set right ou
 
 Don't be afraid to zoom out, **remind them of their obligations**, and show the passing of time. If you want to get to the next season, don't ask what they do for the rest of the summer. Instead say, "The next few weeks pass uneventfully, until the days get shorter and the leaves start to change. What chores have eaten up your time these past few weeks?"
 
-# **Let things burn**
+#### **Let things burn**
 
 If you do your job, you'll end up with a village and a bunch of NPCs that the players care about. That you care about.
 
 Do not protect them.
 
-You have to be willing to let bad things happen to the village and to beloved NPCs. Stay within the boundaries of your group's **[[03 - Playing the Game#Content|content guidelines]]**, but otherwise: take the gloves off. If the stakes aren't real, then the PCs' heroism isn't real, either.
+You have to be willing to let bad things happen to the village and to beloved NPCs. Stay within the boundaries of your group's **[[03 - Playing the Game#^content|content guidelines]]**, but otherwise: take the gloves off. If the stakes aren't real, then the PCs' heroism isn't real, either.
 
 ## **Running the homefront**
 
@@ -173,7 +181,7 @@ Eventually, something will spur **the next adventure**. The PCs will identify so
 
 Throughout it all, you'll follow the **[[05 - Running the Game#The core loop|core loop]]** and make GM moves especially **[[15 - Homefront#Homefront|homefront moves]]**.
 
-## **Before the first adventure**
+### **Before the first adventure**
 
 Start the first session of actual play at home in the village. Frame mundane scenes that paint a picture of each PC's daily life. Explore the PCs' relationships, with each other and with important NPCs. Use these scenes to establish recent events and current concerns. Play out some daily dramas, but don't, like, *resolve* them.
 
@@ -193,7 +201,7 @@ Don't skip this part! The PCs have been roughing it and putting themselves in da
 
 The same structure applies after a **[[15 - Homefront#Crises|crisis]]** at home abates. Figure out what happened and who was affected, play out an initial post-crisis scene, and then see what scenes naturally follow.
 
-## **1 Determine what's happened**
+### **1. Determine what's happened**
 
 As the PCs head for home, take a few minutes to consider how things have been going while the PCs were away. Think about the following.
 
@@ -201,7 +209,7 @@ As the PCs head for home, take a few minutes to consider how things have been go
 
 **If anyone on the expedition was wounded or didn't make it home**, who will be most upset or affected by that?
 
-**What sort of work has been going on?** Refer to the Stonetop **[[02 - The Village of Stonetop#**Impressions**|impressions]]** for ideas.
+**What sort of work has been going on?** Refer to the Stonetop **[[02 - The Village of Stonetop#Impressions|impressions]]** for ideas.
 
 **Did the PCs Requisition any town assets?** How did the lack of those assets at home affect people's lives (if at all)?
 
@@ -224,7 +232,7 @@ Take notes! If the return home happens mid-session, take a break to gather your 
 - Haymaking, weeding, plowing the fallows
 - Seren's 4 to Persuade Tegwen
 
-## **2 Play out the return**
+### **2. Play out the return**
 
 Frame the action with the PCs arriving back at the village, or at least on their last leg of travel. Say what time it is, what direction they're approaching from, what's obvious as they draw near.
 
@@ -238,13 +246,13 @@ Maybe have them meet an NPC before reaching the village proper. Such an encounte
 
 *Cerys arrives and we have an emotional scene where they tell her what happened. She breaks down crying, but eventually pulls herself together. There's some talk about funerals and wakes, and they decide to head up the switchback path to Stonetop, carrying Garet's shrouded form, singing a hero's funeral song as they go.* 
 
-When the PCs get back to town, use the **[[02 - The Village of Stonetop#**Impressions**|impressions]]** of Stonetop to set the scene. **Think offscreen, too.** Include details that point to what's happened while the PCs were away.
+When the PCs get back to town, use the **[[02 - The Village of Stonetop#Impressions|impressions]]** of Stonetop to set the scene. **Think offscreen, too.** Include details that point to what's happened while the PCs were away.
 
-**If the PCs are Returning Triumphant**  (page [[10 - Expeditions#What if they… don't?|339]]), then launch into what that looks like. Describe the news spreading, a
+**If the PCs are Returning Triumphant**  (page [[10 - Expeditions#^what-if-they-dont|339]]), then launch into what that looks like. Describe the news spreading, a
 
 crowd gathering, toasts, celebration! But also: say who hangs back, glaring, grumbling, still unhappy or just left out.
 
-If the PCs' return would cause panic or reveal a calamity (for example, if they took the village's horses and lost them), **then the village Meets with Disaster** (page [[15 - Homefront#MEET WITH DISASTER|532\)]]. Describe folks gathering to hear the bad news, their fearful eyes, the worried mumbles or the wails of grief. But also: say who steps up, who supports the PCs, who tries to talk sense.
+If the PCs' return would cause panic or reveal a calamity (for example, if they took the village's horses and lost them), **then the village Meets with Disaster** (page [[15 - Homefront#^meet-with-disaster|532\)]]. Describe folks gathering to hear the bad news, their fearful eyes, the worried mumbles or the wails of grief. But also: say who steps up, who supports the PCs, who tries to talk sense.
 
 If the PCs return *could* be triumphant, or *could* cause panic, but it's not a given either way, then set it up as scene. Frame the action, portray your NPCs, and make a GM move. Maybe **tell them the requirements** ("You're all gonna need to keep your stories straight to make this Return Triumphant") or **put them in a spot** ("Folks are grumbling, on the verge of panic"). Ask, "What do you do?" and see if the PCs can pull it off.
 
@@ -260,7 +268,7 @@ From there, ask, **"What do you do?"** Play out the situation until all the PCs 
 
 *I ask more questions about funeral rites. Blodwen says that they'd take the body to the pavilion of the gods, and someone would sit vigil with it all night, before a proper funeral pyre the next morning. Rhianna insists on keeping the vigil, so that Cerys can see to her kids. Vahid offers up a beautiful Lygosi song for the dead before heading home. The other PCs disperse as well.*
 
-## **3 See what follows**
+### **3. See what follows**
 
 Once the PCs go their separate ways, frame a few more scenes and situations that play out over the next few days, before you transition to downtime. In particular, play out:
 
@@ -303,7 +311,7 @@ kind to that PC.
 
 *Blodwen's feeling pretty raw, so I frame a scene after the funeral, a chance for her to vent to Gwendyl and Seren (the other Initiates of Danu). She does, and at the end, I offer an opportunity. Seren says she could use a hand around the house, what with her old bones, and there's plenty of room for the goats, too. A teary-eyed Blodwen promises to give it some real thought.*
 
-## **Downtime**
+### **Downtime**
 
 When you've played out all the scenes and situations that immediately follow the PCs' return, transition to downtime.
 
@@ -358,7 +366,7 @@ When enough time passes, have the **Seasons Change** (page [[15 - Homefront#SEAS
 
 *No one else has anything they want to do this summer, so we do the Seasons Change move. Vahid strikes us all as the most determined, so he rolls. He gets an 8, which means a seasonal gain and a threat. I plan to start the next session introducing that threat, and setting up the next adventure.*
 
-## **The next adventure**
+### **The next adventure**
 
 Downtime ends with the next adventure, which might be an expedition or a crisis, and either spontaneous or prepped in advance.
 
@@ -387,7 +395,7 @@ If you do split the party, make sure the PCs staying behind have interesting and
 
 *Vahid and Caradoc make preparations. I ask Caradoc how he tells Morwenna about this, which leads to a scene where she's not happy but Caradoc doesn't even notice. Then the two PCs head out!*
 
-## **Crises**
+### **Crises**
 
 A **crisis** means active, urgent badness in the village, here and now. A monster attacks. A house catches fire. Someone is murdered. Whatever it is, it's bad and it has the potential to get worse.
 
@@ -413,7 +421,7 @@ If they don't head out immediately, shift back to homefront play and deal with t
 
 *By the time the action ends, it's near dawn and folks are exhausted. We shift to homefront play. I describe the aftermath—children crying, wounds being seen to, Pryder weeping over his dad's body. Each PC gets a short scene, and the next morning, Rhianna and her crew try to track the crinwin. Alas, she gets a 6 to Seek Insight, and I reveal an unwelcome truth. They find a few bodies, dead of their wounds, but no nests and no clear trail. "Crap," says Rhianna, as we shift back to downtime.*
 
-## **Spontaneous adventures**
+### **Spontaneous adventures**
 
 An adventure might start mid-session, with no chance for you to prep. This can happen when…
 
@@ -438,7 +446,7 @@ If a spontaneous adventure doesn't wrap up by the session's end, cool. Now you h
 
 *We end there, and I prep the rest of the adventure before the next session.*
 
-## **Prepared adventures**
+### **Prepared adventures**
 
 If you expect to start an adventure in the next (or an upcoming) session, then spend some time prepping it.
 
@@ -452,32 +460,33 @@ Remember, though: prep only what's useful and valuable to you. Don't spend time 
 
 *That Seasons Change result also meant they got a seasonal gain. They picked a "trade opportunity," which I think will lead to an expedition to Gordin's Delve. But the coming crinwin attack will take up most (if not all) of the next session. So, all I do is prep the hook—Ulna, that merchant for Marshedge, will come back through Stonetop with news that the Delve is desperate for food.*
 
-## **How many adventures per season?**
-
-As many as makes sense! Follow the fiction, the moves, and the wishes of your players. If the Seasons Change move results in threats abounding, the PCs might go on multiple expeditions to try to save the village. If the Seasons Change move generates no threats or hooks, they might have a few quiet months at home.
-
-Ask your players what they want to see in the game, what they want to focus on. Make note of their wishes during the End of Session, and make decisions accordingly.
-
-For example, if a player rolls a 7 to Pull Together (building a palisade), and picks a "cost, requirement, or challenge," you could decide that it's just a dispute among the workers. But if the group is antsy for adventure, you could have the foreman wander off into the Great Wood.
-
-Likewise, if your group wants downtime to focus on improvements, but the Seasons Change says a threat presents itself, you can make the threat not especially urgent or actionable. **Let things breathe**, remember?
-
+> [!box] **How many adventures per season?**
+> 
+> As many as makes sense! Follow the fiction, the moves, and the wishes of your players. If the Seasons Change move results in threats abounding, the PCs might go on multiple expeditions to try to save the village. If the Seasons Change move generates no threats or hooks, they might have a few quiet months at home.
+> 
+> Ask your players what they want to see in the game, what they want to focus on. Make note of their wishes during the End of Session, and make decisions accordingly.
+> 
+> For example, if a player rolls a 7 to Pull Together (building a palisade), and picks a "cost, requirement, or challenge," you could decide that it's just a dispute among the workers. But if the group is antsy for adventure, you could have the foreman wander off into the Great Wood.
+> 
+> Likewise, if your group wants downtime to focus on improvements, but the Seasons Change says a threat presents itself, you can make the threat not especially urgent or actionable. **Let things breathe**, remember?
+> 
+> ^how-many-adventures-per-season
 ## **Homefront moves**
 
 When the PCs are in Stonetop (or on an expedition with NPCs from home), add these to your list of GM moves:
 
-- <sup>ä</sup> Introduce someone interesting
-- <sup>ä</sup> Reveal simmering tensions
-- <sup>ä</sup> Present a want or need
-- <sup>ä</sup> Show how others really feel
-- <sup>ä</sup> Draw out their feelings
-- <sup>ä</sup> Change a relationship
-- <sup>ä</sup> Oppose their wishes
-- <sup>ä</sup> Remind them of their obligations
-- <sup>ä</sup> Start a conflict or crisis
-- <sup>ä</sup> Play them against each other
+- ▸ Introduce someone interesting
+- ▸ Reveal simmering tensions
+- ▸ Present a want or need
+- ▸ Show how others really feel
+- ▸ Draw out their feelings
+- ▸ Change a relationship
+- ▸ Oppose their wishes
+- ▸ Remind them of their obligations
+- ▸ Start a conflict or crisis
+- ▸ Play them against each other
 
-## <sup>ä</sup> **Introduce someone interesting**
+#### ▸ **Introduce someone interesting**
 
 Put someone new in front of the PCs. It could be a stranger from out of town, someone out of a PC's past, or just a local we've not yet met in play.
 
@@ -489,7 +498,7 @@ Remember to add the new character to the steading playbook, or wherever you trac
 
 *"Before you even finish, there's a bit of a commotion. A small group of strangers is coming down the path from the West Road. Four of them, with a couple wheelbarrows piled with stuff. They've got the look of Delvers… and, gods above, that must be all of their worldly possessions there. Fion's already heading that way, what do you do?"*
 
-## <sup>ä</sup> **Reveal simmering tensions**
+#### ▸ **Reveal simmering tensions**
 
 Use this move to set up a future conflict, either among NPCs or between NPCs and PCs.
 
@@ -501,7 +510,7 @@ As a hard move, either decide right now that tensions exist, and/or make it clea
 
 *"Tegwen is just glaring daggers at Seren, y'know? And Seren's just blithely ignoring it, playing it off like she doesn't notice, and you think she's taking longer than she needs to, just to rile Tegwen up. She actually winks at you when she catches you watching. What do you do?"*
 
-## <sup>ä</sup> **Present a want or need**
+#### ▸ **Present a want or need**
 
 Someone asks for help, or clearly needs it, or makes their wishes known. Someone's in a bad place, but doesn't know how to ask for help. Someone confronts the PCs and makes demands.
 
@@ -513,7 +522,7 @@ Use this move to **give your characters life**, to reflect steading debilities i
 
 *"Nia runs off to play, and Lewela's like, 'Mother stopped by. Which is always fun. She was asking after you. Got me to promise that I'd suggest you stop by and check in on her. So I'm suggesting it.' She shrugs, sips her tea. What do you do?"*
 
-## <sup>ä</sup> **Show how others really feel**
+#### ▸ **Show how others really feel**
 
 Reveal the inner lives of your NPCs, in a way that provokes a response or adds tension to a scene. Make it clear that someone is angry, or disappointed, or sad or scared or worried or all the above. Have someone declare their love. Have an NPC show a PC genuine affection, appreciation, or respect.
 
@@ -527,7 +536,7 @@ As a hard move, make the feelings ugly, strong, intractable. Maybe they're new, 
 
 *"Lowri's eyes don't waver. 'You're a clever guy, Vahid, and sometimes useful. But you are trouble. And you are not one of us. I ain't dying for you. And if you try anything with Eira, I will slit your throat in your sleep. Got it?'"*
 
-## <sup>ä</sup> **Draw out their feelings**
+#### ▸ **Draw out their feelings**
 
 Have an NPC invite or prompt a PC to open up, to talk, to process what they're going through. Or have an NPC show them kindness or concern, and ask what they do. Invite the player to **portray a compelling character**, and **give your characters life** by showing that they really do care about the PCs.
 
@@ -539,7 +548,7 @@ The hard version of this move looks like a confrontation or intervention. An NPC
 
 *"A 6? Hmm, okay! Macsen like, stares for a few seconds, and finally he's like, 'I suspect she'll be home soon.' And he steps aside, inviting you in. You go? Cool. Once you're inside, he turns, folds his arms, and gives you that stare again. 'So, Caradoc. What exactly are your intentions towards my daughter?'"*
 
-## <sup>ä</sup> **Change a relationship**
+#### ▸ **Change a relationship**
 
 A loved one grows distant. A friendship is lost. A peer becomes a rival. A couple calls it quits. Etc.
 
@@ -551,7 +560,7 @@ If the change means that an NPC will now be a source of ongoing trouble, write t
 
 *"'I… I can't do this anymore. Can't keep waiting. Waiting for you to come home. Waiting for you to leave. Hoping for you to, gods, for you to get yourself maimed so you can't do this anymore. Because you will keep doing this, as long as you can. We both know it. I can't ask you not to. But… I just can't. I'm sorry, that can't be my life.' And she shoves the bracelet into your hands and runs away, crying."* 
 
-## <sup>ä</sup> **Oppose their wishes**
+#### ▸ **Oppose their wishes**
 
 Have NPCs object to the PCs' plans, or get in the way, or need to be convinced. Or have them do things on their own, something the PCs don't want them to do, and see how the PCs respond.
 
@@ -563,7 +572,7 @@ As a hard move, have someone with actual clout put their foot down and be unwill
 
 *"Fion clears her throat, and everyone turns. 'No matter what else, they walked four days to get here. They don't lack for courage. They asked for hospitality, and a chance to earn their keep. I will not just send them packing cuz you got a bad feeling about them, Rhianna. Let 'em fix up Teagan's old place, I say.' And most of the others are nodding, like it's decided. So, what do you do?"*
 
-## <sup>ä</sup> **Remind them of their obligations**
+#### ▸ **Remind them of their obligations**
 
 Point out something that needs doing or that is expected of them. Have an NPC make explicit demands on their time. Warn them of what might happen if they ignore their responsibilities. Show them the consequences if they do.
 
@@ -573,7 +582,7 @@ Use this move to make sure the PCs earn their keep and remain active in the comm
 
 *"I mean, you can, but harvest is coming and there is so much work to do in the fields. If you spend the next few weeks studying that plaque, you'll be missed. And folks are already grumbling about you. What do you do?"*
 
-## <sup>ä</sup> **Start a conflict or crisis**
+#### ▸ **Start a conflict or crisis**
 
 Bring simmering tensions to a boil. Have two NPCs start screaming at each other or come to blows. Have someone call out a PC, loudly and in public. Have panic spread.
 
@@ -585,7 +594,7 @@ As a soft move, show the PCs the start of the conflict or crisis and give them a
 
 *"Vahid, they're just not listening. Too many people have seen Padrig's body, and it's pretty grisly, and there's like a dozen conversations happening at once. Kids are crying and people are panicking and you just can't make yourself heard. I think we just Met with Disaster, folks."*
 
-<sup>ä</sup> **Play them against each other** Set up a triangle between two PCs and an NPC. Have the smith ask the Judge to do something about the Fox. Have the Seeker's wife tell the Blessed what the Seeker is up to. Have the midwife gossip
+▸ **Play them against each other** Set up a triangle between two PCs and an NPC. Have the smith ask the Judge to do something about the Fox. Have the Seeker's wife tell the Blessed what the Seeker is up to. Have the midwife gossip
 
 about the Heavy with the Fox.
 
@@ -599,11 +608,13 @@ interfere (or Interfere) with each other.
 
 *"Elios fixes you with those sad eyes. 'I sure don't want your job, Rhianna. But if you don't do something about Vahid, and Caradoc, and get those boys in line, then folks are going to stop listening to you. Including me.' What do you do?"*
 
-## **Use other moves, too!**
-
-Just to be clear, you can and should use your standard GM moves during homefront play. **Announce trouble** ("Isn't it odd how Iwan is, like, charming and has friends now?"), **ask provocative questions** ("Who's going to be most opposed to this plan, do you think?"), **use up their resources** ("You're eating through your stores, lose 1 Surplus"), **offer an opportunity** ("You've got a couple of months, what do you each get up to?"), etc.
-
-Use your threat moves, too! If there's a plague (an *affliction*), maybe have it **worsen or quicken** ("The sick house is soon past capacity and more folks fall ill every day"). If the Stone has become a *MacGuffin*, maybe have it **draw attention to itself** ("It glows for a few nights, until it shoots like a dozen lightning bolts into the clear summer sky… probably visible all the way up in Gordin's Delve, maybe even in Barrier Pass").
+> [!box] **Use other moves, too!**
+> 
+> Just to be clear, you can and should use your standard GM moves during homefront play. **Announce trouble** ("Isn't it odd how Iwan is, like, charming and has friends now?"), **ask provocative questions** ("Who's going to be most opposed to this plan, do you think?"), **use up their resources** ("You're eating through your stores, lose 1 Surplus"), **offer an opportunity** ("You've got a couple of months, what do you each get up to?"), etc.
+> 
+> Use your threat moves, too! If there's a plague (an *affliction*), maybe have it **worsen or quicken** ("The sick house is soon past capacity and more folks fall ill every day"). If the Stone has become a *MacGuffin*, maybe have it **draw attention to itself** ("It glows for a few nights, until it shoots like a dozen lightning bolts into the clear summer sky… probably visible all the way up in Gordin's Delve, maybe even in Barrier Pass").
+> 
+> ^use-other-moves-too
 
 ## **The steading playbook**
 
@@ -618,15 +629,16 @@ The village of Stonetop gets its own playbook, reproduced starting on [[The Stea
 
 The steading playbook is a living document, shared by the group and changing throughout the game.
 
-## **Other steadings**
+> [!box] **Other steadings**
+> 
+> Other steadings have stats and details similar to Stonetop's, which you can find in *Book II*. Use those stats should the PCs end up Trading & Bartering in another
+> 
+> steading, Mustering or Deploying its people, or having them Pull Together.
+> 
+> With that said: only track Fortunes and Surplus for Stonetop, the PCs' home. If the PCs end up calling a different steading home for a few seasons, then you would want to track Fortunes and Surplus there.
+> ^other-steadings
 
-Other steadings have stats and details similar to Stonetop's, which you can find in *Book II*. Use those stats should the PCs end up Trading & Bartering in another
-
-steading, Mustering or Deploying its people, or having them Pull Together.
-
-With that said: only track Fortunes and Surplus for Stonetop, the PCs' home. If the PCs end up calling a different steading home for a few seasons, then you would want to track Fortunes and Surplus there.
-
-## **Fortunes**
+### **Fortunes**
 
 The **Fortunes** stat reflects the morale and social cohesion of the village, the favor of the gods, and just "how things are going." Fortunes start at +1, and can range from -1 to +3.
 
@@ -634,27 +646,27 @@ When Fortunes are high, people are (generally) happy and generous with each othe
 
 When Fortunes are low, people are (generally) grumpy or despairing. They talk of dark times ahead. They start looking to themselves and their own rather than the community at large.
 
-Fortunes go up when the PCs **Return Triumphant** (page [[10 - Expeditions#What if they… don't?|339]]) or complete certain improvements [[15 - Homefront#Steading improvements|Steading improvements]]. They go down when the village **Meets with Disaster** (page [[15 - Homefront#MEET WITH DISASTER|532]]). Fortunes might go down when the PCs **Muster** (page [[15 - Homefront#MUSTER|534]]), **Requisition** (page [[10 - Expeditions#REQUISITION|308]]), or have the village **[[15 - Homefront#PULL TOGETHER|Pull Together]]**.
+Fortunes go up when the PCs **Return Triumphant** (page [[10 - Expeditions#^what-if-they-dont|339]]) or complete certain improvements [[15 - Homefront#Steading improvements|Steading improvements]]. They go down when the village **Meets with Disaster** (page [[15 - Homefront#^meet-with-disaster|532]]). Fortunes might go down when the PCs **Muster** (page [[15 - Homefront#^muster|534]]), **Requisition** (page [[10 - Expeditions#^requisition|308]]), or have the village **[[15 - Homefront#^pull-together|Pull Together]]**.
 
-Players roll +Fortunes to **Requisition** (page [[10 - Expeditions#REQUISITION|308]]). More importantly, they roll +Fortunes when the **[[15 - Homefront#SEASONS CHANGE|Seasons Change]]** to see what the season has in store for the village and the PCs.
+Players roll +Fortunes to **Requisition** (page [[10 - Expeditions#^requisition|308]]). More importantly, they roll +Fortunes when the **[[15 - Homefront#SEASONS CHANGE|Seasons Change]]** to see what the season has in store for the village and the PCs.
 
 After the players roll for Seasons Change, Fortunes reset to +1 (or +0 if the steading is *malcontent*). This means that changes to Fortunes themselves are passing, applying to only the next season.
 
-## **Surplus**
+### **Surplus**
 
 **Surplus** reflects stores of food and trade goods. It represents crops in the granary and in household larders, livestock ready for slaughter, whisky that's ready to drink, fur that's ready to trade or be fashioned into garments.
 
 Surplus isn't a stat that's rolled; it's a resource that Stonetop accumulates, consumes, and spends. The village starts with 1 Surplus; there's no upper limit.
 
-The steading generates Surplus each summer and autumn, and consumes Surplus each winter. PCs can gain more Surplus through trade, by going on an expedition to hunt big game, or as a **[[15 - Homefront#Seasonal gains|seasonal gain]]**. The PCs might spend Surplus to trade for other assets or to have folks **[[15 - Homefront#PULL TOGETHER|Pull Together]]** on a project.
+The steading generates Surplus each summer and autumn, and consumes Surplus each winter. PCs can gain more Surplus through trade, by going on an expedition to hunt big game, or as a **[[15 - Homefront#Seasonal gains|seasonal gain]]**. The PCs might spend Surplus to trade for other assets or to have folks **[[15 - Homefront#^pull-together|Pull Together]]** on a project.
 
-Should the PCs wish to Trade & Barter with or for Surplus, 1 Surplus is Value 2 (see **[[15 - Homefront#Value and coins|Value and coins]]**).
+Should the PCs wish to Trade & Barter with or for Surplus, 1 Surplus is Value 2 (see **[[15 - Homefront#^value-and-coins|Value and coins]]**).
 
-## **Size**
+### **Size**
 
 Each steading has a **Size** tag, which describes the scale of its infrastructure: its permanent buildings, the size of its fields, the number of inhabitants it can comfortably support.
 
-The tag is mostly descriptive, but it affects how much Surplus is consumed each **winter** (see [[15 - Homefront#Seasonal gains|Seasonal gains]]), as well as the **Muster** (page [[15 - Homefront#MUSTER|534]]), **[[15 - Homefront#PULL TOGETHER|Pull Together]]**, and **Trade & Barter** (page [[15 - Homefront#TRADE & BARTER|540\)]] moves.
+The tag is mostly descriptive, but it affects how much Surplus is consumed each **winter** (see [[15 - Homefront#Seasonal gains|Seasonal gains]]), as well as the **Muster** (page [[15 - Homefront#^muster|534]]), **[[15 - Homefront#^pull-together|Pull Together]]**, and **Trade & Barter** (page [[15 - Homefront#^trade-barter|540\)]] moves.
 
 The possible values for Size are:
 
@@ -668,7 +680,7 @@ The possible values for Size are:
 
 Stonetop starts as a *village*, home to about 300 souls. If things go very poorly in play, it could shrink and become a *hamlet*. If the PCs complete enough improvements, it can become a *town*. Becoming a *city* is beyond the default scope of the game.
 
-## **Population**
+### **Population**
 
 The steading's **Population** reflects the number of able bodies living there, relative to its Size.
 
@@ -680,15 +692,15 @@ As Population rises above +0, quarters become more cramped and folks start livin
 
 Population can go down when:
 
-- The steading **Meets with Disaster**  (page [[15 - Homefront#MEET WITH DISASTER|532\)]]
+- The steading **Meets with Disaster**  (page [[15 - Homefront#^meet-with-disaster|532\)]]
 - The steading runs out of Surplus in **winter** (see [[15 - Homefront#Seasonal gains|Seasonal gains]]).
 - Fictional events dictate that they do (for example, if a plague kills a few dozen folks).
 
 Population can go up as the result of a **[[15 - Homefront#Seasonal gains|seasonal gain]]**, or to reflect fictional events (like refugees settling in the village).
 
-Players roll +Population to **Muster** (page [[15 - Homefront#MUSTER|534\)]] or **[[15 - Homefront#PULL TOGETHER|Pull Together]]**. But the steading also consumes extra Surplus each winter based on its Population.
+Players roll +Population to **Muster** (page [[15 - Homefront#^muster|534\)]] or **[[15 - Homefront#^pull-together|Pull Together]]**. But the steading also consumes extra Surplus each winter based on its Population.
 
-## **Prosperity**
+### **Prosperity**
 
 **Prosperity** represents the goods that circulate in the steading, the number and variety of tradesfolk, and how often merchants pass through town.
 
@@ -700,16 +712,16 @@ When Prosperity is low, essential trades are lacking or done poorly. Roofs leak.
 
 As Prosperity increases, there are more full-time tradesfolk, more visits from merchants, more specialized tools. Homes are cozier. Goods are finer, herbs are more potent, and iron is stronger.
 
-PCs can increase Prosperity by completing the Expanded Trades or Market improvements. If they want to raise it even higher, or raise it through some other means, then sit down with them and **[[15 - Homefront#MAKE A PLAN|Make a Plan]]**.
+PCs can increase Prosperity by completing the Expanded Trades or Market improvements. If they want to raise it even higher, or raise it through some other means, then sit down with them and **[[15 - Homefront#^make-a-plan|Make a Plan]]**.
 
-Players roll +Prosperity when they **Trade & Barter** (page [[15 - Homefront#TRADE & BARTER|540]]) to acquire or sell special items. Prosperity also impacts the PCs' gear and **[[03 - Playing the Game#Gear and possessions|inventory]]**, affecting:
+Players roll +Prosperity when they **Trade & Barter** (page [[15 - Homefront#^trade-barter|540]]) to acquire or sell special items. Prosperity also impacts the PCs' gear and **[[03 - Playing the Game#Inventory|inventory]]**, affecting:
 
-- How many small items they get when they **Outfit** (page [[10 - Expeditions#OUTFIT|306]])
+- How many small items they get when they **Outfit** (page [[10 - Expeditions#^outfit|306]])
 - How many uses they get from **[[03 - Playing the Game#Supplies|supplies]]**
-- How many HP they regain when they **Recover** in the field (page [[10 - Expeditions#RECOVER|328]])
+- How many HP they regain when they **Recover** in the field (page [[10 - Expeditions#^recover|328]])
 - The *x* **piercing** value [[03 - Playing the Game#Gear terms & tags|Gear terms & tags]] of their iron weapons
 
-## **Resources**
+#### **Resources**
 
 A steading's Prosperity is closely tied to its **resources**. On the steading playbook, these are listed to the right of the current Prosperity. At the start of play, Stonetop's resources include:
 
@@ -724,7 +736,7 @@ A steading's Prosperity is closely tied to its **resources**. On the steading pl
 
 Should Stonetop lose access to one or more of these resources for a season or so, then mark the *lacking* **[[15 - Homefront#Debilities|debility]]**. If Stonetop permanently loses one or more of these resources, its Prosperity will go down as well.
 
-## **Defenses**
+### **Defenses**
 
 **Defenses** represent the martial prowess and readiness of the steading: how well-trained and well-armed the residents are, how many veteran warriors live there, how wellorganized they are. Refer to a steading's Defenses to help decide how quickly and effectively they respond to an outside threat.
 
@@ -734,13 +746,13 @@ When Defenses are low, there are few competent warriors in the steading. Arms an
 
 As a steading's Defenses increase, there are more and more capable warriors, with better training, more experience, and/or better arms and armor. Folks are braver and more vigilant.
 
-When a PC sends a steading's people into danger or rallies them against an attack, the player rolls +Defenses to see how it goes (see **[[15 - Homefront#DEPLOY|Deploy]]**).
+When a PC sends a steading's people into danger or rallies them against an attack, the player rolls +Defenses to see how it goes (see **[[15 - Homefront#^deploy|Deploy]]**).
 
  In Stonetop, every able-bodied adult is expected to train with the militia, maintain their spear and shield, and take shifts on the watchtowers. If Stonetop's militia suffers significant losses, then mark the *diminished* debility. If those losses are permanent (for example, death and dismemberment, not just injury), then Defenses goes down, as well.
 
-To increase Defenses, the PCs should complete the Weapons of War or the Well-trained Militia improvements. Other improvements provide a bonus in certain circumstances. If the PCs want to raise Defenses even higher, or raise it via some other means, then they can **[[15 - Homefront#MAKE A PLAN|Make a Plan]]**.
+To increase Defenses, the PCs should complete the Weapons of War or the Well-trained Militia improvements. Other improvements provide a bonus in certain circumstances. If the PCs want to raise Defenses even higher, or raise it via some other means, then they can **[[15 - Homefront#^make-a-plan|Make a Plan]]**.
 
-## **Fortifications**
+#### **Fortifications**
 
 Each steading has a list of fortifications and other resources that contribute to its Defenses. On the steading playbook, these are listed to the right of the current Defenses. At the start of play, Stonetop's fortifications (etc.) include:
 
@@ -750,7 +762,7 @@ Each steading has a list of fortifications and other resources that contribute t
 - Iron-tipped spears and wooden shields in every home
 - Some bows
 
-## **Debilities**
+### **Debilities**
 
 During play, the steading can suffer debilities much like a PC can [[07 - Harm and Healing#Debilities|Debilities]]. There are three steading debilities:
 
@@ -762,15 +774,15 @@ There's a space on the steading playbook to mark each debility.
 
 Debilities both reflect the fiction and dictate it. If something happens that results in the village's capacity being reduced by injury, sickness, or doubt, then have the players mark *diminished* to reflect that. If they mark *diminished* because a move tells them to, then that means injury, sickness, and/or doubt plague the steading.
 
-Steading debilities last until a move like **Return Triumphant** (page [[10 - Expeditions#What if they… don't?|339\)]] says to clear them, or until the fiction changes such that the debility no longer applies.
+Steading debilities last until a move like **Return Triumphant** (page [[10 - Expeditions#^what-if-they-dont|339\)]] says to clear them, or until the fiction changes such that the debility no longer applies.
 
-# **Steading improvements**
+### **Steading improvements**
 
 The steading playbook includes a number of potential improvements that can be unlocked in play. Each has a list of requirements and benefits that the steading gains upon completion.
 
 #### **Requirements**
 
-The requirements for each improvement vary from clear and obvious ("Impressing a band of Hillfolk") to the seemingly impossible ("Some method of making water flow uphill"). If the players don't know how to go about meeting such a requirement, **[[15 - Homefront#MAKE A PLAN|Make a Plan]]** with them.
+The requirements for each improvement vary from clear and obvious ("Impressing a band of Hillfolk") to the seemingly impossible ("Some method of making water flow uphill"). If the players don't know how to go about meeting such a requirement, **[[15 - Homefront#^make-a-plan|Make a Plan]]** with them.
 
 The PCs can complete requirements for an improvement in whatever order makes sense; they don't have to go in order unless an improvement specifically says they do.
 
@@ -778,9 +790,9 @@ Some improvements require individuals with specific skills, like "an *exceptiona
 
 When an improvement requires Surplus or other materiel, it's used up or otherwise committed to the improvement. The Palisade improvement requires "lots of timber… (Value 3)." You can't use that timber for other projects without dismantling some or all of the palisade!
 
-Many improvements involve **Pulling Together** one or more times. See [[15 - Homefront#PULL TOGETHER|Pull Together]] for details.
+Many improvements involve **Pulling Together** one or more times. See [[15 - Homefront#^pull-together|Pull Together]] for details.
 
-### **Benefits**
+#### **Benefits**
 
 Once the PCs meet all the requirements for an improvement, the steading gains the listed benefit(s).
 
@@ -792,7 +804,7 @@ Other improvements provide new player moves, triggered by a particular action or
 
 The benefits for each improvement are mostly mechanical, but don't forget about the fictional impact! If the PCs unlock the Aurochs Hunting improvement by cooperating with the Hillfolk, then they've not only gained a new move and resource, they've improved their relationship with the Hillfolk!
 
-## **Losing improvements**
+#### **Losing improvements**
 
 Once an improvement is completed, assume that basic upkeep is done by the community as a whole. For example, once the Palisade is built, assume that the steading keeps it in good repair.
 
@@ -800,13 +812,13 @@ Some improvements have additional, ongoing costs, like the requirement to spend 
 
 You can and should threaten or harm improvements the same way you can threaten anything else the PCs care about. If they don't do something to save it, then it will be lost and they'll lose its benefits. Again, Make a Plan with the PCs if they want to get it back.
 
-## **Other improvements**
+#### **Other improvements**
 
 The improvements listed in the steading playbook aren't the only ones possible. You can find others in various entries of *Book II*, revealing them to the players as appropriate. Likewise, you might have an idea for an additional improvement yourself, or the PCs might propose one. Make a Plan to establish the requirements, and work with the players to establish an appropriate benefit and any ongoing costs.
 
 The steading playbook includes a space for additional improvements. Record them there.
 
-## **Assets**
+### **Assets**
 
 The steading playbook includes a section for recording assets that are owned by the residents of Stonetop in common. At the start of play, this includes:
 
@@ -815,13 +827,13 @@ The steading playbook includes a section for recording assets that are owned by 
 - A pair of carts (plus horse harness)
 - A wagon (plus horse harness)
 
-If the PCs want to take any of these assets on an expedition, they must first **Requisition** them (page [[10 - Expeditions#REQUISITION|308]]).
+If the PCs want to take any of these assets on an expedition, they must first **Requisition** them (page [[10 - Expeditions#^requisition|308]]).
 
 There are also blank spaces where you can add new assets that the PCs acquire for the village. For example, if the PCs arrange to trade 1 Surplus for a sleigh (Value 2) that the villagers can use in winter, you'd add it here.
 
-This section also includes boxes in which to record silver or gold coins. These start blank, but should the PCs acquire coins during play and turn them over to the village as a whole, you'd record them here. See [[15 - Homefront#Value and coins|Value and coins]] for more on **coins**.
+This section also includes boxes in which to record silver or gold coins. These start blank, but should the PCs acquire coins during play and turn them over to the village as a whole, you'd record them here. See [[15 - Homefront#^value-and-coins|Value and coins]] for more on **coins**.
 
-## **Residents & neighbors**
+### **Residents & neighbors**
 
 The last two pages of the steading playbook are for tracking NPCs. Whenever you or a player introduces a new NPC, make note of them here: their name, pronouns, profession, and any notable traits and relationships. See [[14 - NPCs and Followers#Creating NPCs|Creating NPCs]] for guidance on **creating NPCs**.
 
@@ -833,17 +845,17 @@ A game of *Stonetop* can easily involve dozens of NPCs, and space on the steadin
 
 Even if you use the steading playbook to track all the established NPCs, you'll probably need to keep your own notes elsewhere for each NPC—especially if that NPC is a threat.
 
-# **Seasons Change**
+## **Seasons Change**
 
-The Seasons Change move creates the long-term rhythm of the game. It breaks up downtime. It requires the PCs to care about the steading's **[[15 - Homefront#The steading playbook|Fortunes]]** and **[[15 - Homefront#Surplus|Surplus]]**. It makes many of the steading improvements important and valuable to pursue.
+The Seasons Change move creates the long-term rhythm of the game. It breaks up downtime. It requires the PCs to care about the steading's **[[15 - Homefront#Fortunes|Fortunes]]** and **[[15 - Homefront#Surplus|Surplus]]**. It makes many of the steading improvements important and valuable to pursue.
 
-# **Making the move**
+### **Making the move**
 
 The Seasons Change during downtime. When you've played out any activities, scenes, and situations you and the players are interested in, skip ahead in time and re-solve this move.
 
 Aim to resolve the move towards the end of a session if you can, so that you can prep the next session based on the results. If you can't, cool, just be willing to improvise!
 
-## **Rolling**
+#### **Rolling**
 
 Each season indicates who rolls for the move (whoever is most hopeful rolls in spring, whoever is most content rolls in summer, etc.). "Whoever" refers to the PC, not the player. If you really can't decide, pick randomly.
 
@@ -867,48 +879,54 @@ PCs *can* Bolster for a coming season and spend the Preparation on the roll(s), 
 
 Handle other moves on a case-by-case basis, based on the fiction and what the whole group feels is right and fair.
 
-## **SEASONS CHANGE**
+> [!box] **SEASONS CHANGE**
+> 
+>  When *spring bursts forth upon the land*, whoever is the most
+> 
+> 
+> hopeful rolls +Fortunes: **on a 10+**, pick 1 seasonal gain; **on a 7-9**, pick 1 seasonal gain, but a threat to the steading makes itself known or gets worse; **on a 6-**, threats abound (and don't mark XP).
+> 
+> 
+> Whatever the result, reset Fortunes to +1.
+> 
+>  When *the hot days of summer settle across the land*, whoever is most content rolls +Fortunes:
+> 
+> **on a 10+**, pick 2 seasonal gains; **on a 7-9**, pick 1 seasonal gain; **on a 6-**, a threat to the steading makes itself known or gets worse (and don't mark XP).
+> 
+> 
+> Whatever the result, the steading generates 1d4-1 Surplus. Then, reset Fortunes to +1.
+> 
+>  When *autumn falls and the land is ripe for harvest*, whoever is most determined rolls
+> 
+> +Fortunes: **on a 10+**, pick 1 seasonal gain; **on a 7-9**, pick 1 seasonal gain, but a threat to the steading makes itself known or gets worse; **on a 6**-, threats abound (and don't mark XP).
+> 
+> 
+> Whatever the result, reset Fortunes to +1.
+> 
+> When *the harvest is complete*, roll 1d4; the steading generates that much Surplus.
+> 
+>  When *winter grips the land*, whoever is weariest rolls
+> 
+> 1d4+Population (min 0); the steading consumes that much Surplus. If there's not enough, reduce Surplus to 0, reduce Fortunes by 1, and pick 1:
+> 
+> 
+> - Reduce Population by 1 (min -1) due to death, decripitude, and departure
+> - An important resource (one of the horses, the cistern, etc.) is lost or not maintained
+> - An important NPC dies, their role unfilled
+> - Your PC dies, leaves, or retires from play
+> 
+> Then, roll +Fortunes: **on a 10+**, the winter is relatively mild, and each player can name a local NPC with whom their relationship improves at least a little (work together to figure out how); **on a 7-9**, the steading must consume additional Surplus equal to 1d4+Population before winter ends or suffer the consequences as above; **on a 6-**, as a 7-9, but also threats abound (and don't mark XP).
+> 
+> Whatever the result, reset Fortunes to +1.
+> ^seasons-change
 
- When *spring bursts forth upon the land*, whoever is the most
-
-hopeful rolls +Fortunes: **on a 10+**, pick 1 seasonal gain; **on a 7-9**, pick 1 seasonal gain, but a threat to the steading makes itself known or gets worse; **on a 6-**, threats abound (and don't mark XP).
-
-Whatever the result, reset Fortunes to +1.
-
- When *the hot days of summer settle across the land*, whoever is most content rolls +Fortunes:
-
-**on a 10+**, pick 2 seasonal gains; **on a 7-9**, pick 1 seasonal gain; **on a 6-**, a threat to the steading makes itself known or gets worse (and don't mark XP).
-
-Whatever the result, the steading generates 1d4-1 Surplus. Then, reset Fortunes to +1.
-
- When *autumn falls and the land is ripe for harvest*, whoever is most determined rolls
-
-+Fortunes: **on a 10+**, pick 1 seasonal gain; **on a 7-9**, pick 1 seasonal gain, but a threat to the steading makes itself known or gets worse; **on a 6**-, threats abound (and don't mark XP).
-
-Whatever the result, reset Fortunes to +1.
-
-When *the harvest is complete*, roll 1d4; the steading generates that much Surplus.
-
- When *winter grips the land*, whoever is weariest rolls
-
-1d4+Population (min 0); the steading consumes that much Surplus. If there's not enough, reduce Surplus to 0, reduce Fortunes by 1, and pick 1:
-
-- Reduce Population by 1 (min -1) due to death, decripitude, and departure
-- An important resource (one of the horses, the cistern, etc.) is lost or not maintained
-- An important NPC dies, their role unfilled
-- Your PC dies, leaves, or retires from play
-
-Then, roll +Fortunes: **on a 10+**, the winter is relatively mild, and each player can name a local NPC with whom their relationship improves at least a little (work together to figure out how); **on a 7-9**, the steading must consume additional Surplus equal to 1d4+Population before winter ends or suffer the consequences as above; **on a 6-**, as a 7-9, but also threats abound (and don't mark XP).
-
-Whatever the result, reset Fortunes to +1.
-
-## **Winter**
+#### **Winter**
 
 In winter, the village consumes 1d4 + Population Surplus. If Stonetop has shrunk to a *hamlet*, it consumes only 1d2 + Population. If it has grown to a *town*, it consumes 2d6 + Population. If there's not enough, then Surplus drops to 0, the village Meets with Disaster, and the player picks a consequence.
 
 Reflect such consequences in the fiction. Name specific folks who die or leave or grow infirm. Play out the scene where the granary's roof falls in. Make it clear how the smith's death will impact the village. (Note: the village is *already* Meeting with Disaster; these consequences don't trigger it again.)
 
-If the player opts to have their PC die, leave, or retire, then let them have an **[[17 - The Game Ongoing#Retiring PCs|epilogue]]** in this session or the next. Ask the player to make a new PC between sessions.
+If the player opts to have their PC die, leave, or retire, then let them have an **[[17 - The Game Ongoing#Epilogues|epilogue]]** in this session or the next. Ask the player to make a new PC between sessions.
 
 After consuming Surplus (and handling any fallout), the Fortunes roll indicates how the rest of the season plays out.
 
@@ -916,7 +934,7 @@ After consuming Surplus (and handling any fallout), the Fortunes roll indicates 
 
 **On a 9 or less**, the village must consume more Surplus by winter's end or suffer the consequences above. The PCs will likely try to prevent this (see [[03 - Playing the Game#If you want to…|If you want to…]] for ways they can generate Surplus). **On a 6-**, they've also got to deal with threats to the village. Expect an eventful season.
 
-## **Seasonal gains**
+#### **Seasonal gains**
 
 On a 7+ in spring or autumn or a 7-9 in summer, the rolling player gets to pick a seasonal gain. On a 10+ in summer, they get to pick two. The choices are:
 
@@ -946,7 +964,7 @@ Now, think of something that would put that valuable or goal in reach, and how t
 
 **If they pick a "valuable insight,"** choose an established threat to the village. Why haven't the PCs done anything about it yet? What information would allow them to address it (a vulnerability, the location of its lair, its motives, etc.)? Think about how that information could be revealed to the PCs.
 
-## **"A threat to the steading…"**
+#### **"A threat to the steading…"**
 
 On a 7-9 in spring or autumn, or a 6- in summer, either introduce a new threat to the steading or have an existing threat **advance towards impending doom**.
 
@@ -954,13 +972,13 @@ The threat you pick can be internal or external, imminent or distant, uncaring o
 
 Decide how you'll make the threat (or its escalation) known to the PCs. Will it manifest as a crisis in the village? Will a hunter stumble across it in the Wood? Will someone have a portentous vision or dream? In spring or autumn, consider tying the threat to the seasonal gain. Like, maybe the same merchant who brought an unexpected bounty of grain, herbs, and textiles also brings news that Daedra the Red's gang have taken up resdience in the Ruined Tower. Or maybe that troublesome hagr attacks someone down by the Stream but it leaves a clear, muddy trail back to its lair (a valuable insight).
 
-## **Threats abound**
+#### **Threats abound**
 
 On a 6- in spring, autumn, or winter, "threats abound." Make things bad. A monster attacks the village, with little or no warning. Multiple threats **advance towards impending doom**. Simmering tensions boil over. The weather is bad, crops fail, infrastructure crumbles, etc.
 
 You don't have to do all these things, but you can. The season should be one of crisis and peril.
 
-## **Putting the results in play**
+### **Putting the results in play**
 
 Pick threats and opportunities based on the results of the Seasons Change move, the established fiction, the needs of your game, and the wants of your group.
 
@@ -989,73 +1007,80 @@ For example, you might…
 
 Use your discretion to set a pace that you and your group are happy with, but **be careful not to undermine the players' choices**. Like, say they get a 10+ in summer and pick "Tor's blessing" and "population boom" because they want to Pull Together on a project. Don't delay that population boom until summer's end where it's too late to help. Talk to your players about what they expect and what they want to see in the game, and respect their wishes.
 
-## **SEASONS CHANGE EXAMPLES**
-
-*It's the end of our first session, and we've just finished making and introducing characters. The group* 
-
-*kept focusing on the recent crinwin raids, the abducted children, and the effect this has had on the village. The village starts with 1 Surplus and Fortunes +1.* 
-
-*The group decides that Vahid is the most hopeful (he recently had a breakthrough on his Sanctifying Mark arcanum). He rolls a 7 and picks "unexpected bounty" for the gain. But a threat is also going to make itself known or get worse.*
-
-*[[08 - First Adventure#First Adventure|Following the procedure in the First Adventure chapter]]**, I decide that the real threat is a swyn. It dominated the crinwin and is having them "collect" children. I prep an adventure hook: a trapper (Rheinal) and his son (Pryder) will be out trapping abundant game (the unexpected bounty), when crinwin attack them and drag off Pryder.* 
-
-*During the first session of play, I ask some setup questions (including a love letter for Blodwen), we play out a few scenes to establish everyone's normal lives, and then I drop the hook: someone is shouting for help from the switchback path leading up from the Great Wood…*
-
-*The PCs do in fact go after the crinwin, tracking them to a Green Lord tomb. They kill the swyn, send the crinwin running, and Return Triumphant with the kids in tow. There's some small-town drama, but the rest of spring is otherwise peaceful. They end the season with 2 Surplus and Fortunes +2.*
-
-*The long hot days of summer settle upon the land, and the group decides that Rhianna (of all people)* 
-
-*is most content. She rolls an 11, and the group talks about which two gains to pick.* 
-
-*"Can we roll to see how much Surplus we get?" asks Rhianna. They sure can. She rolls 1d4-1 and gets a 1. "Hmm. Okay, let's take another unexpected bounty, and Tor's blessing. I want to start drilling our militia this season."* 
-
-*We reset Fortunes to +1, and the village heads into summer with 4 Surplus.* 
-
-*We talk about what life in Stonetop looks like in summer, about the fine weather, and how that's affecting folk's lives. Rhianna convinces folks to pursue the Well-trained Militia steading improvement, focusing on readiness. This costs 1 Surplus and effectively eats up the village's (and most of Rhianna's) free time for the season.* 
-
-*Vahid reminds Rhianna of her promise to go back to the Green Lord tomb and explore it some more. They do! A missed roll to Seek Insight has me advance towards impending doom and they find signs that the crinwin are still around and their numbers are growing. They reach the tomb, find some valuables, encounter some guardian Fae, and head home. Garet gets mauled by a drake, and dies on the way.*
-
-*They end the summer with 3 Surplus and Fortunes at +1.*
-
-*Autumn comes and Vahid is deemed the most determined. He rolls an 8, a gain plus a threat.* 
-
-*"Can we roll for Surplus before we pick?" he asks. No, that roll comes at the end of the season. "We're doing okay for Surplus anyhow. And we've got some loot. Let's go with a trade opportunity!"*
-
-*For a threat, the crinwin are an obvious choice but I'm not keen on another trip into the Great Wood. During the End of Session, a couple players wished to see more of the world. So, the threat will be a crinwin raid on the village and the opportunity will be in Gordin's Delve.* 
-
-*Alas, Rhianna's player misses our next session. Instead of the crinwin raid, we do a short trip to the Ruined Tower and more of Blodwen's family drama.*
-
-*The following session starts with the crinwin raid. The recent drilling pays off and they drive the crinwin away. At the end of that session, the merchant Ulna comes back through town with word that the Delve is more desperate for food than usual. The PCs decide to take 1 Surplus and some loot to trade.*
-
-*Rhianna Muster's the village before they go, reducing their Fortunes to +0. But the trip is successful, and they Return Triumphant laden down with tools, parts, ore, etc. Fortunes goes back to +1.* 
-
-*There's some downtime, and the harvest is soon complete. Vahid rolls 1d4 and gets a 1. Yikes. They're heading into winter with 4 Surplus.*
-
-*Winter grips the land, and the group decides that Caradoc heartsick over Morwenna calling* 
-
-*things off—is the weariest. He rolls 1d4 + Population (+0) and, oof, rolls a 4. That uses up all their Surplus.* 
-
-*I ask the group why they think they lost so much, and we say that early winter hammers the village with heavy storms and deep deep snow, followed by bitter cold. "But we're okay, right?" asks Blodwen. "We're out of Surplus but we have enough?"*
-
-*That's true for now, but Caradoc still needs to roll +Fortunes. On a 10+, yeah, they'd be fine. The rest of the winter would be mild and each PC would get to improve a relationship (maybe Caradoc and Morwenna would get back together, or Blodwen would resolve things with Tegwen, or whatever). On a 6-, they'd be in trouble—not only would they need more Surplus, but threats would abound. I'd probably have the crinwin continue to raid the village while bravos from Gordin's Delve came down to extort Stonetop for food it didn't have.* 
-
-*As it happens, Caradoc rolls a 9. The village needs to consume another 1d4+0 Surplus or they'll Meet with Disaster and suffer an additional consequence. "But why bother rolling?" asks Caradoc. "We're already at 0." Ah, but they have until winter's end to come up with the extra Surplus "Oh!" He gets a 2.* 
-
-*"So where do we get more Surplus? In winter?" Well, there are some cave bears with a den not far from town…*
+>[!box] ## **SEASONS CHANGE EXAMPLES**
+>
+> *It's the end of our first session, and we've just finished making and introducing characters. The group* 
+>
+> *kept focusing on the recent crinwin raids, the abducted children, and the effect this has had on the village. The village starts with 1 Surplus and Fortunes +1.* 
+>
+>
+>
+> *The group decides that Vahid is the most hopeful (he recently had a breakthrough on his Sanctifying Mark arcanum). He rolls a 7 and picks "unexpected bounty" for the gain. But a threat is also going to make itself known or get worse.*
+>
+> *[[08 - First Adventure#First Adventure|Following the procedure in the First Adventure chapter]]**, I decide that the real threat is a swyn. It dominated the crinwin and is having them "collect" children. I prep an adventure hook: a trapper (Rheinal) and his son (Pryder) will be out trapping abundant game (the unexpected bounty), when crinwin attack them and drag off Pryder.* 
+>
+> *During the first session of play, I ask some setup questions (including a love letter for Blodwen), we play out a few scenes to establish everyone's normal lives, and then I drop the hook: someone is shouting for help from the switchback path leading up from the Great Wood…*
+>
+> *The PCs do in fact go after the crinwin, tracking them to a Green Lord tomb. They kill the swyn, send the crinwin running, and Return Triumphant with the kids in tow. There's some small-town drama, but the rest of spring is otherwise peaceful. They end the season with 2 Surplus and Fortunes +2.*
+>
+> *The long hot days of summer settle upon the land, and the group decides that Rhianna (of all people)* 
+>
+> *is most content. She rolls an 11, and the group talks about which two gains to pick.* 
+>
+> *"Can we roll to see how much Surplus we get?" asks Rhianna. They sure can. She rolls 1d4-1 and gets a 1. "Hmm. Okay, let's take another unexpected bounty, and Tor's blessing. I want to start drilling our militia this season."* 
+>
+> *We reset Fortunes to +1, and the village heads into summer with 4 Surplus.* 
+>
+> *We talk about what life in Stonetop looks like in summer, about the fine weather, and how that's affecting folk's lives. Rhianna convinces folks to pursue the Well-trained Militia steading improvement, focusing on readiness. This costs 1 Surplus and effectively eats up the village's (and most of Rhianna's) free time for the season.* 
+>
+> *Vahid reminds Rhianna of her promise to go back to the Green Lord tomb and explore it some more. They do! A missed roll to Seek Insight has me advance towards impending doom and they find signs that the crinwin are still around and their numbers are growing. They reach the tomb, find some valuables, encounter some guardian Fae, and head home. Garet gets mauled by a drake, and dies on the way.*
+>
+> *They end the summer with 3 Surplus and Fortunes at +1.*
+>
+>
+> *Autumn comes and Vahid is deemed the most determined. He rolls an 8, a gain plus a threat.* 
+>
+> *"Can we roll for Surplus before we pick?" he asks. No, that roll comes at the end of the season. "We're doing okay for Surplus anyhow. And we've got some loot. Let's go with a trade opportunity!"*
+>
+>
+>
+> *For a threat, the crinwin are an obvious choice but I'm not keen on another trip into the Great Wood. During the End of Session, a couple players wished to see more of the world. So, the threat will be a crinwin raid on the village and the opportunity will be in Gordin's Delve.* 
+>
+> *Alas, Rhianna's player misses our next session. Instead of the crinwin raid, we do a short trip to the Ruined Tower and more of Blodwen's family drama.*
+>
+> *The following session starts with the crinwin raid. The recent drilling pays off and they drive the crinwin away. At the end of that session, the merchant Ulna comes back through town with word that the Delve is more desperate for food than usual. The PCs decide to take 1 Surplus and some loot to trade.*
+>
+> *Rhianna Muster's the village before they go, reducing their Fortunes to +0. But the trip is successful, and they Return Triumphant laden down with tools, parts, ore, etc. Fortunes goes back to +1.* 
+>
+> *There's some downtime, and the harvest is soon complete. Vahid rolls 1d4 and gets a 1. Yikes. They're heading into winter with 4 Surplus.*
+>
+> *Winter grips the land, and the group decides that Caradoc heartsick over Morwenna calling* 
+>
+> *things off—is the weariest. He rolls 1d4 + Population (+0) and, oof, rolls a 4. That uses up all their Surplus.* 
+>
+> *I ask the group why they think they lost so much, and we say that early winter hammers the village with heavy storms and deep deep snow, followed by bitter cold. "But we're okay, right?" asks Blodwen. "We're out of Surplus but we have enough?"*
+>
+> *That's true for now, but Caradoc still needs to roll +Fortunes. On a 10+, yeah, they'd be fine. The rest of the winter would be mild and each PC would get to improve a relationship (maybe Caradoc and Morwenna would get back together, or Blodwen would resolve things with Tegwen, or whatever). On a 6-, they'd be in trouble—not only would they need more Surplus, but threats would abound. I'd probably have the crinwin continue to raid the village while bravos from Gordin's Delve came down to extort Stonetop for food it didn't have.* 
+>
+> *As it happens, Caradoc rolls a 9. The village needs to consume another 1d4+0 Surplus or they'll Meet with Disaster and suffer an additional consequence. "But why bother rolling?" asks Caradoc. "We're already at 0." Ah, but they have until winter's end to come up with the extra Surplus "Oh!" He gets a 2.* 
+>
+> *"So where do we get more Surplus? In winter?" Well, there are some cave bears with a den not far from town…*
+>
 
 ## **Player moves**
 
 These moves become relevant during homefront play, or at least when the PCs are dealing with lots of folks from home. Some might also apply when the PCs travel to another community.
 
-## **BOLSTER**
-
-When you *prepare for what's coming or seek the favor of the gods*, say how and answer the GM's questions. Then, hold Preparation based on the amount of time you devote:
-
-- A week or so: 1 Preparation
-- A month or so: 2 Preparation
-- The better part of a season: 3 Preparation
-
-When you *make any roll to which your efforts might apply*, you may spend 1 Preparation to add +1 to that roll, after it is made (maximum +1 per roll).
+>[!move] ## **BOLSTER**
+>
+>When you *prepare for what's coming or seek the favor of the gods*, say how and answer the GM's questions. Then, hold Preparation based on the amount of time you devote:
+>
+>- A week or so: 1 Preparation
+>- A month or so: 2 Preparation
+>- The better part of a season: 3 Preparation
+>
+>When you *make any roll to which your efforts might apply*, you may spend 1 Preparation to add +1 to that roll, after it is made (maximum +1 per roll).
+> ^bolster
 
 This move happens during downtime, when a PC dedicates time and effort to training or study, to the making of plans, or to religious ceremony or offerings, in preparation for some future challenge or undertaking.
 
@@ -1093,19 +1118,21 @@ If it's unclear whether the player's efforts could apply to a given roll, discus
 
 *At week's end, Vahid has 1 Preparation. He and Blodwen build a bonfire by the Stream, and Vahid walks through it, trying to not cry out. He rolls +CON to Defy Danger, gets a 6, and happily spends his Preparation to make it a 7. He's badly burnt and will have some lasting scars, but he masters his fear and unlocks the arcanum.*
 
-## **CONVALESCE**
+>[!move] ## **CONVALESCE**
+>
+>When you *rest for a few days, in safety and comfort*, recover all your HP and clear all your debilities. When you *rest for a few weeks under the care of a healer*, heal any problematic wounds that can heal. If you *have suffered a permanent injury or impairment*, either retire or Make a Plan to adapt to it.
+> ^convalesce
 
-When you *rest for a few days, in safety and comfort*, recover all your HP and clear all your debilities. When you *rest for a few weeks under the care of a healer*, heal any problematic wounds that can heal. If you *have suffered a permanent injury or impairment*, either retire or Make a Plan to adapt to it.
+This move is discussed in detail in the **Harm and Healing** chapter on [[07 - Harm and Healing#^convalesce|Convalesce]]
 
-This move is discussed in detail in the **Harm and Healing** chapter on [[07 - Harm and Healing#CONVALESCE|Convalesce]]
-
-## **DEPLOY**
-
-When you *send a steading's people into danger or rally them against an attack*, roll +Defenses: **on a 10+**, it goes as well as can be expected; **on a 7-9**, it works but someone picks 1 from the list below. If the steading is acting from a position of strength, you choose. Otherwise, the GM chooses.
-
-- It's less effective than you expected
-- Injuries abound; the steading marks *diminished* (disadvantage to Deploy, Muster, Pull Together)
-- The GM picks a named NPC involved in the action; they die
+>[!move] ## **DEPLOY**
+>
+>When you *send a steading's people into danger or rally them against an attack*, roll +Defenses: **on a 10+**, it goes as well as can be expected; **on a 7-9**, it works but someone picks 1 from the list below. If the steading is acting from a position of strength, you choose. Otherwise, the GM chooses.
+>
+>- It's less effective than you expected
+>- Injuries abound; the steading marks *diminished* (disadvantage to Deploy, Muster, Pull Together)
+>- The GM picks a named NPC involved in the action; they die
+> ^deploy
 
 Sending a steading's people into danger could mean a raid, a patrol, a pitched battle, or a trip through dangerous lands. Rallying them against attack might mean raising the alarm, or organizing a response, or standing shield-to-shield, blood splattered and weary, urging their neighbors to hold the line.
 
@@ -1117,7 +1144,7 @@ On a 7-9, "a position of strength" means solid fictional positioning: the high g
 
 On a 6-, the villagers might refuse the PC's orders. Or maybe they get out-fought or outflanked and suffer heavy losses (mark *diminished*). Or maybe you **put them in a spot**, and it'll be carnage unless the PCs step in and save the day.
 
-If a PC (like the Marshal) sends a group of followers into danger, decide whether to resolve it with Order Followers or Deploy, or a mashup of the two. If you opt to use Order Followers, remember that you can choose to abstract exchanges between groups [[12 - Dangers#Abstracting groups|Abstracting groups]].
+If a PC (like the Marshal) sends a group of followers into danger, decide whether to resolve it with Order Followers or Deploy, or a mashup of the two. If you opt to use Order Followers, remember that you can choose to abstract exchanges between groups [[12 - Dangers#^abstracting-groups|Abstracting groups]].
 
 *Caradoc bangs the alarm bell, yelling, "Crinwin! At the east wall! Awake! Crinwin from the east!" He's rallying the village against attack, so he rolls +Defenses to Deploy. It's too late to keep the crinwin out, but on a 10+, folks will be up and armed, with homes shuttered and children tucked away, the warriors gathered at a spot of Caradoc's choosing.* 
 
@@ -1141,18 +1168,19 @@ If a PC (like the Marshal) sends a group of followers into danger, decide whethe
 
 *"The third patrol, led by Lowri, doesn't come back until after sunset. 'Found 'em,' he mutters. 'Great big nests, more than I ever seen. But they got Leuca, Padrig, and Caron. It... it was bad, boss. It was bad.'*
 
-## **LEVEL UP**
+>[!move] ## **LEVEL UP**
+>
+>When you *have a quiet stretch of time at home and XP equal to (or greater than) 6 + twice your current level*, follow these steps:
+>
+>- 1) Subtract 6 + twice your current level from your XP.
+>- 2) Increase your level by 1.
+>- 3) Choose a new move from your class playbook, or an insert that you've unlocked.
+>- 4) If you are the Blessed (or have a sacred pouch) and your new level is even, increase your max Stock by 1.
+>- 5) If you are the Lightbearer (or have Invoke the Sun God) and your new level is even, choose a new invocation.
+>- 6) Review your Instinct and Appearance (on the front of your playbook). Change anything that no longer applies. Feel free to make up new options.
+> ^level-up
 
-When you *have a quiet stretch of time at home and XP equal to (or greater than) 6 + twice your current level*, follow these steps:
-
-- 1) Subtract 6 + twice your current level from your XP.
-- 2) Increase your level by 1.
-- 3) Choose a new move from your class playbook, or an insert that you've unlocked.
-- 4) If you are the Blessed (or have a sacred pouch) and your new level is even, increase your max Stock by 1.
-- 5) If you are the Lightbearer (or have Invoke the Sun God) and your new level is even, choose a new invocation.
-- 6) Review your Instinct and Appearance (on the front of your playbook). Change anything that no longer applies. Feel free to make up new options.
-
-PCs can't Level Up "in the field." They need to head home. If they accumulate more XP than they need to Level Up, encourage them to **[[06 - Player Moves#BURN BRIGHTLY|Burn Brightly]]** whenever they can—the rest of their expedition will go more smoothly.
+PCs can't Level Up "in the field." They need to head home. If they accumulate more XP than they need to Level Up, encourage them to **[[06 - Player Moves#^burn-brightly|Burn Brightly]]** whenever they can—the rest of their expedition will go more smoothly.
 
 "A quiet stretch of time" usually means a few days with no crises or adventures or significant risks. But don't be a stickler; if everyone has enough XP and they get just one quiet night before heading back out, let them Level Up. And if a session ends at home, any PC who gets enough XP from the End of Session move should Level Up between sessions, even if the session ended on a cliffhanger.
 
@@ -1182,9 +1210,10 @@ The last step is for players to review their Instinct and Appearance, and to cha
 
 *Blodwen is level 5 with 19 XP. She loses 16 XP (5 x 2, +6), leaving her at level 6 with 3 XP. For her new move, she takes "Suck the Poison Out" (a move that "Requires level 6+"). Level 6 is an even number, so she also increases the max Stock of her sacred pouch by 1 (it's now 6). She's happy with her instinct ("Preservation"), but she changes her appearance from "fresh faced" to "hale and hearty." The past year of adventures and hardship have scoured some of the softness from her.*
 
-## MAKE A PLAN
-
-When *you wish to accomplish some project but don't know how to go about it*, tell the GM what you hope to achieve. They'll say what's required. If you're stumped on how to accomplish one of the requirements, tell the GM and Make a Plan for that.
+>[!move] ## MAKE A PLAN
+>
+>When *you wish to accomplish some project but don't know how to go about it*, tell the GM what you hope to achieve. They'll say what's required. If you're stumped on how to accomplish one of the requirements, tell the GM and Make a Plan for that.
+> ^make-a-plan
 
 Make a Plan is a formal way for a player to say "I want to accomplish X," and for you to tell them the requirements for accomplishing it. When a player wants to pursue a new long-term project, or doesn't know how to unlock an arcanum or complete a steading improvement, direct them to this move.
 
@@ -1249,16 +1278,17 @@ If the players come up with a clever way to bypass a requirement, great! If they
 
 *He says that his hands fade to be a shocking white as he works over the month. And to avoid suspicion, he starts a habit of walking the Ringwall every dawn, quietly placing a newly warded stone each time. "Seems like Defying Danger with INT to me." He agrees, but rolls a 6. Just a few days into this new routine, I oppose his wishes and have Glenys confront him, waving one of the sanctified stones around, yelling about sorcery and clearly not happy.*
 
-## **MEET WITH DISASTER**
-
-When *calamity befalls the steading or panic spreads*, reduce Fortunes by 1 (min -1).
-
-When *Fortunes would drop below -1 for any reason* (not just calamity or panic), then the GM picks 1 instead:
-
-- The steading marks diminished from injuries/sickness/doubt (disadvantage to Deploy, Muster, Pull Together)
-- The steading marks *lacking* due to shortages/hoarding/distrust (treat Prosperity as 1 lower)
-- The steading marks *malcontent* from fear/anger/despair (Fortunes reset to +0 each season, not +1; folks need Persuading more often than usual)
-- Folks start to leave; reduce Population by 1
+>[!move] ## **MEET WITH DISASTER**
+>
+>When *calamity befalls the steading or panic spreads*, reduce Fortunes by 1 (min -1).
+>
+>When *Fortunes would drop below -1 for any reason* (not just calamity or panic), then the GM picks 1 instead:
+>
+>- The steading marks diminished from injuries/sickness/doubt (disadvantage to Deploy, Muster, Pull Together)
+>- The steading marks *lacking* due to shortages/hoarding/distrust (treat Prosperity as 1 lower)
+>- The steading marks *malcontent* from fear/anger/despair (Fortunes reset to +0 each season, not +1; folks need Persuading more often than usual)
+>- Folks start to leave; reduce Population by 1
+> ^meet-with-disaster
 
 This move triggers when something clearly and undeniably bad happens to the steading: a building burns down, the village runs out of food, multiple people die suddenly, someone is killed or goes missing in a horrific or eerie way, etc.
 
@@ -1290,14 +1320,15 @@ Any given calamity might impact the steading beyond this move. Like, if Daedra t
 
 *"No," says Rhianna. "Too risky. It's got to be us. Vahid... what tricks do you have that can help?"*
 
-## **MUSTER**
-
-When you *press every able body into the defense of a steading*, reduce Fortunes by 1 and roll +Population: **on a 7+**, the steading is alert and ready for action until the threat passes, the Seasons Change, or you cease to oversee the muster. **On a 10+**, also pick 2; **on a 7-9**, also pick 1.
-
-- Increase Defenses by 1 as long as the muster holds
-- Everyone's willing to pitch in; don't reduce Fortunes after all
-- The muster holds together even without your presence
-- 1 or 2 individuals show real potential; ask the GM who and how
+>[!move] ## **MUSTER**
+>
+>When you *press every able body into the defense of a steading*, reduce Fortunes by 1 and roll +Population: **on a 7+**, the steading is alert and ready for action until the threat passes, the Seasons Change, or you cease to oversee the muster. **On a 10+**, also pick 2; **on a 7-9**, also pick 1.
+>
+>- Increase Defenses by 1 as long as the muster holds
+>- Everyone's willing to pitch in; don't reduce Fortunes after all
+>- The muster holds together even without your presence
+>- 1 or 2 individuals show real potential; ask the GM who and how
+> ^muster
 
 When a PC Musters the village, they're having everyone focus on defense and readiness. It means regular drills, armed watches at all hours, weapons at the ready even while working in the garden. It means putting other work and long-term projects on hold, which reduces the steading's Fortunes and gets people grumbling. A steading can't maintain a Muster for long.
 
@@ -1331,14 +1362,15 @@ On a 6-, look to your threats and to your homefront moves. You might **oppose th
 
 *I nod, and say that if she successfully Musters the village, she won't need to convince folks to Deploy. She reduces Fortunes to +0 and rolls to Muster with advantage (from Logistics). She gets an 8. "Well, the whole point is to get that +1 to Defenses, so I'll pick that one." And, yeah, I say that everyone she talks to is onboard, even Owain, and soon enough, they're ready to send out patrols.*
 
-## **PULL TOGETHER**
-
-When you *set a community to work on improvements*, to secure new resources, or to make major repairs, spend whatever the GM says is required (time, materiel, Surplus, etc.) and roll +Population: **on a 10+**, the job gets done; **on a 7-9**, pick 1:
-
-- It gets done, but other work doesn't; reduce Fortunes by 1
-- It gets done, but the work is shoddy, crude
-- It gets done, but there's a consequence (bad blood, an injury, a threat unearthed, etc.)
-- There's an unforeseen cost, requirement, or challenge; address it and the job gets done
+>[!move] ## **PULL TOGETHER**
+>
+>When you *set a community to work on improvements*, to secure new resources, or to make major repairs, spend whatever the GM says is required (time, materiel, Surplus, etc.) and roll +Population: **on a 10+**, the job gets done; **on a 7-9**, pick 1:
+>
+>- It gets done, but other work doesn't; reduce Fortunes by 1
+>- It gets done, but the work is shoddy, crude
+>- It gets done, but there's a consequence (bad blood, an injury, a threat unearthed, etc.)
+>- There's an unforeseen cost, requirement, or challenge; address it and the job gets done
+> ^pull-together
 
 The PCs might have the village Pull Together in order to:
 
@@ -1402,19 +1434,20 @@ On a 6-, look to your threats and your homefront moves. Establish badness, proba
 
 *"Folks get to work and in just a week, the palisade starts to take shape. That's when Glenys shows up, with Owain and Tegwen and a few others in tow. 'So we're just going to wall ourselves off from the world? And for what? The crinwin climb trees, don't they? How's this gonna keep 'em out? It's foolishness!' Others grumble along and nod, and work stops, folks waiting to see what happens. What do you do?"*
 
-## **TRADE & BARTER**
-
-When you *wish to acquire or sell a commonly available item*, you can. When you *seek to acquire or sell a special item*, roll +Prosperity and subtract the item's Value. In winter, you have disadvantage. **On a 10+**, you can get it or sell it for a fair price; **on a 7-9**, when you're trying to buy, the GM picks 1:
-
-- You can get it, but it'll cost more than usual
-- \_\_\_ has it, but they aren't keen to give it up
-- You can get something close, but not quite right
-
-**On a 7-9 when you're looking to sell**, you can sell it now but you won't get its full worth.
-
-**On a 6- either way**, don't mark XP. If you want to acquire/sell it, you'll need to travel to \_\_\_ or wait until next season, and then try again.
-
-For unique or truly exceptional items, don't Trade & Barter. Either get with the GM and Make a Plan or wait for a trade opportunity when Seasons Change.
+>[!move] ## **TRADE & BARTER**
+>
+>When you *wish to acquire or sell a commonly available item*, you can. When you *seek to acquire or sell a special item*, roll +Prosperity and subtract the item's Value. In winter, you have disadvantage. **On a 10+**, you can get it or sell it for a fair price; **on a 7-9**, when you're trying to buy, the GM picks 1:
+>
+>- You can get it, but it'll cost more than usual
+>- \_\_\_ has it, but they aren't keen to give it up
+>- You can get something close, but not quite right
+>
+>**On a 7-9 when you're looking to sell**, you can sell it now but you won't get its full worth.
+>
+>**On a 6- either way**, don't mark XP. If you want to acquire/sell it, you'll need to travel to \_\_\_ or wait until next season, and then try again.
+>
+>For unique or truly exceptional items, don't Trade & Barter. Either get with the GM and Make a Plan or wait for a trade opportunity when Seasons Change.
+> ^trade-barter
 
 "Commonly available" items include things on the Inventory insert or that could be found in any household (like a bucket or quern stone). See [[03 - Playing the Game#Common items|Common items]] for a list of examples. Folks trade, loan, and gift these items all the time; no roll is required to acquire them (and there's no real point in "selling" them). If you like, ask the PC how they acquired it, from whom, in exchange for what, etc.
 
@@ -1424,15 +1457,15 @@ Unique and truly exceptional items—like arcana or "the key to Mutra's vault" a
 
 PCs don't have to roll to acquire special items that they already own or have access to—a PC with the "smithy" special possession can just have a reasonable number of nails, metal tools, etc. But if a PC wants to acquire a special item that they don't already possess, or sell any special item, that requires a roll.
 
-Players subtract a special item's **Value** (see [[15 - Homefront#Value and coins|Value and coins]]) from the roll, which makes high-Value items difficult to acquire or sell via this move. Even Value 0 special items will often be unavailable. That's intentional.
+Players subtract a special item's **Value** (see [[15 - Homefront#^value-and-coins|Value and coins]]) from the roll, which makes high-Value items difficult to acquire or sell via this move. Even Value 0 special items will often be unavailable. That's intentional.
 
-**On a 10+**, say who's able and willing to trade, and establish what the NPC is offering or willing to accept. Local NPCs might be willing to loan or just give the PC low-Value items. Otherwise, it should be a fair trade, within the same Value tier (see [[15 - Homefront#Value and coins|Value and coins]]).
+**On a 10+**, say who's able and willing to trade, and establish what the NPC is offering or willing to accept. Local NPCs might be willing to loan or just give the PC low-Value items. Otherwise, it should be a fair trade, within the same Value tier (see [[15 - Homefront#^value-and-coins|Value and coins]]).
 
-## **On a 7-9 when the PC is looking to sell**,
+**On a 7-9 when the PC is looking to sell**,
 
 present an NPC who's only willing to give something of lower Value. Like, if the PC is selling a Value 2 item, they might offer a few Value 1 items—or even just one such item! Maybe they don't really want what the PC is selling, or maybe they're angling for a good deal.
 
-## **On a 7-9 when the PC is looking to buy**...
+**On a 7-9 when the PC is looking to buy**...
 
 - ... picking "it'll cost more than usual" means that the NPC wants something of a higher Value, or a really good exchange rate, or an added favor, debt, or service. Establish what they're asking, and make it clear that the NPC is willing to walk away from the deal.
 - ... picking "\_\_\_ has it, but isn't keen to give it up" means that someone currently in town has what the PC is after, but they don't want to trade (or at least, they don't want to let the PC have it). Say who it is and establish the nature of their objection.
@@ -1448,62 +1481,60 @@ When the PCs visit another community, the Trade & Barter move still applies but 
 
 When the PCs roll to Trade & Barter in another steading, they roll with that community's Prosperity. If the steading is a *hamlet*, they roll with disadvantage. If the steading is a *town* or a *city*, they roll with advantage.
 
-## **Value and coins**
-
-The world of Stonetop has no central government, no common currency, and no standard exchange rates. So, what constitutes a fair trade?
-
-Any given item has a Value from 0 to 4 (or rarely higher). Values are not linear; they are tiers. A single Value 2 item is worth about a dozen Value 1 items. Three individual Value 1 items don't add up to Value 3; they're just three Value 1 items.
-
-"A fair price" means trading things with the same Value, but it might not be a 1-to-1 trade. It might be 2- or even 3-to-1 when trading a common, local resource for imported, desirable, or specialized goods (or vice versa).
-
-Exchange rates are anything but standard, but...
-
-# **A Value 0 item** is generally worth:
-
-- A purse of copper coins
-- A single silver coin
-- A favor
-- A few days of unskilled labor
-- A common, mundane item
-
-#### **A Value 1 item** is generally worth:
-
-- A handful of silver coins
-- A season (or so) of unskilled labor
-- A few days of skilled labor
-- A unit of trade goods\* (a sack of grain, a pouch of salt, a stack of pelts, etc.)
-- A bit of finery (a richly embroidered cloak, a silk scarf, a silver comb, etc.)
-
-#### **A Value 2 item** is generally worth:
-
-- A purse of silver coins
-- A single gold coin
-- A Surplus [[15 - Homefront#Surplus|Surplus]]
-- A year (or so) of unskilled labor
-- A season (or so) of skilled labor
-- A cartload of common trade goods\*
-- An item of luxury or status (a gold ring, an artful silver torc, a gemstone, etc.)
-
-### **A Value 3 item** is generally worth:
-
-- A handful of gold coins
-- A year (or so) of skilled labor
-- A good, trained horse or mule
-- A precious item (ruby ring, gold torc, etc.)
-
-## **A Value 4 item** is generally worth:
-
-- A purse of gold coins
-- A dozen or so good horses
-- A "priceless" item (huge flawless gemstone, a gold statuette, a bejeweled scepter, etc.)
-
-\*Exotic trade goods are +1 Value
-
-A **purse of coins** contains about 10 handfuls. A **handful of coins** is about 10 individual coins, and so a purse contains around 100 coins.
-
-One **silver coin** is roughly worth a purse of coppers (or about 100 copper coins). And **one gold coin** is roughly worth a purse of silvers (around 100 silver coins, or an absolute pile of coppers.)
-
-Coins are rarely used between the residents of Stonetop; they're mostly used for trade with outsiders.
+> [!box] ## **Value and coins**
+> 
+> The world of Stonetop has no central government, no common currency, and no standard exchange rates. So, what constitutes a fair trade?
+> 
+> Any given item has a Value from 0 to 4 (or rarely higher). Values are not linear; they are tiers. A single Value 2 item is worth about a dozen Value 1 items. Three individual Value 1 items don't add up to Value 3; they're just three Value 1 items.
+> 
+> "A fair price" means trading things with the same Value, but it might not be a 1-to-1 trade. It might be 2- or even 3-to-1 when trading a common, local resource for imported, desirable, or specialized goods (or vice versa).
+> 
+> Exchange rates are anything but standard, but...
+> 
+> **A Value 0 item** is generally worth:
+> - A purse of copper coins
+> - A single silver coin
+> - A favor
+> - A few days of unskilled labor
+> - A common, mundane item
+> 
+> **A Value 1 item** is generally worth:
+> - A handful of silver coins
+> - A season (or so) of unskilled labor
+> - A few days of skilled labor
+> - A unit of trade goods\* (a sack of grain, a pouch of salt, a stack of pelts, etc.)
+> - A bit of finery (a richly embroidered cloak, a silk scarf, a silver comb, etc.)
+> 
+> **A Value 2 item** is generally worth:
+> - A purse of silver coins
+> - A single gold coin
+> - A Surplus [[15 - Homefront#Surplus|Surplus]]
+> - A year (or so) of unskilled labor
+> - A season (or so) of skilled labor
+> - A cartload of common trade goods\*
+> - An item of luxury or status (a gold ring, an artful silver torc, a gemstone, etc.)
+> 
+> **A Value 3 item** is generally worth:
+> 
+> - A handful of gold coins
+> - A year (or so) of skilled labor
+> - A good, trained horse or mule
+> - A precious item (ruby ring, gold torc, etc.)
+> 
+> **A Value 4 item** is generally worth:
+> 
+> - A purse of gold coins
+> - A dozen or so good horses
+> - A "priceless" item (huge flawless gemstone, a gold statuette, a bejeweled scepter, etc.)
+> 
+> \*Exotic trade goods are +1 Value
+> 
+> A **purse of coins** contains about 10 handfuls. A **handful of coins** is about 10 individual coins, and so a purse contains around 100 coins.
+> 
+> One **silver coin** is roughly worth a purse of coppers (or about 100 copper coins). And **one gold coin** is roughly worth a purse of silvers (around 100 silver coins, or an absolute pile of coppers.)
+> 
+> Coins are rarely used between the residents of Stonetop; they're mostly used for trade with outsiders.
+> ^value-and-coins
 
 *"Hey, before we head out, can I get, like, a lantern?" asks Caradoc. "It's Value 0, so I can just have it, right?"* 
 
@@ -1519,7 +1550,7 @@ Coins are rarely used between the residents of Stonetop; they're mostly used for
 
 *Blodwen pleads her case and offers a bezoar in trade (also Value 1). She rolls a 7 to Persuade, and so Glenys reveals something costly, tricky, or distasteful that could convince her. "She thinks this trip is just foolish curiosity. Which it is, right? But if she thought there was some lingering, unnatural evil out there, and that you were secretly going back to deal with it, she'd let you take the bendis root for sure. I don't think she'd even want the bezoar. What do you do?"* 
 
-*The PCs have brought 1 Surplus worth of food and whisky (Value 2) to Gordin's Delve. "This is a trade opportunity, so that 1 Surplus will get you three Value 2 items that are commonly available here. Plus you can each pick a commonly available Value 1 item, too." I give them the list (from the [[22 - Gordin's Delve#Trade & Barter|Gordin's Delve]] entry in* Book II*).* 
+*The PCs have brought 1 Surplus worth of food and whisky (Value 2) to Gordin's Delve. "This is a trade opportunity, so that 1 Surplus will get you three Value 2 items that are commonly available here. Plus you can each pick a commonly available Value 1 item, too." I give them the list (from the [[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]] entry in* Book II*).* 
 
 *They pick some spare wagon/cart parts (Value 2). Rhianna asks if they can get, like, a whole bunch of iron tools, spears, and hatchets (Value 0) as one of their Value 2 items, and I'm fine with that. "What about a donkey?" she asks. That's still a special item, and she has to roll. She rolls +1 for the Delve's Prosperity, -2 for the donkey's Value, and with advantage because this is a* town*.* 
 
@@ -1558,7 +1589,7 @@ If your group is amenable, try to hash these things out between sessions. Like, 
 
 **Review your End of Session notes**, particularly the wishes each player made.
 
-**[[02 - The Village of Stonetop#**The village of Stonetop**|Flip through the "village of Stonetop" entry]]**. Pick a few impressions or other details you want to feature, and/or some questions you want to ask.
+**[[02 - The Village of Stonetop#The Village of Stonetop|Flip through the "village of Stonetop" entry]]**. Pick a few impressions or other details you want to feature, and/or some questions you want to ask.
 
 **[[16 - Writing Moves and Love Letters#Writing love letters|Consider writing love letters]]** to kick off the session and quickly establish things that have happened since the last session.
 
@@ -1579,7 +1610,7 @@ Put these items in roughly the order you expect them to come up, grouped however
 
 **If you plan to introduce any new NPCs**, create them now to whatever level of detail you find valuable [[14 - NPCs and Followers#Creating NPCs|Creating NPCs]].
 
-**If you expect the next session to feature any established NPCs**, review your notes on them or just think about how you portray them. Think about how they'll act in the upcoming session. Add details to their description if needed, or change established details if it feels right. Maybe stat them up as **[[12 - Dangers#Monsters|monsters]]**, as **[[09 - Threats#Writing a threat|threats]]**, and/or as **[[14 - NPCs and Followers#Creating followers|followers]]**.
+**If you expect the next session to feature any established NPCs**, review your notes on them or just think about how you portray them. Think about how they'll act in the upcoming session. Add details to their description if needed, or change established details if it feels right. Maybe stat them up as **[[12 - Dangers#Monsters|monsters]]**, as **[[09 - Threats#Threats|threats]]**, and/or as **[[14 - NPCs and Followers#Creating followers|followers]]**.
 
 *The first adventure is over! The PCs have killed the swyn, driven off the crinwin, and rescued the kids. At the end of the last session, they decided to head home. We'll play out their return in this coming session.*
 
@@ -1601,14 +1632,14 @@ Put these items in roughly the order you expect them to come up, grouped however
 
 *I ponder a bit and make a rough to-do list for the session:*
 
-## Approaching home
+#### Approaching home
 
 - Keep Company on way home?
 - En route: traps & snares sprung, game gone uncollected
 - Anti-crinwin charms strung up by the Stream, swaying in breeze
 - Folks trudging in from the fields and gardens; somber & on-edge
 
-## Return Triumphant
+**Return Triumphant**
 
 - Excited cry as PCs are spotted
 - Crowd gathers in celebration
@@ -1618,19 +1649,19 @@ Put these items in roughly the order you expect them to come up, grouped however
 - Morwenna embraces Caradoc, happy, proud; stops short of a kiss
 - Tegwen basks in Blodwen's glory
 
-## Put them in a spot
+#### Put them in a spot
 
 - Glenys: demands to know what's wrong with Wynfor
 - Owain blames Rhianna for his daughter's condition ('none of this would've happened if you weren't a coward last winter!')
 
-## 'Family' scenes
+#### 'Family' scenes
 
 - Rhianna celebrating with her crew; bit of a crowd gathered; Garet talks up the PCs, talks smack about Owain
 - Blodwen with Seren & Gwendyl: debrief, discuss what's to be done about the kids
 - Caradoc with his grandma; a rare moment of lucidity ('Why, look how you've grown.')
 - Vahid: How did you end up living in this house? What makes it feel like home? Which of your neighbors is friendliest?
 
-## Potential GM moves
+#### Potential GM moves
 
 - Offer an opportunity: Vahid has time to talk to Mindgem; get info dump about Green Lords, etc.
 - Remind them of their obligations: Sawyl is proud of Caradoc, but there's work to do, boy!

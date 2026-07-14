@@ -1,6 +1,6 @@
 # Danu, the Earth Mother
 
-Danu-the Great Mother, the Goddess, She-Who-Provides-is one of the four main gods [[20 - Gods and Religion#Gods and religion|Gods and religion]] of Stonetop. She is the deity of the earth and the wild places, of beasts and birds, of green growing things. She has long been revered by all peoples, though not always worshipped, nor served by priests.
+Danu—the Great Mother, the Goddess, She-Who-Provides—is one of the four main gods [[20 - Gods and Religion#Gods and religion|Gods and religion]] of Stonetop. She is the deity of the earth and the wild places, of beasts and birds, of green growing things. She has long been revered by all peoples, though not always worshipped, nor served by priests.
 
 If one of your initial PCs has the Blessed playbook, then they will answer many of the questions in this section via their presence, their background, and the decisions they make during character creation and introductions. Defer to that PC as the expert on Danu in your game, but don't forget to ask other PCs for their opinions and experiences, too.
 
@@ -8,7 +8,7 @@ If one of your initial PCs has the Blessed playbook, then they will answer many 
 
 Pick, or roll 1d12.
 
-## 1d12 theme
+### 1d12 theme
 
 - 1-2 The earth itself/soil/stone
 - 3-4 Beasts of the land/birds of the air
@@ -30,9 +30,9 @@ According to the tales:
 - What feature of the landscape is said to have been shaped by her hand?
 - How exactly are the brennauwed [[41 - Spirits of the Wild#The Brennauwed|The Brennauwed]] said to be related to Danu?
 - What humble beast or bird does she hold to be most sacred?
-- How did the Forest Folk 's [[17 - Forest Folk|Forest Folk]] view of her differ most strikingly from Stonetop's?
+- How did the Forest Folk's [[17 - Forest Folk|Forest Folk]] view of her differ most strikingly from Stonetop's?
 
-Use the answers to help decide what Danu's true nature is [[20 - Gods and Religion#**1d12** observance|Gods and Religion]].
+Use the answers to help decide what Danu's true nature is [[20 - Gods and Religion#Gods and Religion|Gods and Religion]].
 
 ## Hooks
 
@@ -75,8 +75,6 @@ Likewise, ask or consider what offerings are typically left there. These might i
 
 Think about what the answers say about how this community sees Danu, and why? Do they see her as a nurturing mother? As an inscrutable natural force? As a hungry mother-of-monsters, a deity to appease and avoid? Or what?
 
-## **Danu**
-
 ## **Her blessed**
 
 In any given community, there are those who learn some of Danu's secrets, who bear some of her gifts, who make offerings to her and perform her most important rites. For any given community, these folk might be…
@@ -102,18 +100,18 @@ If one of your PCs has the Blessed playbook, they almost certainly fill this rol
 
 Should a blessed NPC (or group of NPCs) oppose or cause trouble for the PCs, write them up as a threat (likely an *institution* or maybe a *wildcard*).
 
-Remember: NPCs don't have playbooks. A blessed NPC might have tags or moves reminiscent of a PC Blessed, or not. See the Hillfolk **[[26 - Hillfolk#Upland horse|spirit-talker]]** and the Initiates of Danu insert for examples.
+Remember: NPCs don't have playbooks. A blessed NPC might have tags or moves reminiscent of a PC Blessed, or not. See the Hillfolk **[[26 - Hillfolk#Spirit-talker|spirit-talker]]** and the Initiates of Danu insert for examples.
 
 ## **Artifacts**
 
-## **Various treasures**
+### **Various treasures**
 
 - A few menhirs atop a high place, with carvings that map the movements of certain auspicious stars (*immobile*)
 - Dried, hallucinogenic mushrooms (2d4 uses, Value 1)
-- A pouch of bendis root (~10 uses, burnt fumes repel perversions of nature; each use lasts ~1 hour, *reach*, *area*, Value 1)
+- A ◇ pouch of bendis root (~10 uses, burnt fumes repel perversions of nature; each use lasts ~1 hour, *reach*, *area*, Value 1)
 - A bezoar (swallow to cure any poison, Value 1)
-- A pouch of pink salt, good for cooking/preserving and bane to *corrupted* creatures (Value 1)
-- A sacred pouch of rune-stitched drakeskin; when sealed, nothing within can be detected or found by magic, nor can anything within escape or affect the outside world (*magical*, Value 2)
+- A ◇ pouch of pink salt, good for cooking/preserving and bane to *corrupted* creatures (Value 1)
+- A ◇ sacred pouch of rune-stitched drakeskin; when sealed, nothing within can be detected or found by magic, nor can anything within escape or affect the outside world (*magical*, Value 2)
 - A silver-alloy dagger, useful against undead spirits (*hand*, Value 2)
 - A 6-foot tall statue of Danu, carved from a geode, the torso open and filled with amethyst crystals (*immobile*, Value 3)
 - A scroll (*fragile*, Value 4 to the right buyer) with cryptic instructions on how to create a **[[58 - Appendix D - Major Arcana#Redwood Effigy|Redwood Effigy]]**
@@ -122,48 +120,48 @@ Remember: NPCs don't have playbooks. A blessed NPC might have tags or moves remi
 
 Pick 1 or have someone roll.
 
-## **1d6** minor arcanum
+### **1d6** minor arcanum
 
-- 1 **[[57 - Appendix C - Minor Arcana#A folktale|A folktale]]**
-- 2 **[[57 - Appendix C - Minor Arcana#Goldleaf Cloak|A giant oak leaf]]**
-- 3 **[[57 - Appendix C - Minor Arcana#A crumbling arch|A crumbling arch]]**
-- 4 **[[57 - Appendix C - Minor Arcana#A path in the woods|A path in the woods]]**
-- 5 **[[57 - Appendix C - Minor Arcana#A patch of rainbow moss|A patch of rainbow moss]]**
-- 6 **[[57 - Appendix C - Minor Arcana#A beaded satchel|A beaded satchel]]**
+- 1 **[[57 - Appendix C - Minor Arcana#^a-folktale|A folktale]]**
+- 2 **[[57 - Appendix C - Minor Arcana#^goldleaf-cloak|A giant oak leaf]]**
+- 3 **[[57 - Appendix C - Minor Arcana#^a-crumbling-arch|A crumbling arch]]**
+- 4 **[[57 - Appendix C - Minor Arcana#^a-path-in-the-woods|A path in the woods]]**
+- 5 **[[57 - Appendix C - Minor Arcana#^a-patch-of-rainbow-moss|A patch of rainbow moss]]**
+- 6 **[[57 - Appendix C - Minor Arcana#^a-beaded-satchel|A beaded satchel]]**
 
 #### **Major arcana**
 
- The following might be associated with Danu, or at least revered by her followers:
+The following might be associated with Danu, or at least revered by her followers:
 
-- The **[[58 - Appendix D - Major Arcana#Twisted Spear , reach, magical|Twisted Spear]]**
-- The **Shield of the Wisent Witc**h [[58 - Appendix D - Major Arcana#Shield of the Wisent Witch|Shield of the Wisent Witch]]
+- The **[[58 - Appendix D - Major Arcana#^twisted-spear|Twisted Spear]]**
+- The **[[58 - Appendix D - Major Arcana#Shield of the Wisent Witch|Shield of the Wisent Witch]]**
 - The **[[58 - Appendix D - Major Arcana#Redwood Effigy|Redwood Effigy]]**
 
 ## **Perversions of nature**
 
-The Danu's Grasp move from the Blessed playbook affects "perversions of nature," as does the Ranger's move, Warden of the Wild. This includes the **[[46 - The Things Below#The Things Below|Things Below]]**) and anything corrupted by them or infused with their power. Undead probably count, too, as well as some of the **[[24 - Green Lords#Green Lords|Green Lords']]** more extreme creations.
+The Danu's Grasp move from the Blessed playbook affects "perversions of nature," as does the Ranger's move, Warden of the Wild. This includes the **[[46 - The Things Below#The Things Below|Things Below]]** and anything corrupted by them or infused with their power. Undead probably count, too, as well as some of the **[[24 - Green Lords#Green Lords|Green Lords']]** more extreme creations.
 
 Ask the Blessed or Ranger what they'd consider a perversion of nature. Consider what you know about the entity in question, and make a ruling. When in doubt, defer to the Die of Fate or the result of an appropriate move.
 
-# **Dangers**
+## **Dangers**
 
 ### **Associated entities**
 
-- Any sort of natural beast or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirit of the wild]]**, who acknowledge Danu's authority
+- Any sort of natural beast or **[[41 - Spirits of the Wild#Spirits of the Wild|spirit of the wild]]**, who acknowledge Danu's authority
 - The **[[41 - Spirits of the Wild#The Brennauwed|brennauwed]]** in particular, who claim kinship with her
 - Many of the **[[12 - Fae#Fae|Fae]]**, who honor her as a respected elder
-- **[[13 - Ferrier's Fen#**Exploring the Fen**|Fen-walkers]]**, who know better than to offend her
-- **[[26 - Hillfolk#Hillfolk rider|Hdour]]**, who know many of her secrets
-- **[[26 - Hillfolk#Upland horse|Spirit-talkers]]** and **[[42 - The Steplands#**Gouzadn**|gouzadn]]**, who hear her voice and bear her gifts
-- Perhaps the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, the **[[13 - Ferrier's Fen#Mind your manners|Willow Witches]]**, the **[[20 - Gods and Religion#**Other gods**|other gods]]**, or the **[[36 - Primordial Powers#**Other primordial entities**|great spirits]]**, any of whom might share a bond of kinship, familiarity, or common cause
+- **[[13 - Ferrier's Fen#Fen-walker|Fen-walkers]]**, who know better than to offend her
+- **[[26 - Hillfolk#Hdour|Hdour]]**, who know many of her secrets
+- **[[26 - Hillfolk#Spirit-talker|Spirit-talkers]]** and **[[42 - The Steplands#Gouzadn|gouzadn]]**, who hear her voice and bear her gifts
+- Perhaps the **[[35 - The Pale Hunter#The Pale Hunter|Pale Hunter]]**, the **[[13 - Ferrier's Fen#The Willow Witches|Willow Witches]]**, the **[[20 - Gods and Religion#Other gods|other gods]]**, or the **[[36 - Primordial Powers#Great spirits|great spirits]]**, any of whom might share a bond of kinship, familiarity, or common cause
 
 ### **Signs of her displeasure**
 
-- The **[[37 - Red Groves#**Hooks**|Forest's Wrath]]**
-- **[[13 - Ferrier's Fen#**Dangers**|Disease]]**
-- Volcanic activity and **[[27 - Huffel Peaks#**Volcanic activity**|earthquakes]]**, and what they let loose
-- **Mudslides** or **[[42 - The Steplands#1d6 natural beast or spirit|rockslides]]**, out of the blue
+- The **[[37 - Red Groves#The Forest's Wrath|Forest's Wrath]]**
+- **[[13 - Ferrier's Fen#Disease|Disease]]**
+- Volcanic activity and **[[27 - Huffel Peaks#Earthquake|earthquakes]]**, and what they let loose
+- **Mudslides** or **[[42 - The Steplands#Rockslide|rockslides]]**, out of the blue
 - Perhaps the stirring of the **[[08 - The Crombil#The Crombil|Crombil]]**, decades before its time
-- The ire of various natural beasts or **[[41 - Spirits of the Wild#**Spirits of the wild**|spirits of the wild]]**
+- The ire of various natural beasts or **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**
 - Blighted crops/gardens, sickly livestock, scarce game (disadvantage to generate Surplus in summer and autumn)
 - Some manner of curse, upon an individual or a community (threat type *affliction*; **Instinct** to punish)

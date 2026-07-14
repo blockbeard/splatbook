@@ -1,10 +1,10 @@
 # Expeditions
 
-Preparations 
-Running the journey 
-Player moves 
-Going home 
-What to prep
+| In this chapter | |
+|---|---|
+| [[#Preparations\|Preparations]] | [[#Running the journey\|Running the journey]] |
+| [[#Player moves\|Player moves]] | [[#Going home\|Going home]] |
+| [[#What to prep\|What to prep]] |  |
 
 The characters decide to leave town. Maybe you've presented a threat and they're off to deal with it. Maybe you've dangled an opportunity and they want to seize it. Maybe they have plans of their own, something they want to accomplish, and it involves leaving home. It's time for an expedition.
 
@@ -20,17 +20,18 @@ Travel is an important part of *Stonetop*. It's a chance to flesh out and explor
 
 ## **Preparations**
 
-## **CHART A COURSE**
-
-When you *wish to travel to a distant place*, name or describe your destination ("Gordin's Delve," "the hagr's lair," or "wherever these tracks lead"). If the route is unclear, tell the GM how you intend to reach it. The GM will then tell you what's required, the risks, and how long it will likely take.
-
-When you *set out on the journey*, the GM will present each of the challenges one at a time—plus any surprises that you couldn't have seen coming—in whatever order makes the most sense. Address them all and reach your destination.
+>[!move] ## **CHART A COURSE**
+>
+>When you *wish to travel to a distant place*, name or describe your destination ("Gordin's Delve," "the hagr's lair," or "wherever these tracks lead"). If the route is unclear, tell the GM how you intend to reach it. The GM will then tell you what's required, the risks, and how long it will likely take.
+>
+>When you *set out on the journey*, the GM will present each of the challenges one at a time—plus any surprises that you couldn't have seen coming—in whatever order makes the most sense. Address them all and reach your destination.
+> ^chart-a-course
 
 When the players start talking about leaving town, direct them to this move. Use it to clarify their destination and how they intend to get there. If they have no ideas, prompt them to Know Things. Their route doesn't need to be perfectly clear something like, "We follow the tracks" is fine—but they should have some idea of where they're going and how they're going to get there.
 
 Once they've established their destination and route, tell them as many of the following as make sense. Make your choices based on the seasons, the terrain, how well they know the area, the dangers that lurk there, the threats you've established and their grim portents. Don't worry so much about the order right now, and feel free to rephrase or tweak the wording. If it makes sense, add entirely new items.
 
-## **Requirements**
+#### **Requirements**
 
 - You must first travel to \_\_\_, and from there to your destination
 - You must wait until \_\_\_
@@ -38,7 +39,7 @@ Once they've established their destination and route, tell them as many of the f
 - It'll take at least \_\_\_ days (and a corresponding amount of supplies)
 - You'll need to bring \_\_\_
 
-## **Challenges**
+#### **Challenges**
 
 - You need to watch out for \_\_\_
 - The way is perilous, plagued with danger
@@ -60,30 +61,32 @@ If they fail (or refuse) to meet the requirements, **tell them the consequences*
 
 Once they set out on the journey, you'll frame scenes and situations that show them traveling and approaching their destination. During some of those scenes, you'll make GM moves that introduce the challenges you outlined. You'll ask the players what they do, resolve the situation, and—assuming the PCs keep going—move on to the next one. See **Running the Journey** starting on [[10 - Expeditions#Running the journey|Running]] for more guidance.
 
-## **"… a corresponding amount of supplies"**
-
-"Supplies" are something characters can have in their inventory. They represent stuff that the PCs might need or want on an expedition: food, water, whisky, bandages, salves, etc. The steading's Prosperity stat affects the quality and quantity of supplies available to the PCs; they add the steading's Prosperity to the number of uses they get out of each <sup>4</sup> of supplies.
-
-Supplies get used when...
-
-- ... they **[[10 - Expeditions#RECOVER|Recover]]**;
-- ... they **[[10 - Expeditions#MAKE CAMP|Make Camp]]**;
-- ... they **[[10 - Expeditions#HAVE WHAT YOU NEED|Have What They Need]]**) to produce additional *small* items; and
-- ... you **use up their resources**, and supplies are what you use up.
-
-By default, each person in the party consumes 1 use of supplies per day. But if someone has and uses a mess kit (which requires water and fire) then 1 use of supplies can cover up to four people.
-
-In other words, when they use a mess kit...
-
-- ... a party of up to 4 will expend 1 use of supplies per day;
-- ... a party of 5-8 will expend 2 uses of supplies per day; or
-- ... a party of 9-12 will expend 3 uses of supplies per day.
-
-**If they don't use a mess kit**, each party member will expend 1 use of supplies per day. Obviously, it's very favorable to bring and use a mess kit!
-
-Pack animals can graze or browse, and carry enough extra feed to "cover" themselves. Use your best judgement for other animals. The Ranger's pet wolf can probably fend for itself, and small critters don't need much food, but wellheeled hounds probably need to be fed from the party's supplies.
-
-If the party travels with a pack animal or a cart laden with at least 1 Surplus worth of supplies, then there's no need to track individual meals and uses. As long as they have access to their stash, they can effectively re-Outfit out of it.
+> [!box] **"… a corresponding amount of supplies"**
+> 
+> "Supplies" are something characters can have in their inventory. They represent stuff that the PCs might need or want on an expedition: food, water, whisky, bandages, salves, etc. The steading's Prosperity stat affects the quality and quantity of supplies available to the PCs; they add the steading's Prosperity to the number of uses they get out of each ◊ of supplies.
+> 
+> Supplies get used when...
+> 
+> - ... they **[[10 - Expeditions#^recover|Recover]]**;
+> - ... they **[[10 - Expeditions#^make-camp|Make Camp]]**;
+> - ... they **[[10 - Expeditions#^have-what-you-need|Have What They Need]]**) to produce additional *small* items; and
+> - ... you **use up their resources**, and supplies are what you use up.
+> 
+> By default, each person in the party consumes 1 use of supplies per day. But if someone has and uses a mess kit (which requires water and fire) then 1 use of supplies can cover up to four people.
+> 
+> 
+> In other words, when they use a mess kit...
+> 
+> - ... a party of up to 4 will expend 1 use of supplies per day;
+> - ... a party of 5-8 will expend 2 uses of supplies per day; or
+> - ... a party of 9-12 will expend 3 uses of supplies per day.
+> 
+> **If they don't use a mess kit**, each party member will expend 1 use of supplies per day. Obviously, it's very favorable to bring and use a mess kit!
+> 
+> Pack animals can graze or browse, and carry enough extra feed to "cover" themselves. Use your best judgement for other animals. The Ranger's pet wolf can probably fend for itself, and small critters don't need much food, but wellheeled hounds probably need to be fed from the party's supplies.
+> 
+> If the party travels with a pack animal or a cart laden with at least 1 Surplus worth of supplies, then there's no need to track individual meals and uses. As long as they have access to their stash, they can effectively re-Outfit out of it.
+> ^a-corresponding-amount-of-supplies
 
 *Winter has been brutal and Stonetop is running out of food. Rhianna and Caradoc decide to go hunt the cave bears south of town, despite Blodwen's reservations. "Sounds like you're Charting a Course," I say. "How do you intend to get there?"*
 
@@ -123,28 +126,29 @@ If the party travels with a pack animal or a cart laden with at least 1 Surplus 
 
 *"Ah," Vahid says. "Yeah, that makes sense."*
 
-## **OUTFIT**
-
-When you *prepare for an expedition in a friendly community*, mark as many on your Inventory insert as you wish to carry, either on specific items or in "undefined." Mark up to 3 for a *light* load (quick and quiet), 4-6 for a *normal* load, or 7-9 for a *heavy* load (noisy, slow, quick to tire). Also, mark a number of in the **Small Items** section equal to 4+Prosperity (again, on specific items or in Undefined).
-
-You can select:
-
-- Items printed on the Inventory sheet
-- Other common, mundane items
-- Any of your special possessions
-- Special items for which you Trade & Barter
-
-Tell the GM what you're bringing and answer their questions about your gear and where you got it.
+>[!move] ## **OUTFIT**
+>
+>When you *prepare for an expedition in a friendly community*, mark as many on your Inventory insert as you wish to carry, either on specific items or in "undefined." Mark up to 3 for a *light* load (quick and quiet), 4-6 for a *normal* load, or 7-9 for a *heavy* load (noisy, slow, quick to tire). Also, mark a number of in the **Small Items** section equal to 4+Prosperity (again, on specific items or in Undefined).
+>
+>You can select:
+>
+>- Items printed on the Inventory sheet
+>- Other common, mundane items
+>- Any of your special possessions
+>- Special items for which you Trade & Barter
+>
+>Tell the GM what you're bringing and answer their questions about your gear and where you got it.
+> ^outfit
 
 When a player Outfits, they decide how many to mark on their Inventory insert, and thus how heavy a load they'll carry. Some playbook moves only work with a certain load or lighter, but mostly a character's load just informs the fiction and your GM moves. "The slope's steep, but with plenty of handholds. It's no problem unless you've got a heavy load—then you'll be Defying Danger. What do you do?"
 
 **Small items** don't count towards a character's load. They're things that could fit in a purse or boot with room to spare—some coins, a tinderbox, a knife, etc. The player can mark a number of in Small items equal to 4 + the steading's Prosperity.
 
-Players can put as many of their marks in the "undefined" sections as they like. They can then **[[10 - Expeditions#HAVE WHAT YOU NEED|Have What You Need]]** during the expedition to transfer those undefined marks to specific items. Yes, it's a good idea for players to leave their inventory as "undefined" as possible, only declaring specific items as they need or want them.
+Players can put as many of their marks in the "undefined" sections as they like. They can then **[[10 - Expeditions#^have-what-you-need|Have What You Need]]** during the expedition to transfer those undefined marks to specific items. Yes, it's a good idea for players to leave their inventory as "undefined" as possible, only declaring specific items as they need or want them.
 
 Players might pick specific items because they know that they'll need them (for example, if they Charted a Course and you told them they'd need to bring *warm* clothes) or just because they're sure that they'll want them (like a Ranger's bow).
 
-Items printed on the Inventory sheets are things that any PC has access to and that would be useful on an expedition. PCs can also bring any of their special possessions: the ones that they picked at character creation, or those they've found in the field, received as gifts, or acquired via **[[15 - Homefront#TRADE & BARTER|Trade & Barter]]**. They can also pick any common, mundane item that everyone agrees would be available in a small ironage village (a bucket, some seed, a wooden spoon, a basket, etc.).
+Items printed on the Inventory sheets are things that any PC has access to and that would be useful on an expedition. PCs can also bring any of their special possessions: the ones that they picked at character creation, or those they've found in the field, received as gifts, or acquired via **[[15 - Homefront#^trade-barter|Trade & Barter]]**. They can also pick any common, mundane item that everyone agrees would be available in a small ironage village (a bucket, some seed, a wooden spoon, a basket, etc.).
 
 Followers need to Outfit, too! You might tell their player what they bring, or have the player decide.
 
@@ -170,9 +174,10 @@ This is the first time Caradoc has brought a cloak on an expedition—it was a b
 
 "Oh, totally! She catches you in the square as the crew is gathering. She's got a bundle under her arm and avoids eye contact. I... I was weaving this for you... before... and, well, the embroidery on the back isn't done, but if you insist on going out there again... well, you'll need something warm. So... here.' And she blushes and shoves it in your arms and runs off. What do you do?"
 
-## **REQUISITION**
-
-When you *borrow some of the steading's assets for an expedition* (like the horses or a plow), roll +Fortunes: **on a 10+**, go ahead, but bring it back safely; **on a 7-9**, you'll need to do some convincing; **on a 6-**, don't mark XP—you can take the asset with you, but if you do, reduce Fortunes by 1.
+>[!move] ## **REQUISITION**
+>
+>When you *borrow some of the steading's assets for an expedition* (like the horses or a plow), roll +Fortunes: **on a 10+**, go ahead, but bring it back safely; **on a 7-9**, you'll need to do some convincing; **on a 6-**, don't mark XP—you can take the asset with you, but if you do, reduce Fortunes by 1.
+> ^requisition
 
 At the start of play, Stonetop owns a few communal assets: a couple sturdy draft horses, a pair of carts, a pair of iron plows, and a big wagon. You might also consider some of the main tradesfolk's' tools (like the smithy's anvil or the tanner's vats) as town assets.
 
@@ -192,7 +197,7 @@ A 6- means that folks ain't having it. Maybe the asset is currently in use. Mayb
 
 If the players decide to take the asset anyhow, ask them how they do it. Do they throw their weight around? Do they sneak the asset out in the middle of the night? Whatever they do, they don't need to play out the specifics or make any other rolls as they do it. But it'll harm the town's morale and cohesiveness, reducing Fortunes by 1.
 
-If the PCs borrow an asset and fail to bring it home safely, that almost always counts as **[[15 - Homefront#MEET WITH DISASTER|Meeting with Disaster]]**. Reduce the town's Fortunes by 1 (or more!).
+If the PCs borrow an asset and fail to bring it home safely, that almost always counts as **[[15 - Homefront#^meet-with-disaster|Meeting with Disaster]]**. Reduce the town's Fortunes by 1 (or more!).
 
 *Vahid has convinced Rhianna to do this expedition to Three Coven Lake. Since they're going through Marshedge, Rhianna's keen to do some trading. "Let's bring my crew, a horse, a cart, and… 3 Surplus? We can trade for a donkey and supplies, and maybe turn a profit on whatever's left. We'll send my crew back with the horse and wagon, and load up our new donkey for the expedition."*
 
@@ -204,7 +209,7 @@ If the PCs borrow an asset and fail to bring it home safely, that almost always 
 
 *Rhianna seriously considers going over her head—the trade mission really is a good idea! But, no… the town's Fortunes are only at +0, and they can't really afford a hit right now. "I'm sorry you feel that way, Fion," says Rhianna, raising a cup of whisky. "I guess we'll just do this the hard way."*
 
-## **Other preparations**
+### **Other preparations**
 
 These might happen before the PCs Outfit and Requisition or after, or sometimes in the middle of making choices.
 
@@ -212,21 +217,21 @@ Zoom in and out as appropriate, switching between loose play and scenes. Gloss o
 
 You might even jump back and forth in time as they take care of all the details. Don't sweat it.
 
-## **Trading & bartering**
+#### **Trading & bartering**
 
 If the PCs want a special item for the trip—like bendis root, a nice lantern, or a bronze weapon—they'll need to Trade & Barter. This takes time. If they're in a rush or have other priorities before they leave, this won't be an option. See the **Homefront** chapter [[15 - Homefront|Homefront]] for details.
 
-## **Gathering information**
+#### **Gathering information**
 
 The PCs might have questions they want or need answered before leaving. They could Know Things ("Has anything like this happened before?") or Seek Insight ("I go down and investigate the scene of the attack"). They might interview an NPC to see what they know, and/or use playbook moves like the Blessed's Call the Spirits.
 
 Reward and encourage research, but keep in mind how long these things take. If they dawdle, **tell them the consequences and ask**. "Yeah, sure, but it'll take a few hours and the longer you wait, the harder it'll be to follow that trail."
 
-## **Bringing NPCs and followers**
+#### **Bringing NPCs and followers**
 
 Established **[[14 - NPCs and Followers#Followers|followers]]** like the Marshal's crew will usually join an expedition if asked, but they might need convincing if the mission is foolish or against the follower's goals.
 
-Other NPCs might offer to join the PCs, or insist on doing so. If the PCs seek out NPCs to join them, then you might **offer an opportunity** or maybe **introduce someone interesting**. They might Know Things ("Do I know anyone who'd come into the Woods with us?") or Seek Insight ("Who here is useful or valuable to me?"), and/or Persuade ("Rheinal, we need your help"). Candidates could also become apparent through a **Muster** (page [[15 - Homefront#MUSTER|534\)]], or organically in play.
+Other NPCs might offer to join the PCs, or insist on doing so. If the PCs seek out NPCs to join them, then you might **offer an opportunity** or maybe **introduce someone interesting**. They might Know Things ("Do I know anyone who'd come into the Woods with us?") or Seek Insight ("Who here is useful or valuable to me?"), and/or Persuade ("Rheinal, we need your help"). Candidates could also become apparent through a **Muster** (page [[15 - Homefront#^muster|534\)]], or organically in play.
 
 As always, follow your principles and your sense of the world. **Begin and end with the fiction**, but also **be a fan of the characters** and **ask questions and build on the answers**. "No, there's no alchemist in town. But the tanner sure knows their chemics… what's their name, and how well do you know them?"
 
@@ -234,25 +239,25 @@ If an NPC comes along, and they'll follow the PCs' lead, then write them up as *
 
 Well-trained beasts (like hounds or the town's horses) also count as followers, but livestock like goats and sheep don't. You can tell a good hound what to do. A goat? Not so much.
 
-Followers **[[10 - Expeditions#OUTFIT|Outfit]]** just like PCs. You decide what other NPCs bring with them, now or later as you see fit.
+Followers **[[10 - Expeditions#^outfit|Outfit]]** just like PCs. You decide what other NPCs bring with them, now or later as you see fit.
 
-## **Putting others to work**
+#### **Putting others to work**
 
 Before they go, the PCs might set the townsfolk to work. For example:
 
-They could **Muster** (page [[15 - Homefront#MUSTER|534]]), getting the town ready for trouble. Have them roll before leaving; they'll need to choose "the muster holds together even without your presence" if they want it to stick while they're gone.
+They could **Muster** (page [[15 - Homefront#^muster|534]]), getting the town ready for trouble. Have them roll before leaving; they'll need to choose "the muster holds together even without your presence" if they want it to stick while they're gone.
 
-They could **[[15 - Homefront#PULL TOGETHER|Pull Together]]**, having folks repair the granary or prepare fortifications or whatnot. They should commit resources up front, but shouldn't roll until they head home. That way, the players learn the success of the effort at the same time their characters do.
+They could **[[15 - Homefront#^pull-together|Pull Together]]**, having folks repair the granary or prepare fortifications or whatnot. They should commit resources up front, but shouldn't roll until they head home. That way, the players learn the success of the effort at the same time their characters do.
 
 They might **set individuals to a task**, like searching the Chronicle or keeping an eye on Ergben. They might need to convince the NPC to do it. If the NPC is a follower, the task might trigger a move (like Seek Insight or Defy Danger)—in which case, have the player roll for the follower when the PCs return home, to see how it went. If the NPC isn't a follower, then just decide what happens and reveal it when the PCs return.
 
 Make note of any such projects, so that you don't forget them later.
 
-## **Miscellaneous**
+#### **Miscellaneous**
 
 Your players will certainly come up with other things to do before leaving. Follow the fiction and your principles. Zoom in and out as you see fit. Tie their actions back to the townsfolk and ask lots of questions. If they trigger a move that impacts their preparations or that would be quickly resolved, have them roll it before they leave. If they trigger a move that takes time to resolve, roll it when they return.
 
-## **Flashbacks**
+### **Flashbacks**
 
 Sometimes, the PCs get into the field and a player realizes that they should have done something before they left. Let simple things go with, "Yeah, sure, of course." For more involved activities, consider playing it out as a flashback. Frame a scene in the past and play it out normally, with moves and rolls and such. When the scene is done, jump back to "now."
 
@@ -284,7 +289,7 @@ Then, run the game:
 - **4) Resolve their actions**. If they trigger a player move, do what it says (and see page [[10 - Expeditions#Player moves|326]] for **player moves** specific to expeditions). If they roll a 6- or ignore a threat, make a hard GM move. Otherwise, say what happens.
 - **5) Repeat**. Continue to update the situation, make soft GM moves, ask what they do, and resolve their actions until there's nothing interesting left to say or do in the current situation. Then, transition to the next leg of travel or the next point of interest.
 
-## **Legs of travel**
+### **Legs of travel**
 
 Look at the PCs' route and find the next point of interest—the next landmark or spot where you plan to frame a scene. Identify the path that the PCs will take to get there. That's the next leg of travel.
 
@@ -292,27 +297,25 @@ Look at the PCs' route and find the next point of interest—the next landmark o
 
 Otherwise, play out the leg of travel as a situation, one that's mostly handled through **[[05 - Running the Game#Scenes and loose play|loose play]]**. Here's how.
 
-## **Frame the action**
+#### **Frame the action**
 
 Say where they find themselves, and how long they've been going (minutes, hours, days). "Okay, you head out? A half-hour later, you find yourselves past the Old Wall, stepping onto the West Road. An hour later, you're surrounded by the Flats, Stonetop a blip on the horizon."
 
-## **Describe the environment If the leg of travel goes through unfamiliar terrain**—an environment that the *players* have never seen before, or one that has changed significantly since the PCs last came through—then spend some time
-
-describing the environment.
+#### Describe the environment 
+**If the leg of travel goes through unfamiliar terrain**—an environment that the *players* have never seen before, or one that has changed significantly since the PCs last came through—then spend some time describing the environment.
 
 Start with the obvious details: the nature of the terrain, its size and scale, the **[[10 - Expeditions#Weather|weather]]**, and anything that they couldn't help but notice. Provide up to 3 impressions from different senses: things they see, hear, smell, or feel (physically or emotionally) as they travel. The *Book II* entries for each region include examples.
 
 Keep your descriptions concise. Players will zone out if you give them too much detail, and they'll ask questions when they want or need more.
 
-# **If the leg goes through familiar terrain** before—then just describe the current
+**If the leg goes through familiar terrain**
+an environment that the players have seen before—then just describe the current weather and maybe remind them what this terrain is like.
 
-an environment that the players have seen weather and maybe remind them what this terrain is like.
-
-# **Ask questions**
+#### **Ask questions**
 
 Keep players engaged and create a sense of time passing as they travel by **asking lots of questions**.
 
-### **If the leg goes through unfamiliar terrain**, then ask the characters questions about the terrain or what it's like to travel through it. The *Book II* entries for each region include questions you might ask, and you can always ask questions like:
+**If the leg goes through unfamiliar terrain**, then ask the characters questions about the terrain or what it's like to travel through it. The *Book II* entries for each region include questions you might ask, and you can always ask questions like:
 
 - What's the most striking thing that you notice about this terrain?
 - What is the best/worst/most unexpected thing about this leg of the journey?
@@ -322,25 +325,23 @@ Keep players engaged and create a sense of time passing as they travel by **aski
 - What are you looking forward to?
 - What are you thinking/worrying about?
 
-#### **If the leg goes through familiar terrain**,
+**If the leg goes through familiar terrain**, you should still ask questions, but focus those questions on the weather, or what the PCs are thinking or talking about. Or suggest that they **[[10 - Expeditions#^keep-company|Keep Company]]**, and let them ask questions of each other.
 
-you should still ask questions, but focus those questions on the weather, or what the PCs are thinking or talking about. Or suggest that they **[[10 - Expeditions#KEEP COMPANY|Keep Company]]**, and let them ask questions of each other.
+#### **Portray NPCs**
 
-## **Portray NPCs If there are any NPCs on the journey**,
+If there are any NPCs on the journey, describe what they're up to, what they're talking about, how they're reacting to this leg of travel. Maybe ask players what they have their followers doing, or how they think their followers act.
 
-describe what they're up to, what they're talking about, how they're reacting to this leg of travel. Maybe ask players what they have their followers doing, or how they think their followers act.
-
-## **Add details, answer questions, clarify the situation**
+#### **Add details, answer questions, clarify the situation**
 
 Elaborate on the situation as much or as little as your players' interest demands. If they're engaged and enjoying themselves, asking questions and offering more details, then **let things breathe** and spend some time just talking about the leg of travel.
 
 Likewise, if there's confusion or disagreement about what's going on, try to clarify and get everyone on the same page.
 
-### **Make a soft GM move**
+#### **Make a soft GM move**
 
 Once the situation is well-established, and you feel like it's time to nudge things along, make a soft GM move.
 
-- Present a challenge you listed when they **[[10 - Expeditions#CHART A COURSE|Charted a Course]]**
+- Present a challenge you listed when they **[[10 - Expeditions#Resolving Chart a Course|Charted a Course]]**
 - Present an encounter from your **[[10 - Expeditions#What to prep|prep]]**, or from the setting guide
 - Have an NPC or follower get into or start some trouble
 - Stir up conflict between the PCs
@@ -360,7 +361,7 @@ A player's action might prompt you to zoom in and frame a scene (if you haven't 
 
 See [[10 - Expeditions#Player moves|Player moves]] for **player moves** that the PCs are likely to use while traveling.
 
-### **Repeat**
+#### **Repeat**
 
 **Have you zoomed in and framed a scene?**  Cool. Play out the scene—establishing the situation, making soft GM moves, asking "what do you do?" and resolving their actions—until the scene is finished. Then move on to the next scene or situation, or zoom back out to loose play and resolve what's left of this leg of travel.
 
@@ -368,7 +369,7 @@ See [[10 - Expeditions#Player moves|Player moves]] for **player moves** that the
 
 **When there's nothing left of interest to say or do on this leg of travel**, then briefly describe the rest of it—the weather, the terrain, how long it takes—and frame a scene at the next point of interest.
 
-## **Points of interest**
+### **Points of interest**
 
 A point of interest is either...
 
@@ -382,13 +383,13 @@ Some points of interest will be obvious and known in advance; others will be sur
 
 If you want inspiration, refer to *Book II*. Use the "terrain" or "discovery" sections for the region through which the PCs travel, and/or the "sites" section for whatever group or power is relevant.
 
-## **Frame the action**
+#### **Frame the action**
 
 Establish the PCs arriving at the point of interest. Say when they get there. Zoom in, make it a scene.
 
 Normally, you'll frame the scene with the PCs at the point of interest, having already arrived. But **if you want to build tension** because you know there's danger lurking, or you want them to *feel* like there is—then frame the scene with the location in sight but still at a distance. Then watch the players get all twitchy and suspicious.
 
-## **Describe the environment**
+#### **Describe the environment**
 
 If this place is **unfamiliar to the players**, then describe it. What makes it distinct from the surrounding terrain? What are its obvious, defining features? Provide up to 3 impressions using different senses (see the entries in *Book II* for ideas). Add more details as they become relevant.
 
@@ -416,11 +417,11 @@ Pick impressions and details that matter:
 
 Build on the answers they give you, reincorporating them into the fiction and asking follow-up questions as they occur to you. Take notes, and call back to these details later in play.
 
-## **Portray NPCs If there are any NPCs on the journey**,
+#### **Portray NPCs**
 
-ask yourself how they'd react to this place. Drop this into your descriptions to remind the players (and yourself ) that they're here. Maybe get ready to make a soft GM move with (or against) an NPC.
+If there are any NPCs on the journey, ask yourself how they'd react to this place. Drop this into your descriptions to remind the players (and yourself ) that they're here. Maybe get ready to make a soft GM move with (or against) an NPC.
 
-## **Add details, answer questions, clarify the scene**
+#### **Add details, answer questions, clarify the scene**
 
 Flesh out the scene as much as you need to, in response to player questions or PC actions. Draw a quick map or picture if you think it will help. Figure out who's where and doing what. If there's confusion or disagreement about what's going on, try to get everyone on the same page.
 
@@ -436,21 +437,21 @@ Play out the scene. Ask them what they do. Resolve their actions. Establish how 
 
 **When the party decides to move on**, figure out what their next point of interest is, what the next leg of travel is to get there, and frame the action on that leg of travel. If they decide to **go home**, see [[10 - Expeditions#Going home|Going home]]
 
-## **Exploration moves**
+### **Exploration moves**
 
-Add these to your arsenal of GM moves once the players leave town and head into the wider world. These same moves get used when **[[11 - Sites#GM exploration moves|exploring sites]]**, but here, we'll discuss how to use them as part of a journey.
+Add these to your arsenal of GM moves once the players leave town and head into the wider world. These same moves get used when **[[11 - Sites#Exploring sites|exploring sites]]**, but here, we'll discuss how to use them as part of a journey.
 
 Your exploration moves are:
 
-- <sup>ä</sup> Provide a choice of paths
-- <sup>ä</sup> Hint at more than meets the eye
-- <sup>ä</sup> Offer riches at a price
-- <sup>ä</sup> Present a discovery
-- <sup>ä</sup> Point to a looming danger
-- <sup>ä</sup> Introduce a danger, person, or faction
-- <sup>ä</sup> Bar the way
+- ▸ Provide a choice of paths
+- ▸ Hint at more than meets the eye
+- ▸ Offer riches at a price
+- ▸ Present a discovery
+- ▸ Point to a looming danger
+- ▸ Introduce a danger, person, or faction
+- ▸ Bar the way
 
-## <sup>ä</sup> **Provide a choice of paths**
+#### ▸ **Provide a choice of paths**
 
 Present the proverbial fork in the road and ask them which way they go. There might be other paths, and they might do something different, but you're presenting the obvious options and prompting them to choose.
 
@@ -466,7 +467,7 @@ As a hard move, provide a choice between paths that they don't want to take.
 
 *"As hard as you push yourselves, by the time the sun's almost set, you're still a good half-hour away from town, maybe more. Do you press on, traveling in the dark? Or do you start looking for some place to spend the night out here?"*
 
-## <sup>ä</sup> **Hint at more than meets the eye**
+#### ▸ **Hint at more than meets the eye**
 
 Drop a hint that there's something interesting here, a discovery to be discovered or a lie to be uncovered. This move often spurs the players to Seek Insight or Know Things or otherwise look closer.
 
@@ -476,7 +477,7 @@ To make this move, point out something out of place or something fraught with me
 
 *"Vahid, as you watch the crinwin flee, you realize that they all headed for this great big redwood pine, maybe fifty paces away. Just the sort of tree where they'd nest. Everyone else is catching their breath and wiping off crinwin blood. What do you do?"*
 
-## <sup>ä</sup> **Offer riches at a price**
+#### ▸ **Offer riches at a price**
 
 Show them something valuable, but costly or difficult to get. Then sit back and see if they think it's worth it.
 
@@ -488,7 +489,7 @@ As a hard move, offer something that you know one of the PCs (or NPCs) on the jo
 
 *"You know, if that is a crinwin nest and it sure looks like one—there's probably all sorts of stolen stuff up there. Like, all the things they've swiped from people this past year. Maybe even your grandmother's ring, Caradoc. What do you do?"*
 
-## <sup>ä</sup> **Present a discovery**
+#### ▸ **Present a discovery**
 
 Discoveries are interesting things that the PCs find but that aren't inherently or immediately dangerous. They might be useful or valuable, or just something mysterious that's worth investigating. See the **Discoveries** chapter, starting on [[13 - Discoveries|Discoveries]]
 
@@ -498,7 +499,7 @@ When you make this move, you just put the discovery in front them. Describe it, 
 
 *"Yeah, Vahid, now that you're closer, and looking up at it, you can see that it's definitely a nest. A papery thing, like a wasp nest, but way, way bigger. This must be what the crinwin live in. What do you do?"*
 
-## <sup>ä</sup> **Point to a looming danger**
+#### ▸ **Point to a looming danger**
 
 This is the claw-print in the mud, the wolves howling in the distance. This is the piles of sticks, strangely neat and tidy, sure sign that a hagr dwells nearby.
 
@@ -512,7 +513,7 @@ You can also ask a question that gets them thinking about the danger without rev
 
 *"Blodwen, as you sniff the air, you catch the unmistakable scent of a predator, one of the bears, you're sure of it. And not coming from the cave… it's coming from the east, towards the Stream. What do you do?"*
 
-## <sup>ä</sup> **Introduce a danger, person, or faction**
+#### ▸ **Introduce a danger, person, or faction**
 
 With this move, you're putting a danger on screen. You're not pointing to it, it's not looming, it's *here*, what do you do?
 
@@ -532,7 +533,7 @@ As a hard move, you'll often introduce a danger by jumping straight into a fight
 
  *"What do you do?"*
 
-## <sup>ä</sup> **Bar the way**
+#### ▸ **Bar the way**
 
 They encounter an obstacle, or hit a dead end, or discover they lack something needed to move ahead. They've got to find a way through, or over, or to backtrack and find a way around.
 
@@ -542,15 +543,16 @@ Describe what's barring the way forward, and maybe give an option or two for wha
 
 *" You drag the sleds northeast but, shortly past the Stream, the drifts get much deeper. It'd be grueling to wade through and there's no way you'd get home by dark. Looks like the only path left is back through crinwin territory. What do you do?"*
 
-## **Use other moves, too!**
+> [!box] **Use other moves, too!**
+> 
+> Just to be clear: you can and should use your standard GM moves while the PCs are on a journey. **Ask provocative questions** ("what's your crew doing to get on your nerves?"), **demonstrate downsides** ("you're falling behind under all that gear"), **separate them** ("down the hill you go"), **use up their resources** ("expend 3 uses of supplies each, or 3 total if you use a mess kit"), **tell them the consequences/requirements** ("you need fire to use a mess kit, but a fire will draw attention from the crinwin"), and so forth.
+> ^use-other-moves-too
 
-Just to be clear: you can and should use your standard GM moves while the PCs are on a journey. **Ask provocative questions** ("what's your crew doing to get on your nerves?"), **demonstrate downsides** ("you're falling behind under all that gear"), **separate them** ("down the hill you go"), **use up their resources** ("expend 3 uses of supplies each, or 3 total if you use a mess kit"), **tell them the consequences/requirements** ("you need fire to use a mess kit, but a fire will draw attention from the crinwin"), and so forth.
+### **Resolving Chart a Course**
 
-## **Resolving Chart a Course**
+When the PCs Charted a Course, you gave them a list of requirements and challenges (see [[10 - Expeditions#Resolving Chart a Course|Chart a Course]]).
 
-When the PCs Charted a Course, you gave them a list of requirements and challenges (see [[10 - Expeditions#CHART A COURSE|Chart a Course]]).
-
-## **Requirements**
+#### **Requirements**
 
 Hopefully, they addressed the requirements (like "You'll need to bring \_\_" or "You need a knowledgeable guide") before they left. If they didn't, **tell them the consequences** of not being prepared. If they persist, either **bar the way** or add some extra challenges to your list.
 
@@ -560,7 +562,7 @@ When it's time to make a hard GM move, consider targeting these same resources. 
 
 If they no longer have what they need for the journey, make them feel it. **Show the downsides** or **tell them the consequences** or just **bar the way**, and see how they cope.
 
-## **Presenting challenges**
+#### **Presenting challenges**
 
 Once the PCs head out on the journey, you need to present the challenges that you warned them about, plus any others that they couldn't have seen coming. That includes both surprises that you've prepped in advance, or things that arise naturally from the fiction or the dice.
 
@@ -568,7 +570,7 @@ As you resolve a **[[10 - Expeditions#Legs of travel|leg of travel]]**, ask your
 
 Usually: introduce a challenge by making a soft GM move. Ask the PCs what they do and resolve their actions. Repeat as needed. The PCs might overcome the challenge quickly and easily or things might snowball into a steaming mess. Follow the core loop and **play to find out what happens**. When the situation is resolved, move on to the next one.
 
-If you introduce a challenge in response to a 6- on a PC move, then feel free to drop them right into the thick of it. If someone gets a 6- to **[[10 - Expeditions#FORAGE|Forage]]** and one of the challenges is "you risk getting lost," then you can just have them get lost as your hard move. You don't have to *threaten* them with getting lost, first. They're lost!
+If you introduce a challenge in response to a 6- on a PC move, then feel free to drop them right into the thick of it. If someone gets a 6- to **[[10 - Expeditions#^forage|Forage]]** and one of the challenges is "you risk getting lost," then you can just have them get lost as your hard move. You don't have to *threaten* them with getting lost, first. They're lost!
 
 Present each challenge only once. After the party deals with it, then tick that challenge off your list. Present a different challenge, or the next point of interest, or the next leg of travel, or have them arrive at their destination.
 
@@ -578,23 +580,23 @@ With that said: a challenge that they've addressed could come back to haunt them
 
 *I keep things zoomed out and tell them the consequences. "The rain has made the soil loose and muddy. If you stick to the river, you'll be Struggling as One, risking a fall or even a mudslide. What do you do?"*
 
-*Rhianna uses her Read the Land move, asking for the best way through. I improvise, saying that the southern slopes look a bit rockier and more stable. She leads them that way and gets advantage on her Struggle as One roll [[10 - Expeditions#STRUGGLE AS ONE|Struggle As One]]. Good thing, too, because Caradoc and Vahid both roll a 6-, getting caught in a mudslide. Rhianna uses her 10+ result to rescue Vahid (yanking him back from the scarp), but Caradoc is in trouble and starts to get swept away down the slope!* 
+*Rhianna uses her Read the Land move, asking for the best way through. I improvise, saying that the southern slopes look a bit rockier and more stable. She leads them that way and gets advantage on her Struggle as One roll [[10 - Expeditions#^struggle-as-one|Struggle As One]]. Good thing, too, because Caradoc and Vahid both roll a 6-, getting caught in a mudslide. Rhianna uses her 10+ result to rescue Vahid (yanking him back from the scarp), but Caradoc is in trouble and starts to get swept away down the slope!* 
 
 *We zoom in and play out the scene. Caradoc barely manages to save himself, taking some damage, getting very muddy, and losing all his supplies in the process. They take a brief rest and press on.*
 
-### **"The way is perilous, filled with dangers"**
+#### **"The way is perilous, filled with dangers"**
 
 This isn't a specific challenge, it's more of an ongoing threat. Save it for truly dangerous legs of travel: Ferrier's Fen, the Steplands near the lakes, the Labyrinth, etc.
 
-On each leg of perilous travel, and each time they **[[10 - Expeditions#MAKE CAMP|Make Camp]]** in a perilous area, **point to a looming danger** or **introduce a danger** that's already been established. Then see how they respond.
+On each leg of perilous travel, and each time they **[[10 - Expeditions#^make-camp|Make Camp]]** in a perilous area, **point to a looming danger** or **introduce a danger** that's already been established. Then see how they respond.
 
 *For their next point of interest, I pick a spot where I can introduce another challenge: a valley where three tributaries of the Sruth come together, and they risk picking the wrong one and getting lost. I frame a scene with them overlooking the valley, describe the environment, and introduce the danger. "It's not clear from here which one leads to Three Coven Lake. Pick wrong and you'll end up lost or at least wasting lots of time. What do you do?" Vahid Knows Things (recalling his previous wanderings in these parts) and gets an 11. I reveal that they want the southern fork. Huzzah!*
 
-*Their next point of interest will be wherever they Make Camp, and this leg is just more rugged, muddy hills as they follow the tributary. They've already dealt with the treacherous terrain, but I also said that the way will be grueling. So, I present a choice of paths. "Rhianna, you're humping up the twentieth slope today, and it's just a wet slog. You've got a few hours of light left. Do you want press on and Struggle as One with CON? Or look for a place to camp, maybe hunt a bit?" They opt to stop and Forage [[10 - Expeditions#FORAGE|Forage]], but get a 6-. This area is perilous, so I aggressively introduce a danger. A Hillfolk ambush it is!*
+*Their next point of interest will be wherever they Make Camp, and this leg is just more rugged, muddy hills as they follow the tributary. They've already dealt with the treacherous terrain, but I also said that the way will be grueling. So, I present a choice of paths. "Rhianna, you're humping up the twentieth slope today, and it's just a wet slog. You've got a few hours of light left. Do you want press on and Struggle as One with CON? Or look for a place to camp, maybe hunt a bit?" They opt to stop and Forage [[10 - Expeditions#^forage|Forage]], but get a 6-. This area is perilous, so I aggressively introduce a danger. A Hillfolk ambush it is!*
 
 If you like, **have them roll the Die of Fate**.
 
-## 1d6 danger
+#### 1d6 danger
 
 - 1 A danger springs on them, unavoidable
 - 2-3 Introduce a danger, right in front of them
@@ -603,7 +605,7 @@ If you like, **have them roll the Die of Fate**.
 
 Also, feel free to spring dangers on them any time that they roll a 6- (on any move), or any time a move draws attention or generates a complication.
 
-## **Weather**
+### **Weather**
 
 The weather is an important part of any journey. It colors the whole trip and can be a challenge all by itself.
 
@@ -613,53 +615,78 @@ If you want, let the Die of Fate guide your choices. For example, you could ask 
 
 Another way to use the Die of Fate is with preset results, based on the season. Here are some general tables that do just that. Use these as-is, or make your own for specific locales and specific seasons, informed by the most recent **Seasons Change** move (page [[15 - Homefront#SEASONS CHANGE|517]]).
 
-# **Weather tables**
+### **Weather tables**
 
-### late winter/early spring spring/early summer
+#### Late winter/early spring
 
-## 1d6 weather 1d6 weather
+| 1d6 | Weather |
+|---|---|
+| 1 | Snow/sleet/hail, an early thunderstorm or day of cold, soaking rains |
+| 2-3 | Cold and windy, maybe some showers |
+| 4 | Clouds on the horizon, steady wind; roll again later with disadvantage |
+| 5-6 | A fine, sunny spring day; some clouds, some gusting winds |
 
-- 1 Snow/sleet/hail, an early thunderstorm 1 A heavy storm; high winds, hail, or day of cold, soaking rains thunder, lightning
-- 2-3 Cold and windy, maybe some 2 Steady, chilly rain
-- 4 Clouds on the horizon, steady wind; showers roll again later with disadvantage 5-6 Warm, sunny, pleasant
-- 5-6 A fine, sunny spring day; some clouds, some gusting winds
+#### Spring/early summer
 
-## 1d6 weather 1d6 weather
+| 1d6 | Weather |
+|---|---|
+| 1 | A heavy storm; high winds, hail, thunder, lightning |
+| 2 | Steady, chilly rain |
+| 3-4 | Warm and windy, maybe some brief showers |
+| 5-6 | Warm, sunny, pleasant |
 
-- thunder, lightning, tornadoes soaking rain
-- 2 Blazing heat, still air, not a cloud 2 Windy with a few rain showers
+#### Summer
 
-### autumn winter
+| 1d6 | Weather |
+|---|---|
+| 1 | A heavy storm; high winds, hail, thunder, lightning, tornadoes |
+| 2 | Blazing heat, still air, not a cloud in sight |
+| 3 | Hot and humid, with brief, drenching thunder storms |
+| 4-5 | Hot, muggy, some wind |
+| 6 | Warm, sunny, breezy, perfect |
 
-- 1 Cold, drenching rain and/or sleet 1 Blizzard: wind, snow, all of it
-- 2 Cold, windy, light rain or early snow 2 Intense cold and wind
-- 3 Chilly, windy, clouds on the horizon; 3 Very cold, very clear, very still roll again later with disadvantage 4 Cold and snowy, or cold and windy
+#### Late summer/early autumn
 
-- showers 3-4 Warm and windy, maybe some brief
+| 1d6 | Weather |
+|---|---|
+| 1 | A powerful thunderstorm or cold, soaking rain |
+| 2 | Windy with a few rain showers |
+| 3 | Warm, clouds on the horizon, steady wind; roll again later with disadvantage |
+| 4-5 | Hot and dry during the day; cooler and windy at night |
+| 6 | Warm, sunny, breezy, perfect |
 
-### summer late summer/early autumn
+#### Autumn
 
-- 1 A heavy storm; high winds, hail, 1 A powerful thunderstorm or cold,
-- in sight 3 Warm, clouds on the horizon, steady 3 Hot and humid, with brief, wind; roll again later with disadvantage
-- drenching thunder storms 4-5 Hot and dry during the day; cooler 4-5 Hot, muggy, some wind and windy at night
-- 6 Warm, sunny, breezy, perfect 6 Warm, sunny, breezy, perfect
+| 1d6 | Weather |
+|---|---|
+| 1 | Cold, drenching rain and/or sleet |
+| 2 | Cold, windy, light rain or early snow |
+| 3 | Chilly, windy, clouds on the horizon; roll again later with disadvantage |
+| 4-6 | Crisp, breezy |
 
-## 1d6 weather 1d6 weather
+#### Winter
 
-- 4-6 Crisp, breezy 5 Some snow, but mostly just dreary
-  - 6 Warm (for winter) and sunny
+| 1d6 | Weather |
+|---|---|
+| 1 | Blizzard: wind, snow, all of it |
+| 2 | Intense cold and wind |
+| 3 | Very cold, very clear, very still |
+| 4 | Cold and snowy, or cold and windy |
+| 5 | Some snow, but mostly just dreary |
+| 6 | Warm (for winter) and sunny |
 
 ## Player moves
 
 These moves become relevant while the PCs are on an expedition.
 
-## HAVE WHAT YOU NEED
-
-When you *decide that you had some-thing all along*, transfer a mark (or marks) from your "undefined" inventory to a specific item or a slot. If you mark a slot, fill it with a common mundane item or something from your special possessions.
-
-Alternately, you can expend a use of supplies to mark an additional small item/slot (□).
-
-Whatever you produce, it must be something you could have had all along. The GM or any player can veto unreasonable items.
+>[!move] ## HAVE WHAT YOU NEED
+>
+>When you *decide that you had some-thing all along*, transfer a mark (or marks) from your "undefined" inventory to a specific item or a slot. If you mark a slot, fill it with a common mundane item or something from your special possessions.
+>
+>Alternately, you can expend a use of supplies to mark an additional small item/slot (□).
+>
+>Whatever you produce, it must be something you could have had all along. The GM or any player can veto unreasonable items.
+> ^have-what-you-need
 
 This move lets the players convert undefined inventory into specific items. It means that when they Outfit, they don't have to decide on everything that they've brought with them; they determine how much they're carrying and can define their inventory in the field.
 
@@ -667,35 +694,36 @@ Once they use this move to produce an item, that item is now in their inventory.
 
 This move can only produce items the character already owns or common, mundane items (like those on the Inventory insert or things that could be easily acquired in an iron-age home or farm). You can also let them retroactively try to Trade & Barter for special items via a flashback.
 
-## Loot, load, and inventory
-
-If a PC or follower acquires something in the field (like loot) and wants to bring it along, they have to add it to their inventory.
-
-Small items (things that could fit in a pocket, purse, or boot with room to spare) don't count against a character's load. The player can just add it to the **Small items** section of their Inventory sheet. There's no hard limit on how many small items they can carry, but you can call shenanigans if you think they're being unreasonable.
-
-Items with a  $\diamondsuit$  or  $\diamondsuit\diamondsuit$  count towards a character's load. Remember: 3  $\circledast$  or less is a light load, 4-6  $\circledast$  is normal, and 7-9  $\circledast$  is a heavy load. They can drop (or give away) items from their inventory to make space, or they can discard (or give away) undefined  $\circledast$ .
-
-If they want to carry 10 or more, or something very heavy/awkward (like an unconscious ally or a loaded sled), then not only will they be slow and noisy, but they'll also risk exhaustion, accident, and/or injury.
-
-Tell them the consequences, then continue to make it a significant part of the fiction and your moves.
+> [!box] Loot, load, and inventory
+> 
+> If a PC or follower acquires something in the field (like loot) and wants to bring it along, they have to add it to their inventory.
+> 
+> Small items (things that could fit in a pocket, purse, or boot with room to spare) don't count against a character's load. The player can just add it to the **Small items** section of their Inventory sheet. There's no hard limit on how many small items they can carry, but you can call shenanigans if you think they're being unreasonable.
+> 
+> Items with a  $\diamondsuit$  or  $\diamondsuit\diamondsuit$  count towards a character's load. Remember: 3  $\circledast$  or less is a light load, 4-6  $\circledast$  is normal, and 7-9  $\circledast$  is a heavy load. They can drop (or give away) items from their inventory to make space, or they can discard (or give away) undefined  $\circledast$ .
+> 
+> If they want to carry 10 or more, or something very heavy/awkward (like an unconscious ally or a loaded sled), then not only will they be slow and noisy, but they'll also risk exhaustion, accident, and/or injury.
+> 
+> Tell them the consequences, then continue to make it a significant part of the fiction and your moves.
+> ^loot-load-and-inventory
 
 Ask questions about the stuff they produce. "What kind of food did you bring?" "Who did you get that from?" "What made you think to bring that?" You're not (usually) trying to challenge their decisions; these questions provide texture and help you portray a rich and fantastic world.
 
 *They creep up towards the cave entrance, and peer in. "It's really dark in there," I say. "Are you going in blind, or what?"*
 
-*Caradoc says, "I'll use my lantern!" It's not a standard thing on the Inventory sheet, but it is one of his special possessions (a gift from Sawyl), so he can produce it with this move. He moves a* <sup>4</sup> *from "undefined" to the slot with " Sawyl's lantern," then says he'll light it. "You have a tinderbox?" He doesn't, but it's an option in the Small items section of his Inventory sheet. He moves a mark from his undefined small items to the tinderbox, uses the tinderbox to light the lantern, and hands it over to Blodwen, so that he can wield his shield and spear. (Technically, she should now add it to her sheet and maybe give Caradoc one of her undefined* <sup>4</sup>*, but we all expect this to be temporary so we just ignore it for now.)*
+*Caradoc says, "I'll use my lantern!" It's not a standard thing on the Inventory sheet, but it is one of his special possessions (a gift from Sawyl), so he can produce it with this move. He moves a* ◊ *from "undefined" to the slot with " Sawyl's lantern," then says he'll light it. "You have a tinderbox?" He doesn't, but it's an option in the Small items section of his Inventory sheet. He moves a mark from his undefined small items to the tinderbox, uses the tinderbox to light the lantern, and hands it over to Blodwen, so that he can wield his shield and spear. (Technically, she should now add it to her sheet and maybe give Caradoc one of her undefined* ◊*, but we all expect this to be temporary so we just ignore it for now.)*
 
 *"Okay," I say, as they leave for Marshedge. "The first two days pass without incident. You find yourselves making camp, just before dark, at the wayside near Titan Bones. Mark off two uses of supplies each, or 4 total if someone has a mess kit."*
 
 *They look at each other, and realize that no one has supplies in their Inventory, or a mess kit. "Well, you can Have What You Need for supplies and a mess kit. One diamond of supplies gives you 4 uses, and the mess kit is one diamond itself."*
 
-*"Andras has the mess kit," says Rhianna. "He insisted on coming, he can do the cooking." She moves one of his undefined* <sup>4</sup> *to a slot on the follower sheet, writing in "mess kit."*
+*"Andras has the mess kit," says Rhianna. "He insisted on coming, he can do the cooking." She moves one of his undefined* ◊ *to a slot on the follower sheet, writing in "mess kit."*
 
-*"Okay. I've got the supplies," says Caradoc. He erases an undefined* <sup>4</sup>*. He's about to mark one by "Supplies," but realizes that he's going to expend all 4 uses, so he doesn't bother. "Hey… it says here that a mess kit requires fire and water. Does that mean we need to provide firewood, too?"*
+*"Okay. I've got the supplies," says Caradoc. He erases an undefined* ◊*. He's about to mark one by "Supplies," but realizes that he's going to expend all 4 uses, so he doesn't bother. "Hey… it says here that a mess kit requires fire and water. Does that mean we need to provide firewood, too?"*
 
 *"Not necessarily," says Vahid. "We established that merchants usually stock the waysides with wood and dried dung for fires. Sort of a leave-a-penny, take-a-penny thing. And the waysides all have wells." I agree… they've got fire and water covered.*
 
-*"Hmm," says Rhianna. "Two days used up 4 supplies. We've got another eight days ahead of us… so that's 16 more uses of supplies. Or four more diamonds." She, Blodwen, Vahid, and Andras each convert one of their undefined* <sup>4</sup> *into supplies.*
+*"Hmm," says Rhianna. "Two days used up 4 supplies. We've got another eight days ahead of us… so that's 16 more uses of supplies. Or four more diamonds." She, Blodwen, Vahid, and Andras each convert one of their undefined* ◊ *into supplies.*
 
 *"What sort of food are you carrying, mostly?" I ask.*
 
@@ -705,19 +733,21 @@ The "veto" clause in the move is there to maintain plausibility. It means that y
 
 say things like "Wait, a clay pot? Didn't you tumble down a rocky slope earlier? I don't think anything fragile like that would have survived."
 
-## **RECOVER**
+>[!move] ## **RECOVER**
+>
+>When you *take time to catch your breath and tend to what ails you*, expend 1 use of supplies and regain HP equal to 4+Prosperity. You can't gain this benefit again until you take more damage.
+>
+>When you *tend to a debility or a problematic wound*, say how. The GM will either say that it's taken care of or tell you what else is required to do so.
+> ^recover
 
-When you *take time to catch your breath and tend to what ails you*, expend 1 use of supplies and regain HP equal to 4+Prosperity. You can't gain this benefit again until you take more damage.
+Characters will often need to Recover while on an expedition. This move is described in detail on [[07 - Harm and Healing#Healing and recovery|Recover]], in the **Harm & Healing** chapter.
 
-When you *tend to a debility or a problematic wound*, say how. The GM will either say that it's taken care of or tell you what else is required to do so.
-
-Characters will often need to Recover while on an expedition. This move is described in detail on [[07 - Harm and Healing#RECOVER|Recover]], in the **Harm & Healing** chapter.
-
-## **STRUGGLE AS ONE**
-
-When you *Defy Danger as a group*, establish the party's approach and each roll +STAT (per Defy Danger): **on a 6-**, you find yourself in a spot, the GM will describe it or ask you to; **on a 7-9**, you pull your weight; **on a 10+**, you do well enough to get someone else out of a spot, if you can tell us how.
-
-If you roll a 6- but someone saves you, don't mark XP.
+>[!move] ## **STRUGGLE AS ONE**
+>
+>When you *Defy Danger as a group*, establish the party's approach and each roll +STAT (per Defy Danger): **on a 6-**, you find yourself in a spot, the GM will describe it or ask you to; **on a 7-9**, you pull your weight; **on a 10+**, you do well enough to get someone else out of a spot, if you can tell us how.
+>
+>If you roll a 6- but someone saves you, don't mark XP.
+> ^struggle-as-one
 
 This move triggers when the whole party works together in the face of the same danger(s), usually over a period of time and when you don't want to dwell on the details. If you're about to have everyone Defy Danger, you should probably use this move instead. It's intentionally more forgiving than everyone Defying Danger, and it moves the action along more quickly. With that said: they aren't Struggling as One if one PC is essentially responsible for everyone else's fate. If they risk getting lost and the Ranger is navigating, then the Ranger is Defying Danger (maybe with someone providing Aid). They'd only be Struggling as One if they faced some additional danger or challenge, against which they all contended.
 
@@ -801,24 +831,25 @@ Regardless of the results, this move is a great time to ask questions. "Blodwen,
 
 *And we play out the scene from there.*
 
-## **KEEP COMPANY**
-
-When you *spend a stretch of time together,* ask the others if they want to Keep Company. If they do, take turns asking a PC or NPC one of the following.
-
-- What do you do that's annoying/ endearing?
-- What do I do that you find annoying/endearing?
-- Who or what seems to be on your mind?
-- What do we find ourselves talking about?
-- How do you/we pass the time?
-- What new thing do you reveal about yourself?
+>[!move] ## **KEEP COMPANY**
+>
+>When you *spend a stretch of time together,* ask the others if they want to Keep Company. If they do, take turns asking a PC or NPC one of the following.
+>
+>- What do you do that's annoying/ endearing?
+>- What do I do that you find annoying/endearing?
+>- Who or what seems to be on your mind?
+>- What do we find ourselves talking about?
+>- How do you/we pass the time?
+>- What new thing do you reveal about yourself?
+> ^keep-company
 
 This move helps to develop characters, build camaraderie, reveal intraparty tensions, and so forth. Good, juicy stuff.
 
 Watch for opportunities to invoke this move, but don't overdo it. You or any player can decline, usually because you've Kept Company recently or there's something more interesting that you or they want to get to. Check with the group and see if they want to Keep Company when…
 
-- … they **[[10 - Expeditions#MAKE CAMP|Make Camp]]**;
+- … they **[[10 - Expeditions#^make-camp|Make Camp]]**;
 - … there's a stretch of uneventful travel;
-- … they **[[10 - Expeditions#STRUGGLE AS ONE|Struggle as One]]**, and everyone gets a 7+;
+- … they **[[10 - Expeditions#^struggle-as-one|Struggle as One]]**, and everyone gets a 7+;
 - … some of the party split off to go do something, and you jump back to the others who are waiting around;
 - … two or more characters share a watch; or...
 - … the party spends time doing some boring task (like Foraging or chopping timber up in the foothills).
@@ -857,16 +888,17 @@ Sometimes these questions will lead to little scenes. That's great! Players migh
 
 *"What?" he says, acting like he doesn't get it.*
 
-## **MAKE CAMP**
-
-When you *settle in to rest in an unsafe area*, answer the GM's questions about your campsite. Each member of the party must consume 1 use of supplies or provisions; if you use a mess kit (*requires fire & water*), then 1 use can provide for up to four people.
-
-If you *eat and drink your fill*, and *get at least a few hours of sleep*, pick 1.
-
-- Regain HP equal to ½ your max
-- Clear a debility
-
-If *your rest was particularly peaceful, comfortable, or enjoyable,* you also gain advantage on your next roll.
+>[!move] ## **MAKE CAMP**
+>
+>When you *settle in to rest in an unsafe area*, answer the GM's questions about your campsite. Each member of the party must consume 1 use of supplies or provisions; if you use a mess kit (*requires fire & water*), then 1 use can provide for up to four people.
+>
+>If you *eat and drink your fill*, and *get at least a few hours of sleep*, pick 1.
+>
+>- Regain HP equal to ½ your max
+>- Clear a debility
+>
+>If *your rest was particularly peaceful, comfortable, or enjoyable,* you also gain advantage on your next roll.
+> ^make-camp
 
 Make Camp happens when the party **settles in** to rest in **an unsafe area**. There's a lot of judgement calls to be made. If you're handwaving a few days of travel on the Makers' Roads, the move doesn't trigger every night. You can just **use up their resources** ("okay, the next three days consume 6 uses of supplies…") and frame the next scene ("…and towards the end of your fourth day of travel, you round the bend and Gordin's Delve looms above") without ever bothering with Make Camp.
 
@@ -888,7 +920,7 @@ You decide what (if anything) happens during the night. Consider all the dangers
 
 If you think that something *might* interrupt their rest, but you aren't sure, then call for the Die of Fate. Consider giving them advantage or disadvantage on the roll, depending on how well-prepared they are. Here's a general-purpose result table:
 
-## 1d6 occurrence
+#### 1d6 occurrence
 
 - 1 Something dangerous approaches, inclined to do harm.
 - 2 Something dangerous approaches, curious but not aggressive.
@@ -896,11 +928,12 @@ If you think that something *might* interrupt their rest, but you aren't sure, t
 - 4-5 The night passes uneventfully.
 - 6 They observe something interesting, find something useful, or otherwise gain some small boon; or the night passes uneventfully
 
-For more about the benefits of Making Camp, see [[07 - Harm and Healing#MAKE CAMP|Make Camp]] in **Harm & Healing**.
+For more about the benefits of Making Camp, see [[07 - Harm and Healing#^make-camp|Make Camp]] in **Harm & Healing**.
 
-## **Deprivation**
-
-If PCs don't get food, drink, or rest, then at first the only consequence is that they don't get to make a choice when they Make Camp. But the longer they go with insufficient food, water, or rest, the more danger they're in. Start by asking them to Defy Danger (the danger being their hunger, thirst, or exhaustion). Escalate with a debility, then more debilities. Make increasingly aggressive GM moves (**tell them the requirements or consequences**, **show downsides**, **reveal unwelcome truths**, etc.) as they endure more deprivation. Use the GM moves for *afflictions* (see [[09 - Threats#**Stakes in play**|Threats]]). Between sessions, write up their deprivation as a threat.
+> [!box] **Deprivation**
+> 
+> If PCs don't get food, drink, or rest, then at first the only consequence is that they don't get to make a choice when they Make Camp. But the longer they go with insufficient food, water, or rest, the more danger they're in. Start by asking them to Defy Danger (the danger being their hunger, thirst, or exhaustion). Escalate with a debility, then more debilities. Make increasingly aggressive GM moves (**tell them the requirements or consequences**, **show downsides**, **reveal unwelcome truths**, etc.) as they endure more deprivation. Use the GM moves for *afflictions* (see [[09 - Threats#Threat types in play|Threats]]). Between sessions, write up their deprivation as a threat.
+> ^deprivation
 
 *The party is en route to Marshedge in early summer. The first two days were uneventful, but this is the first time we've seen Titan Bones on screen, and there's danger there, so I've zoomed in and they're Making Camp. We've already decided that they're making porridge with a mess kit, using fuel left in the wayside's common supplies. "But just enough to cook with," says Rhianna. "It's plenty warm. No need to announce our presence." They set a watch order.*
 
@@ -912,16 +945,18 @@ If PCs don't get food, drink, or rest, then at first the only consequence is tha
 
 *I ask Vahid what he does to keep awake, and what he's thinking about, and then I introduce a danger. "Like an hour into your watch, you realize you're watching this light off in the distance, up on Titan Bones. And then it's closer, and you hear a whisper, someone calling your name. Someone who probably isn't there, but who you feel compelled to go to. Who is it?" Vahid says it's Isra, his best friend from long, long ago. There's a custom move for this, so I have Vahid roll +WIS and surprise, surprise, things don't go so well…*
 
-## **FORAGE**
-
-When you *spend a few hours seeking food in the wild*, roll +WIS. In winter, you have disadvantage. **On a 10+**, pick 2; **on a 7-9**, pick 1:
-
-- You acquire <sup>4</sup> provisions (1d6 uses)
-- You acquire an extra 1d6 uses of provisions
-- You discover something interesting or useful
-- You avoid danger or risk (else, there is some)
-
-Provisions can substitute for supplies when you Make Camp, 1-for-1.
+>[!move] ## **FORAGE**
+>
+>When you *spend a few hours seeking food in the wild*, roll +WIS. In winter, you have disadvantage. **On a 10+**, pick 2; **on a 7-9**, pick 1:
+>
+>
+>- You acquire ◊ provisions (1d6 uses)
+>- You acquire an extra 1d6 uses of provisions
+>- You discover something interesting or useful
+>- You avoid danger or risk (else, there is some)
+>
+>Provisions can substitute for supplies when you Make Camp, 1-for-1.
+> ^forage
 
 This move represents one "party" going out to gather food. If two or more go together, one of them is Foraging while the other Aids. If they split up, they can each roll the move potentially gathering more food but putting themselves in more danger.
 
@@ -963,7 +998,7 @@ On a miss, you might **reveal an unwelcome truth** that the land is barren or pi
 
 The PCs will eventually turn back and head for home. Now what?
 
-## **The return journey**
+### **The return journey**
 
 In general, gloss over the trip home. The points of interest that you described on the way out probably haven't changed much. The party already faced the challenges you established when they Charted a Course. The trip home might still be long, and grueling, and even dangerous, but unless there's something *new*, just handwave most of the journey.
 
@@ -982,7 +1017,7 @@ Sometimes, though, returning home is as much of an adventure as the initial jour
 
 … then Chart a Course back to Stonetop and play out the trip home just like you resolved the initial journey.
 
-## **Arriving home**
+### **Arriving home**
 
 Before the PCs arrive home, consider:
 
@@ -992,15 +1027,16 @@ Before the PCs arrive home, consider:
 - If the PCs Requisitioned any assets, how has that impacted the village?
 - Did any threats advance towards their impending dooms?
 - Are the PCs Returning Triumphant, or could they with some effort?
-- Could the PCs' return cause panic or reveal calamity, triggering **Meet With Disaster** (page [[15 - Homefront#MEET WITH DISASTER|532]])?
+- Could the PCs' return cause panic or reveal calamity, triggering **Meet With Disaster** (page [[15 - Homefront#^meet-with-disaster|532]])?
 
 Think about how you'll reveal the answers to these questions in play. Make yourself a to-do list. Then play out the PCs' return home and any scenes that naturally follow.
 
 See **[[15 - Homefront#Aftermath|Aftermath]]** in the Homefront chapter for full details.
 
-## **RETURN TRIUMPHANT**
-
-When you *return home in triumph*, having saved your fellows, put down the threat, seized the opportunity, etc., then clear one of the steading's debilities (*diminished*, *lacking*, or *malcontent*). If the steading has no debilities marked, then increase Fortunes by 1.
+>[!move] ## **RETURN TRIUMPHANT**
+>
+>When you *return home in triumph*, having saved your fellows, put down the threat, seized the opportunity, etc., then clear one of the steading's debilities (*diminished*, *lacking*, or *malcontent*). If the steading has no debilities marked, then increase Fortunes by 1.
+> ^return-triumphant
 
 A successful adventure boosts morale and sets the village on a path towards prosperity. Or, it at least undoes some of the harm that prompted the expedition in the first place.
 
@@ -1012,15 +1048,16 @@ When in doubt, poll the table: if anyone (GM or player) thinks that the return i
 
 Remember to **begin and end with the fiction**. Don't just increase the steading's Fortunes, say (or ask) what that looks like. Show off the tearful reunions and the celebrations. Have NPCs thank the PCs in public and private ways. **Bring it home!**
 
-## **What if they… don't?**
-
-It's possible that the PCs might not *want* to return home. They might want to continue exploring an area, or resettle in a different town, or just leave and never come back.
-
-To help prevent this, remember to **bring it home**. While the PCs are on an expedition, ask about NPCs that they care about. Remind them of their responsibilities back home. Ask them who or what they miss the most out here. Do this consistently, so that the PCs feel connected to the village. Returning home will feel like the obvious thing to do.
-
-If they consider staying in the field, **remind them of the consequences**. Folks might assume that the PCs are dead, their jobs will go undone, lesscompetent folks might take charge, etc. Practically, the PCs won't be able to Outfit without access to a friendly town, or Level Up without at least a temporary home base.
-
-That said, it's not your job to force them home, it's your job to **play to find out what happens**. Sometimes it makes sense for some or all of the PCs to stay in the field (for example, to unite the Hillfolk against the southern slavers) or to leave town for good (because, say, the Seeker has become a liability). This might mean the end of the campaign, or the end of a particular PC's story. But it might also mean some significant change to how the game plays. See **[[17 - The Game Ongoing#Shake-ups|Shake-ups]]** for ideas.
+> [!box] ## **What if they… don't?**
+> 
+> It's possible that the PCs might not *want* to return home. They might want to continue exploring an area, or resettle in a different town, or just leave and never come back.
+> 
+> To help prevent this, remember to **bring it home**. While the PCs are on an expedition, ask about NPCs that they care about. Remind them of their responsibilities back home. Ask them who or what they miss the most out here. Do this consistently, so that the PCs feel connected to the village. Returning home will feel like the obvious thing to do.
+> 
+> If they consider staying in the field, **remind them of the consequences**. Folks might assume that the PCs are dead, their jobs will go undone, lesscompetent folks might take charge, etc. Practically, the PCs won't be able to Outfit without access to a friendly town, or Level Up without at least a temporary home base.
+> 
+> That said, it's not your job to force them home, it's your job to **play to find out what happens**. Sometimes it makes sense for some or all of the PCs to stay in the field (for example, to unite the Hillfolk against the southern slavers) or to leave town for good (because, say, the Seeker has become a liability). This might mean the end of the campaign, or the end of a particular PC's story. But it might also mean some significant change to how the game plays. See **[[17 - The Game Ongoing#Shake-ups|Shake-ups]]** for ideas.
+> ^what-if-they-dont
 
 ## **What to prep**
 
@@ -1030,7 +1067,7 @@ First, **chart the course**. Look at where they're going, their likely route(s),
 
 Next, **draw a map** of the route that you expect them to take or the area you expect them to traverse. Grab a map of the vicinity around Stonetop or the World's End region and highlight or add the points of interest relevant to the journey. Consider making a more zoomed-in map for areas that aren't very well detailed on the regional map.
 
-## **Identify your points of interest**, including…
+#### **Identify your points of interest**, including…
 
 - … any landmark that has not yet been seen in play (or that has changed since the PCs' last visit);
 - … any specific places where you plan to frame a scene and make a GM move; and...
@@ -1054,9 +1091,9 @@ For each encounter, limit yourself to 1-3 sentences but try to tie them into a l
 
 them encounter a random hagr; have them encounter a hagr who is sullenly building a new home for itself because the Mother of Spiders and her brood chased it out of its old home.
 
-Consider making a Die of Fate table for the **[[10 - Expeditions#Weather|weather]]**, for events while they **[[10 - Expeditions#MAKE CAMP|Make Camp]]**, or for encounters they might have while traveling through a **[[10 - Expeditions#"The way is perilous, filled with dangers"|perilous area]]**.
+Consider making a Die of Fate table for the **[[10 - Expeditions#Weather|weather]]**, for events while they **[[10 - Expeditions#^make-camp|Make Camp]]**, or for encounters they might have while traveling through a **[[10 - Expeditions#"The way is perilous, filled with dangers"|perilous area]]**.
 
-Create each **[[11 - Sites#Creating sites|site]]**, **[[12 - Dangers#Dangers|danger]]**, **[[13 - Discoveries#Discoveries|discovery]]**, and **[[14 - NPCs and Followers#Creating NPCs|NPC]]** they are likely to encounter, in as much or as little detail as you feel valuable and appropriate.
+Create each **[[11 - Sites#Sites|site]]**, **[[12 - Dangers#Dangers|danger]]**, **[[13 - Discoveries#Discoveries|discovery]]**, and **[[14 - NPCs and Followers#NPCs|NPC]]** they are likely to encounter, in as much or as little detail as you feel valuable and appropriate.
 
 Finally, write up any **[[14 - NPCs and Followers#Creating followers|followers]]** or other NPCs that you expect to join the party.
 
@@ -1094,7 +1131,7 @@ Finally, write up any **[[14 - NPCs and Followers#Creating followers|followers]]
 - \* An old Maker-ruin just off the tracks; old Forest Folk glyphs on trees/rocks nearby; half-dozen crinwin are excavating it on Sajra's behalf
 - \* Crinwin, loyal to Sajra the Swyn, on patrol or keeping watch.
 
-*I put sticky flags in* Book II *by the entries for feathered drakes, crinwin, nailadd, and swyn. I write up Thornthumb using the steps for "Creating Fae" (*[[12 - Fae#**Creating Fae**|Book II]]*).*
+*I put sticky flags in* Book II *by the entries for feathered drakes, crinwin, nailadd, and swyn. I write up Thornthumb using the steps for "Creating Fae" (*[[12 - Fae#Insults and etiquette|Book II]]*).*
 
 *I create the swyn's lair as a site [[11 - Sites|Sites]] and make notes about the abandoned crinwin nest and the older Maker-ruins. I pick dangers and discoveries for each.* 
 

@@ -10,7 +10,7 @@ The roads are wide (~20 feet), grand, and humbling, clearly the work of the **[[
 
 Tip: speak quietly, reverently, like you were in a church or temple among the faithful.
 
-#### **Questions**
+## **Questions**
 
 - Which of you have travelled the Highway or the West Road before? When and to where?
 - The magic of the roads—the wards against violence, evil, and decay—how do they make each of you feel?
@@ -22,7 +22,7 @@ The roads have lasted for centuries without maintenance. Predators shun them. Be
 
 When you *attempt to commit violence upon the road*, or to *harm the road or anything upon it*, you hesitate. If you *will yourself to continue*, lose 1d4 HP and roll +WIS: **on a 10+**, go for it; **on a 7-9**, you act but have disadvantage on any rolls to commit violence (including damage); **on a 6-**, you fail to act and mark *dazed*.
 
-### **The Crossroads**
+## **The Crossroads**
 
 The West Road crosses the Highway about 15 miles from town. A copse of **[[10 - Death and the Undying#Dool trees|dool trees]]** grows nearby. Despite the wards, there's something unsettling about the Crossroads. Everyone feels it. No one likes to talk about it.
 
@@ -41,13 +41,13 @@ The West Road crosses the Highway about 15 miles from town. A copse of **[[10 - 
 
 - They are deranged, confused, muddled, unreasonable
 - They have no intention of returning peacefully to their rest
-- Something slips through the Last Door with them—a **[[10 - Death and the Undying#**Death and the undying**|dool spirit]]**, a **[[10 - Death and the Undying#**Death and the undying**|gwyllgi]]**, an unbound **[[10 - Death and the Undying#**Pyped**|wraith]]**, etc.
+- Something slips through the Last Door with them—a **[[10 - Death and the Undying#Dool spirit|dool spirit]]**, a **[[10 - Death and the Undying#Gwyllgi|gwyllgi]]**, an unbound **[[10 - Death and the Undying#Wraith|wraith]]**, etc.
 
-For more on **shades**, see [[10 - Death and the Undying#**Death and the undying**|Death and the Undying]].
+For more on **shades**, see [[10 - Death and the Undying#Death and the Undying|Death and the Undying]].
 
 ## **The Broken Roads**
 
-Roads once stretched from the Crossroads to the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**, and from Stonetop out into the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, and all throughout the **[[42 - The Steplands#Spring|Steplands]]**. Terrible magic shattered the stones and scorched their runes. Most have long since been buried, but sometimes a cracked stone is unearthed by beast, rain, or quake.
+Roads once stretched from the Crossroads to the **[[39 - The Ruined Tower#The Ruined Tower|Ruined Tower]]**, and from Stonetop out into the **[[23 - The Great Wood#The Great Wood|Great Wood]]**, and all throughout the **[[42 - The Steplands#The Steplands|Steplands]]**. Terrible magic shattered the stones and scorched their runes. Most have long since been buried, but sometimes a cracked stone is unearthed by beast, rain, or quake.
 
 When you *strike an entity of darkness, chaos, or death with a shattered road-stone*  (*hand*, *thrown*, *crude*), it takes 1d8 damage (ignores armor) but the stone then crumbles to dust.
 
@@ -64,28 +64,23 @@ Every 25 miles or so, the roads expand to a broad circle, wide enough for travel
 
 Choose or have someone roll the Die of Fate.
 
-| 1 | Some kook or shady character(s),      |
-|---|---------------------------------------|
-|   | looking for ruins or tombs to plunder |
-| 2 | 1d12 immigrants, likely en route to   |
-|   | Gordin's Delve                        |
-| 3 | Someone seeking help/escaping         |
-|   | trouble/in pursuit of                 |
-| 4 | One or more Hillfolk [[26 - Hillfolk#Hillfolk\|Hillfolk]]       |
-|   |                                       |
+| 1d6 | Traveler                                                        |
+|-----|------------------------------------------------------------------|
+| 1   | Some kook or shady character(s), looking for ruins or tombs to plunder |
+| 2   | 1d12 immigrants, likely en route to Gordin's Delve              |
+| 3   | Someone seeking help/escaping trouble/in pursuit of \_\_\_       |
+| 4   | One or more **[[26 - Hillfolk#Hillfolk\|Hillfolk]]**            |
+| 5-6 | A merchant and crew, quite likely someone the PCs know          |
 
 For disposition, choose or have someone roll:
 
-5-6 A merchant and crew, quite likely someone the PCs know
-
-| 1d6 | disposition                   |
-|-----|-------------------------------|
-| 1   | As hostile as the Roads allow |
-| 2   | In dire need of assistance    |
-| 3-4 | Tight-lipped / unfriendly     |
-| 5   | Friendly enough               |
-| 6   | Bearing useful news or        |
-|     | opportunities                 |
+| 1d6 | Disposition                    |
+|-----|---------------------------------|
+| 1   | As hostile as the Roads allow  |
+| 2   | In dire need of assistance     |
+| 3-4 | Tight-lipped / unfriendly      |
+| 5   | Friendly enough                |
+| 6   | Bearing useful news or opportunities |
 
 ## **The nosgalau**
 
@@ -99,7 +94,7 @@ When you *hear the call of the nosgalau*, say whose voice you hear on the wind a
 
 What befalls their victims is for you to decide, but it isn't good. Perhaps they…
 
-- … fall prey to some mundane danger, like a mire or **[[14 - The Flats#**Hlomren**|pack drake]]**;
+- … fall prey to some mundane danger, like a mire or **[[14 - The Flats#Pack drake|pack drake]]**;
 - … vanish in the night (the grass twisted in strange patterns), only to reappear elsewhere, muddy and haunted-eyed, with patchy memories; or
 - … find themselves surrounded by faces from their past, concealing the nosgalau's true forms (all wisps and teeth, hatred and hunger).
 
@@ -110,15 +105,17 @@ Should one overcome the magic of the roads and pry up a pavestone, they would fi
 To unlock the mysteries of this runic calligraphy, you must:
 
 - Master each of these minor arcana:
-- **[[57 - Appendix C - Minor Arcana#Peacebond|Peacebond]]**
-- **[[57 - Appendix C - Minor Arcana#A timeless vault|Preserving Runes]]**
-- **[[57 - Appendix C - Minor Arcana#A crumbling arch|Sanctifying Mark]]** Acquire an intact pavestone
+	- **[[57 - Appendix C - Minor Arcana#^peacebond|Peacebond]]**
+	- **[[57 - Appendix C - Minor Arcana#^a-timeless-vault|Preserving Runes]]**
+	- **[[57 - Appendix C - Minor Arcana#^a-crumbling-arch|Sanctifying Mark]]**
+- Acquire an intact pavestone
 - Spend 1 season and 1d4 handfuls of silver attempting to replicate the runes.
 
 Henceforth, when you make magic marks or runes, you can imbue multiple magical effects that you know. Such combined runes take no longer to craft than the most complex of the individual spells. Beyond that, work out the details with the GM.
 
-- . steading improvement .
-- **ROADBUILDING**
+### . steading improvement .
+
+## **ROADBUILDING**
 
 Requires all of the following:
 

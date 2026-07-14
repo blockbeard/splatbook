@@ -1,8 +1,6 @@
 # Useful or Valuable Flora
 
-## **Useful or valuable flora**
-
-Pick one of the following, or **[[50 - Useful or Valuable Flora#**Useful or valuable flora**|create a new kind of flora]]** for the PCs to discover.
+Pick one of the following, or **[[50 - Useful or Valuable Flora#Cultivation|create a new kind of flora]]** for the PCs to discover.
 
 Either way, keep in mind when and where the PCs will encounter this. If you're presenting something useful, it should be useful now (perhaps with a bit of care or effort). Don't present them with an apple tree in winter and claim it's useful. If you're presenting them something valuable, it should either be something they can harvest now, or something that they can feasibly come back and get later.
 
@@ -10,7 +8,7 @@ Either way, keep in mind when and where the PCs will encounter this. If you're p
 
 Mushrooms, morels, asparagus, leafy greens, dandelions, all sorts of berries, cherries, plums, apples, beans, nuts, bulbs, tubers, etc.
 
-Can gather 1d6× provisions (1d6 uses each). If you like, roll 1d6 to determine effort required and/or palatability.
+Can gather 1d6×◇ provisions (1d6 uses each). If you like, roll 1d6 to determine effort required and/or palatability.
 
 ## **Poison**
 
@@ -24,9 +22,7 @@ As a poultice, chew, incense, tea, extract, essential oil, etc.
 
 - Treats injuries/aches; use in lieu of supplies to Recover (1d6 uses)
 - A remedy for a debility, illness, infection, or poison (1d6 uses)
-- Valuable in bulk to a skilled herbalist (Value 1), the source of a medicine (or a poison)
-
-# **Useful or valuable flora**
+- Valuable in ◇◇ bulk to a skilled herbalist (Value 1), the source of a medicine (or a poison)
 
 ## **Useful materials**
 
@@ -34,40 +30,38 @@ As a poultice, chew, incense, tea, extract, essential oil, etc.
 - Saplings, good for setting snares
 - Saplings, straight and sturdy, good for arrows/bows/spear shafts
 - Large tree, toppled in the Great Wood, a good source of timber
-- Good kindling (dry leaves/needles/ twigs, birch bark, etc.)
+- Good kindling (dry leaves/needles/twigs, birch bark, etc.)
 - Dry wood/peat for burning
 
-# **Sample specimens**
+## **Sample specimens**
 
 ### **Brightberry**
 
-A thorny shrub with delicious berries that glow with soft, golden light (*hand*). In spring, it smells like baking honeycakes. Harvest berries as provisions (3 uses, *fragile*), but they burn away within hours. Dig up a small shrub, pot it, and nurse it to health (*tricky*); merchants will pay handsomely for it (Value 2).
+A thorny shrub with delicious berries that glow with soft, golden light (*hand*). In spring, it smells like baking honeycakes. Harvest berries as ◇ provisions (3 uses, *fragile*), but they burn away within hours. Dig up a ◇◇ small shrub, pot it, and nurse it to health (*tricky*); merchants will pay handsomely for it (Value 2).
 
-## **Sleeping elksheart**
+### **Sleeping elksheart**
 
 A giant mushroom, sometimes big as a house, found in dark forests. Fills the air with paralytic spores (*inhaled*); the mycelium digest the victims. Carefully collect spores to use as a poison (*dangerous*, Value 1). Burn the cap to destroy the spores, cut it up, and feed a town with it (1d4 Surplus, *immobile*, Value 2).
 
-#### **Violet lotus**
+### **Violet lotus**
 
-A lily, grows alone along rivers/ streams in protected eddies. Inhale its burnt petals to ask the GM a Seek Insight question about whatever situation you wish. A tincture of the flower makes a lovely perfume (Value 1).
+A lily, grows alone along rivers/streams in protected eddies. Inhale its burnt petals to ask the GM a Seek Insight question about whatever situation you wish. A tincture of the flower makes a lovely perfume (Value 1).
 
 ### **Twisting pine**
 
-An evergreen that rotates as it grows, resulting in twisting trunks. The sap flows freely when tapped, but hardens quickly unless bottled up and protected from air. Use a vial in lieu of supplies to Recover (seals wounds, flakes away days later). Harvest a jar (Value 1) to use as a sealant or a pottery glaze.
+An evergreen that rotates as it grows, resulting in twisting trunks. The sap flows freely when tapped, but hardens quickly unless bottled up and protected from air. Use a vial in lieu of supplies to Recover (seals wounds, flakes away days later). Harvest a ◇ jar (Value 1) to use as a sealant or a pottery glaze.
 
-#### **Vanta's Blade**
+### **Vanta's Blade**
 
-A low, herbaceous plant with broad, blade-shaped leaves that absorb light. Patches of the plant look like holes in reality. A pouch can be made into a rich dye, ink, or paint (Value 2), but **[[26 - Hillfolk#Hillfolk|Hillfolk]]** and **[[34 - North Manmarch#North Manmarch|Manmarchers]]** consider it cursed and will burn patches (and bearers) of it on sight.
+A low, herbaceous plant with broad, blade-shaped leaves that absorb light. Patches of the plant look like holes in reality. A ◇ pouch can be made into a rich dye, ink, or paint (Value 2), but **[[26 - Hillfolk#Hillfolk|Hillfolk]]** and **[[34 - North Manmarch#The Manmarchers|Manmarchers]]** consider it cursed and will burn patches (and bearers) of it on sight.
 
-#### **Hartwood**
+### **Hartwood**
 
-A small tree with a distinctive twopronged shape, found growing atop rocky outcrops. Climb up, chop off a branch, and burn it; apply the ashes to skin as a ward against possession.
+A small tree with a distinctive two-pronged shape, found growing atop rocky outcrops. Climb up, chop off a branch, and burn it; apply the ashes to skin as a ward against possession.
 
-#### **Snowembers**
+### **Snowembers**
 
 Pretty flowers found only in certain snow-covered meadows of the **[[27 - Huffel Peaks#Huffel Peaks|Huffel Peaks]]**. The petals are edible and warm, even in the dead of winter, but they turn to mush soon after picking. Can harvest 1d4+4 provisions with a few hours' effort; those who partake grow flush and count as wearing *warm* clothes for the next day or so.
-
-## **Useful or valuable flora**
 
 ## **Questions**
 
@@ -84,7 +78,7 @@ Pretty flowers found only in certain snow-covered meadows of the **[[27 - Huffel
 
 Should the PCs wish to cultivate a useful or valuable flora, then Make a Plan. Some example requirements include:
 
-- You must acquire a source of seeds/ spores/cuttings/sprouts/etc.
+- You must acquire a source of seeds/spores/cuttings/sprouts/etc.
 - You must learn the secrets of its cultivation
 - You must commune with the spirit of the flora and earn its respect
 - The steading must Pull Together to clear a plot for and plant the flora
@@ -99,33 +93,31 @@ Also establish the benefits of success, such as:
 - Extra HP regained when Recovering
 - Extra folks fed when you use a mess kit and supplies
 
-#### **Useful or valuable flora**
-
-# **Creating new flora**
+## **Creating new flora**
 
 Think first about where it's found, how and where the PCs encounter it.
 
 With that in mind, decide how it's useful/valuable, or have someone roll the Die of Fate.
 
-# **1d12** it's useful/valuable...
+### **1d12** it's useful/valuable...
 
 - 1-6 … in the field, here and now
 - 7-10 … to folks back home or in some other community
 - 11-12 … both in the field, here and now, and to folks back home, or in some other community
 
-# **1d12** in the field
+### **1d12** in the field
 
-- 1-3 1d6× provisions (1d6 uses)
+- 1-3 1d6×◇ provisions (1d6 uses)
 - 4-5 As a poultice/medicine/remedy; use in lieu of supplies to Recover or to treat a debility (1d6 uses)
 - 6 Replenishes 1d6 Stock to a Blessed's sacred pouch
 - 7-8 Fills a need (for shelter, fuel, kindling, water, material, etc.)
 - 9-10 Grants a benefit (like a four-leaf clover that adds 1 to a single key roll, or moonwort that clears the mind of beguilement)
 - 11-12 Provides a path forward or a solution to a problem (shrooms to commune with a spirit, a weed that masks your scent, poison fruit that might defeat a foe, bait for a trap, etc.)
 
-# **1d12** to folks back home
+### **1d12** to folks back home
 
 - 1-2 A present, a curiosity, something pretty or nice (Value 0)
-- 3-4 Material for common crafts /trades (fiber, wood, medicine, oil, salt, tannin, etc., Value 1)
+- 3-4 Material for common crafts/trades (fiber, wood, medicine, oil, salt, tannin, etc., Value 1)
 - 5 A luxury (seasoning, perfume, dyes, cosmetics, etc., Value 1)
 - 6 Something sketchy (a drug, a poison, etc., Value 1)
 - 7 An offering, a charm, a ward, a counterspell, etc. (Value 1)
@@ -137,20 +129,18 @@ With that in mind, decide how it's useful/valuable, or have someone roll the Die
 
 If it's not already obvious, pick or roll for the form-factor in which it's useful or valuable.
 
-# **1d12** form-factor
+### **1d12** form-factor
 
 - 1 As a small item
-- 2 As a pouchful
-- 3-4 As a sackful or bundle
+- 2 As a ◇ pouchful
+- 3-4 As a ◇◇ sackful or bundle
 - 5-6 In large quantities (*immobile*)
-- 7-9 Roll 1d6 again, but it requires extensive effort to harvest/process/ make valuable
+- 7-9 Roll 1d6 again, but it requires extensive effort to harvest/process/make valuable
 - 10-12 Roll 1d8 again, but also it's *fragile* and/or *cumbersome*
 
-## Useful or valuable flora
+Next, pick or roll for 1d4 qualities and a distinctive trait.
 
-Next, pick or roll for 1d4 qualities and a distinctive trait .
-
-## 1d12 quality
+### 1d12 quality
 
 - 1 Attracts/houses a pest or danger
 - 2 Dangerous to harvest/handle
@@ -158,18 +148,18 @@ Next, pick or roll for 1d4 qualities and a distinctive trait .
 - 4 Horrid taste/odor/texture
 - 5 Finicky/delicate/spoils quickly unless properly processed
 - 6 Steeped in superstition/said to be cursed/a bad omen
-- 7 Associated with a specific god/ entity/hero/legend/tale
+- 7 Associated with a specific god/entity/hero/legend/tale
 - 8 Easy to work with
 - 9 Especially strong/durable/potent
-- 10 Delicious/aromatic/beautiful/ supple/otherwise pleasing
+- 10 Delicious/aromatic/beautiful/supple/otherwise pleasing
 - 11 Rare/legendary/thought extinct
 - 12 Pick or roll an additional way in which it's useful/valuable
 
-## 1d12 distinctive trait
+### 1d12 distinctive trait
 
-- 1 Always found with some type of hazardous growth [[24 - Green Lords#**1d12** ability|Green Lords]]
+- 1 Always found with some type of hazardous growth [[24 - Green Lords#Green Lords|Green Lords]]
 - 2 Always found with (hidden by?) another, less-useful growth
-- 3 Grows/blooms only in particular/ uncommon/unlikely conditions
+- 3 Grows/blooms only in particular/uncommon/unlikely conditions
 - 4 Grows in a particular pattern
 - 5 Attracts/houses some innocuous bug/bird/critter/spirit
 - 6 Intricate pattern/texture
@@ -178,8 +168,6 @@ Next, pick or roll for 1d4 qualities and a distinctive trait .
 - 9 Strong, particular odor
 - 10 Bright/garish/unusual color
 - 11-12 Roll 1d10 twice
-
-## **Useful or valuable flora**
 
 Now, considering all of the above, and where and how it's found, decide:
 

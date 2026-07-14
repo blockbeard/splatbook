@@ -19,11 +19,11 @@ Inspired by Greek, Hebrew, Persian, and Arabic: Agatte, Aref, Alix, Baraz, Canan
 - What are the most common languages down there?
 - What clothing/markings/traits are distinctive to Lygosi? To southerners in general?
 - What festival or holiday do they celebrate this time of year?
-- What game/pastime/food are Lygosi/ southerners known for?
+- What game/pastime/food are Lygosi/southerners known for?
 - Do they worship \_\_? How does that worship differ from up here in Stonetop?
 - Who (or what) do they worship that isn't well-known up here?
 
-## **Personal questions**
+### **Personal questions**
 
 If a PC hails from the south, ask some or all of the following.
 
@@ -42,7 +42,7 @@ The arid south has long been a cradle of civilization. Ruins and ancient works d
 
 - … a truly ancient people, predating even the Makers;
 - … the **[[45 - Tempest Lords#Tempest Lords|Tempest Lords]]**, before their island capital was swallowed by the sea;
-- … the ancestors of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**), who later migrated north;
+- … the ancestors of the **[[43 - Stone Lords#Stone Lords|Stone Lords]]**, who later migrated north;
 - … an offshoot of the **[[18 - Forge Lords#Forge Lords|Forge Lords]]**, spreading out through a network of portals;
 - … some other group of **[[30 - The Makers#The Makers|Makers]]**, unheard of up north;
 - … ancient humans—contemporaries of the Makers, perhaps even their rivals;
@@ -71,7 +71,7 @@ A typical trip to and from Lygos involves:
 
 Don't play out trips to Lygos in detail! Doing so would take dozens of sessions and could easily derail your campaign. Unless you and your group actively decide to leave Stonetop behind and play a very different sort of game, then you should handle PC trips to Lygos off-camera.
 
-Use **[[16 - Writing Moves and Love Letters#**Writing love letters**|love letters]]** to gloss over such a journey. Work with the player(s) to identify:
+Use **[[16 - Writing Moves and Love Letters#More examples|love letters]]** to gloss over such a journey. Work with the player(s) to identify:
 
 - What they hope to accomplish
 - How they plan to go about it
@@ -88,91 +88,102 @@ A few dozen caravans make their way up from Lygos every year. A typical merchant
 - 3-12 separate merchants, each with at least one wagon or cart
 - 2-4 helpers per merchant (often family members)
 - Horses, mules, donkeys, or other beasts of burden
-- **[[29 - Lygos and the South#**Assassin**|Caravan guards]]**, ~6 per merchant
+- **[[29 - Lygos and the South#Caravan guard|Caravan guards]]**, ~6 per merchant
 
-Most caravans stop in in Marshedge to trade, but some enterprising souls will veer into the **[[42 - The Steplands#The Steplands|Steplands]]** and trade with the **[[26 - Hillfolk#Hillfolk|Hillfolk]]** directly. Others keep going north to one of the **[[34 - North Manmarch#**Hamlet**|Manmarcher's hillforts]]**. A rare few merchants make their way to **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, and some of those stop in Stonetop.
+Most caravans stop in in Marshedge to trade, but some enterprising souls will veer into the **[[42 - The Steplands#The Steplands|Steplands]]** and trade with the **[[26 - Hillfolk#Hillfolk|Hillfolk]]** directly. Others keep going north to one of the **[[34 - North Manmarch#1d6 signs of violence|Manmarcher's hillforts]]**. A rare few merchants make their way to **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**, and some of those stop in Stonetop.
 
-## . trade opportunities .
+### . trade opportunities .
 
 If the PCs get a trade opportunity (from the Seasons Change move), a southern merchant might offer the following:
 
 - A good exchange rate, two or even three Value 2 items for 1 Surplus.
 - 1-4 Value 2 items or even a Value 3 item, in exchange for some creepy arcanum or relic of the past (might have repercussions)
-- A unit of exotic trade goods (Value 3) in exchange for a bundle of **[[23 - The Great Wood#**Feathered drake**|drake feathers]]**, **[[23 - The Great Wood#**Feathered drake**|gylglyd flowers]]**, a **[[23 - The Great Wood#**Raselbaedd**|raselbaedd hide]]**, etc.
-- A suit of armor or weapon of war, forged from **[[36 - Primordial Powers#**Primordial powers**|black iron]]**, as payment for helping them recover some lost or stolen goods (Value 3).
-- An arcanum of **[[36 - Primordial Powers#Artifacts|primordial power]]**, from one of **[[30 - The Makers#The Makers|the Makers]]**, or related to **[[46 - The Things Below#The Things Below|the Things Below]]**.
+- A unit of exotic trade goods (Value 3) in exchange for a bundle of **[[23 - The Great Wood#Cynddaraig|drake feathers]]**, **[[23 - The Great Wood#Cynddaraig|gylglyd flowers]]**, a **[[23 - The Great Wood#Nailadd|raselbaedd hide]]**, etc.
+- A suit of armor or weapon of war, forged from **[[36 - Primordial Powers#Black iron|black iron]]**, as payment for helping them recover some lost or stolen goods (Value 3).
+- An arcanum of **[[36 - Primordial Powers#Primordial Powers|primordial power]]**, from one of **[[30 - The Makers#The Makers|the Makers]]**, or related to **[[46 - The Things Below#The Things Below|the Things Below]]**.
 
-# **Dangers**
+## **Dangers**
 
-# **Adventurer**
+> [!monster] ## **Adventurer**
+>
+> *Group*, *hoarder*, *devious*, [pick 1 more]
+>
+> **HP** 8; **Armor** 1 to 3 (skill, armor, and/or shield)
+>
+> **Damage** whatever's at hand d8 (*hand*, *close*, maybe *forceful* or *messy*)
+>
+> **Instinct** to stir up trouble
+>
+> - Sniff out an opportunity, or reveal one
+> - Escape danger in a way that endangers others
+> - Act without scruple
+> - Use a particular knack or skill
+>
+> They make their way north now and then: scoundrels, mercenaries, treasure-hunters… folk who just can't make a go of a normal life. They'll show up in Marshedge or Stonetop or Gordin's Delve, in search of some big score. Or running from the consequences of the last one. Or both.
 
- *Group*, *hoarder*, *devious*, [pick 1 more] **HP** 8; **Armor** 1 to 3 (skill, armor, and/or shield)
+> [!monster] ## **Antiquarian**
+>
+>  *Solitary*, *hoarder*, *cautious*, *cunning*, *magical*
+>
+> **HP** 12; **Armor** 0
+>
+> **Damage** iron mattock d8 w/disadvantage (*close*, *messy*, *awkward*) or knife d6 w/disadvantage (*hand*)
+>
+> **Special qualities** often in possession of **arcana** (page [[57 - Appendix C - Minor Arcana#^an-old-scroll-case|508\)]] and willing to use them
+>
+>
+> **Instinct** to indulge their curiosity or to secure the next big score
+>
+> - Expound at length upon a topic
+> - Open, touch, or tinker with something
+> - Use a minor spell or artifact
+> - Hang back and let the help face the danger
+>
+> Among the southern well-to-do, the glorious past is a point of pride. Wealthy households keep pet scholars on retainer, and sponsor the study of ruins and antiquities. There's a brisk trade in artifacts and relics. Collectors pay handsomely for items of true power.
+>
+> The south is full of ruins, but it's also teeming with people. The best sites have already been dug up. But up north, at the World's End? Why, one can barely swing a shovel without hitting some relic of the past, just waiting to be excavated. And studied. And sold.
 
-**Damage** whatever's at hand d8 (*hand*, *close*, maybe *forceful* or *messy*)
+> [!monster] ## **Assassin**
+>
+>  *Solitary*, *stealthy*, *devious*
+>
+> **HP** 12; **Armor** 1 (skill)
+>
+> **Damage** dagger 1d10 (*hand*, 1 piercing) or garrote d8 (*hand*, *grabby*, ignores armor)
+>
+> **Instinct** to finish the job (nothing personal)
+>
+> - Stalk their target at length
+> - Pass unnoticed, in shadow or disguise
+> - Poison someone
+> - Slip away, try again later
+>
+> Only in "civilized" lands is there such demand for murder that it's an actual profession.
 
-**Instinct** to stir up trouble
+> [!monster] ## **Caravan guard**
+>
+> *Horde*, *organized*, *cautious*, *alert*
+>
+> **HP** 3; **Armor** 2 (shield, leather cuirass)
+>
+>
+> **Damage** iron spear d6 (close, thrown) or dagger d6 (hand)
+>
+> **Professional instinct** to keep their ward(s) safe
+>
+> - Spot or suspect trouble
+> - Take sensible precautions
+> - Put themselves in harm's way
+>
+> **Craven instinct** to avoid real danger
+>
+> - Suggest a safer course of action
+> - Make a show of force
+> - Flee, surrender, or betray their client
+>
+> Much of the way between Lygos and Marshedge goes through trackless wilds, without the protection of the **[[31 - The Makers' Roads#The Makers' Roads|Makers' Roads]]**. Bandits, beasts, and **[[26 - Hillfolk#Hillfolk|Hillfolk]]** are all a threat, and plenty of potential clients would just as soon steal a merchant's goods as trade fairly for them. So, merchants hire guards. And when danger looms, they hope they've hired well.
 
-- ä Sniff out an opportunity, or reveal one
-- ä Escape danger in a way that endangers others
-- ä Act without scruple
-- ä Use a particular knack or skill
-
-They make their way north now and then: scoundrels, mercenaries, treasure-hunters… folk who just can't make a go of a normal life. They'll show up in Marshedge or Stonetop or Gordin's Delve, in search of some big score. Or running from the consequences of the last one. Or both.
-
-### **Antiquarian**
-
- *Solitary*, *hoarder*, *cautious*, *cunning*, *magical*
-
-## **HP** 12; **Armor** 0
-
-**Damage** iron mattock d8 w/disadvantage (*close*, *messy*, *awkward*) or knife d6 w/disadvantage (*hand*)
-
-**Special qualities** often in possession of **arcana** (page [[57 - Appendix C - Minor Arcana#An old scroll case , fragile|508\)]] and willing to use them
-
-**Instinct** to indulge their curiosity or to secure the next big score
-
-- ä Expound at length upon a topic
-- ä Open, touch, or tinker with something
-- ä Use a minor spell or artifact
-- ä Hang back and let the help face the danger
-
-Among the southern well-to-do, the glorious past is a point of pride. Wealthy households keep pet scholars on retainer, and sponsor the study of ruins and antiquities. There's a brisk trade in artifacts and relics. Collectors pay handsomely for items of true power.
-
-The south is full of ruins, but it's also teeming with people. The best sites have already been dug up. But up north, at the World's End? Why, one can barely swing a shovel without hitting some relic of the past, just waiting to be excavated. And studied. And sold.
-
-## **Assassin**
-
- *Solitary*, *stealthy*, *devious*
-
-**HP** 12; **Armor** 1 (skill)
-
-**Damage** dagger 1d10 (*hand*, 1 piercing) or garrote d8 (*hand*, *grabby*, ignores armor)
-
-**Instinct** to finish the job (nothing personal)
-
-- ä Stalk their target at length ä Pass unnoticed, in shadow or disguise
-- ä Poison someone
-- ä Slip away, try again later
-
-Only in "civilized" lands is there such demand for murder that it's an actual profession.
-
- *Horde*, *organized*, *cautious*, *alert* **HP** 3; **Armor** 2 (shield, leather cuirass)
-
-**Damage** iron spear d6 (close, thrown) or dagger d6 (hand)
-
-**Professional instinct** to keep their ward(s) safe
-
-- ä Spot or suspect trouble
-- ä Take sensible precautions
-- ä Put themselves in harm's way
-
-**Craven instinct** to avoid real danger
-
-- ä Suggest a safer course of action
-- ä Make a show of force
-- ä Flee, surrender, or betray their client
-
-## **Conquering army**
+### **Conquering army**
 
  The armies of the south are said to be as limitless as the stars in the sky, as countless as the leaves in the Great Wood. If they wanted, they could field legions whose soldiers outnumbered the entire population of the World's End. Thankfully, the southern nations have seen no value in invading the north. At least, not yet.
 
@@ -186,57 +197,53 @@ What would prompt an invasion? Perhaps…
 - … some combination of the above; or
 - … something else entirely.
 
-## **Invasion** Threat (*affliction*) **Instinct** to subjugate
+## **Invasion**
 
-l A company (200-400 troops) establishes a foothold in the **[[40 - South Manmarch#South Manmarch|South Manmarch]]**, proceeds to subjugate local **[[26 - Hillfolk#Hillfolk|Hillfolk]]** l 2,000 soldiers march on **[[32 - Marshedge#Marshedge|Marshedge]]**, their council surrenders, Brennan and the Claws flee l The army invades the **[[34 - North Manmarch#North Manmarch|North Manmarch]]**, conquering a number of settlements, hillforts l Remaining Manmarch chiefs surrender; a company of soldiers besieges **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**; another marches on Stonetop and demands surrender l **Impending doom:** Stonetop is conquered and a garrison established
+Threat (*affliction*)
+
+**Instinct** to subjugate
+
+- ☐ A company (200-400 troops) establishes a foothold in the **[[40 - South Manmarch#South Manmarch|South Manmarch]]**, proceeds to subjugate local **[[26 - Hillfolk#Hillfolk|Hillfolk]]**
+- ☐ 2,000 soldiers march on **[[32 - Marshedge#Marshedge|Marshedge]]**, their council surrenders, Brennan and the Claws flee
+- ☐ The army invades the **[[34 - North Manmarch#North Manmarch|North Manmarch]]**, conquering a number of settlements, hillforts
+- ☐ Remaining Manmarch chiefs surrender; a company of soldiers besieges **[[22 - Gordin's Delve#Gordin's Delve|Gordin's Delve]]**; another marches on Stonetop and demands surrender
+- ☐ **Impending doom:** Stonetop is conquered and a garrison established
 
 **Stakes** Can the Hillfolk be united against the southerners? What about the Manmarchers? Will the PCs ally with Brennan?
 
-**Cavalry**
+> [!monster] ## **Cavalry**
+> *Horde*, *large*, *organized*, *terrifying*
+> **HP** 10; **Armor** 2 (shield, iron scale)
+> **Damage** iron-tipped long spear d6+4 (*reach*, *forceful*), or sword d6+4 (*close*, *forceful*), or bow d6 (*far*)
+> **Instinct** to attack where the foe is weak
+> - Circle around their enemy
+> - Attack on the move
+> - Form a wedge and charge, d6+4 w/ advantage (*reach*, *close*, *hand*, *area*, *forceful*, *messy*, 1 piercing)
 
-*Horde*, *large*, *organized*, *terrifying* **HP** 10; **Armor** 2 (shield, iron scale) **Damage** iron-tipped long spear d6+4 (*reach*, *forceful*), or sword d6+4 (*close*, *forceful*), or bow d6 (*far*)
+> [!monster] ## **Infantry**
+> 
+> *Horde*, *organized*
+> **HP** 3; **Armor** 2 (shield, linen cuirass)
+> **Damage** iron-tipped long spear d6 (*reach*), or short sword d6 (*hand*, *close*)
+> **Instinct** to follow orders
+> - Form a phalanx
+> - Pin down or hem in their foe
 
-**Instinct** to attack where the foe is weak
+> [!monster] ## **Legionary**
+>  *Horde*, *organized*, *hardy*, *disciplined* ^07ec58
+> **HP** 7; **Armor** 3 (shield, iron scale)
+> **Damage** iron short sword d6 (*hand*, *close*), or spear d6 (*close*, *thrown*)
+> **Instinct** to conquer
+> - Fight in tight-knit formation
+> - Hold the line
+> - Advance implacably
+^invasion-legionary
 
-- ä Circle around their enemy
-- ä Attack on the move
-- ä Form a wedge and charge, d6+4 w/ advantage (*reach*, *close*, *hand*, *area*, *forceful*, *messy*, 1 piercing)
-
-**Infantry**
-
-*Horde*, *organized*
-
-**HP** 3; **Armor** 2 (shield, linen cuirass) **Damage** iron-tipped long spear d6 (*reach*), or short sword d6 (*hand*, *close*)
-
-**Instinct** to follow orders
-
-- ä Form a phalanx
-- ä Pin down or hem in their foe
-
-**Legionary**
-
- *Horde*, *organized*, *hardy*, *disciplined*
-
-**HP** 7; **Armor** 3 (shield, iron scale)
-
-**Damage** iron short sword d6 (*hand*, *close*), or spear d6 (*close*, *thrown*)
-
-**Instinct** to conquer
-
-- ä Fight in tight-knit formation
-- ä Hold the line
-- ä Advance implacably
-
-**Skirmisher**
-
- *Horde*, *stealthy*, *organized*
-
-**HP** 3; **Armor** 0
-
-**Damage** long bow d6 (*far*), or sling d6 (*near*, *reload*), or short swords (*hand*, *close*)
-
-**Instinct** to avoid a fair fight
-
-- ä Unleash a volley, then retreat
-- ä Cover distance quickly
-- ä Attack a flank
+> [!monster] ## **Skirmisher**
+>  *Horde*, *stealthy*, *organized*
+> **HP** 3; **Armor** 0
+> **Damage** long bow d6 (*far*), or sling d6 (*near*, *reload*), or short swords (*hand*, *close*)
+> **Instinct** to avoid a fair fight
+> - Unleash a volley, then retreat
+> - Cover distance quickly
+> - Attack a flank

@@ -8,22 +8,21 @@ If one of your initial PCs has the Lightbearer playbook, then they will answer m
 
 Pick, or roll 1d12.
 
-#### **1d12** theme
+### **1d12** theme
 
-| 1-2 | The sun/day/light         |
-|-----|---------------------------|
-| 3-4 | Hope/courage/aspiration   |
-| 5-6 | Mercy/charity/kindness    |
-| 7   | Truth/revelation          |
-| 8   | Fire/burning/warmth       |
-| 9   | Glory/awe/majesty         |
-| 10  | Radiance/beauty/intensity |
-| 11  | Refuge/sanctity/defense   |
-|     |                           |
+| 1d12 | theme                     |
+|------|---------------------------|
+| 1-2  | The sun/day/light         |
+| 3-4  | Hope/courage/aspiration   |
+| 5-6  | Mercy/charity/kindness    |
+| 7    | Truth/revelation          |
+| 8    | Fire/burning/warmth       |
+| 9    | Glory/awe/majesty         |
+| 10   | Radiance/beauty/intensity |
+| 11   | Refuge/sanctity/defense   |
+| 12   | Purification/cleansing/redemption |
 
-12 Purification/cleansing/redemption
-
-### **Questions**
+## **Questions**
 
 According to the tales:
 
@@ -34,15 +33,15 @@ According to the tales:
 - What causes eclipses? What do they mean or portend?
 - Who was famously martyred in Helior's name? Who killed them, and why?
 
-Use the answers to help decide what Helior's **true nature** is [[20 - Gods and Religion#**1d12** observance|Gods and Religion]].
+Use the answers to help decide what Helior's **true nature** is [[20 - Gods and Religion#Gods and Religion|Gods and Religion]].
 
 ## **Hooks**
 
 - A devotee of Helior ministers in a nearby town, fomenting dissent.
 - A child is born with a sun-shaped birthmark during a solar eclipse.
 - The spirit of the prior Lightbearer appears to a PC and assigns them a quest.
-- A Manmarcher **[[34 - North Manmarch#**Chief**|chief]]** acquires a relic of the prior Lightbearer and seeks to auction it off.
-- A charlatan or **[[46 - The Things Below#**Cultist**|sorcerer]]** claims the mantle of Lightbearer.
+- A Manmarcher **[[34 - North Manmarch#Chief|chief]]** acquires a relic of the prior Lightbearer and seeks to auction it off.
+- A charlatan or **[[46 - The Things Below#Sorcerer|sorcerer]]** claims the mantle of Lightbearer.
 - Spring fails to come; omens point to Helior being trapped or wounded.
 
 ## **Veneration**
@@ -66,12 +65,12 @@ And how is Helior properly worshipped? It might involve… (pick 1 or 2)
 - … drugs & intoxicants; and/or
 - … pain & sacrifice.
 
-## Consider or ask:
+### Consider or ask:
 
 - Why does the worship of Helior involve the things it does? According to his devotees, why do these things please him so?
 - How do these practices change from community to community?
 - How are the solstices celebrated or observed?
-- If the worship of Helior is foreign/ new/forgotten/persecuted: what other god or gods of the sun are worshipped around here? (See [[20 - Gods and Religion#**Other gods**|Gods and Religion]] for guidance)
+- If the worship of Helior is foreign/new/forgotten/persecuted: what other god or gods of the sun are worshipped around here? (See [[20 - Gods and Religion#Gods and Religion|Gods and Religion]] for guidance)
 
 ## **Places of worship**
 
@@ -95,8 +94,6 @@ What is this place of worship like? It might be… (pick 1)
 - … hidden away, where only the faithful know to look;
 - … some variation on the above; or
 - … something else entirely.
-
-## **Helior**
 
 ## **The Lightbearer**
 
@@ -138,34 +135,34 @@ The Lightbearer playbook has moves and invocations that affect creatures or spir
 
 Ask the Lightbearer what they think makes something a creature or spirit of darkness. Consider what you know about the entity in question, and make a ruling. When in doubt, defer to the Die of Fate or the result of an appropriate move.
 
-# **Artifacts**
+## **Artifacts**
 
 ### **Various treasures**
 
 - A vial of lemon-infused oil (Value 0)
 - A copper torc decorated with a stylized sun (Value 1)
 - A circle of bronze sigils two paces wide, inlaid into a stone floor; blessed by Helior, a ward against spirits of darkness (*magical*, *immobile*, Value 2)
-- A lit oil lamp that consumes no oil; it will burn forever unless snuffed, blown out, or spilled (*magical*, *fragile*, Value 2)
-- Holy relics ( uses, Value 3 to a collector): if you have one in your inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence
-- A crown of white gold, that shines with holy light (*reach*, *area*) when worn by one with a pure soul (*magical*, Value 4)
+- A lit ◇ oil lamp that consumes no oil; it will burn forever unless snuffed, blown out, or spilled (*magical*, *fragile*, Value 2)
+- Holy relics (○○○ uses, Value 3 to a collector): if you have one in your inventory when you Invoke the Sun God, you can mark a use in lieu of choosing a consequence
+- A ◇ crown of white gold, that shines with holy light (*reach*, *area*) when worn by one with a pure soul (*magical*, Value 4)
 
 ### **Minor arcana**
 
 Pick 1 or have someone roll.
 
-## **1d6** minor arcanum
+### **1d6** minor arcanum
 
-- 1-2 **[[57 - Appendix C - Minor Arcana#A gold ring magical|A gold ring]]**
-- 3-4 **[[57 - Appendix C - Minor Arcana#A gold butter lamp|A gold butter lamp]]**
-- 5-6 **[[57 - Appendix C - Minor Arcana#A rusty steel blade|A rusty steel blade]]**
+- 1-2 **[[57 - Appendix C - Minor Arcana#^a-gold-ring|A gold ring]]**
+- 3-4 **[[57 - Appendix C - Minor Arcana#^a-gold-butter-lamp|A gold butter lamp]]**
+- 5-6 **[[57 - Appendix C - Minor Arcana#^a-rusty-steel-blade|A rusty steel blade]]**
 
-# **Dangers**
+## **Dangers**
 
 ### **Associated entities**
 
-- An **[[36 - Primordial Powers#**Other primordial entities**|archon]]**, set to guard a holy site (like the Lightbearer's tomb)
-- A southern **[[29 - Lygos and the South#**Assassin**|assassin]]**, paid to murder the Lightbearer or a problematic devotee
-- An elemental **[[41 - Spirits of the Wild#**Elemental spirits**|spirit of fire]]**, consecrated by Helior, passionate and righteous
+- An **[[36 - Primordial Powers#Archons|archon]]**, set to guard a holy site (like the Lightbearer's tomb)
+- A southern **[[29 - Lygos and the South#Assassin|assassin]]**, paid to murder the Lightbearer or a problematic devotee
+- An elemental **[[41 - Spirits of the Wild#Communion|spirit of fire]]**, consecrated by Helior, passionate and righteous
 
 ### **Pilgrims**
 
@@ -173,25 +170,27 @@ Threat (*rabble*)
 
 **Instinct** to find succor and purpose
 
-- ä Grow in numbers: a steady trickle, a constant stream, a tide
-- ä Demand time, attention, consideration
-- ä Strain or consume resources
-- ä Get into trouble with the locals
-- ä Misinterpret teachings
-- ä Split into factions
+- Grow in numbers: a steady trickle, a constant stream, a tide
+- Demand time, attention, consideration
+- Strain or consume resources
+- Get into trouble with the locals
+- Misinterpret teachings
+- Split into factions
 
 As a Lightbearer grows in power, word of their miracles will likely spread. Pilgrims are likely to follow. They seek out the Lightbearer for healing, direction, or purpose.
 
-#### **Fanatic**
-
- *Group*, *organized*, *devoted*
-
-**HP** 10; **Armor** 0
-
-**Damage** weapons d8 (tags by weapon) **Instinct** to protect their beliefs
-
-- ä Make a passionate argument
-- ä Suffer for the cause
-- ä Do evil for the greater good
-
-A Lightbearer often attracts faithful followers, as do some of Helior's more charismatic devotees. Some of these followers might take things a little far.
+> [!monster] ## **Fanatic**
+>
+>  *Group*, *organized*, *devoted*
+>
+> **HP** 10; **Armor** 0
+>
+> **Damage** weapons d8 (tags by weapon)
+>
+> **Instinct** to protect their beliefs
+>
+> - Make a passionate argument
+> - Suffer for the cause
+> - Do evil for the greater good
+>
+> A Lightbearer often attracts faithful followers, as do some of Helior's more charismatic devotees. Some of these followers might take things a little far.

@@ -1,14 +1,14 @@
 # Welcome to the World's End
-This is the setting guide for *Stonetop*, a hearth fantasy roleplaying game set in an iron age that never was. It describes the PCs' home the village of Stonetop—and the World's End, the region in which Stonetop sits. It's a gazetteer of the places, peoples, and powers that make up or shape the region.
+This is the setting guide for *Stonetop*, a hearth fantasy roleplaying game set in an iron age that never was. It describes the PCs' home—the village of Stonetop—and the World's End, the region in which Stonetop sits. It's a gazetteer of the places, peoples, and powers that make up or shape the region.
 
 This is *Book II*; for the rules of the game and guidance on how to play or run it, see *Book I: Stonetop.*
 ## **How to use this book**
 
 If you're the GM, or thinking about running a game of Stonetop, then this book is for you.
 
-Before your first session, browse this book to familiarize yourself with the setting and to get excited for play. Start with the **[[01 - Welcome to the World's End#**Should the players read this?**|maps]]** to get a sense of place.
+Before your first session, browse this book to familiarize yourself with the setting and to get excited for play. Start with the **[[01 - Welcome to the World's End#Should the players read this?|maps]]** to get a sense of place.
 
-Skim the **village of Stonetop** entry (page [[02 - The Village of Stonetop#The village of Stonetop|12]]). When it mentions a topic that catches your interest, jump to that topic
+Skim the **village of Stonetop** entry (page [[02 - The Village of Stonetop#The village of Stonetop|12]]). When it mentions a topic that catches your interest, jump to that topic and read it, too.
 
 Topics are cross-referenced. If you're reading this as a physical book, use a bookmark or two to keep track of where you came from. If you're reading this as a PDF, all the page references are hyperlinked and the "back" button (or ALT + left arrow in most PDF readers) is your friend.
 

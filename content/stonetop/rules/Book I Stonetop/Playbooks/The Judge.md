@@ -2,6 +2,9 @@
 
 *Look here at this little town, this candleflame in the darkness. Its very existence is an act of courage and faith. And Aratis has charged you to keep it: to settle its disputes; to chronicle its tales; to defend it from darkness and ruin. Take up your hammer, Judge. Your town needs you.*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 117–120)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-117-120
+
 ## Background
 
 Choose 1.
@@ -79,29 +82,29 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Censure, Chronicler of Stonetop, plus 2 more of your choice.
 
-### AEGIS OF FAITH
+##### AEGIS OF FAITH
 
 When you *wield a shield*, it can turn away spells, magical effects, and insubstantial attacks as if they were physical blows.
 
-### ARMORED
+##### ARMORED
 
 When you *carry a shield*, mark only 1 load (instead of 2). Also, you can ignore the *cumbersome* tag on any armor you wear.
 
 If you take this move at the start of play, add an iron hauberk, bronze cuirass, or scale coat to your inventory (all are 2 load, 2 armor, *warm*, *cumbersome*).
 
-### BEAR WITNESS
+##### BEAR WITNESS
 
 When you *speak the truth with conviction and candor*, none can doubt you. They might deny what you say, but in their hearts they recognize the truth.
 
-### BREAK BREAD
+##### BREAK BREAD
 
 When you *share a proper meal with someone and each of you eats their fill*, each of you recovers 1d8 (extra) HP.
 
-### BULWARK
+##### BULWARK
 
 When you *Defend*, you can spend 1 Readiness to stand fast, holding your position despite what befalls you.
 
-### CENSURE
+##### CENSURE
 
 *(starting move)*
 When you *first denounce an individual in your presence as an agent of chaos or anathema to civilization*, they pick 1:
@@ -111,50 +114,50 @@ When you *first denounce an individual in your presence as an agent of chaos or 
 - They are afraid, and seek to escape
 - They are enraged, and lash out predictably (the next roll against them has advantage)
 
-#### CASTIGATE
+##### CASTIGATE
 
 *(Requires level 2+, Censure)*
 When you *Censure someone*, your voice deals 1d4 damage to them (*near*, *loud*, ignores armor).
 
-### CHRONICLER OF STONETOP
+##### CHRONICLER OF STONETOP
 
 *(starting move; Diligence tracker: 3)*
 When you *write up detailed session notes and share them with the other players*, hold +1 Diligence.
 
 You can spend 1 Diligence at any time to add +1 to a roll that you or a fellow player just made.
 
-### FOR THE GREATER GOOD
+##### FOR THE GREATER GOOD
 
 When you *Persuade someone to act in defense of their community or civilization at large*, you have advantage.
 
-### HOUND OF ARATIS
+##### HOUND OF ARATIS
 
 When you *Seek Insight*, you can always ask "What here is tainted by chaos?" for free, even on a 6-.
 
-#### LIKE A DOG WITH A BONE
+##### LIKE A DOG WITH A BONE
 
 *(Requires Hound of Aratis)*
 When you *attack something you know to be tainted by chaos*, deal +1d6 damage.
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### KNOWLEDGE IS POWER
+##### KNOWLEDGE IS POWER
 
 When you *roll 10+ to Know Things*, you or an ally gain advantage on the next roll to act on what you learn.
 
-### MANY HANDS MAKE LIGHT WORK
+##### MANY HANDS MAKE LIGHT WORK
 
 When you *jump in to help another character who just rolled*, tell us how and ask the GM what else is required or what the consequences will be. If you accept, increase your ally's roll by +1.
 
-#### A BUNDLE OF STICKS UNBROKEN
+##### A BUNDLE OF STICKS UNBROKEN
 
 *(Requires Many Hands Make Light Work)*
 When you Struggle as One, you and one ally of your choice have advantage.
 
-### THE HAMMER AND THE BOOK
+##### THE HAMMER AND THE BOOK
 
 When you *strike a thing of supernatural chaos*, roll +WIS: **on a 10+**, deal your damage and choose 1 from the list below; **on a 7-9**, deal damage and choose 1, but you also expose yourself to harm or unwanted attention.
 
@@ -163,56 +166,56 @@ When you *strike a thing of supernatural chaos*, roll +WIS: **on a 10+**, deal y
 - Suppress one of its unnatural powers
 - Force it from its host
 
-### TRUTH OR CONSEQUENCES
+##### TRUTH OR CONSEQUENCES
 
 When you *look into someone's eyes and gaze upon their soul*, you can ask their player, "Are you lying or hiding something from me?" and get an honest answer. If the answer is "Yes," you have advantage on your next roll against them.
 
 When you *lie or otherwise deceive someone through words*, you have disadvantage on your next roll against them.
 
-#### BINDING ARBITRATION
+##### BINDING ARBITRATION
 
 *(Requires Truth or Consequences)*
-When you *bear witness to someone's promise or oath*, henceforth you may ask their player if they have kept their word. They must answer honestly. The character need not be present. If *they have broken their word*, you gain advantage on all rolls against them until they admit their wrongdoing and suffer an appropriate consequence (your call).
+When you *bear witness to someone's promise or oath*, henceforth you may ask their player if they have kept their word. They must answer honestly. The character need not be present. If *they have broken their word*, you gain advantage on all rolls against them until they admit their wrong and suffer an appropriate consequence (your call).
 
-### VISION UNCLOUDED
+##### VISION UNCLOUDED
 
 When you *Seek Insight*, you can always ask "What here is hidden by illusion or magic?" for free, even on a 6-.
 
-### WELL-READ
+##### WELL-READ
 
 When you *name the source in which you read about the matter at hand*, roll +WIS to Know Things instead of +INT.
 
-### A MIGHTY RAMPART
+##### A MIGHTY RAMPART
 
 *(Requires level 6+; replaces Bulwark)*
 When you *hold Readiness* (from Defend), you cannot be forced from your position. Also, you can spend 1 Readiness to completely ignore the effects/damage of an attack that you suffer.
 
-### ARMISTICE
+##### ARMISTICE
 
 *(Requires level 6+ and Bear Witness)*
 When you *approach an enemy to negotiate in good faith*, they will at least hear you out. Even the most debased and savage foe will delay violence until you've had your say.
 
-### CONDEMN
+##### CONDEMN
 
 *(Requires level 6+ and Censure)*
 When you *Censure someone*, they are marked with a mystical brand that cannot be removed or hidden until you dismiss it. Any intelligent creature who sees the mark recognizes the bearer as an agent of chaos and anathema to civilization.
 
-#### PROCLAMATION
+##### PROCLAMATION
 
 *(Requires level 6+ and Condemn)*
 When you *Censure*, you may denounce a group or faction as long as you can clearly identify them. Apply the effects of Censure to every member of that group, regardless of distance.
 
-### MIRRORSHIELD
+##### MIRRORSHIELD
 
 *(Requires level 6+ and Aegis of Faith)*
 When you *Defend with a shield*, you can spend 1 Readiness to intercept a magical force and redirect it to a different target (or none).
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).
 
-### THE TOWER ETERNAL
+##### THE TOWER ETERNAL
 
 *(Requires level 6+)*
 When you *Defy Danger against magic*, treat a result of 6- as a 7-9.

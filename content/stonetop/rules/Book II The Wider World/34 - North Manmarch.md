@@ -20,28 +20,28 @@ The region is heavily populated and small, well-armed hamlets dot the hills and 
 - Pale wildflowers bobbing in the wind
 - Damp smell of mud or fresh-tilled earth
 
-#### **Summer**
+### **Summer**
 
 - Baled hay, laid out to bake
 - Sun beating down on you, sweaty clothes sticking to you
 
-#### **Autumn**
+### **Autumn**
 
 - Crop fields, neatly clipped after harvest
 - A startled deer, bounding away
 
-#### **Winter**
+### **Winter**
 
 - Tracks in the snow: paw prints, hoof prints, foot prints, sled trails, etc.
 - Twinkling stars on a cold night, sure sign of a coming storm
 
-# **The Manmarchers**
+## **The Manmarchers**
 
 Thousands of people dwell here, spread out over hundreds of hamlets. Those hamlets cluster around a half-dozen larger, fortified settlements. These hillforts are home to chiefs who (ostensibly) protect the surrounding hamlets.
 
-Manmarchers say "east of the river" the way others say "once upon a time." They migrated from across the **[[11 - The Dread River#The Dread River|Dread River]]** long ago, before the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** called up the**[[46 - The Things Below#The Things Below|Things Below]]** and made the waters unsafe.
+Manmarchers say "east of the river" the way others say "once upon a time." They migrated from across the **[[11 - The Dread River#The Dread River|Dread River]]** long ago, before the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** called up the **[[46 - The Things Below#The Things Below|Things Below]]** and made the waters unsafe.
 
-# **Names**
+## **Names**
 
 Germanic-inspired: Alfher, Bathhilde, Berkhard, Bertrim, Clothar, Dagmar, Elfrida, Ganter, Gerhild, Hartig, Hilde, Hiltrude, Hramn, Ludig, Luise, Meike, Modd, Sabrinne, Swanhilde, Ulrike, Urrsla, Weillem, Wiland, Wulfrim
 
@@ -77,7 +77,7 @@ Everyone has heard of the Manmarchers' warlike ways. They fight mostly among the
 
 Pick 1 or combine 2, or have someone roll the Die of Fate (d12).
 
-## 1d12 terrain
+### 1d12 terrain
 
 - 1 Spring/pond/creek/stream
 - 2 Ditch/wash/gully/ravine
@@ -94,7 +94,7 @@ Pick 1 or combine 2, or have someone roll the Die of Fate (d12).
 
 For any one of these, pick 1 or have someone roll the Die of Fate.
 
-## 1d6 discovery
+### 1d6 discovery
 
 - 1 Change of terrain (previous column) and roll again
 - 2 A chance for insight into a threat or danger (e.g. tracks that reveal numbers, whereabouts, etc.)
@@ -103,9 +103,9 @@ For any one of these, pick 1 or have someone roll the Die of Fate.
 - 5 Farmers: working the land, hunting, or heading somewhere
 - 6 Warriors: not hostile, certainly wary
 
-## 1d6 signs of violence
+### 1d6 signs of violence
 
-- 1 A ghost [[10 - Death and the Undying#**Pyped**|Death and the Undying]] lingering near its murder, more confused than dangerous
+- 1 A ghost [[10 - Death and the Undying#Death and the Undying|Death and the Undying]] lingering near its murder, more confused than dangerous
 - 2 A burnt hamlet, thoroughly looted, its inhabitants slaughtered
 - 3 Dead bodies: burnt on a pyre, heads on spikes, swinging from trees, or left to rot
 - 4 Survivors of a raid, some injured, likely desperate
@@ -118,9 +118,11 @@ Here's a typical settlement:
 
 **Size** *hamlet* (~25 to 75 souls)
 
-# **Population** +0
+**Population +0**
 
-**Prosperity** -1 Trade with other hamlets
+**Prosperity** -1
+
+- Trade with other hamlets
 
 #### **Resources** (pick 2-3)
 
@@ -146,9 +148,9 @@ Hillfort names might include: Wulfberg, Rabenberg, Eikelberg, Hokberg, Tiefberg,
 
 **Size** *village* (~150 to 350 souls)
 
-#### **Population** -1
+**Population -1**
 
-## **Prosperity** +0
+**Prosperity** +0
 
 - Trade with other hillforts
 - Trade with Marshedge and/or Lygos (textile, spices, glass, herbs, finery)
@@ -173,66 +175,62 @@ Each hamlet is bound to one of the hillforts and its chief, through oaths or blo
 
 ## Trade & Barter
 
-## Commonly available
+### Commonly available
 
-The following are special items in Stonetop, but commonly available in the North Manmarch-PCs can acquire them here without having to roll. They do need to trade something of equal Value. Stonetop whisky is usually in demand.
+The following are special items in Stonetop, but commonly available in the North Manmarch—PCs can acquire them here without having to roll. They do need to trade something of equal Value. Stonetop whisky is usually in demand.
 
 | weapons of war | value |
 |---|---|
-| Mace or flail, iron ( close , forceful ) | 1 |
-| Battleaxe, iron ( close , messy ) | 1 |
-| Sword,iron ( close ,+1 damage) | 1 |
-| Warhammer ( close ,2 piercing) | 1 |
+| ◇ Mace or flail, iron (*close*, *forceful*) | 1 |
+| ◇ Battleaxe, iron (*close*, *messy*) | 1 |
+| ◇ Sword, iron (*close*, +1 damage) | 1 |
+| ◇ Warhammer (*close*, 2 piercing) | 1 |
 
 | armor | value |
 |---|---|
-| Cuirass, boiled leather (1 armor) | 1 |
+| ◇ Cuirass, boiled leather (1 armor) | 1 |
 
 | goods | value |
 |---|---|
 | Salt (a little box) | 0 |
-| Skin of mead,common | 0 |
-| Firkin of mead,common | 0 |
-| Salt (a pouch full) | 1 |
+| Skin of mead, common | 0 |
+| ◇◇ Firkin of mead, common | 0 |
+| ◇ Salt (a pouch full) | 1 |
 | Bit of amber | 1 |
-| Barrel of mead,common ( immobile ) | 1 |
+| Barrel of mead, common (*immobile*) | 1 |
 | Cartload of timber | 2 |
 
 | transport | value |
 |---|---|
 | Wheelbarrow | 1 |
-| Cart or sleigh (requires donkey/ horse/mule) | 2 |
+| Cart or sleigh (requires donkey/horse/mule) | 2 |
 | Wagon (requires horse/mule) | 3 |
-| Spare parts for wagon/cart/sleigh (axles, wheels, etc.; uses, immobile ) | 2 |
+| Spare parts for wagon/cart/sleigh (axles, wheels, etc.; ○○○ uses, *immobile*) | 2 |
 
 | livestock | value |
 |---|---|
-| Goat ( sure-footed , curious , hungry ) HP 3; Damage d4 ( hand ); Instinct to explore; butcher for provisions (6 uses) | 1 |
-| Pig ( keen-nosed , stubborn , gluttonous , clever ) HP 6; Damage d4 ( hand ); Instinct to eat anything; butcher for provisions (1d6+10 uses) | 1 |
+| Goat (*sure-footed*, *curious*, *hungry*) HP 3; Damage d4 (*hand*); Instinct to explore; butcher for ◇ provisions (6 uses) | 1 |
+| Pig (*keen-nosed*, *stubborn*, *gluttonous*, *clever*) HP 6; Damage d4 (*hand*); Instinct to eat anything; butcher for ◇ provisions (1d6+10 uses) | 1 |
 
-## Special items
+### Special items
 
 The following might be acquired in the North Manmarch, in addition to special items from the Moves & Gear handout. PCs must roll Trade & Barter to acquire them.
 
-## When PCs Trade & Barter in the North
-
-Manmarch , they use the local Prosperity (-1 and disadvantage for a hamlet , +0 in a hillfort, by default). On a 6, they don't mark XP, and if they want to sell/acquire it, they'll need to talk to the local chief.
+When PCs *Trade & Barter in the North Manmarch*, they use the local Prosperity (-1 and disadvantage for a hamlet, +0 in a hillfort, by default). On a 6-, they don't mark XP, and if they want to sell/acquire it, they'll need to talk to the local chief.
 
 | goods                                                                                                                  | value   |
 |------------------------------------------------------------------------------------------------------------------------|---------|
-| Skin of mead, fine ( uses, share 1 use with someone to gain advantage to Persuade)                                     | 0       |
-| Firkin of mead, fine                                                                                                   | 1       |
-| Barrel of mead, fine ( immobile )                                                                                      | 2       |
+| Skin of mead, fine (○○ uses, share 1 use with someone to gain advantage to Persuade)                                   | 0       |
+| ◇◇ Firkin of mead, fine                                                                                                | 1       |
+| Barrel of mead, fine (*immobile*)                                                                                      | 2       |
 | Piece of amber, beautifully worked                                                                                     | 1       |
 | Bit of silver and amber jewelry                                                                                        | 2       |
 | Large chunk of amber                                                                                                   | 2       |
 | Chariot (requires horse/tonnerhorn)                                                                                    | 2       |
 | livestock                                                                                                              | value   |
-| Tonnerhorn ( hardy , woolly , powerful ) HP 7; Damage d6+2 ( hand , forceful ); Instinct to protect its herd; can pull | 2       |
+| Tonnerhorn (*hardy*, *woolly*, *powerful*) HP 7; Damage d6+2 (*hand*, *forceful*); Instinct to protect its herd; can pull loads like a small horse | 2       |
 
-loads like a small horse
-
-## **Services and favors**
+### **Services and favors**
 
 The PCs don't need to roll Trade & Barter for the following, but they might need to Persuade the locals—even if they offer something of equal value. A likely way to convince them is to bribe the local elder, or get permission/backing from the local chief.
 
@@ -245,42 +243,43 @@ A hamlet that's well-disposed to the PCs might grant these favors for free, or w
 | A laborer's help for a day                | 0     |
 | A crew of laborers, for a week            | 1     |
 | An armed escort for a couple days         | 1     |
-| A warrior to join you on a nice           | 1     |
-| simple raid                               |       |
+| A warrior to join you on a nice simple raid | 1   |
 | A small crew, for a week or two of action | 2     |
-| Someone to hide you from vengeance        | 2     |
-| for a few days                            |       |
+| Someone to hide you from vengeance for a few days | 2 |
 | A crew of toughs for a season of action   | 3     |
 | A fitting gift for a well-off chief       | 3     |
 | A compelling bribe for a well-off chief   | 4     |
 
-## . trade opportunities .
+### . trade opportunities .
 
 If the PCs get a trade opportunity (from the Seasons Change move), the Manmarchers might offer the following:
 
 - A good exchange rate, two or even three Value 2 items for 1 Surplus
-- A pouch full of amber (Value 3) in exchange for help getting vengeance against a rival clan or chief
-  - A small herd of 6-12 tonnerhorn (Value 3 total), for 1 Surplus and help with a problem
-- An arcanum of the **[[24 - Green Lords#Green Lords|Green Lords]]**, **[[43 - Stone Lords#Stone Lords|Stone Lords]]**), or **[[46 - The Things Below#The Things Below|Things Below]]**
+- A ◇ pouch full of amber (Value 3) in exchange for help getting vengeance against a rival clan or chief
+- A small herd of 6-12 tonnerhorn (Value 3 total), for 1 Surplus and help with a problem
+- An arcanum of the **[[24 - Green Lords#Green Lords|Green Lords]]**, **[[43 - Stone Lords#Stone Lords|Stone Lords]]**, or **[[46 - The Things Below#The Things Below|Things Below]]**
 
 ## **Dangers**
 
-## **Hazards**
+### **Hazards**
 
-- Nasty turn in the weather: lashing wind, bitter cold, blistering heat, sleet/ hail/rain/snow; lightning
+- Nasty turn in the weather: lashing wind, bitter cold, blistering heat, sleet/hail/rain/snow; lightning
 - Flash flooding in valleys/on slopes
-- **[[14 - The Flats#**Dangers**|Prairie fire]]** on the plains
-- **Mudslides** and **[[42 - The Steplands#1d6 natural beast or spirit|rockslides]]** on the hills
-- **[[32 - Marshedge#Dangers|Fire]]** in a hamlet or hillfort
+- **[[14 - The Flats#Prairie fire|Prairie fire]]** on the plains
+- **Mudslides** and **[[42 - The Steplands#Rockslide|rockslides]]** on the hills
+- **[[32 - Marshedge#Fire|Fire]]** in a hamlet or hillfort
 
-## **Monsters**
+### **Monsters**
 
-- Predators: **[[14 - The Flats#**Hlomren**|pack drakes]]**, **[[23 - The Great Wood#**Cougar**|cougar]]**, **[[23 - The Great Wood#**Feathered drake**|feathered drakes]]**, or **[[23 - The Great Wood#**Raselbaedd**|wolves]]**, maybe even a **[[42 - The Steplands#1d6 natural beast or spirit|kleztigr]]**
-- Big ornery beasts: **[[23 - The Great Wood#**Dangers**|boar]]**, **[[23 - The Great Wood#**Cave bear**|cave bears]]**, or **[[14 - The Flats#**Thunder drake**|thunder drakes]]**
-- **Chimerae** of the Green Lords [[24 - Green Lords#**Dangers**|Green Lords]]), unearthed by recent logging or mining
-- **[[10 - Death and the Undying#**Pyped**|Ghosts]]** or **[[10 - Death and the Undying#**Death and the undying**|revenants]]**, lurking near old battlefields or places of bloody, one-sided slaughter
+- Predators: **[[14 - The Flats#Pack drake|pack drakes]]**, **[[23 - The Great Wood#Cougar|cougar]]**, **[[23 - The Great Wood#Feathered drake|feathered drakes]]**, or **[[23 - The Great Wood#Nailadd|wolves]]**, maybe even a **[[42 - The Steplands#Kleztigr|kleztigr]]**
+- Big ornery beasts: **[[23 - The Great Wood#Boar|boar]]**, **[[23 - The Great Wood#Cave bear|cave bears]]**, or **[[14 - The Flats#Thunder drake|thunder drakes]]**
+- **Chimerae** of the Green Lords [[24 - Green Lords#Green Lords|Green Lords]], unearthed by recent logging or mining
+- **[[10 - Death and the Undying#Ghosts|Ghosts]]** or **[[10 - Death and the Undying#Revenants|revenants]]**, lurking near old battlefields or places of bloody, one-sided slaughter
+- **[[46 - The Things Below#Emanation|Emanations]]** of the Things Below, especially near the **[[11 - The Dread River#The Dread River|Dread River]]**
+- **[[41 - Spirits of the Wild#Spirits of the wild|Spirits of the wild]]** in the lonely, untouched places
+- Terrors come down from the **[[54 - The Whitefang Mountains#The Whitefang Mountains|Whitefang Mountains]]**
 
-#### **Chief**
+### **Chief**
 
 Chiefs are the closest things the north has to rulers. The position might pass down to children, or be voted on by the hamlets, or picked from the chosen shields, or taken by cunning or force. Some chiefs are foolish or weak, but they do not last long.
 
@@ -299,7 +298,7 @@ For any given chief, pick or roll 2-4 strengths and 1-3 flaws.
 - 9 A silver tongue, or regal presence, or both
 - 10 Strength-at-arms worthy of the songs
 - 11 An utter lack of scruples
-- 12 The well-earned loyalty of
+- 12 The well-earned loyalty of their followers
 
 ### **1d12** flaw
 
@@ -316,72 +315,92 @@ For any given chief, pick or roll 2-4 strengths and 1-3 flaws.
 - 11 A temper to rival Tor's
 - 12 Utter lack of a warrior's skills
 
-## **Chosen shield**
+> [!monster] ## **Chosen shield**
+>
+>  *Group*, *organized*, *brave*, *vicious*
+>
+>
+> **HP** 6; **Armor** 3 (iron hauberk, shield)
+>
+> **Damage** iron battleaxe d8 (*close*, *messy*, 1 piercing), spear d8 (*close*, *thrown*, 1 piercing), knife d6 (*hand*, 1 piercing)
+>
+> **Instinct** to suffer no insult or disrespect
+>
+> - Lash out with sudden, casual violence
+> - Fight with grim purpose or reckless abandon
+> - Pry apart an enemy's defenses
+>
+> The chosen shields are a chief's best: the most loyal, the bravest, the bloodiest. They're professional fighters, their chief's bodyguards, enforcers, and lieutenants. They sit closest to the chief by the fire, and share the best haunches of meat.
+>
+> They take a share, too, of their chief's loot and their chief's glory. The wise chief lets them have it, for a chief is nothing without their chosen shields. And when a chief is toppled, it's usually one of their chosen shields that does the toppling.
 
- *Group*, *organized*, *brave*, *vicious*
+> [!monster] ## **Manmarcher recruit**
+>
+>  *Horde*, *young*
+>
+> **HP** 3; **Armor** 2 (thick hides, shield)
+>
+> **Damage** iron battleaxe d6 (*close*, *messy*), knife d6 (*hand*), or javelins d6 (*thrown*)
+>
+> **Instinct** to prove themselves, one way or the other
+>
+>
+> - Boast and brag
+> - Form a ragged shield wall
+> - Hesitate
+> - Act rashly
+>
+> Every able-bodied youth does their turn at their chief's hillfort. They spend a year or two drilling, marching, learning the spear, and standing in the shield wall. They sing songs, and talk big, and maybe even get their hands red. A few are picked for their chief's standing force, but most head home to their hamlets, prepared to defend their families and swell their chief's ranks when called. That's the idea, at least.
 
-**HP** 6; **Armor** 3 (iron hauberk, shield) **Damage** iron battleaxe d8 (*close*, *messy*, 1 piercing), spear d8 (*close*, *thrown*, 1 piercing), knife d6 (*hand*, 1 piercing)
+> [!monster] ## **Manmarcher veteran**
+>
+> *Horde*, *organized*, *cautious*
+>
+> **HP** 3; **Armor** 2 (thick hides, shield)
+>
+> **Damage** iron battleaxe d6 (*close*, *messy*), knife d6 (*hand*), or javelins d6 (*thrown*)
+>
+> **Instinct** to protect their homes, their kin, their honor
+>
+> - Form/hold a shield wall
+> - Pick their battles
+> - Charge!
+>
+> No longer young, no longer eager or scared. Just grim folk with something to fight for, something to lose. They might not be as spry as once they were, but they're no strangers to the black business.
 
-**Instinct** to suffer no insult or disrespect
+> [!monster] ## **Tonnerhorn**
+>
+> *Horde*, *hardy*, *powerful*, *grumpy*, *loyal*
+>
+> **HP** 7; **Armor** 0
+>
+> **Damage** butt/gore d6+2 (*hand*, *close*, *forceful*)
+>
+> **Instinct** to protect its herd
+>
+> - Relentlessly pull against a load or restraint
+> - Grunt, huff, paw, or bellow to make its displeasure known
+> - Smash into whatever offends it, repeatedly
+>
+>
+> Tonnerhorns are great big sheep, as big and strong as a donkey and twice as ornery. The ewes have good-sized horns, but the rams? The rams' horns are massive, curved, and nigh-unbreakable. Which is good—for the rams at least—because they do love to just smack-smack-smack them into things.
+>
+> Manmarchers raise them as beasts of burden, lashing them to plows, carts, sleighs, or even chariots. They bottle-feed the lambs and as a result, tonnerhorns are fiercely loyal to those who raised them. They're all kinds of unfriendly towards anyone else.
 
-- ä Lash out with sudden, casual violence
-- ä Fight with grim purpose or reckless abandon
-- ä Pry apart an enemy's defenses
-
-The chosen shields are a chief 's best: the most loyal, the bravest, the bloodiest. They're professional fighters, their chief 's bodyguards, enforcers, and lieutenants. They sit closest to the chief by the fire, and share the best haunches of meat.
-
-They take a share, too, of their chief 's loot and their chief 's glory. The wise chief lets them have it, for a chief is nothing without their chosen shields. And when a chief is toppled, it's usually one of their chosen shields that does the toppling.
-
-## **Manmarcher recruit**
-
- *Horde*, *young*
-
-**HP** 3; **Armor** 2 (thick hides, shield) **Damage** iron battleaxe d6 (*close*, *messy*), knife d6 (*hand*), or javelins d6 (*thrown*) **Instinct** to prove themselves, one way or
-
-the other
-
-- ä Boast and brag
-- ä Form a ragged shield wall
-- ä Hesitate ä Act rashly
-
-Every able-bodied youth does their turn at their chief 's hillfort. They spend a year or two drilling, marching, learning the spear, and standing in the shield wall. They sing songs, and talk big, and maybe even get their hands red. A few are picked for their chief 's standing force, but most head home to their hamlets, prepared to defend their families and swell their chief 's ranks when called. That's the idea, at least.
-
-## **Manmarcher veteran**
-
-*Horde*, *organized*, *cautious*
-
-**HP** 3; **Armor** 2 (thick hides, shield) **Damage** iron battleaxe d6 (*close*, *messy*),
-
-knife d6 (*hand*), or javelins d6 (*thrown*) **Instinct** to protect their homes, their kin, their honor
-
-- ä Form/hold a shield wall
-- ä Pick their battles
-- ä Charge!
-
-No longer young, no longer eager or scared. Just grim folk with something to fight for, something to lose. They might not be as spry as once they were, but they're no strangers to the black business.
-
-*Horde*, *hardy*, *powerful*, *grumpy*, *loyal*
-
-**HP** 7; **Armor** 0 **Damage** butt/gore d6+2 (*hand*, *close*, *forceful*)
-
-- **Instinct** to protect its herd ä Relentlessly pull against a load or restraint
-- ä Grunt, huff, paw, or bellow to make its displeasure known
-- ä Smash into whatever offends it, repeatedly
-
-Tonnerhorns are great big sheep, as big and strong as a donkey and twice as ornery. The ewes have good-sized horns, but the rams? The rams' horns are massive, curved, and nigh-unbreakable. Which is good—for the rams at least—because they do love to just smack-smack-smack them into things.
-
-Manmarchers raise them as beasts of burden, lashing them to plows, carts, sleighs, or even chariots. They bottle-feed the lambs and as a result, tonnerhorns are fiercely loyal to those who raised them. They're all kinds of unfriendly towards anyone else.
-
-## **War-chariot**
-
-*Group*, *large*, *terrifying*
-
-**HP** 13; **Armor** 1 (wood/iron construction) **Damage** trample and wheel-scythes d8+5 (*hand*, *close*, *forceful*, *messy*, 1 piercing), or iron battleaxe d8+3 (*close*, *messy*, *forceful*), or long bow d8 (*far*)
-
-**Special qualities** pulled by two tonnerhorns; carries a driver, two warriors
-
-- **Instinct** to rush inexorably forward ä Ride in broad arcs around the battle, peppering foes
-- ä Ride down foes, filling them with dread
-- ä Crash spectacularly, d8+3 damage (*area*, *forceful*)
-
-Most violence in the North Manmarch is small-scale, intimate even. A nighttime raid on a steading. An ambush in the hills. A war-band's throats slit around their campfire. When chiefs do raise large forces, and meet on the open plains, well… they bring their very best.
+> [!monster] ## **War-chariot**
+>
+> *Group*, *large*, *terrifying*
+>
+> **HP** 13; **Armor** 1 (wood/iron construction)
+>
+> **Damage** trample and wheel-scythes d8+5 (*hand*, *close*, *forceful*, *messy*, 1 piercing), or iron battleaxe d8+3 (*close*, *messy*, *forceful*), or long bow d8 (*far*)
+>
+> **Special qualities** pulled by two tonnerhorns; carries a driver, two warriors
+>
+> **Instinct** to rush inexorably forward
+>
+> - Ride in broad arcs around the battle, peppering foes
+> - Ride down foes, filling them with dread
+> - Crash spectacularly, d8+3 damage (*area*, *forceful*)
+>
+> Most violence in the North Manmarch is small-scale, intimate even. A nighttime raid on a steading. An ambush in the hills. A war-band's throats slit around their campfire. When chiefs do raise large forces, and meet on the open plains, well… they bring their very best.

@@ -32,6 +32,13 @@
 - [[Book I Stonetop/19 - Mediography|Mediography]]
 - [[Book I Stonetop/20 - Index|index]]
 
+## Credits
+Text machine extracted from pdf, then cleaned and formatted by Chris Wilson. 
+2nd printing errata applied. 
+The original text is licensed under CC BY-SA 4.0 and the same license applies to this material.
+This is an independent production, not affiliated with Lampblack & Brimstone.  
+Any mistakes in this extracted text are my own. 
+## Original credits
 In memory of Aubrey “Aubs” Johnson (1984-2022), our fallen Fox, gone too soon.
 
 And in memory, too, of my dad, Nick Strandberg (1941-2025).
@@ -63,4 +70,4 @@ Some concepts and procedures are derived from Dungeon World, by Sage LaTorra & A
 All artwork herein is © 2026 by Lucie Arnoux.
 
 published by
-Lampblack & BrimstoneContents
+Lampblack & Brimstone

@@ -1,39 +1,48 @@
 # The Game Ongoing
 
-**Ending a session Between sessions Starting a session Pacing Advancement Retiring PCs New PCs Conflict between PCs Time skips Shake-ups Ending your game**
+| In this chapter | |
+|---|---|
+| [[#Ending a session\|Ending a session]] | [[#Between sessions\|Between sessions]] |
+| [[#Starting a session\|Starting a session]] | [[#Pacing\|Pacing]] |
+| [[#Advancement\|Advancement]] | [[#Retiring PCs\|Retiring PCs]] |
+| [[#New PCs\|New PCs]] | [[#Conflict between PCs\|Conflict between PCs]] |
+| [[#Time skips\|Time skips]] | [[#Shake-ups\|Shake-ups]] |
+| [[#Ending your game\|Ending your game]] |  |
 
 ## **Ending a session**
 
-## **Do the move**
+### **Do the move**
 
-Make time for the **End of Session** move (at right) each time you play. Start to wrap up the action 30 minutes before folks need to leave, and give yourselves at least 15 minutes to do the End of Session move. Set a timer. It's important.
+Make time for the **End of Session** move each time you play. Start to wrap up the action 30 minutes before folks need to leave, and give yourselves at least 15 minutes to do the End of Session move. Set a timer. It's important.
 
 Take notes! Not just the wishes, but all of it: the times where each PC engaged with their instinct, the changes to relationships, what the group learned and accomplished, and what each player praised. These notes are invaluable between sessions, as you reflect and try to recall what happened.
 
 The last two steps of the move—praise and wishes—are the most important. They allow you to calibrate the game and create space for everyone to give feedback.
 
-If the move reveals a larger issue—like a conflict between players or dissatisfaction with the game—then do a **[[17 - The Game Ongoing#Check-ins|check-in]]**. If it involves the whole group and you've all got time and space, then do it now. If that's not practical, or just one or two players are involved, then take it as a follow-up to discuss the issue later.
+If the move reveals a larger issue—like a conflict between players or dissatisfaction with the game—then do a **[[17 - The Game Ongoing#^check-ins|check-in]]**. If it involves the whole group and you've all got time and space, then do it now. If that's not practical, or just one or two players are involved, then take it as a follow-up to discuss the issue later.
 
-## **END OF SESSION**
+>[!move] ## **END OF SESSION**
+>
+>When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.
+>
+>
+>Say how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.
+>
+>Answer these questions as a group. For each "yes," everyone marks XP.
+>
+>- Did we learn more about the world or its history?
+>- Did we defeat a threat to Stonetop or the region?
+>- Did we improve our standing with our neighbors?
+>- Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?
+>
+>Praise something about the session (in the fiction or around the table) that you enjoyed or appreciated.
+>
+>Finally, offer up a wish for future sessions: more \_\_, less \_\_, a chance to \_\_, handling \_\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.
+> ^end-of-session
 
-When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.
+For more guidance, see [[06 - Player Moves#^end-of-session|End of Session]] of the **Player Moves** chapter.
 
-Say how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.
-
-Answer these questions as a group. For each "yes," everyone marks XP.
-
-- Did we learn more about the world or its history?
-- Did we defeat a threat to Stonetop or the region?
-- Did we improve our standing with our neighbors?
-- Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?
-
-Praise something about the session (in the fiction or around the table) that you enjoyed or appreciated.
-
-Finally, offer up a wish for future sessions: more \_\_, less \_\_, a chance to \_\_, handling \_\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.
-
-For more guidance, see [[06 - Player Moves#END OF SESSION|End of Session]] of the **Player Moves** chapter.
-
-## **Handle logistics**
+### **Handle logistics**
 
 Schedule the next session if you can. If not, pick a tentative date or two and make plans to confirm. Games die more often from scheduling neglect than from lack of interest.
 
@@ -49,7 +58,7 @@ Ask one of your players to track these tasks and follow up, ensuring that they g
 
 Finally, help the host clean up. It's basic courtesy, and shows respect for the space and the people you're sharing it with.
 
-## **Take notes**
+### **Take notes**
 
 What happened this session that you don't want to forget? What are your next steps? Write that stuff down. Now. While it's still fresh in your mind.
 
@@ -63,11 +72,11 @@ You don't need to write a full session recap right now (it's late, you're probab
 - Decisions you know you need to make ("What is in Piotr's cellar?")
 - Prep you know you'll want to do ("Draw a map of the barrow")
 
-# **Between sessions**
+## **Between sessions**
 
 Use the time between sessions to tend to the game: to reflect, take notes, prep, and make plans.
 
-## **Reflection**
+### **Reflection**
 
 Remember: **[[05 - Running the Game#GMing is a practice|GMing is a practice]]**. You get better at it by doing it, and by trying to do better next time.
 
@@ -83,7 +92,7 @@ You might do this formally, sitting down and taking notes. Or maybe you just thi
 
 Write down 1-3 goals for the next session. As you prep, keep these goals in mind. During the session, put them somewhere you can see them. Try to meet them.
 
-## **Session recap(s)**
+### **Session recap(s)**
 
 Every session should get a written recap, an official history of what happened. Few people can recall the events of a session a few days later, much less after weeks or months. So make sure the key moments of each session get written down.
 
@@ -111,7 +120,7 @@ Rhianna (not present, off hunting?)
 
 Do whatever works for your table, but make sure a running record of play exists, and that it's available to all the players.
 
-## **Bookkeeping**
+### **Bookkeeping**
 
 Pull out your notes, the steading playbook, your threat tracker—whatever tools you're using—and bring them up to date.
 
@@ -119,15 +128,13 @@ Pull out your notes, the steading playbook, your threat tracker—whatever tools
 - **2) Update your NPCs**, wherever you track them. Cross off those who've died, update notes for existing ones, and add new NPCs from the previous session. See **[[14 - NPCs and Followers#Creating NPCs|Creating NPCs]]**) for guidance.
 - **3) Update followers.** If you expect an NPC to start acting as a follower, then write them up using the steps on [[14 - NPCs and Followers#Creating followers|Creating followers]]. Then review and update any existing followers, per [[14 - NPCs and Followers#Updating followers|Updating followers]].
 - **[[The Steading|4) Update the steading playbook]]**, to reflect changes to Fortunes, Surplus, debilities, resources, fortifications, and assets. Mark progress made towards improvements.
-- **[[03 - Playing the Game#Content|5) Review content guidelines]]** and update them if needed, based on player discussions and your own needs. If you realize that the guidelines need to change, or that your group has been deviating from them, **check in** with the players [[17 - The Game Ongoing#Check-ins|Check-ins]] or make a note to do so.
+- **[[03 - Playing the Game#^content|5) Review content guidelines]]** and update them if needed, based on player discussions and your own needs. If you realize that the guidelines need to change, or that your group has been deviating from them, **check in** with the players [[17 - The Game Ongoing#^check-ins|Check-ins]] or make a note to do so.
 
-## **6) Review any loot the PCs acquired.** Make sure it's on someone's inventory insert or otherwise accounted for. If you need to provide players handouts
-
-or write-ups, make a note to do so. If you haven't revealed what the loot is or does, consider how you will—see **[[13 - Discoveries#Identifying artifacts|"Identifying artifacts"]]** and **[[13 - Discoveries#Identifying arcana|"Identifying arcana"]]**.
+- **6) Review any loot the PCs acquired.** Make sure it's on someone's inventory insert or otherwise accounted for. If you need to provide players handouts or write-ups, make a note to do so. If you haven't revealed what the loot is or does, consider how you will—see **[[13 - Discoveries#Identifying artifacts|"Identifying artifacts"]]** and **[[13 - Discoveries#Identifying arcana|"Identifying arcana"]]**.
 
 **[[02 - Getting Started#"I wonder…"|7) Update your "I wonder…" list]]**). If you've answered any of these questions, then jot the answer down and cross off the question. Have any of the questions changed, evolved, gained clarity or nuance? Update them. Have any new questions occurred to you? Add them to the list.
 
-## **Follow-ups**
+### **Follow-ups**
 
 As the session ended, you likely found yourself with some follow-up tasks. As you reflect and take care of bookkeeping, you'll likely identify more. Review your to-do list and prioritize:
 
@@ -135,7 +142,7 @@ As the session ended, you likely found yourself with some follow-up tasks. As yo
 - Next, focus on tasks relevant to the upcoming session (like making a key decision about a threat, or writing up an artifact that the PCs acquired).
 - For everything else, work on them only if you feel inspired to do so and you know you have time. Otherwise, keep them on your to-do list until they become timely. Don't Make a Plan now for a player whose PC will be busy for the next few sessions.
 
-## **Prep**
+### **Prep**
 
 As the next session approaches, make time to sit down and prep. Think about where things left off last session. Where are the PCs and what are they up to? What do you expect to happen in the next session? Prep for that.
 
@@ -159,7 +166,7 @@ If the PCs are…
 - … **likely to gain a new follower**, then find their stats in *Book II* or make them from scratch [[14 - NPCs and Followers#Creating followers|Creating followers]].
 - … **heading home or into a stretch of downtime**, then prep for a homefront session. See "**What to prep"** on [[15 - Homefront#What to prep|What to prep]] of the Homefront chapter.
 
-## **Other things you might prep**
+#### **Other things you might prep**
 
 - An **adventure hook** to kick off a new adventure [[17 - The Game Ongoing#Wishes and personal goals|Wishes and personal goals]]
 - **[[16 - Writing Moves and Love Letters#Writing moves|Custom moves]]** to use in a specific situation.
@@ -170,13 +177,13 @@ If the PCs are…
 - **Play aids** like maps, visuals, player handouts like arcana cards, etc.
 - Stuff to support player **wishes** and your **[[17 - The Game Ongoing#Wishes and personal goals|personal goals]]**.
 
-## **Adventure hooks**
+#### **Adventure hooks**
 
 If the last session ended in downtime, you might want to kick off a new adventure. Maybe the Seasons Changed and you owe the players an opportunity or threat. Maybe they got a 7-9 to Pull Together and choose "unforeseen cost, requirement, or challenge." Maybe the Ranger tried to Persuade Gorlas to leave that haunted ruin alone, but rolled a 4, and so old Gorlas he ain't gonna listen.
 
 To prep for a new adventure, follow the process laid out in the **First Adventure**  chapter [[08 - First Adventure|First Adventure]]. Or, if it makes sense, prep a full-on **[[15 - Homefront#Crises|crisis]]** instead.
 
-## **Wishes and personal goals**
+#### **Wishes and personal goals**
 
 Look over the wishes that your players gave you at the end of the last session, or any unmet wishes from before that.
 
@@ -198,7 +205,7 @@ For each wish or goal, what would help you achieve it? Work that into your prep!
 
  Play them against each other: Glennys objects to Blodwen about Rhianna's plans for palisade.
 
-## **Don't over-prep!**
+#### **Don't over-prep!**
 
 Remember why you prep: to give yourself cool stuff to say, to speed up play, to shore up weaknesses, to hone your craft, and to give yourself permission to play hard and inflict real consequences. With that in mind, prep only:
 
@@ -208,29 +215,30 @@ Remember why you prep: to give yourself cool stuff to say, to speed up play, to 
 
 Specifically, resist the urge to prep a plot or every potential path the PCs might take. Prep what you need, what you can't improvise, and what helps you be your best. Then play to find out what happens.
 
-## **Check-ins**
+> [!box] ## **Check-ins**
+> 
+> Play with any group long enough, and you're bound to have issues. Players who get on each other's nerves. Mismatched expectations. Disruptive behaviors. Hurt feelings. Miscommunications. Etc.
+> 
+> When there's a player-level issue, talk to them about it. Don't let things fester, and for Tor's sake don't try to "fix" the issue with game mechanics or fictional "consequences" (punishments). There is no ingame solution for a player-level problem.
+> 
+> *Stonetop* includes tools to facilitate this kind of communication. **[[03 - Playing the Game#^content|Content guidelines]]** help set expectations and boundaries. Reviewing them at the start of each session (see opposite page) keeps them top-of-mind. Calling "time out" gives you a way to course correct mid-session. And the End of Session move invites players to ask for things to change. (And if your group finds other communication or safety tools to be helpful, then by all means, use them!)
+> 
+> Some issues, though, are best handled with a check-in: outside of a session, one-on-one or with only the relevant players. Maybe you do this in person, right after a session, or over a drink, or on a walk, or whatever. Maybe it's a call or an online chat. Pick an approach that feels comfortable for all involved.
+> 
+> Encourage your players to initiate check-ins, too, with you and with each other. If they have a concern, the best thing to do is talk about it.
+> 
+> If you suspect that a player is unhappy, then let them know what you've noticed and give them space to respond. "Hey, you seemed uncomfortable during that scene with Iwan. Did we cross a line there?" See where the conversation goes. Sometimes, it's unrelated to the game, or you misread the situation, or they just don't want to talk about it.
+> 
+> When a player says that they're unhappy with something about the game, *listen*. Ask for clarification and specifics, but don't argue or defend yourself. Thank them, and ask them what they'd like to see change.
+> 
+> Can you make or facilitate that change? If so, great—do it. If you can't, or don't want to, that's okay too. But be honest about it. Have a calm conversation about why. Look for a compromise that works.
+> 
+> If a player is causing trouble, then point out what they're doing. Focus on behaviors and impact, not personality. "When you keep canceling last-minute, I can't prep effectively. Or I have to prep more, in case you're not there." Say what you'd like to see change. Ask if they're able to make that change, and how they plan to do so. Try to find a solution if you can.
+> 
+> Sometimes, the solution is "stop playing together," or to stop playing *Stonetop* and play something else. That's okay—you and your players are more important than the game! But you'll never figure that out without talking to your players. So check in with each other, often.
+> ^check-ins
 
-Play with any group long enough, and you're bound to have issues. Players who get on each other's nerves. Mismatched expectations. Disruptive behaviors. Hurt feelings. Miscommunications. Etc.
-
-When there's a player-level issue, talk to them about it. Don't let things fester, and for Tor's sake don't try to "fix" the issue with game mechanics or fictional "consequences" (punishments). There is no ingame solution for a player-level problem.
-
-*Stonetop* includes tools to facilitate this kind of communication. **[[03 - Playing the Game#Content|Content guidelines]]** help set expectations and boundaries. Reviewing them at the start of each session (see opposite page) keeps them top-of-mind. Calling "time out" gives you a way to course correct mid-session. And the End of Session move invites players to ask for things to change. (And if your group finds other communication or safety tools to be helpful, then by all means, use them!)
-
-Some issues, though, are best handled with a check-in: outside of a session, one-on-one or with only the relevant players. Maybe you do this in person, right after a session, or over a drink, or on a walk, or whatever. Maybe it's a call or an online chat. Pick an approach that feels comfortable for all involved.
-
-Encourage your players to initiate check-ins, too, with you and with each other. If they have a concern, the best thing to do is talk about it.
-
-If you suspect that a player is unhappy, then let them know what you've noticed and give them space to respond. "Hey, you seemed uncomfortable during that scene with Iwan. Did we cross a line there?" See where the conversation goes. Sometimes, it's unrelated to the game, or you misread the situation, or they just don't want to talk about it.
-
-When a player says that they're unhappy with something about the game, *listen*. Ask for clarification and specifics, but don't argue or defend yourself. Thank them, and ask them what they'd like to see change.
-
-Can you make or facilitate that change? If so, great—do it. If you can't, or don't want to, that's okay too. But be honest about it. Have a calm conversation about why. Look for a compromise that works.
-
-If a player is causing trouble, then point out what they're doing. Focus on behaviors and impact, not personality. "When you keep canceling last-minute, I can't prep effectively. Or I have to prep more, in case you're not there." Say what you'd like to see change. Ask if they're able to make that change, and how they plan to do so. Try to find a solution if you can.
-
-Sometimes, the solution is "stop playing together," or to stop playing *Stonetop* and play something else. That's okay—you and your players are more important than the game! But you'll never figure that out without talking to your players. So check in with each other, often.
-
-# **Starting a session**
+## **Starting a session**
 
 Folks arrive at a session carrying their week with them—work, kids, traffic, etc. Give everyone a chance to settle. Chat and catch up. Let the noise of the world fade a bit before you start to play.
 
@@ -240,11 +248,11 @@ Have a checklist of things to do at the start of each session. Once everyone is 
 
 What are your plans for food and drink? Who's taking notes? When do folks need to leave? When should you take breaks? Etc. Set timers as needed. Be sure to save time for the End of Session move!
 
-#### **Recap**
+### **Recap**
 
 Remind everyone what happened last time, and where things left off. If possible, get the players to do this themselves. Ask the notetaker to give a recap, or ask players to take turns doing so. Add details and make corrections as needed, but don't nitpick. Listen to what your players say—it's a good indicator of what's important to them!
 
-## **Content guidelines**
+### **Content guidelines**
 
 As a group, read the "Content" section on your steading playbook. If you think this session might bump against these guidelines, say so now. Ask if anyone wants to add or change something. Remind folks to call "time out" if a guideline is broken, if they need a break, or if they want to talk things over. See [[02 - Getting Started#Discuss tone and content|Discuss tone]] for guidance.
 
@@ -259,15 +267,15 @@ Go over stuff that you want everyone to keep in mind or at least be aware of. Th
 
 Customize this list to match your needs and preferences. Not every group highlights the same things.
 
-#### **Bookkeeping**
+### **Bookkeeping**
 
 Have players update their playbooks and inserts if needed. Like, if they've had a few days at home since the last session, have them reset HP and clear debilities. If someone Leveled Up, make sure they've updated their XP and marked a new move. That sort of thing.
 
-## **Starting moves, questions, love letters**
+### **Starting moves, questions, love letters**
 
 If any PCs have moves that trigger at the start of session (like the Would-be Hero's "Destined" background), or if you've written setup questions or love letters, do them now. Let them serve as a final shift into actual play.
 
-## **Opening scene(s)**
+### **Opening scene(s)**
 
 Address one or more PCs. Say (or ask) where they are, who they're with, what they're up to. Describe the environment, ask some questions. Portray NPCs.
 
@@ -277,7 +285,7 @@ Make a soft GM move, something that propels the PC into action or conflict. Ask,
 
 *Stonetop* tends to be slower-paced than many RPGs. It has its moments of drama and intense action. But it also encourages you to dwell on the details of daily life and to spend time chewing the scenery. Finding the right pace and rhythm for your group is important.
 
-## **Adventures vs. homefront**
+### **Adventures vs. homefront**
 
 A key tension in the game is how much time to spend on adventures (expeditions and crises) vs. homefront play. The game won't always tell you when it's time to switch, and that's intentional.
 
@@ -287,7 +295,7 @@ The game mechanics will sometimes drive play in a particular, unavoidable way. I
 
 If your players want to constantly work on projects or head off on multiple adventures each season, don't be afraid to pump the brakes. Remind them of their obligations, and if they ignore them, start to oppose their wishes. **Tell them the consequences** of rushing off on a half-baked expedition with no chance of success. Etc.
 
-## **Increasing the pace**
+### **Increasing the pace**
 
 If you're not getting as much done in a session as you and your players would like, then try some of these:
 
@@ -307,7 +315,7 @@ To start, PCs earn enough XP to Level Up every 2-4 sessions. It takes more sessi
 
 A PC can Level Up only at home, which encourages players to return to Stonetop once they've accumulated enough XP. PCs can also Burn Brightly at this point, which lets them exchange excess XP for success (or fewer complications).
 
-## **Slowing the rate**
+### **Slowing the rate**
 
 Ideally, PCs should Level Up only once between adventures. You want players to see each new move in play before they gain another. If your players often Level Up multiple times between adventures, consider some of the following.
 
@@ -319,7 +327,7 @@ Ideally, PCs should Level Up only once between adventures. You want players to s
 
 **Let players always Burn Brightly**, even if they lack the XP to Level Up. (If you have a Would-be Hero with the Driven background, you'll need to tweak that move.)
 
-## **Higher-level play**
+### **Higher-level play**
 
 Past level 6, PCs become increasingly competent and harder to challenge. They have better stats, more ways of generating advantage, and lots of tools for overcoming challenges and mitigating dangers. They can start to feel invincible.
 
@@ -337,13 +345,13 @@ To continue challenging higher-level PCs:
 
 But also—and this is important—**let them enjoy their wins**. Give them chances to steamroll challenges that previously would have given them pause. Celebrate their competence and their accomplishments. Then, when you do challenge them, it'll feel all the more dire.
 
-# **Retiring PCs**
+## **Retiring PCs**
 
 A PC might exit play because:
 
 - They die and pass through the Last Door
-- They retire after a lasting injury, as per **[[07 - Harm and Healing#CONVALESCE|Convalesce]]**
-- Surplus runs short in **[[15 - Homefront#Seasonal gains|winter]]**, and the weariest PC's player has them die, leave, or retire
+- They retire after a lasting injury, as per **[[07 - Harm and Healing#^convalesce|Convalesce]]**
+- Surplus runs short in **[[15 - Homefront#Winter|winter]]**, and the weariest PC's player has them die, leave, or retire
 - They cross the line from protagonist to villain [[17 - The Game Ongoing#Descent into villainy|Descent into villainy]]
 - Their player decides to have them leave Stonetop or retire from adventuring
 - Their player leaves the game
@@ -352,7 +360,7 @@ A PC might exit play because:
 
 When a PC descends into villainy and monstrosity, they stop being a PC and become a threat under the GM's control. Write them up as both a **[[09 - Threats#Writing a threat|threat]]** and a **[[12 - Dangers#Monsters|monster]]**, using their established moves, possessions, and abilities as inspiration. Don't worry about replicating their playbook abilities exactly, and feel free to make them scarier than they were as a PC.
 
-## **Retirement**
+### **Retirement**
 
 If a PC retires from play but stays in the village or the region, then turn them into an NPC. By default, their portrayal falls to you. But if everyone agrees, their original player can portray them.
 
@@ -381,7 +389,7 @@ You might need to introduce a new PC to an ongoing game when:
 
 If you're adding a player to an ongoing game, then brief them on the game so far. Have them read the Setting Overview and Moves & Gear handouts. Ideally, have them read the group's session logs and look over the steading playbook. Schedule time to answer any questions they have.
 
-## **Creating the character**
+### **Creating the character**
 
 Have the player pick one of the unused playbooks. They should also pick a background that reflects either a new arrival in Stonetop or a local NPC stepping up to PC status—each playbook has at least two such backgrounds. You don't want this new, highly-skilled PC to have been here all along without ever getting involved.
 
@@ -391,7 +399,7 @@ As a rule, new PCs start play at level 1, no matter how seasoned everyone else i
 
 That said: it's okay to start a new PC at a higher level if there's a compelling reason (like the PC is an ancient hero freed from stasis), the player is familiar with *Stonetop*, and the whole group is cool with it.
 
-## **Introductions**
+### **Introductions**
 
 Have the player stop at the Introductions part of their playbook. Decide together how you'll bring them into the game. There are two basic approaches:
 
@@ -399,7 +407,7 @@ Have the player stop at the Introductions part of their playbook. Decide togethe
 
 **Time skip**. The new PC appears (or steps up) between sessions, during a stretch of downtime. Establish that they've been here (or been active) a while. Have the new PC do **[[03 - Playing the Game#Introductions|Introductions]]** more or less normally at the start of the next session (or between sessions, if that works for your group). Maybe write a **[[16 - Writing Moves and Love Letters#Writing love letters|love letter]]** to each existing PC that both covers events during the time skip and that establishes their connection to this new PC.
 
-## **Getting them involved**
+### **Getting them involved**
 
 Once they're in play, make sure the new PC matters. Prepare hooks that touch on their background, instincts, or unresolved questions. Work their worldbuilding elements into the game. Give them a little more spotlight, and allow them to find their place in the game.
 
@@ -413,7 +421,7 @@ Most PC conflicts are just disagreements, or one PC trying to stop another PC fr
 
 Encourage players to argue in character, not to "win" but to establish their positions and their values. Use moves like Persuade (vs. PCs), Interfere, and Seek Insight to keep things moving.
 
-## **Intractable differences**
+### **Intractable differences**
 
 Over time, disagreements can grow into ongoing conflicts. The Judge won't stand for the Fox's deceit. The Fox can't forgive the Heavy for his husband's death. The Lightbearer frets over the state of the Seeker's soul.
 
@@ -423,7 +431,7 @@ your content guidelines, fix the fiction if you need to, and commit to whatever 
 
 If everyone is on board, though, then lean into the conflict. Ask folks what they're looking for. Escalation? Resolution? Heartbreak? Use their answers to guide what comes next.
 
-## **Open conflict**
+### **Open conflict**
 
 When PCs directly oppose each other through violence, subterfuge, sabotage, or whatever—then slow down. A lot.
 
@@ -433,7 +441,7 @@ If everyone is on board with the conflict, then give everyone involved a chance 
 
 Use the results of PC actions and player moves to inform what comes next. Keep checking in with the players. Move the spotlight and give other PCs chances to get involved. If someone rolls a 6-, push things to their logical (if unfortunate) conclusion, or interrupt the whole conflict with some unrelated but pressing problem.
 
-## **Descent into villainy**
+### **Descent into villainy**
 
 Sometimes, a PC starts down a dark path. Maybe they keep using a major arcanum and racking up consequences. Maybe they are corrupted by the Things Below. Maybe they die but refuse to pass on, and linger as a **[[Inserts#Ghost|Ghost]]**, **[[Inserts#Revenant|Revenant]]**, or **[[Inserts#Thrall|Thrall]]**. Maybe they just make one grim choice after another.
 
@@ -441,7 +449,7 @@ It's usually okay for a PC to be wayward or wicked, but not both. If a PC scheme
 
 When a PC crosses the line into villainy, or just cozies up to it, check in. Does this PC's player think they can be redeemed? Do the other players want to try? If not, does everyone want to play out one last conflict or scheme? If the answer to any of these is "No," then the PC should **[[17 - The Game Ongoing#Becoming a threat|become a threat]]**. If the answer to all three questions is "Yes," then focus on that confrontation in an upcoming session. If the party fails to redeem their one-time ally, then that PC becomes a threat.
 
-## **Regarding secrets**
+### **Regarding secrets**
 
 When PCs come into conflict, it's natural that they will start lying to each other, or keeping secrets. Great! More drama! But don't let players keep secrets from each other. Don't accept notes they pass you. Don't have private chats or huddles in the hall. Encourage everyone to keep in mind what they know vs. what their character knows, and then enjoy the dramatic irony.
 
@@ -451,13 +459,13 @@ When PCs come into conflict, it's natural that they will start lying to each oth
 
 How you handle a time skip depends largely on its length.
 
-## **Months, seasons, years**
+### **Months, seasons, years**
 
 If you're skipping a few months, seasons, or years, then write **[[16 - Writing Moves and Love Letters#Writing love letters|love letters]]** to cover the gap. These can be fairly involved, including not only a roll and its results, but also invitations to narrate events and/or to involve the other players. "Dear Marshal, it's been a peaceful year but tell us—what trouble has stemmed from having a standing watch that you never predicted? Then, ask each of the other PCs one of the following …"
 
 If the time skip straddles the change of just one season, have the players make the Seasons Change move and incorporate its results into your letters. For a skip that spans multiple seasons, work changes to steading elements (Fortunes, Surplus, improvements, etc.) into the love letters. Either way, prep a new **[[08 - First Adventure#First Adventure|adventure]]** to bring things back with a bang.
 
-## **Up to a decade or two**
+### **Up to a decade or two**
 
 If you're skipping more than a few years, up to a decade or two, take a session off from actual play. Instead, discuss:
 
@@ -469,7 +477,7 @@ If you're skipping more than a few years, up to a decade or two, take a session 
 
 Have anyone who wants to play a new PC create them now, picking any background that makes sense given the time skip. Do **[[03 - Playing the Game#Introductions|Introductions]]** as normal, with the existing PCs each taking turns during steps 6-7 (PC connections). Pick a starting season and do the Seasons Change move. Use the result to craft a **[[08 - First Adventure#First Adventure|First Adventure]]**, writing love letters to existing PCs to help fill in the skipped-over time.
 
-## **Generations**
+### **Generations**
 
 If you jump ahead generations, then you're starting a whole new game. Hold a new **[[02 - Getting Started#Let spring burst forth|first session]]**. Discuss how the setting has changed in light of the game that just ended. Make and introduce new PCs, keeping those changes in mind. Ask questions about the timeline between the prior game and this one. Have spring burst forth, and prep a first adventure.
 
@@ -481,13 +489,13 @@ The PCs all die, or leave Stonetop for good. The village is razed and its people
 
 You have two basic options:
 
-## **Option 1: End the game**
+### **Option 1: End the game**
 
-The right answer is often the simplest: call it quits. If the story feels complete, or the shake-up has stolen the game's momentum, then let the game end. Consider using the **[[17 - The Game Ongoing#DENOUEMENT|Denouement]]** move if that kind of closure feels right.
+The right answer is often the simplest: call it quits. If the story feels complete, or the shake-up has stolen the game's momentum, then let the game end. Consider using the **[[17 - The Game Ongoing#^denouement|Denouement]]** move if that kind of closure feels right.
 
 Take a break. Play something else for a while. You can always come back to *Stonetop* later, either with a whole new game or by doing a time skip and starting up a few decades or generations later.
 
-## **Option 2: Pivot**
+### **Option 2: Pivot**
 
 Keep playing, adjusting the game to reflect the shake-up. Skip forward an appropriate amount of time (see previous page). Make any mechanical changes you need. The specifics will vary case by case.
 
@@ -495,11 +503,11 @@ Pivots like this can be hard. They make you rethink the game's core assumptions.
 
 *The PCs have left Stonetop to help allied Hillfolk clans in a war against their rivals. I write up a new steading playbook for the ally's war-camp, skip ahead a few months, and write love letters to establish the new situation. The next few seasons might involve stealth missions, attempts to secure resources, and pitched battles. When the war ends and the PCs head home, I'll write love letters to determine what happened while they were gone.*
 
-*The PCs have all died trying to stop the release of Y'aaw'kara (*[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|Book II]]*). A new ice age is unleashed and the Howling Curse plagues the land. We decide to skip ahead a decade or so and start fresh with all new PCs, and discuss how Stonetop has adapted to the harsh new climate, updating its resources and potential improvements accordingly. I rewrite the Seasons Change move, update the inventory inserts and gear lists, and give everyone a custom insert for tracking the Howling Curse (*[[54 - The Whitefang Mountains#**Shantyara**|Book II]]*).*
+*The PCs have all died trying to stop the release of Y'aaw'kara (*[[46 - The Things Below#Hlad, the Devourer, the Eternal Maw|Book II]]*). A new ice age is unleashed and the Howling Curse plagues the land. We decide to skip ahead a decade or so and start fresh with all new PCs, and discuss how Stonetop has adapted to the harsh new climate, updating its resources and potential improvements accordingly. I rewrite the Seasons Change move, update the inventory inserts and gear lists, and give everyone a custom insert for tracking the Howling Curse (*[[54 - The Whitefang Mountains#Ice drake|Book II]]*).*
 
 *The PCs have been exiled from Stonetop and have taken up lives as wandering adventurers. The steading playbook will no longer be relevant to them; most of the Homefront moves no longer apply, or would be much harder to trigger, so I rewrite some of the questions in the End of Session move, and update Level Up to require "a quiet stretch of downtime," instead of "a quiet stretch at home." All in all, the game will now play out more like a traditional fantasy-adventure RPG.*
 
-# **Ending your game**
+## **Ending your game**
 
 All stories end. Maybe the story of your Stonetop burns bright and fast. Maybe it stretches on for years.
 
@@ -507,17 +515,18 @@ Maybe it just… fizzles out. And that's fine. Not every story gets a good endin
 
 Ideally, though, you'll see the end coming. Maybe real life forces your hand, and one or more of your players are moving, or having a kid, or starting school or a new job and they can't play anymore. Maybe you sense the game's story arcing towards its conclusion. Or maybe you or some of your players are just getting the itch to play something else.
 
-#### **Planning for the end**
+### **Planning for the end**
 
 When you see the end coming, you have an opportunity. An opportunity for climax, denouement, and a fitting farewell. A
 
 chance to give your shared story the final chapter it deserves.
 
-**1 Schedule a planning session** Once you realize it's time to start ending the game, schedule a planning session with your players. Expect it to take an hour or two, so it might just be part of a normal session.
+## **1. Schedule a planning session** 
+Once you realize it's time to start ending the game, schedule a planning session with your players. Expect it to take an hour or two, so it might just be part of a normal session.
 
 Try to make sure everyone can be there. If you can, give yourself some lead-time so that you and your players can prep.
 
-### **2 Prepare**
+### **2. Prepare**
 
  Ask your players to review the questions below, and give them some thought before the planning session. If they can't attend, ask them to send you their wish lists beforehand. Encourage everyone else to come with notes, or at least thoughts.
 
@@ -533,7 +542,7 @@ If you have time, provide the players with a list of hanging threads for referen
 
 Give these questions some thought, yourself. You're allowed to have opinions!
 
-## **3 Assemble the wishlist**
+### **3. Assemble the wishlist**
 
  Once you've gathered for the planning session, refer to the questions from step 2, above. Print them out if playing in person, or post them somewhere everyone can see. The goal here is to establish each player's wishlist of things they'd like to do, resolve, or see in play before the game ends.
 
@@ -551,11 +560,13 @@ Prioritize. Everyone (including you) can pick one "must-have" item, and up to tw
 
 To be clear: this is a wish list, not a list of promises. You're all agreeing to try and fit these things in the game, but there's no guarantee how exactly they'll play out when that happens. "Deal with Brennan & the trade embargo" just means a chance to tie off those threads. Hopefully the PCs will succeed. But they might not!
 
-# **Driving toward resolution**
+### **Driving toward resolution**
 
 From now on, push play towards those must-have and important wishes. Work them into your prep. Keep the wish list handy as a reference during play, and get to the "nice to have" wishes as you can.
 
-Make use of techniques for **[[17 - The Game Ongoing#Pacing|increasing the pace]]**. Skip over the familiar. Zoom out and gloss over stuff where you can. Frame scenes aggressively. Make GM
+Make use of techniques for **[[17 - The Game Ongoing#Increasing the pace|increasing the pace]]**. Skip over the familiar. Zoom out and gloss over stuff where you can. Frame scenes aggressively. Make GM moves that resolve situations, rather than escalating or drawing them out. Resist the urge to introduce new threads or complications unless they directly relate to an item on the wish list. Step in when the players start to swirl.
+
+Focus. You're in the endgame, now.
 
 *I'm starting a new job soon, and won't be able to keep running the game. I reckon we have time for maybe four more sessions. Prior to the next session, I send out the questions and my list of hanging threads, and ask folks to create wishlists. During our planning session, our discussion results in these priorities:*
 
@@ -582,10 +593,6 @@ Make use of techniques for **[[17 - The Game Ongoing#Pacing|increasing the pace]
 - Morwenna's wedding (Caradoc)
 - Punch Brennan's face (Caradoc)
 
-moves that resolve situations, rather than escalating or drawing them out. Resist the urge to introduce new threads or complications unless they directly relate to an item on the wish list. Step in when the players start to swirl.
-
-Focus. You're in the endgame, now.
-
 *If we're going to see the Mighty Servant on-screen, Vahid will need to acquire its aetherium helm and spend time with its chassis, assembling it. Dealing with Brennan and the trade embargo implies a direct confrontation. And if Caradoc is going to prove himself to the village, it should happen near Stonetop.*
 
 *We've got only two sessions left, so we jump to spring and I use love letters to set the scene: Morwenna's wedding (a subdued affair), Blodwen and Caradoc dancing, Brennan's goons blockading the West Road, a skeevy adventurer sneaking past to sell the aetherium helm to Vahid.*
@@ -600,7 +607,7 @@ Focus. You're in the endgame, now.
 
 *I don't know, but we'll play to find out!*
 
-## **The final sessions**
+### **The final sessions**
 
 Figure out when your last session will be, and how many sessions you have before then. As you prep for those final sessions, keep the wishlist forefront in your mind.
 
@@ -610,7 +617,7 @@ Ignore moves, procedures, and rules that don't help you hit the wish list items 
 
 During the finale, especially: **go big and don't hold back**. Make bold GM moves that force the PCs to make hard choices, take desperate risks, and put it all on the line. When they roll a 6-, make it hurt. Now more than ever, **let things burn**.
 
-## **The end**
+### **The end**
 
 When the final conflict ends and the dust starts to settle, take a breath. Then wrap up the current situation to whatever level of detail makes sense.
 
@@ -618,15 +625,24 @@ Don't use any moves or mechanics. Just describe the scene and give the players s
 
 Use what time remains to do this one last move, together.
 
-## **DENOUEMENT**
-
-When *the game comes to an end*, go around the table. On your turn, pick a scene below and ask a player or the GM to describe it.
-
-When you *describe a scene*, make it involve your PC, an NPC important to them, or (if you're the GM) any NPC you like.
-
-- A return home
-- A funeral, a farewell, an ending
-- A struggle, an absence, grief
-- A time of rebuilding, renewal, hope
-- A lasting change, a transition
-- A beginning, a fresh start, a birth
+>[!box] ## **DENOUEMENT**
+>
+>
+>When *the game comes to an end*, go around the table. On your turn, pick a scene below and ask a player or the GM to describe it.
+>
+>When you *describe a scene*, make it involve your PC, an NPC important to them, or (if you're the GM) any NPC you like.
+>
+>- A return home
+>- A funeral, a farewell, an ending
+>- A struggle, an absence, grief
+>- A time of rebuilding, renewal, hope
+>- A lasting change, a transition
+>- A beginning, a fresh start, a birth
+>- A memory, a story, a legend
+>
+>Go around as many times as you like. Change who you ask each time, or just pick a scene to describe yourself.
+>
+>When you're done, thank your friends, wish them well, and say goodbye.
+>
+>The end.
+> ^denouement

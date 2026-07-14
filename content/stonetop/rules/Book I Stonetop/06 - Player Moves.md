@@ -2,25 +2,23 @@
 
 ## **Basic Moves**
 
-DEFY DANGER 
-AID 
-CLASH 
-DEFEND 
-INTERFERE 
-KNOW THINGS 
-LET FLY 
-PERSUADE (vs. NPCs) 
-PERSUADE (vs. PCs) 
-SEEK INSIGHT
+| Moves | |
+|---|---|
+| [[#^defy-danger\|DEFY DANGER]] | [[#^aid\|AID]] |
+| [[#^clash\|CLASH]] | [[#^defend\|DEFEND]] |
+| [[#^interfere\|INTERFERE]] | [[#^know-things\|KNOW THINGS]] |
+| [[#^let-fly\|LET FLY]] | [[#^persuade-vs-npcs\|PERSUADE (vs. NPCs)]] |
+| [[#^persuade-vs-pcs\|PERSUADE (vs. PCs)]] | [[#^seek-insight\|SEEK INSIGHT]] |
 
 ## **Special Moves**
 
-ADVANTAGE/DISADVANTAGE 
-BURN BRIGHTLY 
-END OF SESSION 
-DEATH'S DOOR
+| Moves | |
+|---|---|
+| [[#^advantage-disadvantage\|ADVANTAGE/DISADVANTAGE]] | [[#^burn-brightly\|BURN BRIGHTLY]] |
+| [[#^end-of-session\|END OF SESSION]] | [[#^deaths-door\|DEATH'S DOOR]] |
 
 ## **Basic Moves**
+^basic-moves-section
 
 The basic moves are the ones that every player and PC can use, the ones that get used most often, and the ones that drive most of the game.
 
@@ -37,34 +35,36 @@ When a move says to "roll +[STAT]," that means: roll 2d6 and add whichever stat 
 On a 6 or less, it's a miss. That means:
 
 - They mark XP
-- You make a **[[05 - Running the Game#Your GM moves|hard GM move]]**
+- You make a **[[05 - Running the Game#Hard GM moves|hard GM move]]**
 
 Your hard move might reflect the PC screwing up, but it could also reflect something preventing them from succeeding or even attempting the action they declared. It could even reflect them doing what they set out to do, but with terrible consequences.
 
 The basic moves don't say what happens on a 6-; this is just how they work.
 
-## **Advantage and disadvantage**
+> [!box] **Advantage and disadvantage**
+> 
+> When a player *has advantage on a roll*, they roll an extra die and discard the lowest. On most moves, that means rolling 3d6 and totaling the two highest dice.
+> 
+> When a player *has disadvantage on a roll*, they roll an extra die and discard the highest. On most moves, that means rolling 3d6 and totaling the two lowest dice.
+> 
+> When a player *has both advantage and disadvantage on a roll*, they cancel each other out.
+> 
+> See [[06 - Player Moves#^special-moves-section|Special moves]] for a full explanation of advantage and disadvantage.
+> ^advantage-and-disadvantage
 
-When a player *has advantage on a roll*, they roll an extra die and discard the lowest. On most moves, that means rolling 3d6 and totaling the two highest dice.
-
-When a player *has disadvantage on a roll*, they roll an extra die and discard the highest. On most moves, that means rolling 3d6 and totaling the two lowest dice.
-
-When a player *has both advantage and disadvantage on a roll*, they cancel each other out.
-
-See [[06 - Player Moves#Special moves|Special moves]] for a full explanation of advantage and disadvantage.
-
-## **DEFY DANGER**
-
-When *danger looms, the stakes are high, and you do something chancy*, check if another move applies. If not, roll...
-
-- ... +STR to power through or test your might
-- ... +DEX to employ speed, agility, or finesse
-- ... +CON to endure or hold steady
-- ... +INT to apply expertise or enact a clever plan
-- ... +WIS to exert willpower or rely on your senses
-- ... +CHA to charm, bluff, impress, or fit in
-
-**On a 10+**, you pull it off as well as one could hope; **on a 7-9**, you can do it, but the GM will present a lesser success, a cost, or a consequence (and maybe a choice between them, or a chance to back down).
+> [!move] ## **DEFY DANGER**
+> 
+> When *danger looms, the stakes are high, and you do something chancy*, check if another move applies. If not, roll...
+> 
+> - ... +STR to power through or test your might
+> - ... +DEX to employ speed, agility, or finesse
+> - ... +CON to endure or hold steady
+> - ... +INT to apply expertise or enact a clever plan
+> - ... +WIS to exert willpower or rely on your senses
+> - ... +CHA to charm, bluff, impress, or fit in
+> 
+> **On a 10+**, you pull it off as well as one could hope; **on a 7-9**, you can do it, but the GM will present a lesser success, a cost, or a consequence (and maybe a choice between them, or a chance to back down).
+> ^defy-danger
 
 If a PC's action could trigger both Defy Danger and another move (like swinging a hatchet at the drake that's chewing on their leg), then the other move takes precedence (in this case, Clash).
 
@@ -102,14 +102,16 @@ On a 6-, though? Go nuts. The danger comes to bear before they can act, or as th
 
 *But she gets a 9 and I opt for a consequence: "As you rush past them, a couple turn and tackle you." Rhianna's player calls shenanigans—a 7-9 should still be fundamentally successful. "Oh, right!" I say. "You get to the mouth of the cave, but two crinwin are bounding after you, hot on your tail, what do you do?"*
 
-## **AID**
-
-When you *help someone who has not yet rolled*, the GM picks 1:
-
-- They can accomplish more than they could alone
-- They gain advantage on their roll.
-
-Either way, you are exposed to any risk, cost, or consequence associated with their roll.
+> [!move] ## **AID**
+> 
+> When you *help someone who has not yet rolled*, the GM picks 1:
+> 
+> 
+> - They can accomplish more than they could alone
+> - They gain advantage on their roll.
+> 
+> Either way, you are exposed to any risk, cost, or consequence associated with their roll.
+> ^aid
 
 Invoke this move when one PC triggers a move and another PC (or follower) assists, or if two or more characters make the same move at once.
 
@@ -157,14 +159,15 @@ Involve both characters in any negative results of the move. Even on a 10+ with 
 
 *Caradoc asks if he's Aiding. "You are!" I say. "You're giving her the chance to try to get free. But she's not going to get advantage, if that's what you mean."*
 
-## **CLASH**
-
-When you *fight in melee or close quarters*, roll +STR: **on a 10+**, your maneuver works as expected (deal your damage) and pick 1:
-
-- Avoid, prevent, or counter your enemy's attack
-- Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack
-
-**On a 7-9**, your maneuver works, mostly (deal your damage), but you suffer your enemy's attack.
+> [!move] ## **CLASH**
+> 
+> When you *fight in melee or close quarters*, roll +STR: **on a 10+**, your maneuver works as expected (deal your damage) and pick 1:
+> 
+> - Avoid, prevent, or counter your enemy's attack
+> - Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack
+> 
+> **On a 7-9**, your maneuver works, mostly (deal your damage), but you suffer your enemy's attack.
+> ^clash
 
 This move covers an exchange of hand-tohand combat: a PC tries to hurt or subdue a foe, and the foe is either actively trying to hurt/subdue them back, or is able and willing to start. If the foe can't or won't fight back, it's not Clash—the PC just deals damage (or murders them outright).
 
@@ -214,16 +217,17 @@ See also **[[12 - Dangers#Running combat|Running combat]]**, especially **[[12 -
 
 *The swyn thought Vahid was under its sway and is not expecting an attack. "No, no Clash. Just deal your damage!"*
 
-## **DEFEND**
-
-When you *take up a defensive stance*  or *jump in to protect others*, roll +CON: **on a 10+**, hold 3 Readiness (or 4 if you bear a shield); **on a 7-9**, hold 1 Readiness (or 2 with a shield). You can spend Readiness 1-for-1 to:
-
-- Suffer an attack's damage/effects instead of your ward
-- Halve an attack's effect or damage
-- Draw all attention from your ward to yourself
-- Strike back at an attacker (deal your damage, with disadvantage)
-
-When you *go on the offense, cease to focus on defense, or the threat passes*, lose any Readiness that you hold.
+> [!box] ## **DEFEND**
+> 
+> When you *take up a defensive stance*  or *jump in to protect others*, roll +CON: **on a 10+**, hold 3 Readiness (or 4 if you bear a shield); **on a 7-9**, hold 1 Readiness (or 2 with a shield). You can spend Readiness 1-for-1 to:
+> 
+> - Suffer an attack's damage/effects instead of your ward
+> - Halve an attack's effect or damage
+> - Draw all attention from your ward to yourself
+> - Strike back at an attacker (deal your damage, with disadvantage)
+> 
+> When you *go on the offense, cease to focus on defense, or the threat passes*, lose any Readiness that you hold.
+> ^defend
 
 This move can trigger proactively or reactively.
 
@@ -273,21 +277,23 @@ When someone Defends proactively and rolls a 6-, escalate the situation aggressi
 
 *"Okay, Blodwen, while this is going on..."*
 
-## **INTERFERE**
-
-When you try to foil another PC's action and neither of you back down, roll...
-
-- ... +STR to power through or test your might
-- ... +DEX to employ speed, agility, or finesse
-- ... +CON to endure or hold steady
-- ... +INT to apply expertise or enact a clever plan
-- ... +WIS to exert willpower or rely on your senses
-- ... +CHA to charm, bluff, impress, or fit in
-
-**On a 10+**, they pick 1 from the list below; **on a 7-9**, they pick 1 from the list below but you are left off-balance, exposed, or otherwise vulnerable.
-
-- Do it anyway, but with disadvan tage on their (next) roll
-- Relent, change course, or other wise allow their move to be foiled
+> [!move] ## **INTERFERE**
+> 
+> When you try to foil another PC's action and neither of you back down, roll...
+> 
+> - ... +STR to power through or test your might
+> - ... +DEX to employ speed, agility, or finesse
+> - ... +CON to endure or hold steady
+> - ... +INT to apply expertise or enact a clever plan
+> - ... +WIS to exert willpower or rely on your senses
+> - ... +CHA to charm, bluff, impress, or fit in
+> 
+> 
+> **On a 10+**, they pick 1 from the list below; **on a 7-9**, they pick 1 from the list below but you are left off-balance, exposed, or otherwise vulnerable.
+> 
+> - Do it anyway, but with disadvan tage on their (next) roll
+> - Relent, change course, or other wise allow their move to be foiled
+> ^interfere
 
 Invoke this move when a PC acts, another PC tries to stop them, and the first PC persists. Stop and discuss the situation, giving both players the chance to back off. Either player can relent without going to the dice.
 
@@ -333,9 +339,10 @@ To be clear: Interfere doesn't apply against monsters or most NPCs. It might app
 
 *"I'm disturbed," she says. "I'm telling myself that the flower was just a sweet gesture, but I keep thinking about Thornthumb's grin and wondering if Vahid was right."*
 
-## **KNOW THINGS**
-
-When you *consult your accumulated knowledge*, roll +INT: **on a 10+**, the GM will tell you something interesting and useful about the topic at hand; **on a 7-9**, the GM will tell you something interesting—it's on you to make it useful; **either way**, the GM might ask "how do you know this?"
+> [!move] ## **KNOW THINGS**
+> 
+> When you *consult your accumulated knowledge*, roll +INT: **on a 10+**, the GM will tell you something interesting and useful about the topic at hand; **on a 7-9**, the GM will tell you something interesting—it's on you to make it useful; **either way**, the GM might ask "how do you know this?"
+> ^know-things
 
 When a player asks you what/if they know about something, ask them if they want to Know Things. You can also prompt them: "You might know about this as a tanner's apprentice, want to Know Things?"
 
@@ -385,14 +392,15 @@ You can, on a 6-, **turn their move back on them** and tell them something that 
 
 *"Sure," I say. "But which one?" And unless she does something clever, I'll wait until she gives some to Wynfor, then have her roll the Die of Fate. On a 4+, she guesses right!*
 
-## **LET FLY**
-
-When you *take an easy shot with a ranged weapon*, deal your damage. If *the shot is tricky or you're under pressure*, first roll +DEX: **on a 10+**, you have a clear shot, deal your damage; **on a 7-9**, pick 1:
-
-- Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses)
-- Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage
-- Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage
-- Rush the shot and deal your damage, leading to a cost or complication of the GM's choice
+> [!move] ## **LET FLY**
+> 
+> When you *take an easy shot with a ranged weapon*, deal your damage. If *the shot is tricky or you're under pressure*, first roll +DEX: **on a 10+**, you have a clear shot, deal your damage; **on a 7-9**, pick 1:
+> 
+> - Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses)
+> - Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage
+> - Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage
+> - Rush the shot and deal your damage, leading to a cost or complication of the GM's choice
+> ^let-fly
 
 What counts as an "easy" shot varies based on the character and the situation. A deadeye Ranger can just roll damage to shoot a clueless foe from cover. But a Seeker who's never killed would be "under pressure" and need to roll +DEX.
 
@@ -439,9 +447,10 @@ On a 6-, you get to decide what happens and it's almost certainly bad. Don't ass
 
 *"Huh. I suppose. Yeah, just roll your crew's damage then, once per crinwin. And add +1 for outnumbering them."*
 
-## **PERSUADE (vs. NPCs)**
-
-When you *press or entice an NPC*, say what you want them to do (or not do). If they *have reason to resist*, roll +CHA: **on a 10+**, they either do as you want or reveal the easiest way to convince them; **on a 7-9**, they reveal something you can do to convince them, though it'll likely be costly, tricky, or distasteful.
+> [!move] ## **PERSUADE (vs. NPCs)**
+> 
+> When you *press or entice an NPC*, say what you want them to do (or not do). If they *have reason to resist*, roll +CHA: **on a 10+**, they either do as you want or reveal the easiest way to convince them; **on a 7-9**, they reveal something you can do to convince them, though it'll likely be costly, tricky, or distasteful.
+> ^persuade-vs-npcs
 
 This version of Persuade triggers when a PC tries to convince an NPC to do something. If you, as the NPC, put up resistance and the PC persists, it's Persuade. Clarify what they want the NPC to do/not do, and challenge their approach if it doesn't make sense. "How would she know you want her to do that? Do you, like, ask?"
 
@@ -468,7 +477,7 @@ Reveal how the NPC can be convinced via their words or reactions, and/or as insi
 
 It's okay to offer two or more alternatives on how the NPC could be convinced. "He's waiting for a bribe; a few coppers would do it. Or you could rough him up a bit, you're pretty sure that'd work, too."
 
-On a 6-, you might make it clear that the NPC won't be swayed, interrupt the conversation, and/or end the scene. Or, you might have the NPC comply but with complications (treachery, overzealousness, misunderstanding, etc.). Or maybe the whole interaction offends someone else, upsets the social order, or otherwise generates chaos. Your **[[09 - Threats#**Stakes in play**|threat]]** and **homefront** moves [[15 - Homefront|Homefront]] will be helpful here.
+On a 6-, you might make it clear that the NPC won't be swayed, interrupt the conversation, and/or end the scene. Or, you might have the NPC comply but with complications (treachery, overzealousness, misunderstanding, etc.). Or maybe the whole interaction offends someone else, upsets the social order, or otherwise generates chaos. Your **[[09 - Threats#Threat types in play|threat]]** and **homefront** moves [[15 - Homefront|Homefront]] will be helpful here.
 
 *The PCs just killed a bunch of crinwin, only to see more pale, unblinking eyes staring down at them. "Ugh," says Rhianna, "we barely took care of this lot. I try to scare them off. Persuade?"*
 
@@ -496,11 +505,12 @@ On a 6-, you might make it clear that the NPC won't be swayed, interrupt the con
 
 *But Vahid gets an 8, and I go for something distasteful. "Fah! You'd barely get a single handful if you melted thhhis down. But I tell you what… I'll pay two handfuls now, and if you show my man Gunthhher where you found thhhis beauty, I'll givvve you the rest of a purse of silver on his safe return." He smiles with his too-sharp teeth. "Do we havvve a deal?"*
 
-## **PERSUADE (vs. PCs)**
-
-When you *press or entice a PC and they resist*, ask their player: "Could I possibly get you to do this, yes or no?" If they say "no," let it drop.
-
-If they say "yes," you can roll +CHA: **on a 10+**, they mark XP if they do what you want, and if they don't, they must say how you could convince them; **on a 7-9**, they mark XP if they do what you want (but can refuse or make a counter-offer if they like).
+> [!move] ## **PERSUADE (vs. PCs)**
+> 
+> When you *press or entice a PC and they resist*, ask their player: "Could I possibly get you to do this, yes or no?" If they say "no," let it drop.
+> 
+> If they say "yes," you can roll +CHA: **on a 10+**, they mark XP if they do what you want, and if they don't, they must say how you could convince them; **on a 7-9**, they mark XP if they do what you want (but can refuse or make a counter-offer if they like).
+> ^persuade-vs-pcs
 
 When one PC wants another PC to do something, and the other PC is putting up resistance, invoke this move.
 
@@ -516,11 +526,12 @@ On a 7-9, the target player marks XP if they do what's being asked of them witho
 
 On a 6-, you might **turn their move back on them** and let the targeted player ask how they could get the Persuading character to do something. Or you could interrupt the conversation with some other move, like **introducing a threat** or **changing the environment**. Don't presume actions or reactions from either player, and don't tell them how they feel. If you're stumped, query the table (particularly the targeted player) for ideas.
 
-## **Persuade or Interfere?**
-
-Use Persuade when one PC tries to get another PC to *agree* to a course of action. Use Interfere when one PC has *initiated* a course of action, and another PC tries to stop or foil them.
-
-If one PC Persuades another, the other PC can Interfere with that attempt at persuasion (by exercising willpower, bluffing, etc.).
+> [!box] **Persuade or Interfere?**
+> 
+> Use Persuade when one PC tries to get another PC to *agree* to a course of action. Use Interfere when one PC has *initiated* a course of action, and another PC tries to stop or foil them.
+> 
+> If one PC Persuades another, the other PC can Interfere with that attempt at persuasion (by exercising willpower, bluffing, etc.).
+> ^persuade-or-interfere
 
 *The swyn is dead, the children rescued, and they're getting ready to head home. But Vahid doesn't want to go. "There's so much here to learn! We can't just leave!"* 
 
@@ -544,16 +555,17 @@ If one PC Persuades another, the other PC can Interfere with that attempt at per
 
 *"Fine," sighs Rhianna. "You've got ten minutes. Go make your marks. Blodwen, keep an eye on him."*
 
-## **SEEK INSIGHT**
-
-When you *study a situation or person*, looking to the GM for insight, roll +WIS: **on a 10+**, ask the GM 3 questions from the list below; **on a 7-9**, ask 1; **either way**, take advantage on your next move to act on the answers.
-
-- What happened here recently?
-- What is about to happen?
-- What should I be on the lookout for?
-- What here is useful or valuable to me?
-- Who or what is really in control here?
-- What here is not what it appears to be?
+> [!move] ## **SEEK INSIGHT**
+> 
+> When you *study a situation or person*, looking to the GM for insight, roll +WIS: **on a 10+**, ask the GM 3 questions from the list below; **on a 7-9**, ask 1; **either way**, take advantage on your next move to act on the answers.
+> 
+> - What happened here recently?
+> - What is about to happen?
+> - What should I be on the lookout for?
+> - What here is useful or valuable to me?
+> - Who or what is really in control here?
+> - What here is not what it appears to be?
+> ^seek-insight
 
 Seek Insight triggers when a character does something to gain *insight*. Don't call for the move just because a player asks what they see or hear. Call for it when they look to you to put the pieces together, or to reveal more than what's obvious.
 
@@ -602,18 +614,20 @@ Don't remove a player's agency on a 6-. You might **turn their move back on them
 *"Shoot, you're right. How about this? Before you can get a read on him, he like bounds off through the brush, beckoning you to follow. 'Show you the way, safe and secret,' he says!" But something about his smile still unnerves you, Vahid. What do you all do?"*
 
 ## **Special moves**
+^special-moves-section
 
 These moves are always in play, but they either affect other moves or are triggered by very specific circumstances.
 
-## **ADVANTAGE/DISADVANTAGE**
-
-When you *make a roll with advantage*, roll an extra die and discard the lowest result.
-
-When you *make a roll with disadvantage*, roll an extra die and discard the highest result.
-
-When you *make a roll with both advantage and disadvantage*, they cancel each other out.
-
-If you *have advantage/disadvantage on a damage roll*, roll the main die twice and discard the lower/higher result. Then add any bonus dice that apply.
+> [!move] ## **ADVANTAGE/DISADVANTAGE**
+> 
+> When you *make a roll with advantage*, roll an extra die and discard the lowest result.
+> 
+> When you *make a roll with disadvantage*, roll an extra die and discard the highest result.
+> 
+> When you *make a roll with both advantage and disadvantage*, they cancel each other out.
+> 
+> If you *have advantage/disadvantage on a damage roll*, roll the main die twice and discard the lower/higher result. Then add any bonus dice that apply.
+> ^advantage-disadvantage
 
 Advantage usually means: roll 3d6 and keep the two highest dice. Disadvantage usually means: roll 3d6 and keeping the two lowest dice. If there's a tie for lowest or highest, discard one of them; it doesn't matter which.
 
@@ -636,23 +650,25 @@ Players might have disadvantage on a roll because...
 - ... some sort of equipment or arcana imposes disadvantage; or
 - ... you **reveal a downside** or **tell them the consequences**, and it involves rolling with disadvantage (but see the sidebar on the opposite page).
 
-## **Adjusting difficulty**
+> [!box] **Adjusting difficulty**
+> 
+> In many RPGs, the GM routinely applies bonuses or penalties to player rolls to reflect the difficulty or ease of their tasks. In *Stonetop*, you can apply advantage or disadvantage "on the fly" to do the same thing, but do so sparingly—it undercuts the impact of moves, arcana, and debilities that specifically grant advantage or disadvantage.
+> 
+> If a character's action seems particularly easy or difficult, consider these instead of advantage or disadvantage:
+> 
+> **Are they even triggering a move?** Can you just say that they do it, or know it, or figure it out? "No, don't Clash, just deal damage." Or, can you just say "no" and **tell them the requirements** for making it work? "You can't make that jump with all your gear, you'll need to drop down to a light load first."
+> 
+> **Can you adjust the risks?** If they have a strong position, make it clear that the risks are less. "Suffering his attack just means that he'll get inside your guard." If they're in a desperate position, tell them just how bad it could get. "On a 7-9, you'll have one last chance to catch the ledge, but on a 6- you're rolling Death's Door."
+> 
+> **Can you adjust the scope?** If things are easy for the PC, let a single roll accomplish more, or reveal more, etc. If things are hard, break the action down into smaller moves, each of which can only accomplish part of their goal.
+> ^adjusting-difficulty
 
-In many RPGs, the GM routinely applies bonuses or penalties to player rolls to reflect the difficulty or ease of their tasks. In *Stonetop*, you can apply advantage or disadvantage "on the fly" to do the same thing, but do so sparingly—it undercuts the impact of moves, arcana, and debilities that specifically grant advantage or disadvantage.
+> [!move] ## **BURN BRIGHTLY**
+> 
+> When you *have enough XP to Level Up* (6 + twice your current level), you may spend 2 XP after any roll you make to add +1 to that roll (max +1 per roll).
+> ^burn-brightly
 
-If a character's action seems particularly easy or difficult, consider these instead of advantage or disadvantage:
-
-**Are they even triggering a move?** Can you just say that they do it, or know it, or figure it out? "No, don't Clash, just deal damage." Or, can you just say "no" and **tell them the requirements** for making it work? "You can't make that jump with all your gear, you'll need to drop down to a light load first."
-
-**Can you adjust the risks?** If they have a strong position, make it clear that the risks are less. "Suffering his attack just means that he'll get inside your guard." If they're in a desperate position, tell them just how bad it could get. "On a 7-9, you'll have one last chance to catch the ledge, but on a 6- you're rolling Death's Door."
-
-**Can you adjust the scope?** If things are easy for the PC, let a single roll accomplish more, or reveal more, etc. If things are hard, break the action down into smaller moves, each of which can only accomplish part of their goal.
-
-## **BURN BRIGHTLY**
-
-When you *have enough XP to Level Up* (6 + twice your current level), you may spend 2 XP after any roll you make to add +1 to that roll (max +1 per roll).
-
-PCs can't **[[15 - Homefront#LEVEL UP|Level Up]]** while on an expedition, which means they might end up accumulating surplus XP. This move lets them spend some of that XP to ensure success.
+PCs can't **[[15 - Homefront#^level-up|Level Up]]** while on an expedition, which means they might end up accumulating surplus XP. This move lets them spend some of that XP to ensure success.
 
 The fact that PCs can Burn Brightly helps slow the rate at which PCs can level up, and it helps prevent "double-leveling." It also subtly tips things in the players' favor once they've been in the field for a long time and suffered a number of setbacks.
 
@@ -662,22 +678,23 @@ Players will most often Burn Brightly when they roll 2d6 for a move, but they ca
 
 A player can Burn Brightly only on a roll they make themselves; they can't spend their surplus XP to improve another player's roll.
 
-## **END OF SESSION**
-
-When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.
-
-Say how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.
-
-Answer these questions as a group. For each "yes," everyone marks XP.
-
-- Did we learn more about the world or its history?
-- Did we defeat a threat to Stonetop or the region?
-- Did we improve our standing with our neighbors?
-- Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?
-
-Praise something about the session (in the fiction or around the table) that you enjoyed or appreciated.
-
-Finally, offer up a wish for future sessions: more \_\_, less \_\_, a chance to \_\_, handling \_\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.
+> [!move] ## **END OF SESSION**
+> 
+> When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.
+> 
+> Say how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.
+> 
+> Answer these questions as a group. For each "yes," everyone marks XP.
+> 
+> - Did we learn more about the world or its history?
+> - Did we defeat a threat to Stonetop or the region?
+> - Did we improve our standing with our neighbors?
+> - Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?
+> 
+> Praise something about the session (in the fiction or around the table) that you enjoyed or appreciated.
+> 
+> Finally, offer up a wish for future sessions: more \_\_, less \_\_, a chance to \_\_, handling \_\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.
+> ^end-of-session
 
 The End of Session move is a ritual. It helps your group reflect on the session and improve your game.
 
@@ -701,55 +718,51 @@ Lastly, each player (including you) should offer a wish for future sessions. Wis
 
 Take notes, ask for clarification, and do your best to make those wishes come true.
 
-## **DEATH'S DOOR**
+> [!move] ## **DEATH'S DOOR**
+> 
+> When you *are dying*, you glimpse the Last Door and the Lady of Crows (describe them). Then, roll +nothing: **on a 10+**, you wrest yourself back to the realm of the living—return to 1 HP but say how your brush with death has marked you; **on a 7-9**, the Lady waves you off—you're no longer dying but you're out of the action; **on a 6-**, your time has come—choose 1:
+> 
+> - Make one last move as if you rolled a 12+, then step through the Last Door
+> - Refuse to go; gain the Revenant or Ghost insert
+> - Call on one of the Things Below by name and beseech it to intercede; gain the Thrall insert
+> ^deaths-door
 
-When you *are dying*, you glimpse the Last Door and the Lady of Crows (describe them). Then, roll +nothing: **on a 10+**, you wrest yourself back to the realm of the living—return to 1 HP but say how your brush with death has marked you; **on a 7-9**, the Lady waves you off—you're no longer dying but you're out of the action; **on a 6-**, your time has come—choose 1:
+This move is discussed in detail on [[10 - Death and the Undying#Death's Door|Death’s Door]] in the **Harm and Healing** chapter.
 
-- Make one last move as if you rolled a 12+, then step through the Last Door
-- Refuse to go; gain the Revenant or Ghost insert
-- Call on one of the Things Below by name and beseech it to inter cede; gain the Thrall insert
-
-This move is discussed in detail on [[07 - Harm and Healing#DEATH'S DOOR|Death’s Door]] in the **Harm and Healing** chapter.
-
-## **Other player moves**
+### **Other player moves**
 
 Other player moves are discussed in detail elsewhere:
 
-## **Follower moves**
+#### **Follower moves**
 
-|                  | Order Followers      | 462 |  |  |
-|------------------|----------------------|-----|--|--|
-|                  | Strengthen Your Bond | 464 |  |  |
-| Expedition moves |                      |     |  |  |
-|                  | Chart a Course       | 302 |  |  |
-|                  |                      |     |  |  |
+- [[14 - NPCs and Followers#^order-followers\|Order Followers]]
+- [[14 - NPCs and Followers#^strengthen-your-bond\|Strengthen Your Bond]]
 
-| Outfit             | 306 |
-|--------------------|-----|
-| Requisition        | 308 |
-| Have What You Need | 326 |
-| Recover            | 328 |
-| Forage             | 336 |
-|                    |     |
+#### **Expedition moves**
 
- Keep Company [[10 - Expeditions#KEEP COMPANY|332]] Make Camp [[10 - Expeditions#MAKE CAMP|334]] Struggle as One [[10 - Expeditions#STRUGGLE AS ONE|328]]
+- [[10 - Expeditions#Resolving Chart a Course\|Chart a Course]]
+- [[10 - Expeditions#^outfit\|Outfit]]
+- [[10 - Expeditions#^requisition\|Requisition]]
+- [[10 - Expeditions#^have-what-you-need\|Have What You Need]]
+- [[10 - Expeditions#^recover\|Recover]]
+- [[10 - Expeditions#^forage\|Forage]]
+- [[10 - Expeditions#^keep-company\|Keep Company]]
+- [[10 - Expeditions#^make-camp\|Make Camp]]
+- [[10 - Expeditions#^struggle-as-one\|Struggle as One]]
+- [[10 - Expeditions#^return-triumphant\|Return Triumphant]]
 
-Return Triumphant [[10 - Expeditions#What if they… don't?|339]]
+#### **Homefront moves**
 
-## **Homefront moves**
-
-| Bolster            | 524 |
-|--------------------|-----|
-| Convalesce         | 249 |
-| Deploy             | 526 |
-| Level Up           | 528 |
-| Make a Plan        | 530 |
-| Meet With Disaster | 532 |
-| Muster             | 534 |
-| Pull Together      | 536 |
-| Seasons Change     | 517 |
-| Trade & Barter     | 540 |
-|                    |     |
+- [[15 - Homefront#^bolster\|Bolster]]
+- [[07 - Harm and Healing#^convalesce\|Convalesce]]
+- [[15 - Homefront#^deploy\|Deploy]]
+- [[15 - Homefront#^level-up\|Level Up]]
+- [[15 - Homefront#^make-a-plan\|Make a Plan]]
+- [[15 - Homefront#^meet-with-disaster\|Meet With Disaster]]
+- [[15 - Homefront#^muster\|Muster]]
+- [[15 - Homefront#^pull-together\|Pull Together]]
+- [[15 - Homefront#Seasons Change\|Seasons Change]]
+- [[15 - Homefront#^trade-barter\|Trade & Barter]]
 
 If a character does something that could meet the trigger for more than one player move, use whichever one seems most applicable to the current situation. In general, a more-specific move takes precedence over a more-general move, and everything takes precedence over Defy Danger. Discuss it with your players and come to a consensus if you can, or make a call if you can't.
 
@@ -761,33 +774,37 @@ Most custom moves are unnamed; they're simply presented as part of a setting ele
 
 For example, the **[[31 - The Makers' Roads#The Makers' Roads|Makers' Roads]]** have a few custom moves. Here's one, related to their wards against violence:
 
-When you *attempt to commit violence upon the road*, or to harm the road or anything upon it, you hesitate. If you will yourself to continue, lose 1d4 HP and roll +WIS: **on a 10+**, go for it; **on a 7-9**, you act but have disadvantage on any rolls to commit violence (including damage); **on a 6-**, you fail to act and mark *dazed*.
+> [!move]
+> When you *attempt to commit violence upon the road*, or to harm the road or anything upon it, you hesitate. If you will yourself to continue, lose 1d4 HP and roll +WIS: **on a 10+**, go for it; **on a 7-9**, you act but have disadvantage on any rolls to commit violence (including damage); **on a 6-**, you fail to act and mark *dazed*.
 
 This is an example of a custom move that establishes how something works. It says what happens if a PC tries to fight on the roads, and what the possible outcomes are. And while a custom move like this doesn't directly apply to NPCs or monsters, you can use it as a guide for how they might be affected. Most folks will fail to fight on the roads, but a strong-willed NPC might force themselves to do so.
 
-Note that a PC can **[[14 - NPCs and Followers#ORDER FOLLOWERS|Order Followers]]** to trigger a custom move. As usual, the PC's player rolls for the move and makes any decisions on the follower's behalf. Here's another custom move related to the roads, specifically to the Crossroads. This one establishes that something is possible (calling up the dead), as well as some of the stakes, risks, and potential benefits or consequences.
+Note that a PC can **[[14 - NPCs and Followers#^order-followers|Order Followers]]** to trigger a custom move. As usual, the PC's player rolls for the move and makes any decisions on the follower's behalf. Here's another custom move related to the roads, specifically to the Crossroads. This one establishes that something is possible (calling up the dead), as well as some of the stakes, risks, and potential benefits or consequences.
 
-When you *stand at the Crossroads under the new moon and call the departed by name*, roll and add…
-
-- … +1 if you are tied to them by blood;
-- … +1 if you bear a possession of theirs; and/or
-- … +1 if you offer food or drink that they loved in life.
-
-**On a 10+**, their shade appears but pick 1; **on a 7-9**, their shade appears but pick 2:
-
-- They are deranged, confused, muddled, unreasonable
-- They have no intention of returning peacefully to their rest
-- Something slips through the Last Door with them—a dool spirit, a gwyllgi, an unbound wraith, etc.
+> [!move]
+> When you *stand at the Crossroads under the new moon and call the departed by name*, roll and add…
+> 
+> - … +1 if you are tied to them by blood;
+> - … +1 if you bear a possession of theirs; and/or
+> - … +1 if you offer food or drink that they loved in life.
+> 
+> **On a 10+**, their shade appears but pick 1; **on a 7-9**, their shade appears but pick 2:
+> 
+> - They are deranged, confused, muddled, unreasonable
+> - They have no intention of returning peacefully to their rest
+> - Something slips through the Last Door with them—a dool spirit, a gwyllgi, an unbound wraith, etc.
 
 If a custom move doesn't say what happens on a 6-, it follows the standard rules: the player marks XP and you make a hard GM move, that fits the established situation.
 
 Here's another a custom move, associated with an artifact. There's no 2d6 roll on this one; the move just says what happens!
 
-When you *strike an entity of darkness, chaos, or death with a shattered roadstone* (*hand*, *thrown*, *crude*), it takes 1d8 damage (ignores armor) but the stone then crumbles to dust.
+> [!move]
+> When you *strike an entity of darkness, chaos, or death with a shattered roadstone* (*hand*, *thrown*, *crude*), it takes 1d8 damage (ignores armor) but the stone then crumbles to dust.
 
 And here's one last example of a custom move, this one associated with a danger the mysterious nosgalau that lure travelers from the roads at night:
 
-When you *hear the call of the nosgalau*, say whose voice you hear on the wind and why you feel compelled to join them. Then, roll +WIS: **on a 10+**, say how you see through the deception, and you'll never hear their call again; **on a 7-9**, either mark XP and follow the call, or tell us how you detect the lie this one time; **on a 6-**, you heed the call and go to the nosgalau, unless your allies restrain you.
+> [!move]
+> When you *hear the call of the nosgalau*, say whose voice you hear on the wind and why you feel compelled to join them. Then, roll +WIS: **on a 10+**, say how you see through the deception, and you'll never hear their call again; **on a 7-9**, either mark XP and follow the call, or tell us how you detect the lie this one time; **on a 6-**, you heed the call and go to the nosgalau, unless your allies restrain you.
 
 Notice how this move is reactive. The players don't choose to trigger it, you do! You make a GM move like **announce trouble** ("You've been watching the lights far out in the Flats, when the wind shifts and you hear a faint whispering…"), and that triggers the move. Most custom moves that work like this are related to dangers, and reflect a particularly nasty or subtle effect.
 

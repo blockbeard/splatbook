@@ -2,6 +2,9 @@
 
 *Danu, the Great Mother, provides. We need only learn her secrets: the names by which the trees call each other; the mark made with redberry juice to ward off impure spirits; the language of the wolves. A thousand such secrets Danu keeps, to share with only her true children. Her Blessed.*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 105–108)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-105-108
+
 ## Background
 
 Choose 1.
@@ -76,20 +79,20 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Spirit Tongue, Call the Spirits, 1 from your Background, and 1 of your choice.
 
-### AMULETS & TALISMANS
+##### AMULETS & TALISMANS
 
 When you *craft a protective charm for someone*, spend 1 Stock and name a source of harm (fire, stabbing, etc.). When they *would suffer such harm while bearing your charm*, roll +INT: **on a 10+**, they ignore the harm entirely; **on a 7-9**, they suffer only half the damage or effect; **on a 6-**, they suffer the harm normally. One can benefit from only 1 charm at a time, and it loses its potency after 1 use.
 
-### BARKSKIN
+##### BARKSKIN
 
 When you *are touching the earth*, you have 2 armor. When you *mark another with 1 Stock*, they gain this benefit so long as the mark remains.
 
-### BIG MAGIC
+##### BIG MAGIC
 
 *(may be taken twice)*
 Each time you take this move, choose an additional remarkable trait for your sacred pouch and increase your max Stock by 2.
 
-### DANU'S GRASP
+##### DANU'S GRASP
 
 When you *call on the world itself to bind a spirit or a perversion of nature*, spend 1 Stock and roll +WIS: **on a 7-9**, roots, vines, and earth pull at them, and they pick 1; **on a 10+**, as a 7-9, but both apply.
 
@@ -98,53 +101,53 @@ When you *call on the world itself to bind a spirit or a perversion of nature*, 
 
 If this brings them to 0 HP, they are pulled into the earth and bound in rune-etched stone.
 
-### HEALER'S ARTS
+##### HEALER'S ARTS
 
 When *someone Recovers under your care*, they recover (extra) HP equal to your WIS. If you *also spend 1 Stock*, they heal an extra 5 HP and their wounds/injuries are stabilized.
 
-### HEED MY WORDS
+##### HEED MY WORDS
 
 When you *Persuade by talking sense or warning against foolishness*, you have advantage.
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### INTO THE LION'S DEN
+##### INTO THE LION'S DEN
 
 When you *approach a beast calmly and show no fear*, it will not harm you (though it may threaten you and test your nerve). When you *lay your hand gently upon a beast*, it calms to your touch.
 
-### LIGHTNING ROD
+##### LIGHTNING ROD
 
 When you *Defend while touching the earth*, you can spend 1 Readiness to intercept a nearby magical attack and redirect it harmlessly into the ground.
 
-### RITES OF THE LAND
+##### RITES OF THE LAND
 
 Once per season, when you *oversee the sacred rites*, hold 1 Boon. If you also sacrifice 1 Surplus, hold 4 Boon instead. Spend Boon in lieu of Stock, 1-for-1.
 
 When you *publicly sacrifice something or someone much-loved*, either clear a steading debility or gain advantage when the steading next rolls +Fortunes.
 
-### SPIRIT TONGUE
+##### SPIRIT TONGUE
 
 *(starting move)*
 You can speak with beasts and spirits. You can always ask the GM, "What spirits are active here?" and get an honest answer.
 
-#### BORROW POWER
+##### BORROW POWER
 
 *(Requires Spirit Tongue)*
 When *a spirit or beast loans you power*, ask the GM for one of its tags or moves. Store it in your pouch in place of 1 Stock. When you *use the borrowed tag or move*, roll +WIS: **on a 10+**, you do it and can use the power again; **on a 7-9**, you do it, but lose the power.
 
-#### CALL THE SPIRITS
+##### CALL THE SPIRITS
 
 *(starting move; requires Spirit Tongue)*
 When you *spend 1 Stock and perform a short rite*, the spirit(s) of a place or object manifest and hear you out. What they do next is up to them.
 
-### TRACKLESS STEP
+##### TRACKLESS STEP
 
 When you *move through nature with care and patience*, you make no sound, leave no trace and can ignore any hindering or treacherous terrain (briars, mire, scree, etc.). When you *spend 1 Stock and mark others*, they each gain this benefit so long as the mark remains. 1 Stock can mark a number of individuals up to your level+INT.
 
-### VEIL
+##### VEIL
 
 When you *wrap yourself or another in a subtle veil*, spend 1 Stock and choose 1:
 
@@ -153,23 +156,23 @@ When you *wrap yourself or another in a subtle veil*, spend 1 Stock and choose 1
 
 When *your deception comes under scrutiny*, roll +INT: **on a 10+**, the veil holds, and no one is the wiser; **on a 7-9**, the veil holds, but there is further scrutiny or a complication (GM's choice).
 
-### WARDS & BINDINGS
+##### WARDS & BINDINGS
 
 When you *mark a boundary with sacred signs*, spend 1 Stock and describe who or what they affect (using no more words than your level). Also, choose whether the affected beings are repelled or trapped by the signs.
 
 When *your wards or bindings are first tested*, roll +INT: **on 10+**, they will hold as long as the signs remain unmarred (and the affected creature can do nothing to affect them directly); **on a 7-9**, they hold for now but may be overcome through might or will.
 
-### WILD SOUL
+##### WILD SOUL
 
 *(Requires level 2+ and the Blessed; may be taken twice)*
 Each time you take this move, gain a Ranger move of your choice for which you qualify. You can't pick Improved Stat or Superior Stat.
 
-### NATURE'S WRATH
+##### NATURE'S WRATH
 
 *(Requires level 6+ and Danu's Grasp)*
 Danu's Grasp gains the *area* tag and can affect any creature. A mortal reduced to 0 HP is subdued or killed (your choice) rather than bound in stone.
 
-### POTENT WORKINGS
+##### POTENT WORKINGS
 
 *(Requires level 6+ and Amulets & Talismans)*
 When you *craft a protective charm*, you may spend 1 additional Stock to choose 1:
@@ -177,12 +180,12 @@ When you *craft a protective charm*, you may spend 1 additional Stock to choose 
 - Name an additional type of harm
 - On a 10+, the charm retains its potency
 
-### SHARED SOULS
+##### SHARED SOULS
 
 *(Requires level 6+ and Into the Lion's Den)*
 When you *mark a beast with 1 Stock*, you can direct its actions and perceive through its senses no matter the distance between you. Treat it as a follower with 3 Loyalty; when you spend its last Loyalty, the effect ends.
 
-### SUCK THE POISON OUT
+##### SUCK THE POISON OUT
 
 *(Requires level 6+ and Healer's Arts)*
 When you *draw a malady from a patient's body, mind, or soul*, spend 1 Stock and roll +WIS: **on a 10+**, you remove the malady and can safely discard it or store it in your sacred pouch (taking the space of 1 Stock) to study or inflict on another; **on a 7-9**, you remove it, but choose 1:
@@ -191,12 +194,12 @@ When you *draw a malady from a patient's body, mind, or soul*, spend 1 Stock and
 - You suffer some of the malady's effects
 - It will be harmful and dangerous to discard
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).
 
-### VOICE OF THE EARTH MOTHER
+##### VOICE OF THE EARTH MOTHER
 
 *(Requires level 6+ and Spirit Tongue)*
 When you *speak on behalf of Danu*, natural beasts and spirits of the wild respect your authority. All but the most headstrong will do as you command, even against their instincts.

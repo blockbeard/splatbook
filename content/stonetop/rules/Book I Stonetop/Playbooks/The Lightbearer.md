@@ -2,6 +2,9 @@
 
 *Imagine yourself and your kin in a cave lit by a single torch, entranced by shadow puppet stories. Imagine realizing there is a greater truth, and stepping out of the cave into the true Light of day. Would you not bring that Light back into the darkness, to set your people free?*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 121–124)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-121-124
+
 ## Background
 
 Choose 1.
@@ -77,16 +80,16 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Consecrated Flame and Invoke the Sun God, plus 1 more of your choice.
 
-### A CANDLE AGAINST THE DARK
+##### A CANDLE AGAINST THE DARK
 
 When you *wield a holy light but go otherwise unarmed*, you have 2 Armor.
 
-#### LUMINOUS SHIELD
+##### LUMINOUS SHIELD
 
 *(Requires A Candle Against the Dark)*
 When you *brandish a holy light to turn aside an attack against body, mind, or soul*, roll +CHA: **on a 10+**, the attack is deflected and, if the attacker is in range of your light, they are briefly blinded; **on a 7-9**, the attack is deflected but your holy light flickers and dims, threatening to go out; **on a 6-**, your light snuffs out and the attack is unimpeded.
 
-### ALL IS ILLUMINATED
+##### ALL IS ILLUMINATED
 
 When you *look closely on another and see their soul laid bare*, roll +WIS: **on a 10+**, ask their player 1 question from the list below, plus "And what would make them feel loved, beautiful, or worthy?"; **on a 7-9**, ask them 1 question from the list. In any case, they must answer truthfully.
 
@@ -95,24 +98,24 @@ When you *look closely on another and see their soul laid bare*, roll +WIS: **on
 - What hope have they abandoned?
 - Who or what is most precious to them?
 
-### AND BEHOLD A PALE HORSE
+##### AND BEHOLD A PALE HORSE
 
 When you *spend the night gazing into a flame*, ask the GM to reveal an impending doom or grim portent that will come to pass unless you intervene, and how you might yet do so.
 
-### CONSECRATED FLAME
+##### CONSECRATED FLAME
 
 *(starting move)*
 When you *whisper words of consecration to a flame*, the flame casts a holy light. Holy light is uncomfortable for creatures of darkness to look upon, but does no true harm. The holy light lasts until the flame goes out or until you consecrate another flame, whichever comes first.
 
-### FIRE WITHIN
+##### FIRE WITHIN
 
 When you *are in darkness*, you are able to see by the light of your inner fire. When you *take damage from cold or fire*, reduce that damage by 2.
 
-### GUIDING LIGHT
+##### GUIDING LIGHT
 
 When you *lead one or more NPCs through danger*, roll +CHA: **on a 10+**, you all make it through (Helior be praised); **on a 7-9**, the GM will tell you what's required to get everyone through safely.
 
-### HELIOR'S UNBLINKING EYE
+##### HELIOR'S UNBLINKING EYE
 
 When you *stare into the sun long enough to lose your vision*, name a person or place that you know and roll +WIS: **on a 10+**, you briefly glimpse your subject as if from a great height, and choose 2 from the list below; **on a 7-9**, you briefly glimpse your subject as if from a great height, and choose 1:
 
@@ -120,12 +123,12 @@ When you *stare into the sun long enough to lose your vision*, name a person or 
 - Your point of view shifts to very close range
 - You recover your vision quickly
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### INVOKE THE SUN GOD
+##### INVOKE THE SUN GOD
 
 *(starting move)*
 When you *imbue a holy light with Helior's power*, choose an Invocation you know and roll +WIS: **on a 10+**, it works as described but you must choose 1 consequence from the list below; **on a 7-9**, it works as described, but you and the GM each choose 1.
@@ -137,66 +140,66 @@ When you *imbue a holy light with Helior's power*, choose an Invocation you know
 
 See the **[[Inserts#Invocations|Invocations]]** insert for details.
 
-### KEEP THE HOME-FIRES BURNING
+##### KEEP THE HOME-FIRES BURNING
 
 When you *build a camp fire and sprinkle it with ash from your own hearth,* anyone who Makes Camp with you is free from nightmares or bad dreams and recovers (extra) HP equal to your CHA.
 
-### LAMPLIGHTER
+##### LAMPLIGHTER
 
 When you *whisper to a flammable object* (a torch, a wick, kindling, etc.), it ignites in moments.
 
-### PIETY
+##### PIETY
 
 *(Blessing tracker: 1)*
 When you *spend at least an hour in proper worship to Helior,* hold 1 Blessing. Other faithful PCs who partake in this worship also hold 1 Blessing. At any time, you can spend 1 Blessing to add +1 to a roll you just made in pursuit of a righteous cause.
 
-### PURIFYING FLAMES
+##### PURIFYING FLAMES
 
 When you *wield a holy light against a creature of darkness*, it counts as a weapon (d10 damage, *hand*, *close*, *area*, 2 piercing) and you can choose to roll +WIS to Clash.
 
-### RADIANT COUNTENANCE
+##### RADIANT COUNTENANCE
 
 When you *give someone your fond attention*, you can then Persuade them with advantage. If they are a follower, you can instead choose to Strengthen Your Bond (as if you paid their cost).
 
-### RISE LIKE THE SUN
+##### RISE LIKE THE SUN
 
 When you *draw attention to yourself by word or deed*, roll +CHA: **on a 10+**, everyone turns and looks, and you hold their gaze as long as you keep giving them reason to look; **on a 7-9**, everyone turns and looks.
 
-### SPRING'S FIRST THAW
+##### SPRING'S FIRST THAW
 
 When you *spend time (an hour at least, maybe more) seeking to stir hope, kindness, or mercy in an NPC*, roll +CHA: **on a 10+**, you light a fire deep within them and affect a lasting change; **on a 7-9**, you kindle goodness in their heart for now, but they will eventually return to their old ways; **on a 6-**, their heart hardens and, whatever else the GM says, you can't use this move on them again.
 
-### BURN TWICE AS BRIGHT
+##### BURN TWICE AS BRIGHT
 
 *(Requires level 6+ and Invoke the Sun God)*
 When you *Invoke the Sun God*, you may mark a debility to use 2 Invocations at once. Roll once, and apply any consequences to both Invocations.
 
-### EMPOWERED INVOCATIONS
+##### EMPOWERED INVOCATIONS
 
 *(Requires level 6+ and Invoke the Sun God)*
 When you Invoke the Sun God, you can choose an extra consequence before you roll. If you do, the Invocation has its *empowered* effect.
 
-### GLORIOUS SERVANT
+##### GLORIOUS SERVANT
 
 *(Requires level 6+ and Invoke the Sun God)*
 When you *Invoke the Sun God and roll a 10+*, you need not choose a consequence; **on a 7-9**, you choose a consequence but the GM does not.
 
-### HUNGRY FLAMES
+##### HUNGRY FLAMES
 
 *(Requires level 6+ and Purifying Flames)*
 When you *deal damage with a holy light*, you deal +1d6 damage and your target is engulfed in holy light and flames.
 
-### LIGHT, MORE LIGHT
+##### LIGHT, MORE LIGHT
 
 *(Requires level 6+ and Consecrated Flame)*
 When you *consecrate a flame,* it burns brighter than normal. A rushlight or candle illuminates to *reach* range, an oil lamp, lantern, or torch out to *near* range, and a bullseye lantern out to *far* range.
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).
 
-### WIELDER OF THE WHITE FLAME
+##### WIELDER OF THE WHITE FLAME
 
 *(Requires level 6+ and Invoke the Sun God)*
 When you *channel Helior's essence into an object you carry*, roll +WIS: **on a 10+**, it ignites with a white flame that casts a holy light (*reach*, *area*) and burns neither you nor the object, and you may Invoke the Sun God right now as if you rolled a 10+; **on a 7-9**, it ignites with a white flame that casts a holy light (*reach*, *area*) and burns neither you nor the object.

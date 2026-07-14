@@ -2,7 +2,9 @@
 
 **Size** *village* (~200 souls)
 
-#### **Population** +0 **Prosperity** +0
+**Population** +0
+
+**Prosperity** +0
 
 - Trade with...
   - ... mammoth herders (ivory, wool, meat)
@@ -20,8 +22,8 @@
 ### **Defenses** +2
 
 - A score of guardians
-- A handful of **[[38 - Rime Lords#**Dangers**|adepts]]**
-- A number of **[[38 - Rime Lords#**Tulpa**|tulpas]]**
+- A handful of **[[38 - Rime Lords#Adept|adepts]]**
+- A number of **[[38 - Rime Lords#Tulpa|tulpas]]**
 - Blunt weapons, nets, bolas, bronze shields and mail
 - Exceptional fortifications
 
@@ -45,6 +47,7 @@ If a PC has visited Barrier Pass, or beyond:
 - Why did they let you in?
 - What surprised you the most about how they live?
 - What taboo or point of etiquette did you run afoul of? How so?
+- Do they worship the same gods up there? If so, how does that worship differ from down here in Stonetop?
 
 ## **Places**
 
@@ -52,20 +55,19 @@ If a PC has visited Barrier Pass, or beyond:
 - **Large cages line the slopes**, swinging in the wind, filled with human (?) bones or starved, raving prisoners.
 - **The Wall**, grand and implacable, 50 feet tall and 20 feet wide, spanning the width of the pass.
 - **A gate in the Wall**, closed of course, the Highway ending 50 feet before it.
-- **The East Slope**, dotted with dwellings, stables, and terraced gardens, all connected with narrow stairs and switch-
+- **The East Slope**, dotted with dwellings, stables, and terraced gardens, all connected with narrow stairs and switchback paths.
 
 - **A waterfall** pours down the east slope, north of the wall. Diverted to gardens and cisterns.
-- **The West Slope**, featuring old giantscale structures, now used as dormitories, kitchens, and so forth for monks and guardians.
-
- **The Great Hall**, its façade elaborately decorated, leading into a vast chamber carved from a mountain cavern. Where residents gather, meditate, train.
+- **The West Slope**, featuring old giant-scale structures, now used as dormitories, kitchens, and so forth for monks and guardians.
+- **The Great Hall**, its façade elaborately decorated, leading into a vast chamber carved from a mountain cavern. Where residents gather, meditate, train.
 
 ## **People**
 
-The people of Barrier Pass descend from the **Rime Lords**' [[38 - Rime Lords|Rime Lords]] mortal disciples. Their names are Nepalese- and Tibetan-inspired (see [[54 - The Whitefang Mountains#**1d6** point of interest|The Whitefang Mountains]]).
+The people of Barrier Pass descend from the **[[38 - Rime Lords|Rime Lords]]'** mortal disciples. Their names are Nepalese- and Tibetan-inspired (see [[54 - The Whitefang Mountains#The Whitefang Mountains|The Whitefang Mountains]]).
 
-**The Three Honorable Sages** are powerful **[[38 - Rime Lords#**Dangers**|adepts]]** who preside over Barrier Pass. Each leads one of the three sects.
+**The Three Honorable Sages** are powerful **[[38 - Rime Lords#Adept|adepts]]** who preside over Barrier Pass. Each leads one of the three sects.
 
-**The Empty Sky sect** values preser vation and stillness; its monks spend much time in meditative stasis. Led by **Gar Torjeng** (**Instinct** to avoid disruption and distraction).
+**The Empty Sky sect** values preservation and stillness; its monks spend much time in meditative stasis. Led by **Gar Torjeng** (**Instinct** to avoid disruption and distraction).
 
 **The Unmoved Mountain sect** teaches extreme ascetic disciplines, pushing adherents to continually test themselves. Led by **Preshi Kav** (**Instinct** to drive her students towards perfection).
 
@@ -77,7 +79,7 @@ The **Guardians** are sworn to defend Barrier Pass. Many are failed monks. They 
 
 **The rest of the inhabitants** are lay folk: families and individuals who garden, herd, cook, clean, and otherwise keep the fortress-monastery running. (~140 souls total)
 
-## **Stoic and unfriendly**
+### **Stoic and unfriendly**
 
 Why are the people of Barrier Pass so unwelcoming or even hostile to southerners? That's for you and your table to decide, but perhaps…
 
@@ -85,11 +87,11 @@ Why are the people of Barrier Pass so unwelcoming or even hostile to southerners
 - … their ancestors fought off the **[[05 - Barrow Builders#Barrow Builders|Barrow Builders]]** and they still hold a grudge;
 - … one of the thirteen surviving **[[38 - Rime Lords#Rime Lords|Rime Lords]]** is hidden in their mountain chambers;
 - … a prophecy foretells doom coming from the south;
-- … the fortress is tainted by **[[46 - The Things Below#**L'bin'bozia, Flesh-Candle, the Wax Skull, Roiling Tomb**|Y'aaw'kara]]**, and any who dwell here must guard against the **[[54 - The Whitefang Mountains#**Shantyara**|Howling Curse]]**;
+- … the fortress is tainted by **[[46 - The Things Below#Hlad, the Devourer, the Eternal Maw|Y'aaw'kara]]**, and any who dwell here must guard against the **[[54 - The Whitefang Mountains#Ice drake|Howling Curse]]**;
 - … some combination of the above; or
 - … something completely different.
 
-## . steading improvement .
+### . steading improvement .
 
 ## **TRADE WITH BARRIER PASS**
 
@@ -114,62 +116,60 @@ Henceforth, when *spring bursts forth and Stonetop has at least 1 Surplus*, Ston
 
 The PCs must convince the folks of Barrier Pass to deal with them before any of the following matters.
 
-## Commonly available
+### Commonly available
 
-The following are special items in Stonetop, but commonly available in Barrier Pass-PCs can acquire them here without having to roll. They do need to trade something of equal Value. Crops and produce are usually in demand.
+The following are special items in Stonetop, but commonly available in Barrier Pass—PCs can acquire them here without having to roll. They do need to trade something of equal Value. Crops and produce are usually in demand.
 
 | arms and armor                                                      |   value |
 |---------------------------------------------------------------------|---------|
-| Cudgel, bronze ( close )                                            |       0 |
-| Bola ( thrown , grabby , awkward , -1 die size)                     |       0 |
-| Mace or flail, bronze ( close , forceful )                          |       1 |
-| Mancatcher ( reach , grabby ,-1 die size)                           |       1 |
-| Shield, bronze ( clumsy , +1 Armor, +1 Readiness on a 7+ to Defend) |       1 |
+| ◇ Cudgel, bronze (*close*)                                          |       0 |
+| Bola (*thrown*, *grabby*, *awkward*, -1 die size)                   |       0 |
+| ◇ Mace or flail, bronze (*close*, *forceful*)                       |       1 |
+| ◇◇ Mancatcher (*reach*, *grabby*, -1 die size)                      |       1 |
+| ◇◇ Shield, bronze (*clumsy*, +1 Armor, +1 Readiness on a 7+ to Defend) |    1 |
 
 | goods                   | value   |
 |-------------------------|---------|
 | Fine wool               |         |
 | garment                 | 0*      |
-| bolt                    | 1*      |
-| cartload ( immobile )   | 2*      |
+| ◇◇ bolt                 | 1*      |
+| cartload (*immobile*)   | 2*      |
 | Parchment, a few sheets | 1       |
 | Ink, vial, and quills   | 1       |
-| Empty book, parchment   | 1       |
+| ◇ Empty book, parchment | 1       |
 
 * +1 if sold/traded outside the Whitefangs
 
 | livestock                                                                                                                                                                        |   value |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| Whitefang goat ( sure-footed , curious , wooly ); HP 3; Damage d4 ( hand ) Instinct to explore; can butcher for provisions (6 uses); produces fine wool; sickly in warmer climes |       2 |
-| Sheep ( timid , hardy , wooly ); HP 3; Damage d4 ( hand ); Instinct to follow the herd; can butcher for provisions (6 uses)                                                      |       1 |
-| Sheep hound , follower ( keen-nosed , herder , fierce ); HP 6; Damage d6 ( hand , grabby ); Instinct to bully, threaten; Cost: care &grooming                                    |       1 |
+| Whitefang goat (*sure-footed*, *curious*, *wooly*); HP 3; Damage d4 (*hand*) Instinct to explore; can butcher for ◇ provisions (6 uses); produces fine wool; sickly in warmer climes |       2 |
+| Sheep (*timid*, *hardy*, *wooly*); HP 3; Damage d4 (*hand*); Instinct to follow the herd; can butcher for ◇ provisions (6 uses)                                                      |       1 |
+| Sheep hound, follower (*keen-nosed*, *herder*, *fierce*); HP 6; Damage d6 (*hand*, *grabby*); Instinct to bully, threaten; Cost: care & grooming                                    |       1 |
 
-## Special items
+### Special items
 
 The following might be acquired in Barrier Pass, in addition to special items from the Moves & Gear handout. PCs must roll Trade & Barter to acquire them.
 
-## When PCs Trade & Barter in Barrier
-
-Pass , they use the local Prosperity (+0 by default). If they wish to acquire or sell a bladed weapon, they have disadvantage. On a 6, they don't mark XP , and it's just not available/no one is interested-they might have better luck with a nearby farm or band of mammoth herders.
+When PCs *Trade & Barter in Barrier Pass*, they use the local Prosperity (+0 by default). If they wish to acquire or sell a bladed weapon, they have disadvantage. On a 6-, they don't mark XP, and it's just not available/no one is interested—they might have better luck with a nearby farm or band of mammoth herders.
 
 | goods | value |
 |---|---|
-| Robe/shawl, fine wool, intricately patterned ( warm , beautiful ) | 1* |
+| Robe/shawl, fine wool, intricately patterned (*warm*, *beautiful*) | 1* |
 | Ivory |  |
 | a bit of finery | 1 |
-| a substantial piece | 2 |
-| a mammoth tusk ( immobile ) | 3 |
+| ◇ a substantial piece | 2 |
+| a mammoth tusk (*immobile*) | 3 |
 | cartload of mammoth tusks | 4 |
-| Dark ice (*magical*, see [[38 - Rime Lords#**Dark ice**\|Rime Lords]]) |  |
-| a small piece ( magical ) | 1 |
-| a large chunk ( magical) | 2 |
+| Dark ice (*magical*, see [[38 - Rime Lords#Rime Lords\|Rime Lords]]) |  |
+| a small piece (*magical*) | 1 |
+| ◇ a large chunk (*magical*) | 2 |
 | with special characteristics | +1 |
 | a functional tool or weapon | +2 |
-| An object of black iron [[36 - Primordial Powers#**Primordial powers**\|Primordial Powers]] | +2 |
+| An object of black iron [[36 - Primordial Powers#Primordial Powers\|Primordial Powers]] | +2 |
 
 * +1 if sold/traded outside the Whitefangs
 
-## **Services and favors**
+### **Services and favors**
 
 PCs don't need to roll Trade & Barter for the following, but they might need to Persuade people—even if they offer something of suitable Value. If the PCs are well-regarded by locals, they might get these boons for free, or without needing to Persuade anyone, or at a reduced price.
 
@@ -181,113 +181,120 @@ PCs don't need to roll Trade & Barter for the following, but they might need to 
 | Consultation with a monk                 | 1     |
 | Audience with an Honorable Sage          | 2     |
 | Weeks of guided study with a monk        | 2     |
-| A guide into the mountains, to           |       |
-| a nearby farm valley                     | 0     |
-| another known, nearby spot               | 1     |
-| a dangerous/unknown spot                 | 2     |
-| a secret/deadly place                    | 3     |
+| A guide into the mountains, to…          |       |
+| … a nearby farm valley                   | 0     |
+| … another known, nearby spot             | 1     |
+| … a dangerous/unknown spot               | 2     |
+| … a secret/deadly place                  | 3     |
 
-## . trade opportunities .
+### . trade opportunities .
 
 If the PCs get a trade opportunity (from the Seasons Change move), Barrier Pass might offer the following:
 
-- A fair exchange of goods, plus someone to vouch for them should they wish for future trade (see **Trade with Barrier Pass**, page [[04 - Barrier Pass#. trade opportunities .|29]]).
+- A fair exchange of goods, plus someone to vouch for them should they wish for future trade (see **Trade with Barrier Pass**, page [[04 - Barrier Pass#People|People]]).
 - A good exchange rate, two or even three Value 2 items for 1 Surplus.
 - Two or three ivory mammoth tusks (Value 3), in exchange for help with a problem.
 - A Value 3 mundane item, in exchange for some less-valuable artifact of the Rime Lords
 - **[[38 - Rime Lords#Dark ice|Dark ice]]** in substantial quantities
-- An arcanum from the **[[38 - Rime Lords#Dark ice|Rime Lords]]**, the **[[41 - Spirits of the Wild#Artifacts|spirits of the wild]]**, or **[[10 - Death and the Undying#**Dool trees**|death and the undying]]**.
+- An arcanum from the **[[38 - Rime Lords#Rime Lords|Rime Lords]]**, the **[[41 - Spirits of the Wild#Spirits of the Wild|spirits of the wild]]**, or **[[10 - Death and the Undying#Death and the Undying|death and the undying]]**.
 
 ## **Secrets**
 
 - Secret paths/doors lead in and out of the compound. Outsiders are blindfolded when taken through them, or condemned to death if they learn of their existence.
-- There is a hidden vault deep in the mountainside, protected by all manner of magics and **[[38 - Rime Lords#**Tulpa**|tulpas]]**. Only a few inhabitants know it exists; fewer know what it contains.
-- One of the monks has started down the path of becoming a **[[38 - Rime Lords#**1d12** instinct|false adept]]**. She is popular and (apparently) quite talented. Only Preshi Kav (Honored Sage of the Unmoved Mountain) suspects anything.
+- There is a hidden vault deep in the mountainside, protected by all manner of magics and **[[38 - Rime Lords#Tulpa|tulpas]]**. Only a few inhabitants know it exists; fewer know what it contains.
+- One of the monks has started down the path of becoming a **[[38 - Rime Lords#False adept|false adept]]**. She is popular and (apparently) quite talented. Only Preshi Kav (Honored Sage of the Unmoved Mountain) suspects anything.
 
 ## **Hooks**
 
 - The PCs acquire an artifact of the Rime Lords; maybe they can leverage it into opening trade negotiations?
-- A party from Barrier Pass comes to Stonetop, offering ivory/gold/arcana for food/livestock; they are tightlipped, haunted, on edge.
-- A condemned criminal escapes from Barrier Pass and seeks refuge; a **[[54 - The Whitefang Mountains#**Shantyara**|shantyara]]** pursues them.
+- A party from Barrier Pass comes to Stonetop, offering ivory/gold/arcana for food/livestock; they are tight-lipped, haunted, on edge.
+- A condemned criminal escapes from Barrier Pass and seeks refuge; a **[[54 - The Whitefang Mountains#Shantyara|shantyara]]** pursues them.
 
 ## **Dangers**
 
 ### **Surroundings**
 
 - Steep, treacherous, rocky slopes
-- **[[54 - The Whitefang Mountains#Services and favors|Harsh mountain weather]]**
-- **[[54 - The Whitefang Mountains#**Ice drake**|Hypothermia & frostbite]]**, if you stay out in the cold
-- **[[42 - The Steplands#1d6 natural beast or spirit|Rockslides]]** or **[[54 - The Whitefang Mountains#**Ice drake**|avalanches]]** in winter
+- **[[54 - The Whitefang Mountains#Harsh mountain weather|Harsh mountain weather]]**
+- **[[54 - The Whitefang Mountains#Hypothermia & frostbite|Hypothermia & frostbite]]**, if you stay out in the cold
+- **[[42 - The Steplands#Rockslide|Rockslides]]** or **[[54 - The Whitefang Mountains#Avalanche|avalanches]]** in winter
 
-#### **Fortifications**
+### **Fortifications**
 
-- Minor **[[38 - Rime Lords#**Tulpa**|tulpas]]** watching the approach, warning the fortress of visitors
+- Minor **[[38 - Rime Lords#Tulpa|tulpas]]** watching the approach, warning the fortress of visitors
 - A wall of smooth stone, 50 feet tall and 20 feet wide
 - Walkways and crenelations atop the wall
 - A final approach, 50 feet or so with no protection from the Makers' Roads
 - A massive gate of wood and bronze
 - Beyond the gate, a barbican lined with murder holes
 - Cleverly concealed doors that open only from the inside
-- A pair of **[[38 - Rime Lords#**Gingkara**|khyagseng]]** guarding the entrance to the Great Hall
+- A pair of **[[38 - Rime Lords#Khyagseng|khyagseng]]** guarding the entrance to the Great Hall
 
-#### **Folk from elsewhere**
+### **Folk from elsewhere**
 
-- **[[19 - The Frozen Wastes#**Dangers**|Mammoth herders]]** or **[[54 - The Whitefang Mountains#**Questions**|valley farmers]]**, here to trade, pay tribute, or seek redress
-- An **[[38 - Rime Lords#**Dangers**|adept]]**, visiting from another fortress-monastery or some cave in the wilds
-- A **[[38 - Rime Lords#**Mkhalang**|mkhalang]]**, claiming to bring tidings but really just stirring up trouble
-- A **[[14 - The Flats#**Monsters**|bandit]]** or criminal from one of the nearby farm valleys, condemned to death, pleading for mercy
+- **[[19 - The Frozen Wastes#Mammoth herders|Mammoth herders]]** or **[[54 - The Whitefang Mountains#Names|valley farmers]]**, here to trade, pay tribute, or seek redress
+- An **[[38 - Rime Lords#Adept|adept]]**, visiting from another fortress-monastery or some cave in the wilds
+- A **[[38 - Rime Lords#Mkhalang|mkhalang]]**, claiming to bring tidings but really just stirring up trouble
+- A **[[14 - The Flats#Bandit|bandit]]** or criminal from one of the nearby farm valleys, condemned to death, pleading for mercy
 - A **[[41 - Spirits of the Wild#Spirits of the wild|spirit of the wild]]**, come to visit or debate with the Honored Sages
-- A **thrall** of the Things Below [[46 - The Things Below#**Cultist**|The Things Below]]), here under false pretense, urged to spread chaos and woe
+- A **thrall** of the Things Below [[46 - The Things Below#The Things Below|The Things Below]], here under false pretense, urged to spread chaos and woe
 
-### **Guardian**
+> [!monster] ## **Guardian**
+>
+>  *Group*, *organized*, *skilled*
+>
+> **HP** 6; **Armor** 3 (bronze shields, mail)
+>
+> **Damage** bronze mace d8 (*close*, *forceful*) or mancatcher d6 (*reach*, *grabby*) or bola d6 (*thrown*, *grabby*, *awkward*)
+>
+> **Instinct** to subdue or drive off threats
+>
+> - Deftly execute a group maneuver
+> - Ensnare a foe
+> - Club someone senseless
+> - Resort to deadly force in the heat of the moment
 
- *Group*, *organized*, *skilled*
+> [!monster] ## **Monk**
+>
+>  *Group*, *cautious*, *disciplined*, *hardy*
+>
+> **HP** 10; **Armor** 0
+>
+> **Damage** staff d8 with disadvantage (*close*)
+>
+> **Special qualities** spirit sight; inured to hunger, cold, deprivation
+>
+> **Empty Sky instinct** to ignore the suffering or needs of others
+>
+> - Remain unperturbed
+> - Send their mind forth into the spirit world, their bodies insensate
+> - Calm the elements around them
+>
+> **Unmoved Mountain instinct** to push and test themselves
+>
+>
+> - Perform a feat of extreme athleticism or endurance
+> - Endure or absorb raw elemental power
+> - Refuse to adapt or change
+>
+> **White Crystal instinct** to impose order
+>
+> - Take charge
+> - Do their duty
+> - Suppress the emotions of others
 
-**HP** 6; **Armor** 3 (bronze shields, mail)
-
-**Damage** bronze mace d8 (*close*, *forceful*) or mancatcher d6 (*reach*, *grabby*) or bola d6 (*thrown*, *grabby*, *awkward*)
-
-**Instinct** to subdue or drive off threats
-
-- ä Deftly execute a group maneuver
-- ä Ensnare a foe
-- ä Club someone senseless
-- ä Resort to deadly force in the heat of the moment
-
-## **Monk**
-
- *Group*, *cautious*, *disciplined*, *hardy*
-
-**HP** 10; **Armor** 0
-
-**Damage** staff d8 with disadvantage (*close*) **Special qualities** spirit sight; inured to hunger, cold, deprivation
-
-**Empty Sky instinct** to ignore the suffering or needs of others
-
-- ä Remain unperturbed
-- ä Send their mind forth into the spirit world, their bodies insensate
-- ä Calm the elements around them
-
-**Unmoved Mountain instinct** to push and test themselves
-
-- ä Perform a feat of extreme athleticism or endurance
-- ä Endure or absorb raw elemental power
-- ä Refuse to adapt or change
-
-## **White Crystal instinct** to impose order
-
-- ä Take charge
-- ä Do their duty
-- ä Suppress the emotions of others
-
-### **Novice**
-
- *Group*, *cautious*, *disciplined*, *meek*
-
-**HP** 6, **Armor** 0
-
-**Damage** staff d8 with disadvantage (*close*) **Special qualities** unreliable spirit sight **Instinct** to veer between their masters'
-
-- teachings and their base needs ä Do what their superiors ask
-- ä Hesitate, balk, flinch
-- ä Show great promise, or great weakness
+> [!monster] ## **Novice**
+>
+>  *Group*, *cautious*, *disciplined*, *meek*
+>
+> **HP** 6, **Armor** 0
+>
+> **Damage** staff d8 with disadvantage (*close*)
+>
+> **Special qualities** unreliable spirit sight
+>
+> **Instinct** to veer between their masters' teachings and their base needs
+>
+> - Do what their superiors ask
+> - Hesitate, balk, flinch
+> - Show great promise, or great weakness

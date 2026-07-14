@@ -2,6 +2,9 @@
 
 *Look at us. Huddling behind our walls, hearing evil in every passing noise. Cowards, all. All, but you. You fear not the unknown. You plunge into it, searching. Grasping at what has been lost. What will you find, o Seeker? Signs of a bright new age? Or signs of our doom?*
 
+> [!abstract]- Printable playbook (2nd-printing PDF, Book I pp. 133–136)
+> ^printable-playbook-2nd-printing-pdf-book-i-pp-133-136
+
 ## Background
 
 Choose 1.
@@ -81,47 +84,47 @@ Assign these scores: **+2, +1, +1, +0, +0, −1**. When a debility is marked, yo
 
 You start with Well Versed, Work With What You've Got, plus 1 from your Background.
 
-### ATTUNED
+##### ATTUNED
 
 When you *Seek Insight*, you can always ask, "What here is infused with magic?" for free, even on a 6-.
 
-### CONDUIT OF POWER
+##### CONDUIT OF POWER
 
 *(3 marks; may be taken once)*
 When you *would mark a Consequence from a major arcanum*, you can mark 1 box here instead, with no negative effect. (These marks never clear.)
 
-### COUNTERMEASURES
+##### COUNTERMEASURES
 
 When you *witness a magical effect*, you may ask the GM, "how can this be countered or interrupted?" and get an honest answer. You or an ally gain advantage on your next roll to act on the answer.
 
-### EVERYTHING BLEEDS
+##### EVERYTHING BLEEDS
 
 When you *exploit an unnatural foe's specific weakness or vulnerability*, deal +1d6 damage.
 
-### EVERYTHING BURNS
+##### EVERYTHING BURNS
 
 When you *inspect a work of artifice or magic for a fatal flaw*, roll +INT: **on a 7+**, the GM will reveal the best way to destroy/sabotage it; **on a 10+**, you or an ally also gain advantage to act on the info.
 
-### IMPROVED STAT
+##### IMPROVED STAT
 
 *(may be taken 3 times)*
 Each time you take this move, increase one of your stats by 1 (to a max of +2).
 
-### INITIATE OF THE SECRET ARTS
+##### INITIATE OF THE SECRET ARTS
 
 *(Requires level 2+ and the Seeker; may be taken 3 times)*
 You have a "Sacred Pouch" (3 Stock, *magical*), as per the Blessed, but with no remarkable traits. Each time you take this move, choose a Blessed move for which you otherwise qualify. (You can't take Improved Stat or Superior Stat.)
 
-### LET'S MAKE A DEAL
+##### LET'S MAKE A DEAL
 
 When you *Seek Insight*, add "What do they really want or need?" to the list of questions. When you *Persuade by offering them something that you know they want or need*, treat a 7-9 as a 10+.
 
-### LOGBOOK
+##### LOGBOOK
 
 *(2 uses)*
 You have a logbook (2 uses, *slow*) that doesn't take up space in your inventory. When you (and only you) *consult your logbook and expend a use*, you can ignore a Know Things roll you just made and treat the result as a 10+. When *the Seasons Change*, reset your logbook to 2 uses.
 
-### MAGPIE
+##### MAGPIE
 
 When you *Have What You Need*, you can produce something strange, specific, maybe even valuable or a little bit magical, but if you do, tell us where you got it and 2 of the following:
 
@@ -130,35 +133,35 @@ When you *Have What You Need*, you can produce something strange, specific, mayb
 - Why using it will draw unwanted attention
 - That it's the only thing like this that you've got, and why it'll only work the one time
 
-### NEVER AT A LOSS
+##### NEVER AT A LOSS
 
 When you *Know Things and roll a 6-*, you may choose to not mark XP. If you don't mark XP, the worst that happens is that the GM tells you nothing interesting or useful about the subject, but instead tells you how you could learn more.
 
-### POLYGLOT
+##### POLYGLOT
 
 When you *first encounter a living language in play*, describe your proficiency with it (if any) and how you came to acquire it.
 
 When you *Know Things about any script, text, runes or symbols that you encounter*, you have advantage.
 
-#### CRYPTOLOGIST
+##### CRYPTOLOGIST
 
 *(Requires Polyglot)*
 When you *study encoded, forgotten, or arcane marks or writing*, roll +INT: **on a 10+**, you can fully decipher them in just a few minutes; **on a 7-9**, you get the gist in a few minutes, but fully deciphering them will take you an hour or so.
 
-### QUICK STUDY
+##### QUICK STUDY
 
 When you *study something magical that should take months to understand*, it instead takes mere weeks. If it should take weeks, it takes days. If it should take days, it takes only a few hours.
 
-### SAFETY FIRST
+##### SAFETY FIRST
 
 *(Protection tracker: 2)*
 When you *spend an hour or so preparing your mystical defenses*, hold 2 Protection. When you *are affected by harmful magic*, spend 1 Protection either to gain advantage on any roll to resist it or to halve its damage/effects.
 
-### SAGE ADVICE
+##### SAGE ADVICE
 
 When *another PC asks you for guidance*, they get advantage on their next roll to follow your advice.
 
-### WELL VERSED
+##### WELL VERSED
 
 *(starting move; may be taken multiple times)*
 Mark 1 topic, in addition to the one noted in your Background. Each additional time you take this move, mark 2 more topics.
@@ -173,7 +176,7 @@ Mark 1 topic, in addition to the one noted in your Background. Each additional t
 
 When you *Know Things about one of your topics*, you can ask the GM a follow-up question of your choice (even on a 6-).
 
-### WORK WITH WHAT YOU'VE GOT
+##### WORK WITH WHAT YOU'VE GOT
 
 *(starting move)*
 When you *cleverly use your environment to harm or impede your foe(s)*, roll +INT: **on a 10+**, pick 2; **on a 7-9**, pick 1:
@@ -182,37 +185,37 @@ When you *cleverly use your environment to harm or impede your foe(s)*, roll +IN
 - Create an opportunity that grants you or an ally advantage on the next roll to exploit it
 - Deal damage appropriate to the source (d4 for bruises/scrapes, d6 for bloodshed, d8 if it'd break bones, d10 if it'd kill a common person)
 
-### ARCANE ADEPT
+##### ARCANE ADEPT
 
 *(Requires level 6+)*
 When you *wish to invent a spell or magical effect*, detail its workings with the GM and Make a Plan to invent it. If you like, pick one requirement and ask the GM to provide an alternative (for example "first you must \_\_\_\_" could become "first you must \_\_\_\_, or it will take months").
 
-### DEEP INSIGHT
+##### DEEP INSIGHT
 
 *(Requires level 6+ and Attuned)*
 When you *Seek Insight about something magical*, you may ask one additional question, not limited to the list. Even on a 6-, you get to ask this question.
 
-### IMPROVISE
+##### IMPROVISE
 
 *(Requires level 6+ and Quick Study)*
 When you *wish to use an arcanum's move or option without having unlocked it*, ask the GM what fool risk(s) it requires and/or what consequence(s) you'll incur. If you go for it, roll +INT: **on a 7+**, you get it to work this once—trigger the move or use the option as if you'd unlocked it; and **on a 10+**, also mark one step towards unlocking the arcanum's mysteries.
 
-### SUPERIOR STAT
+##### SUPERIOR STAT
 
 *(Requires level 6+)*
 Increase one of your stats by +1 (to a max of +3).
 
-### MIND OVER MAGIC
+##### MIND OVER MAGIC
 
 *(Requires level 6+)*
 When you *roll to study or use an arcanum*, you can roll +INT instead of the stat you'd normally roll.
 
-### OVERCHANNEL
+##### OVERCHANNEL
 
 *(Requires level 6+ and Conduit of Power)*
 When you *would mark a Consequence from a major arcanum*, you may mark a debility instead.
 
-### PROOF AGAINST DETECTION
+##### PROOF AGAINST DETECTION
 
 *(Requires level 6+ and Safety First)*
 When you *hold Protection*, you can't be scried upon or sensed by magical means, and have advantage to Defy Danger by being stealthy.

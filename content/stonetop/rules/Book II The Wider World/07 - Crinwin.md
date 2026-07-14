@@ -36,11 +36,11 @@ They've always been there, in the Wood, lurking in the trees. For generations, t
 
 What are they, and where did they come from? That's for you and your group to decide, but possibilities include:
 
-- They were made by the **[[15 - Fomoraij#Names|Fomoraij]]**, as warriors to fight the **[[12 - Fae#Fae|Fae]]**.
+- They were made by the **[[15 - Fomoraij#Fomoraij|Fomoraij]]**, as warriors to fight the **[[12 - Fae#Fae|Fae]]**.
 - They were a failed experiment of the **[[24 - Green Lords#Green Lords|Green Lords]]**, escaped into the wild when the Fae rebelled.
-- They were once **[[17 - Forest Folk#Names|Forest Folk]]**, who were cursed or corrupted by some witch or sorcerer.
+- They were once **[[17 - Forest Folk#Forest Folk|Forest Folk]]**, who were cursed or corrupted by some witch or sorcerer.
 - They came through the cracked portal of **[[52 - Vor Svetelik#Vor Svetelik|Vor Svetelik]]**, from some distant place (or even another world).
-- They crawled out of some lake, vile spawn of the**[[46 - The Things Below#The Things Below|Things Below]]**.
+- They crawled out of some lake, vile spawn of the **[[46 - The Things Below#The Things Below|Things Below]]**.
 
 ## **Nests**
 
@@ -50,7 +50,7 @@ A small, light person who dares the climb could squeeze inside. It's pitch black
 
 Around a dozen full-grown crinwin live in each nest. They store food (rotten, decaying) in the hexagonal cells, and maintain tableaux showcasing **flawed trappings of civilization** (next page).
 
-The largest chamber in each nest is a nursery: warm, moist, and carved out of the living wood. Hexagonal tubes line the chamber, each stuffed with goo and larval crinwin. Pupae squirm about the chamber, feeding on goo and even each other. The nurseries are tended by an old, fat crinwin or—in the oldest, largest nests a **[[07 - Crinwin#Broodfather|broodfather]]**.
+The largest chamber in each nest is a nursery: warm, moist, and carved out of the living wood. Hexagonal tubes line the chamber, each stuffed with goo and larval crinwin. Pupae squirm about the chamber, feeding on goo and even each other. The nurseries are tended by an old, fat crinwin or—in the oldest, largest nests—a **[[07 - Crinwin#Broodfather|broodfather]]**.
 
 ## **Discoveries**
 
@@ -66,9 +66,9 @@ They imitate whatever people(s) they observe, but always get it wrong.
 - "Children" made of sticks and papery mass, clothed in filthy stolen fabric, tucked safely away in a nest or carried about
 - Graves or cairns, empty yet revered or else housing still-living, sickly crinwin
 - A crude shrine to… something?
-- A mundane item or random **[[56 - Appendix B - Artifact Creation#appendix b : artifact creation|artifact]]**, misused or cast aside.
+- A mundane item or random **[[56 - Appendix B - Artifact Creation#Artifact Creation|artifact]]**, misused or cast aside.
 
-## **Something long thought lost**
+### **Something long thought lost**
 
 - Something shiny, a family heirloom perhaps, gone missing in the crinwin's last raid
 - A keepsake, given by a loved one, but lost in the Wood years ago
@@ -78,63 +78,67 @@ They imitate whatever people(s) they observe, but always get it wrong.
 
 Enormous pustules, found on some of the crinwin that are a little larger, less agile, and less aggressive. Pop them and they ooze goo, maybe with a small, pale grub, squirming and hissing pitifully as it dies in the open air.
 
-#### **Outcast**
+### **Outcast**
 
 An albino crinwin, more curious than hostile towards outsiders, living apart from the others in a landbound nest of stone and paper. Watching the PCs intently, or trying to perform a craft in some painfully wrong way, or getting harassed or beaten by its peers.
 
-#### **Prisoner**
+### **Prisoner**
 
 A crinwin (beaten, cut, bruised), either being dragged into the area right now by others, or already lashed on a high-up tree branch for who-knows-how-long.
 
- How can you tell, just by looking at it, that this one comes from different stock than the ones who live here?
+- How can you tell, just by looking at it, that this one comes from different stock than the ones who live here?
 
-#### **Midden heaps**
+### **Midden heaps**
 
 A short ways off from the nest.
 
-- Signs of crinwin biology (remains of what they eat/won't eat, or excrement, or the utter lack thereof )
+- Signs of crinwin biology (remains of what they eat/won't eat, or excrement, or the utter lack thereof)
 - Cast-off possessions, giving hints to what they value and what they don't
-- Evidence of contact with the **[[17 - Forest Folk#Names|Forest Folk]]**, over a decade old and buried deep
+- Evidence of contact with the **[[17 - Forest Folk#Forest Folk|Forest Folk]]**, over a decade old and buried deep
 
 ## **Dangers**
 
- *Horde*, *small*, *hoarder*, *cautious*, *stealthy*
+> [!monster] ## **Crinwin**
+>
+> *Horde*, *small*, *hoarder*, *cautious*, *stealthy*
+>
+> **HP** 3; **Armor** 1 (reflexes)
+>
+> **Damage** claws, rocks, choking d6 (*hand*)
+>
+> **Special quality** climbs and jumps like a squirrel
+>
+> **Instinct** to covet
+>
+> - Mimic noises, words, cries for help
+> - Hide or vanish into the trees
+> - Snatch something and dart away
 
-**HP** 3; **Armor** 1 (reflexes)
+> [!monster] ## **Broodfather**
+>
+> *Solitary*, *stealthy*, *terrifying*
+>
+> **HP** 12; **Armor** 0
+>
+> **Damage** spindly choking fingers d8 (*close*), maw full of teeth d10+2 (*hand*, *messy*, 1 piercing)
+>
+> **Special qualities** blind, tremorsense
+>
+> **Instinct** to feed the younglings
+>
+> - Unfurl from its hiding place in shocking glory
+> - Lash out with a choking tongue (d6+2, *reach*, *forceful*, *grabby*)
+> - Drag a grabbed foe closer
+>
+> **Unstable nest** When you *roll +any stat while in a crinwin nest and the dice come up doubles*, pick 1 (in addition to the move's normal outcome):
+>
+> - You crash through the floor or wall, your limb(s) dangling or stuck
+> - The nest lurches and twists, teetering
+> - Wasps living in the nest begin to swarm
 
-**Damage** claws, rocks, choking d6 (*hand*) **Special quality** climbs and jumps like
+### **Wasps**
 
-a squirrel
-
-## **Instinct** to covet
-
-- ä Mimic noises, words, cries for help
-- ä Hide or vanish into the trees
-- ä Snatch something and dart away
-
-#### **Broodfather**
-
-*Solitary*, *stealthy*, *terrifying*
-
-**HP** 12; **Armor** 0
-
-**Damage** spindly choking fingers d8 (*close*), maw full of teeth d10+2 (*hand*, *messy*, 1 piercing)
-
-**Special qualities** blind, tremorsense **Instinct** to feed the younglings
-
-- ä Unfurl from its hiding place in shocking glory
-- ä Lash out with a choking tongue (d6+2, *reach*, *forceful*, *grabby*)
-- ä Drag a grabbed foe closer
-
-**Unstable nest** When you *roll +any stat while in a crinwin nest and the dice come up doubles*, pick 1 (in addition to the move's normal outcome):
-
-- You crash through the floor or wall, your limb(s) dangling or stuck
-- The nest lurches and twists, teetering
-- Wasps living in the nest begin to swarm
-
-#### **Wasps**
-
- Wasps often colonize crinwin nests, living symbiotically among them. Such nests thrum and buzz ominously.
+Wasps often colonize crinwin nests, living symbiotically among them. Such nests thrum and buzz ominously.
 
 When you *are stung by a single wasp*, it hurts like the dickens and takes some effort not to cry out.
 

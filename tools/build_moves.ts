@@ -78,6 +78,27 @@ interface MoveEntry {
 	text: string;
 }
 
+/**
+ * Since the vault cleanup (phase 12), a move heading opens an Obsidian
+ * callout (`> [!move] ## CLASH`) instead of a plain `#…` heading. `build_srd.py`
+ * deliberately keeps a callout section's body as raw blockquote markdown --
+ * every line still carries its `> ` continuation mark, and a trailing bare
+ * `^move-id` line (the callout's own link anchor) -- because that's the
+ * reference *renderer's* job to style (commit 93), not the pipeline's. This
+ * script wants the plain move text underneath for structured play-sheet data,
+ * so it undoes both here: strips the `> ` mark from every line, drops the
+ * bare anchor line, and collapses the blank line it leaves behind.
+ */
+function dequote(body: string): string {
+	return body
+		.split('\n')
+		.map((line) => line.replace(/^>\s?/, ''))
+		.filter((line) => !/^\^[\w-]+$/.test(line.trim()))
+		.join('\n')
+		.replace(/\n{3,}/g, '\n\n')
+		.trim();
+}
+
 const tree = JSON.parse(await readFile(RULES, 'utf8')) as Section | Section[];
 const all = (Array.isArray(tree) ? tree : [tree]).flatMap((root) => flatten(root));
 
@@ -98,7 +119,7 @@ function movesInRun(startId: string, endsAt: RegExp, keep: (m: MoveEntry) => boo
 		const move = {
 			id: slug(section.title),
 			name: titleCase(section.title),
-			text: section.body.trim()
+			text: dequote(section.body)
 		};
 		if (keep(move)) moves.push(move);
 	}
@@ -156,8 +177,9 @@ await writePack(
  */
 const eos = all.find((s) => s.id === END_OF_SESSION);
 if (!eos?.body) throw new Error(`${RULES}: no end-of-session move (${END_OF_SESSION})`);
+const eosBody = dequote(eos.body);
 
-const paragraphs = eos.body
+const paragraphs = eosBody
 	.split(/\n\s*\n/)
 	.map((p) => p.trim())
 	.filter(Boolean);
@@ -166,7 +188,7 @@ const personal = paragraphs
 	.filter((p) => !p.startsWith('-') && /mark XP/i.test(p))
 	.map((text, i) => ({ id: `personal-${i + 1}`, text }));
 
-const questions = eos.body
+const questions = eosBody
 	.split('\n')
 	.map((line) => line.trim())
 	.filter((line) => line.startsWith('- '))

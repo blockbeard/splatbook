@@ -1,6 +1,9 @@
 # The Steading
 
-Pages 154–165 are a version of the steading playbook for Stonetop itself, formatted to fit in this book. A PDF version is included in the playkit at lampblackandbrimstone.com. Use the steading playbook to track your village's stats, debilities, resources, improvements, etc. See **[[03 - Playing the Game#**Your home**|Your home]]** for an explanation of each element.
+> [!abstract]- Printable steading playbook (2nd-printing PDF, Book I pp. 154–165)
+> ^printable-steading-playbook-2nd-printing-pdf-book-i-pp-154-165
+
+Pages 154–165 are a version of the steading playbook for Stonetop itself, formatted to fit in this book. A PDF version is included in the playkit at lampblackandbrimstone.com. Use the steading playbook to track your village's stats, debilities, resources, improvements, etc. See **[[03 - Playing the Game#Your home|Your home]]** for an explanation of each element.
 
 ## Stonetop
 
@@ -18,71 +21,75 @@ Starts at +1.
 
 Starts at 1.
 
-### Size
+>[!box] ### Size
+>
+>Starts at *village*.
+>
+>- [ ] *hamlet* (<50 people)
+>- [ ] *village* (150-350)
+>- [ ] *town* (500-1500)
+>- [ ] *city* (2500+)
+>
+>### Population
+>
+>Starts at +0.
+>
+>- [ ] -1
+>- [ ] +0
+>- [ ] +1
+>- [ ] +2
+>- [ ] +3
+> ^size
 
-Starts at *village*.
+>[!box] ### Prosperity
+>
+>Starts at +0.
+>
+>- [ ] -1
+>- [ ] +0
+>- [ ] +1
+>- [ ] +2
+>- [ ] +3
+>
+>**Resources**
+>
+>- Farming (beans, potatoes, oats, barley)
+>- Hunting/trapping (fur, meat, hides)
+>- Distilling (whisky)
+>- Stone (collected from the Old Wall)
+>- Cistern (filled with rain, snow)
+>- Tradesfolk (midwife, potter, publican, smith, tanner)
+>- Trade: Gordin's Delve (metal, tools)
+>- Trade: Marshedge (textiles, herbs, glass)
+>- \_\_\_ (three write-in lines)
+> ^prosperity
 
-- [ ] *hamlet* (<50 people)
-- [ ] *village* (150-350)
-- [ ] *town* (500-1500)
-- [ ] *city* (2500+)
+>[!box] ### Defenses
+>
+>Starts at +0.
+>
+>- [ ] -1
+>- [ ] +0
+>- [ ] +1
+>- [ ] +2
+>- [ ] +3
+>
+>**Fortifications, etc.**
+>
+>- Village militia
+>- The Ringwall (low, stone)
+>- 3 watchtowers
+>- Spears & shields in every home
+>- Some bows
+>- \_\_\_ (five write-in lines)
+> ^defenses
 
-### Population
-
-Starts at +0.
-
-- [ ] -1
-- [ ] +0
-- [ ] +1
-- [ ] +2
-- [ ] +3
-
-### Prosperity
-
-Starts at +0.
-
-- [ ] -1
-- [ ] +0
-- [ ] +1
-- [ ] +2
-- [ ] +3
-
-**Resources**
-
-- Farming (beans, potatoes, oats, barley)
-- Hunting/trapping (fur, meat, hides)
-- Distilling (whisky)
-- Stone (collected from the Old Wall)
-- Cistern (filled with rain, snow)
-- Tradesfolk (midwife, potter, publican, smith, tanner)
-- Trade: Gordin's Delve (metal, tools)
-- Trade: Marshedge (textiles, herbs, glass)
-- \_\_\_ (three write-in lines)
-
-### Defenses
-
-Starts at +0.
-
-- [ ] -1
-- [ ] +0
-- [ ] +1
-- [ ] +2
-- [ ] +3
-
-**Fortifications, etc.**
-
-- Village militia
-- The Ringwall (low, stone)
-- 3 watchtowers
-- Spears & shields in every home
-- Some bows
-- \_\_\_ (five write-in lines)
-
-### Debilities
-
-- [ ] *diminished*, by injury/sickness/doubt (disadvantage to Deploy, Muster, or Pull Together)
-- [ ] *lacking*, due to shortages/hoarding/distrust (treat Prosperity as if it's 1 lower than it is)
-- [ ] *malcontent*, from fear/anger/despair (Fortunes reset to +0 each season, not +1; folks need Persuading more often than usual)
+>[!box] ### Debilities
+>
+>- [ ] *diminished*, by injury/sickness/doubt (disadvantage to Deploy, Muster, or Pull Together)
+>- [ ] *lacking*, due to shortages/hoarding/distrust (treat Prosperity as if it's 1 lower than it is)
+>- [ ] *malcontent*, from fear/anger/despair (Fortunes reset to +0 each season, not +1; folks need Persuading more often than usual)
+> ^debilities
 
 ## Map and places of interest
 
@@ -118,7 +125,7 @@ If **someone realizes they need content to be excluded, veiled, or handled in a 
 
 Known, available improvements you can make to Stonetop. The GM may present others.
 
-### ADDITIONAL HOUSING
+##### ADDITIONAL HOUSING
 
 It's getting crowded! We need more room to live.
 
@@ -135,7 +142,7 @@ When you **meet the requirements**, increase Fortunes by 1 and add any new homes
 
 Henceforth, when **you consume Surplus in winter**, consider Population to be 1 lower than it is.
 
-### AUROCHS HUNTING
+##### AUROCHS HUNTING
 
 Large herds form on the Flats in spring. The Hillfolk hunt them, but Stonetop has never learned to do so.
 
@@ -159,7 +166,7 @@ Henceforth, when you **lead the aurochs hunt in spring**, roll +Defenses: **on a
 - The Hillfolk are somehow offended
 - The herd is weak; if you hunt next year they'll be wiped out
 
-### EXPANDED TRADES
+##### EXPANDED TRADES
 
 Specialization is the key to prosperity!
 
@@ -180,7 +187,7 @@ And establishing at least 3 of the following:
 
 When you **meet the requirements**, increase Prosperity by 1. If you **cease to meet the requirements**, decrease Prosperity by 1.
 
-### GREATER HARVEST
+##### GREATER HARVEST
 
 Beyond the Old Wall, the prairie grass of the Flats chokes out any crops we try to grow.
 
@@ -193,7 +200,7 @@ When you **meet the requirements**, increase Fortunes by 1.
 
 Henceforth, when **the autumn harvest is complete**, gain +1d4 Surplus.
 
-### HARNESSING THE STREAM
+##### HARNESSING THE STREAM
 
 A shallow creek flows just below the town. If only it could be harnessed!
 
@@ -206,7 +213,7 @@ When you **meet the requirements**, add it to the Resources list and increase Fo
 
 Henceforth, **when spring breaks forth and you roll a 7+ with Fortunes**, the steading generates 1 Surplus.
 
-### HERD OF HORSES
+##### HERD OF HORSES
 
 Imagine what we could do with a dozen fine steeds.
 
@@ -231,7 +238,7 @@ When the **Seasons Change to summer**, any yearlings become horses (Value 3 once
 
 When **winter grips the land**, the herd consumes 1 Surplus per 6 grown or yearling horses. For every Surplus not consumed, 1d6 horses are lost.
 
-### HEROIC REPUTATION
+##### HEROIC REPUTATION
 
 Few have heard of Stonetop's heroes. Yet.
 
@@ -252,7 +259,7 @@ When you **first meet someone from beyond Stonetop**, roll +Fortunes: **on a 10+
 
 Known, available improvements you can make to Stonetop. The GM may present others in the course of play.
 
-### INN
+##### INN
 
 The public house offers a common room and shelter for a few horses, but it's hardly a proper inn.
 
@@ -270,7 +277,7 @@ Henceforth, when **the seasons change**, whoever is friendliest rolls +Fortunes:
 
 Once per season, when you **expend 1 Surplus and bring folks together at the inn** (to talk, to celebrate, to recuperate), clear one of the steading's debilities.
 
-### MARKET
+##### MARKET
 
 Stonetop is at most an afterthought for traders in the region. We need to change that.
 
@@ -289,7 +296,7 @@ When you **meet the requirements**, increase Prosperity by 1. If you **cease to 
 
 When the **Seasons Change to spring, summer, or autumn and the market is active**, and Population is +1 or better, the Market generates 1 Surplus.
 
-### MILL
+##### MILL
 
 We've got our pick of millstones. With a mill, we'd have better bread and more time for other crafts.
 
@@ -305,7 +312,7 @@ When you **meet the requirements**, increase Fortunes by 1, add "Mill" to the Re
 
 Henceforth, when **the autumn harvest is complete**, the steading generates +1 Surplus. Also, when you **Outfit from Stonetop or Have What You Need after doing so**, each ◇ of supplies has 1 extra use.
 
-### PALISADE
+##### PALISADE
 
 A wall of sharpened logs, 10' tall, to keep evil at bay.
 
@@ -320,7 +327,7 @@ When you **meet the requirements**, increase Fortunes by 1, add "Palisade" to th
 
 Henceforth, when you **take advantage of the palisade**, you have advantage to Deploy.
 
-### RAINCATCHING
+##### RAINCATCHING
 
 Filling the cistern takes so much work. Surely, we can do better!
 
@@ -332,7 +339,7 @@ Filling the cistern takes so much work. Surely, we can do better!
 
 When you **meet the requirements**, increase Fortunes by 1, add "Raincatching" to the Resources list. Henceforth, when **summer comes and you roll a 7+ with Fortunes**, the steading generates 1 Surplus.
 
-### STANDING WATCH
+##### STANDING WATCH
 
 Some full-time warriors would make us all safer, no?
 
@@ -346,7 +353,7 @@ When you **meet the requirements**, add "standing watch" to the Fortifications l
 
 When you **specifically involve the watch in a move**, treat Defenses as 1 higher than they are.
 
-### STONE WALL
+##### STONE WALL
 
 No mere palisade of wood, but a mighty rampart. We have the stone, after all...
 
@@ -363,7 +370,7 @@ When you **take advantage of the stone wall**, you have advantage to Deploy.
 
 When **winter grips the land**, the steading consumes 1 less Surplus than normal.
 
-### TOWNSHIP
+##### TOWNSHIP
 
 Will this ever be more than a backwater village?
 
@@ -381,7 +388,7 @@ When you **Muster, Pull Together**, or **Trade & Barter**, you have advantage.
 
 When **the seasons change to spring or summer**, the town generates Surplus equal to Population+1. But, when **winter grips the land**, roll 2d6+Population to consume Surplus instead of 1d4+Population.
 
-### WEAPONS OF WAR
+##### WEAPONS OF WAR
 
 Spears are great, but how about axes, picks, swords?
 
@@ -404,7 +411,7 @@ When you **meet the requirements**, increase Defenses by 1 and add "Weapons of W
 
 Henceforth, when you **Outfit from Stonetop or Have What You Need after doing so**, you can treat maces, flails, battleaxes, warhammers, and all types of swords as common items, as if they were already on the inventory inserts. Battleaxes and swords have "x piercing," where x is the steading's current Prosperity.
 
-### WELL-TRAINED MILITIA
+##### WELL-TRAINED MILITIA
 
 Everyone can use a spear and shield, but some hard drilling could make us a force to be reckoned with.
 

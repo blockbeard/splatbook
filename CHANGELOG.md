@@ -9,6 +9,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Book I & II reimported from the cleaned vault** (commit 91). `rules/book-i.json`
+  goes from 1421 to 1309 sections (29 chapters), `book-ii.json` from 2003 to 1764
+  (58 chapters) — the drop is moves and monsters consolidating into their own
+  callout-tagged sections rather than being smeared across stray sub-headings.
+  Page anchors are gone from every section (`pages` was already optional; the
+  vault links headings directly now, so the `^pNNN` remap is a no-op). Search
+  index and both derived move files rebuilt to match.
+
+  `tools/build_moves.ts` broke on the new content and needed a real fix, not
+  just a rerun: a move's body now lives inside a `[!move]` callout, which
+  `build_srd.py` deliberately leaves as raw blockquote markdown (`> text`,
+  trailing `^move-id`) for the reference renderer (commit 93) to style. This
+  script wants the plain text underneath for play-sheet data, so it now
+  de-quotes each callout body before extracting it. Diffed against the
+  pre-reimport shipped JSON: byte-identical except the wikilink anchors
+  (`#AID` → `#^aid`, matching the vault's new stable block-id links) — one
+  case (`muster`) legitimately lost a second cross-reference the vault cleanup
+  itself removed. Spot-verified `movesRollStats` and the basic/steading move
+  ids by hand (this sandbox's vitest is currently unrunnable — see the
+  environment note below); all matched what the existing tests assert.
+
+  Two stray output files with no vault source anymore (`20 - Index.md`,
+  `59 - Index.md` — already excluded from both books' document trees) were
+  flooding `build_rules.py`'s link verifier with hundreds of false positives
+  from their pre-cleanup content. Emptied rather than deleted: this sandbox's
+  mount can't unlink existing files. **Chris: `git rm` both once you're back
+  on the real filesystem.** One pre-existing gap remains out of scope, same as
+  commit 89 — `11 - Sites` still links a `.canvas` embed `build_rules.py`
+  doesn't resolve.
+
 - **Chapters in the document tree** (commit 90). `build_srd.py` now emits a
   document-ordered `chapters` list — one node per source file, `id` (the
   file-slug prefix its section ids are built from), `title`, and an optional
