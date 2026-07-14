@@ -13,8 +13,8 @@
  */
 
 /** Bumped whenever the persisted shape changes in a way that needs migration.
- * v2 (phase 5) adds the `advancement` log. */
-export const SCHEMA_VERSION = 2;
+ * v2 (phase 5) adds the `advancement` log. v3 (phase 14) adds `inserts`. */
+export const SCHEMA_VERSION = 3;
 
 /** Stonetop's six stats, in printed sheet order. */
 export const STAT_KEYS = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'] as const;
@@ -156,6 +156,17 @@ export interface StonetopCharacter {
 
 	/** Outfit/Inventory marks (driven by the inventory insert). */
 	inventory: InventoryState;
+
+	/**
+	 * Attached inserts (Followers, Crew, Ghost, Invocations…), keyed by insert
+	 * id (`insert-crew`, `insert-followers`…). Presence of a key means
+	 * attached; the value is that insert's own state blob, shape owned by the
+	 * insert itself and firmed up per-insert in commits 100-105 (empty until
+	 * then). `insert-inventory` is never a key here — the Outfit has its own
+	 * dedicated `inventory` field above and its own always-present tab, not a
+	 * player-attached extra like the rest.
+	 */
+	inserts: Record<string, Record<string, unknown>>;
 }
 
 /**
@@ -189,8 +200,61 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		level: 1,
 		advancement: [],
 		flags: {},
-		inventory: { gear: [], smallItems: [], undefinedGear: 0, undefinedSmall: 0 }
+		inventory: { gear: [], smallItems: [], undefinedGear: 0, undefinedSmall: 0 },
+		inserts: {}
 	};
+}
+
+/**
+ * Insert ids that attach themselves once the character qualifies, rather
+ * than waiting for the player to add them via the play sheet's "+" tab
+ * (phase 14 intro): Invocations to the Lightbearer, Crew to the Marshal,
+ * Initiates of Danu to a Blessed with the Initiate background, and Animal
+ * Companion to whoever holds the Animal Companion move — not every Ranger
+ * takes it, so that one keys off the move rather than the playbook.
+ *
+ * Evaluated against the raw blob only (playbook/background id, chosen moves,
+ * advancement) — no pack data needed, so this can run inside `migrateCharacter`
+ * without the engine reaching for content it doesn't own. A move granted by a
+ * playbook's *fixed* starting moves (Crew, Invoke the Sun God) doesn't need
+ * to appear in `character.moves` for its rule to fire — the playbook/background
+ * check alone is the equivalent, since that grant is guaranteed. Exported so
+ * the wizard (commit 106) can run the same rules at creation time.
+ */
+export function autoAttachedInsertIds(
+	character: Pick<StonetopCharacter, 'playbookId' | 'backgroundId' | 'moves' | 'advancement'>
+): string[] {
+	const held = new Set([...character.moves, ...(character.advancement ?? []).map((a) => a.moveId)]);
+	const ids: string[] = [];
+	if (character.playbookId === 'the-lightbearer') ids.push('insert-invocations');
+	if (character.playbookId === 'the-marshal') ids.push('insert-crew');
+	if (character.playbookId === 'the-blessed' && character.backgroundId === 'initiate') {
+		ids.push('insert-initiates-of-danu');
+	}
+	if (held.has('animal-companion')) ids.push('insert-animal-companion');
+	return ids;
+}
+
+/**
+ * Attach an insert. Idempotent — attaching one that's already attached
+ * leaves its existing state untouched; `initialState` seeds a new attachment
+ * only.
+ */
+export function attachInsert(
+	character: StonetopCharacter,
+	insertId: string,
+	initialState: Record<string, unknown> = {}
+): StonetopCharacter {
+	if (insertId in character.inserts) return character;
+	return { ...character, inserts: { ...character.inserts, [insertId]: initialState } };
+}
+
+/** Detach an insert. A no-op if it isn't attached. */
+export function detachInsert(character: StonetopCharacter, insertId: string): StonetopCharacter {
+	if (!(insertId in character.inserts)) return character;
+	const next = { ...character.inserts };
+	delete next[insertId];
+	return { ...character, inserts: next };
 }
 
 /**
@@ -199,11 +263,20 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
  * keeps whatever the blob already has, and stamps the current `SCHEMA_VERSION`.
  * Idempotent — a current character passes through unchanged (structurally), so
  * callers can run it on every load without side effects.
+ *
+ * `inserts` gets special handling: a blob with no `inserts` field at all (the
+ * v2 shape, pre-phase-14) is a genuine one-time migration, so it's seeded with
+ * whatever the character already qualifies for automatically — a saved
+ * Lightbearer wakes up with Invocations attached rather than waiting for a
+ * re-save. A blob that already has an `inserts` field (even `{}`) is left
+ * exactly as saved: a player who detached an auto-attach insert stays
+ * detached across reloads, the same as any other edit — auto-attach doesn't
+ * re-run on every load, only on the version bump that introduced it.
  */
 export function migrateCharacter(raw: unknown): StonetopCharacter {
 	const r = (raw ?? {}) as Partial<StonetopCharacter>;
 	const base = createCharacter(r.playbookId ?? null);
-	return {
+	const migrated: StonetopCharacter = {
 		...base,
 		...r,
 		schemaVersion: SCHEMA_VERSION,
@@ -213,8 +286,15 @@ export function migrateCharacter(raw: unknown): StonetopCharacter {
 		trackers: r.trackers ?? base.trackers,
 		advancement: Array.isArray(r.advancement) ? r.advancement : [],
 		flags: r.flags ?? {},
-		inventory: r.inventory ?? base.inventory
+		inventory: r.inventory ?? base.inventory,
+		inserts: r.inserts ?? base.inserts
 	};
+	if (r.inserts === undefined) {
+		for (const id of autoAttachedInsertIds(migrated)) {
+			if (!(id in migrated.inserts)) migrated.inserts = { ...migrated.inserts, [id]: {} };
+		}
+	}
+	return migrated;
 }
 
 /** Clamp `n` into `[lo, hi]`. */

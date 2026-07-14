@@ -33,6 +33,18 @@ Domain: splatbook.app (owned). License: GPL-3.0-or-later (app), CC BY-SA 4.0 (St
 - The sandbox mount can't unlink files: before any git write, move stale locks aside
   (`for f in .git/*.lock; do mv "$f" ".git/stale_lk_$(date +%s%N)"; done`) and ignore
   "unable to unlink" warnings. Tell Chris to occasionally `rm .git/stale_lk_*` natively.
+- **If `git status` suddenly shows the entire repo as deleted, don't panic and
+  don't `git add`/`commit` — check `.git/index` exists first** (`ls -la
+  .git/index`). Seen once (commit 99): the no-unlink mount can lose the
+  rename-over-`index.lock` that normally produces a fresh `.git/index`,
+  leaving no index file at all; `git ls-files` then returns empty while
+  `git ls-tree HEAD` still lists everything, so every tracked file reads as
+  "deleted" relative to HEAD even though nothing on disk moved. Fix: clear
+  stale locks as above, then plain `git reset` (no args) — it only rebuilds
+  the index from HEAD, never touches the working tree, and is safe to run
+  any time this happens. Confirm with `git status` before continuing; a
+  `git add -A && git commit` while the index is in this state would commit
+  a repo-wide deletion.
 - **Linux sandbox (cowork) — native binaries in `node_modules` are mac-arm64,
   not Linux.** The project folder is a macOS share; things like `esbuild`,
   `@tailwindcss/oxide`, and `better-sqlite3` ship a `Mach-O` binary that

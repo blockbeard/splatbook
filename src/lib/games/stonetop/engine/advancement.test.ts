@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { createCharacter, migrateCharacter, type StonetopCharacter } from './character';
+import {
+	SCHEMA_VERSION,
+	createCharacter,
+	migrateCharacter,
+	type StonetopCharacter
+} from './character';
 import type { Playbook } from '../pack-schemas';
 import {
 	advancementLog,
@@ -248,7 +253,7 @@ describe('migrateCharacter', () => {
 		const v1 = { ...createCharacter('the-blessed'), schemaVersion: 1 } as Record<string, unknown>;
 		delete v1.advancement;
 		const migrated = migrateCharacter(v1);
-		expect(migrated.schemaVersion).toBe(2);
+		expect(migrated.schemaVersion).toBe(SCHEMA_VERSION);
 		expect(migrated.advancement).toEqual([]);
 		expect(migrated.playbookId).toBe('the-blessed');
 	});
@@ -260,8 +265,39 @@ describe('migrateCharacter', () => {
 
 	it('tolerates an empty blob', () => {
 		const migrated = migrateCharacter({});
-		expect(migrated.schemaVersion).toBe(2);
+		expect(migrated.schemaVersion).toBe(SCHEMA_VERSION);
 		expect(migrated.advancement).toEqual([]);
 		expect(migrated.playbookId).toBeNull();
+	});
+
+	// v3 (commit 99) adds `inserts`. A v2 blob predates the field entirely, so
+	// migrating it is a one-time event: the character gets seeded with
+	// whatever it already qualifies for automatically, same as if it had
+	// been re-saved the moment auto-attach landed.
+	describe('v2 -> v3 (inserts)', () => {
+		it('a saved Lightbearer wakes up with Invocations attached', () => {
+			const v2 = { ...createCharacter('the-lightbearer'), schemaVersion: 2 } as Record<
+				string,
+				unknown
+			>;
+			delete v2.inserts;
+			const migrated = migrateCharacter(v2);
+			expect(migrated.schemaVersion).toBe(SCHEMA_VERSION);
+			expect(migrated.inserts).toEqual({ 'insert-invocations': {} });
+		});
+
+		it('a v2 blob that qualifies for nothing gets an empty inserts map', () => {
+			const v2 = { ...createCharacter('the-heavy'), schemaVersion: 2 } as Record<string, unknown>;
+			delete v2.inserts;
+			expect(migrateCharacter(v2).inserts).toEqual({});
+		});
+
+		it('does not re-run auto-attach on a blob that already has inserts', () => {
+			// A Lightbearer who detached Invocations themselves — an `inserts`
+			// field already present (even empty) means this isn't the v2->v3
+			// migration anymore, so their removal is respected on reload.
+			const current = { ...createCharacter('the-lightbearer'), inserts: {} };
+			expect(migrateCharacter(current).inserts).toEqual({});
+		});
 	});
 });

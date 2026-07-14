@@ -9,6 +9,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Insert attachment model** (commit 99). `StonetopCharacter.inserts` — a
+  map from insert id (`insert-crew`, `insert-followers`…) to that insert's
+  own state blob, present in the map means attached — plus pure
+  `attachInsert`/`detachInsert` and `autoAttachedInsertIds`, the rule table
+  behind "class inserts attach themselves" (phase 14 intro): Invocations to
+  the Lightbearer, Crew to the Marshal, and Initiates of Danu to a Blessed
+  with the Initiate background all key off `playbookId`/`backgroundId`
+  directly since those grants are guaranteed; Animal Companion keys off
+  actually holding the `animal-companion` move, since not every Ranger
+  picks it. All four rules run against the raw blob only — no pack fetch
+  — so they work equally inside the engine, `migrateCharacter`, and (commit 106) the wizard.
+
+  `SCHEMA_VERSION` bumps to 3. `migrateCharacter` treats a genuinely missing
+  `inserts` field (the v2 shape) as a one-time migration and seeds it with
+  whatever the character already auto-qualifies for — a saved Lightbearer
+  wakes up with Invocations attached without a re-save. A blob that already
+  has an `inserts` field, even `{}`, is left exactly as saved: a player who
+  detached an auto-attach insert stays detached on reload, same as any
+  other edit — the rules run once, on the version bump, not on every load.
+  `insert-inventory` was deliberately left out of this map; the Outfit
+  keeps its own dedicated `inventory` field and always-present tab, unlike
+  the "+"-tab inserts this commit tracks.
+
+  15 new tests (`character.test.ts`, `advancement.test.ts`) cover all four
+  auto-attach rules (including the "same background id, wrong playbook"
+  and "gained via advancement, not just at creation" edge cases),
+  attach/detach idempotency, and the v2→v3 migration fixture. 446/446
+  passing.
+
 - **Per-playbook e2e golden paths** (commit 98, opening Phase 14). One
   data-driven Playwright spec (`e2e/playbook-golden-paths.spec.ts`) builds a
   character for all nine playbooks through the wizard and asserts each
