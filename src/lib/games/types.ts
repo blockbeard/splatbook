@@ -164,4 +164,28 @@ export interface GameModule {
 	 * then offers no End session button.
 	 */
 	sessionComponent?: Component<SessionProps>;
+	/**
+	 * How the reference presents a `visibility: 'gm'` section to this game's
+	 * readers (phase 13, commit 97) — the shell's own vocabulary is deliberately
+	 * generic (`document-tree.ts`'s `visibility` flag says nothing about *why* a
+	 * section is gated, since a future game might use it for a true GM-only
+	 * secret rather than reader-choice spoilers), but the words a reader sees
+	 * are the game's own. Absent falls back to the shell's neutral defaults
+	 * ("GM" / "Include GM-only content").
+	 */
+	referenceSpoilers?: {
+		/** Small badge on a gated search hit (e.g. `"Setting"`). */
+		badge: string;
+		/** The reference's opt-in checkbox label (e.g. `"Include Book II — setting spoilers"`). */
+		toggleLabel: string;
+		/**
+		 * The id of a gated section whose own body makes the reader's case — the
+		 * book's "Should the players read this?" passage, for Stonetop. Shown as
+		 * an interstitial (in place of the page they actually asked for) the first
+		 * time a reader's link resolves to gated content they haven't opted into,
+		 * with the opt-in button underneath it. Absent games fall back to a plain
+		 * 404 for a gated section, same as before this field existed.
+		 */
+		interstitialSectionId?: string;
+	};
 }

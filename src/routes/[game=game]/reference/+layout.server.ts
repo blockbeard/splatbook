@@ -1,24 +1,21 @@
 /**
- * The reference GM gate (phase 9, commit 62). Computes — server-side, from real
- * campaign-GM membership — whether the current viewer may see this game's GM-only
- * rules (Book II). The value is exposed to the universal reference loads through
- * `data`, replacing the phase-2 hardcoded flag with a permission.
+ * The reference spoiler gate (phase 13, commit 97 — replacing the phase-9 GM
+ * gate). A `visibility: 'gm'` section (Book II) is no longer withheld by
+ * campaign-GM membership; the book's own stance is "it's okay for players to
+ * read this if they want to," so the reader opts in for themself, once,
+ * remembered as a preference (`$lib/server/db/preferences`,
+ * `REFERENCE_SHOW_SETTING`).
  *
- * The gate is a display permission on top of the existing client-side reference
- * model (document trees are served statically and filtered in the browser); it
- * keys "can I see Book II" to "do I run a table for this game," which is the
- * useful, low-friction rule for a self-hosted tool. Hardening it to withhold
- * GM text at the network layer would mean server-rendered reference pages — a
- * later step, noted in docs/architecture.md.
+ * This load only surfaces the *signed-in* half of that preference —
+ * `locals.prefs`, populated once per request in `hooks.server.ts`. A
+ * signed-out reader's preference lives in their own browser's `localStorage`
+ * instead, unreadable here; the sibling `+layout.ts` (a universal load, which
+ * also runs in the browser) is where the two are reconciled.
  */
 
-import { isGmOfAnyCampaign } from '$lib/server/db/campaigns';
+import { REFERENCE_SHOW_SETTING } from '$lib/preferences';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ params, locals }) => {
-	const session = await locals.auth();
-	const gmContentVisible = session?.user?.id
-		? await isGmOfAnyCampaign(locals.db, session.user.id, params.game)
-		: false;
-	return { gmContentVisible };
+export const load: LayoutServerLoad = ({ locals }) => {
+	return { showSettingPref: locals.prefs[REFERENCE_SHOW_SETTING] };
 };

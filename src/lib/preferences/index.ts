@@ -18,5 +18,6 @@ export {
 	getLocalPreference,
 	setLocalPreference,
 	clearLocalPreference,
+	savePreference,
 	type PrefStorage
 } from './client';

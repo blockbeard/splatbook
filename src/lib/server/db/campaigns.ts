@@ -129,9 +129,12 @@ export async function listCampaignMembers(
 }
 
 /**
- * Whether the user runs (is GM of) at least one campaign for a given game. This
- * is the reference GM gate (commit 62): only someone GMing a game's table may
- * see that game's GM-only rules. A single-row existence check — the answer is a
+ * Whether the user runs (is GM of) at least one campaign for a given game.
+ * This was the reference GM gate (commit 62) until commit 97 replaced it with
+ * a reader opt-in preference (`showSetting`) on the canonical `[game=game]`
+ * reference routes. Still used by the legacy `/g/[game]/reference` redirect
+ * tree (sandbox can't `rm` it — see repo CLAUDE.md); drop this once that tree
+ * is deleted for real. A single-row existence check — the answer is a
  * boolean, not a list.
  */
 export async function isGmOfAnyCampaign(db: Db, userId: string, gameId: string): Promise<boolean> {

@@ -16,9 +16,9 @@
 	Browse or search the {data.gameName} rules. Pick a chapter below, or use the contents on the left; every
 	heading has its own page and shareable link.
 </p>
-{#if data.gmContentVisible}
+{#if data.showSetting && data.spoilers}
 	<p class="mt-2 text-xs text-accent">
-		You run a {data.gameName} campaign, so GM-only rules (Book II) are included here.
+		{data.spoilers.toggleLabel} — on. Change this from the search page.
 	</p>
 {/if}
 

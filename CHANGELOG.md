@@ -9,6 +9,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Spoiler opt-in replaces the GM gate** (commit 97, closing Phase 13). The
+  book itself says players may read Book II if they want to, so "you may see
+  it if you run a table" was the wrong shape — this replaces campaign-GM
+  membership with a reader's own opt-in preference
+  (`REFERENCE_SHOW_SETTING`, commit 96), persisted once and remembered.
+
+  A new `GameModule.referenceSpoilers` config slot (`badge`, `toggleLabel`,
+  optional `interstitialSectionId`) keeps Stonetop's vocabulary — "Setting"
+  instead of "GM", the checkbox copy — out of shell code; Stonetop's own
+  entry points its interstitial at Book II's own "Should the players read
+  this?" passage. The reference layout resolves `showSetting` from
+  `locals.prefs` when signed in, or `localStorage` when signed out
+  (reconciled on mount via `invalidate('reference:showSetting')` if the
+  two disagree); the search page's checkbox writes through
+  `savePreference` and immediately reflects the change via a writable
+  `$derived`, no round-trip lag. A gated section a reader hasn't opted into
+  no longer 404s: `[section]/+page.ts` renders the configured interstitial
+  passage in its place, with an inline "Include this — take me back" button
+  that opts in and reloads the same load in place, same URL.
+
+  `isGmOfAnyCampaign` (`$lib/server/db/campaigns.ts`) and the GM
+  index-gating it drove are gone from the live `[game=game]` reference
+  routes; the function itself stays only because the legacy `/g/[game]`
+  redirect tree (unreachable — every route there 301s before rendering,
+  commit 95) still imports it and this sandbox can't delete files. New e2e
+  coverage in `reference-spoilers.spec.ts`: toggle on the search page reveals
+  a Book II hit and survives a reload signed out; the interstitial shows
+  and clears on opt-in. `campaigns.spec.ts`'s old "GMing reveals Book II"
+  assertion is removed — that's no longer how it works.
+
 - **User preferences** (commit 96, opening Phase 13). A small generic
   `preferences` table (`userId`, `key`, `value`, composite primary key) —
   `$lib/server/db/preferences`'s `getPreferences`/`setPreference`/
@@ -32,10 +62,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   second copy elsewhere never helped — but `$HOME` (unlike the project
   mount) supports normal file operations, so building a real Linux binary
   there (`npm pack` + `npm install --ignore-scripts` + `npm run
-  build-release`, using the sandbox's gcc/g++/make/python3) and
+build-release`, using the sandbox's gcc/g++/make/python3) and
   bind-mounting its `build/` directory over the broken one, inside the same
   `unshare --mount` session already used for `.svelte-kit`/`node_modules/
-  .vite`, took the full suite from 46 failing (every `db/*.test.ts` file)
+.vite`, took the full suite from 46 failing (every `db/*.test.ts` file)
   to **431/431 passing**. Documented in `CLAUDE.md` for the rest of this
   phase, which touches the database heavily.
 
@@ -62,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (`+page.svelte`, `+page.ts`) is now dead — unreachable, since the redirect
   load throws before they'd ever run — but couldn't be deleted in this
   sandbox (see the environment note below); **Chris: `git rm -r
-  src/routes/g` once you're back on the real filesystem**, same as the two
+src/routes/g` once you're back on the real filesystem**, same as the two
   stray files flagged in commit 91. `eslint.config.js`'s
   `svelte/no-navigation-without-resolve` exemption (pages that append a
   `?id=` query to a resolved path) keeps a glob for the dead tree alongside
@@ -73,7 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   retired: a name nobody searches for was an indirection tax, and the
   disclaimer already does the legal work `/credits` needs. Every place that
   named it — the game module's doc comment, `README.md`, `docs/
-  architecture.md`, `docs/adding-a-game.md`, this repo's `CLAUDE.md` — now
+architecture.md`, `docs/adding-a-game.md`, this repo's `CLAUDE.md` — now
   presents the module descriptively ("a Stonetop companion," served at
   `/stonetop`), never as "Stonetop" the product's own brand: the CC BY-SA
   license covers Jeremy Strandberg's text, not a name for the app to claim.
@@ -131,7 +161,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   A dedicated `marked` block extension (`$lib/reference/render.ts`'s
   `calloutExtension`, on its own `Marked` instance so it doesn't touch the
   app's other markdown) recognizes an embedded callout inline; a
-  kind-tagged section (its *heading* opened the callout — commit 90's
+  kind-tagged section (its _heading_ opened the callout — commit 90's
   `kind` field) boxes its own leading quoted run the same way via
   `leadingQuotedRun()`/`renderCalloutBox()`, without ever synthesizing a
   fake `[!type]` opener into the body. Wikilinks that target a note's
@@ -157,7 +187,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   continuation group and `leadingQuotedRun`; and stripping a block id
   down to nothing (rather than to a bare `>`) broke that same unbroken
   `>`-line run for a callout sitting right after one, so marked's
-  *default* blockquote tokenizer (which doesn't know about
+  _default_ blockquote tokenizer (which doesn't know about
   `CALLOUT_OPEN`) grabbed the next callout first — caught by a synthetic
   regression test after a full real-data sweep had already gone clean,
   which is its own lesson: real data covers what the vault happens to
@@ -168,10 +198,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   sections box cleanly, the other 2 fall through to plain, unleaked text
   because the vault drops the callout's own `>` mid-paragraph before any
   real content follows it (`03 - Playing the Game`'s DEFEND, `02 -
-  Getting Started`'s "Making corrections") — flagging for Chris rather
+Getting Started`'s "Making corrections") — flagging for Chris rather
   than papering over with a heuristic. This sandbox's `vitest` remains
   unrunnable (see the environment note below); checked with `tsc
-  --noEmit`, `eslint`, `prettier`, and the same kind of sed-stubbed
+--noEmit`, `eslint`, `prettier`, and the same kind of sed-stubbed
   `tsx` scripts used for commit 91, run against every test case in
   `render.test.ts`/`search.test.ts` by hand.
 

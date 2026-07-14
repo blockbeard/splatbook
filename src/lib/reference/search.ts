@@ -35,9 +35,10 @@ export async function loadSearchIndex(gameId: string, fetchFn: Fetcher): Promise
 }
 
 /**
- * Fetch the GM-only search index (Book II). Loaded only when the reference GM
- * gate is open (`gmContentVisible`); returns `null` if the game ships no GM index
- * (a 404), so a game without GM content search just falls back to the player one.
+ * Fetch the GM-only search index (Book II). Loaded only when the reader has
+ * opted into spoilers (`showSetting`, commit 97); returns `null` if the game
+ * ships no GM index (a 404), so a game without GM content search just falls
+ * back to the player one.
  */
 export async function loadGmSearchIndex(
 	gameId: string,

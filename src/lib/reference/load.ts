@@ -38,11 +38,13 @@ export interface SectionRef {
 }
 
 /**
- * Section-visibility predicate for the current viewer. GM-only sections (Book II)
- * are hidden unless `gmVisible` is true — the phase-9 gate, computed server-side
- * from campaign-GM membership (`isGmOfAnyCampaign`) and threaded down through the
- * reference layout's `gmContentVisible`. Defaults to hidden, so any caller that
- * forgets to pass the flag fails closed.
+ * Section-visibility predicate for the current viewer. A `visibility: 'gm'`
+ * section is hidden unless `gmVisible` is true. What decides that is up to
+ * whoever calls this — for Stonetop's Book II it's a reader's own opt-in
+ * preference (phase 13, `showSetting`), not campaign-GM membership; the flag
+ * stays named generically because another game might use `visibility: 'gm'`
+ * for content that genuinely is GM-only. Defaults to hidden, so any caller
+ * that forgets to pass the flag fails closed.
  */
 export function isVisible(
 	section: Pick<DocumentSection, 'visibility'>,

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
+	import { invalidate } from '$app/navigation';
+	import { REFERENCE_SHOW_SETTING, savePreference } from '$lib/preferences';
 
 	let { data } = $props();
 
@@ -8,6 +10,25 @@
 	const href = (id: string) =>
 		resolve('/[game=game]/reference/[section]', { game: gameId, section: id });
 	const refRoot = $derived(resolve('/[game=game]/reference', { game: gameId }));
+
+	let opting = $state(false);
+
+	/**
+	 * Opt in and re-load — no navigation needed: this route's own `+page.ts`
+	 * reruns against the updated preference and returns the page the reader
+	 * actually asked for in place of this interstitial, same URL.
+	 */
+	async function optIn(): Promise<void> {
+		opting = true;
+		try {
+			await savePreference(REFERENCE_SHOW_SETTING, 'true', {
+				signedIn: !!page.data.session?.user?.id
+			});
+			await invalidate('reference:showSetting');
+		} finally {
+			opting = false;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -28,6 +49,17 @@
 	     not user input. No untrusted HTML reaches this sink. -->
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html data.bodyHtml}
+
+	{#if data.interstitial}
+		<button
+			type="button"
+			onclick={optIn}
+			disabled={opting}
+			class="mt-6 inline-block rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90 disabled:opacity-60"
+		>
+			{opting ? 'Including…' : 'Include this — take me back'}
+		</button>
+	{/if}
 
 	{#if data.children.length}
 		<section class="mt-6 border-t border-border pt-4">

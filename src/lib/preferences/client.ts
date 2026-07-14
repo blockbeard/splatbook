@@ -41,3 +41,27 @@ export function setLocalPreference(storage: PrefStorage, key: string, value: str
 export function clearLocalPreference(storage: PrefStorage, key: string): void {
 	storage.removeItem(prefKey(key));
 }
+
+/**
+ * Save a preference wherever it belongs for this viewer: `PUT
+ * /api/preferences` when signed in, `localStorage` otherwise. A caller that
+ * needs a `load` to notice the change (the reference's spoiler gate) calls
+ * `invalidate()` itself afterwards — only the caller knows which dependency
+ * key applies, so this stays a plain write with no SvelteKit imports.
+ */
+export async function savePreference(
+	key: string,
+	value: string,
+	opts: { signedIn: boolean; storage?: PrefStorage; fetchFn?: typeof fetch } = { signedIn: false }
+): Promise<void> {
+	if (opts.signedIn) {
+		const res = await (opts.fetchFn ?? fetch)('/api/preferences', {
+			method: 'PUT',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ key, value })
+		});
+		if (!res.ok) throw new Error(`Failed to save preference (${res.status})`);
+	} else {
+		setLocalPreference(opts.storage ?? localStorage, key, value);
+	}
+}

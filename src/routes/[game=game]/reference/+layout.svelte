@@ -1,9 +1,23 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import { invalidate } from '$app/navigation';
+	import { getLocalPreference, REFERENCE_SHOW_SETTING } from '$lib/preferences';
 	import type { TocDocument, TocSection } from '$lib/reference/load';
 
 	let { data, children } = $props();
+
+	// A signed-out visitor returning with a previously-set localStorage
+	// preference: SSR couldn't read it (no localStorage on the server), so
+	// the first paint defaulted closed. Reconcile once on mount — this only
+	// does anything when the two actually disagree, so a first-time visitor
+	// with nothing stored triggers no extra work.
+	onMount(() => {
+		if (page.data.session?.user?.id) return;
+		const stored = getLocalPreference(localStorage, REFERENCE_SHOW_SETTING) === 'true';
+		if (stored !== data.showSetting) invalidate('reference:showSetting');
+	});
 
 	const activeId = $derived(page.params.section);
 

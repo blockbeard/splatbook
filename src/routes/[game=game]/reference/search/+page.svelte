@@ -2,20 +2,43 @@
 	import type MiniSearch from 'minisearch';
 	import { page } from '$app/state';
 	import { browser } from '$app/environment';
-	import { replaceState } from '$app/navigation';
+	import { replaceState, invalidate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { loadSearchIndex, loadGmSearchIndex, search, mergeHits } from '$lib/reference/search';
 	import { queryTerms, highlight, makeSnippet } from '$lib/reference/snippet';
+	import { REFERENCE_SHOW_SETTING, savePreference } from '$lib/preferences';
 
 	let { data } = $props();
 
 	let query = $state(page.url.searchParams.get('q') ?? '');
 	let debounced = $state(page.url.searchParams.get('q') ?? '');
 	let index = $state<MiniSearch | null>(null);
-	// GM-only index, loaded only when the reference GM gate is open for this viewer.
+	// GM-only index, loaded only when the reader has opted into spoilers.
 	let gmIndex = $state<MiniSearch | null>(null);
 	let loadError = $state<string | null>(null);
 	let expanded = $state<Record<string, boolean>>({});
+
+	const badge = $derived(data.spoilers?.badge ?? 'GM');
+	const toggleLabel = $derived(data.spoilers?.toggleLabel ?? 'Include GM-only content');
+
+	// Writable `$derived`: reads `data.showSetting`, but `toggleShowSetting`
+	// can locally override it for immediate feedback (no lag waiting on
+	// `invalidate` to reload `data`) — and a later change to `data.showSetting`
+	// itself (e.g. a fresh navigation) still overwrites the override.
+	let checked = $derived(data.showSetting);
+
+	async function toggleShowSetting(next: boolean): Promise<void> {
+		checked = next;
+		try {
+			await savePreference(REFERENCE_SHOW_SETTING, String(next), {
+				signedIn: !!page.data.session?.user?.id
+			});
+		} catch {
+			// Best-effort: the checkbox still reflects intent locally; a later
+			// reload falls back to whatever was last saved successfully.
+		}
+		await invalidate('reference:showSetting');
+	}
 
 	// Load the prebuilt index once, in the browser only.
 	$effect(() => {
@@ -26,13 +49,20 @@
 		return () => (alive = false);
 	});
 
-	// A campaign GM additionally searches Book II.
+	// The opted-in reader additionally searches Book II. Unlike the old GM
+	// gate, this can now flip off mid-session (the reader unchecks the box),
+	// so the branch has to actively drop the index rather than just skip
+	// reloading it — otherwise gated hits would linger in results after
+	// opting back out.
 	$effect(() => {
-		if (!data.gmContentVisible) return;
+		if (!data.showSetting) {
+			gmIndex = null;
+			return;
+		}
 		let alive = true;
 		loadGmSearchIndex(data.gameId, fetch)
 			.then((i) => alive && (gmIndex = i))
-			.catch(() => {}); // GM search is additive; failing to load it just omits Book II
+			.catch(() => {}); // Additive; failing to load it just omits gated results
 		return () => (alive = false);
 	});
 
@@ -82,6 +112,15 @@
 		aria-label="Search the rules"
 		class="w-full rounded-md border border-border bg-surface px-3 py-2 outline-none focus:border-accent"
 	/>
+	<label class="mt-2 flex items-center gap-2 text-sm text-muted">
+		<input
+			type="checkbox"
+			{checked}
+			onchange={(e) => toggleShowSetting(e.currentTarget.checked)}
+			class="accent-accent"
+		/>
+		{toggleLabel}
+	</label>
 </form>
 
 {#if loadError}
@@ -108,7 +147,7 @@
 						<span
 							class="ml-2 rounded border border-accent px-1 py-0.5 text-[10px] tracking-wide text-accent uppercase"
 						>
-							GM
+							{badge}
 						</span>
 					{/if}
 					{#if hit.breadcrumb !== hit.title}

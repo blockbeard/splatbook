@@ -116,5 +116,16 @@ export const stonetop: GameModule = {
 		component: GmGuide as unknown as Component<GmGuideProps>
 	},
 	// The end-of-session move, run by the GM at `/campaigns/[id]/session`.
-	sessionComponent: EndOfSession as unknown as Component<SessionProps>
+	sessionComponent: EndOfSession as unknown as Component<SessionProps>,
+	// Book II is gated behind a reader opt-in (commit 97), not a GM-only
+	// secret — the book's own stance is "it's okay for players to read this
+	// if they want to." "Setting" names what it actually withholds: spoilers
+	// on the world, not table-management text a player is forbidden from.
+	referenceSpoilers: {
+		badge: 'Setting',
+		toggleLabel: 'Include Book II — setting spoilers',
+		// Book II's own "Should the players read this?" passage — the book
+		// makes the reader's case better than shell copy could.
+		interstitialSectionId: '01-welcome-to-the-world-s-end--should-the-players-read-this'
+	}
 };

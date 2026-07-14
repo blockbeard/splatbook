@@ -4,8 +4,11 @@ import { test, expect, type Page } from '@playwright/test';
  * Phase-9 invite/join loop. Two separate browser contexts (two accounts) prove
  * the whole capability: a GM creates a campaign and gets an invite link; a
  * second person opens that link, signs in, and joins as a player; and the GM
- * then sees the player in the party roster. Also exercises the reference GM gate
- * — running a campaign reveals Book II to the GM.
+ * then sees the player in the party roster.
+ *
+ * Book II visibility is no longer tied to campaign-GM membership (commit 97
+ * replaced that gate with a reader opt-in preference) — see
+ * `reference-spoilers.spec.ts` for that coverage.
  */
 
 /** Sign in through the dev-login provider as a named account. */
@@ -36,10 +39,6 @@ test('a GM invites a player, who joins and appears in the party', async ({ brows
 	await expect(gm.getByRole('heading', { name: 'E2E Campaign' })).toBeVisible();
 	const inviteUrl = await gm.getByLabel('Invite link').inputValue();
 	expect(inviteUrl).toContain('/campaigns/join/');
-
-	// The GM runs a stonetop campaign, so the reference now includes Book II.
-	await gm.goto('/g/stonetop/reference');
-	await expect(gm.getByText(/GM-only rules \(Book II\) are included/i)).toBeVisible();
 
 	// --- Player: open the invite in a fresh context, sign in, join ---
 	const playerContext = await browser.newContext();
