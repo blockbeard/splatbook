@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Per-playbook e2e golden paths** (commit 98, opening Phase 14). One
+  data-driven Playwright spec (`e2e/playbook-golden-paths.spec.ts`) builds a
+  character for all nine playbooks through the wizard and asserts each
+  sheet shows a fixed starting move unique to that playbook — fixed moves
+  render on the sheet with no wizard interaction required, unlike fixed
+  possessions (gated behind the player picking at least one optional item).
+  The Fox is the one playbook with no fixed starting moves, so its case
+  picks the first `pickOne` option before continuing. The playbook loop
+  reads the pack's own list, so a tenth playbook is covered for free; this
+  is the safety net for the rest of Phase 14, which reworks both the wizard
+  and the play sheet.
+
 - **Spoiler opt-in replaces the GM gate** (commit 97, closing Phase 13). The
   book itself says players may read Book II if they want to, so "you may see
   it if you run a table" was the wrong shape — this replaces campaign-GM
