@@ -27,6 +27,8 @@
 		"@auth/drizzle-adapter": "^1.11.2",
 		"@auth/sveltekit": "^1.11.2",
 		"@fontsource/eb-garamond": "^5.2.7",
+		"@fontsource/im-fell-english": "^5.2.6",
+		"@fontsource/libre-caslon-text": "^5.2.7",
 		"better-sqlite3": "^12.11.1",
 		"drizzle-orm": "^0.45.2",
 		"marked": "^14.1.4",

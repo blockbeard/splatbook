@@ -9,6 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Book theme refresh** (commit 94). Stonetop's skin trades EB Garamond for
+  the vault's own book theme: **Avara** (Raphaël Bastide / Velvetyne Type
+  Foundry) for H1–H4 — the book's actual display face, 900-weight chapter
+  titles — **Libre Caslon Text** for body (the free stand-in for the book's
+  Adobe Caslon), **IM Fell English** as the fallback accent face. All SIL
+  OFL. Libre Caslon Text and IM Fell English ship as `@fontsource` packages
+  (same pattern as the outgoing EB Garamond); Avara has no such package, so
+  `tools/extract_avara_font.py` pulls its three `@font-face` rules out of
+  the vault snippet's embedded base64 and writes them back out as real
+  `static/fonts/*.woff2` files plus `fonts-avara.css` — a one-off, run once
+  against the mounted vault, not part of the regular content pipeline (the
+  font doesn't change when the rules text does).
+
+  The reference body (headings, links, the ornamental `hr`, book-ruled
+  tables, italic blockquotes) picks up the vault theme's look, scoped under
+  `[data-game="stonetop"] .reference-body` so it never touches another
+  game's typography. Commit 93's generic `.sb-callout` box gets its ink-on-
+  paper skin via the `--sb-callout-*` hooks it already exposed, plus two
+  kind-specific touches: `[!move]` gets a heavier box rule so a page of
+  moves reads as a sequence of entries, and `[!monster]` gets a small
+  swords mark by its label (Lucide's `swords` icon, ISC license — not one
+  of the icons derived from Feather, so this is its ISC term alone). This
+  is the one trade-dress-adjacent icon this commit ships; Strandberg's
+  confirmed permission (via the Hearthfire project's README) covers the
+  actual playbook/Seasons-Change/monster icon set for a later pass, once
+  there's a traced set to ship.
+
+  Checked with `tsc --noEmit`, `eslint`, `prettier`, and a `postcss.parse`
+  syntax check of the new CSS (a full `vite build` isn't possible in this
+  sandbox — see the environment note below); every referenced font and
+  icon file's presence and woff2 magic bytes verified by hand.
+
 - **Callout rendering** (commit 93). Obsidian callouts (`> [!move] …`,
   `[!box]`, `[!monster]`, …) now render as styled `<aside>` boxes — a
   small kind-labelled header plus the de-quoted, re-parsed body — instead

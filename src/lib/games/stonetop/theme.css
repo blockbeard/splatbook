@@ -7,16 +7,34 @@
  * game module imports this file, and the shell only stamps `data-game` on the
  * <html> element of the game's routes.
  *
- * Adapted from the Obsidian snippet used with the Stonetop vault, in turn drawn
- * from the look of Book I: Stonetop by Jeremy Strandberg (Lampblack &
- * Brimstone): uncoated paper, near-black ink, and a Great Wood green. Trade
- * dress and text remain theirs — see /credits.
+ * Ported from the Obsidian snippet used with the Stonetop vault (commit 94),
+ * in turn drawn from the look of Book I: Stonetop by Jeremy Strandberg
+ * (Lampblack & Brimstone): uncoated paper, near-black ink, and a Great Wood
+ * green. Trade dress and text remain theirs — see /credits.
+ *
+ * Fonts (all SIL OFL):
+ *   - Avara — Raphaël Bastide / Velvetyne Type Foundry — H1-H4 display face,
+ *     the book's own heading font. No @fontsource package; extracted from the
+ *     vault snippet's embedded base64 into static/fonts/ by
+ *     tools/extract_avara_font.py — see fonts-avara.css for the @font-face
+ *     rules that load it.
+ *   - Libre Caslon Text — free stand-in for the book's Adobe Caslon body text.
+ *   - IM Fell English — historical accent face, small-caps-styled headings.
+ *
+ * The `[!monster]` callout's sword icon is Lucide's "swords" (ISC license,
+ * not derived from Feather — see static/icons/README in the icon's own
+ * comment header). Playbook/Seasons-Change/monster trade-dress icons proper
+ * (Jeremy Strandberg's confirmed permission for CC BY-SA fan projects, per
+ * the Hearthfire project's README) are a later addition, once there's a
+ * traced set to ship — this commit only needed one icon.
  */
 
-@import '@fontsource/eb-garamond/400.css';
-@import '@fontsource/eb-garamond/400-italic.css';
-@import '@fontsource/eb-garamond/600.css';
-@import '@fontsource/eb-garamond/700.css';
+@import '@fontsource/libre-caslon-text/400.css';
+@import '@fontsource/libre-caslon-text/400-italic.css';
+@import '@fontsource/libre-caslon-text/700.css';
+@import '@fontsource/im-fell-english/400.css';
+@import '@fontsource/im-fell-english/400-italic.css';
+@import './fonts-avara.css';
 
 /* `html[data-game=…]` rather than a bare attribute selector: the shell's tokens
    live on `:root`, which has identical specificity, so a bare `[data-game]` rule
@@ -31,9 +49,17 @@ html[data-game='stonetop'] {
 	--sb-border: rgba(0, 0, 0, 0.14);
 	--sb-danger: #8c2f22;
 
-	font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
-	/* Garamond runs small; buy back the x-height the shell's sans assumes. */
-	font-size: 1.0625rem;
+	/* Callout hooks read by the shell's generic `.sb-callout`/`.sb-callout-label`
+	   (`[section]/+page.svelte`, commit 93) — the book's ink-on-paper "PDF
+	   sidebar" box instead of the shell's neutral default. */
+	--sb-callout-border: #333333;
+	--sb-callout-bg: transparent;
+	--sb-callout-label: var(--sb-text);
+
+	font-family: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+	/* The vault theme's own base size, not a Garamond-style x-height buy-back —
+	   Caslon reads closer to the shell's assumed scale already. */
+	font-size: 1.125rem;
 }
 
 /* Night at the table: ink and paper inverted, not a different palette —
@@ -47,10 +73,153 @@ html.dark[data-game='stonetop'] {
 	--sb-accent-contrast: #14170f;
 	--sb-border: rgba(236, 229, 216, 0.16);
 	--sb-danger: #d98b74;
+
+	--sb-callout-border: #888888;
+	--sb-callout-bg: transparent;
+	--sb-callout-label: var(--sb-text);
 }
 
-/* Headings in the display weight the book uses. */
-html[data-game='stonetop'] :is(h1, h2, h3) {
+/*
+ * Headings — Avara display face, sized to the book. Scoped to the reference
+ * body (and, generally, prose the shell renders as `.reference-body`) rather
+ * than every heading in the app: a dialog's or a form section's `<h2>` is
+ * shell chrome, not book prose, and keeps the shell's own scale.
+ */
+html[data-game='stonetop'] .reference-body :is(h1, h2, h3, h4) {
+	font-family: 'Avara', 'IM Fell English', Georgia, serif;
+	color: var(--sb-text);
+}
+html[data-game='stonetop'] .reference-body h1 {
+	font-weight: 900;
+	font-size: 2.3em;
+	line-height: 1.12;
+	letter-spacing: -0.005em;
+}
+html[data-game='stonetop'] .reference-body h2 {
 	font-weight: 700;
-	letter-spacing: -0.01em;
+	font-size: 1.62em;
+	line-height: 1.18;
+}
+html[data-game='stonetop'] .reference-body h3 {
+	font-weight: 700;
+	font-size: 1.28em;
+	line-height: 1.22;
+}
+html[data-game='stonetop'] .reference-body h4 {
+	font-weight: 700;
+	font-size: 1.06em;
+	line-height: 1.25;
+	letter-spacing: 0.005em;
+}
+/* H5/H6 — move & spell names in the book: Caslon, tracked-out and uppercase,
+   not the display face (the book uses these as small labels, not headings). */
+html[data-game='stonetop'] .reference-body :is(h5, h6) {
+	font-family: 'Libre Caslon Text', Georgia, serif;
+	font-weight: 700;
+	font-size: 0.92em;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--sb-muted);
+}
+
+/* Links — accent underline, book-tinted rather than browser blue. */
+html[data-game='stonetop'] .reference-body a {
+	color: var(--sb-accent);
+	border-bottom: 1px solid color-mix(in srgb, var(--sb-accent) 40%, transparent);
+	text-decoration: none;
+}
+html[data-game='stonetop'] .reference-body a:hover {
+	border-bottom-color: var(--sb-accent);
+}
+
+/* Ornamental divider — an inline mark on a rule instead of a bare `<hr>`,
+   the book's own section break. The mark's background has to match whatever
+   the divider sits on to "erase" the line behind it; that's the page
+   background (`--sb-bg`), not the surface, everywhere a book page appears. */
+html[data-game='stonetop'] .reference-body hr {
+	border: none;
+	background: none;
+	height: 1.6em;
+	margin: 1.5em 0;
+	position: relative;
+	overflow: visible;
+	text-align: center;
+}
+html[data-game='stonetop'] .reference-body hr::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 5%;
+	right: 5%;
+	border-top: 1px solid var(--sb-border);
+	transform: translateY(-50%);
+}
+html[data-game='stonetop'] .reference-body hr::after {
+	content: '\276E';
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	padding: 0 0.7em;
+	background: var(--sb-bg);
+	color: var(--sb-muted);
+	font-family: 'Avara', serif;
+	font-size: 1.1em;
+	line-height: 1;
+}
+
+/* Blockquote — italic flavor text, ink-bordered rather than the shell's
+   neutral quote rule. Plain `<blockquote>`s only: a `.sb-callout` (commit 93)
+   is a callout, not a blockquote, and keeps its own look below. */
+html[data-game='stonetop'] .reference-body blockquote {
+	border-left: 2px solid var(--sb-text);
+	font-style: italic;
+}
+
+/* Tables — book-ruled: a heavy rule under the header, hairlines between rows,
+   faint banding. */
+html[data-game='stonetop'] .reference-body th {
+	font-family: 'Avara', serif;
+	font-weight: 700;
+	border-top: 1px solid var(--sb-text);
+	border-bottom: 2px solid var(--sb-text);
+}
+html[data-game='stonetop'] .reference-body td {
+	border-bottom: 1px solid var(--sb-border);
+}
+html[data-game='stonetop'] .reference-body tbody tr:nth-child(even) {
+	background: color-mix(in srgb, var(--sb-text) 3%, transparent);
+}
+
+/*
+ * Callouts (commit 93's `.sb-callout`) — kind-specific skins on top of the
+ * ink-on-paper box the `--sb-callout-*` tokens above already give every kind.
+ * `[!move]` gets the book's move-box look: a heavier rule than the generic
+ * box, so a page of moves reads as a sequence of entries rather than plain
+ * text. `[!monster]` gets a small swords mark by its label — the one trade-
+ * dress-adjacent icon this commit ships (see the file doc).
+ */
+html[data-game='stonetop'] .sb-callout-label {
+	font-family: 'Avara', 'IM Fell English', Georgia, serif;
+	font-size: 1.05em;
+	font-weight: 700;
+	letter-spacing: normal;
+	text-transform: none;
+}
+html[data-game='stonetop'] .sb-callout-move {
+	border-width: 2px;
+}
+html[data-game='stonetop'] .sb-callout-monster .sb-callout-label {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+}
+html[data-game='stonetop'] .sb-callout-monster .sb-callout-label::before {
+	content: '';
+	display: inline-block;
+	width: 0.85em;
+	height: 0.85em;
+	flex: none;
+	background-color: currentColor;
+	-webkit-mask: url('/icons/swords.svg') no-repeat center / contain;
+	mask: url('/icons/swords.svg') no-repeat center / contain;
 }
