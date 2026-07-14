@@ -15,6 +15,18 @@ describe('toPlainText', () => {
 	it('drops image embeds', () => {
 		expect(toPlainText('before ![[map.png]] after')).toBe('before after');
 	});
+
+	it('drops a bare block-id line', () => {
+		expect(toPlainText('Some text.\n^some-anchor\n\nMore text.')).toBe('Some text. More text.');
+	});
+
+	it('drops a block-id line inside a callout', () => {
+		expect(toPlainText('> Roll +STR.\n> ^clash\n\nAfter.')).toBe('Roll +STR. After.');
+	});
+
+	it('drops the callout marker but keeps its inline title', () => {
+		expect(toPlainText('> [!box] **A title**\n> Boxed text.')).toBe('A title Boxed text.');
+	});
 });
 
 const docs: SearchDoc[] = [

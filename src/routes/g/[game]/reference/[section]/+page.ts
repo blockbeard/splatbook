@@ -31,7 +31,12 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 		...t,
 		sections: t.sections.filter((s) => isVisible(s, gmContentVisible))
 	}));
-	const bodyHtml = renderMarkdown(section.body, params.game, buildLinkIndex(visibleTrees));
+	const bodyHtml = renderMarkdown(
+		section.body,
+		params.game,
+		buildLinkIndex(visibleTrees),
+		section.kind
+	);
 
 	return {
 		docTitle: tree.title,

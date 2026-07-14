@@ -108,4 +108,28 @@
 	.reference-body :global(code) {
 		font-size: 0.9em;
 	}
+
+	/*
+	 * Obsidian callouts (`> [!move] …`), rendered as asides by `render.ts`'s
+	 * marked extension — generic, kind-neutral box + label here. A game theme
+	 * skins a specific kind by overriding `--sb-callout-*` (or styling
+	 * `.sb-callout-<kind>` directly) under its own `[data-game]` scope; e.g.
+	 * `[!move]` gets the book's move-box look, `[!monster]` a swords icon
+	 * (commit 94). Unthemed kinds still read fine off these shell defaults.
+	 */
+	.reference-body :global(.sb-callout) {
+		margin-top: 1rem;
+		padding: 0.75rem 1rem;
+		border: 1px solid var(--sb-callout-border, var(--sb-border));
+		border-radius: 0.375rem;
+		background: var(--sb-callout-bg, var(--sb-surface));
+	}
+	.reference-body :global(.sb-callout-label) {
+		margin: 0 0 0.375rem;
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--sb-callout-label, var(--sb-accent));
+	}
 </style>

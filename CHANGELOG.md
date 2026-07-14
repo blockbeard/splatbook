@@ -9,6 +9,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Callout rendering** (commit 93). Obsidian callouts (`> [!move] …`,
+  `[!box]`, `[!monster]`, …) now render as styled `<aside>` boxes — a
+  small kind-labelled header plus the de-quoted, re-parsed body — instead
+  of a plain `<blockquote>` with literal `[!type]` text leaking through.
+  A dedicated `marked` block extension (`$lib/reference/render.ts`'s
+  `calloutExtension`, on its own `Marked` instance so it doesn't touch the
+  app's other markdown) recognizes an embedded callout inline; a
+  kind-tagged section (its *heading* opened the callout — commit 90's
+  `kind` field) boxes its own leading quoted run the same way via
+  `leadingQuotedRun()`/`renderCalloutBox()`, without ever synthesizing a
+  fake `[!type]` opener into the body. Wikilinks that target a note's
+  named block id (`[[Note#^blockId|Label]]` — the vault's newer, stable
+  cross-reference form, replacing fragile heading-text anchors) now
+  resolve too: `LinkIndex` grew a `byBlockId` map alongside `byTitle`.
+  `[section]/+page.ts` passes the section's `kind` through to
+  `renderMarkdown`; the reference page picked up `.sb-callout`/
+  `.sb-callout-label` CSS, generic and kind-neutral for now (a game theme
+  skins a specific kind via `--sb-callout-*`, or `.sb-callout-<kind>`
+  directly — commit 94).
+
+  Four real-data bugs found and fixed along the way, each with a
+  regression test: a greedy `\s?`/`\s*` around a `>` marker matches a
+  newline too, so a naive de-quote merged a callout's own blank-line
+  paragraph breaks into one paragraph (every such pattern in this file
+  and `search-fields.ts` now says `[ \t]`, never `\s`, where it means
+  "space within a line"); a consecutive run of callouts with no blank
+  line between them (`09 - Threats`' one `[!box]` per threat type) had
+  the first one's greedy `>`-continuation swallow every sibling whole,
+  de-quoting their own `[!type]` openers into literal text — fixed with
+  a negative lookahead (`CALLOUT_OPEN`) in both `CALLOUT_BLOCK`'s
+  continuation group and `leadingQuotedRun`; and stripping a block id
+  down to nothing (rather than to a bare `>`) broke that same unbroken
+  `>`-line run for a callout sitting right after one, so marked's
+  *default* blockquote tokenizer (which doesn't know about
+  `CALLOUT_OPEN`) grabbed the next callout first — caught by a synthetic
+  regression test after a full real-data sweep had already gone clean,
+  which is its own lesson: real data covers what the vault happens to
+  contain, not every shape the code allows.
+
+  Verified against all 3,073 sections across both books (0 render
+  errors, 0 unstyled `[!type]`/block-id leaks); 307 of 309 kind-tagged
+  sections box cleanly, the other 2 fall through to plain, unleaked text
+  because the vault drops the callout's own `>` mid-paragraph before any
+  real content follows it (`03 - Playing the Game`'s DEFEND, `02 -
+  Getting Started`'s "Making corrections") — flagging for Chris rather
+  than papering over with a heuristic. This sandbox's `vitest` remains
+  unrunnable (see the environment note below); checked with `tsc
+  --noEmit`, `eslint`, `prettier`, and the same kind of sed-stubbed
+  `tsx` scripts used for commit 91, run against every test case in
+  `render.test.ts`/`search.test.ts` by hand.
+
 - **Chapters are the reference's spine** (commit 92). The rules landing page
   now lists each book's actual chapters (commit 90's `chapters` list, in
   reading order — a card per source file, like the book's own contents page)
