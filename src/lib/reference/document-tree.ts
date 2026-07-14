@@ -34,6 +34,12 @@ export const documentSectionSchema = z.strictObject({
 	body: z.string(),
 	/** Print-page anchors this section covers, if known. */
 	pages: z.array(z.number().int().positive()).optional(),
+	/**
+	 * The Obsidian callout type this heading opened from (`> [!move] ## …`),
+	 * if any — e.g. "move", "monster", "box". Drives per-kind styling
+	 * (commit 93) and future filtering. Absent for a plain `#…` heading.
+	 */
+	kind: z.string().optional(),
 	/** Visibility; defaults to player-visible. */
 	visibility: z.enum(VISIBILITY).default('player')
 });

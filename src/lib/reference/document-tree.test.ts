@@ -43,6 +43,29 @@ describe('documentSectionSchema', () => {
 		expect(parsed.pages).toEqual([212, 213]);
 	});
 
+	it('accepts an explicit kind from a callout heading', () => {
+		const parsed = documentSectionSchema.parse({
+			id: 'clash',
+			title: 'CLASH',
+			level: 2,
+			path: ['Player Moves', 'Basic Moves'],
+			body: 'When you fight in melee…',
+			kind: 'move'
+		});
+		expect(parsed.kind).toBe('move');
+	});
+
+	it('leaves kind undefined for a plain heading', () => {
+		const parsed = documentSectionSchema.parse({
+			id: 'the-forge',
+			title: 'The Forge',
+			level: 2,
+			path: [],
+			body: 'Secret lore.'
+		});
+		expect(parsed.kind).toBeUndefined();
+	});
+
 	it('rejects an out-of-range heading level', () => {
 		expect(() =>
 			documentSectionSchema.parse({ id: 'x', title: 'X', level: 7, path: [], body: '' })

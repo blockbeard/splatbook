@@ -25,11 +25,28 @@ SOURCE_DIRS = ["Book I Stonetop", "Book II The Wider World"]
 EXCLUDE_DIR_NAMES = {"data", "images", ".obsidian", ".trash"}
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
+# An Obsidian callout that opens with a heading -- `> [!move] ## **CLASH**` --
+# is a heading too: it's linkable, and its callout type becomes the section's
+# `kind` downstream in build_srd.py. Mirrors build_srd.py's CALLOUT_HEADING_RE.
+CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(#{1,6})\s+(.+?)\s*$")
 PAGE_ANCHOR_LINE_RE = re.compile(r"^\s*\^p\d+[a-z]?\s*$")
 TRAILING_ANCHOR_RE = re.compile(r"\s*\^p\d+[a-z]?\s*$")
 EMBED_RE = re.compile(r"!\[\[[^\]]+?\.(pdf|png|jpe?g|webp|gif|bmp|svg)(\|[^\]]*)?\]\]", re.I)
-LINK_RE = re.compile(r"\[\[([^\]#|]+?)#(\^p\d+[a-z]?)((?:\\)?\|[^\]]*)?\]\]")
-ANY_LINK_RE = re.compile(r"\[\[([^\]#|]+)(#([^\]|]+))?(\|[^\]]*)?\]\]")
+# Target is optional -- `[[#^pNNN|label]]` is a same-note page-anchor link.
+LINK_RE = re.compile(r"\[\[([^\]#|]*?)#(\^p\d+[a-z]?)((?:\\)?\|[^\]]*)?\]\]")
+# Target is optional here too -- `[[#CLASH|label]]` is a same-note heading link.
+ANY_LINK_RE = re.compile(r"\[\[([^\]#|]*)(#([^\]|]+))?(\|[^\]]*)?\]\]")
+
+
+def parse_heading(line: str) -> str | None:
+    """-> heading text if `line` opens a section (plain or callout), else None."""
+    m = CALLOUT_HEADING_RE.match(line)
+    if m:
+        return m.group(3)
+    m = HEADING_RE.match(line)
+    if m:
+        return m.group(2)
+    return None
 
 
 def collect_files(vault: Path) -> list[Path]:
@@ -57,9 +74,9 @@ def build_anchor_maps(files: list[Path]) -> tuple[dict, dict, list[str]]:
         current: str | None = None
         amap: dict[str, str | None] = {}
         for idx, line in enumerate(lines):
-            m = HEADING_RE.match(line)
-            if m:
-                current = m.group(2)
+            heading = parse_heading(line)
+            if heading is not None:
+                current = heading
                 headings.append(current)
                 continue
             for am in re.finditer(r"\^(p\d+[a-z]?)\b", line):
@@ -70,9 +87,9 @@ def build_anchor_maps(files: list[Path]) -> tuple[dict, dict, list[str]]:
                     for nxt in lines[idx + 1 : idx + 3]:
                         if not nxt.strip():
                             continue
-                        hm = HEADING_RE.match(nxt)
-                        if hm:
-                            mapped = hm.group(2)
+                        nxt_heading = parse_heading(nxt)
+                        if nxt_heading is not None:
+                            mapped = nxt_heading
                         break
                 amap[anchor] = mapped
                 if mapped and headings.count(mapped) > 1:
@@ -110,13 +127,14 @@ def transform(text: str, anchor_map: dict, warnings: list[str], src_name: str) -
     def repl(m: re.Match) -> str:
         target, anchor = m.group(1).strip().rstrip("\\"), m.group(2)[1:]
         pipe = m.group(3) or ""  # preserves \| escaping inside tables
-        heading = anchor_map.get(target.split("/")[-1], {}).get(anchor)
+        lookup = target.split("/")[-1] or src_name  # same-note link: [[#^pNNN|label]]
+        heading = anchor_map.get(lookup, {}).get(anchor)
         if heading:
             return f"[[{target}#{heading}{pipe}]]"
-        if target.split("/")[-1] not in anchor_map:
+        if lookup not in anchor_map:
             warnings.append(f"{src_name}: link to unknown note [[{target}#^{anchor}]]")
         else:
-            warnings.append(f"{src_name}: anchor ^{anchor} not found in [[{target}]]; fragment dropped")
+            warnings.append(f"{src_name}: anchor ^{anchor} not found in [[{target or src_name}]]; fragment dropped")
         return f"[[{target}{pipe}]]"
 
     text = "\n".join(lines)
@@ -138,22 +156,36 @@ def normalize_heading(text: str) -> str:
     return re.sub(r"[*_`]", "", text).strip().lower()
 
 
+BLOCK_ID_RE = re.compile(r"\^([\w-]+)\b")
+PAGE_ANCHOR_SHAPE_RE = re.compile(r"p\d+[a-z]?")
+
+
 def verify(out_dir: Path) -> list[str]:
     problems: list[str] = []
     notes: dict[str, set[str]] = {}
+    block_ids: dict[str, set[str]] = {}
     for p in out_dir.rglob("*.md"):
-        heads = {normalize_heading(m.group(2)) for m in map(HEADING_RE.match, p.read_text(encoding="utf-8").splitlines()) if m}
-        notes[p.stem] = heads
+        text = p.read_text(encoding="utf-8")
+        headings = (parse_heading(line) for line in text.splitlines())
+        notes[p.stem] = {normalize_heading(h) for h in headings if h is not None}
+        # named block ids (^basic-moves-section, ^clash…) are real, permanent
+        # link targets -- ^pNNN page anchors are transient and stripped by
+        # transform() already, so anything still page-anchor-shaped here is
+        # not a definition to trust.
+        block_ids[p.stem] = {
+            bid for bid in BLOCK_ID_RE.findall(text) if not PAGE_ANCHOR_SHAPE_RE.fullmatch(bid)
+        }
     for p in sorted(out_dir.rglob("*.md")):
         for m in ANY_LINK_RE.finditer(p.read_text(encoding="utf-8")):
-            target = m.group(1).strip().rstrip("\\").split("/")[-1]
+            target = m.group(1).strip().rstrip("\\").split("/")[-1] or p.stem  # same-note: [[#CLASH|…]]
             frag = m.group(3).rstrip("\\") if m.group(3) else None
             if target not in notes:
                 problems.append(f"{p.stem}: unresolved note [[{target}]]")
-            elif frag and not frag.startswith("^") and normalize_heading(frag) not in notes[target]:
-                problems.append(f"{p.stem}: unresolved heading [[{target}#{frag}]]")
             elif frag and frag.startswith("^"):
-                problems.append(f"{p.stem}: residual block anchor link [[{target}#{frag}]]")
+                if frag[1:] not in block_ids.get(target, set()):
+                    problems.append(f"{p.stem}: unresolved block id [[{target}#{frag}]]")
+            elif frag and normalize_heading(frag) not in notes[target]:
+                problems.append(f"{p.stem}: unresolved heading [[{target}#{frag}]]")
     return problems
 
 

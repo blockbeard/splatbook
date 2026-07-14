@@ -22,6 +22,13 @@ import sys
 from pathlib import Path
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
+# An Obsidian callout whose first line is itself a heading -- `> [!move] ##
+# **CLASH**` -- opens a section exactly like a plain heading, but also
+# tags it with the callout type ("move") as `kind`. The rest of the
+# callout's `>`-continuation lines (and any later plain prose, up to the
+# next heading) become this section's body untouched -- render-time styling
+# is commit 93's job, not this script's.
+CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(#{1,6})\s+(.+?)\s*#*\s*$")
 EMPHASIS_RE = re.compile(r"[*_`]")
 # The generated rules occasionally carry an OCR artifact from the source PDF:
 # a heading line that runs on into a whole paragraph or inventory blob. Real
@@ -38,6 +45,21 @@ def clean_title(text: str) -> str:
     """Heading text as plain prose: resolve wikilinks to their label, drop emphasis."""
     text = WIKILINK_RE.sub(lambda m: (m.group(2) or m.group(1).split("#")[-1]).strip(), text)
     return EMPHASIS_RE.sub("", text).strip()
+
+
+def parse_heading(line: str) -> tuple[int, str, str | None] | None:
+    """-> (level, raw title text, kind) if `line` opens a section, else None.
+
+    A plain `#…` heading has kind=None. A callout whose first line is itself
+    a heading (`> [!move] ## **CLASH**`) opens a section the same way, tagged
+    with its callout type as kind ("move")."""
+    m = CALLOUT_HEADING_RE.match(line)
+    if m:
+        return len(m.group(2)), m.group(3), m.group(1).lower()
+    m = HEADING_RE.match(line)
+    if m:
+        return len(m.group(1)), m.group(2), None
+    return None
 
 
 def slugify(text: str) -> str:
@@ -80,8 +102,8 @@ def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[
 
     saw_heading = False
     for line in lines:
-        m = HEADING_RE.match(line)
-        if not m:
+        parsed = parse_heading(line)
+        if parsed is None:
             if current is None:
                 if line.strip():
                     # prose before the first heading — shouldn't happen in the
@@ -91,7 +113,8 @@ def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[
             body.append(line)
             continue
 
-        title = clean_title(m.group(2))
+        level, raw_title, kind = parsed
+        title = clean_title(raw_title)
         # Demote a pathologically long "heading" (OCR run-on) to body text,
         # unless it would be the file's opening line (nothing to attach it to).
         if len(title) > MAX_HEADING_LEN and current is not None:
@@ -101,7 +124,6 @@ def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[
 
         flush()
         saw_heading = True
-        level = len(m.group(1))
 
         # ancestor path: pop headings at or below this level, then read the stack
         while stack and stack[-1][0] >= level:
@@ -121,6 +143,8 @@ def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[
         used_ids.add(sid)
 
         current = {"id": sid, "title": title, "level": level, "path": section_path}
+        if kind:
+            current["kind"] = kind
         body = []
 
     flush()

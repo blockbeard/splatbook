@@ -105,8 +105,19 @@ A game's rules/SRD text ships as one or more **document trees** under the pack's
 `rules/` folder, validated by `documentTreeSchema` (`src/lib/reference/document-tree.ts`).
 A tree is a flat, document-ordered list of sections — each with a stable `id`
 (the deep-link target), `title`, heading `level`, ancestor `path`, `body`
-markdown, optional print `pages`, and a `player`/`gm` `visibility` flag. Nesting
-is rebuilt from `level` for a table of contents; search stays a linear scan.
+markdown, optional print `pages`, optional `kind`, and a `player`/`gm`
+`visibility` flag. Nesting is rebuilt from `level` for a table of contents;
+search stays a linear scan.
+
+**`kind`.** A heading can come from an Obsidian callout instead of a plain
+`#…` line — `> [!move] ## **CLASH**` opens a section exactly like a heading
+would, but also tags it `kind: "move"`. Both build scripts recognize the
+pattern (`build_rules.py` for anchor mapping and link verification,
+`build_srd.py` for section-splitting); the callout type travels through
+untouched as `kind` for the renderer to key styling off later (`[!move]`,
+`[!monster]`, `[!box]`, …). The section's `body` still contains the callout's
+raw `>`-continuation markdown, unstripped — rendering it as a styled aside
+instead of a blockquote is the renderer's job, not the pipeline's.
 
 The trees are **generated**, the second stage of the content pipeline:
 

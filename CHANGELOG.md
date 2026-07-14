@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Callout-aware rules pipeline** (commit 89). `build_rules.py` and
+  `build_srd.py` now recognize an Obsidian callout that opens with a heading
+  (`> [!move] ## **CLASH**`) as a section, the same as a plain `#…` heading —
+  it's linkable, and its callout type travels onto the section as
+  `documentSectionSchema`'s new optional `kind` field (`"move"`, `"monster"`,
+  `"box"`, …) for future styling/filtering. Same-note links (`[[#CLASH|…]]`,
+  no filename prefix) now resolve too, in both the page-anchor remap and the
+  verifier — previously only `[[File#Heading]]` was checked. Verified
+  end-to-end against the cleaned Stonetop vault: 0 callout/heading-related
+  link problems (2 pre-existing, unrelated gaps remain — a missing `20 -
+  Index` note and a `.canvas` embed, neither in scope here).
+
+### Fixed
+
+- **Vault: `[!monster]` callouts weren't linkable.** Today's statblock-boxing
+  pass (vault-side, not this repo) opened each with `> [!monster] **Name**` —
+  bold, no heading marker — which broke every existing anchor link that
+  targeted a monster by name. Added `## ` to match `[!move]`'s convention.
+
 - **Privacy policy and terms of service** (`/privacy`, `/terms`, linked from the
   footer). Google's OAuth consent screen will not leave Testing mode without both
   URLs, and it fetches them to check they resolve — so the public site could not
