@@ -2,9 +2,9 @@
 
 A game-agnostic framework for TTRPG companion apps: character builders, campaign
 and steading trackers, GM references, searchable rules, and shared dice — driven
-entirely by per-game content packs. The first game module is **Ringwall**, a
-companion for [Stonetop](https://www.lampblack-and-brimstone.com/) by Jeremy
-Strandberg / Lampblack & Brimstone.
+entirely by per-game content packs. The first game module is a companion for
+[Stonetop](https://www.lampblack-and-brimstone.com/) by Jeremy Strandberg /
+Lampblack & Brimstone, served at `/stonetop`.
 
 > "Splat" is the old typesetter's slang for the asterisk in "the \* book."
 > The framework is named after a wildcard, which is the point.

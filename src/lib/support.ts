@@ -1,5 +1,5 @@
 /**
- * Site-operator support links for this deployment (Ringwall / splatbook.app).
+ * Site-operator support links for this deployment (splatbook.app).
  *
  * These are neither game content (they belong in no pack) nor framework identity
  * — they're the specific operator's tip jar and affiliate link. Kept in one place

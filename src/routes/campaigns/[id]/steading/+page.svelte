@@ -14,7 +14,7 @@
 	const Sheet = $derived(getGame(data.campaign.gameId)?.entityTypes['steading']?.sheetComponent);
 	const editHref = $derived(
 		data.steading
-			? `${resolve('/g/[game]/[type]/play', { game: data.campaign.gameId, type: 'steading' })}?id=${data.steading.id}`
+			? `${resolve('/[game=game]/[type]/play', { game: data.campaign.gameId, type: 'steading' })}?id=${data.steading.id}`
 			: null
 	);
 	const backHref = $derived(resolve('/campaigns/[id]', { id: data.campaign.id }));

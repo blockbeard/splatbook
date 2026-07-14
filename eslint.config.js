@@ -49,11 +49,22 @@ export default ts.config(
 		// These pages resolve a route then append a `?id=`/`?archived=` query,
 		// which the typed-route rule can't verify. Path resolution is still used;
 		// only the query is concatenated.
-		// (`[game]` would be read as a glob char-class, so match the segment with `*`.)
+		// (`[game]`/`[game=game]` would be read as a glob char-class, so match
+		// the segment with `*`.)
+		//
+		// The `src/routes/g/*/…` entries are commit 95's retired route tree —
+		// dead (every leaf redirects via its own `+page.server.ts` before its
+		// `+page.svelte` ever runs), but still on disk: this sandbox can't
+		// unlink existing files, so `git rm -r src/routes/g` is still pending
+		// on the real filesystem. Left here so the dead files don't lint-fail
+		// in the meantime; safe to drop this half of the list once they're gone.
 		files: [
 			'src/routes/dashboard/+page.svelte',
 			'src/routes/campaigns/*/+page.svelte',
 			'src/routes/campaigns/*/steading/+page.svelte',
+			'src/routes/*/*/build/+page.svelte',
+			'src/routes/*/*/sheet/+page.svelte',
+			'src/routes/*/*/play/+page.svelte',
 			'src/routes/g/*/*/build/+page.svelte',
 			'src/routes/g/*/*/sheet/+page.svelte',
 			'src/routes/g/*/*/play/+page.svelte'

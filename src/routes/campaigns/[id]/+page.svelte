@@ -17,7 +17,7 @@
 	const inviteUrl = $derived(invitePath ? new URL(invitePath, page.url.origin).href : null);
 
 	const sheetHref = (type: string, id: string) =>
-		`${resolve('/g/[game]/[type]/sheet', { game: data.campaign.gameId, type })}?id=${id}`;
+		`${resolve('/[game=game]/[type]/sheet', { game: data.campaign.gameId, type })}?id=${id}`;
 
 	let copied = $state(false);
 	async function copy() {

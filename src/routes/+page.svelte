@@ -45,14 +45,16 @@
 	{#each games as game (game.id)}
 		<article class="mt-10 rounded-lg border border-border bg-surface p-6">
 			<h2 class="text-2xl font-semibold tracking-tight">
-				<a href={resolve('/g/[game]', { game: game.id })} class="hover:text-accent">{game.name}</a>
+				<a href={resolve('/[game=game]', { game: game.id })} class="hover:text-accent"
+					>{game.name}</a
+				>
 			</h2>
 			<div class="mt-5 flex flex-wrap gap-3">
 				{#each game.creators as creator, i (creator.entityType)}
 					<a
 						href={creator.via === 'build'
-							? resolve('/g/[game]/[type]/build', { game: game.id, type: creator.entityType })
-							: resolve('/g/[game]/[type]/play', { game: game.id, type: creator.entityType })}
+							? resolve('/[game=game]/[type]/build', { game: game.id, type: creator.entityType })
+							: resolve('/[game=game]/[type]/play', { game: game.id, type: creator.entityType })}
 						class={i === 0
 							? 'rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90'
 							: 'rounded-md border border-border px-4 py-2 font-medium hover:bg-bg'}
@@ -61,14 +63,14 @@
 					</a>
 				{/each}
 				<a
-					href={resolve('/g/[game]/reference', { game: game.id })}
+					href={resolve('/[game=game]/reference', { game: game.id })}
 					class="rounded-md border border-border px-4 py-2 font-medium hover:bg-bg"
 				>
 					Open the reference
 				</a>
 				{#if game.hasGmGuide}
 					<a
-						href={resolve('/g/[game]/gm', { game: game.id })}
+						href={resolve('/[game=game]/gm', { game: game.id })}
 						class="rounded-md border border-border px-4 py-2 font-medium hover:bg-bg"
 					>
 						Run the game

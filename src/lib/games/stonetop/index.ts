@@ -1,6 +1,9 @@
 /**
- * The Stonetop game module — first game in the framework; served as
- * "Ringwall" at `/g/stonetop`.
+ * The Stonetop game module — first game in the framework, served at
+ * `/stonetop` (commit 95 — games at the app's root; the "Ringwall" codename
+ * this deployment used at `/g/stonetop` is retired. Presented descriptively,
+ * "a Stonetop companion," never as "Stonetop" the product's own brand — the
+ * CC BY-SA license covers the text, not the name).
  *
  * Contributes identity, pack schemas, the pure rules engine, and its entity
  * types. The shell treats `engine` as opaque; only Stonetop's own step/sheet
@@ -106,7 +109,7 @@ export const stonetop: GameModule = {
 	entityTypes: { character, steading, threat },
 	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,
 	// procedures, interactive tables, flow diagrams. Read-only, so it's not an
-	// entity type — the shell serves it at `/g/stonetop/gm`.
+	// entity type — the shell serves it at `/stonetop/gm`.
 	gmGuide: {
 		packFile: 'data/the-gm.json',
 		sections: GM_SECTIONS,

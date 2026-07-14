@@ -9,6 +9,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Games at the root — `/stonetop`, "Ringwall" retired** (commit 95,
+  closing Phase 12). Game routes move from `/g/[game]` to `/[game=game]`:
+  `src/params/game.ts` is a new matcher accepting only a registered game id
+  (`listGames()`), so a static route (`/campaigns`, `/dashboard`, `/privacy`,
+  …) can never be shadowed by a game segment — SvelteKit already gives
+  static path segments priority over dynamic ones, but the matcher makes
+  that contract explicit and turns an unknown "game" segment into a clean
+  404 instead of a route that renders and fails deeper in its own `load`.
+  Every `resolve('/g/[game]…')` call site updates to `resolve('/[game=game]…')`
+  (mechanical, caught by `tsc`); one real bug turned up doing it —
+  `render.ts`'s wikilink-resolution built its reference deep-links by
+  hand-concatenating `${base}/g/${gameId}/reference/${id}` rather than going
+  through `resolve()`, so it had silently kept pointing at the old prefix.
+  Fixed, with `render.test.ts`'s three link-resolution assertions updated to
+  match.
+
+  The old `/g/[game]/…` tree's nine leaf routes each keep a
+  `+page.server.ts` (`$lib/server/legacy-routes.ts`'s `legacyRedirect()`
+  helper) that 301s to the new address, params and query string intact, so
+  bookmarks and shared links survive. The rest of each old route directory
+  (`+page.svelte`, `+page.ts`) is now dead — unreachable, since the redirect
+  load throws before they'd ever run — but couldn't be deleted in this
+  sandbox (see the environment note below); **Chris: `git rm -r
+  src/routes/g` once you're back on the real filesystem**, same as the two
+  stray files flagged in commit 91. `eslint.config.js`'s
+  `svelte/no-navigation-without-resolve` exemption (pages that append a
+  `?id=` query to a resolved path) keeps a glob for the dead tree alongside
+  the new one, for the same reason.
+
+  The "Ringwall" codename this deployment used for the Stonetop module
+  (`/g/stonetop`, served as its own identity rather than descriptively) is
+  retired: a name nobody searches for was an indirection tax, and the
+  disclaimer already does the legal work `/credits` needs. Every place that
+  named it — the game module's doc comment, `README.md`, `docs/
+  architecture.md`, `docs/adding-a-game.md`, this repo's `CLAUDE.md` — now
+  presents the module descriptively ("a Stonetop companion," served at
+  `/stonetop`), never as "Stonetop" the product's own brand: the CC BY-SA
+  license covers Jeremy Strandberg's text, not a name for the app to claim.
+
+  Verified with `tsc --noEmit`, `eslint`, `prettier`, and — for the first
+  time this phase — a genuinely working `vitest` and `vite build` in this
+  sandbox: mounting a tmpfs over `.svelte-kit/` and `node_modules/.vite/`
+  inside an unprivileged `unshare --mount` namespace routes around the
+  mount's inability to unlink existing files (the same limitation that
+  blocked `svelte-kit sync` for commits 91–94), without touching the real
+  files underneath. `vite build` completes end to end (the adapter's final
+  output-directory cleanup still trips the same unlink limit on a stray
+  `.DS_Store`, unrelated to this change); the full suite runs, 372 of 418
+  tests passing — the other 46, across four `db/*.test.ts` files, fail on
+  `better-sqlite3`'s mac-arm64 binary not loading on this Linux sandbox
+  (`invalid ELF header`), a pre-existing environment gap this workaround
+  doesn't reach, not a regression.
+
 - **Book theme refresh** (commit 94). Stonetop's skin trades EB Garamond for
   the vault's own book theme: **Avara** (Raphaël Bastide / Velvetyne Type
   Foundry) for H1–H4 — the book's actual display face, 900-weight chapter

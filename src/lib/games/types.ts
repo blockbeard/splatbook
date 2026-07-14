@@ -107,7 +107,7 @@ export interface GmGuideProps {
  * that isn't a build/tracker sheet — agenda, moves, procedures, interactive
  * tables, flow diagrams. Read-only reference, so it sits outside the entity-type
  * map (nothing is saved). The `sections` list is the serialisable nav the shell
- * renders in the sidebar and routes on (`/g/[game]/gm/[section]`); the shell
+ * renders in the sidebar and routes on (`/[game=game]/gm/[section]`); the shell
  * never inspects the pack `data` — the game's `component` renders each section.
  */
 export interface GmGuideModule {
@@ -143,7 +143,7 @@ export interface SessionProps {
 }
 
 export interface GameModule {
-	/** Game id, kebab-case. Matches the content-pack folder and the `/g/[game]` URL segment. */
+	/** Game id, kebab-case. Matches the content-pack folder and the `/[game=game]` URL segment. */
 	id: string;
 	/** Display name of the game. */
 	name: string;
@@ -155,7 +155,7 @@ export interface GameModule {
 	 * (`character`, `steading`, …). The shell iterates this map; it never hard-codes
 	 * a type. A game needs at least one entry to do anything user-facing. */
 	entityTypes: Record<string, EntityTypeModule>;
-	/** Optional GM reference guide, surfaced at `/g/[game]/gm`. Absent for games
+	/** Optional GM reference guide, surfaced at `/[game=game]/gm`. Absent for games
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;
 	/**

@@ -243,7 +243,7 @@ export function renderMarkdown(
 			const target = String(rawTarget).trim();
 			const label = String(rawLabel ?? target.split('#').pop() ?? target).trim();
 			const id = resolveTarget(index, target);
-			return id ? `[${label}](${base}/g/${gameId}/reference/${id})` : label;
+			return id ? `[${label}](${base}/${gameId}/reference/${id})` : label;
 		});
 
 	if (kind && withLinks.trimStart().startsWith('>')) {

@@ -1,7 +1,7 @@
 /**
  * The GM guide's navigation — ordered sections (stable id + display title). This
  * is the serialisable nav the shell renders in the sidebar and routes on
- * (`/g/[game]/gm/[section]`); `GmGuide.svelte` dispatches on the same ids. Titles
+ * (`/[game=game]/gm/[section]`); `GmGuide.svelte` dispatches on the same ids. Titles
  * group the GM playbook's ~20 top-level keys into nine readable pages.
  */
 export const GM_SECTIONS = [
@@ -23,5 +23,5 @@ export function isGmSection(id: string): id is GmSectionId {
 	return GM_SECTIONS.some((s) => s.id === id);
 }
 
-/** The id of the first section — where `/g/[game]/gm` lands. */
+/** The id of the first section — where `/[game=game]/gm` lands. */
 export const FIRST_GM_SECTION: GmSectionId = GM_SECTIONS[0].id;

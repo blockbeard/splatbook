@@ -22,8 +22,8 @@ const database: Handle = async ({ event, resolve }) => {
 /**
  * Stamp `data-game` on <html> for a game's routes, server-side, so a module's
  * theme (scoped to `[data-game="<id>"]`, see app.css) is in force on the very
- * first paint rather than after hydration. `/g/[game]/+layout.svelte` keeps it
- * in step across client-side navigation.
+ * first paint rather than after hydration. `/[game=game]/+layout.svelte` keeps
+ * it in step across client-side navigation.
  *
  * The id comes from the route param, not the registry: importing the registry
  * here would instantiate it in the hooks module graph as well as the page's,

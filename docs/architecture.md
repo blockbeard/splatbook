@@ -21,11 +21,11 @@ Every piece of code and data belongs to exactly one layer:
    portable.
 
 3. **App** — everything else:
-   - **Shell** (`src/lib/` outside `games/`, `src/routes/` outside `/g/[game]/`) —
+   - **Shell** (`src/lib/` outside `games/`, `src/routes/` outside `/[game=game]/`) —
      auth, persistence, campaigns, pack loading + validation harness, document
      tree/search, wizard *shell*, dice infrastructure, theming, exports, deployment.
    - **Game UI** (`src/lib/games/<gameId>/` outside `engine/`) — wizard *steps*,
-     sheet and tracker rendering, per-game routes under `/g/[game]/…`.
+     sheet and tracker rendering, per-game routes under `/[game=game]/…`.
 
 ## The three rules
 
@@ -80,7 +80,7 @@ sheet from birth, so its editor lives in the `playComponent` slot and the shell'
 create action routes straight there.
 
 The shell **iterates the map**; it never hard-codes a type. Routes are
-`/g/[game]/[type]/{build,play,sheet}`; the dashboard, save/load, and landing page
+`/[game=game]/[type]/{build,play,sheet}`; the dashboard, save/load, and landing page
 all read the type from the map key rather than branching on `character`. This
 followed the discipline above: the map arrived only when steadings (phase 6) became
 the second entity type — until then a single flat set of character slots was
@@ -96,7 +96,7 @@ The other way the `GameModule` interface has grown is the optional `gmGuide` slo
 tables, flow diagrams. It is deliberately **not** an entity type, because nothing is
 saved; it sits outside `entityTypes`. It declares a pack file, an ordered list of nav
 `sections`, and a `component` that renders one section; the shell serves and routes it
-at `/g/[game]/gm` without inspecting the pack shape. Same discipline as everything
+at `/[game=game]/gm` without inspecting the pack shape. Same discipline as everything
 else: a new registry slot, added explicitly, that a game opts into or omits.
 
 ## The dice slot
@@ -150,7 +150,7 @@ colour. A game themes itself by overriding those tokens under
 `html[data-game="<gameId>"]` **in its own CSS**, imported from its own module —
 the shell's only contribution is stamping `data-game` on `<html>` (server-side in
 `hooks.server.ts`, so the theme is right on the first paint, and in the
-`/g/[game]` layout so it survives client-side navigation). A game that ships no
+`/[game=game]` layout so it survives client-side navigation). A game that ships no
 theme gets the shell's defaults. The selectors are `html[data-game=…]` rather than
 bare attribute selectors because the shell's tokens sit on `:root`, which has
 identical specificity — bare selectors would win or lose on bundle order alone.
@@ -194,9 +194,12 @@ screen is doing.
 
 - **Game ids**: lowercase, hyphen-free, short — `stonetop`, `hmtw`, `daggerheart`.
   Used as folder names (`content/stonetop/`, `src/lib/games/stonetop/`), route
-  segments (`/g/stonetop/…`), `gameId` values, and `data-game` scopes.
-- **Deployment names** (e.g. **Ringwall** for the Stonetop deployment) are skins:
-  they may appear in pack metadata and theming, never in code identifiers.
+  segments (`/stonetop/…`, matched by `src/params/game.ts`), `gameId` values,
+  and `data-game` scopes.
+- **No deployment codenames** (commit 95 retired "Ringwall," the Stonetop
+  deployment's former name): a game is presented descriptively — "a Stonetop
+  companion" — never under a separate brand a codename would need to search-
+  engine-optimise for.
 - **Commits**: conventional messages; scopes `shell`, `packs`, `reference`,
   `stonetop`, `wizard`, `play`, `steading`, `gm`, `db`, `auth`.
 - **Files**: Svelte components `PascalCase.svelte`; everything else lowercase.

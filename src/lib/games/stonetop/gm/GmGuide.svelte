@@ -1,5 +1,5 @@
 <!--
-	Stonetop GM guide — the component the shell mounts for `/g/[game]/gm/[section]`.
+	Stonetop GM guide — the component the shell mounts for `/[game=game]/gm/[section]`.
 	It receives the whole GM playbook pack (opaque `unknown` from the shell) plus
 	the section id to show, casts the pack to `GmPlaybook`, and dispatches to the
 	matching section component. Section nav and routing live in the shell; this

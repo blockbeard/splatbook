@@ -29,7 +29,7 @@ export function registerGame(module: GameModule): void {
 	registerPackSchemas(module.id, module.packSchemas);
 }
 
-/** Look a game up by id (the `/g/[game]` URL segment). */
+/** Look a game up by id (the `/[game=game]` URL segment). */
 export function getGame(id: string): GameModule | undefined {
 	return games.get(id);
 }

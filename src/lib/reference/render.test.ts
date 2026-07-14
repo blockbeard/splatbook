@@ -37,14 +37,14 @@ describe('renderMarkdown', () => {
 			'stonetop',
 			index
 		);
-		expect(html).toContain('href="/g/stonetop/reference/06-player-moves--defy-danger"');
+		expect(html).toContain('href="/stonetop/reference/06-player-moves--defy-danger"');
 		expect(html).toContain('>Defy Danger</a>');
 		expect(html).not.toContain('[[');
 	});
 
 	it('resolves a note-only wikilink to that note’s opening section', () => {
 		const html = renderMarkdown('[[The Fox]]', 'stonetop', index);
-		expect(html).toContain('href="/g/stonetop/reference/the-fox"');
+		expect(html).toContain('href="/stonetop/reference/the-fox"');
 	});
 
 	it('falls back to the label when the target is unknown', () => {
@@ -68,7 +68,7 @@ describe('renderMarkdown', () => {
 
 	it('resolves a named-block-id wikilink, scoped to its note', () => {
 		const html = renderMarkdown('See [[06 - Player Moves#^clash|Clash]].', 'stonetop', index);
-		expect(html).toContain('href="/g/stonetop/reference/06-player-moves--clash"');
+		expect(html).toContain('href="/stonetop/reference/06-player-moves--clash"');
 		expect(html).toContain('>Clash</a>');
 	});
 

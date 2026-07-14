@@ -38,7 +38,7 @@
 			</a>
 			<nav class="flex items-center gap-4 text-sm text-muted">
 				{#each games as game (game.id)}
-					<a href={resolve('/g/[game]', { game: game.id })} class="hover:text-text">
+					<a href={resolve('/[game=game]', { game: game.id })} class="hover:text-text">
 						{game.name}
 					</a>
 				{/each}

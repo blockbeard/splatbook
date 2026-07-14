@@ -84,7 +84,7 @@ all optional, so a type is only as big as it needs (`src/lib/games/types.ts`):
   "create" action routes straight there. `entityMeta(draft)` reports the `name` and
   `schemaVersion` the shell persists, without the shell ever parsing your blob.
 
-The shell **iterates this map** — routes are `/g/[game]/[type]/{build,play,sheet}`,
+The shell **iterates this map** — routes are `/[game=game]/[type]/{build,play,sheet}`,
 and the dashboard/landing page/save-load all read the type from the map key. Stonetop
 added a third entity type (`threat`) in phase 7 with no shell change at all; that is
 the map doing its job.
@@ -92,7 +92,7 @@ the map doing its job.
 **GM guide** (optional, `gmGuide`) is the other registry slot: read-only reference
 material that isn’t an entity type (nothing is saved). It declares its pack file, its
 ordered nav `sections`, and a `component` that renders one section; the shell serves
-it at `/g/[game]/gm` without inspecting the pack shape. See
+it at `/[game=game]/gm` without inspecting the pack shape. See
 `src/lib/games/stonetop/gm/`.
 
 ## 5. Register it

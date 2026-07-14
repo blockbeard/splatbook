@@ -12,7 +12,7 @@
 	let { gm }: { gm: GmPlaybook } = $props();
 	const t = $derived(gm.threats);
 	const worksheetHref = $derived(
-		resolve('/g/[game]/[type]/play', { game: page.params.game as string, type: 'threat' })
+		resolve('/[game=game]/[type]/play', { game: page.params.game as string, type: 'threat' })
 	);
 </script>
 

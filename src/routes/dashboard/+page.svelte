@@ -20,7 +20,7 @@
 	const when = (iso: string) => dateFmt.format(new Date(iso));
 
 	const openHref = (gameId: string, entityType: string, id: string) =>
-		`${resolve('/g/[game]/[type]/sheet', { game: gameId, type: entityType })}?id=${id}`;
+		`${resolve('/[game=game]/[type]/sheet', { game: gameId, type: entityType })}?id=${id}`;
 
 	async function act(id: string, run: () => Promise<Response>) {
 		busy = id;
