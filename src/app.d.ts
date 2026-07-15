@@ -34,9 +34,17 @@ declare global {
 				DB?: D1Database;
 			};
 		}
+		/**
+		 * Shallow-routing state (`pushState`/`replaceState`). `page.state` is
+		 * the reactive half of a same-document update — kit deliberately leaves
+		 * `page.url` at its load-time value — so anything that must *render* on
+		 * such an update travels here. `tab`: PlayMode's active tab.
+		 */
+		interface PageState {
+			tab?: string;
+		}
 		// interface Error {}
 		// interface PageData {}
-		// interface PageState {}
 	}
 }
 

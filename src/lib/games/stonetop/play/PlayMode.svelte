@@ -90,9 +90,12 @@
 	 *
 	 * `?tab=` makes the active tab shareable and survives a reload: reading
 	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
-	 * picks it up on load, and `replaceState` — a same-document URL update,
-	 * not a navigation — keeps it in sync on every tap without adding history
-	 * entries a player would have to click Back through.
+	 * picks it up on load. In-session switches go through `replaceState` — a
+	 * same-document update, not a navigation, so no history entries a player
+	 * would have to click Back through — but kit's shallow routing updates
+	 * `page.state` reactively while deliberately leaving `page.url` at its
+	 * load-time value, so the live tab rides in `page.state.tab` (typed in
+	 * `app.d.ts`) and the URL write is for the address bar alone.
 	 */
 	type TabId =
 		| 'sheet'
@@ -128,19 +131,24 @@
 		...(hasThrallInsert(c) ? [{ id: 'thrall' as const, label: 'Thrall' }] : []),
 		...(hasArcanaInsert(c) ? [{ id: 'arcana' as const, label: 'Arcana' }] : [])
 	]);
-	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
+	const isTabId = (v: string | null | undefined): v is TabId => TABS.some((t) => t.id === v);
 	const activeTab = $derived<TabId>(
 		(() => {
-			const requested = page.url.searchParams.get('tab');
+			// `page.state.tab` first — it's the half `replaceState` actually
+			// updates. The URL param only decides the load-time tab (SSR,
+			// hydration, reload); it never changes underneath us.
+			const requested = page.state.tab ?? page.url.searchParams.get('tab');
 			return isTabId(requested) ? requested : 'sheet';
 		})()
 	);
 	function selectTab(id: TabId): void {
 		const url = new URL(page.url);
 		url.searchParams.set('tab', id);
-		// Same-document query update, not a route change.
+		// Same-document query update, not a route change. The URL keeps the
+		// tab shareable; `state.tab` is what makes the switch render (see the
+		// tab-bar comment above).
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		replaceState(url, page.state);
+		replaceState(url, { ...page.state, tab: id });
 	}
 
 	// Inventory's attention badge: overloaded. Loaded independently of the
