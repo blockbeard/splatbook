@@ -41,10 +41,24 @@ export interface PlayProps {
 	 * owns the randomness, the result surface and the campaign log. A sheet calls
 	 * this when a stat or a move is tapped: `roll('Roll +DEX', '2d6+1')`.
 	 *
+	 * `opts.onMiss` (commit 109) is a PbtA-shaped opt-in: if — and only if — the
+	 * roll turns out to total 6 or less, the shell's result surface offers this
+	 * follow-up instead of fading on its own, waiting for the player to either
+	 * run it or dismiss it. The shell computes the total and makes the call on
+	 * whether to offer it at all; it never decides what running it *does* — the
+	 * game supplies both the button's words and the action, so "damage rolls,
+	 * steading rolls, and bare-notation rolls never offer this" falls out for
+	 * free from which calls simply never pass `onMiss`, not from the shell
+	 * knowing what a "miss" or "XP" means.
+	 *
 	 * Absent when the host has no roll surface (e.g. the read-only sheet route),
 	 * so a play component must treat it as optional.
 	 */
-	roll?: (label: string, notation: string) => void;
+	roll?: (
+		label: string,
+		notation: string,
+		opts?: { onMiss?: { label: string; action: () => void } }
+	) => void;
 	/**
 	 * The campaign this entity is attached to, if any (commit 105) — an opaque
 	 * id the shell hands through so a play component can look up campaign-level

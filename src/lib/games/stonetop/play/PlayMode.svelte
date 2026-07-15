@@ -233,19 +233,35 @@
 	const toggleDebility = (stat: StatKey): void =>
 		emit(setDebility(c, stat, !isDebilitated(c, stat)));
 
+	// commit 109: turn a `ResolvedRoll`'s optional `onMiss` (a pure entity
+	// update) into the closure-over-`onChange` shape `roll()` expects — the one
+	// place that bridges "the dice engine only sees plain data" and "only this
+	// component can actually save a new character".
+	const asRollOpts = (resolved: {
+		onMiss?: { label: string; apply: (entity: object) => object };
+	}): { onMiss?: { label: string; action: () => void } } | undefined =>
+		resolved.onMiss
+			? {
+					onMiss: {
+						label: resolved.onMiss.label,
+						action: () => onChange(resolved.onMiss!.apply(c))
+					}
+				}
+			: undefined;
+
 	// Tapping a stat rolls it — the thing you do a hundred times a session. The
 	// debility is a state you set occasionally, so it gets its own small control
 	// rather than sharing the tap target.
 	const rollStat = (stat: StatKey): void => {
-		const { label, notation } = rollForStat(c, stat);
-		roll?.(label, notation);
+		const resolved = rollForStat(c, stat);
+		roll?.(resolved.label, resolved.notation, asRollOpts(resolved));
 	};
 
 	/** Roll a move: same 2d6+stat, labelled with the move so the log reads
 	 * "Clash +STR (+1)" rather than a bare stat roll. */
 	const rollMove = (move: { name: string }, stat: StatKey): void => {
-		const { label, notation } = rollForStat(c, stat, move.name);
-		roll?.(label, notation);
+		const resolved = rollForStat(c, stat, move.name);
+		roll?.(resolved.label, resolved.notation, asRollOpts(resolved));
 	};
 
 	/**

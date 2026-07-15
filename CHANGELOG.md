@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A miss marks XP** (commit 109). A stat roll that totals 6 or less now
+  offers a "Mark XP" button on the roll surface — Stonetop's "on a miss, mark
+  experience," reached without the shell ever knowing what marking XP means.
+  `ResolvedRoll` grows an optional `onMiss: { label, apply: (entity) =>
+  entity }` — a pure update function the game computes ahead of the roll,
+  since only the game holds the character's shape. `stonetopDice.resolve`
+  and `rollForStat` (`dice.ts`) always arm one (`markXp`, +1 XP);
+  `rollForSteadingStat` deliberately never does, so a steading roll can never
+  qualify, and `rollDamage` never reaches `rollForStat` at all, so damage
+  rolls can't either. `PlayMode.svelte` bridges the pure `apply` into an
+  imperative `{ label, action }` closure over `onChange` (`asRollOpts`) —
+  the one place with both the character and the save path in scope — before
+  handing it to the shell's `roll()`, whose own `PlayProps.roll` signature
+  grows a matching third `opts?: { onMiss? }` parameter. The shell
+  (`+page.svelte`, both routes) only arms the follow-up on the `RollEntry`
+  when the total actually came in at 6 or less, and only ever runs the
+  closure it was handed — it still never reads the character. `RollSurface`
+  holds a pending follow-up open instead of fading it on the usual 6s timer,
+  shows a brief "✓ Marked." confirmation once run, and then closes on a
+  shorter 3s timer. `e2e/miss-marks-xp.spec.ts` drives a guaranteed miss via
+  the bonus box (commit 107) at -20 and asserts the button, the confirmation,
+  the XP tally updating on the sheet, and that a damage roll never shows the
+  button even at the same total.
+
 - **Damage rolls** (commit 108). The playbook's `base.damage` (the Heavy's
   d10) is now a "Damage (dX)" button on the play sheet's header, always
   available, and on any move card tagged `rollsDamage` — moves whose own

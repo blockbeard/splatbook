@@ -21,6 +21,7 @@
 		formatSigned,
 		roll as rollDice,
 		type DicePreset,
+		type ResolvedRoll,
 		type RollMode,
 		type RollResult
 	} from '$lib/dice';
@@ -73,6 +74,13 @@
 		result: RollResult;
 		actorName?: string;
 		key: number;
+		/**
+		 * commit 109: present only when this roll totalled 6 or less *and* the
+		 * caller armed a follow-up for that — the result surface offers it
+		 * instead of fading on its own. Damage, steading, and bare-notation
+		 * rolls never arm one, so they never reach this regardless of total.
+		 */
+		onMiss?: { label: string; action: () => void };
 	}
 
 	let recent = $state<RollEntry[]>([]);
@@ -98,7 +106,12 @@
 	 * is the extra a campaign buys, and is best-effort — a failed write must never
 	 * interrupt play.
 	 */
-	function makeRoll(label: string, notation: string, mode: RollMode = 'normal'): void {
+	function makeRoll(
+		label: string,
+		notation: string,
+		opts?: { mode?: RollMode; onMiss?: { label: string; action: () => void } }
+	): void {
+		const mode = opts?.mode ?? 'normal';
 		const armedBonus = bonus;
 		const result = rollDice(notation, { mode, bonus: armedBonus });
 		const fullLabel = armedBonus !== 0 ? `${label} (bonus ${formatSigned(armedBonus)})` : label;
@@ -106,7 +119,8 @@
 			label: fullLabel,
 			result,
 			actorName: characterName ?? undefined,
-			key: nextKey++
+			key: nextKey++,
+			onMiss: result.total <= 6 ? opts?.onMiss : undefined
 		};
 		recent = [entry, ...recent].slice(0, 8);
 		latest = entry;
@@ -122,13 +136,23 @@
 
 	/** A preset button. The game resolves the preset's dynamic modifier against
 	 * the character — a stat it holds and the shell can't read. With no resolver,
-	 * or nothing in play, the bare notation is the right roll. */
+	 * or nothing in play, the bare notation is the right roll (and never a
+	 * candidate for `onMiss`, since a bare `ResolvedRoll` never carries one). */
 	function rollPreset(preset: DicePreset, mode: RollMode): void {
-		const resolved =
+		const resolved: ResolvedRoll =
 			dice?.resolve && character
 				? dice.resolve(preset, character)
 				: { label: preset.label, notation: preset.notation };
-		makeRoll(resolved.label, resolved.notation, mode);
+		makeRoll(resolved.label, resolved.notation, {
+			mode,
+			onMiss:
+				resolved.onMiss && character
+					? {
+							label: resolved.onMiss.label,
+							action: () => onChange(resolved.onMiss!.apply(character!))
+						}
+					: undefined
+		});
 	}
 
 	/**

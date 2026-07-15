@@ -18,7 +18,7 @@
  */
 
 import type { DiceModule, DicePreset, ResolvedRoll } from '../../dice';
-import { STAT_KEYS, effectiveStat, type StatKey, type StonetopCharacter } from './engine';
+import { STAT_KEYS, effectiveStat, markXp, type StatKey, type StonetopCharacter } from './engine';
 import { STEADING_STATS, type SteadingStatKey, type StonetopSteading } from './engine/steading';
 
 /** The six stat rolls. */
@@ -37,6 +37,11 @@ export function formatModifier(value: number): string {
 /**
  * `2d6` plus a character's effective stat, labelled with the modifier applied —
  * the roll behind a tapped stat, and behind a move that keys off one.
+ *
+ * Every real stat/move roll carries `onMiss` (commit 109): a 6- on a 2d6+stat
+ * roll is the book's "miss" result, and Stonetop's consolation for missing is
+ * to mark XP. `rollForSteadingStat` below is a different function precisely so
+ * a steading's roll — no XP track of its own — never gets this by accident.
  */
 export function rollForStat(
 	character: StonetopCharacter,
@@ -47,7 +52,8 @@ export function rollForStat(
 	const what = moveName ?? 'Roll';
 	return {
 		label: `${what} +${stat} (${formatModifier(modifier)})`,
-		notation: `2d6${formatModifier(modifier)}`
+		notation: `2d6${formatModifier(modifier)}`,
+		onMiss: { label: 'Mark XP', apply: (c) => markXp(c as StonetopCharacter, 1) }
 	};
 }
 

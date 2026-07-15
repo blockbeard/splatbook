@@ -36,6 +36,16 @@ export interface ResolvedRoll {
 	label: string;
 	/** Concrete notation including any dynamic modifier, e.g. `"2d6+2"`. */
 	notation: string;
+	/**
+	 * A follow-up worth offering if this roll turns out to total 6 or less
+	 * (commit 109) — a pure `(entity) => nextEntity` update rather than a
+	 * closure over `onChange`, since `resolve` only ever sees the entity, not
+	 * the host's write path. The host applies it itself if the player accepts.
+	 * Present on a real stat/move roll (Stonetop's `rollForStat`); absent from
+	 * a bare preset with nothing to resolve, so it can never reach a base die
+	 * or a damage roll by accident.
+	 */
+	onMiss?: { label: string; apply: (entity: object) => object };
 }
 
 /** A game's dice contribution: the presets it offers. Attached to the optional
