@@ -38,7 +38,7 @@
 		return () => (alive = false);
 	});
 
-	const state = $derived(crewOf(character));
+	const crew = $derived(crewOf(character));
 </script>
 
 {#if loadError}
@@ -62,11 +62,11 @@
 			</legend>
 			<div class="mt-2 flex flex-wrap gap-2">
 				{#each insert.tags.options as tag (tag)}
-					{@const on = state.tags.includes(tag)}
+					{@const on = crew.tags.includes(tag)}
 					<button
 						type="button"
 						onclick={() => onChange(toggleCrewTag(character, tag))}
-						disabled={!on && state.tags.length >= insert.tags.choose}
+						disabled={!on && crew.tags.length >= insert.tags.choose}
 						aria-pressed={on}
 						class="rounded-md border px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-40 {on
 							? 'border-accent bg-accent/5 ring-1 ring-accent'
@@ -76,7 +76,7 @@
 					</button>
 				{/each}
 				{#each insert.tags.special as special (special.name)}
-					{@const on = state.specialTags.includes(special.name)}
+					{@const on = crew.specialTags.includes(special.name)}
 					<button
 						type="button"
 						onclick={() => onChange(toggleCrewSpecialTag(character, special.name))}
@@ -89,9 +89,9 @@
 					</button>
 				{/each}
 			</div>
-			{#if state.tagsWriteIn.length}
+			{#if crew.tagsWriteIn.length}
 				<div class="mt-2 flex flex-wrap gap-2">
-					{#each state.tagsWriteIn as line, index (index)}
+					{#each crew.tagsWriteIn as line, index (index)}
 						<input
 							type="text"
 							value={line}
@@ -111,8 +111,8 @@
 					<button
 						type="button"
 						onclick={() => onChange(updateCrew(character, { instinct: option }))}
-						aria-pressed={state.instinct === option}
-						class="rounded-md border px-2 py-1 text-xs {state.instinct === option
+						aria-pressed={crew.instinct === option}
+						class="rounded-md border px-2 py-1 text-xs {crew.instinct === option
 							? 'border-accent bg-accent/5 ring-1 ring-accent'
 							: 'border-border hover:border-accent'}"
 					>
@@ -122,7 +122,7 @@
 			</div>
 			<input
 				type="text"
-				value={state.instinct}
+				value={crew.instinct}
 				placeholder="Write your own…"
 				oninput={(e) => onChange(updateCrew(character, { instinct: e.currentTarget.value }))}
 				class="mt-2 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -136,8 +136,8 @@
 					<button
 						type="button"
 						onclick={() => onChange(updateCrew(character, { cost: option }))}
-						aria-pressed={state.cost === option}
-						class="rounded-md border px-2 py-1 text-xs {state.cost === option
+						aria-pressed={crew.cost === option}
+						class="rounded-md border px-2 py-1 text-xs {crew.cost === option
 							? 'border-accent bg-accent/5 ring-1 ring-accent'
 							: 'border-border hover:border-accent'}"
 					>
@@ -147,7 +147,7 @@
 			</div>
 			<input
 				type="text"
-				value={state.cost}
+				value={crew.cost}
 				placeholder="Write your own…"
 				oninput={(e) => onChange(updateCrew(character, { cost: e.currentTarget.value }))}
 				class="mt-2 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -162,13 +162,13 @@
 								onChange(
 									setCrewLoyalty(
 										character,
-										state.loyalty === i + 1 ? i : i + 1,
+										crew.loyalty === i + 1 ? i : i + 1,
 										insert!.cost.loyaltyMax
 									)
 								)}
-							aria-pressed={i < state.loyalty}
+							aria-pressed={i < crew.loyalty}
 							aria-label={`Loyalty: ${i + 1}`}
-							class="h-5 w-5 rounded-sm border border-border transition-colors {i < state.loyalty
+							class="h-5 w-5 rounded-sm border border-border transition-colors {i < crew.loyalty
 								? 'bg-accent'
 								: 'bg-surface hover:bg-border'}"
 						></button>
@@ -185,7 +185,7 @@
 				{/each}
 			</ul>
 			<div class="mt-2 space-y-1">
-				{#each state.gear as line, index (index)}
+				{#each crew.gear as line, index (index)}
 					<input
 						type="text"
 						value={line}
@@ -203,14 +203,14 @@
 				<button
 					type="button"
 					onclick={() => onChange(addCrewIndividual(character, insert!))}
-					disabled={state.individuals.length >= insert.individuals.portraitBoxes}
+					disabled={crew.individuals.length >= insert.individuals.portraitBoxes}
 					class="rounded-md border border-border px-2 py-0.5 text-xs hover:bg-surface disabled:cursor-not-allowed disabled:opacity-40"
 				>
 					+ Individual
 				</button>
 			</div>
 			<div class="mt-2 space-y-2">
-				{#each state.individuals as individual, index (index)}
+				{#each crew.individuals as individual, index (index)}
 					<div class="flex flex-wrap items-center gap-2 rounded-md border border-border p-2">
 						<input
 							type="text"
@@ -251,7 +251,7 @@
 		<label class="block text-xs text-muted">
 			Notes
 			<textarea
-				value={state.notes}
+				value={crew.notes}
 				oninput={(e) => onChange(updateCrew(character, { notes: e.currentTarget.value }))}
 				rows="2"
 				class="mt-0.5 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"

@@ -33,8 +33,8 @@
 		return () => (alive = false);
 	});
 
-	const state = $derived(animalCompanionOf(character));
-	const type = $derived(insert?.types.find((t) => t.id === state.typeId) ?? null);
+	const companion = $derived(animalCompanionOf(character));
+	const type = $derived(insert?.types.find((t) => t.id === companion.typeId) ?? null);
 </script>
 
 {#snippet loyaltyBoxes(filled: number, max: number)}
@@ -69,8 +69,8 @@
 					<button
 						type="button"
 						onclick={() => onChange(setAnimalCompanionType(character, insert!, t.id))}
-						aria-pressed={state.typeId === t.id}
-						class="rounded-md border px-3 py-1.5 text-sm {state.typeId === t.id
+						aria-pressed={companion.typeId === t.id}
+						class="rounded-md border px-3 py-1.5 text-sm {companion.typeId === t.id
 							? 'border-accent bg-accent/5 ring-1 ring-accent'
 							: 'border-border hover:border-accent'}"
 					>
@@ -86,7 +86,7 @@
 		{#if type}
 			<input
 				type="text"
-				value={state.name}
+				value={companion.name}
 				placeholder="Name"
 				oninput={(e) => onChange(updateAnimalCompanion(character, { name: e.currentTarget.value }))}
 				class="w-full rounded border border-border bg-transparent px-2 py-1 font-semibold focus:border-accent focus:ring-0 focus:outline-none"
@@ -97,7 +97,7 @@
 					HP
 					<input
 						type="number"
-						value={state.hp ?? ''}
+						value={companion.hp ?? ''}
 						oninput={(e) =>
 							onChange(
 								updateAnimalCompanion(character, {
@@ -111,7 +111,7 @@
 					Max HP
 					<input
 						type="number"
-						value={state.maxHp ?? ''}
+						value={companion.maxHp ?? ''}
 						oninput={(e) =>
 							onChange(
 								updateAnimalCompanion(character, {
@@ -125,7 +125,7 @@
 					Armor
 					<input
 						type="number"
-						value={state.armor ?? ''}
+						value={companion.armor ?? ''}
 						oninput={(e) =>
 							onChange(
 								updateAnimalCompanion(character, {
@@ -139,7 +139,7 @@
 					Damage
 					<input
 						type="text"
-						value={state.damage}
+						value={companion.damage}
 						oninput={(e) =>
 							onChange(updateAnimalCompanion(character, { damage: e.currentTarget.value }))}
 						class="mt-0.5 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -149,15 +149,15 @@
 
 			<div>
 				<div class="text-xs font-medium text-muted">
-					Traits ({state.traits.length}/{type.pick})
+					Traits ({companion.traits.length}/{type.pick})
 				</div>
 				<div class="mt-1 flex flex-wrap gap-2">
 					{#each type.options as trait (trait)}
-						{@const on = state.traits.includes(trait)}
+						{@const on = companion.traits.includes(trait)}
 						<button
 							type="button"
 							onclick={() => onChange(toggleAnimalCompanionTrait(character, trait))}
-							disabled={!on && state.traits.length >= type.pick}
+							disabled={!on && companion.traits.length >= type.pick}
 							aria-pressed={on}
 							class="rounded-md border px-2 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-40 {on
 								? 'border-accent bg-accent/5 ring-1 ring-accent'
@@ -173,7 +173,7 @@
 				Instinct
 				<input
 					type="text"
-					value={state.instinct}
+					value={companion.instinct}
 					oninput={(e) =>
 						onChange(updateAnimalCompanion(character, { instinct: e.currentTarget.value }))}
 					class="mt-0.5 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -184,7 +184,7 @@
 				Cost
 				<input
 					type="text"
-					value={state.cost}
+					value={companion.cost}
 					oninput={(e) =>
 						onChange(updateAnimalCompanion(character, { cost: e.currentTarget.value }))}
 					class="mt-0.5 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -193,7 +193,7 @@
 
 			<div>
 				<div class="text-xs font-medium text-muted">Loyalty</div>
-				<div class="mt-1">{@render loyaltyBoxes(state.loyalty, insert.cost.loyaltyMax)}</div>
+				<div class="mt-1">{@render loyaltyBoxes(companion.loyalty, insert.cost.loyaltyMax)}</div>
 			</div>
 
 			<div>
@@ -210,14 +210,14 @@
 				</div>
 				<p class="mt-1 text-xs text-muted">{insert.beastOfLegend.text}</p>
 				<div class="mt-1 space-y-1">
-					{#each state.beastOfLegend as pick, index (index)}
+					{#each companion.beastOfLegend as pick, index (index)}
 						<div class="flex items-center gap-2">
 							<select
 								value={pick}
 								onchange={(e) =>
 									onChange(
 										updateAnimalCompanion(character, {
-											beastOfLegend: state.beastOfLegend.map((p, i) =>
+											beastOfLegend: companion.beastOfLegend.map((p, i) =>
 												i === index ? e.currentTarget.value : p
 											)
 										})
@@ -243,7 +243,7 @@
 			<label class="block text-xs text-muted">
 				Notes
 				<textarea
-					value={state.notes}
+					value={companion.notes}
 					oninput={(e) =>
 						onChange(updateAnimalCompanion(character, { notes: e.currentTarget.value }))}
 					rows="2"

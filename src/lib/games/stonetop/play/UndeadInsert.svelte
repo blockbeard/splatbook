@@ -40,7 +40,7 @@
 		return () => (alive = false);
 	});
 
-	const state = $derived(undeadStateOf(character, insertId));
+	const undead = $derived(undeadStateOf(character, insertId));
 </script>
 
 {#if loadError}
@@ -59,7 +59,7 @@
 			<p class="mt-1 text-xs text-muted">{insert.instincts.text}</p>
 			<div class="mt-2 space-y-2">
 				{#each insert.instincts.options as option (option.id)}
-					{@const on = state.instinctId === option.id}
+					{@const on = undead.instinctId === option.id}
 					<button
 						type="button"
 						onclick={() => onChange(setUndeadInstinct(character, insertId, option.id))}
@@ -93,7 +93,7 @@
 			<p class="mt-1 text-xs text-muted">{insert.terriblePurpose.prompt}</p>
 			<div class="mt-2 space-y-2">
 				{#each insert.terriblePurpose.options as option (option.id)}
-					{@const on = state.terriblePurposeId === option.id}
+					{@const on = undead.terriblePurposeId === option.id}
 					<button
 						type="button"
 						onclick={() => onChange(setTerriblePurpose(character, insertId, option.id))}
@@ -114,10 +114,10 @@
 			<p class="mt-1 text-xs text-muted">{insert.consequences.text}</p>
 			<div class="mt-2 space-y-2">
 				{#each insert.consequences.list as entry (entry.id)}
-					{@const on = state.consequences.includes(entry.id)}
+					{@const on = undead.consequences.includes(entry.id)}
 					{@const locked =
 						!on &&
-						!(entry.requires?.consequences ?? []).every((id) => state.consequences.includes(id))}
+						!(entry.requires?.consequences ?? []).every((id) => undead.consequences.includes(id))}
 					<button
 						type="button"
 						onclick={() =>
@@ -137,8 +137,8 @@
 			<button
 				type="button"
 				onclick={() => onChange(toggleFinalConsequence(character, insertId))}
-				aria-pressed={state.finalMarked}
-				class="mt-3 w-full rounded-md border px-3 py-2 text-left text-sm {state.finalMarked
+				aria-pressed={undead.finalMarked}
+				class="mt-3 w-full rounded-md border px-3 py-2 text-left text-sm {undead.finalMarked
 					? 'border-danger bg-danger/10 ring-1 ring-danger'
 					: 'border-border hover:border-danger'}"
 			>

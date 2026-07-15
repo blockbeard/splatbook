@@ -44,3 +44,7 @@ vite.config.ts.timestamp-*
 # Python bytecode cache (tools/build_rules.py, build_srd.py)
 __pycache__/
 *.pyc
+
+# FUSE "sillyrename" leftovers from the no-unlink sandbox mount (in-place
+# edits, e.g. `perl -pi`, leave these when the original can't be unlinked)
+.fuse_hidden*

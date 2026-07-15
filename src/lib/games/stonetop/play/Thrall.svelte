@@ -1,7 +1,7 @@
 <!--
 	Thrall (commit 104), the third narratively-gained undead insert. Unlike
 	Ghost/Revenant, its granted moves include a tracked resource (Favor,
-	0-3) — tracked directly on this insert's state, since insert-granted
+	0-3) — tracked directly on this insert's thrall, since insert-granted
 	moves never enter `character.moves` and so never reach the playbook
 	move-tracker sync.
 -->
@@ -33,7 +33,7 @@
 		return () => (alive = false);
 	});
 
-	const state = $derived(thrallStateOf(character));
+	const thrall = $derived(thrallStateOf(character));
 </script>
 
 {#if loadError}
@@ -51,7 +51,7 @@
 			{insert.master.prompt}
 			<input
 				type="text"
-				value={state.masterName}
+				value={thrall.masterName}
 				oninput={(e) => onChange(updateThrall(character, { masterName: e.currentTarget.value }))}
 				class="mt-1 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
 			/>
@@ -65,8 +65,8 @@
 					<button
 						type="button"
 						onclick={() => onChange(updateThrall(character, { impulse: option }))}
-						aria-pressed={state.impulse === option}
-						class="rounded-md border px-2 py-1 text-xs {state.impulse === option
+						aria-pressed={thrall.impulse === option}
+						class="rounded-md border px-2 py-1 text-xs {thrall.impulse === option
 							? 'border-accent bg-accent/5 ring-1 ring-accent'
 							: 'border-border hover:border-accent'}"
 					>
@@ -76,7 +76,7 @@
 			</div>
 			<input
 				type="text"
-				value={state.impulse}
+				value={thrall.impulse}
 				placeholder="Write your own…"
 				oninput={(e) => onChange(updateThrall(character, { impulse: e.currentTarget.value }))}
 				class="mt-2 w-full rounded border border-border bg-transparent px-2 py-1 text-sm focus:border-accent focus:ring-0 focus:outline-none"
@@ -88,7 +88,7 @@
 			<p class="mt-1 text-xs text-muted">{insert.instincts.text}</p>
 			<div class="mt-2 space-y-2">
 				{#each insert.instincts.options as option (option.id)}
-					{@const on = state.instinctId === option.id}
+					{@const on = thrall.instinctId === option.id}
 					<button
 						type="button"
 						onclick={() => onChange(updateThrall(character, { instinctId: option.id }))}
@@ -120,16 +120,16 @@
 		<div>
 			<div class="flex items-baseline justify-between">
 				<div class="text-sm font-medium">Favor</div>
-				<span class="font-mono text-sm text-muted">{state.favor} / 3</span>
+				<span class="font-mono text-sm text-muted">{thrall.favor} / 3</span>
 			</div>
 			<div class="mt-1 flex gap-1" role="group" aria-label="Favor">
 				{#each Array(3) as _, i (i)}
 					<button
 						type="button"
-						onclick={() => onChange(setThrallFavor(character, state.favor === i + 1 ? i : i + 1))}
-						aria-pressed={i < state.favor}
+						onclick={() => onChange(setThrallFavor(character, thrall.favor === i + 1 ? i : i + 1))}
+						aria-pressed={i < thrall.favor}
 						aria-label={`Favor: ${i + 1}`}
-						class="h-6 w-6 rounded-sm border border-border transition-colors {i < state.favor
+						class="h-6 w-6 rounded-sm border border-border transition-colors {i < thrall.favor
 							? 'bg-accent'
 							: 'bg-surface hover:bg-border'}"
 					></button>
@@ -142,7 +142,7 @@
 			<p class="mt-1 text-xs text-muted">{insert.marks.text}</p>
 			<div class="mt-2 space-y-2">
 				{#each insert.marks.list as mark (mark.id)}
-					{@const on = state.marks.includes(mark.id)}
+					{@const on = thrall.marks.includes(mark.id)}
 					<button
 						type="button"
 						onclick={() => onChange(toggleThrallMark(character, mark.id))}
