@@ -8,9 +8,12 @@ import type {
 	AnimalCompanionInsert,
 	CrewInsert,
 	FollowersInsert,
+	GhostInsert,
 	InitiatesOfDanuInsert,
 	InventoryInsert,
-	InvocationsInsert
+	InvocationsInsert,
+	RevenantInsert,
+	ThrallInsert
 } from '../pack-schemas';
 
 const GAME_ID = 'stonetop';
@@ -58,3 +61,12 @@ export const fetchInitiatesOfDanuInsert = cachedInsertFetcher<InitiatesOfDanuIns
 
 /** Fetch the Marshal's Crew insert (memoised). */
 export const fetchCrewInsert = cachedInsertFetcher<CrewInsert>('insert-crew.json');
+
+/** Fetch the Ghost insert (memoised). */
+export const fetchGhostInsert = cachedInsertFetcher<GhostInsert>('insert-ghost.json');
+
+/** Fetch the Revenant insert (memoised). */
+export const fetchRevenantInsert = cachedInsertFetcher<RevenantInsert>('insert-revenant.json');
+
+/** Fetch the Thrall insert (memoised). */
+export const fetchThrallInsert = cachedInsertFetcher<ThrallInsert>('insert-thrall.json');

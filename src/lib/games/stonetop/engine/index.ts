@@ -116,6 +116,36 @@ export {
 } from './crew';
 
 export {
+	GHOST_INSERT_ID,
+	REVENANT_INSERT_ID,
+	hasUndeadInsert,
+	undeadStateOf,
+	attachUndeadInsert,
+	setUndeadInstinct,
+	setTerriblePurpose,
+	toggleUndeadConsequence,
+	toggleFinalConsequence,
+	hasGhostInsert,
+	ghostStateOf,
+	attachGhost,
+	hasRevenantInsert,
+	revenantStateOf,
+	attachRevenant,
+	type UndeadState
+} from './undead';
+
+export {
+	THRALL_INSERT_ID,
+	hasThrallInsert,
+	thrallStateOf,
+	attachThrall,
+	updateThrall,
+	setThrallFavor,
+	toggleThrallMark,
+	type ThrallState
+} from './thrall';
+
+export {
 	validateCharacter,
 	isComplete,
 	validators,

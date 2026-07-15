@@ -9,6 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Undead inserts** (commit 104): Ghost, Revenant, and Thrall — gained by
+  dying a particular way, not by playbook, so none has an
+  `autoAttachedInsertIds` rule. All three get a "+" tab-bar button like
+  Followers, but simpler: attaching needs no pack data (blank state, nothing
+  to seed from), so unlike Followers' fetch-gated button, these are always
+  clickable.
+
+  Ghost and Revenant validate against one shared pack schema
+  (`undeadInsertSchema`, commit 100) and now share one engine module
+  (`engine/undead.ts`) and one UI component (`UndeadInsert.svelte`,
+  parametrized by insert id and fetcher) rather than duplicating both twice
+  for what's structurally the same insert with different book content.
+  Consequences can gate on an earlier pick (Ghost's `unstable` requires
+  `breakdown` already marked) — `toggleUndeadConsequence` checks that against
+  the pack's `requires.consequences`, and unmarking a prerequisite cascades
+  to unmark whatever it gated, so state can't point at a gate that no longer
+  holds.
+
+  Thrall gets its own engine module and component: a write-in master and
+  impulse, an Instinct pick, and a Favor track (0-3) that lives on the
+  insert's own state rather than `character.trackers`, since Thrall's
+  granted moves never enter `character.moves` and so never reach the
+  playbook move-tracker sync that regular moves get.
+
+  34 new unit tests. Unlike commit 103's class inserts, these attach through
+  a real "+" button today, so they get full e2e coverage now rather than
+  waiting on commit 106: Ghost's attach → pick an Instinct → reload-persists
+  path, plus a lighter check that Revenant's and Thrall's own "+" buttons
+  each produce their own tab. 526/526 unit tests passing, tsc/eslint/prettier
+  clean.
+
 - **Class inserts** (commit 103): Invocations, Animal Companion, Initiates of
   Danu, and Crew — the four playbook-specific inserts that auto-attach per
   commit 99's rules rather than getting a "+" button like Followers. Each

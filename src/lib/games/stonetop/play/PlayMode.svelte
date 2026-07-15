@@ -15,6 +15,9 @@
 		addFollower,
 		advancementLog,
 		applyLevelUp,
+		attachGhost,
+		attachRevenant,
+		attachThrall,
 		canCrossOffWouldBe,
 		canLevelUp,
 		crossOffWouldBe,
@@ -24,8 +27,11 @@
 		hasAnimalCompanionInsert,
 		hasCrewInsert,
 		hasFollowersInsert,
+		hasGhostInsert,
 		hasInitiatesOfDanuInsert,
 		hasInvocationsInsert,
+		hasRevenantInsert,
+		hasThrallInsert,
 		heldMoveIds,
 		isDebilitated,
 		isOverloaded,
@@ -46,7 +52,12 @@
 	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
 	import { fetchBasicMoves } from '../pack/moves';
-	import { fetchFollowersInsert, fetchInventory } from '../pack/inserts';
+	import {
+		fetchFollowersInsert,
+		fetchGhostInsert,
+		fetchInventory,
+		fetchRevenantInsert
+	} from '../pack/inserts';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
@@ -55,6 +66,8 @@
 	import AnimalCompanion from './AnimalCompanion.svelte';
 	import InitiatesOfDanu from './InitiatesOfDanu.svelte';
 	import Crew from './Crew.svelte';
+	import UndeadInsert from './UndeadInsert.svelte';
+	import Thrall from './Thrall.svelte';
 
 	let { character, onChange, roll }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
@@ -63,12 +76,14 @@
 	 * The tab bar (commit 101): Sheet keeps vitals/stats/XP/trackers/
 	 * advancement; Moves and Inventory moved whole into their own tabs.
 	 * One tab per attached insert slots in after Inventory. Followers
-	 * (commit 102) is player-optional, so it gets the "+" affordance below;
-	 * Invocations/Animal Companion/Initiates of Danu/Crew (commit 103)
-	 * auto-attach per commit 99's rules (today: only on the v2→v3 migration
-	 * path — commit 106 wires the wizard to attach them at creation too), so
-	 * their tabs just appear once attached, no button needed. Ghost/Revenant/
-	 * Thrall (commit 104) are narrative-triggered, not player-optional either.
+	 * (commit 102) and Ghost/Revenant/Thrall (commit 104) are all things a
+	 * player or GM decides to attach at the table — the former discretionary,
+	 * the latter three narratively triggered (a particular way of dying) —
+	 * so all four get a "+" affordance below. Invocations/Animal Companion/
+	 * Initiates of Danu/Crew (commit 103) auto-attach per commit 99's rules
+	 * (today: only on the v2→v3 migration path — commit 106 wires the wizard
+	 * to attach them at creation too), so their tabs just appear once
+	 * attached, no button needed.
 	 *
 	 * `?tab=` makes the active tab shareable and survives a reload: reading
 	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
@@ -84,7 +99,10 @@
 		| 'invocations'
 		| 'animal-companion'
 		| 'initiates-of-danu'
-		| 'crew';
+		| 'crew'
+		| 'ghost'
+		| 'revenant'
+		| 'thrall';
 	const BASE_TABS: { id: TabId; label: string }[] = [
 		{ id: 'sheet', label: 'Sheet' },
 		{ id: 'moves', label: 'Moves' },
@@ -100,7 +118,10 @@
 		...(hasInitiatesOfDanuInsert(c)
 			? [{ id: 'initiates-of-danu' as const, label: 'Initiates' }]
 			: []),
-		...(hasCrewInsert(c) ? [{ id: 'crew' as const, label: 'Crew' }] : [])
+		...(hasCrewInsert(c) ? [{ id: 'crew' as const, label: 'Crew' }] : []),
+		...(hasGhostInsert(c) ? [{ id: 'ghost' as const, label: 'Ghost' }] : []),
+		...(hasRevenantInsert(c) ? [{ id: 'revenant' as const, label: 'Revenant' }] : []),
+		...(hasThrallInsert(c) ? [{ id: 'thrall' as const, label: 'Thrall' }] : [])
 	]);
 	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
 	const activeTab = $derived<TabId>(
@@ -150,6 +171,21 @@
 		if (!followersInsert) return;
 		onChange(addFollower(c, followersInsert));
 		selectTab('followers');
+	}
+
+	// Ghost/Revenant/Thrall need no pack data to attach — blank state, no
+	// shape to seed from — so unlike Followers there's nothing to fetch first.
+	function attachGhostAndSelect(): void {
+		onChange(attachGhost(c));
+		selectTab('ghost');
+	}
+	function attachRevenantAndSelect(): void {
+		onChange(attachRevenant(c));
+		selectTab('revenant');
+	}
+	function attachThrallAndSelect(): void {
+		onChange(attachThrall(c));
+		selectTab('thrall');
 	}
 
 	let playbook = $state<Playbook | null>(null);
@@ -385,6 +421,36 @@
 					disabled={!followersInsert}
 					aria-label="Add Followers"
 					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
+				>
+					+
+				</button>
+			{/if}
+			{#if !hasGhostInsert(c)}
+				<button
+					type="button"
+					onclick={attachGhostAndSelect}
+					aria-label="Add Ghost"
+					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent"
+				>
+					+
+				</button>
+			{/if}
+			{#if !hasRevenantInsert(c)}
+				<button
+					type="button"
+					onclick={attachRevenantAndSelect}
+					aria-label="Add Revenant"
+					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent"
+				>
+					+
+				</button>
+			{/if}
+			{#if !hasThrallInsert(c)}
+				<button
+					type="button"
+					onclick={attachThrallAndSelect}
+					aria-label="Add Thrall"
+					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent"
 				>
 					+
 				</button>
@@ -638,6 +704,34 @@
 		{#if activeTab === 'crew'}
 			<section>
 				<Crew character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'ghost'}
+			<section>
+				<UndeadInsert
+					character={c}
+					{onChange}
+					insertId="insert-ghost"
+					fetchInsert={fetchGhostInsert}
+				/>
+			</section>
+		{/if}
+
+		{#if activeTab === 'revenant'}
+			<section>
+				<UndeadInsert
+					character={c}
+					{onChange}
+					insertId="insert-revenant"
+					fetchInsert={fetchRevenantInsert}
+				/>
+			</section>
+		{/if}
+
+		{#if activeTab === 'thrall'}
+			<section>
+				<Thrall character={c} {onChange} />
 			</section>
 		{/if}
 	</article>
