@@ -9,7 +9,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { getGame } from '$lib/games';
-	import { Wizard } from '$lib/wizard';
+	import { Wizard, draftKey, clearDraft } from '$lib/wizard';
 	import { draftToPayload, saveEntity } from '$lib/entities/client';
 
 	let { data } = $props();
@@ -28,6 +28,11 @@
 			if (payload) {
 				try {
 					const saved = await saveEntity(payload);
+					// The autosaved draft has served its purpose — clear it, or the
+					// next full page load's `migrateLocalDrafts` (root layout) pushes
+					// it up again as a duplicate character. `'current'` matches the
+					// Wizard's default `draftId`, which this page doesn't override.
+					clearDraft(localStorage, draftKey(data.gameId, data.entityType, 'current'));
 					// `sheet` is a resolved path; we only append a query string (rule
 					// disabled for this file in eslint.config.js).
 					await goto(`${sheet}?id=${saved.id}`);
