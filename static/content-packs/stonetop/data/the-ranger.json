@@ -107,7 +107,8 @@
       {
         "id": "call-the-shot",
         "name": "Call the Shot",
-        "text": "When you *take your time and calmly line up the perfect shot*, either deal your damage or roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal your damage and pick 1.\n\n- Ignore armor or deal +1d4 damage (your call)\n- Stun, hobble, or hinder them\n- Make them trip or drop what they're holding\n- Do no harm; don't deal your damage after all"
+        "text": "When you *take your time and calmly line up the perfect shot*, either deal your damage or roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal your damage and pick 1.\n\n- Ignore armor or deal +1d4 damage (your call)\n- Stun, hobble, or hinder them\n- Make them trip or drop what they're holding\n- Do no harm; don't deal your damage after all",
+        "rollsDamage": true
       },
       {
         "id": "expert-tracker",

@@ -248,6 +248,18 @@
 		roll?.(label, notation);
 	};
 
+	/**
+	 * Roll this playbook's base damage die (commit 108) — Clash, Let Fly and
+	 * kin all say "deal your damage" rather than spelling out a notation, so
+	 * every `rollsDamage` move and the sheet header share this one roll. A
+	 * rider like "+1d4" isn't folded in here; it rides commit 107's bonus box,
+	 * dialled in by the player before tapping the button.
+	 */
+	const rollDamage = (label = 'Damage'): void => {
+		if (!playbook) return;
+		roll?.(label, playbook.base.damage);
+	};
+
 	const fmt = (n: number | undefined): string =>
 		n === undefined ? '—' : n >= 0 ? `+${n}` : `${n}`;
 
@@ -270,7 +282,7 @@
 	});
 
 	// The basic moves everyone can make, from the pack.
-	let basicMoves = $state<{ id: string; name: string; text: string }[]>([]);
+	let basicMoves = $state<{ id: string; name: string; text: string; rollsDamage?: boolean }[]>([]);
 	$effect(() => {
 		let alive = true;
 		fetchBasicMoves(fetch)
@@ -336,14 +348,16 @@
 	const heroCrossed = $derived(isWouldBeCrossed(c));
 </script>
 
-{#snippet moveCard(move: { id: string; name: string; text: string })}
+{#snippet moveCard(move: { id: string; name: string; text: string; rollsDamage?: boolean })}
 	{@const stats = movesRollStats(move)}
 	<div class="rounded-lg border border-border p-3">
 		<div class="flex flex-wrap items-baseline justify-between gap-2">
 			<h4 class="font-semibold">{move.name}</h4>
 			<!-- A move is rollable when its text says what it rolls. Defy Danger prints
-			     six options, so it gets six buttons; Aid prints none, so it gets none. -->
-			{#if roll && stats.length}
+			     six options, so it gets six buttons; Aid prints none, so it gets none.
+			     `rollsDamage` (commit 108) is the same idea for Clash/Let Fly and kin,
+			     whose resolution says "deal your damage" instead of a stat notation. -->
+			{#if roll && (stats.length || move.rollsDamage)}
 				<div class="flex flex-wrap gap-1">
 					{#each stats as stat (stat)}
 						<button
@@ -355,6 +369,16 @@
 							<span class="font-mono">{fmt(effectiveStat(c, stat))}</span>
 						</button>
 					{/each}
+					{#if move.rollsDamage && playbook}
+						<button
+							type="button"
+							onclick={() => rollDamage(`${move.name} — damage`)}
+							class="rounded-md border border-accent px-2 py-0.5 text-xs font-medium text-accent hover:bg-accent/10"
+						>
+							Damage
+							<span class="font-mono">({playbook.base.damage})</span>
+						</button>
+					{/if}
 				</div>
 			{/if}
 		</div>
@@ -392,15 +416,26 @@
 						>Hero</span
 					>{/if}
 			</p>
-			{#if showCrossOff}
-				<button
-					type="button"
-					onclick={crossOff}
-					class="mt-2 rounded-md border border-accent px-3 py-1 text-sm font-medium text-accent hover:bg-accent/10"
-				>
-					Cross off “Would-be” — you’re a Hero now
-				</button>
-			{/if}
+			<div class="mt-2 flex flex-wrap gap-2">
+				{#if roll}
+					<button
+						type="button"
+						onclick={() => rollDamage()}
+						class="rounded-md border border-accent px-3 py-1 text-sm font-medium text-accent hover:bg-accent/10"
+					>
+						Damage ({playbook.base.damage})
+					</button>
+				{/if}
+				{#if showCrossOff}
+					<button
+						type="button"
+						onclick={crossOff}
+						class="rounded-md border border-accent px-3 py-1 text-sm font-medium text-accent hover:bg-accent/10"
+					>
+						Cross off “Would-be” — you’re a Hero now
+					</button>
+				{/if}
+			</div>
 		</header>
 
 		<nav class="flex gap-1 overflow-x-auto border-b border-border" aria-label="Character sections">

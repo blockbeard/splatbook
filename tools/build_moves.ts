@@ -34,6 +34,19 @@ const END_OF_SESSION = '03-playing-the-game--end-of-session';
 const STEADING_STATS = ['Fortunes', 'Surplus', 'Population', 'Prosperity', 'Defenses'];
 const ROLLS_STEADING_STAT = new RegExp(`rolls?\\s*\\+(${STEADING_STATS.join('|')})\\b`, 'i');
 
+/**
+ * Moves whose own resolution *is* "deal your damage" — commit 108's "Damage"
+ * button. Hand-curated by id rather than text-matched: the book's exact
+ * phrasing ("deal your damage") also shows up as one option among several on
+ * moves that aren't fundamentally about dealing damage — Defend's "strike
+ * back at an attacker (deal your damage, with disadvantage)" is one of four
+ * spendable Readiness options, not the move's trigger, and a regex can't
+ * tell "the move's resolution" from "a bullet point inside it" the way a
+ * reader can. Revisit this list if a future vault regeneration adds a new
+ * basic move built the same way as Clash/Let Fly.
+ */
+const ROLLS_DAMAGE_IDS = new Set(['clash', 'let-fly']);
+
 const packPaths = (file: string) => [
 	`content/stonetop/data/${file}`,
 	`static/content-packs/stonetop/data/${file}`
@@ -76,6 +89,7 @@ interface MoveEntry {
 	id: string;
 	name: string;
 	text: string;
+	rollsDamage?: boolean;
 }
 
 /**
@@ -116,10 +130,12 @@ function movesInRun(startId: string, endsAt: RegExp, keep: (m: MoveEntry) => boo
 	for (const section of all.slice(start + 1)) {
 		if (endsAt.test(section.title)) break;
 		if (!section.body?.trim()) continue;
-		const move = {
-			id: slug(section.title),
+		const id = slug(section.title);
+		const move: MoveEntry = {
+			id,
 			name: titleCase(section.title),
-			text: dequote(section.body)
+			text: dequote(section.body),
+			...(ROLLS_DAMAGE_IDS.has(id) ? { rollsDamage: true } : {})
 		};
 		if (keep(move)) moves.push(move);
 	}

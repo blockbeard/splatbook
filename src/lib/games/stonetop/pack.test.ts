@@ -25,6 +25,7 @@ import {
 	insertGhostSchema,
 	insertRevenantSchema,
 	insertThrallSchema,
+	basicMovesSchema,
 	schemaFor,
 	type Playbook
 } from './pack-schemas';
@@ -201,6 +202,39 @@ describe('stonetop id snapshots', () => {
 				if (move.replaces) check(move.replaces, `move ${move.id} replaces`);
 			}
 			expect(missing, `${playbook.id}: dangling move references`).toEqual([]);
+		}
+	});
+
+	it('every playbook has a base damage die', async () => {
+		for (const file of playbookFiles) {
+			const playbook: Playbook = playbookSchema.parse(await loadPackFile(packRoot, file));
+			expect(playbook.base.damage, file).toMatch(/^d\d+$/);
+		}
+	});
+
+	it('tags exactly the moves whose own resolution deals your base damage die (commit 108)', async () => {
+		const basic = basicMovesSchema.parse(await loadPackFile(packRoot, 'data/basic-moves.json'));
+		const basicTagged = basic.moves.filter((m) => m.rollsDamage).map((m) => m.id);
+		expect(basicTagged).toEqual(['clash', 'let-fly']);
+
+		const playbookCases: [file: string, moveId: string][] = [
+			['data/the-fox.json', 'ambush'],
+			['data/the-judge.json', 'the-hammer-and-the-book'],
+			['data/the-ranger.json', 'call-the-shot']
+		];
+		for (const [file, moveId] of playbookCases) {
+			const playbook: Playbook = playbookSchema.parse(await loadPackFile(packRoot, file));
+			const move = playbook.moves.list.find((m) => m.id === moveId);
+			expect(move?.rollsDamage, `${file}: ${moveId}`).toBe(true);
+		}
+
+		// Nothing else across the 9 playbooks is tagged — a rider on top of
+		// another roll's damage (e.g. "+1d4") rides the bonus box, not this.
+		for (const file of playbookFiles) {
+			if (playbookCases.some(([f]) => f === file)) continue;
+			const playbook: Playbook = playbookSchema.parse(await loadPackFile(packRoot, file));
+			const tagged = playbook.moves.list.filter((m) => m.rollsDamage);
+			expect(tagged, file).toEqual([]);
 		}
 	});
 });

@@ -70,7 +70,8 @@
       {
         "id": "ambush",
         "name": "Ambush",
-        "text": "When you *get the drop on a nearby foe*, you can deal your damage or opt to roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal damage and pick 1:\n\n- Deal +1d4 damage\n- Stop them from making noise/raising an alarm\n- Slip away before they can react\n- Create an opportunity; you or an ally gains advantage on the next move to act on it"
+        "text": "When you *get the drop on a nearby foe*, you can deal your damage or opt to roll +DEX: **on a 10+**, deal your damage and pick 2; **on a 7-9**, deal damage and pick 1:\n\n- Deal +1d4 damage\n- Stop them from making noise/raising an alarm\n- Slip away before they can react\n- Create an opportunity; you or an ally gains advantage on the next move to act on it",
+        "rollsDamage": true
       },
       {
         "id": "burgle",

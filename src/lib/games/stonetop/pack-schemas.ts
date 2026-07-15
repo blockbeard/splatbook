@@ -101,6 +101,13 @@ const moveSchema = z.strictObject({
 	excludes: z.array(id).optional(),
 	/** The Would-be Hero's asterisk rule. */
 	asterisk: z.boolean().optional(),
+	/** This move's own resolution says to deal your base damage die (Clash, Let
+	 * Fly and kin) — the sheet renders a "Damage (dX)" button on the card,
+	 * rolling `playbook.base.damage`. A move that only adds a rider on top of
+	 * *another* roll's damage (e.g. "+1d4") doesn't get this; that bonus rides
+	 * commit 107's custom bonus box instead, dialled in before tapping the
+	 * triggering roll. */
+	rollsDamage: z.boolean().optional(),
 	/** Taking this move raises one stat by +1, up to `cap` (Improved Stat +2,
 	 * Superior Stat +3). The player picks which stat on Level Up. */
 	statBump: z.strictObject({ cap: z.number().int() }).optional()
@@ -980,7 +987,19 @@ function movesFileSchema<T extends string>(fileId: T) {
 		type: z.literal('moves'),
 		/** Where the generator lifted these from, for the next regeneration. */
 		source: z.strictObject({ file: z.string().min(1), section: z.string().min(1) }),
-		moves: z.array(z.strictObject({ id, name: z.string().min(1), text: markdown })).min(1)
+		moves: z
+			.array(
+				z.strictObject({
+					id,
+					name: z.string().min(1),
+					text: markdown,
+					/** Same meaning as `moveSchema`'s `rollsDamage` (Clash, Let Fly) —
+					 * detected by `build_moves.ts` from the move's own text, not
+					 * hand-authored, since this file regenerates from the vault. */
+					rollsDamage: z.boolean().optional()
+				})
+			)
+			.min(1)
 	});
 }
 

@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Damage rolls** (commit 108). The playbook's `base.damage` (the Heavy's
+  d10) is now a "Damage (dX)" button on the play sheet's header, always
+  available, and on any move card tagged `rollsDamage` — moves whose own
+  resolution says "deal your damage" rather than spelling out a roll: Clash
+  and Let Fly (basic moves, curated by id in `tools/build_moves.ts` rather
+  than text-matched, since the same phrase also shows up as one option among
+  several on moves that aren't fundamentally about dealing damage — Defend's
+  "strike back... deal your damage, with disadvantage" is a Readiness spend,
+  not a trigger), plus the Fox's Ambush, the Judge's The Hammer and the
+  Book, and the Ranger's Call the Shot (hand-tagged in their playbook data).
+  A rider on top of another roll's damage (e.g. "+1d4") isn't tagged — it
+  rides commit 107's bonus box instead, dialled in before the triggering
+  roll. New `pack-schemas.ts` field `rollsDamage: boolean?` on both
+  `moveSchema` and the shared basic/steading-moves shape; `pack.test.ts`
+  asserts the exact tagged set and that nothing else across the 9 playbooks
+  picked up the tag by accident. `e2e/damage-rolls.spec.ts` covers both the
+  header button and a move card's button end to end.
+
 - **Full dice panel + custom bonus** (commit 107). The dice panel now always
   offers the whole standard polyhedral set — d4, d6, d8, d10, d12, d20, 2d6 —
   regardless of what a game's own presets cover, so it's useful for a damage

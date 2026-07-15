@@ -44,6 +44,7 @@ Move:
 | `tracker` | object? | `{ "boxes": 4, "label": "Boon" }` for use-trackers printed on the sheet |
 | `statBump` | object? | `{ "cap": 2 }` — taking this move raises one stat by +1 up to `cap` (Improved Stat +2, Superior Stat +3); the player picks the stat on Level Up |
 | `childOf` | string? | id of parent move (Borrow Power / Call the Spirits sit under Spirit Tongue) |
+| `rollsDamage` | bool? | this move's own resolution says to deal your base damage die (Clash, Let Fly, Ambush…) — the sheet renders a "Damage (dX)" button on the card, rolling the playbook's `base.damage`. A rider on top of *another* roll's damage (e.g. "+1d4") doesn't get this. |
 
 ## Shared shapes
 

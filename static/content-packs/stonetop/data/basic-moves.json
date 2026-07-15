@@ -15,7 +15,8 @@
 		{
 			"id": "clash",
 			"name": "Clash",
-			"text": "When you *fight in melee or close quarters*, roll +STR: **on a 10+**, your maneuver works as expected (deal your damage) and pick 1.\n\n- Avoid, prevent, or counter your enemy's attack\n- Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack\n\n**On a 7-9**, your maneuver works, mostly (deal your damage) but you suffer your enemy's attack.\n\nFor more information, see [[06 - Player Moves#^clash|Clash]]."
+			"text": "When you *fight in melee or close quarters*, roll +STR: **on a 10+**, your maneuver works as expected (deal your damage) and pick 1.\n\n- Avoid, prevent, or counter your enemy's attack\n- Strike hard and fast, for 1d6 extra damage, but suffer your enemy's attack\n\n**On a 7-9**, your maneuver works, mostly (deal your damage) but you suffer your enemy's attack.\n\nFor more information, see [[06 - Player Moves#^clash|Clash]].",
+			"rollsDamage": true
 		},
 		{
 			"id": "defend",
@@ -40,7 +41,8 @@
 		{
 			"id": "let-fly",
 			"name": "Let Fly",
-			"text": "When you *take an easy shot with a ranged weapon*, deal your damage. If *the shot is tricky or you're under pressure*, first roll +DEX: **on a 10+**, you have a clear shot, deal your damage; **on a 7-9**, pick 1:\n\n- Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses)\n- Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage\n- Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage\n- Rush the shot and deal your damage, leading to a cost or complication of the GM's choice\n\nFor more information, see [[06 - Player Moves#^let-fly|Let Fly]]."
+			"text": "When you *take an easy shot with a ranged weapon*, deal your damage. If *the shot is tricky or you're under pressure*, first roll +DEX: **on a 10+**, you have a clear shot, deal your damage; **on a 7-9**, pick 1:\n\n- Deal your damage, but deplete your ammo (mark the next status by your weapon; don't pick this if your weapon lacks such statuses)\n- Hold steady and wait for a clear shot; when the moment arrives (GM's call), deal your damage\n- Move to get a clear shot—exposing yourself to danger or giving up some advantage (GM says how)—then deal your damage\n- Rush the shot and deal your damage, leading to a cost or complication of the GM's choice\n\nFor more information, see [[06 - Player Moves#^let-fly|Let Fly]].",
+			"rollsDamage": true
 		},
 		{
 			"id": "persuade-vs-npcs",
