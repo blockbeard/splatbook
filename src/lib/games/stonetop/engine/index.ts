@@ -60,6 +60,62 @@ export {
 } from './followers';
 
 export {
+	INVOCATIONS_INSERT_ID,
+	hasInvocationsInsert,
+	knownInvocations,
+	activeInvocation,
+	attachInvocations,
+	toggleKnownInvocation,
+	toggleActiveInvocation
+} from './invocations';
+
+export {
+	ANIMAL_COMPANION_INSERT_ID,
+	hasAnimalCompanionInsert,
+	animalCompanionOf,
+	attachAnimalCompanion,
+	setAnimalCompanionType,
+	updateAnimalCompanion,
+	toggleAnimalCompanionTrait,
+	setAnimalCompanionLoyalty,
+	addBeastOfLegendPick,
+	removeBeastOfLegendPick,
+	type AnimalCompanionState
+} from './animal-companion';
+
+export {
+	INITIATES_OF_DANU_INSERT_ID,
+	hasInitiatesOfDanuInsert,
+	initiatePicksOf,
+	attachInitiatesOfDanu,
+	pickInitiate,
+	unpickInitiate,
+	setInitiateHp,
+	setInitiateLoyalty,
+	setInitiateChoice,
+	type InitiateEntry,
+	type InitiatePick
+} from './initiates-of-danu';
+
+export {
+	CREW_INSERT_ID,
+	hasCrewInsert,
+	crewOf,
+	attachCrew,
+	updateCrew,
+	toggleCrewTag,
+	toggleCrewSpecialTag,
+	setCrewTagWriteIn,
+	setCrewGearLine,
+	setCrewLoyalty,
+	addCrewIndividual,
+	removeCrewIndividual,
+	updateCrewIndividual,
+	type CrewState,
+	type CrewIndividual
+} from './crew';
+
+export {
 	validateCharacter,
 	isComplete,
 	validators,

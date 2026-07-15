@@ -9,6 +9,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Class inserts** (commit 103): Invocations, Animal Companion, Initiates of
+  Danu, and Crew — the four playbook-specific inserts that auto-attach per
+  commit 99's rules rather than getting a "+" button like Followers. Each
+  gets its own engine module, UI component, and tab that simply appears once
+  attached:
+
+  Invocations (Lightbearer) tracks which spells are known and which single
+  _ongoing_ one is active — activating a second ends the first, matching the
+  book's "only one Invocation at a time" rule; instant (non-ongoing)
+  Invocations are just a known/unknown checklist, no activation needed.
+
+  Animal Companion (Ranger, gated behind the `animal-companion` move — an
+  envelope-level `requires` beyond `appliesTo`, the first insert to use it)
+  seeds HP/armor/damage/damage-tags from the chosen type's printed base;
+  re-picking a type resets type-specific traits but keeps the name, instinct,
+  cost, and Loyalty the player already set. Beast of Legend (a repeatable
+  advancement pick) logs each pick made rather than just a count, since the
+  book's three options differ in effect.
+
+  Initiates of Danu (Blessed/Initiate background) is the first insert whose
+  roster is fixed book content rather than blank write-ins: five named NPCs
+  the player picks 2-3 of. State is keyed by catalogue id rather than an
+  array index — natural once the roster is a fixed set rather than freely
+  added-to — and tracks only what changes in play (current HP, Loyalty, and
+  the catalogue entry's flavor prompts like pronouns/manner), leaving name/
+  tags/damage/moves/cost in the pack.
+
+  Crew (Marshal) is a single group-follower, not a roster: pick-driven tags
+  (fixed + chosen + write-in + a move-gated _exceptional_ special tag),
+  instinct/cost with a Loyalty track, a few write-in gear lines against a
+  fixed equipment table, and an "individuals" list (crew members who stand
+  out) capped at the pack's `portraitBoxes`.
+
+  45 new unit tests across the four engine modules. No new e2e coverage yet —
+  none of these attach on a freshly-built character today (only the v2→v3
+  migration path runs `autoAttachedInsertIds`); commit 106 wires the wizard
+  to attach them at creation and adds the e2e matrix asserting each tab
+  appears for its playbook. 505/505 unit tests passing, tsc/eslint/prettier
+  clean.
+
 - **Followers insert** (commit 102). The first of the "+" tabs commit 101 set
   up for: any character can attach the generic Followers roster from a play
   sheet button, and get its own tab. `engine/followers.ts` edits the roster

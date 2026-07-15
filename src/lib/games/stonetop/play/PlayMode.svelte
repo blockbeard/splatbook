@@ -21,7 +21,11 @@
 		debilityName,
 		effectiveStat,
 		enterPlay,
+		hasAnimalCompanionInsert,
+		hasCrewInsert,
 		hasFollowersInsert,
+		hasInitiatesOfDanuInsert,
+		hasInvocationsInsert,
 		heldMoveIds,
 		isDebilitated,
 		isOverloaded,
@@ -47,6 +51,10 @@
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
 	import Followers from './Followers.svelte';
+	import Invocations from './Invocations.svelte';
+	import AnimalCompanion from './AnimalCompanion.svelte';
+	import InitiatesOfDanu from './InitiatesOfDanu.svelte';
+	import Crew from './Crew.svelte';
 
 	let { character, onChange, roll }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
@@ -54,12 +62,13 @@
 	/**
 	 * The tab bar (commit 101): Sheet keeps vitals/stats/XP/trackers/
 	 * advancement; Moves and Inventory moved whole into their own tabs.
-	 * One tab per attached insert (commit 102's Followers is the first) slots
-	 * in after Inventory; a "+" affordance attaches an optional insert when
-	 * none is attached yet, per the phase-14 "add via the + tab" design —
-	 * currently just Followers, since Crew/Invocations/etc. auto-attach
-	 * (commit 99) and Ghost/Revenant/Thrall are narrative-triggered
-	 * (commit 104), not player-optional the same way.
+	 * One tab per attached insert slots in after Inventory. Followers
+	 * (commit 102) is player-optional, so it gets the "+" affordance below;
+	 * Invocations/Animal Companion/Initiates of Danu/Crew (commit 103)
+	 * auto-attach per commit 99's rules (today: only on the v2→v3 migration
+	 * path — commit 106 wires the wizard to attach them at creation too), so
+	 * their tabs just appear once attached, no button needed. Ghost/Revenant/
+	 * Thrall (commit 104) are narrative-triggered, not player-optional either.
 	 *
 	 * `?tab=` makes the active tab shareable and survives a reload: reading
 	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
@@ -67,7 +76,15 @@
 	 * not a navigation — keeps it in sync on every tap without adding history
 	 * entries a player would have to click Back through.
 	 */
-	type TabId = 'sheet' | 'moves' | 'inventory' | 'followers';
+	type TabId =
+		| 'sheet'
+		| 'moves'
+		| 'inventory'
+		| 'followers'
+		| 'invocations'
+		| 'animal-companion'
+		| 'initiates-of-danu'
+		| 'crew';
 	const BASE_TABS: { id: TabId; label: string }[] = [
 		{ id: 'sheet', label: 'Sheet' },
 		{ id: 'moves', label: 'Moves' },
@@ -75,7 +92,15 @@
 	];
 	const TABS = $derived<{ id: TabId; label: string }[]>([
 		...BASE_TABS,
-		...(hasFollowersInsert(c) ? [{ id: 'followers' as const, label: 'Followers' }] : [])
+		...(hasFollowersInsert(c) ? [{ id: 'followers' as const, label: 'Followers' }] : []),
+		...(hasInvocationsInsert(c) ? [{ id: 'invocations' as const, label: 'Invocations' }] : []),
+		...(hasAnimalCompanionInsert(c)
+			? [{ id: 'animal-companion' as const, label: 'Companion' }]
+			: []),
+		...(hasInitiatesOfDanuInsert(c)
+			? [{ id: 'initiates-of-danu' as const, label: 'Initiates' }]
+			: []),
+		...(hasCrewInsert(c) ? [{ id: 'crew' as const, label: 'Crew' }] : [])
 	]);
 	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
 	const activeTab = $derived<TabId>(
@@ -589,6 +614,30 @@
 		{#if activeTab === 'followers'}
 			<section>
 				<Followers character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'invocations'}
+			<section>
+				<Invocations character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'animal-companion'}
+			<section>
+				<AnimalCompanion character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'initiates-of-danu'}
+			<section>
+				<InitiatesOfDanu character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'crew'}
+			<section>
+				<Crew character={c} {onChange} />
 			</section>
 		{/if}
 	</article>

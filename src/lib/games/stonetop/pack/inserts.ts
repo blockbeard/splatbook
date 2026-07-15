@@ -4,7 +4,14 @@
  */
 
 import { base } from '$app/paths';
-import type { FollowersInsert, InventoryInsert } from '../pack-schemas';
+import type {
+	AnimalCompanionInsert,
+	CrewInsert,
+	FollowersInsert,
+	InitiatesOfDanuInsert,
+	InventoryInsert,
+	InvocationsInsert
+} from '../pack-schemas';
 
 const GAME_ID = 'stonetop';
 
@@ -34,3 +41,20 @@ export const fetchInventory = cachedInsertFetcher<InventoryInsert>('insert-inven
 
 /** Fetch the generic Followers insert (memoised). */
 export const fetchFollowersInsert = cachedInsertFetcher<FollowersInsert>('insert-followers.json');
+
+/** Fetch the Lightbearer's Invocations insert (memoised). */
+export const fetchInvocationsInsert =
+	cachedInsertFetcher<InvocationsInsert>('insert-invocations.json');
+
+/** Fetch the Ranger's Animal Companion insert (memoised). */
+export const fetchAnimalCompanionInsert = cachedInsertFetcher<AnimalCompanionInsert>(
+	'insert-animal-companion.json'
+);
+
+/** Fetch the Blessed's Initiates of Danu insert (memoised). */
+export const fetchInitiatesOfDanuInsert = cachedInsertFetcher<InitiatesOfDanuInsert>(
+	'insert-initiates-of-danu.json'
+);
+
+/** Fetch the Marshal's Crew insert (memoised). */
+export const fetchCrewInsert = cachedInsertFetcher<CrewInsert>('insert-crew.json');
