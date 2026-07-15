@@ -9,9 +9,10 @@
 	import { page } from '$app/state';
 	import { replaceState } from '$app/navigation';
 	import type { PlayProps } from '$lib/games/types';
-	import type { InventoryInsert, Move, Playbook } from '../pack-schemas';
+	import type { FollowersInsert, InventoryInsert, Move, Playbook } from '../pack-schemas';
 	import {
 		STAT_KEYS,
+		addFollower,
 		advancementLog,
 		applyLevelUp,
 		canCrossOffWouldBe,
@@ -20,6 +21,7 @@
 		debilityName,
 		effectiveStat,
 		enterPlay,
+		hasFollowersInsert,
 		heldMoveIds,
 		isDebilitated,
 		isOverloaded,
@@ -40,19 +42,24 @@
 	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
 	import { fetchBasicMoves } from '../pack/moves';
-	import { fetchInventory } from '../pack/inserts';
+	import { fetchFollowersInsert, fetchInventory } from '../pack/inserts';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import OptionButton from '../wizard/components/OptionButton.svelte';
 	import Inventory from './Inventory.svelte';
+	import Followers from './Followers.svelte';
 
 	let { character, onChange, roll }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
 
 	/**
 	 * The tab bar (commit 101): Sheet keeps vitals/stats/XP/trackers/
-	 * advancement; Moves and Inventory moved whole into their own tabs. Future
-	 * commits (102-106) add one tab per attached insert plus a "+" tab to
-	 * attach more — this three-tab set is the base the rest build onto.
+	 * advancement; Moves and Inventory moved whole into their own tabs.
+	 * One tab per attached insert (commit 102's Followers is the first) slots
+	 * in after Inventory; a "+" affordance attaches an optional insert when
+	 * none is attached yet, per the phase-14 "add via the + tab" design —
+	 * currently just Followers, since Crew/Invocations/etc. auto-attach
+	 * (commit 99) and Ghost/Revenant/Thrall are narrative-triggered
+	 * (commit 104), not player-optional the same way.
 	 *
 	 * `?tab=` makes the active tab shareable and survives a reload: reading
 	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
@@ -60,12 +67,16 @@
 	 * not a navigation — keeps it in sync on every tap without adding history
 	 * entries a player would have to click Back through.
 	 */
-	type TabId = 'sheet' | 'moves' | 'inventory';
-	const TABS: { id: TabId; label: string }[] = [
+	type TabId = 'sheet' | 'moves' | 'inventory' | 'followers';
+	const BASE_TABS: { id: TabId; label: string }[] = [
 		{ id: 'sheet', label: 'Sheet' },
 		{ id: 'moves', label: 'Moves' },
 		{ id: 'inventory', label: 'Inventory' }
 	];
+	const TABS = $derived<{ id: TabId; label: string }[]>([
+		...BASE_TABS,
+		...(hasFollowersInsert(c) ? [{ id: 'followers' as const, label: 'Followers' }] : [])
+	]);
 	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
 	const activeTab = $derived<TabId>(
 		(() => {
@@ -97,6 +108,24 @@
 		return () => (alive = false);
 	});
 	const inventoryOverloaded = $derived(inventoryInsert ? isOverloaded(c, inventoryInsert) : false);
+
+	// The "+" affordance: attach Followers and jump straight to its tab.
+	let followersInsert = $state<FollowersInsert | null>(null);
+	$effect(() => {
+		let alive = true;
+		fetchFollowersInsert(fetch)
+			.then((i) => alive && (followersInsert = i))
+			.catch(() => {
+				// Best-effort load for the "+" affordance; the Followers tab's own
+				// component reloads it (and surfaces a real error) once attached.
+			});
+		return () => (alive = false);
+	});
+	function attachFollowers(): void {
+		if (!followersInsert) return;
+		onChange(addFollower(c, followersInsert));
+		selectTab('followers');
+	}
 
 	let playbook = $state<Playbook | null>(null);
 	let loadError = $state<string | null>(null);
@@ -324,6 +353,17 @@
 					{/if}
 				</button>
 			{/each}
+			{#if !hasFollowersInsert(c)}
+				<button
+					type="button"
+					onclick={attachFollowers}
+					disabled={!followersInsert}
+					aria-label="Add Followers"
+					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
+				>
+					+
+				</button>
+			{/if}
 		</nav>
 
 		{#if activeTab === 'sheet'}
@@ -543,6 +583,12 @@
 		{#if activeTab === 'inventory'}
 			<section>
 				<Inventory character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'followers'}
+			<section>
+				<Followers character={c} {onChange} />
 			</section>
 		{/if}
 	</article>

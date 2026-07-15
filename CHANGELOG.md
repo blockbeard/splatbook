@@ -9,6 +9,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Followers insert** (commit 102). The first of the "+" tabs commit 101 set
+  up for: any character can attach the generic Followers roster from a play
+  sheet button, and get its own tab. `engine/followers.ts` edits the roster
+  by array index rather than a generated id — the same convention as the
+  steading's `ResidentsTable`/`NeighborsTable` (phase 6): nothing outside the
+  roster ever refers to a follower by id, so an index is simpler than minting
+  and threading one through. State lives at `character.inserts['insert-followers']`
+  per commit 99's attachment model; `addFollower` attaches (if not already)
+  and appends a blank follower shaped by the pack's own `moveLines`/`gearLines`
+  counts, so the UI never hardcodes them.
+
+  `Followers.svelte` renders the roster as free-text cards — name, tags,
+  HP/armor/damage, instinct, move/gear write-ins, flags, cost, and a
+  tap-to-set Loyalty track — each edit a pure engine call passed back through
+  `onChange`. `PlayMode.svelte`'s tab bar goes from the static `TABS` of
+  commit 101 to a `$derived` one that adds "Followers" once attached, plus a
+  "+" button (visible only while unattached) that attaches and jumps straight
+  to the new tab in one action — this is the general shape commits 103-105
+  reuse for their own inserts, though only Followers is player-optional in
+  this way (Crew/Invocations/etc. auto-attach at creation per commit 99's
+  rules; Ghost/Revenant/Thrall are narrative-triggered, not a player button).
+
+  `pack/inserts.ts`'s one-off `fetchInventory` becomes `cachedInsertFetcher<T>`,
+  a factory producing an independently-memoised fetcher per insert file — used
+  for both `fetchInventory` and the new `fetchFollowersInsert`, and the shape
+  the rest of Phase 14's inserts will reuse.
+
+  A real ARIA bug turned up writing the e2e coverage: the "+" button used
+  `title="Add Followers"`, but its visible text content ("+") wins the
+  accessible-name computation over `title` — `aria-label` was the fix.
+  12 new unit tests (`engine/followers.test.ts`) plus a new e2e spec
+  (`play-followers.spec.ts`: attach, add, edit, reload-persists, add a
+  second, dismiss the first) exercising the debounced-autosave path end to
+  end. 460/460 unit tests passing, tsc/eslint/prettier clean.
+
 - **Tabbed play sheet** (commit 101, opening Phase 14's UI work). PlayMode
   restructures into a Sheet · Moves · Inventory tab bar — Sheet keeps
   vitals/stats/XP/trackers/advancement; Moves and Inventory moved whole into

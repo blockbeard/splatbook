@@ -47,6 +47,19 @@ export {
 } from './inventory';
 
 export {
+	FOLLOWERS_INSERT_ID,
+	hasFollowersInsert,
+	followersOf,
+	createFollower,
+	addFollower,
+	removeFollower,
+	updateFollower,
+	toggleFollowerFlag,
+	setFollowerLoyalty,
+	type Follower
+} from './followers';
+
+export {
 	validateCharacter,
 	isComplete,
 	validators,
