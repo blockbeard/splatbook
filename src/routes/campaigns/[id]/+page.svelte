@@ -39,6 +39,14 @@
 <div class="mb-6 flex items-baseline justify-between gap-4">
 	<h1 class="text-2xl font-semibold tracking-tight">{data.campaign.name}</h1>
 	<div class="flex items-baseline gap-3">
+		{#if data.isGm && data.hasArcanaGm}
+			<a
+				href={resolve('/campaigns/[id]/arcana', { id: data.campaign.id })}
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Author Arcana
+			</a>
+		{/if}
 		{#if data.isGm && data.hasSessionMove}
 			<!-- Ending the session marks XP on characters their players own, so it's
 			     the GM's button. -->
@@ -189,3 +197,38 @@
 		</ul>
 	{/if}
 </section>
+
+{#if data.isGm && data.settingsFields.length > 0}
+	<section class="mt-6">
+		<h2 class="text-sm font-semibold">Settings</h2>
+		<form
+			method="POST"
+			action="?/updateSettings"
+			use:enhance
+			class="mt-2 space-y-2 rounded-md border border-border p-4"
+		>
+			{#each data.settingsFields as field (field.key)}
+				<label class="flex items-start gap-2 text-sm">
+					<input
+						type="checkbox"
+						name={field.key}
+						checked={data.settings?.[field.key] ?? field.default}
+						class="mt-0.5 accent-accent"
+					/>
+					<span>
+						{field.label}
+						{#if field.description}
+							<span class="block text-xs text-muted">{field.description}</span>
+						{/if}
+					</span>
+				</label>
+			{/each}
+			<button
+				type="submit"
+				class="rounded-md border border-border px-3 py-1.5 text-sm hover:text-accent"
+			>
+				Save settings
+			</button>
+		</form>
+	</section>
+{/if}

@@ -9,6 +9,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Arcana insert — free-form cards** (commit 105). Matches the paper ritual
+  where the GM hands you a card: write-in name and notes, a configurable row
+  of mark boxes, and _mysteries_ (sections) that unlock as marks accumulate.
+  Structured Minor/Major Arcana data (Hearthfire's transcription, CC BY-SA
+  4.0) stays a planned fast-follow, exactly as the plan allowed — this commit
+  ships the free-form shape any GM can use today without waiting on that
+  import. Attaches through a "+" tab like Followers/Ghost/Revenant/Thrall,
+  needing no pack data either.
+
+  The genuinely new piece: a card's mysteries are edited by two different
+  parties. The player marks boxes as they play; the GM authors and reveals
+  the mystery text through `/campaigns/[id]/arcana`, a new shell route that
+  mirrors end-of-session's shape exactly (`requireGm`, a `save` action that
+  goes through `updateCampaignEntityData`, which re-checks GM-of-this-table
+  server-side) — the game contributes an `arcanaGmComponent` the same way it
+  contributes a `sessionComponent`. Both parties' edits run through the same
+  pure `engine/arcana.ts` functions; only the caller differs.
+
+  Whether a not-yet-unlocked mystery's text is visible to the player at all —
+  "some tables like the anticipation, some don't" — is the app's first
+  **per-campaign setting**: a `campaigns.settings` JSON column (migration
+  `0007`), opaque to the shell the same way `entities.data` is, plus a new
+  generic `GameModule.campaignSettingsFields` extension point the campaign
+  dashboard renders as plain checkboxes — the shell never hard-codes what a
+  setting means, mirroring how `referenceSpoilers` already keeps game words
+  out of app code. Stonetop registers one field, `showLockedArcana`, default
+  off. `updateCampaignSettings` merges rather than replaces, GM-gated the
+  same way `rotateInviteToken` is.
+
+  21 new unit tests (16 engine, 5 campaign-settings service) plus two new e2e
+  specs: the player's attach/add/mark/reload-persists path, and a full
+  GM-authors → player-can't-see-it-yet → GM-flips-the-setting →
+  player-can-see-it-now round trip exercising the whole write-and-gate
+  pipeline in one flow. 547/547 unit tests passing, tsc/eslint/prettier
+  clean, `drizzle-kit generate` produced and applied the migration cleanly.
+
 - **Undead inserts** (commit 104): Ghost, Revenant, and Thrall — gained by
   dying a particular way, not by playbook, so none has an
   `autoAttachedInsertIds` rule. All three get a "+" tab-bar button like

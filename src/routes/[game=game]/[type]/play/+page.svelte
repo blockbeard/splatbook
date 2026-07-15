@@ -211,7 +211,7 @@
 		{/if}
 	</p>
 {:else}
-	<Play {character} {onChange} roll={makeRoll} />
+	<Play {character} {onChange} roll={makeRoll} {campaignId} />
 	{#if dicePresets}
 		<div class="mt-6">
 			<DiceRoller presets={dicePresets} onRoll={rollPreset} {recent} logged={!!campaignId} />

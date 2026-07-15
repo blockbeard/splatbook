@@ -200,3 +200,41 @@ export async function rotateInviteToken(
 		.returning();
 	return row;
 }
+
+/**
+ * A campaign's `settings` blob, loosely typed — the shell stores whatever a
+ * game's `campaignSettingsFields` put there and never interprets a key itself
+ * (commit 105). `undefined`/malformed reads as `{}` rather than throwing: a
+ * settings blob is a convenience, not load-bearing data.
+ */
+export type CampaignSettings = Record<string, boolean>;
+
+/** Read a campaign's settings blob, or `{}` for an unknown campaign. */
+export async function getCampaignSettings(db: Db, campaignId: string): Promise<CampaignSettings> {
+	const campaign = await getCampaign(db, campaignId);
+	const settings = campaign?.settings;
+	return settings && typeof settings === 'object' ? (settings as CampaignSettings) : {};
+}
+
+/**
+ * Merge a patch into a campaign's settings blob. GM-gated, same shape as
+ * every other campaign write: returns the updated campaign, or `undefined` if
+ * the caller isn't seated as this campaign's GM.
+ */
+export async function updateCampaignSettings(
+	db: Db,
+	campaignId: string,
+	gmUserId: string,
+	patch: CampaignSettings
+): Promise<Campaign | undefined> {
+	const seat = await membershipOf(db, campaignId, gmUserId);
+	if (seat?.role !== 'gm') return undefined;
+
+	const current = await getCampaignSettings(db, campaignId);
+	const [row] = await db
+		.update(campaigns)
+		.set({ settings: { ...current, ...patch }, updatedAt: new Date() })
+		.where(eq(campaigns.id, campaignId))
+		.returning();
+	return row;
+}

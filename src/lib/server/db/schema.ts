@@ -164,6 +164,15 @@ export const campaigns = sqliteTable(
 			.notNull()
 			.unique()
 			.$defaultFn(() => crypto.randomUUID()),
+		/**
+		 * Table-wide config, GM-editable (commit 105 — the first use). Opaque to
+		 * the shell, same spirit as `entities.data`: the shell persists and merges
+		 * it, but never interprets a key. A game registers what it wants to offer
+		 * through `GameModule.campaignSettingsFields`; the shell renders those as
+		 * generic checkboxes on the campaign dashboard and stores whatever the GM
+		 * sets here, keyed by the field's own `key`.
+		 */
+		settings: text('settings', { mode: 'json' }).notNull().default('{}'),
 		createdAt: integer('created_at', { mode: 'timestamp_ms' })
 			.notNull()
 			.default(sql`(unixepoch() * 1000)`),

@@ -135,6 +135,23 @@ export {
 } from './undead';
 
 export {
+	ARCANA_INSERT_ID,
+	hasArcanaInsert,
+	arcanaCardsOf,
+	isArcanaSectionUnlocked,
+	attachArcana,
+	addArcanaCard,
+	removeArcanaCard,
+	updateArcanaCard,
+	setArcanaMarked,
+	addArcanaSection,
+	removeArcanaSection,
+	updateArcanaSection,
+	type ArcanaCard,
+	type ArcanaSection
+} from './arcana';
+
+export {
 	THRALL_INSERT_ID,
 	hasThrallInsert,
 	thrallStateOf,

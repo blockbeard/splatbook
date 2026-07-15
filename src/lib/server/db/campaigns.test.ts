@@ -16,12 +16,14 @@ import {
 	createCampaign,
 	getCampaign,
 	getCampaignByToken,
+	getCampaignSettings,
 	membershipOf,
 	listCampaignsForUser,
 	rotateInviteToken,
 	joinCampaign,
 	listCampaignMembers,
-	isGmOfAnyCampaign
+	isGmOfAnyCampaign,
+	updateCampaignSettings
 } from './campaigns.ts';
 
 function freshDb(): Db {
@@ -161,6 +163,39 @@ describe('listCampaignMembers', () => {
 		expect(roster.map((m) => m.role)).toEqual(['gm', 'player']);
 		expect(roster[0].name).toBe('Mr. Wray');
 		expect(roster[1].email).toBe('player@x');
+	});
+});
+
+describe('campaign settings (commit 105)', () => {
+	it('reads {} for a fresh campaign', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		expect(await getCampaignSettings(db, campaign.id)).toEqual({});
+	});
+
+	it('lets the GM set a key', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		const updated = await updateCampaignSettings(db, campaign.id, gm, { showLockedArcana: true });
+		expect(updated).toBeDefined();
+		expect(await getCampaignSettings(db, campaign.id)).toEqual({ showLockedArcana: true });
+	});
+
+	it('merges rather than replaces on a second write', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		await updateCampaignSettings(db, campaign.id, gm, { a: true });
+		await updateCampaignSettings(db, campaign.id, gm, { b: false });
+		expect(await getCampaignSettings(db, campaign.id)).toEqual({ a: true, b: false });
+	});
+
+	it('refuses a write from a player', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		await joinCampaign(db, campaign.inviteToken, player);
+		expect(await updateCampaignSettings(db, campaign.id, player, { x: true })).toBeUndefined();
+		expect(await getCampaignSettings(db, campaign.id)).toEqual({});
+	});
+
+	it('refuses a write from a non-member', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		expect(await updateCampaignSettings(db, campaign.id, player, { x: true })).toBeUndefined();
 	});
 });
 

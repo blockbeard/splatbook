@@ -45,6 +45,14 @@ export interface PlayProps {
 	 * so a play component must treat it as optional.
 	 */
 	roll?: (label: string, notation: string) => void;
+	/**
+	 * The campaign this entity is attached to, if any (commit 105) — an opaque
+	 * id the shell hands through so a play component can look up campaign-level
+	 * config (e.g. a `campaignSettingsFields` toggle) itself, the same way it
+	 * fetches its own pack data. The shell never reads campaign settings on the
+	 * component's behalf; it only knows the id exists.
+	 */
+	campaignId?: string | null;
 }
 
 /**
@@ -142,6 +150,36 @@ export interface SessionProps {
 	notesKey: string;
 }
 
+/**
+ * Props the shell passes a game's Arcana-authoring component (commit 105),
+ * surfaced at `/campaigns/[id]/arcana`. Structurally identical to
+ * `SessionProps`'s table-and-write-through shape, minus `steading` and
+ * `roll` — authoring a mystery is bookkeeping, not a ritual with its own
+ * dice — and `save` takes only an id, since the game computes the whole next
+ * blob itself (same as `SessionProps.save`).
+ */
+export interface ArcanaGmProps {
+	characters: { id: string; name: string; data: object }[];
+	/** Persist a changed entity. Rejects if the write is refused. */
+	save: (id: string, data: object) => Promise<void>;
+}
+
+/**
+ * One GM-editable campaign setting a game wants to offer (commit 105 — the
+ * first use). The shell renders these as generic checkboxes on the campaign
+ * dashboard, keyed by `key`, using the game's own words for the label and
+ * description; it never hard-codes what a setting *means* (mirrors
+ * `referenceSpoilers`: the game supplies the words, the shell supplies the
+ * generic toggle mechanism and the `campaigns.settings` JSON column).
+ */
+export interface CampaignSettingField {
+	/** Storage key within the campaign's `settings` blob. */
+	key: string;
+	label: string;
+	description?: string;
+	default: boolean;
+}
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/[game=game]` URL segment. */
 	id: string;
@@ -164,6 +202,18 @@ export interface GameModule {
 	 * then offers no End session button.
 	 */
 	sessionComponent?: Component<SessionProps>;
+	/**
+	 * The game's Arcana-authoring tool (commit 105), surfaced by the shell at
+	 * `/campaigns/[id]/arcana`. Absent for a game with no such concept — the
+	 * shell then offers no Arcana link on the campaign dashboard.
+	 */
+	arcanaGmComponent?: Component<ArcanaGmProps>;
+	/**
+	 * GM-editable campaign settings this game wants to offer (commit 105),
+	 * rendered generically on the campaign dashboard. Absent → no settings
+	 * section for this game.
+	 */
+	campaignSettingsFields?: readonly CampaignSettingField[];
 	/**
 	 * How the reference presents a `visibility: 'gm'` section to this game's
 	 * readers (phase 13, commit 97) — the shell's own vocabulary is deliberately

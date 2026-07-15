@@ -15,6 +15,7 @@
 		addFollower,
 		advancementLog,
 		applyLevelUp,
+		attachArcana,
 		attachGhost,
 		attachRevenant,
 		attachThrall,
@@ -25,6 +26,7 @@
 		effectiveStat,
 		enterPlay,
 		hasAnimalCompanionInsert,
+		hasArcanaInsert,
 		hasCrewInsert,
 		hasFollowersInsert,
 		hasGhostInsert,
@@ -68,22 +70,23 @@
 	import Crew from './Crew.svelte';
 	import UndeadInsert from './UndeadInsert.svelte';
 	import Thrall from './Thrall.svelte';
+	import Arcana from './Arcana.svelte';
 
-	let { character, onChange, roll }: PlayProps = $props();
+	let { character, onChange, roll, campaignId }: PlayProps = $props();
 	const c = $derived(character as StonetopCharacter);
 
 	/**
 	 * The tab bar (commit 101): Sheet keeps vitals/stats/XP/trackers/
 	 * advancement; Moves and Inventory moved whole into their own tabs.
 	 * One tab per attached insert slots in after Inventory. Followers
-	 * (commit 102) and Ghost/Revenant/Thrall (commit 104) are all things a
-	 * player or GM decides to attach at the table — the former discretionary,
-	 * the latter three narratively triggered (a particular way of dying) —
-	 * so all four get a "+" affordance below. Invocations/Animal Companion/
-	 * Initiates of Danu/Crew (commit 103) auto-attach per commit 99's rules
-	 * (today: only on the v2→v3 migration path — commit 106 wires the wizard
-	 * to attach them at creation too), so their tabs just appear once
-	 * attached, no button needed.
+	 * (commit 102), Ghost/Revenant/Thrall (commit 104), and Arcana (commit
+	 * 105) are all things a player or GM decides to attach at the table — the
+	 * first and last discretionary, the undead trio narratively triggered (a
+	 * particular way of dying) — so all five get a "+" affordance below.
+	 * Invocations/Animal Companion/Initiates of Danu/Crew (commit 103)
+	 * auto-attach per commit 99's rules (today: only on the v2→v3 migration
+	 * path — commit 106 wires the wizard to attach them at creation too), so
+	 * their tabs just appear once attached, no button needed.
 	 *
 	 * `?tab=` makes the active tab shareable and survives a reload: reading
 	 * `page.url` (available on SSR and hydration alike, no `onMount` needed)
@@ -102,7 +105,8 @@
 		| 'crew'
 		| 'ghost'
 		| 'revenant'
-		| 'thrall';
+		| 'thrall'
+		| 'arcana';
 	const BASE_TABS: { id: TabId; label: string }[] = [
 		{ id: 'sheet', label: 'Sheet' },
 		{ id: 'moves', label: 'Moves' },
@@ -121,7 +125,8 @@
 		...(hasCrewInsert(c) ? [{ id: 'crew' as const, label: 'Crew' }] : []),
 		...(hasGhostInsert(c) ? [{ id: 'ghost' as const, label: 'Ghost' }] : []),
 		...(hasRevenantInsert(c) ? [{ id: 'revenant' as const, label: 'Revenant' }] : []),
-		...(hasThrallInsert(c) ? [{ id: 'thrall' as const, label: 'Thrall' }] : [])
+		...(hasThrallInsert(c) ? [{ id: 'thrall' as const, label: 'Thrall' }] : []),
+		...(hasArcanaInsert(c) ? [{ id: 'arcana' as const, label: 'Arcana' }] : [])
 	]);
 	const isTabId = (v: string | null): v is TabId => TABS.some((t) => t.id === v);
 	const activeTab = $derived<TabId>(
@@ -186,6 +191,10 @@
 	function attachThrallAndSelect(): void {
 		onChange(attachThrall(c));
 		selectTab('thrall');
+	}
+	function attachArcanaAndSelect(): void {
+		onChange(attachArcana(c));
+		selectTab('arcana');
 	}
 
 	let playbook = $state<Playbook | null>(null);
@@ -450,6 +459,16 @@
 					type="button"
 					onclick={attachThrallAndSelect}
 					aria-label="Add Thrall"
+					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent"
+				>
+					+
+				</button>
+			{/if}
+			{#if !hasArcanaInsert(c)}
+				<button
+					type="button"
+					onclick={attachArcanaAndSelect}
+					aria-label="Add Arcana"
 					class="shrink-0 self-center px-2 py-2 text-sm font-medium text-muted hover:text-accent"
 				>
 					+
@@ -732,6 +751,12 @@
 		{#if activeTab === 'thrall'}
 			<section>
 				<Thrall character={c} {onChange} />
+			</section>
+		{/if}
+
+		{#if activeTab === 'arcana'}
+			<section>
+				<Arcana character={c} {onChange} {campaignId} />
 			</section>
 		{/if}
 	</article>

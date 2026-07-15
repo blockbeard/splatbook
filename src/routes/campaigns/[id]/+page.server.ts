@@ -12,9 +12,11 @@ import { error, redirect } from '@sveltejs/kit';
 import { resolve } from '$app/paths';
 import {
 	getCampaign,
+	getCampaignSettings,
 	membershipOf,
 	rotateInviteToken,
-	listCampaignMembers
+	listCampaignMembers,
+	updateCampaignSettings
 } from '$lib/server/db/campaigns';
 import {
 	getEntity,
@@ -81,12 +83,17 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		? { id: steadings[0].id, name: steadings[0].name || 'Unnamed steading' }
 		: null;
 
+	const game = getGame(campaign.gameId);
+	// Settings are GM-only to see or change — a player has no use for a toggle
+	// they can't flip, and the field descriptions are written for the GM.
+	const settings = isGm ? await getCampaignSettings(locals.db, campaign.id) : null;
+
 	return {
 		campaign: {
 			id: campaign.id,
 			name: campaign.name,
 			gameId: campaign.gameId,
-			gameName: getGame(campaign.gameId)?.name ?? campaign.gameId
+			gameName: game?.name ?? campaign.gameId
 		},
 		role: seat.role,
 		isGm,
@@ -98,7 +105,13 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		// The invite capability is GM-only; players never receive the token.
 		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null,
 		// Whether this game has an end-of-session move for the GM to run.
-		hasSessionMove: !!getGame(campaign.gameId)?.sessionComponent
+		hasSessionMove: !!game?.sessionComponent,
+		// Whether this game has an Arcana-authoring tool for the GM to run (commit 105).
+		hasArcanaGm: !!game?.arcanaGmComponent,
+		// This game's GM-editable settings fields, and the campaign's current
+		// values for them — `null` for a player, who never sees this section.
+		settingsFields: isGm ? (game?.campaignSettingsFields ?? []) : [],
+		settings
 	};
 };
 
@@ -157,5 +170,22 @@ export const actions: Actions = {
 			await setEntityCampaign(locals.db, created.id, userId, campaign.id);
 		}
 		redirect(303, resolve('/campaigns/[id]/steading', { id: campaign.id }));
+	},
+
+	updateSettings: async ({ params, request, locals }) => {
+		const { userId, seat } = await requireSeat(params.id, locals);
+		if (seat.role !== 'gm') error(403, 'Only the GM can change campaign settings.');
+
+		// Checkboxes only submit when checked, so presence (not value) is what a
+		// boolean field means here — same convention as any HTML checkbox form.
+		const form = await request.formData();
+		const game = getGame((await getCampaign(locals.db, params.id))?.gameId ?? '');
+		const patch = Object.fromEntries(
+			(game?.campaignSettingsFields ?? []).map((f) => [f.key, form.has(f.key)])
+		);
+
+		const updated = await updateCampaignSettings(locals.db, params.id, userId, patch);
+		if (!updated) error(403, 'Only the GM can change campaign settings.');
+		return { settings: { ok: true } };
 	}
 };

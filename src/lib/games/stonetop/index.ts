@@ -19,6 +19,7 @@
 
 import type { Component } from 'svelte';
 import type {
+	ArcanaGmProps,
 	EntityTypeModule,
 	GameModule,
 	GmGuideProps,
@@ -43,6 +44,7 @@ import ThreatEditor from './gm/ThreatEditor.svelte';
 import ThreatSheet from './gm/ThreatSheet.svelte';
 import GmGuide from './gm/GmGuide.svelte';
 import EndOfSession from './session/EndOfSession.svelte';
+import ArcanaGm from './gm/ArcanaGm.svelte';
 import { GM_SECTIONS } from './gm/sections';
 import { stonetopDice } from './dice';
 
@@ -117,6 +119,21 @@ export const stonetop: GameModule = {
 	},
 	// The end-of-session move, run by the GM at `/campaigns/[id]/session`.
 	sessionComponent: EndOfSession as unknown as Component<SessionProps>,
+	// Arcana authoring, run by the GM at `/campaigns/[id]/arcana` (commit 105).
+	arcanaGmComponent: ArcanaGm as unknown as Component<ArcanaGmProps>,
+	// The first (and so far only) campaign setting: whether this table prefers
+	// to see a mystery's text before it's unlocked. Default off — a card kept
+	// sealed until earned is the paper original; some tables like the
+	// anticipation of a preview instead, hence the toggle.
+	campaignSettingsFields: [
+		{
+			key: 'showLockedArcana',
+			label: 'Show locked Arcana mysteries',
+			description:
+				"Players see an Arcana card's not-yet-unlocked mysteries instead of just the marks. Off by default — most tables keep them a secret until earned.",
+			default: false
+		}
+	],
 	// Book II is gated behind a reader opt-in (commit 97), not a GM-only
 	// secret — the book's own stance is "it's okay for players to read this
 	// if they want to." "Setting" names what it actually withholds: spoilers
