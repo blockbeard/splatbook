@@ -34,6 +34,7 @@ function sampleResult(total: number): RollResult {
 			{ sides: 6, value: Math.max(total - 6, 1), kept: true }
 		],
 		modifier: 0,
+		bonus: 0,
 		total
 	};
 }

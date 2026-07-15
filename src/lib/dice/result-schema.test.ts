@@ -19,13 +19,14 @@ describe('rollResultSchema', () => {
 			mode: 'lucky',
 			dice: [{ sides: 6, value: 3, kept: true }],
 			modifier: 0,
+			bonus: 0,
 			total: 3
 		};
 		expect(rollResultSchema.safeParse(bad).success).toBe(false);
 	});
 
 	it('rejects an empty dice array', () => {
-		const bad = { notation: '2d6', mode: 'normal', dice: [], modifier: 0, total: 0 };
+		const bad = { notation: '2d6', mode: 'normal', dice: [], modifier: 0, bonus: 0, total: 0 };
 		expect(rollResultSchema.safeParse(bad).success).toBe(false);
 	});
 
@@ -35,6 +36,7 @@ describe('rollResultSchema', () => {
 			mode: 'normal',
 			dice: [{ sides: 6, value: 3, kept: true }],
 			modifier: 0,
+			bonus: 0,
 			total: 3,
 			injected: 'x'
 		};
@@ -47,7 +49,31 @@ describe('rollResultSchema', () => {
 			mode: 'normal',
 			dice: [{ sides: 6, value: 0, kept: true }],
 			modifier: 0,
+			bonus: 0,
 			total: 0
+		};
+		expect(rollResultSchema.safeParse(bad).success).toBe(false);
+	});
+
+	it('rejects a missing bonus', () => {
+		const bad = {
+			notation: '2d6',
+			mode: 'normal',
+			dice: [{ sides: 6, value: 3, kept: true }],
+			modifier: 0,
+			total: 3
+		};
+		expect(rollResultSchema.safeParse(bad).success).toBe(false);
+	});
+
+	it('rejects a bonus outside its bounds', () => {
+		const bad = {
+			notation: '2d6',
+			mode: 'normal',
+			dice: [{ sides: 6, value: 3, kept: true }],
+			modifier: 0,
+			bonus: 1001,
+			total: 3
 		};
 		expect(rollResultSchema.safeParse(bad).success).toBe(false);
 	});

@@ -30,12 +30,21 @@ export interface DieRoll {
 }
 
 /** The outcome of a roll: the canonical notation, the mode, every die (kept and
- * dropped), the flat modifier, and the final total. */
+ * dropped), the flat modifier, a separate ad hoc bonus, and the final total. */
 export interface RollResult {
 	notation: string;
 	mode: RollMode;
 	dice: DieRoll[];
 	modifier: number;
+	/**
+	 * A one-off signed bonus dialled in at roll time (commit 107's bonus box) —
+	 * kept apart from `modifier` (which comes from the notation itself, e.g. a
+	 * stat) so the log can show where each part of the total came from: "2d6+1
+	 * (bonus +2)" reads as stat +1, situational +2, rather than folding both
+	 * into one number and losing which was which. Always present (0 when unused)
+	 * so consumers never have to branch on its absence.
+	 */
+	bonus: number;
 	total: number;
 }
 
@@ -44,18 +53,25 @@ export function rollDie(sides: number, rng: Rng = Math.random): number {
 	return Math.floor(rng() * sides) + 1;
 }
 
+/** `+2` / `-2` / `+0` — a signed number as read aloud at the table. */
+export function formatSigned(n: number): string {
+	return n >= 0 ? `+${n}` : `${n}`;
+}
+
 /**
  * Roll a dice expression — a notation string (`"2d6+1"`) or an already-parsed
  * {@link DiceSpec}. Returns every die rolled plus the total. `opts.mode`
- * defaults to `'normal'`; `opts.rng` defaults to `Math.random`.
+ * defaults to `'normal'`; `opts.rng` defaults to `Math.random`; `opts.bonus`
+ * (default 0) adds to the total without touching `modifier` or `notation`.
  */
 export function roll(
 	input: string | DiceSpec,
-	opts: { rng?: Rng; mode?: RollMode } = {}
+	opts: { rng?: Rng; mode?: RollMode; bonus?: number } = {}
 ): RollResult {
 	const spec = typeof input === 'string' ? parseNotation(input) : input;
 	const rng = opts.rng ?? Math.random;
 	const mode = opts.mode ?? 'normal';
+	const bonus = opts.bonus ?? 0;
 	const extra = mode === 'normal' ? 0 : 1;
 
 	const dice: DieRoll[] = [];
@@ -81,6 +97,7 @@ export function roll(
 		mode,
 		dice,
 		modifier: spec.modifier,
-		total: kept + spec.modifier
+		bonus,
+		total: kept + spec.modifier + bonus
 	};
 }

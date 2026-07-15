@@ -1,8 +1,11 @@
 /**
  * Stonetop's dice presets — the game's contribution to the shell dice slot
  * (`GameModule.dice`, phase 10). Stonetop is Powered-by-the-Apocalypse: every
- * move rolls `2d6` plus one of the six stats, so the presets are a plain `2d6`
- * and a per-stat "Roll +STAT" whose `meta.stat` names the modifier.
+ * move rolls `2d6` plus one of the six stats, so the presets are a per-stat
+ * "Roll +STAT" whose `meta.stat` names the modifier. A bare `2d6` needs no
+ * game-specific preset of its own — commit 107's full dice panel (`DiceRoller`)
+ * always offers the whole polyhedral set plus `2d6` generically, so a redundant
+ * "Roll 2d6" here would just be a second button doing the same thing.
  *
  * `resolve` is where that modifier becomes a number. The shell holds the
  * character opaquely and cannot read a stat out of it, so it hands the preset
@@ -18,16 +21,13 @@ import type { DiceModule, DicePreset, ResolvedRoll } from '../../dice';
 import { STAT_KEYS, effectiveStat, type StatKey, type StonetopCharacter } from './engine';
 import { STEADING_STATS, type SteadingStatKey, type StonetopSteading } from './engine/steading';
 
-/** The basic 2d6 move roll and the six stat rolls. */
-const presets: DicePreset[] = [
-	{ id: 'roll-2d6', label: 'Roll 2d6', notation: '2d6' },
-	...STAT_KEYS.map((stat): DicePreset => ({
-		id: `roll-${stat.toLowerCase()}`,
-		label: `Roll +${stat}`,
-		notation: '2d6',
-		meta: { stat }
-	}))
-];
+/** The six stat rolls. */
+const presets: DicePreset[] = STAT_KEYS.map((stat): DicePreset => ({
+	id: `roll-${stat.toLowerCase()}`,
+	label: `Roll +${stat}`,
+	notation: '2d6',
+	meta: { stat }
+}));
 
 /** `+1` / `-1` / `+0` — how a modifier is written on a sheet. */
 export function formatModifier(value: number): string {

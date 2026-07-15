@@ -12,8 +12,8 @@ const withStats = (stats: Partial<Record<string, number>>) => {
 };
 
 describe('stonetopDice presets', () => {
-	it('offers a plain 2d6 plus one roll per stat', () => {
-		expect(stonetopDice.presets).toHaveLength(1 + STAT_KEYS.length);
+	it('offers one roll per stat', () => {
+		expect(stonetopDice.presets).toHaveLength(STAT_KEYS.length);
 	});
 
 	it('has unique preset ids', () => {
@@ -64,8 +64,11 @@ describe('stonetopDice resolve', () => {
 		expect(stonetopDice.resolve!(dexPreset, character).notation).toBe('2d6+1');
 	});
 
+	// Every stonetopDice preset carries a stat today, but `resolve` still has to
+	// handle a bare preset gracefully — the shell's generic dice panel (commit
+	// 107) can hand back any preset, including ones stonetopDice never defined.
 	it('leaves a preset with no stat alone', () => {
-		const plain = stonetopDice.presets.find((p) => !p.meta?.stat)!;
+		const plain = { id: 'bare', label: 'Roll 2d6', notation: '2d6' };
 		expect(stonetopDice.resolve!(plain, withStats({ DEX: 3 }))).toEqual({
 			label: 'Roll 2d6',
 			notation: '2d6'

@@ -11,7 +11,7 @@
 	`logged` and this says so.
 -->
 <script lang="ts">
-	import type { RollResult } from '$lib/dice';
+	import { formatSigned, type RollResult } from '$lib/dice';
 
 	let {
 		entry,
@@ -66,6 +66,8 @@
 							>{entry.result.modifier > 0
 								? ` + ${entry.result.modifier}`
 								: ` − ${-entry.result.modifier}`}</span
+						>{/if}{#if entry.result.bonus !== 0}<span class="text-accent"
+							>{` bonus ${formatSigned(entry.result.bonus)}`}</span
 						>{/if}
 				</p>
 				<button

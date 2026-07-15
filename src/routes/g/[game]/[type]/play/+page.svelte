@@ -17,7 +17,13 @@
 	import { draftToPayload, saveEntity } from '$lib/entities/client';
 	import DiceRoller from '$lib/components/DiceRoller.svelte';
 	import RollSurface from '$lib/components/RollSurface.svelte';
-	import { roll as rollDice, type DicePreset, type RollMode, type RollResult } from '$lib/dice';
+	import {
+		formatSigned,
+		roll as rollDice,
+		type DicePreset,
+		type RollMode,
+		type RollResult
+	} from '$lib/dice';
 
 	let { data } = $props();
 
@@ -72,6 +78,11 @@
 	let recent = $state<RollEntry[]>([]);
 	let latest = $state<RollEntry | null>(null);
 	let nextKey = 0;
+	// Commit 107's bonus box: a one-off signed modifier armed for whatever rolls
+	// next — a base die, a game preset, or a stat tapped on the sheet, since all
+	// three funnel through `makeRoll`. Consumed (reset to 0) the moment a roll
+	// uses it, matching "applies to the next roll", not "until changed again".
+	let bonus = $state(0);
 
 	// A roll leads with *who* rolled — the character, not the account. The shell
 	// gets that name without reading the game's opaque blob: it's the saved
@@ -88,21 +99,24 @@
 	 * interrupt play.
 	 */
 	function makeRoll(label: string, notation: string, mode: RollMode = 'normal'): void {
-		const result = rollDice(notation, { mode });
+		const armedBonus = bonus;
+		const result = rollDice(notation, { mode, bonus: armedBonus });
+		const fullLabel = armedBonus !== 0 ? `${label} (bonus ${formatSigned(armedBonus)})` : label;
 		const entry: RollEntry = {
-			label,
+			label: fullLabel,
 			result,
 			actorName: characterName ?? undefined,
 			key: nextKey++
 		};
 		recent = [entry, ...recent].slice(0, 8);
 		latest = entry;
+		bonus = 0;
 
 		if (!campaignId || !browser) return;
 		fetch(`/api/campaigns/${campaignId}/rolls`, {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
-			body: JSON.stringify({ label, result, characterName })
+			body: JSON.stringify({ label: fullLabel, result, characterName })
 		}).catch(() => {});
 	}
 
@@ -214,7 +228,14 @@
 	<Play {character} {onChange} roll={makeRoll} />
 	{#if dicePresets}
 		<div class="mt-6">
-			<DiceRoller presets={dicePresets} onRoll={rollPreset} {recent} logged={!!campaignId} />
+			<DiceRoller
+				presets={dicePresets}
+				onRoll={rollPreset}
+				{bonus}
+				onBonusChange={(n) => (bonus = n)}
+				{recent}
+				logged={!!campaignId}
+			/>
 		</div>
 	{/if}
 	<RollSurface entry={latest} logged={!!campaignId} onDismiss={() => (latest = null)} />

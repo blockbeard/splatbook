@@ -7,6 +7,7 @@
 	`RollResult`, and the labels are whatever the roller sent.
 -->
 <script lang="ts">
+	import { formatSigned } from '$lib/dice';
 	import type { RollLogEntry } from '$lib/rolls';
 
 	let {
@@ -89,6 +90,8 @@
 									>{e.result.modifier > 0
 										? ` + ${e.result.modifier}`
 										: ` − ${-e.result.modifier}`}</span
+								>{/if}{#if e.result.bonus !== 0}<span class="text-accent"
+									>{` bonus ${formatSigned(e.result.bonus)}`}</span
 								>{/if}
 						</span>
 						<span class="min-w-6 text-right font-semibold text-text">{e.result.total}</span>

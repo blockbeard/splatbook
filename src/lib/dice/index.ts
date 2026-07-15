@@ -11,6 +11,14 @@ export {
 	type DiceTerm,
 	type DiceSpec
 } from './notation';
-export { roll, rollDie, type Rng, type RollMode, type DieRoll, type RollResult } from './roll';
+export {
+	roll,
+	rollDie,
+	formatSigned,
+	type Rng,
+	type RollMode,
+	type DieRoll,
+	type RollResult
+} from './roll';
 export { type DicePreset, type DiceModule, type ResolvedRoll } from './presets';
 export { rollResultSchema } from './result-schema';

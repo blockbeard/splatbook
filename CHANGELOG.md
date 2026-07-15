@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Full dice panel + custom bonus** (commit 107). The dice panel now always
+  offers the whole standard polyhedral set — d4, d6, d8, d10, d12, d20, 2d6 —
+  regardless of what a game's own presets cover, so it's useful for a damage
+  roll, a percentile check, or anything ad hoc, not just a game's named rolls.
+  These base buttons are shell-generic (`DiceRoller.svelte`), not a
+  `DiceModule` contribution — Stonetop's redundant plain "Roll 2d6" preset is
+  retired in favor of the panel's own 2d6 button, leaving `stonetopDice` with
+  just its six stat rolls.
+
+  Alongside it, a small signed bonus box: dial in a situational modifier and
+  it applies once, to whatever rolls next — a base die, a game preset, or a
+  stat tapped straight on the sheet, since all three funnel through the play
+  page's `makeRoll`. The engine tracks it as `RollResult.bonus`, kept apart
+  from `modifier` (which comes from the notation itself) so the log can show
+  where each part of a total came from: "2d6+1 (bonus +2)" reads as stat +1,
+  situational +2, rather than folding both into one number. Consumed (reset
+  to 0) the instant a roll uses it — "applies to the next roll" is a
+  one-shot, not a sticky setting. `rollResultSchema` and the `rolls` table's
+  stored blob grow the field; the roll surface, the campaign roll log, and
+  the panel's own recent list all render it distinctly from the base
+  modifier.
+
 - **Inserts land at creation** (commit 106). Closes the gap Phase 14 opened
   back at commit 99: `autoAttachedInsertIds` only ever ran inside
   `migrateCharacter`'s v2→v3 upgrade, so a freshly-built Lightbearer,

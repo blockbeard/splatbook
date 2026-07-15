@@ -26,5 +26,6 @@ export const rollResultSchema = z.strictObject({
 	mode: z.enum(['normal', 'advantage', 'disadvantage']),
 	dice: z.array(dieRoll).min(1).max(100),
 	modifier: z.number().int().min(-1000).max(1000),
+	bonus: z.number().int().min(-1000).max(1000),
 	total: z.number().int().min(-1000).max(10000)
 }) satisfies z.ZodType<RollResult>;
