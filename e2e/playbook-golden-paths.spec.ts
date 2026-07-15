@@ -122,16 +122,27 @@ for (const playbook of PLAYBOOKS) {
 				.first()
 				.click();
 		} else if (playbook.id === 'the-ranger') {
-			await page.getByRole('button', { name: /Animal Companion/ }).click();
+			// Anchored: a second, disabled option ("Magnificent Specimen requires
+			// Animal Companion") also matches an unanchored /Animal Companion/,
+			// since its own description names this move as a prerequisite.
+			await page.getByRole('button', { name: /^Animal Companion/ }).click();
 		}
 		await next.click(); // moves -> possessions
-		await next.click(); // possessions -> extras
 
 		// The Marshal's auto-attach (commit 106) fetches insert-crew.json from
 		// the Extras step to seed the right number of write-in lines — wait for
 		// it to land before racing ahead, or the attach can lose to Finish.
+		// The listener has to be registered before the click that navigates to
+		// Extras, not after: the fetch can complete before an after-the-fact
+		// `waitForResponse` ever attaches, especially under load, and a response
+		// that already happened is invisible to it (it only sees future ones).
 		if (playbook.id === 'the-marshal') {
-			await page.waitForResponse((res) => res.url().includes('insert-crew.json'));
+			await Promise.all([
+				page.waitForResponse((res) => res.url().includes('insert-crew.json')),
+				next.click() // possessions -> extras
+			]);
+		} else {
+			await next.click(); // possessions -> extras
 		}
 
 		// Introductions, to review — blind again.

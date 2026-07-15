@@ -69,6 +69,7 @@
 	<div
 		class="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-sm sm:inset-x-auto sm:right-6 sm:bottom-6"
 		aria-live="polite"
+		aria-label="Roll result"
 	>
 		<div class="rounded-lg border border-accent bg-surface p-4 shadow-lg">
 			<div class="flex items-baseline justify-between gap-4">

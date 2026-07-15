@@ -20,19 +20,43 @@ async function signIn(page: Page, name: string, email: string) {
 	await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible();
 }
 
-test('a missed stat roll offers to mark XP, and marking it updates the sheet', async ({ page }) => {
-	await signIn(page, 'E2E Miss', 'e2e-miss@localhost');
-
+/**
+ * Golden-path a character — but unlike the other specs' blind-Next walk, stop
+ * at the stats step and spend the whole array. The play sheet renders a
+ * "Roll +STAT" button only for an *assigned* stat (`{#if c.stats[stat]}`), and
+ * a blind walk leaves `stats` empty — a character with no stat buttons at all,
+ * which this spec needs.
+ */
+async function buildCharacter(page: Page): Promise<string> {
 	await page.goto('/stonetop/character/build');
 	await page.locator('button[aria-pressed]').first().click();
 	const next = page.getByRole('button', { name: 'Next', exact: true });
+
+	// playbook -> background -> instinct -> appearance -> origin -> stats.
+	for (let i = 0; i < 5; i++) await next.click();
+	await expect(page.getByRole('heading', { name: 'Assign your stats' })).toBeVisible();
+
+	// Greedy left-to-right: six clicks, each on the first value button that is
+	// neither taken (aria-pressed) nor spent (disabled). Always completable —
+	// every row offers every value still unspent.
+	for (let i = 0; i < 6; i++) {
+		await page.locator('button[aria-pressed="false"]:not([disabled])').first().click();
+	}
+	await expect(page.getByText('All stats assigned.')).toBeVisible();
+
+	// Blind-Next the rest of the way, as the other specs do.
 	for (let i = 0; i < 20 && (await next.count()) > 0; i++) {
 		await next.click();
 	}
 	await page.getByRole('button', { name: 'Finish' }).click();
 	await page.waitForURL(/\/stonetop\/character\/sheet\?id=/);
-	const id = new URL(page.url()).searchParams.get('id');
+	return new URL(page.url()).searchParams.get('id')!;
+}
 
+test('a missed stat roll offers to mark XP, and marking it updates the sheet', async ({ page }) => {
+	await signIn(page, 'E2E Miss', 'e2e-miss@localhost');
+
+	const id = await buildCharacter(page);
 	await page.goto(`/stonetop/character/play?id=${id}`);
 
 	await expect(page.getByText(/^0 \/ \d+ to level/)).toBeVisible();
@@ -60,16 +84,7 @@ test('a missed stat roll offers to mark XP, and marking it updates the sheet', a
 test('a damage roll never offers to mark XP, even on a low total', async ({ page }) => {
 	await signIn(page, 'E2E Miss Damage', 'e2e-miss-damage@localhost');
 
-	await page.goto('/stonetop/character/build');
-	await page.locator('button[aria-pressed]').first().click();
-	const next = page.getByRole('button', { name: 'Next', exact: true });
-	for (let i = 0; i < 20 && (await next.count()) > 0; i++) {
-		await next.click();
-	}
-	await page.getByRole('button', { name: 'Finish' }).click();
-	await page.waitForURL(/\/stonetop\/character\/sheet\?id=/);
-	const id = new URL(page.url()).searchParams.get('id');
-
+	const id = await buildCharacter(page);
 	await page.goto(`/stonetop/character/play?id=${id}`);
 
 	const dice = page.locator('section[aria-label="Dice roller"]');

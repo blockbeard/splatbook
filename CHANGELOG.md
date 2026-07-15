@@ -609,6 +609,46 @@ Index` note and a `.canvas` embed, neither in scope here).
 
 ### Fixed
 
+- **Play-sheet tabs never switched in the browser.** `activeTab` was derived
+  from `page.url.searchParams`, but SvelteKit's `replaceState` (shallow
+  routing) updates `page.state` reactively while deliberately leaving
+  `page.url` at its load-time value — so `selectTab` changed the address bar
+  and nothing else; every tab click was a silent no-op (verified against
+  kit 2.69.2's client source: `replaceState` assigns `page.state` and
+  re-notifies, never touches `page.url`). Caught by the e2e suite's first
+  ever run against a real browser — seven specs failing on "heading not
+  found" right after a tab click, plus the Seeker golden path. The live tab
+  now rides in `page.state.tab` (typed via `App.PageState` in `app.d.ts`);
+  the URL write stays, but only for a shareable, reload-surviving `?tab=`.
+
+- **Finishing the character wizard duplicated the character on the next
+  page load.** `finish()` saved the entity and navigated to the sheet
+  without clearing the wizard's localStorage autosave; the root layout's
+  `migrateLocalDrafts` — whose once-per-account guard (`migratedFor`) is
+  component state, reset by any full page load — then pushed the leftover
+  draft up as a second character row. Surfaced as
+  `campaign-arcana-gm.spec.ts`'s strict-mode failure: two identical "Attach"
+  buttons, because the campaign page listed two copies of the character.
+  The builder (both route trees) now clears the draft immediately after a
+  successful save; the signed-out path still keeps it, deliberately — the
+  local sheet reads it.
+
+- **e2e triage after the suite's first real-browser run** (15/24 failing).
+  Beyond the two app bugs above: `smoke.spec.ts` still used the pre-commit-95
+  `/g/` URLs; `dice-panel.spec.ts` asserted text that legitimately renders
+  twice (roll surface + recent-rolls list — the surface now carries
+  `aria-label="Roll result"` and the assertion scopes to it);
+  `playbook-golden-paths.spec.ts` registered the Marshal's `waitForResponse`
+  after the click that triggers the fetch (now `Promise.all`) and matched the
+  Ranger's Animal Companion with an unanchored regex that also hit a disabled
+  button naming it as a prerequisite; `miss-marks-xp.spec.ts` built its
+  character blind-Next, which leaves `stats` empty — and the play sheet only
+  renders a "Roll +STAT" button for an assigned stat, so the spec now spends
+  the stat array on the way through; `reference-spoilers.spec.ts` asserted
+  absence against the SSR shell (the result list only exists client-side) and
+  could click the opt-in checkbox before hydration, a click Svelte silently
+  undoes when it claims the DOM — it now waits for the results line first.
+
 - **Vault: `[!monster]` callouts weren't linkable.** Today's statblock-boxing
   pass (vault-side, not this repo) opened each with `> [!monster] **Name**` —
   bold, no heading marker — which broke every existing anchor link that

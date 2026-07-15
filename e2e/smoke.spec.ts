@@ -21,7 +21,7 @@ test('create, save, reload, and print a character', async ({ page }) => {
 	await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible();
 
 	// --- Build a character ---
-	await page.goto('/g/stonetop/character/build');
+	await page.goto('/stonetop/character/build');
 	// Pick the first playbook (all playbook cards carry aria-pressed).
 	await page.locator('button[aria-pressed]').first().click();
 	// Step through to the end; Next is ungated, so click it until it becomes Finish.
@@ -32,7 +32,7 @@ test('create, save, reload, and print a character', async ({ page }) => {
 	await page.getByRole('button', { name: 'Finish' }).click();
 
 	// --- Saved to the database, opened by id ---
-	await page.waitForURL(/\/g\/stonetop\/character\/sheet\?id=/);
+	await page.waitForURL(/\/stonetop\/character\/sheet\?id=/);
 	const savedUrl = page.url();
 	await expect(page.locator('article.character-sheet')).toBeVisible();
 

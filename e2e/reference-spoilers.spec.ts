@@ -21,6 +21,15 @@ async function search(page: Page, query: string) {
 
 test('signed-out reader opts into Book II spoilers on the search page', async ({ page }) => {
 	await search(page, GATED_QUERY);
+
+	// Wait for the search to actually run before asserting absence: the server
+	// renders no result list at all (the index loads client-side), so the
+	// count-0 check would pass vacuously against the SSR shell — and a click
+	// on the checkbox that races hydration is silently undone when Svelte
+	// claims the DOM. The results line only renders once the player index has
+	// loaded and run, so its presence proves the page is live. This query hits
+	// plenty of ungated Book I sections, so results are guaranteed.
+	await expect(page.getByText(/\d+\+? results?/)).toBeVisible();
 	await expect(page.getByText(GATED_TITLE)).toHaveCount(0);
 
 	await page.getByLabel(/Include Book II/i).check();

@@ -43,7 +43,9 @@ test('the dice panel offers the full polyhedral set and a one-shot bonus', async
 	await dice.getByRole('button', { name: 'd20', exact: true }).click();
 
 	// The roll surface reads the bonus back distinctly from any base modifier.
-	await expect(page.getByText(/\(bonus \+2\)/)).toBeVisible();
+	// Scoped to the roll surface itself — the same text also legitimately
+	// appears in the dice panel's own "Recent rolls" list right below it.
+	await expect(page.getByLabel('Roll result').getByText(/\(bonus \+2\)/)).toBeVisible();
 
 	// One-shot: consumed by that roll — back to 0 and no longer armed.
 	await expect(dice.getByLabel('Bonus')).toHaveValue('0');
