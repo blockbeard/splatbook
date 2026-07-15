@@ -35,3 +35,12 @@ vite.config.ts.timestamp-*
 
 # In-repo git worktrees (parallel-session convention; see .prettierignore)
 .worktrees/
+
+# Sandbox scratch litter (see CLAUDE.md's no-unlink-mount note — files that
+# couldn't be deleted outright get moved here instead; safe to rm for real
+# from a normal filesystem)
+.trash/
+
+# Python bytecode cache (tools/build_rules.py, build_srd.py)
+__pycache__/
+*.pyc

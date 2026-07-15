@@ -20,9 +20,7 @@ async function signIn(page: Page, name: string, email: string) {
 	await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible();
 }
 
-test('a missed stat roll offers to mark XP, and marking it updates the sheet', async ({
-	page
-}) => {
+test('a missed stat roll offers to mark XP, and marking it updates the sheet', async ({ page }) => {
 	await signIn(page, 'E2E Miss', 'e2e-miss@localhost');
 
 	await page.goto('/stonetop/character/build');

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   offers a "Mark XP" button on the roll surface — Stonetop's "on a miss, mark
   experience," reached without the shell ever knowing what marking XP means.
   `ResolvedRoll` grows an optional `onMiss: { label, apply: (entity) =>
-  entity }` — a pure update function the game computes ahead of the roll,
+entity }` — a pure update function the game computes ahead of the roll,
   since only the game holds the character's shape. `stonetopDice.resolve`
   and `rollForStat` (`dice.ts`) always arm one (`markXp`, +1 XP);
   `rollForSteadingStat` deliberately never does, so a steading roll can never
