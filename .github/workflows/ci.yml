@@ -51,3 +51,16 @@ jobs:
 
       - name: Smoke (create → save → reload → print)
         run: npm run test:e2e
+
+      # Failures only: traces (`trace: 'on-first-retry'`) and Playwright's
+      # error-context.md DOM snapshots — without this they die with the
+      # runner, and diagnosing a red e2e means re-deriving everything from
+      # the assertion text alone.
+      - name: Upload Playwright failure artifacts
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-test-results
+          path: test-results/
+          retention-days: 7
+          if-no-files-found: ignore
