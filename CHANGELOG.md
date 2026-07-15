@@ -9,6 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Inserts land at creation** (commit 106). Closes the gap Phase 14 opened
+  back at commit 99: `autoAttachedInsertIds` only ever ran inside
+  `migrateCharacter`'s v2→v3 upgrade, so a freshly-built Lightbearer,
+  Marshal, Blessed+Initiate, or Ranger-who-picked-Animal-Companion had to
+  reload the sheet once before their insert appeared. The wizard's
+  `ExtrasStep` now runs the same commit-99 rule live: it's late enough in
+  the flow that playbookId, backgroundId, and chosen moves are all settled,
+  and it's already fetching the playbook, so attaching there needs no new
+  fetch except Crew's (which still needs `insert-crew.json` to seed the
+  right number of write-in lines). The effect is idempotent and keyed off
+  the draft, so it's a no-op once everything qualifying is already attached
+  — safe to leave running for as long as the step is mounted, including a
+  player bouncing back to it.
+
+  The same effect seeds the Seeker's major arcanum as an Arcana card: the
+  Seeker's three backgrounds (Patriot, Antiquarian, Witch Hunter) each carry
+  an `arcanum` background choice naming the item acquired (e.g. "◇ The Staff
+  of the Lidless Orb" — the leading ◇/◇◇ is a Stock/slot cost, stripped
+  before it becomes the card's name), and `ExtrasStep` is where the pack
+  also surfaces the "Collection" section prompting the player to pick which
+  major-arcana questions they'll answer at the table — the natural place for
+  that item to show up as a real card, ready for the GM to author mysteries
+  onto later.
+
+  `e2e/playbook-golden-paths.spec.ts` (commit 98's matrix) now closes the
+  loop it was written to eventually catch: the five insert-bearing playbooks
+  each drive the specific wizard choice their insert needs (Initiate
+  background for Blessed, an arcanum pick for Seeker, the Animal Companion
+  move for Ranger — Lightbearer and Marshal need nothing extra, their rule
+  keys off playbookId alone) and then visit the play sheet to assert the
+  tab actually attached, no reload required.
+
 - **Arcana insert — free-form cards** (commit 105). Matches the paper ritual
   where the GM hands you a card: write-in name and notes, a configurable row
   of mark boxes, and _mysteries_ (sections) that unlock as marks accumulate.
