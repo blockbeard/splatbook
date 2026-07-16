@@ -33,11 +33,49 @@ Copy `.env.example` and fill it in. For any real deployment:
 - `ORIGIN` — the public URL (e.g. `https://splatbook.app`). SvelteKit form actions
   **403** if this doesn't match the address the browser used.
 
-## atlas + Docker (current v1 path)
+## atlas + Docker (staging)
 
 The `Dockerfile` (multi-stage, `node:22-bookworm-slim` so better-sqlite3 uses its
 prebuilt binary) and `docker-compose.yml` (published earlier) build and run the
 node adapter. SQLite lives on the `splatbook-data` volume at `/data/splatbook.db`.
+
+### Routine deploy (the usual loop)
+
+From the checkout on atlas (node 22 via nvm is installed there for the
+migration step — matches the Dockerfile):
+
+```sh
+git pull --ff-only
+docker compose up -d --build
+DATABASE_URL=/var/lib/docker/volumes/splatbook_splatbook-data/_data/splatbook.db \
+  npm run db:migrate          # idempotent — safe to run every deploy
+curl -f http://localhost:3000/api/health
+```
+
+(`npm ci` first if dependencies changed. `docker volume inspect
+splatbook_splatbook-data` confirms the volume path if it differs.)
+
+### Browsing staging from another machine
+
+Staging's `ORIGIN` is `http://localhost:3000` **on purpose**, which has two
+consequences that look like bugs if you've forgotten this section:
+
+- `http://atlas:3000` / the LAN IP won't work as a way in — even where the
+  port is reachable, any form post (sign-in included) 403s because the
+  browser's address doesn't match `ORIGIN`.
+- The supported path from another machine is an SSH tunnel, which makes your
+  browser's address *be* the ORIGIN:
+
+  ```sh
+  ssh -L 3000:localhost:3000 atlas
+  # then browse http://localhost:3000
+  ```
+
+To expose staging directly on the LAN instead, change `ORIGIN` in atlas's
+`.env` to the address you'll browse (compose already publishes `3000:3000` on
+all interfaces; if the port doesn't even connect, it's the box's firewall,
+not the compose file) — but the tunnel keeps staging private with zero
+configuration, which is why it's the default.
 
 1. **Configure.** Put a `.env` next to `docker-compose.yml` on atlas with at least
    `ORIGIN`, `AUTH_SECRET`, `AUTH_DEV_LOGIN=false`, and your OAuth credentials.
