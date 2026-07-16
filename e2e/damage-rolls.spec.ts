@@ -54,6 +54,9 @@ test('the Heavy gets a Damage (d10) button on the header and on Clash', async ({
 	await clashDamage.click();
 
 	// The move card's button rolls with its own label, distinguishing it in
-	// the roll surface from the bare header roll.
-	await expect(page.getByText('Clash — damage', { exact: true })).toBeVisible();
+	// the roll surface from the bare header roll. Scoped to the surface — the
+	// label also legitimately renders in the panel's "Recent rolls" list.
+	await expect(
+		page.getByLabel('Roll result').getByText('Clash — damage', { exact: true })
+	).toBeVisible();
 });

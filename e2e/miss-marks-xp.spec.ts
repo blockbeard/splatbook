@@ -36,11 +36,18 @@ async function buildCharacter(page: Page): Promise<string> {
 	for (let i = 0; i < 5; i++) await next.click();
 	await expect(page.getByRole('heading', { name: 'Assign your stats' })).toBeVisible();
 
-	// Greedy left-to-right: six clicks, each on the first value button that is
-	// neither taken (aria-pressed) nor spent (disabled). Always completable —
-	// every row offers every value still unspent.
-	for (let i = 0; i < 6; i++) {
-		await page.locator('button[aria-pressed="false"]:not([disabled])').first().click();
+	// One click per row: the first value button in that stat's row that is
+	// neither taken (aria-pressed) nor spent (disabled). Row-scoped on
+	// purpose — a page-wide "first available" keeps landing in the STR row,
+	// because re-assigning a stat is allowed and frees its old value right
+	// back up, so six blind clicks just ping-pong STR between +2 and +1.
+	for (const stat of ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']) {
+		await page
+			.locator('div.flex.items-center.gap-3')
+			.filter({ has: page.getByText(stat, { exact: true }) })
+			.locator('button[aria-pressed="false"]:not([disabled])')
+			.first()
+			.click();
 	}
 	await expect(page.getByText('All stats assigned.')).toBeVisible();
 

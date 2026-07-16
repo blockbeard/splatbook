@@ -67,7 +67,9 @@ test('GM authors an Arcana mystery; the campaign setting gates its visibility', 
 	// unlocked (0 marks < unlockAt 1), and the campaign default is hidden — does not.
 	await page.goto(`/stonetop/character/play?id=${characterId}`);
 	await page.getByRole('button', { name: 'Arcana', exact: true }).click();
-	await expect(page.getByText('Staff of the Lidless Orb')).toBeVisible();
+	// The card name is an editable <input> on the play sheet — its value is
+	// invisible to getByText, so assert it the way the Seeker golden path does.
+	await expect(page.getByPlaceholder('Name')).toHaveValue('Staff of the Lidless Orb');
 	await expect(page.getByText('Power of the Lidless Orb')).toHaveCount(0);
 
 	// The GM flips the campaign setting to preview locked mysteries.
