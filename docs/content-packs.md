@@ -25,7 +25,8 @@ static/content-packs/<gameId>/
 ```
 
 `<gameId>` is kebab-case and must match three things: the `id` in the manifest,
-the id of the registered `GameModule`, and the `/g/<gameId>` URL segment.
+the id of the registered `GameModule`, and the `/<gameId>` URL segment (matched
+by `src/params/game.ts` since commit 95 retired the `/g/` prefix).
 
 ## The manifest
 
@@ -170,7 +171,7 @@ The rules reference above is generated, uniform document-tree prose. A game's
 — an agenda list, move menus, numbered build procedures, `d6` outcome tables,
 and a flow-of-play node/edge graph — that wants bespoke rendering rather than a
 markdown body. It ships as a single pack file (Stonetop: `data/the-gm.json`,
-validated by `gmSchema`) and is surfaced by the shell at `/g/<game>/gm`.
+validated by `gmSchema`) and is surfaced by the shell at `/<game>/gm`.
 
 A game opts in through one optional slot on its `GameModule`:
 

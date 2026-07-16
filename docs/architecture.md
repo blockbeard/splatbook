@@ -170,7 +170,7 @@ screen is doing.
 - Entities use the blob model above. Structured columns are reserved for things
   the *shell* queries: ids, names, game/entity type, timestamps, campaign links.
 
-## Campaigns and the GM gate
+## Campaigns and the spoiler gate
 
 - Campaigns are shell furniture (like entities): a game-tagged table with
   members (`gm`/`player`) and an invite token. An entity carries an optional
@@ -181,14 +181,18 @@ screen is doing.
   shell owns the `RollResult` shape (it produced it) and reads it back to render
   the log. Writes are member-guarded in the service; the live view polls (phase
   10, commit 68).
-- **The reference GM gate** (phase 9) keys "may I see this game's GM-only rules
-  (Book II)?" to "do I GM a campaign for this game?" (`isGmOfAnyCampaign`),
-  computed server-side and threaded to the reference loads as `gmContentVisible`.
-  This is a *display* permission layered on the existing client-side reference
-  model — document trees and the GM search index are served statically and
-  filtered in the browser. It is the right rule for a self-hosted tool; withholding
-  GM text at the network layer would require server-rendered reference pages, a
-  later hardening step rather than a phase-9 concern.
+- **The reference spoiler gate** (commit 97, replacing phase 9's GM gate): "may
+  I see Book II?" is the *reader's* decision, not the GM's — the book itself
+  says players may read it. A per-user preference (`reference.showSetting`,
+  the prefs table when signed in, localStorage when not) drives a "Include
+  Book II — setting spoilers" opt-in on the search page, the TOC, and an
+  interstitial on gated sections. The `visibility: 'gm'` flag stays in the
+  document-tree format (another game may want true GM-only text); Stonetop
+  presents the badge as "Setting". This remains a *display* gate — document
+  trees and the gated search index are served statically and filtered in the
+  browser. Withholding text at the network layer would require server-rendered
+  reference pages: a hardening step for a game that truly needs it, which
+  Stonetop does not.
 
 ## Naming conventions
 

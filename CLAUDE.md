@@ -5,8 +5,11 @@ Domain: splatbook.app (owned). License: GPL-3.0-or-later (app), CC BY-SA 4.0 (St
 
 ## Start here
 
-1. `docs/App Implementation Plan.md` — the commit-by-commit plan. Find the next unbuilt
-   commit; that's the work. Announce which commit(s) this session targets.
+1. `docs/App Implementation Plan.md` — unbuilt work only; the next unbuilt commit is
+   the top of the first phase. Announce which commit(s) this session targets.
+   Completed phases (with their decision history — often worth consulting) are in
+   `docs/App Implementation History.md`. **When a phase completes, move its section
+   to the history file verbatim in the same commit that closes it.**
 2. `docs/App Plan.md` — background: reuse analysis, hosting strategy.
 3. `git log --oneline` — what's actually done (trust this over memory or chat history).
 

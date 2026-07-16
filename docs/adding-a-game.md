@@ -105,8 +105,9 @@ Two one-line edits, both required and kept in sync:
   UI-free registration that `validate:packs` uses, since its tsx runner can’t load
   `.svelte` files).
 
-`/g/<gameId>` now resolves, and the header nav becomes a game picker the moment a
-second game exists.
+`/<gameId>` now resolves (the `game` param matcher only accepts registered ids,
+so static routes can never be shadowed), and the header nav becomes a game
+picker the moment a second game exists.
 
 ## 6. Rules reference (optional)
 

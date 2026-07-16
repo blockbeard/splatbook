@@ -11,22 +11,32 @@ Lampblack & Brimstone, served at `/stonetop`.
 
 ## Status
 
-**v2.0.0** — see [CHANGELOG.md](CHANGELOG.md). What works today:
+**v2.1.0 released; the v2.2 "binder" work is well underway** — see
+[CHANGELOG.md](CHANGELOG.md) for the precise state. What works today:
 
-- **Reference** — the full rules text, searchable, with resolving cross-links;
-  GM-only content (Book II) is gated to campaign GMs.
-- **Characters** — a step-by-step builder for every playbook, and a play-mode
-  sheet: moves, vitals, inventory/Outfit with load tracking, print view.
-- **Steading** — the Stonetop tracker: improvements, fortunes, lists, residents
-  and neighbors, GM-editable when campaign-owned.
-- **GM tools** — agenda/principles/procedures reference, rollable tables (Die of
-  Fate, weather), flow diagrams, threat worksheets saved as entities.
+- **Reference** — the cleaned rules text, chapters as the spine, searchable,
+  with resolving cross-links and the book's own theme; Book II (setting
+  spoilers) opens per reader via a remembered opt-in.
+- **Characters** — a step-by-step builder for every playbook (with a
+  choices-so-far rail), and a tabbed play sheet: Sheet · Moves · Inventory
+  plus a tab per attached insert — followers, class inserts, the undead
+  trio, free-form arcana cards with GM-authored mysteries.
+- **Steading** — the Stonetop tracker: improvements, fortunes, lists,
+  residents and neighbors, a play sheet with steading rolls, GM-editable when
+  campaign-owned.
+- **GM tools** — agenda/principles/procedures reference, rollable tables (Die
+  of Fate, weather), flow diagrams, threat worksheets saved as entities.
 - **Campaigns** — create, invite by tokenised link, join as player; party
-  dashboard; characters attach to at most one campaign.
-- **Dice** — a generic engine with per-game presets, move-aware rolling from the
-  sheet, and a per-campaign roll log the whole table watches (polling).
+  dashboard; per-campaign settings; end-of-session flow that awards XP and
+  rolls the steading's season.
+- **Dice** — the full polyhedral panel with a one-shot bonus box, move-aware
+  and damage rolls from the sheet, "a miss marks XP", and a per-campaign roll
+  log the whole table watches (polling).
 
-Remaining plan lives in `docs/App Implementation Plan.md`.
+Production runs at [splatbook.app](https://splatbook.app) (Cloudflare Pages +
+D1); staging soaks on atlas. Unbuilt work lives in
+`docs/App Implementation Plan.md`; completed phases with their decision
+history in `docs/App Implementation History.md`.
 
 ## Development
 
@@ -41,8 +51,8 @@ npm run validate:packs # content-pack schema validation
 npm run build          # production build
 ```
 
-Deployment (Docker/adapter-node now, Cloudflare Pages + D1 later) is documented
-in [docs/deployment.md](docs/deployment.md).
+Deployment (Cloudflare Pages + D1 in production, Docker/adapter-node on
+staging) is documented in [docs/deployment.md](docs/deployment.md).
 
 ## Layout
 
