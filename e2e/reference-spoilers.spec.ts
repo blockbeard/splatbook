@@ -39,7 +39,11 @@ test('signed-out reader opts into Book II spoilers on the search page', async ({
 
 	await page.getByLabel(/Include Book II/i).check();
 	await expect(results.getByText(GATED_TITLE, { exact: true })).toBeVisible();
-	await expect(results.getByText('Setting', { exact: true })).toBeVisible();
+	// The badge, on the gated hit itself — other Book II hits land in the
+	// top-40 too, each with its own "Setting" badge, so scope to the one
+	// list item this test is about.
+	const gatedHit = results.getByRole('listitem').filter({ hasText: GATED_TITLE });
+	await expect(gatedHit.getByText('Setting', { exact: true })).toBeVisible();
 
 	// Persists across a reload — signed out, this round-trips through
 	// localStorage rather than the server preferences table.
