@@ -48,3 +48,7 @@ __pycache__/
 # FUSE "sillyrename" leftovers from the no-unlink sandbox mount (in-place
 # edits, e.g. `perl -pi`, leave these when the original can't be unlinked)
 .fuse_hidden*
+
+# Downloaded CI failure artifacts (gh run download / gh run view --log-failed)
+e2e-artifacts/
+e2e-failures.log

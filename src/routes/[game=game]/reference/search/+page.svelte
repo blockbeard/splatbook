@@ -84,12 +84,26 @@
 	// Keep ?q= in the URL so a search is shareable and survives reload.
 	$effect(() => {
 		if (!browser) return;
-		const url = new URL(page.url);
+		// Compare *param values* against `location`, never hrefs against
+		// `page.url`, for two hard-won reasons. (1) The load-time URL may
+		// encode a space as %20 while URLSearchParams serialises it as +, so
+		// an href comparison can differ on mount even though the query is
+		// unchanged — and calling `replaceState` while this effect first runs,
+		// during hydration, is before kit's router has initialised: in dev
+		// that's the "Cannot call replaceState(...) before router is
+		// initialized" error, in prod the guard is compiled out and it crashes
+		// the client mid-start, wedging every later shallow-routing and
+		// `invalidate` call on the page. (2) `page.url` deliberately never
+		// updates on shallow routing, so it goes stale after our own first
+		// write; `location` is always current.
+		const current = new URLSearchParams(location.search).get('q') ?? '';
+		if (debounced === current) return;
+		const url = new URL(location.href);
 		if (debounced) url.searchParams.set('q', debounced);
 		else url.searchParams.delete('q');
 		// Same-document query-string update (shareable ?q=), not a route change.
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		if (url.href !== page.url.href) replaceState(url, page.state);
+		replaceState(url, page.state);
 	});
 
 	const href = (id: string) =>

@@ -54,12 +54,19 @@
 	// Keep ?q= in the URL so a search is shareable and survives reload.
 	$effect(() => {
 		if (!browser) return;
-		const url = new URL(page.url);
+		// Compare *param values* against `location`, never hrefs against
+		// `page.url` — see the [game=game] copy of this page for the full
+		// story: an href comparison can differ on mount over %20-vs-+
+		// encoding, and a mount-time `replaceState` runs before kit's router
+		// has initialised, crashing the client in prod.
+		const current = new URLSearchParams(location.search).get('q') ?? '';
+		if (debounced === current) return;
+		const url = new URL(location.href);
 		if (debounced) url.searchParams.set('q', debounced);
 		else url.searchParams.delete('q');
 		// Same-document query-string update (shareable ?q=), not a route change.
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
-		if (url.href !== page.url.href) replaceState(url, page.state);
+		replaceState(url, page.state);
 	});
 
 	const href = (id: string) =>

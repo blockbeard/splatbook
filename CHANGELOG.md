@@ -609,6 +609,24 @@ Index` note and a `.canvas` embed, neither in scope here).
 
 ### Fixed
 
+- **The reference search page crashed kit's client on any visit with `?q=`
+  in the URL.** The effect that keeps `?q=` shareable compared rebuilt-URL
+  hrefs against `page.url`, and the two can disagree over encoding alone
+  (`%20` in the incoming URL vs the `+` URLSearchParams serialises) — so on
+  a direct visit to a search URL the effect called `replaceState` _during
+  hydration_, before kit's router had initialised. In dev that's the
+  "Cannot call replaceState(...) before router is initialized" guard; in
+  prod the guard is compiled out and the call crashed mid-start
+  (`root.$set` on undefined), wedging every later shallow-routing and
+  `invalidate` call on the page — which is why opting into Book II spoilers
+  from such a URL saved the preference, re-ran the load, updated the TOC,
+  and still never refreshed the page's own data or loaded the GM index
+  (`reference-spoilers.spec.ts`, diagnosed from the CI trace's pageError
+  events). The effect now compares decoded param values against `location`
+  (always current, unlike `page.url`, which never updates on shallow
+  routing) and simply doesn't write when the query hasn't changed — which
+  is also the only case that could fire before interactivity.
+
 - **Play-sheet tabs never switched in the browser.** `activeTab` was derived
   from `page.url.searchParams`, but SvelteKit's `replaceState` (shallow
   routing) updates `page.state` reactively while deliberately leaving
