@@ -103,7 +103,7 @@
 	<p class="mt-6 text-sm text-muted">
 		{results.length}{results.length === 40 ? '+' : ''} result{results.length === 1 ? '' : 's'}
 	</p>
-	<ul class="mt-2 divide-y divide-border">
+	<ul class="mt-2 divide-y divide-border" aria-label="Search results">
 		{#each results as hit (hit.id)}
 			{@const snip = makeSnippet(hit.body, terms)}
 			{@const isOpen = expanded[hit.id]}

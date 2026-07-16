@@ -98,6 +98,11 @@ test('a damage roll never offers to mark XP, even on a low total', async ({ page
 	await dice.getByLabel('Bonus').fill('-20');
 
 	await page.getByRole('button', { name: /^Damage \(d\d+\)$/ }).click();
-	await expect(page.getByText('Damage', { exact: true }).first()).toBeVisible();
+	// The armed bonus rides into the roll's label — with -20 dialled in, the
+	// surface reads "Damage (bonus -20)", so a bare exact "Damage" matches
+	// nothing at all.
+	await expect(
+		page.getByLabel('Roll result').getByText('Damage (bonus -20)', { exact: true })
+	).toBeVisible();
 	await expect(page.getByRole('button', { name: 'Mark XP', exact: true })).toHaveCount(0);
 });

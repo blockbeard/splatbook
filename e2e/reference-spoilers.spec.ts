@@ -30,21 +30,26 @@ test('signed-out reader opts into Book II spoilers on the search page', async ({
 	// loaded and run, so its presence proves the page is live. This query hits
 	// plenty of ungated Book I sections, so results are guaranteed.
 	await expect(page.getByText(/\d+\+? results?/)).toBeVisible();
-	await expect(page.getByText(GATED_TITLE)).toHaveCount(0);
+
+	// Scoped to the result list throughout: once the gate opens, the same
+	// title also renders in the sidebar TOC (Book II joins the contents) and
+	// in the hit's own breadcrumb — a page-wide getByText resolves to three.
+	const results = page.getByRole('list', { name: 'Search results' });
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
 
 	await page.getByLabel(/Include Book II/i).check();
-	await expect(page.getByText(GATED_TITLE)).toBeVisible();
-	await expect(page.getByText('Setting', { exact: true })).toBeVisible();
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toBeVisible();
+	await expect(results.getByText('Setting', { exact: true })).toBeVisible();
 
 	// Persists across a reload — signed out, this round-trips through
 	// localStorage rather than the server preferences table.
 	await page.reload();
 	await expect(page.getByLabel(/Include Book II/i)).toBeChecked();
-	await expect(page.getByText(GATED_TITLE)).toBeVisible();
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toBeVisible();
 
 	// Opting back out drops the gated hit without a page reload.
 	await page.getByLabel(/Include Book II/i).uncheck();
-	await expect(page.getByText(GATED_TITLE)).toHaveCount(0);
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
 });
 
 test('a gated section page shows the interstitial until opted in, then itself', async ({
