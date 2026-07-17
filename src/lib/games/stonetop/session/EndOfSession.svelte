@@ -128,16 +128,32 @@
 	 * the run goes into the campaign's session ledger (phase 17): the answers as
 	 * the triggers (this game's own shape), one award line per character, and the
 	 * notes. Recording clears the local notes draft — the ledger holds them now,
-	 * and next session's textarea should start blank. */
+	 * and next session's textarea should start blank.
+	 *
+	 * The two halves fail independently, and only the first may be retried by
+	 * re-running it: characters already written keep their marks (`awarded`
+	 * tracks who took the award this run, so a retry after a mid-loop failure
+	 * never applies a second award to a sheet that already took one), and a
+	 * ledger failure after every sheet was marked retries the *record* alone —
+	 * "try again" must never mean "mark all the XP again". */
+	const awarded = new Set<string>();
 	const writeXp = async (): Promise<void> => {
 		saving = true;
 		saveError = null;
 		try {
 			for (const character of characters) {
+				if (awarded.has(character.id)) continue;
 				const next = applyEndOfSession(character.data as StonetopCharacter, character.id, answers);
 				if (next !== character.data) await save(character.id, next);
 				character.data = next;
+				awarded.add(character.id);
 			}
+		} catch {
+			saveError = 'Could not mark XP on every character. Marked sheets keep it — try again.';
+			saving = false;
+			return;
+		}
+		try {
 			if (record) {
 				await record({
 					triggers: answers,
@@ -152,7 +168,7 @@
 			}
 			saved = true;
 		} catch {
-			saveError = 'Could not mark XP on every character. Nothing was lost — try again.';
+			saveError = 'XP is marked, but the session didn’t reach the log — try again.';
 		} finally {
 			saving = false;
 		}
