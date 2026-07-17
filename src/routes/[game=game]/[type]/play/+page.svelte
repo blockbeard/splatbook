@@ -78,12 +78,25 @@
 	// ever knowing what any of them mean.
 	const UNDO_DEPTH = 10;
 	const UNDO_TOAST_MS = 6000;
+	// Changes closer together than this coalesce into one undo step: typing in
+	// a text field fires onChange per keystroke, and "undo" should mean "that
+	// edit", not "that letter". Discrete taps (HP, a tracker) land more than a
+	// beat apart, so each keeps its own step.
+	const UNDO_COALESCE_MS = 1500;
 	let undoStack: object[] = [];
 	let undoOffered = $state(false);
 	let undoTimer: ReturnType<typeof setTimeout> | undefined;
+	let lastSnapshotAt = 0;
 
 	function offerUndo(prev: object): void {
-		undoStack = [...undoStack, prev].slice(-UNDO_DEPTH);
+		const now = Date.now();
+		// Within a burst the stack's top already holds the state before the
+		// burst began — pushing every keystroke would burn the whole depth on
+		// one sentence. Outside a burst, snapshot.
+		if (now - lastSnapshotAt > UNDO_COALESCE_MS) {
+			undoStack = [...undoStack, prev].slice(-UNDO_DEPTH);
+		}
+		lastSnapshotAt = now;
 		undoOffered = true;
 		clearTimeout(undoTimer);
 		undoTimer = setTimeout(() => (undoOffered = false), UNDO_TOAST_MS);
@@ -99,6 +112,8 @@
 		saveState = 'saving';
 		clearTimeout(timer);
 		persist(prev);
+		// The next change after an undo is a fresh step, never part of an old burst.
+		lastSnapshotAt = 0;
 		// Keep the toast up (and the timer fresh) while there's more to unwind.
 		if (undoStack.length === 0) undoOffered = false;
 		else {
