@@ -35,25 +35,36 @@ test('a mistap on the play sheet can be undone, and the undo persists', async ({
 	await page.goto(`/stonetop/character/play?id=${id}`);
 	await expect(page.getByRole('heading', { name: 'HP', exact: true })).toBeVisible();
 
-	const before = await page.evaluate(async (id) => {
-		const res = await fetch(`/api/entities/${id}`);
-		return (await res.json()) as { data: { hp: { current: number } } };
-	}, id);
-	const hpBefore = before.data.hp.current;
-	expect(hpBefore).toBeGreaterThan(1);
+	// Assert on what the sheet *shows*, not blob internals: a fresh-from-wizard
+	// blob stores hp 0/0 until PlayMode's enterPlay normalises it on open, so
+	// the displayed "18 / 18" is the truth the player acts on. Scope to the HP
+	// section — other trackers print numbers too.
+	const hpSection = page
+		.locator('section')
+		.filter({ has: page.getByRole('heading', { name: 'HP', exact: true }) });
+	const hpReadout = hpSection.getByText(/^\d+ \/ \d+$/);
+	await expect(hpReadout).toBeVisible();
+	// enterPlay normalises once the playbook loads — wait out the 0/0 moment.
+	await expect(hpReadout).not.toHaveText('0 / 0');
+	const [current, max] = (await hpReadout.innerText()).split(' / ').map(Number);
+	expect(current).toBe(max);
+	expect(max).toBeGreaterThan(1);
 
-	// The mistap: knock a hit point off. The toast offers the way back.
-	await page.getByRole('group', { name: /HP/i }).getByRole('button').first().click();
+	// No toast yet: the normalisation autosave the page just did is the game's
+	// housekeeping, not a mistap — nothing to offer undo for.
+	await expect(page.getByRole('status')).toHaveCount(0);
+
+	// The mistap: tap the first HP box, dropping current to 1.
+	await page.getByRole('group', { name: 'HP' }).getByRole('button').first().click();
+	await expect(hpReadout).toHaveText(`1 / ${max}`);
 	await expect(page.getByRole('status').getByText('Change saved.')).toBeVisible();
 
 	await page.getByRole('button', { name: 'Undo', exact: true }).click();
+	await expect(hpReadout).toHaveText(`${max} / ${max}`);
 	await expect(page.getByText('Saved', { exact: true })).toBeVisible();
 
-	// The restored blob is what the server holds — reload and re-read.
+	// The restored value is what the server holds: reload — the page loads the
+	// blob back from the database — and the sheet still reads full.
 	await page.reload();
-	const after = await page.evaluate(async (id) => {
-		const res = await fetch(`/api/entities/${id}`);
-		return (await res.json()) as { data: { hp: { current: number } } };
-	}, id);
-	expect(after.data.hp.current).toBe(hpBefore);
+	await expect(hpSection.getByText(/^\d+ \/ \d+$/)).toHaveText(`${max} / ${max}`);
 });
