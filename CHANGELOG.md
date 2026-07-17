@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Feedback link + cookieless analytics** (commit 116). The footer grows a
+  Feedback link to the GitHub issue tracker — feedback goes where the fix
+  happens — and the shell can now render the Cloudflare Web Analytics beacon:
+  free, cookieless, no consent banner, nothing stored about the visitor.
+  Config, not code: it renders only when a deployment sets
+  `PUBLIC_CF_BEACON_TOKEN` (documented in `.env.example`), never in dev.
+  `/privacy` updates in the same commit, as its own text demands: the "no
+  analytics" claim becomes an honest disclosure of the one cookieless
+  measurement, and the no-consent-banner reasoning still holds. If
+  event-level questions arise later, self-hosted Umami on atlas is the
+  upgrade path that keeps the no-third-party-tracking claim true.
 - **Moves link to their rules** (commit 115). Every extracted move card — the
   play sheet's basic moves, the steading sheet's moves, and the Moves & Gear
   page — deep-links its name to the move's full rules text in the reference.

@@ -4,15 +4,18 @@
 	honest disclosure is worth having regardless.
 
 	Keep this factually true against src/lib/server/db/schema.ts: if a migration adds
-	a table that holds personal data, say so here. It claims no analytics and no
-	third-party tracking — that is currently true and should stay that way, or this
-	page must change with it.
+	a table that holds personal data, say so here. It claims no tracking and no
+	advertising — that is currently true and should stay that way, or this page must
+	change with it. The one measurement on the site is Cloudflare Web Analytics
+	(commit 116): cookieless, aggregate page counts, nothing stored about the
+	visitor — disclosed below, and if it ever grows beyond that, this page changes
+	in the same commit.
 -->
 <script lang="ts">
 	import { APP_NAME, APP_REPO_URL } from '$lib';
 	import { CONTACT_EMAIL, KOFI_URL, DRIVETHRU_AFFILIATE_URL } from '$lib/support';
 
-	const LAST_UPDATED = '11 July 2026';
+	const LAST_UPDATED = '17 July 2026';
 </script>
 
 <svelte:head>
@@ -44,8 +47,15 @@
 			</li>
 		</ul>
 		<p class="mt-3 text-sm text-muted">
-			That is the whole list. There is no analytics, no advertising, no tracking pixels, and no
-			third-party scripts of any kind on this site. Nothing you write is read, mined or sold.
+			That is the whole list. There is no advertising, no tracking pixels, and nothing you write is
+			read, mined or sold. The one measurement on the site is
+			<a
+				href="https://www.cloudflare.com/web-analytics/"
+				rel="noopener external"
+				class="underline hover:text-accent">Cloudflare Web Analytics</a
+			>: aggregate page counts so one person can tell whether anyone visits. It is cookieless, it
+			does not fingerprint you, it stores nothing about you, and it cannot follow you to another
+			site — which is why there is still no consent banner to click.
 		</p>
 	</section>
 
@@ -92,7 +102,8 @@
 		<p class="mt-2">
 			One cookie, holding your sign-in session, so the site knows it is still you on the next page.
 			It is essential to signing in and is not used to track you. There are no advertising or
-			analytics cookies, which is why you are not being asked to click a consent banner.
+			analytics cookies — the page-count measurement above is cookieless by design — which is why
+			you are not being asked to click a consent banner.
 		</p>
 	</section>
 

@@ -1,9 +1,11 @@
 <script lang="ts">
 	import '../app.css';
 	import { browser } from '$app/environment';
+	import { dev } from '$app/environment';
 	import { resolve } from '$app/paths';
+	import { env } from '$env/dynamic/public';
 	import favicon from '$lib/assets/favicon.svg';
-	import { APP_NAME } from '$lib';
+	import { APP_NAME, APP_REPO_URL } from '$lib';
 	import { listGames } from '$lib/games';
 	import { migrateLocalDrafts } from '$lib/entities/client';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
@@ -14,6 +16,16 @@
 	// With a single game registered there is nothing to pick — the shell
 	// shows a direct link and the picker stays hidden until game #2 exists.
 	const games = listGames();
+
+	// Cloudflare Web Analytics (commit 116): cookieless page counts, nothing
+	// stored about the visitor, no consent banner needed — which is exactly the
+	// claim /privacy makes, so if this ever grows into something that tracks,
+	// that page changes in the same commit. Config, not code: the beacon only
+	// renders when a deployment sets PUBLIC_CF_BEACON_TOKEN (production), never
+	// in dev. If event-level questions arise later ("does anyone use the PDF
+	// export?"), self-hosted Umami on atlas is the upgrade path that keeps the
+	// no-third-party-tracking claim true.
+	const beaconToken = dev ? undefined : env.PUBLIC_CF_BEACON_TOKEN;
 
 	// On sign-in, push any drafts built while logged out up to the database
 	// (once per account, best-effort). See $lib/entities/client.
@@ -28,6 +40,13 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	{#if beaconToken}
+		<script
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon={JSON.stringify({ token: beaconToken })}
+		></script>
+	{/if}
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-bg text-text">
@@ -70,6 +89,11 @@
 				<a href={resolve('/privacy')} class="underline hover:text-text">Privacy</a>
 				<span aria-hidden="true">·</span>
 				<a href={resolve('/terms')} class="underline hover:text-text">Terms</a>
+				<span aria-hidden="true">·</span>
+				<!-- Feedback goes where the fix happens (commit 116). -->
+				<a href="{APP_REPO_URL}/issues" rel="external" class="underline hover:text-text">
+					Feedback
+				</a>
 			</p>
 		</div>
 	</footer>
