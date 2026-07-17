@@ -11,7 +11,7 @@
 	pays nothing extra for this page).
 -->
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import type { BasicMoves, InventoryInsert, SpecialMoves } from '../pack-schemas';
 	import { fetchBasicMoves, fetchSpecialMoves } from '../pack/moves';
 	import { fetchInventory } from '../pack/inserts';
@@ -48,7 +48,10 @@
 					{#if move.sectionId}
 						<!-- Deep-link to the move's full rules (commit 115). -->
 						<a
-							href="{base}/stonetop/reference/{move.sectionId}"
+							href={resolve('/[game=game]/reference/[section]', {
+								game: 'stonetop',
+								section: move.sectionId
+							})}
 							class="hover:text-accent hover:underline"
 							title="Full rules for {move.name}"
 						>

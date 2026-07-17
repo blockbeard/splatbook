@@ -7,7 +7,7 @@
 -->
 <script lang="ts">
 	import { page } from '$app/state';
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import { replaceState } from '$app/navigation';
 	import type { PlayProps } from '$lib/games/types';
 	import type { FollowersInsert, InventoryInsert, Move, Playbook } from '../pack-schemas';
@@ -391,7 +391,10 @@
 					     each move its own section, and build_moves.ts records the id
 					     alongside the extracted move — the link is data, not string-matching. -->
 					<a
-						href="{base}/stonetop/reference/{move.sectionId}"
+						href={resolve('/[game=game]/reference/[section]', {
+							game: 'stonetop',
+							section: move.sectionId
+						})}
 						class="hover:text-accent hover:underline"
 						title="Full rules for {move.name}"
 					>

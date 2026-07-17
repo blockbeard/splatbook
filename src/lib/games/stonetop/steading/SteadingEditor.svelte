@@ -8,7 +8,7 @@
 	via `onChange`, which the route autosaves.
 -->
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import type { PlayProps } from '$lib/games/types';
 	import type { SteadingPack } from '../pack-schemas';
 	import {
@@ -251,7 +251,10 @@
 									<!-- Deep-link to the move's full rules (commit 115) — same as the
 									     character sheet's move cards. -->
 									<a
-										href="{base}/stonetop/reference/{move.sectionId}"
+										href={resolve('/[game=game]/reference/[section]', {
+											game: 'stonetop',
+											section: move.sectionId
+										})}
 										class="hover:text-accent hover:underline"
 										title="Full rules for {move.name}"
 									>
