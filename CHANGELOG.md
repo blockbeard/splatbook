@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Booklet imposition** (commit 121). A shared imposition helper in
+  `$lib/pdf/imposition`: `saddleStitchOrder` is the pure fold-order
+  arithmetic (rendered page → position on sheet, blanks padded to a whole
+  signature at the end), `imposeSaddleStitch` pairs a finished PDF's pages
+  two-up onto landscape sheets twice the page width — A5 in, landscape A4
+  out, print duplex (flip on short edge), fold, staple: the physical-playbook
+  shape. Wired as `?booklet=1` on the generic PDF endpoint — imposition
+  happens on the finished bytes, so a game's layout code doesn't know
+  booklets exist — with a Booklet button on the sheet view. 3-up (three
+  panels table-flat) stays a deliberate follow-up; the helper makes it a
+  small commit when wanted.
 - **Character sheet PDF, 1-up** (commit 120). A real generated document — the
   printed-playbook layout, chosen options only, from the same character blob
   the sheet renders: name in the book's Avara face, playbook · background ·

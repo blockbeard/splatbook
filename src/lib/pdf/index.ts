@@ -11,3 +11,5 @@ export { StandardFonts } from 'pdf-lib';
 export type { EmbeddedFont, TextOptions } from './builder';
 export { wrapText, textHeight, flowBlocks, pageCount } from './layout';
 export type { MeasureFn, FlowPosition, FlowOptions } from './layout';
+export { saddleStitchOrder, padToSignature, imposeSaddleStitch } from './imposition';
+export type { BookletFace } from './imposition';

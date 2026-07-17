@@ -10,6 +10,7 @@ import { error } from '@sveltejs/kit';
 import { getGame } from '$lib/games';
 import { getEntity } from '$lib/server/db/entities';
 import { pdfResponse } from '$lib/pdf';
+import { imposeSaddleStitch } from '$lib/pdf/imposition';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ params, url, locals, fetch }) => {
@@ -26,5 +27,13 @@ export const GET: RequestHandler = async ({ params, url, locals, fetch }) => {
 	if (!entity) error(404, 'No such entity.');
 
 	const { bytes, filename } = await type.pdf(entity.data as object, fetch);
+
+	// ?booklet=1 (commit 121): the same document imposed as a saddle-stitch
+	// booklet — pages paired two-up onto landscape sheets in fold order, print
+	// duplex and fold. Generic: imposition happens on the finished bytes, so
+	// the game's layout code doesn't know booklets exist.
+	if (url.searchParams.get('booklet') === '1') {
+		return pdfResponse(await imposeSaddleStitch(bytes), filename.replace(/\.pdf$/, '-booklet.pdf'));
+	}
 	return pdfResponse(bytes, filename);
 };

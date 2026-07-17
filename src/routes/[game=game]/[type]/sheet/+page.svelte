@@ -94,6 +94,14 @@
 			>
 				Download PDF
 			</a>
+			<!-- The same document folded (commit 121): duplex, flip on short edge,
+			     fold, staple — the physical-playbook shape. -->
+			<a
+				href="{pdfPath}?id={savedId}&booklet=1"
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Booklet
+			</a>
 		{/if}
 		<button
 			type="button"
