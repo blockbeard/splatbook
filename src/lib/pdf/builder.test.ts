@@ -69,6 +69,35 @@ describe('PdfBuilder', () => {
 	});
 });
 
+describe('font sanitising', () => {
+	it('keeps newlines — authored line breaks must survive to the wrap/split path', async () => {
+		const b = await PdfBuilder.create();
+		const font = await b.standardFont();
+		expect(font.sanitize('line one\nline two')).toBe('line one\nline two');
+	});
+
+	it('maps the pack symbols to printable stand-ins', async () => {
+		const b = await PdfBuilder.create();
+		const font = await b.standardFont();
+		expect(font.sanitize('mark ◇ then ✕ then •')).toBe('mark ( ) then x then -');
+	});
+
+	it('flattens what WinAnsi cannot encode, including C1 controls', async () => {
+		const b = await PdfBuilder.create();
+		const font = await b.standardFont();
+		expect(font.sanitize('a\u0085b\u2603c')).toBe('a?b?c'); // NEL (C1), snowman
+		// …but keeps latin-1 and the typographic extras WinAnsi carries.
+		expect(font.sanitize('café — “quoted”…')).toBe('café — “quoted”…');
+	});
+
+	it('draws multi-line standard-font text without throwing', async () => {
+		const b = await PdfBuilder.create();
+		const font = await b.standardFont();
+		const used = b.text(0, 'one\ntwo\nthree', { x: 40, y: 40, font, size: 10 });
+		expect(used).toBeCloseTo(3 * 10 * 1.25, 5);
+	});
+});
+
 describe('pdfResponse', () => {
 	it('sets the download headers and sanitises the filename', async () => {
 		const b = await PdfBuilder.create();
