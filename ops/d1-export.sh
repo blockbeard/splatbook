@@ -35,6 +35,11 @@ KEEP_MONTHLY="${KEEP_MONTHLY:-12}"
 KUMA_PUSH_URL="${KUMA_PUSH_URL:-}"
 # ------------------------------------------------------------------------------
 
+# Run from the checkout this script lives in: `npx wrangler` then resolves the
+# repo's own pinned wrangler (and its wrangler.toml names the database) instead
+# of whatever cron's $HOME happens to offer — cron gives no useful cwd.
+cd "$(dirname "$(readlink -f "$0")")/.."
+
 today="$(date +%F)"          # 2026-07-17
 month="$(date +%Y-%m)"       # 2026-07
 daily_dir="$BACKUP_ROOT/daily"
