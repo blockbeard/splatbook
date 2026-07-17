@@ -117,25 +117,52 @@ describe('listCampaignSessions', () => {
 describe('updateCampaignSessionNotes (commit 112)', () => {
 	it('lets the GM fix the notes after the fact, touching nothing else', async () => {
 		const recorded = await recordCampaignSession(db, gm, sampleRecord());
-		const updated = await updateCampaignSessionNotes(
-			db,
-			recorded!.id,
-			gm,
-			'The bridge burned — and it was Bram’s fault.'
-		);
+		const updated = await updateCampaignSessionNotes(db, recorded!.id, gm, {
+			notes: 'The bridge burned — and it was Bram’s fault.'
+		});
 		expect(updated?.notes).toBe('The bridge burned — and it was Bram’s fault.');
-		// History itself doesn't take edits.
+		// History itself doesn't take edits, and the other notes field is untouched.
 		expect(updated?.number).toBe(1);
 		expect(updated?.awards).toEqual(recorded!.awards);
 		expect(updated?.triggers).toEqual(recorded!.triggers);
+		expect(updated?.privateNotes).toBe(recorded!.privateNotes);
 	});
 
-	it('refuses a player, a stranger, and a session that doesn’t exist', async () => {
+	it('refuses a player, a stranger, a session that doesn’t exist, and an empty patch', async () => {
 		const recorded = await recordCampaignSession(db, gm, sampleRecord());
-		expect(await updateCampaignSessionNotes(db, recorded!.id, player, 'mine now')).toBeUndefined();
-		expect(await updateCampaignSessionNotes(db, recorded!.id, outsider, 'hax')).toBeUndefined();
-		expect(await updateCampaignSessionNotes(db, 'no-such-id', gm, 'void')).toBeUndefined();
+		expect(
+			await updateCampaignSessionNotes(db, recorded!.id, player, { notes: 'mine now' })
+		).toBeUndefined();
+		expect(
+			await updateCampaignSessionNotes(db, recorded!.id, outsider, { notes: 'hax' })
+		).toBeUndefined();
+		expect(
+			await updateCampaignSessionNotes(db, 'no-such-id', gm, { notes: 'void' })
+		).toBeUndefined();
+		expect(await updateCampaignSessionNotes(db, recorded!.id, gm, {})).toBeUndefined();
 		const [row] = await db.select().from(schema.campaignSessions);
 		expect(row.notes).toBe('The bridge burned.');
+	});
+});
+
+describe('private GM notes', () => {
+	it('stores them at record time, defaulting empty, and edits them separately', async () => {
+		const bare = await recordCampaignSession(db, gm, sampleRecord());
+		expect(bare?.privateNotes).toBe('');
+
+		const secret = await recordCampaignSession(
+			db,
+			gm,
+			sampleRecord({ privateNotes: 'Bram is the cult’s inside man.' })
+		);
+		expect(secret?.privateNotes).toBe('Bram is the cult’s inside man.');
+		expect(secret?.notes).toBe('The bridge burned.');
+
+		const updated = await updateCampaignSessionNotes(db, secret!.id, gm, {
+			privateNotes: 'Bram is innocent after all.'
+		});
+		expect(updated?.privateNotes).toBe('Bram is innocent after all.');
+		// The shared notes didn't move.
+		expect(updated?.notes).toBe('The bridge burned.');
 	});
 });

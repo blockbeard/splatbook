@@ -1,0 +1,1 @@
+ALTER TABLE `campaign_sessions` ADD `private_notes` text DEFAULT '' NOT NULL;

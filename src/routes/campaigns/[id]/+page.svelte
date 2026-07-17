@@ -196,11 +196,24 @@
 							class="mt-2"
 						>
 							<input type="hidden" name="sessionId" value={session.id} />
+							<label class="text-xs font-medium text-muted" for="notes-{session.id}">
+								Notes (everyone at the table reads these)
+							</label>
 							<textarea
+								id="notes-{session.id}"
 								name="notes"
 								rows="3"
-								class="w-full rounded-md border border-border bg-surface p-2 text-sm"
+								class="mt-1 w-full rounded-md border border-border bg-surface p-2 text-sm"
 								value={session.notes}></textarea>
+							<label class="mt-2 block text-xs font-medium text-muted" for="private-{session.id}">
+								Private notes (only you see these)
+							</label>
+							<textarea
+								id="private-{session.id}"
+								name="privateNotes"
+								rows="2"
+								class="mt-1 w-full rounded-md border border-border bg-surface p-2 text-sm"
+								value={session.privateNotes ?? ''}></textarea>
 							<div class="mt-1 flex gap-3">
 								<button type="submit" class="text-xs font-medium text-accent hover:underline">
 									Save notes
@@ -219,6 +232,14 @@
 							<p class="mt-1 text-sm whitespace-pre-wrap">{session.notes}</p>
 						{:else}
 							<p class="mt-1 text-xs text-muted italic">No notes recorded.</p>
+						{/if}
+						{#if data.isGm && session.privateNotes}
+							<!-- Server-stripped for players — this block can only ever render
+							     for the GM, the border marks it as yours alone. -->
+							<div class="mt-2 rounded-md border border-dashed border-border p-2">
+								<p class="text-xs font-medium text-muted">Private notes (GM only)</p>
+								<p class="mt-1 text-sm whitespace-pre-wrap">{session.privateNotes}</p>
+							</div>
 						{/if}
 						{#if data.isGm}
 							<button

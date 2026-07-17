@@ -32,8 +32,10 @@ export interface NewSessionRecord {
 	triggers: unknown;
 	/** Per-character awards, already denormalised (id, name-at-the-time, xp). */
 	awards: SessionAward[];
-	/** The GM's session notes. */
+	/** The GM's session notes — shared with the whole table. */
 	notes: string;
+	/** The GM's private notes — stored on the row, stripped from player views. */
+	privateNotes?: string;
 }
 
 /** The caller's GM seat at a campaign, or nothing. */
@@ -74,7 +76,8 @@ export async function recordCampaignSession(
 			number: max + 1,
 			triggers: input.triggers ?? {},
 			awards: input.awards,
-			notes: input.notes
+			notes: input.notes,
+			privateNotes: input.privateNotes ?? ''
 		})
 		.returning();
 	return row;
@@ -96,17 +99,19 @@ export async function listCampaignSessions(db: Db, campaignId: string): Promise<
 /**
  * Edit a recorded session's notes after the fact (commit 112) — the GM re-reads
  * the ledger later and fixes what the evening's shorthand got wrong. GM-gated
- * like the record itself. Only the notes take edits: the number, triggers and
- * awards are what *happened*, and history doesn't get rewritten. Returns the
- * updated row, or `undefined` when the session doesn't exist or the caller
- * isn't its campaign's GM.
+ * like the record itself. Only the two notes fields take edits (shared and
+ * private — pass what changed): the number, triggers and awards are what
+ * *happened*, and history doesn't get rewritten. Returns the updated row, or
+ * `undefined` when the session doesn't exist, the caller isn't its campaign's
+ * GM, or nothing was passed to change.
  */
 export async function updateCampaignSessionNotes(
 	db: Db,
 	sessionId: string,
 	userId: string,
-	notes: string
+	patch: { notes?: string; privateNotes?: string }
 ): Promise<CampaignSession | undefined> {
+	if (patch.notes === undefined && patch.privateNotes === undefined) return undefined;
 	const [existing] = await db
 		.select({ campaignId: campaignSessions.campaignId })
 		.from(campaignSessions)
@@ -117,7 +122,11 @@ export async function updateCampaignSessionNotes(
 
 	const [row] = await db
 		.update(campaignSessions)
-		.set({ notes, updatedAt: new Date() })
+		.set({
+			...(patch.notes !== undefined ? { notes: patch.notes } : {}),
+			...(patch.privateNotes !== undefined ? { privateNotes: patch.privateNotes } : {}),
+			updatedAt: new Date()
+		})
 		.where(eq(campaignSessions.id, sessionId))
 		.returning();
 	return row;

@@ -107,8 +107,10 @@ test('the GM ends a session and the XP lands on the sheet', async ({ page }) => 
 	// 2 group + 1 personal.
 	await expect(page.getByText('+3 XP')).toBeVisible();
 
-	// Jot the session notes — the record should carry them (phase 17).
+	// Jot the session notes — the record should carry them (phase 17). Shared
+	// notes for the table, private ones for the GM alone.
 	await page.getByPlaceholder(/The bridge burned/).fill('E2E: the mill flooded.');
+	await page.getByLabel('Private notes').fill('E2E: the miller is a doppelgänger.');
 
 	await page.getByRole('button', { name: /Mark XP on every sheet/ }).click();
 	await expect(page.getByText(/Marked\./)).toBeVisible();
@@ -129,6 +131,12 @@ test('the GM ends a session and the XP lands on the sheet', async ({ page }) => 
 	await expect(log.getByText('3 XP across the party')).toBeVisible();
 	await expect(log.getByText('Ryn +3 XP')).toBeVisible();
 	await expect(log.getByText('E2E: the mill flooded.')).toBeVisible();
+
+	// The GM's private notes rode along, plainly marked as theirs alone. (The
+	// player-side absence is enforced server-side — the load strips the field —
+	// and covered by the service tests; this asserts the GM half renders.)
+	await expect(log.getByText('Private notes (GM only)')).toBeVisible();
+	await expect(log.getByText('E2E: the miller is a doppelgänger.')).toBeVisible();
 
 	// And the GM can fix the notes after the fact (commit 112).
 	await log.getByRole('button', { name: 'Edit notes' }).click();

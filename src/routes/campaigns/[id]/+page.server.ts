@@ -111,13 +111,15 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		// The session ledger (phase 17), newest first — every member sees the
 		// history; only the GM may edit a record's notes. The awards are the
 		// shell's own shape; `triggers` stays server-side (the game's shape, and
-		// nothing here renders it).
+		// nothing here renders it). Private notes are stripped here, not hidden
+		// in the UI — a player's browser never receives them.
 		sessions: sessions.map((s) => ({
 			id: s.id,
 			number: s.number,
 			date: s.date.getTime(),
 			awards: s.awards,
-			notes: s.notes
+			notes: s.notes,
+			privateNotes: isGm ? s.privateNotes : null
 		})),
 		// The invite capability is GM-only; players never receive the token.
 		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null,
@@ -220,16 +222,19 @@ export const actions: Actions = {
 		return { steadingEditor: { ok: true } };
 	},
 
-	/** Fix a recorded session's notes after the fact (commit 112). GM-only; the
-	 * service re-checks the seat against the session's own campaign. */
+	/** Fix a recorded session's notes after the fact (commit 112) — both the
+	 * shared and the private field. GM-only; the service re-checks the seat
+	 * against the session's own campaign. */
 	updateSessionNotes: async ({ params, request, locals }) => {
 		const { userId, seat } = await requireSeat(params.id, locals);
 		if (seat.role !== 'gm') error(403, 'Only the GM can edit the session log.');
 
 		const form = await request.formData();
 		const sessionId = String(form.get('sessionId') ?? '');
-		const notes = String(form.get('notes') ?? '');
-		const updated = await updateCampaignSessionNotes(locals.db, sessionId, userId, notes);
+		const updated = await updateCampaignSessionNotes(locals.db, sessionId, userId, {
+			notes: String(form.get('notes') ?? ''),
+			privateNotes: String(form.get('privateNotes') ?? '')
+		});
 		if (!updated) error(400, 'No such session to edit.');
 		return { sessionNotes: { ok: true, id: updated.id } };
 	}

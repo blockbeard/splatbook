@@ -54,11 +54,13 @@
 		triggers: unknown;
 		awards: { entityId: string; name: string; xp: number }[];
 		notes: string;
+		privateNotes?: string;
 	}): Promise<void> {
 		const body = new FormData();
 		body.set('triggers', JSON.stringify(run.triggers ?? {}));
 		body.set('awards', JSON.stringify(run.awards));
 		body.set('notes', run.notes);
+		body.set('privateNotes', run.privateNotes ?? '');
 
 		const res = await fetch(`?/record`, { method: 'POST', body });
 		if (!res.ok) throw new Error('Record failed');

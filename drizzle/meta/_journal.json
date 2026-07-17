@@ -71,6 +71,13 @@
       "when": 1784272909952,
       "tag": "0009_campaign_sessions",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1784279300894,
+      "tag": "0010_session_private_notes",
+      "breakpoints": true
     }
   ]
 }

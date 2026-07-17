@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Private GM session notes.** The end-of-session flow now says plainly that
+  session notes are shared ("everyone in the campaign can read these") and
+  grows a second box for private notes — prep, spoilers, suspicions — stored
+  on the same `campaign_sessions` row (migration
+  `0010_session_private_notes`) but stripped server-side from player views:
+  a player's browser never receives them. The GM sees them on the session
+  log in a clearly-marked "Private notes (GM only)" block and edits both
+  fields after the fact; each box keeps its own local draft while typing.
+
+### Changed
+
+- **Undo snapshots coalesce.** Play-mode changes closer together than 1.5s
+  now form one undo step — typing fires a change per keystroke, and "undo"
+  should mean "that edit", not "that letter". Discrete taps keep their own
+  steps; the first change after an undo always starts fresh.
+
 ## [2.2.0] - 2026-07-17
 
 **The binder release** — every insert playable, Book II open to the curious,

@@ -75,14 +75,17 @@ const saveBody = z.object({
 	data: z.string().min(1)
 });
 
-/** The ledger record's form fields — all three arrive as strings. */
+/** The ledger record's form fields — all four arrive as strings. */
 const recordBody = z.object({
 	/** The game's answer shape, JSON-encoded; stored opaquely, never parsed here
 	 * beyond being valid JSON. */
 	triggers: z.string(),
 	/** JSON-encoded award lines — shell-owned, so these *are* validated. */
 	awards: z.string(),
-	notes: z.string()
+	/** Shared with the table on the dashboard's session log. */
+	notes: z.string(),
+	/** GM-only; stripped from player views on read. */
+	privateNotes: z.string().default('')
 });
 
 /** The one ledger shape the shell renders, so the shell checks it. */
@@ -126,7 +129,8 @@ export const actions: Actions = {
 		const parsed = recordBody.safeParse({
 			triggers: form.get('triggers'),
 			awards: form.get('awards'),
-			notes: form.get('notes')
+			notes: form.get('notes'),
+			privateNotes: form.get('privateNotes') ?? ''
 		});
 		if (!parsed.success) error(400, 'Malformed session record.');
 
@@ -145,7 +149,8 @@ export const actions: Actions = {
 			campaignId: params.id,
 			triggers,
 			awards: awardsParsed.data,
-			notes: parsed.data.notes
+			notes: parsed.data.notes,
+			privateNotes: parsed.data.privateNotes
 		});
 		if (!session) error(403, 'Only the GM can record the session.');
 		return { recorded: { id: session.id, number: session.number } };

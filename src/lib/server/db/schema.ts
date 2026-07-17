@@ -314,8 +314,16 @@ export const campaignSessions = sqliteTable(
 		triggers: text('triggers', { mode: 'json' }).notNull().default('{}'),
 		/** Per-character awards, denormalised for display. */
 		awards: text('awards', { mode: 'json' }).notNull().default('[]').$type<SessionAward[]>(),
-		/** The GM's session notes. */
+		/** The GM's session notes — shared: every member reads these on the
+		 * dashboard's session log, and the flow says so where they're written. */
 		notes: text('notes').notNull().default(''),
+		/**
+		 * The GM's *private* notes (post-review addition to phase 17): spoilers,
+		 * prep, suspicions the table shouldn't read. Stored on the same row but
+		 * only ever loaded into a GM's view — the dashboard load strips them for
+		 * players, so they never cross the wire to a player's browser.
+		 */
+		privateNotes: text('private_notes').notNull().default(''),
 		createdAt: integer('created_at', { mode: 'timestamp_ms' })
 			.notNull()
 			.default(sql`(unixepoch() * 1000)`),

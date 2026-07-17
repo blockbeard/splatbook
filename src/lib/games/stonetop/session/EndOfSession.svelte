@@ -60,17 +60,29 @@
 	// run — notes included — server-side. The localStorage slot remains as the
 	// draft while you type, and seeding from it first means anything jotted under
 	// the old scheme lands in the first recorded session rather than being lost.
+	//
+	// Two boxes since the privacy pass: `notes` goes to the session log the whole
+	// table reads; `privateNotes` stays GM-only (stored with the record, stripped
+	// from player views server-side). Each keeps its own local draft.
+	// svelte-ignore state_referenced_locally -- notesKey is stable for the page's life
+	const privateNotesKey = `${notesKey}:private`;
 	let notes = $state('');
+	let privateNotes = $state('');
 	let notesLoaded = $state(false);
 	$effect(() => {
 		if (notesLoaded) return;
 		notes = localStorage.getItem(notesKey) ?? '';
+		privateNotes = localStorage.getItem(privateNotesKey) ?? '';
 		notesLoaded = true;
 	});
 	$effect(() => {
 		if (!notesLoaded) return;
 		const text = notes;
-		const t = setTimeout(() => localStorage.setItem(notesKey, text), 300);
+		const secret = privateNotes;
+		const t = setTimeout(() => {
+			localStorage.setItem(notesKey, text);
+			localStorage.setItem(privateNotesKey, secret);
+		}, 300);
 		return () => clearTimeout(t);
 	});
 	let saving = $state(false);
@@ -162,9 +174,11 @@
 						name: c.name,
 						xp: xpFor(c.id, answers)
 					})),
-					notes
+					notes,
+					privateNotes
 				});
 				localStorage.removeItem(notesKey);
+				localStorage.removeItem(privateNotesKey);
 			}
 			saved = true;
 		} catch {
@@ -244,13 +258,25 @@
 			<h2 class="text-lg font-semibold">Notable events</h2>
 			<p class="text-sm text-muted">
 				What happened, what was praised, what the table wished for. Recorded with the session when
-				you mark the XP.
+				you mark the XP — <strong>everyone in the campaign can read these</strong> on the session log.
 			</p>
 			<textarea
 				bind:value={notes}
 				rows="4"
 				class="mt-2 w-full rounded-md border border-border bg-surface p-3 text-sm"
 				placeholder="The bridge burned. Vera finally trusts the Judge…"></textarea>
+
+			<h3 class="mt-4 text-sm font-semibold">Private notes</h3>
+			<p class="text-sm text-muted">
+				Prep, spoilers, suspicions. Recorded with the session too, but only you — the GM — ever see
+				them.
+			</p>
+			<textarea
+				bind:value={privateNotes}
+				rows="3"
+				aria-label="Private notes"
+				class="mt-2 w-full rounded-md border border-border bg-surface p-3 text-sm"
+				placeholder="The Judge’s letters are forged. Nobody suspects yet…"></textarea>
 			{#each move.closing as line (line)}
 				<div class="mt-2 text-xs text-muted"><Markdown text={line} /></div>
 			{/each}

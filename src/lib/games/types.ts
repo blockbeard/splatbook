@@ -186,7 +186,10 @@ export interface SessionProps {
 	record?: (run: {
 		triggers: unknown;
 		awards: { entityId: string; name: string; xp: number }[];
+		/** Shared notes — the whole table reads these on the session log. */
 		notes: string;
+		/** GM-only notes — stored with the record, stripped from player views. */
+		privateNotes?: string;
 	}) => Promise<void>;
 }
 
