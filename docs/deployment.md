@@ -18,9 +18,10 @@ proves *features*, not *platform behavior*. Workers/D1-specific failures (the
 request-scoped database lesson) only surface in production or under
 `wrangler dev` — for adapter-touching changes, check there too.
 
-Monitoring lives on **Argus** (the house watchdog): Uptime Kuma watches
-staging today and production once its check is added — deliberately a third
-box, sharing no failure domain with either deployment.
+Monitoring lives on **Argus** (the house watchdog): Uptime Kuma watches both
+deployments — deliberately a third box, sharing no failure domain with either.
+See [Monitoring (Argus)](#monitoring-argus) below for the checks and the
+what-to-do-when-it-pages runbook.
 
 ## Environment
 
@@ -167,6 +168,61 @@ AUTH_SECRET=dev AUTH_DEV_LOGIN=true wrangler pages dev .svelte-kit/cloudflare
 
 Realtime dice (phase 10) stay on polling on the free tier; only long-lived
 websockets would need Durable Objects (paid).
+
+## Monitoring (Argus)
+
+Argus is the house watchdog — a dedicated box running **Uptime Kuma**,
+deliberately sharing no failure domain with either deployment: if atlas dies it
+still pages, if Cloudflare has a bad day it still pages, and if *Argus* dies
+nothing else goes with it. (A watcher on atlas watching atlas would sleep
+through exactly the outages that matter.)
+
+### The checks (commit 117)
+
+| Monitor              | Type       | Target                                | Interval | Alert after |
+| -------------------- | ---------- | ------------------------------------- | -------- | ----------- |
+| `splatbook-staging`  | HTTP(s)    | atlas's `/api/health` (LAN address)   | 60 s     | 3 retries   |
+| `splatbook-prod`     | HTTP(s)    | `https://splatbook.app/api/health`    | 60 s     | 3 retries   |
+| `splatbook-d1-export`| Push       | pinged by the nightly export (below)  | 24 h + grace | 1 miss  |
+
+Both HTTP checks assert **status 200** *and* the keyword `"db": "ok"` — the
+health endpoint does a real database round-trip and answers 503/`degraded`
+when the DB is unreachable, so a keyword check catches the half-alive state
+where the process serves but the data is gone. Set "Accepted Status Codes" to
+`200` only (Kuma's default `200-299` is fine too; the keyword is the real
+gate).
+
+**Confirm notifications actually arrive** when adding the production check:
+Kuma → the monitor → Notifications → send a test, then pause the monitor for
+two minutes and watch the alert land. An unconfirmed notification channel is
+the monitoring equivalent of an untested backup.
+
+### When it pages (production)
+
+1. **Confirm it's real.** Open `https://splatbook.app/api/health` yourself.
+   Kuma's check runs from the house — a home-ISP blip pages too. If it loads
+   fine, check Argus's own network before anything else.
+2. **Read the body.** `{"status":"degraded","db":"unreachable"}` with a 503 is
+   a D1 problem, not a deploy problem — check
+   [Cloudflare's status page](https://www.cloudflarestatus.com/) and the D1
+   dashboard. A connection error or Cloudflare error page (52x) is the
+   platform or the Pages project itself.
+3. **Check the last deploy.** Pages dashboard → deployments. If the timing
+   matches a deploy, roll back to the previous deployment from the dashboard
+   (one click) — investigate on staging, not in production.
+4. **If Cloudflare is healthy and rollback doesn't fix it**, check the Pages
+   project's environment variables/secrets (`ORIGIN`, `AUTH_SECRET`, D1
+   binding) — a vanished binding presents exactly like a dead database.
+5. **Data looks wrong or lost?** Stop and go to the restore rehearsal under
+   [Nightly D1 export](#nightly-d1-export-to-atlas) — don't experiment against
+   the live database; work out what happened against last night's dump first.
+
+### When it pages (staging)
+
+Staging is disposable by definition. Fix it with the routine-deploy loop above
+(most staging pages are "the container didn't come back after a reboot":
+`docker compose up -d`). Nothing real is at risk; take the time to understand
+the failure instead.
 
 ## Migrations
 

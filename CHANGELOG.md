@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Production on the watchdog** (commit 117). Argus (the house watchdog, a
+  dedicated Uptime Kuma box sharing no failure domain with either deployment)
+  already watched staging; `docs/deployment.md` now specifies the production
+  check on `https://splatbook.app/api/health` — status _and_ keyword
+  `"db": "ok"`, so the half-alive state where the process serves but D1 is
+  gone still pages — a notification-confirmation step (an unconfirmed channel
+  is an untested backup), and the what-to-do-when-it-pages runbook for both
+  environments. The push monitor row for the nightly D1 export lands with
+  commit 118.
+
 - **Feedback link + cookieless analytics** (commit 116). The footer grows a
   Feedback link to the GitHub issue tracker — feedback goes where the fix
   happens — and the shell can now render the Cloudflare Web Analytics beacon:
