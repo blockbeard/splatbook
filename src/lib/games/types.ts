@@ -160,8 +160,24 @@ export interface SessionProps {
 	/** Roll, logged to the campaign (as the steading, at the change of seasons). */
 	roll?: (label: string, notation: string) => void;
 	/** A stable localStorage key, scoped to this campaign, for whatever the game's
-	 * flow wants to keep on this device (session notes). */
+	 * flow wants to keep on this device (session notes). Still handed through in
+	 * phase 17 so the flow can seed its notes from what an earlier version jotted
+	 * there — the ledger is the home now, but nothing already written is lost. */
 	notesKey: string;
+	/**
+	 * Write this run into the campaign's session ledger (phase 17). The game
+	 * supplies what only it knows: `triggers` is its own answer shape (the shell
+	 * stores it opaquely, like entity data); `awards` and `notes` are the two
+	 * things the ledger *renders*, so they arrive already shaped for display —
+	 * one `{ entityId, name, xp }` line per character, and the GM's prose. The
+	 * shell assigns the session number and the date. Rejects if the write is
+	 * refused. Absent when the host has nowhere to record (none today).
+	 */
+	record?: (run: {
+		triggers: unknown;
+		awards: { entityId: string; name: string; xp: number }[];
+		notes: string;
+	}) => Promise<void>;
 }
 
 /**

@@ -18,6 +18,7 @@ import { z } from 'zod';
 import { resolve } from '$app/paths';
 import { getCampaign, membershipOf } from '$lib/server/db/campaigns';
 import { listCampaignEntities, updateCampaignEntityData } from '$lib/server/db/entities';
+import { recordCampaignSession } from '$lib/server/db/campaign-sessions';
 import { getGame } from '$lib/games';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -74,6 +75,21 @@ const saveBody = z.object({
 	data: z.string().min(1)
 });
 
+/** The ledger record's form fields — all three arrive as strings. */
+const recordBody = z.object({
+	/** The game's answer shape, JSON-encoded; stored opaquely, never parsed here
+	 * beyond being valid JSON. */
+	triggers: z.string(),
+	/** JSON-encoded award lines — shell-owned, so these *are* validated. */
+	awards: z.string(),
+	notes: z.string()
+});
+
+/** The one ledger shape the shell renders, so the shell checks it. */
+const awardLines = z.array(
+	z.object({ entityId: z.string(), name: z.string(), xp: z.number().int().nonnegative() })
+);
+
 export const actions: Actions = {
 	save: async ({ params, request, locals }) => {
 		const { userId } = await requireGm(params.id, locals);
@@ -96,5 +112,42 @@ export const actions: Actions = {
 		// Not this GM's table, or not attached to it at all.
 		if (!updated) error(403, 'That entity is not yours to write.');
 		return { saved: updated.id };
+	},
+
+	/**
+	 * Write this run into the session ledger (phase 17). The game computed the
+	 * awards and holds the triggers; the shell stores them — triggers opaquely,
+	 * awards as the display shape the log renders — and assigns the number.
+	 */
+	record: async ({ params, request, locals }) => {
+		const { userId } = await requireGm(params.id, locals);
+
+		const form = await request.formData();
+		const parsed = recordBody.safeParse({
+			triggers: form.get('triggers'),
+			awards: form.get('awards'),
+			notes: form.get('notes')
+		});
+		if (!parsed.success) error(400, 'Malformed session record.');
+
+		let triggers: unknown;
+		let awards: unknown;
+		try {
+			triggers = JSON.parse(parsed.data.triggers);
+			awards = JSON.parse(parsed.data.awards);
+		} catch {
+			error(400, 'Malformed session record.');
+		}
+		const awardsParsed = awardLines.safeParse(awards);
+		if (!awardsParsed.success) error(400, 'Malformed session awards.');
+
+		const session = await recordCampaignSession(locals.db, userId, {
+			campaignId: params.id,
+			triggers,
+			awards: awardsParsed.data,
+			notes: parsed.data.notes
+		});
+		if (!session) error(403, 'Only the GM can record the session.');
+		return { recorded: { id: session.id, number: session.number } };
 	}
 };

@@ -28,7 +28,7 @@
 	import { fetchEndOfSession, fetchSteadingMoves } from '../pack/moves';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
-	let { characters, steading, save, roll, notesKey }: SessionProps = $props();
+	let { characters, steading, save, record, roll, notesKey }: SessionProps = $props();
 
 	let move = $state<EndOfSession | null>(null);
 	let loadError = $state<string | null>(null);
@@ -55,11 +55,11 @@
 
 	let answers = $state<EndOfSessionAnswers>(emptyAnswers());
 
-	// The session notes are the GM's own jottings — there's no campaign-notes
-	// table to put them in, and inventing one is a bigger question than this
-	// screen. So they live in this browser, keyed to the campaign: they survive a
-	// reload and the next session, which is what "keep" has to mean until there's
-	// somewhere better to keep them.
+	// The session notes used to live only in this browser (there was no campaign
+	// ledger to put them in). Now there is (phase 17): marking the XP records the
+	// run — notes included — server-side. The localStorage slot remains as the
+	// draft while you type, and seeding from it first means anything jotted under
+	// the old scheme lands in the first recorded session rather than being lost.
 	let notes = $state('');
 	let notesLoaded = $state(false);
 	$effect(() => {
@@ -124,7 +124,11 @@
 	};
 
 	/** Mark everyone's XP. Each character is written on its own — a failure on one
-	 * shouldn't silently cost the table the rest. */
+	 * shouldn't silently cost the table the rest. Once every sheet took its award,
+	 * the run goes into the campaign's session ledger (phase 17): the answers as
+	 * the triggers (this game's own shape), one award line per character, and the
+	 * notes. Recording clears the local notes draft — the ledger holds them now,
+	 * and next session's textarea should start blank. */
 	const writeXp = async (): Promise<void> => {
 		saving = true;
 		saveError = null;
@@ -133,6 +137,18 @@
 				const next = applyEndOfSession(character.data as StonetopCharacter, character.id, answers);
 				if (next !== character.data) await save(character.id, next);
 				character.data = next;
+			}
+			if (record) {
+				await record({
+					triggers: answers,
+					awards: characters.map((c) => ({
+						entityId: c.id,
+						name: c.name,
+						xp: xpFor(c.id, answers)
+					})),
+					notes
+				});
+				localStorage.removeItem(notesKey);
 			}
 			saved = true;
 		} catch {
@@ -211,8 +227,8 @@
 		<section>
 			<h2 class="text-lg font-semibold">Notable events</h2>
 			<p class="text-sm text-muted">
-				What happened, what was praised, what the table wished for. Kept in this browser, for this
-				campaign.
+				What happened, what was praised, what the table wished for. Recorded with the session when
+				you mark the XP.
 			</p>
 			<textarea
 				bind:value={notes}

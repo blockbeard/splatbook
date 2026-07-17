@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The session ledger** (commit 111). End of session already marked everyone's
+  XP; now it remembers. A `campaign_sessions` table (migration
+  `0009_campaign_sessions`) holds one row per run: the campaign's own session
+  `number` (assigned by the service, 1, 2, 3… per campaign), the date, the
+  checked `triggers` (the game's answer shape, stored opaquely — same
+  discipline as `entities.data`), per-character `awards` (`{ entityId, name,
+xp }`, denormalised like `rolls.characterName` so history survives renames
+  and deletions), and the GM's `notes`. `recordCampaignSession` /
+  `listCampaignSessions` (`campaign-sessions.ts`) are GM-gated and
+  roster-style respectively. `SessionProps` grows an optional `record(run)`;
+  Stonetop's end-of-session flow calls it after every sheet takes its award,
+  and the notes textarea still seeds once from the old localStorage key — so
+  anything jotted under the browser-only scheme lands in the first recorded
+  session instead of being lost — then clears it on a successful record.
+
 - **The steading has editors** (commit 110). The GM can now delegate edit on
   the shared campaign steading, per member. A `steadingEditor` flag on
   `campaign_members` (migration `0008_steading_editor`) carries the grant;

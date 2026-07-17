@@ -47,6 +47,22 @@
 		const res = await fetch(`?/save`, { method: 'POST', body });
 		if (!res.ok) throw new Error('Save failed');
 	}
+
+	/** Write this run into the session ledger (phase 17). Same GM re-check
+	 * server-side; the shell assigns the session number and the date. */
+	async function record(run: {
+		triggers: unknown;
+		awards: { entityId: string; name: string; xp: number }[];
+		notes: string;
+	}): Promise<void> {
+		const body = new FormData();
+		body.set('triggers', JSON.stringify(run.triggers ?? {}));
+		body.set('awards', JSON.stringify(run.awards));
+		body.set('notes', run.notes);
+
+		const res = await fetch(`?/record`, { method: 'POST', body });
+		if (!res.ok) throw new Error('Record failed');
+	}
 </script>
 
 <svelte:head>
@@ -74,6 +90,7 @@
 		characters={data.characters}
 		steading={data.steading}
 		{save}
+		{record}
 		roll={makeRoll}
 		notesKey={`splatbook:session-notes:${data.campaign.id}`}
 	/>

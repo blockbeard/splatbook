@@ -266,6 +266,68 @@ export const rolls = sqliteTable(
 );
 
 /**
+ * One award handed out when a session was recorded — the denormalised
+ * per-character line the ledger renders. Like `rolls.characterName`, the name
+ * is captured *at the moment of recording* and there is deliberately no foreign
+ * key on `entityId`: the history should read right after a rename and survive
+ * the character being deleted or detached. The shell owns this shape (its own
+ * flow produced it), so unlike `entities.data` it may read it back.
+ */
+export interface SessionAward {
+	/** The character entity at the time of recording; dangling later is fine. */
+	entityId: string;
+	/** The character's name when the session ended. */
+	name: string;
+	/** XP awarded to this character by that session's end-of-session move. */
+	xp: number;
+}
+
+/**
+ * The session ledger (phase 17) — one row per end-of-session run. Until now the
+ * ritual marked everyone's XP and then forgot: notes lived in the GM's browser
+ * and the awards evaporated into the sheets. This table is the memory.
+ *
+ * `number` is the campaign's own session count (1, 2, 3…), assigned by the
+ * service at record time. `triggers` is the game's answer shape stored opaquely
+ * (same discipline as `entities.data` — the shell never parses which questions
+ * were checked, it just keeps them so the game could render them back some
+ * day). `awards` is shell-owned (see {@link SessionAward}); `notes` is the
+ * GM's prose, editable after the fact.
+ */
+export const campaignSessions = sqliteTable(
+	'campaign_sessions',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		/** The campaign this session belongs to; history dies with the table. */
+		campaignId: text('campaign_id')
+			.notNull()
+			.references(() => campaigns.id, { onDelete: 'cascade' }),
+		/** 1-based position in this campaign's history, assigned at record time. */
+		number: integer('number').notNull(),
+		/** When the session was recorded (defaults to now). */
+		date: integer('date', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`),
+		/** The checked end-of-session triggers — the game's own shape, opaque here. */
+		triggers: text('triggers', { mode: 'json' }).notNull().default('{}'),
+		/** Per-character awards, denormalised for display. */
+		awards: text('awards', { mode: 'json' }).notNull().default('[]').$type<SessionAward[]>(),
+		/** The GM's session notes. */
+		notes: text('notes').notNull().default(''),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`),
+		updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	// The log is always read as one campaign's history in session order.
+	(t) => [index('campaign_sessions_campaign_idx').on(t.campaignId, t.number)]
+);
+
+/**
  * A user's saved preference — one flat namespace of `key` -> `value` string
  * pairs (phase 13). Generic on purpose, like `entities.data`: a preference's
  * *meaning* (`reference.showSetting`, and whatever follows it) belongs to
@@ -304,5 +366,7 @@ export type CampaignMember = typeof campaignMembers.$inferSelect;
 export type NewCampaignMember = typeof campaignMembers.$inferInsert;
 export type Roll = typeof rolls.$inferSelect;
 export type NewRoll = typeof rolls.$inferInsert;
+export type CampaignSession = typeof campaignSessions.$inferSelect;
+export type NewCampaignSession = typeof campaignSessions.$inferInsert;
 export type Preference = typeof preferences.$inferSelect;
 export type NewPreference = typeof preferences.$inferInsert;
