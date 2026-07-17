@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A pdf engine** (commit 119). `$lib/pdf` — a generic document module games
+  hang layouts on: `PdfBuilder` wraps pdf-lib (+ fontkit, which embeds the
+  book's Avara woff2 directly — verified by test) with font embedding,
+  wrapped text with real measurement, box/checkbox/rule primitives, and page
+  management in top-down coordinates (the bottom-left conversion happens in
+  exactly one place). The layout _math_ — greedy word-wrap with hard-breaking
+  of overlong words, block flow with pagination — is pure functions in
+  `layout.ts`, unit-tested against a fixed-width measurer: tests on the
+  arithmetic, not pixels. `pdfResponse` is the server-endpoint pattern
+  (headers + sanitised filename). No headless browser anywhere, so it runs
+  on node and Workers alike — it survives every deploy target this project
+  has. First consumer: commit 120.
 - **Nightly D1 export to atlas** (commit 118). Production's database is D1 —
   until now Cloudflare's copy was the only copy. `ops/d1-export.sh` runs from
   cron on atlas: `wrangler d1 export --remote` (API token scoped to D1 read
