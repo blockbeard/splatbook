@@ -19,6 +19,9 @@ Thumbs.db
 !.env.example
 !.env.test
 
+# Host-specific compose override (e.g. atlas staging: localhost bind + env_file)
+docker-compose.override.yml
+
 # Local data
 local.db
 e2e-test.db*

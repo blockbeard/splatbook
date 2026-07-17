@@ -6,6 +6,13 @@ services:
       - '3000:3000'
     volumes:
       - splatbook-data:/data
+    # Alias for the tailscale sidecar to reach this service unambiguously:
+    # the tailnet node is also named "splatbook", and its search domain
+    # shadows the bare compose service name from inside the sidecar.
+    networks:
+      default:
+        aliases:
+          - splatbook-app
     environment:
       - DATABASE_URL=/data/splatbook.db
       # ORIGIN must match the public URL or form actions will 403.
@@ -24,5 +31,29 @@ services:
       timeout: 5s
       retries: 3
 
+  # Tailscale sidecar: joins the tailnet as its own node "splatbook" and
+  # proxies HTTPS to the app over the compose network. State persists on a
+  # named volume so the node keeps its identity across restarts. TS_AUTHKEY
+  # is supplied via .env (never committed).
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: splatbook-tailscale
+    hostname: splatbook
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_EXTRA_ARGS=--hostname=splatbook
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - splatbook
+    restart: unless-stopped
+
 volumes:
   splatbook-data:
+  tailscale-state:
