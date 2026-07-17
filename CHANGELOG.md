@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Nightly D1 export to atlas** (commit 118). Production's database is D1 —
+  until now Cloudflare's copy was the only copy. `ops/d1-export.sh` runs from
+  cron on atlas: `wrangler d1 export --remote` (API token scoped to D1 read
+  only) into a dated, compressed dump under the directory the existing 3-2-1
+  backup already sweeps, so offsite copies come for free. Simple retention
+  (14 daily, 12 monthly), a refuse-to-keep-a-suspiciously-small-dump guard, a
+  temp-file rename so a half-written dump never wears a trusted name, and a
+  success ping to a Kuma push monitor on Argus as the _last_ step — silent
+  cron death is the actual failure mode of home-grown backups. The runbook
+  documents setup, and a **restore rehearsal**: import the dump into local
+  sqlite, check counts, then open a character through the real code path —
+  an untested backup is a hope, not a backup.
 - **Production on the watchdog** (commit 117). Argus (the house watchdog, a
   dedicated Uptime Kuma box sharing no failure domain with either deployment)
   already watched staging; `docs/deployment.md` now specifies the production

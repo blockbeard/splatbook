@@ -224,6 +224,75 @@ Staging is disposable by definition. Fix it with the routine-deploy loop above
 `docker compose up -d`). Nothing real is at risk; take the time to understand
 the failure instead.
 
+## Nightly D1 export to atlas
+
+Production's database is D1 — Cloudflare's copy is the only copy until
+something else holds one. A cron on atlas (commit 118) runs
+[`ops/d1-export.sh`](../ops/d1-export.sh) nightly: `wrangler d1 export
+--remote` against **production**, into a dated, compressed dump under a
+directory the existing 3-2-1 backup already sweeps — from there the offsite
+copies come for free.
+
+### Setup (once, on atlas)
+
+1. **A narrow API token.** Cloudflare dashboard → API tokens → create one
+   scoped to **D1 read only** for this account. A backup job holds the
+   narrowest key that can do its job — this token can exfiltrate the database
+   (that's its purpose) but can't touch it.
+2. **An environment file** the cron sources, mode 600, e.g.
+   `/etc/splatbook-backup.env`:
+
+   ```sh
+   export CLOUDFLARE_API_TOKEN=…      # the D1-read token
+   export CLOUDFLARE_ACCOUNT_ID=…
+   export KUMA_PUSH_URL=…             # the splatbook-d1-export push monitor
+   # optional overrides: BACKUP_ROOT, KEEP_DAILY, KEEP_MONTHLY
+   ```
+
+3. **The cron line** (any pre-dawn minute; 03:15 avoids the top-of-hour herd):
+
+   ```cron
+   15 3 * * *  . /etc/splatbook-backup.env && /opt/splatbook/ops/d1-export.sh
+   ```
+
+4. **The push monitor.** Uptime Kuma on Argus → new monitor, type **Push**,
+   heartbeat 24 h with an hour's grace; put its URL in `KUMA_PUSH_URL`. The
+   script pings it *after* the dump is written, verified and rotated — so the
+   alert fires on the night nothing pinged. Silent cron death is the actual
+   failure mode of home-grown backups; this is the tripwire.
+
+Retention is handled by the script: 14 daily dumps, 12 monthlies (the first
+dump of each month is set aside before pruning). The 3-2-1 sweep of
+`/mnt/storage/backups` carries copies offsite unchanged.
+
+### Restore rehearsal (do this once now, and after anything structural)
+
+An untested backup is a hope, not a backup. The dump is plain SQL, so the
+rehearsal runs anywhere with a checkout — no Cloudflare involved:
+
+```sh
+gunzip -k splatbook-2026-07-17.sql.gz
+sqlite3 rehearsal.db < splatbook-2026-07-17.sql
+sqlite3 rehearsal.db "select count(*) from entities; select count(*) from users;"
+```
+
+Counts looking right is necessary, not sufficient — open a character through
+the real code path:
+
+```sh
+DATABASE_URL=rehearsal.db AUTH_DEV_LOGIN=true npm run dev
+# sign in via dev-login, open the dashboard, open a character sheet
+```
+
+If a sheet renders from last night's dump, the backup restores. Note the date
+you last did this at the top of the backup directory (`touch
+REHEARSED-2026-07-17` is enough); if it's been months, do it again.
+
+Restoring *production* from a dump is the same idea aimed the other way:
+`wrangler d1 execute splatbook --remote --file dump.sql` into a **fresh** D1
+database, then rebind the Pages project — never execute a restore over the
+live database while it still holds the only copy of anything.
+
 ## Migrations
 
 Schema lives in `src/lib/server/db/schema.ts`; migrations are generated with
