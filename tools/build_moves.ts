@@ -2,6 +2,7 @@
  * Generate the move data files for the Stonetop pack:
  *
  *   data/basic-moves.json     the moves every character can make
+ *   data/special-moves.json   the special moves (commit 113 — the Moves & Gear page)
  *   data/steading-moves.json  the moves a *steading* rolls
  *
  * Both are already in the pack — as prose, inside the generated rules tree
@@ -26,8 +27,16 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const RULES = 'static/content-packs/stonetop/rules/book-i.json';
 const BASIC_START = '03-playing-the-game--basic-moves';
+const SPECIAL_START = '03-playing-the-game--special-moves';
 const HOMEFRONT_START = '03-playing-the-game--homefront-moves';
 const END_OF_SESSION = '03-playing-the-game--end-of-session';
+/**
+ * Death's Door belongs on the Moves & Gear handout with the other special
+ * moves, but the playing-the-game chapter doesn't restate it — the Player
+ * Moves chapter carries the crisp copy (the move callout, plus an unquoted
+ * "discussed in detail…" trailer this script drops; see `calloutOnly`).
+ */
+const DEATHS_DOOR = '06-player-moves--death-s-door';
 
 /** The steading's own stats — a homefront move that rolls one of these is a
  * steading move; one that doesn't is a character's business. */
@@ -113,6 +122,21 @@ function dequote(body: string): string {
 		.trim();
 }
 
+/**
+ * Like `dequote`, but first drops every line *outside* the move callout — some
+ * sections follow the quoted move with plain-prose commentary ("This move is
+ * discussed in detail on …") that belongs to the reference, not to a handout's
+ * move card.
+ */
+function calloutOnly(body: string): string {
+	return dequote(
+		body
+			.split('\n')
+			.filter((line) => line.startsWith('>'))
+			.join('\n')
+	);
+}
+
 const tree = JSON.parse(await readFile(RULES, 'utf8')) as Section | Section[];
 const all = (Array.isArray(tree) ? tree : [tree]).flatMap((root) => flatten(root));
 
@@ -162,6 +186,29 @@ await writePack(
 		moves: basic
 	},
 	basic.length
+);
+
+// The special moves (commit 113): the run after "Special moves" —
+// Advantage/Disadvantage, Burn Brightly, End of Session — plus Death's Door,
+// lifted from the Player Moves chapter (callout only; see DEATHS_DOOR above).
+// End of Session appears here as a *card* (its text, for the handout page);
+// data/end-of-session.json below stays the guided flow's structured split.
+const special = movesInRun(SPECIAL_START, /^follower moves$/i, () => true);
+const dd = all.find((s) => s.id === DEATHS_DOOR);
+if (!dd?.body) throw new Error(`${RULES}: no Death's Door section (${DEATHS_DOOR})`);
+special.push({ id: slug(dd.title), name: titleCase(dd.title), text: calloutOnly(dd.body) });
+await writePack(
+	'special-moves.json',
+	{
+		id: 'special-moves',
+		name: 'Special moves',
+		type: 'moves',
+		// Provenance names the run's start; Death's Door additionally comes from
+		// the DEATHS_DOOR section — this script is the record of that.
+		source: { file: 'rules/book-i.json', section: SPECIAL_START },
+		moves: special
+	},
+	special.length
 );
 
 // The homefront moves that roll a steading stat. Convalesce and Level Up sit in

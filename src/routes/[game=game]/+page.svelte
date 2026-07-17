@@ -32,6 +32,14 @@
 		>
 			Rules reference
 		</a>
+		{#if data.tableReferenceLabel}
+			<a
+				href={resolve('/[game=game]/table', { game: data.gameId })}
+				class="inline-block rounded-md border border-border px-4 py-2 font-medium hover:bg-surface"
+			>
+				{data.tableReferenceLabel}
+			</a>
+		{/if}
 		{#if data.hasGmGuide}
 			<a
 				href={resolve('/[game=game]/gm', { game: data.gameId })}

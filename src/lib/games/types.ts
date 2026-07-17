@@ -227,6 +227,18 @@ export interface GameModule {
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;
 	/**
+	 * A player-facing table reference (commit 113) — the game's equivalent of a
+	 * printed handout (Stonetop's Moves & Gear: the basic and special moves and
+	 * the gear lists), for a player at the table without a character open.
+	 * Surfaced by the shell at `/[game=game]/table`; the component fetches its
+	 * own pack data, like the session component. `label` is nav chrome (the
+	 * shell's link text and the page title). Absent → no such page or link.
+	 */
+	tableReference?: {
+		label: string;
+		component: Component;
+	};
+	/**
 	 * The game's end-of-session ritual, surfaced by the shell at
 	 * `/campaigns/[id]/session`. Absent for a game with no such move — the shell
 	 * then offers no End session button.

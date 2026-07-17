@@ -228,6 +228,16 @@
 	{/if}
 	<div class="flex items-center gap-3">
 		<span class="text-sm text-muted" aria-live="polite">{savedLabel}</span>
+		{#if game.tableReference}
+			<!-- The game's handout page (commit 113) — mid-scene "what does that
+			     move say again?" without leaving the sheet's tab lineage. -->
+			<a
+				href={resolve('/[game=game]/table', { game: data.gameId })}
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				{game.tableReference.label}
+			</a>
+		{/if}
 		{#if data.hasSheet && character}
 			<!-- What you want a PDF *of* is the sheet, not the play controls — so the
 			     PDF button hands off to the sheet view, which prints itself on arrival. -->

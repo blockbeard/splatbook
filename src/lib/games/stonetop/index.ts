@@ -43,6 +43,7 @@ import SteadingSheet from './steading/SteadingSheet.svelte';
 import ThreatEditor from './gm/ThreatEditor.svelte';
 import ThreatSheet from './gm/ThreatSheet.svelte';
 import GmGuide from './gm/GmGuide.svelte';
+import MovesAndGear from './table/MovesAndGear.svelte';
 import EndOfSession from './session/EndOfSession.svelte';
 import ArcanaGm from './gm/ArcanaGm.svelte';
 import { GM_SECTIONS } from './gm/sections';
@@ -116,6 +117,13 @@ export const stonetop: GameModule = {
 		packFile: 'data/the-gm.json',
 		sections: GM_SECTIONS,
 		component: GmGuide as unknown as Component<GmGuideProps>
+	},
+	// The Moves & Gear handout as a page (commit 113): basic moves, special
+	// moves, and the gear lists — for a player at the table without a
+	// character open. The shell serves it at `/stonetop/table`.
+	tableReference: {
+		label: 'Moves & gear',
+		component: MovesAndGear as unknown as Component
 	},
 	// The end-of-session move, run by the GM at `/campaigns/[id]/session`.
 	sessionComponent: EndOfSession as unknown as Component<SessionProps>,

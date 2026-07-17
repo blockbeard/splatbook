@@ -27,5 +27,12 @@ export const load: PageLoad = ({ params }) => {
 
 	// Only serialisable identity crosses the load boundary; components reach
 	// the full module through the registry themselves.
-	return { gameId: game.id, gameName: game.name, creators, hasGmGuide: !!game.gmGuide };
+	return {
+		gameId: game.id,
+		gameName: game.name,
+		creators,
+		hasGmGuide: !!game.gmGuide,
+		// The player-facing handout page, if this game registered one (commit 113).
+		tableReferenceLabel: game.tableReference?.label ?? null
+	};
 };

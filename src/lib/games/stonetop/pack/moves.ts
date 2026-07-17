@@ -5,7 +5,7 @@
  */
 
 import { base } from '$app/paths';
-import type { BasicMoves, EndOfSession, SteadingMoves } from '../pack-schemas';
+import type { BasicMoves, EndOfSession, SpecialMoves, SteadingMoves } from '../pack-schemas';
 
 const GAME_ID = 'stonetop';
 
@@ -34,6 +34,12 @@ function fetchMoves<T>(file: string, fetchFn: Fetcher): Promise<T> {
 /** The basic moves every character can make (memoised). */
 export function fetchBasicMoves(fetchFn: Fetcher): Promise<BasicMoves> {
 	return fetchMoves<BasicMoves>('basic-moves.json', fetchFn);
+}
+
+/** The special moves — Advantage/Disadvantage, Burn Brightly, End of Session,
+ * Death's Door — as handout cards (memoised). */
+export function fetchSpecialMoves(fetchFn: Fetcher): Promise<SpecialMoves> {
+	return fetchMoves<SpecialMoves>('special-moves.json', fetchFn);
 }
 
 /** The moves a steading rolls — Seasons Change, Deploy, Muster… (memoised). */

@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Moves & gear, handed out** (commit 113). The app's equivalent of the
+  printed Moves & Gear handout, for a player at the table without a character
+  open: the basic moves, the special moves, and the gear / small items /
+  prosperity lists the inventory insert already carries — read-only, at
+  `/stonetop/table`. `tools/build_moves.ts` now also emits
+  `special-moves.json` (Advantage/Disadvantage, Burn Brightly, End of Session
+  from the playing-the-game run, plus Death's Door lifted callout-only from
+  the Player Moves chapter — the "discussed in detail…" trailer stays in the
+  reference). The shell side is a new `GameModule.tableReference` slot
+  (label + component, mirroring how the session component fetches its own
+  pack data) and a generic `/[game=game]/table` route; the game landing and
+  the play view link to it.
 - **The session log on the dashboard** (commit 112). The campaign page grows
   the history phase 17's table holds: each recorded session — number, date,
   XP handed out (total and per character), notes — newest first, visible to

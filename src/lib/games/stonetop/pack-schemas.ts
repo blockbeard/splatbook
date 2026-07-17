@@ -1006,6 +1006,14 @@ function movesFileSchema<T extends string>(fileId: T) {
 export const basicMovesSchema = movesFileSchema('basic-moves');
 
 /**
+ * The special moves (commit 113 — the Moves & Gear page): Advantage/
+ * Disadvantage, Burn Brightly, End of Session, Death's Door — as *cards*, the
+ * text a table wants at hand. The guided end-of-session flow keeps its own
+ * structured split (`end-of-session.json`); this file is the handout copy.
+ */
+export const specialMovesSchema = movesFileSchema('special-moves');
+
+/**
  * The end-of-session move, split into the parts a guided flow needs: the prompts
  * each player answers about their own character ("if you can, mark XP"), the
  * questions the table answers together (every "yes" is an XP for everyone), and
@@ -1025,10 +1033,12 @@ export type EndOfSession = z.infer<typeof endOfSessionSchema>;
 export const steadingMovesSchema = movesFileSchema('steading-moves');
 
 export type BasicMoves = z.infer<typeof basicMovesSchema>;
+export type SpecialMoves = z.infer<typeof specialMovesSchema>;
 export type SteadingMoves = z.infer<typeof steadingMovesSchema>;
 
 export function schemaFor(relPath: string): z.ZodType | null {
 	if (relPath === 'data/basic-moves.json') return basicMovesSchema;
+	if (relPath === 'data/special-moves.json') return specialMovesSchema;
 	if (relPath === 'data/steading-moves.json') return steadingMovesSchema;
 	if (relPath === 'data/end-of-session.json') return endOfSessionSchema;
 	if (relPath === 'data/the-steading.json') return steadingSchema;
