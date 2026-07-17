@@ -16,6 +16,12 @@
 	let { data } = $props();
 
 	const Sheet = $derived(getGame(data.gameId)!.entityTypes[data.entityType].sheetComponent!);
+	// A generated document, not a print dialog (commit 120) — only for a saved
+	// entity (the endpoint loads by id) and only when the game builds one.
+	const hasPdf = $derived(!!getGame(data.gameId)!.entityTypes[data.entityType].pdf);
+	const pdfPath = $derived(
+		resolve('/[game=game]/[type]/pdf', { game: data.gameId, type: data.entityType })
+	);
 	// Preserve the saved-entity id (if any) when jumping to the editor, so edits
 	// autosave to the same entity instead of the local draft slot.
 	const savedId = $derived(page.url.searchParams.get('id'));
@@ -79,6 +85,14 @@
 				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
 			>
 				{editLabel}
+			</a>
+		{/if}
+		{#if hasPdf && savedId}
+			<a
+				href="{pdfPath}?id={savedId}"
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Download PDF
 			</a>
 		{/if}
 		<button

@@ -285,14 +285,27 @@
 				{game.tableReference.label}
 			</a>
 		{/if}
+		{#if type.pdf && liveId}
+			<!-- A generated document (commit 120): the printed-playbook layout from
+			     the same blob, built server-side. -->
+			<a
+				href="{resolve('/[game=game]/[type]/pdf', {
+					game: data.gameId,
+					type: data.entityType
+				})}?id={liveId}"
+				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
+			>
+				Download PDF
+			</a>
+		{/if}
 		{#if data.hasSheet && character}
-			<!-- What you want a PDF *of* is the sheet, not the play controls — so the
-			     PDF button hands off to the sheet view, which prints itself on arrival. -->
+			<!-- Print stays as the quick path: the sheet view prints itself on
+			     arrival, browser dialog and all. -->
 			<a
 				href={liveId ? `${sheetPath}?id=${liveId}&print=1` : `${sheetPath}?print=1`}
 				class="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-surface"
 			>
-				Save as PDF
+				Print
 			</a>
 		{/if}
 	</div>

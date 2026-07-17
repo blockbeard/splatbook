@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Character sheet PDF, 1-up** (commit 120). A real generated document — the
+  printed-playbook layout, chosen options only, from the same character blob
+  the sheet renders: name in the book's Avara face, playbook · background ·
+  level, instinct/origin/appearance, the six-stat row (debilities marked),
+  vitals, every held move with its full text, background notes, possessions,
+  carried inventory, introductions — flowed across A5 pages. Server-side in
+  the shell's new generic `/[game]/[type]/pdf?id=` endpoint: owner-scoped
+  entity load, then the game module's new `EntityTypeModule.pdf` slot builds
+  the bytes (via dynamic import, so pdf-lib never rides into the client
+  bundle; pack data and fonts arrive through the event's `fetch`, so node and
+  Workers run the same code). Download PDF buttons on the sheet and play
+  views; print stays as the quick path. The builder also learned to sanitise
+  text per font — the 14 standard fonts encode WinAnsi only, and a stray ◇
+  from pack text should degrade to a stand-in, not turn a download into a 500. Tested against the real shipped pack.
 - **A pdf engine** (commit 119). `$lib/pdf` — a generic document module games
   hang layouts on: `PdfBuilder` wraps pdf-lib (+ fontkit, which embeds the
   book's Avara woff2 directly — verified by test) with font embedding,

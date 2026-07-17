@@ -39,7 +39,7 @@ export function toExportJSON(c: StonetopCharacter, now: Date = new Date()): stri
 const fmt = (n: number | undefined): string => (n === undefined ? '—' : n >= 0 ? `+${n}` : `${n}`);
 
 /** A filesystem-friendly slug for the download filename. */
-export function exportFilename(c: StonetopCharacter, ext: 'json' | 'md'): string {
+export function exportFilename(c: StonetopCharacter, ext: 'json' | 'md' | 'pdf'): string {
 	const slug =
 		(c.name ?? '')
 			.trim()

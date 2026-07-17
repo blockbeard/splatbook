@@ -69,7 +69,10 @@ const character: EntityTypeModule = {
 		};
 	},
 	sheetComponent: CharacterSheet as unknown as Component<SheetProps>,
-	playComponent: PlayMode as unknown as Component<PlayProps>
+	playComponent: PlayMode as unknown as Component<PlayProps>,
+	// The printed-playbook layout as a real PDF (commit 120). Dynamic import:
+	// pdf-lib is server-side weight the client bundle never needs.
+	pdf: async (entity, fetchFn) => (await import('./pdf/character')).characterPdf(entity, fetchFn)
 };
 
 const steading: EntityTypeModule = {

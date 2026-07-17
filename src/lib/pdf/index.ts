@@ -7,6 +7,7 @@
  */
 
 export { PdfBuilder, pdfResponse, PAGE_SIZES } from './builder';
+export { StandardFonts } from 'pdf-lib';
 export type { EmbeddedFont, TextOptions } from './builder';
 export { wrapText, textHeight, flowBlocks, pageCount } from './layout';
 export type { MeasureFn, FlowPosition, FlowOptions } from './layout';

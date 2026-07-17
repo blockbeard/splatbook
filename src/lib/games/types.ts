@@ -109,6 +109,16 @@ export interface EntityTypeModule {
 	 * Absent → the shell shows no dice panel for this type.
 	 */
 	dice?: DiceModule;
+	/**
+	 * Build a downloadable PDF of a saved entity (commit 120). Server-side: the
+	 * shell's generic `/[game]/[type]/pdf?id=` endpoint loads the entity
+	 * (owner-scoped, same as any read) and hands the opaque blob plus the
+	 * event's `fetch` — pack data and fonts arrive through it, so the same
+	 * code runs on node and Workers. Implementations should reach pdf-lib via
+	 * dynamic import so it never rides into the client bundle. Absent → no
+	 * Download PDF button for this type.
+	 */
+	pdf?: (entity: object, fetchFn: typeof fetch) => Promise<{ bytes: Uint8Array; filename: string }>;
 	/** Read-only sheet, rendered from a saved/finished draft (print view). */
 	sheetComponent?: Component<SheetProps>;
 	/** Play/editor component: the editable counterpart to the sheet. The shell
