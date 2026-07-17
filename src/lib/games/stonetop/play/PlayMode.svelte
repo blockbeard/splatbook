@@ -7,6 +7,7 @@
 -->
 <script lang="ts">
 	import { page } from '$app/state';
+	import { base } from '$app/paths';
 	import { replaceState } from '$app/navigation';
 	import type { PlayProps } from '$lib/games/types';
 	import type { FollowersInsert, InventoryInsert, Move, Playbook } from '../pack-schemas';
@@ -306,7 +307,9 @@
 	});
 
 	// The basic moves everyone can make, from the pack.
-	let basicMoves = $state<{ id: string; name: string; text: string; rollsDamage?: boolean }[]>([]);
+	let basicMoves = $state<
+		{ id: string; name: string; text: string; sectionId?: string; rollsDamage?: boolean }[]
+	>([]);
 	$effect(() => {
 		let alive = true;
 		fetchBasicMoves(fetch)
@@ -372,11 +375,32 @@
 	const heroCrossed = $derived(isWouldBeCrossed(c));
 </script>
 
-{#snippet moveCard(move: { id: string; name: string; text: string; rollsDamage?: boolean })}
+{#snippet moveCard(move: {
+	id: string;
+	name: string;
+	text: string;
+	sectionId?: string;
+	rollsDamage?: boolean;
+})}
 	{@const stats = movesRollStats(move)}
 	<div class="rounded-lg border border-border p-3">
 		<div class="flex flex-wrap items-baseline justify-between gap-2">
-			<h4 class="font-semibold">{move.name}</h4>
+			<h4 class="font-semibold">
+				{#if move.sectionId}
+					<!-- Deep-link to the move's full rules (commit 115): the reimport made
+					     each move its own section, and build_moves.ts records the id
+					     alongside the extracted move — the link is data, not string-matching. -->
+					<a
+						href="{base}/stonetop/reference/{move.sectionId}"
+						class="hover:text-accent hover:underline"
+						title="Full rules for {move.name}"
+					>
+						{move.name}
+					</a>
+				{:else}
+					{move.name}
+				{/if}
+			</h4>
 			<!-- A move is rollable when its text says what it rolls. Defy Danger prints
 			     six options, so it gets six buttons; Aid prints none, so it gets none.
 			     `rollsDamage` (commit 108) is the same idea for Clash/Let Fly and kin,

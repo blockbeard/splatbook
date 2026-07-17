@@ -34,6 +34,16 @@ describe('special-moves.json', () => {
 		]);
 	});
 
+	it('deep-links every move to its full write-up in the Player Moves chapter', () => {
+		// Commit 115: the link is data, recorded at extraction.
+		expect(pack.moves.map((m) => m.sectionId)).toEqual([
+			'06-player-moves--advantage-disadvantage',
+			'06-player-moves--burn-brightly',
+			'06-player-moves--end-of-session',
+			'06-player-moves--death-s-door'
+		]);
+	});
+
 	it('keeps Death’s Door to the move itself — no reference-chapter trailer', () => {
 		const dd = pack.moves.find((m) => m.id === 'death-s-door')!;
 		expect(dd.text).toMatch(/Last Door and the Lady of Crows/);

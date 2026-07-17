@@ -993,6 +993,11 @@ function movesFileSchema<T extends string>(fileId: T) {
 					id,
 					name: z.string().min(1),
 					text: markdown,
+					/** The rules section this move's card deep-links to (commit 115) —
+					 * the full write-up in the reference (Player Moves for a character's
+					 * moves, Homefront for the steading's). Recorded by
+					 * `build_moves.ts` at extraction, so the link is data. */
+					sectionId: z.string().min(1),
 					/** Same meaning as `moveSchema`'s `rollsDamage` (Clash, Let Fly) —
 					 * detected by `build_moves.ts` from the move's own text, not
 					 * hand-authored, since this file regenerates from the vault. */

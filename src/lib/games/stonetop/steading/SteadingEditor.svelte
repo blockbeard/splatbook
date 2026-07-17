@@ -8,6 +8,7 @@
 	via `onChange`, which the route autosaves.
 -->
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { PlayProps } from '$lib/games/types';
 	import type { SteadingPack } from '../pack-schemas';
 	import {
@@ -98,7 +99,7 @@
 	// The moves a steading rolls. A steading rolls only its own moves — never a
 	// character's stats — and the one the whole table makes together is the change
 	// of seasons, so it leads.
-	let moves = $state<{ id: string; name: string; text: string }[]>([]);
+	let moves = $state<{ id: string; name: string; text: string; sectionId: string }[]>([]);
 	$effect(() => {
 		let alive = true;
 		fetchSteadingMoves(fetch)
@@ -246,7 +247,17 @@
 						{@const stat = steadingRollStat(move)}
 						<div class="rounded-lg border border-border p-3">
 							<div class="flex flex-wrap items-baseline justify-between gap-2">
-								<h3 class="font-semibold">{move.name}</h3>
+								<h3 class="font-semibold">
+									<!-- Deep-link to the move's full rules (commit 115) — same as the
+									     character sheet's move cards. -->
+									<a
+										href="{base}/stonetop/reference/{move.sectionId}"
+										class="hover:text-accent hover:underline"
+										title="Full rules for {move.name}"
+									>
+										{move.name}
+									</a>
+								</h3>
 								{#if roll && stat}
 									<button
 										type="button"

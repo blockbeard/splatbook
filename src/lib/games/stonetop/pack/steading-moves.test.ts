@@ -31,6 +31,11 @@ describe('steading-moves.json', () => {
 		expect(steadingRollStat(by('seasons-change'))).toBe('fortunes');
 	});
 
+	it('deep-links each move to its Homefront write-up (commit 115)', () => {
+		expect(by('seasons-change').sectionId).toBe('15-homefront--seasons-change');
+		expect(by('muster').sectionId).toBe('15-homefront--muster');
+	});
+
 	it('names the steading stat each move rolls', () => {
 		expect(steadingRollStat(by('deploy'))).toBe('defenses');
 		expect(steadingRollStat(by('muster'))).toBe('population');

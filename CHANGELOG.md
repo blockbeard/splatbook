@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Moves link to their rules** (commit 115). Every extracted move card — the
+  play sheet's basic moves, the steading sheet's moves, and the Moves & Gear
+  page — deep-links its name to the move's full rules text in the reference.
+  Possible because the reimport made each move its own section (commit 89's
+  `kind: "move"`): `tools/build_moves.ts` now records a `sectionId` alongside
+  each extracted move, preferring the full write-up chapters (Player Moves
+  for a character's moves, Homefront for the steading's) over the summary
+  chapter the text is lifted from — so the link is data, not string-matching.
+  The moves-file schema requires it, and the pack round-trip tests pin the
+  targets.
 - **Undo in play mode** (commit 114). Every play-mode edit autosaves, so every
   mistap used to persist. The engine being pure functions over opaque blobs
   makes undo nearly free: the play route keeps a short stack (10) of the blobs

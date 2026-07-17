@@ -46,6 +46,11 @@ describe('basic-moves.json', () => {
 		expect(movesRollStats(by('defy-danger'))).toEqual(['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']);
 	});
 
+	it('deep-links each move to its Player Moves write-up (commit 115)', () => {
+		expect(by('clash').sectionId).toBe('06-player-moves--clash');
+		expect(by('defy-danger').sectionId).toBe('06-player-moves--defy-danger');
+	});
+
 	it('leaves a move with no roll in its text unrollable', () => {
 		// Aid has the GM pick; there's nothing to roll.
 		expect(movesRollStats(by('aid'))).toEqual([]);

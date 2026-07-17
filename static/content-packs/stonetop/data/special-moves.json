@@ -10,22 +10,26 @@
 		{
 			"id": "advantage-disadvantage",
 			"name": "Advantage/disadvantage",
-			"text": "When you *make a roll with advantage*, roll an extra die and discard the lowest result.\n\nWhen you *make a roll with disadvantage*, roll an extra die and discard the highest result.\n\nWhen you *make a roll with both advantage and disadvantage*, they cancel each other out.\n\nIf you *have advantage/disadvantage on a damage roll*, roll the main die twice and discard the lower/higher result. Then add any bonus dice that apply.\n\nFor more information, see [[06 - Player Moves#^advantage-disadvantage|Advantage/disadvantage]]."
+			"text": "When you *make a roll with advantage*, roll an extra die and discard the lowest result.\n\nWhen you *make a roll with disadvantage*, roll an extra die and discard the highest result.\n\nWhen you *make a roll with both advantage and disadvantage*, they cancel each other out.\n\nIf you *have advantage/disadvantage on a damage roll*, roll the main die twice and discard the lower/higher result. Then add any bonus dice that apply.\n\nFor more information, see [[06 - Player Moves#^advantage-disadvantage|Advantage/disadvantage]].",
+			"sectionId": "06-player-moves--advantage-disadvantage"
 		},
 		{
 			"id": "burn-brightly",
 			"name": "Burn Brightly",
-			"text": "When you *have enough XP to Level Up* (6 + twice your current level), you may spend 2 XP after any roll to add +1 to that roll (maximum +1 per roll).\n\nFor more information, see [[06 - Player Moves#^burn-brightly|Burn Brightly]]."
+			"text": "When you *have enough XP to Level Up* (6 + twice your current level), you may spend 2 XP after any roll to add +1 to that roll (maximum +1 per roll).\n\nFor more information, see [[06 - Player Moves#^burn-brightly|Burn Brightly]].",
+			"sectionId": "06-player-moves--burn-brightly"
 		},
 		{
 			"id": "end-of-session",
 			"name": "End Of Session",
-			"text": "When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.\n\nSay how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.\n\nAnswer these questions as a group. For each \"yes,\" everyone marks XP.\n\n- Did we learn more about the world or its history?\n- Did we defeat a threat to Stonetop or the region?\n- Did we improve our standing with our neighbors?\n- Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?\n\nPraise something about the session (in the fiction or around the table) that you enjoyed or appreciated.\n\nFinally, offer up a wish for future sessions: more \\_\\_, less \\_\\_, a chance to \\_\\_, handling \\_\\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.\n\nFor more information, see [[06 - Player Moves#^end-of-session|End of Session]]."
+			"text": "When a *session ends*, point out how you demonstrated or struggled with your instinct. If you can, mark XP.\n\nSay how your relationship with or opinion of a PC, NPC, or group has changed. If you can, mark XP.\n\nAnswer these questions as a group. For each \"yes,\" everyone marks XP.\n\n- Did we learn more about the world or its history?\n- Did we defeat a threat to Stonetop or the region?\n- Did we improve our standing with our neighbors?\n- Did we make a lasting improve ment to Stonetop, or tangible progress towards doing so?\n\nPraise something about the session (in the fiction or around the table) that you enjoyed or appreciated.\n\nFinally, offer up a wish for future sessions: more \\_\\_, less \\_\\_, a chance to \\_\\_, handling \\_\\_ in a different way, etc. Wishes can be about what happens in the fiction or around the table. The GM will take notes.\n\nFor more information, see [[06 - Player Moves#^end-of-session|End of Session]].",
+			"sectionId": "06-player-moves--end-of-session"
 		},
 		{
 			"id": "death-s-door",
 			"name": "Death's Door",
-			"text": "When you *are dying*, you glimpse the Last Door and the Lady of Crows (describe them). Then, roll +nothing: **on a 10+**, you wrest yourself back to the realm of the living—return to 1 HP but say how your brush with death has marked you; **on a 7-9**, the Lady waves you off—you're no longer dying but you're out of the action; **on a 6-**, your time has come—choose 1:\n\n- Make one last move as if you rolled a 12+, then step through the Last Door\n- Refuse to go; gain the Revenant or Ghost insert\n- Call on one of the Things Below by name and beseech it to intercede; gain the Thrall insert"
+			"text": "When you *are dying*, you glimpse the Last Door and the Lady of Crows (describe them). Then, roll +nothing: **on a 10+**, you wrest yourself back to the realm of the living—return to 1 HP but say how your brush with death has marked you; **on a 7-9**, the Lady waves you off—you're no longer dying but you're out of the action; **on a 6-**, your time has come—choose 1:\n\n- Make one last move as if you rolled a 12+, then step through the Last Door\n- Refuse to go; gain the Revenant or Ghost insert\n- Call on one of the Things Below by name and beseech it to intercede; gain the Thrall insert",
+			"sectionId": "06-player-moves--death-s-door"
 		}
 	]
 }

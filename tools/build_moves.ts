@@ -98,6 +98,8 @@ interface MoveEntry {
 	id: string;
 	name: string;
 	text: string;
+	/** The rules section this move card deep-links to (commit 115). */
+	sectionId: string;
 	rollsDamage?: boolean;
 }
 
@@ -141,6 +143,25 @@ const tree = JSON.parse(await readFile(RULES, 'utf8')) as Section | Section[];
 const all = (Array.isArray(tree) ? tree : [tree]).flatMap((root) => flatten(root));
 
 /**
+ * The rules section a move card should deep-link to (commit 115). The
+ * playing-the-game chapter this script lifts *text* from is the handout
+ * summary; the full write-ups live in the reference chapters — Player Moves
+ * (06) for a character's moves, Homefront (15) for the steading's. Commit 89's
+ * reimport made each move its own section, so the id is findable by the same
+ * slug this script already derives — recorded here so the link is data, not
+ * string-matching at runtime. Falls back to the section the move was lifted
+ * from, which always exists.
+ */
+const FULL_RULES_CHAPTERS = ['06-player-moves', '15-homefront'];
+function rulesSectionId(moveId: string, liftedFrom: string): string {
+	for (const chapter of FULL_RULES_CHAPTERS) {
+		const hit = all.find((s) => s.id === `${chapter}--${moveId}`);
+		if (hit) return hit.id;
+	}
+	return liftedFrom;
+}
+
+/**
  * The moves in the run that starts after `startId` and ends at `endsAt`.
  *
  * Heading levels are uneven in the source (AID sits a level deeper than CLASH),
@@ -159,6 +180,7 @@ function movesInRun(startId: string, endsAt: RegExp, keep: (m: MoveEntry) => boo
 			id,
 			name: titleCase(section.title),
 			text: dequote(section.body),
+			sectionId: rulesSectionId(id, section.id),
 			...(ROLLS_DAMAGE_IDS.has(id) ? { rollsDamage: true } : {})
 		};
 		if (keep(move)) moves.push(move);
@@ -196,7 +218,12 @@ await writePack(
 const special = movesInRun(SPECIAL_START, /^follower moves$/i, () => true);
 const dd = all.find((s) => s.id === DEATHS_DOOR);
 if (!dd?.body) throw new Error(`${RULES}: no Death's Door section (${DEATHS_DOOR})`);
-special.push({ id: slug(dd.title), name: titleCase(dd.title), text: calloutOnly(dd.body) });
+special.push({
+	id: slug(dd.title),
+	name: titleCase(dd.title),
+	text: calloutOnly(dd.body),
+	sectionId: rulesSectionId(slug(dd.title), dd.id)
+});
 await writePack(
 	'special-moves.json',
 	{

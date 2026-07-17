@@ -11,6 +11,7 @@
 	pays nothing extra for this page).
 -->
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { BasicMoves, InventoryInsert, SpecialMoves } from '../pack-schemas';
 	import { fetchBasicMoves, fetchSpecialMoves } from '../pack/moves';
 	import { fetchInventory } from '../pack/inserts';
@@ -39,11 +40,24 @@
 	const smallOptions = $derived(inventory?.smallItems.options.filter((o) => o.name) ?? []);
 </script>
 
-{#snippet moveCards(moves: { id: string; name: string; text: string }[])}
+{#snippet moveCards(moves: { id: string; name: string; text: string; sectionId?: string }[])}
 	<div class="mt-3 space-y-4">
 		{#each moves as move (move.id)}
 			<article class="rounded-lg border border-border p-4">
-				<h3 class="font-semibold">{move.name}</h3>
+				<h3 class="font-semibold">
+					{#if move.sectionId}
+						<!-- Deep-link to the move's full rules (commit 115). -->
+						<a
+							href="{base}/stonetop/reference/{move.sectionId}"
+							class="hover:text-accent hover:underline"
+							title="Full rules for {move.name}"
+						>
+							{move.name}
+						</a>
+					{:else}
+						{move.name}
+					{/if}
+				</h3>
 				<div class="mt-2 text-sm text-muted"><Markdown text={move.text} /></div>
 			</article>
 		{/each}
