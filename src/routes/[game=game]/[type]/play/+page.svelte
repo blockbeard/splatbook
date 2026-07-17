@@ -69,6 +69,44 @@
 	let saveState = $state<'idle' | 'saving' | 'saved' | 'error'>('idle');
 	let timer: ReturnType<typeof setTimeout> | undefined;
 
+	// Undo (commit 114). Every play-mode edit autosaves, so every mistap
+	// persists — but the engine is pure functions over opaque blobs, which makes
+	// undo nearly free: keep a short stack of the blobs each change replaced,
+	// and after each change offer Undo for a few seconds. Undoing writes the
+	// previous blob back through the same persist path — HP, XP, trackers,
+	// inventory, even a fat-fingered level-up, all restored without the shell
+	// ever knowing what any of them mean.
+	const UNDO_DEPTH = 10;
+	const UNDO_TOAST_MS = 6000;
+	let undoStack: object[] = [];
+	let undoOffered = $state(false);
+	let undoTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function offerUndo(prev: object): void {
+		undoStack = [...undoStack, prev].slice(-UNDO_DEPTH);
+		undoOffered = true;
+		clearTimeout(undoTimer);
+		undoTimer = setTimeout(() => (undoOffered = false), UNDO_TOAST_MS);
+	}
+
+	/** Write the previous blob back — the same flow as any edit, minus the
+	 * push (undoing shouldn't offer to undo the undo, one step at a time the
+	 * stack already provides that: each further Undo pops one more). */
+	function undo(): void {
+		const prev = undoStack.pop();
+		if (!prev) return;
+		character = prev;
+		saveState = 'saving';
+		clearTimeout(timer);
+		persist(prev);
+		// Keep the toast up (and the timer fresh) while there's more to unwind.
+		if (undoStack.length === 0) undoOffered = false;
+		else {
+			clearTimeout(undoTimer);
+			undoTimer = setTimeout(() => (undoOffered = false), UNDO_TOAST_MS);
+		}
+	}
+
 	interface RollEntry {
 		label: string;
 		result: RollResult;
@@ -183,8 +221,16 @@
 				.then((saved) => {
 					liveId = saved.id;
 					saveState = 'saved';
-					// Adopt the id in the URL so a reload loads it from the DB.
-					if (browser) replaceState(`${page.url.pathname}?id=${saved.id}`, {});
+					// Adopt the id in the URL so a reload loads it from the DB. Carry
+					// the existing query and `page.state` through (commit 114): the
+					// old bare `?id=` rebuild dropped both halves of the tab state —
+					// `?tab=` and `page.state.tab` — so an unsaved-draft session
+					// snapped back to the Sheet tab on its first autosave.
+					if (browser) {
+						const url = new URL(page.url);
+						url.searchParams.set('id', saved.id);
+						replaceState(url, page.state);
+					}
 				})
 				.catch(() => (saveState = 'error'));
 		} else if (browser) {
@@ -195,6 +241,7 @@
 
 	/** The game handed us a new version: show it, then debounce a save. */
 	function onChange(next: object): void {
+		if (character) offerUndo(character);
 		character = next;
 		saveState = 'saving';
 		clearTimeout(timer);
@@ -273,4 +320,18 @@
 		</div>
 	{/if}
 	<RollSurface entry={latest} logged={!!campaignId} onDismiss={() => (latest = null)} />
+
+	{#if undoOffered}
+		<!-- Bottom-left, opposite the roll surface's bottom-right, so a roll that
+		     marks XP can show both without a collision. -->
+		<div
+			class="fixed inset-x-4 bottom-24 z-50 mx-auto flex max-w-max items-center gap-3 rounded-md border border-border bg-surface px-4 py-2 shadow-lg sm:inset-x-auto sm:bottom-6 sm:left-6 sm:mx-0"
+			role="status"
+		>
+			<span class="text-sm text-muted">Change saved.</span>
+			<button type="button" onclick={undo} class="text-sm font-medium text-accent hover:underline">
+				Undo
+			</button>
+		</div>
+	{/if}
 {/if}

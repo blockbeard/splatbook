@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Undo in play mode** (commit 114). Every play-mode edit autosaves, so every
+  mistap used to persist. The engine being pure functions over opaque blobs
+  makes undo nearly free: the play route keeps a short stack (10) of the blobs
+  each change replaced, and a toast after each change offers Undo for a few
+  seconds — writing the previous blob back through the same persist path, so
+  HP, XP, trackers, inventory, even a fat-fingered level-up all restore
+  without the shell knowing what any of them mean. Repeated Undo unwinds the
+  stack one step at a time. Also fixes the e2e-triage nit parked with this
+  commit: the autosave-adopt-id `replaceState` passed `{}` and rebuilt the
+  query as bare `?id=`, dropping `page.state.tab` and `?tab=` — an
+  unsaved-draft session snapped back to the Sheet tab on its first autosave;
+  it now carries the existing query and `page.state` through. New e2e covers
+  the undo surviving a reload (the server's copy is the restored one).
+
 - **Moves & gear, handed out** (commit 113). The app's equivalent of the
   printed Moves & Gear handout, for a player at the table without a character
   open: the basic moves, the special moves, and the gear / small items /
