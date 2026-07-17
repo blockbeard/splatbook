@@ -74,3 +74,60 @@ test('a GM invites a player, who joins and appears in the party', async ({ brows
 	await gmContext.close();
 	await playerContext.close();
 });
+
+test('the GM delegates steading edit to a player, who then gets the tracker', async ({
+	browser
+}) => {
+	// --- GM: sign in, create a campaign, create its steading ---
+	const gmContext = await browser.newContext();
+	const gm = await gmContext.newPage();
+	await signIn(gm, 'Steading GM', 'e2e-steading-gm@localhost');
+
+	await gm.goto('/campaigns');
+	await gm.locator('input[name="name"]').fill('Steading Camp');
+	await gm.getByRole('button', { name: 'Create campaign' }).click();
+	await gm.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
+	const campaignUrl = gm.url();
+	const inviteUrl = await gm.getByLabel('Invite link').inputValue();
+
+	await gm.getByRole('button', { name: 'Create campaign steading' }).click();
+	await gm.waitForURL(/\/campaigns\/[0-9a-f-]{36}\/steading$/);
+
+	// --- Player: join as a player ---
+	const playerContext = await browser.newContext();
+	const player = await playerContext.newPage();
+	await player.goto(inviteUrl);
+	await player.getByRole('button', { name: /Sign in to join/i }).click();
+	await player.waitForURL(/\/auth\/signin/);
+	await player.locator('input[name="name"]').fill('Steading Player');
+	await player.locator('input[name="email"]').fill('e2e-steading-player@localhost');
+	await player.getByRole('button', { name: /Dev Login/i }).click();
+	await player.waitForURL(/\/campaigns\/join\//);
+	await player.getByRole('button', { name: 'Join as player' }).click();
+	await player.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
+
+	// Before the grant, the shared steading is read-only for the player: they can
+	// see it, but there's no tracker to open.
+	await player.goto(`${campaignUrl}/steading`);
+	await expect(player.getByRole('link', { name: 'Open tracker' })).toHaveCount(0);
+
+	// --- GM: grant the player edit on the steading ---
+	await gm.goto(campaignUrl);
+	const playerRow = gm.locator('li', { hasText: 'Steading Player' });
+	await playerRow.getByLabel('Can edit the steading').check();
+	// The grant persists (the toggle stays checked through its own save).
+	await expect(playerRow.getByLabel('Can edit the steading')).toBeChecked();
+
+	// --- Player: now the tracker is theirs to open ---
+	await player.goto(`${campaignUrl}/steading`);
+	const tracker = player.getByRole('link', { name: 'Open tracker' });
+	await expect(tracker).toBeVisible();
+	await tracker.click();
+	// Lands on the play route with the shared steading's id — the delegated read
+	// succeeded, so it's the campaign's steading, not a fresh blank draft.
+	await player.waitForURL(/\/stonetop\/steading\/play\?id=[0-9a-f-]{36}/);
+	await expect(player.getByText(/No steading to play/i)).toHaveCount(0);
+
+	await gmContext.close();
+	await playerContext.close();
+});

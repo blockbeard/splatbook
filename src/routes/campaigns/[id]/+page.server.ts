@@ -16,7 +16,8 @@ import {
 	membershipOf,
 	rotateInviteToken,
 	listCampaignMembers,
-	updateCampaignSettings
+	updateCampaignSettings,
+	setSteadingEditor
 } from '$lib/server/db/campaigns';
 import {
 	getEntity,
@@ -75,6 +76,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		name: m.name ?? m.email,
 		role: m.role,
 		isYou: m.userId === userId,
+		// Whether this member holds the delegated steading-edit grant — the GM
+		// reads it to render (and flip) the per-player toggle (phase 16).
+		steadingEditor: m.steadingEditor,
 		characters: partyChars
 			.filter((c) => c.userId === m.userId)
 			.map((c) => ({ id: c.id, name: c.name || 'Unnamed character', mine: c.userId === userId }))
@@ -187,5 +191,19 @@ export const actions: Actions = {
 		const updated = await updateCampaignSettings(locals.db, params.id, userId, patch);
 		if (!updated) error(403, 'Only the GM can change campaign settings.');
 		return { settings: { ok: true } };
+	},
+
+	setSteadingEditor: async ({ params, request, locals }) => {
+		const { userId, seat } = await requireSeat(params.id, locals);
+		if (seat.role !== 'gm') error(403, 'Only the GM can delegate steading edits.');
+
+		// The row carries the *desired* new state in a hidden field (the checkbox
+		// itself has no name), so one form both grants and revokes.
+		const form = await request.formData();
+		const memberUserId = String(form.get('memberUserId') ?? '');
+		const canEdit = form.get('canEdit') === 'true';
+		const updated = await setSteadingEditor(locals.db, params.id, userId, memberUserId, canEdit);
+		if (!updated) error(400, 'No such member to delegate to.');
+		return { steadingEditor: { ok: true } };
 	}
 };

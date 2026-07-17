@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The steading has editors** (commit 110). The GM can now delegate edit on
+  the shared campaign steading, per member. A `steadingEditor` flag on
+  `campaign_members` (migration `0008_steading_editor`) carries the grant;
+  the campaign dashboard grows a "Can edit the steading" toggle next to each
+  player, gated to the GM. The grant is enforced server-side, not just in the
+  UI: `getCampaignSteadingForEditor` / `updateCampaignSteadingData`
+  (`entities.ts`) allow a read and a blob write on a `steading` attached to a
+  campaign where the caller is GM or holds the flag, and the entity endpoints
+  fall through to them when the owner-scoped path misses — so a delegate's
+  play sheet loads and autosaves the shared tracker rather than 404-ing or
+  forking a private draft. Ownership is untouched (the GM still owns the
+  entity); the write is narrow (only the one steading a campaign shares, blob
+  only). The campaign steading page's "Open tracker" link now appears for the
+  owner, the GM, or a delegate, matching what the write path will actually
+  permit. `setSteadingEditor` on the campaigns service is the GM-gated grant.
 - **A miss marks XP** (commit 109). A stat roll that totals 6 or less now
   offers a "Mark XP" button on the roll surface — Stonetop's "on a miss, mark
   experience," reached without the shell ever knowing what marking XP means.

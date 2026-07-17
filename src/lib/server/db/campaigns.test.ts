@@ -22,6 +22,7 @@ import {
 	rotateInviteToken,
 	joinCampaign,
 	listCampaignMembers,
+	setSteadingEditor,
 	isGmOfAnyCampaign,
 	updateCampaignSettings
 } from './campaigns.ts';
@@ -163,6 +164,38 @@ describe('listCampaignMembers', () => {
 		expect(roster.map((m) => m.role)).toEqual(['gm', 'player']);
 		expect(roster[0].name).toBe('Mr. Wray');
 		expect(roster[1].email).toBe('player@x');
+		// The delegated-editor grant rides along on the roster, off by default.
+		expect(roster.map((m) => m.steadingEditor)).toEqual([false, false]);
+	});
+});
+
+describe('setSteadingEditor (phase 16)', () => {
+	it('lets the GM grant, then revoke, a player the edit right', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		await joinCampaign(db, campaign.inviteToken, player);
+
+		const granted = await setSteadingEditor(db, campaign.id, gm, player, true);
+		expect(granted?.steadingEditor).toBe(true);
+		let roster = await listCampaignMembers(db, campaign.id);
+		expect(roster.find((m) => m.userId === player)?.steadingEditor).toBe(true);
+
+		const revoked = await setSteadingEditor(db, campaign.id, gm, player, false);
+		expect(revoked?.steadingEditor).toBe(false);
+		roster = await listCampaignMembers(db, campaign.id);
+		expect(roster.find((m) => m.userId === player)?.steadingEditor).toBe(false);
+	});
+
+	it('refuses a grant from a player', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		await joinCampaign(db, campaign.inviteToken, player);
+		expect(await setSteadingEditor(db, campaign.id, player, player, true)).toBeUndefined();
+		const roster = await listCampaignMembers(db, campaign.id);
+		expect(roster.find((m) => m.userId === player)?.steadingEditor).toBe(false);
+	});
+
+	it('returns undefined for a target who is not a member', async () => {
+		const campaign = await createCampaign(db, { gameId: 'stonetop', name: 'R', ownerId: gm });
+		expect(await setSteadingEditor(db, campaign.id, gm, player, true)).toBeUndefined();
 	});
 });
 

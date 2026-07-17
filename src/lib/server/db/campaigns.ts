@@ -99,6 +99,8 @@ export interface CampaignMemberView {
 	name: string | null;
 	email: string;
 	role: CampaignRole;
+	/** Whether this member holds the delegated steading-edit grant (phase 16). */
+	steadingEditor: boolean;
 	joinedAt: Date;
 }
 
@@ -118,6 +120,7 @@ export async function listCampaignMembers(
 				name: users.name,
 				email: users.email,
 				role: campaignMembers.role,
+				steadingEditor: campaignMembers.steadingEditor,
 				joinedAt: campaignMembers.joinedAt
 			})
 			.from(campaignMembers)
@@ -197,6 +200,39 @@ export async function rotateInviteToken(
 		.update(campaigns)
 		.set({ inviteToken: crypto.randomUUID(), updatedAt: new Date() })
 		.where(and(eq(campaigns.id, campaignId), eq(campaigns.ownerId, ownerId)))
+		.returning();
+	return row;
+}
+
+/**
+ * Grant or revoke a member's steading-edit right (phase 16). GM-gated, same
+ * shape as every other campaign write: the caller must be seated as this
+ * campaign's GM. Returns the updated membership row, or `undefined` when the
+ * caller isn't the GM, or when the target isn't a member of this campaign.
+ *
+ * The GM's own row isn't special-cased — a GM can always edit the steading
+ * regardless of this flag — but setting it on any seat is harmless, and the
+ * dashboard only offers the toggle for players.
+ */
+export async function setSteadingEditor(
+	db: Db,
+	campaignId: string,
+	gmUserId: string,
+	memberUserId: string,
+	canEdit: boolean
+): Promise<CampaignMember | undefined> {
+	const seat = await membershipOf(db, campaignId, gmUserId);
+	if (seat?.role !== 'gm') return undefined;
+
+	const [row] = await db
+		.update(campaignMembers)
+		.set({ steadingEditor: canEdit })
+		.where(
+			and(
+				eq(campaignMembers.campaignId, campaignId),
+				eq(campaignMembers.userId, memberUserId)
+			)
+		)
 		.returning();
 	return row;
 }

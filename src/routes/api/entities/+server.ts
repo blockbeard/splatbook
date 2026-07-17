@@ -12,7 +12,12 @@
 
 import { json, error } from '@sveltejs/kit';
 import { z } from 'zod';
-import { createEntity, updateEntity, listEntities } from '$lib/server/db/entities';
+import {
+	createEntity,
+	updateEntity,
+	listEntities,
+	updateCampaignSteadingData
+} from '$lib/server/db/entities';
 import type { RequestHandler } from './$types';
 
 const saveBody = z.object({
@@ -48,12 +53,17 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const body = parsed.data;
 
 	if (body.id) {
-		const updated = await updateEntity(locals.db, body.id, userId, {
-			name: body.name,
-			data: body.data,
-			schemaVersion: body.schemaVersion,
-			status: body.status
-		});
+		// Owner write first. If it misses, this may still be the campaign steading
+		// a delegate was granted edit on (phase 16): that write only sets the blob
+		// (name/status stay the owner's), and refuses anything that isn't a shared
+		// steading the caller may edit — so a miss here is a genuine 404.
+		const updated =
+			(await updateEntity(locals.db, body.id, userId, {
+				name: body.name,
+				data: body.data,
+				schemaVersion: body.schemaVersion,
+				status: body.status
+			})) ?? (await updateCampaignSteadingData(locals.db, body.id, userId, body.data));
 		if (!updated) error(404, 'No such entity.');
 		return json(updated);
 	}

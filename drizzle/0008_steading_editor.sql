@@ -1,0 +1,1 @@
+ALTER TABLE `campaign_members` ADD `steading_editor` integer DEFAULT false NOT NULL;

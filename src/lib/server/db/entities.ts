@@ -241,3 +241,62 @@ export async function updateCampaignEntityData(
 		.returning();
 	return updated;
 }
+
+/**
+ * Load a campaign steading an editor-delegate may open (phase 16).
+ *
+ * The campaign steading is owned by the GM who created it, but the GM can grant
+ * a player edit rights on it (the `steadingEditor` flag on their seat). This is
+ * the read that honours the grant, so a delegate's tracker can load a steading
+ * they don't own: the entity must be a `steading` attached to a campaign where
+ * the caller is seated as GM or holds the flag. Returns the entity when allowed,
+ * else `undefined` (unknown entity, not a steading, unattached, or no grant).
+ *
+ * Scoped like every other cross-owner read: the permission lives in the seat
+ * lookup here, not in the route. Narrow on purpose — it only ever reaches the
+ * one entity a campaign shares, never a member's private steadings.
+ */
+export async function getCampaignSteadingForEditor(
+	db: Db,
+	id: string,
+	userId: string
+): Promise<Entity | undefined> {
+	const [entity] = await db.select().from(entities).where(eq(entities.id, id)).limit(1);
+	if (!entity || entity.entityType !== 'steading' || !entity.campaignId) return undefined;
+
+	const [seat] = await db
+		.select({ role: campaignMembers.role, steadingEditor: campaignMembers.steadingEditor })
+		.from(campaignMembers)
+		.where(
+			and(eq(campaignMembers.campaignId, entity.campaignId), eq(campaignMembers.userId, userId))
+		)
+		.limit(1);
+	// A GM always may; a player only with the delegated grant.
+	if (!seat || (seat.role !== 'gm' && !seat.steadingEditor)) return undefined;
+	return entity;
+}
+
+/**
+ * Write a campaign steading's data blob on behalf of a delegated editor
+ * (phase 16) — the sibling write to {@link getCampaignSteadingForEditor}, and
+ * the second cross-owner write path after `updateCampaignEntityData`. The same
+ * gate applies (a `steading` attached to a campaign where the caller is GM or a
+ * flagged editor); the blob is opaque here, as everywhere. Returns `undefined`
+ * when the caller may not edit this steading, so the route maps that to 404.
+ */
+export async function updateCampaignSteadingData(
+	db: Db,
+	id: string,
+	userId: string,
+	data: unknown
+): Promise<Entity | undefined> {
+	const editable = await getCampaignSteadingForEditor(db, id, userId);
+	if (!editable) return undefined;
+
+	const [updated] = await db
+		.update(entities)
+		.set({ data, updatedAt: new Date() })
+		.where(eq(entities.id, id))
+		.returning();
+	return updated;
+}

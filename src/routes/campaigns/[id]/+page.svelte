@@ -111,6 +111,24 @@
 						{member.role}
 					</span>
 				</div>
+				{#if data.isGm && data.steading && member.role !== 'gm'}
+					<!-- The GM delegates who may edit the shared steading (phase 16). The
+					     checkbox has no name; the hidden field carries the desired new
+					     state, so toggling submits a grant or a revoke. -->
+					<form method="POST" action="?/setSteadingEditor" use:enhance class="mt-1 ml-1">
+						<input type="hidden" name="memberUserId" value={member.userId} />
+						<input type="hidden" name="canEdit" value={member.steadingEditor ? 'false' : 'true'} />
+						<label class="flex items-center gap-1.5 text-xs text-muted">
+							<input
+								type="checkbox"
+								checked={member.steadingEditor}
+								onchange={(e) => e.currentTarget.form?.requestSubmit()}
+								class="accent-accent"
+							/>
+							Can edit the steading
+						</label>
+					</form>
+				{/if}
 				{#if member.characters.length > 0}
 					<ul class="mt-1 ml-1 text-sm">
 						{#each member.characters as char (char.id)}

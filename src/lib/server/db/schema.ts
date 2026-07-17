@@ -202,6 +202,14 @@ export const campaignMembers = sqliteTable(
 			.notNull()
 			.references(() => users.id, { onDelete: 'cascade' }),
 		role: text('role', { enum: CAMPAIGN_ROLES }).notNull(),
+		/**
+		 * Whether this member may edit the campaign's shared steading (phase 16).
+		 * The GM always can — the steading is theirs to run; this flag delegates
+		 * that edit right to a player, letting the shared tracker be live for them
+		 * rather than read-only. Enforced on the steading write path, not just the
+		 * UI: the grant is honest. Defaults off — delegation is opt-in per member.
+		 */
+		steadingEditor: integer('steading_editor', { mode: 'boolean' }).notNull().default(false),
 		joinedAt: integer('joined_at', { mode: 'timestamp_ms' })
 			.notNull()
 			.default(sql`(unixepoch() * 1000)`)

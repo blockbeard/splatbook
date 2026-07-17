@@ -11,7 +11,12 @@
 
 import { json, error } from '@sveltejs/kit';
 import { z } from 'zod';
-import { getEntity, updateEntity, deleteEntity } from '$lib/server/db/entities';
+import {
+	getEntity,
+	updateEntity,
+	deleteEntity,
+	getCampaignSteadingForEditor
+} from '$lib/server/db/entities';
 import type { RequestHandler } from './$types';
 
 async function requireUserId(locals: App.Locals): Promise<string> {
@@ -22,7 +27,12 @@ async function requireUserId(locals: App.Locals): Promise<string> {
 
 export const GET: RequestHandler = async ({ locals, params }) => {
 	const userId = await requireUserId(locals);
-	const entity = await getEntity(locals.db, params.id, userId);
+	// Owner first; failing that, a campaign steading this user was delegated to
+	// edit (phase 16) — the one entity someone opens without owning it, so the
+	// shared tracker can load for a delegate rather than 404.
+	const entity =
+		(await getEntity(locals.db, params.id, userId)) ??
+		(await getCampaignSteadingForEditor(locals.db, params.id, userId));
 	if (!entity) error(404, 'No such entity.');
 	return json(entity);
 };

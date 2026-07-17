@@ -21,9 +21,11 @@ import {
 	setEntityCampaign,
 	listCampaignEntities,
 	updateCampaignEntityData,
+	getCampaignSteadingForEditor,
+	updateCampaignSteadingData,
 	type Db
 } from './entities.ts';
-import { createCampaign, joinCampaign } from './campaigns.ts';
+import { createCampaign, joinCampaign, setSteadingEditor } from './campaigns.ts';
 
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
@@ -263,5 +265,98 @@ describe('updateCampaignEntityData', () => {
 		expect(
 			await updateCampaignEntityData(db, bobsCharacter.id, carol.id, { xp: 9 })
 		).toBeUndefined();
+	});
+});
+
+describe('campaign steading delegation (phase 16)', () => {
+	/** Alice GMs a campaign with a steading she owns; Bob plays. */
+	async function table() {
+		const campaign = await createCampaign(db, {
+			gameId: 'stonetop',
+			name: 'Ringwall',
+			ownerId: alice
+		});
+		await joinCampaign(db, campaign.inviteToken, bob);
+		const steading = await createEntity(db, {
+			userId: alice,
+			gameId: 'stonetop',
+			entityType: 'steading',
+			name: 'Stonetop',
+			schemaVersion: 1,
+			data: { prosperity: 'steady' }
+		});
+		await setEntityCampaign(db, steading.id, alice, campaign.id);
+		return { campaign, steading };
+	}
+
+	it('lets the GM read and write the steading she owns', async () => {
+		const { steading } = await table();
+		expect((await getCampaignSteadingForEditor(db, steading.id, alice))?.id).toBe(steading.id);
+		const updated = await updateCampaignSteadingData(db, steading.id, alice, { prosperity: 'rich' });
+		expect(updated?.data).toEqual({ prosperity: 'rich' });
+		// Still Alice's entity.
+		expect(updated?.userId).toBe(alice);
+	});
+
+	it('refuses a player without the grant', async () => {
+		const { steading } = await table();
+		expect(await getCampaignSteadingForEditor(db, steading.id, bob)).toBeUndefined();
+		expect(await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })).toBeUndefined();
+		const [row] = await db
+			.select()
+			.from(schema.entities)
+			.where(eq(schema.entities.id, steading.id));
+		expect(row.data).toEqual({ prosperity: 'steady' });
+	});
+
+	it('lets a granted player read and write, and stops honouring it once revoked', async () => {
+		const { campaign, steading } = await table();
+		await setSteadingEditor(db, campaign.id, alice, bob, true);
+
+		expect((await getCampaignSteadingForEditor(db, steading.id, bob))?.id).toBe(steading.id);
+		const updated = await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'rich' });
+		expect(updated?.data).toEqual({ prosperity: 'rich' });
+		// Ownership is untouched — Bob edits Alice's steading, he doesn't take it.
+		expect(updated?.userId).toBe(alice);
+
+		await setSteadingEditor(db, campaign.id, alice, bob, false);
+		expect(await getCampaignSteadingForEditor(db, steading.id, bob)).toBeUndefined();
+		expect(await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })).toBeUndefined();
+	});
+
+	it('refuses a non-member even with the flag set elsewhere', async () => {
+		const { steading } = await table();
+		const [carol] = await db.insert(schema.users).values({ email: 'carol@x' }).returning();
+		expect(await getCampaignSteadingForEditor(db, steading.id, carol.id)).toBeUndefined();
+		expect(await updateCampaignSteadingData(db, steading.id, carol.id, { x: 1 })).toBeUndefined();
+	});
+
+	it('refuses a steading attached to no campaign', async () => {
+		const loose = await createEntity(db, {
+			userId: alice,
+			gameId: 'stonetop',
+			entityType: 'steading',
+			name: 'Loose',
+			schemaVersion: 1,
+			data: {}
+		});
+		// Even the owner goes through the normal owner path for a loose steading;
+		// this delegated path only ever touches a campaign's shared one.
+		expect(await getCampaignSteadingForEditor(db, loose.id, alice)).toBeUndefined();
+	});
+
+	it('refuses a non-steading entity even for its campaign GM', async () => {
+		const { campaign } = await table();
+		const bobsCharacter = await createEntity(db, {
+			userId: bob,
+			gameId: 'stonetop',
+			entityType: 'character',
+			name: 'Ryn',
+			schemaVersion: 1,
+			data: { xp: 0 }
+		});
+		await setEntityCampaign(db, bobsCharacter.id, bob, campaign.id);
+		// The steading path is for steadings only; characters use their own path.
+		expect(await updateCampaignSteadingData(db, bobsCharacter.id, alice, { xp: 9 })).toBeUndefined();
 	});
 });
