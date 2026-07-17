@@ -88,16 +88,30 @@
 	let undoTimer: ReturnType<typeof setTimeout> | undefined;
 	let lastSnapshotAt = 0;
 
+	// A change that arrives before the user has interacted with *this page* is
+	// the game housekeeping, not a mistap — PlayMode migrates and normalises a
+	// loaded blob and emits the result through the same onChange as any edit
+	// (seen first on a fresh character: enterPlay seeds vitals on open).
+	// Offering to undo that would greet the player with a "Change saved" toast
+	// they did nothing to cause — and reverting it would only un-normalise a
+	// blob the next load re-normalises. `navigator.userActivation` can't draw
+	// this line: Chromium propagates sticky activation across same-origin
+	// navigations, so anyone who *clicked their way here* already reads as
+	// active. Track interaction with this page's own lifetime instead —
+	// capture-phase, so the flag is set before any click handler's onChange.
+	let pageInteracted = false;
+	$effect(() => {
+		const mark = () => (pageInteracted = true);
+		window.addEventListener('pointerdown', mark, { capture: true });
+		window.addEventListener('keydown', mark, { capture: true });
+		return () => {
+			window.removeEventListener('pointerdown', mark, { capture: true });
+			window.removeEventListener('keydown', mark, { capture: true });
+		};
+	});
+
 	function offerUndo(prev: object): void {
-		// A change that arrives before the user has interacted with this page is
-		// the game housekeeping, not a mistap — PlayMode migrates and normalises
-		// a loaded blob and emits the result through the same onChange as any
-		// edit (seen first on a fresh character: enterPlay seeds vitals on
-		// open). Offering to undo that would greet the player with a "Change
-		// saved" toast they did nothing to cause — and reverting it would only
-		// un-normalise a blob the next load re-normalises. Sticky activation is
-		// exactly this distinction; browsers without the API just keep the offer.
-		if (!navigator.userActivation?.hasBeenActive) return;
+		if (!pageInteracted) return;
 		const now = Date.now();
 		// Within a burst the stack's top already holds the state before the
 		// burst began — pushing every keystroke would burn the whole depth on
