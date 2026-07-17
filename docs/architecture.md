@@ -169,6 +169,21 @@ screen is doing.
   client/server boundary on that path).
 - Entities use the blob model above. Structured columns are reserved for things
   the *shell* queries: ids, names, game/entity type, timestamps, campaign links.
+- **Preferences** (phase 13): one flat `key -> value` namespace per user, a
+  plain upsert on a composite primary key. A preference's *meaning* belongs to
+  whichever feature reads it, not the table. Signed-out readers get the same
+  shape in `localStorage` (`$lib/preferences/client`); nothing migrates on
+  sign-in — a preference set while signed out is a browser default, not a
+  server intent.
+- **The session ledger** (phase 17): `campaign_sessions`, one row per
+  end-of-session run — the campaign's own session `number` (assigned by the
+  service), date, the checked `triggers` (the game's answer shape, stored
+  opaquely, same discipline as `entities.data`), per-character `awards`
+  (`{ entityId, name, xp }`, denormalised like `rolls.characterName` so
+  history survives renames and deletions — deliberately no FK), and the GM's
+  `notes` (the one field that takes edits after the fact; the rest is what
+  happened). Recording and editing are GM-gated in the service; the dashboard
+  renders the history for every member.
 
 ## Campaigns and the spoiler gate
 
@@ -230,6 +245,26 @@ content pack, which is the game's job. The hook may be async for exactly that
 reason. Steps also receive `goTo(stepId)`, which is what lets the review screen
 turn every row and every validation error into a way back to the step that fixes
 it.
+
+## The pdf module
+
+`$lib/pdf` (phase 20) is the generic document engine games hang layouts on —
+pdf-lib (+ fontkit for the book fonts), no headless browser, so the same code
+runs on node and Workers. Its boundary, in the usual shape:
+
+- **The shell owns the mechanics**: `PdfBuilder` (font embedding, wrapped text
+  with measurement, box/checkbox/rule primitives, top-down page management —
+  the bottom-left conversion happens in exactly one place), the pure layout
+  math in `layout.ts` (word-wrap, block flow — unit-tested against a fake
+  measurer), the imposition helper in `imposition.ts` (fold-order arithmetic +
+  saddle-stitch two-up; `?booklet=1` on the endpoint), and the generic
+  endpoint `/[game]/[type]/pdf?id=` (auth + owner-scoped entity load,
+  `pdfResponse` headers).
+- **The game owns the layout**: `EntityTypeModule.pdf(entity, fetch)` returns
+  bytes + filename from the opaque blob. Pack data and fonts arrive through
+  the event's `fetch` (the same way sheets load packs in the browser), and the
+  implementation loads via **dynamic import** so pdf-lib never rides into the
+  client bundle. The shell reads neither the blob nor the bytes.
 
 ## The end-of-session slot
 

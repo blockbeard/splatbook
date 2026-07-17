@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-07-17
+
+**The binder release** — every insert playable, Book II open to the curious,
+dice for everything the game rolls, a session that remembers itself, and a PDF
+worth printing.
+
 ### Added
 
 - **Booklet imposition** (commit 121). A shared imposition helper in

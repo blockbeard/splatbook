@@ -222,3 +222,39 @@ Tool-format changes land before the regen so the content is rebuilt exactly once
 107. `feat(play): full dice panel + custom bonus` — presets for the whole set (d4 d6 d8 d10 d12 d20, 2d6) plus a small signed-number bonus box that applies to the next roll and reads in the log ("2d6+1 (bonus +2)"). The advantage/disadvantage switch already exists; it now sits over more dice.
 108. `feat(stonetop): damage rolls` — the playbook's `base.damage` (the Heavy's d10) becomes a "Damage (d10)" button on the sheet header, and on each damage-dealing move's card — Clash, Let Fly and kin get a `rollsDamage` tag in the pack data (schema + data + test) so the button appears exactly where the text says you deal your damage. Riders like "+1d4" ride the custom bonus box for now.
 109. `feat(play): a miss marks XP` — when a character's 2d6+stat move roll totals 6 or less, the roll-result surface grows a **Mark XP** button and waits to be dismissed instead of fading; one tap writes `markXp` and the surface confirms. Never appears on damage, steading, or bare-notation rolls — only the rolls that earn it.
+
+## Phase 16 — The steading has editors (commit 110)
+
+110. `feat(campaigns): steading editors` — every member already sees the campaign steading; the GM now delegates edit per member (a `steadingEditor` flag on `campaign_members`, toggles on the campaign dashboard next to each player). Enforced server-side on the steading write path — the UI grant is honest — and the shared tracker becomes live, not read-only, for delegates.
+
+## Phase 17 — The session ledger (commits 111–112)
+
+*End of session already runs GM-side and marks everyone's XP; what it doesn't do is remember. Notes live in the GM's browser and the awards evaporate into the sheets.*
+
+111. `feat(db): campaign sessions` — a sessions table (campaignId, number, date, the checked triggers, per-character XP awarded, notes); the end-of-session flow writes one record per run, and the notes textarea seeds once from the old localStorage key so nothing already jotted is lost.
+112. `feat(campaigns): session log` — the campaign dashboard grows the history: session N, date, XP handed out, notes, editable by the GM after the fact. The e2e end-of-session test asserts the record too.
+
+## Phase 18 — Moves & gear, handed out (commit 113)
+
+113. `feat(stonetop): moves & gear page` — the app's equivalent of the Moves & Gear handout, for players at the table without a character open: the basic moves, the special moves (extend `tools/build_moves.ts` to emit `special-moves.json` — Advantage/Disadvantage, Burn Brightly, End of Session, Death's Door), and the gear/small-items/prosperity lists already in the inventory insert. Linked from the game landing and the play view.
+
+## Phase 19 — Sanded corners, watched and backed up (commits 114–118)
+
+*Added 2026-07-12 after a "what else would you change" review. Offline/PWA and the account-export half of the data-safety story stay deferred to open v2.3 — but the operator half moved the other way (decided 2026-07-12): monitoring and the D1 backup land here, because the site is already public and the database already holds characters people would miss.*
+
+114. `feat(play): undo` — every play-mode edit autosaves, so every mistap persists. The engine is pure functions over blobs, which makes undo nearly free: PlayMode keeps a short stack of prior blobs and a toast after each change offers Undo for a few seconds — HP, XP, trackers, inventory, even a fat-fingered level-up, all restored by writing the previous blob back. *Fold in a nit from the 2026-07-16 e2e triage while in this file: the play page's autosave-adopt-id `replaceState` passes `{}` for state and rebuilds the query as bare `?id=`, dropping both `page.state.tab` and `?tab=` — so an unsaved-draft session snaps back to the Sheet tab on its first autosave. Carry the existing query params and `page.state` through instead.*
+115. `feat(stonetop): moves link to their rules` — every move card on the play sheet deep-links to the move's full rules text. Possible because the reimport made each move its own section (commit 89's `kind: "move"`); `tools/build_moves.ts` records the section id alongside each extracted move so the link is data, not string-matching.
+116. `feat(shell): feedback link + cookieless analytics` — a footer feedback link (GitHub issues), and the Cloudflare Web Analytics beacon: free, cookieless, no consent banner, nothing stored about the visitor. `/privacy` updates in the same commit, as its own text demands. If event-level questions arise later ("does anyone use the PDF export?"), self-hosted Umami on atlas is the upgrade path that keeps the no-third-party-tracking claim true.
+117. `chore(ops): production on the watchdog` — **Argus** (the house watchdog) already runs Uptime Kuma watching the staging deployment on atlas; this commit is just the missing checks: production's `https://splatbook.app/api/health`, and a confirmation that notifications actually arrive. A dedicated watchdog box watching Cloudflare is exactly the right shape — the watcher shares no failure domain with either deployment. The runbook in `docs/deployment.md` gains the what-to-do-when-it-pages section.
+118. `chore(ops): nightly D1 export to atlas` — a cron on atlas runs `wrangler d1 export --remote` (API token scoped to D1 read) against **production** into a dated, compressed dump under a directory the existing 3-2-1 backup already sweeps — from there the offsite copies come for free. Simple retention before the sweep (say 14 daily, 12 monthly); a **restore rehearsal** documented in the runbook (import the dump into local sqlite, open a character — an untested backup is a hope, not a backup); and a push-style check on Argus's Kuma (the cron pings it on success) that alerts when a night is missed, because silent cron death is the actual failure mode of home-grown backups.
+
+## Phase 20 — A real PDF (commits 119–122)
+
+*The commit-83 "export" is a print stylesheet — honest, but the browser owns the layout and the file. guild-book's bar is a generated document. `pdf-lib` (+ fontkit for the book fonts) runs on node and Workers alike — no headless browser, so it survives every deploy target.*
+
+119. `feat(shell): pdf engine` — a generic module: font embedding, text flow with measurement, boxes/checkbox/rule primitives, page management; a server endpoint pattern games hang layouts on. Unit tests on the layout math (wrapping, pagination), not pixels.
+120. `feat(stonetop): character sheet PDF, 1-up` — the printed-playbook layout, chosen options only, from the same character blob the sheet renders; Download button on sheet and play views (print stays as the quick path).
+121. `feat(shell): booklet imposition` — a shared imposition helper (rendered page → position on sheet), then the saddle-stitch booklet variant: A5 pages paired onto landscape A4 in fold order, matching the physical playbooks. 3-up (three panels on a landscape sheet, table-flat) is a deliberate follow-up — the helper makes it a small commit when wanted.
+122. `docs + chore: v2.2.0` — content-packs.md (typed insert schemas, `rollsDamage`, special-moves data, the prefs table, callout + chapter conventions), architecture.md (preferences, sessions, the pdf module boundary, the ops additions folded into deployment.md), changelog, tag. **Also the housekeeping rule above: phases 16–20 move to the history file here.**
+
+**Milestone: the binder release — every insert playable, Book II open to the curious, dice for everything the game rolls, a session that remembers itself, and a PDF worth printing. `v2.2.0`.**

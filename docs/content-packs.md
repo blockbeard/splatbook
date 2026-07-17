@@ -80,14 +80,15 @@ for Stonetop, `content/stonetop/rules/` is produced from the Obsidian vault by
 maintained structured data (`data/*.json`) is source, not output; its human-
 readable schema lives in the pack's `SCHEMA.md`.
 
-Three data files are the exception, generated *from the pack's own rules tree* by
-`tools/build_moves.ts` (phase 11) and likewise not hand-edited:
+Four data files are the exception, generated *from the pack's own rules tree* by
+`tools/build_moves.ts` (phase 11; grown since) and likewise not hand-edited:
 
 | File | What it holds |
 | --- | --- |
 | `data/basic-moves.json` | The moves every character can make. |
+| `data/special-moves.json` | The special moves as handout cards (commit 113): Advantage/Disadvantage, Burn Brightly, End of Session, Death's Door — the Moves & Gear page's second section. |
 | `data/steading-moves.json` | The Homefront moves that roll a *steading* stat. |
-| `data/end-of-session.json` | The end-of-session move, split into personal prompts, group questions, and closing prose. |
+| `data/end-of-session.json` | The end-of-session move, split into personal prompts, group questions, and closing prose (the guided flow's structured shape — `special-moves.json` carries the same move as a flat card). |
 
 They exist because the play sheets need these moves as **data**, while the rules
 carry them as prose — and retyping licensed text by hand is how text drifts from
@@ -95,10 +96,32 @@ its source. Each carries a `source` block naming the rules file and section it w
 lifted from. Round-trip tests assert the shipped files parse and still say what
 the rules say, so a regeneration that mangles them fails CI.
 
+Two per-move fields are recorded at extraction rather than hand-authored:
+
+- **`sectionId`** (commit 115) — the rules section the move's card deep-links
+  to: the full write-up chapters (Player Moves for a character's moves,
+  Homefront for the steading's) preferred over the summary chapter the text is
+  lifted from. The link is data, not string-matching at runtime.
+- **`rollsDamage`** (commit 108) — moves whose own resolution *is* "deal your
+  damage" (Clash, Let Fly), detected by a hand-curated id list in the
+  generator because the phrase also appears as one option inside moves that
+  aren't about damage (Defend).
+
 Note what is *not* stored: which stat a move rolls. That is read from the move's
 own text ("roll +STR", "rolls +Fortunes"), so a playbook move and a basic move are
 rollable by exactly the same rule, and the pack has no second copy of a fact to
 disagree with.
+
+### Typed insert schemas
+
+Every playbook insert file (`data/insert-*.json`) that a play component actually
+parses has its own strict schema in `pack-schemas.ts` — `insert-inventory`,
+`insert-followers`, `insert-crew`, `insert-animal-companion`,
+`insert-initiates-of-danu`, `insert-invocations`, `insert-ghost`,
+`insert-revenant`, `insert-thrall` — with the generic `insertSchema` as the
+fallback for any `insert-*.json` not listed. Strict objects on purpose: an
+unknown key in pack data is a typo or a schema the code hasn't caught up with,
+and either should fail validation, not ship silently.
 
 ## Document trees (rules reference)
 
@@ -246,6 +269,20 @@ depend on a third-party CDN.
 shell at `/campaigns/[id]/session`. The shell supplies the table (characters +
 steading, opaque), a GM-authorised `save`, and `roll`; the game asks the questions
 and computes the awards. The shell persists exactly the blob the game hands it.
+
+Since phase 17 the props also carry `record(run)`: after every sheet takes its
+award, the game writes the run into the campaign's session ledger — its own
+answer shape as opaque `triggers`, plus the two things the ledger renders
+(award lines and notes) already shaped for display. The shell assigns the
+session number and the date; see `architecture.md` for the table.
+
+## The table-reference slot
+
+`GameModule.tableReference` (commit 113) is a player-facing handout page —
+Stonetop's Moves & Gear — surfaced by the shell at `/[game]/table` and linked
+from the game landing and the play view. `label` is nav chrome; the component
+fetches its own pack data, exactly like the session component. Absent → no
+page, no links.
 
 ## Adding a new game
 
