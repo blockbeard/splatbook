@@ -30,6 +30,14 @@
 			copied = false;
 		}
 	}
+
+	// Which ledger record's notes the GM is editing, if any — one at a time.
+	let editingSessionId = $state<string | null>(null);
+
+	const sessionDate = (ms: number) =>
+		new Date(ms).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+
+	const totalXp = (awards: { xp: number }[]) => awards.reduce((sum, a) => sum + a.xp, 0);
 </script>
 
 <svelte:head>
@@ -151,6 +159,82 @@
 </section>
 
 <RollLog campaignId={data.campaign.id} initial={data.rolls} />
+
+{#if data.sessions.length > 0}
+	<section class="mt-6">
+		<h2 class="text-sm font-semibold">Session log</h2>
+		<ul class="mt-2 divide-y divide-border rounded-md border border-border">
+			{#each data.sessions as session (session.id)}
+				<li class="px-4 py-3">
+					<div class="flex flex-wrap items-baseline justify-between gap-2">
+						<span class="font-medium">Session {session.number}</span>
+						<span class="text-xs text-muted">
+							{sessionDate(session.date)}
+							{#if totalXp(session.awards) > 0}
+								· {totalXp(session.awards)} XP across the party
+							{/if}
+						</span>
+					</div>
+					{#if session.awards.some((a) => a.xp > 0)}
+						<ul class="mt-1 ml-1 text-xs text-muted">
+							{#each session.awards.filter((a) => a.xp > 0) as award (award.entityId)}
+								<li>{award.name} +{award.xp} XP</li>
+							{/each}
+						</ul>
+					{/if}
+					{#if editingSessionId === session.id}
+						<!-- The GM fixes what the evening's shorthand got wrong. Only the
+						     notes take edits; the awards are what happened. -->
+						<form
+							method="POST"
+							action="?/updateSessionNotes"
+							use:enhance={() =>
+								async ({ update }) => {
+									editingSessionId = null;
+									await update();
+								}}
+							class="mt-2"
+						>
+							<input type="hidden" name="sessionId" value={session.id} />
+							<textarea
+								name="notes"
+								rows="3"
+								class="w-full rounded-md border border-border bg-surface p-2 text-sm"
+								value={session.notes}></textarea>
+							<div class="mt-1 flex gap-3">
+								<button type="submit" class="text-xs font-medium text-accent hover:underline">
+									Save notes
+								</button>
+								<button
+									type="button"
+									onclick={() => (editingSessionId = null)}
+									class="text-xs text-muted hover:underline"
+								>
+									Cancel
+								</button>
+							</div>
+						</form>
+					{:else}
+						{#if session.notes}
+							<p class="mt-1 text-sm whitespace-pre-wrap">{session.notes}</p>
+						{:else}
+							<p class="mt-1 text-xs text-muted italic">No notes recorded.</p>
+						{/if}
+						{#if data.isGm}
+							<button
+								type="button"
+								onclick={() => (editingSessionId = session.id)}
+								class="mt-1 text-xs text-muted hover:text-accent hover:underline"
+							>
+								Edit notes
+							</button>
+						{/if}
+					{/if}
+				</li>
+			{/each}
+		</ul>
+	</section>
+{/if}
 
 <section class="mt-6">
 	<h2 class="text-sm font-semibold">Campaign steading</h2>

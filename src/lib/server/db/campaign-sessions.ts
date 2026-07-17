@@ -92,3 +92,33 @@ export async function listCampaignSessions(db: Db, campaignId: string): Promise<
 		.where(eq(campaignSessions.campaignId, campaignId))
 		.orderBy(desc(campaignSessions.number));
 }
+
+/**
+ * Edit a recorded session's notes after the fact (commit 112) — the GM re-reads
+ * the ledger later and fixes what the evening's shorthand got wrong. GM-gated
+ * like the record itself. Only the notes take edits: the number, triggers and
+ * awards are what *happened*, and history doesn't get rewritten. Returns the
+ * updated row, or `undefined` when the session doesn't exist or the caller
+ * isn't its campaign's GM.
+ */
+export async function updateCampaignSessionNotes(
+	db: Db,
+	sessionId: string,
+	userId: string,
+	notes: string
+): Promise<CampaignSession | undefined> {
+	const [existing] = await db
+		.select({ campaignId: campaignSessions.campaignId })
+		.from(campaignSessions)
+		.where(eq(campaignSessions.id, sessionId))
+		.limit(1);
+	if (!existing) return undefined;
+	if (!(await gmSeatOf(db, existing.campaignId, userId))) return undefined;
+
+	const [row] = await db
+		.update(campaignSessions)
+		.set({ notes, updatedAt: new Date() })
+		.where(eq(campaignSessions.id, sessionId))
+		.returning();
+	return row;
+}

@@ -107,6 +107,9 @@ test('the GM ends a session and the XP lands on the sheet', async ({ page }) => 
 	// 2 group + 1 personal.
 	await expect(page.getByText('+3 XP')).toBeVisible();
 
+	// Jot the session notes — the record should carry them (phase 17).
+	await page.getByPlaceholder(/The bridge burned/).fill('E2E: the mill flooded.');
+
 	await page.getByRole('button', { name: /Mark XP on every sheet/ }).click();
 	await expect(page.getByText(/Marked\./)).toBeVisible();
 
@@ -116,4 +119,20 @@ test('the GM ends a session and the XP lands on the sheet', async ({ page }) => 
 		return (await res.json()) as { data: { xp: number } };
 	}, created.id);
 	expect(after.data.xp).toBe(4);
+
+	// The run went into the ledger (phase 17): back on the campaign dashboard,
+	// the session log shows the numbered record, the award, and the notes.
+	await page.getByRole('link', { name: /E2E Session/ }).click();
+	await page.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
+	const log = page.locator('section', { has: page.getByRole('heading', { name: 'Session log' }) });
+	await expect(log.getByText('Session 1')).toBeVisible();
+	await expect(log.getByText('3 XP across the party')).toBeVisible();
+	await expect(log.getByText('Ryn +3 XP')).toBeVisible();
+	await expect(log.getByText('E2E: the mill flooded.')).toBeVisible();
+
+	// And the GM can fix the notes after the fact (commit 112).
+	await log.getByRole('button', { name: 'Edit notes' }).click();
+	await log.locator('textarea[name="notes"]').fill('E2E: the mill flooded. Vera saved the grain.');
+	await log.getByRole('button', { name: 'Save notes' }).click();
+	await expect(log.getByText('Vera saved the grain.')).toBeVisible();
 });

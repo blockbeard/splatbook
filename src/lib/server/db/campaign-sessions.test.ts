@@ -13,7 +13,11 @@ import { eq } from 'drizzle-orm';
 import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
 import { createCampaign, joinCampaign } from './campaigns.ts';
-import { recordCampaignSession, listCampaignSessions } from './campaign-sessions.ts';
+import {
+	recordCampaignSession,
+	listCampaignSessions,
+	updateCampaignSessionNotes
+} from './campaign-sessions.ts';
 
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
@@ -107,5 +111,31 @@ describe('listCampaignSessions', () => {
 		await db.delete(schema.campaigns).where(eq(schema.campaigns.id, campaignId));
 		const [orphan] = await db.select().from(schema.campaignSessions);
 		expect(orphan).toBeUndefined();
+	});
+});
+
+describe('updateCampaignSessionNotes (commit 112)', () => {
+	it('lets the GM fix the notes after the fact, touching nothing else', async () => {
+		const recorded = await recordCampaignSession(db, gm, sampleRecord());
+		const updated = await updateCampaignSessionNotes(
+			db,
+			recorded!.id,
+			gm,
+			'The bridge burned — and it was Bram’s fault.'
+		);
+		expect(updated?.notes).toBe('The bridge burned — and it was Bram’s fault.');
+		// History itself doesn't take edits.
+		expect(updated?.number).toBe(1);
+		expect(updated?.awards).toEqual(recorded!.awards);
+		expect(updated?.triggers).toEqual(recorded!.triggers);
+	});
+
+	it('refuses a player, a stranger, and a session that doesn’t exist', async () => {
+		const recorded = await recordCampaignSession(db, gm, sampleRecord());
+		expect(await updateCampaignSessionNotes(db, recorded!.id, player, 'mine now')).toBeUndefined();
+		expect(await updateCampaignSessionNotes(db, recorded!.id, outsider, 'hax')).toBeUndefined();
+		expect(await updateCampaignSessionNotes(db, 'no-such-id', gm, 'void')).toBeUndefined();
+		const [row] = await db.select().from(schema.campaignSessions);
+		expect(row.notes).toBe('The bridge burned.');
 	});
 });

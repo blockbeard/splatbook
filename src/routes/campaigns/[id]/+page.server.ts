@@ -27,6 +27,7 @@ import {
 	setEntityCampaign
 } from '$lib/server/db/entities';
 import { listCampaignRolls, toLogEntry } from '$lib/server/db/rolls';
+import { listCampaignSessions, updateCampaignSessionNotes } from '$lib/server/db/campaign-sessions';
 import { getGame } from '$lib/games';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -65,11 +66,12 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	// Party at a glance: every member, and the characters attached to the campaign
 	// grouped under their owner. A character links to its sheet only for its owner
 	// (the sheet route is owner-scoped); others show as read-only names.
-	const [members, partyChars, steadings, rolls] = await Promise.all([
+	const [members, partyChars, steadings, rolls, sessions] = await Promise.all([
 		listCampaignMembers(locals.db, campaign.id),
 		listCampaignEntities(locals.db, campaign.id, 'character'),
 		listCampaignEntities(locals.db, campaign.id, 'steading'),
-		listCampaignRolls(locals.db, campaign.id)
+		listCampaignRolls(locals.db, campaign.id),
+		listCampaignSessions(locals.db, campaign.id)
 	]);
 	const party = members.map((m) => ({
 		userId: m.userId,
@@ -106,6 +108,17 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		steading,
 		// Seed the live roll log; the client polls the same endpoint to keep it fresh.
 		rolls: rolls.map(toLogEntry),
+		// The session ledger (phase 17), newest first — every member sees the
+		// history; only the GM may edit a record's notes. The awards are the
+		// shell's own shape; `triggers` stays server-side (the game's shape, and
+		// nothing here renders it).
+		sessions: sessions.map((s) => ({
+			id: s.id,
+			number: s.number,
+			date: s.date.getTime(),
+			awards: s.awards,
+			notes: s.notes
+		})),
 		// The invite capability is GM-only; players never receive the token.
 		invite: isGm ? { path: joinPath(campaign.inviteToken) } : null,
 		// Whether this game has an end-of-session move for the GM to run.
@@ -205,5 +218,19 @@ export const actions: Actions = {
 		const updated = await setSteadingEditor(locals.db, params.id, userId, memberUserId, canEdit);
 		if (!updated) error(400, 'No such member to delegate to.');
 		return { steadingEditor: { ok: true } };
+	},
+
+	/** Fix a recorded session's notes after the fact (commit 112). GM-only; the
+	 * service re-checks the seat against the session's own campaign. */
+	updateSessionNotes: async ({ params, request, locals }) => {
+		const { userId, seat } = await requireSeat(params.id, locals);
+		if (seat.role !== 'gm') error(403, 'Only the GM can edit the session log.');
+
+		const form = await request.formData();
+		const sessionId = String(form.get('sessionId') ?? '');
+		const notes = String(form.get('notes') ?? '');
+		const updated = await updateCampaignSessionNotes(locals.db, sessionId, userId, notes);
+		if (!updated) error(400, 'No such session to edit.');
+		return { sessionNotes: { ok: true, id: updated.id } };
 	}
 };

@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The session log on the dashboard** (commit 112). The campaign page grows
+  the history phase 17's table holds: each recorded session — number, date,
+  XP handed out (total and per character), notes — newest first, visible to
+  every member. The GM can edit a record's notes after the fact
+  (`updateCampaignSessionNotes`, GM-gated against the session's own campaign;
+  the number, triggers and awards deliberately don't take edits — they're
+  what happened). The end-of-session e2e now asserts the record too: the log
+  shows the numbered session, the award lines and the notes, and the
+  after-the-fact edit sticks.
 - **The session ledger** (commit 111). End of session already marked everyone's
   XP; now it remembers. A `campaign_sessions` table (migration
   `0009_campaign_sessions`) holds one row per run: the campaign's own session
