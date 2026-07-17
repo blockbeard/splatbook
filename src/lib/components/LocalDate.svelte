@@ -12,11 +12,14 @@
 	along whatever the display shows.
 -->
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	let { ms, style = 'date' }: { ms: number; style?: 'date' | 'datetime' } = $props();
 
-	// Flips exactly once, after hydration — $effect never runs during SSR.
+	// Flips exactly once, after hydration — onMount never runs during SSR, and
+	// runs after the hydration pass has already matched the server's markup.
 	let hydrated = $state(false);
-	$effect(() => {
+	onMount(() => {
 		hydrated = true;
 	});
 

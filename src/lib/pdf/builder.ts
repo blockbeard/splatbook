@@ -71,7 +71,6 @@ function sanitizeForFont(text: string, standard: boolean): string {
 	// ranges are spelled from printable characters and escapes only — an
 	// earlier version's literal range smuggled a raw NUL byte into the source
 	// and made git treat this file as binary.
-	// eslint-disable-next-line no-control-regex -- the \n escape is deliberate
 	return mapped.replace(
 		/[^\n\u0020-\u007e\u00a0-\u00ff\u2013\u2014\u2018\u2019\u201c\u201d\u2022\u2026]/g,
 		'?'

@@ -23,6 +23,7 @@
 		type EndOfSessionAnswers,
 		type StonetopCharacter
 	} from '../engine';
+	import { SvelteSet } from 'svelte/reactivity';
 	import { steadingRollStat, type StonetopSteading } from '../engine/steading';
 	import { rollForSteadingStat } from '../dice';
 	import { fetchEndOfSession, fetchSteadingMoves } from '../pack/moves';
@@ -64,7 +65,8 @@
 	// Two boxes since the privacy pass: `notes` goes to the session log the whole
 	// table reads; `privateNotes` stays GM-only (stored with the record, stripped
 	// from player views server-side). Each keeps its own local draft.
-	// svelte-ignore state_referenced_locally -- notesKey is stable for the page's life
+	// notesKey is stable for the page's life, so capturing it once is right.
+	// svelte-ignore state_referenced_locally
 	const privateNotesKey = `${notesKey}:private`;
 	let notes = $state('');
 	let privateNotes = $state('');
@@ -148,7 +150,8 @@
 	 * never applies a second award to a sheet that already took one), and a
 	 * ledger failure after every sheet was marked retries the *record* alone —
 	 * "try again" must never mean "mark all the XP again". */
-	const awarded = new Set<string>();
+	// SvelteSet per house lint rule; nothing renders from it — it's bookkeeping.
+	const awarded = new SvelteSet<string>();
 	const writeXp = async (): Promise<void> => {
 		saving = true;
 		saveError = null;
