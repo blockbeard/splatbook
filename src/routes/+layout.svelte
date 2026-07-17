@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { browser } from '$app/environment';
-	import { dev } from '$app/environment';
+	import { browser, dev } from '$app/environment';
 	import { resolve } from '$app/paths';
 	import { env } from '$env/dynamic/public';
 	import favicon from '$lib/assets/favicon.svg';
