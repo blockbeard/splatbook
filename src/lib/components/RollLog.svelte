@@ -7,6 +7,7 @@
 	`RollResult`, and the labels are whatever the roller sent.
 -->
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { formatSigned } from '$lib/dice';
 	import type { RollLogEntry } from '$lib/rolls';
 
@@ -95,7 +96,13 @@
 								>{/if}
 						</span>
 						<span class="min-w-6 text-right font-semibold text-text">{e.result.total}</span>
-						<span class="w-16 text-right text-xs text-muted" title={new Date(e.at).toLocaleString()}
+						<!-- The tooltip formats with the reader's locale, which SSR can't know —
+						     same idea as LocalDate: a deterministic ISO form server-side, the
+						     locale form in the browser. Tooltips only exist on hover, so the
+						     attribute swap is invisible. -->
+						<span
+							class="w-16 text-right text-xs text-muted"
+							title={browser ? new Date(e.at).toLocaleString() : new Date(e.at).toISOString()}
 							>{ago(e.at)}</span
 						>
 					</span>

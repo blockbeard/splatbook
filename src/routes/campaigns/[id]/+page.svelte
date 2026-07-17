@@ -9,6 +9,7 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import RollLog from '$lib/components/RollLog.svelte';
+	import LocalDate from '$lib/components/LocalDate.svelte';
 
 	let { data, form } = $props();
 
@@ -33,9 +34,6 @@
 
 	// Which ledger record's notes the GM is editing, if any — one at a time.
 	let editingSessionId = $state<string | null>(null);
-
-	const sessionDate = (ms: number) =>
-		new Date(ms).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
 
 	const totalXp = (awards: { xp: number }[]) => awards.reduce((sum, a) => sum + a.xp, 0);
 </script>
@@ -169,7 +167,7 @@
 					<div class="flex flex-wrap items-baseline justify-between gap-2">
 						<span class="font-medium">Session {session.number}</span>
 						<span class="text-xs text-muted">
-							{sessionDate(session.date)}
+							<LocalDate ms={session.date} />
 							{#if totalXp(session.awards) > 0}
 								· {totalXp(session.awards)} XP across the party
 							{/if}
