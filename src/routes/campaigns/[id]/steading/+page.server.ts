@@ -43,10 +43,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 					// The owner can always edit; so can the GM, and any player the GM
 					// delegated the steading to (phase 16). The write path enforces the
 					// same grant, so this "Open tracker" link is honest, not decorative.
-					canEdit:
-						steading.userId === session.user.id ||
-						seat.role === 'gm' ||
-						seat.steadingEditor
+					canEdit: steading.userId === session.user.id || seat.role === 'gm' || seat.steadingEditor
 				}
 			: null
 	};

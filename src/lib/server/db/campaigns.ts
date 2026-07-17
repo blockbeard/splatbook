@@ -228,10 +228,7 @@ export async function setSteadingEditor(
 		.update(campaignMembers)
 		.set({ steadingEditor: canEdit })
 		.where(
-			and(
-				eq(campaignMembers.campaignId, campaignId),
-				eq(campaignMembers.userId, memberUserId)
-			)
+			and(eq(campaignMembers.campaignId, campaignId), eq(campaignMembers.userId, memberUserId))
 		)
 		.returning();
 	return row;

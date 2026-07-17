@@ -292,7 +292,9 @@ describe('campaign steading delegation (phase 16)', () => {
 	it('lets the GM read and write the steading she owns', async () => {
 		const { steading } = await table();
 		expect((await getCampaignSteadingForEditor(db, steading.id, alice))?.id).toBe(steading.id);
-		const updated = await updateCampaignSteadingData(db, steading.id, alice, { prosperity: 'rich' });
+		const updated = await updateCampaignSteadingData(db, steading.id, alice, {
+			prosperity: 'rich'
+		});
 		expect(updated?.data).toEqual({ prosperity: 'rich' });
 		// Still Alice's entity.
 		expect(updated?.userId).toBe(alice);
@@ -301,7 +303,9 @@ describe('campaign steading delegation (phase 16)', () => {
 	it('refuses a player without the grant', async () => {
 		const { steading } = await table();
 		expect(await getCampaignSteadingForEditor(db, steading.id, bob)).toBeUndefined();
-		expect(await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })).toBeUndefined();
+		expect(
+			await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })
+		).toBeUndefined();
 		const [row] = await db
 			.select()
 			.from(schema.entities)
@@ -321,7 +325,9 @@ describe('campaign steading delegation (phase 16)', () => {
 
 		await setSteadingEditor(db, campaign.id, alice, bob, false);
 		expect(await getCampaignSteadingForEditor(db, steading.id, bob)).toBeUndefined();
-		expect(await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })).toBeUndefined();
+		expect(
+			await updateCampaignSteadingData(db, steading.id, bob, { prosperity: 'poor' })
+		).toBeUndefined();
 	});
 
 	it('refuses a non-member even with the flag set elsewhere', async () => {
@@ -357,6 +363,8 @@ describe('campaign steading delegation (phase 16)', () => {
 		});
 		await setEntityCampaign(db, bobsCharacter.id, bob, campaign.id);
 		// The steading path is for steadings only; characters use their own path.
-		expect(await updateCampaignSteadingData(db, bobsCharacter.id, alice, { xp: 9 })).toBeUndefined();
+		expect(
+			await updateCampaignSteadingData(db, bobsCharacter.id, alice, { xp: 9 })
+		).toBeUndefined();
 	});
 });
