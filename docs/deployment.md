@@ -78,6 +78,30 @@ all interfaces; if the port doesn't even connect, it's the box's firewall,
 not the compose file) — but the tunnel keeps staging private with zero
 configuration, which is why it's the default.
 
+### Multi-device testing over the tailnet
+
+For testing from phones and other browsers at once, the tunnel doesn't scale —
+but don't just point `ORIGIN` at `http://atlas:3000`: Google refuses plain-http
+redirect URIs for non-localhost addresses (OAuth sign-in dies), and
+non-localhost http isn't a secure context, so `navigator.clipboard` (the
+invite-copy button) fails in ways that look like app bugs. **Tailscale Serve**
+gives staging a real HTTPS name every tailnet device can reach:
+
+```sh
+# on atlas (needs MagicDNS + HTTPS certificates enabled in the tailnet admin)
+sudo tailscale serve --bg --https=443 http://localhost:3000
+tailscale serve status          # → https://atlas.<tailnet>.ts.net
+```
+
+Then in atlas's `.env`: `ORIGIN=https://atlas.<tailnet>.ts.net`, restart the
+container (`docker compose up -d`), and add
+`https://atlas.<tailnet>.ts.net/auth/callback/google` (and `…/discord`) to the
+OAuth app's redirect URIs. `ORIGIN` is one value: while it points at the
+tailnet name, the localhost tunnel 403s on form posts — switch back when the
+testing session is over, or leave it if the tailnet is how you always browse.
+Serve is tailnet-only (not funnel): staging stays private, and being HTTPS it
+matches production's secure-context behaviour, which the tunnel never did.
+
 1. **Configure.** Put a `.env` next to `docker-compose.yml` on atlas with at least
    `ORIGIN`, `AUTH_SECRET`, `AUTH_DEV_LOGIN=false`, and your OAuth credentials.
    Compose already reads `ORIGIN`; add the rest to the `environment:` block or an
