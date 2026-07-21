@@ -13,6 +13,72 @@ where a build soaks before it ships; its data is disposable by definition —
 nothing real lives there (confirmed 2026-07-12). The database is resolved per
 request (`event.locals.db`), so the same code serves every environment.
 
+## Deploy quick reference
+
+The two routine deploys, as paste-able blocks. Rules learned the hard way:
+**every `wrangler` goes through `npx`** (it's a devDependency, never installed
+globally), **paste one line at a time** (zsh chokes on multi-line pastes and
+on `#` comment lines), and both blocks assume the repo root as cwd.
+
+### Staging — run from athena, ssh does the atlas half
+
+```sh
+ssh atlas 'cd ~/splatbook && git pull --ff-only && npm ci'
+```
+
+```sh
+ssh atlas 'cd ~/splatbook && docker compose up -d --build'
+```
+
+```sh
+ssh atlas 'cd ~/splatbook && DATABASE_URL=/var/lib/docker/volumes/splatbook_splatbook-data/_data/splatbook.db npm run db:migrate'
+```
+
+```sh
+ssh atlas 'curl -fsS http://localhost:3000/api/health'
+```
+
+`npm ci` is only strictly needed when dependencies changed, but it's
+idempotent — leaving it in costs a minute and removes a thing to remember.
+The migrate step is likewise idempotent: safe every deploy, required after
+any `drizzle/*.sql` addition. Health must print `{"status":"ok","db":"ok"}`.
+Browse via the tailnet URL (or the tunnel — see below).
+
+### Production — run on athena, in the checkout
+
+```sh
+git pull --ff-only
+```
+
+```sh
+npx wrangler d1 export splatbook --remote --output ~/splatbook-prod-backup-$(date +%F).sql
+```
+
+```sh
+npx wrangler d1 migrations apply splatbook --remote
+```
+
+```sh
+ADAPTER=cloudflare npm run build
+```
+
+```sh
+npx wrangler pages deploy .svelte-kit/cloudflare --project-name splatbook
+```
+
+```sh
+curl -fsS https://splatbook.app/api/health
+```
+
+The export is the pre-deploy backup — non-negotiable before any deploy that
+applies migrations, cheap enough to keep for all of them (it lands in your
+home directory, dated; note D1 pauses queries for a few seconds while it
+runs). Deploy only what CI has blessed: `git pull --ff-only` from a green
+main, never an unpushed working tree. After deploying, spot-check whatever
+the release actually changed, not just the health endpoint.
+
+## Deploying in detail
+
 One honesty note about staging: it runs the node adapter on sqlite, so it
 proves *features*, not *platform behavior*. Workers/D1-specific failures (the
 request-scoped database lesson) only surface in production or under
@@ -157,11 +223,11 @@ Two settings are load-bearing and were learned the hard way:
 ### Go live
 
 ```sh
-wrangler login
-wrangler d1 create splatbook              # paste the id into wrangler.toml
-wrangler d1 migrations apply splatbook --remote
+npx wrangler login
+npx wrangler d1 create splatbook          # paste the id into wrangler.toml
+npx wrangler d1 migrations apply splatbook --remote
 ADAPTER=cloudflare npm run build
-wrangler pages deploy .svelte-kit/cloudflare --project-name splatbook
+npx wrangler pages deploy .svelte-kit/cloudflare --project-name splatbook
 ```
 
 Then, in the Pages project (dashboard or `wrangler pages secret put`):
@@ -185,9 +251,9 @@ Worth doing before any deploy — the node dev server will not show you a Worker
 problem:
 
 ```sh
-wrangler d1 migrations apply splatbook --local
+npx wrangler d1 migrations apply splatbook --local
 ADAPTER=cloudflare npm run build
-AUTH_SECRET=dev AUTH_DEV_LOGIN=true wrangler pages dev .svelte-kit/cloudflare
+AUTH_SECRET=dev AUTH_DEV_LOGIN=true npx wrangler pages dev .svelte-kit/cloudflare
 ```
 
 Realtime dice (phase 10) stay on polling on the free tier; only long-lived
