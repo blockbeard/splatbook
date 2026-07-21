@@ -18,7 +18,7 @@
 </p>
 {#if data.showSetting && data.spoilers}
 	<p class="mt-2 text-xs text-accent">
-		{data.spoilers.toggleLabel} — on. Change this from the search page.
+		{data.spoilers.toggleLabel} — on. The checkbox in the sidebar turns it off again.
 	</p>
 {/if}
 

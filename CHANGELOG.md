@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **The Book II opt-in sticks for signed-in readers.** First staging finding:
+  the checkbox saved the preference but snapped back a beat later (and once
+  set another way, wouldn't change). The server layout load that supplies the
+  signed-in value never declared `depends('reference:showSetting')`, so the
+  toggle's `invalidate` reran only the universal load — over stale server
+  data. Signed-out readers (localStorage, read inside the universal load)
+  never hit it, which is why dev and the signed-out e2e passed. One line
+  fixes it; a new signed-in e2e pins both directions.
+
+### Changed
+
+- **The Book II toggle lives in the reference sidebar.** Second staging
+  finding: it only rendered inside the search form, so a reader browsing the
+  contents — the natural first stop — had no path to Book II without
+  incidentally searching. One `SpoilerToggle` component now sits under the
+  sidebar's search box on every reference page (TOC included); the search
+  page's inline copy is gone rather than duplicated. Toggling mid-search
+  rewrites the result list live (the results always derived from the gated
+  index; now the value they watch actually updates), covered by e2e.
+
 ### Added
 
 - **Private GM session notes.** The end-of-session flow now says plainly that

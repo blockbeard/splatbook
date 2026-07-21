@@ -3,9 +3,15 @@ import { test, expect, type Page } from '@playwright/test';
 /**
  * Commit 97: the reference GM gate became a reader opt-in preference
  * (`showSetting`). This covers the actual mechanic end to end — search finds
- * nothing gated by default, checking the box on the search page reveals a
- * Book II hit, and the preference persists across a reload (signed in, via
- * the server; signed out, via localStorage — see `preferences/client.ts`).
+ * nothing gated by default, ticking the sidebar toggle reveals a Book II hit
+ * live, and the preference persists across a reload (signed in, via the
+ * server; signed out, via localStorage — see `preferences/client.ts`).
+ *
+ * The signed-in test exists because its absence hid a real bug: the server
+ * layout load lacked `depends('reference:showSetting')`, so a signed-in
+ * toggle saved fine but the invalidate re-derived from stale server data and
+ * the checkbox snapped back (staging finding, 2026-07-17). Signed-out never
+ * hits that path — localStorage is read in the universal load.
  *
  * "Should the players read this?" is a Book II (`visibility: 'gm'`) section
  * title with no match anywhere in Book I, so it's an unambiguous signal for
@@ -17,6 +23,16 @@ const GATED_TITLE = 'Should the players read this?';
 
 async function search(page: Page, query: string) {
 	await page.goto(`/stonetop/reference/search?q=${encodeURIComponent(query)}`);
+}
+
+async function signIn(page: Page, name: string, email: string) {
+	await page.goto('/');
+	await page.getByRole('navigation').getByRole('button', { name: 'Sign in' }).click();
+	await page.waitForURL(/\/auth\/signin/);
+	await page.locator('input[name="name"]').fill(name);
+	await page.locator('input[name="email"]').fill(email);
+	await page.getByRole('button', { name: /Dev Login/i }).click();
+	await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible();
 }
 
 test('signed-out reader opts into Book II spoilers on the search page', async ({ page }) => {
@@ -52,6 +68,51 @@ test('signed-out reader opts into Book II spoilers on the search page', async ({
 	await expect(results.getByText(GATED_TITLE, { exact: true })).toBeVisible();
 
 	// Opting back out drops the gated hit without a page reload.
+	await page.getByLabel(/Include Book II/i).uncheck();
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
+});
+
+test('a signed-in reader opts in from the TOC sidebar, and the choice sticks', async ({ page }) => {
+	await signIn(page, 'E2E Spoilers', 'e2e-spoilers@localhost');
+
+	// The toggle lives in the sidebar now — reachable from the contents page,
+	// no search required (that was the staging discoverability finding).
+	await page.goto('/stonetop/reference');
+	const toc = page.getByRole('navigation', { name: 'Rules contents' });
+	await expect(toc.getByText('Include Book II', { exact: false })).toBeVisible();
+	await expect(toc.getByText(/Wider World/)).toHaveCount(0);
+
+	// Tick it: Book II joins the contents live, and — the regression this test
+	// exists for — the box STAYS ticked once the server round-trip completes.
+	// Before the depends() fix the save landed but the invalidate re-derived
+	// from stale data and unchecked the box a beat later.
+	await page.getByLabel(/Include Book II/i).check();
+	await expect(toc.getByText(/Wider World/).first()).toBeVisible();
+	await expect(page.getByLabel(/Include Book II/i)).toBeChecked();
+
+	// Signed in, the preference is a server row: a full reload agrees.
+	await page.reload();
+	await expect(page.getByLabel(/Include Book II/i)).toBeChecked();
+	await expect(toc.getByText(/Wider World/).first()).toBeVisible();
+
+	// And it unchecks — the symmetric half of the staging finding ("now won't
+	// uncheck"): the same stale-derivation bug in the opposite direction.
+	await page.getByLabel(/Include Book II/i).uncheck();
+	await expect(toc.getByText(/Wider World/)).toHaveCount(0);
+	await page.reload();
+	await expect(page.getByLabel(/Include Book II/i)).not.toBeChecked();
+});
+
+test('toggling mid-search reruns the results live', async ({ page }) => {
+	await search(page, GATED_QUERY);
+	await expect(page.getByText(/\d+\+? results?/)).toBeVisible();
+	const results = page.getByRole('list', { name: 'Search results' });
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
+
+	// The sidebar toggle is on the search page too (it's layout furniture);
+	// ticking it re-derives the result list without touching the query.
+	await page.getByLabel(/Include Book II/i).check();
+	await expect(results.getByText(GATED_TITLE, { exact: true })).toBeVisible();
 	await page.getByLabel(/Include Book II/i).uncheck();
 	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
 });

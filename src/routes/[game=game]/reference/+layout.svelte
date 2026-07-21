@@ -5,6 +5,7 @@
 	import { invalidate } from '$app/navigation';
 	import { getLocalPreference, REFERENCE_SHOW_SETTING } from '$lib/preferences';
 	import type { TocDocument, TocSection } from '$lib/reference/load';
+	import SpoilerToggle from './SpoilerToggle.svelte';
 
 	let { data, children } = $props();
 
@@ -72,6 +73,13 @@
 				class="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent"
 			/>
 		</form>
+		{#if data.spoilers}
+			<!-- The opt-in lives here in the sidebar — every reference page, not
+			     just search results — so the TOC itself offers the path to Book II. -->
+			<div class="mt-2">
+				<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+			</div>
+		{/if}
 		{#each data.toc as doc (doc.id)}
 			<div class="mt-4">
 				<p class="text-xs font-semibold uppercase tracking-wide text-muted">{doc.title}</p>
