@@ -125,8 +125,10 @@ test('the GM delegates steading edit to a player, who then gets the tracker', as
 	await tracker.click();
 	// Lands on the play route with the shared steading's id — the delegated read
 	// succeeded, so it's the campaign's steading, not a fresh blank draft.
-	const trackerUrl = player.url();
+	// (Wait for the navigation to land before capturing the URL — url() right
+	// after click() can still be the steading page.)
 	await player.waitForURL(/\/stonetop\/steading\/play\?id=[0-9a-f-]{36}/);
+	const trackerUrl = player.url();
 	await expect(player.getByText(/No steading to play/i)).toHaveCount(0);
 
 	// --- GM: revoke it ---
