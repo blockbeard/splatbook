@@ -9,8 +9,26 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, PDFDict, PDFName, decodePDFRawStream } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
 import { PdfBuilder, pdfResponse, PAGE_SIZES } from './builder';
+
+/** Pull the embedded font program back out of a saved PDF's FontDescriptor
+ * and hand it back to fontkit — the round-trip a corrupted embed fails
+ * (either no FontFile2 turns up at all, or fontkit can't reparse it). */
+function reparseEmbeddedFont(bytes: Uint8Array) {
+	return PDFDocument.load(bytes).then((doc) => {
+		for (const [, obj] of doc.context.enumerateIndirectObjects()) {
+			const ref = obj instanceof PDFDict && obj.get(PDFName.of('FontFile2'));
+			if (ref) {
+				const stream = doc.context.lookup(ref);
+				const program = decodePDFRawStream(stream as never).decode();
+				return fontkit.create(Buffer.from(program));
+			}
+		}
+		return null;
+	});
+}
 
 describe('PdfBuilder', () => {
 	it('produces a well-formed document with the requested pages', async () => {
@@ -59,13 +77,54 @@ describe('PdfBuilder', () => {
 	});
 
 	it('embeds the book font through fontkit', async () => {
-		// Avara (SIL OFL) — the same file the web sheet uses.
-		const woff2 = readFileSync(join(process.cwd(), 'static', 'fonts', 'avara-700.woff2'));
+		// Avara (SIL OFL) — the .ttf sibling of the file the web sheet uses
+		// (see the embedFont doc comment for why it's the .ttf, not .woff2).
+		const ttf = readFileSync(join(process.cwd(), 'static', 'fonts', 'avara-700.ttf'));
 		const b = await PdfBuilder.create('a5');
-		const font = await b.embedFont(woff2);
+		const font = await b.embedFont(ttf, { subset: false });
 		b.text(0, 'STONETOP', { x: 40, y: 40, font, size: 24 });
 		const bytes = await b.save();
 		expect((await PDFDocument.load(bytes)).getPageCount()).toBe(1);
+	});
+
+	it('embeds Avara as a structurally valid font program, not just a document that loads', async () => {
+		// PDFDocument.load doesn't validate an embedded font's own bytes, so
+		// the test above alone wouldn't have caught this: a woff2 buffer (or
+		// pdf-lib's subsetter, for this font) produces a PDF that still opens
+		// fine but whose embedded FontFile2 is corrupt — poppler refuses to
+		// parse it, and PDF.js-family viewers draw the wrong glyph per
+		// character instead of erroring. Reparsing the embedded bytes with
+		// fontkit is the same check poppler effectively does, without
+		// shelling out to it.
+		const ttf = readFileSync(join(process.cwd(), 'static', 'fonts', 'avara-700.ttf'));
+		const originalGlyphCount = fontkit.create(ttf).numGlyphs;
+
+		const b = await PdfBuilder.create('a5');
+		const font = await b.embedFont(ttf, { subset: false });
+		b.text(0, 'STONETOP', { x: 40, y: 40, font, size: 24 });
+		const bytes = await b.save();
+
+		const reparsed = await reparseEmbeddedFont(bytes);
+		expect(reparsed).not.toBeNull();
+		// subset: false, so nothing should have been dropped — the embedded
+		// program should carry the whole original glyph set.
+		expect(reparsed?.numGlyphs).toBe(originalGlyphCount);
+	});
+
+	it('documents that this font cannot be safely subset (regression guard)', async () => {
+		// If pdf-lib's subsetter ever gets fixed for this font, great — but
+		// until then `subset: true` on Avara silently produces the same
+		// corrupt-embed failure as the woff2 buffer did. This test exists so
+		// that re-enabling subsetting for this asset fails loudly instead of
+		// shipping another round of scrambled PDF text.
+		const ttf = readFileSync(join(process.cwd(), 'static', 'fonts', 'avara-700.ttf'));
+		const b = await PdfBuilder.create('a5');
+		const font = await b.embedFont(ttf, { subset: true });
+		b.text(0, 'STONETOP', { x: 40, y: 40, font, size: 24 });
+		const bytes = await b.save();
+
+		const reparsed = await reparseEmbeddedFont(bytes);
+		expect(reparsed).toBeNull(); // documents the current (broken) behaviour
 	});
 });
 

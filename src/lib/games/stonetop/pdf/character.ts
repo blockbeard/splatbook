@@ -55,12 +55,16 @@ export async function characterPdf(
 	const b = await PdfBuilder.create('a5');
 	const body = await b.standardFont();
 	const bold = await b.standardFont(StandardFonts.HelveticaBold);
-	// The book's own face for the title line — same file the web sheet uses.
+	// The book's own face for the title line — same font family the web sheet
+	// uses, but the .ttf sibling, not the .woff2 the browser loads: pdf-lib
+	// embeds font bytes as-is rather than unpacking a woff2 container, and
+	// (separately) its subsetter corrupts this font, so both `.ttf` and
+	// `{ subset: false }` matter here — see the comment on `embedFont`.
 	// Fall back to bold if the font can't be fetched (a PDF beats no PDF).
 	let display: EmbeddedFont = bold;
 	try {
-		const fontRes = await fetchFn(`${base}/fonts/avara-700.woff2`);
-		if (fontRes.ok) display = await b.embedFont(await fontRes.arrayBuffer());
+		const fontRes = await fetchFn(`${base}/fonts/avara-700.ttf`);
+		if (fontRes.ok) display = await b.embedFont(await fontRes.arrayBuffer(), { subset: false });
 	} catch {
 		/* keep the fallback */
 	}

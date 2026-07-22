@@ -98,10 +98,30 @@ export class PdfBuilder {
 		return this.wrap(await this.doc.embedFont(name), true);
 	}
 
-	/** Embed font bytes (TTF/OTF/WOFF2 — the book fonts). Subset: only the
-	 * glyphs actually used ship in the file. */
-	async embedFont(bytes: Uint8Array | ArrayBuffer): Promise<EmbeddedFont> {
-		return this.wrap(await this.doc.embedFont(bytes, { subset: true }), false);
+	/**
+	 * Embed font bytes — plain sfnt (TTF/OTF) only, *not* WOFF/WOFF2: pdf-lib
+	 * writes whatever bytes it's given straight into the PDF's FontFile2
+	 * stream rather than decompressing a web-font container first, so a
+	 * woff2 buffer here produces a structurally invalid embedded font
+	 * (confirmed with poppler: "Embedded font file may be invalid" /
+	 * "Couldn't create a font" — some viewers then draw the wrong glyph per
+	 * character instead of failing outright). Decompress to .ttf/.otf ahead
+	 * of time (`fontTools.ttLib.TTFont(...).flavor = None`, see
+	 * `tools/extract_avara_font.py`) and pass those bytes here.
+	 *
+	 * `subset: true` (only the glyphs actually used ship in the file) is the
+	 * size-conscious default, but pdf-lib's subsetter has been observed to
+	 * corrupt the Avara book font the same way a raw woff2 buffer does — same
+	 * poppler errors, glyphs wrong instead of a load failure. Pass
+	 * `{ subset: false }` for that font (and for any other custom font until
+	 * proven safe); these display fonts are a few KB either way, so
+	 * unsubsetted isn't a real size cost.
+	 */
+	async embedFont(
+		bytes: Uint8Array | ArrayBuffer,
+		opts: { subset?: boolean } = {}
+	): Promise<EmbeddedFont> {
+		return this.wrap(await this.doc.embedFont(bytes, { subset: opts.subset ?? true }), false);
 	}
 
 	private wrap(font: PDFFont, standard: boolean): EmbeddedFont {
