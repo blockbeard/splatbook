@@ -59,6 +59,11 @@
 	let character = $state<object | null>(
 		untrack(() => {
 			if (data.saved?.data) return data.saved.data;
+			// A denied `?id=` (revoked steading-editor grant, most likely) must not
+			// fall through to "nothing was requested, start fresh" — that would
+			// silently hand an editor-first type a blank draft instead of telling
+			// the player they've lost access. Bail to the `{#if !character}` branch.
+			if (data.idDenied) return null;
 			const local = browser
 				? loadDraft<object>(localStorage, draftKey(data.gameId, data.entityType, 'current'))
 				: null;
@@ -351,9 +356,17 @@
 
 {#if !character}
 	<p class="text-muted">
-		No {data.typeLabel.toLowerCase()} to play.
-		{#if type.wizardSteps?.length}
-			<a href={buildPath} class="text-accent hover:underline">Build one first.</a>
+		{#if data.idDenied}
+			<!-- Most likely a campaign steading whose editor grant was revoked
+			     since this was last opened (phase 16) — the server re-checked and
+			     said no, so don't invent a blank draft in its place. -->
+			You no longer have access to this {data.typeLabel.toLowerCase()}. If a GM delegated it to you,
+			they may have revoked it.
+		{:else}
+			No {data.typeLabel.toLowerCase()} to play.
+			{#if type.wizardSteps?.length}
+				<a href={buildPath} class="text-accent hover:underline">Build one first.</a>
+			{/if}
 		{/if}
 	</p>
 {:else}

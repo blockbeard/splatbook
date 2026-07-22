@@ -125,7 +125,24 @@ test('the GM delegates steading edit to a player, who then gets the tracker', as
 	await tracker.click();
 	// Lands on the play route with the shared steading's id — the delegated read
 	// succeeded, so it's the campaign's steading, not a fresh blank draft.
+	const trackerUrl = player.url();
 	await player.waitForURL(/\/stonetop\/steading\/play\?id=[0-9a-f-]{36}/);
+	await expect(player.getByText(/No steading to play/i)).toHaveCount(0);
+
+	// --- GM: revoke it ---
+	await playerRow.getByLabel('Can edit the steading').uncheck();
+	await expect(playerRow.getByLabel('Can edit the steading')).not.toBeChecked();
+
+	// --- Player: the read-only view drops the tracker link again... ---
+	await player.goto(`${campaignUrl}/steading`);
+	await expect(player.getByRole('link', { name: 'Open tracker' })).toHaveCount(0);
+
+	// ...and the tracker itself, already open in this tab, says so on reload
+	// instead of quietly handing back a blank draft (the server re-checks the
+	// grant on every load and save regardless — this is the client honestly
+	// reflecting that, not a new access check).
+	await player.goto(trackerUrl);
+	await expect(player.getByText(/no longer have access/i)).toBeVisible();
 	await expect(player.getByText(/No steading to play/i)).toHaveCount(0);
 
 	await gmContext.close();

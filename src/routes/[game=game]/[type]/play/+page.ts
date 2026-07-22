@@ -21,6 +21,14 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 		data: unknown;
 		campaignId: string | null;
 	} | null = null;
+	// True only when an `?id=` was given and the fetch for it failed — a
+	// campaign steading delegate whose grant was revoked is the case that
+	// matters: the GET 404s (the server re-checks the grant fresh, so this is
+	// the source of truth), and the page must not treat that the same as "no
+	// id given, start a blank draft" — an editor-first type would otherwise
+	// silently hand back an empty steading with no sign anything's wrong. See
+	// the `{#if !character}` branch in +page.svelte.
+	let idDenied = false;
 	if (id) {
 		const res = await fetch(`/api/entities/${id}`);
 		if (res.ok) {
@@ -34,6 +42,8 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 				data: entity.data,
 				campaignId: entity.campaignId ?? null
 			};
+		} else {
+			idDenied = true;
 		}
 	}
 
@@ -44,6 +54,7 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 		typeLabel: type.label,
 		editorFirst,
 		hasSheet: !!type.sheetComponent,
-		saved
+		saved,
+		idDenied
 	};
 };
