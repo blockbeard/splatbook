@@ -81,4 +81,23 @@ describe('characterPdf', () => {
 			characterPdf(fixture({ playbookId: 'the-nobody' } as Partial<StonetopCharacter>), fakeFetch)
 		).rejects.toThrow(/no playbook pack/);
 	});
+
+	it('spreads a long introduction across as many pages as it needs, instead of drawing it off the page', async () => {
+		// A body paragraph taller than what's left of the page used to draw
+		// straight past the bottom margin with nothing to stop it — invisible
+		// (and, past a point, dropped from the content stream outright) rather
+		// than continuing onto a fresh page. A short-introduction character is
+		// one page; a much longer one, all else equal, must be several.
+		const short = await characterPdf(fixture({ introductions: { 0: 'A short one.' } }), fakeFetch);
+		const longIntro = Array.from(
+			{ length: 250 },
+			(_, i) => `Sentence number ${i + 1} of a long introduction.`
+		).join(' ');
+		const long = await characterPdf(fixture({ introductions: { 0: longIntro } }), fakeFetch);
+
+		const shortPages = (await PDFDocument.load(short.bytes)).getPageCount();
+		const longPages = (await PDFDocument.load(long.bytes)).getPageCount();
+		expect(longPages).toBeGreaterThan(shortPages);
+		expect(longPages).toBeGreaterThan(3);
+	});
 });

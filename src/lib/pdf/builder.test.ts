@@ -76,6 +76,106 @@ describe('PdfBuilder', () => {
 		expect(opened.getPageCount()).toBe(3);
 	});
 
+	describe('flowText', () => {
+		it('continues a block too tall for one page onto a fresh page instead of drawing past the bottom margin', async () => {
+			// `text` has no such limit — it draws every line on the one page
+			// it's given, so a block taller than the page just draws off the
+			// bottom (see the doc comment on `flowText`). This is the bug a
+			// long character-sheet paragraph or introduction hit in practice.
+			const b = await PdfBuilder.create('a5'); // 595.28pt tall
+			const font = await b.standardFont();
+			const words = Array.from({ length: 400 }, (_, i) => `word${i}`).join(' ');
+			const cursor = b.flowText({ page: 0, y: 40 }, words, {
+				x: 40,
+				font,
+				size: 10,
+				maxWidth: 300,
+				pageBottom: 560,
+				pageTop: 40
+			});
+			const opened = await PDFDocument.load(await b.save());
+			expect(opened.getPageCount()).toBeGreaterThan(1);
+			// Landed on the same page the cursor reports, not stranded further on.
+			expect(cursor.page).toBe(opened.getPageCount() - 1);
+		});
+
+		it('lands the cursor where the documented per-line page-break rule predicts, for a run many pages long', async () => {
+			// The bug wasn't just visual clipping — `text` draws every line at
+			// an ever-increasing y with no bound, so a block taller than the
+			// page pushes later lines to y-coordinates off the physical page
+			// (and, worse, we've seen pdf-lib drop them from the content
+			// stream entirely past a certain offset). This pins the contract
+			// in `flowText`'s doc comment — one page break per line that
+			// would cross `pageBottom` — against an independent simulation,
+			// for a run long enough to cross several page boundaries.
+			const b = await PdfBuilder.create('a5');
+			const font = await b.standardFont();
+			const size = 10;
+			const lineHeight = 1.25;
+			const maxWidth = 300;
+			const text = Array.from({ length: 2000 }, (_, i) => `word${i}`).join(' ');
+			const lineCount = b.measureLines(text, font, size, maxWidth);
+			const step = size * lineHeight;
+			const pageTop = 40;
+			const pageBottom = 560;
+
+			// Independent oracle: same documented rule, not the same code.
+			let page = 0;
+			let y = pageTop;
+			for (let i = 0; i < lineCount; i++) {
+				if (y + step > pageBottom && y > pageTop) {
+					page += 1;
+					y = pageTop;
+				}
+				y += step;
+			}
+
+			const end = b.flowText({ page: 0, y: pageTop }, text, {
+				x: 40,
+				font,
+				size,
+				maxWidth,
+				lineHeight,
+				pageBottom,
+				pageTop
+			});
+
+			expect(end).toEqual({ page, y });
+			// And it's genuinely a many-page run, not a one-page edge case.
+			expect(page).toBeGreaterThan(3);
+		});
+
+		it('does not infinite-loop when a single line is taller than a whole page', async () => {
+			const b = await PdfBuilder.create('a5');
+			const font = await b.standardFont();
+			// One long unbreakable "word" bigger than pageBottom - pageTop.
+			const cursor = b.flowText({ page: 0, y: 40 }, 'x'.repeat(2000), {
+				x: 40,
+				font,
+				size: 10,
+				pageBottom: 560,
+				pageTop: 40
+			});
+			expect(cursor.page).toBeGreaterThanOrEqual(0);
+		});
+
+		it('resumes from a mid-page cursor without repositioning to the top', async () => {
+			const b = await PdfBuilder.create('a5');
+			const font = await b.standardFont();
+			const cursor = b.flowText({ page: 0, y: 500 }, 'short', {
+				x: 40,
+				font,
+				size: 10,
+				pageBottom: 560,
+				pageTop: 40
+			});
+			// A short block starting near the bottom of the page fits without
+			// needing a page break.
+			expect(cursor.page).toBe(0);
+			expect(cursor.y).toBeGreaterThan(500);
+		});
+	});
+
 	it('embeds the book font through fontkit', async () => {
 		// Avara (SIL OFL) — the .ttf sibling of the file the web sheet uses
 		// (see the embedFont doc comment for why it's the .ttf, not .woff2).

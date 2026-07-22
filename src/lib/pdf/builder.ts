@@ -37,6 +37,21 @@ export interface TextOptions {
 	color?: { r: number; g: number; b: number };
 }
 
+/** A position `flowText` can resume from: which page, and how far down it. */
+export interface Cursor {
+	page: number;
+	y: number;
+}
+
+export interface FlowTextOptions extends Omit<TextOptions, 'y'> {
+	/** y (from page top) a line must clear to start on the current page —
+	 * crossing it starts a fresh page instead of drawing past the margin. */
+	pageBottom: number;
+	/** y a fresh page's cursor resets to. Defaults to 0 (the caller adds its
+	 * own top margin into `pageBottom`/the returned cursor as needed). */
+	pageTop?: number;
+}
+
 /** An embedded font plus the measurer the layout math needs. */
 export interface EmbeddedFont {
 	font: PDFFont;
@@ -196,6 +211,52 @@ export class PdfBuilder {
 			});
 		});
 		return textHeight(lines.length, opts.size, lineHeight);
+	}
+
+	/**
+	 * Like `text`, but for a run that might not fit in what's left of the
+	 * page: `text` draws every line on the one page it's given, so a block
+	 * taller than the remaining space (or taller than a whole page) just
+	 * draws past the bottom margin and off the page — invisible, not merely
+	 * clipped at the edge, since nothing stops there. `flowText` checks each
+	 * line against `opts.pageBottom` and starts a fresh page when a line
+	 * would cross it, so a long paragraph continues instead of disappearing.
+	 *
+	 * Takes and returns a `Cursor` (page + y) rather than a fixed page index,
+	 * so callers stack blocks across a page break the same way they do
+	 * within one page — thread the returned cursor into the next call.
+	 */
+	flowText(cursor: Cursor, content: string, opts: FlowTextOptions): Cursor {
+		const lineHeight = opts.lineHeight ?? 1.25;
+		const color = opts.color ?? BLACK;
+		const pageTop = opts.pageTop ?? 0;
+		const safe = opts.font.sanitize(content);
+		const lines = opts.maxWidth
+			? wrapText(safe, opts.maxWidth, opts.size, opts.font.measure)
+			: safe.split('\n');
+		const step = opts.size * lineHeight;
+
+		let page = cursor.page;
+		let y = cursor.y;
+		for (const line of lines) {
+			// Only break to a fresh page if this page already has something on
+			// it below the top margin — otherwise a single line taller than a
+			// whole page would loop forever creating empty pages under it.
+			if (y + step > opts.pageBottom && y > pageTop) {
+				page += 1;
+				y = pageTop;
+			}
+			const baseline = this.fromTop(y + opts.font.ascent(opts.size));
+			this.page(page).drawText(line, {
+				x: opts.x,
+				y: baseline,
+				size: opts.size,
+				font: opts.font.font,
+				color: rgb(color.r, color.g, color.b)
+			});
+			y += step;
+		}
+		return { page, y };
 	}
 
 	/** A rectangle; `y` is the top edge from the page top. */

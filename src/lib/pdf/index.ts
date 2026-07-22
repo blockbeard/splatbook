@@ -8,7 +8,7 @@
 
 export { PdfBuilder, pdfResponse, PAGE_SIZES } from './builder';
 export { StandardFonts } from 'pdf-lib';
-export type { EmbeddedFont, TextOptions } from './builder';
+export type { EmbeddedFont, TextOptions, Cursor, FlowTextOptions } from './builder';
 export { wrapText, textHeight, flowBlocks, pageCount } from './layout';
 export type { MeasureFn, FlowPosition, FlowOptions } from './layout';
 export { saddleStitchOrder, padToSignature, imposeSaddleStitch } from './imposition';

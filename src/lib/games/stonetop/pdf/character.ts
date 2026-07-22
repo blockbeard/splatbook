@@ -11,7 +11,7 @@
  */
 
 import { base } from '$app/paths';
-import { PdfBuilder, StandardFonts, type EmbeddedFont } from '$lib/pdf';
+import { PdfBuilder, StandardFonts, type Cursor, type EmbeddedFont } from '$lib/pdf';
 import type { Move, Playbook } from '../pack-schemas';
 import {
 	STAT_KEYS,
@@ -69,39 +69,56 @@ export async function characterPdf(
 		/* keep the fallback */
 	}
 
-	// A simple top-down cursor; sections call `ensure` before drawing so a
-	// block that doesn't fit starts a fresh page instead of clipping.
-	let page = b.addPage();
-	let y = MARGIN;
+	// A top-down cursor (page + y). Short, one-shot pieces (headings, the
+	// stat row) call `ensure` first so they move to a fresh page whole
+	// instead of splitting awkwardly; anything that can run long — any
+	// `paragraph` — flows through `PdfBuilder.flowText`, which continues a
+	// block onto a fresh page instead of drawing past the bottom margin (see
+	// the doc comment on `flowText`: plain `text` has no such limit and will
+	// silently draw a tall block off the page).
+	const PAGE_BOTTOM = A5.h - MARGIN;
+	let cursor: Cursor = { page: b.addPage(), y: MARGIN };
+
 	const ensure = (height: number): void => {
-		if (y + height > A5.h - MARGIN) {
-			page = b.addPage();
-			y = MARGIN;
+		if (cursor.y + height > PAGE_BOTTOM) {
+			cursor = { page: cursor.page + 1, y: MARGIN };
 		}
+	};
+
+	const flow = (text: string, font: EmbeddedFont, size: number): void => {
+		cursor = b.flowText(cursor, text, {
+			x: MARGIN,
+			font,
+			size,
+			maxWidth: CONTENT_W,
+			pageBottom: PAGE_BOTTOM,
+			pageTop: MARGIN
+		});
 	};
 
 	const heading = (text: string): void => {
 		ensure(30);
-		y += 8;
-		y += b.text(page, text, { x: MARGIN, y, font: display, size: 13 });
-		b.rule(page, MARGIN, y + 2, CONTENT_W);
-		y += 8;
+		cursor.y += 8;
+		flow(text, display, 13);
+		b.rule(cursor.page, MARGIN, cursor.y + 2, CONTENT_W);
+		cursor.y += 8;
 	};
 
 	const paragraph = (text: string, opts: { font?: EmbeddedFont; size?: number } = {}): void => {
 		const font = opts.font ?? body;
 		const size = opts.size ?? 8.5;
 		// Measure first so a paragraph that would split awkwardly close to the
-		// page edge moves whole when it can (taller than a page still draws).
+		// page edge moves whole when it can; `flow` (flowText) handles the
+		// general case of a paragraph too long for one page either way.
 		const lines = b.measureLines(text, font, size, CONTENT_W);
 		const height = lines * size * 1.25;
 		if (height <= A5.h - MARGIN * 2) ensure(height);
-		y += b.text(page, text, { x: MARGIN, y, font, size, maxWidth: CONTENT_W });
+		flow(text, font, size);
 	};
 
 	// ---- header -----------------------------------------------------------
 	const name = c.name?.trim() || 'Unnamed hero';
-	y += b.text(page, name, { x: MARGIN, y, font: display, size: 22, maxWidth: CONTENT_W });
+	flow(name, display, 22);
 
 	const background = playbook.backgrounds.find((bg) => bg.id === c.backgroundId) ?? null;
 	const instinct = playbook.instincts.find((i) => i.id === c.instinctId);
@@ -110,9 +127,9 @@ export async function characterPdf(
 	const subtitle = [playbook.name, background?.name, `Level ${c.level}`]
 		.filter(Boolean)
 		.join(' · ');
-	y += 2;
-	y += b.text(page, subtitle, { x: MARGIN, y, font: bold, size: 10, maxWidth: CONTENT_W });
-	y += 6;
+	cursor.y += 2;
+	flow(subtitle, bold, 10);
+	cursor.y += 6;
 
 	const metaLines: string[] = [];
 	if (instinctLabel) metaLines.push(`Instinct: ${instinctLabel}`);
@@ -120,24 +137,26 @@ export async function characterPdf(
 	const appearance = c.appearance.filter(Boolean);
 	if (appearance.length) metaLines.push(`Appearance: ${appearance.join(', ')}`);
 	for (const line of metaLines) paragraph(line, { size: 9 });
-	y += 4;
+	cursor.y += 4;
 
 	// ---- stats row ---------------------------------------------------------
+	// Never taller than one row, so plain `text`/`box` at a fixed page are
+	// fine here — `ensure` already guaranteed the whole row fits above.
 	const statW = CONTENT_W / STAT_KEYS.length;
 	const statH = 34;
 	ensure(statH + 14);
 	STAT_KEYS.forEach((stat, i) => {
 		const x = MARGIN + i * statW;
-		b.box(page, x, y, statW, statH);
+		b.box(cursor.page, x, cursor.y, statW, statH);
 		const s = c.stats[stat];
 		const value = s === undefined ? '—' : s.value >= 0 ? `+${s.value}` : `${s.value}`;
 		const label = s?.debilitated ? `${stat} ✕` : stat;
 		const vw = bold.measure(value, 13);
-		b.text(page, value, { x: x + (statW - vw) / 2, y: y + 5, font: bold, size: 13 });
+		b.text(cursor.page, value, { x: x + (statW - vw) / 2, y: cursor.y + 5, font: bold, size: 13 });
 		const lw = body.measure(label, 7);
-		b.text(page, label, { x: x + (statW - lw) / 2, y: y + 23, font: body, size: 7 });
+		b.text(cursor.page, label, { x: x + (statW - lw) / 2, y: cursor.y + 23, font: body, size: 7 });
 	});
-	y += statH + 8;
+	cursor.y += statH + 8;
 
 	// ---- vitals line --------------------------------------------------------
 	const vitals = [
@@ -146,7 +165,7 @@ export async function characterPdf(
 		`Damage ${playbook.base.damage}`
 	].join('      ');
 	paragraph(vitals, { font: bold, size: 10 });
-	y += 4;
+	cursor.y += 4;
 
 	// ---- moves --------------------------------------------------------------
 	const moveById = new Map<string, Move>(playbook.moves.list.map((m) => [m.id, m]));
@@ -158,10 +177,10 @@ export async function characterPdf(
 		for (const move of moves) {
 			// Keep a move's name with at least a couple of lines of its text.
 			ensure(34);
-			y += b.text(page, move.name, { x: MARGIN, y, font: bold, size: 9.5, maxWidth: CONTENT_W });
-			y += 1;
+			flow(move.name, bold, 9.5);
+			cursor.y += 1;
 			paragraph(plain(move.text));
-			y += 6;
+			cursor.y += 6;
 		}
 	}
 
@@ -170,7 +189,7 @@ export async function characterPdf(
 		heading(background.name);
 		for (const note of background.grants.notes) {
 			paragraph(`- ${plain(note)}`);
-			y += 2;
+			cursor.y += 2;
 		}
 	}
 
@@ -183,7 +202,7 @@ export async function characterPdf(
 		heading('Possessions');
 		for (const item of [...fixed, ...chosen]) {
 			paragraph(`- ${plain(item)}`);
-			y += 2;
+			cursor.y += 2;
 		}
 	}
 
@@ -194,7 +213,7 @@ export async function characterPdf(
 		heading('Carried');
 		if (carriedGear.length) paragraph(`Gear: ${carriedGear.join(', ')}`, { size: 9 });
 		if (carriedSmall.length) {
-			y += 2;
+			cursor.y += 2;
 			paragraph(`Small items: ${carriedSmall.join(', ')}`, { size: 9 });
 		}
 	}
@@ -205,7 +224,7 @@ export async function characterPdf(
 		heading('Introductions');
 		for (const note of intros) {
 			paragraph(`- ${plain(note)}`);
-			y += 2;
+			cursor.y += 2;
 		}
 	}
 
