@@ -18,20 +18,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The play sheet's Moves tab (and level-up cards) resolve wikilinks the
   same way** — "see [[…|Clash]]" inside a move's text is a real reference
   link at the table now, not vault syntax.
+- **Steading text renders its markup instead of printing it.** The steading
+  moves' "see [[…]]" closers become real reference links (tracker and
+  end-of-session flow alike), improvement effects resolve theirs, and the
+  read-only sheet's Resources/Fortifications/Assets lines render inline
+  markdown — the draft horses' _large_, _powerful_ tags emphasise instead
+  of showing literal asterisks.
 
 - **Debilities are the book's three conditions, and they roll at
   disadvantage.** The sheet had six per-stat toggles that quietly shaved 1
-  off the stat — an invented rule. Now marking *weakened*, *dazed*, or
-  *miserable* (from either stat of its pair) marks the one condition, both
+  off the stat — an invented rule. Now marking _weakened_, _dazed_, or
+  _miserable_ (from either stat of its pair) marks the one condition, both
   linked stats show it, and rolling either stat is at disadvantage — extra
   d6, drop the highest — exactly as Harm and Healing says. A dice-panel
   advantage cancels it, per the book's stacking rule. Character blobs
   migrate (schema v4): a marked stat flag becomes its pair's condition.
 - **Steading debilities do what the playbook prints, not just sit there.**
-  *Diminished* rolls Deploy, Muster, and Pull Together at disadvantage
-  (the roll button says so). *Lacking* makes every reader treat Prosperity
+  _Diminished_ rolls Deploy, Muster, and Pull Together at disadvantage
+  (the roll button says so). _Lacking_ makes every reader treat Prosperity
   as 1 lower — rolls use the reduced value, and both the tracker and the
-  read-only sheet show "counts as" next to the printed number. *Malcontent*
+  read-only sheet show "counts as" next to the printed number. _Malcontent_
   changes the seasonal Fortunes reset: turning the season now resets
   Fortunes to +1 (+0 while malcontent) after the Seasons Change roll,
   which the reset had been missing entirely.

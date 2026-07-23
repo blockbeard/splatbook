@@ -70,7 +70,9 @@
 						{move.name}
 					{/if}
 				</h3>
-				<div class="mt-2 text-sm text-muted"><Markdown text={resolvePackText(move.text, links)} /></div>
+				<div class="mt-2 text-sm text-muted">
+					<Markdown text={resolvePackText(move.text, links)} />
+				</div>
 			</article>
 		{/each}
 	</div>

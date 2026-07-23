@@ -17,17 +17,24 @@
 		type StonetopSteading
 	} from '../engine/steading';
 	import { fetchSteadingPack } from '../pack/steading';
+	import type { LinkIndex } from '$lib/reference/inline';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
 	let { character }: SheetProps = $props();
 	const s = $derived(character as StonetopSteading);
 
 	let pack = $state<SteadingPack | null>(null);
+	// Wikilink lookup for pack text (phase 21) — an enhancement, never awaited.
+	let links = $state<LinkIndex | null>(null);
 
 	$effect(() => {
 		let alive = true;
 		fetchSteadingPack(fetch)
 			.then((p) => alive && (pack = p))
+			.catch(() => {});
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
 			.catch(() => {});
 		return () => (alive = false);
 	});
@@ -62,7 +69,9 @@
 					</div>
 					<div class="text-xs font-medium text-muted">{STEADING_STATS[key].label}</div>
 					{#if key === 'prosperity' && s.debilities.lacking}
-						<div class="text-[0.65rem] text-danger">counts as {fmt(effectiveSteadingStat(s, key))}</div>
+						<div class="text-[0.65rem] text-danger">
+							counts as {fmt(effectiveSteadingStat(s, key))}
+						</div>
 					{/if}
 				</div>
 			{/each}
@@ -78,7 +87,12 @@
 		<section>
 			<h2 class="text-lg font-semibold">Resources</h2>
 			<ul class="mt-1 list-disc pl-5 text-sm">
-				{#each s.resources as r, i (i)}<li>{r}</li>{/each}
+				<!-- Pack-seeded lines carry the vault's own markup (the draft horses'
+				     *large*, *powerful* tags); render them as inline markdown so
+				     asterisks emphasise instead of printing literally. -->
+				{#each s.resources as r, i (i)}<li>
+						<Markdown inline text={resolvePackText(r, links)} />
+					</li>{/each}
 			</ul>
 		</section>
 	{/if}
@@ -87,7 +101,9 @@
 		<section>
 			<h2 class="text-lg font-semibold">Fortifications</h2>
 			<ul class="mt-1 list-disc pl-5 text-sm">
-				{#each s.fortifications as f, i (i)}<li>{f}</li>{/each}
+				{#each s.fortifications as f, i (i)}<li>
+						<Markdown inline text={resolvePackText(f, links)} />
+					</li>{/each}
 			</ul>
 		</section>
 	{/if}
@@ -108,7 +124,9 @@
 			<h2 class="text-lg font-semibold">Assets</h2>
 			{#if s.assets.length}
 				<ul class="mt-1 list-disc pl-5 text-sm">
-					{#each s.assets as a, i (i)}<li>{a}</li>{/each}
+					{#each s.assets as a, i (i)}<li>
+							<Markdown inline text={resolvePackText(a, links)} />
+						</li>{/each}
 				</ul>
 			{/if}
 			{#if s.treasure.silver || s.treasure.gold}
@@ -130,7 +148,9 @@
 				{#each completed as imp (imp.id)}
 					<div>
 						<div class="font-medium">{imp.name}</div>
-						<div class="text-sm text-muted"><Markdown text={imp.effects} /></div>
+						<div class="text-sm text-muted">
+							<Markdown text={resolvePackText(imp.effects, links)} />
+						</div>
 					</div>
 				{/each}
 			</div>

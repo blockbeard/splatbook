@@ -45,8 +45,10 @@
 		type NeighborRow,
 		type StonetopSteading
 	} from '../engine/steading';
+	import type { LinkIndex } from '$lib/reference/inline';
 	import { fetchSteadingPack } from '../pack/steading';
 	import { fetchSteadingMoves } from '../pack/moves';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import { rollForSteadingStat } from '../dice';
 	import Markdown from '../wizard/components/Markdown.svelte';
 	import SteadingImprovements from './SteadingImprovements.svelte';
@@ -128,6 +130,17 @@
 	const sizeNote = $derived(
 		new Map((pack?.stats.size.options ?? []).map((o) => [o.id, o.note ?? ''] as const))
 	);
+
+	// Wikilink lookup for the steading moves' "see [[…]]" closers (phase 21) —
+	// an enhancement, never awaited: bare labels until (unless) it lands.
+	let links = $state<LinkIndex | null>(null);
+	$effect(() => {
+		let alive = true;
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
+			.catch(() => {});
+		return () => (alive = false);
+	});
 </script>
 
 {#if loadError}
@@ -288,7 +301,9 @@
 									</button>
 								{/if}
 							</div>
-							<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+							<div class="mt-1 text-sm text-muted">
+								<Markdown text={resolvePackText(move.text, links)} />
+							</div>
 						</div>
 					{/each}
 				</div>

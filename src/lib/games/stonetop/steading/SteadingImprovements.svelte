@@ -22,6 +22,8 @@
 		type RequirementGroup,
 		type RequirementSlot
 	} from '../engine/improvements';
+	import type { LinkIndex } from '$lib/reference/inline';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
 	let {
@@ -33,6 +35,16 @@
 		steading: StonetopSteading;
 		onChange: (next: StonetopSteading) => void;
 	} = $props();
+
+	// Wikilink lookup for effects text (phase 21) — enhancement, never awaited.
+	let links = $state<LinkIndex | null>(null);
+	$effect(() => {
+		let alive = true;
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
+			.catch(() => {});
+		return () => (alive = false);
+	});
 
 	const ruleHint = (g: RequirementGroup): string => {
 		if (g.kind === 'all') return 'All of:';
@@ -130,7 +142,7 @@
 
 				<div class="rounded border border-border bg-surface/50 p-2 text-sm">
 					<span class="text-xs font-semibold tracking-wide text-muted uppercase">Effects</span>
-					<div class="mt-1"><Markdown text={imp.effects} /></div>
+					<div class="mt-1"><Markdown text={resolvePackText(imp.effects, links)} /></div>
 				</div>
 
 				<label

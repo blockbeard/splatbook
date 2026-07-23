@@ -36,24 +36,11 @@ confirmed against Harm and Healing), and steading debility effects
 (diminished/lacking/malcontent per the playbook; the seasonal Fortunes
 reset now exists and is +0 while malcontent).*
 
-**Priority 2 — systemic: vault markdown leaking into the UI.** One root
-cause, six symptoms. `src/lib/reference/render.ts` is the only place that
-resolves `[[wikilink]]`s to in-app links, expands `**bold**`, and turns
-`> [!move]` callouts into styled asides — and it's wired only into the
-Reference chapter pages. Everywhere else showing pack move/gear/steading
-text prints the raw markdown string.
-
-- `feat(reference)`: extract a link-resolution + inline-markdown pass from
-  `render.ts` that doesn't need a full document tree — callable from a move
-  name, gear row, or steading asset line, resolving relative to whatever
-  route it renders in.
-- `fix(stonetop)`: wire it into `/stonetop/table` — kills the literal
-  `see [[06 - Player Moves#^aid|Aid]]` on basic moves; move names become
-  real deep-links.
-- `fix(play)`: same for the Moves tab in play mode and the play-sheet
-  reference deep-link regression.
-- `fix(steading)`: same for steading move names/links and the horses text —
-  also fixes `**bold**` showing as literal asterisks.
+**Priority 2 — systemic: vault markdown leaking into the UI.** *All shipped:
+the tree-free wikilink pass + derived `link-index.json` artifact
+(`feat(reference)`), then wired into `/stonetop/table`, the play-mode Moves
+tab / level-up cards, and every steading text surface (tracker moves,
+improvement effects, the sheet's list lines — the literal-asterisk horses).*
 
 **Priority 3 — wizard input bugs:**
 

@@ -27,9 +27,21 @@
 	import { steadingRollStat, type StonetopSteading } from '../engine/steading';
 	import { rollForSteadingStat } from '../dice';
 	import { fetchEndOfSession, fetchSteadingMoves } from '../pack/moves';
+	import type { LinkIndex } from '$lib/reference/inline';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
 	let { characters, steading, save, record, roll, notesKey }: SessionProps = $props();
+
+	// Wikilink lookup for the Seasons Change text (phase 21) — enhancement only.
+	let links = $state<LinkIndex | null>(null);
+	$effect(() => {
+		let alive = true;
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
+			.catch(() => {});
+		return () => (alive = false);
+	});
 
 	let move = $state<EndOfSession | null>(null);
 	let loadError = $state<string | null>(null);
@@ -341,7 +353,9 @@
 							</button>
 						</div>
 					</div>
-					<div class="mt-1 text-sm text-muted"><Markdown text={seasonsChange.text} /></div>
+					<div class="mt-1 text-sm text-muted">
+						<Markdown text={resolvePackText(seasonsChange.text, links)} />
+					</div>
 				</div>
 			</section>
 		{/if}

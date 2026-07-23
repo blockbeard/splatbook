@@ -1,11 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { isValidNotation, parseNotation } from '$lib/dice';
 import { STAT_KEYS, engine, setDebility } from './engine';
-import {
-	createSteading,
-	setDebility as setSteadingDebility,
-	setStat
-} from './engine/steading';
+import { createSteading, setDebility as setSteadingDebility, setStat } from './engine/steading';
 import { rollForStat, rollForSteadingStat, stonetopDice } from './dice';
 
 const withStats = (stats: Partial<Record<string, number>>) => {

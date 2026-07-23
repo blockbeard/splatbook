@@ -672,7 +672,9 @@
 							{#each choices as move (move.id)}
 								<OptionButton selected={chosenMoveId === move.id} onclick={() => pickMove(move.id)}>
 									<div class="font-semibold">{move.name}</div>
-									<div class="mt-1 text-sm text-muted"><Markdown text={resolvePackText(move.text, links)} /></div>
+									<div class="mt-1 text-sm text-muted">
+										<Markdown text={resolvePackText(move.text, links)} />
+									</div>
 								</OptionButton>
 							{/each}
 						</div>
