@@ -12,15 +12,21 @@
 -->
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import type { LinkIndex } from '$lib/reference/inline';
 	import type { BasicMoves, InventoryInsert, SpecialMoves } from '../pack-schemas';
 	import { fetchBasicMoves, fetchSpecialMoves } from '../pack/moves';
 	import { fetchInventory } from '../pack/inserts';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import Markdown from '../wizard/components/Markdown.svelte';
 
 	let basic = $state<BasicMoves | null>(null);
 	let special = $state<SpecialMoves | null>(null);
 	let inventory = $state<InventoryInsert | null>(null);
 	let loadError = $state<string | null>(null);
+	// The wikilink lookup, for move text quoting the vault ("see [[…|Clash]]").
+	// An enhancement, not a dependency: text renders with bare labels until it
+	// lands, and keeps them if it never does.
+	let links = $state<LinkIndex | null>(null);
 
 	$effect(() => {
 		let alive = true;
@@ -32,6 +38,9 @@
 				inventory = i;
 			})
 			.catch((e) => alive && (loadError = e instanceof Error ? e.message : String(e)));
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
+			.catch(() => {});
 		return () => (alive = false);
 	});
 
@@ -61,7 +70,7 @@
 						{move.name}
 					{/if}
 				</h3>
-				<div class="mt-2 text-sm text-muted"><Markdown text={move.text} /></div>
+				<div class="mt-2 text-sm text-muted"><Markdown text={resolvePackText(move.text, links)} /></div>
 			</article>
 		{/each}
 	</div>

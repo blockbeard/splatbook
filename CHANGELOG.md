@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Moves & gear stopped showing raw `[[wikilink]]` syntax.** A basic move's
+  closing "see [[06 - Player Moves#^clash|Clash]]" now renders as a real
+  in-app link to that rules section, resolved through the pack's new compact
+  link index (fetched once, ~170 KB — not the 3 MB of rules trees). If the
+  index hasn't loaded, the text shows the plain label instead; raw `[[…]]`
+  never reaches the reader.
+
 - **Debilities are the book's three conditions, and they roll at
   disadvantage.** The sheet had six per-stat toggles that quietly shaved 1
   off the stat — an invented rule. Now marking *weakened*, *dazed*, or
