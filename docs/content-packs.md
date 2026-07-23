@@ -177,6 +177,13 @@ That file is a derived artifact, **not** listed in the manifest (so the harness
 leaves it alone); it is served statically and loaded in the browser for
 client-side, offline-capable search. Regenerate it whenever the trees change.
 
+The same stage also writes `<pack>/link-index.json` (phase 21): the compact
+wikilink lookup (`title`/`^block-id` → section id) that surfaces *outside* the
+reference — move cards, steading lines, anything printing pack text that quotes
+vault cross-references — fetch instead of the full trees, via
+`fetchLinkIndex` + `resolveWikilinks` in `$lib/reference`. Derived like the
+search indexes: not in the manifest, never hand-edited, regenerated together.
+
 **Visibility.** Each section carries a `player`/`gm` flag (a whole document can be
 made GM-only via the config's `visibility`, e.g. Stonetop's Book II). The gate
 lives in one place, `GM_CONTENT_VISIBLE` in `$lib/reference/load` — a hard `false`

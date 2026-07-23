@@ -17,10 +17,13 @@
 import { Marked } from 'marked';
 import type { RendererThis, Token, Tokens, TokenizerThis } from 'marked';
 import { base } from '$app/paths';
-import type { DocumentTree } from './document-tree';
+import { resolveWikilinks, type LinkIndex } from './inline';
 
-const WIKILINK = /\[\[([^\]|]+?)(?:\|([^\]]+))?\]\]/g;
-const IMAGE_EMBED = /!\[\[[^\]]*\]\]/g;
+// The wikilink machinery (index building, target resolution, the `[[…]]` →
+// markdown-link rewrite) lives in `./inline` since phase 21, tree-free, so
+// move cards and steading lines can share it. Re-exported here so existing
+// importers keep one import site.
+export { buildLinkIndex, type LinkIndex } from './inline';
 /**
  * A line that is *only* a named block id, Obsidian's own link anchor —
  * `^clash` bare, or `> ^clash` inside a callout's blockquote. Never prose;
@@ -58,11 +61,6 @@ const CALLOUT_OPEN = /^>[ \t]*\[![\w][\w -]*?\][+-]?/;
 const CALLOUT_BLOCK =
 	/^>[ \t]*\[!([\w][\w -]*?)\][+-]?[ \t]*([^\n]*)\n?((?:>(?![ \t]*\[!)[^\n]*(?:\n|$))*)/;
 
-const norm = (s: string): string => s.replace(/[*_`]/g, '').trim().toLowerCase();
-const slug = (s: string): string =>
-	norm(s)
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/^-|-$/g, '');
 /** A callout type as its CSS class suffix: lowercase, spaces/underscores to
  * hyphens (`minor arcanum` -> `minor-arcanum`). Hyphens already in the type
  * (`arcanum-secret`) pass through untouched. */
@@ -77,49 +75,6 @@ const titleCase = (s: string): string =>
 		/(^|-)([a-z0-9])/g,
 		(_, sep: string, ch: string) => (sep ? ' ' : '') + ch.toUpperCase()
 	);
-
-/** Section lookups for resolving wikilink targets: by heading title, and by
- * named block id (`^clash`) — the vault's newer, stable cross-reference form. */
-export interface LinkIndex {
-	byTitle: Map<string, string[]>;
-	byBlockId: Map<string, string[]>;
-}
-
-function addTo(map: Map<string, string[]>, key: string, id: string): void {
-	const ids = map.get(key);
-	if (ids) ids.push(id);
-	else map.set(key, [id]);
-}
-
-export function buildLinkIndex(trees: DocumentTree[]): LinkIndex {
-	const byTitle: Map<string, string[]> = new Map();
-	const byBlockId: Map<string, string[]> = new Map();
-	for (const tree of trees) {
-		for (const section of tree.sections) {
-			addTo(byTitle, norm(section.title), section.id);
-			for (const m of section.body.matchAll(/^>?[ \t]*\^([\w-]+)[ \t]*$/gm)) {
-				addTo(byBlockId, m[1].toLowerCase(), section.id);
-			}
-		}
-	}
-	return { byTitle, byBlockId };
-}
-
-function resolveTarget(index: LinkIndex, target: string): string | null {
-	const hash = target.indexOf('#');
-	const note = hash >= 0 ? target.slice(0, hash) : target;
-	const heading = hash >= 0 ? target.slice(hash + 1) : '';
-	const ids = heading.startsWith('^')
-		? index.byBlockId.get(heading.slice(1).toLowerCase())
-		: index.byTitle.get(norm(heading || note));
-	if (!ids || ids.length === 0) return null;
-	if (note && heading) {
-		const prefix = slug(note);
-		const preferred = ids.find((id) => id === prefix || id.startsWith(`${prefix}--`));
-		if (preferred) return preferred;
-	}
-	return ids[0];
-}
 
 /** A callout token: its type (`kind` — "move", "monster", "box", …) plus the
  * block tokens of its de-quoted inner markdown. */
@@ -227,24 +182,21 @@ export function renderMarkdown(
 	index: LinkIndex,
 	kind?: string
 ): string {
-	const withLinks = body
-		.replace(IMAGE_EMBED, '')
-		// Drop the block id itself, but keep a quoted line quoted (`>` alone,
-		// not ``): stripping it down to nothing breaks the unbroken run of
-		// `>`-prefixed lines that both CALLOUT_BLOCK's continuation and
-		// marked's own blockquote tokenizer depend on to find a callout's
-		// extent, leaving a dangling bare `>` that marked's default
-		// blockquote handling grabs first — and it doesn't know about
-		// CALLOUT_OPEN, so it swallows the *next* callout as if it were
-		// plain quoted text. A bare (unquoted) block-id line has no such
-		// structure to preserve, so it's still dropped outright.
-		.replace(BLOCK_ID_LINE, (m) => (m.startsWith('>') ? '>' : ''))
-		.replace(WIKILINK, (_m, rawTarget, rawLabel) => {
-			const target = String(rawTarget).trim();
-			const label = String(rawLabel ?? target.split('#').pop() ?? target).trim();
-			const id = resolveTarget(index, target);
-			return id ? `[${label}](${base}/${gameId}/reference/${id})` : label;
-		});
+	const withLinks = resolveWikilinks(
+		body
+			// Drop the block id itself, but keep a quoted line quoted (`>` alone,
+			// not ``): stripping it down to nothing breaks the unbroken run of
+			// `>`-prefixed lines that both CALLOUT_BLOCK's continuation and
+			// marked's own blockquote tokenizer depend on to find a callout's
+			// extent, leaving a dangling bare `>` that marked's default
+			// blockquote handling grabs first — and it doesn't know about
+			// CALLOUT_OPEN, so it swallows the *next* callout as if it were
+			// plain quoted text. A bare (unquoted) block-id line has no such
+			// structure to preserve, so it's still dropped outright.
+			.replace(BLOCK_ID_LINE, (m) => (m.startsWith('>') ? '>' : '')),
+		index,
+		(id) => `${base}/${gameId}/reference/${id}`
+	);
 
 	if (kind && withLinks.trimStart().startsWith('>')) {
 		const { run, rest } = leadingQuotedRun(withLinks);

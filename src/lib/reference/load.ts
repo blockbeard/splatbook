@@ -9,6 +9,7 @@
 
 import { base } from '$app/paths';
 import type { DocumentChapter, DocumentSection, DocumentTree } from './document-tree';
+import { deserializeLinkIndex, type LinkIndex, type SerializedLinkIndex } from './inline';
 import type { PackManifest } from '$lib/packs/types';
 
 /** The subset of `fetch` a SvelteKit `load` provides. */
@@ -65,6 +66,30 @@ export async function fetchTrees(gameId: string, fetchFn: Fetcher): Promise<Docu
 	const manifest = await getJson<PackManifest>(fetchFn, `${root}/manifest.json`);
 	const ruleFiles = manifest.files.filter((f) => f.startsWith('rules/')).sort();
 	return Promise.all(ruleFiles.map((f) => getJson<DocumentTree>(fetchFn, `${root}/${f}`)));
+}
+
+const linkIndexCache = new Map<string, Promise<LinkIndex>>();
+
+/**
+ * Fetch a game's wikilink lookup (`link-index.json`, the compact derived
+ * artifact `build:search` emits) — for surfaces that print pack text carrying
+ * `[[wikilink]]`s but hold no document trees: move cards, steading lines
+ * (phase 21). Memoised per game; a failed fetch isn't cached, and callers
+ * should treat the index as an enhancement (render text first, link when it
+ * lands — `resolveWikilinks` accepts `null`).
+ */
+export function fetchLinkIndex(gameId: string, fetchFn: Fetcher): Promise<LinkIndex> {
+	const cached = linkIndexCache.get(gameId);
+	if (cached) return cached;
+	const url = `${base}/content-packs/${gameId}/link-index.json`;
+	const promise = getJson<SerializedLinkIndex>(fetchFn, url)
+		.then(deserializeLinkIndex)
+		.catch((err) => {
+			linkIndexCache.delete(gameId);
+			throw err;
+		});
+	linkIndexCache.set(gameId, promise);
+	return promise;
 }
 
 /** Project trees to their TOC form, optionally dropping sections that fail a filter. */

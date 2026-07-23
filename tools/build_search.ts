@@ -18,12 +18,17 @@ import { join } from 'node:path';
 import MiniSearch from 'minisearch';
 import { loadManifest, loadPackFile } from '../src/lib/packs/fs-loader';
 import type { DocumentTree } from '../src/lib/reference/document-tree';
+import { buildLinkIndex, serializeLinkIndex } from '../src/lib/reference/inline';
 import { miniSearchOptions, toPlainText, type SearchDoc } from '../src/lib/reference/search-fields';
 
 const CONFIG = 'tools/srd.config.json';
 const INDEX_FILE = 'search-index.json';
 /** GM-only sections go in a separate index, loaded only for campaign GMs (commit 62). */
 const GM_INDEX_FILE = 'search-index-gm.json';
+/** Wikilink targets → section ids (phase 21) — the compact lookup surfaces
+ * outside the reference (move cards, steading lines) fetch instead of the
+ * full trees. Derived like the search indexes: not in the manifest. */
+const LINK_INDEX_FILE = 'link-index.json';
 
 const config = JSON.parse(await readFile(CONFIG, 'utf-8')) as {
 	packs: { packRoot: string }[];
@@ -47,9 +52,11 @@ for (const pack of config.packs) {
 	// Book II's tree already is, and loaded only when the gate is open.
 	const playerDocs: SearchDoc[] = [];
 	const gmDocs: SearchDoc[] = [];
+	const trees: DocumentTree[] = [];
 	const seen = new Set<string>();
 	for (const file of ruleFiles) {
 		const tree = (await loadPackFile(pack.packRoot, file)) as DocumentTree;
+		trees.push(tree);
 		for (const section of tree.sections) {
 			if (seen.has(section.id)) continue; // MiniSearch ids must be unique across the index
 			seen.add(section.id);
@@ -66,4 +73,12 @@ for (const pack of config.packs) {
 
 	await writeIndex(pack.packRoot, INDEX_FILE, playerDocs);
 	await writeIndex(pack.packRoot, GM_INDEX_FILE, gmDocs);
+
+	const linkIndex = serializeLinkIndex(buildLinkIndex(trees));
+	const linkOut = join(pack.packRoot, LINK_INDEX_FILE);
+	await writeFile(linkOut, JSON.stringify(linkIndex));
+	console.log(
+		`${linkOut}: ${Object.keys(linkIndex.byTitle).length} titles, ` +
+			`${Object.keys(linkIndex.byBlockId).length} block ids`
+	);
 }
