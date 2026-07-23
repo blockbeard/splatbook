@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   link index (fetched once, ~170 KB — not the 3 MB of rules trees). If the
   index hasn't loaded, the text shows the plain label instead; raw `[[…]]`
   never reaches the reader.
+- **The play sheet's Moves tab (and level-up cards) resolve wikilinks the
+  same way** — "see [[…|Clash]]" inside a move's text is a real reference
+  link at the table now, not vault syntax.
 
 - **Debilities are the book's three conditions, and they roll at
   disadvantage.** The sheet had six per-stat toggles that quietly shaved 1

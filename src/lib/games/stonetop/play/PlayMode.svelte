@@ -53,9 +53,11 @@
 		type StatKey,
 		type StonetopCharacter
 	} from '../engine';
+	import type { LinkIndex } from '$lib/reference/inline';
 	import { rollForStat } from '../dice';
 	import { fetchPlaybook } from '../pack/playbooks';
 	import { fetchBasicMoves } from '../pack/moves';
+	import { fetchStonetopLinkIndex, resolvePackText } from '../pack/links';
 	import {
 		fetchFollowersInsert,
 		fetchGhostInsert,
@@ -320,6 +322,9 @@
 	let basicMoves = $state<
 		{ id: string; name: string; text: string; sectionId?: string; rollsDamage?: boolean }[]
 	>([]);
+	// The wikilink lookup for move text quoting the vault ("see [[…|Clash]]") —
+	// an enhancement: text renders with bare labels until (unless) it lands.
+	let links = $state<LinkIndex | null>(null);
 	$effect(() => {
 		let alive = true;
 		fetchBasicMoves(fetch)
@@ -328,6 +333,9 @@
 				// The basic moves are a convenience; failing to load them must not take
 				// the sheet down with them.
 			});
+		fetchStonetopLinkIndex(fetch)
+			.then((idx) => alive && (links = idx))
+			.catch(() => {});
 		return () => (alive = false);
 	});
 
@@ -443,7 +451,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+		<div class="mt-1 text-sm text-muted"><Markdown text={resolvePackText(move.text, links)} /></div>
 	</div>
 {/snippet}
 
@@ -664,7 +672,7 @@
 							{#each choices as move (move.id)}
 								<OptionButton selected={chosenMoveId === move.id} onclick={() => pickMove(move.id)}>
 									<div class="font-semibold">{move.name}</div>
-									<div class="mt-1 text-sm text-muted"><Markdown text={move.text} /></div>
+									<div class="mt-1 text-sm text-muted"><Markdown text={resolvePackText(move.text, links)} /></div>
 								</OptionButton>
 							{/each}
 						</div>
