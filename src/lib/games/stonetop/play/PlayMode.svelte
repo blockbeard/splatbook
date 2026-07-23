@@ -23,6 +23,7 @@
 		canCrossOffWouldBe,
 		canLevelUp,
 		crossOffWouldBe,
+		debilityForStat,
 		debilityName,
 		effectiveStat,
 		enterPlay,
@@ -36,7 +37,7 @@
 		hasRevenantInsert,
 		hasThrallInsert,
 		heldMoveIds,
-		isDebilitated,
+		isStatDebilitated,
 		isOverloaded,
 		isWouldBeCrossed,
 		levelUpChoices,
@@ -239,24 +240,33 @@
 	const setXp = (i: number): void => emit(markXp(c, tapTo(c.xp, i) - c.xp));
 	const markTracker = (id: string, boxes: number, marked: number, i: number): void =>
 		emit(setTrackerMarks(c, id, tapTo(marked, i)));
-	const toggleDebility = (stat: StatKey): void =>
-		emit(setDebility(c, stat, !isDebilitated(c, stat)));
+	// Toggling from either stat of a pair flips the shared condition — being
+	// weakened is one thing, not an STR-thing and a DEX-thing (phase 21).
+	const toggleDebility = (stat: StatKey): void => {
+		const key = debilityForStat(stat);
+		emit(setDebility(c, key, !isStatDebilitated(c, stat)));
+	};
 
 	// commit 109: turn a `ResolvedRoll`'s optional `onMiss` (a pure entity
 	// update) into the closure-over-`onChange` shape `roll()` expects — the one
 	// place that bridges "the dice engine only sees plain data" and "only this
 	// component can actually save a new character".
 	const asRollOpts = (resolved: {
+		mode?: 'normal' | 'advantage' | 'disadvantage';
 		onMiss?: { label: string; apply: (entity: object) => object };
-	}): { onMiss?: { label: string; action: () => void } } | undefined =>
-		resolved.onMiss
+	}): {
+		mode?: 'normal' | 'advantage' | 'disadvantage';
+		onMiss?: { label: string; action: () => void };
+	} => ({
+		// A marked debility rides along as disadvantage (phase 21).
+		mode: resolved.mode,
+		onMiss: resolved.onMiss
 			? {
-					onMiss: {
-						label: resolved.onMiss.label,
-						action: () => onChange(resolved.onMiss!.apply(c))
-					}
+					label: resolved.onMiss.label,
+					action: () => onChange(resolved.onMiss!.apply(c))
 				}
-			: undefined;
+			: undefined
+	});
 
 	// Tapping a stat rolls it — the thing you do a hundred times a session. The
 	// debility is a state you set occasionally, so it gets its own small control
@@ -581,7 +591,7 @@
 				<div class="mt-2 flex flex-wrap gap-3">
 					{#each STAT_KEYS as stat (stat)}
 						{#if c.stats[stat]}
-							{@const deb = isDebilitated(c, stat)}
+							{@const deb = isStatDebilitated(c, stat)}
 							{@const name = debilityName(playbook, stat) ?? 'debilitated'}
 							<div
 								class="min-w-20 rounded-md border text-center transition-colors {deb

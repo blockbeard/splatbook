@@ -11,6 +11,9 @@
 export {
 	SCHEMA_VERSION,
 	STAT_KEYS,
+	DEBILITY_KEYS,
+	DEBILITY_STATS,
+	debilityForStat,
 	createCharacter,
 	migrateCharacter,
 	setTrackerMarks,
@@ -20,6 +23,7 @@ export {
 	detachInsert,
 	type StatKey,
 	type StatValue,
+	type DebilityKey,
 	type TrackerState,
 	type ChoiceSelection,
 	type ExtrasSectionState,
@@ -216,10 +220,13 @@ export {
 	applyDamage,
 	healHp,
 	isDebilitated,
+	isStatDebilitated,
 	setDebility,
 	effectiveStat,
 	effectiveStats,
+	statRollMode,
 	debilityName,
+	debilityLabel,
 	statAtCap,
 	bumpStat
 } from './play';

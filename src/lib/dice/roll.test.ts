@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseNotation } from './notation';
-import { formatSigned, roll, rollDie, type Rng } from './roll';
+import { combineModes, formatSigned, roll, rollDie, type Rng } from './roll';
 
 /** A deterministic rng that yields the given floats in order. */
 function rng(...values: number[]): Rng {
@@ -115,6 +115,24 @@ describe('roll', () => {
 			});
 			expect(r.total).toBe(16); // keeps 15, +1 bonus
 		});
+	});
+});
+
+describe('combineModes', () => {
+	it('normal defers to the other side', () => {
+		expect(combineModes('normal', 'disadvantage')).toBe('disadvantage');
+		expect(combineModes('advantage', 'normal')).toBe('advantage');
+		expect(combineModes('normal', 'normal')).toBe('normal');
+	});
+
+	it('matching modes stay put', () => {
+		expect(combineModes('advantage', 'advantage')).toBe('advantage');
+		expect(combineModes('disadvantage', 'disadvantage')).toBe('disadvantage');
+	});
+
+	it('opposed modes cancel to normal', () => {
+		expect(combineModes('advantage', 'disadvantage')).toBe('normal');
+		expect(combineModes('disadvantage', 'advantage')).toBe('normal');
 	});
 });
 

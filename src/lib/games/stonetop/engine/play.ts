@@ -10,15 +10,25 @@
  *     character carries how many are `marked`. `syncMoveTrackers` reconciles the
  *     character's tracker set with the moves it currently holds, so trackers
  *     appear when a move is gained and vanish when it's retired, marks intact.
- *   - **XP / debilities**: marking XP toward the next level, and toggling a
- *     stat's debility (which drops its effective value by 1 until treated).
+ *   - **XP / debilities**: marking XP toward the next level, and marking the
+ *     three debilities (each imposes disadvantage on rolls of its linked stat
+ *     pair until treated — Harm and Healing; phase 21 corrected this from an
+ *     invented per-stat −1).
  *
  * Everything is pure and returns a new character; nothing mutates. The play-mode
  * UI (commit 37) is a thin tap-to-mark shell over these functions.
  */
 
 import type { Playbook } from '../pack-schemas';
-import { STAT_KEYS, type StatKey, type StonetopCharacter, type TrackerState } from './character';
+import {
+	DEBILITY_STATS,
+	STAT_KEYS,
+	debilityForStat,
+	type DebilityKey,
+	type StatKey,
+	type StonetopCharacter,
+	type TrackerState
+} from './character';
 import { startingMovesPlan } from './moves';
 
 /**
@@ -128,26 +138,23 @@ export function healHp(character: StonetopCharacter, n: number): StonetopCharact
 	return setHp(character, character.hp.current + n);
 }
 
-/** Whether a stat's debility is currently marked. */
-export function isDebilitated(character: StonetopCharacter, stat: StatKey): boolean {
-	return character.stats[stat]?.debilitated ?? false;
+/** Whether a debility is currently marked. */
+export function isDebilitated(character: StonetopCharacter, key: DebilityKey): boolean {
+	return character.debilities[key];
 }
 
-/**
- * Toggle a stat's debility. A no-op returning `undefined` if the stat is
- * unassigned, so callers can tell "unknown stat" from a real change.
- */
+/** Whether a stat's *pair* debility is marked — the thing a roll cares about. */
+export function isStatDebilitated(character: StonetopCharacter, stat: StatKey): boolean {
+	return character.debilities[debilityForStat(stat)];
+}
+
+/** Mark or clear one of the three debilities. Pure. */
 export function setDebility(
 	character: StonetopCharacter,
-	stat: StatKey,
+	key: DebilityKey,
 	on: boolean
-): StonetopCharacter | undefined {
-	const current = character.stats[stat];
-	if (!current) return undefined;
-	return {
-		...character,
-		stats: { ...character.stats, [stat]: { ...current, debilitated: on } }
-	};
+): StonetopCharacter {
+	return { ...character, debilities: { ...character.debilities, [key]: on } };
 }
 
 /** Whether a stat's base value is already at (or above) `cap`. */
@@ -175,18 +182,32 @@ export function bumpStat(
 }
 
 /**
- * A stat's effective value: its assigned value, minus 1 while debilitated.
- * `undefined` if the stat isn't assigned yet.
+ * A stat's effective value: its assigned value, `undefined` if unassigned. A
+ * marked debility does *not* change the number — the book's penalty is
+ * disadvantage on the roll (see `statRollMode`), not a smaller modifier.
  */
 export function effectiveStat(character: StonetopCharacter, stat: StatKey): number | undefined {
-	const s = character.stats[stat];
-	if (!s) return undefined;
-	return s.value - (s.debilitated ? 1 : 0);
+	return character.stats[stat]?.value;
+}
+
+/** How a stat rolls right now: at disadvantage while its debility is marked. */
+export function statRollMode(
+	character: StonetopCharacter,
+	stat: StatKey
+): 'normal' | 'disadvantage' {
+	return isStatDebilitated(character, stat) ? 'disadvantage' : 'normal';
 }
 
 /** The playbook's name for a stat's debility (e.g. STR → "Weakened"), if any. */
 export function debilityName(playbook: Playbook, stat: StatKey): string | undefined {
 	return playbook.stats.debilities.find((d) => d.stats.includes(stat))?.name;
+}
+
+/** The playbook's printed name for a debility (e.g. weakened → "Weakened"),
+ * falling back to the id when a pack doesn't carry it. */
+export function debilityLabel(playbook: Playbook, key: DebilityKey): string {
+	const first = DEBILITY_STATS[key][0];
+	return playbook.stats.debilities.find((d) => d.stats.includes(first))?.name ?? key;
 }
 
 /** All effective stats, keyed by stat, skipping unassigned ones. */

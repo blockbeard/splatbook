@@ -28,7 +28,7 @@ function sampleCharacter(): StonetopCharacter {
 	c.instinctId = 'to-serve';
 	c.appearance = ['weathered'];
 	c.origin = { option: 'Local', note: '' };
-	c.stats = { STR: { value: 1, debilitated: false }, WIS: { value: 2, debilitated: false } };
+	c.stats = { STR: { value: 1 }, WIS: { value: 2 } };
 	c.moves = ['call-the-spirits'];
 	c.possessions = ['Trail rations'];
 	c.introductions = { 1: 'I trust you with my life.' };

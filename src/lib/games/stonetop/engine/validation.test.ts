@@ -51,12 +51,12 @@ const complete = (patch: Partial<StonetopCharacter> = {}): StonetopCharacter => 
 	origin: { option: 'Stonetop', note: '' },
 	name: 'Arwel',
 	stats: {
-		STR: { value: 2, debilitated: false },
-		DEX: { value: 1, debilitated: false },
-		CON: { value: 1, debilitated: false },
-		INT: { value: 0, debilitated: false },
-		WIS: { value: 0, debilitated: false },
-		CHA: { value: -1, debilitated: false }
+		STR: { value: 2 },
+		DEX: { value: 1 },
+		CON: { value: 1 },
+		INT: { value: 0 },
+		WIS: { value: 0 },
+		CHA: { value: -1 }
 	},
 	moves: ['opt'],
 	possessions: ['Torch'],

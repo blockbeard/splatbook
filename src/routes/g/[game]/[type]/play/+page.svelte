@@ -18,6 +18,7 @@
 	import DiceRoller from '$lib/components/DiceRoller.svelte';
 	import RollSurface from '$lib/components/RollSurface.svelte';
 	import {
+		combineModes,
 		formatSigned,
 		roll as rollDice,
 		type DicePreset,
@@ -144,7 +145,9 @@
 				? dice.resolve(preset, character)
 				: { label: preset.label, notation: preset.notation };
 		makeRoll(resolved.label, resolved.notation, {
-			mode,
+			// Entity-imposed mode (marked debility → disadvantage) meets the
+			// panel's dialled-in mode; opposed modes cancel.
+			mode: combineModes(mode, resolved.mode ?? 'normal'),
 			onMiss:
 				resolved.onMiss && character
 					? {

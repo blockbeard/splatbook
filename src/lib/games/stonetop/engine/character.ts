@@ -13,17 +13,41 @@
  */
 
 /** Bumped whenever the persisted shape changes in a way that needs migration.
- * v2 (phase 5) adds the `advancement` log. v3 (phase 14) adds `inserts`. */
-export const SCHEMA_VERSION = 3;
+ * v2 (phase 5) adds the `advancement` log. v3 (phase 14) adds `inserts`.
+ * v4 (phase 21) moves debilities off the individual stats and onto the
+ * character as the book's three conditions. */
+export const SCHEMA_VERSION = 4;
 
 /** Stonetop's six stats, in printed sheet order. */
 export const STAT_KEYS = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'] as const;
 export type StatKey = (typeof STAT_KEYS)[number];
 
-/** A stat's value plus whether its debility is currently marked (phase 5 uses the flag). */
+/** A stat's assigned value. (Until v4 this also carried a per-stat
+ * `debilitated` flag — see `StonetopCharacter.debilities`.) */
 export interface StatValue {
 	value: number;
-	debilitated: boolean;
+}
+
+/**
+ * The three debilities, each covering a linked pair of stats (Harm and
+ * Healing): a character is *weakened*, not "STR-debilitated" — marking it
+ * affects every roll of either linked stat. The printed display names live in
+ * the playbook pack (`stats.debilities`); these ids are the rules-side
+ * vocabulary the pack's entries are keyed to match.
+ */
+export const DEBILITY_KEYS = ['weakened', 'dazed', 'miserable'] as const;
+export type DebilityKey = (typeof DEBILITY_KEYS)[number];
+
+/** Which stats each debility drags down when marked. */
+export const DEBILITY_STATS: Record<DebilityKey, readonly StatKey[]> = {
+	weakened: ['STR', 'DEX'],
+	dazed: ['INT', 'WIS'],
+	miserable: ['CON', 'CHA']
+};
+
+/** The debility a given stat belongs to (every stat has exactly one). */
+export function debilityForStat(stat: StatKey): DebilityKey {
+	return DEBILITY_KEYS.find((key) => DEBILITY_STATS[key].includes(stat))!;
 }
 
 /**
@@ -120,6 +144,10 @@ export interface StonetopCharacter {
 	/** Assigned stat array. Empty until the stats step. */
 	stats: Partial<Record<StatKey, StatValue>>;
 
+	/** Which of the three debilities are currently marked (v4). Each imposes
+	 * disadvantage on rolls of both its linked stats — see `DEBILITY_STATS`. */
+	debilities: Record<DebilityKey, boolean>;
+
 	/** Chosen/granted move ids (order preserved for the sheet). */
 	moves: string[];
 
@@ -187,6 +215,7 @@ export function createCharacter(playbookId: string | null = null): StonetopChara
 		appearance: [],
 		origin: { option: null, note: '' },
 		stats: {},
+		debilities: { weakened: false, dazed: false, miserable: false },
 		moves: [],
 		moveChoices: {},
 		possessions: [],
@@ -264,6 +293,11 @@ export function detachInsert(character: StonetopCharacter, insertId: string): St
  * Idempotent — a current character passes through unchanged (structurally), so
  * callers can run it on every load without side effects.
  *
+ * Debilities (v4): a v3-or-earlier blob marked them as a `debilitated` flag on
+ * each stat. The book's rule is three conditions over linked stat pairs, so the
+ * migration folds the flags up — either stat of a pair marked ⇒ that debility
+ * marked — and strips the per-stat flag from the stored shape.
+ *
  * `inserts` gets special handling: a blob with no `inserts` field at all (the
  * v2 shape, pre-phase-14) is a genuine one-time migration, so it's seeded with
  * whatever the character already qualifies for automatically — a saved
@@ -276,12 +310,31 @@ export function detachInsert(character: StonetopCharacter, insertId: string): St
 export function migrateCharacter(raw: unknown): StonetopCharacter {
 	const r = (raw ?? {}) as Partial<StonetopCharacter>;
 	const base = createCharacter(r.playbookId ?? null);
+
+	// v3 → v4: per-stat `debilitated` flags become the three conditions, and the
+	// flag leaves the stored stat shape. A pair with either stat marked marks
+	// the whole debility — that was always one condition in the fiction.
+	type LegacyStat = StatValue & { debilitated?: boolean };
+	const rawStats = (r.stats ?? base.stats) as Partial<Record<StatKey, LegacyStat>>;
+	const stats: Partial<Record<StatKey, StatValue>> = {};
+	for (const stat of STAT_KEYS) {
+		const s = rawStats[stat];
+		if (s !== undefined) stats[stat] = { value: s.value };
+	}
+	const debilities = { ...base.debilities, ...r.debilities };
+	if (r.debilities === undefined) {
+		for (const key of DEBILITY_KEYS) {
+			debilities[key] = DEBILITY_STATS[key].some((stat) => rawStats[stat]?.debilitated === true);
+		}
+	}
+
 	const migrated: StonetopCharacter = {
 		...base,
 		...r,
 		schemaVersion: SCHEMA_VERSION,
 		origin: r.origin ?? base.origin,
-		stats: r.stats ?? base.stats,
+		stats,
+		debilities,
 		hp: r.hp ?? base.hp,
 		trackers: r.trackers ?? base.trackers,
 		advancement: Array.isArray(r.advancement) ? r.advancement : [],

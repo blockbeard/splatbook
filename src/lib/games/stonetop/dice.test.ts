@@ -6,7 +6,7 @@ import { rollForStat, stonetopDice } from './dice';
 const withStats = (stats: Partial<Record<string, number>>) => {
 	const c = engine.createCharacter();
 	for (const [stat, value] of Object.entries(stats)) {
-		c.stats[stat as keyof typeof c.stats] = { value: value!, debilitated: false };
+		c.stats[stat as keyof typeof c.stats] = { value: value! };
 	}
 	return c;
 };
@@ -59,9 +59,15 @@ describe('stonetopDice resolve', () => {
 		expect(resolved.label).toBe('Roll +DEX (-1)');
 	});
 
-	it('prices in a marked debility, so the dice agree with the sheet', () => {
-		const character = setDebility(withStats({ DEX: 2 }), 'DEX', true)!;
-		expect(stonetopDice.resolve!(dexPreset, character).notation).toBe('2d6+1');
+	it('rolls a marked debility at disadvantage, modifier untouched', () => {
+		const character = setDebility(withStats({ DEX: 2 }), 'weakened', true);
+		const resolved = stonetopDice.resolve!(dexPreset, character);
+		expect(resolved.notation).toBe('2d6+2');
+		expect(resolved.mode).toBe('disadvantage');
+	});
+
+	it('rolls normally with no debility marked', () => {
+		expect(stonetopDice.resolve!(dexPreset, withStats({ DEX: 2 })).mode).toBe('normal');
 	});
 
 	// Every stonetopDice preset carries a stat today, but `resolve` still has to

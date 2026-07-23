@@ -12,10 +12,12 @@ import {
 	healHp,
 	heldMoveIds,
 	isDebilitated,
+	isStatDebilitated,
 	markXp,
 	seedVitals,
 	setDebility,
 	setHp,
+	statRollMode,
 	syncMoveTrackers,
 	xpForNextLevel
 } from './play';
@@ -46,7 +48,7 @@ const playbook = {
 const seeded = (moves: string[] = []): StonetopCharacter => ({
 	...createCharacter('the-blessed'),
 	backgroundId: 'initiate',
-	stats: { STR: { value: 2, debilitated: false }, WIS: { value: 0, debilitated: false } },
+	stats: { STR: { value: 2 }, WIS: { value: 0 } },
 	moves
 });
 
@@ -163,26 +165,26 @@ describe('HP', () => {
 });
 
 describe('debilities', () => {
-	it('toggles a stat debility and reads it back', () => {
-		const c = setDebility(seeded(), 'STR', true)!;
-		expect(isDebilitated(c, 'STR')).toBe(true);
-		expect(setDebility(c, 'STR', false)!.stats.STR!.debilitated).toBe(false);
+	it('marks one condition, readable from either linked stat', () => {
+		const c = setDebility(seeded(), 'weakened', true);
+		expect(isDebilitated(c, 'weakened')).toBe(true);
+		expect(isStatDebilitated(c, 'STR')).toBe(true);
+		expect(isStatDebilitated(c, 'DEX')).toBe(true); // the pair, assigned or not
+		expect(isStatDebilitated(c, 'WIS')).toBe(false);
+		expect(isDebilitated(setDebility(c, 'weakened', false), 'weakened')).toBe(false);
 	});
 
-	it('returns undefined for an unassigned stat', () => {
-		expect(setDebility(seeded(), 'DEX', true)).toBeUndefined();
-	});
-
-	it('effective stat drops by 1 while debilitated', () => {
-		const c = setDebility(seeded(), 'STR', true)!;
-		expect(effectiveStat(c, 'STR')).toBe(1); // 2 − 1
-		expect(effectiveStat(c, 'WIS')).toBe(0); // undebilitated
-		expect(effectiveStat(c, 'DEX')).toBeUndefined();
+	it('imposes disadvantage on the pair — never a smaller modifier', () => {
+		const c = setDebility(seeded(), 'weakened', true);
+		expect(effectiveStat(c, 'STR')).toBe(2); // the number is untouched
+		expect(statRollMode(c, 'STR')).toBe('disadvantage');
+		expect(statRollMode(c, 'DEX')).toBe('disadvantage');
+		expect(statRollMode(c, 'WIS')).toBe('normal');
 	});
 
 	it('effectiveStats collects only assigned stats', () => {
-		const c = setDebility(seeded(), 'STR', true)!;
-		expect(effectiveStats(c)).toEqual({ STR: 1, WIS: 0 });
+		const c = setDebility(seeded(), 'weakened', true);
+		expect(effectiveStats(c)).toEqual({ STR: 2, WIS: 0 });
 	});
 
 	it('names a stat debility from the playbook', () => {

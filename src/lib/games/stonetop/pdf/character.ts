@@ -16,6 +16,7 @@ import type { Move, Playbook } from '../pack-schemas';
 import {
 	STAT_KEYS,
 	heldMoveIds,
+	isStatDebilitated,
 	isWriteInPossession,
 	migrateCharacter,
 	type StonetopCharacter
@@ -150,7 +151,7 @@ export async function characterPdf(
 		b.box(cursor.page, x, cursor.y, statW, statH);
 		const s = c.stats[stat];
 		const value = s === undefined ? '—' : s.value >= 0 ? `+${s.value}` : `${s.value}`;
-		const label = s?.debilitated ? `${stat} ✕` : stat;
+		const label = isStatDebilitated(c, stat) ? `${stat} ✕` : stat;
 		const vw = bold.measure(value, 13);
 		b.text(cursor.page, value, { x: x + (statW - vw) / 2, y: cursor.y + 5, font: bold, size: 13 });
 		const lw = body.measure(label, 7);

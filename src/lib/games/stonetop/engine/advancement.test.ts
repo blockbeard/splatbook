@@ -300,4 +300,57 @@ describe('migrateCharacter', () => {
 			expect(migrateCharacter(current).inserts).toEqual({});
 		});
 	});
+
+	// v4 (phase 21) turns per-stat `debilitated` flags into the book's three
+	// conditions and strips the flag from the stored stat shape.
+	describe('v3 -> v4 (debilities)', () => {
+		it('folds per-stat flags into their pair condition and strips them', () => {
+			const v3 = {
+				...createCharacter('the-blessed'),
+				schemaVersion: 3,
+				stats: {
+					STR: { value: 2, debilitated: true },
+					DEX: { value: 1, debilitated: false },
+					WIS: { value: 0, debilitated: true }
+				}
+			} as Record<string, unknown>;
+			delete v3.debilities;
+			const migrated = migrateCharacter(v3);
+			expect(migrated.schemaVersion).toBe(SCHEMA_VERSION);
+			// STR marked ⇒ weakened; WIS marked ⇒ dazed; CON/CHA untouched.
+			expect(migrated.debilities).toEqual({ weakened: true, dazed: true, miserable: false });
+			// The flag leaves the stored shape; values survive.
+			expect(migrated.stats).toEqual({
+				STR: { value: 2 },
+				DEX: { value: 1 },
+				WIS: { value: 0 }
+			});
+		});
+
+		it('a clean v3 blob migrates to no debilities', () => {
+			const v3 = {
+				...createCharacter('the-heavy'),
+				schemaVersion: 3,
+				stats: { STR: { value: 2, debilitated: false } }
+			} as Record<string, unknown>;
+			delete v3.debilities;
+			expect(migrateCharacter(v3).debilities).toEqual({
+				weakened: false,
+				dazed: false,
+				miserable: false
+			});
+		});
+
+		it('respects an already-migrated debilities field', () => {
+			const current = {
+				...createCharacter('the-blessed'),
+				debilities: { weakened: false, dazed: false, miserable: true }
+			};
+			expect(migrateCharacter(current).debilities).toEqual({
+				weakened: false,
+				dazed: false,
+				miserable: true
+			});
+		});
+	});
 });

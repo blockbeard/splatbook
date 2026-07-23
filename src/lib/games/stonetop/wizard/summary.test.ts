@@ -37,8 +37,8 @@ describe('stonetop wizard summary', () => {
 		const character = engine.createCharacter();
 		character.playbookId = 'the-blessed';
 		character.name = 'Ryn';
-		character.stats.STR = { value: 1, debilitated: false };
-		character.stats.CHA = { value: -1, debilitated: false };
+		character.stats.STR = { value: 1 };
+		character.stats.CHA = { value: -1 };
 
 		const summary = rows(await stonetopSummary(character));
 		expect(summary.get('Name')).toBe('Ryn');

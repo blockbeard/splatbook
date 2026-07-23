@@ -36,13 +36,15 @@ function fixture(overrides: Partial<StonetopCharacter> = {}): StonetopCharacter 
 		backgroundId: '',
 		instinctId: '',
 		stats: {
-			STR: { value: 0, debilitated: false },
-			DEX: { value: 2, debilitated: false },
-			CON: { value: 1, debilitated: true },
-			INT: { value: -1, debilitated: false },
-			WIS: { value: 1, debilitated: false },
-			CHA: { value: 0, debilitated: false }
+			STR: { value: 0 },
+			DEX: { value: 2 },
+			CON: { value: 1 },
+			INT: { value: -1 },
+			WIS: { value: 1 },
+			CHA: { value: 0 }
 		},
+		// Miserable marks CON and CHA with the ✕ on the stat row.
+		debilities: { weakened: false, dazed: false, miserable: true },
 		moves: [],
 		possessions: [],
 		possessionChoices: {},

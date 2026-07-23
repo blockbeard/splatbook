@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Debilities are the book's three conditions, and they roll at
+  disadvantage.** The sheet had six per-stat toggles that quietly shaved 1
+  off the stat — an invented rule. Now marking *weakened*, *dazed*, or
+  *miserable* (from either stat of its pair) marks the one condition, both
+  linked stats show it, and rolling either stat is at disadvantage — extra
+  d6, drop the highest — exactly as Harm and Healing says. A dice-panel
+  advantage cancels it, per the book's stacking rule. Character blobs
+  migrate (schema v4): a marked stat flag becomes its pair's condition.
+
 - **The Book II opt-in sticks for signed-in readers.** First staging finding:
   the checkbox saved the preference but snapped back a beat later (and once
   set another way, wouldn't change). The server layout load that supplies the

@@ -37,6 +37,14 @@ export interface ResolvedRoll {
 	/** Concrete notation including any dynamic modifier, e.g. `"2d6+2"`. */
 	notation: string;
 	/**
+	 * A roll mode the entity's own state imposes (phase 21) — Stonetop's marked
+	 * debility makes its stat pair roll at disadvantage, and only the game can
+	 * know that. The host combines this with whatever mode the player dialled
+	 * into the dice panel via `combineModes` (they cancel when opposed), rather
+	 * than either side silently overriding the other. Omitted = `'normal'`.
+	 */
+	mode?: RollMode;
+	/**
 	 * A follow-up worth offering if this roll turns out to total 6 or less
 	 * (commit 109) — a pure `(entity) => nextEntity` update rather than a
 	 * closure over `onChange`, since `resolve` only ever sees the entity, not

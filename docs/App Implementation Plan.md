@@ -29,22 +29,14 @@ necessarily commit order — Priority 1 goes first regardless.*
 
 **Priority 1 — data-loss / correctness (do these first):**
 
-- `fix(pdf)`: downloaded character PDF renders garbled body text (e.g.
-  `possessions` → `%#$$! $$&#' $`) while the browser print path is fine —
-  points at the embedded Avara font's glyph/encoding map in
-  `src/lib/pdf/builder.ts` (subset embedding; the file's own comment notes
-  the 14 standard fonts are WinAnsi-only, so a custom-font path is where
-  this lives).
-- `fix(pdf)`: long text chunks fall off the page and never continue — actual
-  content loss, not just the milder Introduction-overflow symptom of the
-  same pagination bug.
-- `fix(campaigns)`: revoking "can edit the steading" doesn't return the
-  player to read-only — the grant works, the revoke doesn't stick.
+*Shipped so far: the garbled-PDF Avara embed (`eeef50c`), long-text
+pagination (`04bb9d5`), the steading-editor revoke (`e650de6`), and the
+character-debility model (three conditions, disadvantage — the mechanic
+confirmed against Harm and Healing: each debility spans a linked stat pair
+and imposes disadvantage on rolls of either stat, not a −1).*
+
 - `fix(steading)`: debilities don't apply their effects — decorative only
   right now.
-- `fix(play)`: no separate weakened/miserable/dazed toggles that apply to
-  both stats on a character sheet — confirm the intended mechanic (Stonetop
-  debilities normally hit one of a linked pair) before fixing.
 
 **Priority 2 — systemic: vault markdown leaking into the UI.** One root
 cause, six symptoms. `src/lib/reference/render.ts` is the only place that

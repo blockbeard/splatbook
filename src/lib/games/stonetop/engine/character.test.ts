@@ -69,7 +69,7 @@ describe('statValue', () => {
 	it('reads an assigned stat and undefined for an unassigned one', () => {
 		const c: StonetopCharacter = {
 			...createCharacter(),
-			stats: { STR: { value: 2, debilitated: false } }
+			stats: { STR: { value: 2 } }
 		};
 		expect(statValue(c, 'STR')).toBe(2);
 		expect(statValue(c, 'DEX')).toBeUndefined();

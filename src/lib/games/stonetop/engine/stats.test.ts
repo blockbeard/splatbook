@@ -14,7 +14,7 @@ describe('assignStat / clearStat', () => {
 	it('assigns and clears without mutating', () => {
 		const base = createCharacter();
 		const a = assignStat(base, 'STR', 2);
-		expect(a.stats.STR).toEqual({ value: 2, debilitated: false });
+		expect(a.stats.STR).toEqual({ value: 2 });
 		expect(base.stats.STR).toBeUndefined();
 		expect(clearStat(a, 'STR').stats.STR).toBeUndefined();
 	});

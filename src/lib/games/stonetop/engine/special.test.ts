@@ -55,9 +55,9 @@ const playbook = {
 const hero = (over: Partial<StonetopCharacter> = {}): StonetopCharacter => ({
 	...createCharacter('the-would-be-hero'),
 	stats: {
-		STR: { value: 1, debilitated: false },
-		DEX: { value: 2, debilitated: false },
-		CON: { value: 0, debilitated: false }
+		STR: { value: 1 },
+		DEX: { value: 2 },
+		CON: { value: 0 }
 	},
 	moves: ['anger', 'potential'],
 	...over
@@ -122,7 +122,7 @@ describe('Superior Stat gated on Potential for Greatness', () => {
 	it('raises a stat to the +3 cap when taken', () => {
 		const c = hero({
 			xp: 8,
-			stats: { DEX: { value: 2, debilitated: false } },
+			stats: { DEX: { value: 2 } },
 			trackers: { potential: { label: 'PfG', boxes: 6, marked: 6 } }
 		});
 		const r = applyLevelUp(c, playbook, { moveId: 'superior-stat', stat: 'DEX' });

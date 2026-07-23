@@ -9,13 +9,13 @@ import { STAT_KEYS, type StatKey, type StonetopCharacter } from './character';
 
 type Stats = StonetopCharacter['stats'];
 
-/** Assign a value to a stat (fresh, not debilitated). Pure. */
+/** Assign a value to a stat. Pure. */
 export function assignStat(
 	character: StonetopCharacter,
 	stat: StatKey,
 	value: number
 ): StonetopCharacter {
-	return { ...character, stats: { ...character.stats, [stat]: { value, debilitated: false } } };
+	return { ...character, stats: { ...character.stats, [stat]: { value } } };
 }
 
 /** Clear a stat's assignment. Pure. */

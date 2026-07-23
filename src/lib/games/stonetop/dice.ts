@@ -9,16 +9,24 @@
  *
  * `resolve` is where that modifier becomes a number. The shell holds the
  * character opaquely and cannot read a stat out of it, so it hands the preset
- * and the character back here at roll time and rolls what we return. The value
- * used is `effectiveStat`, so a marked debility is already priced in — the sheet
- * and the dice cannot disagree about what your DEX is.
+ * and the character back here at roll time and rolls what we return. A marked
+ * debility rides along as `mode: 'disadvantage'` (phase 21 — the book's
+ * penalty is disadvantage on the linked stat pair, not a smaller modifier),
+ * so the sheet and the dice cannot disagree about what your DEX is.
  *
  * The stat vocabulary comes from the engine's `STAT_KEYS`, not a fresh literal,
  * so the presets can never drift out of sync with the character model.
  */
 
 import type { DiceModule, DicePreset, ResolvedRoll } from '../../dice';
-import { STAT_KEYS, effectiveStat, markXp, type StatKey, type StonetopCharacter } from './engine';
+import {
+	STAT_KEYS,
+	effectiveStat,
+	markXp,
+	statRollMode,
+	type StatKey,
+	type StonetopCharacter
+} from './engine';
 import { STEADING_STATS, type SteadingStatKey, type StonetopSteading } from './engine/steading';
 
 /** The six stat rolls. */
@@ -53,6 +61,7 @@ export function rollForStat(
 	return {
 		label: `${what} +${stat} (${formatModifier(modifier)})`,
 		notation: `2d6${formatModifier(modifier)}`,
+		mode: statRollMode(character, stat),
 		onMiss: { label: 'Mark XP', apply: (c) => markXp(c as StonetopCharacter, 1) }
 	};
 }

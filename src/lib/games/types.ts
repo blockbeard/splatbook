@@ -17,7 +17,7 @@
 import type { Component } from 'svelte';
 import type { SchemaResolver } from '../packs/harness';
 import type { WizardStep, WizardSummary } from '../wizard/types';
-import type { DiceModule } from '../dice';
+import type { DiceModule, RollMode } from '../dice';
 
 /** Props the shell passes a game's entity-sheet component. The draft/entity is
  * opaque to the shell (the game's own shape); the sheet casts it. */
@@ -57,7 +57,7 @@ export interface PlayProps {
 	roll?: (
 		label: string,
 		notation: string,
-		opts?: { onMiss?: { label: string; action: () => void } }
+		opts?: { mode?: RollMode; onMiss?: { label: string; action: () => void } }
 	) => void;
 	/**
 	 * The campaign this entity is attached to, if any (commit 105) — an opaque

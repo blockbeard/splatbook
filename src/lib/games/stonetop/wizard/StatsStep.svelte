@@ -45,7 +45,7 @@
 			update({ stats: next });
 			return;
 		}
-		update({ stats: { ...draft.stats, [stat]: { value, debilitated: false } } });
+		update({ stats: { ...draft.stats, [stat]: { value } } });
 	}
 
 	const fmt = (n: number): string => (n >= 0 ? `+${n}` : `${n}`);

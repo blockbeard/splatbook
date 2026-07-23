@@ -14,6 +14,7 @@ export {
 export {
 	roll,
 	rollDie,
+	combineModes,
 	formatSigned,
 	type Rng,
 	type RollMode,

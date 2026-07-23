@@ -53,6 +53,18 @@ export function rollDie(sides: number, rng: Rng = Math.random): number {
 	return Math.floor(rng() * sides) + 1;
 }
 
+/**
+ * Combine two roll modes — the player's dialled-in choice and one a game
+ * imposes from entity state (a debility, a blessing). Matching or one-sided
+ * inputs behave as expected; *opposed* inputs cancel to `'normal'`, the rule
+ * shared by every system that stacks advantage this way (Stonetop, 5e).
+ */
+export function combineModes(a: RollMode, b: RollMode): RollMode {
+	if (a === 'normal') return b;
+	if (b === 'normal') return a;
+	return a === b ? a : 'normal';
+}
+
 /** `+2` / `-2` / `+0` — a signed number as read aloud at the table. */
 export function formatSigned(n: number): string {
 	return n >= 0 ? `+${n}` : `${n}`;
