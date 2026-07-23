@@ -117,12 +117,12 @@
 		if (!steading || !seasonsChange || !roll) return;
 		const stat = steadingRollStat(seasonsChange);
 		if (!stat) return;
-		const { label, notation } = rollForSteadingStat(
+		const { label, notation, mode } = rollForSteadingStat(
 			steading.data as StonetopSteading,
 			stat,
-			seasonsChange.name
+			seasonsChange
 		);
-		roll(label, notation);
+		roll(label, notation, { mode });
 	};
 
 	/** Turn the season and write it through. */

@@ -25,6 +25,9 @@ import {
 	isDebilitated,
 	setDebility,
 	toggleDebility,
+	steadingRollMode,
+	effectiveSteadingStat,
+	seasonFortunesReset,
 	seedFromPack,
 	setList,
 	setPlaces,
@@ -159,6 +162,31 @@ describe('debilities', () => {
 		expect(isDebilitated(s, 'diminished')).toBe(false);
 		s = setDebility(s, 'lacking', false);
 		expect(isDebilitated(s, 'lacking')).toBe(false);
+	});
+
+	it('diminished rolls Deploy/Muster/Pull Together at disadvantage, nothing else', () => {
+		const s = setDebility(createSteading(), 'diminished', true);
+		expect(steadingRollMode(s, 'deploy')).toBe('disadvantage');
+		expect(steadingRollMode(s, 'muster')).toBe('disadvantage');
+		expect(steadingRollMode(s, 'pull-together')).toBe('disadvantage');
+		expect(steadingRollMode(s, 'seasons-change')).toBe('normal');
+		expect(steadingRollMode(s, undefined)).toBe('normal');
+		expect(steadingRollMode(createSteading(), 'deploy')).toBe('normal');
+	});
+
+	it('lacking treats Prosperity as 1 lower without touching the track', () => {
+		const s = setDebility(setStat(createSteading(), 'prosperity', 1), 'lacking', true);
+		expect(effectiveSteadingStat(s, 'prosperity')).toBe(0);
+		expect(s.stats.prosperity).toBe(1); // the printed value stays
+		expect(effectiveSteadingStat(s, 'fortunes')).toBe(s.stats.fortunes); // others untouched
+		// It can read below the track's own floor — "treat as if" has no clamp.
+		const atFloor = setDebility(setStat(createSteading(), 'prosperity', -1), 'lacking', true);
+		expect(effectiveSteadingStat(atFloor, 'prosperity')).toBe(-2);
+	});
+
+	it('malcontent turns the seasonal Fortunes reset from +1 to +0', () => {
+		expect(seasonFortunesReset(createSteading())).toBe(1);
+		expect(seasonFortunesReset(setDebility(createSteading(), 'malcontent', true))).toBe(0);
 	});
 });
 

@@ -27,7 +27,13 @@ import {
 	type StatKey,
 	type StonetopCharacter
 } from './engine';
-import { STEADING_STATS, type SteadingStatKey, type StonetopSteading } from './engine/steading';
+import {
+	STEADING_STATS,
+	effectiveSteadingStat,
+	steadingRollMode,
+	type SteadingStatKey,
+	type StonetopSteading
+} from './engine/steading';
 
 /** The six stat rolls. */
 const presets: DicePreset[] = STAT_KEYS.map((stat): DicePreset => ({
@@ -78,15 +84,21 @@ export const stonetopDice: DiceModule = { presets, resolve };
 /**
  * A steading's roll: `2d6` plus one of *its* stats, never a character's. The
  * steading rolls only its own moves — at the change of seasons, +Fortunes.
+ *
+ * Debilities apply here the way the playbook prints them (phase 21): *lacking*
+ * makes every reader treat Prosperity as 1 lower (`effectiveSteadingStat`),
+ * and *diminished* rolls Deploy/Muster/Pull Together at disadvantage
+ * (`steadingRollMode`, keyed by the move's pack id).
  */
 export function rollForSteadingStat(
 	steading: StonetopSteading,
 	stat: SteadingStatKey,
-	moveName: string
+	move: { id?: string; name: string }
 ): ResolvedRoll {
-	const modifier = steading.stats[stat] ?? 0;
+	const modifier = effectiveSteadingStat(steading, stat);
 	return {
-		label: `${moveName} +${STEADING_STATS[stat].label} (${formatModifier(modifier)})`,
-		notation: `2d6${formatModifier(modifier)}`
+		label: `${move.name} +${STEADING_STATS[stat].label} (${formatModifier(modifier)})`,
+		notation: `2d6${formatModifier(modifier)}`,
+		mode: steadingRollMode(steading, move.id)
 	};
 }

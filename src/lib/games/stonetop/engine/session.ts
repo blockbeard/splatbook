@@ -16,7 +16,7 @@
 
 import type { StonetopCharacter } from './character';
 import { markXp } from './play';
-import { advanceSeason, type StonetopSteading } from './steading';
+import { advanceSeason, seasonFortunesReset, setStat, type StonetopSteading } from './steading';
 
 /** What the table answered. */
 export interface EndOfSessionAnswers {
@@ -48,7 +48,12 @@ export function applyEndOfSession(
 	return xp > 0 ? markXp(character, xp) : character;
 }
 
-/** Turn the steading's season — the change of seasons the group rolls Fortunes for. */
+/**
+ * Turn the steading's season — the change of seasons the group rolls Fortunes
+ * for. After that roll, Fortunes reset to +1 — or +0 while the steading is
+ * *malcontent* (Homefront: "changes to Fortunes themselves are passing,
+ * applying to only the next season"). The flow rolls first, then calls this.
+ */
 export function turnSeason(steading: StonetopSteading): StonetopSteading {
-	return advanceSeason(steading);
+	return setStat(advanceSeason(steading), 'fortunes', seasonFortunesReset(steading));
 }

@@ -12,6 +12,7 @@
 		STEADING_STAT_KEYS,
 		STEADING_STATS,
 		STEADING_DEBILITY_KEYS,
+		effectiveSteadingStat,
 		isDebilitated,
 		type StonetopSteading
 	} from '../engine/steading';
@@ -60,6 +61,9 @@
 						{key === 'surplus' ? s.stats[key] : fmt(s.stats[key])}
 					</div>
 					<div class="text-xs font-medium text-muted">{STEADING_STATS[key].label}</div>
+					{#if key === 'prosperity' && s.debilities.lacking}
+						<div class="text-[0.65rem] text-danger">counts as {fmt(effectiveSteadingStat(s, key))}</div>
+					{/if}
 				</div>
 			{/each}
 		</div>

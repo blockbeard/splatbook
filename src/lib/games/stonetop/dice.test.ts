@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { isValidNotation, parseNotation } from '$lib/dice';
 import { STAT_KEYS, engine, setDebility } from './engine';
-import { rollForStat, stonetopDice } from './dice';
+import {
+	createSteading,
+	setDebility as setSteadingDebility,
+	setStat
+} from './engine/steading';
+import { rollForStat, rollForSteadingStat, stonetopDice } from './dice';
 
 const withStats = (stats: Partial<Record<string, number>>) => {
 	const c = engine.createCharacter();
@@ -102,5 +107,32 @@ describe('rollForStat', () => {
 		expect(resolved.onMiss?.label).toBe('Mark XP');
 		const next = resolved.onMiss!.apply(character);
 		expect(next).toMatchObject({ xp: character.xp + 1 });
+	});
+});
+
+describe('rollForSteadingStat', () => {
+	const deploy = { id: 'deploy', name: 'Deploy' };
+
+	it('rolls the printed stat with no XP follow-up', () => {
+		const s = setStat(createSteading(), 'defenses', 2);
+		const resolved = rollForSteadingStat(s, 'defenses', deploy);
+		expect(resolved.notation).toBe('2d6+2');
+		expect(resolved.label).toBe('Deploy +Defenses (+2)');
+		expect(resolved.mode).toBe('normal');
+		expect(resolved.onMiss).toBeUndefined();
+	});
+
+	it('lacking prices Prosperity in 1 lower', () => {
+		const s = setSteadingDebility(setStat(createSteading(), 'prosperity', 1), 'lacking', true);
+		const resolved = rollForSteadingStat(s, 'prosperity', { id: 'trade-barter', name: 'Trade' });
+		expect(resolved.notation).toBe('2d6+0');
+	});
+
+	it('diminished rolls Deploy at disadvantage, Seasons Change untouched', () => {
+		const s = setSteadingDebility(createSteading(), 'diminished', true);
+		expect(rollForSteadingStat(s, 'defenses', deploy).mode).toBe('disadvantage');
+		expect(
+			rollForSteadingStat(s, 'fortunes', { id: 'seasons-change', name: 'Seasons Change' }).mode
+		).toBe('normal');
 	});
 });

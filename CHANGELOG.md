@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   d6, drop the highest — exactly as Harm and Healing says. A dice-panel
   advantage cancels it, per the book's stacking rule. Character blobs
   migrate (schema v4): a marked stat flag becomes its pair's condition.
+- **Steading debilities do what the playbook prints, not just sit there.**
+  *Diminished* rolls Deploy, Muster, and Pull Together at disadvantage
+  (the roll button says so). *Lacking* makes every reader treat Prosperity
+  as 1 lower — rolls use the reduced value, and both the tracker and the
+  read-only sheet show "counts as" next to the printed number. *Malcontent*
+  changes the seasonal Fortunes reset: turning the season now resets
+  Fortunes to +1 (+0 while malcontent) after the Seasons Change roll,
+  which the reset had been missing entirely.
 
 - **The Book II opt-in sticks for signed-in readers.** First staging finding:
   the checkbox saved the preference but snapped back a beat later (and once

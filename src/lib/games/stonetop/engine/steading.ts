@@ -276,6 +276,39 @@ export function isDebilitated(steading: StonetopSteading, key: SteadingDebilityK
 	return steading.debilities[key];
 }
 
+/**
+ * The moves *diminished* hinders — its printed effect is "disadvantage to
+ * Deploy, Muster, or Pull Together", named as the pack's move ids.
+ */
+export const DIMINISHED_MOVE_IDS: readonly string[] = ['deploy', 'muster', 'pull-together'];
+
+/** How a steading move rolls right now: at disadvantage while the steading is
+ * *diminished* and the move is one that debility hinders. */
+export function steadingRollMode(
+	steading: StonetopSteading,
+	moveId: string | null | undefined
+): 'normal' | 'disadvantage' {
+	return steading.debilities.diminished && moveId != null && DIMINISHED_MOVE_IDS.includes(moveId)
+		? 'disadvantage'
+		: 'normal';
+}
+
+/**
+ * A stat's value as the rules read it right now: *lacking* means "treat
+ * Prosperity as if it's 1 lower than it is" — the track itself is untouched,
+ * every reader of Prosperity sees one less. Other stats pass through.
+ */
+export function effectiveSteadingStat(steading: StonetopSteading, key: SteadingStatKey): number {
+	const raw = steading.stats[key];
+	return key === 'prosperity' && steading.debilities.lacking ? raw - 1 : raw;
+}
+
+/** What Fortunes resets to after the Seasons Change roll: +1, or +0 while the
+ * steading is *malcontent* (its printed effect). */
+export function seasonFortunesReset(steading: StonetopSteading): number {
+	return steading.debilities.malcontent ? 0 : 1;
+}
+
 /** A steading with one debility set on/off. */
 export function setDebility(
 	steading: StonetopSteading,

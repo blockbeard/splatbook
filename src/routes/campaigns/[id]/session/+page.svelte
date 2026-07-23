@@ -8,7 +8,7 @@
 	import { resolve } from '$app/paths';
 	import { getGame } from '$lib/games';
 	import RollSurface from '$lib/components/RollSurface.svelte';
-	import { roll as rollDice, type RollResult } from '$lib/dice';
+	import { roll as rollDice, type RollMode, type RollResult } from '$lib/dice';
 
 	let { data } = $props();
 
@@ -25,9 +25,10 @@
 	let nextKey = 0;
 
 	/** The steading rolls at the change of seasons; it goes to the shared log like
-	 * any other roll, fronted by the steading's name. */
-	function makeRoll(label: string, notation: string): void {
-		const result = rollDice(notation);
+	 * any other roll, fronted by the steading's name. The game can impose a mode
+	 * (a *diminished* steading rolls some moves at disadvantage). */
+	function makeRoll(label: string, notation: string, opts?: { mode?: RollMode }): void {
+		const result = rollDice(notation, { mode: opts?.mode ?? 'normal' });
 		latest = { label, result, actorName: data.steading?.name, key: nextKey++ };
 
 		fetch(`/api/campaigns/${data.campaign.id}/rolls`, {

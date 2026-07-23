@@ -167,8 +167,9 @@ export interface SessionProps {
 	steading: { id: string; name: string; data: object } | null;
 	/** Persist a changed entity. Rejects if the write is refused. */
 	save: (id: string, data: object) => Promise<void>;
-	/** Roll, logged to the campaign (as the steading, at the change of seasons). */
-	roll?: (label: string, notation: string) => void;
+	/** Roll, logged to the campaign (as the steading, at the change of seasons).
+	 * `opts.mode` carries an entity-imposed mode, same as `PlayProps.roll`. */
+	roll?: (label: string, notation: string, opts?: { mode?: RollMode }) => void;
 	/** A stable localStorage key, scoped to this campaign, for whatever the game's
 	 * flow wants to keep on this device (session notes). Still handed through in
 	 * phase 17 so the flow can seed its notes from what an earlier version jotted

@@ -20,7 +20,9 @@
 		advanceSeason,
 		bumpStat,
 		bumpSize,
+		effectiveSteadingStat,
 		setSeason,
+		steadingRollMode,
 		steadingRollStat,
 		statAtMin,
 		statAtMax,
@@ -115,11 +117,13 @@
 		return () => (alive = false);
 	});
 
-	const rollMove = (move: { name: string; text: string }): void => {
+	const rollMove = (move: { id: string; name: string; text: string }): void => {
 		const stat = steadingRollStat(move);
 		if (!stat) return;
-		const { label, notation } = rollForSteadingStat(s, stat, move.name);
-		roll?.(label, notation);
+		// Marked debilities are priced in: *lacking* shrinks Prosperity, and
+		// *diminished* rolls Deploy/Muster/Pull Together at disadvantage.
+		const { label, notation, mode } = rollForSteadingStat(s, stat, move);
+		roll?.(label, notation, { mode });
 	};
 	const sizeNote = $derived(
 		new Map((pack?.stats.size.options ?? []).map((o) => [o.id, o.note ?? ''] as const))
@@ -206,6 +210,13 @@
 								>
 							</div>
 						</div>
+						{#if key === 'prosperity' && s.debilities.lacking}
+							<!-- *Lacking*: "treat Prosperity as if it's 1 lower than it is" —
+							     the track keeps its printed value; readers see one less. -->
+							<p class="mt-1 text-xs text-danger">
+								Counts as {fmt(effectiveSteadingStat(s, key))} while lacking
+							</p>
+						{/if}
 					</div>
 				{/each}
 			</div>
@@ -262,13 +273,18 @@
 									</a>
 								</h3>
 								{#if roll && stat}
+									{@const hindered = steadingRollMode(s, move.id) === 'disadvantage'}
 									<button
 										type="button"
 										onclick={() => rollMove(move)}
-										class="rounded-md border border-accent px-2 py-0.5 text-xs font-medium text-accent hover:bg-accent/10"
+										class="rounded-md border px-2 py-0.5 text-xs font-medium {hindered
+											? 'border-danger text-danger hover:bg-danger/10'
+											: 'border-accent text-accent hover:bg-accent/10'}"
+										title={hindered ? 'Rolled at disadvantage while diminished' : undefined}
 									>
 										Roll +{STEADING_STATS[stat].label}
-										<span class="font-mono">{fmt(s.stats[stat])}</span>
+										<span class="font-mono">{fmt(effectiveSteadingStat(s, stat))}</span>
+										{#if hindered}· disadv.{/if}
 									</button>
 								{/if}
 							</div>

@@ -29,14 +29,12 @@ necessarily commit order — Priority 1 goes first regardless.*
 
 **Priority 1 — data-loss / correctness (do these first):**
 
-*Shipped so far: the garbled-PDF Avara embed (`eeef50c`), long-text
-pagination (`04bb9d5`), the steading-editor revoke (`e650de6`), and the
-character-debility model (three conditions, disadvantage — the mechanic
-confirmed against Harm and Healing: each debility spans a linked stat pair
-and imposes disadvantage on rolls of either stat, not a −1).*
-
-- `fix(steading)`: debilities don't apply their effects — decorative only
-  right now.
+*All shipped: the garbled-PDF Avara embed (`eeef50c`), long-text pagination
+(`04bb9d5`), the steading-editor revoke (`e650de6`), the character-debility
+model (three conditions over linked stat pairs, rolled at disadvantage —
+confirmed against Harm and Healing), and steading debility effects
+(diminished/lacking/malcontent per the playbook; the seasonal Fortunes
+reset now exists and is +0 while malcontent).*
 
 **Priority 2 — systemic: vault markdown leaking into the UI.** One root
 cause, six symptoms. `src/lib/reference/render.ts` is the only place that

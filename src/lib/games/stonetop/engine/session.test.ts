@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createCharacter } from './character';
-import { createSteading } from './steading';
+import { createSteading, setDebility, setStat } from './steading';
 import { applyEndOfSession, emptyAnswers, turnSeason, xpFor } from './session';
 
 const answers = (group: string[], personal: Record<string, string[]> = {}) => ({
@@ -55,5 +55,15 @@ describe('turnSeason', () => {
 		expect(s.season).toBe('spring');
 		expect(turnSeason(s).season).toBe('summer');
 		expect(turnSeason({ ...s, season: 'winter' }).season).toBe('spring');
+	});
+
+	it('resets Fortunes to +1 after the roll — the change was for one season', () => {
+		const s = setStat(createSteading(), 'fortunes', 3);
+		expect(turnSeason(s).stats.fortunes).toBe(1);
+	});
+
+	it('resets Fortunes to +0 while the steading is malcontent', () => {
+		const s = setDebility(setStat(createSteading(), 'fortunes', 2), 'malcontent', true);
+		expect(turnSeason(s).stats.fortunes).toBe(0);
 	});
 });
