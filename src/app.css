@@ -51,6 +51,20 @@ html {
 }
 
 /*
+ * Embed mode (phase 22): `?embed=1` renders the current page chrome-less for
+ * iframe embedding (the Zoom Whiteboard reference reader). The attribute is
+ * stamped server-side (hooks.server.ts, same pattern as `data-game`) so the
+ * iframe's first paint never flashes the header, and kept across SPA
+ * navigations by `$lib/embed.svelte`.
+ */
+html[data-embed='1'] .app-chrome {
+	display: none !important;
+}
+html[data-embed='1'] main {
+	max-width: none;
+}
+
+/*
  * Print — which is also "Save as PDF", the only PDF export the app has (see
  * $lib/print.ts). What prints is the sheet: the shell chrome goes, the sheet
  * keeps its game's paper-and-ink theme, and nothing that belongs together is

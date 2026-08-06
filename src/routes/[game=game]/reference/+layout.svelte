@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { invalidate } from '$app/navigation';
+	import { embed } from '$lib/embed.svelte';
 	import { getLocalPreference, readShowSetting } from '$lib/preferences';
 	import type { TocDocument, TocSection } from '$lib/reference/load';
 	import SpoilerToggle from './SpoilerToggle.svelte';
@@ -73,6 +74,13 @@
 				aria-label="Search the rules"
 				class="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent"
 			/>
+			{#if embed.active}
+				<!-- SvelteKit intercepts this GET form but replaces the whole query
+				     string with the form fields — without this, a search submit in
+				     embed mode drops ?embed=1 and a mid-session reload resurrects
+				     the app chrome. -->
+				<input type="hidden" name="embed" value="1" />
+			{/if}
 		</form>
 		{#if data.spoilers}
 			<!-- The opt-in lives here in the sidebar — every reference page, not

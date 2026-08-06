@@ -55,6 +55,29 @@ const gameTheme: Handle = async ({ event, resolve }) => {
 	});
 };
 
+/**
+ * Stamp `data-embed="1"` on <html> when the request carries `?embed=1`
+ * (phase 22) — server-side, same pattern as `gameTheme`, so an iframe's very
+ * first paint is already chrome-less (CSS under the attribute hides
+ * `.app-chrome` and lifts main's width cap — app.css). After hydration the
+ * attribute persists across SPA navigations; `$lib/embed.svelte` carries the
+ * mode for anything that needs to *know* (the reference search form's hidden
+ * input, which keeps the param in the URL across a GET submit so a
+ * mid-session reload stays embedded).
+ *
+ * Load-bearing absence: the app sends no `X-Frame-Options` or
+ * `frame-ancestors` anywhere, which is what lets Zoom (or anyone) iframe the
+ * reference. Any future security-headers work must carve out the reference
+ * routes or embedding breaks.
+ */
+const embedMode: Handle = async ({ event, resolve }) => {
+	if (event.url.searchParams.get('embed') !== '1') return resolve(event);
+	return resolve(event, {
+		transformPageChunk: ({ html }) => html.replace('<html', '<html data-embed="1"')
+	});
+};
+
 // The database first: Auth.js needs it to build its adapter for the request.
-// Preferences after auth (needs the session); gameTheme last (order-independent).
-export const handle = sequence(database, auth, preferences, gameTheme);
+// Preferences after auth (needs the session); gameTheme/embedMode last
+// (order-independent).
+export const handle = sequence(database, auth, preferences, gameTheme, embedMode);
