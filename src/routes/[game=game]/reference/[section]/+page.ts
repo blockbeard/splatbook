@@ -67,10 +67,17 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 		...t,
 		sections: t.sections.filter((s) => isVisible(s, showSetting))
 	}));
+	// Body links resolve against the *unfiltered* trees when the game ships an
+	// interstitial: a link into a gated section then stays a live link that
+	// lands on the interstitial with the opt-in (HMtW's Index alone has 34
+	// such links; degrading them to dead text hides nothing — the label still
+	// shows — it just breaks the path to opting in). Without an interstitial a
+	// gated link would 404, so those games keep the degrade-to-label behavior.
+	const hasInterstitial = !!getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
 	const bodyHtml = renderMarkdown(
 		section.body,
 		params.game,
-		buildLinkIndex(visibleTrees),
+		buildLinkIndex(hasInterstitial ? trees : visibleTrees),
 		section.kind
 	);
 
