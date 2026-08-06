@@ -184,15 +184,20 @@ vault cross-references — fetch instead of the full trees, via
 `fetchLinkIndex` + `resolveWikilinks` in `$lib/reference`. Derived like the
 search indexes: not in the manifest, never hand-edited, regenerated together.
 
-**Visibility.** Each section carries a `player`/`gm` flag (a whole document can be
-made GM-only via the config's `visibility`, e.g. Stonetop's Book II). The gate
-lives in one place, `GM_CONTENT_VISIBLE` in `$lib/reference/load` — a hard `false`
-today, so GM sections are dropped from the table of contents, return 404 if
-addressed directly, and are excluded from the public search index entirely. This
-is an application-level hide, not yet access control: the raw `rules/book-ii.json`
-is still fetchable by URL. Phase 9 (campaigns) turns the flag into a real gate
-keyed on campaign-GM membership; that is the point to also stop serving GM trees
-to non-GM clients.
+**Visibility.** Each section carries a `player`/`gm` flag — set for a whole
+document via the config's `visibility` (Stonetop's Book II), or per source file
+via the document's `fileVisibility` map (HMtW's interleaved GM chapters). The
+gate is a *reader opt-in*, not a permission (commit 97 replaced the old hard
+gate): each game's spoiler preference (`reference.showSetting.<gameId>`,
+`SpoilerToggle` in the reference sidebar) feeds `isVisible(section, gmVisible)`
+in `$lib/reference/load`. Until opted in, gated sections — and any chapter left
+with no visible sections — drop from the table of contents, a gated section URL
+renders the game's interstitial with the opt-in button rather than a flat 404,
+and search ships as two indexes (`search-index.json` / `search-index-gm.json`,
+likewise the pinned-term artifacts) with the GM half fetched only after opt-in.
+This is still an application-level hide, not access control: the raw GM tree
+JSON remains fetchable by URL, which matches the books' own "it's okay for
+players to read this if they want to" stance.
 
 ## The GM guide (structured reference)
 
@@ -267,8 +272,10 @@ module's own entry, and override the shell's `--sb-*` tokens under
 `html[data-game="<gameId>"]` (plus `html.dark[data-game="<gameId>"]` for the dark
 variant). The shell stamps `data-game` on `<html>` for that game's routes and does
 nothing else; a game with no theme gets the shell's defaults. Fonts are
-self-hosted (Stonetop uses `@fontsource/eb-garamond`) so a pack's look doesn't
-depend on a third-party CDN.
+self-hosted so a pack's look doesn't depend on a third-party CDN — Stonetop
+ships Libre Caslon Text and IM Fell English via `@fontsource/*`, plus Avara
+(the book's heading face) extracted into `static/fonts/` by
+`tools/extract_avara_font.py`.
 
 ## The end-of-session slot
 
