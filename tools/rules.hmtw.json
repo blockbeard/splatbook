@@ -1,0 +1,19 @@
+{
+	"$comment": "Per-game source config for build_rules.py — the His Majesty the Worm import (phase 22). Vault: ~/Documents/RPG Vaults/His Majesty the Worm (read-only reference vault; the pipeline copies out of it, never writes into it). Exclusions: the Contents/Rules Search notes are reader chrome with their own in-app equivalents; Appendix E is truncated at the Tutorial Dungeon per Josh McCrowell's ask (the Tomb of Golden Ghosts is not to be reposted) with a pointer to the official Designing Dungeons course; the one link into the cut range retargets to the surviving Meatgrinder section.",
+	"sourceDirs": ["His Majesty the Worm"],
+	"excludeDirNames": ["images", "_search", "Josh's Backup Text", ".obsidian", ".trash"],
+	"excludeFiles": [
+		"His Majesty the Worm/His Majesty the Worm — Contents.md",
+		"His Majesty the Worm/Rules Search.md"
+	],
+	"truncateAtHeading": {
+		"His Majesty the Worm/15 - Appendix E - Underworld Creation.md": {
+			"heading": "# Building the Tutorial Dungeon",
+			"replacement": "> [!info] The Tutorial Dungeon\n> The Tomb of Golden Ghosts starter dungeon is not included here at the author's request. For a guided course on building it — and on designing dungeons generally — see the official [Designing Dungeons course](https://dungeons.hismajestytheworm.games)."
+		}
+	},
+	"stripCallouts": ["hmw-nav"],
+	"linkRewrites": {
+		"15 - Appendix E - Underworld Creation#Writing Meatgrinder tables": "15 - Appendix E - Underworld Creation#5. Create the Meatgrinder"
+	}
+}
