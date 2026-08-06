@@ -301,19 +301,19 @@ artifacts):**
 
 - `feat(hmtw)`: theme — `theme.css` tokens under `html[data-game="hmtw"]`
   (+ dark), reference-body headings/callouts/tables/epigraphs in the book's
-  style. Font roles are **documented in the creator pack's template PDF**
-  (`Downloads and AddOns/Adherent of the Worm Template/`): body 10.5pt
-  **IM Fell English** (already a dependency — the default text style of the
-  whole book); H2 24pt caps + H3 18pt **HamletOrNot**; H4 16pt
-  **CaslonAntique**; chapter-intro paragraphs **BilboDisplay**; sidebar text
-  9.5pt **Goudy Old Style** under 14pt **Kelmscott Roman** headers; quotes
-  **Dark Roast** with IM Fell italic attributions. H1's blackletter face
-  isn't named in the sample text — read it out of the `.idml` paragraph
-  styles in the same folder. Web-license check per face before embedding
-  (the template grants InDesign use, not `@font-face` rights): IM Fell is
-  clear; for the murky ones substitute OFL equivalents (e.g. Sorts Mill
-  Goudy for Goudy Old Style). Self-hosted files namespaced `hmtw-*` in
-  `static/fonts/`.
+  style. **Fonts: the license audit is done — see `docs/hmtw-fonts.md`**
+  (2026-08-07, read out of the `.idml` paragraph styles + each shipped
+  file's name table). Headline: the lombardic chapter titles are **Xiparos
+  Lombard** (personal-use only), and every non-Fell face fails the
+  `@font-face` redistribution bar, so the theme uses the book's own OFL
+  Fells (English + Italic + English SC + Great Primer SC) plus OFL
+  substitutes: Uncial Antiqua (chapter titles), Libre Caslon Text Bold
+  (H4/table headers — already self-hosted), Sorts Mill Goudy (sidebar
+  body), Goudy Bookletter 1911 (sidebar headers), Almendra Display (pull
+  quotes). All via `@fontsource/*` (self-hosted npm builds — verified
+  present), nothing copied from the template folder. The optional
+  authentic-faces path (mail Pia Frauss; buy Dark Roast's webfont) is in
+  the audit doc.
 - `feat(hmtw)`: pack art we own — the suit glyph SVGs and worm sidebar icon
   from the vault; the **Adherent of the Worm** third-party logo on the game's
   landing (that is exactly what it exists for).
