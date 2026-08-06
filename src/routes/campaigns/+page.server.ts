@@ -26,8 +26,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 		role: c.role,
 		updatedAt: c.updatedAt.toISOString()
 	}));
-	// Only offer games that actually exist to start a campaign in.
-	const games = listGames().map((g) => ({ id: g.id, name: g.name }));
+	// Only offer games a campaign can actually *do* something in: a
+	// reference-only game (no entity types — HMtW, phase 22) would found a
+	// campaign whose dashboard is permanently dead.
+	const games = listGames()
+		.filter((g) => Object.keys(g.entityTypes ?? {}).length > 0)
+		.map((g) => ({ id: g.id, name: g.name }));
 	return { signedIn: true, campaigns, games };
 };
 
@@ -40,7 +44,12 @@ export const actions: Actions = {
 		const name = String(form.get('name') ?? '').trim();
 		const gameId = String(form.get('gameId') ?? '').trim();
 		if (!name) return { create: { error: 'Give the campaign a name.' } };
-		if (!getGame(gameId)) return { create: { error: 'Pick a game.' } };
+		// Mirror the offered list: the action accepts any game id from the wire,
+		// so reject reference-only games here too, not just in the picker.
+		const game = getGame(gameId);
+		if (!game || Object.keys(game.entityTypes ?? {}).length === 0) {
+			return { create: { error: 'Pick a game.' } };
+		}
 
 		const campaign = await createCampaign(locals.db, { gameId, name, ownerId: session.user.id });
 		redirect(303, resolve('/campaigns/[id]', { id: campaign.id }));
