@@ -58,7 +58,7 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(#{1,6})\s+(.+?)\s*$")
 PAGE_ANCHOR_LINE_RE = re.compile(r"^\s*\^p\d+[a-z]?\s*$")
 TRAILING_ANCHOR_RE = re.compile(r"\s*\^p\d+[a-z]?\s*$")
-EMBED_RE = re.compile(r"!\[\[[^\]]+?\.(pdf|png|jpe?g|webp|gif|bmp|svg)(\|[^\]]*)?\]\]", re.I)
+EMBED_RE = re.compile(r"!\[\[[^\]]+?\.(pdf|png|jpe?g|webp|gif|bmp|svg|canvas)(\|[^\]]*)?\]\]", re.I)
 # Target is optional -- `[[#^pNNN|label]]` is a same-note page-anchor link.
 LINK_RE = re.compile(r"\[\[([^\]#|]*?)#(\^p\d+[a-z]?)((?:\\)?\|[^\]]*)?\]\]")
 # Target is optional here too -- `[[#CLASH|label]]` is a same-note heading link.

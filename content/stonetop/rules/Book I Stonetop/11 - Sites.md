@@ -718,8 +718,6 @@ I put the inner vault below the main level of the tomb and add a central chamber
 
 I draw the site out as a nodal diagram, adding a few burrowed tunnels to the outside—I don't think Sajra or the crinwin would be happy with only one exit!
 
-![[Green Lord's Tomb.canvas]]
-
 ### **4. Write-up**
 
  Once you've identified the site's contents, organize your notes and write things up in as much detail as you find useful, valuable, or fun.
