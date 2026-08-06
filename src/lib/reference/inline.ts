@@ -59,15 +59,60 @@ function addTo(map: Map<string, string[]>, key: string, id: string): void {
 export function buildLinkIndex(trees: DocumentTree[]): LinkIndex {
 	const byTitle: Map<string, string[]> = new Map();
 	const byBlockId: Map<string, string[]> = new Map();
+	const ordered: { id: string; titleNorm: string }[] = [];
 	for (const tree of trees) {
 		for (const section of tree.sections) {
 			addTo(byTitle, norm(section.title), section.id);
+			ordered.push({ id: section.id, titleNorm: norm(section.title) });
 			for (const m of section.body.matchAll(/^>?[ \t]*\^([\w-]+)[ \t]*$/gm)) {
 				addTo(byBlockId, m[1].toLowerCase(), section.id);
 			}
 		}
 	}
+	// Obsidian nested anchors (`[[Note#Parent#Child]]`) scope each part to
+	// after the previous one in document order — needed when the child's title
+	// is duplicated (HMtW's "1. Draw Challenge cards" appears three times in
+	// chapter 7). They can't be resolved from a flat title map, so precompute
+	// them here: scan the bodies for the nested links that actually exist and
+	// index each full fragment as a composite title key. Corpora without
+	// nested links (stonetop) add no keys, keeping their artifact unchanged.
+	for (const tree of trees) {
+		for (const section of tree.sections) {
+			for (const m of section.body.matchAll(WIKILINK)) {
+				const target = m[1].trim();
+				const hash = target.indexOf('#');
+				if (hash < 0) continue;
+				const frag = target.slice(hash + 1);
+				if (!frag.includes('#') || frag.startsWith('^')) continue;
+				const key = norm(frag);
+				if (byTitle.has(key)) continue;
+				const id = resolveNestedAnchor(ordered, target.slice(0, hash), frag);
+				if (id) byTitle.set(key, [id]);
+			}
+		}
+	}
 	return { byTitle, byBlockId };
+}
+
+/** Document-order scoped resolution of a nested fragment ("Parent#Child"):
+ * each part matches the first section titled that way after the previous
+ * part's position, restricted to the linked note's own sections when the
+ * link names one. Returns the last part's section id, or null. */
+function resolveNestedAnchor(
+	ordered: { id: string; titleNorm: string }[],
+	note: string,
+	frag: string
+): string | null {
+	const prefix = slug(note);
+	const scoped = prefix
+		? ordered.filter((s) => s.id === prefix || s.id.startsWith(`${prefix}--`))
+		: ordered;
+	let pos = -1;
+	for (const part of frag.split('#').map(norm)) {
+		pos = scoped.findIndex((s, i) => i > pos && s.titleNorm === part);
+		if (pos < 0) return null;
+	}
+	return scoped[pos].id;
 }
 
 export function serializeLinkIndex(index: LinkIndex): SerializedLinkIndex {
@@ -84,10 +129,27 @@ export function deserializeLinkIndex(data: SerializedLinkIndex): LinkIndex {
 	};
 }
 
+/** Every section id in an index — a chapter's opening section id is exactly
+ * the slug of its source note's stem, which is what a note-only wikilink
+ * (`[[15 - Appendix E - …|label]]`) names. Derived lazily and cached per
+ * index object, so the serialized artifact doesn't change shape. */
+const sectionIdsCache = new WeakMap<LinkIndex, Set<string>>();
+function sectionIds(index: LinkIndex): Set<string> {
+	let ids = sectionIdsCache.get(index);
+	if (!ids) {
+		ids = new Set<string>();
+		for (const list of index.byTitle.values()) for (const id of list) ids.add(id);
+		sectionIdsCache.set(index, ids);
+	}
+	return ids;
+}
+
 /**
  * The section id a wikilink target names, or `null`. `[[Note#Heading|Label]]`
  * matches by heading title (preferring a section whose id came from the linked
- * note); `[[Note#^blockId|Label]]` by the note's own named block id.
+ * note); `[[Note#^blockId|Label]]` by the note's own named block id. A bare
+ * `[[Note|Label]]` link falls back to the note's own opening section (whose id
+ * is the slug of the note's stem) when no section title matches the note name.
  */
 export function resolveTarget(index: LinkIndex, target: string): string | null {
 	const hash = target.indexOf('#');
@@ -96,7 +158,13 @@ export function resolveTarget(index: LinkIndex, target: string): string | null {
 	const ids = heading.startsWith('^')
 		? index.byBlockId.get(heading.slice(1).toLowerCase())
 		: index.byTitle.get(norm(heading || note));
-	if (!ids || ids.length === 0) return null;
+	if (!ids || ids.length === 0) {
+		if (!heading && note) {
+			const chapterId = slug(note);
+			if (sectionIds(index).has(chapterId)) return chapterId;
+		}
+		return null;
+	}
 	if (note && heading) {
 		const prefix = slug(note);
 		const preferred = ids.find((id) => id === prefix || id.startsWith(`${prefix}--`));

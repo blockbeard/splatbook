@@ -102,7 +102,13 @@ def collect_files(source_root: Path, exclude: set[str]) -> list[Path]:
     return sorted(files, key=lambda p: str(p.relative_to(source_root)).lower())
 
 
-def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[str]) -> list[dict]:
+def parse_file(
+    path: Path,
+    source_dir: Path,
+    used_ids: set[str],
+    warnings: list[str],
+    demote_extra_h1: bool = False,
+) -> list[dict]:
     """Turn one markdown file into an ordered list of section dicts."""
     prefix = file_slug(source_dir, path)
     lines = path.read_text(encoding="utf-8").splitlines()
@@ -133,6 +139,14 @@ def parse_file(path: Path, source_dir: Path, used_ids: set[str], warnings: list[
             continue
 
         level, raw_title, kind = parsed
+        # A multi-H1 file (HMtW's chapters carry 2–25 each) would give every
+        # top-level section the bare file-prefix id (unstable dedupe suffixes)
+        # and an empty chapter TOC. Demoting every H1 after the first keeps the
+        # opener as the chapter root and the rest as its children — the book's
+        # actual spine. Config-gated per document; stonetop is one-H1-per-file.
+        if level == 1:
+            if saw_heading and demote_extra_h1:
+                level = 2
         title = clean_title(raw_title)
         # Demote a pathologically long "heading" (OCR run-on) to body text,
         # unless it would be the file's opening line (nothing to attach it to).
@@ -176,21 +190,39 @@ def build_document(doc: dict, rules_source: Path, warnings: list[str]) -> dict:
     source_dir = rules_source / doc["sourceDir"]
     visibility = doc.get("visibility", "player")
     exclude = set(doc.get("exclude", []))
+    demote_extra_h1 = bool(doc.get("demoteExtraH1"))
+    # Filename-stem overrides for chapters whose stems don't parse into a
+    # clean number/title ("05 - Chapter 5 - The Four Paths", appendices whose
+    # positional number isn't a chapter number). Value: a title string, or
+    # {"title": …, "number": … | null} — null drops the parsed number.
+    chapter_titles = doc.get("chapterTitles", {})
+    unused_overrides = set(chapter_titles)
     used_ids: set[str] = set()
     chapters: list[dict] = []
     sections: list[dict] = []
     for path in collect_files(source_dir, exclude):
         chapter_id = file_slug(source_dir, path)
         number, title = chapter_meta(path)
+        override = chapter_titles.get(path.stem)
+        if override is not None:
+            unused_overrides.discard(path.stem)
+            if isinstance(override, str):
+                title = override
+            else:
+                title = override.get("title", title)
+                if "number" in override:
+                    number = override["number"]
         chapter: dict = {"id": chapter_id, "title": title}
         if number is not None:
             chapter["number"] = number
         chapters.append(chapter)
 
-        for section in parse_file(path, source_dir, used_ids, warnings):
+        for section in parse_file(path, source_dir, used_ids, warnings, demote_extra_h1):
             section["visibility"] = visibility
             section["chapter"] = chapter_id
             sections.append(section)
+    for stem in sorted(unused_overrides):
+        warnings.append(f"{doc['id']}: chapterTitles entry matches no file (typo?): {stem}")
     return {"id": doc["id"], "title": doc["title"], "chapters": chapters, "sections": sections}
 
 
@@ -213,7 +245,7 @@ def main() -> None:
             tree = build_document(doc, rules_source, warnings)
             out_path = out_dir / f"{doc['id']}.json"
             out_path.write_text(json.dumps(tree, indent="\t", ensure_ascii=False) + "\n", encoding="utf-8")
-            rel = out_path.relative_to(REPO_ROOT)
+            rel = out_path.relative_to(REPO_ROOT) if out_path.is_relative_to(REPO_ROOT) else out_path
             print(f"{rel}: {len(tree['sections'])} sections")
             total_docs += 1
             total_sections += len(tree["sections"])
