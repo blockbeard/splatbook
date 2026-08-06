@@ -28,17 +28,22 @@
 
 import type { DocumentTree } from './document-tree';
 
+/** What a wikilink can resolve to: an internal section id, or an external
+ * URL (phase 22 — e.g. a curated term pointing at an official course page).
+ * External targets render as real outbound links (`target="_blank"`). */
+export type LinkTarget = string | { url: string };
+
 /** Section lookups for resolving wikilink targets: by heading title, and by
  * named block id (`^clash`) — the vault's newer, stable cross-reference form. */
 export interface LinkIndex {
-	byTitle: Map<string, string[]>;
-	byBlockId: Map<string, string[]>;
+	byTitle: Map<string, LinkTarget[]>;
+	byBlockId: Map<string, LinkTarget[]>;
 }
 
 /** The JSON shape `link-index.json` carries — `LinkIndex` with plain objects. */
 export interface SerializedLinkIndex {
-	byTitle: Record<string, string[]>;
-	byBlockId: Record<string, string[]>;
+	byTitle: Record<string, LinkTarget[]>;
+	byBlockId: Record<string, LinkTarget[]>;
 }
 
 const WIKILINK = /\[\[([^\]|]+?)(?:\|([^\]]+))?\]\]/g;
@@ -50,7 +55,7 @@ const slug = (s: string): string =>
 		.replace(/[^a-z0-9]+/g, '-')
 		.replace(/^-|-$/g, '');
 
-function addTo(map: Map<string, string[]>, key: string, id: string): void {
+function addTo(map: Map<string, LinkTarget[]>, key: string, id: LinkTarget): void {
 	const ids = map.get(key);
 	if (ids) ids.push(id);
 	else map.set(key, [id]);
@@ -138,7 +143,9 @@ function sectionIds(index: LinkIndex): Set<string> {
 	let ids = sectionIdsCache.get(index);
 	if (!ids) {
 		ids = new Set<string>();
-		for (const list of index.byTitle.values()) for (const id of list) ids.add(id);
+		for (const list of index.byTitle.values()) {
+			for (const id of list) if (typeof id === 'string') ids.add(id);
+		}
 		sectionIdsCache.set(index, ids);
 	}
 	return ids;
@@ -150,8 +157,9 @@ function sectionIds(index: LinkIndex): Set<string> {
  * note); `[[Note#^blockId|Label]]` by the note's own named block id. A bare
  * `[[Note|Label]]` link falls back to the note's own opening section (whose id
  * is the slug of the note's stem) when no section title matches the note name.
+ * The result can also be an external `{ url }` target (phase 22).
  */
-export function resolveTarget(index: LinkIndex, target: string): string | null {
+export function resolveTarget(index: LinkIndex, target: string): LinkTarget | null {
 	const hash = target.indexOf('#');
 	const note = hash >= 0 ? target.slice(0, hash) : target;
 	const heading = hash >= 0 ? target.slice(hash + 1) : '';
@@ -167,7 +175,9 @@ export function resolveTarget(index: LinkIndex, target: string): string | null {
 	}
 	if (note && heading) {
 		const prefix = slug(note);
-		const preferred = ids.find((id) => id === prefix || id.startsWith(`${prefix}--`));
+		const preferred = ids.find(
+			(id) => typeof id === 'string' && (id === prefix || id.startsWith(`${prefix}--`))
+		);
 		if (preferred) return preferred;
 	}
 	return ids[0];
@@ -189,7 +199,9 @@ export function resolveWikilinks(
 	return text.replace(IMAGE_EMBED, '').replace(WIKILINK, (_m, rawTarget, rawLabel) => {
 		const target = String(rawTarget).trim();
 		const label = String(rawLabel ?? target.split('#').pop() ?? target).trim();
-		const id = index ? resolveTarget(index, target) : null;
-		return id ? `[${label}](${hrefFor(id)})` : label;
+		const resolved = index ? resolveTarget(index, target) : null;
+		if (resolved === null) return label;
+		const href = typeof resolved === 'string' ? hrefFor(resolved) : resolved.url;
+		return `[${label}](${href})`;
 	});
 }

@@ -54,6 +54,18 @@ describe('renderMarkdown', () => {
 		expect(html).not.toContain('[[');
 	});
 
+	it('opens external links in a new tab, leaving in-app links alone', () => {
+		const html = renderMarkdown(
+			'[course](https://dungeons.example.com) and [[06 - Player Moves#CLASH|Clash]]',
+			'stonetop',
+			index
+		);
+		expect(html).toContain(
+			'<a href="https://dungeons.example.com" target="_blank" rel="noopener">course</a>'
+		);
+		expect(html).toContain('<a href="/stonetop/reference/06-player-moves--clash">Clash</a>');
+	});
+
 	it('renders ordinary markdown', () => {
 		const html = renderMarkdown('**bold** and *italic*', 'stonetop', index);
 		expect(html).toContain('<strong>bold</strong>');

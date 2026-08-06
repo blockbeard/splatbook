@@ -180,4 +180,18 @@ describe('resolveWikilinks', () => {
 	it('drops image embeds and leaves other markdown alone', () => {
 		expect(resolveWikilinks('![[art.png]]**bold** stays', index, href)).toBe('**bold** stays');
 	});
+
+	it('rewrites an external { url } target as an outbound markdown link', () => {
+		// Phase 22: a curated term can point outside the app (e.g. HMtW's Tomb
+		// of Golden Ghosts → the official Designing Dungeons course).
+		const external = deserializeLinkIndex({
+			byTitle: {
+				'tomb of golden ghosts': [{ url: 'https://dungeons.hismajestytheworm.games' }]
+			},
+			byBlockId: {}
+		});
+		expect(resolveWikilinks('see [[Tomb of Golden Ghosts|the Tomb]]', external, href)).toBe(
+			'see [the Tomb](https://dungeons.hismajestytheworm.games)'
+		);
+	});
 });

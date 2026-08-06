@@ -127,6 +127,27 @@ const calloutExtension = {
 
 const referenceMarked = new Marked({ extensions: [calloutExtension] });
 
+/** An absolute external href — in-app reference links are always relative
+ * (`${base}/…`), so this cleanly separates the two. */
+const EXTERNAL_HREF = /^https?:\/\//;
+
+// External links (a resolved `{ url }` wikilink target, or a plain markdown
+// link in pack prose — e.g. HMtW's pointer to the official Designing Dungeons
+// course) leave the app: open in a new tab so the reader keeps their place.
+// Returning false defers every in-app link to marked's default rendering.
+referenceMarked.use({
+	renderer: {
+		link(token: Tokens.Link): string | false {
+			if (!EXTERNAL_HREF.test(token.href)) return false;
+			const title = token.title ? ` title="${token.title}"` : '';
+			return (
+				`<a href="${token.href}"${title} target="_blank" rel="noopener">` +
+				`${this.parser.parseInline(token.tokens)}</a>`
+			);
+		}
+	}
+});
+
 /**
  * The leading run of a text's blank/`>`-prefixed lines, up to (not
  * including) the first line that's neither *or* that opens a new callout —
