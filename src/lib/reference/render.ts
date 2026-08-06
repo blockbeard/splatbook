@@ -38,6 +38,11 @@ export { buildLinkIndex, type LinkIndex } from './inline';
  * break. Every pattern below that means "space, not a line break" says so.
  */
 const BLOCK_ID_LINE = /^>?[ \t]*\^[\w-]+[ \t]*$/gm;
+/** A block id trailing its block's last line ("…text. ^id" — HMtW's form).
+ * Indexed by `buildLinkIndex` before this strips it for display; `[^\s>]`
+ * leaves the standalone/quoted lines above to their own, structure-aware
+ * handling. */
+const TRAILING_BLOCK_ID = /([^\s>])[ \t]+\^[\w-]+[ \t]*$/gm;
 /**
  * The opening line of a callout: `> [!type]`, type letters/digits/spaces/
  * hyphens (the vault isn't consistent about single-word types, e.g.
@@ -214,7 +219,8 @@ export function renderMarkdown(
 			// CALLOUT_OPEN, so it swallows the *next* callout as if it were
 			// plain quoted text. A bare (unquoted) block-id line has no such
 			// structure to preserve, so it's still dropped outright.
-			.replace(BLOCK_ID_LINE, (m) => (m.startsWith('>') ? '>' : '')),
+			.replace(BLOCK_ID_LINE, (m) => (m.startsWith('>') ? '>' : ''))
+			.replace(TRAILING_BLOCK_ID, '$1'),
 		index,
 		(id) => `${base}/${gameId}/reference/${id}`
 	);

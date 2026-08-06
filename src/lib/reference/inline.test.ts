@@ -50,6 +50,26 @@ describe('buildLinkIndex / serialization', () => {
 		expect(index.byBlockId.get('seasons-change')).toEqual(['homefront--seasons']);
 	});
 
+	it('indexes a block id trailing its block’s last line (HMtW’s form)', () => {
+		const trailing = buildLinkIndex([
+			{
+				id: 'book',
+				title: 'Book',
+				sections: [
+					{
+						id: 'meatgrinder',
+						title: 'Meatgrinder',
+						level: 2,
+						path: [],
+						body: 'A reactive Underworld. ^create-meatgrinder',
+						visibility: 'player'
+					}
+				]
+			} as unknown as DocumentTree
+		]);
+		expect(trailing.byBlockId.get('create-meatgrinder')).toEqual(['meatgrinder']);
+	});
+
 	it('round-trips through the serialized form', () => {
 		const back = deserializeLinkIndex(serializeLinkIndex(index));
 		expect(back.byTitle).toEqual(index.byTitle);

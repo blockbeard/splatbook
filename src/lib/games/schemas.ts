@@ -14,6 +14,8 @@
  */
 
 import { registerPackSchemas } from '../packs/harness';
+import { schemaFor as hmtwSchemas } from './hmtw/pack-schemas';
 import { schemaFor as stonetopSchemas } from './stonetop/pack-schemas';
 
 registerPackSchemas('stonetop', stonetopSchemas);
+registerPackSchemas('hmtw', hmtwSchemas);

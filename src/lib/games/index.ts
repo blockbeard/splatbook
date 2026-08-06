@@ -8,13 +8,14 @@
  */
 
 import { registerGame } from './registry';
+import { hmtw } from './hmtw';
 import { stonetop } from './stonetop';
 import type { GameModule } from './types';
 
 /** The built-in games, in registration order. Ids must be unique across this
  * list — asserted in `index.test.ts`, since the registry itself now replaces
  * rather than rejects a repeat id (see `registerGame`). */
-export const BUILT_IN_GAMES: readonly GameModule[] = [stonetop];
+export const BUILT_IN_GAMES: readonly GameModule[] = [stonetop, hmtw];
 
 for (const game of BUILT_IN_GAMES) registerGame(game);
 

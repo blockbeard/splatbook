@@ -72,6 +72,13 @@ export function buildLinkIndex(trees: DocumentTree[]): LinkIndex {
 			for (const m of section.body.matchAll(/^>?[ \t]*\^([\w-]+)[ \t]*$/gm)) {
 				addTo(byBlockId, m[1].toLowerCase(), section.id);
 			}
+			// Obsidian also allows a block id *trailing* its block's last line
+			// ("…a reactive Underworld. ^create-meatgrinder" — HMtW's only form).
+			// `[^\s>]` keeps this from re-matching standalone/quoted-only lines
+			// the pass above already handled.
+			for (const m of section.body.matchAll(/[^\s>][ \t]+\^([\w-]+)[ \t]*$/gm)) {
+				addTo(byBlockId, m[1].toLowerCase(), section.id);
+			}
 		}
 	}
 	// Obsidian nested anchors (`[[Note#Parent#Child]]`) scope each part to

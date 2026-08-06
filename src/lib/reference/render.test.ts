@@ -54,6 +54,12 @@ describe('renderMarkdown', () => {
 		expect(html).not.toContain('[[');
 	});
 
+	it('strips a trailing block id from display', () => {
+		const html = renderMarkdown('A reactive Underworld. ^create-meatgrinder', 'stonetop', index);
+		expect(html).toContain('A reactive Underworld.');
+		expect(html).not.toContain('create-meatgrinder');
+	});
+
 	it('opens external links in a new tab, leaving in-app links alone', () => {
 		const html = renderMarkdown(
 			'[course](https://dungeons.example.com) and [[06 - Player Moves#CLASH|Clash]]',

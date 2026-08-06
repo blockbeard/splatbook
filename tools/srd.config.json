@@ -26,6 +26,61 @@
 					"exclude": ["00 - Front Matter", "59 - Index"]
 				}
 			]
+		},
+		{
+			"packRoot": "static/content-packs/hmtw",
+			"rulesSource": "content/hmtw/rules",
+			"outDir": "rules",
+			"documents": [
+				{
+					"id": "book",
+					"title": "His Majesty the Worm",
+					"sourceDir": "His Majesty the Worm",
+					"visibility": "player",
+					"demoteExtraH1": true,
+					"chapterTitles": {
+						"00 - Introduction": { "number": null },
+						"01 - Chapter 1 - The Basics": "The Basics",
+						"02 - Chapter 2 - The Adventurer": "The Adventurer",
+						"03 - Chapter 3 - The Guild": "The Guild",
+						"04 - Chapter 4 - Kith and Kin": "Kith and Kin",
+						"05 - Chapter 5 - The Four Paths": "The Four Paths",
+						"06 - Chapter 6 - The Crawl Phase": "The Crawl Phase",
+						"07 - Chapter 7 - The Challenge Phase": "The Challenge Phase",
+						"08 - Chapter 8 - The Camp Phase": "The Camp Phase",
+						"09 - Chapter 9 - The City Phase": "The City Phase",
+						"10 - Chapter 10 - The Worm Turns - Gamemastering": "The Worm Turns: Gamemastering",
+						"11 - Appendix A - Sorcery": { "title": "Appendix A: Sorcery", "number": null },
+						"12 - Appendix B - Alchemy": { "title": "Appendix B: Alchemy", "number": null },
+						"13 - Appendix C - Dungeon Denizens": {
+							"title": "Appendix C: Dungeon Denizens",
+							"number": null
+						},
+						"14 - Appendix D - City Creation": {
+							"title": "Appendix D: City Creation",
+							"number": null
+						},
+						"15 - Appendix E - Underworld Creation": {
+							"title": "Appendix E: Underworld Creation",
+							"number": null
+						},
+						"16 - Index": { "title": "Index", "number": null }
+					},
+					"fileVisibility": {
+						"10 - Chapter 10 - The Worm Turns - Gamemastering": "gm",
+						"13 - Appendix C - Dungeon Denizens": "gm",
+						"14 - Appendix D - City Creation": "gm",
+						"15 - Appendix E - Underworld Creation": "gm"
+					}
+				},
+				{
+					"$comment": "Hand-authored spoiler interstitial (referenceSpoilers.interstitialSectionId) — a sibling of the generated rules/ dir, hence the ../ hop; build_rules never touches it.",
+					"id": "gm-note",
+					"title": "For the Gamemaster’s Eyes",
+					"sourceDir": "../gm-note",
+					"visibility": "gm"
+				}
+			]
 		}
 	]
 }
