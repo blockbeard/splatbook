@@ -1,0 +1,4057 @@
+[
+ {
+  "term": "Acrobat",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Acrobat",
+    "label": "Acrobat"
+   }
+  ]
+ },
+ {
+  "term": "Aegis",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Aegis",
+    "label": "Aegis"
+   }
+  ]
+ },
+ {
+  "term": "Afflictions",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Afflictions",
+    "label": "Afflictions"
+   }
+  ]
+ },
+ {
+  "term": "Aid Another",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Aid Another",
+    "label": "Aid Another (action)"
+   }
+  ]
+ },
+ {
+  "term": "Akashic Consciousness",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Akashic Consciousness"
+   }
+  ]
+ },
+ {
+  "term": "Alchemy",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Alchemy",
+    "label": "Alchemy"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Alchemy kit",
+    "label": "Alchemy kit"
+   },
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "",
+    "label": "Appendix B: Alchemy"
+   },
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Alchemical Substances",
+    "label": "Alchemical Substances"
+   },
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "A Sampling of Alchemical Substances",
+    "label": "A Sampling of Alchemical Substances"
+   }
+  ]
+ },
+ {
+  "term": "Alchemy",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Alchemy",
+    "label": "Alchemy"
+   }
+  ]
+ },
+ {
+  "term": "Ambusher",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Ambusher",
+    "label": "Ambusher"
+   }
+  ]
+ },
+ {
+  "term": "Ambushes",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Ambushes and surprise",
+    "label": "Ambushes"
+   }
+  ]
+ },
+ {
+  "term": "Ancient tongues",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Ancient tongues",
+    "label": "Ancient tongues"
+   }
+  ]
+ },
+ {
+  "term": "Anger",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Role-playing Disposition",
+    "label": "Anger"
+   }
+  ]
+ },
+ {
+  "term": "Animal companions",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "War pigs",
+    "label": "War pigs"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Cups talents",
+    "label": "Cups talents"
+   }
+  ]
+ },
+ {
+  "term": "Animate Object",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Animate Object (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Area Sense",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Area Sense"
+   }
+  ]
+ },
+ {
+  "term": "Armor",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Notching armor",
+    "label": "Notching armor"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Buying new gear",
+    "label": "Buying new gear"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Armor",
+    "label": "Armor"
+   }
+  ]
+ },
+ {
+  "term": "Arête",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "6. Arête",
+    "label": "Arête"
+   }
+  ]
+ },
+ {
+  "term": "Attack",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Attack",
+    "label": "Attack (action)"
+   }
+  ]
+ },
+ {
+  "term": "Attributes",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Attributes",
+    "label": "Attributes"
+   },
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "2. Attributes",
+    "label": "Attributes"
+   }
+  ]
+ },
+ {
+  "term": "Augury",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Augury (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Avoid",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Avoid",
+    "label": "Avoid (action)"
+   }
+  ]
+ },
+ {
+  "term": "Axe",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Axe",
+    "label": "Axe"
+   }
+  ]
+ },
+ {
+  "term": "Banking",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Banking",
+    "label": "Banking (action)"
+   }
+  ]
+ },
+ {
+  "term": "Banter",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Banter",
+    "label": "Banter (action)"
+   }
+  ]
+ },
+ {
+  "term": "Beast",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Beast",
+    "label": "Beast (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Beast Master",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Beast Master",
+    "label": "Beast Master"
+   }
+  ]
+ },
+ {
+  "term": "Beg and Busk",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Beg and Busk",
+    "label": "Beg and Busk (action)"
+   }
+  ]
+ },
+ {
+  "term": "Belt",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Pack space and gear"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Pull Item from Belt",
+    "label": "Pull Item from Belt"
+   }
+  ]
+ },
+ {
+  "term": "Berserkergang",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orcish kin",
+    "label": "Berserkergang"
+   }
+  ]
+ },
+ {
+  "term": "Bid lore",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "10. Lore",
+    "label": "Bid lore"
+   },
+   {
+    "file": "16 - Index",
+    "anchor": "L",
+    "label": "Lore"
+   }
+  ]
+ },
+ {
+  "term": "Bid Lore",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Bid Lore",
+    "label": "Bid Lore (action)"
+   }
+  ]
+ },
+ {
+  "term": "Binding",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Binding (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Blade",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Blade",
+    "label": "Blade"
+   }
+  ]
+ },
+ {
+  "term": "Blind",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Blind",
+    "label": "Blind"
+   }
+  ]
+ },
+ {
+  "term": "Blur",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orcish kin",
+    "label": "Blur"
+   }
+  ]
+ },
+ {
+  "term": "Bombs",
+  "targets": [
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Alchemical Substances",
+    "label": "Bombs"
+   }
+  ]
+ },
+ {
+  "term": "Bonds",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "5. Bonds",
+    "label": "Bonds"
+   }
+  ]
+ },
+ {
+  "term": "Bookworm",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Bookworm",
+    "label": "Bookworm"
+   }
+  ]
+ },
+ {
+  "term": "Bound by fate",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Bound by fate",
+    "label": "Bound by fate"
+   }
+  ]
+ },
+ {
+  "term": "Bow",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Crossbow",
+    "label": "Bow"
+   }
+  ]
+ },
+ {
+  "term": "Brainfever",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Brainfever (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Break bread",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "^break-bread",
+    "label": "Break bread"
+   }
+  ]
+ },
+ {
+  "term": "Brute",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Brute",
+    "label": "Brute (threat)"
+   }
+  ]
+ },
+ {
+  "term": "Build",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Build",
+    "label": "Build (action)"
+   }
+  ]
+ },
+ {
+  "term": "Byname",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Human arête talent: Byname",
+    "label": "Byname"
+   }
+  ]
+ },
+ {
+  "term": "Call to Adventure",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "The Call to Adventure",
+    "label": "The Call to Adventure"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Death’s Door",
+    "label": "Death’s Door"
+   }
+  ]
+ },
+ {
+  "term": "Camp Actions",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "^camp-actions",
+    "label": "Camp Actions"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Camp Action",
+    "label": "Camp Action"
+   }
+  ]
+ },
+ {
+  "term": "Camp Phase",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "The Flow of the Camp Phase",
+    "label": "The Flow of the Camp Phase"
+   },
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Running the Camp Phase",
+    "label": "Running the Camp Phase"
+   }
+  ]
+ },
+ {
+  "term": "Cant",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Cant",
+    "label": "Cant"
+   }
+  ]
+ },
+ {
+  "term": "Carouse",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Carouse",
+    "label": "Carouse (action)"
+   }
+  ]
+ },
+ {
+  "term": "Challenge Actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^take-turns",
+    "label": "Take turns"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Challenge Actions",
+    "label": "Challenge Actions"
+   }
+  ]
+ },
+ {
+  "term": "Challenge cards",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^draw-challenge-cards",
+    "label": "Challenge cards"
+   }
+  ]
+ },
+ {
+  "term": "Challenge Phase",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "The Flow of the Challenge Phase",
+    "label": "The Flow of the Challenge Phase"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "GMing the Challenge",
+    "label": "GMing the Challenge"
+   },
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Running the Challenge Phase",
+    "label": "Running the Challenge Phase"
+   }
+  ]
+ },
+ {
+  "term": "Change Size",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Change Size (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Character creation",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "The Call to Adventure",
+    "label": "The Call to Adventure"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Death’s Door",
+    "label": "Death’s Door"
+   }
+  ]
+ },
+ {
+  "term": "Charm",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Charm (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Chirurgeon",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Chirurgeon",
+    "label": "Chirurgeon"
+   }
+  ]
+ },
+ {
+  "term": "Chivalric",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Chivalric",
+    "label": "Chivalric"
+   }
+  ]
+ },
+ {
+  "term": "Circle of Protection",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Circle of Protection (spell)"
+   }
+  ]
+ },
+ {
+  "term": "City Actions",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^city-actions",
+    "label": "City Actions"
+   },
+   {
+    "file": "14 - Appendix D - City Creation",
+    "anchor": "The Districts",
+    "label": "The Districts"
+   }
+  ]
+ },
+ {
+  "term": "City Events",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^city-events",
+    "label": "City Events"
+   }
+  ]
+ },
+ {
+  "term": "City Phase",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "The Flow of the City Phase",
+    "label": "The Flow of the City Phase"
+   },
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Running the City Phase",
+    "label": "Running the City Phase"
+   },
+   {
+    "file": "14 - Appendix D - City Creation",
+    "anchor": "Mapping the City",
+    "label": "Mapping the City"
+   }
+  ]
+ },
+ {
+  "term": "Colossal",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Troll arête talent: Colossal",
+    "label": "Colossal"
+   }
+  ]
+ },
+ {
+  "term": "Command",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Command",
+    "label": "Command (action)"
+   }
+  ]
+ },
+ {
+  "term": "Commands",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Cups talents",
+    "label": "Cups talents"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Command",
+    "label": "Command"
+   }
+  ]
+ },
+ {
+  "term": "Commission Craft",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Commission Craft",
+    "label": "Commission Craft (action)"
+   }
+  ]
+ },
+ {
+  "term": "Components",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Prepare Components",
+    "label": "Prepare Components"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Casting Spells",
+    "label": "Casting Spells"
+   }
+  ]
+ },
+ {
+  "term": "Con Artist",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Con Artist",
+    "label": "Con Artist"
+   }
+  ]
+ },
+ {
+  "term": "Concentration",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Concentration",
+    "label": "Concentration"
+   }
+  ]
+ },
+ {
+  "term": "Conditions",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "8. Conditions",
+    "label": "Conditions"
+   }
+  ]
+ },
+ {
+  "term": "Contracts",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "6. Current Contracts",
+    "label": "Current Contracts"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^turn-in-contracts",
+    "label": "Turn in contracts"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Example Contracts",
+    "label": "Example Contracts"
+   }
+  ]
+ },
+ {
+  "term": "Control",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Control",
+    "label": "Control"
+   }
+  ]
+ },
+ {
+  "term": "Control Animal",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Control Animal (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Control Undead",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Control Undead (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Counsel",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Counsel",
+    "label": "Counsel"
+   }
+  ]
+ },
+ {
+  "term": "Counter-spell",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Counter-spell",
+    "label": "Counter-spell"
+   }
+  ]
+ },
+ {
+  "term": "Crafting",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "A myth of the underfolk",
+    "label": "A myth of the underfolk"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^city-actions",
+    "label": "City Actions"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Commission Craft",
+    "label": "Commission Craft"
+   }
+  ]
+ },
+ {
+  "term": "Crawl Phase",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "The Flow of the Crawl Phase",
+    "label": "The Flow of the Crawl Phase"
+   },
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Running the Crawl Phase",
+    "label": "Running the Crawl Phase"
+   }
+  ]
+ },
+ {
+  "term": "Critical damage",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Piercing and Critical damage",
+    "label": "Critical damage"
+   }
+  ]
+ },
+ {
+  "term": "Crossbow",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Crossbow",
+    "label": "Crossbow"
+   }
+  ]
+ },
+ {
+  "term": "Cups",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Tests of Fate",
+    "label": "Tests of Fate"
+   },
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Name, kith, and kin"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Cups",
+    "label": "Path of Cups"
+   }
+  ]
+ },
+ {
+  "term": "Cups actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Cups actions",
+    "label": "Cups actions"
+   }
+  ]
+ },
+ {
+  "term": "Curse",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Curse",
+    "label": "Curse"
+   }
+  ]
+ },
+ {
+  "term": "Dagger",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Dagger",
+    "label": "Dagger"
+   }
+  ]
+ },
+ {
+  "term": "Dark elf arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dark elf arête talent: Spout Doom",
+    "label": "Dark elf arête"
+   }
+  ]
+ },
+ {
+  "term": "Dark elves",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dark elves",
+    "label": "Dark elves"
+   }
+  ]
+ },
+ {
+  "term": "Darklight",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Darklight (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Dash",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Dash",
+    "label": "Dash (action)"
+   }
+  ]
+ },
+ {
+  "term": "Deafen",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Deafen",
+    "label": "Deafen"
+   }
+  ]
+ },
+ {
+  "term": "Death’s Door",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Death’s Door",
+    "label": "Death’s Door"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Death’s Door",
+    "label": "Death’s Door"
+   }
+  ]
+ },
+ {
+  "term": "Defy Depths",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Defy Depths (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Destroy",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Destroy",
+    "label": "Destroy"
+   }
+  ]
+ },
+ {
+  "term": "Disarm",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Disarm",
+    "label": "Disarm"
+   }
+  ]
+ },
+ {
+  "term": "Disengage",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Disengaged",
+    "label": "Disengage"
+   }
+  ]
+ },
+ {
+  "term": "Dislikes and likes, wants and needs",
+  "targets": [
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Creating interesting characters",
+    "label": "Creating interesting characters"
+   },
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "",
+    "label": "Appendix C: Dungeon Denizens"
+   }
+  ]
+ },
+ {
+  "term": "Displace",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Displace",
+    "label": "Displace"
+   }
+  ]
+ },
+ {
+  "term": "Disposition",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Social Encounters & Disposition",
+    "label": "Disposition"
+   }
+  ]
+ },
+ {
+  "term": "Distaste",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Role-playing Disposition",
+    "label": "Distaste"
+   }
+  ]
+ },
+ {
+  "term": "Dodge",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Dodge",
+    "label": "Dodge (action)"
+   }
+  ]
+ },
+ {
+  "term": "Doom Eye",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Doom Eye",
+    "label": "Doom Eye"
+   }
+  ]
+ },
+ {
+  "term": "Dungeon design checklist",
+  "targets": [
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "^write-room-descriptions",
+    "label": "Dungeon design checklist"
+   }
+  ]
+ },
+ {
+  "term": "Dungeon Lord",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Dungeon Lord",
+    "label": "Dungeon Lord (threat)"
+   }
+  ]
+ },
+ {
+  "term": "Dungeon seeds",
+  "targets": [
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "Dungeon Seeds",
+    "label": "Dungeon seeds"
+   }
+  ]
+ },
+ {
+  "term": "Dwarf arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dwarf arête talent: Iron Beards",
+    "label": "Dwarf arête"
+   }
+  ]
+ },
+ {
+  "term": "Dwarves",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dwarves",
+    "label": "Dwarves"
+   }
+  ]
+ },
+ {
+  "term": "Dwimmercraft",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Dwimmercraft",
+    "label": "Dwimmercraft"
+   }
+  ]
+ },
+ {
+  "term": "Earthblooded orcs",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Earthblooded",
+    "label": "Earthblooded orcs"
+   }
+  ]
+ },
+ {
+  "term": "Effects",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Effects",
+    "label": "Effects"
+   }
+  ]
+ },
+ {
+  "term": "Elemental",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Elemental",
+    "label": "Elemental (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Elite",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Elite",
+    "label": "Elite (threat)"
+   }
+  ]
+ },
+ {
+  "term": "Enemy actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "3. Enemy actions",
+    "label": "Enemy actions"
+   },
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Creature actions",
+    "label": "Creature actions"
+   }
+  ]
+ },
+ {
+  "term": "Engagement",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Engaged",
+    "label": "Engagement"
+   }
+  ]
+ },
+ {
+  "term": "Enrage",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Enrage (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Exhaust",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Exhaust",
+    "label": "Exhaust"
+   }
+  ]
+ },
+ {
+  "term": "Experience",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "12. Experience",
+    "label": "Experience"
+   },
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "6. Current Contracts",
+    "label": "Current Contracts"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^city-actions",
+    "label": "City Actions"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Commission Craft",
+    "label": "Commission Craft"
+   }
+  ]
+ },
+ {
+  "term": "Facedown cards",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Facedown cards",
+    "label": "Facedown cards"
+   }
+  ]
+ },
+ {
+  "term": "Falling",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Falling",
+    "label": "Falling"
+   }
+  ]
+ },
+ {
+  "term": "Fame",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "7. Noteworthy Deeds and Fame",
+    "label": "Deeds and Fame"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^death-and-taxes",
+    "label": "Death and taxes"
+   }
+  ]
+ },
+ {
+  "term": "Familiars",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "13. Animal companions and familiars",
+    "label": "Animal companions and familiars"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Cups talents",
+    "label": "Cups talents"
+   }
+  ]
+ },
+ {
+  "term": "Far Realms",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "The Far Realms",
+    "label": "Far Realms"
+   }
+  ]
+ },
+ {
+  "term": "Favor and disfavor",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Favor and disfavor",
+    "label": "Favor and disfavor"
+   }
+  ]
+ },
+ {
+  "term": "Favor and disfavor",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Favor and disfavor",
+    "label": "Favor and disfavor"
+   }
+  ]
+ },
+ {
+  "term": "Fay",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Fay",
+    "label": "Fay"
+   }
+  ]
+ },
+ {
+  "term": "Fear",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "",
+    "label": "Fear"
+   }
+  ]
+ },
+ {
+  "term": "Fear",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Fear (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Feather",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Feather (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Fellowship",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Fellowship",
+    "label": "Fellowship (action)"
+   }
+  ]
+ },
+ {
+  "term": "Fight Dirty",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Fight Dirty",
+    "label": "Fight Dirty"
+   }
+  ]
+ },
+ {
+  "term": "Fireblooded orcs",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Fireblooded",
+    "label": "Fireblooded orcs"
+   }
+  ]
+ },
+ {
+  "term": "Flail",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Flail",
+    "label": "Flail"
+   }
+  ]
+ },
+ {
+  "term": "Flare",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Flare (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Fleshcraft",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Fleshcraft (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Fletch Arrows",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Fletch Arrows",
+    "label": "Fletch Arrows (action)"
+   }
+  ]
+ },
+ {
+  "term": "Flickers",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Flickers",
+    "label": "Flickers"
+   }
+  ]
+ },
+ {
+  "term": "Fool",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "The Major and Minor Arcana",
+    "label": "The Major and Minor Arcana"
+   },
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Pushing fate with the Fool",
+    "label": "Pushing fate with the Fool"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "The Fool",
+    "label": "The Fool"
+   }
+  ]
+ },
+ {
+  "term": "Fool",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "The Major and Minor Arcana",
+    "label": "The Major and Minor Arcana"
+   },
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Pushing fate with the Fool",
+    "label": "Pushing fate with the Fool"
+   }
+  ]
+ },
+ {
+  "term": "Foretell",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Fay kin",
+    "label": "Foretell"
+   }
+  ]
+ },
+ {
+  "term": "Free actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Free actions",
+    "label": "Free actions"
+   }
+  ]
+ },
+ {
+  "term": "Giant’s Strength",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Underfolk kin",
+    "label": "Giant’s Strength"
+   }
+  ]
+ },
+ {
+  "term": "Give Form to Nothingness",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Give Form to Nothingness (spell)"
+   }
+  ]
+ },
+ {
+  "term": "GMing the Challenge",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "GMing the Challenge",
+    "label": "GMing the Challenge"
+   }
+  ]
+ },
+ {
+  "term": "Gnome arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnome arête talent: Uncanny Knowledge",
+    "label": "Gnome arête"
+   }
+  ]
+ },
+ {
+  "term": "Gnomes",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Gnomes"
+   }
+  ]
+ },
+ {
+  "term": "Gold",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Pack space and gear"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^turn-in-contracts",
+    "label": "Turn in contracts"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Commission Craft",
+    "label": "Commission Craft"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Buying new gear",
+    "label": "Buying new gear"
+   }
+  ]
+ },
+ {
+  "term": "Gramarye",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Gramarye",
+    "label": "Gramarye"
+   }
+  ]
+ },
+ {
+  "term": "Great failure",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Failure",
+    "label": "Great failure"
+   }
+  ]
+ },
+ {
+  "term": "Great success",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Success",
+    "label": "Great success"
+   }
+  ]
+ },
+ {
+  "term": "Greater dooms",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Greater dooms",
+    "label": "Greater dooms"
+   }
+  ]
+ },
+ {
+  "term": "Greater dooms",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Greater dooms",
+    "label": "Greater dooms"
+   }
+  ]
+ },
+ {
+  "term": "Group tests",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Group tests",
+    "label": "Group tests"
+   }
+  ]
+ },
+ {
+  "term": "Grow/Shrink",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Grow/Shrink",
+    "label": "Grow/Shrink"
+   }
+  ]
+ },
+ {
+  "term": "Guardian Angel",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Guardian Angel (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Guild",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "The Guild Roster",
+    "label": "Guild"
+   }
+  ]
+ },
+ {
+  "term": "Guild role",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "5. Role",
+    "label": "Guild role"
+   }
+  ]
+ },
+ {
+  "term": "Guild roster",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "The Guild Roster",
+    "label": "Guild roster"
+   }
+  ]
+ },
+ {
+  "term": "Guild sigil",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "3. Sigil",
+    "label": "Guild sigil"
+   }
+  ]
+ },
+ {
+  "term": "Guild terms",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "2. Terms",
+    "label": "Guild terms"
+   }
+  ]
+ },
+ {
+  "term": "Gust of Wind",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Gust of Wind (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Hale and Hearty",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Underfolk kin",
+    "label": "Hale and Hearty"
+   }
+  ]
+ },
+ {
+  "term": "Halflings",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Halflings",
+    "label": "Halflings"
+   }
+  ]
+ },
+ {
+  "term": "Hammer/mace",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Weapons",
+    "label": "Hammer/mace"
+   }
+  ]
+ },
+ {
+  "term": "Hangover table",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "",
+    "label": "Hangover table"
+   }
+  ]
+ },
+ {
+  "term": "Heal",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Heal",
+    "label": "Heal"
+   }
+  ]
+ },
+ {
+  "term": "Health and Defense",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "",
+    "label": "Health and Defense (HD)"
+   }
+  ]
+ },
+ {
+  "term": "Heavenfire",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Heavenfire (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Heavy Metal Machine",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Heavy Metal Machine",
+    "label": "Heavy Metal Machine"
+   }
+  ]
+ },
+ {
+  "term": "High Chant",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "High Chant",
+    "label": "High Chant"
+   }
+  ]
+ },
+ {
+  "term": "High elf arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "High elf arête talent: Akashic Consciousness",
+    "label": "High elf arête"
+   }
+  ]
+ },
+ {
+  "term": "High elves",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "High elves",
+    "label": "High elves"
+   }
+  ]
+ },
+ {
+  "term": "Hold a Funeral",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Hold a Funeral",
+    "label": "Hold a Funeral (action)"
+   }
+  ]
+ },
+ {
+  "term": "Human arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Human arête talent: Byname",
+    "label": "Human arête"
+   }
+  ]
+ },
+ {
+  "term": "Humans",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Humans",
+    "label": "Humans"
+   }
+  ]
+ },
+ {
+  "term": "Hunt",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Hunt",
+    "label": "Hunt (action)"
+   }
+  ]
+ },
+ {
+  "term": "Illusion",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Illusion (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Initiative",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^draw-challenge-cards",
+    "label": "Draw Challenge cards"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Facedown cards",
+    "label": "Facedown cards"
+   }
+  ]
+ },
+ {
+  "term": "Injured",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Injured",
+    "label": "Injured (condition)"
+   }
+  ]
+ },
+ {
+  "term": "Inspire",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Inspire",
+    "label": "Inspire"
+   }
+  ]
+ },
+ {
+  "term": "Interrupt actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Interrupt actions",
+    "label": "Interrupt actions"
+   }
+  ]
+ },
+ {
+  "term": "Interrupt actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Interrupt actions",
+    "label": "Interrupt actions"
+   }
+  ]
+ },
+ {
+  "term": "Iron",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "An incomplete list of pretty things",
+    "label": "An incomplete list of pretty things"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Iron: the anti-magic",
+    "label": "Iron: the anti-magic"
+   }
+  ]
+ },
+ {
+  "term": "Iron Beards",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dwarf arête talent: Iron Beards",
+    "label": "Iron Beards"
+   }
+  ]
+ },
+ {
+  "term": "Item durability",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Item Durability",
+    "label": "Item durability"
+   }
+  ]
+ },
+ {
+  "term": "Item slots",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Item slots"
+   }
+  ]
+ },
+ {
+  "term": "Joy",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "",
+    "label": "Joy"
+   }
+  ]
+ },
+ {
+  "term": "Keen Senses",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Fay kin",
+    "label": "Keen Senses"
+   }
+  ]
+ },
+ {
+  "term": "Kin",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Kin"
+   }
+  ]
+ },
+ {
+  "term": "Kith",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Kith"
+   }
+  ]
+ },
+ {
+  "term": "Knockout",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Knockout",
+    "label": "Knockout"
+   }
+  ]
+ },
+ {
+  "term": "Labor Unending",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Underfolk kin",
+    "label": "Labor Unending"
+   }
+  ]
+ },
+ {
+  "term": "Languages",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "7. Languages",
+    "label": "Languages"
+   }
+  ]
+ },
+ {
+  "term": "Lesser dooms",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Lesser dooms",
+    "label": "Lesser dooms"
+   }
+  ]
+ },
+ {
+  "term": "Lesser dooms",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Lesser dooms",
+    "label": "Lesser dooms"
+   }
+  ]
+ },
+ {
+  "term": "Life",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Life (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Light",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Light",
+    "label": "Light"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Candle",
+    "label": "Candle"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Firewood",
+    "label": "Firewood"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Torch",
+    "label": "Torch"
+   }
+  ]
+ },
+ {
+  "term": "Lore",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "10. Lore",
+    "label": "Lore"
+   }
+  ]
+ },
+ {
+  "term": "Loremaster",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Loremaster",
+    "label": "Loremaster"
+   }
+  ]
+ },
+ {
+  "term": "Loud noises",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Loud noises",
+    "label": "Loud noises"
+   }
+  ]
+ },
+ {
+  "term": "Magic of the Wastes",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Magic of the Wastes",
+    "label": "Magic of the Wastes"
+   }
+  ]
+ },
+ {
+  "term": "Magic of the Weald",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Magic of the Weald",
+    "label": "Magic of the Weald"
+   }
+  ]
+ },
+ {
+  "term": "Magic of the Weird",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Magic of the Weird",
+    "label": "Magic of the Weird"
+   }
+  ]
+ },
+ {
+  "term": "Magic of the Welkin",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Magic of the Welkin",
+    "label": "Magic of the Welkin"
+   }
+  ]
+ },
+ {
+  "term": "Major arcana",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "The Major and Minor Arcana",
+    "label": "Major arcana"
+   }
+  ]
+ },
+ {
+  "term": "Malediction",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Malediction (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Maleficence",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence",
+    "label": "Maleficence"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Wastes",
+    "label": "Maleficence of the Wastes"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Weird",
+    "label": "Maleficence of the Weird"
+   }
+  ]
+ },
+ {
+  "term": "Man",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Man",
+    "label": "Man (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Maps",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Maps",
+    "label": "Maps"
+   },
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "^create-maps",
+    "label": "Create Maps"
+   }
+  ]
+ },
+ {
+  "term": "Marching order",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "4. Marching order",
+    "label": "Marching order"
+   }
+  ]
+ },
+ {
+  "term": "Meatgrinder",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Meatgrinder",
+    "label": "Meatgrinder"
+   },
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "^create-meatgrinder",
+    "label": "Create the Meatgrinder"
+   },
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "5. Create the Meatgrinder",
+    "label": "Create the Meatgrinder"
+   }
+  ]
+ },
+ {
+  "term": "Minion",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Minion",
+    "label": "Minion (threat)"
+   }
+  ]
+ },
+ {
+  "term": "Minor actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^minor-actions",
+    "label": "Minor actions"
+   }
+  ]
+ },
+ {
+  "term": "Minor actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^minor-actions",
+    "label": "Minor actions"
+   }
+  ]
+ },
+ {
+  "term": "Minor arcana",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "The Major and Minor Arcana",
+    "label": "Minor arcana"
+   }
+  ]
+ },
+ {
+  "term": "Mirror Meld",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Mirror Meld (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Miscellaneous actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Miscellaneous actions (Any Suit)",
+    "label": "Miscellaneous actions"
+   }
+  ]
+ },
+ {
+  "term": "Mob rule",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "^play-initiative",
+    "label": "Mob rule"
+   }
+  ]
+ },
+ {
+  "term": "Monster Hunter",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Monster Hunter",
+    "label": "Monster Hunter"
+   }
+  ]
+ },
+ {
+  "term": "Morale",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Wands actions",
+    "label": "Morale"
+   }
+  ]
+ },
+ {
+  "term": "Motifs",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "4. Motifs",
+    "label": "Motifs"
+   }
+  ]
+ },
+ {
+  "term": "Move",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Move",
+    "label": "Move (action)"
+   }
+  ]
+ },
+ {
+  "term": "Moving carefully",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Moving carefully",
+    "label": "Moving carefully"
+   }
+  ]
+ },
+ {
+  "term": "Necromancy",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Necromancy (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Notch",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Notch",
+    "label": "Notch"
+   }
+  ]
+ },
+ {
+  "term": "Noteworthy deeds",
+  "targets": [
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "",
+    "label": "Chapter 3: The Guild"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^noteworthy-deeds",
+    "label": "Noteworthy deeds"
+   }
+  ]
+ },
+ {
+  "term": "Oils",
+  "targets": [
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Alchemical Substances",
+    "label": "Oils"
+   }
+  ]
+ },
+ {
+  "term": "Omphalic Market",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "The Omphalic Market",
+    "label": "The Omphalic Market"
+   },
+   {
+    "file": "14 - Appendix D - City Creation",
+    "anchor": "The Omphalic Market",
+    "label": "The Omphalic Market"
+   }
+  ]
+ },
+ {
+  "term": "Orc arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orc arête talent: Jarl",
+    "label": "Orc arête"
+   }
+  ]
+ },
+ {
+  "term": "Orcs",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orcs",
+    "label": "Orcs"
+   }
+  ]
+ },
+ {
+  "term": "Out of cards",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "GMing the Challenge",
+    "label": "Out of cards"
+   }
+  ]
+ },
+ {
+  "term": "Overland travel",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Overland Travel",
+    "label": "Overland travel"
+   }
+  ]
+ },
+ {
+  "term": "Oversized",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Oversized"
+   }
+  ]
+ },
+ {
+  "term": "Pack",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Pack space and gear"
+   },
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Pull Item from Pack",
+    "label": "Pull Item from Pack"
+   }
+  ]
+ },
+ {
+  "term": "Pacts",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Pacts",
+    "label": "Pacts"
+   }
+  ]
+ },
+ {
+  "term": "Path of Cups",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Cups",
+    "label": "Path of Cups"
+   }
+  ]
+ },
+ {
+  "term": "Path of Pentacles",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Pentacles",
+    "label": "Path of Pentacles"
+   }
+  ]
+ },
+ {
+  "term": "Path of Swords",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Swords",
+    "label": "Path of Swords"
+   }
+  ]
+ },
+ {
+  "term": "Path of Wands",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Wands",
+    "label": "Path of Wands"
+   }
+  ]
+ },
+ {
+  "term": "Patrol",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Patrol",
+    "label": "Patrol (action)"
+   }
+  ]
+ },
+ {
+  "term": "Pentacles",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Tests of Fate",
+    "label": "Tests of Fate"
+   },
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Name, kith, and kin"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Pentacles",
+    "label": "Path of Pentacles"
+   }
+  ]
+ },
+ {
+  "term": "Pentacles actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Pentacles actions",
+    "label": "Pentacles actions"
+   }
+  ]
+ },
+ {
+  "term": "Piercing damage",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Piercing",
+    "label": "Piercing damage"
+   }
+  ]
+ },
+ {
+  "term": "Poison Blood",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orcish kin",
+    "label": "Poison Blood"
+   }
+  ]
+ },
+ {
+  "term": "Polearm",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Polearm",
+    "label": "Polearm"
+   }
+  ]
+ },
+ {
+  "term": "Portable Hole",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Portable Hole (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Potions",
+  "targets": [
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Alchemical Substances",
+    "label": "Potions"
+   }
+  ]
+ },
+ {
+  "term": "Prepare Components",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Prepare Components",
+    "label": "Prepare Components (action)"
+   }
+  ]
+ },
+ {
+  "term": "Protection from the Elements",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Protection from the Elements",
+    "label": "Protection from the Elements"
+   }
+  ]
+ },
+ {
+  "term": "Proud and Ancient",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "A myth of humankind",
+    "label": "Proud and Ancient"
+   }
+  ]
+ },
+ {
+  "term": "Pull Item from Belt",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Pull Item from Belt",
+    "label": "Pull Item from Belt (action)"
+   }
+  ]
+ },
+ {
+  "term": "Pull Item from Pack",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Pull Item from Pack",
+    "label": "Pull Item from Pack (action)"
+   }
+  ]
+ },
+ {
+  "term": "Push fate",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Example test of fate",
+    "label": "Push fate"
+   }
+  ]
+ },
+ {
+  "term": "Pushing fate",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Pushing fate",
+    "label": "Pushing fate"
+   }
+  ]
+ },
+ {
+  "term": "Quests",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "3. Quests",
+    "label": "Quests"
+   },
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Meatgrinder",
+    "label": "Meatgrinder"
+   }
+  ]
+ },
+ {
+  "term": "Quick!",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Quick!",
+    "label": "Quick!"
+   }
+  ]
+ },
+ {
+  "term": "Quicksilver Blood",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Orcish kin",
+    "label": "Quicksilver Blood"
+   }
+  ]
+ },
+ {
+  "term": "Raise Zombie",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Raise Zombie (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Random number generation",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "The Major and Minor Arcana",
+    "label": "Random number generation"
+   }
+  ]
+ },
+ {
+  "term": "Read a Book",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Read a Book",
+    "label": "Read a Book (action)"
+   }
+  ]
+ },
+ {
+  "term": "Read the Past",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Fay kin",
+    "label": "Read the Past"
+   }
+  ]
+ },
+ {
+  "term": "Reagents",
+  "targets": [
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Reagents",
+    "label": "Reagents"
+   }
+  ]
+ },
+ {
+  "term": "Reaver",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Reaver",
+    "label": "Reaver"
+   }
+  ]
+ },
+ {
+  "term": "Recover",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Recover",
+    "label": "Recover (action)"
+   }
+  ]
+ },
+ {
+  "term": "Recovery",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "^recovery",
+    "label": "Recovery (Camp Phase)"
+   }
+  ]
+ },
+ {
+  "term": "Reload Crossbow",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Reload Crossbow",
+    "label": "Reload Crossbow (action)"
+   }
+  ]
+ },
+ {
+  "term": "Research",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Research",
+    "label": "Research (action)"
+   }
+  ]
+ },
+ {
+  "term": "Resolve",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "9. Resolve",
+    "label": "Resolve"
+   }
+  ]
+ },
+ {
+  "term": "Rest and Recover",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Rest and Recover",
+    "label": "Rest and Recover (action)"
+   }
+  ]
+ },
+ {
+  "term": "Retirement",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Retirement",
+    "label": "Retirement"
+   }
+  ]
+ },
+ {
+  "term": "Retreating",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Retreating",
+    "label": "Retreating"
+   }
+  ]
+ },
+ {
+  "term": "Riposte",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Riposte",
+    "label": "Riposte (action)"
+   }
+  ]
+ },
+ {
+  "term": "Root",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Root",
+    "label": "Root"
+   }
+  ]
+ },
+ {
+  "term": "Roughhouse",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Roughhouse",
+    "label": "Roughhouse (action)"
+   }
+  ]
+ },
+ {
+  "term": "Rumor mill",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "",
+    "label": "Rumor mill"
+   }
+  ]
+ },
+ {
+  "term": "Sadness",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Role-playing Disposition",
+    "label": "Sadness"
+   }
+  ]
+ },
+ {
+  "term": "Scout Ahead",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Scout Ahead",
+    "label": "Scout Ahead (action)"
+   }
+  ]
+ },
+ {
+  "term": "Scry",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Scry (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Seablooded orcs",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Seablooded",
+    "label": "Seablooded orcs"
+   }
+  ]
+ },
+ {
+  "term": "Seal Pact",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Seal Pact (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Session 0",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Session 0",
+    "label": "Session 0"
+   }
+  ]
+ },
+ {
+  "term": "Shroud",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Shroud",
+    "label": "Shroud (effect)"
+   }
+  ]
+ },
+ {
+  "term": "Shroud",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Shroud (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Signs and portents",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Signs and Portents",
+    "label": "Signs and portents"
+   }
+  ]
+ },
+ {
+  "term": "Silence",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Silence",
+    "label": "Silence"
+   }
+  ]
+ },
+ {
+  "term": "Sleep",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weird",
+    "label": "Sleep (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Slots",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "14. Pack space and gear",
+    "label": "Slots"
+   }
+  ]
+ },
+ {
+  "term": "Sneak",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Sneak",
+    "label": "Sneak"
+   }
+  ]
+ },
+ {
+  "term": "Sorcerous",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Sorcerous",
+    "label": "Sorcerous (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Sorcery",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Wands talents",
+    "label": "Wands talents"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Prepare Components",
+    "label": "Prepare Components"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "",
+    "label": "Appendix A: Sorcery"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Brainfever",
+    "label": "Brainfever"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Control Animal",
+    "label": "Control Animal"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Animate Object",
+    "label": "Animate Object"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Augury",
+    "label": "Augury"
+   }
+  ]
+ },
+ {
+  "term": "Speak Incantation",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Speak Incantation",
+    "label": "Speak Incantation (action)"
+   }
+  ]
+ },
+ {
+  "term": "Speak to Animal",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Speak to Animal (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Spells",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Casting Spells",
+    "label": "Spells"
+   }
+  ]
+ },
+ {
+  "term": "Spells of the Wastes",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Brainfever",
+    "label": "Spells of the Wastes"
+   }
+  ]
+ },
+ {
+  "term": "Spells of the Weald",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Control Animal",
+    "label": "Spells of the Weald"
+   }
+  ]
+ },
+ {
+  "term": "Spells of the Weird",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Animate Object",
+    "label": "Spells of the Weird"
+   }
+  ]
+ },
+ {
+  "term": "Spells of the Welkin",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Augury",
+    "label": "Spells of the Welkin"
+   }
+  ]
+ },
+ {
+  "term": "Spirit",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Spirit",
+    "label": "Spirit (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Spout Doom",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Spout Doom"
+   }
+  ]
+ },
+ {
+  "term": "Staggered",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Staggered",
+    "label": "Staggered (condition)"
+   }
+  ]
+ },
+ {
+  "term": "Starting Disposition",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Starting Disposition",
+    "label": "Starting Disposition"
+   }
+  ]
+ },
+ {
+  "term": "Starving",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "^break-bread",
+    "label": "Starving"
+   }
+  ]
+ },
+ {
+  "term": "Stinking Cloud",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Stinking Cloud (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Stormblooded orcs",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Stormblooded",
+    "label": "Stormblooded orcs"
+   }
+  ]
+ },
+ {
+  "term": "Strategist",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Strategist",
+    "label": "Strategist (threat)"
+   }
+  ]
+ },
+ {
+  "term": "Stressed",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Stressed",
+    "label": "Stressed"
+   },
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Stress",
+    "label": "Stress"
+   }
+  ]
+ },
+ {
+  "term": "Stun",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Stun",
+    "label": "Stun"
+   }
+  ]
+ },
+ {
+  "term": "Support",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Support",
+    "label": "Support (action)"
+   }
+  ]
+ },
+ {
+  "term": "Surprise",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "",
+    "label": "Surprise"
+   }
+  ]
+ },
+ {
+  "term": "Swords",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Tests of Fate",
+    "label": "Tests of Fate"
+   },
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Name, kith, and kin"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Swords",
+    "label": "Path of Swords"
+   }
+  ]
+ },
+ {
+  "term": "Swords actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Swords actions",
+    "label": "Swords actions"
+   }
+  ]
+ },
+ {
+  "term": "Talents",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "11. Talents",
+    "label": "Talents"
+   }
+  ]
+ },
+ {
+  "term": "Taxes",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^death-and-taxes",
+    "label": "Taxes"
+   }
+  ]
+ },
+ {
+  "term": "Test Fate",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Test Fate",
+    "label": "Test Fate (action)"
+   }
+  ]
+ },
+ {
+  "term": "Test of fate",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Tests of Fate",
+    "label": "Test of fate"
+   }
+  ]
+ },
+ {
+  "term": "The Fool",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "The Fool",
+    "label": "The Fool"
+   }
+  ]
+ },
+ {
+  "term": "Themes",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Themes",
+    "label": "Themes"
+   }
+  ]
+ },
+ {
+  "term": "Threats",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Threats",
+    "label": "Threats"
+   }
+  ]
+ },
+ {
+  "term": "Thunderclap",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Thunderclap (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Tomb of Golden Ghosts",
+  "targets": [
+   {
+    "url": "https://dungeons.hismajestytheworm.games",
+    "label": "Designing Dungeons (official course)",
+    "note": "The tutorial dungeon isn't reproduced here at the author's request — the official Designing Dungeons course walks through building it."
+   }
+  ]
+ },
+ {
+  "term": "Totem",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Totem (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Train",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Train",
+    "label": "Train"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Train",
+    "label": "Train"
+   }
+  ]
+ },
+ {
+  "term": "Training",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "12. Experience",
+    "label": "Experience"
+   },
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Train",
+    "label": "Train"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Train",
+    "label": "Train"
+   }
+  ]
+ },
+ {
+  "term": "Traps",
+  "targets": [
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "Creating interesting traps",
+    "label": "Traps"
+   }
+  ]
+ },
+ {
+  "term": "Treasure",
+  "targets": [
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "How much treasure?",
+    "label": "Treasure"
+   }
+  ]
+ },
+ {
+  "term": "Trip",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Trip",
+    "label": "Trip"
+   }
+  ]
+ },
+ {
+  "term": "Trivial Action",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Trivial Action",
+    "label": "Trivial Action (action)"
+   }
+  ]
+ },
+ {
+  "term": "Troll arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Troll arête talent: Colossal",
+    "label": "Troll arête"
+   }
+  ]
+ },
+ {
+  "term": "Trolls",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Trolls",
+    "label": "Trolls"
+   }
+  ]
+ },
+ {
+  "term": "Trust",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Role-playing Disposition",
+    "label": "Trust"
+   }
+  ]
+ },
+ {
+  "term": "Turncloak",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Human arête talent: Byname",
+    "label": "Turncloak"
+   }
+  ]
+ },
+ {
+  "term": "Two-handed Focus",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Two-handed Focus",
+    "label": "Two-handed Focus"
+   }
+  ]
+ },
+ {
+  "term": "Tylwyth",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Tylwyth",
+    "label": "Tylwyth"
+   }
+  ]
+ },
+ {
+  "term": "Unarmed combatants",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Challenge Actions",
+    "label": "Unarmed combatants"
+   }
+  ]
+ },
+ {
+  "term": "Uncanny Knowledge",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Uncanny Knowledge"
+   }
+  ]
+ },
+ {
+  "term": "Undead",
+  "targets": [
+   {
+    "file": "13 - Appendix C - Dungeon Denizens",
+    "anchor": "Undead",
+    "label": "Undead (theme)"
+   }
+  ]
+ },
+ {
+  "term": "Underfolk",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Underfolk",
+    "label": "Underfolk"
+   }
+  ]
+ },
+ {
+  "term": "Underfolk arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Dwarf arête talent: Iron Beards",
+    "label": "Underfolk arête"
+   }
+  ]
+ },
+ {
+  "term": "Underfoot",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Halfling arête talent: Underfoot",
+    "label": "Underfoot"
+   }
+  ]
+ },
+ {
+  "term": "Underworld",
+  "targets": [
+   {
+    "file": "10 - Chapter 10 - The Worm Turns - Gamemastering",
+    "anchor": "Creating your Underworld",
+    "label": "Creating your Underworld"
+   },
+   {
+    "file": "15 - Appendix E - Underworld Creation",
+    "anchor": "^origins",
+    "label": "Origins of the Underworld"
+   }
+  ]
+ },
+ {
+  "term": "Up My Sleeve",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Up My Sleeve",
+    "label": "Up My Sleeve"
+   }
+  ]
+ },
+ {
+  "term": "Update Maps",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Update Maps",
+    "label": "Update Maps (action)"
+   }
+  ]
+ },
+ {
+  "term": "Upkeep",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^upkeep",
+    "label": "Upkeep"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Buying new gear",
+    "label": "Buying new gear"
+   }
+  ]
+ },
+ {
+  "term": "Use an Item",
+  "targets": [
+   {
+    "file": "08 - Chapter 8 - The Camp Phase",
+    "anchor": "Use an Item",
+    "label": "Use an Item (Camp action)"
+   }
+  ]
+ },
+ {
+  "term": "Use Item",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Use Item",
+    "label": "Use Item"
+   },
+   {
+    "file": "12 - Appendix B - Alchemy",
+    "anchor": "Alchemical Substances",
+    "label": "Alchemical Substances"
+   }
+  ]
+ },
+ {
+  "term": "Veritas",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Welkin",
+    "label": "Veritas (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Vetus",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Vetus",
+    "label": "Vetus"
+   }
+  ]
+ },
+ {
+  "term": "Vigilance",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Vigilance",
+    "label": "Vigilance (action)"
+   }
+  ]
+ },
+ {
+  "term": "Vulgaris",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Vulgaris",
+    "label": "Vulgaris"
+   }
+  ]
+ },
+ {
+  "term": "Wall of Elements",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Wall of Elements (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Wands",
+  "targets": [
+   {
+    "file": "01 - Chapter 1 - The Basics",
+    "anchor": "Tests of Fate",
+    "label": "Tests of Fate"
+   },
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "1. Name, kith, and kin",
+    "label": "Name, kith, and kin"
+   },
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "Path of Wands",
+    "label": "Path of Wands"
+   }
+  ]
+ },
+ {
+  "term": "Wands actions",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Wands actions",
+    "label": "Wands actions"
+   }
+  ]
+ },
+ {
+  "term": "War Stories",
+  "targets": [
+   {
+    "file": "05 - Chapter 5 - The Four Paths",
+    "anchor": "War Stories",
+    "label": "War Stories"
+   }
+  ]
+ },
+ {
+  "term": "Wastes",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Wastes",
+    "label": "Maleficence of the Wastes"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Brainfever",
+    "label": "Brainfever"
+   }
+  ]
+ },
+ {
+  "term": "Watches",
+  "targets": [
+   {
+    "file": "06 - Chapter 6 - The Crawl Phase",
+    "anchor": "Watches",
+    "label": "Watches"
+   }
+  ]
+ },
+ {
+  "term": "Weald",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Weald",
+    "label": "Maleficence of the Weald"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Control Animal",
+    "label": "Control Animal"
+   }
+  ]
+ },
+ {
+  "term": "Weapons",
+  "targets": [
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Weapons",
+    "label": "Weapons"
+   }
+  ]
+ },
+ {
+  "term": "Weird",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Weird",
+    "label": "Maleficence of the Weird"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Animate Object",
+    "label": "Animate Object"
+   }
+  ]
+ },
+ {
+  "term": "Weird, Wise, Ancient",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Gnomes",
+    "label": "Weird, Wise, Ancient"
+   }
+  ]
+ },
+ {
+  "term": "Welkin",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Maleficence of the Welkin",
+    "label": "Maleficence of the Welkin"
+   },
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Augury",
+    "label": "Augury"
+   }
+  ]
+ },
+ {
+  "term": "Withering",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Wastes",
+    "label": "Withering (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Wood elf arête",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Wood elf arête talent: Area Sense",
+    "label": "Wood elf arête"
+   }
+  ]
+ },
+ {
+  "term": "Wood elves",
+  "targets": [
+   {
+    "file": "04 - Chapter 4 - Kith and Kin",
+    "anchor": "Wood elves",
+    "label": "Wood elves"
+   }
+  ]
+ },
+ {
+  "term": "Woodweave",
+  "targets": [
+   {
+    "file": "11 - Appendix A - Sorcery",
+    "anchor": "Spells of the Weald",
+    "label": "Woodweave (spell)"
+   }
+  ]
+ },
+ {
+  "term": "Wounded",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "Wounded",
+    "label": "Wounded (condition)"
+   }
+  ]
+ },
+ {
+  "term": "Wounds",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Wounds",
+    "label": "Wounds"
+   }
+  ]
+ },
+ {
+  "term": "XP",
+  "targets": [
+   {
+    "file": "02 - Chapter 2 - The Adventurer",
+    "anchor": "12. Experience",
+    "label": "Experience"
+   },
+   {
+    "file": "03 - Chapter 3 - The Guild",
+    "anchor": "6. Current Contracts",
+    "label": "Current Contracts"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "^city-actions",
+    "label": "City Actions"
+   },
+   {
+    "file": "09 - Chapter 9 - The City Phase",
+    "anchor": "Commission Craft",
+    "label": "Commission Craft"
+   }
+  ]
+ },
+ {
+  "term": "Zones",
+  "targets": [
+   {
+    "file": "07 - Chapter 7 - The Challenge Phase",
+    "anchor": "Zones",
+    "label": "Zones"
+   }
+  ]
+ }
+]
