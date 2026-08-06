@@ -92,24 +92,32 @@ export function fetchLinkIndex(gameId: string, fetchFn: Fetcher): Promise<LinkIn
 	return promise;
 }
 
-/** Project trees to their TOC form, optionally dropping sections that fail a filter. */
+/** Project trees to their TOC form, optionally dropping sections that fail a filter.
+ * Chapters whose sections were all filtered out are dropped with them — a gated
+ * chapter must not list by name in the sidebar or on the chapter-card landing. */
 export function tocOf(
 	trees: DocumentTree[],
 	include: (s: DocumentSection) => boolean = () => true
 ): TocDocument[] {
-	return trees.map((t) => ({
-		id: t.id,
-		title: t.title,
-		chapters: t.chapters ?? [],
-		sections: t.sections.filter(include).map(({ id, title, level, path, visibility, chapter }) => ({
-			id,
-			title,
-			level,
-			path,
-			visibility,
-			chapter
-		}))
-	}));
+	return trees.map((t) => {
+		const sections = t.sections
+			.filter(include)
+			.map(({ id, title, level, path, visibility, chapter }) => ({
+				id,
+				title,
+				level,
+				path,
+				visibility,
+				chapter
+			}));
+		const surviving = new Set(sections.map((s) => s.chapter));
+		return {
+			id: t.id,
+			title: t.title,
+			chapters: (t.chapters ?? []).filter((c) => surviving.has(c.id)),
+			sections
+		};
+	});
 }
 
 /** Locate a section by id across trees. */

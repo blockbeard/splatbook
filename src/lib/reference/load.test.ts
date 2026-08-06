@@ -59,6 +59,36 @@ describe('tocOf', () => {
 		const [doc] = tocOf([tree]);
 		expect(doc.chapters).toEqual([]);
 	});
+
+	it('drops a chapter whose sections were all filtered out', () => {
+		// Mixed visibility in one document (HMtW's shape: GM chapters
+		// interleaved in one flat folder) — a gated chapter must not list
+		// by name in the sidebar or on the chapter-card landing.
+		const mixed: DocumentTree = documentTreeSchema.parse({
+			id: 'book',
+			title: 'Book',
+			chapters: [
+				{ id: 'intro', number: 1, title: 'Introduction' },
+				{ id: 'gm-secrets', number: 2, title: 'GM Secrets' }
+			],
+			sections: [
+				{ id: 'intro', title: 'Introduction', level: 1, path: [], body: '', chapter: 'intro' },
+				{
+					id: 'gm-secrets',
+					title: 'GM Secrets',
+					level: 1,
+					path: [],
+					body: '',
+					chapter: 'gm-secrets',
+					visibility: 'gm'
+				}
+			]
+		});
+		const [hidden] = tocOf([mixed], (s) => isVisible(s, false));
+		expect(hidden.chapters.map((c) => c.id)).toEqual(['intro']);
+		const [shown] = tocOf([mixed], (s) => isVisible(s, true));
+		expect(shown.chapters.map((c) => c.id)).toEqual(['intro', 'gm-secrets']);
+	});
 });
 
 describe('findSection', () => {
