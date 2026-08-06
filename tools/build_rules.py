@@ -21,6 +21,10 @@ Config keys (see tools/rules.stonetop.json):
   truncateAtHeading vault-relative path -> {"heading": exact heading line,
                     "replacement": note appended in place of the cut tail}.
                     Runs at read time, so cut headings are not link targets.
+  stripCallouts     callout types (e.g. "hmw-nav") whose whole block is removed
+  linkRewrites      "Note#Fragment" (as written in the link) -> new "Note" or
+                    "Note#Fragment" target, or null to degrade the link to its
+                    label text. Applied before verification.
 
 Re-run whenever the vault changes; never hand-edit the output.
 """
@@ -33,7 +37,15 @@ import shutil
 import sys
 from pathlib import Path
 
-CONFIG_KEYS = {"$comment", "sourceDirs", "excludeDirNames", "excludeFiles", "truncateAtHeading"}
+CONFIG_KEYS = {
+    "$comment",
+    "sourceDirs",
+    "excludeDirNames",
+    "excludeFiles",
+    "truncateAtHeading",
+    "stripCallouts",
+    "linkRewrites",
+}
 
 
 def load_config(path: Path) -> dict:
@@ -55,10 +67,17 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 # An Obsidian callout that opens with a heading -- `> [!move] ## **CLASH**` --
 # is a heading too: it's linkable, and its callout type becomes the section's
 # `kind` downstream in build_srd.py. Mirrors build_srd.py's CALLOUT_HEADING_RE.
-CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(#{1,6})\s+(.+?)\s*$")
+CALLOUT_HEADING_RE = re.compile(r"^>\s*\[!([\w-]+)\][+-]?\s*(#{1,6})\s+(.+?)\s*$")
+CALLOUT_OPEN_RE = re.compile(r"^>\s*\[!([\w-]+)\][+-]?")
 PAGE_ANCHOR_LINE_RE = re.compile(r"^\s*\^p\d+[a-z]?\s*$")
 TRAILING_ANCHOR_RE = re.compile(r"\s*\^p\d+[a-z]?\s*$")
 EMBED_RE = re.compile(r"!\[\[[^\]]+?\.(pdf|png|jpe?g|webp|gif|bmp|svg|canvas)(\|[^\]]*)?\]\]", re.I)
+# Art in non-Obsidian-embed forms: plain markdown images, raw <img> tags (the
+# HMtW corpus ships light/dark pairs), and the wrapper spans left empty once
+# their images are gone. No license to redistribute art in any syntax.
+MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
+IMG_TAG_RE = re.compile(r"<img\b[^>]*>", re.I)
+EMPTY_ART_SPAN_RE = re.compile(r'<span class="(?:hmw-fig|nav-spacer)">\s*</span>')
 # Target is optional -- `[[#^pNNN|label]]` is a same-note page-anchor link.
 LINK_RE = re.compile(r"\[\[([^\]#|]*?)#(\^p\d+[a-z]?)((?:\\)?\|[^\]]*)?\]\]")
 # Target is optional here too -- `[[#CLASH|label]]` is a same-note heading link.
@@ -153,29 +172,72 @@ def build_anchor_maps(files: list[Path], texts: dict[Path, str]) -> tuple[dict, 
     return anchor_map, headings_map, warnings
 
 
-def transform(text: str, anchor_map: dict, warnings: list[str], src_name: str) -> str:
-    # 1. strip art/PDF embeds (bare or inside callout quotes)
+def strip_callout_blocks(lines: list[str], types: set[str]) -> list[str]:
+    """Remove whole callout blocks (opening line + quoted body) of the given types."""
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        m = CALLOUT_OPEN_RE.match(lines[i])
+        if m and m.group(1).lower() in types:
+            i += 1
+            while i < len(lines) and lines[i].lstrip().startswith(">"):
+                i += 1
+            continue
+        out.append(lines[i])
+        i += 1
+    return out
+
+
+def rewrite_links(text: str, rewrites: dict, warnings: list[str], src_name: str) -> str:
+    """Apply the config's linkRewrites map: retarget a link, or degrade it to its label."""
+
+    def repl(m: re.Match) -> str:
+        target, frag, pipe = m.group(1).strip().rstrip("\\"), m.group(3), m.group(4) or ""
+        key = f"{target}#{frag.rstrip('\\')}" if frag else target
+        if key not in rewrites:
+            return m.group(0)
+        new = rewrites[key]
+        if new is None:  # degrade to label text
+            label = pipe.lstrip("\\|").strip()
+            return label or frag or target
+        return f"[[{new}{pipe}]]"
+
+    return ANY_LINK_RE.sub(repl, text)
+
+
+def transform(text: str, anchor_map: dict, warnings: list[str], src_name: str, cfg: dict) -> str:
+    # 1. strip configured callout blocks wholesale (e.g. HMtW's [!hmw-nav] chrome)
     lines_in = text.splitlines()
+    strip_types = {t.lower() for t in cfg.get("stripCallouts", [])}
+    if strip_types:
+        lines_in = strip_callout_blocks(lines_in, strip_types)
+
+    # 2. strip art/PDF embeds in every syntax (bare or inside callout quotes)
     lines: list[str] = []
     for line in lines_in:
-        if EMBED_RE.search(line):
-            stripped = EMBED_RE.sub("", line).strip()
-            if stripped in {"", ">", ">-"}:
+        if EMBED_RE.search(line) or MD_IMAGE_RE.search(line) or IMG_TAG_RE.search(line):
+            for rx in (EMBED_RE, MD_IMAGE_RE, IMG_TAG_RE, EMPTY_ART_SPAN_RE):
+                line = rx.sub("", line)
+            if line.strip() in {"", ">", ">-"}:
                 continue
-            line = EMBED_RE.sub("", line)
         lines.append(line)
 
-    # 2. drop callout headers left with no body (e.g. the printable-playbook wrapper)
+    # 3. drop callout headers left with no body (e.g. the printable-playbook wrapper)
     out: list[str] = []
     for i, line in enumerate(lines):
-        if re.match(r"^>\s*\[!\w+\][+-]?\s*", line):
+        if re.match(r"^>\s*\[![\w-]+\][+-]?\s*", line):
             nxt = lines[i + 1] if i + 1 < len(lines) else ""
             if not nxt.lstrip().startswith(">"):
                 continue
         out.append(line)
     lines = out
 
-    # 3. remap page-anchor links, then strip anchors
+    # 4. retarget/degrade links per config (stragglers into truncated ranges etc.)
+    rewrites = cfg.get("linkRewrites", {})
+    if rewrites:
+        lines = rewrite_links("\n".join(lines), rewrites, warnings, src_name).splitlines()
+
+    # 5. remap page-anchor links, then strip anchors
     def repl(m: re.Match) -> str:
         target, anchor = m.group(1).strip().rstrip("\\"), m.group(2)[1:]
         pipe = m.group(3) or ""  # preserves \| escaping inside tables
@@ -198,7 +260,7 @@ def transform(text: str, anchor_map: dict, warnings: list[str], src_name: str) -
         kept.append(TRAILING_ANCHOR_RE.sub("", line) if TRAILING_ANCHOR_RE.search(line) else line)
     text = "\n".join(kept)
 
-    # 4. collapse 3+ blank lines
+    # 6. collapse 3+ blank lines
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
 
@@ -214,12 +276,12 @@ PAGE_ANCHOR_SHAPE_RE = re.compile(r"p\d+[a-z]?")
 
 def verify(out_dir: Path) -> list[str]:
     problems: list[str] = []
-    notes: dict[str, set[str]] = {}
+    notes: dict[str, list[str]] = {}  # ordered, for nested-anchor scoping
     block_ids: dict[str, set[str]] = {}
     for p in out_dir.rglob("*.md"):
         text = p.read_text(encoding="utf-8")
         headings = (parse_heading(line) for line in text.splitlines())
-        notes[p.stem] = {normalize_heading(h) for h in headings if h is not None}
+        notes[p.stem] = [normalize_heading(h) for h in headings if h is not None]
         # named block ids (^basic-moves-section, ^clash…) are real, permanent
         # link targets -- ^pNNN page anchors are transient and stripped by
         # transform() already, so anything still page-anchor-shaped here is
@@ -236,8 +298,16 @@ def verify(out_dir: Path) -> list[str]:
             elif frag and frag.startswith("^"):
                 if frag[1:] not in block_ids.get(target, set()):
                     problems.append(f"{p.stem}: unresolved block id [[{target}#{frag}]]")
-            elif frag and normalize_heading(frag) not in notes[target]:
-                problems.append(f"{p.stem}: unresolved heading [[{target}#{frag}]]")
+            elif frag:
+                # Obsidian nested anchors (#Parent#Child) scope each part to
+                # after the previous one; a plain fragment is the 1-part case.
+                headings_seq = notes[target]
+                pos = -1
+                for part in (normalize_heading(x) for x in frag.split("#")):
+                    pos = next((i for i in range(pos + 1, len(headings_seq)) if headings_seq[i] == part), -1)
+                    if pos == -1:
+                        problems.append(f"{p.stem}: unresolved heading [[{target}#{frag}]]")
+                        break
     return problems
 
 
@@ -258,7 +328,7 @@ def main() -> None:
         rel = path.relative_to(args.vault)
         dest = args.out / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(transform(texts[path], anchor_map, warnings, path.stem), encoding="utf-8")
+        dest.write_text(transform(texts[path], anchor_map, warnings, path.stem, cfg), encoding="utf-8")
         written.add(dest.resolve())
     if args.out.exists():
         for stray in sorted(p for p in args.out.rglob("*.md") if p.resolve() not in written):
