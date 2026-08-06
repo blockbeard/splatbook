@@ -189,6 +189,14 @@ def parse_file(
 def build_document(doc: dict, rules_source: Path, warnings: list[str]) -> dict:
     source_dir = rules_source / doc["sourceDir"]
     visibility = doc.get("visibility", "player")
+    # Per-file override (stem -> "player" | "gm") for a document whose GM
+    # chapters are interleaved in one flat folder (HMtW) instead of living in
+    # their own document like stonetop's Book II. Sections inherit it.
+    file_visibility = doc.get("fileVisibility", {})
+    unused_visibility = set(file_visibility)
+    for stem, vis in file_visibility.items():
+        if vis not in ("player", "gm"):
+            sys.exit(f"{doc['id']}: fileVisibility[{stem!r}] must be 'player' or 'gm', got {vis!r}")
     exclude = set(doc.get("exclude", []))
     demote_extra_h1 = bool(doc.get("demoteExtraH1"))
     # Filename-stem overrides for chapters whose stems don't parse into a
@@ -217,12 +225,15 @@ def build_document(doc: dict, rules_source: Path, warnings: list[str]) -> dict:
             chapter["number"] = number
         chapters.append(chapter)
 
+        unused_visibility.discard(path.stem)
         for section in parse_file(path, source_dir, used_ids, warnings, demote_extra_h1):
-            section["visibility"] = visibility
+            section["visibility"] = file_visibility.get(path.stem, visibility)
             section["chapter"] = chapter_id
             sections.append(section)
     for stem in sorted(unused_overrides):
         warnings.append(f"{doc['id']}: chapterTitles entry matches no file (typo?): {stem}")
+    for stem in sorted(unused_visibility):
+        warnings.append(f"{doc['id']}: fileVisibility entry matches no file (typo?): {stem}")
     return {"id": doc["id"], "title": doc["title"], "chapters": chapters, "sections": sections}
 
 
