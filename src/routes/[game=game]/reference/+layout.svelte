@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { invalidate } from '$app/navigation';
-	import { getLocalPreference, REFERENCE_SHOW_SETTING } from '$lib/preferences';
+	import { getLocalPreference, readShowSetting } from '$lib/preferences';
 	import type { TocDocument, TocSection } from '$lib/reference/load';
 	import SpoilerToggle from './SpoilerToggle.svelte';
 
@@ -16,7 +16,8 @@
 	// with nothing stored triggers no extra work.
 	onMount(() => {
 		if (page.data.session?.user?.id) return;
-		const stored = getLocalPreference(localStorage, REFERENCE_SHOW_SETTING) === 'true';
+		const stored =
+			readShowSetting(data.gameId, (k) => getLocalPreference(localStorage, k)) === 'true';
 		if (stored !== data.showSetting) invalidate('reference:showSetting');
 	});
 

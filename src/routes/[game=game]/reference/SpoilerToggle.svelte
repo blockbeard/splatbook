@@ -13,7 +13,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { invalidate } from '$app/navigation';
-	import { REFERENCE_SHOW_SETTING, savePreference } from '$lib/preferences';
+	import { referenceShowSetting, savePreference } from '$lib/preferences';
 
 	let { checked, label }: { checked: boolean; label: string } = $props();
 
@@ -22,7 +22,7 @@
 	async function toggle(next: boolean): Promise<void> {
 		local = next;
 		try {
-			await savePreference(REFERENCE_SHOW_SETTING, String(next), {
+			await savePreference(referenceShowSetting(page.params.game as string), String(next), {
 				signedIn: !!page.data.session?.user?.id
 			});
 		} catch {

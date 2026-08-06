@@ -117,6 +117,19 @@ test('toggling mid-search reruns the results live', async ({ page }) => {
 	await expect(results.getByText(GATED_TITLE, { exact: true })).toHaveCount(0);
 });
 
+test('a pre-namespacing opt-in (bare localStorage key) still opens Book II', async ({ page }) => {
+	// Phase 22 namespaced the preference per game (`reference.showSetting.
+	// stonetop`); a reader who opted in before that has the bare key only,
+	// and stonetop's read-time fallback must honor it.
+	await page.addInitScript(() => {
+		localStorage.setItem('splatbook:pref:reference.showSetting', 'true');
+	});
+	await page.goto('/stonetop/reference');
+	await expect(page.getByLabel(/Include Book II/i)).toBeChecked();
+	const toc = page.getByRole('navigation', { name: 'Rules contents' });
+	await expect(toc.getByText(/Wider World/).first()).toBeVisible();
+});
+
 test('a gated section page shows the interstitial until opted in, then itself', async ({
 	page
 }) => {

@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 import { error } from '@sveltejs/kit';
 import { getGame } from '$lib/games';
 import { fetchTrees, tocOf, isVisible } from '$lib/reference/load';
-import { getLocalPreference, REFERENCE_SHOW_SETTING } from '$lib/preferences';
+import { getLocalPreference, readShowSetting } from '$lib/preferences';
 import type { LayoutLoad } from './$types';
 
 /**
@@ -35,7 +35,7 @@ export const load: LayoutLoad = async ({ params, fetch, data, parent, depends })
 	const showSetting = session?.user?.id
 		? data.showSettingPref === 'true'
 		: browser
-			? getLocalPreference(localStorage, REFERENCE_SHOW_SETTING) === 'true'
+			? readShowSetting(params.game, (k) => getLocalPreference(localStorage, k)) === 'true'
 			: false;
 
 	const trees = await fetchTrees(params.game, fetch);

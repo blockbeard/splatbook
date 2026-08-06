@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { invalidate } from '$app/navigation';
-	import { REFERENCE_SHOW_SETTING, savePreference } from '$lib/preferences';
+	import { referenceShowSetting, savePreference } from '$lib/preferences';
 
 	let { data } = $props();
 
@@ -21,7 +21,7 @@
 	async function optIn(): Promise<void> {
 		opting = true;
 		try {
-			await savePreference(REFERENCE_SHOW_SETTING, 'true', {
+			await savePreference(referenceShowSetting(gameId), 'true', {
 				signedIn: !!page.data.session?.user?.id
 			});
 			await invalidate('reference:showSetting');
