@@ -5,7 +5,7 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ params, url, fetch }) => {
 	const game = getGame(params.game);
 	if (!game) error(404, `No such game: "${params.game}"`);
-	const type = game.entityTypes[params.type];
+	const type = (game.entityTypes ?? {})[params.type];
 	if (!type?.playComponent) error(404, `${game.name} ${params.type} has no editor yet`);
 
 	// Editor-first types (steadings) have no wizard, so "create new" lands here;

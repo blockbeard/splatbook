@@ -15,7 +15,7 @@
 
 	let { data } = $props();
 
-	const Sheet = $derived(getGame(data.gameId)!.entityTypes[data.entityType].sheetComponent!);
+	const Sheet = $derived(getGame(data.gameId)!.entityTypes![data.entityType].sheetComponent!);
 	// Preserve the saved-entity id (if any) when jumping to the editor, so edits
 	// autosave to the same entity instead of the local draft slot.
 	const savedId = $derived(page.url.searchParams.get('id'));

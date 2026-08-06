@@ -15,10 +15,10 @@
 
 	let { data } = $props();
 
-	const Sheet = $derived(getGame(data.gameId)!.entityTypes[data.entityType].sheetComponent!);
+	const Sheet = $derived(getGame(data.gameId)!.entityTypes![data.entityType].sheetComponent!);
 	// A generated document, not a print dialog (commit 120) — only for a saved
 	// entity (the endpoint loads by id) and only when the game builds one.
-	const hasPdf = $derived(!!getGame(data.gameId)!.entityTypes[data.entityType].pdf);
+	const hasPdf = $derived(!!getGame(data.gameId)!.entityTypes![data.entityType].pdf);
 	const pdfPath = $derived(
 		resolve('/[game=game]/[type]/pdf', { game: data.gameId, type: data.entityType })
 	);

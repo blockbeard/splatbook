@@ -30,7 +30,7 @@
 	let { data } = $props();
 
 	const game = $derived(getGame(data.gameId)!);
-	const type = $derived(game.entityTypes[data.entityType]);
+	const type = $derived((game.entityTypes ?? {})[data.entityType]);
 	const Play = $derived(type.playComponent!);
 	// The dice panel belongs to the entity type being played: a character offers
 	// its stat rolls; a steading offers none (it rolls its own moves, on its sheet).

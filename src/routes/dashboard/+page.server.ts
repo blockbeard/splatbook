@@ -26,7 +26,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 			gameId: r.gameId,
 			gameName: game?.name ?? r.gameId,
 			entityType: r.entityType,
-			typeLabel: game?.entityTypes[r.entityType]?.label ?? r.entityType,
+			typeLabel: game?.entityTypes?.[r.entityType]?.label ?? r.entityType,
 			status: r.status,
 			updatedAt: r.updatedAt.toISOString()
 		};

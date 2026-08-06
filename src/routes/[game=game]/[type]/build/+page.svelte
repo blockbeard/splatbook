@@ -15,7 +15,7 @@
 	let { data } = $props();
 
 	// The load function guaranteed the type exists with steps + a draft factory.
-	const type = $derived(getGame(data.gameId)!.entityTypes[data.entityType]);
+	const type = $derived(getGame(data.gameId)!.entityTypes![data.entityType]);
 	const steps = $derived(type.wizardSteps ?? []);
 	const initialDraft = $derived(type.newDraft!());
 

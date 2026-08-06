@@ -5,7 +5,7 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ params, url, fetch }) => {
 	const game = getGame(params.game);
 	if (!game) error(404, `No such game: "${params.game}"`);
-	const type = game.entityTypes[params.type];
+	const type = (game.entityTypes ?? {})[params.type];
 	if (!type?.sheetComponent) error(404, `${game.name} ${params.type} has no sheet yet`);
 
 	// `?id=` renders a saved entity from the database; without it the sheet falls

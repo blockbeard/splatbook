@@ -235,8 +235,10 @@ export interface GameModule {
 	engine?: unknown;
 	/** The entity types this game contributes, keyed by persisted `entityType`
 	 * (`character`, `steading`, …). The shell iterates this map; it never hard-codes
-	 * a type. A game needs at least one entry to do anything user-facing. */
-	entityTypes: Record<string, EntityTypeModule>;
+	 * a type. Optional (phase 22): a reference-only game (HMtW) contributes none —
+	 * the shell must treat that the same as an empty map, offering no builders,
+	 * sheets, or campaign creation for the game. */
+	entityTypes?: Record<string, EntityTypeModule>;
 	/** Optional GM reference guide, surfaced at `/[game=game]/gm`. Absent for games
 	 * with no GM material. */
 	gmGuide?: GmGuideModule;

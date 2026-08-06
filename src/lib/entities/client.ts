@@ -45,7 +45,7 @@ export function draftToPayload(
 	overrides: Partial<SavePayload> = {}
 ): SavePayload | null {
 	const game = getGame(gameId);
-	const meta = game?.entityTypes[entityType]?.entityMeta?.(draft);
+	const meta = game?.entityTypes?.[entityType]?.entityMeta?.(draft);
 	if (!meta) return null;
 	return {
 		gameId,

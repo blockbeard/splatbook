@@ -171,7 +171,7 @@ export const actions: Actions = {
 		if (existing.length === 0) {
 			// The shell stays game-agnostic: the game module supplies the initial
 			// steading blob (`newDraft`) and its display meta (`entityMeta`).
-			const type = getGame(campaign.gameId)?.entityTypes['steading'];
+			const type = getGame(campaign.gameId)?.entityTypes?.['steading'];
 			if (!type?.newDraft || !type.entityMeta) {
 				error(400, 'This game has no steading to create.');
 			}

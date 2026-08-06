@@ -11,7 +11,7 @@
 
 	let { data } = $props();
 
-	const Sheet = $derived(getGame(data.campaign.gameId)?.entityTypes['steading']?.sheetComponent);
+	const Sheet = $derived(getGame(data.campaign.gameId)?.entityTypes?.['steading']?.sheetComponent);
 	const editHref = $derived(
 		data.steading
 			? `${resolve('/[game=game]/[type]/play', { game: data.campaign.gameId, type: 'steading' })}?id=${data.steading.id}`

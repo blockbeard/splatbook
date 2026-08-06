@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ params, url, locals, fetch }) => {
 	const session = await locals.auth();
 	if (!session?.user?.id) error(401, 'Sign in to download a PDF.');
 
-	const type = getGame(params.game)?.entityTypes[params.type];
+	const type = getGame(params.game)?.entityTypes?.[params.type];
 	if (!type?.pdf) error(404, 'No PDF for this.');
 
 	const id = url.searchParams.get('id');

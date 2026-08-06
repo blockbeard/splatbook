@@ -17,7 +17,7 @@ export const load: PageLoad = ({ params }) => {
 
 	// Iterate the entity-type map rather than hard-coding "character": each type
 	// that can be created contributes a button, in registration order.
-	const creators: CreateAction[] = Object.entries(game.entityTypes)
+	const creators: CreateAction[] = Object.entries(game.entityTypes ?? {})
 		.filter(([, t]) => t.newDraft)
 		.map(([entityType, t]) => ({
 			entityType,

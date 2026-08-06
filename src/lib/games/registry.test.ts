@@ -27,6 +27,15 @@ describe('registry', () => {
 		expect(getGame('nope')).toBeUndefined();
 	});
 
+	it('accepts a reference-only module with no entityTypes at all', () => {
+		// Phase 22: a rules-reference game (HMtW) contributes no builders,
+		// sheets, or trackers — entityTypes is optional, not just empty.
+		const { entityTypes: _dropped, ...bare } = module('ref-only', 'Reference Only');
+		registerGame(bare);
+		expect(getGame('ref-only')?.name).toBe('Reference Only');
+		expect(getGame('ref-only')?.entityTypes).toBeUndefined();
+	});
+
 	it('lists games sorted by display name', () => {
 		registerGame(module('zeta', 'Zeta'));
 		registerGame(module('alpha', 'Alpha'));

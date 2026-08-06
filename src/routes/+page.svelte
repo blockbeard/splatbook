@@ -11,7 +11,7 @@
 	const games = listGames().map((game) => ({
 		id: game.id,
 		name: game.name,
-		creators: Object.entries(game.entityTypes)
+		creators: Object.entries(game.entityTypes ?? {})
 			.filter(([, type]) => type.newDraft)
 			.map(([entityType, type]) => ({
 				entityType,
