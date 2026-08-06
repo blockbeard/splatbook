@@ -4,7 +4,14 @@
 	import { browser } from '$app/environment';
 	import { replaceState } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { loadSearchIndex, loadGmSearchIndex, search, mergeHits } from '$lib/reference/search';
+	import {
+		loadSearchIndex,
+		loadGmSearchIndex,
+		loadPinnedTerms,
+		search,
+		mergeHits
+	} from '$lib/reference/search';
+	import { matchPinnedTerms, mergePinnedTerms, type PinnedTerm } from '$lib/reference/pinned';
 	import { queryTerms, highlight, makeSnippet } from '$lib/reference/snippet';
 
 	let { data } = $props();
@@ -18,6 +25,13 @@
 	// `data.showSetting`, so toggling reruns the search live: dropping or
 	// loading the gated index re-derives `results` below.
 	let gmIndex = $state<MiniSearch | null>(null);
+	// Curated pinned terms (phase 22): the player artifact loads whenever the
+	// game ships one (404 → null → no pinned UI at all); the GM artifact is
+	// gated behind the spoiler opt-in exactly like the GM search index — the
+	// term labels are themselves the spoiler, which is why the split happened
+	// at build time.
+	let pinned = $state<PinnedTerm[] | null>(null);
+	let gmPinned = $state<PinnedTerm[] | null>(null);
 	let loadError = $state<string | null>(null);
 	let expanded = $state<Record<string, boolean>>({});
 
@@ -29,6 +43,9 @@
 		loadSearchIndex(data.gameId, fetch)
 			.then((i) => alive && (index = i))
 			.catch((e) => alive && (loadError = e instanceof Error ? e.message : String(e)));
+		loadPinnedTerms(data.gameId, fetch)
+			.then((t) => alive && (pinned = t))
+			.catch(() => {}); // Additive; failing to load just omits the pinned block
 		return () => (alive = false);
 	});
 
@@ -40,12 +57,16 @@
 	$effect(() => {
 		if (!data.showSetting) {
 			gmIndex = null;
+			gmPinned = null;
 			return;
 		}
 		let alive = true;
 		loadGmSearchIndex(data.gameId, fetch)
 			.then((i) => alive && (gmIndex = i))
 			.catch(() => {}); // Additive; failing to load it just omits gated results
+		loadPinnedTerms(data.gameId, fetch, { gm: true })
+			.then((t) => alive && (gmPinned = t))
+			.catch(() => {});
 		return () => (alive = false);
 	});
 
@@ -63,6 +84,7 @@
 	const results = $derived(
 		index ? mergeHits(search(index, debounced), gmIndex ? search(gmIndex, debounced) : []) : []
 	);
+	const pinnedMatches = $derived(matchPinnedTerms(mergePinnedTerms(pinned, gmPinned), debounced));
 
 	// Keep ?q= in the URL so a search is shareable and survives reload.
 	$effect(() => {
@@ -110,6 +132,41 @@
 		class="w-full rounded-md border border-border bg-surface px-3 py-2 outline-none focus:border-accent"
 	/>
 </form>
+
+{#if debounced.trim() && pinnedMatches.length > 0}
+	<!-- Curated index entries, pinned above the fuzzy hits (phase 22). -->
+	<div class="mt-6 rounded-md border border-accent/40 bg-surface p-3" data-testid="pinned-terms">
+		<p class="text-xs tracking-wide text-muted uppercase">From the index</p>
+		<ul class="mt-1 space-y-1">
+			{#each pinnedMatches as pin (pin.term)}
+				<li class="text-sm">
+					<span class="font-medium">{pin.term}</span>
+					<span class="text-muted">—</span>
+					{#each pin.targets as target, i (target.url ?? target.id)}
+						{#if i > 0}<span class="text-muted">·</span>{/if}
+						{#if target.url}
+							<a
+								href={target.url}
+								target="_blank"
+								rel="noopener"
+								class="text-accent hover:underline"
+								title={target.note}>{target.label} ↗</a
+							>
+						{:else if target.id}
+							<a href={href(target.id)} class="text-accent hover:underline">{target.label}</a>
+							{#if target.visibility === 'gm'}
+								<span
+									class="rounded border border-accent px-1 py-0.5 text-[10px] tracking-wide text-accent uppercase"
+									>{badge}</span
+								>
+							{/if}
+						{/if}
+					{/each}
+				</li>
+			{/each}
+		</ul>
+	</div>
+{/if}
 
 {#if loadError}
 	<p class="mt-6 text-muted">Couldn’t load the search index: {loadError}</p>

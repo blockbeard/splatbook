@@ -8,6 +8,7 @@
 
 import MiniSearch, { type SearchResult } from 'minisearch';
 import { base } from '$app/paths';
+import type { PinnedTerm } from './pinned';
 import { miniSearchOptions } from './search-fields';
 
 /** The subset of `fetch` a SvelteKit `load` (or the browser) provides. */
@@ -48,6 +49,24 @@ export async function loadGmSearchIndex(
 	if (res.status === 404) return null;
 	if (!res.ok) throw new Error(`search: failed to load GM index for "${gameId}" (${res.status})`);
 	return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+}
+
+/**
+ * Fetch a game's curated pinned terms (phase 22) — `null` when the game ships
+ * none (a 404): no source file → no artifact → no pinned UI. `gm: true`
+ * fetches the GM-only artifact, which callers load the same opt-in-gated way
+ * they load the GM search index.
+ */
+export async function loadPinnedTerms(
+	gameId: string,
+	fetchFn: Fetcher,
+	opts: { gm?: boolean } = {}
+): Promise<PinnedTerm[] | null> {
+	const file = opts.gm ? 'pinned-terms-gm.json' : 'pinned-terms.json';
+	const res = await fetchFn(`${base}/content-packs/${gameId}/${file}`);
+	if (res.status === 404) return null;
+	if (!res.ok) throw new Error(`search: failed to load pinned terms for "${gameId}" (${res.status})`);
+	return (await res.json()) as PinnedTerm[];
 }
 
 /**

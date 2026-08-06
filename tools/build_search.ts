@@ -14,11 +14,12 @@
  */
 
 import { readFile, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import MiniSearch from 'minisearch';
 import { loadManifest, loadPackFile } from '../src/lib/packs/fs-loader';
 import type { DocumentTree } from '../src/lib/reference/document-tree';
 import { buildLinkIndex, serializeLinkIndex } from '../src/lib/reference/inline';
+import { resolvePinnedTerms, type SourceTerm } from '../src/lib/reference/pinned';
 import { miniSearchOptions, toPlainText, type SearchDoc } from '../src/lib/reference/search-fields';
 
 const CONFIG = 'tools/srd.config.json';
@@ -29,9 +30,15 @@ const GM_INDEX_FILE = 'search-index-gm.json';
  * outside the reference (move cards, steading lines) fetch instead of the
  * full trees. Derived like the search indexes: not in the manifest. */
 const LINK_INDEX_FILE = 'link-index.json';
+/** Curated pinned terms (phase 22), split player/GM at build time because the
+ * term labels are themselves the spoiler. Emitted only for a pack whose
+ * content dir ships a hand-authored `index-terms.json`; no source file → no
+ * artifact → no UI, so packs without one are untouched. */
+const PINNED_FILE = 'pinned-terms.json';
+const PINNED_GM_FILE = 'pinned-terms-gm.json';
 
 const config = JSON.parse(await readFile(CONFIG, 'utf-8')) as {
-	packs: { packRoot: string }[];
+	packs: { packRoot: string; rulesSource: string }[];
 };
 
 async function writeIndex(packRoot: string, file: string, docs: SearchDoc[]): Promise<void> {
@@ -81,4 +88,23 @@ for (const pack of config.packs) {
 		`${linkOut}: ${Object.keys(linkIndex.byTitle).length} titles, ` +
 			`${Object.keys(linkIndex.byBlockId).length} block ids`
 	);
+
+	// Pinned terms — only for packs that ship the hand-authored source, which
+	// lives next to the rules source (content/<game>/index-terms.json).
+	const termsPath = join(dirname(pack.rulesSource), 'index-terms.json');
+	const termsRaw = await readFile(termsPath, 'utf-8').catch(() => null);
+	if (termsRaw !== null) {
+		// A resolution failure throws and fails the build: a curated index with
+		// dead anchors is worse than no index.
+		const { player, gm } = resolvePinnedTerms(JSON.parse(termsRaw) as SourceTerm[], trees);
+		for (const [file, terms] of [
+			[PINNED_FILE, player],
+			[PINNED_GM_FILE, gm]
+		] as const) {
+			if (!terms.length) continue;
+			const out = join(pack.packRoot, file);
+			await writeFile(out, JSON.stringify(terms));
+			console.log(`${out}: ${terms.length} pinned terms`);
+		}
+	}
 }
