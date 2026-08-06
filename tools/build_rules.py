@@ -1,28 +1,55 @@
 #!/usr/bin/env python3
-"""Build the clean rules snapshot from the Stonetop Obsidian vault.
+"""Build the clean rules snapshot from a game's Obsidian vault.
 
 One-way transformation (vault = source of truth, output = derived):
-  - copies Book I / Book II markdown (and Playbooks/*.md, excluding data/)
-  - strips art & PDF embeds (no license to redistribute art; CC BY-SA covers text)
+  - copies the config's sourceDirs markdown, minus excluded dirs/files
+  - optionally truncates a file at a named heading (excluded appendix material),
+    appending a configured replacement note
+  - strips art & PDF embeds (no license to redistribute art)
   - remaps page-anchor links [[Note#^pNNN|label]] to section links [[Note#Heading|label]]
   - removes ^pNNN block anchors
   - collapses leftover blank runs
 
 Usage:
-  python3 tools/build_rules.py --vault /path/to/StonetopVault --out content/stonetop/rules
+  python3 tools/build_rules.py --vault /path/to/Vault --out content/<game>/rules \
+      --config tools/rules.<game>.json
+
+Config keys (see tools/rules.stonetop.json):
+  sourceDirs        vault-relative dirs to copy (required)
+  excludeDirNames   directory names skipped anywhere in the tree
+  excludeFiles      vault-relative .md paths to skip entirely
+  truncateAtHeading vault-relative path -> {"heading": exact heading line,
+                    "replacement": note appended in place of the cut tail}.
+                    Runs at read time, so cut headings are not link targets.
 
 Re-run whenever the vault changes; never hand-edit the output.
 """
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import shutil
 import sys
 from pathlib import Path
 
-SOURCE_DIRS = ["Book I Stonetop", "Book II The Wider World"]
-EXCLUDE_DIR_NAMES = {"data", "images", ".obsidian", ".trash"}
+CONFIG_KEYS = {"$comment", "sourceDirs", "excludeDirNames", "excludeFiles", "truncateAtHeading"}
+
+
+def load_config(path: Path) -> dict:
+    try:
+        cfg = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        sys.exit(f"config {path}: {e}")
+    unknown = set(cfg) - CONFIG_KEYS
+    if unknown:
+        sys.exit(f"config {path}: unknown keys {sorted(unknown)}")
+    if not cfg.get("sourceDirs"):
+        sys.exit(f"config {path}: sourceDirs is required and non-empty")
+    for rel, spec in cfg.get("truncateAtHeading", {}).items():
+        if not spec.get("heading"):
+            sys.exit(f"config {path}: truncateAtHeading[{rel!r}] needs a heading")
+    return cfg
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 # An Obsidian callout that opens with a heading -- `> [!move] ## **CLASH**` --
@@ -49,27 +76,52 @@ def parse_heading(line: str) -> str | None:
     return None
 
 
-def collect_files(vault: Path) -> list[Path]:
+def collect_files(vault: Path, cfg: dict) -> list[Path]:
+    exclude_dirs = set(cfg.get("excludeDirNames", []))
+    exclude_files = set(cfg.get("excludeFiles", []))
     files = []
-    for src in SOURCE_DIRS:
+    seen_excludes: set[str] = set()
+    for src in cfg["sourceDirs"]:
         base = vault / src
         if not base.is_dir():
             sys.exit(f"source dir not found: {base}")
         for p in sorted(base.rglob("*.md")):
-            if any(part in EXCLUDE_DIR_NAMES for part in p.relative_to(vault).parts):
+            rel = p.relative_to(vault)
+            if any(part in exclude_dirs for part in rel.parts):
+                continue
+            if rel.as_posix() in exclude_files:
+                seen_excludes.add(rel.as_posix())
                 continue
             files.append(p)
+    for miss in sorted(exclude_files - seen_excludes):
+        sys.exit(f"excludeFiles entry matches nothing (typo?): {miss}")
     return files
 
 
-def build_anchor_maps(files: list[Path]) -> tuple[dict, dict, list[str]]:
+def read_source(path: Path, vault: Path, cfg: dict) -> str:
+    """Read a vault file, applying any configured truncate-at-heading cut."""
+    text = path.read_text(encoding="utf-8")
+    rel = path.relative_to(vault).as_posix()
+    spec = cfg.get("truncateAtHeading", {}).get(rel)
+    if spec is None:
+        return text
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if line.strip() == spec["heading"]:
+            kept = "\n".join(lines[:i]).rstrip()
+            replacement = spec.get("replacement", "").strip()
+            return kept + ("\n\n" + replacement + "\n" if replacement else "\n")
+    sys.exit(f"truncateAtHeading: heading {spec['heading']!r} not found in {rel}")
+
+
+def build_anchor_maps(files: list[Path], texts: dict[Path, str]) -> tuple[dict, dict, list[str]]:
     """Per note basename: anchor -> heading text; also heading sets per note."""
     anchor_map: dict[str, dict[str, str | None]] = {}
     headings_map: dict[str, list[str]] = {}
     warnings: list[str] = []
     for path in files:
         name = path.stem
-        lines = path.read_text(encoding="utf-8").splitlines()
+        lines = texts[path].splitlines()
         headings: list[str] = []
         current: str | None = None
         amap: dict[str, str | None] = {}
@@ -193,17 +245,20 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--vault", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--config", required=True, type=Path)
     args = ap.parse_args()
 
-    files = collect_files(args.vault)
-    anchor_map, _headings, warnings = build_anchor_maps(files)
+    cfg = load_config(args.config)
+    files = collect_files(args.vault, cfg)
+    texts = {p: read_source(p, args.vault, cfg) for p in files}
+    anchor_map, _headings, warnings = build_anchor_maps(files, texts)
 
     written: set[Path] = set()
     for path in files:
         rel = path.relative_to(args.vault)
         dest = args.out / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(transform(path.read_text(encoding="utf-8"), anchor_map, warnings, path.stem), encoding="utf-8")
+        dest.write_text(transform(texts[path], anchor_map, warnings, path.stem), encoding="utf-8")
         written.add(dest.resolve())
     if args.out.exists():
         for stray in sorted(p for p in args.out.rglob("*.md") if p.resolve() not in written):

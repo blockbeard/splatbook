@@ -76,7 +76,7 @@ The Stonetop rules text is maintained in an Obsidian vault (the source of truth)
 and converted here by:
 
 ```
-python3 tools/build_rules.py --vault /path/to/StonetopVault --out content/stonetop/rules
+python3 tools/build_rules.py --vault /path/to/StonetopVault --out content/stonetop/rules --config tools/rules.stonetop.json
 ```
 
 The conversion strips art and PDF embeds (not covered by the text license), remaps

@@ -27,7 +27,7 @@ Domain: splatbook.app (owned). License: GPL-3.0-or-later (app), CC BY-SA 4.0 (St
 
 - `content/stonetop/rules/` is **generated** — never hand-edit. Source of truth is the
   Obsidian vault at `~/Documents/RPG Vaults/Stonetop` (connect it only when regenerating).
-- Regenerate: `python3 tools/build_rules.py --vault <vault> --out content/stonetop/rules`
+- Regenerate: `python3 tools/build_rules.py --vault <vault> --out content/stonetop/rules --config tools/rules.stonetop.json`
   (strips art/PDF embeds, remaps `^pNNN` page anchors to section links, verifies links).
 - `content/stonetop/data/` — structured game data; schema documented in `SCHEMA.md` there.
 

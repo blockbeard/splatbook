@@ -1,0 +1,7 @@
+{
+	"$comment": "Per-game source config for build_rules.py — which vault dirs feed content/stonetop/rules. Pass via --config; see build_rules.py's docstring for key semantics.",
+	"sourceDirs": ["Book I Stonetop", "Book II The Wider World"],
+	"excludeDirNames": ["data", "images", ".obsidian", ".trash"],
+	"excludeFiles": [],
+	"truncateAtHeading": {}
+}
