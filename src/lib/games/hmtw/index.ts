@@ -20,7 +20,7 @@ export const hmtw: GameModule = {
 	id: 'hmtw',
 	name: 'His Majesty the Worm',
 	packSchemas: schemaFor,
-	favicon: '/content-packs/hmtw/art/worm.svg',
+	favicon: '/content-packs/hmtw/art/ouroboros.svg',
 	// Pages stop at h3: the book's h4/h5 sections are talent entries, spell
 	// components, and statblock fragments — they read inline, not as pages.
 	referencePageDepth: 3,
