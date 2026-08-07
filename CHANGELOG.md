@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Reference page granularity** (`referencePageDepth`): a game can declare
+  that headings past a depth aren't pages — they render inline on their
+  nearest page ancestor as real headings with anchors, and their old URLs
+  redirect there, so search hits, wikilinks, and bookmarks keep working.
+  HMtW sets 3: talents, spell components, and statblock fragments read as
+  one page now instead of dozens of two-paragraph ones.
+- **Pack-authored insertions and owned-art allowlists in the importer**
+  (`insertions`, `stripCalloutTitles`, `keepImages`,
+  `demoteHeadingsToBold`, `preserveLineBreaks`) — Splatbook-only notes
+  live in config rather than the shared vault, hand-drawn diagrams survive
+  the art strip, and index/spell lists keep their line breaks.
+
+### Changed
+
+- **HMtW reading pass** (staging findings): the book's real heading
+  hierarchy survives import (cascading demotion); sidebars sit in a
+  reserved right rail on wide screens with no icon; callout inline titles
+  render as titles; nav surfaces nest one level with disclosure toggles;
+  the landing and left TOC wear the book's faces; per-game favicons.
+
 ## [2.3.0] - 2026-08-07
 
 **The second game** — His Majesty the Worm proves the framework promise:

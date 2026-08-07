@@ -235,6 +235,16 @@ export interface GameModule {
 	 * the reader is inside this game's routes; absent falls back to the
 	 * shell's. */
 	favicon?: string;
+	/**
+	 * Reference page granularity (phase 22): headings at or above this depth
+	 * get their own pages; deeper headings render *inline* on their nearest
+	 * page ancestor, as real headings with the section id as an in-page
+	 * anchor (an inline section's URL redirects there, so deep links, search
+	 * hits, and wikilinks keep working). Absent, every heading is a page —
+	 * stonetop's existing behavior. HMtW sets 3: its h4+ sections are talent
+	 * entries and statblock fragments, not pages.
+	 */
+	referencePageDepth?: number;
 	/** Pure rules engine — owned by the game, opaque to the shell. */
 	engine?: unknown;
 	/** The entity types this game contributes, keyed by persisted `entityType`

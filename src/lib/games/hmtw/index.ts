@@ -21,6 +21,9 @@ export const hmtw: GameModule = {
 	name: 'His Majesty the Worm',
 	packSchemas: schemaFor,
 	favicon: '/content-packs/hmtw/art/worm.svg',
+	// Pages stop at h3: the book's h4/h5 sections are talent entries, spell
+	// components, and statblock fragments — they read inline, not as pages.
+	referencePageDepth: 3,
 	referenceSpoilers: {
 		badge: 'GM',
 		toggleLabel: 'Include the Gamemaster’s chapters — monsters, secrets, and the underworld',

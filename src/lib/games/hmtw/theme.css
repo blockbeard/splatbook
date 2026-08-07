@@ -222,15 +222,20 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
 }
-/* On wide screens the book's sidebars sit beside the text, like the printed
-   margin boxes; on narrow ones they fall back inline. No icon — the book's
-   sidebars don't carry one (the worm was Obsidian chrome). */
+/* On wide screens the sidebars get a *reserved right rail*, mirroring the
+   left TOC: the article keeps a clear text column and every [!sidebar]
+   hangs fully in the rail at its source position (float + negative margin
+   into the reserved padding). Narrow screens fall back inline. No icon —
+   the book's sidebars don't carry one (the worm was Obsidian chrome). */
 @media (min-width: 64rem) {
+	html[data-game='hmtw'] .reference-body {
+		padding-right: 16rem;
+	}
 	html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 		float: right;
 		clear: right;
-		width: 46%;
-		margin: 0.3rem 0 1rem 1.6rem;
+		width: 14rem;
+		margin: 0.2rem -16rem 1rem 0;
 	}
 }
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
@@ -317,4 +322,26 @@ html[data-game='hmtw'] .reference-landing section a {
 }
 html[data-game='hmtw'] .reference-landing section a:hover {
 	text-decoration-color: currentColor;
+}
+
+/*
+ * The left TOC sidebar, in the book's faces: the document label in Fell
+ * Great Primer SC (no forced uppercase — it's a small-caps face), chapter
+ * links in Fell, the deeper h3 entries staying in the quieter Goudy.
+ */
+html[data-game='hmtw'] .reference-toc > div > p {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	text-transform: none;
+	font-weight: 400;
+	font-size: 0.95rem;
+	letter-spacing: 0.02em;
+}
+html[data-game='hmtw'] .reference-toc summary > a,
+html[data-game='hmtw'] .reference-toc li > a {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 1.02rem;
+}
+html[data-game='hmtw'] .reference-toc li li a {
+	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
+	font-size: 0.9rem;
 }

@@ -25,63 +25,63 @@ These people are sorcerers. Nobody likes them.
 The **Wastes** are a barren place. It is dead. It is death. It is a place of grey skies and miasmic fens stretching to the horizon, scattered with piles of bones from wars that were ancient before the creation of the mortal world.  
 
 ### Wastes spells
-Brainfever  
-Control Undead   
-Darklight   
-Fear  
-Fleshcraft   
-Malediction   
-Necromancy   
-Raise Zombie   
-Stinking Cloud   
-Withering  
+[[11 - Appendix A - Sorcery#Brainfever|Brainfever]]  
+[[11 - Appendix A - Sorcery#Control Undead|Control Undead]]  
+[[11 - Appendix A - Sorcery#Darklight|Darklight]]  
+[[11 - Appendix A - Sorcery#Fear|Fear]]  
+[[11 - Appendix A - Sorcery#Fleshcraft|Fleshcraft]]  
+[[11 - Appendix A - Sorcery#Malediction|Malediction]]  
+[[11 - Appendix A - Sorcery#Necromancy|Necromancy]]  
+[[11 - Appendix A - Sorcery#Raise Zombie|Raise Zombie]]  
+[[11 - Appendix A - Sorcery#Stinking Cloud|Stinking Cloud]]  
+[[11 - Appendix A - Sorcery#Withering|Withering]]  
 ## The Weald
 
 The Weald is a wild place. It is alive. It is chaos. It is a place of twisting vines tangled together down into impossibly **deep** roots, and spreading branches stretching up into formless and churning storm clouds.  
 
 ### Weald spells 
-Control Animal  
-Defy Depths   
-Flare   
-Gust of Wind   
-Protection from Elements   
-Speak to Animal   
-Thunderclap   
-Totem   
-Wall of Elements   
-Woodweave  
+[[11 - Appendix A - Sorcery#Control Animal|Control Animal]]  
+[[11 - Appendix A - Sorcery#Defy Depths|Defy Depths]]  
+[[11 - Appendix A - Sorcery#Flare|Flare]]  
+[[11 - Appendix A - Sorcery#Gust of Wind|Gust of Wind]]  
+[[11 - Appendix A - Sorcery#Protection from the Elements|Protection from Elements]]  
+[[11 - Appendix A - Sorcery#Speak to Animal|Speak to Animal]]  
+[[11 - Appendix A - Sorcery#Thunderclap|Thunderclap]]  
+[[11 - Appendix A - Sorcery#Totem|Totem]]  
+[[11 - Appendix A - Sorcery#Wall of Elements|Wall of Elements]]  
+[[11 - Appendix A - Sorcery#Woodweave|Woodweave]]  
 
 ## The Weird
 
 The **Weird** is an ever-changing place. It is dream. It is madness. The realm of Weird is half allegory and half nonsense. Dreamers sometimes visit the Weird when they sleep; prophets live half in the Weird and half in the realm of Flesh.  
 
 ### Weird spells
-Animate Object  
-Change Size  
-Enrage  
-Give Form to Nothingness  
-Illusion  
-Mirror Meld   
-Portable Hole   
-Scry   
-Shroud   
-Sleep  
+[[11 - Appendix A - Sorcery#Animate Object|Animate Object]]  
+[[11 - Appendix A - Sorcery#Change Size|Change Size]]  
+[[11 - Appendix A - Sorcery#Enrage|Enrage]]  
+[[11 - Appendix A - Sorcery#Give Form to Nothingness|Give Form to Nothingness]]  
+[[11 - Appendix A - Sorcery#Illusion|Illusion]]  
+[[11 - Appendix A - Sorcery#Mirror Meld|Mirror Meld]]  
+[[11 - Appendix A - Sorcery#Portable Hole|Portable Hole]]  
+[[11 - Appendix A - Sorcery#Scry|Scry]]  
+[[11 - Appendix A - Sorcery#Shroud|Shroud]]  
+[[11 - Appendix A - Sorcery#Sleep|Sleep]]  
 
 ## The Welkin
 
 The Welkin is a bright and terrible place. It is order. It is law. It’s a place of blue skies and rainbow bridges leading to cloud cities where winged women bring mead to ancestor kings, who wage endless battles in preparation for the apocalypse.  
 
 ### Welkin spells
-Augury  
-Binding   
-Charm   
-Circle of Protection   
-Feather   
-Guardian Angel   
-Heavenfire   
-Life   
-Seal Pact   
-Veritas  
+[[11 - Appendix A - Sorcery#Augury|Augury]]  
+[[11 - Appendix A - Sorcery#Binding|Binding]]  
+[[11 - Appendix A - Sorcery#Charm|Charm]]  
+[[11 - Appendix A - Sorcery#Circle of Protection|Circle of Protection]]  
+[[11 - Appendix A - Sorcery#Feather|Feather]]  
+[[11 - Appendix A - Sorcery#Guardian Angel|Guardian Angel]]  
+[[11 - Appendix A - Sorcery#Heavenfire|Heavenfire]]  
+[[11 - Appendix A - Sorcery#Life|Life]]  
+[[11 - Appendix A - Sorcery#Seal Pact|Seal Pact]]  
+[[11 - Appendix A - Sorcery#Veritas|Veritas]]  
 
 # Casting Spells
 

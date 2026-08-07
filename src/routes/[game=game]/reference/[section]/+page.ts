@@ -1,15 +1,27 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
+import { base } from '$app/paths';
 import { getGame } from '$lib/games';
 import {
 	fetchTrees,
 	findSection,
 	ancestorsOf,
 	childTreeOf,
-	siblingsInOrder,
-	isVisible
+	isVisible,
+	type SectionRefNode
 } from '$lib/reference/load';
 import { buildLinkIndex, renderMarkdown } from '$lib/reference/render';
 import type { PageLoad } from './$types';
+
+/** `SectionRefNode` plus the page that hosts it — itself for page-level
+ * sections, the nearest page ancestor for inline (deeper-than-pageDepth)
+ * ones, whose links become in-page anchors. */
+export interface PageChildNode extends Omit<SectionRefNode, 'children'> {
+	pageId: string;
+	children: PageChildNode[];
+}
+
+const escapeHtml = (s: string): string =>
+	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 /**
  * Load one section: its rendered body plus the navigation around it
@@ -34,6 +46,19 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 
 	const { tree, index } = found;
 	const section = tree.sections[index];
+
+	// Page granularity (referencePageDepth): a section deeper than the game's
+	// page depth has no page of its own — its canonical home is the nearest
+	// page ancestor, where it renders inline under an anchor. Redirecting
+	// keeps every existing URL (search hits, wikilinks, old deep links) live.
+	const pageDepth = getGame(params.game)?.referencePageDepth ?? Infinity;
+	if (section.level > pageDepth) {
+		let p = index - 1;
+		while (p >= 0 && tree.sections[p].level > pageDepth) p--;
+		if (p >= 0) {
+			redirect(302, `${base}/${params.game}/reference/${tree.sections[p].id}#${params.section}`);
+		}
+	}
 
 	if (!isVisible(section, showSetting)) {
 		const interstitialId = getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
@@ -74,12 +99,37 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 	// shows — it just breaks the path to opting in). Without an interstitial a
 	// gated link would 404, so those games keep the degrade-to-label behavior.
 	const hasInterstitial = !!getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
-	const bodyHtml = renderMarkdown(
-		section.body,
-		params.game,
-		buildLinkIndex(hasInterstitial ? trees : visibleTrees),
-		section.kind
-	);
+	const linkIndex = buildLinkIndex(hasInterstitial ? trees : visibleTrees);
+
+	// A page renders its own body plus every inline descendant (deeper than
+	// pageDepth, up to the next page-level section) as a real heading carrying
+	// the section id as its anchor.
+	let bodyHtml = renderMarkdown(section.body, params.game, linkIndex, section.kind);
+	let inlineEnd = index + 1;
+	while (inlineEnd < tree.sections.length && tree.sections[inlineEnd].level > pageDepth) {
+		inlineEnd++;
+	}
+	for (const inline of tree.sections.slice(index + 1, inlineEnd)) {
+		const level = Math.min(inline.level, 6);
+		bodyHtml +=
+			`<h${level} id="${escapeHtml(inline.id)}">${escapeHtml(inline.title)}</h${level}>\n` +
+			renderMarkdown(inline.body, params.game, linkIndex, inline.kind);
+	}
+
+	// Children keep the full tree for the "In this section" listing, each node
+	// annotated with its hosting page so inline entries link as anchors.
+	const withPageIds = (nodes: SectionRefNode[], parentPageId: string): PageChildNode[] =>
+		nodes.map((n) => {
+			const pageId = n.level <= pageDepth ? n.id : parentPageId;
+			return { ...n, pageId, children: withPageIds(n.children, pageId) };
+		});
+	const children = withPageIds(childTreeOf(tree, index), section.id);
+
+	// Prev/next walk pages, not every heading — inline sections aren't stops.
+	const pages = tree.sections.filter((s) => s.level <= pageDepth);
+	const pageIndex = pages.findIndex((s) => s.id === section.id);
+	const pageRef = (s: (typeof pages)[number] | undefined) =>
+		s ? { id: s.id, title: s.title } : null;
 
 	return {
 		interstitial: false as const,
@@ -87,7 +137,8 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 		section: { id: section.id, title: section.title },
 		bodyHtml,
 		ancestors: ancestorsOf(tree, index),
-		children: childTreeOf(tree, index),
-		...siblingsInOrder(tree, index)
+		children,
+		prev: pageIndex > 0 ? pageRef(pages[pageIndex - 1]) : null,
+		next: pageIndex >= 0 ? pageRef(pages[pageIndex + 1]) : null
 	};
 };

@@ -11,6 +11,15 @@
 		resolve('/[game=game]/reference/[section]', { game: gameId, section: id });
 	const refRoot = $derived(resolve('/[game=game]/reference', { game: gameId }));
 
+	/** Where a child node lives: its own page, an anchor on this page, or an
+	 * anchor on a descendant page (referencePageDepth — inline sections). */
+	const nodeHref = (node: (typeof data.children)[number]) =>
+		node.pageId === node.id
+			? href(node.id)
+			: node.pageId === data.section.id
+				? `#${node.id}`
+				: `${href(node.pageId)}#${node.id}`;
+
 	let opting = $state(false);
 
 	/**
@@ -80,13 +89,18 @@
 						{#if node.children.length}
 							<details>
 								<summary class="cursor-pointer marker:text-muted">
-									<a href={href(node.id)} class="text-accent hover:underline">{node.title}</a>
+									<!-- nodeHref composes resolve()d section routes (+ in-page anchors) -->
+									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+									<a href={nodeHref(node)} class="text-accent hover:underline">{node.title}</a>
 								</summary>
 								{@render childList(node.children, true)}
 							</details>
 						{:else}
-							<!-- ml aligns leaf titles with summary text after the marker -->
-							<a href={href(node.id)} class="ml-[1.2em] text-accent hover:underline">{node.title}</a
+							<!-- ml aligns leaf titles with summary text after the marker;
+							     nodeHref composes resolve()d section routes (+ in-page anchors) -->
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+							<a href={nodeHref(node)} class="ml-[1.2em] text-accent hover:underline"
+								>{node.title}</a
 							>
 						{/if}
 					</li>
