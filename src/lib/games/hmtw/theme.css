@@ -188,7 +188,8 @@ html[data-game='hmtw'] .reference-body .sb-callout-label {
 }
 
 /* [!sidebar] — the book's recovered sidebars: Goudy body under a
-   Kelmscott-flavored header face. */
+   Kelmscott-flavored header face, with the vault's worm icon leading the
+   label (pack art, tinted via mask so it follows the label color). */
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 	font-family: 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
@@ -197,6 +198,17 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
 	font-family: 'Goudy Bookletter 1911', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 1.02rem;
 	color: var(--sb-callout-label);
+}
+html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label::before {
+	content: '';
+	display: inline-block;
+	width: 1.05em;
+	height: 1.05em;
+	margin-right: 0.35em;
+	vertical-align: -0.18em;
+	background-color: currentColor;
+	mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
+	-webkit-mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
 }
 
 /* [!lede] — chapter lead-ins. Not a box in the book: open text between
