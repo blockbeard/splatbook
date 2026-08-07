@@ -27,6 +27,27 @@ async function search(page: Page, query: string) {
 	await expect(page.getByText(/\d+\+? results?/)).toBeVisible();
 }
 
+test('the game landing speaks for the pack: logo, honest pitch, buy links, no builders', async ({
+	page
+}) => {
+	await page.goto('/hmtw');
+	await expect(page.getByAltText(/Adherent of His Majesty the Worm/)).toBeVisible();
+	await expect(page.getByText(/Silver ENNIE/)).toBeVisible();
+	// Reference-only: no create buttons, no campaigns offer.
+	await expect(page.getByRole('link', { name: /Create a/ })).toHaveCount(0);
+	await expect(page.getByRole('link', { name: 'Campaigns' })).toHaveCount(0);
+	// The two buy links, the DTRPG one carrying the affiliate id + disclosure.
+	await expect(page.getByRole('link', { name: /hismajestytheworm\.games/ })).toHaveAttribute(
+		'href',
+		'https://www.hismajestytheworm.games/'
+	);
+	await expect(page.getByRole('link', { name: /PDF on DriveThruRPG/ })).toHaveAttribute(
+		'href',
+		/affiliate_id=1070389/
+	);
+	await expect(page.getByText(/costs you nothing extra/)).toBeVisible();
+});
+
 test('landing shows the book’s spine; a chapter opens and pages through', async ({ page }) => {
 	await page.goto('/hmtw/reference');
 	const toc = page.getByRole('navigation', { name: 'Rules contents' });

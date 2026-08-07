@@ -40,7 +40,7 @@ beforeAll(async () => {
 
 describe('hmtw pack round-trip', () => {
 	it('has the expected inventory of files', () => {
-		expect(manifest.files.sort()).toEqual(['rules/book.json', 'rules/gm-note.json']);
+		expect(manifest.files.sort()).toEqual(['landing.json', 'rules/book.json', 'rules/gm-note.json']);
 		expect(manifest.license).toBe('LicenseRef-HMtW');
 	});
 

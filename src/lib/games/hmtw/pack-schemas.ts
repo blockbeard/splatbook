@@ -9,11 +9,14 @@
  */
 
 import type { z } from 'zod';
+import { landingSchema } from '../../packs/landing';
 import { documentTreeSchema } from '../../reference/document-tree';
 
 export function schemaFor(relPath: string): z.ZodType | null {
 	// Generated rules reference (build_srd.py): the book, and the pack-authored
 	// GM-note document the spoiler interstitial points at.
 	if (/^rules\/[a-z0-9-]+\.json$/.test(relPath)) return documentTreeSchema;
+	// Front-door copy — shell-owned schema (phase 22), pack-supplied words.
+	if (relPath === 'landing.json') return landingSchema;
 	return null;
 }

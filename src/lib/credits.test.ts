@@ -28,4 +28,11 @@ describe('licenseInfo', () => {
 		expect(info.url).toBeUndefined();
 		expect(info.shareAlike).toBe(false);
 	});
+
+	it('maps the HMtW LicenseRef to the pack’s served license text', () => {
+		const info = licenseInfo('LicenseRef-HMtW');
+		expect(info.label).toContain('HMtW');
+		expect(info.url).toBe('/content-packs/hmtw/LICENSE.md');
+		expect(info.shareAlike).toBe(false);
+	});
 });

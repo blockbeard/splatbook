@@ -25,6 +25,13 @@ const KNOWN: Record<string, { label: string; url: string }> = {
 	'GPL-3.0-or-later': {
 		label: 'GPL-3.0-or-later',
 		url: 'https://www.gnu.org/licenses/gpl-3.0.html'
+	},
+	// A LicenseRef-* id is pack-specific by nature: the book's own reuse grant,
+	// reproduced verbatim (with what the pack omits and why) in the pack's
+	// served LICENSE.md.
+	'LicenseRef-HMtW': {
+		label: 'HMtW open game text (see pack license)',
+		url: '/content-packs/hmtw/LICENSE.md'
 	}
 };
 
