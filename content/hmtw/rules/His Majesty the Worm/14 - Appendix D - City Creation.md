@@ -16,6 +16,9 @@ reduced to rubble by invaders, and renamed countless times to honor forgotten go
 **But it remains the City**.
 
 # Mapping the City
+> [!sidebar] A reminder about the implied setting
+>
+> There is no canon setting of _His Majesty the Worm._ While the text and rules of the game make assumptions about the setting (the existence of the All-Watch, the Cult, etc.), the intent is to be inspiring not constraining. Because _His Majesty the Worm_ doesn’t carry an explicit setting, the City creation rules raise more questions than they answer. The GM—in conjunction with the general will of the table—is responsible for answering them. As you discover contradictions, swap those details out, change them however you want, or ignore them completely.
 
 > [!lede]
 > This appendix contains optional rules for creating an evocative City-scape for your games. Using these rules, you define the different districts of your City. We provide example districts, each with a **name** and a **brief description.** Each entry includes some sights and sounds visitors might encounter. Many entries have an example rumor that the GM can use when the players visit that district. Lastly, each entry has **special City Actions** that are available for adventurers who visit that district.
@@ -26,31 +29,12 @@ During the City Phase, players choose to use any of the **standard City Actions*
 
 The elements of randomness in these rules allow you to create different experiences each time you revisit _His Majesty the Worm._ If you want to learn historical details about the world, simply use these rules to create a City from a past age. If the current guild falls victim to one of the myriad hazards of the Underworld but your gaming group wants to continue playing, you can reset the City and set the new game in a later (or earlier) period of your campaign’s history.
 
-> [!sidebar] A reminder about the implied setting
->
-> There is no canon setting of _His Majesty the Worm._ While the text and rules of the game make assumptions about the setting (the existence of the All-Watch, the Cult, etc.), the intent is to be inspiring not constraining. Because _His Majesty the Worm_ doesn’t carry an explicit setting, the City creation rules raise more questions than they answer. The GM—in conjunction with the general will of the table—is responsible for answering them. As you discover contradictions, swap those details out, change them however you want, or ignore them completely.
-
 # Reverse archaeology
 
 > [!lede]
 > **The GM lays down random minor arcana cards to create a City layout.** At the end of this procedure, your City will have a **ruler** and 4– to 20 **unique districts.** The GM should make a simple map of the City to list the different districts and **special actions** available. The basic procedure is as follows:
 
 ## 1. The central power
-
-**Draw** and place a single card. This card represents the power that currently rules the City. Unless it’s a face card, only the suit matters for this draw.
-
-- : The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
-
-- : The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
-
-- : The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
-
-- : The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
-
-- If a **face card** is in the central position, the institution or person that district represents is in control of the City (per the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]]). GMs should interpret this however best makes sense to them.
-
-- For example, if the Court of **Swords** was the ruler of the City, whatever gladiator is undefeated is currently the king of the City. Would-be kings fight and die in the sands of the Court of Swords.
-
 > [!sidebar] The gates
 >
 > Most districts on the outer ring of the City host a gate. Some are wide and magnificent, monuments of ancient and glorious wars; others are barely side doors, only wide enough for an ox to step through.
@@ -84,6 +68,20 @@ The elements of randomness in these rules allow you to create different experien
 > XIII. The Sun’s Door
 >
 > XIV. The Cursed Gate
+
+**Draw** and place a single card. This card represents the power that currently rules the City. Unless it’s a face card, only the suit matters for this draw.
+
+- : The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
+
+- : The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
+
+- : The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
+
+- : The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
+
+- If a **face card** is in the central position, the institution or person that district represents is in control of the City (per the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]]). GMs should interpret this however best makes sense to them.
+
+- For example, if the Court of **Swords** was the ruler of the City, whatever gladiator is undefeated is currently the king of the City. Would-be kings fight and die in the sands of the Court of Swords.
 
 ## 2. The core districts
 

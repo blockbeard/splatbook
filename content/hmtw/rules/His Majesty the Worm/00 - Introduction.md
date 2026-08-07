@@ -41,9 +41,6 @@ We hope you will have fun with it!
 ---
 
 # Introduction
-
-**The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.
-
 > [!sidebar] What's up with the name? 
 > 
 > The title of this book is taken from Italo Calvino’s _The Castle of Crossed Destinies_ (Italian: Il castello dei destini incrociati). The experimental novel’s narrative details a group of pilgrims who find themselves unable to speak. Thus impaired, they use a set of tarot cards to illustrate their backgrounds and tell each other stories. Because this game also uses tarot cards to tell stories, the allusion seemed apt.
@@ -55,6 +52,8 @@ We hope you will have fun with it!
 >Plus, they’re just cooler and more interesting to look at than playing cards.
 >
 >Tarot cards are available online and in spooky new age stores that sell crystals and stuff. You’ll want a deck similar to a “classic” Rider-Waite deck: 78 cards total, with a minor arcana consisting of four suits of ten numbered cards + four face cards and a major arcana numbered 0 to 21.
+
+**The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.
 
 ## Tarot
 

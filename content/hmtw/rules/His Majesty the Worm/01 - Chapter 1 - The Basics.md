@@ -7,13 +7,6 @@ And then, the Underworld opened beneath it.
 Beneath the world’s largest metropolis, passages in plaster mines were discovered that led to a gargantuan castle, surrounded by a ruined city, deep inside the stygian depths.
 
 # The Four Phases
-
-> [!lede]
-> Each adventurer has a [[02 - Chapter 2 - The Adventurer#3. Quests|personal quest]] that compels them into the lightless depths. Once their quest is fulfilled, they can finally retire and rest. Until then, it is a cycle of descending into the Underworld and returning to the City to restock and rest.
-
-> [!lede]
-> The flow of the game consists of four distinct phases, each with its own style of play and rules.
-
 >[!sidebar] Against canon
 >
 >Throughout this book, there are references to an implied setting that are never elaborated on. We name and discuss people, places, and historical events without describing them in great detail. This is intentional.
@@ -23,6 +16,12 @@ Beneath the world’s largest metropolis, passages in plaster mines were discove
 >It’s our hope that the implied setting of _His Majesty the Worm_ stimulates your imagination and allows you to tell the stories that you want to tell.
 >
 >As the setting details provided invoke a certain aesthetic for you, we hope that you will use them. As the setting details provided feel frustrating in their obscurity or contradictions, we hope you will change them, ignore them, or tear them physically from the book. At times, the provided material will be inherently contradictory, obliging you to make a decision about which version you want to be “true.”
+
+> [!lede]
+> Each adventurer has a [[02 - Chapter 2 - The Adventurer#3. Quests|personal quest]] that compels them into the lightless depths. Once their quest is fulfilled, they can finally retire and rest. Until then, it is a cycle of descending into the Underworld and returning to the City to restock and rest.
+
+> [!lede]
+> The flow of the game consists of four distinct phases, each with its own style of play and rules.
 
 ## The Crawl Phase
 
@@ -45,7 +44,7 @@ As the adventurers get worn down by journeys and battles, they’ll pause and us
 
 Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.
 
-> [!summary] The Four Phases (diagram, p.15)
+> [!summary] The Four Phases
 > **City** — Turn in and take new contracts; spend wealth to restock and heal; pursue long-term schemes.
 > 1. Death and Taxes
 > 2. Noteworthy Deeds
@@ -186,18 +185,31 @@ Tests of fate should be relatively rare and relatively tense. Don’t call for t
 You’re straining against it as the mechanism’s gears
 
 ### “No, you can’t do that”
+> [!sidebar] The Challenge Phase
+> It's worth noting that the rules of the Challenge Phase are more bounded than the freeform nature of standard play. The Challenge Actions and the player's hand of cards usually determine what an adventurer can and can't do. The GM still adjudicates what the players try to do when there's ambiguity:
+>
+> *"Oh, you're trying to squeeze past the slime as they squelch down the hall? Well, there's not really space to Avoid it — it takes up the entire corridor. Do you want to do something else instead?"*
 
 Sometimes, actions are not possible or will automatically fail based on the logic of the narrative world.
 
 - “No, you can't really try and tame a dangerous wild beast with a single test of fate. Something like that would need to be done by breaking it over the course of several weeks. You can try and capture it, though, if you want...”
 - “No, if you don't have any tools, you don't have any way to pick the lock. There's not any, like, bits of wire just lying around your jail cell.”
 
-> [!sidebar] The Challenge Phase
-> It's worth noting that the rules of the Challenge Phase are more bounded than the freeform nature of standard play. The Challenge Actions and the player's hand of cards usually determine what an adventurer can and can't do. The GM still adjudicates what the players try to do when there's ambiguity:
->
-> *"Oh, you're trying to squeeze past the slime as they squelch down the hall? Well, there's not really space to Avoid it — it takes up the entire corridor. Do you want to do something else instead?"*
-
 # The Major and Minor Arcana
+> [!sidebar] No tarot?
+>
+> One of the reasons _His Majesty the Worm_ separates the major and minor arcana decks is to compensate for the fact that not everybody who wants to play this game necessarily has a tarot deck lying around. The mechanics can be replicated, in a pinch, by using a twenty-sided die (a d20) as a stand-in for the GM’s deck and a standard deck of playing cards (with one joker to represent the Fool) for the players. The numbers will be a little different, but the logic and game balance will be the same.
+
+> [!sidebar] Random number generation
+>
+> You can replicate the randomization of polyhedral dice with tarot cards if you so wish.
+> 
+> - The major arcana can act as a d20 (if you redraw when you get the World [XXI]).
+> - The minor arcana suits can replicate a d4.
+> - The minor arcana is essentially a d14.
+> - Dividing the minor arcana in half gives you a weird d7. This can act as a d6 if you redraw on the queen and king.
+>
+> And, lastly, one of the most **random** and evocative types of **generation** you can get from the tarot is _inspiration_. If you’re familiar with the “meanings” of the tarot, you can use those meanings to inform the environments, characters, and events of your game. If you’re not familiar with the traditional tarot interpretation, you can just look at the cool art and feel inspired.
 
 > [!lede]
 > A single **tarot** deck is used in _His Majesty the Worm_ to create random results. A tarot deck in its entirety consists of seventy-eight cards of two types: **major arcana** and **minor arcana**.
@@ -217,21 +229,6 @@ At the beginning of each session, separate the minor and major arcana into the t
 There are two discard piles—one for minor arcana and one for major arcana. As cards are played, place them into the appropriate discard pile. (Occasionally, certain rules will call for you to look at the top card of a discard pile, so it can be important to note this.)
 
 **Whenever the Fool is drawn, both decks are reshuffled at the end of the round**.
-
-> [!sidebar] No tarot?
->
-> One of the reasons _His Majesty the Worm_ separates the major and minor arcana decks is to compensate for the fact that not everybody who wants to play this game necessarily has a tarot deck lying around. The mechanics can be replicated, in a pinch, by using a twenty-sided die (a d20) as a stand-in for the GM’s deck and a standard deck of playing cards (with one joker to represent the Fool) for the players. The numbers will be a little different, but the logic and game balance will be the same.
-
-> [!sidebar] Random number generation
->
-> You can replicate the randomization of polyhedral dice with tarot cards if you so wish.
-> 
-> - The major arcana can act as a d20 (if you redraw when you get the World [XXI]).
-> - The minor arcana suits can replicate a d4.
-> - The minor arcana is essentially a d14.
-> - Dividing the minor arcana in half gives you a weird d7. This can act as a d6 if you redraw on the queen and king.
->
-> And, lastly, one of the most **random** and evocative types of **generation** you can get from the tarot is _inspiration_. If you’re familiar with the “meanings” of the tarot, you can use those meanings to inform the environments, characters, and events of your game. If you’re not familiar with the traditional tarot interpretation, you can just look at the cool art and feel inspired.
 
 # Tests of Fate
 
@@ -279,14 +276,13 @@ If the total value is **14**+ _and_ the player drew the suit being tested on the
 The GM should invite the player to embellish how _impressive_, how _effortless_, how _quick_, or how _thorough_ their success was.
 
 ### Great failure
+> [!sidebar] Challenge Actions
+> The Challenge Phase is a subsystem for handling dangerous situations blow-by-blow. Challenge Actions have occasional similarities to the test of fate rules—for example, favor and disfavor can adjust a Challenge Action’s total value.
+> However, there are many important differences: for example, Challenge Actions are not bound by fate and you cannot **push fate** on Challenge cards. For the specific rules on how the Challenge Phase handles actions, see [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]].
 
 If the player pushes fate _and_ the total value is still 13 or less, the test is a **great failure**. The GM describes a _new_ significant setback, bad situation, or harmful repercussion as a result. See “Pushing Fate.”
 
 Additional advice for the GM on adjudicating tests of fate can be found under [[10 - Chapter 10 - The Worm Turns - Gamemastering#The blessing of chaos|The blessing of chaos]].
-
-> [!sidebar] Challenge Actions
-> The Challenge Phase is a subsystem for handling dangerous situations blow-by-blow. Challenge Actions have occasional similarities to the test of fate rules—for example, favor and disfavor can adjust a Challenge Action’s total value.
-> However, there are many important differences: for example, Challenge Actions are not bound by fate and you cannot **push fate** on Challenge cards. For the specific rules on how the Challenge Phase handles actions, see [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]].
 
 # Pushing fate
 
@@ -536,14 +532,6 @@ When Stunned, immediately choose and discard a [[07 - Chapter 7 - The Challenge 
 You do not need to Recover from being Stunned. It is an instantaneous effect.
 
 ### Trip
-
-Tripped creatures fall prone.
-
-- Prone creatures cannot Avoid, Move, or Dash.
-- Melee attacks against prone targets have favor.
-- Missile attacks against prone targets have disfavor.
-- Anybody engaged with a Tripped creature immediately [[07 - Chapter 7 - The Challenge Phase#Combatants and position|disengages]].
-
 > [!sidebar] Not just for Challenges
 >
 >Many effects have important ramifications during Challenges. However, effects are not “combat only” rules. For example, outside of a Challenge, a trap with the Displace effect can knock an adventurer into a spiked pit. If that adventurer survives, a sorcerer can cast Gust of Wind to give the Displace effect and pull them back out. The GM adjudicates how effects resolve during the normal flow of the game.
@@ -552,3 +540,10 @@ Tripped creatures fall prone.
 
 > [!sidebar] Effect names
 > Note that capitalized effect names change conjugation depending on how they're used in game text, but all mean the same thing. For example, a Blinding attack Blinds a creature, after which they are Blinded.
+
+Tripped creatures fall prone.
+
+- Prone creatures cannot Avoid, Move, or Dash.
+- Melee attacks against prone targets have favor.
+- Missile attacks against prone targets have disfavor.
+- Anybody engaged with a Tripped creature immediately [[07 - Chapter 7 - The Challenge Phase#Combatants and position|disengages]].

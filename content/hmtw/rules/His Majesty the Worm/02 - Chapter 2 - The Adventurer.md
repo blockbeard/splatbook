@@ -123,7 +123,6 @@ The GM can also use this time to smooth over potential difficulties. One of the 
 As part of the Call to Adventure, the players announce their adventurers’ initial quests. The GM can veto these quests or suggest changes to make them more interesting.
 
 ### Collaborative guild creation
-
 > [!sidebar] Restrictions foster creativity
 >
 > It’s said that necessity is the mother of invention. If that’s true, we would add our own truism: restrictions are the mother of creativity.
@@ -279,7 +278,6 @@ Each section of the adventurer sheet is described in detail on the following pag
 > _– “Tell Me a Story,” Robert Penn Warren_
 
 ## 1. Name, kith, and kin
-
 > [!sidebar] Knaves, rogues, and scoundrels
 >
 > Playing murder hobos gets so old so fast. Whee, you killed the barkeep because he looked at you wrong. Whee, you set the tavern on fire.
@@ -323,7 +321,6 @@ The kiths and kin are:
 - Stormblooded
 
 ## 2. Attributes
-
 > [!sidebar] Attributes as class
 >
 > You might think of each attribute as a rating in one of four jobs: warrior, rogue, scholar, and sorcerer. When a particular task would fall within the purview of one of these jobs, you test fate with that particular attribute.
@@ -392,6 +389,30 @@ You should never feel locked into the choices you make about your adventurer. Yo
 > _– Ill Met in Lankhmar, Fritz Leiber_
 
 ### Sample motif descriptors and professions
+>[!sidebar] Example motifs
+>
+>• Gentleman thief
+>• Heretical evangelist
+>• Veteran witch-hunter
+>• Constantly giggling rat-catcher
+>• Drunken knight
+>• Fallen templar
+>• Penitent grave robber
+>• Twisted inventor
+>• Morbid jester
+
+>[!sidebar] Real-world inspiration
+> In Britain’s first census in 1801, citizens were asked to state their “rank, profession, or occupation.”
+> The following are true responses to this census. If this doesn’t inspire you for motifs, nothing will:
+> • Turnip shepherd
+> • Knight of the Thimble
+> • Drowner
+> • Fatuous pauper
+> • Emasculator
+> • Sampler of drugs
+> • Examiner of underclothing
+> • Gymnast to house painter
+> • Colourist of artificial fish
 
 | Descriptor | Descriptor | Profession | Profession |
 |---|---|---|---|
@@ -420,31 +441,6 @@ You should never feel locked into the choices you make about your adventurer. Yo
 | Lazy | Young (Very) | Hunter | Witch-hunter |
 | Lowborn | Zen | Illusionist | Wizard |
 | Masochistic | Zombielike | Inquisitor | Zealot |
-
->[!sidebar] Example motifs
->
->• Gentleman thief
->• Heretical evangelist
->• Veteran witch-hunter
->• Constantly giggling rat-catcher
->• Drunken knight
->• Fallen templar
->• Penitent grave robber
->• Twisted inventor
->• Morbid jester
-
->[!sidebar] Real-world inspiration
-> In Britain’s first census in 1801, citizens were asked to state their “rank, profession, or occupation.”
-> The following are true responses to this census. If this doesn’t inspire you for motifs, nothing will:
-> • Turnip shepherd
-> • Knight of the Thimble
-> • Drowner
-> • Fatuous pauper
-> • Emasculator
-> • Sampler of drugs
-> • Examiner of underclothing
-> • Gymnast to house painter
-> • Colourist of artificial fish
 
 ## 5. Bonds
 
@@ -547,13 +543,6 @@ Examples: Simon and Kaylee, Aragorn and Éowyn
 - Charge this Bond when you do something kind for your love and they rebuff you or turn you down.
 
 ### Ward
-
-You have a guild-mate that you look out for. It’s important they survive.
-
-Example: Frodo, River
-
-- When your Ward survives an entire Challenge without taking a Wound, charge this Bond.
-
 > [!sidebar] Negative bonds and “That Guy”
 >
 > OK, let’s talk real quick about the connotation of some of these negative **Bonds** and problem players.
@@ -567,6 +556,12 @@ Example: Frodo, River
 > GMs, talk to your players when they bring these things up. Facilitate communication. Are the players interested in ever moving the Unrequited Love towards Love?
 >
 > At the end of the day, it’s important that everybody is having fun with the Bonds. If they’re not, just swap them to “Ally.” It’s the default one.
+
+You have a guild-mate that you look out for. It’s important they survive.
+
+Example: Frodo, River
+
+- When your Ward survives an entire Challenge without taking a Wound, charge this Bond.
 
 ## 6. Arête
 
@@ -758,6 +753,11 @@ Note that this differs from training talents from your own path. You choose to s
 
 **Once you have spent 7XP on training a talent with a mentor, it becomes mastered**.
 ## 12. Experience
+> [!sidebar] Wide, not deep, growth
+>
+> It’s worth noting that adventurers in _His Majesty the Worm_ grow “wide” not “deep.” That is, XP allows you to use and master more talents, broadening the options available to you. You do not gain bigger numbers, +1s, more hit points, etc.
+>
+> In addition to XP, there are two other types of growth that adventurers benefit from. The first is [[02 - Chapter 2 - The Adventurer#6. Arête|arête]], a feature of your kith. The second is “weirdness.” As you journey through the Underworld, you get weirder. You accumulate scars, mutations, magical items, pets, mutilations, phobias, etc. There are no rules governing the latter. Finding out how your adventurer gets weirder is essentially the whole game.
 
 **Experience points** (XP) represent an adventurer’s skills improving as they adventure. You spend XP to use talents that you have not yet mastered.
 
@@ -775,13 +775,10 @@ Pursuing and fulfilling quests is the _main_ way to accumulate experience. There
 
 - When you take the **Carousing** City Action, you spend your gold to gain experience points (but risk a splitting hangover). See [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] for details on this City Action.
 
-> [!sidebar] Wide, not deep, growth
->
-> It’s worth noting that adventurers in _His Majesty the Worm_ grow “wide” not “deep.” That is, XP allows you to use and master more talents, broadening the options available to you. You do not gain bigger numbers, +1s, more hit points, etc.
->
-> In addition to XP, there are two other types of growth that adventurers benefit from. The first is [[02 - Chapter 2 - The Adventurer#6. Arête|arête]], a feature of your kith. The second is “weirdness.” As you journey through the Underworld, you get weirder. You accumulate scars, mutations, magical items, pets, mutilations, phobias, etc. There are no rules governing the latter. Finding out how your adventurer gets weirder is essentially the whole game.
-
 ## 13. Animal companions and familiars
+> [!sidebar] Hirelings?
+>
+> There are no rules for hirelings, henchmen, mercenaries, etc. because that is what _you_ are playing. If you’re going into the Underworld, you’re an _adventurer_. You’re going down there for some reason, not just gold. Nobody can go into the Underworld unless they’re a member of a guild and nobody is special enough to join a guild unless they’re going to be played by a player.
 
 Adventurers sometimes take pets into the Underworld—hunting falcons, small but vicious dogs, trained dire moths, riding boars, and so on.
 
@@ -794,10 +791,6 @@ The [[05 - Chapter 5 - The Four Paths#Beast Master|Beast Master]] talent can tra
 If necessary, commands might prompt a test of fate. If the animal is uniquely suited to the test (e.g., monkeys are great at climbing and grabbing stuff, horses are great at pulling), the test is made with favor. Otherwise, no bonuses are added to the test of fate.
 
 If nobody in your guild has the Beast Master talent, you may pay animal trainers in the City to train your pets for you (see [[14 - Appendix D - City Creation#IV of Cups: The Hippodrome of Amet|The Hippodrome of Amet]]).
-
-> [!sidebar] Hirelings?
->
-> There are no rules for hirelings, henchmen, mercenaries, etc. because that is what _you_ are playing. If you’re going into the Underworld, you’re an _adventurer_. You’re going down there for some reason, not just gold. Nobody can go into the Underworld unless they’re a member of a guild and nobody is special enough to join a guild unless they’re going to be played by a player.
 
 ### War pigs
 During Challenges, an animal companion does not act unless its owner uses the Command action to have it perform one of its known commands. The GM interprets the pet’s actions, as even well-trained animals will use their own logic and understanding in stressful situations. An animal companion shares its master’s Initiative.
@@ -813,7 +806,6 @@ Animal companions lose the Staggered condition if fed during the Camp Phase.
 A player may spend one of their charged Bonds to heal their animal’s Injured condition during step 4 of the Camp Phase. Animals can also benefit from the Heal effect.
 
 ## 14. Pack space and gear
-
 > [!sidebar] Filthy lucre
 >
 > Gold can be easy to get and easy to lose in the adventuring life. Money is used to resupply with essential gear during the City Phase.

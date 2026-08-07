@@ -77,6 +77,9 @@ At the end of the brew alchemy action, the alchemical substance replaces the rea
 - Hermetic bottle: Oil of hellhound
 
 # Alchemical Substances
+> [!sidebar] Forcing a potion down someone’s throat
+>
+> It is _really_ hard to get someone to drink something they don’t want to. A potion is probably about the size of a glass of wine. Imagine holding one of your friend’s mouth open and trying to get them to swallow a glass of wine. Can it be done? In the right conditions. Can it be done easily? No.
 
 > [!lede]
 > There are three types of alchemical substances.
@@ -88,10 +91,6 @@ At the end of the brew alchemy action, the alchemical substance replaces the rea
 **Oils (O)** have an effect on the environment. They can be poured out, slathered onto items, or have things dipped into them to create these effects.
 
 During Challenges, the **Use Item** Cups action is required to use any alchemical substance, whether that’s drinking a potion, throwing a bomb, or applying an oil ([[07 - Chapter 7 - The Challenge Phase#Cups actions|Cups actions]]).
-
-> [!sidebar] Forcing a potion down someone’s throat
->
-> It is _really_ hard to get someone to drink something they don’t want to. A potion is probably about the size of a glass of wine. Imagine holding one of your friend’s mouth open and trying to get them to swallow a glass of wine. Can it be done? In the right conditions. Can it be done easily? No.
 
 ## Alchemical effects
 

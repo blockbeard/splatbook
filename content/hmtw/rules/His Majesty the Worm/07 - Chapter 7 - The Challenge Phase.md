@@ -45,9 +45,6 @@ After a turn is resolved, the GM asks: “Any minor actions?” Anybody who want
 After all actions of a particular Initiative number are resolved, the GM continues the count upwards. Steps 3 and 4 repeat until everybody has had their turn.
 
 ### 5. End the round
-
-Once everybody has had their turn and the subsequent minor actions have been resolved, the round ends. Everybody discards any unused Challenge cards in their hand. Everybody discards their current Initiative card. Facedown cards remain in play. If the Fool was drawn during this past round, both minor and major arcana decks are shuffled. A new round begins.
-
 > [!sidebar] Learning the Challenge Phase
 >
 > The Challenge Phase rules are designed to be fun—players make tons of small decisions: which cards to use, how to collaborate to get the maximum effect, how to take damage. The rules are also designed to be deadly—things can quickly go from bad to worse as characters Notch armor, Wound talents, and realize they’ve gotten in over their heads.
@@ -57,6 +54,8 @@ Once everybody has had their turn and the subsequent minor actions have been res
 > To learn any game, take it slow and go through each step slowly. After two or three Challenges, you’ll get the sense of the flow and find there’s a lot of interesting tactics embedded in the rules. Do you use a low **Initiative** to go first so you can see what the GM’s monsters **Initiative** is for the rest of the round? Do you bluff with a low Riposte? Do you put down a Riposte first, then draw your sword to make your counterattack more deadly?
 >
 > Players who put in the due diligence to learn the tactics underlying the Challenge Phase will have a lot of fun.
+
+Once everybody has had their turn and the subsequent minor actions have been resolved, the round ends. Everybody discards any unused Challenge cards in their hand. Everybody discards their current Initiative card. Facedown cards remain in play. If the Fool was drawn during this past round, both minor and major arcana decks are shuffled. A new round begins.
 
 ## 0. Set the scene
 
@@ -290,6 +289,19 @@ There are also **miscellaneous actions** that can be performed using any card, r
 The GM’s characters will also take turns over the course of the round. During an enemy character’s turn, the GM plays a card from their hand and adds their character’s attribute to the total value, just like players. The GM might have several characters that take turns over the course of a round.
 
 ### Action value
+> [!sidebar] Card values
+>
+> Just a reminder:
+>
+> - **Aces** have a value of 1 (I).
+>
+> - **Pages** have a value of 11 (**XI**).
+>
+> - **Knights** have a value of 12 (**XII**).
+>
+> - **Queens** have a value of 13 (**XIII**).
+>
+> - **Kings** have a value of 14 (**XIV**).
 
 **On your turn, your action’s total value equals the card’s face value _plus_ the associated attribute**.
 
@@ -305,21 +317,10 @@ For example, an adventurer dangling from a tower window by a rope might be given
 
 You can spend a point of **Resolve** to gain favor on a Challenge Action ([[01 - Chapter 1 - The Basics#Favor and disfavor|Favor and disfavor]]). Resolve cannot be spent to adjust your Initiative score.
 
-> [!sidebar] Card values
->
-> Just a reminder:
->
-> - **Aces** have a value of 1 (I).
->
-> - **Pages** have a value of 11 (**XI**).
->
-> - **Knights** have a value of 12 (**XII**).
->
-> - **Queens** have a value of 13 (**XIII**).
->
-> - **Kings** have a value of 14 (**XIV**).
-
 ### Facedown cards
+> [!sidebar] No peeking!
+>
+> When a player declares an action that places a card facedown, they state what action they are taking, but only they know the card’s value until it is flipped up. Nobody but the player can look at the facedown card until the action is triggered. No peeking!
 
 You usually play **Challenge cards** face up, but some actions (such as Dodge or Aid Another) are played facedown to represent your adventurer readying themselves to act.
 
@@ -336,10 +337,6 @@ Facedown cards remain in play until they’re activated, you replace them with a
 Facedown cards do not impact how many cards you draw at the beginning of the round—players always draw **four Challenge cards**.
 
 You can use a defensive action (like Dodge or Riposte) for the benefit of anybody in your zone. It stays facedown until activated, as usual. If you move away from your ally before the defensive action triggers, discard your facedown card.
-
-> [!sidebar] No peeking!
->
-> When a player declares an action that places a card facedown, they state what action they are taking, but only they know the card’s value until it is flipped up. Nobody but the player can look at the facedown card until the action is triggered. No peeking!
 
 ### Interrupt actions
 
@@ -387,10 +384,6 @@ When every player and each GM character has had their turn (and all minor action
 If the Fool has been played, shuffle both the minor and the major arcana decks before dealing new cards.
 
 # Challenge Actions
-
-> [!lede]
-> Below is a list of common Challenge Actions and their associated suits.
-
 > [!sidebar] Four aces
 >
 > Sometimes luck isn’t with you. Sometimes you draw and get a bad hand. This happens in games; it’s okay. What are your options though?
@@ -400,6 +393,9 @@ If the Fool has been played, shuffle both the minor and the major arcana decks b
 > The Challenge rules are a minigame; a poker face is part of that mini-game. If you play a low Initiative, but then defend with a Dodge or Riposte, you give the GM pause. Why the low Initiative? What defensive cards do you have? This strategy only works if you don’t say, “Shit. I have nothing.” (Or maybe you’re bluffing.)
 >
 > If all else fails: be supportive. Maybe you won’t achieve much by yourself, but you can give an added boost to an ally.
+
+> [!lede]
+> Below is a list of common Challenge Actions and their associated suits.
 
 This set of actions isn’t comprehensive. These are simply common actions that we have given rules to so that GMs know how to handle common types of interactions. GMs should use these as examples and interpret the rules for whatever actions the players attempt. Players can attempt to do just about anything—swing from chandeliers, ride blazing hay carts down hills, shove burning brands into cyclops’ eyes—whatever. The GM can use this list of actions as a starting point to help them frame these narrative actions.
 
@@ -412,11 +408,6 @@ You _don’t_ need to play Challenge cards to talk in character or move around w
 ## Swords actions
 
 ### Attack
-
-Attacks are sword strikes, fired arrows, or a monster’s savage bites.
-
-If your Attack value is greater than your opponent’s Initiative, you deal 1 Wound. If your Attack value is less than their Initiative, it is deflected and no harm is done. Ties go to the attacker unless the defender has a shield. In either event, reveal your opponent’s Initiative card.
-
 > [!sidebar] Unarmed combatants
 >
 > Combat is a dance of hit or be hit. **If you are not wielding a weapon** or are only carrying a missile weapon, you are particularly vulnerable. **Attacks against you gain favor** (+3 to their action’s value).
@@ -424,6 +415,10 @@ If your Attack value is greater than your opponent’s Initiative, you deal 1 Wo
 > Similarly, you can make an Attack with your bare fists, but if your opponent is armed with a real weapon, your Attack has disfavor.
 >
 > Furthermore, **unarmed adventurers can deal no damage to creatures larger than them.**
+
+Attacks are sword strikes, fired arrows, or a monster’s savage bites.
+
+If your Attack value is greater than your opponent’s Initiative, you deal 1 Wound. If your Attack value is less than their Initiative, it is deflected and no harm is done. Ties go to the attacker unless the defender has a shield. In either event, reveal your opponent’s Initiative card.
 
 Successful melee attacks cause both combatants to be engaged.
 
@@ -464,14 +459,13 @@ Play your card facedown. When you’re next targeted by an Attack, Roughhouse, o
 Once your Dodge card is resolved, discard the card.
 
 ### Roughhouse
+> [!sidebar] Fastball specials
+>
+> Aid Another allows adventurers to set up one-two punches and special maneuvers. Sometimes, very large and very powerful monsters will have Initiatives that are above 14, which makes them difficult to hit with normal attacks. In these cases, adventurers will have to use Aid Another to coordinate their Attacks for team-based assaults.
 
 Roughhouse to attempt some maneuver against your opponent: charge them with your shield, tackle them, rip their helm from their head, place your thumbs in their eyeballs.
 
 If your Roughhouse value is greater than your opponent’s Initiative, you choose to either Disarm, Displace, Root, or Trip them (see [[01 - Chapter 1 - The Basics#Effects|Effects]]). They must use the Recover action to get rid of this effect.
-
-> [!sidebar] Fastball specials
->
-> Aid Another allows adventurers to set up one-two punches and special maneuvers. Sometimes, very large and very powerful monsters will have Initiatives that are above 14, which makes them difficult to hit with normal attacks. In these cases, adventurers will have to use Aid Another to coordinate their Attacks for team-based assaults.
 
 ## Cups actions
 
@@ -508,7 +502,6 @@ Use an item that you’re holding.
 ## Wands actions
 
 ### Banter
-
 > [!sidebar] Morale
 >
 > **Morale** is a way to track how confident and self-assured the GM’s characters are in stressful situations. Adventurers don't need to track a Morale rating—it is only for the GM’s characters.
@@ -582,6 +575,11 @@ To resolve the test of fate, draw a new card from the top of the minor arcana de
 This is a catch-all option for anything not covered by the other actions. Opening a door, throwing a lever, picking up an item from the ground, dropping prone—anything that takes only a moment and isn’t contested can be done by playing a card of any value and any suit.
 
 ### Vigilance
+> [!sidebar] Out of cards?
+>
+> If either the players or the GM must draw cards but there are not enough remaining, shuffle the discard pile and continue drawing.
+>
+> This happens more frequently for the GM because they draw bigger hands of cards and the major arcana deck is smaller, but is a relatively rare event either way. With three or four players, the Fool is drawn every few rounds.
 
 **Vigilance** is watching for a particular circumstance before you act, waiting for your moment to strike. When you use Vigilance, you declare that you will use an action in response to a specific trigger.
 
@@ -590,12 +588,6 @@ Vigilance is a special exception to the category of miscellaneous actions. Inste
 Play your card facedown and **set another character’s action as the trigger**. Describe what you’re doing and how you're doing it. For example, you might wait until your companion gets through the door before you lower the crossbar (a Trivial Action), wait until the sorceress becomes visible before you throw a dagger at her (Attack), or trip the first foe that tries to get past you (Roughhouse).
 
 When the trigger occurs, flip this card over to take your designated action.
-
-> [!sidebar] Out of cards?
->
-> If either the players or the GM must draw cards but there are not enough remaining, shuffle the discard pile and continue drawing.
->
-> This happens more frequently for the GM because they draw bigger hands of cards and the major arcana deck is smaller, but is a relatively rare event either way. With three or four players, the Fool is drawn every few rounds.
 
 # GMing the Challenge
 
@@ -609,6 +601,25 @@ The basic concepts are the same: the GM acts on their turn based on their Initia
 Empty rooms and deserted forest corridors make for dull combats. Create cool spaces by filling them full of potential energy: curtains to hide behind, casks of wine to be toppled, runaway carts to dodge, chandeliers to swing from, puddles of oil to be lit aflame. Chapter 10: The Worm Turns has some advice for this.
 
 ## 1. Draw Challenge cards
+> [!sidebar] Mulligans
+>
+> Sometimes, the GM can draw all [[07 - Chapter 7 - The Challenge Phase#Greater dooms|greater dooms]] and have no legal cards to play for your Initiative or actions. As a GM, you can elect to mulligan a hand that’s _mostly_ **greater dooms**.
+>
+> When you mulligan, discard all drawn cards and draw again.
+
+> [!sidebar] Mob rule: Many enemies vs. the adventurers
+>
+> In general, the players are going to take more actions than the GM. By contrast, the GM brings their characters to bear _en masse_.
+>
+> If you are taking an action for a group, the entire group takes the same action: Moves to a new zone, makes an Attack, etc. Each member of the group can use this action differently: for example, if a pack of five unwolves attacks the guild, each unwolf can Attack a different adventurer.
+>
+> When a group gangs up on a single adventurer, they gain the following advantages:
+>
+> - If **2+ enemies** are fighting the same adventurer, they gain **favor** on their actions.
+>
+> - If **4+ enemies** are fighting the same adventurer, they gain **favor** on their actions and their Attacks deal **Piercing** damage. Piercing damage cannot be absorbed by armor ([[07 - Chapter 7 - The Challenge Phase#Piercing and Critical damage|Piercing and Critical damage]]).
+>
+> - If **8+ enemies** are fighting the same adventurer, they gain **favor** on their actions and their Attacks deal **Critical** damage. Critical damage causes you to mark Injured ([[07 - Chapter 7 - The Challenge Phase#Piercing and Critical damage|Piercing and Critical damage]]).
 
 During step 1, draw 3 **Challenge cards** from the **major arcana deck**, and **add:**
 
@@ -626,31 +637,11 @@ During step 1, draw 3 **Challenge cards** from the **major arcana deck**, and **
 
 (Elite enemies and dungeon lords are defined in Appendix C: Dungeon Denizens, see [[13 - Appendix C - Dungeon Denizens#Dungeon Lord|Dungeon Lord]].)
 
-> [!sidebar] Mulligans
->
-> Sometimes, the GM can draw all [[07 - Chapter 7 - The Challenge Phase#Greater dooms|greater dooms]] and have no legal cards to play for your Initiative or actions. As a GM, you can elect to mulligan a hand that’s _mostly_ **greater dooms**.
->
-> When you mulligan, discard all drawn cards and draw again.
-
 **Each of these additional cards is cumulative**. Check to see which are applicable at the start of each round. Therefore, if the number of enemies decreases, you will draw fewer major arcana cards.
 
 For example, if there are twelve imps facing four adventurers, the GM draws 6 cards from the major arcana deck. That includes: 3 cards to start, +1 for the one type of enemy (imps), +1 for having more enemies than adventurers, +1 for having twice as many enemies than adventurers.
 
 If, over the course of the Challenge, the adventurers reduce the number of imps to seven, the GM will draw 5 cards at the beginning of the next round: 3 + 1 for having one enemy type (imps) and +1 for having more enemies than adventurers.
-
-> [!sidebar] Mob rule: Many enemies vs. the adventurers
->
-> In general, the players are going to take more actions than the GM. By contrast, the GM brings their characters to bear _en masse_.
->
-> If you are taking an action for a group, the entire group takes the same action: Moves to a new zone, makes an Attack, etc. Each member of the group can use this action differently: for example, if a pack of five unwolves attacks the guild, each unwolf can Attack a different adventurer.
->
-> When a group gangs up on a single adventurer, they gain the following advantages:
->
-> - If **2+ enemies** are fighting the same adventurer, they gain **favor** on their actions.
->
-> - If **4+ enemies** are fighting the same adventurer, they gain **favor** on their actions and their Attacks deal **Piercing** damage. Piercing damage cannot be absorbed by armor ([[07 - Chapter 7 - The Challenge Phase#Piercing and Critical damage|Piercing and Critical damage]]).
->
-> - If **8+ enemies** are fighting the same adventurer, they gain **favor** on their actions and their Attacks deal **Critical** damage. Critical damage causes you to mark Injured ([[07 - Chapter 7 - The Challenge Phase#Piercing and Critical damage|Piercing and Critical damage]]).
 
 ## 2. Play Initiative for each significant enemy
 
@@ -743,6 +734,8 @@ To successfully escape, the guild needs to make a **group test of Pentacles** ([
 - If the guild gets 0 or **fewer hits**, the guild is cornered by the enemy with no clear path of escape.
 
 # Wounds
+> [!sidebar] Splatbook Note
+> The book is ambiguous about whether only mastered talents can be Wounded. Josh has said on the HMtW Discord that the errata he would add here is a sentence saying: "Only mastered talents can be wounded."
 
 When a foe or hazard harms an adventurer, they suffer a Wound. When you take a Wound, choose one of the following options:
 
@@ -757,9 +750,6 @@ When a foe or hazard harms an adventurer, they suffer a Wound. When you take a W
 - Mark the Death’s Door condition
 
 You can choose the above options in any order you choose, marking any condition, Wounding any talent, or Notching any worn armor. However, as you take Wounds and mark conditions, fewer of these options are available to you. For example, if you have already Wounded two talents, you cannot Wound any more and must choose another option instead. Similarly, if you are already Injured you _must_ mark Death’s Door the next time you take a Wound. Note that Wounds cannot mark the Stressed Condition.
-
-> [!sidebar] Splatbook Note
-> The book is ambiguous about whether only mastered talents can be Wounded. Josh has said on the HMtW Discord that the errata he would add here is a sentence saying: "Only mastered talents can be wounded."
 
 See [[02 - Chapter 2 - The Adventurer#8. Conditions|Conditions]] for more information on conditions.
 
@@ -789,24 +779,26 @@ When struck by Critical damage, mark Injured. If already Injured, mark [[07 - Ch
 Critical damage towards enemies reduces their Health to 0. They are at Death’s Door.
 
 ### Piercing
-
-Piercing damage cannot be absorbed by armor, shield or helm. A successful Piercing attack always causes a Wound.
-
 > [!sidebar] We fragile things
 >
 > **Almost all weapons and enemies deal 1 Wound.** A knife can kill you just as dead as a battle axe. Assuming that everybody in the combat is a competent fighter struggling hard against each other, every real weapon in the battle will deal equally-deadly damage. If not everyone is a competent fighter, why are you bothering with a Challenge? Just have the adventurers put down the non-combatant.
 >
 > The GM should use their discretion to frame the impact of different weapon types. For example, some enemies (like skeletons) might be completely immune to sharp weapons like daggers; the adventurers would need something like a mace to bash the skeletons to dislocate their bones.
 
+Piercing damage cannot be absorbed by armor, shield or helm. A successful Piercing attack always causes a Wound.
+
 Piercing damage toward enemies bypass their Defense and directly reduce their Health (see below).
 
 ## Health and Defense: Tracking enemy damage
-
-As the GM tracks the status of several combatants, they track Wounds in a simplified way. Each enemy has a **Health and Defense (HD)** rating.
-
 > [!sidebar] Weapon properties
 >
 > **Each type of weapon has a special property** that changes the way you use it in combat. See [[09 - Chapter 9 - The City Phase#Weapons|Weapons]] for a list of special weapon properties.
+
+> [!sidebar] Taking the murder out of murder-hobo
+>
+> If someone is taken down by an Attack, the person striking the finishing blow can elect to spare their life, disabling, knocking out, or subduing their enemy, per the GM’s discretion.
+
+As the GM tracks the status of several combatants, they track Wounds in a simplified way. Each enemy has a **Health and Defense (HD)** rating.
 
 **Health** represents a creature’s ability to absorb damage. For example, a giant can shrug off many small stings from puny humans. A skeleton has no vitals and must be bashed apart before it stops moving.
 
@@ -825,10 +817,6 @@ As a GM’s character is Wounded, the GM reduces either its Health or Defense po
 - **When** an enemy reaches 0 Health, they are at Death’s Door.
 
 - Some creatures bypass Death’s Door and are simply destroyed. For example, neither a clockwork statue nor a zombie are living and would simply fall apart.
-
-> [!sidebar] Taking the murder out of murder-hobo
->
-> If someone is taken down by an Attack, the person striking the finishing blow can elect to spare their life, disabling, knocking out, or subduing their enemy, per the GM’s discretion.
 
 # Death’s Door
 
@@ -855,15 +843,6 @@ While at Death’s Door, anything—alchemy, magic, or talent—that grants the 
 - If Healed, you gain consciousness, mark Stressed, and clear the Death’s Door condition.
 
 # New Adventurers
-
-Adventurer death is a feature not a bug. Victories are hollow when there is no threat of failure. The fact that death is on the line makes each hard-won victory precious.
-
-If your adventurer dies, make a new one to rejoin the action using [[02 - Chapter 2 - The Adventurer#The Call to Adventure|the Call to Adventure]] rules. These rules are purposefully quick and simple. Skip the bits that involve telling stories so you can get back into the game as quickly as possible.
-
-If you’ve died in the middle of a session, the GM should find some plausible excuse for your new adventurer to be added into the scene as soon as you finish creating them. Everybody at the table should be tolerant of whatever leaps of logic it takes to make this happen, but with a little finesse it shouldn’t ruin anybody’s immersion.
-
-Your guild-mates can perform the Hold a Funeral City Action later to give your new adventurer a portion of your dead adventurer’s XP ([[09 - Chapter 9 - The City Phase#Commission Craft|Commission Craft]]).
-
 > [!sidebar] Ultra-fast character creation
 >
 > Here’s a solution if you want to make adventurer creation even faster in the middle of session:
@@ -873,6 +852,14 @@ Your guild-mates can perform the Hold a Funeral City Action later to give your n
 > - When a question comes up of “Do I have any rope?” or “What’s my Cups score?”, decide at that moment what the answer is. Until that question is raised, your adventurer sheet exists in a Heisenberg uncertainty principle bubble. When the game’s fiction would collapse the uncertainty, write the answer down on your adventurer sheet.
 >
 > - When the session is over and you have time, go ahead and flesh out your adventurer using the normal rules from chapter 2.
+
+Adventurer death is a feature not a bug. Victories are hollow when there is no threat of failure. The fact that death is on the line makes each hard-won victory precious.
+
+If your adventurer dies, make a new one to rejoin the action using [[02 - Chapter 2 - The Adventurer#The Call to Adventure|the Call to Adventure]] rules. These rules are purposefully quick and simple. Skip the bits that involve telling stories so you can get back into the game as quickly as possible.
+
+If you’ve died in the middle of a session, the GM should find some plausible excuse for your new adventurer to be added into the scene as soon as you finish creating them. Everybody at the table should be tolerant of whatever leaps of logic it takes to make this happen, but with a little finesse it shouldn’t ruin anybody’s immersion.
+
+Your guild-mates can perform the Hold a Funeral City Action later to give your new adventurer a portion of your dead adventurer’s XP ([[09 - Chapter 9 - The City Phase#Commission Craft|Commission Craft]]).
 
 # Example Challenge Phase
 
@@ -943,6 +930,9 @@ _The GM then begins counting upwards to see who takes the first action._
 **GM:** OK, everybody have their Initiatives down? OK. 1… 2… 3… 4…
 
 ### Step 3
+> [!sidebar] Initiative strategies
+>
+> One benefit of moving first is it allows you to reveal higher Initiative cards by attacking them early in the round. Later in the round, you can make more informed decisions.
 
 _At the count of 4, the GM flips over the goblin’s Initiative and takes their turn._
 
@@ -971,10 +961,6 @@ _Fergus hasn’t suffered any damage so far during this Crawl and so marks Stagg
 _Chirm is already Staggered. She is wearing light armor and a helm, so she Notches the helm. Helms can only absorb 1 Wound, so it is Destroyed. Chirm’s player erases the helm from her sheet._
 
 _The GM puts their played card on top of the major arcana discard pile._
-
-> [!sidebar] Initiative strategies
->
-> One benefit of moving first is it allows you to reveal higher Initiative cards by attacking them early in the round. Later in the round, you can make more informed decisions.
 
 ### Step 4
 

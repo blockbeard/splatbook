@@ -55,7 +55,6 @@ Don’t fall into the trap of thinking that half-secrets and hints are interesti
 This is particularly true when players bid lore. If you accept a lore bid, you have a social obligation to speak generously to the player and give as much information as is appropriate.
 
 ### Be a fair arbiter
-
 > [!sidebar] Arbitrating Rules Questions
 >
 > What should be done if there is a rules dispute during gameplay? One of the GM's duties is to settle these questions and decide how the rule should be played. If you're still learning the game, you might want to look them up every time until the flow of narrative and mechanics feels natural. If you have the rules down pretty well but encounter a speedbump, we offer this suggestion: decide in favor of the players and look up the rule later. Don't slow down a fun combat with page turning. Just make a temporary rule that is beneficial for the players and ask your best rules lawyer at the table to look it up after the combat is over.
@@ -97,7 +96,6 @@ The GM asks, “What do you do?”
 The GM arbitrates the results of the players’ actions. The GM calls for tests of fate when the situation is tense and failure is interesting. This entire process repeats.
 
 ## Creating your Underworld
-
 > [!sidebar] Homebrewing
 >
 > Running a game is sort of like cooking. The first few times you do it, you adhere judiciously to a recipe. However, the more you cook, the more that repetition, experimentation, improvisation, and restriction reveals the methodology and chemistry that underlies the recipes.

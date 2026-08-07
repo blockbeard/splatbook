@@ -54,12 +54,11 @@ Automatically refill your allotment of lore bids and clear the Staggered conditi
 - If you are Injured, you must burn a Bond to clear this condition before you can heal any Wounded talents.
 
 ### 5. End of Camp Phase
-
-Check to make sure you have at least two of the following: bedroll, tent, or fire. If you don’t, you wake up Stressed.
-
 > [!sidebar] The pace of travel
 >
 > Rations are the resource that drive the Camp Phase. As such, the opportunity to perform Camp Actions is dependent on the guild’s ability to manage their inventory. Likewise, because charged Bonds drive step 4 of the Camp Phase (Recovery), you have an impetus to avoid striking camp too often: only after a good exchange of role-playing scenes.
+
+Check to make sure you have at least two of the following: bedroll, tent, or fire. If you don’t, you wake up Stressed.
 
 ## 1. Camp Actions
 
@@ -148,14 +147,13 @@ Spend some time updating your map and charting your course. Mark down the rooms 
 If you’re carrying an item that’s usable during the Camp Phase (e.g., a tinker’s kit) you may use it during this step.
 
 ### Use a Talent
-
-If you have a talent that’s usable during the Camp Phase (e.g., Beast Master, Bookworm, War Stories, etc.) you may use it during this step.
-
 > [!sidebar] Starving
 >
 > In general terms, a person can endure about three weeks of starvation before dying. Let us assume that “dying from starvation” is a fringe case in _His Majesty the Worm_. It’s much more likely that adventurers will run low on rations during the Crawl and need to endure a few days of empty bellies.
 >
 > If this is your second Camp Phase without consuming rations, you begin to starve. If you are starving, **skip steps 4 and 5 of the Camp Phase.** You cannot burn charged Bonds or regain lore bids while starving.
+
+If you have a talent that’s usable during the Camp Phase (e.g., Beast Master, Bookworm, War Stories, etc.) you may use it during this step.
 
 ## 2. Break bread
 

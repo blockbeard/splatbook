@@ -24,25 +24,30 @@ There are fungi gardens watered by the tears of nymphs.
 And what is in the center of the maze?
 
 # The Flow of the Crawl Phase
-
-> [!lede]
-> A new game of _His Majesty the Worm_ starts at the gates to the Underworld. The Crawl begins with the guild taking their first steps into those lightless depths.
-
 > [!sidebar] The mythic underworld
 >
 > _His Majesty the Worm’s_ setting is a place described in fiction, folklore, and games as a mythic underworld. A mythic underworld is not merely a cave system with kobolds and goblins hiding in every shadowy corner. It is another world, charged with unconventional physics, inhuman entities, and alien architectures.
-
-The Crawl is the phase of the game centered on exploring the Underworld. When the guild leaves the safety of civilization to pursue their quests, negotiating with strange creatures, avoiding traps, and excavating ancient treasures, they are Crawling. Most of the game is focused on this phase.
-
-The Underworld is what is called a **megadungeon**. A megadungeon is inherently strange. It does not need to conform to the players’ conceptions and expectations. It does benefit from having internal logic, however. Learning the “rules” of the Underworld is fun, and having internally consistent logic allows players to make meaningful choices (which is the point of the game).
-
-A megadungeon is composed of smaller, constituent **dungeons**. Each dungeon is a thematic level, section, or subsection. For example, your Underworld might be composed of five dungeon levels, which are called the Spires, the Castle of Crossed Destinies, the Inverted Castle, the City of Ruin, and the Necropolis of Ot.
 
 > [!sidebar] Characteristics of a mythic underworld
 >
 > 1. It’s big, and has many levels; in fact, it may be endless 2. It follows its own ecological and physical rules 3. It is not static; the inhabitants and even the layout may grow or change over time 4. It is not linear 5. There are many ways to move up and down through the levels 6. Its purpose is mysterious or shrouded in legend 7. It’s inimical to those exploring it 8. Deeper or farther levels are more dangerous 9. It’s a (the?) central feature of the campaign
 >
 > – “The Dungeon as a Mythic Underworld,” Philotomy’s Musings
+
+> [!sidebar] The rumor mill
+>
+> A large part of _His Majesty the Worm_ is exploring and discovering. If one (or, gods forbid, all) of a guild’s adventurers die, it’s boring to rediscover and retread old ground. That’s why we have a rule called the **rumor mill**.
+>
+> Adventurers are always talking in taverns about what they’ve discovered, what they’ve fought, and what’s almost eaten them whole. Unless the adventurers make an effort to keep something about their delvings secret, assume that it’s generally common knowledge. Therefore, adventurers who are introduced later into the game’s story can know things that previous adventurers discovered. They know where the secret switches are, they know how to defeat Mother Maggot, they know how to safely cross the invisible bridge.
+
+> [!lede]
+> A new game of _His Majesty the Worm_ starts at the gates to the Underworld. The Crawl begins with the guild taking their first steps into those lightless depths.
+
+The Crawl is the phase of the game centered on exploring the Underworld. When the guild leaves the safety of civilization to pursue their quests, negotiating with strange creatures, avoiding traps, and excavating ancient treasures, they are Crawling. Most of the game is focused on this phase.
+
+The Underworld is what is called a **megadungeon**. A megadungeon is inherently strange. It does not need to conform to the players’ conceptions and expectations. It does benefit from having internal logic, however. Learning the “rules” of the Underworld is fun, and having internally consistent logic allows players to make meaningful choices (which is the point of the game).
+
+A megadungeon is composed of smaller, constituent **dungeons**. Each dungeon is a thematic level, section, or subsection. For example, your Underworld might be composed of five dungeon levels, which are called the Spires, the Castle of Crossed Destinies, the Inverted Castle, the City of Ruin, and the Necropolis of Ot.
 
 Dungeons are separated into different **rooms**. A room can be any discrete space: a chamber, a feasting hall, a natural cavern, an underground river, etc. Each room should have something interesting for the players to interact with. For example, one room in the Castle of Crossed Destinies could have a giant throne constructed of a titan’s bones, another room could be the lair of a reverse sphinx who needs to hear riddles to survive, and so on.
 
@@ -71,12 +76,6 @@ When the guild encounters dangers—crushing walls, minotaurs, anti-life fields,
 > “Folk like to pretend they know everything about the world. \[...] You don’t have blanks on your map, so the folks who draw them shade in a piece and write, ‘The Eld.’ You might as well burn a hole right through the map for what good that does.”
 >
 > _– The Wise Man’s Fear, Patrick Rothfuss_
-
-> [!sidebar] The rumor mill
->
-> A large part of _His Majesty the Worm_ is exploring and discovering. If one (or, gods forbid, all) of a guild’s adventurers die, it’s boring to rediscover and retread old ground. That’s why we have a rule called the **rumor mill**.
->
-> Adventurers are always talking in taverns about what they’ve discovered, what they’ve fought, and what’s almost eaten them whole. Unless the adventurers make an effort to keep something about their delvings secret, assume that it’s generally common knowledge. Therefore, adventurers who are introduced later into the game’s story can know things that previous adventurers discovered. They know where the secret switches are, they know how to defeat Mother Maggot, they know how to safely cross the invisible bridge.
 
 Despite the presence of otherworldly and strange beings, very few creatures attack on sight and fight to the death. (Well, perhaps skeletons. They want to free their boney brethren from the flesh prisons that you’re cruelly keeping them in.) Almost everything can be talked to, negotiated with, or at least avoided. See “Disposition” see [[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]] for an overview of negotiating with the GM’s characters.
 
@@ -262,6 +261,11 @@ Every time the guild makes a loud noise or otherwise draws attention to themselv
 If the guild is proceeding very slowly or methodically, tapping in front of them with their ten-foot pole, the GM should **pull** again on the Meatgrinder table after resolving potential encounters. If the second draw results in **torches guttering** (results I–V), the GM keeps the result to represent additional time passing. Otherwise, nothing happens.
 
 ## Example Meatgrinder table
+> [!sidebar] What work is the Meatgrinder doing?
+>
+> The **Meatgrinder** introduces the tension of a ticking clock to your Crawl. If you linger too long or travel too deep, your torches will all burn out and you will be lost in a lightless void.
+>
+> Also, the alchemical reaction between the random event and the specific room ensures that the scene is interesting for everybody at the table—GM and player alike. A trapped hallway encounter can be fun on its own, but the (randomly generated) inclusion of a rival adventuring party approaching from the opposite direction adds a dynamic element. And, if you ever retrace your steps and enter this hallway again, some other random element will be encountered here. Since you’ve traveled here before, you can leverage what you learned from the first encounter to your advantage in the second.
 
 | Card | Meatgrinder Event |
 |:---:|---|
@@ -286,12 +290,6 @@ If the guild is proceeding very slowly or methodically, tapping in front of them
 | XIX | [Random encounter] Orc Hooligans: A gang of three orc youths accompanied by a random number of goblins are on a quest to make a name for themselves before returning to their clan. They might see the guild as an appropriate challenge or be convinced to join with the guild against some greater foe. |
 | XX | [Random encounter] Gentle Simon: An owlbear has treed Gentle Simon of Heartsbane, a notoriously shrimpy sorcerer. All of Gentle Simon’s Resolve has been expended trying to rescue himself, and he’s now beginning to weep. |
 | XXI | [Quest rumor] Victims of Geralt Mourn: The adventurers find a rival guild crucified. They are still alive, though grievously injured and dehydrated. If the adventurers can provide aid, healing, and food, the rival party gasps about their recent encounter with the vampire Geralt Mourn, who the guild has sworn to slay. It was this dread vampire who crucified them as a warning to others. They have news of his current whereabouts, but would be loath to tangle with him again. |
-
-> [!sidebar] What work is the Meatgrinder doing?
->
-> The **Meatgrinder** introduces the tension of a ticking clock to your Crawl. If you linger too long or travel too deep, your torches will all burn out and you will be lost in a lightless void.
->
-> Also, the alchemical reaction between the random event and the specific room ensures that the scene is interesting for everybody at the table—GM and player alike. A trapped hallway encounter can be fun on its own, but the (randomly generated) inclusion of a rival adventuring party approaching from the opposite direction adds a dynamic element. And, if you ever retrace your steps and enter this hallway again, some other random element will be encountered here. Since you’ve traveled here before, you can leverage what you learned from the first encounter to your advantage in the second.
 
 # Light
 
@@ -360,7 +358,6 @@ If the guild is _completely_ out of light sources, each player draws on the tabl
 | King | You limp back to the surface, mostly unscathed but raving about the twelve different flavors of darkness. |
 
 # Stress
-
 > [!sidebar] The logic of Stress
 >
 > Have you ever had a player in a game who insisted their character would happily sit in a dungeon room for twelve hours and just count coins until they found the cursed one? Or that their character would jump into an open sewer to search for the dagger they just dropped? Has the same friend ever turned down a slice of pizza because it had pineapple on it?
@@ -378,16 +375,15 @@ The GM is the ultimate arbiter of what introduces Stress or not. In general, bei
 **Example** stressors: exposure to extreme elements without the appropriate gear; magically terrifying monsters like liches or dragons; self-harm; extremely mundane, boring, and repetitive tasks; long-term social isolation; witnessing torture; and so on.
 
 # Item Durability
-
-Adventuring is hard on both your body and your gear. Items can be [[01 - Chapter 1 - The Basics#Notch|Notched]] or Destroyed while adventuring.
-
-Items might be damaged by environmental hazards. For example, a trap that shoots a jet of fire might Notch any flammable items on your belt. Items can also be damaged as a consequence of your actions. For example, if you throw your net over a charging manticore to help your companion escape, the manticore tears the net to shreds. The GM arbitrates when items are damaged.
-
 > [!sidebar] Repairing items
 >
 > [[09 - Chapter 9 - The City Phase#Tinker’s kit|Tinker’s kits]] can be used during the Camp Phase to repair Notched items (but not Destroyed items). Spending your Camp Action to use a tinker’s kit removes 1 Notch.
 >
 > Notched and Destroyed items can be repaired if carried back to the City, see [[09 - Chapter 9 - The City Phase#Replacing and repairing gear|Replacing and repairing gear]].
+
+Adventuring is hard on both your body and your gear. Items can be [[01 - Chapter 1 - The Basics#Notch|Notched]] or Destroyed while adventuring.
+
+Items might be damaged by environmental hazards. For example, a trap that shoots a jet of fire might Notch any flammable items on your belt. Items can also be damaged as a consequence of your actions. For example, if you throw your net over a charging manticore to help your companion escape, the manticore tears the net to shreds. The GM arbitrates when items are damaged.
 
 Fragile items are Destroyed after 1 Notch. Items intended for durability are Destroyed after 2 Notches. Items made of tempered steel are Destroyed after 3 Notches.
 

@@ -134,12 +134,11 @@ In summation, to cast a spell you must:
 If your spell targets an unwilling creature or anything carried or worn, you must spend 1 Resolve and test Wands. On a success, the spell takes effect. On a failure, the target avoids or resists the spell.  
 
 ### Casting during a Challenge
-
-During Challenges, you must spend 1 Resolve and **Speak Incantation** to cast a spell. When casting a spell targeting the environment, the action’s value is irrelevant—the spell instantaneously manifests. When casting a spell targeting an unwilling creature, the **Speak Incantation value must exceed your target’s Initiative**.  
-
 > [!sidebar] Scavenging components in the Underworld
 >
 > It might be possible (though rare and difficult) for a resourceful sorcerer to prepare a component in the Underworld. This would require them to find the proper requisite items and prepare them ritualistically during the flow of game—probably as a **Camp** Action. The GM adjudicates this as necessary.
+
+During Challenges, you must spend 1 Resolve and **Speak Incantation** to cast a spell. When casting a spell targeting the environment, the action’s value is irrelevant—the spell instantaneously manifests. When casting a spell targeting an unwilling creature, the **Speak Incantation value must exceed your target’s Initiative**.  
 
 # Magical Effects
 
@@ -188,6 +187,11 @@ What is a significant size of iron? A coin is okay. A cast iron pan is not. A st
 If someone is wearing iron armor that covers at least 75% of their body, they cannot be **targeted** by any spells. (Magic might still have an effect on them though—a wall of fire conjured by a spell still burns an iron-clad knight, but the knight herself cannot be targeted with a spell to light her clothing with heavenfire.)  
 
 ## Maleficence
+> [!sidebar] Body horror and other upsetting stuff
+>
+> Many maleficence effects change or alter an adventurer’s body, sometimes in upsetting ways. Some players will find this fun; others less so.
+>
+> Handling sensitive issues and negotiating players’ comfort level is one of the social skills the GM needs. When someone has an issue, be genuinely excited to try and solve it with them. Be up front about this possibility during your session 0 and willing to change how maleficence works at _your_ table to accommodate your fellow players’ feelings. Be kind.
 
 When magic goes wrong, draw on the appropriate **maleficence table** ([[11 - Appendix A - Sorcery#Maleficence of the Welkin|Maleficence of the Welkin]]). This represents a catastrophic intrusion of the energies of the far realms into the realm of Flesh.  
 
@@ -202,12 +206,6 @@ Here are some circumstances where magic goes wrong:
 - Other instances, per the GM's devising  
 
 When maleficence comes into play, things get interesting.  
-
-> [!sidebar] Body horror and other upsetting stuff
->
-> Many maleficence effects change or alter an adventurer’s body, sometimes in upsetting ways. Some players will find this fun; others less so.
->
-> Handling sensitive issues and negotiating players’ comfort level is one of the social skills the GM needs. When someone has an issue, be genuinely excited to try and solve it with them. Be up front about this possibility during your session 0 and willing to change how maleficence works at _your_ table to accommodate your fellow players’ feelings. Be kind.
 
 ### Maleficence of the Wastes
 
@@ -593,6 +591,9 @@ The sorcerer places the acorn into their mouth (or the mouth of their target). T
 Spitting the acorn out ends the spell. So, whenever the target wants to talk, **eat**, drink, or pick something up with their mouth, the spell ends.  
 
 ### Random Totem
+> [!sidebar] What is an “animal”?
+>
+> If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
 | Card |  Swords |  Cups |  Pentacles |  Wands |
 |:---:|---|---|---|---|
@@ -611,11 +612,10 @@ Spitting the acorn out ends the spell. So, whenever the target wants to talk, **
 | Queen | Elk | Walrus | Otter | Spider, Dire |
 | King | Fox | Wolf | Owl | Thunder Lizard |
 
+## Wall of Elements
 > [!sidebar] What is an “animal”?
 >
 > If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
-
-## Wall of Elements
 
 **Component:**  
 
@@ -632,10 +632,6 @@ For each Resolve spent on this spell, the sorcerer conjures one 10' x 10' x 2' s
 - Walls of water are opaque and impermeable. **They can** only be raised in bodies of water, but prevent ships and other watercraft from approaching.  
 
 This spell is maintained by concentration.  
-
-> [!sidebar] What is an “animal”?
->
-> If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
 ## Woodweave
 

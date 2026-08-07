@@ -89,14 +89,13 @@ You have experience pacifying the unquiet dead.
 **Specializations:** A specific undead type (e.g., skeleton, zombie, wraith)
 
 ### Witch Hunter
+> [!sidebar] GM’s note
+>
+> It’s possible that the Monster Hunter categories can overlap. For example, a giant beetle might be a specialty for both a beast hunter and a witch hunter. That’s fine. There’s no reason to get into taxonomical minutiae.
 
 If the answer to the question “what is that thing?” is “a wizard did it,” you can deal with it.
 
 **Specializations:** Any specific type of magical manifestation (e.g., beastmen, golems, oozes)
-
-> [!sidebar] GM’s note
->
-> It’s possible that the Monster Hunter categories can overlap. For example, a giant beetle might be a specialty for both a beast hunter and a witch hunter. That’s fine. There’s no reason to get into taxonomical minutiae.
 
 ### Reaver
 
@@ -107,18 +106,17 @@ When you Attack during Challenges, you may also move one zone ([[07 - Chapter 7 
 If you are wielding a melee weapon with both hands during a Challenge, you may Attack as a minor action with _either_ a Pentacles or a Swords card.
 
 ### War Stories
+> [!sidebar] A reminder
+>
+> During adventurer creation, you will prioritize your attributes—Swords, Pentacles, Cups, or Wands—from 1-4. Whichever attribute is rated 4, the highest rating possible, becomes your path.
+>
+> Your path determines the initial talents that you have access to. You will begin the game with one of your path’s talents mastered and the rest of your path’s talents in training. More information on learning, training, and mastering [[02 - Chapter 2 - The Adventurer#11. Talents|talents]] can be found in chapter 2.
 
 As a Camp Action, tell your guild the story of some of your past adventures. Maybe this was an adventure you've played out in-character, or maybe one in your backstory. You—and everyone who listens and role-plays with you a little— **gets to choose one of the following benefits:**
 
 - **They may charge an uncharged Bond**.
 
 - They gain an extra point of Resolve; this can bring their Resolve up to 5.
-
-> [!sidebar] A reminder
->
-> During adventurer creation, you will prioritize your attributes—Swords, Pentacles, Cups, or Wands—from 1-4. Whichever attribute is rated 4, the highest rating possible, becomes your path.
->
-> Your path determines the initial talents that you have access to. You will begin the game with one of your path’s talents mastered and the rest of your path’s talents in training. More information on learning, training, and mastering [[02 - Chapter 2 - The Adventurer#11. Talents|talents]] can be found in chapter 2.
 
 # Path of Pentacles
 
@@ -170,12 +168,11 @@ If you go sneaking and all tension evaporates, you may rejoin the scene by slink
 This talent also gives you a new Camp Action: **Infiltrate**. When you Infiltrate, you investigate a specific location that you know of in your current dungeon level. Thereafter, you may bid lore to ask the GM a specific yes or no question about something you’d know having infiltrated that location, e.g., “Is this door trapped?”, “Is this room guarded?”, “Is the wizard’s bedroom on this level?”, “Do the bandits have bows?”, “Were the orcs green-skinned?”
 
 ### Up My Sleeve
-
-You may declare that you have had a common, one-slot item with you the whole time. Twice per Crawl (one for each sleeve), spend a **Resolve and declare that you had** a [blank] up your sleeve. This can include a lockpick, a dagger, a handkerchief, an empty vial, a length of wire, or anything else that the GM generally finds viable.
-
 > [!sidebar] Sneak responsibly
 >
 > Be aware of whether or not other adventurers actually want you present in a scene. A heroic rescue out of a prison cell can be much more welcome than you intruding on a personal scene. A player having a solo scene has the right to veto your use of this skill.
+
+You may declare that you have had a common, one-slot item with you the whole time. Twice per Crawl (one for each sleeve), spend a **Resolve and declare that you had** a [blank] up your sleeve. This can include a lockpick, a dagger, a handkerchief, an empty vial, a length of wire, or anything else that the GM generally finds viable.
 
 # Path of Cups
 > [!lede]
@@ -267,6 +264,9 @@ You can counter the effects of sorcery with an effort of will. There are two app
 - You can negate a spell already in play. You may spend a Resolve to immediately end the ongoing effects of a spell.
 
 ### Dwimmercraft
+> [!sidebar] Sorcery
+>
+> Those who walk the Path of Wands are sorcerers. Casting spells and the practice of sorcery is described in detail in **Appendix A: Sorcery**.
 
 Suffused with the arcane arts, you can perform small (but meaningful) expressions of magic. You may perform the following **minor effects:**
 
@@ -279,10 +279,6 @@ Suffused with the arcane arts, you can perform small (but meaningful) expression
 Additionally, by spending a Resolve, you can focus your **second sight** for a watch. Second sight allows you to see invisible and Shrouded things. You can perceive the true form of any illusion. You can automatically tell when things are magical or under enchantment. You can also tell if somebody else is a sorcerer.
 
 Using this talent during a Challenge counts as a miscellaneous action.
-
-> [!sidebar] Sorcery
->
-> Those who walk the Path of Wands are sorcerers. Casting spells and the practice of sorcery is described in detail in **Appendix A: Sorcery**.
 
 ### Gramarye
 
@@ -353,9 +349,8 @@ When you make this pact, you cut runes into yourself. This causes you to take a 
 If you must speak, you must speak in a whisper. People must be very close to you and it must be very quiet to hear your words. If you speak in a loud voice, you violate this pact.
 
 ### Verity
-
-You must not tell a knowing lie. If you do so, even in jest, this pact is broken.
-
 > [!sidebar] Damned if you do, damned if you don’t…
 >
 > Sometimes, pacts might put you in situations where you have to break one pact to keep another. This has its roots in mythology. Consider how Cú Chulainn couldn’t refuse food from a stranger, nor could he eat dog meat. When a stranger offers him dog meat, he’s on the hook one way or another. We recommend not shying away from these conflicts. If the fiction in your game demands that two pacts contradict each other, fine. It’s ultimately not that painful. Let it play out and see what happens.
+
+You must not tell a knowing lie. If you do so, even in jest, this pact is broken.

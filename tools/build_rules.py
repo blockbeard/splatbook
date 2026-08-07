@@ -40,6 +40,10 @@ Config keys (see tools/rules.stonetop.json):
   preserveLineBreaks vault-relative paths whose single newlines are meaningful
                     (index entries, spell lists): eligible lines gain markdown
                     hard breaks so they don't merge into one paragraph
+  hoistCallouts     callout types moved to sit directly under the nearest
+                    preceding heading — margin sidebars belong to their
+                    section's top, not wherever the prose mentioned them
+                    (the app's right rail top-aligns them to the heading)
 
 Re-run whenever the vault changes; never hand-edit the output.
 """
@@ -65,6 +69,7 @@ CONFIG_KEYS = {
     "keepImages",
     "demoteHeadingsToBold",
     "preserveLineBreaks",
+    "hoistCallouts",
 }
 
 
@@ -181,7 +186,39 @@ def read_source(path: Path, vault: Path, cfg: dict) -> str:
             lines.append(f"**{m.group(2)}**" if m and m.group(2).strip() in demote else line)
         text = "\n".join(lines) + "\n"
 
+    hoist = {t.lower() for t in cfg.get("hoistCallouts", [])}
+    if hoist:
+        text = "\n".join(hoist_callout_blocks(text.splitlines(), hoist)) + "\n"
+
     return text
+
+
+def hoist_callout_blocks(lines: list[str], types: set[str]) -> list[str]:
+    """Move callout blocks of the given types up to sit directly under the
+    nearest preceding heading (file top when none). Order among blocks under
+    the same heading is preserved."""
+    out: list[str] = []
+    insert_pos = 0
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        m = CALLOUT_OPEN_RE.match(line)
+        if m and m.group(1).lower() in types:
+            j = i + 1
+            while j < len(lines) and lines[j].lstrip().startswith(">"):
+                j += 1
+            block = lines[i:j] + [""]
+            out[insert_pos:insert_pos] = block
+            insert_pos += len(block)
+            if j < len(lines) and not lines[j].strip():
+                j += 1  # swallow the blank the block left behind
+            i = j
+            continue
+        out.append(line)
+        if parse_heading(line) is not None:
+            insert_pos = len(out)
+        i += 1
+    return out
 
 
 def build_anchor_maps(files: list[Path], texts: dict[Path, str]) -> tuple[dict, dict, list[str]]:

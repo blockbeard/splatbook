@@ -1,4 +1,7 @@
 # Chapter 4: Kith and Kin
+> [!sidebar] There is no lore.
+>
+> As you’re reading this chapter, you’ll notice there’s a lot of fantasy gibberish. If it’s inspiring, riff on the provided concepts for your character. If it’s confusing, limiting, or contradictory to your own ideas, ignore it. Mark through it with a Sharpie. Write in the margins of the book. Make your game world your own.
 
 > [!epigraph]
 > “Tyger, Tyger, burning bright In the forests of the night, What immortal hand or eye Could frame thy fearful symmetry?
@@ -8,10 +11,6 @@
 The Wide World is a sprawling place, with many strange creatures, exotic cultures, religious schisms, warring clans, and ancient lineages. No two fay folk are alike, even as humans have infinite variation. From the solitary trolls of the Rimemark, to the noble elves of Alfheim, to the tribes of barbarians scourging the Ghostgrass Plains, to the stoic templars of Mythrys, there are many peoples in the Wide World—and they all congregate in the City in search of glory and riches in the Underworld.
 
 _– “The Tyger,” William Blake_
-
-> [!sidebar] There is no lore.
->
-> As you’re reading this chapter, you’ll notice there’s a lot of fantasy gibberish. If it’s inspiring, riff on the provided concepts for your character. If it’s confusing, limiting, or contradictory to your own ideas, ignore it. Mark through it with a Sharpie. Write in the margins of the book. Make your game world your own.
 
 # Humans
 
@@ -125,9 +124,6 @@ Humans gain arête by performing the following deeds:
 When a human accomplishes all three arête triggers, they gain the following talent:
 
 ### Human arête talent: Byname
-
-You are given a byname, like “the Tall,” “the Corpsegrinder, “the Patron Saint of Pilgrims,” or “the Blackhearted.” When that byname would be relevant to a test of fate, similar to a motif, you test with favor.
-
 > [!sidebar] Bynames
 >
 > For human bynames, we usually ask the player what event or instance was their proudest. Then, we elicit the help of the table to think of the coolest byname based on that event. This is done in secret, away from the player. We then have an important character grant the byname to the adventurer in a dramatically appropriate fashion.
@@ -139,6 +135,8 @@ You are given a byname, like “the Tall,” “the Corpsegrinder, “the Patron
 > Whenever you play up your legacy of deceit and your infamy, role-play what you say. If it would repulse your fellow humans or turn your heart blacker still, you gain favor on tests of fate that work against your house or humankind in general.
 >
 > Don’t start out as a Turncloak. Play and find out why you become one.
+
+You are given a byname, like “the Tall,” “the Corpsegrinder, “the Patron Saint of Pilgrims,” or “the Blackhearted.” When that byname would be relevant to a test of fate, similar to a motif, you test with favor.
 
 ### Human role-playing concepts
 
@@ -364,9 +362,6 @@ Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, **Lulu**
 Underfolk use their livery—their profession—as their last name.
 
 #### Underfolk livery names:
-
-Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, Runescrivner, Sculptor, Stonemason, Tailor, Tinker, Vintner, Wainwright, Weaver, Whitesmith
-
 > [!sidebar] Crafting
 >
 > Crafting is important for the underfolk culture in general and their arête triggers specifically.
@@ -374,6 +369,8 @@ Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, R
 > In general, crafting something (especially something that will last for centuries) is a City Action. Underfolk players might be interested in making specialized weapons or armor, or they may want to raise statues or monuments to themselves. Writing a treatise, a biography, or a popular song might also qualify as “crafting something that will last centuries.” These efforts will probably require gold, with larger works needing larger payments. This is intentional. Underfolk are known to be ambitious, and this requirement encourages this behavior in play.
 >
 > The Build and Commission Craft [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] (, 158) are two options. But GMs will need to work with their players to work out expectations for what underfolk players want to accomplish.
+
+Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, Runescrivner, Sculptor, Stonemason, Tailor, Tinker, Vintner, Wainwright, Weaver, Whitesmith
 
 ## Underfolk kin
 
@@ -502,6 +499,11 @@ A baby orc is called a goblin. Unlike human children, who take years to learn to
 Not that they're cruel, but orcs have a somewhat blasé concern for their offspring's health. Few goblins get to grow up to be orcs. It's a rough world. It's better for an orc parent to survive long enough to make another clutch of goblin babies than it is for a single goblin (or even an entire clutch) to survive. Prioritize the elders.
 
 ### A myth of the orcs
+> [!sidebar] The Secrets of Dragons
+>
+> The last part of an orc's life cycle is to become a dragon. Just like few goblins survive into orc-hood, few orcs grow old enough to become dragons. The change only comes around once the orc is around a hundred, and takes a long time. The orc begins “nesting” by tunneling down into the earth and setting a few booby traps. She then begins the decades-long process of slowly metamorphosing into a dragon. When adventurers find “dragon eggs,” they're really just finding “orc cocoons.”
+>
+> Even orcs don't know they metamorphose into dragons. Their society reveres dragons, but the transformation is either so taboo or rare that it is not discussed in orc society.
 
 We do not worship Rng out of devotion. We worship Rng out of fear.
 
@@ -514,12 +516,6 @@ They once heard the cries of a starving people and sent to them a beast who woul
 Another time, they heard the prayers of those who had lost their way in the woods, and guided them safely to the nearest camp. The lost were soon put to the axe by the enemy soldiers.
 
 They are Rng, Helper and Harmer. They are Rng, the Lord of Chaos.
-
-> [!sidebar] The Secrets of Dragons
->
-> The last part of an orc's life cycle is to become a dragon. Just like few goblins survive into orc-hood, few orcs grow old enough to become dragons. The change only comes around once the orc is around a hundred, and takes a long time. The orc begins “nesting” by tunneling down into the earth and setting a few booby traps. She then begins the decades-long process of slowly metamorphosing into a dragon. When adventurers find “dragon eggs,” they're really just finding “orc cocoons.”
->
-> Even orcs don't know they metamorphose into dragons. Their society reveres dragons, but the transformation is either so taboo or rare that it is not discussed in orc society.
 
 ### Orcish names
 

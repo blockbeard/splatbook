@@ -88,8 +88,6 @@ html.dark[data-game='hmtw'] {
 html[data-game='hmtw'] .reference-body {
 	font-family: 'IM Fell English', Georgia, serif;
 	font-size: 1.05em;
-	/* Contain floated sidebar callouts (below) within the article. */
-	display: flow-root;
 }
 
 /* Owned diagram art (affliction clocks, disposition wheel). The SVGs are
@@ -222,20 +220,28 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
 }
-/* On wide screens the sidebars get a *reserved right rail*, mirroring the
-   left TOC: the article keeps a clear text column and every [!sidebar]
-   hangs fully in the rail at its source position (float + negative margin
-   into the reserved padding). Narrow screens fall back inline. No icon —
-   the book's sidebars don't carry one (the worm was Obsidian chrome). */
-@media (min-width: 64rem) {
-	html[data-game='hmtw'] .reference-body {
-		padding-right: 16rem;
+/* A *proper* right rail, mirroring the left TOC: on wide screens the main
+   column widens for hmtw and the text keeps its full measure — the rail is
+   the extra width, never carved out of the text column. Sidebars float into
+   it via negative margin, top-aligned to their section heading (the import
+   hoists them there), and take no height in the text flow, so "In this
+   section" follows the text instead of the rail. Narrow screens fall back
+   inline. No icon — the book's sidebars don't carry one. */
+@media (min-width: 90rem) {
+	html[data-game='hmtw'] main {
+		max-width: 79rem;
+	}
+	html[data-game='hmtw'] nav[aria-label='Breadcrumb'],
+	html[data-game='hmtw'] .reference-body,
+	html[data-game='hmtw'] .section-children,
+	html[data-game='hmtw'] .reference-body ~ nav {
+		max-width: 43rem;
 	}
 	html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 		float: right;
 		clear: right;
 		width: 14rem;
-		margin: 0.2rem -16rem 1rem 0;
+		margin: 0 -16rem 0.75rem 0;
 	}
 }
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {

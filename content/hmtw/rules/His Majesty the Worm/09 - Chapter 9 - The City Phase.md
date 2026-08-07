@@ -34,12 +34,11 @@ Erase the oldest deed on your roster. As a group, write the most notable accompl
 The GM draws for a random event on their City Event table.
 
 ### 4. Turn in contracts
-
-The guild turns in their contract (if any). Successfully completed contracts provide a monetary reward and 1XP.
-
 > [!sidebar] The City is social
 >
 > The City contains an untold multitude of factions, social clubs, hierarchies, royal families, anarchist collectives, sports teams, mystery cults, underground scenes, crime syndicates, etc. They want what the guild has: treasure, expertise, and a lack of self-preservation. The guild wants what these organizations have: influence, power, wealth…sure, but also fancy clothes, useful rumors, interesting friends, cool home bases, etc.
+
+The guild turns in their contract (if any). Successfully completed contracts provide a monetary reward and 1XP.
 
 ### 5. Upkeep
 
@@ -76,7 +75,6 @@ The guild reassembles to talk over next steps as a group. The GM provides a list
 Before the next session, the GM restocks the Meatgrinder tables.
 
 ## 1. Death and taxes
-
 > [!sidebar] Goddammit, I’m a sovereign citizen!
 >
 > Truth be told, the 50% tax was included in playtests merely as a lark. However, it evoked such a strong response in the playtesters that it was obvious that it had to be kept in the core game. Despite the fact everybody was only moving around imaginary numbers on paper, the players were very keen to avoid taxes. And, in a meaningful way, taxes made going back to the City unappetizing. The City Phase _should_ be rare. High taxes mean that players view returning to the surface as a last resort.
@@ -90,7 +88,6 @@ Non-liquid assets are items of art and extravagance, such as paintings, statues,
 This tax was established by the City to pay for the frequent calamities associated with the adventuring guilds. The taxes go into a fund to pay for tavern fights that become fires, engorged slimes brought back to the surface as babies, and the salaries of the All-Watch (to keep them unbribable).
 
 ## 2. Noteworthy deeds
-
 > [!sidebar] Historical note
 >
 > You know the song _Istanbul_ by The Four Lads (famously covered by They Might Be Giants)? The question of why the city is called Istanbul has an answer: it is derived from the Greek εις την Πόλιν (_istanbulin_), which simply means “the city.” Constantinople was the place to be in the ancient world, so you needn’t even call it by its formal name. It was simply the city.
@@ -190,13 +187,6 @@ Turning in a contract gives 1XP per contract fulfilled. If there were no contrac
 As **part of this step, adventurers may sell items** of **art and extravagance**, such as gems, paintings, and jewelry. The GM determines the value of the items being sold when creating the Underworld; see [[10 - Chapter 10 - The Worm Turns - Gamemastering#How much treasure?|How much treasure?]]. The seller receives any payments prior to paying their upkeep.
 
 ## 5. Upkeep
-
-Life in the City isn’t free. Upkeep pays for your food and lodging and refills your pack with adventuring gear. ^upkeep
-
-The cost **for equipment isn’t itemized**. Buying into a given upkeep tier buys you as much gear of that particular tier (or lower) as you can waddle away with. See [[09 - Chapter 9 - The City Phase#The Omphalic Market|the Omphalic Market]] for a list of **adventuring gear**.
-
-There are four upkeep tiers: **destitute, impoverished**, common, and luxurious.
-
 > [!sidebar]
 >
 > **Destitute - 0g**
@@ -222,6 +212,12 @@ There are four upkeep tiers: **destitute, impoverished**, common, and luxurious.
 > If you live in luxury and stay in the most high-class establishments, you fully heal every **Wound** and begin the Crawl with full Resolve.
 >
 > You can purchase as many pieces of gear from the impoverished, common, and luxurious item lists as you can carry.
+
+Life in the City isn’t free. Upkeep pays for your food and lodging and refills your pack with adventuring gear. ^upkeep
+
+The cost **for equipment isn’t itemized**. Buying into a given upkeep tier buys you as much gear of that particular tier (or lower) as you can waddle away with. See [[09 - Chapter 9 - The City Phase#The Omphalic Market|the Omphalic Market]] for a list of **adventuring gear**.
+
+There are four upkeep tiers: **destitute, impoverished**, common, and luxurious.
 
 ## 6. City Actions
 
@@ -344,17 +340,6 @@ Investigate a topic of your choice by spending money to pay bribes to librarians
 - If you have a great success, you can **ask three**.
 
 ### Support
-
-Some actions are one-and-done, e.g., you go gambling and lose your hard-earned coin all in a night. In contrast, **Support** involves taking one step on a long road. Use this action to represent long-term scheming on large, multistep projects.
-
-- Large projects are broken up into several steps. How many steps a project requires is determined by its **complexity**, as determined by the GM. The more complex a project, the more steps that it takes.
-
-- Complexity usually ranges between 2–8. Simple projects might only need two or three steps to complete, whereas complex ones need as many as eight.
-
-- You make **one step** toward project completion by **spending money** in a **way that supports your** goals. Players must suggest a way that they would spend their coin to benefit their goals. The GM must agree that this action will move the needle on their long-term project and set an appropriate price.
-
-- Once a player has fulfilled a number of steps equal to the project’s complexity, the project is complete.
-
 > [!sidebar] Long-term projects
 >
 > The **Support** action is the main tool that players have to pursue longterm projects.
@@ -366,6 +351,16 @@ Some actions are one-and-done, e.g., you go gambling and lose your hard-earned c
 > **• 50 gold** can make a humble but **meaningful impact.** For example, 50g can patch the orphanage’s leaky roof. 
 > **• 100 gold** can make a **significant impact.** For example, 100g might be enough to make sure the orphans have enough to eat for a month.
 > **• 1000 gold** is needed to make a **truly dramatic statement.** If you want to adopt all the orphans and provide for their care personally, you might need to spend up to 1000g.
+
+Some actions are one-and-done, e.g., you go gambling and lose your hard-earned coin all in a night. In contrast, **Support** involves taking one step on a long road. Use this action to represent long-term scheming on large, multistep projects.
+
+- Large projects are broken up into several steps. How many steps a project requires is determined by its **complexity**, as determined by the GM. The more complex a project, the more steps that it takes.
+
+- Complexity usually ranges between 2–8. Simple projects might only need two or three steps to complete, whereas complex ones need as many as eight.
+
+- You make **one step** toward project completion by **spending money** in a **way that supports your** goals. Players must suggest a way that they would spend their coin to benefit their goals. The GM must agree that this action will move the needle on their long-term project and set an appropriate price.
+
+- Once a player has fulfilled a number of steps equal to the project’s complexity, the project is complete.
 
 ### Train
 
@@ -388,16 +383,15 @@ Role-play the conversation with your guild-mates and decide collectively what yo
 Some example contracts are offered on the next page.
 
 ## 8. Restock the Underworld
-
-The Underworld grows and shifts. Between the end of the City Phase and the start of the next session, the GM revisits their Meatgrinder and City Events tables and replaces any entries that the players have already encountered. If an ogre is slain, a hidden room looted, or a rusty trap sprung, replace those entries with something new. ^restock-underworld
-
-GMs should ask themselves: How has the Underworld been changed by the player’s actions? Factions will refill their posts. Other factions will move into cleared rooms. Other guilds meet with success or failure. The Underworld is dynamic, not static. Reflect the changing Underworld by adding new content to the Meatgrinder tables.
-
 > [!sidebar] Advice for Exploration-based Games
 >
 > “The adventure is in the wilderness, not the town. As per the discussion of NPCs [non-player characters] … be careful not to change the focus to urban adventure instead of exploration. You can have as many NPCs as you want in town, but remember it’s not about them. Once players start talking to town NPCs, they will have a perverse desire to stay in town and look for adventure there. ‘Town game’ was a dirty word in West Marches. … You find things by exploring, not sitting in town — someone who explores should know more about what is out there than someone in town.”
 >
 > - “Great Experiments: West Marches,” Ben Robbins
+
+The Underworld grows and shifts. Between the end of the City Phase and the start of the next session, the GM revisits their Meatgrinder and City Events tables and replaces any entries that the players have already encountered. If an ogre is slain, a hidden room looted, or a rusty trap sprung, replace those entries with something new. ^restock-underworld
+
+GMs should ask themselves: How has the Underworld been changed by the player’s actions? Factions will refill their posts. Other factions will move into cleared rooms. Other guilds meet with success or failure. The Underworld is dynamic, not static. Reflect the changing Underworld by adding new content to the Meatgrinder tables.
 
 ### Example Contracts
 
@@ -431,6 +425,12 @@ Here are a few contracts that might be on a job board at your local tavern. Draw
 > _– “Bazaar of the Bizarre,” Franz Leiber_
 
 ## Buying new gear
+> [!sidebar] Gear tiers
+> - **Impoverished** items are things you can find inside a cotter’s kitchen.
+> - **Common** items are things you might find in a wealthy merchant’s house.
+> - **Luxurious** items are things owned only by the clergy or nobility.
+>
+> Just about anything can be purchased at the Omphalic Market. Players, ask your GM if there’s a normal, everyday object that you want but can’t find listed here. The GM will set its price level (**impoverished, common, or luxurious**). If the item you’re looking for is unique, use the Commission Craft action during step 6 of the City Phase instead. See [[02 - Chapter 2 - The Adventurer#14. Pack space and gear|Pack space and gear]] for rules about your pack, belt, slots, and carrying capacity.
 
 During step 5 of the City Phase (Upkeep), you determine what you purchase for your next adventure. These prices are abstracted. You don’t tally your money for each torch, each ration, or each dagger. Rather, you fill your pack—as much as it can hold—based on your upkeep level (or lower): **impoverished, common, or luxurious**.
 
@@ -460,13 +460,6 @@ During step 5 of the City Phase (Upkeep), you determine what you purchase for yo
 |  | Tinker’s kit (2 slots) |  |
 |  | Torch |  |
 |  | Wolfsbane |  |
-
-> [!sidebar] Gear tiers
-> - **Impoverished** items are things you can find inside a cotter’s kitchen.
-> - **Common** items are things you might find in a wealthy merchant’s house.
-> - **Luxurious** items are things owned only by the clergy or nobility.
->
-> Just about anything can be purchased at the Omphalic Market. Players, ask your GM if there’s a normal, everyday object that you want but can’t find listed here. The GM will set its price level (**impoverished, common, or luxurious**). If the item you’re looking for is unique, use the Commission Craft action during step 6 of the City Phase instead. See [[02 - Chapter 2 - The Adventurer#14. Pack space and gear|Pack space and gear]] for rules about your pack, belt, slots, and carrying capacity.
 
 ### Replacing and repairing gear
 

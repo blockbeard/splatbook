@@ -6,12 +6,11 @@
 > _– The Inferno, Dante Alighieri_
 
 # Making Your Megadungeon
+> [!sidebar] Splatbook Note
+> Want a more detailed system for making dungeons? Josh McCrowell and Warren D's ENNIE- and Bloggie-winning [Designing Dungeons course](https://dungeons.hismajestytheworm.games/) is excellent.
 
 > [!lede]
 > The Underworld is a **megadungeon**: a collection of interconnected dungeons. Each discrete **dungeon** acts as a thematic region of the Underworld. Each constituent dungeon is made up of individual **rooms**, populated with interesting things, monsters, traps, and treasures.
-
-> [!sidebar] Splatbook Note
-> Want a more detailed system for making dungeons? Josh McCrowell and Warren D's ENNIE- and Bloggie-winning [Designing Dungeons course](https://dungeons.hismajestytheworm.games/) is excellent.
 
 As a GM, creating an Underworld megadungeon can seem daunting, but it’s really just a series of _small, discrete tasks_. The process of creating your Underworld is less about making one huge megadungeon and more about creating a series of interesting rooms and then creating interesting connections between them. The creation process is fun for the GM and the discovery process is fun for the players.
 
@@ -142,6 +141,9 @@ Dungeons should not be linear. Remember, a game is fun because it’s a series o
 - There should be feedback loops.
 
 ### Keying the map
+> [!sidebar] In-character maps
+>
+> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See see [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
 
 The players should have a map with room numbers for each level of the dungeon. When the players say “We head towards 122,” you should be able to easily reference that room number in your notes.
 
@@ -149,18 +151,7 @@ We key maps with two designator digits. The first digits correspond to the level
 
 The level number corresponds to the order the dungeon card was laid out on the table. Your entrance is Level 1. The deepest level of the Underworld would be your last ordinal number (e.g., if you have five levels, it would be Level 5). Really, whatever works for you. It only matters as far as your room keys are easy for _you_ to understand.
 
-> [!sidebar] In-character maps
->
-> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See see [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
-
 ## 4. Write Room Descriptions
-
-Room descriptions define the **permanent features** of a dungeon: its dangers, its treasures, and its denizens. Non-permanent features players may encounter in such rooms are handled by the Meatgrinder ([[15 - Appendix E - Underworld Creation#^create-meatgrinder|Create the Meatgrinder]]). Create something interesting for players to interact with for each room in each dungeon. ^write-room-descriptions
-
-A key component of exploration is meaningful choice. For a choice to be meaningful, the rewards and risks must be clear. Imagine what clues you can place in the dungeon that broadcast the nature of its contents. For example, if you hide treasure inside a stone sarcophagus, you can clearly demonstrate that it’s **trapped** by describing the bodies of mangled adventurers around the **tomb**.
-
-As you write about your entities, traps, treasures, monsters, etc., decide where to place **them on the map**. At first, just place them where it seems best. You can move them around later, or even redraw parts of **the map** if you need.
-
 > [!sidebar] Creating usable notes
 >
 > When writing room descriptions, you’ll want to provide enough detail that you’ll remember what you intended. At the same time, you do yourself a disservice writing down long room descriptions absolutely detailing every nook and cranny—your improvisational skills will serve you better than long descriptions.
@@ -170,6 +161,12 @@ As you write about your entities, traps, treasures, monsters, etc., decide where
 > While writing your descriptions, **bold words that are important or can be interacted with**. This will allow you to tell, at a glance, what you initially describe.
 >
 > **Use bullet points to nest information** that players can only discover by interacting with the room. This allows you to quickly parse what you first describe versus what you describe as players investigate specific areas; see [[10 - Chapter 10 - The Worm Turns - Gamemastering#What do I know?|What Can I See?]].
+
+Room descriptions define the **permanent features** of a dungeon: its dangers, its treasures, and its denizens. Non-permanent features players may encounter in such rooms are handled by the Meatgrinder ([[15 - Appendix E - Underworld Creation#^create-meatgrinder|Create the Meatgrinder]]). Create something interesting for players to interact with for each room in each dungeon. ^write-room-descriptions
+
+A key component of exploration is meaningful choice. For a choice to be meaningful, the rewards and risks must be clear. Imagine what clues you can place in the dungeon that broadcast the nature of its contents. For example, if you hide treasure inside a stone sarcophagus, you can clearly demonstrate that it’s **trapped** by describing the bodies of mangled adventurers around the **tomb**.
+
+As you write about your entities, traps, treasures, monsters, etc., decide where to place **them on the map**. At first, just place them where it seems best. You can move them around later, or even redraw parts of **the map** if you need.
 
 Each room in each dungeon level should have _at least one_ of the following:
 
@@ -1308,9 +1305,6 @@ The flow of the river is split into three waterfalls by a series of locks and da
 Wells in the Underworld contain bizarre things: wine, treacle, oil, pudding. Almost anything but water. Moreover, wells frequently have some denizen who lives off their contents, either dwelling at the bottom of the well or guarding it from interlopers.
 
 #### Example
-
-A tiny blue imp lives at the bottom of a wishing well. He demands you throw coins down and he’ll grant you wishes. He is a liar. He wants to make fun of your desires and dreams.
-
 > [!sidebar] Anything that’s not nailed down
 >
 > There’s a huge number of resources in the role-playing hobby to draw on. RPGs have been around a long time and it’s never been better. There’s a vibrant DIY community of incredibly talented people creating all sorts of blog posts, zines, and indie games. When you set out to create your Underworld, you’ll have an enormous amount of things to borrow from and be inspired by.
@@ -1318,6 +1312,8 @@ A tiny blue imp lives at the bottom of a wishing well. He demands you throw coin
 > Buy some stuff from your favorite creators, slap them together, cut and paste sections from one onto the other, and turn your players loose. Perhaps the first level of your Underworld is the _Tomb of the Serpent Kings_ (Skerples, Coin and Scrolls [blog], 2017), but the deeper levels are sections of Undermountain (_The Ruins of Undermountain_, TSR, 1994).
 >
 > Want to play _His Majesty the Worm,_ but use the optional hex crawl procedures ([[08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel|Optional Rules:]]) instead of focusing on megadungeon play? _Dolmenwood_ (Gavin Norman, Necrotic Gnome, 2023) can dominate the northwest corner of your campaign map. _The Misty Isles of the Eld_ (Chuck Kutalik, Hydra Cooperative, 2016) and Hot Springs Island (_The Dark of Hot Springs Island,_ Swordfish Islands, 2017) can be just off the coast of the City.
+
+A tiny blue imp lives at the bottom of a wishing well. He demands you throw coins down and he’ll grant you wishes. He is a liar. He wants to make fun of your desires and dreams.
 
 ## Creating interesting traps
 
