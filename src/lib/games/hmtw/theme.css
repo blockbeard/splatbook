@@ -1,0 +1,239 @@
+/*
+ * His Majesty the Worm's skin.
+ *
+ * Same contract as stonetop's: override the shell's `--sb-*` tokens under
+ * `html[data-game='hmtw']` and every shell component picks them up through
+ * the mapped utilities; nothing here is imported by the shell.
+ *
+ * Palette ported from the vault's own reading snippet (the book's look:
+ * parchment, near-black ink, oxblood accents, sepia rules). Font roles come
+ * from the creator template's .idml paragraph styles, with every face that
+ * fails the @font-face redistribution bar swapped for the OFL substitute
+ * chosen in docs/hmtw-fonts.md:
+ *
+ *   body prose            IM Fell English (the book's own, OFL)
+ *   chapter titles (h1)   Uncial Antiqua       (for Xiparos Lombard)
+ *   h2 / h3               IM Fell English SC   (for HamletOrNot)
+ *   h4 / bold             Libre Caslon Text 700 (for Caslon Antique Bold)
+ *   table + callout heads IM Fell Great Primer SC (the book's own, OFL)
+ *   sidebar body          Sorts Mill Goudy     (for Goudy Old Style)
+ *   sidebar headers       Goudy Bookletter 1911 (for Kelmscott Roman)
+ *   pull quotes           Almendra Display     (for Dark Roast)
+ *   app chrome            Sorts Mill Goudy     (the vault reads in Goudy too)
+ *
+ * All faces are @fontsource self-hosted npm builds — no CDN, no files copied
+ * from the template folder.
+ */
+
+@import '@fontsource/im-fell-english/400.css';
+@import '@fontsource/im-fell-english/400-italic.css';
+@import '@fontsource/im-fell-english-sc/400.css';
+@import '@fontsource/im-fell-great-primer-sc/400.css';
+@import '@fontsource/uncial-antiqua/400.css';
+@import '@fontsource/sorts-mill-goudy/400.css';
+@import '@fontsource/sorts-mill-goudy/400-italic.css';
+@import '@fontsource/goudy-bookletter-1911/400.css';
+@import '@fontsource/almendra-display/400.css';
+@import '@fontsource/libre-caslon-text/700.css';
+
+/* `html[data-game=…]` rather than a bare attribute selector: the shell's
+   tokens live on `:root` with identical specificity (see stonetop's note). */
+html[data-game='hmtw'] {
+	--sb-bg: #efe7d3; /* parchment */
+	--sb-surface: #f5efe0;
+	--sb-text: #211a12; /* ink */
+	--sb-muted: #6f6048;
+	--sb-accent: #7e1c1c; /* oxblood */
+	--sb-accent-contrast: #efe7d3;
+	--sb-border: #b3a07c; /* sepia-soft */
+	--sb-danger: #8c2b1e;
+
+	/* The book's boxed parchment sidebars: darker parchment, sepia rule,
+	   oxblood spine and label. */
+	--sb-callout-border: #5a4a32;
+	--sb-callout-bg: #e8ddc4;
+	--sb-callout-label: var(--sb-accent);
+
+	font-family: 'Sorts Mill Goudy', 'Goudy Old Style', Georgia, serif;
+	font-size: 1.125rem;
+}
+
+/* Candlelight: ink and parchment inverted into dark leather, the oxblood
+   lifted to stay legible, the same warm cast throughout. */
+html.dark[data-game='hmtw'] {
+	--sb-bg: #1a1510;
+	--sb-surface: #241d15;
+	--sb-text: #e9dfc9;
+	--sb-muted: #b0a288;
+	--sb-accent: #d0836c;
+	--sb-accent-contrast: #1a120e;
+	--sb-border: rgba(233, 223, 201, 0.22);
+	--sb-danger: #e09880;
+
+	--sb-callout-border: #8a7a5c;
+	--sb-callout-bg: #211a12;
+	--sb-callout-label: var(--sb-accent);
+}
+
+/*
+ * Reference prose — the book's own text face. IM Fell's x-height runs small,
+ * so the body gets the vault snippet's ~19px scale rather than the shell's.
+ */
+html[data-game='hmtw'] .reference-body {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 1.05em;
+}
+
+/* Headings, scoped to book prose (shell chrome keeps its own scale). */
+html[data-game='hmtw'] .reference-body h1 {
+	font-family: 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
+	font-weight: 400;
+	font-size: 2.1em;
+	line-height: 1.15;
+	color: var(--sb-text);
+	border-bottom: 2px solid var(--sb-accent);
+	padding-bottom: 0.15em;
+}
+html[data-game='hmtw'] .reference-body :is(h2, h3) {
+	font-family: 'IM Fell English SC', 'IM Fell English', Georgia, serif;
+	font-weight: 400;
+}
+html[data-game='hmtw'] .reference-body h2 {
+	font-size: 1.6em;
+	line-height: 1.18;
+	color: var(--sb-text);
+}
+html[data-game='hmtw'] .reference-body h3 {
+	font-size: 1.28em;
+	line-height: 1.22;
+	color: var(--sb-accent);
+}
+/* Minor subheads (stat labels: Notes / Sensations / Lesser dooms…). */
+html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
+	font-family: 'Libre Caslon Text', Georgia, serif;
+	font-weight: 700;
+	font-size: 1.02em;
+	letter-spacing: 0.01em;
+	color: var(--sb-text);
+}
+
+/* Bold runs in Caslon in the book; links are oxblood over a sepia rule. */
+html[data-game='hmtw'] .reference-body :is(strong, b) {
+	font-family: 'Libre Caslon Text', Georgia, serif;
+	font-weight: 700;
+}
+html[data-game='hmtw'] .reference-body a {
+	color: var(--sb-accent);
+	text-decoration: underline;
+	text-decoration-color: var(--sb-border);
+	text-underline-offset: 2px;
+}
+html[data-game='hmtw'] .reference-body a:hover {
+	text-decoration-color: currentColor;
+}
+
+/* Thematic break → the vault's tarot ornament. */
+html[data-game='hmtw'] .reference-body hr {
+	border: none;
+	height: auto;
+	background: transparent;
+	text-align: center;
+	margin: 1.5rem 0;
+}
+html[data-game='hmtw'] .reference-body hr::before {
+	content: '✦   ❧   ✦';
+	color: var(--sb-muted);
+	font-size: 1.05em;
+	letter-spacing: 0.3em;
+}
+
+/* Plain blockquotes: Fell italic against a sepia rule (callouts have their
+   own boxes and never render as bare blockquotes). */
+html[data-game='hmtw'] .reference-body blockquote {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-style: italic;
+	border-left: 2px solid var(--sb-callout-border);
+	padding-left: 0.9em;
+	color: var(--sb-text);
+}
+
+/* Dice/result tables: sepia grid, Fell Great Primer SC heads. */
+html[data-game='hmtw'] .reference-body table {
+	border: 1px solid var(--sb-callout-border);
+	border-collapse: collapse;
+}
+html[data-game='hmtw'] .reference-body th {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-weight: 400;
+	letter-spacing: 0.02em;
+	border: 1px solid var(--sb-border);
+	border-bottom: 1.5px solid var(--sb-callout-border);
+	padding: 0.3em 0.6em;
+}
+html[data-game='hmtw'] .reference-body td {
+	border: 1px solid var(--sb-border);
+	padding: 0.3em 0.6em;
+}
+
+/*
+ * Callouts. The shell's generic box already reads the --sb-callout-* hooks;
+ * the label face becomes the book's small-caps Fell.
+ */
+html[data-game='hmtw'] .reference-body .sb-callout-label {
+	font-family: 'IM Fell Great Primer SC', Georgia, serif;
+	font-weight: 400;
+	font-size: 0.85rem;
+	text-transform: none;
+	letter-spacing: 0.02em;
+}
+
+/* [!sidebar] — the book's recovered sidebars: Goudy body under a
+   Kelmscott-flavored header face. */
+html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
+	font-family: 'Sorts Mill Goudy', Georgia, serif;
+	font-size: 0.94em;
+}
+html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
+	font-family: 'Goudy Bookletter 1911', 'Sorts Mill Goudy', Georgia, serif;
+	font-size: 1.02rem;
+	color: var(--sb-callout-label);
+}
+
+/* [!lede] — chapter lead-ins. Not a box in the book: open text between
+   hairlines, italic display flavor (BilboDisplay's OFL stand-in is the
+   book's own Fell italic). */
+html[data-game='hmtw'] .reference-body .sb-callout-lede {
+	background: transparent;
+	border: none;
+	border-top: 1px solid var(--sb-border);
+	border-bottom: 1px solid var(--sb-border);
+	border-radius: 0;
+	font-family: 'IM Fell English', Georgia, serif;
+	font-style: italic;
+	font-size: 1.08em;
+}
+html[data-game='hmtw'] .reference-body .sb-callout-lede .sb-callout-label {
+	display: none;
+}
+
+/* [!epigraph] — pull quotes: Almendra Display in oxblood, centered, unboxed;
+   the attribution line inside stays Fell italic and muted. */
+html[data-game='hmtw'] .reference-body .sb-callout-epigraph {
+	background: transparent;
+	border: none;
+	text-align: center;
+	font-family: 'Almendra Display', 'IM Fell English', Georgia, serif;
+	font-size: 1.45em;
+	line-height: 1.3;
+	color: var(--sb-accent);
+}
+html[data-game='hmtw'] .reference-body .sb-callout-epigraph .sb-callout-label {
+	display: none;
+}
+html[data-game='hmtw'] .reference-body .sb-callout-epigraph em {
+	display: block;
+	margin-top: 0.4em;
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 0.62em;
+	color: var(--sb-muted);
+}

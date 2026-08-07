@@ -14,6 +14,7 @@
 
 import type { GameModule } from '../types';
 import { schemaFor } from './pack-schemas';
+import './theme.css';
 
 export const hmtw: GameModule = {
 	id: 'hmtw',
