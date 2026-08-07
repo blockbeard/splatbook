@@ -2,10 +2,11 @@
 	import '../app.css';
 	import { browser, dev } from '$app/environment';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import { env } from '$env/dynamic/public';
 	import favicon from '$lib/assets/favicon.svg';
 	import { APP_NAME, APP_REPO_URL } from '$lib';
-	import { listGames } from '$lib/games';
+	import { getGame, listGames } from '$lib/games';
 	import { migrateLocalDrafts } from '$lib/entities/client';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import AuthControl from '$lib/components/AuthControl.svelte';
@@ -15,6 +16,17 @@
 	// With a single game registered there is nothing to pick — the shell
 	// shows a direct link and the picker stays hidden until game #2 exists.
 	const games = listGames();
+
+	// Inside a reference-only game (no entity types — HMtW), the header drops
+	// the account's Characters/Campaigns links: they're builder furniture, and
+	// this game has no builders. They come back the moment the reader
+	// navigates anywhere else.
+	const referenceOnly = $derived.by(() => {
+		const id = page.params.game;
+		if (!id) return false;
+		const game = getGame(id);
+		return !!game && Object.keys(game.entityTypes ?? {}).length === 0;
+	});
 
 	// Cloudflare Web Analytics (commit 116): cookieless page counts, nothing
 	// stored about the visitor, no consent banner needed — which is exactly the
@@ -60,7 +72,7 @@
 						{game.name}
 					</a>
 				{/each}
-				{#if data.session?.user}
+				{#if data.session?.user && !referenceOnly}
 					<a href={resolve('/dashboard')} class="hover:text-text">Characters</a>
 					<a href={resolve('/campaigns')} class="hover:text-text">Campaigns</a>
 				{/if}
