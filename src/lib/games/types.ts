@@ -231,6 +231,10 @@ export interface GameModule {
 	name: string;
 	/** Per-file Zod schemas for this game's content pack; wired into the validation harness on registration. */
 	packSchemas: SchemaResolver;
+	/** Optional favicon (served URL, e.g. into the pack's art/) shown while
+	 * the reader is inside this game's routes; absent falls back to the
+	 * shell's. */
+	favicon?: string;
 	/** Pure rules engine — owned by the game, opaque to the shell. */
 	engine?: unknown;
 	/** The entity types this game contributes, keyed by persisted `entityType`

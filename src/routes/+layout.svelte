@@ -28,6 +28,12 @@
 		return !!game && Object.keys(game.entityTypes ?? {}).length === 0;
 	});
 
+	// A game's own favicon while inside its routes (phase 22 — HMtW's worm),
+	// the shell's everywhere else.
+	const activeFavicon = $derived(
+		(page.params.game && getGame(page.params.game)?.favicon) || favicon
+	);
+
 	// Cloudflare Web Analytics (commit 116): cookieless page counts, nothing
 	// stored about the visitor, no consent banner needed — which is exactly the
 	// claim /privacy makes, so if this ever grows into something that tracks,
@@ -50,7 +56,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={activeFavicon} />
 	{#if beaconToken}
 		<script
 			defer

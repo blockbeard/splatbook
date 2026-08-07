@@ -72,9 +72,12 @@
 		>
 			{data.gameName} rules
 		</a>
+		<!-- Below md the whole TOC stacks above the content, so the search box
+		     sticks to the top of the screen while the reader scrolls; on md+
+		     it lives in the sidebar and behaves normally. -->
 		<form
 			action={resolve('/[game=game]/reference/search', { game: data.gameId })}
-			class="mt-3"
+			class="sticky top-0 z-10 -mx-1 mt-3 bg-bg px-1 py-2 md:static md:m-0 md:mt-3 md:p-0"
 			role="search"
 		>
 			<input

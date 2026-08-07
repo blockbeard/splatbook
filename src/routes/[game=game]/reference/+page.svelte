@@ -11,32 +11,35 @@
 	<title>{data.gameName} — Rules reference</title>
 </svelte:head>
 
-<h1 class="text-2xl font-bold tracking-tight">Rules reference</h1>
-<p class="mt-2 max-w-2xl text-muted">
-	Browse or search the {data.gameName} rules. Pick a chapter below, or use the contents on the left; every
-	heading has its own page and shareable link.
-</p>
-{#if data.showSetting && data.spoilers}
-	<p class="mt-2 text-xs text-accent">
-		{data.spoilers.toggleLabel} — on. The checkbox in the sidebar turns it off again.
+<div class="reference-landing">
+	<h1 class="text-2xl font-bold tracking-tight">Rules reference</h1>
+	<p class="mt-2 max-w-2xl text-muted">
+		Browse or search the {data.gameName} rules. Pick a chapter below, or use the contents on the left;
+		every heading has its own page and shareable link.
 	</p>
-{/if}
+	{#if data.showSetting && data.spoilers}
+		<p class="mt-2 text-xs text-accent">
+			{data.spoilers.toggleLabel} — on. The checkbox in the sidebar turns it off again.
+		</p>
+	{/if}
 
-{#each data.toc as doc (doc.id)}
-	<section class="mt-8">
-		<h2 class="text-lg font-semibold">{doc.title}</h2>
-		<!-- Chapters are already in reading order (build_srd.py walks source files
+	{#each data.toc as doc (doc.id)}
+		<section class="mt-8">
+			<h2 class="text-lg font-semibold">{doc.title}</h2>
+			<!-- Chapters are already in reading order (build_srd.py walks source files
 		     sorted the same way); this is the book's own table of contents, one
-		     card per source file, not a filtered slice of the section list. -->
-		<ul class="mt-3 grid gap-2 sm:grid-cols-2">
-			{#each doc.chapters as chapter (chapter.id)}
-				<li>
-					<a href={href(chapter.id)} class="text-accent hover:underline">
-						{#if chapter.number}<span class="text-muted">{chapter.number}.</span>{/if}
-						{chapter.title}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</section>
-{/each}
+		     column so it reads top to bottom — a two-column grid is ambiguous
+		     (down-then-across vs across-then-down splits readers). -->
+			<ul class="mt-3 space-y-1.5">
+				{#each doc.chapters as chapter (chapter.id)}
+					<li>
+						<a href={href(chapter.id)} class="text-accent hover:underline">
+							{#if chapter.number}<span class="text-muted">{chapter.number}.</span>{/if}
+							{chapter.title}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</section>
+	{/each}
+</div>

@@ -70,13 +70,24 @@
 	     scrambled the book's order. -->
 	<section class="section-children mt-6 border-t border-border pt-4">
 		<h2 class="text-sm font-semibold text-muted">In this section</h2>
+		<!-- One level shows; deeper levels sit behind disclosure toggles — which
+		     also keeps an h3-under-h2 from reading identically to an h2-under-h1
+		     (both are just "one level down" until you open them). -->
 		{#snippet childList(nodes: typeof data.children, nested: boolean)}
 			<ul class="mt-1 space-y-0.5 {nested ? 'border-l border-border pl-4' : ''}">
 				{#each nodes as node (node.id)}
 					<li>
-						<a href={href(node.id)} class="text-accent hover:underline">{node.title}</a>
 						{#if node.children.length}
-							{@render childList(node.children, true)}
+							<details>
+								<summary class="cursor-pointer marker:text-muted">
+									<a href={href(node.id)} class="text-accent hover:underline">{node.title}</a>
+								</summary>
+								{@render childList(node.children, true)}
+							</details>
+						{:else}
+							<!-- ml aligns leaf titles with summary text after the marker -->
+							<a href={href(node.id)} class="ml-[1.2em] text-accent hover:underline">{node.title}</a
+							>
 						{/if}
 					</li>
 				{/each}

@@ -88,6 +88,19 @@ html.dark[data-game='hmtw'] {
 html[data-game='hmtw'] .reference-body {
 	font-family: 'IM Fell English', Georgia, serif;
 	font-size: 1.05em;
+	/* Contain floated sidebar callouts (below) within the article. */
+	display: flow-root;
+}
+
+/* Owned diagram art (affliction clocks, disposition wheel). The SVGs are
+   drawn in ink; dark mode is a straight inversion, same as the vault's
+   fig-light/fig-dark pairs. */
+html[data-game='hmtw'] .reference-body img {
+	max-width: 100%;
+	height: auto;
+}
+html.dark[data-game='hmtw'] .reference-body img {
+	filter: invert(1);
 }
 
 /* Headings, scoped to book prose (shell chrome keeps its own scale). */
@@ -209,24 +222,22 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
 }
+/* On wide screens the book's sidebars sit beside the text, like the printed
+   margin boxes; on narrow ones they fall back inline. No icon — the book's
+   sidebars don't carry one (the worm was Obsidian chrome). */
+@media (min-width: 64rem) {
+	html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
+		float: right;
+		clear: right;
+		width: 46%;
+		margin: 0.3rem 0 1rem 1.6rem;
+	}
+}
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
 	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
 	font-size: 1.02rem;
 	color: var(--sb-callout-label);
 }
-html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label::before,
-html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-title::before {
-	content: '';
-	display: inline-block;
-	width: 1.05em;
-	height: 1.05em;
-	margin-right: 0.35em;
-	vertical-align: -0.18em;
-	background-color: currentColor;
-	mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
-	-webkit-mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
-}
-
 /* A callout's own title (the `[!sidebar] Against canon` line) renders in
    the vault's HamletOrNot header role and *replaces* the generic kind
    label — the book shows "Against canon", not the word "Sidebar". Callouts
@@ -278,4 +289,32 @@ html[data-game='hmtw'] .reference-body .sb-callout-epigraph em {
 	font-family: 'IM Fell English', Georgia, serif;
 	font-size: 0.62em;
 	color: var(--sb-muted);
+}
+
+/*
+ * The reference landing (/hmtw/reference): the book's own contents page —
+ * Uncial title over an ink rule, chapters in a single Fell column.
+ */
+html[data-game='hmtw'] .reference-landing > h1 {
+	font-family: 'XiparosLombard', 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
+	font-weight: 400;
+	font-size: 2em;
+	border-bottom: 2px solid var(--sb-text);
+	padding-bottom: 0.15em;
+}
+html[data-game='hmtw'] .reference-landing section h2 {
+	font-family: 'HamletOrNot', 'IM Fell English SC', Georgia, serif;
+	font-weight: 400;
+	font-size: 1.4em;
+}
+html[data-game='hmtw'] .reference-landing section a {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 1.1rem;
+	color: var(--sb-text);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+	text-underline-offset: 2px;
+}
+html[data-game='hmtw'] .reference-landing section a:hover {
+	text-decoration-color: currentColor;
 }

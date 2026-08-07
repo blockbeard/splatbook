@@ -20,6 +20,7 @@ export const hmtw: GameModule = {
 	id: 'hmtw',
 	name: 'His Majesty the Worm',
 	packSchemas: schemaFor,
+	favicon: '/content-packs/hmtw/art/worm.svg',
 	referenceSpoilers: {
 		badge: 'GM',
 		toggleLabel: 'Include the Gamemaster’s chapters — monsters, secrets, and the underworld',
