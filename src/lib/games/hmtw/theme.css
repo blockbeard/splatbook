@@ -227,7 +227,7 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
    hoists them there), and take no height in the text flow, so "In this
    section" follows the text instead of the rail. Narrow screens fall back
    inline. No icon — the book's sidebars don't carry one. */
-@media (min-width: 90rem) {
+@media (min-width: 84rem) {
 	html[data-game='hmtw'] main {
 		max-width: 79rem;
 	}
