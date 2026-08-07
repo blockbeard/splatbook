@@ -37,11 +37,11 @@ A [[07 - Chapter 7 - The Challenge Phase|Challenge Phase]] occurs when you need 
 >
 > _– The Silver Chair, C.S. Lewis_
 
-#### The Camp Phase
+## The Camp Phase
 
 As the adventurers get worn down by journeys and battles, they’ll pause and use the [[08 - Chapter 8 - The Camp Phase|Camp Phase]]. The focus of the Camp Phase is interpersonal roleplaying, drama, and connections between members of the guild. During this phase, players burn charged Bonds to rest and recover.
 
-#### The City Phase
+## The City Phase
 
 Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.
 

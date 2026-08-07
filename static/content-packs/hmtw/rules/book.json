@@ -267,11 +267,10 @@
 		{
 			"id": "01-chapter-1-the-basics--the-camp-phase",
 			"title": "The Camp Phase",
-			"level": 5,
+			"level": 3,
 			"path": [
 				"Chapter 1: The Basics",
-				"The Four Phases",
-				"The Challenge Phase"
+				"The Four Phases"
 			],
 			"body": "As the adventurers get worn down by journeys and battles, they’ll pause and use the [[08 - Chapter 8 - The Camp Phase|Camp Phase]]. The focus of the Camp Phase is interpersonal roleplaying, drama, and connections between members of the guild. During this phase, players burn charged Bonds to rest and recover.",
 			"visibility": "player",
@@ -280,11 +279,10 @@
 		{
 			"id": "01-chapter-1-the-basics--the-city-phase",
 			"title": "The City Phase",
-			"level": 5,
+			"level": 3,
 			"path": [
 				"Chapter 1: The Basics",
-				"The Four Phases",
-				"The Challenge Phase"
+				"The Four Phases"
 			],
 			"body": "Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.\n\n> [!summary] The Four Phases (diagram, p.15)\n> **City** — Turn in and take new contracts; spend wealth to restock and heal; pursue long-term schemes.\n> 1. Death and Taxes\n> 2. Noteworthy Deeds\n> 3. City Events\n> 4. Turn in Contracts\n> 5. Upkeep\n> 6. City Actions\n> 7. Plan the Next Crawl\n> 8. Restock the Underworld\n>\n> **Crawl** — Pursue your quest; accumulate wealth and avoid hazards; charge Bonds through roleplaying and fulfilling conditions.\n> 1. Declare you enter the quest\n> 2. A watch passes when you travel to the next room\n> 3. The GM draws on the Meatgrinder table each watch\n>\n> **Challenge** — Fight the denizens of the Underworld; notch armor; gain Wounds.\n> 1. Set the Scene\n> 2. Draw Challenge Cards\n> 3. Play Initiative\n> 4. Take Turns\n> 5. Minor Actions6\n> 6. End the Round\n>\n> **Camp** — Burn charged Bonds; heal Wounds; gain Resolve.\n> 1. Camp Actions\n> 2. Break Bread\n> 3. No Rest for the Wicked\n> 4. Recovery\n> 5. End Camp Phase",
 			"visibility": "player",
