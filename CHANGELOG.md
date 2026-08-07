@@ -13,8 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   deliberately nothing else: the full open game text of Josh McCrowell's
   Silver-ENNIE-winning megadungeon game at `/hmtw/reference` — 17 chapters,
   searchable with 364 curated index terms pinned above the fuzzy hits, in the
-  book's own look (parchment/ink/oxblood; the book's OFL Fell faces plus the
-  substitutions audited in `docs/hmtw-fonts.md`). The Gamemaster's chapters
+  book's own look (its strict black-on-white, inverted for dark mode; the
+  book's OFL Fell faces plus the substitutions audited in
+  `docs/hmtw-fonts.md`). The Gamemaster's chapters
   (10, Appendices C–E) sit behind the per-game spoiler opt-in, and a link
   into them lands on a "For the Gamemaster's Eyes" interstitial with the
   toggle, never a 404. The Tomb of Golden Ghosts tutorial dungeon is omitted

@@ -5,11 +5,12 @@
  * `html[data-game='hmtw']` and every shell component picks them up through
  * the mapped utilities; nothing here is imported by the shell.
  *
- * Palette ported from the vault's own reading snippet (the book's look:
- * parchment, near-black ink, oxblood accents, sepia rules). Font roles come
- * from the creator template's .idml paragraph styles, with every face that
- * fails the @font-face redistribution bar swapped for the OFL substitute
- * chosen in docs/hmtw-fonts.md:
+ * Palette: the book's own interior — strict black on white, inverted to
+ * white on black for dark mode (the vault's fig-light/fig-dark art pairs
+ * are built for exactly that inversion). No tints; ink rules everywhere.
+ * Font roles come from the creator template's .idml paragraph styles, with
+ * every face that fails the @font-face redistribution bar swapped for the
+ * OFL substitute chosen in docs/hmtw-fonts.md:
  *
  *   body prose            IM Fell English (the book's own, OFL)
  *   chapter titles (h1)   Uncial Antiqua       (for Xiparos Lombard)
@@ -39,40 +40,41 @@
 /* `html[data-game=…]` rather than a bare attribute selector: the shell's
    tokens live on `:root` with identical specificity (see stonetop's note). */
 html[data-game='hmtw'] {
-	--sb-bg: #efe7d3; /* parchment */
-	--sb-surface: #f5efe0;
-	--sb-text: #211a12; /* ink */
-	--sb-muted: #6f6048;
-	--sb-accent: #7e1c1c; /* oxblood */
-	--sb-accent-contrast: #efe7d3;
-	--sb-border: #b3a07c; /* sepia-soft */
-	--sb-danger: #8c2b1e;
+	--sb-bg: #ffffff;
+	--sb-surface: #ffffff;
+	--sb-text: #111111;
+	--sb-muted: #575757;
+	/* The interior is monochrome, so the accent IS the ink: links read by
+	   their underline, buttons as solid black — the book's poster look. */
+	--sb-accent: #111111;
+	--sb-accent-contrast: #ffffff;
+	--sb-border: rgba(0, 0, 0, 0.18);
+	--sb-danger: #8c2f22;
 
-	/* The book's boxed parchment sidebars: darker parchment, sepia rule,
-	   oxblood spine and label. */
-	--sb-callout-border: #5a4a32;
-	--sb-callout-bg: #e8ddc4;
-	--sb-callout-label: var(--sb-accent);
+	/* The book's sidebars: an ink rule on the page, no fill. */
+	--sb-callout-border: #111111;
+	--sb-callout-bg: transparent;
+	--sb-callout-label: var(--sb-text);
 
 	font-family: 'Sorts Mill Goudy', 'Goudy Old Style', Georgia, serif;
 	font-size: 1.125rem;
 }
 
-/* Candlelight: ink and parchment inverted into dark leather, the oxblood
-   lifted to stay legible, the same warm cast throughout. */
+/* White on black — a straight inversion, exactly like the vault art's
+   fig-light/fig-dark pairs. */
 html.dark[data-game='hmtw'] {
-	--sb-bg: #1a1510;
-	--sb-surface: #241d15;
-	--sb-text: #e9dfc9;
-	--sb-muted: #b0a288;
-	--sb-accent: #d0836c;
-	--sb-accent-contrast: #1a120e;
-	--sb-border: rgba(233, 223, 201, 0.22);
+	--sb-bg: #0e0e0e;
+	--sb-surface: #161616;
+	--sb-text: #f2f2f2;
+	--sb-muted: #a8a8a8;
+	--sb-accent: #f2f2f2;
+	--sb-accent-contrast: #111111;
+	--sb-border: rgba(255, 255, 255, 0.22);
 	--sb-danger: #e09880;
 
-	--sb-callout-border: #8a7a5c;
-	--sb-callout-bg: #211a12;
-	--sb-callout-label: var(--sb-accent);
+	--sb-callout-border: #e6e6e6;
+	--sb-callout-bg: transparent;
+	--sb-callout-label: var(--sb-text);
 }
 
 /*
@@ -91,7 +93,7 @@ html[data-game='hmtw'] .reference-body h1 {
 	font-size: 2.1em;
 	line-height: 1.15;
 	color: var(--sb-text);
-	border-bottom: 2px solid var(--sb-accent);
+	border-bottom: 2px solid var(--sb-text);
 	padding-bottom: 0.15em;
 }
 html[data-game='hmtw'] .reference-body :is(h2, h3) {
@@ -106,7 +108,7 @@ html[data-game='hmtw'] .reference-body h2 {
 html[data-game='hmtw'] .reference-body h3 {
 	font-size: 1.28em;
 	line-height: 1.22;
-	color: var(--sb-accent);
+	color: var(--sb-text);
 }
 /* Minor subheads (stat labels: Notes / Sensations / Lesser dooms…). */
 html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
@@ -117,15 +119,16 @@ html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
 	color: var(--sb-text);
 }
 
-/* Bold runs in Caslon in the book; links are oxblood over a sepia rule. */
+/* Bold runs in Caslon in the book; links are ink, read by their underline
+   (the page is monochrome — hover commits the underline to full ink). */
 html[data-game='hmtw'] .reference-body :is(strong, b) {
 	font-family: 'Libre Caslon Text', Georgia, serif;
 	font-weight: 700;
 }
 html[data-game='hmtw'] .reference-body a {
-	color: var(--sb-accent);
+	color: var(--sb-text);
 	text-decoration: underline;
-	text-decoration-color: var(--sb-border);
+	text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
 	text-underline-offset: 2px;
 }
 html[data-game='hmtw'] .reference-body a:hover {
@@ -228,8 +231,8 @@ html[data-game='hmtw'] .reference-body .sb-callout-lede .sb-callout-label {
 	display: none;
 }
 
-/* [!epigraph] — pull quotes: Almendra Display in oxblood, centered, unboxed;
-   the attribution line inside stays Fell italic and muted. */
+/* [!epigraph] — pull quotes: Almendra Display in full ink, centered,
+   unboxed; the attribution line inside stays Fell italic and muted. */
 html[data-game='hmtw'] .reference-body .sb-callout-epigraph {
 	background: transparent;
 	border: none;
@@ -237,7 +240,7 @@ html[data-game='hmtw'] .reference-body .sb-callout-epigraph {
 	font-family: 'Almendra Display', 'IM Fell English', Georgia, serif;
 	font-size: 1.45em;
 	line-height: 1.3;
-	color: var(--sb-accent);
+	color: var(--sb-text);
 }
 html[data-game='hmtw'] .reference-body .sb-callout-epigraph .sb-callout-label {
 	display: none;
