@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.2] - 2026-08-07
+
+**The reading pass** — Chris read the book in its own app and the app
+grew to fit: real hierarchy, real margin sidebars, pages sized like
+sections instead of headings.
+
 ### Added
 
 - **Reference page granularity** (`referencePageDepth`): a game can declare
@@ -24,10 +30,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **HMtW reading pass** (staging findings): the book's real heading
-  hierarchy survives import (cascading demotion); sidebars sit in a
-  reserved right rail on wide screens with no icon; callout inline titles
+  hierarchy survives import (cascading demotion); sidebars live in a
+  true right rail on wide screens — additional width, never carved from
+  the text column — top-aligned to their section heading (a new
+  `hoistCallouts` import transform), no icon; callout inline titles
   render as titles; nav surfaces nest one level with disclosure toggles;
-  the landing and left TOC wear the book's faces; per-game favicons.
+  the landing and left TOC wear the book's faces; per-game favicons
+  (HMtW's is Chris's ouroboros). Verified in a Zoom Whiteboard iframe —
+  the phase-22 acceptance test.
 
 ## [2.3.0] - 2026-08-07
 
