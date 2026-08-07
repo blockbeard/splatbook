@@ -119,11 +119,17 @@ html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
 	color: var(--sb-text);
 }
 
-/* Bold runs in Caslon in the book; links are ink, read by their underline
-   (the page is monochrome — hover commits the underline to full ink). */
+/* Inline bold is the book's own production trick: IM Fell has no bold
+   weight (the 17th-century originals predate bold type), so the book
+   fake-bolds it with a same-colour outline stroke in InDesign.
+   -webkit-text-stroke is the identical mechanism in CSS — a symmetric
+   currentColor stroke on the glyph outline — unlike font-synthesis'
+   double-strike smear. Kept thin so counters stay open at body size. */
 html[data-game='hmtw'] .reference-body :is(strong, b) {
-	font-family: 'Libre Caslon Text', Georgia, serif;
-	font-weight: 700;
+	font-family: 'IM Fell English', Georgia, serif;
+	font-weight: 400;
+	-webkit-text-stroke: 0.024em currentColor;
+	letter-spacing: 0.012em;
 }
 html[data-game='hmtw'] .reference-body a {
 	color: var(--sb-text);
