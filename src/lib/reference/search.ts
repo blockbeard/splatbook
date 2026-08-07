@@ -65,7 +65,8 @@ export async function loadPinnedTerms(
 	const file = opts.gm ? 'pinned-terms-gm.json' : 'pinned-terms.json';
 	const res = await fetchFn(`${base}/content-packs/${gameId}/${file}`);
 	if (res.status === 404) return null;
-	if (!res.ok) throw new Error(`search: failed to load pinned terms for "${gameId}" (${res.status})`);
+	if (!res.ok)
+		throw new Error(`search: failed to load pinned terms for "${gameId}" (${res.status})`);
 	return (await res.json()) as PinnedTerm[];
 }
 

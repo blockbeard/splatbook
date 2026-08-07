@@ -156,7 +156,10 @@ describe('nested anchors', () => {
 		// Both parts share a title with an earlier section — the composite key
 		// must land on the occurrence *after* the parent, not the first.
 		expect(
-			resolveTarget(chapterIndex, '07 - The Challenge Phase#GMing the Challenge#1. Draw Challenge cards')
+			resolveTarget(
+				chapterIndex,
+				'07 - The Challenge Phase#GMing the Challenge#1. Draw Challenge cards'
+			)
 		).toBe('07-the-challenge-phase--1-draw-challenge-cards-2');
 	});
 

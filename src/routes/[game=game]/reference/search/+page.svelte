@@ -148,7 +148,7 @@
 							<a
 								href={target.url}
 								target="_blank"
-								rel="noopener"
+								rel="noopener external"
 								class="text-accent hover:underline"
 								title={target.note}>{target.label} ↗</a
 							>

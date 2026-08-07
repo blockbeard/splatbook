@@ -71,7 +71,10 @@ test('a nested-anchor cross-link lands on the third duplicate heading', async ({
 	// Challenge cards]] — three sections share that title; the link must hit
 	// the GM-scoped third one, not the first.
 	await page.goto('/hmtw/reference/07-chapter-7-the-challenge-phase--1-draw-challenge-cards');
-	const link = page.locator('.reference-body a').filter({ hasText: 'Draw Challenge Cards' }).first();
+	const link = page
+		.locator('.reference-body a')
+		.filter({ hasText: 'Draw Challenge Cards' })
+		.first();
 	await expect(link).toHaveAttribute(
 		'href',
 		/07-chapter-7-the-challenge-phase--1-draw-challenge-cards-3$/

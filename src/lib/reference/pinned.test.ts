@@ -5,12 +5,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { documentTreeSchema, type DocumentTree } from './document-tree';
-import {
-	matchPinnedTerms,
-	mergePinnedTerms,
-	resolvePinnedTerms,
-	type SourceTerm
-} from './pinned';
+import { matchPinnedTerms, mergePinnedTerms, resolvePinnedTerms, type SourceTerm } from './pinned';
 
 const trees: DocumentTree[] = [
 	documentTreeSchema.parse({

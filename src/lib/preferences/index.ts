@@ -12,8 +12,7 @@
  * `"true"`/`"false"` under `reference.showSetting.<gameId>`; absent means
  * "not decided yet," which the reading feature treats as `false`.
  */
-export const referenceShowSetting = (gameId: string): string =>
-	`reference.showSetting.${gameId}`;
+export const referenceShowSetting = (gameId: string): string => `reference.showSetting.${gameId}`;
 
 /**
  * The pre-namespacing bare key (commit 97). Never written anymore — it exists

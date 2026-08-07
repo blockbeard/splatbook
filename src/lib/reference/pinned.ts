@@ -24,8 +24,7 @@ import { buildLinkIndex, resolveTarget } from './inline';
 
 /** One hand-authored target in `index-terms.json`. */
 export type SourceTarget =
-	| { file: string; anchor: string; label: string }
-	| { url: string; label?: string; note?: string };
+	{ file: string; anchor: string; label: string } | { url: string; label?: string; note?: string };
 
 /** One hand-authored term entry in `index-terms.json`. */
 export interface SourceTerm {
@@ -99,7 +98,9 @@ export function resolvePinnedTerms(
 		if (gmTargets.length) gm.push({ term: entry.term, targets: gmTargets });
 	}
 	if (errors.length) {
-		throw new Error(`pinned terms: ${errors.length} unresolvable target(s)\n  ${errors.join('\n  ')}`);
+		throw new Error(
+			`pinned terms: ${errors.length} unresolvable target(s)\n  ${errors.join('\n  ')}`
+		);
 	}
 	return { player, gm };
 }
