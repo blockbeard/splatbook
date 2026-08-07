@@ -12,6 +12,15 @@ at code you can open and copy. Stonetop exercises the whole surface — a
 wizard-built entity type (characters), two editor-first ones (steadings, threats),
 a rules reference, and a GM guide — so a new game will use some subset of it.
 
+**The promise has now been walked twice.** His Majesty the Worm (phase 22) is the
+minimal subset: a rules reference and nothing else — no entity types, no engine,
+no GM guide. It landed in `content/hmtw/` + `static/content-packs/hmtw/` +
+`src/lib/games/hmtw/` plus the two registration lines, exactly as promised; the
+handful of shell extractions it needed (optional `entityTypes`, per-game spoiler
+keys, `landing.json`, embed mode) were made deliberately, each in its own
+commit, before the pack landed. `src/lib/games/hmtw/` is the reference-only
+crib: four small files (module, pack-schemas, pack test, theme).
+
 ## The layers, in one breath
 
 Content pack (JSON/markdown, no code) → engine (pure TypeScript, no UI/DB imports)
@@ -34,6 +43,15 @@ Create `static/content-packs/<gameId>/` with:
   therefore itself CC BY-SA 4.0 (`static/content-packs/stonetop/LICENSE.md`).
 - **`data/…`** — your structured data. Write a `SCHEMA.md` beside it as you go; it
   is the document you will thank yourself for when you write the Zod schemas.
+  A reference-only game has none — HMtW's pack is its rules trees, a
+  `landing.json`, and licensing.
+- **`landing.json`** (optional) — the game's front-door copy: tagline, blurb,
+  a logo image, outbound buy links. Shell-owned schema
+  (`$lib/packs/landing.ts`), returned by your `schemaFor` for that filename;
+  without one the shell shows honest defaults (builder-speak only if you have
+  builders).
+- **`art/…`** (optional) — pack-owned images the theme or landing reference by
+  URL. Not manifest-listed: the manifest lists validated JSON only.
 
 Pack files are validated at build/CI and then trusted at runtime, so the app fetches
 them without re-parsing through Zod. See `docs/content-packs.md` for the manifest,
@@ -73,7 +91,9 @@ portable and its rules trustworthy.
 }
 ```
 
-**Entity types** is a map keyed by the persisted `entityType`. Each entry’s slots are
+**Entity types** is a map keyed by the persisted `entityType` — and the whole map
+is optional (phase 22): a reference-only game omits it, and the shell then offers
+no builders, sheets, or campaign creation for that game. Each entry’s slots are
 all optional, so a type is only as big as it needs (`src/lib/games/types.ts`):
 
 - A **wizard-built** type (Stonetop `character`) sets `newDraft` + `wizardSteps`
@@ -113,10 +133,20 @@ picker the moment a second game exists.
 
 Ship the SRD as one or more **document trees** under the pack’s `rules/` folder,
 point `schemaFor` at `documentTreeSchema` for `rules/*.json`, and list them in the
-manifest. Trees are generated from vault markdown by `tools/build_srd.py` (config in
-`tools/srd.config.json`) — never hand-edited — and a build-time MiniSearch index
-(`npm run build:search`) powers offline client-side search. Details in
-`docs/content-packs.md`.
+manifest. Trees are generated from vault markdown by `tools/build_rules.py` (a
+per-game `tools/rules.<gameId>.json` config: source dirs, excludes,
+truncate-at-heading, callout stripping, link rewrites) then `tools/build_srd.py`
+(config in `tools/srd.config.json`) — never hand-edited — and a build-time
+MiniSearch index (`npm run build:search`) powers offline client-side search.
+
+Corpus knobs phase 22 added, all per-document in `srd.config.json`:
+`demoteExtraH1` for multi-H1 source files, `chapterTitles` overrides for stems
+that don't parse into clean numbers/titles, and `fileVisibility` to gate
+individual GM files inside one folder. A `referenceSpoilers` module slot names
+the opt-in toggle/badge and an `interstitialSectionId` so links into gated
+content land on an explanation instead of a 404. A pack can also ship curated
+pinned search terms (`content/<gameId>/index-terms.json` → split player/GM
+artifacts at build). Details in `docs/content-packs.md`.
 
 ## 7. GM guide (optional)
 

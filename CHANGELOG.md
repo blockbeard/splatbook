@@ -7,8 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **His Majesty the Worm — game #2** (phase 22). A rules reference and
+  deliberately nothing else: the full open game text of Josh McCrowell's
+  Silver-ENNIE-winning megadungeon game at `/hmtw/reference` — 17 chapters,
+  searchable with 364 curated index terms pinned above the fuzzy hits, in the
+  book's own look (parchment/ink/oxblood; the book's OFL Fell faces plus the
+  substitutions audited in `docs/hmtw-fonts.md`). The Gamemaster's chapters
+  (10, Appendices C–E) sit behind the per-game spoiler opt-in, and a link
+  into them lands on a "For the Gamemaster's Eyes" interstitial with the
+  toggle, never a 404. The Tomb of Golden Ghosts tutorial dungeon is omitted
+  at the author's request — the reference points at the official Designing
+  Dungeons course instead. Text used with Josh McCrowell's direct OK; the
+  landing carries the Adherent of the Worm logo and buy links (official
+  site, DriveThruRPG affiliate with the usual disclosure).
+- **Embed mode** (`?embed=1`): any page renders chrome-less for iframe
+  embedding — built for reading the reference inside a Zoom Whiteboard. The
+  attribute is stamped server-side (no header flash on first paint) and the
+  reference search form keeps the param across submits and reloads.
+- **Per-game spoiler opt-ins.** `reference.showSetting` is namespaced per
+  game now — a Stonetop Book II opt-in no longer opens another game's GM
+  chapters (and vice versa); existing opt-ins survive via a read-time
+  fallback.
+- **Pack-supplied landing copy** (`landing.json`): a game's front door can
+  carry its own tagline, blurb, logo, and outbound links, and the shell
+  stops offering builders or campaigns for games that have none (a
+  reference-only game got a founder's tour of nothing before this).
+- **Curated pinned search terms**: a pack can ship a hand-authored index
+  (`content/<game>/index-terms.json`); the build resolves every target —
+  failing on dead anchors — and splits the artifacts player/GM at build
+  time, because the term labels are themselves the spoiler.
+
 ### Fixed
 
+- **Body links into gated chapters stay live.** They used to degrade to dead
+  text, so the spoiler interstitial could only ever be reached by pasting a
+  URL; now (for games that ship an interstitial) they land on the
+  explanation + opt-in. Benefits Stonetop's Book I → Book II links too.
 - **Moves & gear stopped showing raw `[[wikilink]]` syntax.** A basic move's
   closing "see [[06 - Player Moves#^clash|Clash]]" now renders as a real
   in-app link to that rules section, resolved through the pack's new compact

@@ -168,7 +168,29 @@ Cn add arcana to player sheet but only custom one. Mysteruy unlocks on a single 
       callout styled (not raw `[!move]` text).
       Playshet links don't work
 
-## 10. Odds and ends
+## 10. HMtW reader (phase 22)
+
+- [ ] `/hmtw` landing: Adherent logo, ENNIE blurb, the two buy links (DTRPG
+      one carries `affiliate_id` and the disclosure), **no** create/campaign
+      buttons.
+- [ ] `/hmtw/reference`: parchment theme, Uncial chapter titles, chapters
+      listed 1–10 + appendices; **The Worm Turns and Appendices C/D/E absent**
+      until the sidebar opt-in; toggling on reveals them, off hides again.
+- [ ] Opting in on hmtw does **not** open Stonetop's Book II (and vice versa)
+      — the preference is per game now.
+- [ ] From the Index, a link into Chapter 10 lands on "For the Gamemaster's
+      Eyes" with the opt-in button — same URL, no 404.
+- [ ] Search "meatgrinder": pinned term above the hits; "tomb" pins the
+      Designing Dungeons external link (new tab). GM-only terms (Undead,
+      Traps…) pin only after opt-in.
+- [ ] `?embed=1`: no header/footer; a search submit and a reload keep the
+      param. **The acceptance test: paste
+      `https://splatbook.app/hmtw/reference?embed=1` into a Zoom Whiteboard
+      iframe on a small widget and read a chapter.**
+- [ ] `/credits`: HMtW block present, license label links to the pack's
+      LICENSE.md, compatibility statement reads right.
+
+## 11. Odds and ends
 
 - [x] Arcana authoring (GM) and play-side arcana cards: quick open, no errors.
       custom only, needs pre-written
