@@ -15,15 +15,20 @@
  *   body prose            IM Fell English (the book's own, OFL)
  *   chapter titles (h1)   Uncial Antiqua       (for Xiparos Lombard)
  *   h2 / h3               IM Fell English SC   (for HamletOrNot)
- *   h4 / bold             Libre Caslon Text 700 (for Caslon Antique Bold)
+ *   h4                    Libre Caslon Text 700 (for Caslon Antique Bold)
+ *   inline bold           stroked IM Fell (the book's own outline trick)
  *   table + callout heads IM Fell Great Primer SC (the book's own, OFL)
  *   sidebar body          Sorts Mill Goudy     (for Goudy Old Style)
- *   sidebar headers       Goudy Bookletter 1911 (for Kelmscott Roman)
+ *   sidebar headers       IM Fell English SC   (the vault's HamletOrNot role)
  *   pull quotes           Almendra Display     (for Dark Roast)
  *   app chrome            Sorts Mill Goudy     (the vault reads in Goudy too)
  *
- * All faces are @fontsource self-hosted npm builds — no CDN, no files copied
- * from the template folder.
+ * Every substituted stack lists the *authentic* face first, by local family
+ * name: naming a family distributes nothing — it engages only fonts the
+ * visitor already has installed. A machine with the creator-pack fonts
+ * (Chris's) renders the true book; everyone else gets the OFL fallback.
+ * All shipped faces are @fontsource self-hosted npm builds — no CDN, no
+ * files copied from the template folder.
  */
 
 @import '@fontsource/im-fell-english/400.css';
@@ -33,7 +38,6 @@
 @import '@fontsource/uncial-antiqua/400.css';
 @import '@fontsource/sorts-mill-goudy/400.css';
 @import '@fontsource/sorts-mill-goudy/400-italic.css';
-@import '@fontsource/goudy-bookletter-1911/400.css';
 @import '@fontsource/almendra-display/400.css';
 @import '@fontsource/libre-caslon-text/700.css';
 
@@ -56,7 +60,7 @@ html[data-game='hmtw'] {
 	--sb-callout-bg: transparent;
 	--sb-callout-label: var(--sb-text);
 
-	font-family: 'Sorts Mill Goudy', 'Goudy Old Style', Georgia, serif;
+	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 1.125rem;
 }
 
@@ -88,7 +92,7 @@ html[data-game='hmtw'] .reference-body {
 
 /* Headings, scoped to book prose (shell chrome keeps its own scale). */
 html[data-game='hmtw'] .reference-body h1 {
-	font-family: 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
+	font-family: 'XiparosLombard', 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
 	font-weight: 400;
 	font-size: 2.1em;
 	line-height: 1.15;
@@ -97,7 +101,7 @@ html[data-game='hmtw'] .reference-body h1 {
 	padding-bottom: 0.15em;
 }
 html[data-game='hmtw'] .reference-body :is(h2, h3) {
-	font-family: 'IM Fell English SC', 'IM Fell English', Georgia, serif;
+	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
 	font-weight: 400;
 }
 html[data-game='hmtw'] .reference-body h2 {
@@ -112,7 +116,7 @@ html[data-game='hmtw'] .reference-body h3 {
 }
 /* Minor subheads (stat labels: Notes / Sensations / Lesser dooms…). */
 html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
-	font-family: 'Libre Caslon Text', Georgia, serif;
+	font-family: 'Caslon Antique', 'CaslonAntique', 'Libre Caslon Text', Georgia, serif;
 	font-weight: 700;
 	font-size: 1.02em;
 	letter-spacing: 0.01em;
@@ -196,15 +200,15 @@ html[data-game='hmtw'] .reference-body .sb-callout-label {
 	letter-spacing: 0.02em;
 }
 
-/* [!sidebar] — the book's recovered sidebars: Goudy body under a
-   Kelmscott-flavored header face, with the vault's worm icon leading the
-   label (pack art, tinted via mask so it follows the label color). */
+/* [!sidebar] — the book's recovered sidebars: Goudy body under the
+   vault's HamletOrNot header role (Fell SC when absent), the worm icon
+   leading the label (pack art, tinted via mask to follow the label color). */
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
-	font-family: 'Sorts Mill Goudy', Georgia, serif;
+	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
 }
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
-	font-family: 'Goudy Bookletter 1911', 'Sorts Mill Goudy', Georgia, serif;
+	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
 	font-size: 1.02rem;
 	color: var(--sb-callout-label);
 }
@@ -243,7 +247,7 @@ html[data-game='hmtw'] .reference-body .sb-callout-epigraph {
 	background: transparent;
 	border: none;
 	text-align: center;
-	font-family: 'Almendra Display', 'IM Fell English', Georgia, serif;
+	font-family: 'Dark Roast', 'Almendra Display', 'IM Fell English', Georgia, serif;
 	font-size: 1.45em;
 	line-height: 1.3;
 	color: var(--sb-text);

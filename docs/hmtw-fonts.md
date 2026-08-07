@@ -24,7 +24,7 @@ are site-applied, not author grants, and don't clear that bar.
 | Chapter-intro paragraphs, 13.5pt | BilboDisplay (WSI/IMSI 1993–96) | ❌ commercial data, "Redistribution strictly prohibited" in the name table | **IM Fell English Italic** — already in the palette |
 | Body 10.5pt, boxout headers, table body, quote attributions | IM Fell English roman + italic | ✅ **OFL** (already a repo dependency) | use as-is |
 | Sidebar body 9.5pt | Goudy Old Style (`GOUDOS.TTF`, URW data © Microsoft) | ❌ Windows system font, commercial | **Sorts Mill Goudy** — the OFL Goudy revival (the plan's own example) |
-| Sidebar headers 14pt | KelmscottRoman (Nick Curtis 2000, after Morris's Golden Type) | ⚠️ file says All Rights Reserved; only aggregator-applied "free for commercial use" labels exist | **Goudy Bookletter 1911** — League/PD, Kennerley-based, the same private-press flavor |
+| Sidebar headers 14pt | KelmscottRoman (Nick Curtis 2000, after Morris's Golden Type) | ⚠️ file says All Rights Reserved; only aggregator-applied "free for commercial use" labels exist | **IM Fell English SC** — Chris's vault styles sidebars in HamletOrNot, so the app follows the vault, not the .idml, here |
 | Pull quotes 36pt | Dark Roast (Brittney Murphy 2013) | ❌ free version is personal-use only; a real **webfont license is purchasable on Fontspring** if authenticity is wanted | **Almendra Display** — quirky medieval display, fits the book |
 
 ## Faces in the folder that need no decision
@@ -36,6 +36,16 @@ are site-applied, not author grants, and don't clear that bar.
 - **`Parasite-K7Zrp.ttf`** — its name table carries *"HTF Gotham Copr. 2000
   The Hoefler Type Foundry"*: renamed commercial font data. Unused in the
   template text. Do not touch, do not ship, do not keep copies.
+
+## Local-first stacks
+
+Every substituted rule in `theme.css` lists the *authentic* face first by
+its installed family name (`'XiparosLombard', 'Uncial Antiqua', …`). Naming
+a family distributes nothing — it engages only fonts the visitor already
+has installed — so a machine with the creator-pack fonts in its system
+library renders the true book, and everyone else falls back to the shipped
+OFL set. Note the fonts must be **installed** (Font Book), not just loaded
+by an Obsidian snippet's file-path `@font-face`, for a browser to see them.
 
 ## The authentic-faces path (optional, later)
 
