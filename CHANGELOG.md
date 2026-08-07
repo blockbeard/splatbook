@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-08-07
+
+**The second game** — His Majesty the Worm proves the framework promise:
+a whole rules reference in the book’s own clothes, behind one registry
+line, with the shell honest about what each game can and cannot do.
+
 ### Added
 
 - **His Majesty the Worm — game #2** (phase 22). A rules reference and
