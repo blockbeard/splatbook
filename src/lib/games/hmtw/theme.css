@@ -135,13 +135,15 @@ html[data-game='hmtw'] .reference-body :is(strong, b) {
 	-webkit-text-stroke: 0.024em currentColor;
 	letter-spacing: 0.012em;
 }
-html[data-game='hmtw'] .reference-body a {
+html[data-game='hmtw'] .reference-body a,
+html[data-game='hmtw'] .section-children a {
 	color: var(--sb-text);
 	text-decoration: underline;
 	text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
 	text-underline-offset: 2px;
 }
-html[data-game='hmtw'] .reference-body a:hover {
+html[data-game='hmtw'] .reference-body a:hover,
+html[data-game='hmtw'] .section-children a:hover {
 	text-decoration-color: currentColor;
 }
 
@@ -212,7 +214,8 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
 	font-size: 1.02rem;
 	color: var(--sb-callout-label);
 }
-html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label::before {
+html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label::before,
+html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-title::before {
 	content: '';
 	display: inline-block;
 	width: 1.05em;
@@ -222,6 +225,20 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label::be
 	background-color: currentColor;
 	mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
 	-webkit-mask: url('/content-packs/hmtw/art/worm.svg') no-repeat center / contain;
+}
+
+/* A callout's own title (the `[!sidebar] Against canon` line) renders in
+   the vault's HamletOrNot header role and *replaces* the generic kind
+   label — the book shows "Against canon", not the word "Sidebar". Callouts
+   without a title keep the label. */
+html[data-game='hmtw'] .reference-body .sb-callout:has(.sb-callout-title) .sb-callout-label {
+	display: none;
+}
+html[data-game='hmtw'] .reference-body .sb-callout-title {
+	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
+	font-size: 1.2em;
+	margin: 0 0 0.35em;
+	color: var(--sb-text);
 }
 
 /* [!lede] — chapter lead-ins. Not a box in the book: open text between

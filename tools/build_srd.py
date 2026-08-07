@@ -141,12 +141,15 @@ def parse_file(
         level, raw_title, kind = parsed
         # A multi-H1 file (HMtW's chapters carry 2–25 each) would give every
         # top-level section the bare file-prefix id (unstable dedupe suffixes)
-        # and an empty chapter TOC. Demoting every H1 after the first keeps the
-        # opener as the chapter root and the rest as its children — the book's
-        # actual spine. Config-gated per document; stonetop is one-H1-per-file.
-        if level == 1:
-            if saw_heading and demote_extra_h1:
-                level = 2
+        # and an empty chapter TOC. After the file's first heading, *every*
+        # heading demotes one level (clamped at 6): the extra H1s become the
+        # chapter's h2 parts, and their own h2/h3 substructure shifts down
+        # with them instead of flattening into siblings of the parts — the
+        # book's real tree survives. Section ids don't involve `level`, so
+        # deep links are unaffected. Config-gated per document; stonetop is
+        # one-H1-per-file.
+        if saw_heading and demote_extra_h1:
+            level = min(level + 1, 6)
         title = clean_title(raw_title)
         # Demote a pathologically long "heading" (OCR run-on) to body text,
         # unless it would be the file's opening line (nothing to attach it to).

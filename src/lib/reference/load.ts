@@ -8,6 +8,7 @@
  */
 
 import { base } from '$app/paths';
+import { buildSectionTree, type SectionNode } from './document-tree';
 import type { DocumentChapter, DocumentSection, DocumentTree } from './document-tree';
 import { deserializeLinkIndex, type LinkIndex, type SerializedLinkIndex } from './inline';
 import type { PackManifest } from '$lib/packs/types';
@@ -162,6 +163,26 @@ export function childrenOf(tree: DocumentTree, index: number): SectionRef[] {
 	if (block.length === 0) return [];
 	const min = Math.min(...block.map((s) => s.level));
 	return block.filter((s) => s.level === min).map(ref);
+}
+
+/** A section reference with its own nested children — the section page's
+ * "In this section" listing, hierarchy preserved (phase 22 follow-up: a flat
+ * two-column list read in the wrong order and hid the book's structure). */
+export interface SectionRefNode extends SectionRef {
+	level: number;
+	children: SectionRefNode[];
+}
+
+/** The full descendant tree of the section at `index`, as nested refs. */
+export function childTreeOf(tree: DocumentTree, index: number): SectionRefNode[] {
+	const [start, end] = descendantRange(tree, index);
+	const toRef = (n: SectionNode<DocumentSection>): SectionRefNode => ({
+		id: n.section.id,
+		title: n.section.title,
+		level: n.section.level,
+		children: n.children.map(toRef)
+	});
+	return buildSectionTree(tree.sections.slice(start, end)).map(toRef);
 }
 
 /** Previous/next sections in document order within the same tree. */

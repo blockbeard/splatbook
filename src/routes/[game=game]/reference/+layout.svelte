@@ -38,13 +38,23 @@
 	});
 
 	/**
-	 * A chapter's own h2 sections. The sidebar is capped at h2 — a chapter's
-	 * deeper headings (h3+) are reachable from the section page itself, via its
-	 * "In this section" child list and in-page links, not listed here. A nav
-	 * that lists every h5 is a list, not a map.
+	 * A chapter's h2 sections with their h3s nested underneath. The sidebar
+	 * is capped at h3 — deeper headings (h4+) are reachable from the section
+	 * page's own "In this section" tree and in-page links, not listed here.
+	 * A nav that lists every h5 is a list, not a map; but a flat h2 list hid
+	 * the book's parts entirely (phase-22 staging finding).
 	 */
-	function h2sOf(doc: TocDocument, chapterId: string): TocSection[] {
-		return doc.sections.filter((s) => s.chapter === chapterId && s.level === 2);
+	function h2sOf(
+		doc: TocDocument,
+		chapterId: string
+	): { section: TocSection; subs: TocSection[] }[] {
+		const out: { section: TocSection; subs: TocSection[] }[] = [];
+		for (const s of doc.sections) {
+			if (s.chapter !== chapterId) continue;
+			if (s.level === 2) out.push({ section: s, subs: [] });
+			else if (s.level === 3 && out.length) out[out.length - 1].subs.push(s);
+		}
+		return out;
 	}
 
 	const href = (id: string) =>
@@ -110,17 +120,34 @@
 										</a>
 									</summary>
 									<ul class="border-l border-border pl-3">
-										{#each h2s as section (section.id)}
-											{@const sectionActive = section.id === activeId}
+										{#each h2s as entry (entry.section.id)}
+											{@const sectionActive = entry.section.id === activeId}
 											<li>
 												<a
-													href={href(section.id)}
+													href={href(entry.section.id)}
 													class="block py-0.5 hover:text-accent"
 													class:text-accent={sectionActive}
 													class:font-medium={sectionActive}
 												>
-													{section.title}
+													{entry.section.title}
 												</a>
+												{#if entry.subs.length}
+													<ul class="border-l border-border pl-3 text-[0.92em]">
+														{#each entry.subs as sub (sub.id)}
+															{@const subActive = sub.id === activeId}
+															<li>
+																<a
+																	href={href(sub.id)}
+																	class="block py-0.5 text-muted hover:text-accent"
+																	class:text-accent={subActive}
+																	class:font-medium={subActive}
+																>
+																	{sub.title}
+																</a>
+															</li>
+														{/each}
+													</ul>
+												{/if}
 											</li>
 										{/each}
 									</ul>

@@ -54,6 +54,18 @@ describe('renderMarkdown', () => {
 		expect(html).not.toContain('[[');
 	});
 
+	it('renders a callout’s inline title as its own styled element', () => {
+		const html = renderMarkdown(
+			'> [!sidebar] Against canon\n>\n> Body text here.',
+			'stonetop',
+			index
+		);
+		expect(html).toContain('<p class="sb-callout-title">Against canon</p>');
+		expect(html).toContain('<p>Body text here.</p>');
+		// The generic kind label still renders; themes decide which to show.
+		expect(html).toContain('<p class="sb-callout-label">Sidebar</p>');
+	});
+
 	it('strips a trailing block id from display', () => {
 		const html = renderMarkdown('A reactive Underworld. ^create-meatgrinder', 'stonetop', index);
 		expect(html).toContain('A reactive Underworld.');

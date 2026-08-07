@@ -81,11 +81,14 @@ const titleCase = (s: string): string =>
 		(_, sep: string, ch: string) => (sep ? ' ' : '') + ch.toUpperCase()
 	);
 
-/** A callout token: its type (`kind` — "move", "monster", "box", …) plus the
- * block tokens of its de-quoted inner markdown. */
+/** A callout token: its type (`kind` — "move", "monster", "box", …), the
+ * inline tokens of its own title (the text on the `[!type]` line — HMtW's
+ * `[!sidebar] Against canon`, stonetop's `[!box] **How do you decide?**`),
+ * and the block tokens of its de-quoted inner markdown. */
 interface CalloutToken extends Tokens.Generic {
 	type: 'sb-callout';
 	calloutType: string;
+	titleTokens?: Token[];
 	tokens: Token[];
 }
 
@@ -107,24 +110,29 @@ const calloutExtension = {
 		const match = CALLOUT_BLOCK.exec(src);
 		if (!match) return undefined;
 		const [raw, type, inlineTitle, continuation] = match;
-		const inner = [inlineTitle.trim(), continuation.replace(/^>[ \t]?/gm, '')]
-			.filter(Boolean)
-			.join('\n')
-			.trim();
-		if (!inner) return undefined; // nothing to show; fall through to default handling
+		const title = inlineTitle.trim();
+		const body = continuation.replace(/^>[ \t]?/gm, '').trim();
+		if (!title && !body) return undefined; // nothing to show; fall through to default handling
 		return {
 			type: 'sb-callout',
 			raw,
 			calloutType: normalizeType(type),
-			tokens: this.lexer.blockTokens(inner)
+			// The `[!type]` line's own text is the callout's *title*, distinct
+			// from the body so a theme can set it in the book's header face
+			// (before this it merged into the first body paragraph).
+			titleTokens: title ? this.lexer.inlineTokens(title) : undefined,
+			tokens: this.lexer.blockTokens(body)
 		};
 	},
-	childTokens: ['tokens'],
+	childTokens: ['tokens', 'titleTokens'],
 	renderer(this: RendererThis, token: Tokens.Generic): string {
-		const { calloutType, tokens } = token as CalloutToken;
+		const { calloutType, titleTokens, tokens } = token as CalloutToken;
 		return (
 			`<aside class="sb-callout sb-callout-${calloutType}">\n` +
 			`<p class="sb-callout-label">${titleCase(calloutType)}</p>\n` +
+			(titleTokens
+				? `<p class="sb-callout-title">${this.parser.parseInline(titleTokens)}</p>\n`
+				: '') +
 			`${this.parser.parse(tokens)}</aside>\n`
 		);
 	}

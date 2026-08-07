@@ -60,18 +60,31 @@
 			{opting ? 'Including…' : 'Include this — take me back'}
 		</button>
 	{/if}
+</article>
 
-	{#if data.children.length}
-		<section class="mt-6 border-t border-border pt-4">
-			<h2 class="text-xs font-semibold uppercase tracking-wide text-muted">In this section</h2>
-			<ul class="mt-2 grid gap-1 sm:grid-cols-2">
-				{#each data.children as child (child.id)}
-					<li><a href={href(child.id)} class="text-accent hover:underline">{child.title}</a></li>
+{#if data.children.length}
+	<!-- Navigation, not book prose — outside the article so a game's
+	     .reference-body heading styles never inflate the label. One column,
+	     hierarchy preserved: a two-column flat grid read top-to-bottom-then-
+	     across (or across-then-down — readers split on it) either way
+	     scrambled the book's order. -->
+	<section class="section-children mt-6 border-t border-border pt-4">
+		<h2 class="text-sm font-semibold text-muted">In this section</h2>
+		{#snippet childList(nodes: typeof data.children, nested: boolean)}
+			<ul class="mt-1 space-y-0.5 {nested ? 'border-l border-border pl-4' : ''}">
+				{#each nodes as node (node.id)}
+					<li>
+						<a href={href(node.id)} class="text-accent hover:underline">{node.title}</a>
+						{#if node.children.length}
+							{@render childList(node.children, true)}
+						{/if}
+					</li>
 				{/each}
 			</ul>
-		</section>
-	{/if}
-</article>
+		{/snippet}
+		{@render childList(data.children, false)}
+	</section>
+{/if}
 
 <nav
 	class="mt-8 flex justify-between gap-4 border-t border-border pt-4 text-sm"

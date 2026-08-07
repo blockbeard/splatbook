@@ -4,7 +4,7 @@ import {
 	fetchTrees,
 	findSection,
 	ancestorsOf,
-	childrenOf,
+	childTreeOf,
 	siblingsInOrder,
 	isVisible
 } from '$lib/reference/load';
@@ -87,7 +87,7 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 		section: { id: section.id, title: section.title },
 		bodyHtml,
 		ancestors: ancestorsOf(tree, index),
-		children: childrenOf(tree, index),
+		children: childTreeOf(tree, index),
 		...siblingsInOrder(tree, index)
 	};
 };

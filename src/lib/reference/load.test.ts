@@ -1,6 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { documentTreeSchema, type DocumentTree } from './document-tree';
-import { tocOf, findSection, ancestorsOf, childrenOf, siblingsInOrder, isVisible } from './load';
+import {
+	tocOf,
+	findSection,
+	ancestorsOf,
+	childrenOf,
+	childTreeOf,
+	siblingsInOrder,
+	isVisible
+} from './load';
 
 const tree: DocumentTree = documentTreeSchema.parse({
 	id: 'book-i',
@@ -112,6 +120,17 @@ describe('childrenOf', () => {
 		expect(childrenOf(tree, 0).map((s) => s.id)).toEqual(['a1', 'a2']);
 		expect(childrenOf(tree, 1).map((s) => s.id)).toEqual(['a1x']);
 		expect(childrenOf(tree, 4)).toEqual([]);
+	});
+});
+
+describe('childTreeOf', () => {
+	it('returns the full descendant tree, hierarchy preserved', () => {
+		const nodes = childTreeOf(tree, 0);
+		expect(nodes.map((n) => n.id)).toEqual(['a1', 'a2']);
+		expect(nodes[0].children.map((n) => n.id)).toEqual(['a1x']);
+		expect(nodes[0].children[0].children).toEqual([]);
+		expect(nodes[1].children).toEqual([]);
+		expect(childTreeOf(tree, 4)).toEqual([]);
 	});
 });
 
