@@ -13,7 +13,34 @@
 		}
 	},
 	"stripCallouts": ["hmw-nav"],
+	"stripCalloutTitles": ["Splatbook Note"],
+	"insertions": {
+		"His Majesty the Worm/07 - Chapter 7 - The Challenge Phase.md": [
+			{
+				"after": "You can choose the above options in any order you choose",
+				"markdown": "> [!sidebar] Splatbook Note\n> The book is ambiguous about whether only mastered talents can be Wounded. Josh has said on the HMtW Discord that the errata he would add here is a sentence saying: \"Only mastered talents can be wounded.\""
+			}
+		],
+		"His Majesty the Worm/15 - Appendix E - Underworld Creation.md": [
+			{
+				"after": "The Underworld is a **megadungeon**",
+				"markdown": "> [!sidebar] Splatbook Note\n> Want a more detailed system for making dungeons? Josh McCrowell and Warren D's ENNIE- and Bloggie-winning [Designing Dungeons course](https://dungeons.hismajestytheworm.games/) is excellent."
+			}
+		]
+	},
+	"keepImages": {
+		"images/affliction-clock-1.svg": "/content-packs/hmtw/art/affliction-clock-1.svg",
+		"images/affliction-clock-2.svg": "/content-packs/hmtw/art/affliction-clock-2.svg",
+		"images/disposition-wheel.svg": "/content-packs/hmtw/art/disposition-wheel.svg"
+	},
+	"demoteHeadingsToBold": ["Component:"],
+	"preserveLineBreaks": [
+		"His Majesty the Worm/16 - Index.md",
+		"His Majesty the Worm/11 - Appendix A - Sorcery.md"
+	],
 	"linkRewrites": {
-		"15 - Appendix E - Underworld Creation#Writing Meatgrinder tables": "15 - Appendix E - Underworld Creation#5. Create the Meatgrinder"
+		"15 - Appendix E - Underworld Creation#Writing Meatgrinder tables": "15 - Appendix E - Underworld Creation#5. Create the Meatgrinder",
+		"08 - Chapter 8 - The Camp Phase#Optional Rules:": "08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel",
+		"08 - Chapter 8 - The Camp Phase#Overland Travel": "08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel"
 	}
 }

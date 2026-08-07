@@ -163,7 +163,7 @@ Role-playing games have been compared to sex. You usually do it with friends. So
 > Creating an adventurer means heeding the call to adventure. When you create an adventurer, you answer questions and make a series of decisions. This will result in a character with a background, a history, equipment, and connections to other adventurers.
 
 > [!lede]
-> Track the choices of the Call to Adventure and subsequent play on your adventurer sheet. A full version of the adventurer sheet can be printed at _hismajestytheworm.games_.
+> Track the choices of the Call to Adventure and subsequent play on your adventurer sheet. A full version of the adventurer sheet can be found at _[hismajestytheworm.games](https://www.hismajestytheworm.games/#h.pfuql57d5pt9)_.
 
 ### 1. Origin
 
@@ -269,7 +269,7 @@ In summation, your adventurer has:
 
 You’re now ready to heed the call to adventure and delve into the Underworld.
 
-### The adventurer sheet
+#### The adventurer sheet
 
 Each section of the adventurer sheet is described in detail on the following pages!
 
@@ -893,7 +893,7 @@ If you have retired your previous adventurer, or if you are a new player just jo
 > [!lede]
 > If you’re a new player joining a group playing _His Majesty the Worm_ and you missed session 0, here are the things you need to prepare.
 
-## Prior to your first session
+### Prior to your first session
 
 - Have your **adventurer sheet** ready.
 
@@ -905,7 +905,7 @@ If you have retired your previous adventurer, or if you are a new player just jo
 
 - Know your **own name**.
 
-## At your first session
+### At your first session
 
 - At the beginning of the session, select **two players** with whom you have **Bonds**.
 
@@ -915,11 +915,11 @@ If you have retired your previous adventurer, or if you are a new player just jo
 
 - Give **feedback**. Let the GM know how it went. Let them know if there’s something you thought could have gone better. Let them know if there was something you liked.
 
-## Prior to your second session
+### Prior to your second session
 
 - Based on your experiences in your first session, fill out a **Bond** for every member of the Guild.
 
-## At the end of your second session
+### At the end of your second session
 
 - Based on your experiences in your second session, either **join the current guild** or elect to create a new adventurer that’s more appealing to you or who meshes with the group dynamic better.
 

@@ -43,11 +43,11 @@ Mythrys taught that the Monad has twenty-one separate emanations. And, though ma
 
 ### Human names
 
-### Male names:
+#### Male names:
 
 Addam, Alesander, Bennard, Carl, Dafyd, Edric, Fenton, Gregor, Jack, Justinius, Kevyn, Lews, Marq, Omer, Polliver, Reynard, Robin, Samwell, Sylvestris, Tybalt, Usher, Zachery
 
-### Female names:
+#### Female names:
 
 Alanys, Brenda, Catlyn, Colette, Dion, Eleanor, Imogen, Janna, Jonquil, Kaya, Lanna, Marla, Olivia, Regan, Rhonda, Saera, Sybelle, Tanselle, Ursula, Violet, Walda
 
@@ -59,7 +59,7 @@ Humans divide the world into two parts: us and them. They do this by forming gre
 
 Human characters begin the game with the following talent:
 
-### Kin talent: Proud and Ancient
+#### Kin talent: Proud and Ancient
 
 Describe or draw the sigil of your house. Write the motto of your house.
 
@@ -199,7 +199,7 @@ And o’, what a sad thing happened with that sword…
 
 Fay names mean something. They are rendered in the fay tongue, Tylwyth, and followed by a translation in Vulgaris (in the style of a human surname). For the fay, it is the meaning of the name that is particularly important, not just the collection of syllables and sounds. Names are not gendered; any name can be carried by a person of any gender.
 
-### Fay names (with Vulgaris surname):
+#### Fay names (with Vulgaris surname):
 
 Adahay Lives-in-Woods, Bidziil He-is-Strong, Cha Tima the Caller, Dadgayadoh Gambling-Men, Elsu Flying-Falcon, Fala Crow, Honiahaka Little-Wolf, Ituha Sturdy-Oak, Kizikoni Burning-Fire, Makya Eagle-Hunter, Nahiossi Three-Fingers, Onacona White-Owl, Qaleteqa Warden, Sakuruta Coming-Sun, Takoda Friend-to-Everyone, Vaive Atoish Alights-on-the-Cloud, Waban East-Wind
 
@@ -212,7 +212,7 @@ Adahay Lives-in-Woods, Bidziil He-is-Strong, Cha Tima the Caller, Dadgayadoh Gam
 
 The Court of the Sun, sometimes called the high elves, have spiritual origins tied to the Welkin. The high elves dwell on mountain tops in beautifully carved castles of stone. High elves put much stock in the human notions of chivalry, courtly manners, and grace. They emulate the human traditions of knighthood and the chivalric code. Almost everybody agrees they have perfected this institution.
 
-### High elf talent: Read the Past
+#### High elf talent: Read the Past
 
 All high elves have eidetic memories. Bid lore to accurately recall anything you have ever seen or heard. You can go back and count the beads of sweat on your mother's forehead on the day of your birth, if you wish.
 
@@ -220,7 +220,7 @@ All high elves have eidetic memories. Bid lore to accurately recall anything you
 
 Beneath the forest, beneath great hollowed out mounds, dwell the dark elves who call themselves the Court of Fallen Stars. The dark elves are descended from spirits of the Wastes, and their appearance and demeanor echo those grim specters. If mortals consider elves with a sort of awe, this awe becomes a reverential fear when considering the dark elves. Though never dying, dark elves are obsessed with the trappings of death. They spend their lives looking into the void between stars in hopes of foreseeing their eventual demise.
 
-### Dark elf talent: Foretell
+#### Dark elf talent: Foretell
 
 Bid lore to ask the GM: “**If** I do X, will Y happen?” You receive a “yes” or “no” answer in the form of a prophetic hunch.
 
@@ -230,7 +230,7 @@ Below the high elven mountains there lies the sprawling forests of the Court of 
 
 Wood elves are great weavers, and weave wood and grasses into many beautiful things—ships, bridges, shelters, and armor. Wood elves often tattoo living plants onto their skin that grow and shift into new patterns over time.
 
-### Wood elf talent: Keen Senses
+#### Wood elf talent: Keen Senses
 
 Wood elves have the eyes of a hawk and the nose of a wolf. A wood elf’s senses can grow so acute that they can hear the chatter of living stone, the gossip of growing roots, or the rumors of passing insects. Bid lore to temporarily sharpen one of your senses beyond normal limits and ask the GM a question based on these heightened senses. Example questions might include:
 
@@ -248,7 +248,7 @@ This ability only lasts a moment. As normal, if the GM does not give you any new
 
 And, of course, there are the gnomes, who are called the Court of Redcaps for the stout red hats that gnome men wear and the large mushrooms in which they dwell. It is true what they say about children that run away and live with the elves: they find immortality and never grow up. They do, however, grow old. The human body was never meant to live forever. These children—these gnomes—soon find themselves twisted by the elven food they eat and their own strange dreams. Still, they learn a lot over the course of their unnaturally lengthened lives.
 
-### Gnome talent: Weird, Wise, Ancient
+#### Gnome talent: Weird, Wise, Ancient
 
 When you bid lore, you can ask a follow-up question to the answer for free.
 
@@ -264,15 +264,15 @@ Fay gain arête by performing the following deeds:
 
 When a fay accomplishes all three arête triggers, they gain one of the following talents:
 
-### High elf arête talent: Akashic Consciousness
+#### High elf arête talent: Akashic Consciousness
 
 Some high elves can cast their memories back through their bloodlines and ask questions of their ancestors or past incarnations. Spend a Resolve and ask the GM any question about an event that happened in the past. If it’s at all possible that one of your ancestors would know about it, the GM will answer the question.
 
-### Dark elf arête talent: Spout Doom
+#### Dark elf arête talent: Spout Doom
 
 Spend a Resolve to ask the GM: “**If** I do X, what will happen?” The GM provides a prophecy, which pours unbidden out of your mouth.
 
-### Wood elf arête talent: Area Sense
+#### Wood elf arête talent: Area Sense
 
 Spend 2 Resolve to meditate for a watch ([[06 - Chapter 6 - The Crawl Phase#Watches|Watches]]). Draw a card. The GM describes a number of interesting “visions” equal to the value of the drawn card during your meditation. (Remember, pages have a value of 11, knights have a value of 12, etc.)
 
@@ -282,7 +282,7 @@ The GM provides these details by looking at their map and Meatgrinder table. Sta
 
 Any Meatgrinder events that occur when a watch passes are resolved after the GM has given your visions.
 
-### Gnome arête talent: Uncanny Knowledge
+#### Gnome arête talent: Uncanny Knowledge
 
 If nobody at the table has an appropriate motif to bid lore about a subject, you may bid lore about the issue at hand. This is similar to having a motif of “Whatever You Don’t Know, I Know.”
 
@@ -353,17 +353,17 @@ They also have the Book of Broken Oaths, a history of the early underfolk and th
 
 ### Underfolk names
 
-### Underfolk male names:
+#### Underfolk male names:
 
 Angus, Bill, Clive, Felix, Geoff, Giles, Graham, Jack, Nigel, Pat, Prentice, Rodney, Ruel, Robin, Ted, Tom, Warwick, Wesley, Will
 
-### Underfolk female names:
+#### Underfolk female names:
 
 Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, **Lulu**, Maggie, Molly, Nuala, Patty, Pansy, Pippa, Rose, Ruth, Sue
 
 Underfolk use their livery—their profession—as their last name.
 
-### Underfolk livery names:
+#### Underfolk livery names:
 
 Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, Runescrivner, Sculptor, Stonemason, Tailor, Tinker, Vintner, Wainwright, Weaver, Whitesmith
 
@@ -388,7 +388,7 @@ Dwarves are obsessive creatures. They love to create. When they discover what cr
 
 All this obsessiveness pays off. Dwarf-craft is both practical and beautiful. It is highly sought after, which makes them rich. This is important for dwarves, who know the purpose of life: construct your tomb, because that’s where you’re going to spend the rest of eternity. Woe to the dwarf whose ghost goes to the afterlife bored.
 
-### Dwarf talent: Labor Unending
+#### Dwarf talent: Labor Unending
 
 You may mark the Stressed condition to stay awake all night and perform two [[08 - Chapter 8 - The Camp Phase#^camp-actions|Camp Actions]] instead of one; see [[08 - Chapter 8 - The Camp Phase#^camp-actions|Camp Actions]] for details.
 
@@ -402,7 +402,7 @@ If halflings have one failing, it’s their love of creature comforts.
 
 Few people like eating as much as halflings enjoy their auntie’s mushroom pie. Few people like drinking as much as halflings enjoy the pint of bitter from the Bird and Baby Tavern. Few people like smoking as much as halflings enjoy a pipe full of Old Toby from the summer harvest of ‘45.
 
-### Halfling talent: Hale and Hearty
+#### Halfling talent: Hale and Hearty
 
 If you eat two rations instead of one during step 2 of the Camping Phase, you may charge an uncharged Bond.
 
@@ -414,7 +414,7 @@ Trolls are gentle giants. Well, most of the time. They do have great stature and
 
 Trolls learn gendered roles from the other underfolk, but don’t really have any generative biology. That means trolls cannot reproduce. Every troll that dies means there is one less troll left in the world.
 
-### Troll talent: Giant’s Strength
+#### Troll talent: Giant’s Strength
 
 You automatically win contests related to raw strength (arm wrestling, lifting contests, etc.) against other non-troll kin.
 
@@ -430,19 +430,19 @@ Underfolk gain arête by performing the following deeds:
 
 When an underfolk accomplishes all three arête triggers, they gain one of the following talents:
 
-### Dwarf arête talent: Iron Beards
+#### Dwarf arête talent: Iron Beards
 
 Spend a Resolve to automatically succeed on a test of fate related to strength, endurance, or stubbornness.
 
-### Halfling arête talent: Underfoot
+#### Halfling arête talent: Underfoot
 
 Spend a Resolve to automatically succeed on a test of fate related to being quiet or subtle.
 
-### Troll arête talent: Colossal
+#### Troll arête talent: Colossal
 
 Some trolls can perform feats of incredible strength that go beyond what would normally be attempted. Spend a Resolve to pull a portcullis up, smash down a door, push down a supporting column, or perform some other feat of impressive destruction. This talent can’t be used to do additional damage or give an effect, but can be used to change the battlefield during a Challenge.
 
-### Dwarven role-playing concepts
+#### Dwarven role-playing concepts
 
 - Beards. You have one—it’s magnificent. Is it braided? Is it forked? Is it tucked into your belt? Is it hung with bells? Is it looped up into your hair? Is it fiery red? Cold blue? Bright blond? Pure white?
 
@@ -454,7 +454,7 @@ Some trolls can perform feats of incredible strength that go beyond what would n
 
 - Humans think that dwarves represent the best things about Joe Average: honesty, hard work, and heavy drinking. Humans are mostly right about this.
 
-### Halfling role-playing concepts
+#### Halfling role-playing concepts
 
 - Halflings are anachronistic little British gentlepersons. They enjoy a day at the (rat) races, tea, and little strolls around the countryside.
 
@@ -466,7 +466,7 @@ Some trolls can perform feats of incredible strength that go beyond what would n
 
 - Finding new and better ways to relax and enjoy themselves is a pursuit of each and every halfling. The new recipe, the better beer, the more inventive pipe—these are things worth questing for.
 
-### Troll role-playing concepts
+#### Troll role-playing concepts
 
 - You've spent your whole life as a giant among children. You learned quickly to marshal your incredible strength, lest it cause great harm to your little siblings.
 
@@ -523,11 +523,11 @@ They are Rng, Helper and Harmer. They are Rng, the Lord of Chaos.
 
 ### Orcish names
 
-### Orc male names:
+#### Orc male names:
 
 Ælfric, Bassa, Boris, Caedwalla, Dernhelm, Gyrth, Kiril, Harthold, Ine, Igor, Ivan, Lofwine, Mordar, Offa, Peragur, Sabor, Svein, Thorgils, Tostig, Ulf, Vlad, Wulnoth, Yuri
 
-### Orc female names:
+#### Orc female names:
 
 Ælflaen, Burhred, Caewen, Darya, Eahild, Gunhild, Gwillowen, Hereswith, Inga, Izolda, Lubov, Marta, Olgar, Raenburh, Svetar, Tatyana, Ulyana, Vera, Walburga, Zlata
 
@@ -551,7 +551,7 @@ Earthblooded orcs are green-skinned. They feel most calm when underground and pr
 
 The underfolk encounter earthbloods most frequently. Whereas the other kins usually sail south to human lands, earthblooded orcs have found great success in tunneling down into the veins of underfolk habitation. They prefer tomb robbing (fewer pesky dwarves actively biting at you with axes), but are happy to relieve a halfling of his gold if the chance presents itself.
 
-### Earthblooded orc talent: Quicksilver Blood
+#### Earthblooded orc talent: Quicksilver Blood
 
 Your blood has the appearance and consistency of quicksilver, and is incredibly caustic to metal. When this talent is Wounded by a metal weapon, the weapon is Destroyed.
 
@@ -561,7 +561,7 @@ Black-skinned like the ocean's depths or a rain-laden cloud, seablooded orcs kee
 
 Though all orcs raid human lands during the spring and summer months, this kin is especially feared on the oceans. They are famous pirates, rarely actually coming to shore for raids or skirmishes. It’s said that more than a few merfolk have taken seablooded spouses.
 
-### Seablooded orc talent: Poison Blood
+#### Seablooded orc talent: Poison Blood
 
 Your black blood is a deadly poison. When this talent is Wounded by a bite, the attacker suffers Critical damage ([[07 - Chapter 7 - The Challenge Phase#Piercing and Critical damage|Piercing and Critical damage]]).
 
@@ -571,7 +571,7 @@ White-skinned like a cloudy sky, these orcs are tumultuously passionate. When gr
 
 This kin’s ancestral homeland is the most northerly of all orcish territories. The stormbloods endure the most brutal winters and severe blizzards. They claim these hardships have made them the toughest of the orc broods. Indeed, the stormbloods are nothing if not long-suffering, resourceful, and enduring.
 
-### Stormblooded orc talent: Blur
+#### Stormblooded orc talent: Blur
 
 Your blood smokes like a thick mist. When this talent is Wounded, you become Shrouded. This lasts long enough for you to perform a single action or indefinitely if you stay still and take no actions.
 
@@ -581,7 +581,7 @@ Fireblooded orcs bear dark red and black skin that’s warm to the touch. They a
 
 Firebloods are famously effective as shock troopers. **Orc** clans of other kins will sometimes bring a contingent of firebloods to be used in this way. For this reason, you might find fireblooded mercenaries attached to orcs of all stripes. When the firebloods go berserk, they can punch a hole into the shield-wall of even well-trained and veteran soldiers.
 
-### Fireblooded orc talent: Berserkergang
+#### Fireblooded orc talent: Berserkergang
 
 Your blood is boiling hot. When this talent is Wounded, you may choose to enter a berserker rage. While berserk during a Challenge, you cannot Avoid, Dodge, Speak Incantations, Banter, or Aid Another; however, all of your Attacks are made with favor.
 
@@ -599,7 +599,7 @@ Orcs gain arête by performing the following deeds:
 
 When an orc accomplishes all three arête triggers, they gain the following talent (regardless of kin):
 
-### Orc arête talent: Jarl
+#### Orc arête talent: Jarl
 
 You may hatch or gather a horde of goblins to your cause. Goblins are pretty independent little creatures. They see you as “da boss” and take commands from you, but follow those commands in their own, strange, simple little ways.
 

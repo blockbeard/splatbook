@@ -10,6 +10,9 @@
 > [!lede]
 > The Underworld is a **megadungeon**: a collection of interconnected dungeons. Each discrete **dungeon** acts as a thematic region of the Underworld. Each constituent dungeon is made up of individual **rooms**, populated with interesting things, monsters, traps, and treasures.
 
+> [!sidebar] Splatbook Note
+> Want a more detailed system for making dungeons? Josh McCrowell and Warren D's ENNIE- and Bloggie-winning [Designing Dungeons course](https://dungeons.hismajestytheworm.games/) is excellent.
+
 As a GM, creating an Underworld megadungeon can seem daunting, but it’s really just a series of _small, discrete tasks_. The process of creating your Underworld is less about making one huge megadungeon and more about creating a series of interesting rooms and then creating interesting connections between them. The creation process is fun for the GM and the discovery process is fun for the players.
 
 Because the Underworld is the focus of the game, it needs to be large enough to keep players interested and engaged week after week. This appendix contains a procedure for creating your Underworld. By following these steps, you’ll have a working Underworld with a few hours of work.
@@ -76,27 +79,17 @@ To randomly generate your Underworld layout, grab the major arcana deck and draw
 
 - You should have at least three dungeons, but the upper limit is only determined by your ambition. Five is a good, achievable number.
 
-2. Place the card with the lowest number onto the
+1. Place the card with the lowest number onto the table. This dungeon contains the main entrance to the Underworld.
 
-table. This dungeon contains the main entrance to the Underworld.
+2. If you have any cards with values I–V, place them all perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.
 
-3. If you have any cards with values I–V, place them all
+3. Decide if each of these other entrances are traversable and known _or_ sealed and secret.
 
-perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.
+4. Place the card with the highest number below the entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.
 
-4. Decide if each of these other entrances are traversable
+5. Place the rest of the cards between the dungeons with entrances and the deepest dungeon.
 
-and known _or_ sealed and secret.
-
-5. Place the card with the highest number below the
-
-entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.
-
-6. Place the rest of the cards between the dungeons with
-
-entrances and the deepest dungeon.
-
-7. Determine connections between the levels.
+6. Determine connections between the levels.
 
 ### Entrances
 
@@ -433,7 +426,7 @@ References to things like “Dungeon lords” and “Common monsters” aren’t
 
 Use these resources as a starting point or discard them as your own ideas seem more appealing.
 
-### I – The Magician: The Spires
+## I – The Magician: The Spires
 
 _An impossibly immense cavern forested with incredibly gigantic archwood trees, each larger than the largest sequoia. The forest has been denuded by the copper-colored locusts. Still, the ancient trunks, boughs, and roots of these skyscraper trees knit together to form a traversable environment. In its quiet moments, it seems almost peaceful. (This, of course, is a lie.)_
 
@@ -465,7 +458,7 @@ Forest Imps, Mushroom Men, Cockatrice, Dire Bats, Dire Wolves, Sword Spiders, Un
 
 The Locust Lich
 
-### II – The High Priestess: The Boundless Moat
+## II – The High Priestess: The Boundless Moat
 
 _Souls aren’t the only things that sink into the Underworld—ships do as well. This level is an underground ocean choked with the wreckage of a thousand, thousand ships. The limitless depths glow a ghastly neon color, casting bizarre shadows up onto the islands of sunken ships. The wreckage islands are a home to pirates, thieves, and worse._
 
@@ -497,7 +490,7 @@ Brine Imps, Sirens, Vodyanoy, Kraken, Daggerfish, Dire Man o’ Wars, Dire Eels,
 
 The Maimed Mermaid
 
-### III – The Empress: The Castle of Crossed Destinies
+## III – The Empress: The Castle of Crossed Destinies
 
 _The Castle of Crossed Destinies was the seat of power for the Triarchy. The decadence that this castle once knew has faded and grown tarnished as it has fallen to the influences of the Underworld. Incredible works of art and unknowable traps sit side by side in these ancient halls._
 
@@ -531,7 +524,7 @@ Painted Imps, Dire Rats, Living Armor, Living Paintings, Mimics (Chests, Treasur
 
 The Bone Chandelier
 
-### IV – The Emperor: The Inverted Castle
+## IV – The Emperor: The Inverted Castle
 
 _Dripping down like a stalactite, the Inverted Castle hangs in the midst of a great cavern. The draconic children of His Majesty the Worm are entombed here, and their reality-warping influence seeps out of their prison-tombs. Each room of the Inverted Castle seems to be decorated by someone who has only heard about humans through unreliable ancient historians and seen pictures of their lives through crude art. The rooms appear to be set to some purpose, but there’s little logic to the layout, decoration, or inventory. Disparate concepts are juxtaposed. Certain rooms are laid out nonsensically, e.g., an entire wing is entirely upside down._
 
@@ -563,7 +556,7 @@ Giggling Imps, Mummified Orcs, Orc Raiders, Sphinxes, Typhon Dogs, Scorpion Men,
 
 The Beastmaster
 
-### V – The Hierophant: The City of Ruin
+## V – The Hierophant: The City of Ruin
 
 _Ruin is the name of the first City. Here, humanity first learned about the joys and terrors of being alive. The iconography of the place is full of the strength and beauty of youth. This is in sharp contrast to the current melancholy state of this level: dilapidated, derelict, and disfigured. During the first Crusades into the Underworld, it was discovered that the first City was plated with gold. Subsequent expeditions by adventuring guilds have stripped almost all gold from this dungeon level. Much of the remaining wealth is so large and unwieldy it would be difficult to extract. Ruin was pulled into the Underworld by His Majesty the Worm. His reasons are (as usual) enigmatic._
 
@@ -595,7 +588,7 @@ Deconstruction Imps, Dire Cockroaches, Necrotic Slimes, Face Rats, Pacifist Were
 
 The Enormous
 
-### VI – The Lovers: The Pits
+## VI – The Lovers: The Pits
 
 _If you think that the Underworld is merely the home of death, you are mistaken. It is teeming with life. In fact, that is one of the Underworld’s peculiar facets: death comes slowly here. One of the most animated levels of the Underworld is the Pits. The breeding ground for mutant albino ratmen, these tunnels are teeming with life. Quick lifecycles mean that generations are born, grow old, and die in the space of a week. The Rat King hosts blood sports in his filth-filled colosseum for his own amusement._
 
@@ -627,7 +620,7 @@ Effluence Imps, Dire Lice, Ratmen, Goblins, Meat Slimes, Living Buboes, Zombie T
 
 The Rat King
 
-### VII – The Chariot: Belly of the Beast
+## VII – The Chariot: Belly of the Beast
 
 _The primordial world serpent Apep long gnawed upon the roots of the Underworld until he choked on the sins of the living and died. Now he’s stinking up the place. There are many things that the world serpent swallowed: monuments, tyrants, cathedrals, martyrs, magic swords, sailing galleys. They’re all lying in the serpent’s belly, ready to be reclaimed. It’s like somebody took a museum of pre-recorded history and shoved it into a series of reeking subway train cars made of meat. To enter this level, climb through Apep’s jaws (remember, even dead snakes can still bite) and crawl down the tunnel of its esophagus into its spacious stomach chambers._
 
@@ -659,7 +652,7 @@ Melancholic Imps, Dire Tapeworms, Dire Rats, Hellflies, Skeleton Jellies, Green 
 
 The Still-Beating Heart
 
-### VIII – Justice: The Drowned Wedding
+## VIII – Justice: The Drowned Wedding
 
 _Everybody agrees that the wood elf princess Titikamook and the Finfolk King were lovers. Opinions differ as to whether the love was true or coerced. Everybody also agrees that Titikamook was to be married to her betrothed, the wood elf Kilium. What exactly happened at the wedding of these two elves is a matter of legend. It is said that the Finfolk King objected to the union, sunk the island, and turned the wedding guests into sea mammal monsters. The sunken island is preserved in a gigantic hollow pearl at the bottom of a subterranean lake. Getting there is nearly impossible without the aid of magic. Inside, although some sections are partially flooded, the air is breathable._
 
@@ -691,7 +684,7 @@ Brine Imps, Mermaids, Vodyanoy, Walrus Men, Land Whales, Dire Lice, Elephantine 
 
 The Finfolk King
 
-### IX – The Hermit: The Library Heretical
+## IX – The Hermit: The Library Heretical
 
 _Burning books create a heavy smoke that trickles down into the Underworld. The soot of this smoke is scraped and harvested by the ancient and unknowable cyclops librarians, who then painstakingly use it to restore the original uncensored texts. The culmination of their work lines the walls of the Library Heretical. It is said that the librarians do not understand the languages that they write, and are merely replicating the shapes embedded in the psychic residue. Still, as a result of their efforts, the Library Heretical contains a vast wealth of knowledge from every age of the Wide World._
 
@@ -723,7 +716,7 @@ Ink Imps, Cyclops Librarians, Origami Golems, Bookworms, Crawling Brains, Book M
 
 The Librarian Lich
 
-### X – The Wheel of Fortune: The Field of Reeds
+## X – The Wheel of Fortune: The Field of Reeds
 
 _At the confluence of the five rivers of the Underworld is the Field of Reeds, a marshy swamp choked with the detritus that’s washed down from upper levels. The terrain is treacherous: seemingly solid ground suddenly gives way to sucking pits. There are soft grasses that turn blade-sharp when agitated. Huge mangrove trees create small islands that knit together the flooded space, but even they are fickle. They whisper and conspire with each other, passing along rumors and muttering about grudges. It’s said that the waters of the Underworld rivers have strange properties. Do not drink from them._
 
@@ -755,7 +748,7 @@ Brine Imps, Will o’ Wisps, Bog Mummies, Dire Spiders, Dire Toads, Hydrae, Harp
 
 Moonback the Dire Alligator
 
-### XI – Strength: The Sepulcher of Titans
+## XI – Strength: The Sepulcher of Titans
 
 _Philosophers have speculated that humans were not the first people to govern where the City now stands. The Sepulcher of Titans supports these attestations. Here, the bodies of gigantic creatures lie in unquiet repose. The titans are not dead, merely dismembered. Their decapitated heads sit silently, thinking and watching. If you hooked a bellows up to their neck to give them breath, they could still talk their ancient language. If their giant arms are freed from their coffins, they crawl around blindly, looking for their bodies. If you pull their hearts from their canopic jars, you’ll find them still beating. (Do not under any circumstances eat the titans’ flesh.)_
 
@@ -787,7 +780,7 @@ Tunneling Imps, Ogres, Mummified Giants, Disembodied Crawling Hands, Furies, Dir
 
 The Sporehulk
 
-### XII – The Hanged Man: Xania
+## XII – The Hanged Man: Xania
 
 _When the first human died, it took everybody by surprise. As necromancers furiously tried to solve the problem of eternal life, one sorceress took a bold new approach. This sorceress had a daughter and named her Xania. She named them all Xania. Through magic, she cloned her daughter thousands upon thousands of times. The sorceress automated these processes, and has long since perished. The processes continue. Xania survives. In an enchanted tower in the Underworld, magical cloning labs work continuously to unstitch and reweave the same person, over and over. There are hundreds of Xanias. Some are saner than others, but none are particularly sane. At least, not how humans think of it._
 
@@ -819,7 +812,7 @@ Xania
 
 Xania
 
-### XIII – Death: The Necropolis of Ot
+## XIII – Death: The Necropolis of Ot
 
 _When the first human died, it took everybody by surprise. Nobody knew that would happen. Life had seemed to be eternal. Nobody could remember a time before being alive, and nobody had yet conceived of a time after being alive. The revelation that they would someday die terrified the first City. To solve this problem, humanity sought the aid of sorcery. Unfortunately, sorcery is a sword without a hilt: there’s no safe way to hold it. The result of the first City’s invention of necromancy is the Necropolis of Ot._
 
@@ -851,7 +844,7 @@ Saprovore Imps, Ghosts, Zombies, Skeletons, Wraiths, Shadows, Skin Slimes, Tooth
 
 The First Dead
 
-### XIV – Temperance: The Menagerie of Singular Creatures
+## XIV – Temperance: The Menagerie of Singular Creatures
 
 _The sphinxes whisper of a time before there were multitudinous species—droves of oxen, murmurations of starlings, schools of fish, prides of lions. Before that, there was only His Majesty the Worm. In His loneliness, He dipped his claws into the Well of Souls and brought forth singular creatures. Things unique, with no others of their kind. These things were subsequently forbidden from the Wide World, and so have been trapped in the Underworld. Each chamber is home to a thing utterly unique, with unique treasure, a uniquely sad story, and a unique danger._
 
@@ -883,7 +876,7 @@ None.
 
 The Unicorn
 
-### XV – The Devil: The Hellmarkt
+## XV – The Devil: The Hellmarkt
 
 _The Hellmarkt sits at a crossroads between the Underworld and the far realms, where spirits dwell. It takes human commerce and turns it up a notch. Spirits trade intangible things: the color of your eyes, the memory of your mother, your sense of fear. In return? They give you (almost) anything you want. It is impossible to buy your heart’s desire. However, many spirits have powerful tools that would make achieving your quest much simpler. They are willing to trade these things to you for a price. The costs of the Hellmarkt seem reasonable. Too reasonable. Alas, no mortal has ever made this bargain and avoided regret._
 
@@ -915,7 +908,7 @@ Servitor Imps, Elf Cloneslugs, Angels, Devils, Genii, Daemons, Goblins, Dream Fa
 
 The Curators
 
-### XVI – The Tower: The House of Many Angles
+## XVI – The Tower: The House of Many Angles
 
 _The Underworld is the cradle and grave of all things, including concepts. Like Plato’s theory of forms, the Underworld births ideaspace—the manifestation of physical forms in their most idealized shape. The idea of buildings was first had by the Underworld, and in its dark dreams, the germ has taken root and spread into an infestation of hallways, a riot of walls, flowering gables, and endless chambers. Unburdened by the constraints of reality, the House of Many Angles folds and unfolds itself like an origami castle. Hallways loop impossibly into each other. Changing the geometry of a single room might change the shape of the entire complex._
 
@@ -947,7 +940,7 @@ Deconstruction Imps, Gargoyles, Dire Centipedes, Prolapsedogs, Inverted Horses, 
 
 The Many-Angled Thing
 
-### XVII – The Star: The Augury
+## XVII – The Star: The Augury
 
 _The clockwork mechanisms that define the Augury exceed contemporary science. It’s like the Antikythera mechanism taken to a castle scale, with rooms of gears and cogs housed by limestone walls. Its intended purpose is bafflingly obscure. The only signifying elements are found in three separate orreries, which depict detailed but utterly alien skyscapes. However, clever dungeon denizens and adventurers have found many seemingly unintended uses for the Augury. Time seems especially fickle here. Food doesn’t spoil, but molds grow quickly. Hours seem to pass in minutes. Bright light causes paper to act photoreactive, capturing shadow imprints. Is this obscure mechanism responsible for the strange temporal features of the Underworld?_
 
@@ -979,7 +972,7 @@ Clockwork Imps, Clockwork Knights, Intelligent Mice, Blood Mists, Degenerate Dwa
 
 Heuriko the Sorceress
 
-### XVIII – The Moon: The Truesilver Forge
+## XVIII – The Moon: The Truesilver Forge
 
 _Although the supply chain and logistics are impossible to manage, a colony of underfolk have settled near this lode in an attempt to try and mine it. Unfortunately, mithril mining is incredibly unhealthy. Though mining has made the Truesilver Forge colony rich, it has also made them deeply disturbed. They’re suspicious and suffer hallucinations. Anybody who spends too long on this level begins to suffer these effects as well. Sorcerers should note that mithril increases the potency of magic (kind of like nega-iron). The presence of so much mithril at this level has strange, unpredictable effects on spells._
 
@@ -1011,7 +1004,7 @@ Hallucination Imps, Argyric Underfolk, Quicksilver Slimes, Dire Ants, Mutant Can
 
 The Truesilver Golem
 
-### XIX – The Sun: The White Gardens
+## XIX – The Sun: The White Gardens
 
 _In the sunless reaches, light has taken on strange forms. Bizarre breeds of mushrooms have learned to shed illumination as white and cold as the stars. The light lures creatures into the sprawling groves of fungi who quickly become addled, poisoned, and lost. Their bodies go on to provide nutrients to the White Gardens. The White Gardens are fields of dungeon mushrooms growing in a series of natural caverns. Some of the mushrooms are so soft and small that they resemble translucent grass covering the subterranean floor. Others are tuberous and as large as trees. Still others still have a dim cunning and hate the rival kingdoms of plants, animals, and bacteria._
 
@@ -1043,7 +1036,7 @@ Spore-choked Imps, Fungoids, Dire Crabs, Shrieker Mushrooms, Polytechnic Polyspo
 
 The Fruiting Mother
 
-### XX – Judgement: The Dragonbone Memorial
+## XX – Judgement: The Dragonbone Memorial
 
 _When humans stole the Well of Souls, the dragon city of Night crumbled away into dust. In the span of ages since, dragons have painstakingly remade the city out of the bones of their dead in the Underworld. Why? Nobody knows. Nobody knows anything about how or why dragons do anything. Orcs call this city the Dragonbone Memorial. A sect of religious fanatic orcs believes the Dragonbone Memorial to be their promised land. There is inter-factional disagreement about whether they should lead the orcish nations down into the Underworld or move the dragonbone city up to the surface piece by piece._
 
@@ -1075,7 +1068,7 @@ Keening Imps, Goblins, Orc Cultists, Human Crusaders, Bloody Cruciforms, Shadows
 
 The Lamenting Lich
 
-### XXI – The World: The Undertomb
+## XXI – The World: The Undertomb
 
 _At the center of the Underworld is the Undertomb. At the center of the Undertomb is the Well of Souls, the font of all life and death. It is filled with vaults and chambers. Each room is imbued with symbols of religious allegory. Nobody understands the allegory or knows what the symbolism means. When unobserved, the paths between the chambers re-architect themselves. Light is blasphemous in the Undertomb, where darkness must forever reign supreme. Fire gutters as if frightened, and the circle of your torchlight seems to be several inches smaller than normal._
 
@@ -1324,7 +1317,7 @@ A tiny blue imp lives at the bottom of a wishing well. He demands you throw coin
 >
 > Buy some stuff from your favorite creators, slap them together, cut and paste sections from one onto the other, and turn your players loose. Perhaps the first level of your Underworld is the _Tomb of the Serpent Kings_ (Skerples, Coin and Scrolls [blog], 2017), but the deeper levels are sections of Undermountain (_The Ruins of Undermountain_, TSR, 1994).
 >
-> Want to play _His Majesty the Worm,_ but use the optional hex crawl procedures ([[08 - Chapter 8 - The Camp Phase#Optional Rules:|Optional Rules:]]) instead of focusing on megadungeon play? _Dolmenwood_ (Gavin Norman, Necrotic Gnome, 2023) can dominate the northwest corner of your campaign map. _The Misty Isles of the Eld_ (Chuck Kutalik, Hydra Cooperative, 2016) and Hot Springs Island (_The Dark of Hot Springs Island,_ Swordfish Islands, 2017) can be just off the coast of the City.
+> Want to play _His Majesty the Worm,_ but use the optional hex crawl procedures ([[08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel|Optional Rules:]]) instead of focusing on megadungeon play? _Dolmenwood_ (Gavin Norman, Necrotic Gnome, 2023) can dominate the northwest corner of your campaign map. _The Misty Isles of the Eld_ (Chuck Kutalik, Hydra Cooperative, 2016) and Hot Springs Island (_The Dark of Hot Springs Island,_ Swordfish Islands, 2017) can be just off the coast of the City.
 
 ## Creating interesting traps
 

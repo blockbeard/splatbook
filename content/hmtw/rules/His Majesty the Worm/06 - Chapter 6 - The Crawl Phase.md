@@ -421,7 +421,7 @@ When you gain an affliction, you immediately gain its stage 1 effect.
 
 To track your progress with the affliction, **draw** a **circle**. **Draw** as many sections as there are stages of the affliction. Color in the first section with **hatch marks**.
 
-_For example_ 
+_For example_ <img src="/content-packs/hmtw/art/affliction-clock-1.svg" alt="Affliction clock: stage 1 of 6, first section hatched" width="120">
 
 **Afflictions automatically progress to the next stage at the end of each Camp Phase**.
 
@@ -435,6 +435,7 @@ The GM determines the number of charges needed to cure a stage of a particular a
 
 Burned charges cure the most severe stages first, whether or not the affliction has progressed to that point. To represent a cured stage, color a section of the circle in **black**. You will never experience the effects associated with a cured stage. **The affliction** is **completely healed when all** stages **are cured**.
 
+<img src="/content-packs/hmtw/art/affliction-clock-2.svg" alt="Affliction clock: one cured stage (black), current stage hatched" width="120"> 
 _For example_
 
 Certain things are healthful for curing an affliction:
@@ -531,6 +532,8 @@ Requires 2 charges to cure.
 Role-playing the characters you encounter is one of the GM’s many jobs. The GM is provided with guidelines for role-playing called Disposition. Advice for GMs creating characters with interesting personalities and running social encounters is provided in [[10 - Chapter 10 - The Worm Turns - Gamemastering#Creating interesting characters|Creating interesting characters]].
 
 Each Disposition has three steps of severity: **mild, basic**, and **intense**. Mild emotions are on the inside of the circle; intense emotions are on the outside of the circle. Related emotions are grouped near each other.
+
+<img src="/content-packs/hmtw/art/disposition-wheel.svg" alt="Disposition wheel: the seven Dispositions arranged in a circle, each with mild / core / intense states" width="720">
 
 ## Starting Disposition
 

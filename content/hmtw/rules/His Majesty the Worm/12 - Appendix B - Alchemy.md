@@ -123,7 +123,7 @@ For creatures of the GM’s own invention, a little thought and inventiveness is
 
 ### Some advice for GMs:
 
-### Steal the creature’s powers
+#### Steal the creature’s powers
 
 When an adventurer harvests reagents, look at the creature’s stats and choose a few **greater dooms** that seem relevant and easy to convert for an adventurer’s benefit.
 
@@ -133,11 +133,11 @@ When an adventurer harvests reagents, look at the creature’s stats and choose 
 
 - Does the monster have a signature attack? Seems like a good mechanic to tie to a bomb. **Example:** A dragon’s gallstone can yield a bomb that creates a fiery blast with the Critical effect.
 
-### Alchemy only lasts for a watch
+#### Alchemy only lasts for a watch
 
 Generally, a substance’s effect only lasts for a watch—no longer. Unless an effect is minor or restores a natural state, it will eventually wear off.
 
-### Disregard balance, embrace creativity
+#### Disregard balance, embrace creativity
 
 “Encounter balance” is not a meaningful concept in _His Majesty the Worm._
 
@@ -145,7 +145,7 @@ Generally, a substance’s effect only lasts for a watch—no longer. Unless an 
 
 - Because alchemical substances are single-use items, powerful effects are a fun lark and have little longterm effect on a game.
 
-### Keep good ideas, discard the rest
+#### Keep good ideas, discard the rest
 
 When inventing alchemical effects, write out all of your ideas. Sift through them. Delete the ones that don’t seem to work. Keep the ones that do.
 

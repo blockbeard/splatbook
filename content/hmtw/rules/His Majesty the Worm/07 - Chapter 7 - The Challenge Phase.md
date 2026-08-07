@@ -58,7 +58,7 @@ Once everybody has had their turn and the subsequent minor actions have been res
 >
 > Players who put in the due diligence to learn the tactics underlying the Challenge Phase will have a lot of fun.
 
-# 0. Set the scene
+## 0. Set the scene
 
 Before the Challenge procedure begins, the GM sets the scene. They describe the **zones** the encounter occupies, note the combatants, and clarify everybody’s positions relative to each other. If one of the sides of the combat surprises the other, they begin the scene with some advantage ([[07 - Chapter 7 - The Challenge Phase#Ambushes and surprise|Ambushes and surprise]]). If a combatant’s position or a hazard in the scene warrant special consideration, the GM will create special rules for the Challenge.
 
@@ -757,6 +757,9 @@ When a foe or hazard harms an adventurer, they suffer a Wound. When you take a W
 - Mark the Death’s Door condition
 
 You can choose the above options in any order you choose, marking any condition, Wounding any talent, or Notching any worn armor. However, as you take Wounds and mark conditions, fewer of these options are available to you. For example, if you have already Wounded two talents, you cannot Wound any more and must choose another option instead. Similarly, if you are already Injured you _must_ mark Death’s Door the next time you take a Wound. Note that Wounds cannot mark the Stressed Condition.
+
+> [!sidebar] Splatbook Note
+> The book is ambiguous about whether only mastered talents can be Wounded. Josh has said on the HMtW Discord that the errata he would add here is a sentence saying: "Only mastered talents can be wounded."
 
 See [[02 - Chapter 2 - The Adventurer#8. Conditions|Conditions]] for more information on conditions.
 

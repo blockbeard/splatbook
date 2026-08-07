@@ -215,9 +215,7 @@ If you don’t have at least two of these, you wake up Stressed at the end of th
 
 Once these steps have been completed, the Crawl Phase resumes.
 
-### Optional Rules:
-
-# Overland Travel
+# Optional Rules: Overland Travel
 
 > [!lede]
 > Most of _His Majesty the Worm_ is focused on dungeon-crawling in the mythic Underworld. It abstracts concerns of food, time, and distance into the flow of the Camp and Crawl Phases. If your game takes place in a setting where the sun shines, you might want a system that adds an additional layer of logistics to travel. If this is the case, use these rules.

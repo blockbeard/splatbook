@@ -133,7 +133,7 @@ Like the Meatgrinder table, the GM should keep the City Events table tidy and fr
 
 The next page has an example City Events table to serve as a starting point.
 
-## Example City Events
+### Example City Events
 
 | Card | City Event |
 |:---:|---|
@@ -159,7 +159,7 @@ The next page has an example City Events table to serve as a starting point.
 | XX | [Travel event] A Disaster: Fire! After step 6 (City Actions), the inn the guild is staying at catches fire. This prompts a test of Pentacles to escape quickly. If anybody fails, they leave behind the two items in the very bottom of their pack and begin the next Crawl with the Stressed condition. |
 | XXI | [Signs and Portents] Strange Days: The GM notes the top card on the minor arcana discard pile and describes something from the Signs and Portents table (facing page). |
 
-## Signs and Portents
+### Signs and Portents
 
 | Card | Signs and Portents |
 |:---:|---|
@@ -665,7 +665,7 @@ Poultices are bandages infused with healthful herbs. They have a few different u
 
 ### Quill and ink
 
-**Quill** and ink are necessary tools for the journey into literary fame.
+Quill and ink are necessary tools for the journey into literary fame.
 
 ### Ration
 

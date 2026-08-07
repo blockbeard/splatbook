@@ -22,7 +22,7 @@ He did not.
 # The Guild Roster
 
 > [!lede]
-> Collectively, you and your other adventurers form a guild during the Call to Adventure. In the same way that you track your adventurer by way of your adventurer sheet, the entire table tracks the guild by way of the **guild roster (printed on the following pages)**. The guild roster can be downloaded from _hismajestytheworm.games_.
+> Collectively, you and your other adventurers form a guild during the Call to Adventure. In the same way that you track your adventurer by way of your adventurer sheet, the entire table tracks the guild by way of the **guild roster**. The guild roster can be downloaded from [_hismajestytheworm.games_](https://www.hismajestytheworm.games/#h.pfuql57d5pt9).
 
 ## 1. Guild name
 

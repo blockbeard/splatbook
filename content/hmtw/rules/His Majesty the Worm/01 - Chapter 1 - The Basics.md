@@ -174,7 +174,7 @@ The GM can also ask clarifying questions about the tactics that the character wo
 
 Once the GM has achieved clarity with “Say more,” they can then shift to one of the other three basic responses.
 
-#### “Draw to see if you can do that”
+### “Draw to see if you can do that”
 
 When an action is fraught with danger or its outcome is uncertain, it’s time to **test fate**. For an overview of [[#Tests of Fate|tests of fate]].
 
@@ -185,7 +185,7 @@ Tests of fate should be relatively rare and relatively tense. Don’t call for t
 
 You’re straining against it as the mechanism’s gears
 
-#### “No, you can’t do that”
+### “No, you can’t do that”
 
 Sometimes, actions are not possible or will automatically fail based on the logic of the narrative world.
 

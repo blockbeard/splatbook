@@ -30,7 +30,7 @@ What does the fool do?
 > [!lede]
 > The initial forays into the Underworld were grisly affairs. It was plaster miners who discovered the passage into the first level. They curiously chiseled their way into the antechambers. Like tomb robbers, they discovered gilded treasures and heaps of ancient coins piled therein. And then they discovered the grue. There were no survivors. Before the First Crusade was finally mobilized, the death toll rose terribly as the lure of the Underworld proved irresistible to the very brave and the very foolish. As more of the Underworld began to be revealed, more creatures slithered out of half-remembered legends into reality. Strange beasts and malevolent entities crawled up out of the opened chambers and into the terrorized City. The Cult, at first overwhelmed with the practical considerations and theological questions the Underworld posed, united the proud and ancient houses of mankind with fiery speeches. Under the Cult’s leadership, the First Crusade hunted the monsters that had escaped into the City and encamped themselves on the threshold of the Underworld, warding the lands of men from further attacks. It was only during the Second Crusade that it was discovered that those who die in the Underworld do not stay dead...
 
-### Common motifs:
+#### Common motifs:
 
 would-be knight, deposed king, charming pirate, retired gladiator, fanatic vampire hunter, barbarian warrior poet
 
@@ -125,7 +125,7 @@ As a Camp Action, tell your guild the story of some of your past adventures. May
 > [!lede]
 > Treasure was, and remains, a powerful motivator for Underworld expeditions. The spires of the Castle of Crossed Destinies were literally covered in gold plating until explorers stripped them and hauled the plates back to the surface. The Underworld denizens possess strange coinage as well: round pieces of gold stamped with the faces of three beautiful women and a pentacle star on the reverse. Who these ancient sovereigns were is a matter of great scholarly debate and fanciful public speculation. By the same token, treasure is the primary motivator for the City’s current system of adventuring guilds. The fifty percent guild tax on recovered loot is a heavy burden for adventurers and is much bemoaned. The tax collectors posted at each known exit from the Underworld are a particularly hated lot, but the City has grown rich from this system. Of course, these heavy taxes have created a sprawling industry of smuggling, bribery, and fencing. In pursuit of both relic hunting and black marketeering, “thief” has become a particularly common profession.
 
-### Common motifs:
+#### Common motifs:
 
 arrogant duelist, feral scavenger, morbid jester, bounty hunter, traitorous spy, urchin pickpocket, penitent assassin
 
@@ -182,7 +182,7 @@ You may declare that you have had a common, one-slot item with you the whole tim
 > When the Underworld opened, so many went on the quest for the Grail of Mythrys that a massive support system, both secular and religious, was assembled. Inns and public houses for the housing of pilgrims, coin changers for foreigners, shops of supply and purveyance, smithies for armament, chapels and shrines for the devout, charlatans and peddlers selling false maps and rumors, scribes and lawyers for drafting of charters and wills, apothecaries for the healing of those returned unsuccessful
 _—all these sprang up almost overnight. The sign of the Cup has become synonymous for these tradesmen, as well as having a holy connotation, and is still used today to advertise needful service._
 
-### Common motifs:
+#### Common motifs:
 
 grisly apothecary, adventurous cartographer, jolly cleric, daring archaeologist, jaded barber surgeon, young insect tamer
 
@@ -248,7 +248,7 @@ You are a student of ancient languages and lore. This talent confers three advan
 > [!lede]
 > The relationship between the City and magic has been long fraught with bloodshed and sorrow. During the Age of the First Empire, sorcery was used as an act of worship towards the Crow-Headed Queen_—_—one of the earliest deified empresses. During the Age of the Republic, sorcery was seen as being fundamentally tied to both monarchists and elves, and it was made illegal. Still, several cabals flourished in secret. The Age of the Republic was marked by the increasing fanaticism of witch hunters as they attempted to root out these hidden sorcerers. A blanket ban on sorcery proved impossible with the advent of the Age of Dungeon. Too many trials and foes in the Underworld were essentially mystical in nature. The practice of sorcery became a necessary evil, and the Cult began to draw up the appropriate pardons and indulgences. Today, those who practice sorcery in the City must be licensed and registered with the crown. Official sorcerers are granted rods of office by the Tower Gnostic and allowed to join guilds in the exploration of the Underworld. Unofficial sorcery is punishable by fines, but is largely unregulated as long as it is not performed in the City itself. Still, the Witch Finder General remains an influential figure within City politics, and his templars have a much grimmer view of unregulated sorcery.
 
-### Common motifs:
+#### Common motifs:
 
 court mage, insane astrologer, artisanal wand maker, conniving charlatan, morbid wizard, doomsday cultist
 

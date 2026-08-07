@@ -24,7 +24,7 @@ Yet, He ever clawed upwards…and has now returned.
 
 The two ingredients you mix together to make new creatures are theme and threat. There are templates provided for both. The _combination_ of these templates will give you a starting place for the creature’s basic stats.
 
-### Theme
+#### Theme
 
 Theme defines the creature’s mythological context. How is it fantastic?
 
@@ -44,7 +44,7 @@ Creatures are grouped into six different themes:
 
 A creature’s theme defines some of their basic stats and lesser dooms.
 
-### Threat
+#### Threat
 
 Threat defines the creature’s personality, tactics, and overall strength. How does it act?
 
@@ -88,7 +88,7 @@ A **Bestiary** of pre-made denizens is provided in this appendix for your edific
 > [!lede]
 > Here’s a sample stat block of the [[13 - Appendix C - Dungeon Denizens#Skeleton|skeleton]] below with some explanatory text. As a reminder, capitalized words in a dungeon denizen’s stats refer to effects. The rules for [[01 - Chapter 1 - The Basics#Effects|effects]] are listed in [[01 - Chapter 1 - The Basics#Effects|chapter 1]].
 
-## Skeleton
+### Skeleton
 
 _Undead Brute_
 
@@ -514,7 +514,7 @@ _Luckily, they are very weak creatures. Each “bone” is like a condom full of
 
 **Attributes:** Swords 0 | Pentacles 0 | Cups 0 | Wands 0
 
-### Health/Defense: ∞/0
+**Health/Defense:** ∞/0
 
 **Likes:** Screams of Pain, Eating Nerve Clusters, Uranium Deposits
 
@@ -720,7 +720,7 @@ _That’s what a face rat is. It’s a bad rat that steals your face._
 
 **Likes:** Its Mate, Its Weird Pink Babies
 
-### Hates: Fire
+**Hates:** Fire
 
 #### Notes
 
@@ -984,7 +984,7 @@ _The Yellow King is obsessed with unrequited love. He speaks in simpering tones 
 
 **Hates:** Being Interrupted As He Raves, Strong Acids (like wine), Puns
 
-### Special Rules
+#### Special Rules
 
 When defeated, a lich’s **body** crumbles away until a single impenetrable, invulnerable **crystal skull** remains. The crystal skull will eventually regrow a body unless the lich’s **phylactery** is destroyed.
 
@@ -992,11 +992,13 @@ A lich’s phylactery is the key to their immortality. The phylactery can be any
 
 Lastly, liches usually have powerful items they can employ during battle—a **crown of archwood**, in the case of the Yellow King. Taking these away will deprive a lich of power, but they can rarely be used by someone else.
 
-**Phylactery Health/Defense:** 1/0
+### Phylactery 
+**Health/Defense:** 1/0
 
 The Yellow King’s phylactery is a **love letter** from Kloë, filed away on a shelf of seemingly identical letters in his chambers. The Yellow King will always regrow his body unless this phylactery is destroyed.
 
-**Crown of Archwood Health/Defense:** 1/4
+### Crown of Archwood
+**Health/Defense:** 1/4
 
 The Yellow King wears a **crown of archwood** that allows him to use his magical powers without having components in hand.
 
@@ -1018,7 +1020,8 @@ The Yellow King has the following powers while wearing the crown.
 
 - **Day of Tears and Mourning**. While wearing the crown, the Yellow King can cast any **spells** from Appendix A without components. Cast spells by playing a lesser doom Speak Incantations action and discarding a greater doom card instead of spending Resolve. Each additional greater doom card discarded counts as an additional +1 Resolve.
 
-**Body Health/Defense:** 5/9
+### Body
+**Health/Defense:** 5/9
 
 If defeated, the Yellow King will be reduced to an invulnerable crystal skull that will eventually regrow a body as long as his phylactery is intact. While his body still lives, he has the following abilities.
 
@@ -1354,7 +1357,7 @@ _The Sporehulk is utterly gentle unless someone disturbs the sepulchers that he 
 
 **Hates:** Crowds, Public Places, Open Areas (especially afraid of the sky and weather), Disturbing the Tombs
 
-### Special rules
+#### Special rules
 
 - The Sporehulk itself is a battlefield. Its body is separated into four separate sections, each one of which is a zone and an antagonist in its own right.
 
@@ -1364,7 +1367,7 @@ _The Sporehulk is utterly gentle unless someone disturbs the sepulchers that he 
 
 - An adventurer can climb on the Sporehulk by using the Dash action. This allows them to move up or down one section at a time. An adventurer can target any section they are currently climbing with melee attacks. While standing on the ground, melee attacks can only target the Sporehulk's Legs.
 
-### Rune of protection
+#### Rune of protection
 
 - On the Sporehulk’s back (Torso area) is a magical rune of protection.
 
@@ -1376,7 +1379,8 @@ _The Sporehulk is utterly gentle unless someone disturbs the sepulchers that he 
 
 - Despite having separate pools of HD for each section, the Sporehulk only has a single Initiative.
 
-**Legs Health/Defense:** 4/0
+### Legs
+**Health/Defense:** 4/0
 
 If the Sporehulk's Legs are defeated, it crumples to its knees. Its Arms and Torso can now be targeted with melee attacks. If the Legs are defeated, it can Move by crawling (as long as its Arms are intact) but cannot Dash.
 
@@ -1388,7 +1392,8 @@ If the Sporehulk's Legs are defeated, it crumples to its knees. Its Arms and Tor
 
 - **Rampage**. The Sporehulk can play a greater doom as his Initiative.
 
-**Left Arm / Right Arm Health/Defense:** 5/0 (each)
+### Left Arm / Right Arm
+**Health/Defense:** 5/0 (each)
 
 #### Lesser dooms
 
@@ -1406,7 +1411,8 @@ If the Sporehulk's Legs are defeated, it crumples to its knees. Its Arms and Tor
 
 - **Squeeze**. Play a greater doom card to squeeze all grabbed adventurers, automatically dealing them a Wound.
 
-**Torso Health/Defense:** 5/10
+### Torso
+**Health/Defense:** 5/10
 
 The Sporehulk will not die until his Torso's section is defeated.
 
