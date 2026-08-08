@@ -115,7 +115,7 @@ Connections can be anything: hallways, teleporters, natural caverns, underground
 ## 3. Create Maps
 > [!sidebar] In-character maps
 >
-> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See see [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
+> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
 
 Once you have a basic idea of what your Underworld looks like, you’ll need to create a map for each level of your dungeon. You can borrow a map from an outside source or create your own. ^create-maps
 
@@ -366,7 +366,7 @@ Travel events (XI-XV) represent the dull grinding down of the guild’s resource
 
 - The guild must make a tough choice to move forward: go X and suffer Y, or go A and suffer B—or turn around.
 
-- One or more adventurers must think up a solution or test fate to avoid some treacherous hazard. The classic example of this is a trap. See see [[15 - Appendix E - Underworld Creation#Creating interesting traps|Creating interesting traps]] for a treatise on using traps in your game.
+- One or more adventurers must think up a solution or test fate to avoid some treacherous hazard. The classic example of this is a trap. See [[15 - Appendix E - Underworld Creation#Creating interesting traps|Creating interesting traps]] for a treatise on using traps in your game.
 
 ### Random encounter
 

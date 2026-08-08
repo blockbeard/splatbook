@@ -90,7 +90,7 @@ A **Bestiary** of pre-made denizens is provided in this appendix for your edific
 > Health is a creature’s general toughness, defense is their armor; see [[07 - Chapter 7 - The Challenge Phase|Chapter 7: The Challenge Phase]]. For example, a creature with HD 6/0 has 6 Health and 0 Defense.
 
 > [!sidebar] Likes and Hates
-> Engaging with things the creature _likes_ prompts positive Dispositions. Antagonize the creature with things it _hates_ to create negative Dispositions. See see [[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]].
+> Engaging with things the creature _likes_ prompts positive Dispositions. Antagonize the creature with things it _hates_ to create negative Dispositions. See [[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]].
 
 > [!sidebar] Notes
 >
