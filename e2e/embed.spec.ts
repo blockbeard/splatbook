@@ -23,7 +23,11 @@ test('?embed=1 hides the app chrome, plain loads keep it', async ({ page }) => {
 
 test('a search submit in embed mode keeps ?embed=1 in the URL', async ({ page }) => {
 	await page.goto('/stonetop/reference?embed=1');
-	const box = page.getByLabel('Search the rules');
+	// The sidebar's box specifically: below md the reference bar carries its own
+	// (phase 25), so the reader-facing label alone matches two inputs.
+	const box = page
+		.getByRole('navigation', { name: 'Rules contents' })
+		.getByLabel('Search the rules');
 	await box.fill('clash');
 	await box.press('Enter');
 

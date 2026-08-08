@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **The reference reader has a mobile shell.** Below `md` the contents no longer
+  stack above the text as a chapter list you scroll past: a sticky bar carries a
+  contents button — labelled with the section you're in, so it orients you once
+  the page's own breadcrumb has scrolled away — and the search box, which now
+  floats for the whole page rather than only while the old sidebar happened to be
+  on screen. The tree itself opens as a drawer, at the reader's position with
+  their chapter expanded, and closes itself on navigation. Deep links to headings
+  past the game's page depth now clear the bar instead of landing underneath it.
+  The bar is present in embed mode too, where the app header is hidden and it's
+  the only navigation there is. Desktop is untouched.
+
 ### Fixed
 
 - **HMtW reimport** — the vault's own reading pass caught two things the site

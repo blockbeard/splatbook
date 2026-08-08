@@ -65,6 +65,20 @@ html[data-embed='1'] main {
 }
 
 /*
+ * A heading deeper than the game's `referencePageDepth` has no page of its own:
+ * the section route 302s to `…/<page-ancestor>#<id>` and the BROWSER scrolls to
+ * the fragment (there is no scrollIntoView anywhere in the reference code, so
+ * this CSS is the whole of the offset — no bar-height constant duplicated in
+ * JS). Below md the reference bar is sticky, so without this every deep link
+ * and every one of those redirects lands with its heading underneath the bar.
+ */
+@media (width < 48rem) {
+	.reference-body :is(h2, h3, h4, h5, h6)[id] {
+		scroll-margin-top: calc(3.25rem + env(safe-area-inset-top));
+	}
+}
+
+/*
  * Print — which is also "Save as PDF", the only PDF export the app has (see
  * $lib/print.ts). What prints is the sheet: the shell chrome goes, the sheet
  * keeps its game's paper-and-ink theme, and nothing that belongs together is

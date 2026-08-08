@@ -145,7 +145,9 @@ test('the embed pass: chrome-less reader, search submit keeps ?embed=1', async (
 	await expect(toc.getByText('The Basics')).toBeVisible();
 	await expect(toc.getByText(GATED_CHAPTER)).toHaveCount(0);
 
-	const box = page.getByLabel('Search the rules');
+	// The sidebar's box specifically — the reference bar below md has its own
+	// (phase 25).
+	const box = toc.getByLabel('Search the rules');
 	await box.fill('meatgrinder');
 	await box.press('Enter');
 	await page.waitForURL(/\/hmtw\/reference\/search\?/);

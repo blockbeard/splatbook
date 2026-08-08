@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { invalidate } from '$app/navigation';
+	import { afterNavigate, invalidate } from '$app/navigation';
 	import { embed } from '$lib/embed.svelte';
 	import { getLocalPreference, readShowSetting } from '$lib/preferences';
-	import type { TocDocument, TocSection } from '$lib/reference/load';
+	import ReferenceToc from './ReferenceToc.svelte';
 	import SpoilerToggle from './SpoilerToggle.svelte';
 
 	let { data, children } = $props();
@@ -24,46 +24,118 @@
 
 	const activeId = $derived(page.params.section);
 
-	/**
-	 * The chapter owning the active section, across every doc — the one
-	 * disclosure that should render open. Reads straight off the section's own
-	 * `chapter` id (commit 90); no ancestor-walking needed.
-	 */
-	const activeChapterId = $derived.by(() => {
+	/** The active entry's own title, for the drawer button — orientation while
+	 *  scrolled, without spending a second row on a breadcrumb the section page
+	 *  already renders above its prose. */
+	const activeTitle = $derived.by(() => {
+		if (!activeId) return 'Contents';
 		for (const doc of data.toc) {
-			const section = doc.sections.find((s) => s.id === activeId);
-			if (section) return section.chapter;
+			const hit =
+				doc.chapters.find((c) => c.id === activeId) ?? doc.sections.find((s) => s.id === activeId);
+			if (hit) return hit.title;
 		}
-		return undefined;
+		return 'Contents';
 	});
 
-	/**
-	 * A chapter's h2 sections with their h3s nested underneath. The sidebar
-	 * is capped at h3 — deeper headings (h4+) are reachable from the section
-	 * page's own "In this section" tree and in-page links, not listed here.
-	 * A nav that lists every h5 is a list, not a map; but a flat h2 list hid
-	 * the book's parts entirely (phase-22 staging finding).
-	 */
-	function h2sOf(
-		doc: TocDocument,
-		chapterId: string
-	): { section: TocSection; subs: TocSection[] }[] {
-		const out: { section: TocSection; subs: TocSection[] }[] = [];
-		for (const s of doc.sections) {
-			if (s.chapter !== chapterId) continue;
-			if (s.level === 2) out.push({ section: s, subs: [] });
-			else if (s.level === 3 && out.length) out[out.length - 1].subs.push(s);
-		}
-		return out;
+	// The TOC is a drawer below md (phase 25). Native <dialog>: focus stays
+	// inside, the background goes inert, and there's no hand-rolled trap. NOTE:
+	// deliberately no `overflow: hidden` on <body> — showModal() already blocks
+	// background scroll, and freezing the body jams the dialog's own scrolling
+	// on iOS and jumps the page to the top on dismiss, which is precisely the
+	// lost-your-place-in-a-long-chapter problem this exists to fix.
+	let drawer = $state<HTMLDialogElement | undefined>();
+	// `dialog.open` is a DOM property, not reactive state — the button's
+	// aria-expanded has to track opening separately.
+	let drawerOpen = $state(false);
+	// The drawer's contents mount on first open, never before. A second copy of
+	// the tree and the spoiler toggle sitting in every page's DOM would be dead
+	// weight on desktop, and would make every "the toggle" or "the contents"
+	// selector — in tests and for assistive tech alike — ambiguous.
+	let drawerMounted = $state(false);
+
+	function openDrawer(): void {
+		drawerMounted = true;
+		drawer?.showModal();
+		drawerOpen = true;
+		// Land on the reader's position rather than chapter 1 — in a 17-note book
+		// the top of the tree is nowhere near where they are.
+		requestAnimationFrame(() =>
+			drawer?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'center' })
+		);
 	}
 
-	const href = (id: string) =>
-		resolve('/[game=game]/reference/[section]', { game: data.gameId, section: id });
+	// Every entry is a link, so each tap is a navigation; without this the drawer
+	// stays over the page it just left.
+	afterNavigate(() => drawer?.close());
+
+	// Crossing to the md layout with the drawer open would leave an invisible
+	// modal holding the page inert (`md:hidden` hides it but doesn't close it).
+	onMount(() => {
+		const mq = window.matchMedia('(min-width: 48rem)');
+		const sync = () => mq.matches && drawer?.close();
+		mq.addEventListener('change', sync);
+		return () => mq.removeEventListener('change', sync);
+	});
 </script>
+
+{#snippet searchForm(formClass: string, inputClass: string)}
+	<form
+		action={resolve('/[game=game]/reference/search', { game: data.gameId })}
+		class={formClass}
+		role="search"
+	>
+		<input
+			name="q"
+			type="search"
+			placeholder="Search rules…"
+			aria-label="Search the rules"
+			class={inputClass}
+		/>
+		{#if embed.active}
+			<!-- SvelteKit intercepts this GET form but replaces the whole query
+			     string with the form fields — without this, a search submit in
+			     embed mode drops ?embed=1 and a mid-session reload resurrects
+			     the app chrome. -->
+			<input type="hidden" name="embed" value="1" />
+		{/if}
+	</form>
+{/snippet}
+
+<!-- Below md the sidebar is gone; this is the only reference chrome. It stays in
+     embed mode too — the embedded window is narrow and `.app-chrome` is hidden
+     there, so without it an embedded reader has no nav at all. -->
+<div
+	data-testid="reference-bar"
+	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex items-center gap-2 border-b border-border bg-bg px-4 py-2 md:hidden"
+>
+	<button
+		type="button"
+		onclick={openDrawer}
+		aria-haspopup="dialog"
+		aria-expanded={drawerOpen}
+		class="flex min-w-0 shrink items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1.5 text-sm hover:text-accent"
+	>
+		<svg
+			class="size-4 shrink-0"
+			viewBox="0 0 16 16"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.5"
+			aria-hidden="true"
+		>
+			<path d="M2 4h12M2 8h12M2 12h12" stroke-linecap="round" />
+		</svg>
+		<span class="truncate">{activeTitle}</span>
+	</button>
+	{@render searchForm(
+		'min-w-0 flex-1',
+		'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent'
+	)}
+</div>
 
 <div class="flex flex-col gap-8 md:flex-row md:gap-10">
 	<nav
-		class="reference-toc shrink-0 md:w-72 md:border-r md:border-border md:pr-6"
+		class="hidden shrink-0 md:block md:w-72 md:border-r md:border-border md:pr-6"
 		aria-label="Rules contents"
 	>
 		<a
@@ -72,29 +144,10 @@
 		>
 			{data.gameName} rules
 		</a>
-		<!-- Below md the whole TOC stacks above the content, so the search box
-		     sticks to the top of the screen while the reader scrolls; on md+
-		     it lives in the sidebar and behaves normally. -->
-		<form
-			action={resolve('/[game=game]/reference/search', { game: data.gameId })}
-			class="sticky top-0 z-10 -mx-1 mt-3 bg-bg px-1 py-2 md:static md:m-0 md:mt-3 md:p-0"
-			role="search"
-		>
-			<input
-				name="q"
-				type="search"
-				placeholder="Search rules…"
-				aria-label="Search the rules"
-				class="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent"
-			/>
-			{#if embed.active}
-				<!-- SvelteKit intercepts this GET form but replaces the whole query
-				     string with the form fields — without this, a search submit in
-				     embed mode drops ?embed=1 and a mid-session reload resurrects
-				     the app chrome. -->
-				<input type="hidden" name="embed" value="1" />
-			{/if}
-		</form>
+		{@render searchForm(
+			'mt-3',
+			'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent'
+		)}
 		{#if data.spoilers}
 			<!-- The opt-in lives here in the sidebar — every reference page, not
 			     just search results — so the TOC itself offers the path to Book II. -->
@@ -102,74 +155,7 @@
 				<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
 			</div>
 		{/if}
-		{#each data.toc as doc (doc.id)}
-			<div class="mt-4">
-				<p class="text-xs font-semibold uppercase tracking-wide text-muted">{doc.title}</p>
-				<ul class="mt-1 text-sm">
-					{#each doc.chapters as chapter (chapter.id)}
-						{@const h2s = h2sOf(doc, chapter.id)}
-						{@const active = chapter.id === activeId}
-						<li>
-							{#if h2s.length}
-								<details open={chapter.id === activeChapterId}>
-									<summary class="cursor-pointer list-none">
-										<a
-											href={href(chapter.id)}
-											class="hover:text-accent"
-											class:text-accent={active}
-											class:font-medium={active}
-										>
-											{chapter.title}
-										</a>
-									</summary>
-									<ul class="border-l border-border pl-3">
-										{#each h2s as entry (entry.section.id)}
-											{@const sectionActive = entry.section.id === activeId}
-											<li>
-												<a
-													href={href(entry.section.id)}
-													class="block py-0.5 hover:text-accent"
-													class:text-accent={sectionActive}
-													class:font-medium={sectionActive}
-												>
-													{entry.section.title}
-												</a>
-												{#if entry.subs.length}
-													<ul class="border-l border-border pl-3 text-[0.92em]">
-														{#each entry.subs as sub (sub.id)}
-															{@const subActive = sub.id === activeId}
-															<li>
-																<a
-																	href={href(sub.id)}
-																	class="block py-0.5 text-muted hover:text-accent"
-																	class:text-accent={subActive}
-																	class:font-medium={subActive}
-																>
-																	{sub.title}
-																</a>
-															</li>
-														{/each}
-													</ul>
-												{/if}
-											</li>
-										{/each}
-									</ul>
-								</details>
-							{:else}
-								<a
-									href={href(chapter.id)}
-									class="block py-0.5 hover:text-accent"
-									class:text-accent={active}
-									class:font-medium={active}
-								>
-									{chapter.title}
-								</a>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/each}
+		<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} />
 	</nav>
 
 	<div class="min-w-0 flex-1">
@@ -177,22 +163,109 @@
 	</div>
 </div>
 
+<dialog
+	bind:this={drawer}
+	onclose={() => (drawerOpen = false)}
+	class="reference-drawer md:hidden"
+	aria-label="Rules contents"
+>
+	{#if drawerMounted}
+		<div class="flex h-full flex-col">
+			<div class="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+				<a
+					href={resolve('/[game=game]/reference', { game: data.gameId })}
+					class="text-sm font-semibold tracking-tight hover:text-accent"
+				>
+					{data.gameName} rules
+				</a>
+				<button
+					type="button"
+					onclick={() => drawer?.close()}
+					class="rounded-md border border-border px-2 py-1 text-sm hover:text-accent"
+				>
+					Close
+				</button>
+			</div>
+			<div class="min-h-0 flex-1 overflow-y-auto px-4 pt-1 pb-8">
+				{#if data.spoilers}
+					<!-- Keeps the labelled control reachable from the contents, not only
+					     from a search: a reader browsing the TOC otherwise has no path to
+					     Book II without incidentally searching first (staging, 2026-07-17). -->
+					<div class="mt-3">
+						<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+					</div>
+				{/if}
+				<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} />
+			</div>
+		</div>
+	{/if}
+</dialog>
+
 <style>
-	.reference-toc :global(summary::-webkit-details-marker) {
+	.reference-bar {
+		padding-top: calc(0.5rem + env(safe-area-inset-top));
+	}
+
+	.reference-drawer {
+		margin: 0;
+		width: min(20rem, 88vw);
+		max-width: none;
+		height: 100dvh;
+		max-height: none;
+		padding: 0;
+		border: 0;
+		border-right: 1px solid var(--sb-border);
+		background-color: var(--sb-bg);
+		color: var(--sb-text);
+		/* Keep a flick at the end of the list from scrolling the page behind —
+		   the alternative (freezing <body>) is what breaks iOS. */
+		overscroll-behavior: contain;
+		padding-top: env(safe-area-inset-top);
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+
+	.reference-drawer:not([open]) {
 		display: none;
 	}
-	.reference-toc :global(summary) {
-		position: relative;
-		padding-left: 0.85rem;
+
+	/* Discrete-property transitions: the dialog animates in from the edge and
+	   back out without JS timers. */
+	.reference-drawer,
+	.reference-drawer::backdrop {
+		transition:
+			display 0.2s allow-discrete,
+			overlay 0.2s allow-discrete,
+			opacity 0.2s ease,
+			translate 0.2s ease;
 	}
-	.reference-toc :global(summary::before) {
-		content: '▸';
-		position: absolute;
-		left: 0;
-		color: var(--sb-muted, currentColor);
-		transition: transform 0.12s ease;
+	.reference-drawer {
+		translate: -100% 0;
 	}
-	.reference-toc :global(details[open] > summary::before) {
-		transform: rotate(90deg);
+	.reference-drawer[open] {
+		translate: 0 0;
+	}
+	@starting-style {
+		.reference-drawer[open] {
+			translate: -100% 0;
+		}
+	}
+	.reference-drawer::backdrop {
+		background-color: color-mix(in oklab, black 45%, transparent);
+		opacity: 0;
+	}
+	.reference-drawer[open]::backdrop {
+		opacity: 1;
+	}
+	@starting-style {
+		.reference-drawer[open]::backdrop {
+			opacity: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reference-drawer,
+		.reference-drawer::backdrop {
+			transition: none;
+		}
 	}
 </style>

@@ -24,7 +24,29 @@ export default defineConfig({
 		baseURL: `http://localhost:${PORT}`,
 		trace: 'on-first-retry'
 	},
-	projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+	projects: [
+		{
+			name: 'chromium',
+			testIgnore: /mobile-.*\.spec\.ts/,
+			use: { ...devices['Desktop Chrome'] }
+		},
+		// Phase 25: below the md breakpoint the reference reader is a different
+		// shell — a sticky bar and a drawer instead of a sidebar. The device
+		// descriptor brings touch and a mobile UA along with the viewport, so tap
+		// paths behave as they do on a phone. Scoped by filename to the specs that
+		// assert mobile behaviour; everything else stays desktop-only.
+		//
+		// Deliberately a Chromium device, not an iPhone one: the iPhone descriptors
+		// run WebKit, which CI doesn't install (`--with-deps chromium`) and which
+		// isn't Safari-on-iOS anyway — the iOS <dialog> scrolling traps this shell
+		// has to avoid need a real device, not another engine. See
+		// docs/mobile-reference-nav.md.
+		{
+			name: 'mobile',
+			testMatch: /mobile-.*\.spec\.ts/,
+			use: { ...devices['Pixel 5'] }
+		}
+	],
 	webServer: {
 		command: 'npm run build && tsx e2e/reset-db.ts && node build/index.js',
 		port: PORT,
