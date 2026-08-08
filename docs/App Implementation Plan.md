@@ -142,6 +142,41 @@ map. Later still: verified PD/CC-BY book plates per the vault's
 | The Dragonbone Memorial | Serzen's Seven Stairs |
 | The Undertomb | The Granite Shore |
 
+## Phase 24 — Stonetop: bring the indexes back, as a pinned-terms layer
+
+Restore `Book I Stonetop/20 - Index.md` and `Book II The Wider World/59 - Index.md`
+to the Stonetop vault and give Stonetop the curated search layer HMtW got in
+phase 22.
+
+They were deleted on purpose — vault commit `9eece3d`, "Delete index, convert
+page-refs to heading links, contents link tables, arcana glyphs" — because a
+page-number index is dead weight in a digital vault. That reasoning was right
+about the page numbers and wrong about the index: the book's own index is a
+human-curated term → section map, including "see X" synonyms that keyword search
+can't infer. HMtW ships exactly that as `content/hmtw/index-terms.json` (a fork
+of the vault's copy, so term fixes live in the repo), which `build_search.ts`
+resolves into `pinned-terms.json` and the reader renders as a pinned strip above
+the ranked results. Recover the notes with
+`git show 9eece3d^:"Book I Stonetop/20 - Index.md"`.
+
+It also closes a live break: a Stonetop reimport today **fails** —
+`build_rules.py` reports `unresolved note [[20 - Index]]` and silently drops both
+notes from the snapshot, because the contents link tables still point at them
+(found 2026-08-08 while fixing the HMtW sidebar hoist; nothing has reimported
+Stonetop since the deletion, which is why it went unnoticed).
+
+Steps, roughly:
+
+- Restore both notes, then give them the same treatment the rest of the vault
+  got in `9eece3d` — page refs become heading links, not `p. 214`.
+- Extract to `content/stonetop/index-terms.json` with validated targets. The
+  extractor to port is the HMtW vault's `_project/scripts/build_search_index.py`,
+  which now checks every term's (file, anchor) against real headings and block
+  ids the way Obsidian compares links — it caught 12 stale targets on its first
+  run. Generalise it rather than forking it a third time.
+- Two books means two term sets: decide whether Book II terms are GM-gated. The
+  precedent exists — HMtW already ships a separate `pinned-terms-gm.json`.
+
 ## Sequencing notes
 
 - Natural session-sized bites: a phase-boundary milestone every 5–10 commits, and each commit is small enough to finish in one sitting.
