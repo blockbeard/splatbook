@@ -14,6 +14,9 @@ The City has been claimed by many kith and kin, but today it is the seat of huma
 Like skin, it is made of folded-over layers. Each era of the City can be found buried below the others. Dig down into your cellar and find the potsherds, runestones, idols, rusted machinery, diaries, lamps, and bones of those who came before. Like skin, it has scars. Terrible pits boring holes into the Underworld—blighted cankers on a beautiful face.
 
 # The Flow of the City Phase
+> [!sidebar] The City is social
+>
+> The City contains an untold multitude of factions, social clubs, hierarchies, royal families, anarchist collectives, sports teams, mystery cults, underground scenes, crime syndicates, etc. They want what the guild has: treasure, expertise, and a lack of self-preservation. The guild wants what these organizations have: influence, power, wealth…sure, but also fancy clothes, useful rumors, interesting friends, cool home bases, etc.
 
 > [!lede]
 > When the guild returns to civilization, laden with treasure and light on supplies, the City Phase begins. The City Phase is an opportunity to pursue long-term goals, research the next steps of the quest, and restock supplies before returning to the Stygian depths. This chapter details what players need to know about the City Phase. Advice for the GM for [[10 - Chapter 10 - The Worm Turns - Gamemastering#Running the City Phase|running the City Phase]] is found in chapter 10. Procedures for the GM to flesh out a City are found in [[14 - Appendix D - City Creation|Appendix D: City Creation]]. 
@@ -34,9 +37,6 @@ Erase the oldest deed on your roster. As a group, write the most notable accompl
 The GM draws for a random event on their City Event table.
 
 ### 4. Turn in contracts
-> [!sidebar] The City is social
->
-> The City contains an untold multitude of factions, social clubs, hierarchies, royal families, anarchist collectives, sports teams, mystery cults, underground scenes, crime syndicates, etc. They want what the guild has: treasure, expertise, and a lack of self-preservation. The guild wants what these organizations have: influence, power, wealth…sure, but also fancy clothes, useful rumors, interesting friends, cool home bases, etc.
 
 The guild turns in their contract (if any). Successfully completed contracts provide a monetary reward and 1XP.
 
@@ -187,37 +187,23 @@ Turning in a contract gives 1XP per contract fulfilled. If there were no contrac
 As **part of this step, adventurers may sell items** of **art and extravagance**, such as gems, paintings, and jewelry. The GM determines the value of the items being sold when creating the Underworld; see [[10 - Chapter 10 - The Worm Turns - Gamemastering#How much treasure?|How much treasure?]]. The seller receives any payments prior to paying their upkeep.
 
 ## 5. Upkeep
-> [!sidebar]
->
-> **Destitute - 0g**
->
-> If you can’t (or refuse) to pay upkeep, you sleep on the street. Dogs lick your wounds. You have nothing to eat and begin your next adventure Stressed.
->
-> You cannot buy any new gear when you are destitute.
->
-> **Impoverished - 25g**
->
-> If you’re impoverished, you sleep in the poorhouse or in the common room of a cheap inn. You gain neither special benefits nor penalties.
->
-> You can purchase as many pieces of gear from the impoverished item list as you can carry.
->
-> **Common - 50g**
->
-> **Common** lodgings afford you a stay in a decent inn. During this step, you may burn charged Bonds to heal Wounds and recover Resolve, just like step 4 (Recovery) of the Camp Phase ([[08 - Chapter 8 - The Camp Phase#^end-of-camp-phase|End of Camp Phase]]).
->
-> You can purchase as many pieces of gear from the impoverished and common item lists as you can carry.
->
-> **Luxurious - 100g**
->
-> If you live in luxury and stay in the most high-class establishments, you fully heal every **Wound** and begin the Crawl with full Resolve.
->
-> You can purchase as many pieces of gear from the impoverished, common, and luxurious item lists as you can carry.
 
 Life in the City isn’t free. Upkeep pays for your food and lodging and refills your pack with adventuring gear. ^upkeep
 
 The cost **for equipment isn’t itemized**. Buying into a given upkeep tier buys you as much gear of that particular tier (or lower) as you can waddle away with. See [[09 - Chapter 9 - The City Phase#The Omphalic Market|the Omphalic Market]] for a list of **adventuring gear**.
 
-There are four upkeep tiers: **destitute, impoverished**, common, and luxurious.
+There are four upkeep tiers: **destitute, impoverished**, **common**, and **luxurious**.
+
+| Upkeep                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Destitute - 0g**                                                                                                                                                                                                                                                                                                                                                          |
+| If you can’t (or refuse) to pay upkeep, you sleep on the street. Dogs lick your wounds. You have nothing to eat and begin your next adventure Stressed.<br><br>You cannot buy any new gear when you are destitute.                                                                                                                                                          |
+| **Impoverished - 25g**                                                                                                                                                                                                                                                                                                                                                      |
+| If you’re impoverished, you sleep in the poorhouse or in the common room of a cheap inn. You gain neither special benefits nor penalties.<br><br>You can purchase as many pieces of gear from the impoverished item list as you can carry.                                                                                                                                  |
+| **Common - 50g**                                                                                                                                                                                                                                                                                                                                                            |
+| Common lodgings afford you a stay in a decent inn. During this step, you may burn charged Bonds to heal Wounds and recover Resolve, just like step 4 (Recovery) of the Camp Phase ([[08 - Chapter 8 - The Camp Phase#^end-of-camp-phase\|End of Camp Phase]]).<br><br>You can purchase as many pieces of gear from the impoverished and common item lists as you can carry. |
+| **Luxurious - 100g**                                                                                                                                                                                                                                                                                                                                                        |
+| If you live in luxury and stay in the most high-class establishments, you fully heal every **Wound** and begin the Crawl with full Resolve.<br><br>You can purchase as many pieces of gear from the impoverished, common, and luxurious item lists as you can carry.                                                                                                        |
 
 ## 6. City Actions
 

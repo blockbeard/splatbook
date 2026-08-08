@@ -67,6 +67,13 @@ When your house sigil or motto is dramatically appropriate for an action being a
 Additionally, during Challenges, you may spend a Resolve and use the Speak Incantation action to cry your motto aloud. You—and all members of your house that hear your war cry—gain favor on their next action.
 
 ## Human houses
+> [!sidebar] Optional rule: Turncloak
+>
+> If you ever betray or turn against your house, you lose the **Proud and Ancient** talent and gain the **Turncloak talent**:
+>
+> Whenever you play up your legacy of deceit and your infamy, role-play what you say. If it would repulse your fellow humans or turn your heart blacker still, you gain favor on tests of fate that work against your house or humankind in general.
+>
+> Don’t start out as a Turncloak. Play and find out why you become one.
 
 > [!lede]
 > The following houses are active in the City. Use them for your adventurers or let them serve as examples for new houses.
@@ -127,14 +134,6 @@ When a human accomplishes all three arête triggers, they gain the following tal
 > [!sidebar] Bynames
 >
 > For human bynames, we usually ask the player what event or instance was their proudest. Then, we elicit the help of the table to think of the coolest byname based on that event. This is done in secret, away from the player. We then have an important character grant the byname to the adventurer in a dramatically appropriate fashion.
-
-> [!sidebar] Optional rule: Turncloak
->
-> If you ever betray or turn against your house, you lose the **Proud and Ancient** talent and gain the **Turncloak talent**:
->
-> Whenever you play up your legacy of deceit and your infamy, role-play what you say. If it would repulse your fellow humans or turn your heart blacker still, you gain favor on tests of fate that work against your house or humankind in general.
->
-> Don’t start out as a Turncloak. Play and find out why you become one.
 
 You are given a byname, like “the Tall,” “the Corpsegrinder, “the Patron Saint of Pilgrims,” or “the Blackhearted.” When that byname would be relevant to a test of fate, similar to a motif, you test with favor.
 
@@ -479,6 +478,11 @@ Some trolls can perform feats of incredible strength that go beyond what would n
 - When a troll dies, the number of trolls is reduced by one forever. This is something profoundly sad.
 
 # Orcs
+> [!sidebar] The Secrets of Dragons
+>
+> The last part of an orc's life cycle is to become a dragon. Just like few goblins survive into orc-hood, few orcs grow old enough to become dragons. The change only comes around once the orc is around a hundred, and takes a long time. The orc begins “nesting” by tunneling down into the earth and setting a few booby traps. She then begins the decades-long process of slowly metamorphosing into a dragon. When adventurers find “dragon eggs,” they're really just finding “orc cocoons.”
+>
+> Even orcs don't know they metamorphose into dragons. Their society reveres dragons, but the transformation is either so taboo or rare that it is not discussed in orc society.
 
 > [!lede]
 > A prayer to Rng: “O’ Rng, gracious and kind. We have all that we need. Your people are content and happy. Our lives are full, and we need nothing else. Please, visit your gifts on our enemies. Give them what they lack. Let them know your love and generosity.”
@@ -498,11 +502,6 @@ A baby orc is called a goblin. Unlike human children, who take years to learn to
 Not that they're cruel, but orcs have a somewhat blasé concern for their offspring's health. Few goblins get to grow up to be orcs. It's a rough world. It's better for an orc parent to survive long enough to make another clutch of goblin babies than it is for a single goblin (or even an entire clutch) to survive. Prioritize the elders.
 
 ### A myth of the orcs
-> [!sidebar] The Secrets of Dragons
->
-> The last part of an orc's life cycle is to become a dragon. Just like few goblins survive into orc-hood, few orcs grow old enough to become dragons. The change only comes around once the orc is around a hundred, and takes a long time. The orc begins “nesting” by tunneling down into the earth and setting a few booby traps. She then begins the decades-long process of slowly metamorphosing into a dragon. When adventurers find “dragon eggs,” they're really just finding “orc cocoons.”
->
-> Even orcs don't know they metamorphose into dragons. Their society reveres dragons, but the transformation is either so taboo or rare that it is not discussed in orc society.
 
 We do not worship Rng out of devotion. We worship Rng out of fear.
 

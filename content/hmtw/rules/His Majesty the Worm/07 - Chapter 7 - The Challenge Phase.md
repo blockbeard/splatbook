@@ -538,6 +538,11 @@ Recover is a catch-all action that encompasses everything from retrieving your d
 Some Effects are derived from situations that are hard to escape—chains, curses, petrification, etc. The GM will specifically state which Effects you can Recover from and which you cannot.
 
 ## Miscellaneous actions (Any Suit)
+> [!sidebar] Out of cards?
+>
+> If either the players or the GM must draw cards but there are not enough remaining, shuffle the discard pile and continue drawing.
+>
+> This happens more frequently for the GM because they draw bigger hands of cards and the major arcana deck is smaller, but is a relatively rare event either way. With three or four players, the Fool is drawn every few rounds.
 
 > [!lede]
 > Miscellaneous actions can be performed using _any_ card, regardless of suit or value.
@@ -575,11 +580,6 @@ To resolve the test of fate, draw a new card from the top of the minor arcana de
 This is a catch-all option for anything not covered by the other actions. Opening a door, throwing a lever, picking up an item from the ground, dropping prone—anything that takes only a moment and isn’t contested can be done by playing a card of any value and any suit.
 
 ### Vigilance
-> [!sidebar] Out of cards?
->
-> If either the players or the GM must draw cards but there are not enough remaining, shuffle the discard pile and continue drawing.
->
-> This happens more frequently for the GM because they draw bigger hands of cards and the major arcana deck is smaller, but is a relatively rare event either way. With three or four players, the Fool is drawn every few rounds.
 
 **Vigilance** is watching for a particular circumstance before you act, waiting for your moment to strike. When you use Vigilance, you declare that you will use an action in response to a specific trigger.
 

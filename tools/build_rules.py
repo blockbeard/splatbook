@@ -269,12 +269,30 @@ def pin_callout_blocks(
     if not pending:
         return out
 
+    # A heading text can occur more than once in a note: Ch8 lists "2. Break
+    # bread" as a `###` line in the Flow summary long before the `##` section of
+    # that name, and Ch4 has both `# Orcs` and a deeper one. Resolve to the
+    # SHALLOWEST match (first among ties) — a pin names a section, and the
+    # summary line isn't it. Taking the first match textually put the sidebar in
+    # the flow list instead.
+    chosen: dict[int, str] = {}
+    for target in pending:
+        best: tuple[int, int] | None = None
+        for idx, line in enumerate(out):
+            if parse_heading(line) != target:
+                continue
+            level = heading_level(line) or 99
+            if best is None or level < best[0]:
+                best = (level, idx)
+        if best is not None:
+            chosen[best[1]] = target
+
     placed: list[str] = []
-    for line in out:
+    for idx, line in enumerate(out):
         placed.append(line)
-        heading = parse_heading(line)
-        if heading is not None and heading in pending:
-            placed.extend(pending.pop(heading))
+        target = chosen.get(idx)
+        if target is not None:
+            placed.extend(pending.pop(target))
     if pending:
         sys.exit(
             f"{rel}: hoistPin target heading(s) not found: {sorted(pending)} — "

@@ -82,6 +82,15 @@ Games without consequences have no teeth. How boring would it be if you knew you
 > _– Introduction to the I Ching, Carl Jung_
 
 # Session 0
+> [!sidebar] Restrictions foster creativity
+>
+> It’s said that necessity is the mother of invention. If that’s true, we would add our own truism: restrictions are the mother of creativity.
+>
+> It can be hard for (even experienced) players to choose a compelling character or guild concept ex nihilo. A GM who provides some structure to session 0 can plant seeds of creativity for the players.
+>
+> For example, perhaps the GM runs an underfolk-only game. Or, perhaps they run a game where the guild is the Secret Pope’s Secret Strike Force.
+>
+> At first blush, these restrictions might be surprising for players. They might wonder how they can distinguish themselves from each other if everybody is of the same kith or path (or both). However, we’ve found that true distinction comes when the players don’t simply play their “race and class.” The more similar characters are on the surface, the less similar they are in truth.
 
 > [!lede]
 > Sometimes, RPG players are expected to create their characters by themselves and show up on game night expecting to meet everyone else at an inn. This can sometimes lead to problems at the game table. We recommend that the players and the GM get together for a session before play starts to create adventurers and talk about everybody's expectations. This is called “session 0,” and it can go a long way towards making sure everybody is having fun.
@@ -123,15 +132,6 @@ The GM can also use this time to smooth over potential difficulties. One of the 
 As part of the Call to Adventure, the players announce their adventurers’ initial quests. The GM can veto these quests or suggest changes to make them more interesting.
 
 ### Collaborative guild creation
-> [!sidebar] Restrictions foster creativity
->
-> It’s said that necessity is the mother of invention. If that’s true, we would add our own truism: restrictions are the mother of creativity.
->
-> It can be hard for (even experienced) players to choose a compelling character or guild concept ex nihilo. A GM who provides some structure to session 0 can plant seeds of creativity for the players.
->
-> For example, perhaps the GM runs an underfolk-only game. Or, perhaps they run a game where the guild is the Secret Pope’s Secret Strike Force.
->
-> At first blush, these restrictions might be surprising for players. They might wonder how they can distinguish themselves from each other if everybody is of the same kith or path (or both). However, we’ve found that true distinction comes when the players don’t simply play their “race and class.” The more similar characters are on the surface, the less similar they are in truth.
 
 The adventurers begin the game as members of the same guild. During session 0, over the course of the Call to Adventure, the players fill out [[03 - Chapter 3 - The Guild#The Guild Roster|the guild roster]] sheet collaboratively.
 

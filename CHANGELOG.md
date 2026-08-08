@@ -39,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   24 references across four chapters, at text size, inverting with the theme.
 - **The Morale table sits inside the Morale sidebar**, as the book prints it,
   instead of trailing it as loose body prose.
-- **Sidebars sit with the section that owns them.** Audited all 84 that ship: 14
+- **Sidebars sit with the section that owns them.** Audited all 84 that ship, then
+  Chris reviewed the placements page by page: 24
   were attached to the wrong one, and two kinds of wrongness couldn't be
   expressed before. Some belong to the entry they _precede_ — the book prints
   them in the margin at the foot of the previous column — so "Learning the
@@ -48,7 +49,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   item of it: "Effect names" sat on the single effect "Trip", "Sorcery" on one
   Wands talent rather than the Path, "Negative bonds" on a single Bond. Each is
   now declared in the importer config, and a heading rename that would strand one
-  fails the build rather than quietly dropping it back where it fell.
+  fails the build rather than quietly dropping it back where it fell. The upkeep
+  tiers stopped being a sidebar altogether — they're a table in the book, and now
+  they're a table here.
 - **The type reads as a hierarchy again on a machine with the book's own fonts.**
   Every size was tuned against the OFL substitutes, so the creator-pack faces —
   whose x-heights are nothing like them — rendered wrong: subheads came out

@@ -120,6 +120,10 @@ Play can end after any phase or simply at a specified time. It’s best for the 
 The GM can take time at the end of play to get feedback about what the players want to do or where they want to go next. Reminders about when they’ll play next, who might be absent, etc., can be dealt with at this time.
 
 ## Adjudicating the game: GM responses
+> [!sidebar] The Challenge Phase
+> It's worth noting that the rules of the Challenge Phase are more bounded than the freeform nature of standard play. The Challenge Actions and the player's hand of cards usually determine what an adventurer can and can't do. The GM still adjudicates what the players try to do when there's ambiguity:
+>
+> *"Oh, you're trying to squeeze past the slime as they squelch down the hall? Well, there's not really space to Avoid it — it takes up the entire corridor. Do you want to do something else instead?"*
 
 > [!lede]
 > An RPG is a conversation between the GM and the players. The GM describes a scene and the players describe their actions inside the scene. The GM and the players ask questions of each other to further define their shared textual reality.
@@ -185,10 +189,6 @@ Tests of fate should be relatively rare and relatively tense. Don’t call for t
 You’re straining against it as the mechanism’s gears
 
 ### “No, you can’t do that”
-> [!sidebar] The Challenge Phase
-> It's worth noting that the rules of the Challenge Phase are more bounded than the freeform nature of standard play. The Challenge Actions and the player's hand of cards usually determine what an adventurer can and can't do. The GM still adjudicates what the players try to do when there's ambiguity:
->
-> *"Oh, you're trying to squeeze past the slime as they squelch down the hall? Well, there's not really space to Avoid it — it takes up the entire corridor. Do you want to do something else instead?"*
 
 Sometimes, actions are not possible or will automatically fail based on the logic of the narrative world.
 
@@ -231,6 +231,9 @@ There are two discard piles—one for minor arcana and one for major arcana. As 
 **Whenever the Fool is drawn, both decks are reshuffled at the end of the round**.
 
 # Tests of Fate
+> [!sidebar] Challenge Actions
+> The Challenge Phase is a subsystem for handling dangerous situations blow-by-blow. Challenge Actions have occasional similarities to the test of fate rules—for example, favor and disfavor can adjust a Challenge Action’s total value.
+> However, there are many important differences: for example, Challenge Actions are not bound by fate and you cannot **push fate** on Challenge cards. For the specific rules on how the Challenge Phase handles actions, see [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]].
 
 > [!lede]
 > When an adventurer’s action within the game's narrative is uncertain, the GM calls for a **test of fate**.
@@ -276,9 +279,6 @@ If the total value is **14**+ _and_ the player drew the suit being tested on the
 The GM should invite the player to embellish how _impressive_, how _effortless_, how _quick_, or how _thorough_ their success was.
 
 ### Great failure
-> [!sidebar] Challenge Actions
-> The Challenge Phase is a subsystem for handling dangerous situations blow-by-blow. Challenge Actions have occasional similarities to the test of fate rules—for example, favor and disfavor can adjust a Challenge Action’s total value.
-> However, there are many important differences: for example, Challenge Actions are not bound by fate and you cannot **push fate** on Challenge cards. For the specific rules on how the Challenge Phase handles actions, see [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]].
 
 If the player pushes fate _and_ the total value is still 13 or less, the test is a **great failure**. The GM describes a _new_ significant setback, bad situation, or harmful repercussion as a result. See “Pushing Fate.”
 

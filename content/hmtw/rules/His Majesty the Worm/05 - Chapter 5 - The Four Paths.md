@@ -158,6 +158,9 @@ During Challenges, you may Roughhouse as a **minor action** with _either_ a **Pe
 During Challenges, if you are wearing light or no armor, you may **treat Pentacles actions as interrupts**.
 
 ### Sneak
+> [!sidebar] Sneak responsibly
+>
+> Be aware of whether or not other adventurers actually want you present in a scene. A heroic rescue out of a prison cell can be much more welcome than you intruding on a personal scene. A player having a solo scene has the right to veto your use of this skill.
 
 At any point, you may declare that you go **sneaking**. This allows you to go dramatically off-stage.
 
@@ -168,9 +171,6 @@ If you go sneaking and all tension evaporates, you may rejoin the scene by slink
 This talent also gives you a new Camp Action: **Infiltrate**. When you Infiltrate, you investigate a specific location that you know of in your current dungeon level. Thereafter, you may bid lore to ask the GM a specific yes or no question about something you’d know having infiltrated that location, e.g., “Is this door trapped?”, “Is this room guarded?”, “Is the wizard’s bedroom on this level?”, “Do the bandits have bows?”, “Were the orcs green-skinned?”
 
 ### Up My Sleeve
-> [!sidebar] Sneak responsibly
->
-> Be aware of whether or not other adventurers actually want you present in a scene. A heroic rescue out of a prison cell can be much more welcome than you intruding on a personal scene. A player having a solo scene has the right to veto your use of this skill.
 
 You may declare that you have had a common, one-slot item with you the whole time. Twice per Crawl (one for each sleeve), spend a **Resolve and declare that you had** a [blank] up your sleeve. This can include a lockpick, a dagger, a handkerchief, an empty vial, a length of wire, or anything else that the GM generally finds viable.
 
@@ -303,6 +303,9 @@ You may cast spells of the Weird. The Weird is a place of dream, untouched by sa
 You may cast spells of the Welkin. The Welkin is a bright and holy place. Spells of this realm deal with angels, provide healing and protection, and invoke an awful wonder.
 
 ## Pacts
+> [!sidebar] Damned if you do, damned if you don’t…
+>
+> Sometimes, pacts might put you in situations where you have to break one pact to keep another. This has its roots in mythology. Consider how Cú Chulainn couldn’t refuse food from a stranger, nor could he eat dog meat. When a stranger offers him dog meat, he’s on the hook one way or another. We recommend not shying away from these conflicts. If the fiction in your game demands that two pacts contradict each other, fine. It’s ultimately not that painful. Let it play out and see what happens.
 
 When you use the Make a Pact Camp Action, charge one spell **component** of your choice for each pact made. This charge may be spent in lieu of spending a Resolve to cast the spell, though additional Resolve must still be spent to grant the spell increased power.
 
@@ -349,8 +352,5 @@ When you make this pact, you cut runes into yourself. This causes you to take a 
 If you must speak, you must speak in a whisper. People must be very close to you and it must be very quiet to hear your words. If you speak in a loud voice, you violate this pact.
 
 ### Verity
-> [!sidebar] Damned if you do, damned if you don’t…
->
-> Sometimes, pacts might put you in situations where you have to break one pact to keep another. This has its roots in mythology. Consider how Cú Chulainn couldn’t refuse food from a stranger, nor could he eat dog meat. When a stranger offers him dog meat, he’s on the hook one way or another. We recommend not shying away from these conflicts. If the fiction in your game demands that two pacts contradict each other, fine. It’s ultimately not that painful. Let it play out and see what happens.
 
 You must not tell a knowing lie. If you do so, even in jest, this pact is broken.

@@ -147,15 +147,15 @@ Spend some time updating your map and charting your course. Mark down the rooms 
 If you’re carrying an item that’s usable during the Camp Phase (e.g., a tinker’s kit) you may use it during this step.
 
 ### Use a Talent
+
+If you have a talent that’s usable during the Camp Phase (e.g., Beast Master, Bookworm, War Stories, etc.) you may use it during this step.
+
+## 2. Break bread
 > [!sidebar] Starving
 >
 > In general terms, a person can endure about three weeks of starvation before dying. Let us assume that “dying from starvation” is a fringe case in _His Majesty the Worm_. It’s much more likely that adventurers will run low on rations during the Crawl and need to endure a few days of empty bellies.
 >
 > If this is your second Camp Phase without consuming rations, you begin to starve. If you are starving, **skip steps 4 and 5 of the Camp Phase.** You cannot burn charged Bonds or regain lore bids while starving.
-
-If you have a talent that’s usable during the Camp Phase (e.g., Beast Master, Bookworm, War Stories, etc.) you may use it during this step.
-
-## 2. Break bread
 
 Once Camp Actions have been declared, the guild settles down to eat a meal together. **Every adventurer must consume 1 ration at this step or become Stressed**. If you didn’t eat last time either, you begin to **starve** (see sidebar). ^break-bread
 
