@@ -86,8 +86,13 @@ portable and its rules trustworthy.
   id, name,
   packSchemas: schemaFor,   // from pack-schemas.ts
   engine,                   // opaque to the shell
-  entityTypes: { … },       // one entry per creatable/saveable thing
-  gmGuide?: { … }           // optional GM reference guide
+  entityTypes: { … },       // one entry per creatable/saveable thing (optional)
+  gmGuide?: { … },          // optional GM reference guide
+  // presentation slots, all optional:
+  favicon?,                 // served URL, shown inside the game's routes
+  referenceSpoilers?,       // gated-content opt-in words + interstitial section
+  referencePageDepth?,      // headings past this depth render inline, not as pages
+  tableReference?, sessionComponent?, …
 }
 ```
 
@@ -135,7 +140,9 @@ Ship the SRD as one or more **document trees** under the pack’s `rules/` folde
 point `schemaFor` at `documentTreeSchema` for `rules/*.json`, and list them in the
 manifest. Trees are generated from vault markdown by `tools/build_rules.py` (a
 per-game `tools/rules.<gameId>.json` config: source dirs, excludes,
-truncate-at-heading, callout stripping, link rewrites) then `tools/build_srd.py`
+truncate-at-heading, callout stripping/hoisting, link rewrites, pack-authored
+`insertions`, owned-art allowlists, heading demotion, hard-break preservation —
+the tool's docstring documents every key) then `tools/build_srd.py`
 (config in `tools/srd.config.json`) — never hand-edited — and a build-time
 MiniSearch index (`npm run build:search`) powers offline client-side search.
 
@@ -144,9 +151,12 @@ Corpus knobs phase 22 added, all per-document in `srd.config.json`:
 that don't parse into clean numbers/titles, and `fileVisibility` to gate
 individual GM files inside one folder. A `referenceSpoilers` module slot names
 the opt-in toggle/badge and an `interstitialSectionId` so links into gated
-content land on an explanation instead of a 404. A pack can also ship curated
-pinned search terms (`content/<gameId>/index-terms.json` → split player/GM
-artifacts at build). Details in `docs/content-packs.md`.
+content land on an explanation instead of a 404. A `referencePageDepth` module
+slot sets display granularity: headings past the depth render inline on their
+page ancestor (with anchor redirects), so talent lists and statblocks read as
+one page. A pack can also ship curated pinned search terms
+(`content/<gameId>/index-terms.json` → split player/GM artifacts at build).
+Details in `docs/content-packs.md`.
 
 ## 7. GM guide (optional)
 

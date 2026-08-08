@@ -1,7 +1,10 @@
 # Splatbook — session orientation
 
-Game-agnostic TTRPG companion framework. First game module: **Stonetop**, served at `/stonetop`.
-Domain: splatbook.app (owned). License: GPL-3.0-or-later (app), CC BY-SA 4.0 (Stonetop text).
+Game-agnostic TTRPG companion framework. Live game modules: **Stonetop** (full
+companion, `/stonetop`) and **His Majesty the Worm** (reference-only, `/hmtw`).
+Domain: splatbook.app (owned). License: GPL-3.0-or-later (app); CC BY-SA 4.0
+(Stonetop text); HMtW text under the book's own reuse grant (LicenseRef-HMtW —
+see the pack's LICENSE.md).
 
 ## Start here
 
@@ -25,11 +28,20 @@ Domain: splatbook.app (owned). License: GPL-3.0-or-later (app), CC BY-SA 4.0 (St
 
 ## Content pipeline
 
-- `content/stonetop/rules/` is **generated** — never hand-edit. Source of truth is the
-  Obsidian vault at `~/Documents/RPG Vaults/Stonetop` (connect it only when regenerating).
-- Regenerate: `python3 tools/build_rules.py --vault <vault> --out content/stonetop/rules --config tools/rules.stonetop.json`
-  (strips art/PDF embeds, remaps `^pNNN` page anchors to section links, verifies links).
+- `content/<game>/rules/` is **generated** — never hand-edit. Source of truth is the
+  game's Obsidian vault (connect only when regenerating): Stonetop at
+  `~/Documents/RPG Vaults/Stonetop`, HMtW at `~/Documents/RPG Vaults/His Majesty
+  the Worm` (a **read-only reference vault** — copy out, never write in; it also
+  feeds other importers, so Splatbook-only additions live in the config's
+  `insertions`, not the vault).
+- Regenerate: `python3 tools/build_rules.py --vault <vault> --out content/<game>/rules
+  --config tools/rules.<game>.json` (strips art/PDF embeds, remaps `^pNNN` page
+  anchors, verifies links; per-corpus knobs — callout stripping/hoisting,
+  insertions, owned-art allowlists, heading demotion — documented in the tool's
+  docstring), then `python3 tools/build_srd.py` and `npm run build:search`.
 - `content/stonetop/data/` — structured game data; schema documented in `SCHEMA.md` there.
+- `content/hmtw/index-terms.json` — the curated pinned-terms source, a **fork** of the
+  vault's copy: vault text updates re-run the import, but term fixes live here.
 
 ## Environment quirks
 

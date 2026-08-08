@@ -285,8 +285,15 @@ belong to their players.
 
 ## What "done" looks like for the framework
 
-When game #2 arrives, adding it must touch only `content/<gameId>/` (or
-`static/content-packs/<gameId>/`) and `src/lib/games/<gameId>/`. If it needs shell
-changes, that is the extraction moment: do the abstraction then, with two real
-games in hand — not preemptively with one. The step-by-step is
-`docs/adding-a-game.md`, written against the real Stonetop module.
+**Game #2 arrived (phase 22, His Majesty the Worm) and the promise held**: the
+pack touched only `content/hmtw/`, `static/content-packs/hmtw/`, and
+`src/lib/games/hmtw/`, plus the two one-line registrations. The shell changes it
+needed — optional `entityTypes`, per-game spoiler keys, `landing.json`, embed
+mode, page granularity — were each made deliberately, in their own commits,
+*before* the pack landed: the extraction moment done as designed, with two real
+games in hand.
+
+The rule now stands for game #3, with a richer surface to land on: a
+reference-only game is four small files (see `src/lib/games/hmtw/`), and a full
+companion is the Stonetop shape. The step-by-step is `docs/adding-a-game.md`,
+written against both.

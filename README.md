@@ -2,17 +2,19 @@
 
 A game-agnostic framework for TTRPG companion apps: character builders, campaign
 and steading trackers, GM references, searchable rules, and shared dice — driven
-entirely by per-game content packs. The first game module is a companion for
-[Stonetop](https://www.lampblack-and-brimstone.com/) by Jeremy Strandberg /
-Lampblack & Brimstone, served at `/stonetop`.
+entirely by per-game content packs. Two game modules are live: a full companion
+for [Stonetop](https://www.lampblackandbrimstone.com/) by Jeremy Strandberg /
+Lampblack & Brimstone at `/stonetop`, and a rules reference for
+[His Majesty the Worm](https://www.hismajestytheworm.games/) by Josh McCrowell
+at `/hmtw`.
 
 > "Splat" is the old typesetter's slang for the asterisk in "the \* book."
 > The framework is named after a wildcard, which is the point.
 
 ## Status
 
-**v2.1.0 released; the v2.2 "binder" work is well underway** — see
-[CHANGELOG.md](CHANGELOG.md) for the precise state. What works today:
+**v2.3.2 released** — see [CHANGELOG.md](CHANGELOG.md) for the precise state.
+What works today:
 
 - **Reference** — the cleaned rules text, chapters as the spine, searchable,
   with resolving cross-links and the book's own theme; Book II (setting
@@ -32,6 +34,11 @@ Lampblack & Brimstone, served at `/stonetop`.
 - **Dice** — the full polyhedral panel with a one-shot bonus box, move-aware
   and damage rolls from the sheet, "a miss marks XP", and a per-campaign roll
   log the whole table watches (polling).
+- **His Majesty the Worm** — the framework promise walked twice: the book's
+  full open game text as a reference-only second game, searchable with
+  curated pinned index terms, GM chapters behind a per-game spoiler opt-in,
+  margin sidebars and the book's own monochrome look, and a chrome-less
+  `?embed=1` mode built for reading inside a Zoom Whiteboard.
 
 Production runs at [splatbook.app](https://splatbook.app) (Cloudflare Pages +
 D1); staging soaks on atlas. Unbuilt work lives in

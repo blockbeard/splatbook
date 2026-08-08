@@ -44,7 +44,16 @@ understands (`PackManifest` in `src/lib/packs/types.ts`, validated by
 | `files`       | every data file in the pack, as paths relative to the pack root    |
 
 Everything in `files` gets validated (see below). Files not listed — `LICENSE.md`,
-`SCHEMA.md` — are documentation and travel with the pack unvalidated.
+`SCHEMA.md` — are documentation and travel with the pack unvalidated. An `art/`
+folder of pack-owned images (referenced by URL from the theme, landing, or
+rules bodies) is likewise unlisted: the manifest lists validated JSON only.
+
+**`landing.json`** (optional, manifest-listed) is the pack's front-door copy —
+tagline, blurb, a logo image, outbound buy links — validated by the
+*shell-owned* `landingSchema` (`src/lib/packs/landing.ts`), which the game's
+`schemaFor` returns for that filename. Without one the shell shows honest
+defaults: builder-speak only for games that actually have builders. Both live
+packs ship one.
 
 ## Validation
 
@@ -75,10 +84,15 @@ other data refers to, so renames fail CI instead of orphaning references.
 ## Generated content
 
 Some pack content is generated from external sources rather than hand-written —
-for Stonetop, `content/stonetop/rules/` is produced from the Obsidian vault by
-`tools/build_rules.py` and must never be hand-edited (see `CLAUDE.md`). Hand-
-maintained structured data (`data/*.json`) is source, not output; its human-
-readable schema lives in the pack's `SCHEMA.md`.
+each game's `content/<game>/rules/` is produced from its Obsidian vault by
+`tools/build_rules.py` and must never be hand-edited (see `CLAUDE.md`). The
+tool is config-driven per game (`tools/rules.<game>.json`): source dirs and
+excludes, truncate-at-heading, callout stripping and hoisting, link rewrites,
+pack-authored `insertions` (notes that must not live in a shared vault),
+owned-art allowlists, heading demotion, and hard-break preservation — the
+tool's docstring documents every key, and HMtW's config exercises most of
+them. Hand-maintained structured data (`data/*.json`) is source, not output;
+its human-readable schema lives in the pack's `SCHEMA.md`.
 
 Four data files are the exception, generated *from the pack's own rules tree* by
 `tools/build_moves.ts` (phase 11; grown since) and likewise not hand-edited:
@@ -143,7 +157,30 @@ just unnumbered). Every section carries a matching `chapter` id back into that
 list. Both fields are optional on the schema — a tree with no `chapters` (or a
 section with no `chapter`) still validates — because the schema change and the
 content regen are deliberately separate commits (phase 12); the pipeline
-itself always emits both once a tree is rebuilt.
+itself always emits both once a tree is rebuilt. Two per-document
+`srd.config.json` knobs (phase 22) tame corpora whose filenames or heading
+structure don't parse cleanly: `chapterTitles` overrides a stem's parsed
+title/number (HMtW's appendices stop inheriting positional chapter numbers),
+and `demoteExtraH1` cascades every heading after a file's first down one
+level, so a multi-H1 file keeps the book's real tree instead of flattening
+into siblings.
+
+**Page granularity** (`referencePageDepth`, a game-module slot — phase 22).
+The tree stays one-section-per-heading; *display* granularity is the game's
+choice. Headings at or above the declared depth get pages; deeper sections
+render inline on their nearest page ancestor as real headings carrying the
+section id as an anchor, and an inline section's URL redirects to
+`parent#anchor` — so search hits, wikilinks, and old deep links survive.
+Absent, every heading is a page (stonetop). HMtW sets 3: talents and
+statblock fragments read as one page.
+
+**Pinned search terms** (phase 22). A pack may ship a hand-authored
+`content/<game>/index-terms.json` (the book's own index vocabulary);
+`build:search` resolves every target through the link index — failing the
+build on dead anchors — and emits `pinned-terms.json` / `pinned-terms-gm.json`
+split by target visibility, because the term labels are themselves the
+spoiler. Matching terms pin above the fuzzy search hits; the GM artifact
+loads only on spoiler opt-in. No source file → no artifact → no UI.
 
 **`kind`.** A heading can come from an Obsidian callout instead of a plain
 `#…` line — `> [!move] ## **CLASH**` opens a section exactly like a heading
