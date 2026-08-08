@@ -140,3 +140,17 @@ book's fonts**. That makes the substitute path the majority experience by a
 wider margin than the "who owns the creator pack" question suggests, and it is
 another reason to check `data-fonts='ofl'` before trusting a size: on Safari it
 is the only thing anyone sees.
+
+### Caslon Antique is out (2026-08-08)
+
+Text set in Caslon Antique **cannot be selected in Firefox** (153, macOS).
+Confirmed by elimination on the same page: with `data-fonts='ofl'` selection
+works, and the epigraph's identical `local()` + `size-adjust` wrapper is
+unaffected — so it's the font file, not the mechanism. It's an old freeware
+face, most likely with a broken `cmap`.
+
+Scored honestly it was: invisible in Safari, unselectable in Firefox, correct
+only in Chromium. So the h4/h5/h6 subhead role uses Libre Caslon Text
+everywhere, its `size-adjust` wrapper is gone, and readers keep being able to
+select a rule's label. Being unable to copy a heading is a worse bug than not
+seeing the authentic face.

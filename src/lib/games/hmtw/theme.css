@@ -42,40 +42,35 @@
 @import '@fontsource/libre-caslon-text/700.css';
 
 /*
- * Metric normalisation for the two creator-pack faces whose x-height is
- * nothing like their OFL substitute's. Every size in this file was tuned
- * against the substitutes — which is what almost every reader sees — so on a
- * machine that *has* the authentic fonts the same numbers rendered wrong:
- *
- *   role      authentic         x-height   substitute            x-height
- *   h4        Caslon Antique      35.9     Libre Caslon Text       46.0
- *   epigraph  Dark Roast          17.6     Almendra Display        44.9
- *
- * (measured in-browser at 100px, 2026-08-08.) Caslon Antique made subheads
- * read *smaller* than the body they head; Dark Roast, at barely a third of
- * Almendra's x-height, turned chapter epigraphs into unreadable hairlines.
+ * Metric normalisation for a creator-pack face whose x-height is nothing like
+ * its OFL substitute's. Every size in this file was tuned against the
+ * substitutes — which is what almost every reader sees — so on a machine that
+ * *has* the authentic fonts the same numbers rendered wrong: Dark Roast's
+ * x-height is 17.6 against Almendra Display's 44.9 (measured in-browser at
+ * 100px, 2026-08-08), which turned chapter epigraphs into unreadable hairlines.
  *
  * `size-adjust` is the fix for exactly this: it scales the local face's
- * outlines to the substitute's proportions, so one font-size serves both
- * paths and nothing needs to know which font is in use. These families
- * resolve to nothing at all when the font isn't installed — `local()` with no
- * other src — so the stacks below simply fall through to the substitute.
+ * outlines to the substitute's proportions, so one font-size serves both paths
+ * and nothing needs to know which font is in use. The family resolves to
+ * nothing at all when the font isn't installed — `local()` with no other src —
+ * so the stack simply falls through to the substitute.
+ *
+ * `local()` matches a font's full/PostScript name, NOT its family name. Get it
+ * wrong and the family silently resolves to nothing, the stack falls through,
+ * and `getComputedStyle` still reports the declared family — so it looks fixed
+ * while the authentic face has quietly been dropped. Verify by rendering.
+ *
+ * CASLON ANTIQUE IS DELIBERATELY NOT HERE. The h4 role's authentic face was
+ * normalised the same way (128%, for Libre Caslon's 46.0) and had to go:
+ * **text set in it cannot be selected in Firefox** (153, macOS — confirmed
+ * against the same page with `data-fonts='ofl'`, where selection works, and the
+ * epigraph's identical local()+size-adjust wrapper is unaffected, so it's the
+ * font file and not the mechanism). It's an old freeware face, likely with a
+ * broken cmap. Scoring it honestly: invisible in Safari (which blocks local
+ * font matching), unselectable in Firefox, correct only in Chromium — so the
+ * subhead role now uses Libre Caslon Text everywhere, and readers keep being
+ * able to select a rule's label.
  */
-/* `local()` matches a font's full/PostScript name, NOT its family name — which
-   is why the bold name has to lead here: probed on a machine with the creator
-   pack, `local('Caslon Antique')` matches nothing while
-   `local('Caslon Antique Bold')` resolves. Get this wrong and the family
-   silently resolves to nothing, the stack falls through to the substitute, and
-   `getComputedStyle` still reports the declared family — so it looks fixed
-   while the authentic face has quietly been dropped. */
-@font-face {
-	font-family: 'HMTW Subhead';
-	src:
-		local('Caslon Antique Bold'), local('CaslonAntique-Bold'), local('Caslon Antique'),
-		local('CaslonAntique');
-	font-weight: 700;
-	size-adjust: 128%;
-}
 @font-face {
 	font-family: 'HMTW Epigraph';
 	src: local('Dark Roast'), local('DarkRoast');
@@ -166,12 +161,12 @@ html[data-game='hmtw'] .reference-body h3 {
 	line-height: 1.22;
 	color: var(--sb-text);
 }
-/* Minor subheads (stat labels: Notes / Sensations / Lesser dooms…). The
-   size-adjusted 'HMTW Subhead' leads the stack so Caslon Antique arrives at
-   Libre Caslon's proportions; an explicit line-height gives the taller
-   authentic ascenders headroom rather than inheriting the prose leading. */
+/* Minor subheads (stat labels: Notes / Sensations / Lesser dooms…). No local
+   face here on purpose — see the Caslon Antique note at the top of this file.
+   The explicit line-height stays: it's what keeps the heading off the prose
+   above it rather than inheriting body leading. */
 html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
-	font-family: 'HMTW Subhead', 'Libre Caslon Text', Georgia, serif;
+	font-family: 'Libre Caslon Text', Georgia, serif;
 	font-weight: 700;
 	font-size: 1.02em;
 	line-height: 1.4;
