@@ -32,6 +32,11 @@ Config keys (see tools/rules.stonetop.json):
                     line, "markdown": block to insert after it}] — pack-authored
                     additions (Splatbook Notes) that must NOT live in the shared
                     vault, which other importers also read
+  replaceImages     vault image src -> literal text substituted for the tag.
+                    For glyphs that carry meaning rather than decorate: the
+                    book's suit marks are sometimes the ONLY label on a line, so
+                    stripping them as art destroys the rule. The character is
+                    not the artwork, so no license question arises
   keepImages        vault image src -> served URL. Art we own (hand-authored
                     diagrams): the <img>/markdown reference survives with its
                     src rewritten instead of being stripped
@@ -79,6 +84,7 @@ CONFIG_KEYS = {
     "linkRewrites",
     "insertions",
     "keepImages",
+    "replaceImages",
     "demoteHeadingsToBold",
     "preserveLineBreaks",
     "hoistCallouts",
@@ -408,12 +414,30 @@ def transform(
     #    is stripped in every syntax (bare or inside callout quotes)
     keep_images: dict[str, str] = cfg.get("keepImages", {})
     kept_urls = tuple(keep_images.values())
+    # Glyphs that CARRY MEANING rather than decorate. The book's four suit marks
+    # are often the only label on a line — `- <img …suit-swords.svg>: First belt
+    # slot` — so stripping them as art turns a rule into `- : First belt slot`.
+    # We can't redistribute the book's SVGs, but the character is not the
+    # artwork: substituting the standard playing-card equivalent keeps the line
+    # readable, scales with the type, and takes the ink colour in both themes.
+    replace_images: dict[str, str] = cfg.get("replaceImages", {})
+
+    def substitute_glyphs(line: str) -> str:
+        for src, replacement in replace_images.items():
+            if src not in line:
+                continue
+            line = re.sub(
+                r"<img\b[^>]*src=\"" + re.escape(src) + r"\"[^>]*>", replacement, line
+            )
+            line = re.sub(r"!\[[^\]]*\]\(" + re.escape(src) + r"\)", replacement, line)
+        return line
 
     def strip_img_tag(m: re.Match) -> str:
         return m.group(0) if kept_urls and any(u in m.group(0) for u in kept_urls) else ""
 
     lines: list[str] = []
     for line in lines_in:
+        line = substitute_glyphs(line)
         for src, url in keep_images.items():
             if src in line:
                 line = line.replace(f'src="{src}"', f'src="{url}"').replace(f"]({src})", f"]({url})")

@@ -1,7 +1,15 @@
 {
 	"$comment": "Per-game source config for build_rules.py — the His Majesty the Worm import (phase 22). Vault: ~/Documents/RPG Vaults/His Majesty the Worm (read-only reference vault; the pipeline copies out of it, never writes into it). Exclusions: the Contents/Rules Search notes are reader chrome with their own in-app equivalents; Appendix E is truncated at the Tutorial Dungeon per Josh McCrowell's ask (the Tomb of Golden Ghosts is not to be reposted) with a pointer to the official Designing Dungeons course; the one link into the cut range retargets to the surviving Meatgrinder section.",
-	"sourceDirs": ["His Majesty the Worm"],
-	"excludeDirNames": ["images", "_search", "Josh's Backup Text", ".obsidian", ".trash"],
+	"sourceDirs": [
+		"His Majesty the Worm"
+	],
+	"excludeDirNames": [
+		"images",
+		"_search",
+		"Josh's Backup Text",
+		".obsidian",
+		".trash"
+	],
 	"excludeFiles": [
 		"His Majesty the Worm/His Majesty the Worm — Contents.md",
 		"His Majesty the Worm/Rules Search.md"
@@ -12,8 +20,12 @@
 			"replacement": "> [!info] The Tutorial Dungeon\n> The Tomb of Golden Ghosts starter dungeon is not included here at the author's request. For a guided course on building it — and on designing dungeons generally — see the official [Designing Dungeons course](https://dungeons.hismajestytheworm.games)."
 		}
 	},
-	"stripCallouts": ["hmw-nav"],
-	"stripCalloutTitles": ["Splatbook Note"],
+	"stripCallouts": [
+		"hmw-nav"
+	],
+	"stripCalloutTitles": [
+		"Splatbook Note"
+	],
 	"insertions": {
 		"His Majesty the Worm/07 - Chapter 7 - The Challenge Phase.md": [
 			{
@@ -33,15 +45,26 @@
 		"images/affliction-clock-2.svg": "/content-packs/hmtw/art/affliction-clock-2.svg",
 		"images/disposition-wheel.svg": "/content-packs/hmtw/art/disposition-wheel.svg"
 	},
-	"demoteHeadingsToBold": ["Component:"],
-	"hoistCallouts": ["sidebar"],
+	"$replaceImages": "The book's suit marks are load-bearing, not decoration: in Ch10's belt slots and App D's district lines the glyph is the ONLY label, so stripping it as art leaves `- : First belt slot`. We can't redistribute the book's SVGs, but a character isn't artwork — these are the standard playing-card equivalents of the tarot suits (swords/spades, pentacles/diamonds, cups/hearts, wands/clubs), which scale with the type and take the ink colour in both themes. 24 references across 4 chapters. If you'd rather have the book's own shapes, hand-draw four SVGs and move them to keepImages, exactly as the affliction clocks are handled.",
+	"replaceImages": {
+		"images/suit-swords.svg": "♠",
+		"images/suit-pentacles.svg": "♦",
+		"images/suit-cups.svg": "♥",
+		"images/suit-wands.svg": "♣"
+	},
+	"demoteHeadingsToBold": [
+		"Component:"
+	],
+	"hoistCallouts": [
+		"sidebar"
+	],
 	"hoistMaxDepth": 3,
 	"$hoistPin": "Audited every shipping sidebar against where it lands, 2026-08-08. Only the wrong ones are listed; the rest sit correctly under the section they trail. Three groups: (a) it belongs to the entry it PRECEDES, because the book prints it in the margin at the foot of the previous column — the imp/nymph desire tables, 'Why tarot?', and 'Learning the Challenge Phase' (which otherwise pins to '5. End the round', the last step of the very sequence it introduces); (b) it belongs to an ANCESTOR of the heading it fell on, because it discusses a whole section while trailing one item of it — 'Effect names' and 'Not just for Challenges' land on the single effect 'Trip', 'Sorcery' on the talent 'Dwimmercraft', 'Negative bonds' on the single bond 'Ward', 'Lyric incantations' on the Lich's 'Body', 'Initiative strategies' on 'Step 3', 'The pace of travel' on the Camp Phase's last step; (c) 'Anything that's not nailed down' is general advice on borrowing material that fell on '21. Well', an arbitrary dungeon seed. Left alone as genuinely ambiguous, your call: 'The gates' (about the outer ring, sits between the central power and the core districts — neither owns it), 'Morale' (on the Wands action 'Banter', which may well be right), 'A reminder' in ch5 (about attribute priority generally, sits between two Paths).",
 	"hoistPin": {
 		"What do these imps want?": "Imp",
 		"What do these nymphs want?": "Nymph",
 		"Why tarot?": "Tarot",
-		"Learning the Challenge Phase": "0. Set the scene",
+		"Learning the Challenge Phase": "The Flow of the Challenge Phase",
 		"Fastball specials": "Cups actions",
 		"Not just for Challenges": "Effects",
 		"Effect names": "Effects",
@@ -51,7 +74,9 @@
 		"Lyric incantations": "Lich, The Yellow King",
 		"Initiative strategies": "Example Challenge Phase",
 		"The pace of travel": "The Flow of the Camp Phase",
-		"Anything that’s not nailed down": "Dungeon Seeds"
+		"Anything that’s not nailed down": "Dungeon Seeds",
+		"A reminder": "Chapter 5: The Four Paths",
+		"The gates": "4. Constants"
 	},
 	"preserveLineBreaks": [
 		"His Majesty the Worm/16 - Index.md",

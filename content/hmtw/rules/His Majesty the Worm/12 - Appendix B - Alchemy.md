@@ -225,13 +225,13 @@ Each lore bid is a single question. That is, each lore bid reveals a single way 
 
 **Oil (O):** A thick patch of huge mushrooms sprout wherever the oil is poured. The top card of the minor arcana discard pile determines the type of mushrooms:
 
-- : giant inky cap (edible, poisonous with alcohol)
+- ♠: giant inky cap (edible, poisonous with alcohol)
 
-- : giant destroying angel (very poisonous)
+- ♦: giant destroying angel (very poisonous)
 
-- : giant hen of the woods (edible)
+- ♥: giant hen of the woods (edible)
 
-- : giant shrieker (magical, screams like an air raid siren)
+- ♣: giant shrieker (magical, screams like an air raid siren)
 
 ### Griffin
 

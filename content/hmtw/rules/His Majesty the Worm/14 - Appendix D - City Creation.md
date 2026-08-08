@@ -35,6 +35,38 @@ The elements of randomness in these rules allow you to create different experien
 > **The GM lays down random minor arcana cards to create a City layout.** At the end of this procedure, your City will have a **ruler** and 4– to 20 **unique districts.** The GM should make a simple map of the City to list the different districts and **special actions** available. The basic procedure is as follows:
 
 ## 1. The central power
+
+**Draw** and place a single card. This card represents the power that currently rules the City. Unless it’s a face card, only the suit matters for this draw.
+
+- ♠: The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
+
+- ♦: The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
+
+- ♥: The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
+
+- ♣: The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
+
+- If a **face card** is in the central position, the institution or person that district represents is in control of the City (per the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]]). GMs should interpret this however best makes sense to them.
+
+- For example, if the Court of **Swords** was the ruler of the City, whatever gladiator is undefeated is currently the king of the City. Would-be kings fight and die in the sands of the Court of Swords.
+
+## 2. The core districts
+
+Place four cards around the central card—one above, one below, one to the right, one to the left. These represent your City’s oldest districts. For each card, reference the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]] (or write your own!).
+
+## 3. The sprawl
+
+Lay out additional district cards around the core districts to represent the City’s sprawl.
+
+- If the core district is Swords, do not lay out an additional card.
+
+- If the core district is **Pentacles**, lay out 1 **additional card** next to the core district.
+
+- If the core district is **Cups**, lay out 2 **additional cards** next to the core district.
+
+- If the core district is **Wands**, lay out 3 **additional cards** next to the core district.
+
+## 4. Constants
 > [!sidebar] The gates
 >
 > Most districts on the outer ring of the City host a gate. Some are wide and magnificent, monuments of ancient and glorious wars; others are barely side doors, only wide enough for an ox to step through.
@@ -68,38 +100,6 @@ The elements of randomness in these rules allow you to create different experien
 > XIII. The Sun’s Door
 >
 > XIV. The Cursed Gate
-
-**Draw** and place a single card. This card represents the power that currently rules the City. Unless it’s a face card, only the suit matters for this draw.
-
-- : The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
-
-- : The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
-
-- : The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
-
-- : The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
-
-- If a **face card** is in the central position, the institution or person that district represents is in control of the City (per the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]]). GMs should interpret this however best makes sense to them.
-
-- For example, if the Court of **Swords** was the ruler of the City, whatever gladiator is undefeated is currently the king of the City. Would-be kings fight and die in the sands of the Court of Swords.
-
-## 2. The core districts
-
-Place four cards around the central card—one above, one below, one to the right, one to the left. These represent your City’s oldest districts. For each card, reference the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]] (or write your own!).
-
-## 3. The sprawl
-
-Lay out additional district cards around the core districts to represent the City’s sprawl.
-
-- If the core district is Swords, do not lay out an additional card.
-
-- If the core district is **Pentacles**, lay out 1 **additional card** next to the core district.
-
-- If the core district is **Cups**, lay out 2 **additional cards** next to the core district.
-
-- If the core district is **Wands**, lay out 3 **additional cards** next to the core district.
-
-## 4. Constants
 
 The City is old and mercurial, but a few of its districts are constants. These districts do not have special City Actions. **Place them on your City map wherever you wish**.
 
@@ -737,10 +737,10 @@ _His voice trails away as you cross the plaza and enter a small bakery._
 
 | Suit | Step 1 | Step 2 | Step 3 | Step 4 |
 |---|---|---|---|---|
-|  Swords | When the Constellation of the Beast is in the First House... | ...hunger will be loosed and given leave to come among you. | The moon will die, unless... | ...you hear my command: “Ascend the stairs of Heaven and devour whatever you find there.” |
-|  Pentacles | As grey turns to red... | ...the Last Queen will blind herself with the brooch of her cloak. | A new river will rise from your tears once... | ...the seven crowns are stolen from the severed heads of the seven dragons. |
-|  Cups | After the fall of the eldest... | ...I open my second mouth and begin to sing. | A new star is kindled if... | ...the Blood Blasphemy is sung once again. |
-|  Wands | When the sun rises in the west and sets in the east... | ...the Earth will groan with the pains of childbirth. | His Majesty the Worm arises when... | ...you wind the Clarion of Altheia. |
+| ♠ Swords | When the Constellation of the Beast is in the First House... | ...hunger will be loosed and given leave to come among you. | The moon will die, unless... | ...you hear my command: “Ascend the stairs of Heaven and devour whatever you find there.” |
+| ♦ Pentacles | As grey turns to red... | ...the Last Queen will blind herself with the brooch of her cloak. | A new river will rise from your tears once... | ...the seven crowns are stolen from the severed heads of the seven dragons. |
+| ♥ Cups | After the fall of the eldest... | ...I open my second mouth and begin to sing. | A new star is kindled if... | ...the Blood Blasphemy is sung once again. |
+| ♣ Wands | When the sun rises in the west and sets in the east... | ...the Earth will groan with the pains of childbirth. | His Majesty the Worm arises when... | ...you wind the Clarion of Altheia. |
 
 ### VIII of Cups: The Philosophers’ Forum
 

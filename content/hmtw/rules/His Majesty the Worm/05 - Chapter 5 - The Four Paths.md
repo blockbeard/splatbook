@@ -1,4 +1,9 @@
 # Chapter 5: The Four Paths
+> [!sidebar] A reminder
+>
+> During adventurer creation, you will prioritize your attributes—Swords, Pentacles, Cups, or Wands—from 1-4. Whichever attribute is rated 4, the highest rating possible, becomes your path.
+>
+> Your path determines the initial talents that you have access to. You will begin the game with one of your path’s talents mastered and the rest of your path’s talents in training. More information on learning, training, and mastering [[02 - Chapter 2 - The Adventurer#11. Talents|talents]] can be found in chapter 2.
 
 > [!epigraph]
 > “Battle not with monsters, lest ye become a monster, And if you gaze into the abyss, the abyss gazes also into you.”
@@ -106,11 +111,6 @@ When you Attack during Challenges, you may also move one zone ([[07 - Chapter 7 
 If you are wielding a melee weapon with both hands during a Challenge, you may Attack as a minor action with _either_ a Pentacles or a Swords card.
 
 ### War Stories
-> [!sidebar] A reminder
->
-> During adventurer creation, you will prioritize your attributes—Swords, Pentacles, Cups, or Wands—from 1-4. Whichever attribute is rated 4, the highest rating possible, becomes your path.
->
-> Your path determines the initial talents that you have access to. You will begin the game with one of your path’s talents mastered and the rest of your path’s talents in training. More information on learning, training, and mastering [[02 - Chapter 2 - The Adventurer#11. Talents|talents]] can be found in chapter 2.
 
 As a Camp Action, tell your guild the story of some of your past adventures. Maybe this was an adventure you've played out in-character, or maybe one in your backstory. You—and everyone who listens and role-plays with you a little— **gets to choose one of the following benefits:**
 

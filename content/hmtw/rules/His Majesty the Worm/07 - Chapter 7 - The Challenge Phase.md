@@ -14,15 +14,6 @@ Shoulder to shoulder, the crusaders beat and bashed the Crypt Titan’s arms fro
 Of the two-hundred to die in the battle, fifty rose again from (seemingly) deadly wounds. All were amazed, and it was declared a miracle. And yet, the other fallen were no less restless. Those dead who were utterly desiccated by the Titan’s jaws became howling specters. Those who were merely crushed by the Titan’s bulk struggled up as zombies. And thus was the Crusade of the Ossuary declared victorious.
 
 # The Flow of the Challenge Phase
-
-> [!lede]
-> During the Crawl Phase, players and GMs exchange questions and answers. During Challenges, things become much more bounded. A Challenge narrows the lens of the adventure into every blow, every maneuver, every stunt that the players attempt.
-
-In this phase, everybody at the table draws cards that represent their opportunities during combat. The players play these cards to choose specific actions—attacks, movement, pulling something from their pack, etc. The GM controls the hostile characters, be they monsters or mortals. Both sides pursue their goals while exchanging blows. When one side retreats, surrenders, or lies defeated, the Challenge Phase transitions back to the Crawl.
-
-The Challenge Phase uses the following procedure. Play cycles through steps 1-5 until the Challenge is resolved. The rules for players and GMs differ slightly; GM-specific rules start see [[07 - Chapter 7 - The Challenge Phase#GMing the Challenge|GMing the Challenge]].
-
-### 0. Set the scene
 > [!sidebar] Learning the Challenge Phase
 >
 > The Challenge Phase rules are designed to be fun—players make tons of small decisions: which cards to use, how to collaborate to get the maximum effect, how to take damage. The rules are also designed to be deadly—things can quickly go from bad to worse as characters Notch armor, Wound talents, and realize they’ve gotten in over their heads.
@@ -32,6 +23,15 @@ The Challenge Phase uses the following procedure. Play cycles through steps 1-5 
 > To learn any game, take it slow and go through each step slowly. After two or three Challenges, you’ll get the sense of the flow and find there’s a lot of interesting tactics embedded in the rules. Do you use a low **Initiative** to go first so you can see what the GM’s monsters **Initiative** is for the rest of the round? Do you bluff with a low Riposte? Do you put down a Riposte first, then draw your sword to make your counterattack more deadly?
 >
 > Players who put in the due diligence to learn the tactics underlying the Challenge Phase will have a lot of fun.
+
+> [!lede]
+> During the Crawl Phase, players and GMs exchange questions and answers. During Challenges, things become much more bounded. A Challenge narrows the lens of the adventure into every blow, every maneuver, every stunt that the players attempt.
+
+In this phase, everybody at the table draws cards that represent their opportunities during combat. The players play these cards to choose specific actions—attacks, movement, pulling something from their pack, etc. The GM controls the hostile characters, be they monsters or mortals. Both sides pursue their goals while exchanging blows. When one side retreats, surrenders, or lies defeated, the Challenge Phase transitions back to the Crawl.
+
+The Challenge Phase uses the following procedure. Play cycles through steps 1-5 until the Challenge is resolved. The rules for players and GMs differ slightly; GM-specific rules start see [[07 - Chapter 7 - The Challenge Phase#GMing the Challenge|GMing the Challenge]].
+
+### 0. Set the scene
 
 As the Challenge begins, the GM frames the scene. They describe the different zones, note the **combatants** and their **positions**, and articulate if any scenery and hazards have **special rules**.
 
@@ -273,7 +273,7 @@ Each round, the GM counts up from lowest card (I) through the highest card (king
 
 To perform an action, play one of your Challenge cards. There are a range of actions you can perform during Challenges, each of which is tied to one of the four suits. The rules for [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]] are detailed below.
 
-|  Swords |  Pentacles |  Cups |  Wands |
+| ♠ Swords | ♦ Pentacles | ♥ Cups | ♣ Wands |
 |---|---|---|---|
 | Attack | Avoid | Aid Another | Banter |
 | Riposte | Dash | Command | Speak Incantation |
@@ -509,13 +509,13 @@ Use an item that you’re holding.
 > During Challenges, the Banter action is used to affect an enemy’s **Disposition** ([[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]]). **Your Banter value must exceed an enemy’s Morale to successfully change their Disposition.** Unlike Initiative, Morale isn’t determined by cards, but by the situation at hand as determined by the GM.
 >
 > When Banter is used, the GM makes an assessment of the enemy’s current confidence to determine their Morale. As the battle progresses, the GM should reassess their characters’ Morale score.
-
-| Situation | Morale |
-|---|:---:|
-| **Perfectly confident:** Overwhelming forces, superior positioning, secret escape route | 20 |
-| **Neutral:** Neither in an advantageous or disadvantageous position | 18 |
-| **Wary:** Bloodied, wasted resources, no obvious profit in fighting | 10 |
-| **Panicking:** Forces annihilated, backed into a corner, grievously injured | 8 |
+>
+> | Situation | Morale |
+> |---|:---:|
+> | **Perfectly confident:** Overwhelming forces, superior positioning, secret escape route | 20 |
+> | **Neutral:** Neither in an advantageous or disadvantageous position | 18 |
+> | **Wary:** Bloodied, wasted resources, no obvious profit in fighting | 10 |
+> | **Panicking:** Forces annihilated, backed into a corner, grievously injured | 8 |
 
 Banter to taunt, intimidate, or frighten your opponent to try and make them run away or surrender.
 
