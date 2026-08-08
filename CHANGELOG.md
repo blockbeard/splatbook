@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **HMtW reimport** — the vault's own reading pass caught two things the site
+  was showing wrong: the Underworld layout steps in Appendix E were numbered
+  from 1 where the book has 2–7 (the export had wrapped each step mid-sentence,
+  and rejoining them restored the count), and two words were spuriously bolded
+  in Chapter 4. Search indexes rebuilt to match.
+
 ## [2.3.2] - 2026-08-07
 
 **The reading pass** — Chris read the book in its own app and the app
