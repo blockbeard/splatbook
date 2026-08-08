@@ -48,12 +48,14 @@ Config keys (see tools/rules.stonetop.json):
                     sidebar reaches the heading of the page it belongs to
                     instead of a label heading rendered inline on that page.
                     Set it to the game's referencePageDepth
-  hoistForwardTitles callout titles that belong to the section AFTER them, not
-                    the one they trail — a margin sidebar printed at the foot
-                    of a column often introduces the entry overleaf. Undecidable
-                    from position (compare "What do these imps want?" ahead of
-                    `## Imp` with "Killing the Vampire" ahead of `## Wraith`),
-                    so each one is declared here
+  hoistPin          sidebar title -> exact heading text: the section that owns
+                    this sidebar, overriding the nearest-preceding-heading
+                    hoist. Position can't express ownership — the two
+                    neighbours are often both wrong, and sometimes the owner is
+                    an ANCESTOR of either ("Effect names" trails one effect but
+                    belongs to the whole Effects section). An unresolvable
+                    target is a build error, so a vault heading rename can't
+                    silently un-pin a sidebar
 
 Re-run whenever the vault changes; never hand-edit the output.
 """
@@ -81,7 +83,7 @@ CONFIG_KEYS = {
     "preserveLineBreaks",
     "hoistCallouts",
     "hoistMaxDepth",
-    "hoistForwardTitles",
+    "hoistPin",
 }
 
 
@@ -90,7 +92,10 @@ def load_config(path: Path) -> dict:
         cfg = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as e:
         sys.exit(f"config {path}: {e}")
-    unknown = set(cfg) - CONFIG_KEYS
+    # `$`-prefixed keys are notes, not settings — so a knob can carry its
+    # reasoning next to itself ($hoistPin beside hoistPin) rather than in one
+    # ever-growing $comment.
+    unknown = {k for k in cfg if not k.startswith("$")} - CONFIG_KEYS
     if unknown:
         sys.exit(f"config {path}: unknown keys {sorted(unknown)}")
     if not cfg.get("sourceDirs"):
@@ -211,11 +216,11 @@ def read_source(path: Path, vault: Path, cfg: dict) -> str:
 
     hoist = {t.lower() for t in cfg.get("hoistCallouts", [])}
     if hoist:
-        forward = {t.lower() for t in cfg.get("hoistForwardTitles", [])}
-        lines = text.splitlines()
-        if forward:
-            lines = forward_callout_blocks(lines, hoist, forward)
-        text = "\n".join(hoist_callout_blocks(lines, hoist, cfg.get("hoistMaxDepth"))) + "\n"
+        lines = hoist_callout_blocks(text.splitlines(), hoist, cfg.get("hoistMaxDepth"))
+        pins = {k.lower(): v for k, v in (cfg.get("hoistPin") or {}).items()}
+        if pins:
+            lines = pin_callout_blocks(lines, hoist, pins, rel)
+        text = "\n".join(lines) + "\n"
 
     return text
 
@@ -228,32 +233,54 @@ def callout_block_end(lines: list[str], start: int) -> int:
     return j
 
 
-def forward_callout_blocks(
-    lines: list[str], types: set[str], titles: set[str]
+def pin_callout_blocks(
+    lines: list[str], types: set[str], pins: dict[str, str], rel: str
 ) -> list[str]:
-    """Move the named callout blocks DOWN past the heading they sit in front of,
-    so the hoist pass then anchors them to that section rather than the one
-    they trail. A print margin sidebar can belong to either neighbour and the
-    flow position doesn't say which, so membership is declared, never guessed."""
+    """Move named callout blocks to sit under a NAMED heading, overriding the
+    nearest-preceding-heading hoist.
+
+    A print margin sidebar's position in the flow doesn't say which section owns
+    it, and the two neighbours are often both wrong. "What do these imps want?"
+    precedes `## Imp` and belongs to it; "Killing the Vampire" precedes
+    `## Wraith` and belongs to the Vampire above it; "Effect names" trails one
+    effect but belongs to the whole Effects section, an ANCESTOR of the heading
+    it would otherwise land on. Position can express none of that, so ownership
+    is declared per sidebar and the tool just obeys.
+
+    An unresolvable pin is an error, never a silent no-op: a heading rename in
+    the vault must not quietly leave the sidebar wherever it fell.
+    """
     out: list[str] = []
+    pending: dict[str, list[str]] = {}
     i = 0
     while i < len(lines):
         m = CALLOUT_OPEN_RE.match(lines[i])
         title = lines[i][m.end() :].strip().lower() if m else ""
-        if m and m.group(1).lower() in types and title in titles:
+        if m and m.group(1).lower() in types and title in pins:
             j = callout_block_end(lines, i)
-            k = j
-            while k < len(lines) and not lines[k].strip():
-                k += 1
-            if k < len(lines) and heading_level(lines[k]) is not None:
-                out.extend(lines[j:k])  # the blanks the block sat among
-                out.append(lines[k])
-                out.extend(lines[i:j])
-                i = k + 1
-                continue
+            pending.setdefault(pins[title], []).extend(lines[i:j] + [""])
+            if j < len(lines) and not lines[j].strip():
+                j += 1  # swallow the blank the block left behind
+            i = j
+            continue
         out.append(lines[i])
         i += 1
-    return out
+
+    if not pending:
+        return out
+
+    placed: list[str] = []
+    for line in out:
+        placed.append(line)
+        heading = parse_heading(line)
+        if heading is not None and heading in pending:
+            placed.extend(pending.pop(heading))
+    if pending:
+        sys.exit(
+            f"{rel}: hoistPin target heading(s) not found: {sorted(pending)} — "
+            "the vault heading was renamed or removed; update tools/rules.*.json"
+        )
+    return placed
 
 
 def hoist_callout_blocks(
