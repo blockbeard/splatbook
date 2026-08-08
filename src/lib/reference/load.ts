@@ -61,12 +61,43 @@ async function getJson<T>(fetchFn: Fetcher, url: string): Promise<T> {
 	return (await res.json()) as T;
 }
 
-/** Fetch every rules document tree listed in a game's pack manifest. */
-export async function fetchTrees(gameId: string, fetchFn: Fetcher): Promise<DocumentTree[]> {
+const treesCache = new Map<string, Promise<DocumentTree[]>>();
+
+/** Drop the memoised document trees. Test-only — the cache is module state. */
+export function clearTreesCache(): void {
+	treesCache.clear();
+}
+
+/**
+ * Fetch every rules document tree listed in a game's pack manifest.
+ *
+ * MEMOISED, and not as an optimisation: every section page render calls this,
+ * and the trees are large — 1.2 MB of JSON for HMtW, 3.08 MB for Stonetop's two
+ * books. Re-parsing that per request is enough work to trip Cloudflare's
+ * per-request limits, which surfaced as intermittent 1102 / HTTP 503 on
+ * production section pages (2026-08-08) while every preview deployment looked
+ * fine. Pack content is immutable for the life of a deployment, so one parse per
+ * isolate is all that's needed. A failed fetch isn't cached.
+ *
+ * This is mitigation, not the cure: a cold isolate still pays the full parse to
+ * render one section. The fix is to stop shipping whole-book trees to a request
+ * that needs one section's body plus a nav skeleton — see docs/App
+ * Implementation Plan.md, phase 26.
+ */
+export function fetchTrees(gameId: string, fetchFn: Fetcher): Promise<DocumentTree[]> {
+	const cached = treesCache.get(gameId);
+	if (cached) return cached;
 	const root = `${base}/content-packs/${gameId}`;
-	const manifest = await getJson<PackManifest>(fetchFn, `${root}/manifest.json`);
-	const ruleFiles = manifest.files.filter((f) => f.startsWith('rules/')).sort();
-	return Promise.all(ruleFiles.map((f) => getJson<DocumentTree>(fetchFn, `${root}/${f}`)));
+	const promise = (async () => {
+		const manifest = await getJson<PackManifest>(fetchFn, `${root}/manifest.json`);
+		const ruleFiles = manifest.files.filter((f) => f.startsWith('rules/')).sort();
+		return Promise.all(ruleFiles.map((f) => getJson<DocumentTree>(fetchFn, `${root}/${f}`)));
+	})().catch((err) => {
+		treesCache.delete(gameId);
+		throw err;
+	});
+	treesCache.set(gameId, promise);
+	return promise;
 }
 
 const linkIndexCache = new Map<string, Promise<LinkIndex>>();

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { documentTreeSchema, type DocumentTree } from './document-tree';
 import {
 	tocOf,
@@ -7,7 +7,9 @@ import {
 	childrenOf,
 	childTreeOf,
 	siblingsInOrder,
-	isVisible
+	isVisible,
+	fetchTrees,
+	clearTreesCache
 } from './load';
 
 const tree: DocumentTree = documentTreeSchema.parse({
@@ -165,5 +167,42 @@ describe('visibility gate', () => {
 		expect(open.sections).toHaveLength(1);
 		const [playerDoc] = tocOf([tree], (s) => isVisible(s));
 		expect(playerDoc.sections).toHaveLength(5);
+	});
+});
+
+describe('fetchTrees memoisation', () => {
+	beforeEach(clearTreesCache);
+
+	const manifest = { id: 'hmtw', files: ['rules/book.json', 'landing.json'] };
+	const book = { id: 'book', title: 'Book', sections: [] };
+
+	function counting() {
+		let calls = 0;
+		const fetchFn = async (url: string) => {
+			calls++;
+			const body = url.endsWith('manifest.json') ? manifest : book;
+			return new Response(JSON.stringify(body), { status: 200 });
+		};
+		return { fetchFn, calls: () => calls };
+	}
+
+	it('parses a game’s trees once per isolate, not once per request', async () => {
+		// Not a nicety: every section render calls this from both the layout and
+		// the page, and the trees run to megabytes. Re-parsing per request tripped
+		// Cloudflare's per-request limits (intermittent 503s, 2026-08-08).
+		const { fetchFn, calls } = counting();
+		const first = await fetchTrees('hmtw', fetchFn);
+		const second = await fetchTrees('hmtw', fetchFn);
+		expect(second).toBe(first);
+		expect(calls()).toBe(2); // manifest + the one rules file, fetched once
+		// Only `rules/` files are trees; landing.json is not fetched here.
+		expect(first).toHaveLength(1);
+	});
+
+	it('does not cache a failure, so a later attempt can still succeed', async () => {
+		const boom = async () => new Response('nope', { status: 500 });
+		await expect(fetchTrees('hmtw', boom)).rejects.toThrow(/failed to load/);
+		const { fetchFn } = counting();
+		expect(await fetchTrees('hmtw', fetchFn)).toHaveLength(1);
 	});
 });
