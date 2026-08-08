@@ -327,17 +327,16 @@ Here is one example:
 
 > [!quote]
 > When a child is born, the midwife shall keep it for seven days.
-> 
-On the eighth, she shall bring it and lay it on the doorstep of the household that carried and bore it.
 >
-If the father picks the child up from the doorstep and carries it within, it shall be part of the household, and his responsibility. However, the father may decline to do this.
+> On the eighth, she shall bring it and lay it on the doorstep of the household that carried and bore it.
 >
-If the father declines, the mother may pick up the child from the doorstep and carry it within; it shall be part of the household and, the mother must now take over the role of provider. The father is absolved of this responsibility.
+> If the father picks the child up from the doorstep and carries it within, it shall be part of the household, and his responsibility. However, the father may decline to do this.
 >
-However, the mother may decline to do this.
+> If the father declines, the mother may pick up the child from the doorstep and carry it within; it shall be part of the household and, the mother must now take over the role of provider. The father is absolved of this responsibility.
 >
-If  the mother declines, let none weep.
-The little ghost shall be a brownie, and will serve the household well.
+> However, the mother may decline to do this.
+>
+> If the mother declines, let none weep. The little ghost shall be a brownie, and will serve the household well.
 
 The Book of Proverbs, informally called the Sayings, provides an endless resource of folk wisdom, moral tales, truisms, poetic turns of phrase, euphemisms, and good old-fashioned common sense.
 
@@ -350,6 +349,13 @@ Here is one example:
 They also have the Book of Broken Oaths, a history of the early underfolk and their relationship with the Creator. It tells the story of how the underfolk broke ties with the Creator and suffered terrible hardships for breaking troth, but willingly did so in order that future generations might escape the burden of the oaths. This text is written in Ancient Underfolk, and few understand it. No examples of the text are included here.
 
 ### Underfolk names
+> [!sidebar] Crafting
+>
+> Crafting is important for the underfolk culture in general and their arête triggers specifically.
+>
+> In general, crafting something (especially something that will last for centuries) is a City Action. Underfolk players might be interested in making specialized weapons or armor, or they may want to raise statues or monuments to themselves. Writing a treatise, a biography, or a popular song might also qualify as “crafting something that will last centuries.” These efforts will probably require gold, with larger works needing larger payments. This is intentional. Underfolk are known to be ambitious, and this requirement encourages this behavior in play.
+>
+> The Build and Commission Craft [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] (, 158) are two options. But GMs will need to work with their players to work out expectations for what underfolk players want to accomplish.
 
 #### Underfolk male names:
 
@@ -362,13 +368,6 @@ Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, Lulu, Ma
 Underfolk use their livery—their profession—as their last name.
 
 #### Underfolk livery names:
-> [!sidebar] Crafting
->
-> Crafting is important for the underfolk culture in general and their arête triggers specifically.
->
-> In general, crafting something (especially something that will last for centuries) is a City Action. Underfolk players might be interested in making specialized weapons or armor, or they may want to raise statues or monuments to themselves. Writing a treatise, a biography, or a popular song might also qualify as “crafting something that will last centuries.” These efforts will probably require gold, with larger works needing larger payments. This is intentional. Underfolk are known to be ambitious, and this requirement encourages this behavior in play.
->
-> The Build and Commission Craft [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] (, 158) are two options. But GMs will need to work with their players to work out expectations for what underfolk players want to accomplish.
 
 Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, Runescrivner, Sculptor, Stonemason, Tailor, Tinker, Vintner, Wainwright, Weaver, Whitesmith
 

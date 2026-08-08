@@ -35,6 +35,8 @@
 	},
 	"demoteHeadingsToBold": ["Component:"],
 	"hoistCallouts": ["sidebar"],
+	"hoistMaxDepth": 3,
+	"hoistForwardTitles": ["What do these imps want?", "What do these nymphs want?"],
 	"preserveLineBreaks": [
 		"His Majesty the Worm/16 - Index.md",
 		"His Majesty the Worm/11 - Appendix A - Sorcery.md"

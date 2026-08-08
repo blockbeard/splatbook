@@ -44,6 +44,16 @@ Config keys (see tools/rules.stonetop.json):
                     preceding heading — margin sidebars belong to their
                     section's top, not wherever the prose mentioned them
                     (the app's right rail top-aligns them to the heading)
+  hoistMaxDepth     headings deeper than this don't anchor a hoist, so a
+                    sidebar reaches the heading of the page it belongs to
+                    instead of a label heading rendered inline on that page.
+                    Set it to the game's referencePageDepth
+  hoistForwardTitles callout titles that belong to the section AFTER them, not
+                    the one they trail — a margin sidebar printed at the foot
+                    of a column often introduces the entry overleaf. Undecidable
+                    from position (compare "What do these imps want?" ahead of
+                    `## Imp` with "Killing the Vampire" ahead of `## Wraith`),
+                    so each one is declared here
 
 Re-run whenever the vault changes; never hand-edit the output.
 """
@@ -70,6 +80,8 @@ CONFIG_KEYS = {
     "demoteHeadingsToBold",
     "preserveLineBreaks",
     "hoistCallouts",
+    "hoistMaxDepth",
+    "hoistForwardTitles",
 }
 
 
@@ -107,6 +119,17 @@ EMPTY_ART_SPAN_RE = re.compile(r'<span class="(?:hmw-fig|nav-spacer)">\s*</span>
 LINK_RE = re.compile(r"\[\[([^\]#|]*?)#(\^p\d+[a-z]?)((?:\\)?\|[^\]]*)?\]\]")
 # Target is optional here too -- `[[#CLASH|label]]` is a same-note heading link.
 ANY_LINK_RE = re.compile(r"\[\[([^\]#|]*)(#([^\]|]+))?(\|[^\]]*)?\]\]")
+
+
+def heading_level(line: str) -> int | None:
+    """-> heading depth if `line` opens a section (plain or callout), else None."""
+    m = CALLOUT_HEADING_RE.match(line)
+    if m:
+        return len(m.group(2))
+    m = HEADING_RE.match(line)
+    if m:
+        return len(m.group(1))
+    return None
 
 
 def parse_heading(line: str) -> str | None:
@@ -188,15 +211,62 @@ def read_source(path: Path, vault: Path, cfg: dict) -> str:
 
     hoist = {t.lower() for t in cfg.get("hoistCallouts", [])}
     if hoist:
-        text = "\n".join(hoist_callout_blocks(text.splitlines(), hoist)) + "\n"
+        forward = {t.lower() for t in cfg.get("hoistForwardTitles", [])}
+        lines = text.splitlines()
+        if forward:
+            lines = forward_callout_blocks(lines, hoist, forward)
+        text = "\n".join(hoist_callout_blocks(lines, hoist, cfg.get("hoistMaxDepth"))) + "\n"
 
     return text
 
 
-def hoist_callout_blocks(lines: list[str], types: set[str]) -> list[str]:
+def callout_block_end(lines: list[str], start: int) -> int:
+    """-> index just past the callout block opening at `start`."""
+    j = start + 1
+    while j < len(lines) and lines[j].lstrip().startswith(">"):
+        j += 1
+    return j
+
+
+def forward_callout_blocks(
+    lines: list[str], types: set[str], titles: set[str]
+) -> list[str]:
+    """Move the named callout blocks DOWN past the heading they sit in front of,
+    so the hoist pass then anchors them to that section rather than the one
+    they trail. A print margin sidebar can belong to either neighbour and the
+    flow position doesn't say which, so membership is declared, never guessed."""
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        m = CALLOUT_OPEN_RE.match(lines[i])
+        title = lines[i][m.end() :].strip().lower() if m else ""
+        if m and m.group(1).lower() in types and title in titles:
+            j = callout_block_end(lines, i)
+            k = j
+            while k < len(lines) and not lines[k].strip():
+                k += 1
+            if k < len(lines) and heading_level(lines[k]) is not None:
+                out.extend(lines[j:k])  # the blanks the block sat among
+                out.append(lines[k])
+                out.extend(lines[i:j])
+                i = k + 1
+                continue
+        out.append(lines[i])
+        i += 1
+    return out
+
+
+def hoist_callout_blocks(
+    lines: list[str], types: set[str], max_depth: int | None = None
+) -> list[str]:
     """Move callout blocks of the given types up to sit directly under the
     nearest preceding heading (file top when none). Order among blocks under
-    the same heading is preserved."""
+    the same heading is preserved.
+
+    `max_depth` ignores headings deeper than it when choosing that anchor, so a
+    sidebar hoists to the heading of the page it belongs to rather than to a
+    label heading rendered inline on it. Without it, a sidebar following a
+    `#### Label:` + list pair lands between the label and its own list."""
     out: list[str] = []
     insert_pos = 0
     i = 0
@@ -215,7 +285,8 @@ def hoist_callout_blocks(lines: list[str], types: set[str]) -> list[str]:
             i = j
             continue
         out.append(line)
-        if parse_heading(line) is not None:
+        level = heading_level(line)
+        if level is not None and (max_depth is None or level <= max_depth):
             insert_pos = len(out)
         i += 1
     return out

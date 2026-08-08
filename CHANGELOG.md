@@ -14,6 +14,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   from 1 where the book has 2–7 (the export had wrapped each step mid-sentence,
   and rejoining them restored the count), and two words were spuriously bolded
   in Chapter 4. Search indexes rebuilt to match.
+- **The underfolk Doings quote keeps all seven of its verses.** Only the first
+  line carried the callout marker in the vault, so every paragraph after it fell
+  out of the quote box and read as body prose. Vault-wide sweep found no second
+  instance, and the one broken inline wikilink it turned up — an Appendix E
+  sidebar pointing at a heading that no longer exists, rendering as
+  "(Optional Rules:)" mid-sentence — now reads "(Overland Travel)".
+- **Sidebars stop splitting a heading from its own content**
+  (`hoistMaxDepth`): the hoist anchored to the nearest preceding heading of any
+  depth, so a sidebar following a `#### Label:` + list pair landed between the
+  label and its list — visible on the underfolk names and on five bestiary
+  entries, where a monster's sidebar sat inside its Greater dooms list. Hoists
+  now ignore headings past the game's page depth. Where a margin sidebar
+  belongs to the entry it precedes rather than the one it trails, membership is
+  declared per title (`hoistForwardTitles`) instead of guessed: the imp and
+  nymph desire tables now head their own entries rather than the Harpy's and
+  the Mimic's. Stonetop declares no hoists and regenerates byte-identical.
 
 ## [2.3.2] - 2026-08-07
 

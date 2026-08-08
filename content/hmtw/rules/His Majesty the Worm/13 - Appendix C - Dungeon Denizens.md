@@ -704,6 +704,13 @@ _Then, you see its eye, covered in its nictitating membrane. The awful yellow, u
 - **Overwhelming Bite**. The dragon can play a greater doom card as an Attack action. If successful, the target takes a **Wound** and is _also_ either **Disarmed or Tripped** (GM’s choice).
 
 ## Face Rat
+> [!sidebar] Face Rat Disease (Affliction)
+>
+> **Stage 1:** Your face becomes a featureless mask. You gain disfavor on tests of **Wands** to influence others. Requires 1 charge to cure.
+>
+> **Stage 2:** Skin grows over your nose and mouth. You are Silenced. Requires 1 charge to cure.
+>
+> **Stage 3:** Skin grows over your eyes. You are Blind. Requires 2 charges to cure.
 
 _Beast Minion_
 
@@ -730,13 +737,6 @@ _That’s what a face rat is. It’s a bad rat that steals your face._
 - **Bad Little Hands**. The face rat can Roughhouse to **steal** one of the target’s **belt items**. If successful, it holds it in its bad little hands. It can’t use the item, but might scurry away with it or break it if it's fragile. You have to Disarm or kill the face rat to get the item back.
 
 #### Greater dooms
-> [!sidebar] Face Rat Disease (Affliction)
->
-> **Stage 1:** Your face becomes a featureless mask. You gain disfavor on tests of **Wands** to influence others. Requires 1 charge to cure.
->
-> **Stage 2:** Skin grows over your nose and mouth. You are Silenced. Requires 1 charge to cure.
->
-> **Stage 3:** Skin grows over your eyes. You are Blind. Requires 2 charges to cure.
 
 - **Infectious Disease**. When the face rat Attacks, discard a greater doom card to give a poisonous bite. If successful, the victim contracts the **face rat disease affliction** in addition to a Wound. See below.
 
@@ -849,6 +849,10 @@ _A harpy rarely uses weapons or armor. They prefer to avoid direct combat throug
 - **Pull Into the Air**. The harpy may attempt to pull an adventurer into the air and drop them; on its turn, the harpy adds its Pentacles to this action’s total value. This deals **Piercing** damage. The harpy is engaged by this action.
 
 #### Greater dooms
+
+- **Shriek**. Play a greater doom card to let out an earsplitting wail. All non-harpies in the same zone are **Stunned**. Other creatures in the area will be drawn to this sound.
+
+## Imp
 > [!sidebar] What do these imps want?
 >
 > Look at the top card of the minor arcana discard pile. 
@@ -856,10 +860,6 @@ _A harpy rarely uses weapons or armor. They prefer to avoid direct combat throug
 > **• Pentacles**: They want to get the shiniest thing. Then they want to throw it into a deep pit. 
 > **• Cups**: They want something to keep as a pet. (Woe for whatever they decide to “adopt.”) 
 > **• Wands**: Blood. They crave the blood of sorcerers.
-
-- **Shriek**. Play a greater doom card to let out an earsplitting wail. All non-harpies in the same zone are **Stunned**. Other creatures in the area will be drawn to this sound.
-
-## Imp
 
 _Spirit Minion_
 
@@ -1018,6 +1018,10 @@ The Yellow King has the following powers while wearing the crown.
 - **Day of Tears and Mourning**. While wearing the crown, the Yellow King can cast any **spells** from Appendix A without components. Cast spells by playing a lesser doom Speak Incantations action and discarding a greater doom card instead of spending Resolve. Each additional greater doom card discarded counts as an additional +1 Resolve.
 
 ### Body
+> [!sidebar] Lyric incantations
+>
+> The names of the lich’s dooms are borrowed from the song titles of an artist called Lingua Ignota. Use them as incantations you speak while using the abilities. The effect is compelling at the table.
+
 **Health/Defense:** 5/9
 
 If defeated, the Yellow King will be reduced to an invulnerable crystal skull that will eventually regrow a body as long as his phylactery is intact. While his body still lives, he has the following abilities.
@@ -1039,9 +1043,6 @@ If defeated, the Yellow King will be reduced to an invulnerable crystal skull th
 - **Sorrow! Sorrow! Sorrow**!. Role-play a few sentences about unrequited love. Play a lesser doom card and compare its value to the Initiative of each character who can hear the Yellow King. If the Yellow King does this on his turn, he adds his Wands to the total value. Characters he succeeds against suffer the **Stun** effect.
 
 #### Greater dooms
-> [!sidebar] Lyric incantations
->
-> The names of the lich’s dooms are borrowed from the song titles of an artist called Lingua Ignota. Use them as incantations you speak while using the abilities. The effect is compelling at the table.
 
 - Do **You Doubt Me, Traitor**?. When the Yellow King takes damage, discard a greater doom card to force the attacking player to cross **something off their character sheet—a** talent, a motif, their name, a pack slot, anything. Put a big X through it. The adventurer regains the crossed-out part of the character sheet at the end of their next Camp Phase. This action does not count towards the one card per turn limit.
 
@@ -1122,15 +1123,15 @@ _If an adventurer tries to interact with a camouflaged mimic, they test Cups. On
 - **Tough**. Actions that target mimics must _exceed_ (not just match) their Initiative.
 
 #### Greater dooms
-> [!sidebar] What do these nymphs want?
->
-> Look at the top card of the minor arcana discard pile. **• Swords:** “Which one of us is the fairest? If you choose me, I’ll give you some treasure I’ve found!” **• Pentacles:** “**What** are the latest fashions among the ladies of the City? We wish to dress like humans!” **• Cups:** “We’re thirsty! Do you have any wine to drink? We only like sweet wine!” **• Wands:** “We’re seeking new songs. Can you teach us one? No, no, we’ve heard that one before!”
 
 - **Harden**. Discard a greater doom card to become **immune to the last type of weapon** that Wounded the mimic. It can only be immune to one weapon type at a time. This action does not count towards the one card per turn limit.
 
 - **Riot of Teeth**. When the mimic Attacks, discard a greater doom card to gnash with its riot of teeth. If successful, the Attack deals **Piercing** damage.
 
 ## Nymph
+> [!sidebar] What do these nymphs want?
+>
+> Look at the top card of the minor arcana discard pile. **• Swords:** “Which one of us is the fairest? If you choose me, I’ll give you some treasure I’ve found!” **• Pentacles:** “**What** are the latest fashions among the ladies of the City? We wish to dress like humans!” **• Cups:** “We’re thirsty! Do you have any wine to drink? We only like sweet wine!” **• Wands:** “We’re seeking new songs. Can you teach us one? No, no, we’ve heard that one before!”
 
 _Elemental Strategist_
 
@@ -1462,6 +1463,30 @@ _It might not be apparent, but an ungoat is related to an ooze._
 >
 > Adventurers who seek quick power by undergoing the transformation to vampire are sorely disappointed. At first, it’s all pain and no gain: a young vampire is a wretched creature—they catch on fire when exposed to sunlight and can only eat blood. It takes at least a century for a vampire to manifest the least of their powers.
 
+> [!sidebar] Killing the Vampire
+>
+> If slain, a vampire will rise again the following night unless special care is taken to ritually desecrate the corpse. Much superstition and folklore surrounds vampires, and the rites needed to give a vampire a final death seem to vary from region to region.
+>
+> Here is a list of commonly believed ways to cause a vampire's final death. **Four of these rumors are true.** It's up to the GM to determine which methods are real and which ones are superstition. By spending a **lore bid**, any adventurer may be told _one_ of these rumors.
+>
+> - Drive a wooden stake through the vampire's heart
+>
+> - Decapitate the vampire
+>
+> - ...with a silver weapon
+>
+> - Burn the vampire's decapitated head
+>
+> - Stuff the vampire's mouth with cloves of garlic
+>
+> - Stuff the vampire's mouth with holy testaments of Mythrys
+>
+> - Bury the vampire in wild rose petals
+>
+> - Cover the vampire's body with salt
+>
+> - Say prayers to Mythrys over the vampire's body
+
 _Undead Elite_
 
 _Zombies and skeletons at least know they’re dead. Vampires haven’t figured it out yet. They’re baffled and hurt to be abandoned by people who have long since passed away. They struggle to understand new words and customs. They look in the mirror and find nobody there. Thus, they turn to being cruel as a way to cope with lingering in a living world that has moved on._
@@ -1493,29 +1518,6 @@ _Over the centuries that they live, vampires undergo metamorphosis into single-m
 - **Supernatural Speed**. Discard as many lesser doom cards as you wish, Moving 1 zone per card. This does not count towards the one card per turn limit.
 
 #### Greater dooms
-> [!sidebar] Killing the Vampire
->
-> If slain, a vampire will rise again the following night unless special care is taken to ritually desecrate the corpse. Much superstition and folklore surrounds vampires, and the rites needed to give a vampire a final death seem to vary from region to region.
->
-> Here is a list of commonly believed ways to cause a vampire's final death. **Four of these rumors are true.** It's up to the GM to determine which methods are real and which ones are superstition. By spending a **lore bid**, any adventurer may be told _one_ of these rumors.
->
-> - Drive a wooden stake through the vampire's heart
->
-> - Decapitate the vampire
->
-> - ...with a silver weapon
->
-> - Burn the vampire's decapitated head
->
-> - Stuff the vampire's mouth with cloves of garlic
->
-> - Stuff the vampire's mouth with holy testaments of Mythrys
->
-> - Bury the vampire in wild rose petals
->
-> - Cover the vampire's body with salt
->
-> - Say prayers to Mythrys over the vampire's body
 
 - **Bat Form**. Play a greater doom card to take the shape of a monstrous bat. While in this form, the vampire can fly 1 zone as a Move action.
 
