@@ -75,3 +75,51 @@ Sources: the template's own font files and license texts;
 [Brittney Murphy Design](https://www.brittneymurphydesign.com/downloads/dark-roast-font/);
 [Kelmscott Roman NF on 1001fonts](https://www.1001fonts.com/kelmscottroman-font.html);
 [Caslon Antique (Wikipedia)](https://en.wikipedia.org/wiki/Caslon_Antique).
+
+## Two paths, one set of sizes (2026-08-08)
+
+Every stack names the creator-pack face first, so the theme renders one of two
+ways depending on what the reader has installed — and only the substitute path
+had ever been looked at, because the machine doing the design work has the
+fonts. Measured in-browser at 100px:
+
+| role | authentic | x-height | substitute | x-height |
+| --- | --- | --- | --- | --- |
+| h4 subhead | Caslon Antique | 35.9 | Libre Caslon Text 700 | 46.0 |
+| epigraph | Dark Roast | 17.6 | Almendra Display | 44.9 |
+| h2 / h3 | HamletOrNot | 52.8 | IM Fell English SC | 44.9 |
+| h1 chapter | XiparosLombard | 38.3 (cap 116) | Uncial Antiqua | 44.9 (cap 66) |
+| sidebar body | Goudy Old Style | 39.9 | Sorts Mill Goudy | 42.5 |
+
+Sizes tuned against the right-hand column therefore came out wrong on the
+left: subheads read *smaller* than the body they head, and epigraphs — Dark
+Roast being barely a third of Almendra's x-height — became unreadable
+hairlines. Fixed with `size-adjust` on local-only `@font-face` declarations
+(`HMTW Subhead` 128%, `HMTW Epigraph` 175%), which scales the authentic
+outlines to the substitute's proportions so one font-size serves both.
+
+Two traps worth remembering:
+
+- **`local()` matches a font's full/PostScript name, not its family name.**
+  `local('Caslon Antique')` matches nothing on a machine that has it;
+  `local('Caslon Antique Bold')` resolves. When it fails, the family resolves
+  to nothing, the stack silently falls through to the substitute, and
+  `getComputedStyle` still reports the declared family — so it reads as fixed
+  while the authentic face has quietly been dropped. Verify by rendering, or
+  by loading a `FontFace` with the candidate and measuring its x-height.
+- **h2/h3 and h1 are left alone deliberately.** HamletOrNot runs *larger* than
+  its substitute and Xiparos is a Lombardic capitals face where cap-height,
+  not x-height, is the meaningful measure. Normalising those by x-height would
+  make them worse.
+
+### Seeing the substitute path
+
+Only a machine without the creator pack renders what almost every reader gets,
+so the theme carries a switch. In the console:
+
+```js
+document.documentElement.dataset.fonts = 'ofl'; // the substitutes
+delete document.documentElement.dataset.fonts; // back to the real book
+```
+
+Check both before changing any size in `theme.css`.
