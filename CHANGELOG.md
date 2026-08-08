@@ -30,6 +30,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Sidebars sit with the section that owns them.** Audited all 84 that ship: 14
+  were attached to the wrong one, and two kinds of wrongness couldn't be
+  expressed before. Some belong to the entry they _precede_ — the book prints
+  them in the margin at the foot of the previous column — so "Learning the
+  Challenge Phase" had pinned itself to "5. End the round", the last step of the
+  sequence it introduces. Others belong to a whole section while trailing one
+  item of it: "Effect names" sat on the single effect "Trip", "Sorcery" on one
+  Wands talent rather than the Path, "Negative bonds" on a single Bond. Each is
+  now declared in the importer config, and a heading rename that would strand one
+  fails the build rather than quietly dropping it back where it fell.
+- **The type reads as a hierarchy again on a machine with the book's own fonts.**
+  Every size was tuned against the OFL substitutes, so the creator-pack faces —
+  whose x-heights are nothing like them — rendered wrong: subheads came out
+  _smaller_ than the body they head, and chapter epigraphs became unreadable
+  hairlines. The epigraph's face is now scaled to its substitute's proportions,
+  and Caslon Antique is gone entirely: text set in it cannot be selected in
+  Firefox, which is a worse bug than not seeing the authentic face. Headings also
+  take clear space above and sit tight to the text they introduce, rather than
+  floating equidistant between the two — h5 and h6 had never been given any space
+  above at all.
 - **HMtW reimport** — the vault's own reading pass caught two things the site
   was showing wrong: the Underworld layout steps in Appendix E were numbered
   from 1 where the book has 2–7 (the export had wrapped each step mid-sentence,
