@@ -78,17 +78,17 @@ To randomly generate your Underworld layout, grab the major arcana deck and draw
 
 - You should have at least three dungeons, but the upper limit is only determined by your ambition. Five is a good, achievable number.
 
-1. Place the card with the lowest number onto the table. This dungeon contains the main entrance to the Underworld.
+2. Place the card with the lowest number onto the table. This dungeon contains the main entrance to the Underworld.
 
-2. If you have any cards with values I–V, place them all perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.
+3. If you have any cards with values I–V, place them all perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.
 
-3. Decide if each of these other entrances are traversable and known _or_ sealed and secret.
+4. Decide if each of these other entrances are traversable and known _or_ sealed and secret.
 
-4. Place the card with the highest number below the entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.
+5. Place the card with the highest number below the entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.
 
-5. Place the rest of the cards between the dungeons with entrances and the deepest dungeon.
+6. Place the rest of the cards between the dungeons with entrances and the deepest dungeon.
 
-6. Determine connections between the levels.
+7. Determine connections between the levels.
 
 ### Entrances
 

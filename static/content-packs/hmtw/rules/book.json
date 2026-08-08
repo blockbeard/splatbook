@@ -2566,7 +2566,7 @@
 				"Underfolk",
 				"Underfolk names"
 			],
-			"body": "Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, **Lulu**, Maggie, Molly, Nuala, Patty, Pansy, Pippa, Rose, Ruth, Sue\n\nUnderfolk use their livery—their profession—as their last name.",
+			"body": "Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, Lulu, Maggie, Molly, Nuala, Patty, Pansy, Pippa, Rose, Ruth, Sue\n\nUnderfolk use their livery—their profession—as their last name.",
 			"visibility": "player",
 			"chapter": "04-chapter-4-kith-and-kin"
 		},
@@ -2936,7 +2936,7 @@
 				"Orcs",
 				"Orcish kin"
 			],
-			"body": "Fireblooded orcs bear dark red and black skin that’s warm to the touch. They are never calm.\n\nFirebloods are famously effective as shock troopers. **Orc** clans of other kins will sometimes bring a contingent of firebloods to be used in this way. For this reason, you might find fireblooded mercenaries attached to orcs of all stripes. When the firebloods go berserk, they can punch a hole into the shield-wall of even well-trained and veteran soldiers.",
+			"body": "Fireblooded orcs bear dark red and black skin that’s warm to the touch. They are never calm.\n\nFirebloods are famously effective as shock troopers. Orc clans of other kins will sometimes bring a contingent of firebloods to be used in this way. For this reason, you might find fireblooded mercenaries attached to orcs of all stripes. When the firebloods go berserk, they can punch a hole into the shield-wall of even well-trained and veteran soldiers.",
 			"visibility": "player",
 			"chapter": "04-chapter-4-kith-and-kin"
 		},
@@ -14575,7 +14575,7 @@
 				"Appendix E: Underworld Creation",
 				"Making Your Megadungeon"
 			],
-			"body": "To randomly generate your Underworld layout, grab the major arcana deck and draw a few cards. The values of the card can correspond to the [[15 - Appendix E - Underworld Creation#Dungeon Seeds|dungeon seeds]]. This procedure gives you both a snapshot and a cross-section of your Underworld:\n\n1. Draw a number of major arcana cards equal to the number of dungeons you want for your Underworld.\n\n- You should have at least three dungeons, but the upper limit is only determined by your ambition. Five is a good, achievable number.\n\n1. Place the card with the lowest number onto the table. This dungeon contains the main entrance to the Underworld.\n\n2. If you have any cards with values I–V, place them all perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.\n\n3. Decide if each of these other entrances are traversable and known _or_ sealed and secret.\n\n4. Place the card with the highest number below the entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.\n\n5. Place the rest of the cards between the dungeons with entrances and the deepest dungeon.\n\n6. Determine connections between the levels.",
+			"body": "To randomly generate your Underworld layout, grab the major arcana deck and draw a few cards. The values of the card can correspond to the [[15 - Appendix E - Underworld Creation#Dungeon Seeds|dungeon seeds]]. This procedure gives you both a snapshot and a cross-section of your Underworld:\n\n1. Draw a number of major arcana cards equal to the number of dungeons you want for your Underworld.\n\n- You should have at least three dungeons, but the upper limit is only determined by your ambition. Five is a good, achievable number.\n\n2. Place the card with the lowest number onto the table. This dungeon contains the main entrance to the Underworld.\n\n3. If you have any cards with values I–V, place them all perpendicular to the entrance card. Each of these dungeons _also_ have entrances to the surface.\n\n4. Decide if each of these other entrances are traversable and known _or_ sealed and secret.\n\n5. Place the card with the highest number below the entrance card(s), leaving space in between for the remaining cards. This is the deepest level of the Underworld.\n\n6. Place the rest of the cards between the dungeons with entrances and the deepest dungeon.\n\n7. Determine connections between the levels.",
 			"visibility": "gm",
 			"chapter": "15-appendix-e-underworld-creation"
 		},

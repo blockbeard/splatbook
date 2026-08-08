@@ -357,7 +357,7 @@ Angus, Bill, Clive, Felix, Geoff, Giles, Graham, Jack, Nigel, Pat, Prentice, Rod
 
 #### Underfolk female names:
 
-Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, **Lulu**, Maggie, Molly, Nuala, Patty, Pansy, Pippa, Rose, Ruth, Sue
+Alice, Bonnie, Bryonie, Camise, Dee, Edith, Evie, Gillian, Helen, Liza, Lulu, Maggie, Molly, Nuala, Patty, Pansy, Pippa, Rose, Ruth, Sue
 
 Underfolk use their livery—their profession—as their last name.
 
@@ -575,7 +575,7 @@ Your blood smokes like a thick mist. When this talent is Wounded, you become Shr
 
 Fireblooded orcs bear dark red and black skin that’s warm to the touch. They are never calm.
 
-Firebloods are famously effective as shock troopers. **Orc** clans of other kins will sometimes bring a contingent of firebloods to be used in this way. For this reason, you might find fireblooded mercenaries attached to orcs of all stripes. When the firebloods go berserk, they can punch a hole into the shield-wall of even well-trained and veteran soldiers.
+Firebloods are famously effective as shock troopers. Orc clans of other kins will sometimes bring a contingent of firebloods to be used in this way. For this reason, you might find fireblooded mercenaries attached to orcs of all stripes. When the firebloods go berserk, they can punch a hole into the shield-wall of even well-trained and veteran soldiers.
 
 #### Fireblooded orc talent: Berserkergang
 
