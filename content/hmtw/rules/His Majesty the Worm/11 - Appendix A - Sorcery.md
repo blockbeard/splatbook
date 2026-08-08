@@ -595,7 +595,7 @@ Spitting the acorn out ends the spell. So, whenever the target wants to talk, **
 >
 > If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
-| Card | ♠ Swords | ♥ Cups | ♦ Pentacles | ♣ Wands |
+| Card | <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em"> Swords | <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em"> Cups | <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em"> Pentacles | <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em"> Wands |
 |:---:|---|---|---|---|
 | I | Ape | Rat | Frog | Bonnacon |
 | II | Armadillo | Pelican | Goat | Capricorn |

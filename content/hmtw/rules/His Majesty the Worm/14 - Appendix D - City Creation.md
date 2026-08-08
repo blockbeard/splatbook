@@ -38,13 +38,13 @@ The elements of randomness in these rules allow you to create different experien
 
 **Draw** and place a single card. This card represents the power that currently rules the City. Unless it’s a face card, only the suit matters for this draw.
 
-- ♠: The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
+- <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em">: The **Griffin King** reigns. You can often see him and his knights astride their monstrous steeds, riding the air currents to the **upper** ramparts of his Three-Faced Castle.
 
-- ♦: The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
+- <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em">: The **Tyrant Emperor** reigns. The City groans under his heavy taxes, which are taken by the wicked All-Watch to the Iron Palace at the center of the City.
 
-- ♥: The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
+- <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em">: The **Cult of Mythrys** reigns. The Secret Pope makes papal bulls which become the law of the land, enforced by the Inquisition. The High Mithraeum is hidden somewhere under the center of the City.
 
-- ♣: The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
+- <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em">: The **Cult of the God-King** reigns. The Crow-Headed **Queen** will be deified upon her death, but through her sorceries she has reigned for over 120 years. The Temple of the God-Kings stands in the center of the City.
 
 - If a **face card** is in the central position, the institution or person that district represents is in control of the City (per the list of districts see [[14 - Appendix D - City Creation#The Districts|The Districts]]). GMs should interpret this however best makes sense to them.
 
@@ -737,10 +737,10 @@ _His voice trails away as you cross the plaza and enter a small bakery._
 
 | Suit | Step 1 | Step 2 | Step 3 | Step 4 |
 |---|---|---|---|---|
-| ♠ Swords | When the Constellation of the Beast is in the First House... | ...hunger will be loosed and given leave to come among you. | The moon will die, unless... | ...you hear my command: “Ascend the stairs of Heaven and devour whatever you find there.” |
-| ♦ Pentacles | As grey turns to red... | ...the Last Queen will blind herself with the brooch of her cloak. | A new river will rise from your tears once... | ...the seven crowns are stolen from the severed heads of the seven dragons. |
-| ♥ Cups | After the fall of the eldest... | ...I open my second mouth and begin to sing. | A new star is kindled if... | ...the Blood Blasphemy is sung once again. |
-| ♣ Wands | When the sun rises in the west and sets in the east... | ...the Earth will groan with the pains of childbirth. | His Majesty the Worm arises when... | ...you wind the Clarion of Altheia. |
+| <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em"> Swords | When the Constellation of the Beast is in the First House... | ...hunger will be loosed and given leave to come among you. | The moon will die, unless... | ...you hear my command: “Ascend the stairs of Heaven and devour whatever you find there.” |
+| <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em"> Pentacles | As grey turns to red... | ...the Last Queen will blind herself with the brooch of her cloak. | A new river will rise from your tears once... | ...the seven crowns are stolen from the severed heads of the seven dragons. |
+| <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em"> Cups | After the fall of the eldest... | ...I open my second mouth and begin to sing. | A new star is kindled if... | ...the Blood Blasphemy is sung once again. |
+| <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em"> Wands | When the sun rises in the west and sets in the east... | ...the Earth will groan with the pains of childbirth. | His Majesty the Worm arises when... | ...you wind the Clarion of Altheia. |
 
 ### VIII of Cups: The Philosophers’ Forum
 

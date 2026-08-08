@@ -43,15 +43,13 @@
 	"keepImages": {
 		"images/affliction-clock-1.svg": "/content-packs/hmtw/art/affliction-clock-1.svg",
 		"images/affliction-clock-2.svg": "/content-packs/hmtw/art/affliction-clock-2.svg",
-		"images/disposition-wheel.svg": "/content-packs/hmtw/art/disposition-wheel.svg"
+		"images/disposition-wheel.svg": "/content-packs/hmtw/art/disposition-wheel.svg",
+		"images/suit-swords.svg": "/content-packs/hmtw/art/suit-swords.svg",
+		"images/suit-pentacles.svg": "/content-packs/hmtw/art/suit-pentacles.svg",
+		"images/suit-cups.svg": "/content-packs/hmtw/art/suit-cups.svg",
+		"images/suit-wands.svg": "/content-packs/hmtw/art/suit-wands.svg"
 	},
-	"$replaceImages": "The book's suit marks are load-bearing, not decoration: in Ch10's belt slots and App D's district lines the glyph is the ONLY label, so stripping it as art leaves `- : First belt slot`. We can't redistribute the book's SVGs, but a character isn't artwork — these are the standard playing-card equivalents of the tarot suits (swords/spades, pentacles/diamonds, cups/hearts, wands/clubs), which scale with the type and take the ink colour in both themes. 24 references across 4 chapters. If you'd rather have the book's own shapes, hand-draw four SVGs and move them to keepImages, exactly as the affliction clocks are handled.",
-	"replaceImages": {
-		"images/suit-swords.svg": "♠",
-		"images/suit-pentacles.svg": "♦",
-		"images/suit-cups.svg": "♥",
-		"images/suit-wands.svg": "♣"
-	},
+	"$keepImages": "Art we own, so it survives the strip with its src rewritten. The four suit glyphs are hand-authored (commit 4efb68f) and already served here for the game landing; they also carry meaning in the text — in Ch10's belt slots and App D's district lines the glyph is the ONLY label, so stripping them left `- : First belt slot`. Their inline height:1em/vertical-align comes from the vault markup and survives with the tag; they draw in currentColor, and dark mode inverts .reference-body img.",
 	"demoteHeadingsToBold": [
 		"Component:"
 	],

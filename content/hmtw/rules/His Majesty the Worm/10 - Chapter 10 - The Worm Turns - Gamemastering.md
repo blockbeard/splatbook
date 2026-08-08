@@ -194,13 +194,13 @@ You’ll notice that the adventurer sheet has four belt slots and twenty-one pac
 
 If you need to target a player’s belt slot with a Meatgrinder event, glance at the minor arcana’s discard pile and note the top card’s suit for a random number 1–4.
 
-- ♠: First belt slot
+- <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em">: First belt slot
 
-- ♦: Second belt slot
+- <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em">: Second belt slot
 
-- ♥: Third belt slot
+- <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em">: Third belt slot
 
-- ♣: Fourth belt slot
+- <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em">: Fourth belt slot
 
 If you need to target an adventurer’s pack, glance at the major arcana’s discard pile instead for a number 1–21, based on the value of the card.
 

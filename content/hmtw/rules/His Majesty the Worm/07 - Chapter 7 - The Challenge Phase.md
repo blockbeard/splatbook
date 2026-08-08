@@ -273,7 +273,7 @@ Each round, the GM counts up from lowest card (I) through the highest card (king
 
 To perform an action, play one of your Challenge cards. There are a range of actions you can perform during Challenges, each of which is tied to one of the four suits. The rules for [[07 - Chapter 7 - The Challenge Phase#Challenge Actions|Challenge Actions]] are detailed below.
 
-| ♠ Swords | ♦ Pentacles | ♥ Cups | ♣ Wands |
+| <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em"> Swords | <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em"> Pentacles | <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em"> Cups | <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em"> Wands |
 |---|---|---|---|
 | Attack | Avoid | Aid Another | Banter |
 | Riposte | Dash | Command | Speak Incantation |

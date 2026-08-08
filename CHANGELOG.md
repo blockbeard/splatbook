@@ -30,13 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **The book's suit marks are back where the glyph is the label.** They were
-  being stripped with the artwork, which is right for the book's illustrations
-  and wrong for these: in the Gamemastering belt slots and Appendix D's district
-  lines the mark is the _only_ thing identifying which suit a rule belongs to, so
-  the line rendered as "- : First belt slot". Substituted with the standard
-  playing-card equivalents — a character isn't artwork, and it scales with the
-  type and takes the ink colour in both themes. 24 of them across four chapters.
+- **The suit glyphs are back.** They were being stripped with the artwork, which
+  is right for the book's illustrations and wrong for these: they're the
+  hand-authored marks this pack already ships and already uses on the game
+  landing, and in the Gamemastering belt slots and Appendix D's district lines the
+  mark is the _only_ thing identifying which suit a rule belongs to — so the line
+  rendered as "- : First belt slot". Now allowlisted like the affliction clocks:
+  24 references across four chapters, at text size, inverting with the theme.
 - **The Morale table sits inside the Morale sidebar**, as the book prints it,
   instead of trailing it as loose body prose.
 - **Sidebars sit with the section that owns them.** Audited all 84 that ship: 14
