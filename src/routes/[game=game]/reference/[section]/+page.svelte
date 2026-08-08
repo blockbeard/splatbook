@@ -128,19 +128,33 @@
 </nav>
 
 <style>
+	/*
+	 * Heading rhythm. Spacing here is margin-top only, so a heading's gap below
+	 * is whatever its following sibling asks for — which made every heading sit
+	 * about as far from the text it introduces as from the text it follows, and
+	 * grouped it with the wrong side. h5/h6 had it worst: they were never given
+	 * a margin-top at all, so they landed 2px under the preceding paragraph
+	 * (a sub-heading dressed as a continuation of the section above it).
+	 *
+	 * A heading now takes clear space above and sits tight to what it heads.
+	 */
 	.reference-body :global(h2) {
-		margin-top: 1.5rem;
+		margin-top: 2.25rem;
 		font-size: 1.25rem;
 		font-weight: 700;
 	}
 	.reference-body :global(h3) {
-		margin-top: 1.25rem;
+		margin-top: 1.85rem;
 		font-size: 1.05rem;
 		font-weight: 600;
 	}
 	.reference-body :global(h4) {
-		margin-top: 1rem;
+		margin-top: 1.5rem;
 		font-weight: 600;
+	}
+	.reference-body :global(h5),
+	.reference-body :global(h6) {
+		margin-top: 1.4rem;
 	}
 	.reference-body :global(p),
 	.reference-body :global(ul),
@@ -148,6 +162,11 @@
 	.reference-body :global(blockquote),
 	.reference-body :global(table) {
 		margin-top: 0.75rem;
+	}
+	/* Binds the heading to its own content. Wins over the rule above by source
+	   order at equal specificity, so it applies whatever follows the heading. */
+	.reference-body :global(:is(h2, h3, h4, h5, h6) + *) {
+		margin-top: 0.3rem;
 	}
 	.reference-body :global(ul) {
 		list-style: disc;
