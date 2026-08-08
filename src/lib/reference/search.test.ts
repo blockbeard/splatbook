@@ -1,7 +1,17 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import MiniSearch from 'minisearch';
 import { toPlainText, miniSearchOptions, type SearchDoc } from './search-fields';
-import { loadSearchIndex, loadGmSearchIndex, search, mergeHits, type SearchHit } from './search';
+import {
+	loadSearchIndex,
+	loadGmSearchIndex,
+	clearSearchIndexCache,
+	search,
+	mergeHits,
+	type SearchHit
+} from './search';
+
+// The loaders memoise per game (phase 25), and that cache is module state.
+beforeEach(clearSearchIndexCache);
 
 describe('toPlainText', () => {
 	it('resolves wikilinks to their label and strips markdown', () => {
@@ -77,6 +87,28 @@ describe('search', () => {
 		const fakeFetch = async () => new Response(json, { status: 200 });
 		const loaded = await loadSearchIndex('stonetop', fakeFetch);
 		expect(search(loaded, 'danger').map((h) => h.id)).toContain('defy-danger');
+	});
+
+	it('memoises per game, and does not cache a failure', async () => {
+		const json = JSON.stringify(buildIndex());
+		let fetches = 0;
+		const ok = async () => {
+			fetches++;
+			return new Response(json, { status: 200 });
+		};
+		// Reopening the mobile search panel must not re-parse a megabyte.
+		const first = await loadSearchIndex('stonetop', ok);
+		expect(await loadSearchIndex('stonetop', ok)).toBe(first);
+		expect(fetches).toBe(1);
+		// A different game is a different index.
+		await loadSearchIndex('hmtw', ok);
+		expect(fetches).toBe(2);
+
+		clearSearchIndexCache();
+		const boom = async () => new Response('nope', { status: 500 });
+		await expect(loadSearchIndex('stonetop', boom)).rejects.toThrow(/failed to load index/);
+		// The rejection is evicted, so a later attempt can still succeed.
+		expect(search(await loadSearchIndex('stonetop', ok), 'danger')).not.toHaveLength(0);
 	});
 });
 

@@ -1,8 +1,11 @@
-# Proposal — mobile reference navigation: top bar, TOC drawer, search panel
+# Mobile reference navigation: top bar, TOC drawer, search panel
 
-Status: proposed, not started. Scope is the reference reader below the `md`
-breakpoint. Desktop layout, the right rail, and the content pipeline are all
-out of scope and must come out byte-identical.
+**Status: built, 2026-08-08** — commits `feat(reference): a mobile shell` and
+`feat(reference): the bar searches as you type`. Kept as the design record; the
+"as built" notes at the end record where it diverged from the plan.
+
+Scope was the reference reader below the `md` breakpoint. Desktop layout, the
+right rail, and the content pipeline were out of scope and are untouched.
 
 ## What's wrong today
 
@@ -208,6 +211,33 @@ later mobile work inherits it. Cases:
 - Embed mode (`?embed=1`): the bar is present, and a search submit preserves
   `embed=1`.
 - Desktop viewport: sidebar and rail unchanged.
+
+## As built — where it diverged from this plan
+
+- **No section title as a third element in the bar.** It became the *label of the
+  contents button* instead. One control, orientation while scrolled, and it
+  leaves the search box the width it needs at 375 px. The section page still
+  renders its own breadcrumb above the prose.
+- **The mobile Playwright project is Chromium (`Pixel 5`), not `iPhone 14`.** The
+  iPhone descriptors run WebKit, which CI doesn't install (`--with-deps
+  chromium`) and which isn't Safari-on-iOS anyway. The iOS `<dialog>` traps still
+  need a real device.
+- **Both the drawer's contents and the panel mount lazily.** Not a nicety: a
+  second copy of the tree, the spoiler toggle, and the results list sitting in
+  every page's DOM makes "the toggle" and "the results" ambiguous to selectors
+  and to assistive tech, on top of being desktop dead weight.
+- **Two search inputs in the DOM is unavoidable.** The bar's box must be a
+  sibling of the content for `sticky` to work at all (a box inside the short
+  `<nav>` is the original bug), and the sidebar's must live in the nav. Two
+  existing specs asked for "Search the rules" and now name the sidebar's
+  explicitly.
+- **`Escape` in the panel closes it *and* empties the box** — native
+  `<input type="search">` behaviour, not something to fight. Query persistence
+  across a close is therefore only guaranteed on the tap-outside path, which is
+  how the spec tests it.
+- **`aria-expanded` doesn't belong on the search input.** `svelte-check` rejects
+  it on the implicit `searchbox` role; the panel isn't a combobox popup, so the
+  attribute is simply gone rather than faked with combobox semantics.
 
 ## Corrections to the earlier review
 

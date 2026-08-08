@@ -177,17 +177,6 @@ Steps, roughly:
 - Two books means two term sets: decide whether Book II terms are GM-gated. The
   precedent exists — HMtW already ships a separate `pinned-terms-gm.json`.
 
-## Phase 25 — Mobile reference navigation (spec'd, ready to build)
-
-Below `md` the sidebar becomes a top bar (burger, search, section title), the TOC
-becomes a `<dialog>` drawer, and the search box becomes a panel running the
-live-search machinery the search page already has. Two commits: bar + drawer,
-then the search panel.
-
-Full spec, including the verified groundwork (the shell header isn't sticky,
-anchor landing is native fragment scrolling so `scroll-margin-top` is the whole
-fix, measured index weight, and the iOS traps): **[mobile-reference-nav.md](mobile-reference-nav.md)**.
-
 ## Sequencing notes
 
 - Natural session-sized bites: a phase-boundary milestone every 5–10 commits, and each commit is small enough to finish in one sitting.

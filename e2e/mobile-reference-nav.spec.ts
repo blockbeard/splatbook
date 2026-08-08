@@ -88,6 +88,74 @@ test('a deep link to an inline heading lands below the bar, not under it', async
 	expect(target!.y).toBeGreaterThanOrEqual(bar!.y + bar!.height);
 });
 
+test('the bar searches as you type, without leaving the page', async ({ page }) => {
+	await page.goto('/hmtw/reference');
+	const panel = page.getByTestId('reference-search-panel');
+	const box = page.getByTestId(BAR).getByLabel('Search the rules');
+
+	// Closed until the reader taps the box — and opened on tap, not focus, so
+	// tabbing or restored focus can't spring it.
+	await expect(panel).toBeHidden();
+	await box.click();
+	await expect(panel).toBeVisible();
+
+	await box.fill('meatgrinder');
+	// No submit, no navigation: results arrive under the bar.
+	await expect(panel.getByRole('list', { name: 'Search results' })).toBeVisible();
+	await expect(panel.getByTestId('pinned-terms')).toBeVisible();
+	expect(page.url()).not.toContain('q=');
+	await expect(page).toHaveURL(/\/hmtw\/reference$/);
+
+	// A hit is a real link out of the panel.
+	await panel.getByRole('list', { name: 'Search results' }).getByRole('link').first().click();
+	await page.waitForURL(/\/hmtw\/reference\/\S+/);
+	await expect(panel).toBeHidden();
+});
+
+test('the panel carries the spoiler opt-in, and it re-derives the results', async ({ page }) => {
+	await page.goto('/hmtw/reference');
+	const panel = page.getByTestId('reference-search-panel');
+	const box = page.getByTestId(BAR).getByLabel('Search the rules');
+	await box.click();
+	await box.fill('undead');
+
+	const results = panel.getByRole('list', { name: 'Search results' });
+	await expect(results).toBeVisible();
+	// Gated chapters stay out until asked for.
+	await expect(results.getByText(/Dungeon Denizens/)).toHaveCount(0);
+
+	// The toggle lives with the query because it *is* the index selector.
+	await panel.getByLabel(/Include the Gamemaster’s chapters/i).check();
+	await expect(results.getByText(/Dungeon Denizens/).first()).toBeVisible();
+});
+
+test('escape and a tap outside both close the panel, without navigating', async ({ page }) => {
+	await page.goto('/hmtw/reference');
+	const panel = page.getByTestId('reference-search-panel');
+	const box = page.getByTestId(BAR).getByLabel('Search the rules');
+
+	await box.click();
+	await box.fill('camp');
+	await expect(panel).toBeVisible();
+	await page.keyboard.press('Escape');
+	await expect(panel).toBeHidden();
+	// Dismissing a dropdown is not a navigation.
+	await expect(page).toHaveURL(/\/hmtw\/reference$/);
+
+	// A tap on the page behind it closes it too — and unlike Escape (which a
+	// `type="search"` field natively empties) it leaves the query alone, so
+	// reopening resumes it. The state lives in the bar, not in the panel.
+	await box.click();
+	await box.fill('camp');
+	await expect(panel).toBeVisible();
+	await page.locator('main').click({ position: { x: 5, y: 400 } });
+	await expect(panel).toBeHidden();
+
+	await box.click();
+	await expect(panel).toBeVisible();
+	await expect(box).toHaveValue('camp');
+});
+
 test('embed mode keeps the bar, and its search submit keeps ?embed=1', async ({ page }) => {
 	await page.goto('/hmtw/reference?embed=1');
 	// `.app-chrome` is display:none in embed, so without the bar an embedded

@@ -19,6 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   past the game's page depth now clear the bar instead of landing underneath it.
   The bar is present in embed mode too, where the app header is hidden and it's
   the only navigation there is. Desktop is untouched.
+- **The bar's search box searches as you type**, in a panel below it, rather than
+  making you navigate to the search page first. It runs the same code the search
+  route does — one component now, so the debounce, the index gating, the pinned
+  index-terms strip and the snippets can't drift apart — and the Gamemaster
+  opt-in sits in the panel, because opting in is what adds the GM index to the
+  query. Enter still goes to the search route for its shareable `?q=`, and the
+  search indexes are memoised per game, so opening the panel repeatedly doesn't
+  re-fetch or re-parse a megabyte.
 
 ### Fixed
 

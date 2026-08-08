@@ -5,6 +5,7 @@
 	import { afterNavigate, invalidate } from '$app/navigation';
 	import { embed } from '$lib/embed.svelte';
 	import { getLocalPreference, readShowSetting } from '$lib/preferences';
+	import ReferenceSearch from './ReferenceSearch.svelte';
 	import ReferenceToc from './ReferenceToc.svelte';
 	import SpoilerToggle from './SpoilerToggle.svelte';
 
@@ -64,33 +65,63 @@
 		);
 	}
 
-	// Every entry is a link, so each tap is a navigation; without this the drawer
-	// stays over the page it just left.
-	afterNavigate(() => drawer?.close());
+	// The bar's search panel (phase 25). The <input> stays in the bar and the
+	// panel opens *around* it: moving focus into a freshly mounted input makes iOS
+	// dismiss and re-raise the soft keyboard, which reads as a flicker on every
+	// search. Opened on pointerdown rather than focus — focus also fires on
+	// keyboard tabbing and on the browser restoring focus after a back
+	// navigation, either of which would drop a panel over the page unbidden.
+	let panelOpen = $state(false);
+	let query = $state('');
+	let barEl = $state<HTMLElement | undefined>();
+
+	afterNavigate(() => {
+		drawer?.close();
+		panelOpen = false;
+	});
 
 	// Crossing to the md layout with the drawer open would leave an invisible
 	// modal holding the page inert (`md:hidden` hides it but doesn't close it).
 	onMount(() => {
 		const mq = window.matchMedia('(min-width: 48rem)');
-		const sync = () => mq.matches && drawer?.close();
+		const sync = () => {
+			if (!mq.matches) return;
+			drawer?.close();
+			panelOpen = false;
+		};
 		mq.addEventListener('change', sync);
 		return () => mq.removeEventListener('change', sync);
 	});
 </script>
 
-{#snippet searchForm(formClass: string, inputClass: string)}
+{#snippet searchForm(formClass: string, inputClass: string, live: boolean)}
+	<!-- Still a real GET form even where the panel searches live: Enter (or a soft
+	     keyboard's Go) lands on the search route with its shareable ?q=, and the
+	     no-JS reader gets the same. -->
 	<form
 		action={resolve('/[game=game]/reference/search', { game: data.gameId })}
 		class={formClass}
 		role="search"
 	>
-		<input
-			name="q"
-			type="search"
-			placeholder="Search rules…"
-			aria-label="Search the rules"
-			class={inputClass}
-		/>
+		{#if live}
+			<input
+				bind:value={query}
+				onpointerdown={() => (panelOpen = true)}
+				name="q"
+				type="search"
+				placeholder="Search rules…"
+				aria-label="Search the rules"
+				class={inputClass}
+			/>
+		{:else}
+			<input
+				name="q"
+				type="search"
+				placeholder="Search rules…"
+				aria-label="Search the rules"
+				class={inputClass}
+			/>
+		{/if}
 		{#if embed.active}
 			<!-- SvelteKit intercepts this GET form but replaces the whole query
 			     string with the form fields — without this, a search submit in
@@ -101,12 +132,19 @@
 	</form>
 {/snippet}
 
+<svelte:window
+	onkeydown={(e) => e.key === 'Escape' && panelOpen && (panelOpen = false)}
+	onpointerdown={(e) =>
+		panelOpen && !barEl?.contains(e.target as Node) ? (panelOpen = false) : undefined}
+/>
+
 <!-- Below md the sidebar is gone; this is the only reference chrome. It stays in
      embed mode too — the embedded window is narrow and `.app-chrome` is hidden
      there, so without it an embedded reader has no nav at all. -->
 <div
+	bind:this={barEl}
 	data-testid="reference-bar"
-	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex items-center gap-2 border-b border-border bg-bg px-4 py-2 md:hidden"
+	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-border bg-bg px-4 py-2 md:hidden"
 >
 	<button
 		type="button"
@@ -129,8 +167,39 @@
 	</button>
 	{@render searchForm(
 		'min-w-0 flex-1',
-		'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent'
+		'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent',
+		true
 	)}
+	{#if panelOpen}
+		<!-- Mounted only while open: closed, the panel leaves no second results
+		     list or pinned block in the page's DOM. `query` lives out here, so
+		     reopening resumes where the reader left off — and the index loaders
+		     memoise, so it costs no second fetch or parse. -->
+		<div
+			data-testid="reference-search-panel"
+			class="-mx-4 max-h-[70dvh] w-[100vw] overflow-y-auto border-t border-border bg-bg px-4 pt-1 pb-6"
+		>
+			<ReferenceSearch
+				bind:query
+				gameId={data.gameId}
+				gameName={data.gameName}
+				showSetting={data.showSetting}
+				badge={data.spoilers?.badge ?? 'GM'}
+				variant="panel"
+				active={panelOpen}
+			>
+				{#snippet controls()}
+					{#if data.spoilers}
+						<!-- The opt-in belongs to the query surface: it's what selects the
+						     GM index, and flipping it re-derives the results live. -->
+						<div class="mt-2">
+							<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+						</div>
+					{/if}
+				{/snippet}
+			</ReferenceSearch>
+		</div>
+	{/if}
 </div>
 
 <div class="flex flex-col gap-8 md:flex-row md:gap-10">
@@ -146,7 +215,8 @@
 		</a>
 		{@render searchForm(
 			'mt-3',
-			'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent'
+			'w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm outline-none focus:border-accent',
+			false
 		)}
 		{#if data.spoilers}
 			<!-- The opt-in lives here in the sidebar — every reference page, not

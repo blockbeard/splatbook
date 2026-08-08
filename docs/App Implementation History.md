@@ -497,3 +497,18 @@ artifacts):**
   template's "please email us with what you make!").
 - Release: deploy, then the real acceptance test — `/hmtw/reference?embed=1`
   inside a Zoom Whiteboard iframe on a small widget.
+
+## Phase 25 — Mobile reference navigation (built 2026-08-08)
+
+Below `md` the sidebar is replaced by a sticky bar — a contents button labelled
+with the section you're in, plus the search box — the TOC becomes a `<dialog>`
+drawer that opens at the reader's position and closes on navigation, and the
+search box opens a panel running the same live-search component the search route
+now uses. Two commits: bar + drawer, then the panel.
+
+The design record, including the groundwork that was verified against the code
+before any markup was written — the shell header is never sticky, anchor landing
+is native fragment scrolling so `scroll-margin-top` is the whole offset fix, the
+measured index weight (339 KB gzipped but only 18 ms to parse), and the iOS
+`<dialog>` traps to avoid — plus an "as built" section for where it diverged:
+**[mobile-reference-nav.md](mobile-reference-nav.md)**.

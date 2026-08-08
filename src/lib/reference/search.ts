@@ -28,11 +28,39 @@ export interface SearchHit {
 	terms: string[];
 }
 
+/**
+ * Memoised per game and per variant, the way `fetchLinkIndex` is (load.ts).
+ * The index is over a megabyte and `MiniSearch.loadJSON` rebuilds its internal
+ * structures on every call, so a surface that can be opened and closed
+ * repeatedly — the mobile search panel, on every reference page — must not pay
+ * for it twice. A failed load isn't cached, so a retry can still succeed.
+ */
+const indexCache = new Map<string, Promise<MiniSearch | null>>();
+
+/** Drop the memoised indexes. Test-only — the cache is module state, so without
+ *  this one spec's fake fetch would answer another's. */
+export function clearSearchIndexCache(): void {
+	indexCache.clear();
+}
+
+function cachedIndex(key: string, load: () => Promise<MiniSearch | null>) {
+	const hit = indexCache.get(key);
+	if (hit) return hit;
+	const promise = load().catch((err) => {
+		indexCache.delete(key);
+		throw err;
+	});
+	indexCache.set(key, promise);
+	return promise;
+}
+
 /** Fetch and deserialize a game's (player) search index. */
-export async function loadSearchIndex(gameId: string, fetchFn: Fetcher): Promise<MiniSearch> {
-	const res = await fetchFn(`${base}/content-packs/${gameId}/search-index.json`);
-	if (!res.ok) throw new Error(`search: failed to load index for "${gameId}" (${res.status})`);
-	return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+export function loadSearchIndex(gameId: string, fetchFn: Fetcher): Promise<MiniSearch> {
+	return cachedIndex(`player:${gameId}`, async () => {
+		const res = await fetchFn(`${base}/content-packs/${gameId}/search-index.json`);
+		if (!res.ok) throw new Error(`search: failed to load index for "${gameId}" (${res.status})`);
+		return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+	}) as Promise<MiniSearch>;
 }
 
 /**
@@ -41,14 +69,13 @@ export async function loadSearchIndex(gameId: string, fetchFn: Fetcher): Promise
  * ships no GM index (a 404), so a game without GM content search just falls
  * back to the player one.
  */
-export async function loadGmSearchIndex(
-	gameId: string,
-	fetchFn: Fetcher
-): Promise<MiniSearch | null> {
-	const res = await fetchFn(`${base}/content-packs/${gameId}/search-index-gm.json`);
-	if (res.status === 404) return null;
-	if (!res.ok) throw new Error(`search: failed to load GM index for "${gameId}" (${res.status})`);
-	return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+export function loadGmSearchIndex(gameId: string, fetchFn: Fetcher): Promise<MiniSearch | null> {
+	return cachedIndex(`gm:${gameId}`, async () => {
+		const res = await fetchFn(`${base}/content-packs/${gameId}/search-index-gm.json`);
+		if (res.status === 404) return null;
+		if (!res.ok) throw new Error(`search: failed to load GM index for "${gameId}" (${res.status})`);
+		return MiniSearch.loadJSON(await res.text(), miniSearchOptions);
+	});
 }
 
 /**
