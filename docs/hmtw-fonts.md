@@ -123,3 +123,20 @@ delete document.documentElement.dataset.fonts; // back to the real book
 ```
 
 Check both before changing any size in `theme.css`.
+
+### Which browsers actually take the local path
+
+Measured 2026-08-08 on a machine with the creator pack installed:
+
+| browser | sees the local faces? |
+| --- | --- |
+| Chromium | yes |
+| Firefox (151, macOS) | yes — `size-adjust` applies correctly too |
+| Safari (macOS) | **no** |
+
+Safari restricts matching arbitrary locally-installed fonts as a fingerprinting
+mitigation, so a Safari reader gets the OFL substitutes **even if they own the
+book's fonts**. That makes the substitute path the majority experience by a
+wider margin than the "who owns the creator pack" question suggests, and it is
+another reason to check `data-fonts='ofl'` before trusting a size: on Safari it
+is the only thing anyone sees.
