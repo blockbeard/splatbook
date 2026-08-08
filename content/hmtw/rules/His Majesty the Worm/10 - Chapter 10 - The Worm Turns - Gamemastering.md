@@ -10,6 +10,9 @@ Dragons are a mystery. Dragons make dungeons full of magical traps. No one knows
 Mesi, the ancient philosopher, theorized that dragons domesticate and cultivate humans in the same way humans cultivate cattle, and no modern discussion of dragons fails to bring up (and usually disagree with) this curious point. The fact is, nobody knows much about dragons. (Dragons steal princesses, too. No one is sure why, either.)
 
 # The GM’s Manifesto
+> [!sidebar] Arbitrating Rules Questions
+>
+> What should be done if there is a rules dispute during gameplay? One of the GM's duties is to settle these questions and decide how the rule should be played. If you're still learning the game, you might want to look them up every time until the flow of narrative and mechanics feels natural. If you have the rules down pretty well but encounter a speedbump, we offer this suggestion: decide in favor of the players and look up the rule later. Don't slow down a fun combat with page turning. Just make a temporary rule that is beneficial for the players and ask your best rules lawyer at the table to look it up after the combat is over.
 
 > [!lede]
 > A game is all about decisions. That is essentially what every game is, whether it's a traditional game like poker, or a board game, or an RPG.
@@ -55,9 +58,6 @@ Don’t fall into the trap of thinking that half-secrets and hints are interesti
 This is particularly true when players bid lore. If you accept a lore bid, you have a social obligation to speak generously to the player and give as much information as is appropriate.
 
 ### Be a fair arbiter
-> [!sidebar] Arbitrating Rules Questions
->
-> What should be done if there is a rules dispute during gameplay? One of the GM's duties is to settle these questions and decide how the rule should be played. If you're still learning the game, you might want to look them up every time until the flow of narrative and mechanics feels natural. If you have the rules down pretty well but encounter a speedbump, we offer this suggestion: decide in favor of the players and look up the rule later. Don't slow down a fun combat with page turning. Just make a temporary rule that is beneficial for the players and ask your best rules lawyer at the table to look it up after the combat is over.
 
 Let player decisions carry weight. If the players come up with ideas that should work, you don’t even need to touch the cards. Their plan can simply work. What makes sense comes before the rules.
 

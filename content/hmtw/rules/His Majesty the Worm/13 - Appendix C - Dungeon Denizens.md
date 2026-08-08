@@ -81,6 +81,28 @@ Use this method to create creatures that are both gameable and gettable, familia
 A **Bestiary** of pre-made denizens is provided in this appendix for your edification and expediency, starting see [[13 - Appendix C - Dungeon Denizens#Bestiary|Bestiary]]. Use them to fill your dungeons. Change them to suit your purposes and predilections.
 
 ## Creature Stats
+> [!sidebar] Attributes
+>
+> Just like adventurers, creatures have attributes. Add them to their action values when they take their turns during a Challenge.
+
+> [!sidebar] Health/Defense (HD)
+>
+> Health is a creature’s general toughness, defense is their armor; see [[07 - Chapter 7 - The Challenge Phase|Chapter 7: The Challenge Phase]]. For example, a creature with HD 6/0 has 6 Health and 0 Defense.
+
+> [!sidebar] Likes and Hates
+> Engaging with things the creature _likes_ prompts positive Dispositions. Antagonize the creature with things it _hates_ to create negative Dispositions. See see [[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]].
+
+> [!sidebar] Notes
+>
+> Everything special the GM needs to remember to run the creature is listed here. Often, notes list invulnerabilities or abilities that do not require an action to invoke.
+
+> [!sidebar] Lesser dooms
+>
+> During a Challenge, lesser dooms are activated by playing major arcana cards with values of 1-14; see [[07 - Chapter 7 - The Challenge Phase#Lesser dooms|Lesser dooms]].
+
+> [!sidebar] Greater dooms
+>
+> During a Challenge, greater dooms are activated by playing major arcana cards with values of 15-21; see [[07 - Chapter 7 - The Challenge Phase#Greater dooms|Greater dooms]].
 
 > [!lede]
 > A creature is defined by a small collection of stats that make it easy for the GM to interpret their abilities during play.
@@ -125,29 +147,6 @@ _Skeletons sometimes pick up old and rusted weapons to channel their hate, but w
 - **Absorb Bones**. If there is a ready source of bones in the skeleton’s zone (e.g., a defeated skeleton), play a greater doom to take those bones. This Heals the skeleton.
 
 ### Theme and Threat
-> [!sidebar] Health/Defense (HD)
->
-> Health is a creature’s general toughness, defense is their armor; see [[07 - Chapter 7 - The Challenge Phase|Chapter 7: The Challenge Phase]]. For example, a creature with HD 6/0 has 6 Health and 0 Defense.
-
-> [!sidebar] Notes
->
-> Everything special the GM needs to remember to run the creature is listed here. Often, notes list invulnerabilities or abilities that do not require an action to invoke.
-
-> [!sidebar] Lesser dooms
->
-> During a Challenge, lesser dooms are activated by playing major arcana cards with values of 1-14; see [[07 - Chapter 7 - The Challenge Phase#Lesser dooms|Lesser dooms]].
-
-> [!sidebar] Attributes
->
-> Just like adventurers, creatures have attributes. Add them to their action values when they take their turns during a Challenge.
-
-> [!sidebar] Likes and Hates
->
-> Engaging with things the creature _likes_ prompts positive Dispositions. Antagonize the creature with things it _hates_ to create negative Dispositions. See see [[06 - Chapter 6 - The Crawl Phase#Social Encounters & Disposition|Social Encounters & Disposition]].
-
-> [!sidebar] Greater dooms
->
-> During a Challenge, greater dooms are activated by playing major arcana cards with values of 15-21; see [[07 - Chapter 7 - The Challenge Phase#Greater dooms|Greater dooms]].
 
 _Theme_ defines the story of the creature.
 

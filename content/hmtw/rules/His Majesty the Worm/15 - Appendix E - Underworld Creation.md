@@ -113,6 +113,9 @@ Connections provide pathways from one dungeon level to another.
 Connections can be anything: hallways, teleporters, natural caverns, underground rivers, etc. As you generate your layout, explicitly define how different dungeon levels are connected.
 
 ## 3. Create Maps
+> [!sidebar] In-character maps
+>
+> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See see [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
 
 Once you have a basic idea of what your Underworld looks like, you’ll need to create a map for each level of your dungeon. You can borrow a map from an outside source or create your own. ^create-maps
 
@@ -141,9 +144,6 @@ Dungeons should not be linear. Remember, a game is fun because it’s a series o
 - There should be feedback loops.
 
 ### Keying the map
-> [!sidebar] In-character maps
->
-> Remember, the players are given a basic copy of this map so that everybody at the table is on the same page! Create a copy of your map that contains outlines of a majority of the rooms and passages that the players would be aware of going in, along with the corresponding room numbers from your key (but no information on the contents). Be sure to leave plenty of blank, open space for the players to draw additional rooms and other secrets they discover. See see [[06 - Chapter 6 - The Crawl Phase#Watches|Watches]] for details.
 
 The players should have a map with room numbers for each level of the dungeon. When the players say “We head towards 122,” you should be able to easily reference that room number in your notes.
 

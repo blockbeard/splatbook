@@ -57,7 +57,7 @@
 		"sidebar"
 	],
 	"hoistMaxDepth": 3,
-	"$hoistPin": "Audited every shipping sidebar against where it lands, 2026-08-08. Only the wrong ones are listed; the rest sit correctly under the section they trail. Three groups: (a) it belongs to the entry it PRECEDES, because the book prints it in the margin at the foot of the previous column — the imp/nymph desire tables, 'Why tarot?', and 'Learning the Challenge Phase' (which otherwise pins to '5. End the round', the last step of the very sequence it introduces); (b) it belongs to an ANCESTOR of the heading it fell on, because it discusses a whole section while trailing one item of it — 'Effect names' and 'Not just for Challenges' land on the single effect 'Trip', 'Sorcery' on the talent 'Dwimmercraft', 'Negative bonds' on the single bond 'Ward', 'Lyric incantations' on the Lich's 'Body', 'Initiative strategies' on 'Step 3', 'The pace of travel' on the Camp Phase's last step; (c) 'Anything that's not nailed down' is general advice on borrowing material that fell on '21. Well', an arbitrary dungeon seed. Left alone as genuinely ambiguous, your call: 'The gates' (about the outer ring, sits between the central power and the core districts — neither owns it), 'Morale' (on the Wands action 'Banter', which may well be right), 'A reminder' in ch5 (about attribute priority generally, sits between two Paths). Round two (2026-08-08, Chris's review of the click-through): ten more retargeted by eye against the book — mostly sidebars that had attached to one item of a section rather than the section, or to a step in a flow summary. Where a target text occurs twice in a note the shallowest wins, which is what makes '2. Break bread' resolve to the section rather than to its line in the Flow of the Camp Phase. The untitled ch9 upkeep one turned out not to be a sidebar at all and was fixed in the vault text. Everything from 'Gear tiers' on is still unreviewed.",
+	"$hoistPin": "Audited every shipping sidebar against where it lands, 2026-08-08. Only the wrong ones are listed; the rest sit correctly under the section they trail. Three groups: (a) it belongs to the entry it PRECEDES, because the book prints it in the margin at the foot of the previous column — the imp/nymph desire tables, 'Why tarot?', and 'Learning the Challenge Phase' (which otherwise pins to '5. End the round', the last step of the very sequence it introduces); (b) it belongs to an ANCESTOR of the heading it fell on, because it discusses a whole section while trailing one item of it — 'Effect names' and 'Not just for Challenges' land on the single effect 'Trip', 'Sorcery' on the talent 'Dwimmercraft', 'Negative bonds' on the single bond 'Ward', 'Lyric incantations' on the Lich's 'Body', 'Initiative strategies' on 'Step 3', 'The pace of travel' on the Camp Phase's last step; (c) 'Anything that's not nailed down' is general advice on borrowing material that fell on '21. Well', an arbitrary dungeon seed. Left alone as genuinely ambiguous, your call: 'The gates' (about the outer ring, sits between the central power and the core districts — neither owns it), 'Morale' (on the Wands action 'Banter', which may well be right), 'A reminder' in ch5 (about attribute priority generally, sits between two Paths). Round two (2026-08-08, Chris's review of the click-through): ten more retargeted by eye against the book — mostly sidebars that had attached to one item of a section rather than the section, or to a step in a flow summary. Where a target text occurs twice in a note the shallowest wins, which is what makes '2. Break bread' resolve to the section rather than to its line in the Flow of the Camp Phase. The untitled ch9 upkeep one turned out not to be a sidebar at all and was fixed in the vault text. Everything from 'Gear tiers' on is still unreviewed. Round three finished the list: the six statblock-anatomy notes (Health/Defense, Notes, Lesser/Greater dooms, Attributes, Likes and Hates) all belong to Creature Stats rather than to the first field they happened to trail, and 'What is an “animal”?' is printed in two margins so the vault holds it twice, byte-identical — identical pinned blocks are placed once. All 84 sidebars are now reviewed.",
 	"hoistPin": {
 		"What do these imps want?": "Imp",
 		"What do these nymphs want?": "Nymph",
@@ -84,7 +84,17 @@
 		"Damned if you do, damned if you don’t…": "Pacts",
 		"Out of cards?": "Miscellaneous actions (Any Suit)",
 		"Starving": "2. Break bread",
-		"The City is social": "The Flow of the City Phase"
+		"The City is social": "The Flow of the City Phase",
+		"Arbitrating Rules Questions": "The GM’s Manifesto",
+		"Scavenging components in the Underworld": "Casting Spells",
+		"What is an “animal”?": "Totem",
+		"Health/Defense (HD)": "Creature Stats",
+		"Notes": "Creature Stats",
+		"Lesser dooms": "Creature Stats",
+		"Attributes": "Creature Stats",
+		"Likes and Hates": "Creature Stats",
+		"Greater dooms": "Creature Stats",
+		"In-character maps": "3. Create Maps"
 	},
 	"preserveLineBreaks": [
 		"His Majesty the Worm/16 - Index.md",

@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The Morale table sits inside the Morale sidebar**, as the book prints it,
   instead of trailing it as loose body prose.
 - **Sidebars sit with the section that owns them.** Audited all 84 that ship, then
-  Chris reviewed the placements page by page: 24
+  Chris reviewed every placement against the book: 36
   were attached to the wrong one, and two kinds of wrongness couldn't be
   expressed before. Some belong to the entry they _precede_ — the book prints
   them in the margin at the foot of the previous column — so "Learning the

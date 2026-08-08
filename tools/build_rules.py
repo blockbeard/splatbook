@@ -258,7 +258,14 @@ def pin_callout_blocks(
         title = lines[i][m.end() :].strip().lower() if m else ""
         if m and m.group(1).lower() in types and title in pins:
             j = callout_block_end(lines, i)
-            pending.setdefault(pins[title], []).extend(lines[i:j] + [""])
+            block = lines[i:j]
+            bucket = pending.setdefault(pins[title], [])
+            # The book prints some sidebars in two margins, so the vault carries
+            # them twice — `What is an "animal"?` appears at two spells in
+            # Appendix A, byte-identical. Pinning both to one heading would stack
+            # two copies of the same note, so an identical block is placed once.
+            if "\n".join(block) not in "\n".join(bucket):
+                bucket.extend(block + [""])
             if j < len(lines) and not lines[j].strip():
                 j += 1  # swallow the blank the block left behind
             i = j

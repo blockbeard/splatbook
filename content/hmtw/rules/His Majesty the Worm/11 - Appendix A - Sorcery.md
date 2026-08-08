@@ -84,6 +84,9 @@ The Welkin is a bright and terrible place. It is order. It is law. It’s a plac
 [[11 - Appendix A - Sorcery#Veritas|Veritas]]  
 
 # Casting Spells
+> [!sidebar] Scavenging components in the Underworld
+>
+> It might be possible (though rare and difficult) for a resourceful sorcerer to prepare a component in the Underworld. This would require them to find the proper requisite items and prepare them ritualistically during the flow of game—probably as a **Camp** Action. The GM adjudicates this as necessary.
 
 When energy from one of the far realms enters the **plane** of Flesh, it burns our reality, causing a strange, unpredictable, and violent reaction. This is called a spell.  
 
@@ -134,9 +137,6 @@ In summation, to cast a spell you must:
 If your spell targets an unwilling creature or anything carried or worn, you must spend 1 Resolve and test Wands. On a success, the spell takes effect. On a failure, the target avoids or resists the spell.  
 
 ### Casting during a Challenge
-> [!sidebar] Scavenging components in the Underworld
->
-> It might be possible (though rare and difficult) for a resourceful sorcerer to prepare a component in the Underworld. This would require them to find the proper requisite items and prepare them ritualistically during the flow of game—probably as a **Camp** Action. The GM adjudicates this as necessary.
 
 During Challenges, you must spend 1 Resolve and **Speak Incantation** to cast a spell. When casting a spell targeting the environment, the action’s value is irrelevant—the spell instantaneously manifests. When casting a spell targeting an unwilling creature, the **Speak Incantation value must exceed your target’s Initiative**.  
 
@@ -573,6 +573,9 @@ The last syllable of the sorcerer’s incantation resounds like a **thunderclap*
 - All creatures in the zone, except the sorcerer, must either **drop everything** they're holding to hold their hands over their ears _or_ be **Stunned** and **Deafened**.  
 
 ## Totem
+> [!sidebar] What is an “animal”?
+>
+> If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
 **Component:**  
 
@@ -591,9 +594,6 @@ The sorcerer places the acorn into their mouth (or the mouth of their target). T
 Spitting the acorn out ends the spell. So, whenever the target wants to talk, **eat**, drink, or pick something up with their mouth, the spell ends.  
 
 ### Random Totem
-> [!sidebar] What is an “animal”?
->
-> If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
 | Card | <img src="/content-packs/hmtw/art/suit-swords.svg" alt="swords" style="height:1em;vertical-align:-0.12em"> Swords | <img src="/content-packs/hmtw/art/suit-cups.svg" alt="cups" style="height:1em;vertical-align:-0.12em"> Cups | <img src="/content-packs/hmtw/art/suit-pentacles.svg" alt="pentacles" style="height:1em;vertical-align:-0.12em"> Pentacles | <img src="/content-packs/hmtw/art/suit-wands.svg" alt="wands" style="height:1em;vertical-align:-0.12em"> Wands |
 |:---:|---|---|---|---|
@@ -613,9 +613,6 @@ Spitting the acorn out ends the spell. So, whenever the target wants to talk, **
 | King | Fox | Wolf | Owl | Thunder Lizard |
 
 ## Wall of Elements
-> [!sidebar] What is an “animal”?
->
-> If it might have appeared in a medieval bestiary, it was probably an animal. This includes stuff like krakens and owlbears and cockatrices, yes. It doesn’t include things like skeletons and golems. Animals eat and shit in the woods.
 
 **Component:**  
 
