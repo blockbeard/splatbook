@@ -26,6 +26,9 @@ In Inverted Castle, beware the Worm
 The mazes shift And even He will turn
 
 # The Flow of the Camp Phase
+> [!sidebar] The pace of travel
+>
+> Rations are the resource that drive the Camp Phase. As such, the opportunity to perform Camp Actions is dependent on the guild’s ability to manage their inventory. Likewise, because charged Bonds drive step 4 of the Camp Phase (Recovery), you have an impetus to avoid striking camp too often: only after a good exchange of role-playing scenes.
 
 > [!lede]
 > When adventuring has left the guild injured, miserable, and expended, they put down their packs and set up camp. During the Camp Phase, everyone rests and recovers from the stresses of the Crawl.
@@ -54,9 +57,6 @@ Automatically refill your allotment of lore bids and clear the Staggered conditi
 - If you are Injured, you must burn a Bond to clear this condition before you can heal any Wounded talents.
 
 ### 5. End of Camp Phase
-> [!sidebar] The pace of travel
->
-> Rations are the resource that drive the Camp Phase. As such, the opportunity to perform Camp Actions is dependent on the guild’s ability to manage their inventory. Likewise, because charged Bonds drive step 4 of the Camp Phase (Recovery), you have an impetus to avoid striking camp too often: only after a good exchange of role-playing scenes.
 
 Check to make sure you have at least two of the following: bedroll, tent, or fire. If you don’t, you wake up Stressed.
 

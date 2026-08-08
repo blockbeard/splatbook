@@ -443,6 +443,19 @@ You should never feel locked into the choices you make about your adventurer. Yo
 | Masochistic | Zombielike | Inquisitor | Zealot |
 
 ## 5. Bonds
+> [!sidebar] Negative bonds and “That Guy”
+>
+> OK, let’s talk real quick about the connotation of some of these negative **Bonds** and problem players.
+>
+> Some of these **Bonds** (**Unrequited Love**, **Adversary**, **Rival**) seem like they’d incite a bad time with “that guy.” We hope this isn’t true for you. Whenever somebody is being “that guy,” there’s one real solution: talk to them. Maybe you got off track. Maybe there was a miscommunication. Maybe this player has had different experiences and expectations with gaming than the rest of the table. These things can often be worked through.
+>
+> Moreover, the [[02 - Chapter 2 - The Adventurer#Session 0|session 0]] rules we’ve included are designed to help mitigate having these experiences in the first place. But, if and when they arise, a frank, adult discussion can serve you well.
+>
+> The fact of the matter is that some **Bonds** are, in fact, representative of “negative” relationships and derived from adversarial relationships in the inspirational fiction. We think these can be fun—but only if done with the consent of all parties involved. Table consensus is a prime tool for everybody having a fun time. If the idea of Unrequited Love appeals to you, talk to the table. See who would be interested in that Bond, and make sure the GM is interested in that sort of story.
+>
+> GMs, talk to your players when they bring these things up. Facilitate communication. Are the players interested in ever moving the Unrequited Love towards Love?
+>
+> At the end of the day, it’s important that everybody is having fun with the Bonds. If they’re not, just swap them to “Ally.” It’s the default one.
 
 The relationships you have with all the other members of your guild are called **Bonds**. Bonds are reflected on your adventurer sheet in terms of simple sentences: “I am Petyr’s mentor,” or “Grendel is my ally.” Your Bonds become charged when you _play them to the hilt_ or when they _put you in danger_.
 
@@ -543,19 +556,6 @@ Examples: Simon and Kaylee, Aragorn and Éowyn
 - Charge this Bond when you do something kind for your love and they rebuff you or turn you down.
 
 ### Ward
-> [!sidebar] Negative bonds and “That Guy”
->
-> OK, let’s talk real quick about the connotation of some of these negative **Bonds** and problem players.
->
-> Some of these **Bonds** (**Unrequited Love**, **Adversary**, **Rival**) seem like they’d incite a bad time with “that guy.” We hope this isn’t true for you. Whenever somebody is being “that guy,” there’s one real solution: talk to them. Maybe you got off track. Maybe there was a miscommunication. Maybe this player has had different experiences and expectations with gaming than the rest of the table. These things can often be worked through.
->
-> Moreover, the [[02 - Chapter 2 - The Adventurer#Session 0|session 0]] rules we’ve included are designed to help mitigate having these experiences in the first place. But, if and when they arise, a frank, adult discussion can serve you well.
->
-> The fact of the matter is that some **Bonds** are, in fact, representative of “negative” relationships and derived from adversarial relationships in the inspirational fiction. We think these can be fun—but only if done with the consent of all parties involved. Table consensus is a prime tool for everybody having a fun time. If the idea of Unrequited Love appeals to you, talk to the table. See who would be interested in that Bond, and make sure the GM is interested in that sort of story.
->
-> GMs, talk to your players when they bring these things up. Facilitate communication. Are the players interested in ever moving the Unrequited Love towards Love?
->
-> At the end of the day, it’s important that everybody is having fun with the Bonds. If they’re not, just swap them to “Ally.” It’s the default one.
 
 You have a guild-mate that you look out for. It’s important they survive.
 

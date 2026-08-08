@@ -35,6 +35,9 @@ What does the fool do?
 would-be knight, deposed king, charming pirate, retired gladiator, fanatic vampire hunter, barbarian warrior poet
 
 ## Swords talents
+> [!sidebar] GM’s note
+>
+> It’s possible that the Monster Hunter categories can overlap. For example, a giant beetle might be a specialty for both a beast hunter and a witch hunter. That’s fine. There’s no reason to get into taxonomical minutiae.
 
 ### Aegis
 
@@ -89,9 +92,6 @@ You have experience pacifying the unquiet dead.
 **Specializations:** A specific undead type (e.g., skeleton, zombie, wraith)
 
 ### Witch Hunter
-> [!sidebar] GM’s note
->
-> It’s possible that the Monster Hunter categories can overlap. For example, a giant beetle might be a specialty for both a beast hunter and a witch hunter. That’s fine. There’s no reason to get into taxonomical minutiae.
 
 If the answer to the question “what is that thing?” is “a wizard did it,” you can deal with it.
 
@@ -241,6 +241,9 @@ You are a student of ancient languages and lore. This talent confers three advan
 
 - When you bid lore, you may spend a Resolve instead of spending a lore bid.
 # Path of Wands
+> [!sidebar] Sorcery
+>
+> Those who walk the Path of Wands are sorcerers. Casting spells and the practice of sorcery is described in detail in **Appendix A: Sorcery**.
 
 > [!lede]
 > The relationship between the City and magic has been long fraught with bloodshed and sorrow. During the Age of the First Empire, sorcery was used as an act of worship towards the Crow-Headed Queen_—_—one of the earliest deified empresses. During the Age of the Republic, sorcery was seen as being fundamentally tied to both monarchists and elves, and it was made illegal. Still, several cabals flourished in secret. The Age of the Republic was marked by the increasing fanaticism of witch hunters as they attempted to root out these hidden sorcerers. A blanket ban on sorcery proved impossible with the advent of the Age of Dungeon. Too many trials and foes in the Underworld were essentially mystical in nature. The practice of sorcery became a necessary evil, and the Cult began to draw up the appropriate pardons and indulgences. Today, those who practice sorcery in the City must be licensed and registered with the crown. Official sorcerers are granted rods of office by the Tower Gnostic and allowed to join guilds in the exploration of the Underworld. Unofficial sorcery is punishable by fines, but is largely unregulated as long as it is not performed in the City itself. Still, the Witch Finder General remains an influential figure within City politics, and his templars have a much grimmer view of unregulated sorcery.
@@ -264,9 +267,6 @@ You can counter the effects of sorcery with an effort of will. There are two app
 - You can negate a spell already in play. You may spend a Resolve to immediately end the ongoing effects of a spell.
 
 ### Dwimmercraft
-> [!sidebar] Sorcery
->
-> Those who walk the Path of Wands are sorcerers. Casting spells and the practice of sorcery is described in detail in **Appendix A: Sorcery**.
 
 Suffused with the arcane arts, you can perform small (but meaningful) expressions of magic. You may perform the following **minor effects:**
 

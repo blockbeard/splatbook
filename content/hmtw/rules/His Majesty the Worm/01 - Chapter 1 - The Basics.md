@@ -434,6 +434,14 @@ _Phynn’s player draws a V of Swords from the minor arcana_ _deck. With his Swo
 **GM:** OK, that critical failure will reduce the success that Chirm generated, so you get 0 hits. The door buckles under the conflict between you and the peryton. Shards of wood and bits of the iron hinges shriek as they break. Phynn, take a Wound as the peryton gores you with its horns. You’re staring it in its weird, blank eyes. What do you guys do?
 
 # Effects
+> [!sidebar] Not just for Challenges
+>
+>Many effects have important ramifications during Challenges. However, effects are not “combat only” rules. For example, outside of a Challenge, a trap with the Displace effect can knock an adventurer into a spiked pit. If that adventurer survives, a sorcerer can cast Gust of Wind to give the Displace effect and pull them back out. The GM adjudicates how effects resolve during the normal flow of the game.
+>
+>The GM and the players interpret the flavor of how effects interact with the world. For example, a dart envenomed with sleeping poison and a blow to the back of the head might both Knockout the target—however, shaking the sleeping person might be enough to wake them up, whereas the person hit in the head would need medical care.
+
+> [!sidebar] Effect names
+> Note that capitalized effect names change conjugation depending on how they're used in game text, but all mean the same thing. For example, a Blinding attack Blinds a creature, after which they are Blinded.
 
 > [!lede]
 > Terms that describe consequences that happen to characters or objects things like Blind, Destroy, and Heal are called Effects. Each effect has its own rules and implications, explained in the list below.
@@ -532,14 +540,6 @@ When Stunned, immediately choose and discard a [[07 - Chapter 7 - The Challenge 
 You do not need to Recover from being Stunned. It is an instantaneous effect.
 
 ### Trip
-> [!sidebar] Not just for Challenges
->
->Many effects have important ramifications during Challenges. However, effects are not “combat only” rules. For example, outside of a Challenge, a trap with the Displace effect can knock an adventurer into a spiked pit. If that adventurer survives, a sorcerer can cast Gust of Wind to give the Displace effect and pull them back out. The GM adjudicates how effects resolve during the normal flow of the game.
->
->The GM and the players interpret the flavor of how effects interact with the world. For example, a dart envenomed with sleeping poison and a blow to the back of the head might both Knockout the target—however, shaking the sleeping person might be enough to wake them up, whereas the person hit in the head would need medical care.
-
-> [!sidebar] Effect names
-> Note that capitalized effect names change conjugation depending on how they're used in game text, but all mean the same thing. For example, a Blinding attack Blinds a creature, after which they are Blinded.
 
 Tripped creatures fall prone.
 

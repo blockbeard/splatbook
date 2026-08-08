@@ -23,6 +23,15 @@ In this phase, everybody at the table draws cards that represent their opportuni
 The Challenge Phase uses the following procedure. Play cycles through steps 1-5 until the Challenge is resolved. The rules for players and GMs differ slightly; GM-specific rules start see [[07 - Chapter 7 - The Challenge Phase#GMing the Challenge|GMing the Challenge]].
 
 ### 0. Set the scene
+> [!sidebar] Learning the Challenge Phase
+>
+> The Challenge Phase rules are designed to be fun—players make tons of small decisions: which cards to use, how to collaborate to get the maximum effect, how to take damage. The rules are also designed to be deadly—things can quickly go from bad to worse as characters Notch armor, Wound talents, and realize they’ve gotten in over their heads.
+>
+> Getting used to card-based combat sequences can be daunting or slow going at first, but once your table falls into the swing of it, the Challenge system ensures that nobody is sitting around waiting for their turn.
+>
+> To learn any game, take it slow and go through each step slowly. After two or three Challenges, you’ll get the sense of the flow and find there’s a lot of interesting tactics embedded in the rules. Do you use a low **Initiative** to go first so you can see what the GM’s monsters **Initiative** is for the rest of the round? Do you bluff with a low Riposte? Do you put down a Riposte first, then draw your sword to make your counterattack more deadly?
+>
+> Players who put in the due diligence to learn the tactics underlying the Challenge Phase will have a lot of fun.
 
 As the Challenge begins, the GM frames the scene. They describe the different zones, note the **combatants** and their **positions**, and articulate if any scenery and hazards have **special rules**.
 
@@ -45,15 +54,6 @@ After a turn is resolved, the GM asks: “Any minor actions?” Anybody who want
 After all actions of a particular Initiative number are resolved, the GM continues the count upwards. Steps 3 and 4 repeat until everybody has had their turn.
 
 ### 5. End the round
-> [!sidebar] Learning the Challenge Phase
->
-> The Challenge Phase rules are designed to be fun—players make tons of small decisions: which cards to use, how to collaborate to get the maximum effect, how to take damage. The rules are also designed to be deadly—things can quickly go from bad to worse as characters Notch armor, Wound talents, and realize they’ve gotten in over their heads.
->
-> Getting used to card-based combat sequences can be daunting or slow going at first, but once your table falls into the swing of it, the Challenge system ensures that nobody is sitting around waiting for their turn.
->
-> To learn any game, take it slow and go through each step slowly. After two or three Challenges, you’ll get the sense of the flow and find there’s a lot of interesting tactics embedded in the rules. Do you use a low **Initiative** to go first so you can see what the GM’s monsters **Initiative** is for the rest of the round? Do you bluff with a low Riposte? Do you put down a Riposte first, then draw your sword to make your counterattack more deadly?
->
-> Players who put in the due diligence to learn the tactics underlying the Challenge Phase will have a lot of fun.
 
 Once everybody has had their turn and the subsequent minor actions have been resolved, the round ends. Everybody discards any unused Challenge cards in their hand. Everybody discards their current Initiative card. Facedown cards remain in play. If the Fool was drawn during this past round, both minor and major arcana decks are shuffled. A new round begins.
 
@@ -459,15 +459,15 @@ Play your card facedown. When you’re next targeted by an Attack, Roughhouse, o
 Once your Dodge card is resolved, discard the card.
 
 ### Roughhouse
-> [!sidebar] Fastball specials
->
-> Aid Another allows adventurers to set up one-two punches and special maneuvers. Sometimes, very large and very powerful monsters will have Initiatives that are above 14, which makes them difficult to hit with normal attacks. In these cases, adventurers will have to use Aid Another to coordinate their Attacks for team-based assaults.
 
 Roughhouse to attempt some maneuver against your opponent: charge them with your shield, tackle them, rip their helm from their head, place your thumbs in their eyeballs.
 
 If your Roughhouse value is greater than your opponent’s Initiative, you choose to either Disarm, Displace, Root, or Trip them (see [[01 - Chapter 1 - The Basics#Effects|Effects]]). They must use the Recover action to get rid of this effect.
 
 ## Cups actions
+> [!sidebar] Fastball specials
+>
+> Aid Another allows adventurers to set up one-two punches and special maneuvers. Sometimes, very large and very powerful monsters will have Initiatives that are above 14, which makes them difficult to hit with normal attacks. In these cases, adventurers will have to use Aid Another to coordinate their Attacks for team-based assaults.
 
 ### Aid Another
 
@@ -862,6 +862,9 @@ If you’ve died in the middle of a session, the GM should find some plausible e
 Your guild-mates can perform the Hold a Funeral City Action later to give your new adventurer a portion of your dead adventurer’s XP ([[09 - Chapter 9 - The City Phase#Commission Craft|Commission Craft]]).
 
 # Example Challenge Phase
+> [!sidebar] Initiative strategies
+>
+> One benefit of moving first is it allows you to reveal higher Initiative cards by attacking them early in the round. Later in the round, you can make more informed decisions.
 
 A guild named the Steel-Clad Snakes has encountered six goblin raiders in a long, dark hallway in the Castle of Crossed Destinies.
 
@@ -930,9 +933,6 @@ _The GM then begins counting upwards to see who takes the first action._
 **GM:** OK, everybody have their Initiatives down? OK. 1… 2… 3… 4…
 
 ### Step 3
-> [!sidebar] Initiative strategies
->
-> One benefit of moving first is it allows you to reveal higher Initiative cards by attacking them early in the round. Later in the round, you can make more informed decisions.
 
 _At the count of 4, the GM flips over the goblin’s Initiative and takes their turn._
 

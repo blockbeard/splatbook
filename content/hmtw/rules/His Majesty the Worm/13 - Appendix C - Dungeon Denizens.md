@@ -958,6 +958,9 @@ _Kelpies understand Tylwyth but cannot speak._
 - **Trample**. On an unsuccessful Attack, the kelpie may use their Attack action against a second target in the same zone.
 
 ## Lich, The Yellow King
+> [!sidebar] Lyric incantations
+>
+> The names of the lich’s dooms are borrowed from the song titles of an artist called Lingua Ignota. Use them as incantations you speak while using the abilities. The effect is compelling at the table.
 
 _Undead Dungeon Lord_
 
@@ -1018,10 +1021,6 @@ The Yellow King has the following powers while wearing the crown.
 - **Day of Tears and Mourning**. While wearing the crown, the Yellow King can cast any **spells** from Appendix A without components. Cast spells by playing a lesser doom Speak Incantations action and discarding a greater doom card instead of spending Resolve. Each additional greater doom card discarded counts as an additional +1 Resolve.
 
 ### Body
-> [!sidebar] Lyric incantations
->
-> The names of the lich’s dooms are borrowed from the song titles of an artist called Lingua Ignota. Use them as incantations you speak while using the abilities. The effect is compelling at the table.
-
 **Health/Defense:** 5/9
 
 If defeated, the Yellow King will be reduced to an invulnerable crystal skull that will eventually regrow a body as long as his phylactery is intact. While his body still lives, he has the following abilities.

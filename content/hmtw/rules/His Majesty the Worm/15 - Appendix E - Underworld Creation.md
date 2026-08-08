@@ -411,6 +411,13 @@ Lastly, quest rumors probably won’t actually change between the different leve
 | XXI | [Quest Rumor] |
 
 # Dungeon Seeds
+> [!sidebar] Anything that’s not nailed down
+>
+> There’s a huge number of resources in the role-playing hobby to draw on. RPGs have been around a long time and it’s never been better. There’s a vibrant DIY community of incredibly talented people creating all sorts of blog posts, zines, and indie games. When you set out to create your Underworld, you’ll have an enormous amount of things to borrow from and be inspired by.
+>
+> Buy some stuff from your favorite creators, slap them together, cut and paste sections from one onto the other, and turn your players loose. Perhaps the first level of your Underworld is the _Tomb of the Serpent Kings_ (Skerples, Coin and Scrolls [blog], 2017), but the deeper levels are sections of Undermountain (_The Ruins of Undermountain_, TSR, 1994).
+>
+> Want to play _His Majesty the Worm,_ but use the optional hex crawl procedures ([[08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel|Overland Travel]]) instead of focusing on megadungeon play? _Dolmenwood_ (Gavin Norman, Necrotic Gnome, 2023) can dominate the northwest corner of your campaign map. _The Misty Isles of the Eld_ (Chuck Kutalik, Hydra Cooperative, 2016) and Hot Springs Island (_The Dark of Hot Springs Island,_ Swordfish Islands, 2017) can be just off the coast of the City.
 
 > [!epigraph]
 > “The universe (which others call the Library) is composed of an indefinite and perhaps infinite number of hexagonal galleries, with vast air shafts between, surrounded by very low railings. From any of the hexagons one can see, interminably, the upper and lower floors. The distribution of the galleries is invariable. Twenty shelves, five long shelves per side, cover all the sides except two; their height, which is the distance from floor to ceiling, scarcely exceeds that of a normal bookcase...”
@@ -1301,13 +1308,6 @@ Waterwheels harness the power of the strange rivers of the Underworld. Adventure
 The flow of the river is split into three waterfalls by a series of locks and dams controlled by levers inside the dungeon. When the water turns the northern waterwheel, the colossal door to the Necropolis of Ot is raised. When the water turns the eastern waterwheel, the lamps inside the Castle of Crossed Destinies are lit, allowing adventurers to forgo carrying their own torches. When the water turns the western waterwheel, the bridge extends from the castle towards the **City** of Ruin. Only one waterfall can flow at a time.
 
 ### 21. Well
-> [!sidebar] Anything that’s not nailed down
->
-> There’s a huge number of resources in the role-playing hobby to draw on. RPGs have been around a long time and it’s never been better. There’s a vibrant DIY community of incredibly talented people creating all sorts of blog posts, zines, and indie games. When you set out to create your Underworld, you’ll have an enormous amount of things to borrow from and be inspired by.
->
-> Buy some stuff from your favorite creators, slap them together, cut and paste sections from one onto the other, and turn your players loose. Perhaps the first level of your Underworld is the _Tomb of the Serpent Kings_ (Skerples, Coin and Scrolls [blog], 2017), but the deeper levels are sections of Undermountain (_The Ruins of Undermountain_, TSR, 1994).
->
-> Want to play _His Majesty the Worm,_ but use the optional hex crawl procedures ([[08 - Chapter 8 - The Camp Phase#Optional Rules: Overland Travel|Overland Travel]]) instead of focusing on megadungeon play? _Dolmenwood_ (Gavin Norman, Necrotic Gnome, 2023) can dominate the northwest corner of your campaign map. _The Misty Isles of the Eld_ (Chuck Kutalik, Hydra Cooperative, 2016) and Hot Springs Island (_The Dark of Hot Springs Island,_ Swordfish Islands, 2017) can be just off the coast of the City.
 
 Wells in the Underworld contain bizarre things: wine, treacle, oil, pudding. Almost anything but water. Moreover, wells frequently have some denizen who lives off their contents, either dwelling at the bottom of the well or guarding it from interlopers.
 

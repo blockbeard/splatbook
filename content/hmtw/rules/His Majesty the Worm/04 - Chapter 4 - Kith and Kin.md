@@ -349,13 +349,6 @@ Here is one example:
 They also have the Book of Broken Oaths, a history of the early underfolk and their relationship with the Creator. It tells the story of how the underfolk broke ties with the Creator and suffered terrible hardships for breaking troth, but willingly did so in order that future generations might escape the burden of the oaths. This text is written in Ancient Underfolk, and few understand it. No examples of the text are included here.
 
 ### Underfolk names
-> [!sidebar] Crafting
->
-> Crafting is important for the underfolk culture in general and their arête triggers specifically.
->
-> In general, crafting something (especially something that will last for centuries) is a City Action. Underfolk players might be interested in making specialized weapons or armor, or they may want to raise statues or monuments to themselves. Writing a treatise, a biography, or a popular song might also qualify as “crafting something that will last centuries.” These efforts will probably require gold, with larger works needing larger payments. This is intentional. Underfolk are known to be ambitious, and this requirement encourages this behavior in play.
->
-> The Build and Commission Craft [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] (, 158) are two options. But GMs will need to work with their players to work out expectations for what underfolk players want to accomplish.
 
 #### Underfolk male names:
 
@@ -372,6 +365,13 @@ Underfolk use their livery—their profession—as their last name.
 Bellowsmender, Blacksmith, Brewer, Carpenter, Chandler, Cooper, Joiner, Miner, Runescrivner, Sculptor, Stonemason, Tailor, Tinker, Vintner, Wainwright, Weaver, Whitesmith
 
 ## Underfolk kin
+> [!sidebar] Crafting
+>
+> Crafting is important for the underfolk culture in general and their arête triggers specifically.
+>
+> In general, crafting something (especially something that will last for centuries) is a City Action. Underfolk players might be interested in making specialized weapons or armor, or they may want to raise statues or monuments to themselves. Writing a treatise, a biography, or a popular song might also qualify as “crafting something that will last centuries.” These efforts will probably require gold, with larger works needing larger payments. This is intentional. Underfolk are known to be ambitious, and this requirement encourages this behavior in play.
+>
+> The Build and Commission Craft [[09 - Chapter 9 - The City Phase#^city-actions|City Actions]] are two options. But GMs will need to work with their players to work out expectations for what underfolk players want to accomplish.
 
 > [!lede]
 > Whether large or small, halfling or troll, all underfolk consider themselves to be members of the same family.
