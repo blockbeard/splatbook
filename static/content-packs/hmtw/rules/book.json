@@ -84,10 +84,10 @@
 	"sections": [
 		{
 			"id": "00-introduction",
-			"title": "Front Matter",
+			"title": "Introduction",
 			"level": 1,
 			"path": [],
-			"body": "",
+			"body": "> [!sidebar] What's up with the name? \n> \n> The title of this book is taken from Italo Calvino’s _The Castle of Crossed Destinies_ (Italian: Il castello dei destini incrociati). The experimental novel’s narrative details a group of pilgrims who find themselves unable to speak. Thus impaired, they use a set of tarot cards to illustrate their backgrounds and tell each other stories. Because this game also uses tarot cards to tell stories, the allusion seemed apt.\n\n*The forest’s thickness is lessening, with room for paths of turned earth, rectangular pits, a whiteness as of mushrooms peeping from the ground.*\n\n*With horror we see from the thirteenth tarot that the underbrush is fertilized with half-withered corpses and fleshless bones.*\n\n*“Why, where have you brought me, Fool? This is a cemetery!”*\n\n*And the Fool says, pointing to the invertebrate fauna feeding in the graves:*\n\n*“Here a monarchy reigns, mightier than you.\"*\n\n> [!lede] \n> **The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.\n\n_His Majesty the Worm_ is a tabletop role-playing game designed for dungeon-crawling. The Game Master uses the tools in this book to create a megadungeon called the Underworld. The players create adventurers to explore the Underworld in pursuit of their personal quests. Tarot cards are used as a randomizing element.\n\nThis is a new-school game with old-school sensibilities. It’s designed to make the “boring parts” interesting. Slice-of-life subsystems like food, hunger, light, and inventory management are central to play.\n\nThe game has robust procedures: characters adventure in the Underworld, rest in camping scenes, then plan longterm actions in the **City** at the center of the Wide World.\n\nThe relationships between companions, called Bonds, power the rest and recovery mechanic of the game. Role-playing drives the game forward.\n\nCombat encounters are handled with an action-packed subsystem that ensures that all players have interesting choices every minute of combat: no downtime!\n\nWe hope you will have fun with it!",
 			"visibility": "player",
 			"chapter": "00-introduction"
 		},
@@ -96,20 +96,9 @@
 			"title": "Credits",
 			"level": 3,
 			"path": [
-				"Front Matter"
+				"Introduction"
 			],
-			"body": "**Writing** — Josh McCrowell **Editing** — Melody Watson, Kennedy Gerber **Cover Design** — Pete Borlace, Nari Drake **Character Sheet** — M. Finch, Pete Borlace, Michael Strange **Graphic Design** — Pete Borlace, Michael Strange **Alchemical Icons** — Martin Nerrekar **Cartography** — Dyson Logos **Hangover Table and Other Tomfoolery** — Chris Sanford\n\n**Art** — Bordleawnoff, Emily Cheeseman, Charles Ferguson-Avery, Nicolas Evans, Gobert, Sophie Grimmer, Gus L, Tom Kilian, Amanda Lee Francis, Savanna Meyer, Thomas Noosid, Gertrude Oberg, Caitlin Reid, Marcus S, Alex Sorenson, and others. *(Plus public-domain and CC BY 4.0 artwork — see PDF for the full attribution list.)*\n\n**Playtesting** — Sophia Baratta, Jim Bunting, Justin Callahan, Christian Cline, M. Finch, Gil Mitchell, Ryan Paterson, Izzy Peters, Eli Podeyn, Chris Sanford, Paul Skidmore, Laura Soreika, Nick Walge, Helen White, and others.\n\n**Copyright** © 2023 · Published by Exalted Funeral Press · Printed in Lithuania · www.exaltedfuneral.com\n\nPermission is granted to photocopy and otherwise reproduce for personal use. Redistribution of copies without prior written consent is prohibited. All creators retain the right to be identified as such. In all cases this notice must remain intact.\n\nThe mechanics and game text of _His Majesty the Worm_ may be reused freely. Third-party compatible works are welcomed. Art may not be reused—all artists maintain copyright of their work.\n\nIf your product declares compatibility with _His Majesty the Worm_, you must state the following in your legal text and on any websites from which a commercial product is sold: “\\[product name] is an independent production by \\[publisher name] and is not affiliated with Joshua McCrowell or Exalted Funeral.”\n\nThe forest’s thickness is lessening, with room for paths of turned earth, rectangular pits, a whiteness as of mushrooms peeping from the ground.\n\nWith horror we see from the thirteenth tarot that the underbrush is fertilized with half-withered corpses and fleshless bones.\n\n“Why, where have you brought me, Fool? This is a cemetery!”\n\nAnd the Fool says, pointing to the invertebrate fauna feeding in the graves:\n\n“Here a monarchy reigns, mightier than you.\"\n\n_His Majesty the Worm_ is a tabletop role-playing game designed for dungeon-crawling. The Game Master uses the tools in this book to create a megadungeon called the Underworld. The players create adventurers to explore the Underworld in pursuit of their personal quests. Tarot cards are used as a randomizing element.\n\nThis is a new-school game with old-school sensibilities. It’s designed to make the “boring parts” interesting. Slice-of-life subsystems like food, hunger, light, and inventory management are central to play.\n\nThe game has robust procedures: characters adventure in the Underworld, rest in camping scenes, then plan longterm actions in the **City** at the center of the Wide World.\n\nThe relationships between companions, called Bonds, power the rest and recovery mechanic of the game. Role-playing drives the game forward.\n\nCombat encounters are handled with an action-packed subsystem that ensures that all players have interesting choices every minute of combat: no downtime!\n\nWe hope you will have fun with it!\n\n---",
-			"visibility": "player",
-			"chapter": "00-introduction"
-		},
-		{
-			"id": "00-introduction--introduction",
-			"title": "Introduction",
-			"level": 2,
-			"path": [
-				"Front Matter"
-			],
-			"body": "> [!sidebar] What's up with the name? \n> \n> The title of this book is taken from Italo Calvino’s _The Castle of Crossed Destinies_ (Italian: Il castello dei destini incrociati). The experimental novel’s narrative details a group of pilgrims who find themselves unable to speak. Thus impaired, they use a set of tarot cards to illustrate their backgrounds and tell each other stories. Because this game also uses tarot cards to tell stories, the allusion seemed apt.\n\n**The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.",
+			"body": "**Writing** — Josh McCrowell **Editing** — Melody Watson, Kennedy Gerber **Cover Design** — Pete Borlace, Nari Drake **Character Sheet** — M. Finch, Pete Borlace, Michael Strange **Graphic Design** — Pete Borlace, Michael Strange **Alchemical Icons** — Martin Nerrekar **Cartography** — Dyson Logos **Hangover Table and Other Tomfoolery** — Chris Sanford\n\n**Art** — Bordleawnoff, Emily Cheeseman, Charles Ferguson-Avery, Nicolas Evans, Gobert, Sophie Grimmer, Gus L, Tom Kilian, Amanda Lee Francis, Savanna Meyer, Thomas Noosid, Gertrude Oberg, Caitlin Reid, Marcus S, Alex Sorenson, and others. *(Plus public-domain and CC BY 4.0 artwork — see PDF for the full attribution list.)*\n\n**Playtesting** — Sophia Baratta, Jim Bunting, Justin Callahan, Christian Cline, M. Finch, Gil Mitchell, Ryan Paterson, Izzy Peters, Eli Podeyn, Chris Sanford, Paul Skidmore, Laura Soreika, Nick Walge, Helen White, and others.\n\n**Copyright** © 2023 · Published by Exalted Funeral Press · Printed in Lithuania · www.exaltedfuneral.com\n\nPermission is granted to photocopy and otherwise reproduce for personal use. Redistribution of copies without prior written consent is prohibited. All creators retain the right to be identified as such. In all cases this notice must remain intact.\n\nThe mechanics and game text of _His Majesty the Worm_ may be reused freely. Third-party compatible works are welcomed. Art may not be reused—all artists maintain copyright of their work.\n\nIf your product declares compatibility with _His Majesty the Worm_, you must state the following in your legal text and on any websites from which a commercial product is sold: “\\[product name] is an independent production by \\[publisher name] and is not affiliated with Joshua McCrowell or Exalted Funeral.”",
 			"visibility": "player",
 			"chapter": "00-introduction"
 		},
@@ -118,7 +107,6 @@
 			"title": "Tarot",
 			"level": 3,
 			"path": [
-				"Front Matter",
 				"Introduction"
 			],
 			"body": "> [!sidebar] Why tarot?\n>\n>Tarot cards are informationally rich. They have number, suit, direction (upright vs. reversed), and symbolic meaning. This information is persistent. You can have cards in your hand, drawn from the top of the deck, drawn from the discard pile, facedown in front of you, etc. This is a rich space for game play.\n>\n>Plus, they’re just cooler and more interesting to look at than playing cards.\n>\n>Tarot cards are available online and in spooky new age stores that sell crystals and stuff. You’ll want a deck similar to a “classic” Rider-Waite deck: 78 cards total, with a minor arcana consisting of four suits of ten numbered cards + four face cards and a major arcana numbered 0 to 21.\n\nThis game uses **tarot cards** (instead of dice) in its procedures and mechanics. Chapter 1 provides an overview of the basic mechanics used during the flow of the game.",
@@ -130,7 +118,6 @@
 			"title": "Players",
 			"level": 3,
 			"path": [
-				"Front Matter",
 				"Introduction"
 			],
 			"body": "Players take on the role of **adventurers**. Adventurers descend into the Underworld in search of impossible things that can never exist on the surface world. They explore collectively as a **guild**—a chartered union of adventurers.\n\n- The procedure for creating adventurers and filling out the **adventurer sheet** is found in [[02 - Chapter 2 - The Adventurer|Chapter 2: The Adventurer]].\n\n- The procedure for filling out the guild roster is found in [[03 - Chapter 3 - The Guild|Chapter 3: The Guild]].",
@@ -142,7 +129,6 @@
 			"title": "The Game Master",
 			"level": 3,
 			"path": [
-				"Front Matter",
 				"Introduction"
 			],
 			"body": "Before play, the Game Master (GM) takes on the responsibility of using the tools in this book to create a series of interconnected dungeons and populating them with interesting challenges. This process takes one or two lazy Sunday afternoons.\n\n- A procedure for creating interesting monsters is found in [[13 - Appendix C - Dungeon Denizens|Appendix C: Dungeon Denizens]].\n- A procedure for creating an evocative City for the players’ home is found in [[14 - Appendix D - City Creation|Appendix D: City Creation]].\n- A procedure for creating a series of dungeons that connect to form the Underworld is found in [[15 - Appendix E - Underworld Creation|Appendix E: Underworld Creation]].\n\nDuring play, the GM takes on the role of a referee who arbitrates the actions of the players’ adventurers within the context of the City and the Underworld.\n\n- General advice for running the game is found in Chapter 10: The Worm Turns see [[10 - Chapter 10 - The Worm Turns - Gamemastering|Chapter 10: The Worm Turns — Gamemastering]].\n\nThe game—and indeed, this very book—contains mature, fantastic themes that can range from sophomoric to graphic. As adults, work together to find what works for your group and leave the rest behind. Be kind. It is the shared responsibility of everybody at the table to ensure that the trials, battles, romances, successes, and failures had by the guild are fun for everybody involved.",
@@ -154,7 +140,7 @@
 			"title": "Game Principles",
 			"level": 2,
 			"path": [
-				"Front Matter"
+				"Introduction"
 			],
 			"body": "His Majesty the Worm aims to make dungeon exploration fun. It forefronts what might otherwise be fringe rules for food, light, and time, and shines the spotlight on the visceral experience of the dungeon crawl.",
 			"visibility": "player",
@@ -165,7 +151,7 @@
 			"title": "The (Demi-) Human Experience",
 			"level": 3,
 			"path": [
-				"Front Matter",
+				"Introduction",
 				"Game Principles"
 			],
 			"body": "This game focuses on the personal experiences of the adventurers exploring the mythic Underworld.\n\nPlayers portray fantastic characters. However, the game is designed to make these adventurers feel real through a persistent focus on basic “human” needs. Adventurers will become cold, drunk, hungry, horny, stressed, happy, hurt, etc. This allows players to immerse themselves in the experience of their adventurer.\n\nThe essential meta-currency of the game are the Bonds the adventurers share with each other. When players role-play with their guild-mates, they charge these Bonds. Players then spend these charges to recover from the mental and physical ailments accumulated from dungeon delving.",
@@ -177,7 +163,7 @@
 			"title": "Rulings, Not Rules",
 			"level": 3,
 			"path": [
-				"Front Matter",
+				"Introduction",
 				"Game Principles"
 			],
 			"body": "Ultimately, no rule system completely encapsulates every possibility of player action—and that’s the fun of tabletop RPGs! There are fringe cases, strange situations, and unconsidered possibilities that inevitably arise during play. Having a GM to arbitrate these situations is one of the advantages of tabletop games compared to other game forms. As such, these rules are presented as a resource with the expectation that there will be ample homebrewing and hacking.\n\nWhen unexpected questions arise, GMs can adapt the rules to fit the situation at hand. When that situation comes up frequently, the GM and the table can collaborate on turning that ruling into a more hard-and-fast rule. And, when hard-and-fast rules seem to fail the tests of common sense, verisimilitude, and fun, it’s the GM’s responsibility to make calls that change the rules for the better.",
@@ -189,7 +175,7 @@
 			"title": "The Scaling Underworld",
 			"level": 3,
 			"path": [
-				"Front Matter",
+				"Introduction",
 				"Game Principles"
 			],
 			"body": "The Underworld is not a place of balanced encounters. There’s no expectation that the players are ever in a “level-appropriate” place. A sleeping dragon might be an unbeatable guardian for a beginning party and must be snuck past. A somewhat more experienced guild might try and defeat the dragon to win her treasure.\n\nEither way, the dragon provides some type of challenge for the adventurers, whether they are novices or veterans.\n\nPlayers should feel empowered to experiment and take risks, with all the rewards and consequences that risk entails.",
@@ -201,7 +187,7 @@
 			"title": "The Deadly Underworld",
 			"level": 3,
 			"path": [
-				"Front Matter",
+				"Introduction",
 				"Game Principles"
 			],
 			"body": "The game—and the adventurer sheet—are actually pretty simple. There are few numbers and not a lot of special powers or abilities. There are no “spot checks”—only players describing where and how they’re searching. There are no “disarm trap” skills—only players describing how they move the knife across the tripwire or tap their ten-foot pole ahead of them.\n\nUltimately, this game is about exploring the Underworld. As such, there are no abilities that mitigate the essential dangers of the dungeon.\n\n- Darkness is always dangerous. No adventurer can see perfectly in the dark.\n- Rations and torches are always precious. There are no “conjure food” spells, and the arts that sorcerers have to conjure light are dangerous. Being bereft of light or food means death.\n- Traps must always be navigated. There are no “perception” or “disarm” skills. **Each** trap is a unique puzzle to be solved.\n- Combat is always deadly. Healing is laborious, requiring that the adventurers undertake a Camp Phase. Adventurers draw their swords at their own peril.",
@@ -213,7 +199,7 @@
 			"title": "Whimsy",
 			"level": 3,
 			"path": [
-				"Front Matter",
+				"Introduction",
 				"Game Principles"
 			],
 			"body": "A fair bit of _His Majesty the Worm_ is whimsy. This is an RPG that knows it’s an RPG. You play adventurers who know they are adventurers. It is playful with its tropes. It’s unpretentious. During a game, both players and GMs will deconstruct and reconstruct common dungeon delving tropes. This should be fun. This should be delightful.",
@@ -236,7 +222,7 @@
 			"path": [
 				"Chapter 1: The Basics"
 			],
-			"body": ">[!sidebar] Against canon\n>\n>Throughout this book, there are references to an implied setting that are never elaborated on. We name and discuss people, places, and historical events without describing them in great detail. This is intentional.\n>\n>Instead of providing a gazetteer with everything carefully plotted out and a hundred-and-one nonsense fantasy words for you to memorize, we’ve painted with a fairly broad brush. It’s our intention to give you a sense of scope and flavor without bogging the game down with lore to memorize or binding your story to a metaplot. The game world and the storyline are intended to vary from table to table.\n>\n>It’s our hope that the implied setting of _His Majesty the Worm_ stimulates your imagination and allows you to tell the stories that you want to tell.\n>\n>As the setting details provided invoke a certain aesthetic for you, we hope that you will use them. As the setting details provided feel frustrating in their obscurity or contradictions, we hope you will change them, ignore them, or tear them physically from the book. At times, the provided material will be inherently contradictory, obliging you to make a decision about which version you want to be “true.”\n\n> [!lede]\n> Each adventurer has a [[02 - Chapter 2 - The Adventurer#3. Quests|personal quest]] that compels them into the lightless depths. Once their quest is fulfilled, they can finally retire and rest. Until then, it is a cycle of descending into the Underworld and returning to the City to restock and rest.\n\n> [!lede]\n> The flow of the game consists of four distinct phases, each with its own style of play and rules.",
+			"body": ">[!sidebar] Against canon\n>\n>Throughout this book, there are references to an implied setting that are never elaborated on. We name and discuss people, places, and historical events without describing them in great detail. This is intentional.\n>\n>Instead of providing a gazetteer with everything carefully plotted out and a hundred-and-one nonsense fantasy words for you to memorize, we’ve painted with a fairly broad brush. It’s our intention to give you a sense of scope and flavor without bogging the game down with lore to memorize or binding your story to a metaplot. The game world and the storyline are intended to vary from table to table.\n>\n>It’s our hope that the implied setting of _His Majesty the Worm_ stimulates your imagination and allows you to tell the stories that you want to tell.\n>\n>As the setting details provided invoke a certain aesthetic for you, we hope that you will use them. As the setting details provided feel frustrating in their obscurity or contradictions, we hope you will change them, ignore them, or tear them physically from the book. At times, the provided material will be inherently contradictory, obliging you to make a decision about which version you want to be “true.”\n\n> [!lede]\n> Each adventurer has a [[02 - Chapter 2 - The Adventurer#3. Quests|personal quest]] that compels them into the lightless depths. Once their quest is fulfilled, they can finally retire and rest. Until then, it is a cycle of descending into the Underworld and returning to the City to restock and rest.\n\n> [!lede]\n> The flow of the game consists of four distinct phases, each with its own style of play and rules.\n\n> [!summary] The Four Phases\n> **City** — Turn in and take new contracts; spend wealth to restock and heal; pursue long-term schemes.\n> 1. Death and Taxes\n> 2. Noteworthy Deeds\n> 3. City Events\n> 4. Turn in Contracts\n> 5. Upkeep\n> 6. City Actions\n> 7. Plan the Next Crawl\n> 8. Restock the Underworld\n>\n> **Crawl** — Pursue your quest; accumulate wealth and avoid hazards; charge Bonds through roleplaying and fulfilling conditions.\n> 1. Declare you enter the quest\n> 2. A watch passes when you travel to the next room\n> 3. The GM draws on the Meatgrinder table each watch\n>\n> **Challenge** — Fight the denizens of the Underworld; notch armor; gain Wounds.\n> 1. Set the Scene\n> 2. Draw Challenge Cards\n> 3. Play Initiative\n> 4. Take Turns\n> 5. Minor Actions6\n> 6. End the Round\n>\n> **Camp** — Burn charged Bonds; heal Wounds; gain Resolve.\n> 1. Camp Actions\n> 2. Break Bread\n> 3. No Rest for the Wicked\n> 4. Recovery\n> 5. End Camp Phase",
 			"visibility": "player",
 			"chapter": "01-chapter-1-the-basics"
 		},
@@ -284,7 +270,7 @@
 				"Chapter 1: The Basics",
 				"The Four Phases"
 			],
-			"body": "Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.\n\n> [!summary] The Four Phases\n> **City** — Turn in and take new contracts; spend wealth to restock and heal; pursue long-term schemes.\n> 1. Death and Taxes\n> 2. Noteworthy Deeds\n> 3. City Events\n> 4. Turn in Contracts\n> 5. Upkeep\n> 6. City Actions\n> 7. Plan the Next Crawl\n> 8. Restock the Underworld\n>\n> **Crawl** — Pursue your quest; accumulate wealth and avoid hazards; charge Bonds through roleplaying and fulfilling conditions.\n> 1. Declare you enter the quest\n> 2. A watch passes when you travel to the next room\n> 3. The GM draws on the Meatgrinder table each watch\n>\n> **Challenge** — Fight the denizens of the Underworld; notch armor; gain Wounds.\n> 1. Set the Scene\n> 2. Draw Challenge Cards\n> 3. Play Initiative\n> 4. Take Turns\n> 5. Minor Actions6\n> 6. End the Round\n>\n> **Camp** — Burn charged Bonds; heal Wounds; gain Resolve.\n> 1. Camp Actions\n> 2. Break Bread\n> 3. No Rest for the Wicked\n> 4. Recovery\n> 5. End Camp Phase",
+			"body": "Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.",
 			"visibility": "player",
 			"chapter": "01-chapter-1-the-basics"
 		},
@@ -408,7 +394,7 @@
 				"The Flow of the Play",
 				"Adjudicating the game: GM responses"
 			],
-			"body": "When an action is fraught with danger or its outcome is uncertain, it’s time to **test fate**. For an overview of [[#Tests of Fate|tests of fate]].\n\nTests of fate should be relatively rare and relatively tense. Don’t call for tests of fate for inconsequential actions—only when something of importance hangs in the balance.\n\n  - “The door is locked. If you have lockpicks, you can test Pentacles to try and pick the lock.”\n- “OK, you grab the portcullis before it slams down.\n\nYou’re straining against it as the mechanism’s gears",
+			"body": "When an action is fraught with danger or its outcome is uncertain, it’s time to **test fate**. For an overview of [[#Tests of Fate|tests of fate]].\n\nTests of fate should be relatively rare and relatively tense. Don’t call for tests of fate for inconsequential actions—only when something of importance hangs in the balance.\n\n- “The door is locked. If you have lockpicks, you can test Pentacles to try and pick the lock.”\n- “OK, you grab the portcullis before it slams down.\n\nYou’re straining against it as the mechanism’s gears",
 			"visibility": "player",
 			"chapter": "01-chapter-1-the-basics"
 		},
@@ -467,7 +453,7 @@
 				"Chapter 1: The Basics",
 				"Tests of Fate"
 			],
-			"body": "- You test Pentacles and draw a IV of Pentacles. Your adventurer’s Pentacles score is a 2. Your total value is 6.\n\n  - You test Pentacles and draw a Knight of Wands. Your adventurer’s Pentacles score is 2 and a Knight has a value of 12. Your total value is 14.\n\nThere are four possible outcomes to a test of fate.",
+			"body": "- You test Pentacles and draw a IV of Pentacles. Your adventurer’s Pentacles score is a 2. Your total value is 6.\n\n- You test Pentacles and draw a Knight of Wands. Your adventurer’s Pentacles score is 2 and a Knight has a value of 12. Your total value is 14.\n\nThere are four possible outcomes to a test of fate.",
 			"visibility": "player",
 			"chapter": "01-chapter-1-the-basics"
 		},
@@ -2040,7 +2026,7 @@
 			"title": "Chapter 4: Kith and Kin",
 			"level": 1,
 			"path": [],
-			"body": "> [!sidebar] There is no lore.\n>\n> As you’re reading this chapter, you’ll notice there’s a lot of fantasy gibberish. If it’s inspiring, riff on the provided concepts for your character. If it’s confusing, limiting, or contradictory to your own ideas, ignore it. Mark through it with a Sharpie. Write in the margins of the book. Make your game world your own.\n\n> [!epigraph]\n> “Tyger, Tyger, burning bright In the forests of the night, What immortal hand or eye Could frame thy fearful symmetry?\n>\n> _– “The Tyger,” William Blake_\n\nThe Wide World is a sprawling place, with many strange creatures, exotic cultures, religious schisms, warring clans, and ancient lineages. No two fay folk are alike, even as humans have infinite variation. From the solitary trolls of the Rimemark, to the noble elves of Alfheim, to the tribes of barbarians scourging the Ghostgrass Plains, to the stoic templars of Mythrys, there are many peoples in the Wide World—and they all congregate in the City in search of glory and riches in the Underworld.\n\n_– “The Tyger,” William Blake_",
+			"body": "> [!sidebar] There is no lore.\n>\n> As you’re reading this chapter, you’ll notice there’s a lot of fantasy gibberish. If it’s inspiring, riff on the provided concepts for your character. If it’s confusing, limiting, or contradictory to your own ideas, ignore it. Mark through it with a Sharpie. Write in the margins of the book. Make your game world your own.\n\n> [!epigraph]\n> “Tyger, Tyger, burning bright In the forests of the night, What immortal hand or eye Could frame thy fearful symmetry?\n>\n> _– “The Tyger,” William Blake_\n\nThe Wide World is a sprawling place, with many strange creatures, exotic cultures, religious schisms, warring clans, and ancient lineages. No two fay folk are alike, even as humans have infinite variation. From the solitary trolls of the Rimemark, to the noble elves of Alfheim, to the tribes of barbarians scourging the Ghostgrass Plains, to the stoic templars of Mythrys, there are many peoples in the Wide World—and they all congregate in the City in search of glory and riches in the Underworld.",
 			"visibility": "player",
 			"chapter": "04-chapter-4-kith-and-kin"
 		},

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **HMtW content reimported.** The Introduction is restructured upstream in the
+  vault: it opens on the introduction itself rather than a copyright page, with
+  the credits moved to the end under their own heading, the Calvino passage set
+  as verse, and the Underworld definition promoted to a lede. Chapter 1's
+  four-phases summary moved above the heading it belongs to. The duplicated
+  William Blake epigraph credit in Chapter 4 is gone — the vault carries it both
+  inside the callout and again as a bare line, so it always rendered twice;
+  dropping the epigraphs left the orphan standing alone with nothing to credit.
+
 ### Added
 
 - **The importer can rewrite text the vault spells wrong for the web**

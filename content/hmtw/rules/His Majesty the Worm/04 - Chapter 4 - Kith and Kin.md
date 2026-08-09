@@ -10,8 +10,6 @@
 
 The Wide World is a sprawling place, with many strange creatures, exotic cultures, religious schisms, warring clans, and ancient lineages. No two fay folk are alike, even as humans have infinite variation. From the solitary trolls of the Rimemark, to the noble elves of Alfheim, to the tribes of barbarians scourging the Ghostgrass Plains, to the stoic templars of Mythrys, there are many peoples in the Wide World—and they all congregate in the City in search of glory and riches in the Underworld.
 
-_– “The Tyger,” William Blake_
-
 # Humans
 
 > [!lede]

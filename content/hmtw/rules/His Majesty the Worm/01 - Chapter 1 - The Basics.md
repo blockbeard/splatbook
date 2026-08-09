@@ -23,27 +23,6 @@ Beneath the world’s largest metropolis, passages in plaster mines were discove
 > [!lede]
 > The flow of the game consists of four distinct phases, each with its own style of play and rules.
 
-## The Crawl Phase
-
-During the Crawl Phase, the guild explores an interconnected network of dungeons called [[06 - Chapter 6 - The Crawl Phase|the Underworld]]. During this phase, adventurers test their wits and skills against inhospitable forces in order to fulfill their quests. During the Crawl, players charge their [[02 - Chapter 2 - The Adventurer#5. Bonds|Bonds]] with their guild-mates. The Crawl is where you’ll spend most of your time.
-
-## The Challenge Phase
-
-A [[07 - Chapter 7 - The Challenge Phase|Challenge Phase]] occurs when you need to focus on the beat-by-beat action. This phase is when choices and consequences bear the hideous, overripe fruit of rotting bodies and terminated possibilities! During a Challenge, play moves from a freeform style to a tactical system. Play is split up into rounds and turns, during which people perform various specific actions.
-
-> [!epigraph]
-> “Many sink down and few return to the sunlit lands.”
->
-> _– The Silver Chair, C.S. Lewis_
-
-## The Camp Phase
-
-As the adventurers get worn down by journeys and battles, they’ll pause and use the [[08 - Chapter 8 - The Camp Phase|Camp Phase]]. The focus of the Camp Phase is interpersonal roleplaying, drama, and connections between members of the guild. During this phase, players burn charged Bonds to rest and recover.
-
-## The City Phase
-
-Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.
-
 > [!summary] The Four Phases
 > **City** — Turn in and take new contracts; spend wealth to restock and heal; pursue long-term schemes.
 > 1. Death and Taxes
@@ -74,6 +53,27 @@ Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. 
 > 3. No Rest for the Wicked
 > 4. Recovery
 > 5. End Camp Phase
+
+## The Crawl Phase
+
+During the Crawl Phase, the guild explores an interconnected network of dungeons called [[06 - Chapter 6 - The Crawl Phase|the Underworld]]. During this phase, adventurers test their wits and skills against inhospitable forces in order to fulfill their quests. During the Crawl, players charge their [[02 - Chapter 2 - The Adventurer#5. Bonds|Bonds]] with their guild-mates. The Crawl is where you’ll spend most of your time.
+
+## The Challenge Phase
+
+A [[07 - Chapter 7 - The Challenge Phase|Challenge Phase]] occurs when you need to focus on the beat-by-beat action. This phase is when choices and consequences bear the hideous, overripe fruit of rotting bodies and terminated possibilities! During a Challenge, play moves from a freeform style to a tactical system. Play is split up into rounds and turns, during which people perform various specific actions.
+
+> [!epigraph]
+> “Many sink down and few return to the sunlit lands.”
+>
+> _– The Silver Chair, C.S. Lewis_
+
+## The Camp Phase
+
+As the adventurers get worn down by journeys and battles, they’ll pause and use the [[08 - Chapter 8 - The Camp Phase|Camp Phase]]. The focus of the Camp Phase is interpersonal roleplaying, drama, and connections between members of the guild. During this phase, players burn charged Bonds to rest and recover.
+
+## The City Phase
+
+Each delve is punctuated by the [[09 - Chapter 9 - The City Phase|City Phase]]. The City Phase resolves the entire sequence and gives the guild a chance to spend their hard-earned loot, advance their long-term agendas, and reflect on their progress.
 
 # The Flow of the Play
 
@@ -183,7 +183,7 @@ When an action is fraught with danger or its outcome is uncertain, it’s time t
 
 Tests of fate should be relatively rare and relatively tense. Don’t call for tests of fate for inconsequential actions—only when something of importance hangs in the balance.
 
-  - “The door is locked. If you have lockpicks, you can test Pentacles to try and pick the lock.”
+- “The door is locked. If you have lockpicks, you can test Pentacles to try and pick the lock.”
 - “OK, you grab the portcullis before it slams down.
 
 You’re straining against it as the mechanism’s gears
@@ -258,9 +258,9 @@ To test fate, the player draws a minor arcana card and adds the associated attri
 
 ### Example
 
-  - You test Pentacles and draw a IV of Pentacles. Your adventurer’s Pentacles score is a 2. Your total value is 6.
+- You test Pentacles and draw a IV of Pentacles. Your adventurer’s Pentacles score is a 2. Your total value is 6.
 
-  - You test Pentacles and draw a Knight of Wands. Your adventurer’s Pentacles score is 2 and a Knight has a value of 12. Your total value is 14.
+- You test Pentacles and draw a Knight of Wands. Your adventurer’s Pentacles score is 2 and a Knight has a value of 12. Your total value is 14.
 
 There are four possible outcomes to a test of fate.
 

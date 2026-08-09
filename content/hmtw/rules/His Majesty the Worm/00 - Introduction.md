@@ -1,4 +1,32 @@
-# Front Matter
+# Introduction
+> [!sidebar] What's up with the name? 
+> 
+> The title of this book is taken from Italo Calvino’s _The Castle of Crossed Destinies_ (Italian: Il castello dei destini incrociati). The experimental novel’s narrative details a group of pilgrims who find themselves unable to speak. Thus impaired, they use a set of tarot cards to illustrate their backgrounds and tell each other stories. Because this game also uses tarot cards to tell stories, the allusion seemed apt.
+
+*The forest’s thickness is lessening, with room for paths of turned earth, rectangular pits, a whiteness as of mushrooms peeping from the ground.*
+
+*With horror we see from the thirteenth tarot that the underbrush is fertilized with half-withered corpses and fleshless bones.*
+
+*“Why, where have you brought me, Fool? This is a cemetery!”*
+
+*And the Fool says, pointing to the invertebrate fauna feeding in the graves:*
+
+*“Here a monarchy reigns, mightier than you."*
+
+> [!lede] 
+> **The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.
+
+_His Majesty the Worm_ is a tabletop role-playing game designed for dungeon-crawling. The Game Master uses the tools in this book to create a megadungeon called the Underworld. The players create adventurers to explore the Underworld in pursuit of their personal quests. Tarot cards are used as a randomizing element.
+
+This is a new-school game with old-school sensibilities. It’s designed to make the “boring parts” interesting. Slice-of-life subsystems like food, hunger, light, and inventory management are central to play.
+
+The game has robust procedures: characters adventure in the Underworld, rest in camping scenes, then plan longterm actions in the **City** at the center of the Wide World.
+
+The relationships between companions, called Bonds, power the rest and recovery mechanic of the game. Role-playing drives the game forward.
+
+Combat encounters are handled with an action-packed subsystem that ensures that all players have interesting choices every minute of combat: no downtime!
+
+We hope you will have fun with it!
 
 ## Credits
 
@@ -15,37 +43,6 @@ Permission is granted to photocopy and otherwise reproduce for personal use. Red
 The mechanics and game text of _His Majesty the Worm_ may be reused freely. Third-party compatible works are welcomed. Art may not be reused—all artists maintain copyright of their work.
 
 If your product declares compatibility with _His Majesty the Worm_, you must state the following in your legal text and on any websites from which a commercial product is sold: “\[product name] is an independent production by \[publisher name] and is not affiliated with Joshua McCrowell or Exalted Funeral.”
-
-The forest’s thickness is lessening, with room for paths of turned earth, rectangular pits, a whiteness as of mushrooms peeping from the ground.
-
-With horror we see from the thirteenth tarot that the underbrush is fertilized with half-withered corpses and fleshless bones.
-
-“Why, where have you brought me, Fool? This is a cemetery!”
-
-And the Fool says, pointing to the invertebrate fauna feeding in the graves:
-
-“Here a monarchy reigns, mightier than you."
-
-_His Majesty the Worm_ is a tabletop role-playing game designed for dungeon-crawling. The Game Master uses the tools in this book to create a megadungeon called the Underworld. The players create adventurers to explore the Underworld in pursuit of their personal quests. Tarot cards are used as a randomizing element.
-
-This is a new-school game with old-school sensibilities. It’s designed to make the “boring parts” interesting. Slice-of-life subsystems like food, hunger, light, and inventory management are central to play.
-
-The game has robust procedures: characters adventure in the Underworld, rest in camping scenes, then plan longterm actions in the **City** at the center of the Wide World.
-
-The relationships between companions, called Bonds, power the rest and recovery mechanic of the game. Role-playing drives the game forward.
-
-Combat encounters are handled with an action-packed subsystem that ensures that all players have interesting choices every minute of combat: no downtime!
-
-We hope you will have fun with it!
-
----
-
-# Introduction
-> [!sidebar] What's up with the name? 
-> 
-> The title of this book is taken from Italo Calvino’s _The Castle of Crossed Destinies_ (Italian: Il castello dei destini incrociati). The experimental novel’s narrative details a group of pilgrims who find themselves unable to speak. Thus impaired, they use a set of tarot cards to illustrate their backgrounds and tell each other stories. Because this game also uses tarot cards to tell stories, the allusion seemed apt.
-
-**The Underworld** blasphemes the earth **under** the City at the center of the **world**. Most games begin with adventurers taking their first steps through the gate to the **Underworld** from the City.
 
 ## Tarot
 > [!sidebar] Why tarot?

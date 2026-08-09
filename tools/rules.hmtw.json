@@ -100,10 +100,11 @@
 		"His Majesty the Worm/16 - Index.md",
 		"His Majesty the Worm/11 - Appendix A - Sorcery.md"
 	],
-	"$textReplacements": "The book prints the four tarot suits as pip icons; the vault stores them as the literal words SWORDS / DISKS / CUPS / BATONS, right beside the suit's own name. On the page that read as a stutter — \"SWORDS **Swords:**\" — and for Pentacles it named the same suit twice under two different names (\"DISKS **Pentacles:**\"). The word does the job the icon does in print, so the token just goes; the pack ships suit-*.svg if these ever want to be real pips. Trailing/leading space is folded into the pattern so no double space is left behind. The vault is shared with other importers and read-only, which is why this lives here.",
+	"$textReplacements": "The book prints the four tarot suits as pip icons; the vault stores them as the literal words SWORDS / DISKS / CUPS / BATONS, right beside the suit's own name. On the page that read as a stutter — \"SWORDS **Swords:**\" — and for Pentacles it named the same suit twice under two different names (\"DISKS **Pentacles:**\"). The word does the job the icon does in print, so the token just goes; the pack ships suit-*.svg if these ever want to be real pips. Trailing/leading space is folded into the pattern so no double space is left behind. The vault is shared with other importers and read-only, which is why this lives here. The second entry removes a duplicated epigraph attribution in Chapter 4: the vault carries the Blake credit both inside the [!epigraph] callout and again as a bare line after the opening paragraph. It always rendered twice; dropping the epigraphs left the orphan standing alone with nothing to credit. `^` can't match the quoted copy, which starts with `>`. Unique in the corpus — checked.",
 	"textReplacements": {
 		"(?<=\\S) (?:SWORDS|DISKS|CUPS|BATONS)(?=[\\s,.;:)])": "",
-		"^(?:SWORDS|DISKS|CUPS|BATONS) ": ""
+		"^(?:SWORDS|DISKS|CUPS|BATONS) ": "",
+		"^_– “The Tyger,” William Blake_\n+": ""
 	},
 	"linkRewrites": {
 		"15 - Appendix E - Underworld Creation#Writing Meatgrinder tables": "15 - Appendix E - Underworld Creation#5. Create the Meatgrinder",
