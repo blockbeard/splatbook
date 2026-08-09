@@ -140,13 +140,20 @@
 		panelOpen && !barEl?.contains(e.target as Node) ? (panelOpen = false) : undefined}
 />
 
-<!-- Below md the sidebar is gone; this is the only reference chrome. It stays in
+<!-- Below the sidebar breakpoint this is the only reference chrome. It stays in
      embed mode too — the embedded window is narrow and `.app-chrome` is hidden
-     there, so without it an embedded reader has no nav at all. -->
+     there, so without it an embedded reader has no nav at all.
+
+     `-mt-8` cancels `main`'s top padding so the bar sits flush under the app
+     header rather than floating below it. On a phone both rows are full and read
+     as one block, but between ~700px and the sidebar breakpoint they are mostly
+     empty space, and a gap between them turned two thin bars into two separate
+     bands of chrome — 119px before the breadcrumb. Flush, bordered and sharing a
+     background, they read as one header again. -->
 <div
 	bind:this={barEl}
 	data-testid="reference-bar"
-	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-border bg-bg px-4 py-2 lg:hidden"
+	class="reference-bar sticky top-0 z-30 -mx-4 -mt-8 mb-4 flex flex-wrap items-center gap-2 border-b border-border bg-bg px-4 py-2 lg:hidden"
 >
 	<button
 		type="button"
