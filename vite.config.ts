@@ -20,8 +20,35 @@ import { defineConfig } from 'vite';
 async function chooseAdapter(): Promise<Adapter> {
 	if (process.env.ADAPTER === 'cloudflare') {
 		const specifier = '@sveltejs/adapter-cloudflare';
-		const mod = (await import(specifier)) as { default: () => Adapter };
-		return mod.default();
+		const mod = (await import(specifier)) as { default: (opts?: unknown) => Adapter };
+		return mod.default({
+			/**
+			 * `_routes.json` decides which paths reach the Worker at all; anything
+			 * excluded is served straight from Pages' static store. Left to itself
+			 * the adapter lists every static file individually, and Cloudflare caps
+			 * the file at **100 rules** — so once phase 26 emitted ~4,500 page
+			 * artifacts the adapter hit the cap and dropped 4,456 rules, which
+			 * would have routed almost every static asset (every reference page
+			 * among them) through the Worker as a function invocation. That is the
+			 * per-request CPU cost phase 26 exists to remove, reintroduced by the
+			 * deployment layer rather than the code.
+			 *
+			 * Directory wildcards instead: six rules that cannot grow with the
+			 * content. `<build>` is the adapter's own placeholder for `/_app/*`.
+			 * Keep this list in step with the top level of `static/`.
+			 */
+			routes: {
+				include: ['/*'],
+				exclude: [
+					'<build>',
+					'/content-packs/*',
+					'/fonts/*',
+					'/icons/*',
+					'/robots.txt',
+					'/favicon.*'
+				]
+			}
+		});
 	}
 	return nodeAdapter();
 }
