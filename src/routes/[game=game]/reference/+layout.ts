@@ -26,7 +26,7 @@ import type { LayoutLoad } from './$types';
  *    call `invalidate`) pull the real value in on the next run, which happens
  *    in the browser where `localStorage` exists.
  */
-export const load: LayoutLoad = async ({ params, fetch, data, parent, depends }) => {
+export const load: LayoutLoad = async ({ params, url, fetch, data, parent, depends }) => {
 	depends('reference:showSetting');
 	const game = getGame(params.game);
 	if (!game) error(404, `No such game: "${params.game}"`);
@@ -43,6 +43,21 @@ export const load: LayoutLoad = async ({ params, fetch, data, parent, depends })
 		(doc) => doc.sections.length > 0
 	);
 	return {
+		/**
+		 * Embed mode, readable during SSR.
+		 *
+		 * `$lib/embed.svelte`'s `active` is browser-only by construction — it reads
+		 * `document`. So `{#if embed.active}` renders nothing on the server, and the
+		 * search form's hidden `embed` input only exists once the page has hydrated.
+		 * A reader who searches before that (or a browser with JS still parsing)
+		 * submits a plain GET without it and silently drops out of embed mode, which
+		 * on the next load resurrects the app chrome inside the iframe.
+		 *
+		 * Surfaced here so the input is server-rendered on a direct `?embed=1` load.
+		 * The client-side store still matters after SPA navigations, whose URLs drop
+		 * the param — the two cover different halves, so the form checks both.
+		 */
+		embedParam: url.searchParams.get('embed') === '1',
 		gameId: params.game,
 		gameName: game.name,
 		toc,

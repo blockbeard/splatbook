@@ -124,11 +124,17 @@
 				class={inputClass}
 			/>
 		{/if}
-		{#if embed.active}
+		{#if embed.active || data.embedParam}
 			<!-- SvelteKit intercepts this GET form but replaces the whole query
 			     string with the form fields — without this, a search submit in
 			     embed mode drops ?embed=1 and a mid-session reload resurrects
-			     the app chrome. -->
+			     the app chrome.
+
+			     Both conditions, because they cover different halves: `data.embedParam`
+			     is server-rendered so the input exists before hydration (a search
+			     submitted in that window was dropping the param outright), and
+			     `embed.active` carries the mode across SPA navigations, whose URLs no
+			     longer have it. -->
 			<input type="hidden" name="embed" value="1" />
 		{/if}
 	</form>
