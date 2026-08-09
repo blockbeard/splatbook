@@ -466,6 +466,18 @@ html[data-game='hmtw'] .reference-landing section a:hover {
 	text-decoration-color: currentColor;
 }
 
+/* A chapter opener's promoted contents list (`isContentsPage`) — the same
+   treatment the landing's chapter column gets, so arriving at "Chapter 1: The
+   Basics" reads as a contents page rather than as a rules page that forgot to
+   have any rules. */
+html[data-game='hmtw'] .reference-contents a {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 1.1rem;
+}
+html[data-game='hmtw'] .reference-contents ul {
+	line-height: 1.9;
+}
+
 /*
  * The left TOC sidebar, in the book's faces: the document label in Fell
  * Great Primer SC (no forced uppercase — it's a small-caps face), chapter

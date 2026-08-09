@@ -157,3 +157,40 @@ test('the embed pass: chrome-less reader, search submit keeps ?embed=1', async (
 	await expect(page.getByRole('banner')).toBeHidden();
 	await expect(pinnedTerm(page, 'Meatgrinder')).toBeVisible();
 });
+
+test('a stale deep link lands inside the book, with the contents and search intact', async ({
+	page
+}) => {
+	// The pitch is "searchable, deep-linkable", and every heading is its own
+	// page — so a link going stale when a heading is renamed is routine. Before
+	// the reference grew its own +error.svelte this rendered as bare text on an
+	// empty page: no contents, no search, no way back.
+	const response = await page.goto('/hmtw/reference/01-chapter-1-the-basics--long-gone');
+	expect(response?.status()).toBe(404);
+
+	await expect(page.getByRole('heading', { name: /that section isn’t here/i })).toBeVisible();
+	// The two recovery paths are already on screen, not described in prose.
+	const toc = page.getByRole('navigation', { name: 'Rules contents' });
+	await expect(toc.getByText('The Basics')).toBeVisible();
+	await expect(toc.getByLabel('Search the rules')).toBeVisible();
+
+	await page.getByRole('link', { name: 'Back to the contents' }).click();
+	await page.waitForURL(/\/hmtw\/reference$/);
+	await expect(page.getByRole('heading', { name: 'Rules reference' })).toBeVisible();
+});
+
+test('a chapter page with no rules on it reads as a contents page', async ({ page }) => {
+	// "The Omphalic Market" is a lead-in and a list of what's inside — no rule
+	// anywhere on it. It used to wear the same clothes as a page that answers a
+	// question, so mid-session you couldn't tell whether you'd arrived or were
+	// still navigating.
+	await page.goto('/hmtw/reference/09-chapter-9-the-city-phase--the-omphalic-market');
+	const children = page.locator('.section-children');
+	await expect(children).toHaveClass(/reference-contents/);
+	await expect(children.getByRole('link', { name: 'Buying new gear' })).toBeVisible();
+
+	// A page that does carry rules keeps the footnote treatment.
+	await page.goto('/hmtw/reference/01-chapter-1-the-basics--tests-of-fate');
+	await expect(page.getByText('In this section')).toBeVisible();
+	await expect(page.locator('.section-children')).not.toHaveClass(/reference-contents/);
+});

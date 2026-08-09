@@ -24,6 +24,31 @@ const escapeHtml = (s: string): string =>
 	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 /**
+ * True when a page's body is only front matter — chapter ledes, epigraphs, the
+ * boxed lead-in a kind-tagged heading produces — and carries no prose of its
+ * own.
+ *
+ * These pages exist because the book has chapters and the reference gives every
+ * heading a page: "Chapter 1: The Basics" and "The Omphalic Market" are a
+ * lead-in and a list of what's inside, with no rule on them anywhere. They were
+ * dressed exactly like a page that answers a question, so a reader mid-session
+ * couldn't tell from the top of the screen whether they had arrived or were
+ * still navigating. Knowing which kind of page this is lets the route promote
+ * the child list into the contents page it actually is.
+ *
+ * Detected from the rendered HTML rather than the markdown because that's where
+ * the question is settled: callouts have become `<aside>`s by now, whatever
+ * shape they had in the source, and a game's `referenceOmitCallouts` has
+ * already removed what it removes. Drop every aside and see whether any text
+ * survives.
+ */
+const isFrontMatterOnly = (html: string): boolean =>
+	html
+		.replace(/<aside\b[^>]*>[\s\S]*?<\/aside>/g, '')
+		.replace(/<[^>]+>/g, '')
+		.trim() === '';
+
+/**
  * Load one section: its rendered body plus the navigation around it
  * (breadcrumb ancestors, immediate children, document-order prev/next). The
  * body is rendered to HTML here so wikilink resolution runs once, server-side.
@@ -81,6 +106,7 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 				buildLinkIndex(trees),
 				passageSection.kind
 			),
+			isContentsPage: false,
 			ancestors: [],
 			children: [],
 			prev: null,
@@ -136,6 +162,7 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 		docTitle: tree.title,
 		section: { id: section.id, title: section.title },
 		bodyHtml,
+		isContentsPage: isFrontMatterOnly(bodyHtml) && children.length > 0,
 		ancestors: ancestorsOf(tree, index),
 		children,
 		prev: pageIndex > 0 ? pageRef(pages[pageIndex - 1]) : null,

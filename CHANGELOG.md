@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The reference has its own error page.** A stale deep link used to fall
+  through to SvelteKit's default — "404: No such rules section" as bare text on
+  an empty page, with no contents, no search and no way back — on a product
+  whose pitch is shareable deep links, and where every heading being its own
+  page makes a renamed heading a routine source of them. The reference's error
+  page renders inside its own layout, so both recovery paths are already on
+  screen.
+- **A chapter page with no rules on it now reads as a contents page.** Openers
+  like "The Omphalic Market" are a lead-in and a list of what's inside; they
+  used to wear exactly the same clothes as a page that answers a question, so a
+  reader mid-session couldn't tell whether they had arrived or were still
+  navigating. Their child list is promoted from a muted "In this section"
+  footnote into the contents list it actually is.
+
 ### Fixed
 
 - **The phone pass.** The header no longer wraps to four lines: game links are

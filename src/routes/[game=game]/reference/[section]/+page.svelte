@@ -76,9 +76,24 @@
 	     .reference-body heading styles never inflate the label. One column,
 	     hierarchy preserved: a two-column flat grid read top-to-bottom-then-
 	     across (or across-then-down — readers split on it) either way
-	     scrambled the book's order. -->
-	<section class="section-children mt-6 border-t border-border pt-4">
-		<h2 class="text-sm font-semibold text-muted">In this section</h2>
+	     scrambled the book's order.
+
+	     On a page whose body is only front matter (`isContentsPage` — a chapter
+	     opener like "Chapter 1: The Basics", a lead-in like "The Omphalic
+	     Market"), this list isn't a footnote under the prose: it IS the page.
+	     Those pages used to wear exactly the same clothes as one that answers a
+	     question, so a reader mid-session couldn't tell from the top of the
+	     screen whether they had arrived or were still navigating. Promoted, the
+	     label goes away — nothing above it to be "in" — and the entries take the
+	     contents-page treatment the reference landing already defines. -->
+	<section
+		class="section-children {data.isContentsPage
+			? 'reference-contents mt-5'
+			: 'mt-6 border-t border-border pt-4'}"
+	>
+		<h2 class="text-sm font-semibold text-muted" class:sr-only={data.isContentsPage}>
+			{data.isContentsPage ? 'Contents' : 'In this section'}
+		</h2>
 		<!-- One level shows; deeper levels sit behind disclosure toggles — which
 		     also keeps an h3-under-h2 from reading identically to an h2-under-h1
 		     (both are just "one level down" until you open them). -->
