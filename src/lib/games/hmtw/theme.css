@@ -280,6 +280,47 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 	font-family: 'Goudy Old Style', 'Goudy Oldstyle T', 'Sorts Mill Goudy', Georgia, serif;
 	font-size: 0.94em;
 }
+/*
+ * READ THIS BEFORE TOUCHING ANY LENGTH BELOW.
+ *
+ * `html[data-game='hmtw']` sets `font-size: 1.125rem`, so inside a
+ * *declaration* `1rem` is 18px here, not 16px. Inside a *media query* `1rem`
+ * is always 16px — media queries resolve against the document's initial font
+ * size and never see a declared root size. The two units are spelled the same
+ * and differ by 12.5%.
+ *
+ * That bit us: the rail engaged at `min-width: 84rem` (= 1344px, media rem)
+ * while `main` was `79rem` wide (= 1422px, declaration rem), so between
+ * 1344px and ~1440px the floated rail hung past the viewport and the whole
+ * page scrolled sideways — measured at 1440×900 as scrollWidth 1458 against
+ * clientWidth 1440, exactly the rail's right edge.
+ *
+ * So the breakpoint is written in px on purpose. It is not a style choice and
+ * should not be "tidied" into rem: it is the one place in this file where the
+ * unit genuinely differs, and px is the only spelling that means the same
+ * thing on both sides.
+ *
+ * The width it needs is just the sum of the columns, all in declaration rem:
+ *   TOC 18rem + its 1.5rem rule gutter + 2.5rem flex gap
+ *   + text 36rem + rail overhang 16rem            = 74rem = 1332px
+ *   + main's own 1rem padding either side                  = 1368px
+ * 1400px leaves a little air and keeps the rail off the exact edge.
+ */
+html[data-game='hmtw'] {
+	/* One measure, four columns, no drift. ~68 characters of 18.9px Fell —
+	   the reader-facing half of the same bug: at the old 43rem the body ran to
+	   82 characters per line, well past a comfortable prose measure. Applied
+	   at every width, not just alongside the rail, since the column was over-wide
+	   below the breakpoint too. */
+	--hmtw-measure: 36rem;
+}
+html[data-game='hmtw'] nav[aria-label='Breadcrumb'],
+html[data-game='hmtw'] .reference-body,
+html[data-game='hmtw'] .section-children,
+html[data-game='hmtw'] .reference-body ~ nav {
+	max-width: var(--hmtw-measure);
+}
+
 /* A *proper* right rail, mirroring the left TOC: on wide screens the main
    column widens for hmtw and the text keeps its full measure — the rail is
    the extra width, never carved out of the text column. Sidebars float into
@@ -287,15 +328,9 @@ html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
    hoists them there), and take no height in the text flow, so "In this
    section" follows the text instead of the rail. Narrow screens fall back
    inline. No icon — the book's sidebars don't carry one. */
-@media (min-width: 84rem) {
+@media (min-width: 1400px) {
 	html[data-game='hmtw'] main {
-		max-width: 79rem;
-	}
-	html[data-game='hmtw'] nav[aria-label='Breadcrumb'],
-	html[data-game='hmtw'] .reference-body,
-	html[data-game='hmtw'] .section-children,
-	html[data-game='hmtw'] .reference-body ~ nav {
-		max-width: 43rem;
+		max-width: 74rem;
 	}
 	html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
 		float: right;
@@ -339,12 +374,26 @@ html[data-game='hmtw'] .reference-body .sb-callout-lede {
 html[data-game='hmtw'] .reference-body .sb-callout-lede .sb-callout-label {
 	display: none;
 }
-/* A lede almost always opens a chapter, so its top hairline landed ~40px under
-   the h1's own 2px rule and the pair read as a frame nobody drew. The h1's rule
-   already closes the title block; this one only earns its keep mid-page. */
-html[data-game='hmtw'] .reference-body h1 + .sb-callout-lede {
+/* 59 of the corpus' 65 ledes open their section, where the top hairline landed
+   ~40px under the h1's own 2px rule and the pair read as a frame nobody drew.
+   So: no top rule by default, and put it back for the 6 that genuinely sit
+   mid-page, where it's the only thing separating the lede from the prose above.
+
+   `h1 + .sb-callout-lede` is NOT enough to detect the opening case: the import
+   hoists a section's sidebars to just after its heading, so a page with one
+   puts an aside between the h1 and the lede and the adjacent-sibling match
+   silently fails. Testing for what precedes the lede — actual prose — is what
+   holds up regardless of how many asides were hoisted in front of it. */
+html[data-game='hmtw'] .reference-body .sb-callout-lede {
 	border-top: none;
 	padding-top: 0;
+}
+html[data-game='hmtw']
+	.reference-body
+	:is(p, ul, ol, dl, table, blockquote, h2, h3, h4, h5, h6)
+	~ .sb-callout-lede {
+	border-top: 1px solid var(--sb-border);
+	padding-top: 0.75rem;
 }
 /* And the same at the other end: with the epigraphs gone a chapter page is
    often just its lede, whose bottom hairline then lands a few rems above the

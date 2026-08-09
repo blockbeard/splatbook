@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Fixed
+
+- **The HMtW reference no longer scrolls sideways on a 1440px laptop, and its
+  lines are 66 characters instead of 82.** One root cause: the theme sets an
+  18px root font size, so `1rem` in a declaration is 18px while `1rem` in a
+  media query is always 16px. The sidebar rail engaged at `84rem` (1344px,
+  media) while the main column was `79rem` wide (1422px, declaration), so
+  between those widths the floated rail hung past the viewport. The rail's
+  breakpoint is now written in px — the one place in the file where the two
+  units genuinely differ — and derived from the columns it has to fit. The text
+  measure moved to a single shared token and now applies at every width, not
+  just alongside the rail.
 
 - **HMtW no longer renders the chapter epigraphs.** The book opens chapters with
   a literary quotation — Leiber, Dante, Zork — which is lovely in a book you read
