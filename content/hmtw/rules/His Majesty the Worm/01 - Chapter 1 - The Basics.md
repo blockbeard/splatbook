@@ -215,7 +215,7 @@ Sometimes, actions are not possible or will automatically fail based on the logi
 > A single **tarot** deck is used in _His Majesty the Worm_ to create random results. A tarot deck in its entirety consists of seventy-eight cards of two types: **major arcana** and **minor arcana**.
 **The GM uses the major arcana cards *except* the Fool.** The major arcana are numbered and have evocative names like Magician \[I] and Wheel of Fortune \[X]. Therefore, the GM’s deck has 21 cards, numbered I–XXI. 
 
-**Players use the minor arcana cards *plus* the Fool,** which is borrowed from the major arcana deck. There are fifty-six minor arcana cards—reminiscent of a more traditional deck of poker cards—with four suits of fourteen cards. The four suits are Swords SWORDS, Pentacles DISKS, Cups CUPS, and Wands BATONS. The minor arcana are numbered I–X, and each suit has four face cards.
+**Players use the minor arcana cards *plus* the Fool,** which is borrowed from the major arcana deck. There are fifty-six minor arcana cards—reminiscent of a more traditional deck of poker cards—with four suits of fourteen cards. The four suits are Swords, Pentacles, Cups, and Wands. The minor arcana are numbered I–X, and each suit has four face cards.
 
 Each card in the minor arcana has a value. A card’s value equals the number shown on the card. The Fool has the value of 0. Aces have a value of 1. The **face cards have the following numeric values:**
 
@@ -244,13 +244,13 @@ The GM determines which attribute is most relevant to the test’s outcome. To d
 
 ### Attributes
 
-SWORDS **Swords:** Swords represents strength and skill with weapons. Test Swords to bend the bars of your cell or **tip** over a heavy bookshelf onto an unsuspecting goblin.
+**Swords:** Swords represents strength and skill with weapons. Test Swords to bend the bars of your cell or **tip** over a heavy bookshelf onto an unsuspecting goblin.
 
-DISKS **Pentacles:** Pentacles represents swiftness and slyness. Test Pentacles to sneak past a deathknight or slip the sea witch’s conch into your bag without her noticing.
+**Pentacles:** Pentacles represents swiftness and slyness. Test Pentacles to sneak past a deathknight or slip the sea witch’s conch into your bag without her noticing.
 
-CUPS **Cups:** Cups represents wisdom and training. Test Cups to activate an ancient clockwork mechanism or coax a wild winter wolf to accept a gift of meat from your hand.
+**Cups:** Cups represents wisdom and training. Test Cups to activate an ancient clockwork mechanism or coax a wild winter wolf to accept a gift of meat from your hand.
 
-BATONS **Wands:** Wands represents willpower and charisma. Test Wands to convince an art critic that your petrified companion is actually avant-garde art or overcome the dominating gaze of a vampire.
+**Wands:** Wands represents willpower and charisma. Test Wands to convince an art critic that your petrified companion is actually avant-garde art or overcome the dominating gaze of a vampire.
 
 If the player describes being sneaky or quick, the GM will call for a test of Pentacles; if the player describes being mystical or eloquent, the GM will call for a test of Wands—and so forth.
 
@@ -423,7 +423,7 @@ Like other tests of fate, group tests are bound by fate.
 
 **GM:** OK, that’s you, Phynn and Chirm.
 
-_Chirm’s player draws from the minor arcana deck and gets a_ _IX of Pentacles. Adding her Swords_ SWORDS _2, that’s a total of 11._ _Chirm pushes fate and gets a IV of Wands. That’s a total of_ _15. A success._
+_Chirm’s player draws from the minor arcana deck and gets a_ _IX of Pentacles. Adding her Swords_ _2, that’s a total of 11._ _Chirm pushes fate and gets a IV of Wands. That’s a total of_ _15. A success._
 
 **Chirm:** OK, I got a 15 total. That succeeds.
 

@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The importer can rewrite text the vault spells wrong for the web**
+  (`textReplacements`). Its first use: the book prints the four tarot suits as
+  pip icons, which the vault stores as the literal words SWORDS / DISKS / CUPS /
+  BATONS beside each suit's own name — so the app read "SWORDS **Swords:**", and
+  for Pentacles named the same suit twice under two different names. The vault
+  is shared with other importers and read-only, so the fix belongs in the
+  config. HMtW reimported; the diff is those nine tokens and nothing else.
+
 - **The reference has its own error page.** A stale deep link used to fall
   through to SvelteKit's default — "404: No such rules section" as bare text on
   an empty page, with no contents, no search and no way back — on a product

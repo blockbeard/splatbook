@@ -37,6 +37,15 @@ Config keys (see tools/rules.stonetop.json):
                     src rewritten instead of being stripped
   demoteHeadingsToBold  exact heading texts rendered as **bold** body text
                     instead of headings (the book's "Component:" x40)
+  textReplacements  regex -> replacement, applied to every note's finished text
+                    as the last transform. For vault spellings that are wrong
+                    only on the web: the book sets the four tarot suits as pip
+                    icons, which the vault stores as the literal words SWORDS /
+                    DISKS / CUPS / BATONS, so the app rendered "SWORDS
+                    **Swords:**" — a stutter, and in the Pentacles case the
+                    same suit named twice under two different names. The vault
+                    is shared with other importers and read-only, so the fix
+                    belongs here rather than upstream
   preserveLineBreaks vault-relative paths whose single newlines are meaningful
                     (index entries, spell lists): eligible lines gain markdown
                     hard breaks so they don't merge into one paragraph
@@ -81,6 +90,7 @@ CONFIG_KEYS = {
     "keepImages",
     "demoteHeadingsToBold",
     "preserveLineBreaks",
+    "textReplacements",
     "hoistCallouts",
     "hoistMaxDepth",
     "hoistPin",
@@ -499,7 +509,14 @@ def transform(
             broken.append(line)
         text = "\n".join(broken)
 
-    # 7. collapse 3+ blank lines
+    # 7. config text replacements — last, so a pattern matches the prose as it
+    #    will actually ship rather than some intermediate form.
+    for pattern, repl_with in cfg.get("textReplacements", {}).items():
+        # MULTILINE so a pattern can anchor to the start of a line, which is
+        # where a leading token (the book's pip before a suit's name) sits.
+        text = re.sub(pattern, repl_with, text, flags=re.M)
+
+    # 8. collapse 3+ blank lines
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
 
