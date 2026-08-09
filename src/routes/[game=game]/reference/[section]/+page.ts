@@ -1,24 +1,9 @@
 import { error, redirect } from '@sveltejs/kit';
 import { base } from '$app/paths';
 import { getGame } from '$lib/games';
-import {
-	fetchTrees,
-	findSection,
-	ancestorsOf,
-	childTreeOf,
-	isVisible,
-	type SectionRefNode
-} from '$lib/reference/load';
-import { buildLinkIndex, renderMarkdown } from '$lib/reference/render';
+import { fetchLinkIndex, fetchPage, isRedirect, isVisible } from '$lib/reference/load';
+import { renderMarkdown } from '$lib/reference/render';
 import type { PageLoad } from './$types';
-
-/** `SectionRefNode` plus the page that hosts it — itself for page-level
- * sections, the nearest page ancestor for inline (deeper-than-pageDepth)
- * ones, whose links become in-page anchors. */
-export interface PageChildNode extends Omit<SectionRefNode, 'children'> {
-	pageId: string;
-	children: PageChildNode[];
-}
 
 const escapeHtml = (s: string): string =>
 	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -49,9 +34,16 @@ const isFrontMatterOnly = (html: string): boolean =>
 		.trim() === '';
 
 /**
- * Load one section: its rendered body plus the navigation around it
- * (breadcrumb ancestors, immediate children, document-order prev/next). The
- * body is rendered to HTML here so wikilink resolution runs once, server-side.
+ * Load one section from its own page artifact (phase 26): the body it renders,
+ * the inline descendants that render beneath it, and the navigation around it
+ * — breadcrumb ancestors, the child tree, document-order prev/next — all
+ * precomputed at build time by `tools/build_pages.ts`. The body is rendered to
+ * HTML here so wikilink resolution runs once, server-side.
+ *
+ * A section with no page of its own (deeper than the game's
+ * `referencePageDepth`) gets a redirect stub instead, sending it to its host
+ * page's anchor. That keeps every existing URL — search hits, wikilinks, old
+ * deep links — live, and costs the same single fetch a real page does.
  *
  * A gated section (`visibility: 'gm'`, Book II) the reader hasn't opted into
  * (`showSetting`, from the reference layout — commit 97) doesn't 404 outright:
@@ -65,47 +57,34 @@ const isFrontMatterOnly = (html: string): boolean =>
  */
 export const load: PageLoad = async ({ params, fetch, parent }) => {
 	const { showSetting } = await parent();
-	const trees = await fetchTrees(params.game, fetch);
-	const found = findSection(trees, params.section);
-	if (!found) error(404, `No such rules section: "${params.section}"`);
 
-	const { tree, index } = found;
-	const section = tree.sections[index];
-
-	// Page granularity (referencePageDepth): a section deeper than the game's
-	// page depth has no page of its own — its canonical home is the nearest
-	// page ancestor, where it renders inline under an anchor. Redirecting
-	// keeps every existing URL (search hits, wikilinks, old deep links) live.
-	const pageDepth = getGame(params.game)?.referencePageDepth ?? Infinity;
-	if (section.level > pageDepth) {
-		let p = index - 1;
-		while (p >= 0 && tree.sections[p].level > pageDepth) p--;
-		if (p >= 0) {
-			redirect(302, `${base}/${params.game}/reference/${tree.sections[p].id}#${params.section}`);
-		}
+	const section = await fetchPage(params.game, params.section, fetch);
+	if (!section) error(404, `No such rules section: "${params.section}"`);
+	if (isRedirect(section)) {
+		redirect(302, `${base}/${params.game}/reference/${section.redirectTo}#${params.section}`);
 	}
+
+	// Wikilinks resolve against the pack's prebuilt, unfiltered link index.
+	// Before phase 26 this index was derived per request from whichever trees
+	// the reader could see, so a game with no spoiler interstitial degraded
+	// links into gated sections to plain labels. Both live games ship an
+	// interstitial (and so used the unfiltered index anyway), and a live link
+	// that lands on the opt-in beats a dead one: the label is shown either way,
+	// so nothing is withheld by breaking the path to it.
+	const linkIndex = await fetchLinkIndex(params.game, fetch);
 
 	if (!isVisible(section, showSetting)) {
 		const interstitialId = getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
-		const passage = interstitialId ? findSection(trees, interstitialId) : undefined;
-		if (!passage) error(404, `No such rules section: "${params.section}"`);
+		const passage = interstitialId ? await fetchPage(params.game, interstitialId, fetch) : null;
+		if (!passage || isRedirect(passage)) error(404, `No such rules section: "${params.section}"`);
 
-		const passageSection = passage.tree.sections[passage.index];
 		return {
 			interstitial: true as const,
 			requestedSectionId: params.section,
-			docTitle: passage.tree.title,
-			section: { id: passageSection.id, title: passageSection.title },
-			// Unfiltered link index: the passage is short and self-contained, and
-			// a link that resolves to another gated page just shows its own
-			// interstitial in turn — display-level gating, not a security
-			// boundary that a dangling link would breach.
-			bodyHtml: renderMarkdown(
-				passageSection.body,
-				params.game,
-				buildLinkIndex(trees),
-				passageSection.kind
-			),
+			docTitle: passage.docTitle,
+			chapterId: passage.chapterId,
+			section: { id: passage.id, title: passage.title },
+			bodyHtml: renderMarkdown(passage.body, params.game, linkIndex, passage.kind),
 			isContentsPage: false,
 			ancestors: [],
 			children: [],
@@ -113,19 +92,6 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 			next: null
 		};
 	}
-
-	const visibleTrees = trees.map((t) => ({
-		...t,
-		sections: t.sections.filter((s) => isVisible(s, showSetting))
-	}));
-	// Body links resolve against the *unfiltered* trees when the game ships an
-	// interstitial: a link into a gated section then stays a live link that
-	// lands on the interstitial with the opt-in (HMtW's Index alone has 34
-	// such links; degrading them to dead text hides nothing — the label still
-	// shows — it just breaks the path to opting in). Without an interstitial a
-	// gated link would 404, so those games keep the degrade-to-label behavior.
-	const hasInterstitial = !!getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
-	const linkIndex = buildLinkIndex(hasInterstitial ? trees : visibleTrees);
 
 	// A page renders its own body plus every inline descendant (deeper than
 	// pageDepth, up to the next page-level section) as a real heading carrying
@@ -146,11 +112,7 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 	// current page, so "Copy Link Address" yields the full URL while the markup
 	// stays origin-agnostic (embed mode and the tailnet host included).
 	let bodyHtml = renderMarkdown(section.body, params.game, linkIndex, section.kind);
-	let inlineEnd = index + 1;
-	while (inlineEnd < tree.sections.length && tree.sections[inlineEnd].level > pageDepth) {
-		inlineEnd++;
-	}
-	for (const inline of tree.sections.slice(index + 1, inlineEnd)) {
+	for (const inline of section.inline) {
 		const level = Math.min(inline.level, 6);
 		const id = escapeHtml(inline.id);
 		bodyHtml +=
@@ -160,30 +122,16 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 			renderMarkdown(inline.body, params.game, linkIndex, inline.kind);
 	}
 
-	// Children keep the full tree for the "In this section" listing, each node
-	// annotated with its hosting page so inline entries link as anchors.
-	const withPageIds = (nodes: SectionRefNode[], parentPageId: string): PageChildNode[] =>
-		nodes.map((n) => {
-			const pageId = n.level <= pageDepth ? n.id : parentPageId;
-			return { ...n, pageId, children: withPageIds(n.children, pageId) };
-		});
-	const children = withPageIds(childTreeOf(tree, index), section.id);
-
-	// Prev/next walk pages, not every heading — inline sections aren't stops.
-	const pages = tree.sections.filter((s) => s.level <= pageDepth);
-	const pageIndex = pages.findIndex((s) => s.id === section.id);
-	const pageRef = (s: (typeof pages)[number] | undefined) =>
-		s ? { id: s.id, title: s.title } : null;
-
 	return {
 		interstitial: false as const,
-		docTitle: tree.title,
+		docTitle: section.docTitle,
+		chapterId: section.chapterId,
 		section: { id: section.id, title: section.title },
 		bodyHtml,
-		isContentsPage: isFrontMatterOnly(bodyHtml) && children.length > 0,
-		ancestors: ancestorsOf(tree, index),
-		children,
-		prev: pageIndex > 0 ? pageRef(pages[pageIndex - 1]) : null,
-		next: pageIndex >= 0 ? pageRef(pages[pageIndex + 1]) : null
+		isContentsPage: isFrontMatterOnly(bodyHtml) && section.children.length > 0,
+		ancestors: section.ancestors,
+		children: section.children,
+		prev: section.prev,
+		next: section.next
 	};
 };

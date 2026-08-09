@@ -1,16 +1,17 @@
 import { browser } from '$app/environment';
 import { error } from '@sveltejs/kit';
 import { getGame } from '$lib/games';
-import { fetchTrees, tocOf, isVisible } from '$lib/reference/load';
+import { fetchNav } from '$lib/reference/load';
 import { getLocalPreference, readShowSetting } from '$lib/preferences';
 import type { LayoutLoad } from './$types';
 
 /**
- * Load the game's rules reference once for the whole `/reference` subtree: the
- * table of contents (bodies stripped) lives in the sidebar and is reused across
- * section navigations; section pages fetch the full trees themselves (the JSON
- * is browser-cached, so that fetch is free). GM-only sections (Book II) are
- * filtered out unless the reader has opted into spoilers (commit 97).
+ * Load the game's nav spine once for the whole `/reference` subtree: the
+ * contents tree lives in the sidebar and is reused across section navigations,
+ * while each section page fetches only its own page artifact. GM-only chapters
+ * (Book II) are excluded unless the reader has opted into spoilers (commit 97)
+ * — by fetching the other artifact, not by filtering here, so an opted-out
+ * reader never downloads what the gate withholds (phase 26).
  *
  * `showSetting` — the resolved opt-in — comes from two places depending on
  * whether the viewer is signed in:
@@ -38,10 +39,7 @@ export const load: LayoutLoad = async ({ params, url, fetch, data, parent, depen
 			? readShowSetting(params.game, (k) => getLocalPreference(localStorage, k)) === 'true'
 			: false;
 
-	const trees = await fetchTrees(params.game, fetch);
-	const toc = tocOf(trees, (s) => isVisible(s, showSetting)).filter(
-		(doc) => doc.sections.length > 0
-	);
+	const toc = await fetchNav(params.game, showSetting, fetch);
 	return {
 		/**
 		 * Embed mode, readable during SSR.

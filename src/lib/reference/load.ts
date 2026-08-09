@@ -1,43 +1,25 @@
 /**
- * Loading and navigation helpers for the rules reference.
+ * Fetching helpers for the rules reference.
  *
- * Trees are fetched from the served content pack (`/content-packs/<game>/…`).
- * The JSON is already validated at build/CI by `npm run validate:packs`, so the
- * runtime trusts it and skips re-parsing through Zod — the reference stays lean
- * and works client-side (and offline once cached).
+ * Everything is fetched from the served content pack
+ * (`/content-packs/<game>/…`), already validated at build/CI, so the runtime
+ * trusts it and skips re-parsing through Zod — the reference stays lean and
+ * works client-side (and offline once cached).
+ *
+ * What is fetched is the point of phase 26: a nav spine and one page, never a
+ * book. These loads are *universal*, so anything asked for here is paid twice
+ * — once by the Worker (SvelteKit inlines a server-side fetch into the HTML so
+ * hydration can replay it) and once by every browser that hydrates. Whole-book
+ * trees made that 1.43 MB per section page; see `page-artifacts.ts`.
  */
 
 import { base } from '$app/paths';
-import { buildSectionTree, type SectionNode } from './document-tree';
-import type { DocumentChapter, DocumentSection, DocumentTree } from './document-tree';
 import { deserializeLinkIndex, type LinkIndex, type SerializedLinkIndex } from './inline';
-import type { PackManifest } from '$lib/packs/types';
+import type { DocumentSection } from './document-tree';
+import type { NavDocument, ReferencePage, ReferenceRedirect } from './page-artifacts';
 
 /** The subset of `fetch` a SvelteKit `load` provides. */
 type Fetcher = (input: string, init?: RequestInit) => Promise<Response>;
-
-/** A lightweight table-of-contents entry — a section without its body/pages. */
-export type TocSection = Pick<
-	DocumentSection,
-	'id' | 'title' | 'level' | 'path' | 'visibility' | 'chapter'
->;
-
-/** One document's TOC: its id/title/chapters plus its sections, stripped of bodies. */
-export interface TocDocument {
-	id: string;
-	title: string;
-	/** Chapters in reading order (one per source file) — the spine for the
-	 * landing page's chapter cards and the sidebar's collapsible entries.
-	 * Empty for a tree generated before commit 90/91's reimport. */
-	chapters: DocumentChapter[];
-	sections: TocSection[];
-}
-
-/** A minimal section reference for breadcrumbs, child lists, and prev/next. */
-export interface SectionRef {
-	id: string;
-	title: string;
-}
 
 /**
  * Section-visibility predicate for the current viewer. A `visibility: 'gm'`
@@ -61,43 +43,75 @@ async function getJson<T>(fetchFn: Fetcher, url: string): Promise<T> {
 	return (await res.json()) as T;
 }
 
-const treesCache = new Map<string, Promise<DocumentTree[]>>();
+const navCache = new Map<string, Promise<NavDocument[]>>();
 
-/** Drop the memoised document trees. Test-only — the cache is module state. */
-export function clearTreesCache(): void {
-	treesCache.clear();
+/** Drop the memoised nav spines. Test-only — the cache is module state. */
+export function clearNavCache(): void {
+	navCache.clear();
 }
 
 /**
- * Fetch every rules document tree listed in a game's pack manifest.
+ * Fetch a game's nav spine — the sidebar's chapters and their h2/h3s, already
+ * filtered at build time to what this reader may see.
  *
- * MEMOISED, and not as an optimisation: every section page render calls this,
- * and the trees are large — 1.2 MB of JSON for HMtW, 3.08 MB for Stonetop's two
- * books. Re-parsing that per request is enough work to trip Cloudflare's
- * per-request limits, which surfaced as intermittent 1102 / HTTP 503 on
- * production section pages (2026-08-08) while every preview deployment looked
- * fine. Pack content is immutable for the life of a deployment, so one parse per
- * isolate is all that's needed. A failed fetch isn't cached.
+ * Two artifacts rather than one filtered here, matching the split that
+ * `search-index.json`/`search-index-gm.json` already uses: an opted-out reader
+ * of Stonetop would otherwise download Book II's entire contents (259 KB vs
+ * 80 KB) to have it filtered away.
  *
- * This is mitigation, not the cure: a cold isolate still pays the full parse to
- * render one section. The fix is to stop shipping whole-book trees to a request
- * that needs one section's body plus a nav skeleton — see docs/App
- * Implementation Plan.md, phase 26.
+ * Memoised per game and variant. Unlike the whole-book trees this replaces,
+ * memoisation is now an optimisation rather than life support — the spine is
+ * tens of kilobytes, not megabytes. A failed fetch isn't cached.
  */
-export function fetchTrees(gameId: string, fetchFn: Fetcher): Promise<DocumentTree[]> {
-	const cached = treesCache.get(gameId);
+export function fetchNav(
+	gameId: string,
+	gmVisible: boolean,
+	fetchFn: Fetcher
+): Promise<NavDocument[]> {
+	const key = `${gameId}:${gmVisible}`;
+	const cached = navCache.get(key);
 	if (cached) return cached;
-	const root = `${base}/content-packs/${gameId}`;
-	const promise = (async () => {
-		const manifest = await getJson<PackManifest>(fetchFn, `${root}/manifest.json`);
-		const ruleFiles = manifest.files.filter((f) => f.startsWith('rules/')).sort();
-		return Promise.all(ruleFiles.map((f) => getJson<DocumentTree>(fetchFn, `${root}/${f}`)));
-	})().catch((err) => {
-		treesCache.delete(gameId);
+	const file = gmVisible ? 'nav-gm.json' : 'nav.json';
+	const promise = getJson<NavDocument[]>(
+		fetchFn,
+		`${base}/content-packs/${gameId}/rules/${file}`
+	).catch((err) => {
+		navCache.delete(key);
 		throw err;
 	});
-	treesCache.set(gameId, promise);
+	navCache.set(key, promise);
 	return promise;
+}
+
+/**
+ * Fetch one section's page artifact, or `null` if the pack has no such id.
+ *
+ * Deliberately not memoised: a page is a couple of kilobytes and is fetched
+ * once per navigation, so a cache keyed by section id would only accumulate
+ * thousands of entries in a long-lived Worker isolate to save a fetch the
+ * browser and the edge both already cache.
+ *
+ * The `null` matters. A missing static file under `/content-packs/` does not
+ * answer with JSON — Cloudflare Pages serves the SPA's HTML 404 body — so a
+ * caller that only checked `res.ok` would surface a JSON parse failure as a
+ * 500. Every stale deep link would then miss the reference's own error page,
+ * which is precisely the audience it was built for.
+ */
+export async function fetchPage(
+	gameId: string,
+	sectionId: string,
+	fetchFn: Fetcher
+): Promise<ReferencePage | ReferenceRedirect | null> {
+	const url = `${base}/content-packs/${gameId}/rules/pages/${encodeURIComponent(sectionId)}.json`;
+	const res = await fetchFn(url);
+	if (res.status === 404) return null;
+	if (!res.ok) throw new Error(`reference: failed to load ${url} (${res.status})`);
+	return (await res.json()) as ReferencePage | ReferenceRedirect;
+}
+
+/** Narrow a page artifact to the redirect stub a below-page-depth section gets. */
+export function isRedirect(page: ReferencePage | ReferenceRedirect): page is ReferenceRedirect {
+	return 'redirectTo' in page;
 }
 
 const linkIndexCache = new Map<string, Promise<LinkIndex>>();
@@ -122,107 +136,4 @@ export function fetchLinkIndex(gameId: string, fetchFn: Fetcher): Promise<LinkIn
 		});
 	linkIndexCache.set(gameId, promise);
 	return promise;
-}
-
-/** Project trees to their TOC form, optionally dropping sections that fail a filter.
- * Chapters whose sections were all filtered out are dropped with them — a gated
- * chapter must not list by name in the sidebar or on the chapter-card landing. */
-export function tocOf(
-	trees: DocumentTree[],
-	include: (s: DocumentSection) => boolean = () => true
-): TocDocument[] {
-	return trees.map((t) => {
-		const sections = t.sections
-			.filter(include)
-			.map(({ id, title, level, path, visibility, chapter }) => ({
-				id,
-				title,
-				level,
-				path,
-				visibility,
-				chapter
-			}));
-		const surviving = new Set(sections.map((s) => s.chapter));
-		return {
-			id: t.id,
-			title: t.title,
-			chapters: (t.chapters ?? []).filter((c) => surviving.has(c.id)),
-			sections
-		};
-	});
-}
-
-/** Locate a section by id across trees. */
-export function findSection(
-	trees: DocumentTree[],
-	id: string
-): { tree: DocumentTree; index: number } | undefined {
-	for (const tree of trees) {
-		const index = tree.sections.findIndex((s) => s.id === id);
-		if (index !== -1) return { tree, index };
-	}
-	return undefined;
-}
-
-const ref = (s: DocumentSection): SectionRef => ({ id: s.id, title: s.title });
-
-/** Ancestor chain (root→parent) of the section at `index`, by heading level. */
-export function ancestorsOf(tree: DocumentTree, index: number): SectionRef[] {
-	const out: SectionRef[] = [];
-	let level = tree.sections[index].level;
-	for (let i = index - 1; i >= 0 && level > 1; i--) {
-		if (tree.sections[i].level < level) {
-			out.unshift(ref(tree.sections[i]));
-			level = tree.sections[i].level;
-		}
-	}
-	return out;
-}
-
-/** The contiguous block of descendants after `index` (exclusive start, exclusive end). */
-function descendantRange(tree: DocumentTree, index: number): [number, number] {
-	const level = tree.sections[index].level;
-	let end = index + 1;
-	while (end < tree.sections.length && tree.sections[end].level > level) end++;
-	return [index + 1, end];
-}
-
-/** Immediate child sections of the section at `index` (the shallowest descendants). */
-export function childrenOf(tree: DocumentTree, index: number): SectionRef[] {
-	const [start, end] = descendantRange(tree, index);
-	const block = tree.sections.slice(start, end);
-	if (block.length === 0) return [];
-	const min = Math.min(...block.map((s) => s.level));
-	return block.filter((s) => s.level === min).map(ref);
-}
-
-/** A section reference with its own nested children — the section page's
- * "In this section" listing, hierarchy preserved (phase 22 follow-up: a flat
- * two-column list read in the wrong order and hid the book's structure). */
-export interface SectionRefNode extends SectionRef {
-	level: number;
-	children: SectionRefNode[];
-}
-
-/** The full descendant tree of the section at `index`, as nested refs. */
-export function childTreeOf(tree: DocumentTree, index: number): SectionRefNode[] {
-	const [start, end] = descendantRange(tree, index);
-	const toRef = (n: SectionNode<DocumentSection>): SectionRefNode => ({
-		id: n.section.id,
-		title: n.section.title,
-		level: n.section.level,
-		children: n.children.map(toRef)
-	});
-	return buildSectionTree(tree.sections.slice(start, end)).map(toRef);
-}
-
-/** Previous/next sections in document order within the same tree. */
-export function siblingsInOrder(
-	tree: DocumentTree,
-	index: number
-): { prev: SectionRef | null; next: SectionRef | null } {
-	return {
-		prev: index > 0 ? ref(tree.sections[index - 1]) : null,
-		next: index < tree.sections.length - 1 ? ref(tree.sections[index + 1]) : null
-	};
 }

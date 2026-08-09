@@ -1,208 +1,88 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { documentTreeSchema, type DocumentTree } from './document-tree';
-import {
-	tocOf,
-	findSection,
-	ancestorsOf,
-	childrenOf,
-	childTreeOf,
-	siblingsInOrder,
-	isVisible,
-	fetchTrees,
-	clearTreesCache
-} from './load';
-
-const tree: DocumentTree = documentTreeSchema.parse({
-	id: 'book-i',
-	title: 'Book I',
-	sections: [
-		{ id: 'a', title: 'A', level: 1, path: [], body: 'a body' },
-		{ id: 'a1', title: 'A1', level: 2, path: ['A'], body: 'a1 body' },
-		{ id: 'a1x', title: 'A1x', level: 3, path: ['A', 'A1'], body: 'a1x body' },
-		{ id: 'a2', title: 'A2', level: 2, path: ['A'], body: 'a2 body' },
-		{ id: 'b', title: 'B', level: 1, path: [], body: 'b body' }
-	]
-});
-
-const second: DocumentTree = documentTreeSchema.parse({
-	id: 'book-ii',
-	title: 'Book II',
-	sections: [{ id: 'z', title: 'Z', level: 1, path: [], body: 'z' }]
-});
-
-describe('tocOf', () => {
-	it('strips bodies and keeps navigation fields', () => {
-		const [doc] = tocOf([tree]);
-		expect(doc.id).toBe('book-i');
-		expect(doc.sections).toHaveLength(5);
-		expect(doc.sections[0]).toEqual({
-			id: 'a',
-			title: 'A',
-			level: 1,
-			path: [],
-			visibility: 'player'
-		});
-		expect('body' in doc.sections[0]).toBe(false);
-	});
-
-	it('applies an include filter', () => {
-		const [doc] = tocOf([tree], (s) => s.level === 1);
-		expect(doc.sections.map((s) => s.id)).toEqual(['a', 'b']);
-	});
-
-	it('carries chapters through, and each section keeps its chapter id', () => {
-		const withChapters: DocumentTree = documentTreeSchema.parse({
-			id: 'book-i',
-			title: 'Book I',
-			chapters: [{ id: 'a', number: 1, title: 'A' }],
-			sections: [
-				{ id: 'a', title: 'A', level: 1, path: [], body: '', chapter: 'a' },
-				{ id: 'a1', title: 'A1', level: 2, path: ['A'], body: '', chapter: 'a' }
-			]
-		});
-		const [doc] = tocOf([withChapters]);
-		expect(doc.chapters).toEqual([{ id: 'a', number: 1, title: 'A' }]);
-		expect(doc.sections.map((s) => s.chapter)).toEqual(['a', 'a']);
-	});
-
-	it('defaults chapters to an empty array for a tree with none', () => {
-		const [doc] = tocOf([tree]);
-		expect(doc.chapters).toEqual([]);
-	});
-
-	it('drops a chapter whose sections were all filtered out', () => {
-		// Mixed visibility in one document (HMtW's shape: GM chapters
-		// interleaved in one flat folder) — a gated chapter must not list
-		// by name in the sidebar or on the chapter-card landing.
-		const mixed: DocumentTree = documentTreeSchema.parse({
-			id: 'book',
-			title: 'Book',
-			chapters: [
-				{ id: 'intro', number: 1, title: 'Introduction' },
-				{ id: 'gm-secrets', number: 2, title: 'GM Secrets' }
-			],
-			sections: [
-				{ id: 'intro', title: 'Introduction', level: 1, path: [], body: '', chapter: 'intro' },
-				{
-					id: 'gm-secrets',
-					title: 'GM Secrets',
-					level: 1,
-					path: [],
-					body: '',
-					chapter: 'gm-secrets',
-					visibility: 'gm'
-				}
-			]
-		});
-		const [hidden] = tocOf([mixed], (s) => isVisible(s, false));
-		expect(hidden.chapters.map((c) => c.id)).toEqual(['intro']);
-		const [shown] = tocOf([mixed], (s) => isVisible(s, true));
-		expect(shown.chapters.map((c) => c.id)).toEqual(['intro', 'gm-secrets']);
-	});
-});
-
-describe('findSection', () => {
-	it('finds across trees', () => {
-		expect(findSection([tree, second], 'a1x')?.index).toBe(2);
-		expect(findSection([tree, second], 'z')?.tree.id).toBe('book-ii');
-		expect(findSection([tree, second], 'missing')).toBeUndefined();
-	});
-});
-
-describe('ancestorsOf', () => {
-	it('returns the root→parent chain', () => {
-		expect(ancestorsOf(tree, 2).map((s) => s.id)).toEqual(['a', 'a1']);
-		expect(ancestorsOf(tree, 3).map((s) => s.id)).toEqual(['a']);
-		expect(ancestorsOf(tree, 0)).toEqual([]);
-	});
-});
-
-describe('childrenOf', () => {
-	it('returns immediate children only', () => {
-		expect(childrenOf(tree, 0).map((s) => s.id)).toEqual(['a1', 'a2']);
-		expect(childrenOf(tree, 1).map((s) => s.id)).toEqual(['a1x']);
-		expect(childrenOf(tree, 4)).toEqual([]);
-	});
-});
-
-describe('childTreeOf', () => {
-	it('returns the full descendant tree, hierarchy preserved', () => {
-		const nodes = childTreeOf(tree, 0);
-		expect(nodes.map((n) => n.id)).toEqual(['a1', 'a2']);
-		expect(nodes[0].children.map((n) => n.id)).toEqual(['a1x']);
-		expect(nodes[0].children[0].children).toEqual([]);
-		expect(nodes[1].children).toEqual([]);
-		expect(childTreeOf(tree, 4)).toEqual([]);
-	});
-});
-
-describe('siblingsInOrder', () => {
-	it('gives document-order prev/next', () => {
-		expect(siblingsInOrder(tree, 0)).toEqual({ prev: null, next: { id: 'a1', title: 'A1' } });
-		expect(siblingsInOrder(tree, 4).next).toBeNull();
-		expect(siblingsInOrder(tree, 2).prev).toEqual({ id: 'a1', title: 'A1' });
-	});
-});
+import { clearNavCache, fetchNav, fetchPage, isRedirect, isVisible } from './load';
 
 describe('visibility gate', () => {
-	const gmTree: DocumentTree = documentTreeSchema.parse({
-		id: 'book-ii',
-		title: 'Book II',
-		sections: [{ id: 'lore', title: 'Lore', level: 1, path: [], body: 'secret', visibility: 'gm' }]
-	});
-
 	it('hides gm content by default (gate closed) and shows it when open', () => {
 		// Fails closed: no flag means player-only.
 		expect(isVisible({ visibility: 'player' })).toBe(true);
 		expect(isVisible({ visibility: 'gm' })).toBe(false);
-		// Gate open (viewer is a campaign GM): gm content becomes visible.
+		// Gate open (reader opted into spoilers): gm content becomes visible.
 		expect(isVisible({ visibility: 'gm' }, true)).toBe(true);
 		expect(isVisible({ visibility: 'player' }, true)).toBe(true);
 	});
-
-	it('tocOf drops gm sections for players but keeps them for GMs', () => {
-		const [closed] = tocOf([gmTree], (s) => isVisible(s));
-		expect(closed.sections).toHaveLength(0);
-		const [open] = tocOf([gmTree], (s) => isVisible(s, true));
-		expect(open.sections).toHaveLength(1);
-		const [playerDoc] = tocOf([tree], (s) => isVisible(s));
-		expect(playerDoc.sections).toHaveLength(5);
-	});
 });
 
-describe('fetchTrees memoisation', () => {
-	beforeEach(clearTreesCache);
+describe('fetchNav', () => {
+	beforeEach(clearNavCache);
 
-	const manifest = { id: 'hmtw', files: ['rules/book.json', 'landing.json'] };
-	const book = { id: 'book', title: 'Book', sections: [] };
-
-	function counting() {
-		let calls = 0;
+	function counting(body: unknown = [{ id: 'book', title: 'Book', chapters: [], sections: [] }]) {
+		const urls: string[] = [];
 		const fetchFn = async (url: string) => {
-			calls++;
-			const body = url.endsWith('manifest.json') ? manifest : book;
+			urls.push(url);
 			return new Response(JSON.stringify(body), { status: 200 });
 		};
-		return { fetchFn, calls: () => calls };
+		return { fetchFn, urls };
 	}
 
-	it('parses a game’s trees once per isolate, not once per request', async () => {
-		// Not a nicety: every section render calls this from both the layout and
-		// the page, and the trees run to megabytes. Re-parsing per request tripped
-		// Cloudflare's per-request limits (intermittent 503s, 2026-08-08).
-		const { fetchFn, calls } = counting();
-		const first = await fetchTrees('hmtw', fetchFn);
-		const second = await fetchTrees('hmtw', fetchFn);
+	it('fetches the spine once per isolate and variant', async () => {
+		const { fetchFn, urls } = counting();
+		const first = await fetchNav('hmtw', false, fetchFn);
+		const second = await fetchNav('hmtw', false, fetchFn);
 		expect(second).toBe(first);
-		expect(calls()).toBe(2); // manifest + the one rules file, fetched once
-		// Only `rules/` files are trees; landing.json is not fetched here.
-		expect(first).toHaveLength(1);
+		expect(urls).toHaveLength(1);
+	});
+
+	it('reads a different artifact for an opted-in reader, rather than filtering', async () => {
+		// The point of two files: an opted-out Stonetop reader must not download
+		// Book II's contents (259 KB) only to have them filtered away (phase 26).
+		const { fetchFn, urls } = counting();
+		await fetchNav('stonetop', false, fetchFn);
+		await fetchNav('stonetop', true, fetchFn);
+		expect(urls[0]).toMatch(/\/rules\/nav\.json$/);
+		expect(urls[1]).toMatch(/\/rules\/nav-gm\.json$/);
 	});
 
 	it('does not cache a failure, so a later attempt can still succeed', async () => {
 		const boom = async () => new Response('nope', { status: 500 });
-		await expect(fetchTrees('hmtw', boom)).rejects.toThrow(/failed to load/);
+		await expect(fetchNav('hmtw', false, boom)).rejects.toThrow(/failed to load/);
 		const { fetchFn } = counting();
-		expect(await fetchTrees('hmtw', fetchFn)).toHaveLength(1);
+		expect(await fetchNav('hmtw', false, fetchFn)).toHaveLength(1);
+	});
+});
+
+describe('fetchPage', () => {
+	it('requests exactly one page artifact, by section id', async () => {
+		const urls: string[] = [];
+		const fetchFn = async (url: string) => {
+			urls.push(url);
+			return new Response(JSON.stringify({ id: 'moves', title: 'Moves' }), { status: 200 });
+		};
+		await fetchPage('hmtw', 'moves', fetchFn);
+		expect(urls).toEqual(['/content-packs/hmtw/rules/pages/moves.json']);
+	});
+
+	it('reports a missing section as null rather than throwing', async () => {
+		// Cloudflare Pages answers a missing static file with the SPA's *HTML*
+		// 404 body. A caller that only checked `res.ok` and then parsed JSON
+		// would turn every stale deep link into a 500, so the reference's own
+		// error page — built for exactly those readers — would never be reached.
+		const html = async () =>
+			new Response('<!doctype html><html><body>404</body></html>', {
+				status: 404,
+				headers: { 'content-type': 'text/html' }
+			});
+		await expect(fetchPage('hmtw', 'gone', html)).resolves.toBeNull();
+	});
+
+	it('still throws on a real server error, which is not a missing page', async () => {
+		const boom = async () => new Response('nope', { status: 500 });
+		await expect(fetchPage('hmtw', 'moves', boom)).rejects.toThrow(/failed to load/);
+	});
+
+	it('recognises the redirect stub a below-page-depth section gets', async () => {
+		const stub = async () =>
+			new Response(JSON.stringify({ redirectTo: 'talents' }), { status: 200 });
+		const page = await fetchPage('hmtw', 'quick-fingers', stub);
+		expect(page && isRedirect(page)).toBe(true);
 	});
 });

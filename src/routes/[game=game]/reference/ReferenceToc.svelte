@@ -10,26 +10,30 @@
 -->
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { TocDocument, TocSection } from '$lib/reference/load';
+	import type { NavDocument, NavSection } from '$lib/reference/page-artifacts';
 
+	/**
+	 * `activeChapterId` — the chapter owning the active section, whose
+	 * disclosure should render open — is passed in rather than looked up here.
+	 *
+	 * It used to be found by searching `toc` for the active id, which worked
+	 * only while the sidebar data held every section in the book. It holds h2s
+	 * and h3s now (phase 26 stopped shipping the rest), and Stonetop gives
+	 * every heading its own page — so an h4 section page would find nothing and
+	 * silently render the whole sidebar collapsed. The section page knows its
+	 * own chapter; it says so.
+	 */
 	let {
 		toc,
 		gameId,
-		activeId
-	}: { toc: TocDocument[]; gameId: string; activeId: string | undefined } = $props();
-
-	/**
-	 * The chapter owning the active section, across every doc — the one
-	 * disclosure that should render open. Reads straight off the section's own
-	 * `chapter` id (commit 90); no ancestor-walking needed.
-	 */
-	const activeChapterId = $derived.by(() => {
-		for (const doc of toc) {
-			const section = doc.sections.find((s) => s.id === activeId);
-			if (section) return section.chapter;
-		}
-		return undefined;
-	});
+		activeId,
+		activeChapterId
+	}: {
+		toc: NavDocument[];
+		gameId: string;
+		activeId: string | undefined;
+		activeChapterId: string | undefined;
+	} = $props();
 
 	/**
 	 * A chapter's h2 sections with their h3s nested underneath. The tree is
@@ -54,14 +58,14 @@
 	 * content.
 	 */
 	function h2sOf(
-		doc: TocDocument,
+		doc: NavDocument,
 		chapterId: string
-	): { section: TocSection; subs: TocSection[] }[] {
-		const out: { section: TocSection; subs: TocSection[] }[] = [];
+	): { section: NavSection; subs: NavSection[] }[] {
+		const out: { section: NavSection; subs: NavSection[] }[] = [];
 		// The open h2, not just the last entry: a run of leading h3s are
 		// siblings of each other, and nesting each one under the previous
 		// would make Credits look like the parent of Tarot.
-		let openH2: { section: TocSection; subs: TocSection[] } | null = null;
+		let openH2: { section: NavSection; subs: NavSection[] } | null = null;
 		for (const s of doc.sections) {
 			if (s.chapter !== chapterId) continue;
 			if (s.level === 2) {

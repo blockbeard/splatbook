@@ -25,18 +25,20 @@
 
 	const activeId = $derived(page.params.section);
 
-	/** The active entry's own title, for the drawer button — orientation while
-	 *  scrolled, without spending a second row on a breadcrumb the section page
-	 *  already renders above its prose. */
-	const activeTitle = $derived.by(() => {
-		if (!activeId) return 'Contents';
-		for (const doc of data.toc) {
-			const hit =
-				doc.chapters.find((c) => c.id === activeId) ?? doc.sections.find((s) => s.id === activeId);
-			if (hit) return hit.title;
-		}
-		return 'Contents';
-	});
+	/**
+	 * The active entry's own title, for the drawer button — orientation while
+	 * scrolled, without spending a second row on a breadcrumb the section page
+	 * already renders above its prose.
+	 *
+	 * Taken from the section page's own data rather than looked up in `toc`.
+	 * The lookup only worked while the sidebar data carried every section; it
+	 * carries h2s and h3s now (phase 26), so on Stonetop — where every heading
+	 * is a page — a deeper section fell through to "Contents", losing the
+	 * mobile reader the one label telling them where they were.
+	 */
+	const activeTitle = $derived(page.data.section?.title ?? 'Contents');
+	/** The chapter to open in the contents tree; see ReferenceToc. */
+	const activeChapterId = $derived(page.data.chapterId);
 
 	// The TOC is a drawer below md (phase 25). Native <dialog>: focus stays
 	// inside, the background goes inert, and there's no hand-rolled trap. NOTE:
@@ -253,7 +255,7 @@
 				<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
 			</div>
 		{/if}
-		<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} />
+		<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} {activeChapterId} />
 	</nav>
 
 	<div class="min-w-0 flex-1">
@@ -293,7 +295,7 @@
 						<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
 					</div>
 				{/if}
-				<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} />
+				<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} {activeChapterId} />
 			</div>
 		</div>
 	{/if}
