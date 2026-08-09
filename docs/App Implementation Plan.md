@@ -208,6 +208,87 @@ Also fix the verification gap that let this reach production: post-deploy checks
 `/api/health` and the static pack JSON, neither of which exercises SSR. A deploy
 check should fetch a real section page from each game and assert 200.
 
+## Phase 27 — Share a rule: copy section text and links
+
+*Filed 2026-08-09, out of the design review of `/hmtw` (see CHANGELOG's v2.3.x
+entries and `docs/hmtw-fonts.md` for the rest of that pass). The use case is
+concrete and it is the one this product exists for: someone at the table wants
+to put a rule in front of the other players, in Discord, Zoom, Meet or their own
+notes, without making everyone find the page. Today they select prose in the
+browser and paste it, which loses the bold — and in HMtW bold is what flags the
+term a rule turns on.*
+
+*A first spec put a control on every heading behind a popover, copied "the
+section's own prose excluding children", and appended an attribution line naming
+the book and splatbook.app. An adversarial pass killed most of it; the findings
+are recorded under each commit below rather than lost, because every one of them
+is a trap the next attempt would fall into too.*
+
+**One control per page, not per heading.** Pages are this product's shareable
+unit — that is the pitch on the reference landing. Per-heading controls die on
+the tail of the corpus: the median page has 1 heading but "An incomplete list of
+pretty things" has 53, Appendix D's four suit pages have 47–52 each, and
+"Creating interesting rooms" has 43. Fifty-three UI glyphs down a page, in a book
+whose prose contains no icons at all, is not a tradeoff worth arguing about.
+Per-heading controls for h4+ anchors stay possible later, but only once something
+measures whether anyone wants them.
+
+- `feat(reference)`: a **clipboard-markdown renderer** — the whole of the work,
+  and the piece the first spec hid inside a subordinate clause ("source it from
+  the pack"). Neither existing target fits: pack markdown still carries
+  `[[wikilinks]]`, `^block-ids` and `> [!callout]` syntax, and the rendered HTML
+  has hoisted sidebars and resolved in-app hrefs in it. A third target, with its
+  own tests, emitting two flavours from one pass:
+  - **`text/plain`** — markdown. Heading syntax capped at `###`, anything deeper
+    demoted to `**bold**` (Discord renders h1–h3 and shows `####` literally —
+    Chris tested). This lands on `referencePageDepth: 3` by itself: h1–h3 are
+    exactly the sections with their own pages, and h4+ are the talent entries and
+    statblock fragments the theme already sets in bold rather than as headings.
+  - **`text/html`** — real bold, real tables, absolute links.
+  - Cross-references become **plain label text in both flavours** (decided
+    2026-08-09). A quoted rule carries many of them; masked links are noise in
+    Discord and raw markdown blobs in Meet, and the attribution block already
+    carries the one URL that gets a reader back to the book.
+  - Tables flatten to `Label — value` lines in plain (no chat client renders
+    markdown tables) and stay real `<table>` in HTML, where Docs and Obsidian
+    take them.
+  - Callouts keep their title as a bold line, then their body.
+
+- `feat(reference)`: the **Share control**, one per page, in the page furniture
+  beside the breadcrumb. Copy text, and copy link as its second item. Write both
+  flavours via `ClipboardItem`, falling back to `writeText` where that isn't
+  available. Two mechanics that are not optional:
+  - `ClipboardItem` accepts a **Promise** for its data, which is how Safari's
+    user-gesture requirement survives any async work. Awaiting *before* the write
+    makes iOS reject it silently — the first spec's shape invited exactly this.
+  - `navigator.clipboard` needs a secure context. Fine on splatbook.app and the
+    tailnet HTTPS front; hide the control where it's absent rather than shipping
+    a button that does nothing.
+  - Feedback: the label becomes "Copied" for ~1.5s, same word for both actions,
+    with an `aria-live` announcement. Reserve the width so it doesn't reflow.
+
+- `feat(reference)`: **attribution, non-optional.** The pack's licence says *"All
+  creators retain the right to be identified as such. In all cases this notice
+  must remain intact."* The first spec named the book and splatbook.app and
+  omitted Joshua McCrowell entirely — backwards, and it proposed a preference to
+  switch attribution off, against a licence that says "in all cases". The block:
+
+  ```
+  His Majesty the Worm — Chapter 1: The Basics
+  © Joshua McCrowell, published by Exalted Funeral Press.
+  Shared from splatbook.app/hmtw/reference/…
+  ```
+
+  Game-supplied, not hard-coded: it comes from the pack's own licence metadata
+  through the `GameModule`, the same way `referenceSpoilers` and
+  `referenceOmitCallouts` do. Stonetop's is CC BY-SA 4.0 and needs different
+  words.
+
+*Open when built: whether Zoom's rich paste keeps tables and nested lists, which
+decides how hard the HTML flavour works. Worth pasting one real section into each
+client before the format is fixed — the plain/rich split above came out of doing
+exactly that, and guessing had it backwards.*
+
 ## Sequencing notes
 
 - Natural session-sized bites: a phase-boundary milestone every 5–10 commits, and each commit is small enough to finish in one sitting.
