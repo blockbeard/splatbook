@@ -245,6 +245,18 @@ export interface GameModule {
 	 * entries and statblock fragments, not pages.
 	 */
 	referencePageDepth?: number;
+	/**
+	 * Callout kinds the reference renders as nothing at all — normalized the
+	 * same way `sb-callout-<kind>` class suffixes are (lowercase, spaces to
+	 * hyphens). The shell has no opinion about which kinds those are; a game
+	 * decides what its own pack's furniture is worth showing.
+	 *
+	 * This is presentation, not content: the text stays in the pack, so the
+	 * pack remains a faithful copy of the publisher's open text and the
+	 * decision reverts by editing this array rather than by reimporting a
+	 * corpus. HMtW omits `epigraph` — see its module for why.
+	 */
+	referenceOmitCallouts?: string[];
 	/** Pure rules engine — owned by the game, opaque to the shell. */
 	engine?: unknown;
 	/** The entity types this game contributes, keyed by persisted `entityType`

@@ -24,6 +24,19 @@ export const hmtw: GameModule = {
 	// Pages stop at h3: the book's h4/h5 sections are talent entries, spell
 	// components, and statblock fragments — they read inline, not as pages.
 	referencePageDepth: 3,
+	// The book opens chapters with a literary epigraph — Leiber, Dante, Zork.
+	// Lovely in a book you read front to back; pure toll in a reference you
+	// open mid-session with a question, because it sits above the fold on
+	// exactly the pages a reader lands on. The corpus settles it: 40 of them,
+	// median 290 characters, 12 over 400, longest 804 — on a phone the Leiber
+	// quotation is a full screen of centred script between the reader and the
+	// rule they came for. Length-gating the display face was considered and
+	// rejected: a 200-character cut-off would demote 26 of 40, so the
+	// treatment is wrong rather than the length.
+	//
+	// Omitted here, not deleted from the pack: the text stays in
+	// `content/hmtw/rules/` and this line is the whole of the decision.
+	referenceOmitCallouts: ['epigraph'],
 	referenceSpoilers: {
 		badge: 'GM',
 		toggleLabel: 'Include the Gamemaster’s chapters — monsters, secrets, and the underworld',

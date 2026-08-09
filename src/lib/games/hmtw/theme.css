@@ -59,44 +59,37 @@
 @import '@fontsource/im-fell-great-primer-sc/400.css';
 @import '@fontsource/sorts-mill-goudy/400.css';
 @import '@fontsource/sorts-mill-goudy/400-italic.css';
-@import '@fontsource/almendra-display/400.css';
 @import '@fontsource/libre-caslon-text/700.css';
 
 /*
- * Metric normalisation for a creator-pack face whose x-height is nothing like
- * its OFL substitute's. Every size in this file was tuned against the
- * substitutes — which is what almost every reader sees — so on a machine that
- * *has* the authentic fonts the same numbers rendered wrong: Dark Roast's
- * x-height is 17.6 against Almendra Display's 44.9 (measured in-browser at
- * 100px, 2026-08-08), which turned chapter epigraphs into unreadable hairlines.
- *
- * `size-adjust` is the fix for exactly this: it scales the local face's
- * outlines to the substitute's proportions, so one font-size serves both paths
- * and nothing needs to know which font is in use. The family resolves to
- * nothing at all when the font isn't installed — `local()` with no other src —
- * so the stack simply falls through to the substitute.
- *
- * `local()` matches a font's full/PostScript name, NOT its family name. Get it
- * wrong and the family silently resolves to nothing, the stack falls through,
- * and `getComputedStyle` still reports the declared family — so it looks fixed
- * while the authentic face has quietly been dropped. Verify by rendering.
- *
- * CASLON ANTIQUE IS DELIBERATELY NOT HERE. The h4 role's authentic face was
- * normalised the same way (128%, for Libre Caslon's 46.0) and had to go:
- * **text set in it cannot be selected in Firefox** (153, macOS — confirmed
- * against the same page with `data-fonts='ofl'`, where selection works, and the
- * epigraph's identical local()+size-adjust wrapper is unaffected, so it's the
- * font file and not the mechanism). It's an old freeware face, likely with a
- * broken cmap. Scoring it honestly: invisible in Safari (which blocks local
- * font matching), unselectable in Firefox, correct only in Chromium — so the
- * subhead role now uses Libre Caslon Text everywhere, and readers keep being
+ * CASLON ANTIQUE IS DELIBERATELY NOT USED for the h4 role, and this is the
+ * note that stops it being reintroduced. Its authentic face was metric-
+ * normalised with a `local()` + `size-adjust` wrapper (128%, for Libre
+ * Caslon's x-height of 46.0) and had to go: **text set in it cannot be
+ * selected in Firefox** (153, macOS — confirmed against the same page with
+ * `data-fonts='ofl'`, where selection works, so it's the font file and not
+ * the mechanism). It's an old freeware face, likely with a broken cmap.
+ * Scoring it honestly: invisible in Safari (which blocks local font
+ * matching), unselectable in Firefox, correct only in Chromium — so the
+ * subhead role uses Libre Caslon Text everywhere, and readers keep being
  * able to select a rule's label.
+ *
+ * The `size-adjust` mechanism itself was sound and is documented here in case
+ * a future role needs it. It scales a local face's outlines to the
+ * substitute's proportions, so one font-size serves both paths: declare
+ * `@font-face { font-family: X; src: local('Real Name'); size-adjust: N% }`
+ * and the family resolves to nothing when the font isn't installed, falling
+ * through to the substitute. Two traps. `local()` matches a font's
+ * full/PostScript name, NOT its family name — get it wrong and the family
+ * silently resolves to nothing while `getComputedStyle` still reports the
+ * declared family, so it looks fixed while the authentic face has quietly
+ * been dropped; verify by rendering. And see CHAPTER TITLES above for the
+ * larger trap: a local-first display role means the person maintaining the
+ * theme reviews type nobody else receives.
+ *
+ * The one live user of this was `HMTW Epigraph` (Dark Roast at 175%, for
+ * Almendra Display's x-height of 44.9). It retired with the epigraphs.
  */
-@font-face {
-	font-family: 'HMTW Epigraph';
-	src: local('Dark Roast'), local('DarkRoast');
-	size-adjust: 175%;
-}
 
 /* `html[data-game=…]` rather than a bare attribute selector: the shell's
    tokens live on `:root` with identical specificity (see stonetop's note). */
@@ -353,30 +346,12 @@ html[data-game='hmtw'] .reference-body h1 + .sb-callout-lede {
 	border-top: none;
 	padding-top: 0;
 }
-
-/* [!epigraph] — pull quotes: Almendra Display in full ink, centered,
-   unboxed; the attribution line inside stays Fell italic and muted. */
-html[data-game='hmtw'] .reference-body .sb-callout-epigraph {
-	background: transparent;
-	border: none;
-	text-align: center;
-	font-family: 'HMTW Epigraph', 'Almendra Display', 'IM Fell English', Georgia, serif;
-	/* Smaller and airier than the old 1.45em/1.3: with Dark Roast normalised to
-	   Almendra's x-height, both faces now want the same size, and a script this
-	   loosely written needs the leading to stay legible either way. */
-	font-size: 1.2em;
-	line-height: 1.6;
-	color: var(--sb-text);
-}
-html[data-game='hmtw'] .reference-body .sb-callout-epigraph .sb-callout-label {
-	display: none;
-}
-html[data-game='hmtw'] .reference-body .sb-callout-epigraph em {
-	display: block;
-	margin-top: 0.4em;
-	font-family: 'IM Fell English', Georgia, serif;
-	font-size: 0.62em;
-	color: var(--sb-muted);
+/* And the same at the other end: with the epigraphs gone a chapter page is
+   often just its lede, whose bottom hairline then lands a few rems above the
+   "In this section" rule. Only the last one of a pair is ever wanted. */
+html[data-game='hmtw'] .reference-body .sb-callout-lede:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
 }
 
 /*
@@ -443,9 +418,8 @@ html[data-game='hmtw'] .reference-toc li li a {
  *   delete document.documentElement.dataset.fonts    // back to the real book
  *
  * The extra attribute raises specificity, so these win wherever they apply.
- * `HMTW Subhead` / `HMTW Epigraph` are the size-adjusted local-only families
- * declared at the top; dropping them here leaves the substitute at its own
- * natural metrics, which is exactly the point of the exercise.
+ * No size-adjusted local-only families remain (see the note at the top), so
+ * these overrides now only swap the display families themselves.
  */
 /* No h1 entry here on purpose: the chapter role no longer names a local face,
    so both paths already render identically. */
@@ -457,9 +431,6 @@ html[data-game='hmtw'][data-fonts='ofl'] .reference-toc .sb-callout-label {
 }
 html[data-game='hmtw'][data-fonts='ofl'] .reference-body :is(h4, h5, h6) {
 	font-family: 'Libre Caslon Text', Georgia, serif;
-}
-html[data-game='hmtw'][data-fonts='ofl'] .reference-body .sb-callout-epigraph {
-	font-family: 'Almendra Display', 'IM Fell English', Georgia, serif;
 }
 html[data-game='hmtw'][data-fonts='ofl'],
 html[data-game='hmtw'][data-fonts='ofl'] .reference-body .sb-callout-sidebar,

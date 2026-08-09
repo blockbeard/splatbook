@@ -207,4 +207,52 @@ describe('renderMarkdown', () => {
 		expect(html).not.toContain('sb-callout');
 		expect(html).toContain('Real move text, unquoted.');
 	});
+
+	describe('referenceOmitCallouts', () => {
+		// HMtW omits `epigraph`; stonetop omits nothing. Both halves matter —
+		// the second is what proves the drop is scoped to the game that asked
+		// for it rather than to the callout kind globally.
+		const epigraph = '> [!epigraph] “It is pitch black.”\n> — *Zork*';
+
+		it('drops an omitted callout, and the prose around it closes up', () => {
+			const html = renderMarkdown(`${epigraph}\n\nThe rule text.`, 'hmtw', index);
+			expect(html).not.toContain('sb-callout-epigraph');
+			expect(html).not.toContain('Zork');
+			expect(html).not.toContain('[!');
+			expect(html).toContain('The rule text.');
+		});
+
+		it('leaves the same callout alone for a game that omits nothing', () => {
+			const html = renderMarkdown(epigraph, 'stonetop', index);
+			expect(html).toContain('sb-callout-epigraph');
+			expect(html).toContain('Zork');
+		});
+
+		it('keeps callouts the game did not omit', () => {
+			const html = renderMarkdown('> [!sidebar] Against canon\n> Body.', 'hmtw', index);
+			expect(html).toContain('sb-callout-sidebar');
+			expect(html).toContain('Against canon');
+		});
+
+		it('drops an omitted callout that a sibling callout follows immediately', () => {
+			const html = renderMarkdown(`${epigraph}\n> [!sidebar] Kept\n> Body.`, 'hmtw', index);
+			expect(html).not.toContain('Zork');
+			expect(html).toContain('sb-callout-sidebar');
+			expect(html).toContain('Kept');
+		});
+
+		it('renders nothing for a section whose own heading opened an omitted callout', () => {
+			// The `kind` path: the `[!epigraph]` marker became the heading, so
+			// the body carries only the continuation and there is no marker
+			// left in it to match. Without this the block would render as a
+			// bare blockquote — the callout minus its box.
+			const html = renderMarkdown('> “It is pitch black.”\n> — *Zork*', 'hmtw', index, 'epigraph');
+			expect(html).toBe('');
+		});
+
+		it('matches the pack’s capitalisation loosely', () => {
+			const html = renderMarkdown('> [!Epigraph] Shouted.', 'hmtw', index);
+			expect(html).not.toContain('Shouted.');
+		});
+	});
 });

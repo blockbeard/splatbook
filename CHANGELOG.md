@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **HMtW no longer renders the chapter epigraphs.** The book opens chapters with
+  a literary quotation — Leiber, Dante, Zork — which is lovely in a book you read
+  front to back and pure toll in a reference you open mid-session with a
+  question, because it sits above the fold on exactly the pages a reader lands
+  on. 40 of them, median 290 characters, longest 804; on a phone the Leiber
+  quotation was a full screen of centred display script between the reader and
+  the rule they came for. The text stays in the content pack — this is a new
+  `referenceOmitCallouts` list on the game module, so any game can drop callout
+  kinds it treats as furniture without a reimport, and reverting is a one-line
+  edit. Almendra Display and the `size-adjust` wrapper that normalised its
+  authentic counterpart retire with it.
+
 - **HMtW chapter titles are set in IM Fell Great Primer SC, and every reader
   gets the same one.** The h1 role used to lead with the creator-pack's
   `XiparosLombard`, so the titles Chris reviewed were a rendering nobody else

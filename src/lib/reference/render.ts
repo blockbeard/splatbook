@@ -17,6 +17,7 @@
 import { Marked } from 'marked';
 import type { RendererThis, Token, Tokens, TokenizerThis } from 'marked';
 import { base } from '$app/paths';
+import { getGame } from '$lib/games';
 import { resolveWikilinks, type LinkIndex } from './inline';
 
 // The wikilink machinery (index building, target resolution, the `[[…]]` →
@@ -74,6 +75,28 @@ const normalizeType = (s: string): string =>
 		.trim()
 		.toLowerCase()
 		.replace(/[\s_]+/g, '-');
+/**
+ * A whole callout block whose kind is one the game omits — matched on the
+ * same shape `CALLOUT_BLOCK` consumes, plus any blank lines trailing it so
+ * removing one doesn't leave a hole in the rhythm above the next block.
+ *
+ * Dropped before parsing rather than rendered-to-empty-string: a `[!type]`
+ * whose heading opened it reaches the renderer by a second path
+ * (`renderCalloutBox`, below), and a kind that vanishes in one path but not
+ * the other is the kind of split-brain that shows up months later on one
+ * page. One regex, applied once, covers both.
+ */
+const omittedCalloutBlock = (kinds: string[]): RegExp =>
+	new RegExp(
+		`^>[ \\t]*\\[!(?:${kinds.map((k) => k.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')).join('|')})\\][+-]?[^\\n]*\\n?(?:>(?![ \\t]*\\[!)[^\\n]*(?:\\n|$))*\\n*`,
+		'gim'
+	);
+
+/** The callout kinds a game renders as nothing. Normalized so a pack's
+ * `[!Epigraph]` and a module's `'epigraph'` are the same thing. */
+const omittedKinds = (gameId: string): string[] =>
+	(getGame(gameId)?.referenceOmitCallouts ?? []).map(normalizeType);
+
 /** `minor-arcanum` -> `Minor Arcanum`; `move` -> `Move`. */
 const titleCase = (s: string): string =>
 	s.replace(
@@ -216,8 +239,13 @@ export function renderMarkdown(
 	index: LinkIndex,
 	kind?: string
 ): string {
+	const omit = omittedKinds(gameId);
+	// A section whose *heading* opened an omitted callout has no body worth
+	// showing either — its body is that callout's continuation.
+	if (kind && omit.includes(normalizeType(kind))) return '';
+
 	const withLinks = resolveWikilinks(
-		body
+		(omit.length ? body.replace(omittedCalloutBlock(omit), '') : body)
 			// Drop the block id itself, but keep a quoted line quoted (`>` alone,
 			// not ``): stripping it down to nothing breaks the unbroken run of
 			// `>`-prefixed lines that both CALLOUT_BLOCK's continuation and
