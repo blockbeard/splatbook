@@ -210,84 +210,115 @@ check should fetch a real section page from each game and assert 200.
 
 ## Phase 27 — Share a rule: copy section text and links
 
-*Filed 2026-08-09, out of the design review of `/hmtw` (see CHANGELOG's v2.3.x
-entries and `docs/hmtw-fonts.md` for the rest of that pass). The use case is
-concrete and it is the one this product exists for: someone at the table wants
-to put a rule in front of the other players, in Discord, Zoom, Meet or their own
-notes, without making everyone find the page. Today they select prose in the
-browser and paste it, which loses the bold — and in HMtW bold is what flags the
+*Filed 2026-08-09 out of the design review of `/hmtw`; revised the same day,
+twice, against real client testing. The use case is the one this product exists
+for: put a rule in front of the other players — Discord, Zoom, Meet, or their own
+notes — without making everyone find the page. Today they select prose in the
+browser and paste it, which loses the bold, and in HMtW bold is what flags the
 term a rule turns on.*
 
-*A first spec put a control on every heading behind a popover, copied "the
-section's own prose excluding children", and appended an attribution line naming
-the book and splatbook.app. An adversarial pass killed most of it; the findings
-are recorded under each commit below rather than lost, because every one of them
-is a trap the next attempt would fall into too.*
+### What the clients actually do (Chris tested, 2026-08-09)
 
-**One control per page, not per heading.** Pages are this product's shareable
-unit — that is the pitch on the reference landing. Per-heading controls die on
-the tail of the corpus: the median page has 1 heading but "An incomplete list of
-pretty things" has 53, Appendix D's four suit pages have 47–52 each, and
-"Creating interesting rooms" has 43. Fifty-three UI glyphs down a page, in a book
-whose prose contains no icons at all, is not a tradeoff worth arguing about.
-Per-heading controls for h4+ anchors stay possible later, but only once something
-measures whether anyone wants them.
+| | markdown | tables | limit |
+| --- | --- | --- | --- |
+| Zoom | parses: bold, headings, links | no — cells land as separate lines, reads fine | **1,000 chars** |
+| Discord | parses, `#`–`###` only (`####` shows literally) | no | 2,000 free / 4,000 Nitro |
+| Meet | none — raw syntax visible | no | — |
+| Obsidian | native | yes | — |
 
-- `feat(reference)`: a **clipboard-markdown renderer** — the whole of the work,
-  and the piece the first spec hid inside a subordinate clause ("source it from
-  the pack"). Neither existing target fits: pack markdown still carries
-  `[[wikilinks]]`, `^block-ids` and `> [!callout]` syntax, and the rendered HTML
-  has hoisted sidebars and resolved in-app hrefs in it. A third target, with its
-  own tests, emitting two flavours from one pass:
-  - **`text/plain`** — markdown. Heading syntax capped at `###`, anything deeper
-    demoted to `**bold**` (Discord renders h1–h3 and shows `####` literally —
-    Chris tested). This lands on `referencePageDepth: 3` by itself: h1–h3 are
-    exactly the sections with their own pages, and h4+ are the talent entries and
-    statblock fragments the theme already sets in bold rather than as headings.
-  - **`text/html`** — real bold, real tables, absolute links.
-  - Cross-references become **plain label text in both flavours** (decided
-    2026-08-09). A quoted rule carries many of them; masked links are noise in
-    Discord and raw markdown blobs in Meet, and the attribution block already
-    carries the one URL that gets a reader back to the book.
-  - Tables flatten to `Label — value` lines in plain (no chat client renders
-    markdown tables) and stay real `<table>` in HTML, where Docs and Obsidian
-    take them.
-  - Callouts keep their title as a bold line, then their body.
+**Plain-text markdown is the universal carrier.** Zoom keeps bold and links by
+*parsing markdown*, not by taking a rich-text flavour — an earlier draft of this
+phase inferred the opposite and built a `text/html` flavour around it. HTML stays
+worth emitting for Obsidian's rendered paste and Google Docs, but it is a nicety
+now, and the first thing to cut if it complicates the Safari gesture path below.
 
-- `feat(reference)`: the **Share control**, one per page, in the page furniture
-  beside the breadcrumb. Copy text, and copy link as its second item. Write both
-  flavours via `ClipboardItem`, falling back to `writeText` where that isn't
-  available. Two mechanics that are not optional:
-  - `ClipboardItem` accepts a **Promise** for its data, which is how Safari's
-    user-gesture requirement survives any async work. Awaiting *before* the write
-    makes iOS reject it silently — the first spec's shape invited exactly this.
-  - `navigator.clipboard` needs a secure context. Fine on splatbook.app and the
-    tailnet HTTPS front; hide the control where it's absent rather than shipping
-    a button that does nothing.
-  - Feedback: the label becomes "Copied" for ~1.5s, same word for both actions,
-    with an `aria-live` announcement. Reserve the width so it doesn't reflow.
+### Selection, not buttons
 
-- `feat(reference)`: **attribution, non-optional.** The pack's licence says *"All
+*The payload settles this, and it overrides the earlier "one control per page"
+decision.* Measured against the corpus, with a ~130-char attribution block
+included: median page **1,476** chars, mean 2,342, longest 23,019 ("Cups").
+
+- over Zoom's 1,000: **250 of 364 pages (69%)** — the median page is already over
+- over Discord free's 2,000: 119 (33%)
+- over Discord Nitro's 4,000: 43 (12%)
+
+So a whole page is the wrong unit for the client people most want to paste into.
+And the two earlier arguments point opposite ways on the *same* pages: the ones
+with 47–53 headings (Appendix D's four suits, "An incomplete list of pretty
+things") are also the 17,000–23,000-character ones, where the thing worth sharing
+is a single h4 entry.
+
+**Copy the selection.** A floating Copy control on any selection inside
+`.reference-body`:
+
+- the payload is exactly what the reader chose, so the character limit is theirs
+  to see rather than ours to guess at
+- no permanent UI, so the 53-heading page costs nothing — this book's prose
+  carries no icons and should keep it that way
+- identical on a 400-char rule and a 23,000-char list
+- it is already the gesture people use; they just lose the bold doing it
+
+A secondary "copy this page" stays in the page furniture beside the breadcrumb,
+for the median page where that is the sensible unit.
+
+### Commits
+
+- `feat(reference)`: **selection → markdown serializer.** Walks the selected DOM
+  fragment, not the pack source — the DOM has already resolved wikilinks and
+  hoisted the sidebars out of the flow, which is exactly the mess the pack
+  markdown still carries. (The earlier draft's "source it from the pack, never
+  the DOM" holds only for the whole-page path.) Rules:
+  - heading syntax capped at `###`; deeper demoted to `**bold**`. Lands on
+    `referencePageDepth: 3` by itself — h1–h3 are the sections with their own
+    pages, and h4+ are the talent entries and statblock fragments the theme
+    already sets in bold rather than as headings
+  - cross-references become **plain label text** (Chris's call, 2026-08-09): a
+    quoted rule carries many, and masked links are noise in Discord and raw
+    markdown blobs in Meet. The attribution carries the one URL that matters
+  - tables flatten to `Label — value` lines. 24 tables in the corpus, max 5
+    columns, median 16 rows — narrow dice tables, so flattening produces the same
+    line count Zoom would anyway, minus the pipes and the `|---|` row
+  - callouts keep their title as a bold line, then their body
+  - own tests; this is the whole of the work
+
+- `feat(reference)`: **the Copy control.** Floating on selection; a static one by
+  the breadcrumb for the whole page. Non-optional mechanics:
+  - `ClipboardItem` accepts a **Promise** for its data — that is how Safari's
+    user-gesture requirement survives async work. Awaiting *before* the write
+    makes iOS reject it silently. Fall back to `writeText` where `ClipboardItem`
+    write is unavailable
+  - `navigator.clipboard` needs a secure context: hide the control where it is
+    absent rather than shipping a button that does nothing
+  - **show the character count** next to the action ("1,476 characters — over
+    Zoom's 1,000 limit"). It is the only way a reader learns before the paste is
+    rejected
+  - "Copied" for ~1.5s, same word for both actions, `aria-live`, reserved width
+
+- `feat(reference)`: **attribution, non-optional.** The pack licence says *"All
   creators retain the right to be identified as such. In all cases this notice
-  must remain intact."* The first spec named the book and splatbook.app and
-  omitted Joshua McCrowell entirely — backwards, and it proposed a preference to
-  switch attribution off, against a licence that says "in all cases". The block:
+  must remain intact."* An earlier draft named the book and splatbook.app,
+  omitted Joshua McCrowell, and offered a switch to turn it off — backwards on
+  both counts. Two forms, because ~130 chars is 13% of Zoom's budget:
 
   ```
-  His Majesty the Worm — Chapter 1: The Basics
-  © Joshua McCrowell, published by Exalted Funeral Press.
-  Shared from splatbook.app/hmtw/reference/…
+  compact (chat):  His Majesty the Worm — Tests of Fate · splatbook.app/…
+  full (docs):     His Majesty the Worm — Chapter 1: The Basics
+                   © Joshua McCrowell, published by Exalted Funeral Press.
+                   Shared from splatbook.app/hmtw/reference/…
   ```
 
-  Game-supplied, not hard-coded: it comes from the pack's own licence metadata
-  through the `GameModule`, the same way `referenceSpoilers` and
-  `referenceOmitCallouts` do. Stonetop's is CC BY-SA 4.0 and needs different
-  words.
+  Game-supplied, not hard-coded: from the pack's licence metadata through the
+  `GameModule`, the way `referenceSpoilers` and `referenceOmitCallouts` are.
+  Stonetop is CC BY-SA 4.0 and needs different words.
 
-*Open when built: whether Zoom's rich paste keeps tables and nested lists, which
-decides how hard the HTML flavour works. Worth pasting one real section into each
-client before the format is fixed — the plain/rich split above came out of doing
-exactly that, and guessing had it backwards.*
+*Caveat on the numbers above: the payload was approximated from source markdown
+with wikilink syntax and block ids stripped. Trust the 69% as a shape, not any
+single page sitting on the boundary.*
+
+*Method note, since it earned its keep twice: every format rule here came from
+pasting into the real client. Both times the guess was wrong — first that Zoom
+took rich text, then that heading syntax should be dropped entirely. Paste before
+deciding.*
 
 ## Sequencing notes
 
