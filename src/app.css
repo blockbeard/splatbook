@@ -51,6 +51,49 @@ html {
 }
 
 /*
+ * Keyboard focus, in the active game's ink.
+ *
+ * There was no `:focus-visible` rule at all, so focus fell to the browser
+ * default — Chrome's 1px blue. On a game whose whole palette is two inks
+ * (HMtW: black on white, no tints) that made the focus ring the only
+ * chromatic thing on the page, and thin against a 17th-century face at that.
+ * Driving it off `--sb-text` means every game gets a ring in its own ink for
+ * free, and a game that later wants a different one overrides the token
+ * rather than this rule.
+ *
+ * `:focus-visible`, not `:focus`: a mouse click on a button shouldn't draw a
+ * ring, only keyboard (and other non-pointer) focus should.
+ */
+:focus-visible {
+	outline: 2px solid var(--sb-text);
+	outline-offset: 2px;
+	border-radius: 1px;
+}
+
+/*
+ * `type="search"` gets a UA-drawn cancel button, which Chrome paints in its
+ * own accent — the second off-palette chrome element, and it sits in the
+ * most-used widget in the reference. Redrawn as a mask so it inherits
+ * `currentColor` and follows the game's ink into dark mode.
+ */
+input[type='search']::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 0.85em;
+	width: 0.85em;
+	cursor: pointer;
+	background-color: var(--sb-muted);
+	-webkit-mask: var(--sb-clear-icon) center / contain no-repeat;
+	mask: var(--sb-clear-icon) center / contain no-repeat;
+}
+input[type='search']::-webkit-search-cancel-button:hover {
+	background-color: var(--sb-text);
+}
+:root {
+	--sb-clear-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 3 L13 13 M13 3 L3 13' stroke='black' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+}
+
+/*
  * Embed mode (phase 22): `?embed=1` renders the current page chrome-less for
  * iframe embedding (the Zoom Whiteboard reference reader). The attribute is
  * stamped server-side (hooks.server.ts, same pattern as `data-game`) so the

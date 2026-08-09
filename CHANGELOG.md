@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Keyboard focus is drawn in the active game's ink, not Chrome's blue.** There
+  was no `:focus-visible` rule anywhere, so focus fell to the browser default —
+  1px blue, which on HMtW's strictly two-ink palette was the only chromatic
+  thing on the page. The search field's UA cancel button is redrawn for the same
+  reason. Both are shell-level, so every game gets its own ink for free.
+- **A game with no character builders has a real call to action again.** The
+  solid button treatment was hard-coded to the first *creator*, so on a
+  reference-only game like HMtW the single door into the product — "Rules
+  reference" — rendered as an 18%-opacity hairline outline. The first action in
+  the row now takes it, whatever that action is. Stonetop is unchanged.
+
 - **The HMtW reference no longer scrolls sideways on a 1440px laptop, and its
   lines are 66 characters instead of 82.** One root cause: the theme sets an
   18px root font size, so `1rem` in a declaration is 18px while `1rem` in a
