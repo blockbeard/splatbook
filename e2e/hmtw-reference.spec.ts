@@ -71,8 +71,10 @@ test('a nested-anchor cross-link lands on the third duplicate heading', async ({
 	// Challenge cards]] — three sections share that title; the link must hit
 	// the GM-scoped third one, not the first.
 	await page.goto('/hmtw/reference/07-chapter-7-the-challenge-phase--1-draw-challenge-cards');
+	// `:not(.heading-link)` since phase 27: headings are now links to their own
+	// anchor, so a same-titled heading on this page would otherwise match first.
 	const link = page
-		.locator('.reference-body a')
+		.locator('.reference-body a:not(.heading-link)')
 		.filter({ hasText: 'Draw Challenge Cards' })
 		.first();
 	await expect(link).toHaveAttribute(
@@ -214,4 +216,30 @@ test('front-matter sections that sit above the first h2 still reach the sidebar'
 
 	await toc.getByRole('link', { name: 'Tarot', exact: true }).click();
 	await page.waitForURL(/00-introduction--tarot$/);
+});
+
+test('deep headings are links to their own anchor, quietly', async ({ page }) => {
+	// Phase 27, the whole feature: h4+ headings render inline and their anchors
+	// already worked, but there was no way to obtain one short of reading the
+	// page source — and h4 is the granularity people quote.
+	await page.goto(
+		'/hmtw/reference/09-chapter-9-the-city-phase--an-incomplete-list-of-pretty-things'
+	);
+	const links = page.locator('.reference-body a.heading-link');
+	await expect(links.first()).toBeVisible();
+	expect(await links.count()).toBeGreaterThan(20);
+
+	// The href is a fragment, so it resolves against the current page — which is
+	// what makes right-click "Copy Link Address" yield the full deep link.
+	const first = links.first();
+	await expect(first).toHaveAttribute('href', /^#/);
+
+	// Undecorated at rest: 52 permanently underlined headings would be worse
+	// than the problem this solves.
+	await expect(first).toHaveCSS('text-decoration-line', 'none');
+
+	// Clicking puts the anchor in the address bar — the "get a good link" path.
+	const href = await first.getAttribute('href');
+	await first.click();
+	await expect(page).toHaveURL(new RegExp(`${href!.replace('#', '#')}$`));
 });

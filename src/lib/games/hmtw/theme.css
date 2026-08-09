@@ -227,6 +227,20 @@ html[data-game='hmtw'] .reference-body a:hover,
 html[data-game='hmtw'] .section-children a:hover {
 	text-decoration-color: currentColor;
 }
+/* A heading that links to its own anchor is chrome, not a cross-reference: it
+   keeps the heading's own face and ink, and shows its underline only on
+   hover/focus. Needed here because the rule above would otherwise give all 52
+   headings on "An incomplete list of pretty things" a permanent underline. */
+html[data-game='hmtw'] .reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link {
+	color: inherit;
+	text-decoration: none;
+}
+html[data-game='hmtw'] .reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link:hover,
+html[data-game='hmtw'] .reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link:focus-visible {
+	text-decoration: underline;
+	text-decoration-color: currentColor;
+	text-underline-offset: 3px;
+}
 
 /* Thematic break → the vault's tarot ornament. */
 html[data-game='hmtw'] .reference-body hr {

@@ -130,6 +130,21 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 	// A page renders its own body plus every inline descendant (deeper than
 	// pageDepth, up to the next page-level section) as a real heading carrying
 	// the section id as its anchor.
+	//
+	// The heading's text is a link to its own anchor, which is the whole of the
+	// "share this rule" feature (phase 27). These headings are the granularity
+	// people quote — a talent entry, an alchemical substance, one of the 52
+	// items in "An incomplete list of pretty things" — and their URLs already
+	// worked; there was just no way to obtain one short of reading the page
+	// source. A link hands both platforms their native affordance: right-click
+	// → Copy Link Address on desktop, long-press → Copy Link on touch, and
+	// tapping it puts the anchor in the address bar, so the URL becomes the deep
+	// link. No JS, no clipboard API, and — the thing that sank three richer
+	// designs — no glyph added to prose that carries no icons.
+	//
+	// `#id` rather than an absolute href on purpose: it resolves against the
+	// current page, so "Copy Link Address" yields the full URL while the markup
+	// stays origin-agnostic (embed mode and the tailnet host included).
 	let bodyHtml = renderMarkdown(section.body, params.game, linkIndex, section.kind);
 	let inlineEnd = index + 1;
 	while (inlineEnd < tree.sections.length && tree.sections[inlineEnd].level > pageDepth) {
@@ -137,8 +152,11 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 	}
 	for (const inline of tree.sections.slice(index + 1, inlineEnd)) {
 		const level = Math.min(inline.level, 6);
+		const id = escapeHtml(inline.id);
 		bodyHtml +=
-			`<h${level} id="${escapeHtml(inline.id)}">${escapeHtml(inline.title)}</h${level}>\n` +
+			`<h${level} id="${id}">` +
+			`<a class="heading-link" href="#${id}">${escapeHtml(inline.title)}</a>` +
+			`</h${level}>\n` +
 			renderMarkdown(inline.body, params.game, linkIndex, inline.kind);
 	}
 

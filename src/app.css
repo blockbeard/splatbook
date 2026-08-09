@@ -108,6 +108,26 @@ html[data-embed='1'] main {
 }
 
 /*
+ * Deep headings link to their own anchor (phase 27) — the whole of "share this
+ * rule": right-click → Copy Link Address, long-press → Copy Link, or tap to put
+ * the anchor in the address bar.
+ *
+ * Quiet by default and underlined only on hover/focus, because "An incomplete
+ * list of pretty things" carries 52 of these and a wall of underlines would be
+ * worse than the problem being solved. A game theme that styles
+ * `.reference-body a` needs to opt this out of that treatment; HMtW does.
+ */
+.reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link {
+	color: inherit;
+	text-decoration: none;
+}
+.reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link:hover,
+.reference-body :is(h1, h2, h3, h4, h5, h6) a.heading-link:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/*
  * A heading deeper than the game's `referencePageDepth` has no page of its own:
  * the section route 302s to `…/<page-ancestor>#<id>` and the BROWSER scrolls to
  * the fragment (there is no scrollIntoView anywhere in the reference code, so
