@@ -199,11 +199,21 @@ html[data-game='hmtw'] .reference-body :is(h4, h5, h6) {
    fake-bolds it with a same-colour outline stroke in InDesign.
    -webkit-text-stroke is the identical mechanism in CSS — a symmetric
    currentColor stroke on the glyph outline — unlike font-synthesis'
-   double-strike smear. Kept thin so counters stay open at body size. */
+   double-strike smear.
+
+   The stroke was 0.024em, which is 0.45px at the 18.9px body size — below
+   the width at which a stroke reads as emphasis at all, and antialiased
+   away to nothing on a non-retina screen. Bold is how this book flags the
+   term a rule turns on ("you cannot **push fate**"), so failing to read is
+   failing at the one job it has; Chris reported not seeing bold anywhere in
+   the reference, which is exactly right. 0.045em was picked by rendering
+   0.024 / 0.035 / 0.045 / 0.06 in the live page: it's unmistakable at a
+   glance while the counters in a/e/o stay open, where 0.06 starts to fill
+   them in. */
 html[data-game='hmtw'] .reference-body :is(strong, b) {
 	font-family: 'IM Fell English', Georgia, serif;
 	font-weight: 400;
-	-webkit-text-stroke: 0.024em currentColor;
+	-webkit-text-stroke: 0.045em currentColor;
 	letter-spacing: 0.012em;
 }
 html[data-game='hmtw'] .reference-body a,
