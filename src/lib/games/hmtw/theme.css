@@ -13,14 +13,13 @@
  * OFL substitute chosen in docs/hmtw-fonts.md:
  *
  *   body prose            IM Fell English (the book's own, OFL)
- *   chapter titles (h1)   Uncial Antiqua       (for Xiparos Lombard)
+ *   chapter titles (h1)   IM Fell Great Primer SC — see CHAPTER TITLES below
  *   h2 / h3               IM Fell English SC   (for HamletOrNot)
  *   h4                    Libre Caslon Text 700 (for Caslon Antique Bold)
  *   inline bold           stroked IM Fell (the book's own outline trick)
  *   table + callout heads IM Fell Great Primer SC (the book's own, OFL)
  *   sidebar body          Sorts Mill Goudy     (for Goudy Old Style)
  *   sidebar headers       IM Fell English SC   (the vault's HamletOrNot role)
- *   pull quotes           Almendra Display     (for Dark Roast)
  *   app chrome            Sorts Mill Goudy     (the vault reads in Goudy too)
  *
  * Every substituted stack lists the *authentic* face first, by local family
@@ -29,13 +28,35 @@
  * (Chris's) renders the true book; everyone else gets the OFL fallback.
  * All shipped faces are @fontsource self-hosted npm builds — no CDN, no
  * files copied from the template folder.
+ *
+ * CHAPTER TITLES ARE DELIBERATELY EXEMPT from that local()-first rule, and it
+ * is worth understanding why before adding a display face back. The h1 role
+ * used to lead with `XiparosLombard`, so the chapter titles Chris reviewed
+ * were a rendering no reader received — and the divergence hid a real defect:
+ * Xiparos' swashes overshoot the em box far enough to cut through the
+ * breadcrumb above and cross the rule below, which is invisible on any
+ * machine without the creator pack. A design review run on Chris's own
+ * machine (2026-08-09) reported that collision as the site's most visible
+ * bug; it had never been visible to anyone else at all. Safari blocks local
+ * font matching outright, so "the true book" was one person on two of three
+ * browsers, reviewing type nobody else got.
+ *
+ * The h1 now serves one face to everyone, and it is the *same family* as the
+ * body rather than a new one: Great Primer is IM Fell's large optical size,
+ * cut for display setting. Going up an optical size is how a Fell book sets a
+ * chapter title — the press didn't switch families either. It also scans
+ * faster than the uncial it replaces (an h1 here answers "am I in the right
+ * place" before the reader has finished looking), costs no new payload since
+ * table heads and callout labels already load it, and stays distinct from the
+ * h2/h3 role in IM Fell English SC because it is a genuinely different cut.
+ * The chapter-opener drama now comes from scale, the ink rule and
+ * letterspacing instead of from the letterforms.
  */
 
 @import '@fontsource/im-fell-english/400.css';
 @import '@fontsource/im-fell-english/400-italic.css';
 @import '@fontsource/im-fell-english-sc/400.css';
 @import '@fontsource/im-fell-great-primer-sc/400.css';
-@import '@fontsource/uncial-antiqua/400.css';
 @import '@fontsource/sorts-mill-goudy/400.css';
 @import '@fontsource/sorts-mill-goudy/400-italic.css';
 @import '@fontsource/almendra-display/400.css';
@@ -138,14 +159,20 @@ html.dark[data-game='hmtw'] .reference-body img {
 }
 
 /* Headings, scoped to book prose (shell chrome keeps its own scale). */
+/* One face for everyone — see CHAPTER TITLES at the top of this file. The
+   generous line-height and padding are not decoration: Great Primer is a
+   17th-century cut whose caps overshoot a tight box, and the border-bottom
+   here is a real part of the book's grammar, so the rule has to sit clear of
+   the descenders rather than through them. */
 html[data-game='hmtw'] .reference-body h1 {
-	font-family: 'XiparosLombard', 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
 	font-weight: 400;
-	font-size: 2.1em;
-	line-height: 1.15;
+	font-size: 2.3em;
+	line-height: 1.35;
+	letter-spacing: 0.01em;
 	color: var(--sb-text);
 	border-bottom: 2px solid var(--sb-text);
-	padding-bottom: 0.15em;
+	padding-bottom: 0.3em;
 }
 html[data-game='hmtw'] .reference-body :is(h2, h3) {
 	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
@@ -319,6 +346,13 @@ html[data-game='hmtw'] .reference-body .sb-callout-lede {
 html[data-game='hmtw'] .reference-body .sb-callout-lede .sb-callout-label {
 	display: none;
 }
+/* A lede almost always opens a chapter, so its top hairline landed ~40px under
+   the h1's own 2px rule and the pair read as a frame nobody drew. The h1's rule
+   already closes the title block; this one only earns its keep mid-page. */
+html[data-game='hmtw'] .reference-body h1 + .sb-callout-lede {
+	border-top: none;
+	padding-top: 0;
+}
 
 /* [!epigraph] — pull quotes: Almendra Display in full ink, centered,
    unboxed; the attribution line inside stays Fell italic and muted. */
@@ -347,14 +381,16 @@ html[data-game='hmtw'] .reference-body .sb-callout-epigraph em {
 
 /*
  * The reference landing (/hmtw/reference): the book's own contents page —
- * Uncial title over an ink rule, chapters in a single Fell column.
+ * Great Primer title over an ink rule, chapters in a single Fell column.
  */
 html[data-game='hmtw'] .reference-landing > h1 {
-	font-family: 'XiparosLombard', 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
 	font-weight: 400;
-	font-size: 2em;
+	font-size: 2.2em;
+	line-height: 1.35;
+	letter-spacing: 0.01em;
 	border-bottom: 2px solid var(--sb-text);
-	padding-bottom: 0.15em;
+	padding-bottom: 0.3em;
 }
 html[data-game='hmtw'] .reference-landing section h2 {
 	font-family: 'HamletOrNot', 'IM Fell English SC', Georgia, serif;
@@ -411,9 +447,8 @@ html[data-game='hmtw'] .reference-toc li li a {
  * declared at the top; dropping them here leaves the substitute at its own
  * natural metrics, which is exactly the point of the exercise.
  */
-html[data-game='hmtw'][data-fonts='ofl'] .reference-body h1 {
-	font-family: 'Uncial Antiqua', 'IM Fell English SC', Georgia, serif;
-}
+/* No h1 entry here on purpose: the chapter role no longer names a local face,
+   so both paths already render identically. */
 html[data-game='hmtw'][data-fonts='ofl'] .reference-body :is(h2, h3),
 html[data-game='hmtw'][data-fonts='ofl'] .reference-body .sb-callout-title,
 html[data-game='hmtw'][data-fonts='ofl'] .reference-body .sb-callout-sidebar .sb-callout-label,

@@ -173,7 +173,9 @@ Cn add arcana to player sheet but only custom one. Mysteruy unlocks on a single 
 - [ ] `/hmtw` landing: Adherent logo, ENNIE blurb, the two buy links (DTRPG
       one carries `affiliate_id` and the disclosure), **no** create/campaign
       buttons.
-- [ ] `/hmtw/reference`: parchment theme, Uncial chapter titles, chapters
+- [ ] `/hmtw/reference`: monochrome ink-on-paper, chapter titles in IM Fell
+      Great Primer SC small caps clear of the rule beneath them (no glyph
+      touching it), chapters
       listed 1–10 + appendices; **The Worm Turns and Appendices C/D/E absent**
       until the sidebar opt-in; toggling on reveals them, off hides again.
 - [ ] Opting in on hmtw does **not** open Stonetop's Book II (and vice versa)

@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **HMtW chapter titles are set in IM Fell Great Primer SC, and every reader
+  gets the same one.** The h1 role used to lead with the creator-pack's
+  `XiparosLombard`, so the titles Chris reviewed were a rendering nobody else
+  received — and the divergence hid a real defect: Xiparos' swashes cut through
+  the breadcrumb above and crossed the rule below, invisible on any machine
+  without the pack installed. Display roles now name no local face. The
+  replacement is the body face's own display cut rather than a new family
+  (going up an optical size is how a Fell book sets a chapter title), it scans
+  faster than the Uncial Antiqua it replaces, and it already shipped for table
+  heads — so `@fontsource/uncial-antiqua` is gone at no payload cost. A lede
+  directly under a chapter title also drops its top hairline, which had been
+  reading as a second rule 40px under the h1's own.
+
 - **The reference reader has a mobile shell.** Below `md` the contents no longer
   stack above the text as a chapter list you scroll past: a sticky bar carries a
   contents button — labelled with the section you're in, so it orients you once

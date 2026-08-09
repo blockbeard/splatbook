@@ -17,7 +17,7 @@ are site-applied, not author grants, and don't clear that bar.
 
 | Role (from the `.idml`) | Book face | Verdict | Web substitute (all OFL/PD, on `@fontsource/*`) |
 | --- | --- | --- | --- |
-| Chapter titles, 85/45pt lombardic caps | Xiparos Lombard (Pia Frauss 2005) | ❌ "for private use only"; commercial use needs permission | **Uncial Antiqua** — rounded medieval capitals, the closest common OFL face to lombardic display |
+| Chapter titles, 85/45pt lombardic caps | Xiparos Lombard (Pia Frauss 2005) | ❌ "for private use only"; commercial use needs permission | **IM Fell Great Primer SC** — see "Chapter titles, revisited" below. Was Uncial Antiqua until 2026-08-09 |
 | Chapter numbers, running footers | IM Fell Great Primer SC (Igino Marini) | ✅ **OFL** (`OFL.txt` ships in the folder) | use as-is |
 | H1 40pt / H2 28pt caps / H3 18pt, folio | HamletOrNot (Manfred Klein & Petra Heidorn 2004, after Johnston's Hamlet type for the Cranach Presse) | ❌ free incl. commercial *use*, but "can not be included in any compilation … or products … unless prior permission granted" — self-hosting is exactly that | **IM Fell English SC** — keeps the headings inside the book's own Fell palette |
 | H4 16pt bold, table headers | Caslon Antique Bold ("Typographer Mediengestaltung" = Dieter Steffmann 2000) | ❌ non-commercial only, and Fedora rejected the whole Steffmann corpus over provenance of the originals | **Libre Caslon Text Bold** — right family, already self-hosted for stonetop |
@@ -37,10 +37,47 @@ are site-applied, not author grants, and don't clear that bar.
   The Hoefler Type Foundry"*: renamed commercial font data. Unused in the
   template text. Do not touch, do not ship, do not keep copies.
 
+## Chapter titles, revisited (2026-08-09)
+
+The h1 role no longer names a local face, and no longer uses Uncial Antiqua.
+Both changes came out of the same finding.
+
+A design review run headless **on Chris's own machine** reported the chapter
+titles colliding with the breadcrumb above them and the rule below — and they
+did, in `XiparosLombard`, whose swashes overshoot the em box in both
+directions. But nobody else could see it: with the creator pack absent the
+stack fell through to Uncial Antiqua, which sits cleanly between the two. The
+local-first stack had produced a rendering with an audience of one — and,
+since Safari blocks local font matching entirely, an audience of one on two of
+three browsers. The defect was invisible to its only reviewer for the same
+reason the "true book" was invisible to everyone else.
+
+So the display roles now serve one face to all readers. Body prose keeps its
+local-first path: Fell is Fell, the substitute is the same design, and no
+review depends on seeing it.
+
+The replacement is **IM Fell Great Primer SC**, not Uncial Antiqua:
+
+- It is the same family as the body text at a larger optical size. Great
+  Primer is Fell's display cut; going up an optical size is how a Fell book
+  sets a chapter title, rather than switching families.
+- Small caps scan faster than uncial mixed case, and Uncial's `R` and `T` are
+  unfamiliar forms. An h1 in a lookup tool answers "am I in the right place"
+  before the reader has finished looking.
+- It already ships for table heads and callout labels, so
+  `@fontsource/uncial-antiqua` came out of `package.json` for no payload cost.
+- It stays distinct from the h2/h3 role (IM Fell English SC) because it is a
+  different cut, not the same face enlarged.
+
+The cost is the illuminated-chapter-opener character, which now comes from
+scale, the ink rule and letterspacing instead of from the letterforms. The
+optional authentic-faces path below is unaffected — but note that taking it
+for the h1 would reintroduce exactly the review blindness described above.
+
 ## Local-first stacks
 
 Every substituted rule in `theme.css` lists the *authentic* face first by
-its installed family name (`'XiparosLombard', 'Uncial Antiqua', …`). Naming
+its installed family name (`'HamletOrNot', 'IM Fell English SC', …`). Naming
 a family distributes nothing — it engages only fonts the visitor already
 has installed — so a machine with the creator-pack fonts in its system
 library renders the true book, and everyone else falls back to the shipped
@@ -61,9 +98,8 @@ the web later:
   are close.
 
 Net for the theme commit: **install `@fontsource/im-fell-great-primer-sc`,
-`@fontsource/im-fell-english-sc`, `@fontsource/uncial-antiqua`,
-`@fontsource/sorts-mill-goudy`, `@fontsource/goudy-bookletter-1911`,
-`@fontsource/almendra-display`** (all verified present at v5.3.0), reuse the
+`@fontsource/im-fell-english-sc`, `@fontsource/sorts-mill-goudy`,
+`@fontsource/goudy-bookletter-1911`** (all verified present at v5.3.0), reuse the
 existing IM Fell English and Libre Caslon Text, and self-host nothing from
 the template folder. Fontsource packages are self-hosted npm builds, so
 nothing depends on a third-party CDN — same policy as stonetop.
