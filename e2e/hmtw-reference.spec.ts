@@ -194,3 +194,24 @@ test('a chapter page with no rules on it reads as a contents page', async ({ pag
 	await expect(page.getByText('In this section')).toBeVisible();
 	await expect(page.locator('.section-children')).not.toHaveClass(/reference-contents/);
 });
+
+test('front-matter sections that sit above the first h2 still reach the sidebar', async ({
+	page
+}) => {
+	// Regression: the TOC nested h3s under the chapter's most recent h2 and
+	// dropped any that came before the first one, so HMtW's Introduction
+	// (h1 Introduction / h3 Credits / h3 Tarot / h3 Players / h3 The Game
+	// Master / h2 Game Principles) lost four entries with nothing logged.
+	await page.goto('/hmtw/reference/00-introduction');
+	const toc = page.getByRole('navigation', { name: 'Rules contents' });
+	for (const title of ['Credits', 'Tarot', 'Players', 'The Game Master']) {
+		await expect(toc.getByRole('link', { name: title, exact: true })).toBeVisible();
+	}
+	// …as siblings of each other, not nested under the first of them, and the
+	// real h2 keeps its own children.
+	await expect(toc.getByRole('link', { name: 'Game Principles', exact: true })).toBeVisible();
+	await expect(toc.getByRole('link', { name: 'Whimsy', exact: true })).toBeVisible();
+
+	await toc.getByRole('link', { name: 'Tarot', exact: true }).click();
+	await page.waitForURL(/00-introduction--tarot$/);
+});

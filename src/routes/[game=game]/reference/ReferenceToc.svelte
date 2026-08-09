@@ -37,16 +37,40 @@
 	 * page's own "In this section" tree and in-page links, not listed here.
 	 * A nav that lists every h5 is a list, not a map; but a flat h2 list hid
 	 * the book's parts entirely (phase-22 staging finding).
+	 *
+	 * An h3 that appears before the chapter's first h2 has no h2 to nest
+	 * under, and it used to be dropped outright: the `out.length` guard was
+	 * there to avoid indexing an empty array, and silently discarding the
+	 * section was the side effect. It stays visible now, listed at the
+	 * chapter's own level, which is where a heading with no h2 parent
+	 * actually sits.
+	 *
+	 * Not hypothetical, and the failure is invisible from this file: HMtW's
+	 * Introduction reached the app as h1 Introduction / h3 Credits / h3 Tarot
+	 * / h3 Players / h3 The Game Master / h2 Game Principles — four leading
+	 * h3s, so four chapters of the book's front matter were missing from the
+	 * sidebar with nothing logged. Any corpus whose first subsection sits
+	 * deeper than h2 hits this, so the guard is the bug rather than the
+	 * content.
 	 */
 	function h2sOf(
 		doc: TocDocument,
 		chapterId: string
 	): { section: TocSection; subs: TocSection[] }[] {
 		const out: { section: TocSection; subs: TocSection[] }[] = [];
+		// The open h2, not just the last entry: a run of leading h3s are
+		// siblings of each other, and nesting each one under the previous
+		// would make Credits look like the parent of Tarot.
+		let openH2: { section: TocSection; subs: TocSection[] } | null = null;
 		for (const s of doc.sections) {
 			if (s.chapter !== chapterId) continue;
-			if (s.level === 2) out.push({ section: s, subs: [] });
-			else if (s.level === 3 && out.length) out[out.length - 1].subs.push(s);
+			if (s.level === 2) {
+				openH2 = { section: s, subs: [] };
+				out.push(openH2);
+			} else if (s.level === 3) {
+				if (openH2) openH2.subs.push(s);
+				else out.push({ section: s, subs: [] });
+			}
 		}
 		return out;
 	}

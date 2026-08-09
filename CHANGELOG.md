@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   William Blake epigraph credit in Chapter 4 is gone — the vault carries it both
   inside the callout and again as a bare line, so it always rendered twice;
   dropping the epigraphs left the orphan standing alone with nothing to credit.
+  (Fixed upstream in the vault; the importer rule that had stood in for it is
+  gone, and the rebuild is byte-identical either way.)
 
 ### Added
 
