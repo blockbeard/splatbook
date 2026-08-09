@@ -14,6 +14,7 @@
 
 import type { GameModule } from '../types';
 import { schemaFor } from './pack-schemas';
+import { referencePageDepth } from './reference-config';
 import './theme.css';
 
 export const hmtw: GameModule = {
@@ -21,9 +22,9 @@ export const hmtw: GameModule = {
 	name: 'His Majesty the Worm',
 	packSchemas: schemaFor,
 	favicon: '/content-packs/hmtw/art/ouroboros.svg',
-	// Pages stop at h3: the book's h4/h5 sections are talent entries, spell
-	// components, and statblock fragments — they read inline, not as pages.
-	referencePageDepth: 3,
+	// Pages stop at h3 (see ./reference-config, which the page-artifact build
+	// shares so the two can't disagree).
+	referencePageDepth,
 	// The book opens chapters with a literary epigraph — Leiber, Dante, Zork.
 	// Lovely in a book you read front to back; pure toll in a reference you
 	// open mid-session with a question, because it sits above the fold on

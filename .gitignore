@@ -36,6 +36,14 @@ e2e-test.db*
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Reference serving artifacts, generated from the committed document trees by
+# `npm run build:pages` (wired into prebuild/predev). Derived like
+# search-index.json, but ~4,500 files — checking them in would bury every
+# content reimport in a diff nobody can read. See tools/build_pages.ts.
+/static/content-packs/*/rules/nav.json
+/static/content-packs/*/rules/nav-gm.json
+/static/content-packs/*/rules/pages/
+
 # In-repo git worktrees (parallel-session convention; see .prettierignore)
 .worktrees/
 

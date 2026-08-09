@@ -5,7 +5,9 @@
 	"license": "GPL-3.0-or-later",
 	"type": "module",
 	"scripts": {
+		"predev": "npm run build:pages",
 		"dev": "vite dev",
+		"prebuild": "npm run build:pages",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "(svelte-kit sync && git config core.hooksPath .githooks) || echo ''",
@@ -16,6 +18,7 @@
 		"test:e2e": "playwright test",
 		"validate:packs": "tsx tools/validate-packs.ts",
 		"build:search": "tsx tools/build_search.ts",
+		"build:pages": "tsx tools/build_pages.ts",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"db:push": "drizzle-kit push",
