@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **The reference no longer loads a whole book to render one section.** A
+  section page fetched every rules document its game ships — 1.26 MB for HMtW,
+  3.2 MB for Stonetop's two books — which was enough work per request to trip
+  Cloudflare's Worker CPU limits (intermittent 1102 / HTTP 503, 2026-08-08).
+  Memoising the parse cleared the 503s but not the cause, and measurement
+  showed the cause was worse than filed: because these loads are _universal_,
+  a cold isolate inlined the entire corpus into the HTML for hydration to
+  replay (one section page weighed 1.43 MB, on about 1 request in 12), and a
+  warm one simply moved that download to the browser instead. Every reader was
+  getting the whole book either way.
+
+  A new pipeline stage (`npm run build:pages`) now emits a nav spine and one
+  file per section, so a page fetches its own body plus a contents tree and
+  nothing else. Per-render bytes drop from 1.26 MB to ~120 KB (HMtW) and from
+  3.2 MB to ~250 KB (Stonetop); the inlined payload for a warm render is
+  1.3 KB. Sections below a game's page depth keep their URLs, redirecting to
+  their host page's anchor as before.
+
+  Two behaviour notes. Wikilinks now resolve against the pack's prebuilt link
+  index, which is unfiltered — for a game shipping no spoiler interstitial,
+  links into gated sections used to degrade to plain labels and are now live
+  links that land on a 404; both live games ship an interstitial and are
+  unaffected. And the `/g/<game>/reference/…` legacy routes, which have
+  redirected since commit 95, had kept whole-book loaders alive behind the
+  redirect; those are gone.
+
+- **Post-deploy checks now render a page.** `npm run smoke` fetches a real
+  section page from each game and asserts 200, the section's own title, and a
+  sane page weight, sampling repeatedly to catch a cold isolate. `/api/health`
+  and the static pack JSON both answered `ok` throughout the incident above,
+  which is why it reached production at all.
+
+- **The mobile drawer's label and the sidebar's open chapter** were resolved by
+  searching the contents data for the active section, which only worked while
+  that data held every heading in the book. On Stonetop, where every heading is
+  its own page, deeper sections would have fallen back to "Contents" with the
+  whole tree collapsed; both now read the section page's own data.
+
 ### Changed
 
 - **HMtW content reimported.** The Introduction is restructured upstream in the

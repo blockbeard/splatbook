@@ -19,6 +19,7 @@
 		"validate:packs": "tsx tools/validate-packs.ts",
 		"build:search": "tsx tools/build_search.ts",
 		"build:pages": "tsx tools/build_pages.ts",
+		"smoke": "tsx tools/smoke.ts",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"db:push": "drizzle-kit push",

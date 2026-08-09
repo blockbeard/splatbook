@@ -512,3 +512,105 @@ is native fragment scrolling so `scroll-margin-top` is the whole offset fix, the
 measured index weight (339 KB gzipped but only 18 ms to parse), and the iOS
 `<dialog>` traps to avoid — plus an "as built" section for where it diverged:
 **[mobile-reference-nav.md](mobile-reference-nav.md)**.
+
+## Phase 26 — Stop shipping whole books to render one section
+
+*Filed 2026-08-08 after production section pages started returning intermittent
+Cloudflare 1102 / HTTP 503 ("Worker exceeded resource limits"). Root cause:
+`fetchTrees` fetches and JSON-parses a game's entire rules corpus on every
+section-page render, inside the Worker — 1.20 MB for HMtW, 3.08 MB for Stonetop's
+two books, and twice per page because the reference layout calls it as well as the
+page. Both games were affected, so this is the shared reference path, not one
+pack's content.*
+
+*Mitigated in `fix(reference): memoise the document trees` — one parse per isolate
+instead of per request, which cleared the 503s. That is a floor, not a fix: a cold
+isolate still parses a whole corpus to render one section, and the packs only grow
+(chapters 10–16 are still to come for HMtW).*
+
+The shape of the real fix: a section page needs one section's body plus a nav
+skeleton (ancestors, children, prev/next). It does not need every other section's
+prose. So `build_srd.py` should emit, per document, a **slim nav projection**
+(id/title/level/visibility/parent — kilobytes) alongside the bodies, and the route
+should load the nav plus the one body it renders. Chris has done this shape before:
+guild-book's `tarot-art.runtime.json` projection, issue #32.
+
+Worth deciding at the same time: whether ungated reference pages should simply be
+**prerendered**. The content is static between deployments; only the GM gate varies
+per reader, and that is a per-section flag. Prerendering the player-visible pages
+would take the Worker out of the path entirely for most traffic.
+
+Also fix the verification gap that let this reach production: post-deploy checks hit
+`/api/health` and the static pack JSON, neither of which exercises SSR. A deploy
+check should fetch a real section page from each game and assert 200.
+
+**As built (2026-08-09).** The filed diagnosis was half right, and the missing
+half decided the design. These loads are *universal*, not server loads, so a
+whole-book fetch is paid twice: a cold isolate fetches and SvelteKit inlines
+the corpus into the HTML for hydration to replay (that is the 1.43 MB page,
+measured at ~1 request in 12 on production, with identical TTFB either way),
+and a warm isolate skips the fetch only to have the *browser* download the book
+itself on hydration. Memoisation had not mostly-fixed this; it had moved the
+bytes between the two. No cache could have fixed it — only asking for less.
+
+Four invariants were verified across all 4,487 sections before relying on any
+of them: section ids encode their chapter (`<chapterId>--<slug>`, zero
+exceptions), chapter ids are unique per pack, every chapter starts at an h1,
+and visibility is uniform within a chapter (structurally — `build_srd.py`
+assigns it per source file). The first two mean a section id alone locates its
+content, so page files are **flat** and need no lookup table at all.
+
+Shape as shipped, from `tools/build_pages.ts`: a per-pack nav spine in two
+visibility variants (`nav.json` / `nav-gm.json`, h3-capped because that is what
+`ReferenceToc` renders), and one flat file per section under `rules/pages/`
+carrying its body, its inline descendants, and precomputed
+breadcrumb/child-tree/prev-next. Per-render bytes: 1.26 MB → ~120 KB (HMtW),
+3.2 MB → ~250 KB (Stonetop); a warm render inlines 1.3 KB.
+
+Departures from the sketch above, each for a reason found while building:
+
+- **Per section, not per document.** A "slim nav projection per document" is
+  still 197 KB for HMtW and 369 KB for Stonetop, because these books are mostly
+  h2/h3 — the projection barely shrinks what it projects. Splitting bodies per
+  section is what actually removes the corpus from the request.
+- **Two nav variants rather than filtering at runtime**, following the
+  `search-index.json` / `search-index-gm.json` precedent. An opted-out Stonetop
+  reader would otherwise download Book II's entire contents (259 KB vs 80 KB)
+  to have it filtered away.
+- **Deep sections get a redirect stub each, not a shared map.** A map was drafted
+  first and rejected on measurement: at 104 KB it would have sat on an ordinary
+  path (a wikilink into an h4 is a click, not an error), and with every id
+  resolvable a miss now means genuinely-not-found — which is what lets the route
+  answer 404 honestly.
+- **Generated, not committed.** ~4,500 files; checking them in would bury every
+  content reimport in an unreadable diff. Gitignored, built by `prebuild`/`predev`.
+  Steady-state build cost: 10.4 s → 13.8 s.
+- **`build_srd.py` was not touched.** Enforcement lives in `assertPackInvariants`,
+  which the page build calls, so a reimport that breaks a routing assumption
+  fails the build instead of silently 404ing a deep link.
+
+**Prerendering: declined, and here is why.** `+layout.server.ts` reads
+`locals.prefs` for the signed-in half of the spoiler gate, so the subtree is not
+prerenderable without restructuring that gate — and once a render costs ~120 KB
+instead of 1.26 MB, prerendering buys latency rather than survival. Revisit if
+Worker CPU is still a problem.
+
+**Known remaining cost.** `link-index.json` (88.7 KB HMtW / 167 KB Stonetop) is
+now 68–75% of what a cold render still fetches. Resolving wikilinks at build
+time would remove it from the request path entirely (HMtW would fall to ~31 KB);
+deliberately left, because it would move link-resolution semantics out of
+`renderMarkdown` and into the build, where they could drift. `search-index.json`
+(1.2 MB / 2.8 MB) is untouched — client-side and on demand, so it was never the
+503 cause, but it remains the largest thing a reader can pull.
+
+**Two bugs found by building this**, both invisible until the sidebar data
+stopped holding every heading: `ReferenceToc`'s open-chapter disclosure and the
+mobile drawer's own label each resolved the active section by searching the
+contents data, so on Stonetop — every heading its own page — a deeper section
+would have collapsed the tree and labelled the drawer "Contents". Both now read
+the section page's own data.
+
+The verification gap is closed by `npm run smoke` (`tools/smoke.ts`), wired into
+the deploy runbook as a required step: a real section page per game, asserting
+200, the section's own title, and page weight under 500 KB, sampled 15× because
+the failure only ever appeared on a cold isolate.

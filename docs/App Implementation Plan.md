@@ -177,37 +177,6 @@ Steps, roughly:
 - Two books means two term sets: decide whether Book II terms are GM-gated. The
   precedent exists — HMtW already ships a separate `pinned-terms-gm.json`.
 
-## Phase 26 — Stop shipping whole books to render one section
-
-*Filed 2026-08-08 after production section pages started returning intermittent
-Cloudflare 1102 / HTTP 503 ("Worker exceeded resource limits"). Root cause:
-`fetchTrees` fetches and JSON-parses a game's entire rules corpus on every
-section-page render, inside the Worker — 1.20 MB for HMtW, 3.08 MB for Stonetop's
-two books, and twice per page because the reference layout calls it as well as the
-page. Both games were affected, so this is the shared reference path, not one
-pack's content.*
-
-*Mitigated in `fix(reference): memoise the document trees` — one parse per isolate
-instead of per request, which cleared the 503s. That is a floor, not a fix: a cold
-isolate still parses a whole corpus to render one section, and the packs only grow
-(chapters 10–16 are still to come for HMtW).*
-
-The shape of the real fix: a section page needs one section's body plus a nav
-skeleton (ancestors, children, prev/next). It does not need every other section's
-prose. So `build_srd.py` should emit, per document, a **slim nav projection**
-(id/title/level/visibility/parent — kilobytes) alongside the bodies, and the route
-should load the nav plus the one body it renders. Chris has done this shape before:
-guild-book's `tarot-art.runtime.json` projection, issue #32.
-
-Worth deciding at the same time: whether ungated reference pages should simply be
-**prerendered**. The content is static between deployments; only the GM gate varies
-per reader, and that is a per-section flag. Prerendering the player-visible pages
-would take the Worker out of the path entirely for most traffic.
-
-Also fix the verification gap that let this reach production: post-deploy checks hit
-`/api/health` and the static pack JSON, neither of which exercises SSR. A deploy
-check should fetch a real section page from each game and assert 200.
-
 ## Phase 27 — Shareable links on headings
 
 *Filed 2026-08-09 out of the design review of `/hmtw`, then argued down over

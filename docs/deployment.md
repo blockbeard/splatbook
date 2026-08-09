@@ -70,6 +70,18 @@ npx wrangler pages deploy .svelte-kit/cloudflare --project-name splatbook
 curl -fsS https://splatbook.app/api/health
 ```
 
+```sh
+npm run smoke -- https://splatbook.app
+```
+
+The smoke step is **required**, not a nicety: `/api/health` and the static pack
+JSON both answer `ok` while the reference is completely broken, which is how
+phase 26's incident (intermittent 503s, then 1.43 MB section pages) survived
+every check we had. It renders a real section page from each game and asserts
+200, the section's own title, and a sane page weight — sampling 15 times,
+because the failure only appeared on a cold Worker isolate, about 1 request in
+12. See `tools/smoke.ts`.
+
 The export is the pre-deploy backup — non-negotiable before any deploy that
 applies migrations, cheap enough to keep for all of them (it lands in your
 home directory, dated; note D1 pauses queries for a few seconds while it

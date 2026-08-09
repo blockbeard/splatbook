@@ -221,6 +221,29 @@ vault cross-references — fetch instead of the full trees, via
 `fetchLinkIndex` + `resolveWikilinks` in `$lib/reference`. Derived like the
 search indexes: not in the manifest, never hand-edited, regenerated together.
 
+A fourth stage, `tools/build_pages.ts` (`npm run build:pages`), expands the
+document trees into what the reference actually *serves* (phase 26):
+
+| artifact | what it holds |
+| --- | --- |
+| `rules/nav.json`, `rules/nav-gm.json` | the sidebar spine — chapters plus h2/h3s, no bodies — in player-visible and opted-in variants |
+| `rules/pages/<section-id>.json` | one file per section: the body it renders, its inline descendants, and precomputed breadcrumb/child-tree/prev/next — or, for a section below the game's `referencePageDepth`, a `{ redirectTo }` stub pointing at the page that hosts it |
+
+These are derived like the search indexes — not in the manifest, never
+hand-edited — but unlike them they are **generated, not committed**
+(gitignored, built by `prebuild`/`predev`): there are ~4,500 of them, and
+checking them in would bury every content reimport in a diff nobody can read,
+when the four trees beside them already show the change.
+
+Why they exist: the reference's loads are *universal*, so whatever a load
+fetches is paid twice — once by the Worker, which inlines it into the HTML so
+hydration can replay it, and once by every browser that hydrates. Fetching
+whole-book trees therefore put 1.26 MB (HMtW) / 3.2 MB (Stonetop) into a page
+rendering one section, and tripped Cloudflare's per-request CPU limits. Two
+properties make the split safe, and `assertPackInvariants` fails the build if a
+reimport ever breaks them: a section id is unique across the whole pack, and it
+is a safe file name.
+
 **Visibility.** Each section carries a `player`/`gm` flag — set for a whole
 document via the config's `visibility` (Stonetop's Book II), or per source file
 via the document's `fileVisibility` map (HMtW's interleaved GM chapters). The
