@@ -13,13 +13,16 @@
 
 <div class="reference-landing">
 	<h1 class="text-2xl font-bold tracking-tight">Rules reference</h1>
+	<!-- Layout-neutral on purpose: below `md` the contents is a button at the top
+	     of the screen, not a sidebar on the left, so copy that names a position
+	     describes the desktop to a reader looking at the phone. -->
 	<p class="mt-2 max-w-2xl text-muted">
-		Browse or search the {data.gameName} rules. Pick a chapter below, or use the contents on the left;
-		every heading has its own page and shareable link.
+		Browse or search the {data.gameName} rules. Pick a chapter below, or open the contents. Every heading
+		has its own page and a link you can share.
 	</p>
 	{#if data.showSetting && data.spoilers}
 		<p class="mt-2 text-xs text-accent">
-			{data.spoilers.toggleLabel} — on. The checkbox in the sidebar turns it off again.
+			{data.spoilers.toggleLabel} — on. The same checkbox turns it off again.
 		</p>
 	{/if}
 

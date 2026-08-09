@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **The phone pass.** The header no longer wraps to four lines: game links are
+  desktop-only now, which takes the header from ~130px of an 844px viewport back
+  to one 62px row — inside a game the breadcrumb names it a line down anyway.
+  Sidebars fall to the end of the article instead of sitting where the importer
+  hoisted them, so a reader opening "Tests of Fate" gets the rule rather than
+  eleven lines about a different subsystem. And the reference landing no longer
+  tells a phone reader to "use the contents on the left", where the contents is
+  a button at the top.
+
 - **Keyboard focus is drawn in the active game's ink, not Chrome's blue.** There
   was no `:focus-visible` rule anywhere, so focus fell to the browser default —
   1px blue, which on HMtW's strictly two-ink palette was the only chromatic

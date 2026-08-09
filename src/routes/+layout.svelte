@@ -73,8 +73,17 @@
 				{APP_NAME}<span class="text-accent">*</span>
 			</a>
 			<nav class="flex items-center gap-4 text-sm text-muted">
+				<!-- Game links are desktop-only. The header is one flex row with no
+				     collapse, so at 390px "His Majesty the Worm" stacked over four
+				     lines and pushed "Sign in" into two — ~130px of an 844px viewport
+				     spent on chrome before a word of the book. Nothing is lost on a
+				     phone: inside a game the breadcrumb names it one line down, and
+				     the wordmark still goes home, which is where the picker lives. -->
 				{#each games as game (game.id)}
-					<a href={resolve('/[game=game]', { game: game.id })} class="hover:text-text">
+					<a
+						href={resolve('/[game=game]', { game: game.id })}
+						class="hidden hover:text-text sm:inline"
+					>
 						{game.name}
 					</a>
 				{/each}

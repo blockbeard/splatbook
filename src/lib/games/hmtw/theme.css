@@ -339,6 +339,39 @@ html[data-game='hmtw'] .reference-body ~ nav {
 		margin: 0 -16rem 0.75rem 0;
 	}
 }
+
+/*
+ * Below the rail, sidebars fall to the end of the article instead of sitting
+ * where the importer hoisted them.
+ *
+ * The hoist is what makes the desktop float land beside its own heading, but
+ * with no float to lift them out of flow that same position IS document order
+ * — so on a phone the first thing under "Tests of Fate" was eleven lines about
+ * Challenge Actions, a different subsystem, before the sentence that defines a
+ * test of fate. The whole screen was digression.
+ *
+ * `order` on a flex column does it with no markup change and no JS: every
+ * other child keeps the default 0, sidebars take 1, and the reader gets the
+ * rule first with the asides as end-notes. Floats don't work inside a flex
+ * container, which is exactly why this is bounded to below the rail
+ * breakpoint. The children carry margin-top only, so nothing depended on the
+ * margin collapsing that flex turns off.
+ *
+ * A collapsed <details> anchored in place was the other candidate. It needs
+ * the markup to change for every game, plus client JS to open it again on
+ * desktop (CSS cannot force the open state), and it buys a worse default:
+ * closed-by-default hides content, where this only moves it.
+ */
+@media (max-width: 1399px) {
+	html[data-game='hmtw'] .reference-body {
+		display: flex;
+		flex-direction: column;
+	}
+	html[data-game='hmtw'] .reference-body .sb-callout-sidebar {
+		order: 1;
+		margin-top: 1.5rem;
+	}
+}
 html[data-game='hmtw'] .reference-body .sb-callout-sidebar .sb-callout-label {
 	font-family: 'HamletOrNot', 'IM Fell English SC', 'IM Fell English', Georgia, serif;
 	font-size: 1.02rem;
