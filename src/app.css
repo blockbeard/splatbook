@@ -112,10 +112,11 @@ html[data-embed='1'] main {
  * the section route 302s to `…/<page-ancestor>#<id>` and the BROWSER scrolls to
  * the fragment (there is no scrollIntoView anywhere in the reference code, so
  * this CSS is the whole of the offset — no bar-height constant duplicated in
- * JS). Below md the reference bar is sticky, so without this every deep link
- * and every one of those redirects lands with its heading underneath the bar.
+ * JS). Below the sidebar breakpoint the reference bar is sticky, so without
+ * this every deep link and every one of those redirects lands with its heading
+ * underneath the bar. 64rem tracks the `lg:` classes in the reference layout.
  */
-@media (width < 48rem) {
+@media (width < 64rem) {
 	.reference-body :is(h2, h3, h4, h5, h6)[id] {
 		scroll-margin-top: calc(3.25rem + env(safe-area-inset-top));
 	}

@@ -80,10 +80,12 @@
 		panelOpen = false;
 	});
 
-	// Crossing to the md layout with the drawer open would leave an invisible
-	// modal holding the page inert (`md:hidden` hides it but doesn't close it).
+	// Crossing to the sidebar layout with the drawer open would leave an
+	// invisible modal holding the page inert (`lg:hidden` hides it but doesn't
+	// close it). 64rem must match the `lg:` classes below — and note media-query
+	// rem is always 16px, so this is 1024px regardless of a game's root size.
 	onMount(() => {
-		const mq = window.matchMedia('(min-width: 48rem)');
+		const mq = window.matchMedia('(min-width: 64rem)');
 		const sync = () => {
 			if (!mq.matches) return;
 			drawer?.close();
@@ -144,7 +146,7 @@
 <div
 	bind:this={barEl}
 	data-testid="reference-bar"
-	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-border bg-bg px-4 py-2 md:hidden"
+	class="reference-bar sticky top-0 z-30 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-border bg-bg px-4 py-2 lg:hidden"
 >
 	<button
 		type="button"
@@ -202,9 +204,22 @@
 	{/if}
 </div>
 
-<div class="flex flex-col gap-8 md:flex-row md:gap-10">
+<!--
+	The sidebar appears at `lg` (1024px), not `md` (768px). It is a fixed 18rem
+	— 324px at this game's root size — so between those two widths it was taking
+	42% of an iPad held in portrait and leaving the text column 363px, narrower
+	than the same book gets on a 390px phone. The bar-and-drawer layout is the
+	better interface at those sizes anyway, so it now serves both iPad
+	orientations in portrait.
+
+	`sticky` with its own `overflow-y`: the contents scrolls inside itself
+	rather than with the page, so search and the chapter list stay put on a long
+	rule — and expanding every chapter can't push entries out of reach, which a
+	bare `position: sticky` would.
+-->
+<div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
 	<nav
-		class="hidden shrink-0 md:block md:w-72 md:border-r md:border-border md:pr-6"
+		class="hidden shrink-0 lg:sticky lg:top-0 lg:block lg:max-h-dvh lg:w-72 lg:self-start lg:overflow-y-auto lg:border-r lg:border-border lg:pr-6 lg:pb-6"
 		aria-label="Rules contents"
 	>
 		<a
@@ -236,7 +251,7 @@
 <dialog
 	bind:this={drawer}
 	onclose={() => (drawerOpen = false)}
-	class="reference-drawer md:hidden"
+	class="reference-drawer lg:hidden"
 	aria-label="Rules contents"
 >
 	{#if drawerMounted}
