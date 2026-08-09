@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   thing on the page. The search field's UA cancel button is redrawn for the same
   reason. Both are shell-level, so every game gets its own ink for free.
 - **A game with no character builders has a real call to action again.** The
-  solid button treatment was hard-coded to the first *creator*, so on a
+  solid button treatment was hard-coded to the first _creator_, so on a
   reference-only game like HMtW the single door into the product — "Rules
   reference" — rendered as an 18%-opacity hairline outline. The first action in
   the row now takes it, whatever that action is. Stonetop is unchanged.

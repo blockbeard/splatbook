@@ -26,5 +26,10 @@ src/lib/packs/fixtures/not-json/
 # In-repo git worktrees (local dev convention; never part of a checkout's own lint)
 .worktrees/
 
+# Claude Code's own directory — installed skills and local settings. Third-party
+# markdown we don't author and shouldn't reformat; without this the pre-push
+# hook (and CI's lint gate) fails on whichever skills happen to be installed.
+.claude/
+
 # Sandbox scratch litter — see .gitignore
 .trash/
