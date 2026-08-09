@@ -208,16 +208,72 @@ Also fix the verification gap that let this reach production: post-deploy checks
 `/api/health` and the static pack JSON, neither of which exercises SSR. A deploy
 check should fetch a real section page from each game and assert 200.
 
-## Phase 27 — Share a rule: copy section text and links
+## Phase 27 — Shareable links on headings
 
-*Filed 2026-08-09 out of the design review of `/hmtw`; revised the same day,
-twice, against real client testing. The use case is the one this product exists
-for: put a rule in front of the other players — Discord, Zoom, Meet, or their own
-notes — without making everyone find the page. Today they select prose in the
-browser and paste it, which loses the bold, and in HMtW bold is what flags the
-term a rule turns on.*
+*Filed 2026-08-09 out of the design review of `/hmtw`, then argued down over
+three passes from "copy the rule text" to this. The decision and the discarded
+work are both recorded below, because the discarded parts are the ones a future
+attempt would re-derive.*
 
-### What the clients actually do (Chris tested, 2026-08-09)
+**Decided (Chris, 2026-08-09): heading links only. Copy-text and
+copy-attribution are not being built.**
+
+### The build
+
+Every heading deeper than a game's `referencePageDepth` renders inline on its
+page ancestor and already carries an anchor id — 52 of 52 on "An incomplete list
+of pretty things", 6 of 6 on "Tests of Fate". The URLs exist, resolve, and have
+scroll-margin handling. There is simply no way to *get* one from the interface
+short of reading the page source.
+
+That matters because h4+ is the granularity people quote: a talent entry, an
+alchemical substance, one of the 52 pretty things — not "chapter nine".
+
+**Wrap the heading's text in a link to its own anchor.** That is the whole
+feature:
+
+- desktop: right-click → Copy Link Address
+- touch: long-press → Copy Link
+- either: tapping it puts the anchor in the address bar, so the URL *is* the
+  deep link
+
+No JavaScript, no clipboard API, no Safari user-gesture problem, no
+secure-context guard, no popover — and no glyph added to the prose, which killed
+every earlier version. A dense page gets links where it would have got 52 UI
+buttons, and links are already what a reference book's headings look like.
+
+- `feat(reference)`: emit inline-section headings as anchors to their own id, in
+  the one place they are generated. Shell default styling plus a game override:
+  quiet by default, underline on hover/focus, never a wall of underlines on a
+  52-entry page.
+
+*Design note: the h1 gets nothing — its URL is already in the address bar. Games
+with no `referencePageDepth` (stonetop, where every heading is its own page) have
+no inline sections and are unaffected.*
+
+### Considered and rejected
+
+**Copy section text as markdown.** The benefit was always narrow: the browser
+already puts *two* flavours on the clipboard by itself, so Obsidian (which
+converts pasted HTML to markdown) and Google Docs already work perfectly, and
+Meet can only show plain text anyway. The entire gain was bold and headings
+surviving into Zoom and Discord — the two clients that use the plain flavour,
+which the browser strips of markdown syntax. That is not worth a DOM→markdown
+serializer, a floating selection control, touch-selection handling, and
+cross-browser clipboard code that rots.
+
+**Attribution appended on copy.** Killed by arithmetic (Chris): the attribution
+sits at the *end* of the payload, and the payload exceeds the client's limit
+about half the time — so the attribution is the first thing truncated, in exactly
+the clients it was meant for. A licence notice that disappears when the text is
+long enough to need one is worse than none. Heading links moot it anyway: a link
+carries no text, so it raises no redistribution question, and the destination
+already carries the credits and the licence.
+
+### Client behaviour, kept for whoever revisits this
+
+Chris tested, 2026-08-09. Worth preserving: the format rules were guessed wrong
+twice before anyone pasted into a real client.
 
 | | markdown | tables | limit |
 | --- | --- | --- | --- |
@@ -226,99 +282,16 @@ term a rule turns on.*
 | Meet | none — raw syntax visible | no | — |
 | Obsidian | native | yes | — |
 
-**Plain-text markdown is the universal carrier.** Zoom keeps bold and links by
-*parsing markdown*, not by taking a rich-text flavour — an earlier draft of this
-phase inferred the opposite and built a `text/html` flavour around it. HTML stays
-worth emitting for Obsidian's rendered paste and Google Docs, but it is a nicety
-now, and the first thing to cut if it complicates the Safari gesture path below.
+Zoom keeps bold by *parsing markdown*, not by taking rich text — an earlier draft
+inferred the opposite and built a `text/html` path around it.
 
-### Selection, not buttons
+Payload sizes, measured across the corpus with a ~130-char attribution included:
+median page **1,476** chars, mean 2,342, longest 23,019 ("Cups"). Over Zoom's
+1,000: **250 of 364 pages (69%)**. Over Discord free's 2,000: 119 (33%). Over
+Nitro's 4,000: 43 (12%).
 
-*The payload settles this, and it overrides the earlier "one control per page"
-decision.* Measured against the corpus, with a ~130-char attribution block
-included: median page **1,476** chars, mean 2,342, longest 23,019 ("Cups").
-
-- over Zoom's 1,000: **250 of 364 pages (69%)** — the median page is already over
-- over Discord free's 2,000: 119 (33%)
-- over Discord Nitro's 4,000: 43 (12%)
-
-So a whole page is the wrong unit for the client people most want to paste into.
-And the two earlier arguments point opposite ways on the *same* pages: the ones
-with 47–53 headings (Appendix D's four suits, "An incomplete list of pretty
-things") are also the 17,000–23,000-character ones, where the thing worth sharing
-is a single h4 entry.
-
-**Copy the selection.** A floating Copy control on any selection inside
-`.reference-body`:
-
-- the payload is exactly what the reader chose, so the character limit is theirs
-  to see rather than ours to guess at
-- no permanent UI, so the 53-heading page costs nothing — this book's prose
-  carries no icons and should keep it that way
-- identical on a 400-char rule and a 23,000-char list
-- it is already the gesture people use; they just lose the bold doing it
-
-A secondary "copy this page" stays in the page furniture beside the breadcrumb,
-for the median page where that is the sensible unit.
-
-### Commits
-
-- `feat(reference)`: **selection → markdown serializer.** Walks the selected DOM
-  fragment, not the pack source — the DOM has already resolved wikilinks and
-  hoisted the sidebars out of the flow, which is exactly the mess the pack
-  markdown still carries. (The earlier draft's "source it from the pack, never
-  the DOM" holds only for the whole-page path.) Rules:
-  - heading syntax capped at `###`; deeper demoted to `**bold**`. Lands on
-    `referencePageDepth: 3` by itself — h1–h3 are the sections with their own
-    pages, and h4+ are the talent entries and statblock fragments the theme
-    already sets in bold rather than as headings
-  - cross-references become **plain label text** (Chris's call, 2026-08-09): a
-    quoted rule carries many, and masked links are noise in Discord and raw
-    markdown blobs in Meet. The attribution carries the one URL that matters
-  - tables flatten to `Label — value` lines. 24 tables in the corpus, max 5
-    columns, median 16 rows — narrow dice tables, so flattening produces the same
-    line count Zoom would anyway, minus the pipes and the `|---|` row
-  - callouts keep their title as a bold line, then their body
-  - own tests; this is the whole of the work
-
-- `feat(reference)`: **the Copy control.** Floating on selection; a static one by
-  the breadcrumb for the whole page. Non-optional mechanics:
-  - `ClipboardItem` accepts a **Promise** for its data — that is how Safari's
-    user-gesture requirement survives async work. Awaiting *before* the write
-    makes iOS reject it silently. Fall back to `writeText` where `ClipboardItem`
-    write is unavailable
-  - `navigator.clipboard` needs a secure context: hide the control where it is
-    absent rather than shipping a button that does nothing
-  - **show the character count** next to the action ("1,476 characters — over
-    Zoom's 1,000 limit"). It is the only way a reader learns before the paste is
-    rejected
-  - "Copied" for ~1.5s, same word for both actions, `aria-live`, reserved width
-
-- `feat(reference)`: **attribution, non-optional.** The pack licence says *"All
-  creators retain the right to be identified as such. In all cases this notice
-  must remain intact."* An earlier draft named the book and splatbook.app,
-  omitted Joshua McCrowell, and offered a switch to turn it off — backwards on
-  both counts. Two forms, because ~130 chars is 13% of Zoom's budget:
-
-  ```
-  compact (chat):  His Majesty the Worm — Tests of Fate · splatbook.app/…
-  full (docs):     His Majesty the Worm — Chapter 1: The Basics
-                   © Joshua McCrowell, published by Exalted Funeral Press.
-                   Shared from splatbook.app/hmtw/reference/…
-  ```
-
-  Game-supplied, not hard-coded: from the pack's licence metadata through the
-  `GameModule`, the way `referenceSpoilers` and `referenceOmitCallouts` are.
-  Stonetop is CC BY-SA 4.0 and needs different words.
-
-*Caveat on the numbers above: the payload was approximated from source markdown
-with wikilink syntax and block ids stripped. Trust the 69% as a shape, not any
-single page sitting on the boundary.*
-
-*Method note, since it earned its keep twice: every format rule here came from
-pasting into the real client. Both times the guess was wrong — first that Zoom
-took rich text, then that heading syntax should be dropped entirely. Paste before
-deciding.*
+*Method note, since it earned its keep twice: paste into the real client before
+deciding a format rule.*
 
 ## Sequencing notes
 
