@@ -41,10 +41,16 @@ export const hmtw: GameModule = {
 	referenceSpoilers: {
 		badge: 'GM',
 		toggleLabel: 'Include the Gamemaster’s chapters — monsters, secrets, and the underworld',
-		// The pack-authored "For the Gamemaster's Eyes" note (its own gated
-		// document in the tree): the book has 63 player-chapter links into GM
-		// chapters — 34 from the Index alone — and they should land on an
-		// explanation with the opt-in, not a bare 404.
-		interstitialSectionId: 'for-the-gamemaster-s-eyes'
+		// The pack-authored "Gamemaster Content" note (its own document in the
+		// tree): the book has 63 player-chapter links into GM chapters — 34 from
+		// the Index alone — and they should land on an explanation with the
+		// opt-in, not a bare 404.
+		//
+		// The note is player-visible, so it also lists in the contents and
+		// answers a search. Gated (as it was until now) it was invisible to
+		// exactly the reader it was written for, and the sidebar checkbox was
+		// the only trace of the gate a player could find — worse on mobile,
+		// where the contents is a drawer you have to go looking in.
+		interstitialSectionId: 'gamemaster-content'
 	}
 };

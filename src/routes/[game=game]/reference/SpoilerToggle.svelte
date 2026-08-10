@@ -12,12 +12,41 @@
 -->
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { invalidate } from '$app/navigation';
 	import { referenceShowSetting, savePreference } from '$lib/preferences';
 
-	let { checked, label }: { checked: boolean; label: string } = $props();
+	let {
+		checked,
+		label,
+		noticeId
+	}: {
+		checked: boolean;
+		label: string;
+		/**
+		 * The game's opt-in explanation (`referenceSpoilers.interstitialSectionId`),
+		 * linked beside the box. The label alone can only ever *name* what's behind
+		 * the gate; the note says why it's there and what opting in means, and
+		 * before this the two surfaces had no path between them.
+		 */
+		noticeId?: string;
+	} = $props();
 
 	let local = $derived(checked);
+
+	// Suppressed when the reader is already on it — a "what's this?" pointing at
+	// the page you are reading is noise. (For a game whose note is a real gated
+	// chapter, like Stonetop's, this only matches once they've opted in and can
+	// reach it; opted out, the link resolves to the interstitial, which is the
+	// same passage.)
+	const noticeHref = $derived(
+		noticeId && page.params.section !== noticeId
+			? resolve('/[game=game]/reference/[section]', {
+					game: page.params.game as string,
+					section: noticeId
+				})
+			: undefined
+	);
 
 	async function toggle(next: boolean): Promise<void> {
 		local = next;
@@ -33,12 +62,22 @@
 	}
 </script>
 
-<label class="flex items-start gap-2 text-sm text-muted">
-	<input
-		type="checkbox"
-		checked={local}
-		onchange={(e) => toggle(e.currentTarget.checked)}
-		class="mt-0.5 accent-accent"
-	/>
-	{label}
-</label>
+<div class="text-sm text-muted">
+	<label class="flex items-start gap-2">
+		<input
+			type="checkbox"
+			checked={local}
+			onchange={(e) => toggle(e.currentTarget.checked)}
+			class="mt-0.5 accent-accent"
+		/>
+		{label}
+	</label>
+	{#if noticeHref}
+		<!-- Outside the <label>: nested inside it, clicking the link would also
+		     toggle the checkbox. `ml-6` lines it up under the label's text rather
+		     than under the box. -->
+		<a href={noticeHref} class="mt-0.5 ml-6 inline-block text-xs underline hover:text-accent">
+			What’s this?
+		</a>
+	{/if}
+</div>

@@ -38,6 +38,30 @@ test('the sidebar is replaced by the bar, and the drawer carries the contents', 
 	await expect(drawer.getByText('The Basics')).toBeVisible();
 });
 
+test('a player browsing the contents finds the opt-in and can take it there', async ({ page }) => {
+	// The case this exists for: on a phone the contents is a drawer, so a gate
+	// whose only trace is a checkbox inside it is a gate nobody meets. The note
+	// is a page in the contents now, and carries its own control.
+	await page.goto('/hmtw/reference');
+	const drawer = page.getByRole('dialog', { name: 'Rules contents' });
+	await page.getByTestId(BAR).getByRole('button').first().click();
+
+	// Gate closed: the GM chapters are absent, the note explaining them is not.
+	await expect(drawer.getByText(/The Worm Turns/)).toHaveCount(0);
+	await drawer.getByRole('link', { name: 'Gamemaster Content' }).click();
+	await expect(page.getByRole('heading', { name: 'Gamemaster Content' })).toBeVisible();
+
+	// Opened deliberately rather than shown in place of something gated, so the
+	// control is a plain opt-in — there is nowhere to "continue" to.
+	await expect(page.getByRole('button', { name: /continue/i })).toHaveCount(0);
+	await page.getByRole('button', { name: 'Opt in' }).click();
+	await expect(page.getByText(/opted in/i)).toBeVisible();
+
+	// And the gate really is open: the chapters join the contents.
+	await page.getByTestId(BAR).getByRole('button').first().click();
+	await expect(drawer.getByText(/The Worm Turns/).first()).toBeVisible();
+});
+
 test('tapping an entry navigates and closes the drawer behind it', async ({ page }) => {
 	await page.goto('/hmtw/reference');
 	const drawer = page.getByRole('dialog', { name: 'Rules contents' });

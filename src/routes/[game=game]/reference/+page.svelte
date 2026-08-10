@@ -28,7 +28,12 @@
 
 	{#each data.toc as doc (doc.id)}
 		<section class="mt-8">
-			<h2 class="text-lg font-semibold">{doc.title}</h2>
+			<!-- A one-chapter document of the same name is a single entry, not a
+			     headed group — see ReferenceToc's `selfTitled`, which applies the
+			     same rule to the contents tree. -->
+			{#if !(doc.chapters.length === 1 && doc.chapters[0].title === doc.title)}
+				<h2 class="text-lg font-semibold">{doc.title}</h2>
+			{/if}
 			<!-- Chapters are already in reading order (build_srd.py walks source files
 		     sorted the same way); this is the book's own table of contents, one
 		     column so it reads top to bottom — a two-column grid is ambiguous

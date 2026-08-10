@@ -74,11 +74,10 @@
 					}
 				},
 				{
-					"$comment": "Hand-authored spoiler interstitial (referenceSpoilers.interstitialSectionId) — a sibling of the generated rules/ dir, hence the ../ hop; build_rules never touches it.",
+					"$comment": "Hand-authored spoiler interstitial (referenceSpoilers.interstitialSectionId) — a sibling of the generated rules/ dir, hence the ../ hop; build_rules never touches it. Deliberately NOT gated: gated, it listed in nobody's contents but a reader who had already opted in, so the only thing a player ever saw of the gate was a checkbox. The chapter titles it names are not themselves spoilers.",
 					"id": "gm-note",
-					"title": "For the Gamemaster’s Eyes",
-					"sourceDir": "../gm-note",
-					"visibility": "gm"
+					"title": "Gamemaster Content",
+					"sourceDir": "../gm-note"
 				}
 			]
 		}

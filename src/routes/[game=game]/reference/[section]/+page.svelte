@@ -20,17 +20,29 @@
 				? `#${node.id}`
 				: `${href(node.pageId)}#${node.id}`;
 
+	/**
+	 * This page *is* its whole document — a one-section document whose title
+	 * matches the section's, as the hand-authored opt-in note is. The document
+	 * name adds nothing here: as a breadcrumb it repeats the h1 directly under
+	 * it, and in the tab title it repeats itself. (`ReferenceToc` and the
+	 * reference landing apply the same rule to the same documents.)
+	 */
+	const selfTitledDoc = $derived(
+		data.ancestors.length === 0 && data.docTitle === data.section.title
+	);
+
 	let opting = $state(false);
 
 	/**
-	 * Opt in and re-load — no navigation needed: this route's own `+page.ts`
-	 * reruns against the updated preference and returns the page the reader
-	 * actually asked for in place of this interstitial, same URL.
+	 * Write the opt-in and re-load — no navigation needed: this route's own
+	 * `+page.ts` reruns against the updated preference. On an interstitial that
+	 * returns the page the reader actually asked for, same URL; on the notice
+	 * page itself it returns the notice with the control flipped.
 	 */
-	async function optIn(): Promise<void> {
+	async function setOptIn(next: boolean): Promise<void> {
 		opting = true;
 		try {
-			await savePreference(referenceShowSetting(gameId), 'true', {
+			await savePreference(referenceShowSetting(gameId), String(next), {
 				signedIn: !!page.data.session?.user?.id
 			});
 			await invalidate('reference:showSetting');
@@ -41,33 +53,73 @@
 </script>
 
 <svelte:head>
-	<title>{data.section.title} — {data.docTitle}</title>
+	<!-- A one-page document is titled the same as its only section (the opt-in
+	     note), and "Gamemaster Content — Gamemaster Content" is not a tab title. -->
+	<title>{data.section.title}{selfTitledDoc ? '' : ` — ${data.docTitle}`}</title>
 </svelte:head>
 
-<nav class="text-sm text-muted" aria-label="Breadcrumb">
-	<a href={refRoot} class="hover:text-accent">{data.docTitle}</a>
-	{#each data.ancestors as crumb (crumb.id)}
-		<span class="px-1.5 text-border">/</span>
-		<a href={href(crumb.id)} class="hover:text-accent">{crumb.title}</a>
-	{/each}
-</nav>
+{#if !selfTitledDoc}
+	<nav class="text-sm text-muted" aria-label="Breadcrumb">
+		<a href={refRoot} class="hover:text-accent">{data.docTitle}</a>
+		{#each data.ancestors as crumb (crumb.id)}
+			<span class="px-1.5 text-border">/</span>
+			<a href={href(crumb.id)} class="hover:text-accent">{crumb.title}</a>
+		{/each}
+	</nav>
+{/if}
 
 <article class="reference-body mt-3">
 	<h1 class="text-2xl font-bold tracking-tight">{data.section.title}</h1>
+	{#if data.interstitial}
+		<!-- The passage below is written to be read on its own (it's a page in the
+		     contents now, not only something shown in place of something else), so
+		     nothing in it acknowledges that the reader asked for a different page.
+		     This line does. -->
+		<p class="mt-2 text-sm text-muted">The page you asked for is part of this.</p>
+	{/if}
 	<!-- Trusted: first-party pack content rendered from markdown by marked (render.ts),
 	     not user input. No untrusted HTML reaches this sink. -->
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html data.bodyHtml}
 
 	{#if data.interstitial}
+		<!-- One button, two things — the opt-in *and* the return to the page that
+		     sent them here — so it has to name both in the order they happen. Its
+		     predecessor ("Include this — take me back") named them as alternatives
+		     and left the reader to guess which one it did. -->
 		<button
 			type="button"
-			onclick={optIn}
+			onclick={() => setOptIn(true)}
 			disabled={opting}
 			class="mt-6 inline-block rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90 disabled:opacity-60"
 		>
-			{opting ? 'Including…' : 'Include this — take me back'}
+			{opting ? 'Opting in…' : 'Opt in and continue'}
 		</button>
+	{:else if data.isSpoilerNotice}
+		<!-- The reader came to this page deliberately, so there's nothing to
+		     continue to: the control just states where they stand and offers the
+		     other direction. Shell words, not the game's — the sidebar checkbox
+		     carries the pack's own `toggleLabel`, and repeating it here would put
+		     two controls with the same accessible name on one page. -->
+		<div class="mt-6 flex flex-wrap items-center gap-3">
+			<button
+				type="button"
+				onclick={() => setOptIn(!data.showSetting)}
+				disabled={opting}
+				class="inline-block rounded-md px-4 py-2 font-medium disabled:opacity-60 {data.showSetting
+					? 'border border-border hover:text-accent'
+					: 'bg-accent text-accent-contrast hover:opacity-90'}"
+			>
+				{#if opting}
+					Saving…
+				{:else}
+					{data.showSetting ? 'Opt out' : 'Opt in'}
+				{/if}
+			</button>
+			{#if data.showSetting}
+				<p class="text-sm text-muted">You’re opted in.</p>
+			{/if}
+		</div>
 	{/if}
 </article>
 
@@ -126,21 +178,26 @@
 	</section>
 {/if}
 
-<nav
-	class="mt-8 flex justify-between gap-4 border-t border-border pt-4 text-sm"
-	aria-label="Section navigation"
->
-	{#if data.prev}
-		<a href={href(data.prev.id)} class="text-muted hover:text-accent">← {data.prev.title}</a>
-	{:else}
-		<span></span>
-	{/if}
-	{#if data.next}
-		<a href={href(data.next.id)} class="text-right text-muted hover:text-accent"
-			>{data.next.title} →</a
-		>
-	{/if}
-</nav>
+<!-- Guarded: a single-page document (the opt-in note) and the interstitial both
+     have no neighbours in either direction, and an unguarded nav rendered as a
+     bare rule floating under the last thing on the page. -->
+{#if data.prev || data.next}
+	<nav
+		class="mt-8 flex justify-between gap-4 border-t border-border pt-4 text-sm"
+		aria-label="Section navigation"
+	>
+		{#if data.prev}
+			<a href={href(data.prev.id)} class="text-muted hover:text-accent">← {data.prev.title}</a>
+		{:else}
+			<span></span>
+		{/if}
+		{#if data.next}
+			<a href={href(data.next.id)} class="text-right text-muted hover:text-accent"
+				>{data.next.title} →</a
+			>
+		{/if}
+	</nav>
+{/if}
 
 <style>
 	/*

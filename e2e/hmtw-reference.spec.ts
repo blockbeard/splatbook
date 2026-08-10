@@ -10,7 +10,7 @@ import { test, expect, type Page } from '@playwright/test';
  */
 
 const GATED_CHAPTER = 'The Worm Turns';
-const INTERSTITIAL = 'For the Gamemaster’s Eyes';
+const INTERSTITIAL = 'Gamemaster Content';
 const TOGGLE = /Include the Gamemaster’s chapters/i;
 
 /** The pinned-block entry label for a term, exactly (labels of *other* terms
@@ -125,7 +125,7 @@ test('GM chapters stay dark until opted in, and the Index route lands on the int
 	await page.goto('/hmtw/reference/16-index--c');
 	await page.locator('.reference-body a[href*="10-chapter-10"]').first().click();
 	await expect(page.getByRole('heading', { name: INTERSTITIAL })).toBeVisible();
-	await page.getByRole('button', { name: /Include this/i }).click();
+	await page.getByRole('button', { name: /Opt in and continue/i }).click();
 	await expect(page.getByRole('heading', { name: INTERSTITIAL })).toHaveCount(0);
 
 	// Opted in: the spine grows the GM chapters, search finds them, the GM

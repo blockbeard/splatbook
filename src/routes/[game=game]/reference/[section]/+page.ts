@@ -73,13 +73,19 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 	// so nothing is withheld by breaking the path to it.
 	const linkIndex = await fetchLinkIndex(params.game, fetch);
 
+	const interstitialId = getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
+
 	if (!isVisible(section, showSetting)) {
-		const interstitialId = getGame(params.game)?.referenceSpoilers?.interstitialSectionId;
 		const passage = interstitialId ? await fetchPage(params.game, interstitialId, fetch) : null;
 		if (!passage || isRedirect(passage)) error(404, `No such rules section: "${params.section}"`);
 
 		return {
 			interstitial: true as const,
+			// Uniform shape across both returns so the page can read either
+			// without narrowing first. Here by construction: the reader is seeing
+			// this passage *because* they haven't opted in.
+			isSpoilerNotice: false as const,
+			showSetting,
 			requestedSectionId: params.section,
 			docTitle: passage.docTitle,
 			chapterId: passage.chapterId,
@@ -124,6 +130,19 @@ export const load: PageLoad = async ({ params, fetch, parent }) => {
 
 	return {
 		interstitial: false as const,
+		/**
+		 * The reader opened the opt-in explanation *itself* — from the contents,
+		 * a search hit, a shared link — rather than being shown it in place of
+		 * something gated. Its copy says "opt in below", so the page has to carry
+		 * a control of its own; arriving here from a gated link is the other
+		 * branch above, which offers "opt in and continue" instead.
+		 *
+		 * Set only on this branch on purpose: the interstitial return says
+		 * `section: { id: passage.id }`, so a check written against `data.section`
+		 * alone is true in both branches and the page grows two opt-in controls.
+		 */
+		isSpoilerNotice: !!interstitialId && section.id === interstitialId,
+		showSetting,
 		docTitle: section.docTitle,
 		chapterId: section.chapterId,
 		section: { id: section.id, title: section.title },

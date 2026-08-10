@@ -116,11 +116,16 @@ describe('hmtw pack round-trip', () => {
 		}
 	});
 
-	it('ships the spoiler interstitial the module points at, gated GM', () => {
+	it('ships the spoiler interstitial the module points at, player-visible', () => {
 		const id = hmtw.referenceSpoilers?.interstitialSectionId;
 		expect(id).toBeTruthy();
 		const section = gmNote.sections.find((s) => s.id === id);
-		expect(section?.visibility).toBe('gm');
 		expect(section?.body).toContain('opt in');
+		// Player-visible on purpose, and the reason it exists: gated, the note
+		// listed in nobody's contents but a reader who had already opted in, so
+		// the sidebar checkbox was the only trace of the gate a player could
+		// find. Re-gating it would restore that silently.
+		expect(section?.visibility).toBe('player');
+		expect(gmNote.sections.every((s) => s.visibility === 'player')).toBe(true);
 	});
 });

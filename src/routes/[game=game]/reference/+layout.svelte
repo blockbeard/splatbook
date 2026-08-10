@@ -210,7 +210,11 @@
 						<!-- The opt-in belongs to the query surface: it's what selects the
 						     GM index, and flipping it re-derives the results live. -->
 						<div class="mt-2">
-							<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+							<SpoilerToggle
+								checked={data.showSetting}
+								label={data.spoilers.toggleLabel}
+								noticeId={data.spoilers.interstitialSectionId}
+							/>
 						</div>
 					{/if}
 				{/snippet}
@@ -252,7 +256,11 @@
 			<!-- The opt-in lives here in the sidebar — every reference page, not
 			     just search results — so the TOC itself offers the path to Book II. -->
 			<div class="mt-2">
-				<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+				<SpoilerToggle
+					checked={data.showSetting}
+					label={data.spoilers.toggleLabel}
+					noticeId={data.spoilers.interstitialSectionId}
+				/>
 			</div>
 		{/if}
 		<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} {activeChapterId} />
@@ -292,7 +300,11 @@
 					     from a search: a reader browsing the TOC otherwise has no path to
 					     Book II without incidentally searching first (staging, 2026-07-17). -->
 					<div class="mt-3">
-						<SpoilerToggle checked={data.showSetting} label={data.spoilers.toggleLabel} />
+						<SpoilerToggle
+							checked={data.showSetting}
+							label={data.spoilers.toggleLabel}
+							noticeId={data.spoilers.interstitialSectionId}
+						/>
 					</div>
 				{/if}
 				<ReferenceToc toc={data.toc} gameId={data.gameId} {activeId} {activeChapterId} />

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **The Gamemaster opt-in is something a reader can find and understand.** The
+  note explaining the gate was itself gated, so the only reader who could reach
+  it was one who had already opted in. Everyone else met the gate as a lone
+  checkbox in the contents — and on a phone the contents is a drawer, so a
+  player browsing the book would never meet it at all. The note
+  (`/hmtw/reference/gamemaster-content`, formerly
+  `…/for-the-gamemaster-s-eyes`) is now a player-visible page: it lists in the
+  contents, answers a search, and carries its own Opt in / Opt out control. The
+  checkbox keeps its label and gains a "What's this?" link to it, for both
+  games.
+
+  The interstitial button said "Include this — take me back", which named two
+  actions and left the reader to guess which one it did. It does both, in that
+  order, and now says so: "Opt in and continue".
+
 ### Fixed
 
 - **The reference no longer loads a whole book to render one section.** A

@@ -138,7 +138,7 @@ test('a gated section page shows the interstitial until opted in, then itself', 
 	// Gated and not yet opted in: the book's own "should the players read
 	// this" passage stands in, with a button to opt in — not a flat 404.
 	await expect(page.getByRole('heading', { name: GATED_TITLE })).toBeVisible();
-	await page.getByRole('button', { name: /Include this/i }).click();
+	await page.getByRole('button', { name: /Opt in and continue/i }).click();
 
 	// Same URL, now rendering the section the reader actually asked for.
 	await expect(page.getByRole('heading', { name: 'Resources' })).toBeVisible();

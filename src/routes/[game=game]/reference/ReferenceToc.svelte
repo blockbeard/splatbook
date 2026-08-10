@@ -81,12 +81,26 @@
 
 	const href = (id: string) =>
 		resolve('/[game=game]/reference/[section]', { game: gameId, section: id });
+
+	/**
+	 * A document that is one chapter of the same name is a single entry, not a
+	 * group: HMtW's opt-in note is its own document (a hand-authored sibling of
+	 * the book), so the general shape rendered an uppercase "GAMEMASTER CONTENT"
+	 * label directly above a lone link reading "Gamemaster Content".
+	 *
+	 * Mirrored on the reference landing, which renders the same `NavDocument[]`
+	 * as headed sections — keep the two in step.
+	 */
+	const selfTitled = (doc: NavDocument): boolean =>
+		doc.chapters.length === 1 && doc.chapters[0].title === doc.title;
 </script>
 
 <div class="reference-toc">
 	{#each toc as doc (doc.id)}
 		<div class="mt-4">
-			<p class="text-xs font-semibold tracking-wide text-muted uppercase">{doc.title}</p>
+			{#if !selfTitled(doc)}
+				<p class="text-xs font-semibold tracking-wide text-muted uppercase">{doc.title}</p>
+			{/if}
 			<ul class="mt-1 text-sm">
 				{#each doc.chapters as chapter (chapter.id)}
 					{@const h2s = h2sOf(doc, chapter.id)}
