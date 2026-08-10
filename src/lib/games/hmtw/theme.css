@@ -140,6 +140,28 @@ html[data-game='hmtw'] .reference-body {
 	font-size: 1.05em;
 }
 
+/*
+ * The game landing's plate line — the "Unofficial rules reference" above the
+ * title. Set in Great Primer SC, the same cut the book uses for chapter
+ * titles and table heads, one optical size down: a title page names what a
+ * volume *is* in small caps above the title, and this page is doing exactly
+ * that job. Real small caps, so no `text-transform` — the face supplies them,
+ * and the leading cap of the sentence stays a full cap as it should.
+ */
+html[data-game='hmtw'] .game-plate-line {
+	font-family: 'IM Fell Great Primer SC', Georgia, serif;
+	letter-spacing: 0.08em;
+}
+
+/* The "Adherent of His Majesty the Worm" third-party logo is the book's ink
+   line-art — every opaque pixel is pure black — so on the dark page it was
+   black on near-black and simply gone. Inverted here rather than reshipped:
+   the artwork is licensed as drawn, and inversion changes only the colour of
+   the ink, exactly as it already does for the book's own diagrams below. */
+html.dark[data-game='hmtw'] .pack-landing-art {
+	filter: invert(1);
+}
+
 /* Owned diagram art (affliction clocks, disposition wheel). The SVGs are
    drawn in ink; dark mode is a straight inversion, same as the vault's
    fig-light/fig-dark pairs. */

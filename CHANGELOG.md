@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A game's front door says whose it is.** `/hmtw` was titled with the game's
+  name and nothing else — which is how the publisher would title it — so a
+  visitor had no way to tell a fan-made reference from the official site. The
+  page now opens with a plate line above the name ("Unofficial rules
+  reference", set in the book's own small-caps display cut) and closes with a
+  colophon: the compatibility statement the book's license requires, verbatim,
+  plus links to the game-text license and to the book's own credits page. All
+  of it comes from the pack — `manifest.attribution` and `manifest.license`,
+  the same two fields `/credits` builds from — so Stonetop's front door gained
+  its own attribution and CC BY-SA link at the same time, and a new game gets
+  one for free.
+
+- **The HMtW logo is visible in dark mode.** The "Adherent of His Majesty the
+  Worm" third-party logo is the book's ink line-art — every opaque pixel is
+  pure black — so on the dark page it was black on near-black and simply gone.
+  Its theme inverts it there, as it already did for the book's diagrams.
+
 - **The Gamemaster opt-in is something a reader can find and understand.** The
   note explaining the gate was itself gated, so the only reader who could reach
   it was one who had already opted in. Everyone else met the gate as a lone

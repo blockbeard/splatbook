@@ -18,19 +18,40 @@
 		'inline-block rounded-md border border-border px-4 py-2 font-medium hover:bg-surface';
 	/** True when a creator already took the solid treatment above. */
 	const hasCreators = $derived(data.creators.length > 0);
+
+	/** The book's own credits page in the reference, if the pack named one. */
+	const creditsHref = $derived(
+		data.landing?.creditsSectionId
+			? resolve('/[game=game]/reference/[section]', {
+					game: data.gameId,
+					section: data.landing.creditsSectionId
+				})
+			: null
+	);
 </script>
 
 <svelte:head>
-	<title>{data.gameName}</title>
+	<!-- The plate line rides along into the tab and the search result, which are
+	     the two other places this page gets mistaken for the publisher's. -->
+	<title>{data.gameName}{data.landing?.kicker ? ` — ${data.landing.kicker}` : ''}</title>
 </svelte:head>
 
 <section class="mx-auto max-w-2xl py-12 text-center">
 	{#if data.landing?.image}
+		<!-- `pack-landing-art` is the hook a game's theme needs to treat this
+		     image: HMtW's is the book's ink line-art, pure black on transparent,
+		     which vanished into the page in dark mode. Its theme inverts it there,
+		     exactly as it already does for the book's diagrams. -->
 		<img
 			src={data.landing.image.src}
 			alt={data.landing.image.alt}
-			class="mx-auto mb-6 h-40 w-auto"
+			class="pack-landing-art mx-auto mb-6 h-40 w-auto"
 		/>
+	{/if}
+	{#if data.landing?.kicker}
+		<!-- Above the name, not below it: it makes the game the subject of a
+		     sentence this site is speaking, rather than the owner of the page. -->
+		<p class="game-plate-line mb-2 text-sm text-muted">{data.landing.kicker}</p>
 	{/if}
 	<h1 class="text-4xl font-bold tracking-tight">{data.gameName}</h1>
 	<p class="mt-4 text-lg text-muted">
@@ -97,6 +118,41 @@
 					</li>
 				{/each}
 			</ul>
+		</div>
+	{/if}
+
+	<!--
+		The colophon. A book puts its rights, its printer and its permissions on
+		the last leaf, and that is what this block holds — so it is set like one
+		(a hairline, the statement in italic at reading size, links beneath)
+		rather than as a legal footer in grey micro-type.
+
+		The compatibility statement is the one sentence here that has to be
+		exact: HMtW's license requires those words, verbatim, of anyone declaring
+		compatibility, and the pack manifest already carried them — they were
+		just appearing nowhere a reader of this page would meet them.
+	-->
+	{#if data.attribution || data.license?.url || creditsHref}
+		<div class="mt-12 border-t border-border pt-6">
+			{#if data.attribution}
+				<p class="mx-auto max-w-lg text-sm text-muted italic">{data.attribution}</p>
+			{/if}
+			{#if data.license?.url || creditsHref}
+				<p class="mt-3 text-xs text-muted">
+					{#if data.license?.url}
+						<!-- The pack's own LICENSE.md — the same file /credits points at. -->
+						<a href={data.license.url} rel="license" class="underline hover:text-text">
+							Read the game-text license
+						</a>
+					{/if}
+					{#if data.license?.url && creditsHref}
+						<span aria-hidden="true">·</span>
+					{/if}
+					{#if creditsHref}
+						<a href={creditsHref} class="underline hover:text-text"> Full credits from the book </a>
+					{/if}
+				</p>
+			{/if}
 		</div>
 	{/if}
 </section>

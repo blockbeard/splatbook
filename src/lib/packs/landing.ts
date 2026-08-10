@@ -14,6 +14,17 @@
 import { z } from 'zod';
 
 export const landingSchema = z.strictObject({
+	/**
+	 * A short plate line *above* the game's name — what this site is, in the
+	 * grammar of a book's title page ("Unofficial rules reference").
+	 *
+	 * It exists because the page was titled with the game's name and nothing
+	 * else, which is exactly how the game's own publisher would title it: a
+	 * visitor landing on `/hmtw` had no way to tell a fan-made reference from
+	 * the official site. Naming the site first makes the game the subject of a
+	 * sentence rather than the owner of the page.
+	 */
+	kicker: z.string().min(1).optional(),
 	/** One line under the game's name — replaces the shell's generic pitch. */
 	tagline: z.string().min(1),
 	/** An optional short paragraph (plain prose) under the tagline. */
@@ -26,6 +37,13 @@ export const landingSchema = z.strictObject({
 			alt: z.string().min(1)
 		})
 		.optional(),
+	/**
+	 * The book's own credits section, by reference-section id — linked from the
+	 * colophon. The pack reproduces the game's text, so the people who made it
+	 * are named in the text itself; this points at that page rather than making
+	 * the shell keep a second, staler copy of the same list.
+	 */
+	creditsSectionId: z.string().min(1).optional(),
 	/** Outbound promo/buy links, rendered as external links in pack order. */
 	links: z
 		.array(

@@ -15,6 +15,7 @@ import { loadManifest, loadPackFile } from '../../packs/fs-loader';
 import { validatePack } from '../../packs/harness';
 import type { PackManifest } from '../../packs/types';
 import { documentTreeSchema, type DocumentTree } from '../../reference/document-tree';
+import { landingSchema } from '../../packs/landing';
 import '../index'; // register game modules (wires hmtw schemas into the harness)
 import { hmtw } from './index';
 
@@ -114,6 +115,17 @@ describe('hmtw pack round-trip', () => {
 		]) {
 			expect(ids.has(id), id).toBe(true);
 		}
+	});
+
+	it('the landing names the book credits page it links, and it exists', async () => {
+		// The colophon's "Full credits from the book" resolves through this id.
+		// A pipeline change that renames the Introduction's headings would
+		// otherwise turn the link into a 404 with nothing failing.
+		const landing = landingSchema.parse(await loadPackFile(packRoot, 'landing.json'));
+		expect(landing.kicker).toBe('Unofficial rules reference');
+		const credits = book.sections.find((s) => s.id === landing.creditsSectionId);
+		expect(credits?.title).toBe('Credits');
+		expect(credits?.visibility).toBe('player');
 	});
 
 	it('ships the spoiler interstitial the module points at, player-visible', () => {

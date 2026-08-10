@@ -46,6 +46,25 @@ test('the game landing speaks for the pack: logo, honest pitch, buy links, no bu
 		/affiliate_id=1070389/
 	);
 	await expect(page.getByText(/costs you nothing extra/)).toBeVisible();
+
+	// Provenance, on the page a visitor could otherwise take for the
+	// publisher's own: what this is, above the game's name; the compatibility
+	// statement the book's license requires, verbatim; and the two ways to
+	// check the claim.
+	await expect(page.getByText('Unofficial rules reference')).toBeVisible();
+	await expect(
+		page.getByText(/not affiliated with Joshua McCrowell or Exalted Funeral/)
+	).toBeVisible();
+	await expect(page.getByRole('link', { name: /Read the game-text license/ })).toHaveAttribute(
+		'href',
+		'/content-packs/hmtw/LICENSE.md'
+	);
+	await expect(page.getByRole('link', { name: /Full credits from the book/ })).toHaveAttribute(
+		'href',
+		'/hmtw/reference/00-introduction--credits'
+	);
+	// The plate line rides into the tab title too.
+	await expect(page).toHaveTitle(/His Majesty the Worm — Unofficial rules reference/);
 });
 
 test('landing shows the book’s spine; a chapter opens and pages through', async ({ page }) => {
