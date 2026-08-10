@@ -27,9 +27,10 @@ affiliated with Joshua McCrowell or Exalted Funeral.
 
 ## What this pack contains, and what it deliberately omits
 
-This pack carries the book's **game text only** — reused under the grant
-above, with Josh McCrowell's direct OK for this project (2026-08-06). No art
-from the book is included; all artists retain copyright of their work.
+This pack carries the book's **game text only**, reused under the grant above:
+"the mechanics and game text of _His Majesty the Worm_ may be reused freely.
+Third-party compatible works are welcomed." No art from the book is included;
+all artists retain copyright of their work.
 
 Deliberately omitted:
 

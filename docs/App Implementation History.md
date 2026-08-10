@@ -283,11 +283,20 @@ Dungeons course (dungeons.hismajestytheworm.games) instead. Measured against
 the vault (adversarial review, 2026-08-06): the cut itself is nearly clean —
 exactly one cross-chapter link (`16 - Index.md:197` → "Writing Meatgrinder
 tables") and one curated search term (`Meatgrinder`) target the cut range and
-need retargeting. Licensing is settled: **Chris spoke to Josh (2026-08-06)
-and he's fine with the project** — leaving out the Tomb of Golden Ghosts is
-his ask. The license's "redistribution of copies … prohibited" line reads as
-copies of the book itself (PDF/print), not the freely-reusable game text, and
-the author's direct OK closes the question either way.*
+need retargeting. Licensing rests on the book's own grant: the
+license's "redistribution of copies … prohibited" line reads as copies of the
+book itself (PDF/print), not the game text the same notice says "may be reused
+freely", with third-party compatible works welcomed. Leaving out the Tomb of
+Golden Ghosts stands.
+
+**Corrected 2026-08-10.** This paragraph originally read "Chris spoke to Josh
+(2026-08-06) and he's fine with the project", and leaned on that direct OK to
+"close the question either way". The conversation was about guild-book, not
+Splatbook. There is no permission specific to this project, and no file in
+this repo may imply one — the published grant is the entire basis, and it is
+sufficient on its own. The claim had reached the pack's LICENSE.md, the
+manifest attribution rendered on /credits and the HMtW landing, the README,
+the game module's docstring and the changelog before it was caught.*
 
 *The 2026-08-06 adversarial review (two agents: one against the splatbook
 code, one against the vault corpus) rewrote this phase. Headline findings,

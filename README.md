@@ -118,9 +118,9 @@ other.
   artwork is reproduced.
 - His Majesty the Worm text (`content/hmtw/`, `static/content-packs/hmtw/`):
   © 2023 Joshua McCrowell, published by Exalted Funeral Press. Used under the
-  book's own reuse grant for its mechanics and game text, with the author's
-  direct OK for this project (2026-08-06) — the grant, what the pack omits and
-  why, and the required compatibility statement are in
+  book's own reuse grant, which permits free reuse of its mechanics and game
+  text and welcomes third-party compatible works — the grant, what the pack
+  omits and why, and the required compatibility statement are in
   [the pack's LICENSE.md](static/content-packs/hmtw/LICENSE.md). No art from
   the book is reproduced; all artists retain copyright of their work.
 

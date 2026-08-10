@@ -7,9 +7,13 @@
  * behind the per-game spoiler opt-in. Primary consumer is a Zoom Whiteboard
  * iframe via the shell's embed mode (`?embed=1`).
  *
- * Text used with Josh McCrowell's direct OK (2026-08-06); the Tomb of Golden
- * Ghosts starter dungeon stays out at his request. See the pack's LICENSE.md
- * for the license text and required compatibility statement.
+ * Text used under the book's own published reuse grant — its mechanics and
+ * game text may be reused freely, and third-party compatible works are
+ * welcomed. That grant is the whole basis, and it is enough on its own: this
+ * project has no permission from Josh McCrowell specific to it, and must not
+ * claim one. The Tomb of Golden Ghosts starter dungeon stays out. See the
+ * pack's LICENSE.md for the grant verbatim and the required compatibility
+ * statement.
  */
 
 import type { GameModule } from '../types';
