@@ -316,7 +316,7 @@ line, with the shell honest about what each game can and cannot do.
   (10, Appendices C–E) sit behind the per-game spoiler opt-in, and a link
   into them lands on a "For the Gamemaster's Eyes" interstitial with the
   toggle, never a 404. The Tomb of Golden Ghosts tutorial dungeon is omitted
-  at the author's request — the reference points at the official Designing
+  — the reference points at the official Designing
   Dungeons course instead. Text used under the book's own reuse grant; the
   landing carries the Adherent of the Worm logo and buy links (official
   site, DriveThruRPG affiliate with the usual disclosure).

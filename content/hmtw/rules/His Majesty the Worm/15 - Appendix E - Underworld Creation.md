@@ -1442,4 +1442,4 @@ Why this trap doesn’t suck: The mushrooms are obviously bad news. The interact
 How to run it: Make it clear the guild cannot pass the mushrooms without disturbing them. If the adventurers have active flames while walking through the area, an explosion is triggered. Anybody carrying a light catches on fire. They take a Wound and one flammable item in their belt/pack is Notched every time an action is taken until they can put themselves out. Everybody adjacent in the marching order also takes a Wound. The adventurers can put their lights out to traverse the hallway—but how will they deal with what’s beyond in the dark?
 
 > [!info] The Tutorial Dungeon
-> The Tomb of Golden Ghosts starter dungeon is not included here at the author's request. For a guided course on building it — and on designing dungeons generally — see the official [Designing Dungeons course](https://dungeons.hismajestytheworm.games).
+> The Tomb of Golden Ghosts starter dungeon is not included in this reference. For a guided course on building it — and on designing dungeons generally — see the official [Designing Dungeons course](https://dungeons.hismajestytheworm.games).

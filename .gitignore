@@ -63,3 +63,10 @@ __pycache__/
 # Downloaded CI failure artifacts (gh run download / gh run view --log-failed)
 e2e-artifacts/
 e2e-failures.log
+
+# D1 backups taken before a production deploy (docs/deployment.md's runbook puts
+# them here, untracked). They are dumps of the live database — user rows, session
+# rows, campaign contents — and this repo is public. Ignored so that no `git add
+# -A` can ever sweep one in; a near miss on 2026-08-10 staged all five.
+/prod-pre-*.sql
+/*.db
