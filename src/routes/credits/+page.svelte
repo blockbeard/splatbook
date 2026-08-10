@@ -101,13 +101,16 @@
 					🎲 Shop DriveThruRPG through my affiliate link
 				</a>
 				<p class="mt-1 text-sm text-muted">
-					<!-- 15 days is DriveThruRPG's own published window for affiliate credit, not
-					     an estimate — a money disclosure should be checkable, so it names the
-					     number rather than saying "a couple of weeks". -->
-					If you buy anything on DriveThruRPG within 15 days of following this link, it costs you nothing
-					extra and the creators are paid in full — DriveThruRPG simply sends a small share of
-					<em>their</em> cut my way, which helps keep the lights on. (Stonetop isn't sold there, so this
-					is just for your other TTRPG shopping.)
+					<!-- Deliberately no attribution window here, and this note is why it should
+					     stay that way. DriveThruRPG's published figure is 15 days, but the credit
+					     is last-click: it lapses the moment the reader follows anyone else's
+					     affiliate link. Any number short enough to state is therefore wrong in
+					     the cases that matter, needs a sentence of conditions to be true, and
+					     goes stale the day they change it. "Through my affiliate link" is
+					     accurate under every one of those conditions. -->
+					If you buy something through my affiliate link, it costs you nothing extra and the creators
+					are paid in full — DriveThruRPG simply sends a small share of <em>their</em> cut my way, which
+					helps keep the lights on. (Stonetop isn't sold there, so this is just for your other TTRPG shopping.)
 				</p>
 			</div>
 		</div>

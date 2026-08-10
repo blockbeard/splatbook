@@ -29,8 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   two hand-authored parts of its pack; all three sections had been written when
   Stonetop was the only game.
 
-- **The affiliate disclosure names DriveThruRPG's actual window** — 15 days,
-  their published figure — instead of "a couple of weeks".
+- **The affiliate disclosure drops its attribution window.** It said "within a
+  couple of weeks"; DriveThruRPG's published figure is 15 days, but the credit
+  is last-click and lapses the moment a reader follows anyone else's affiliate
+  link — so any window short enough to state needs a sentence of conditions to
+  be true, and goes stale when they change it. It now says "if you buy
+  something through my affiliate link", which is accurate under all of them.
 
 - **The HMtW logo is visible in dark mode.** The "Adherent of His Majesty the
   Worm" third-party logo is the book's ink line-art — every opaque pixel is

@@ -20,10 +20,15 @@ export const KOFI_URL = 'https://ko-fi.com/miniblin';
 
 /**
  * DriveThruRPG affiliate storefront. Any DriveThruRPG URL carrying this
- * `affiliate_id` credits the operator up to 5% of purchases a visitor makes
- * within 15 days — at no extra cost to the buyer, and creators are paid in full.
- * Stonetop itself isn't sold on DriveThruRPG, so this is a general "shop
- * DriveThruRPG" link rather than a Stonetop product link.
+ * `affiliate_id` credits the operator up to 5% of a visitor's purchases — at
+ * no extra cost to the buyer, and creators are paid in full. Stonetop itself
+ * isn't sold on DriveThruRPG, so this is a general "shop DriveThruRPG" link
+ * rather than a Stonetop product link.
+ *
+ * DriveThruRPG publishes a 15-day window, but credit is *last-click*: it
+ * lapses as soon as the visitor follows anyone else's affiliate link. The
+ * disclosure on /credits therefore states no window at all — see the note
+ * there before adding the number to user-facing copy.
  */
 export const DRIVETHRU_AFFILIATE_URL =
 	'https://www.drivethrurpg.com/browse.php?affiliate_id=1070389';
