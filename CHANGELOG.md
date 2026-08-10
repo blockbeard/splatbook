@@ -21,6 +21,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   its own attribution and CC BY-SA link at the same time, and a new game gets
   one for free.
 
+- **Licensing links go somewhere readable.** The HMtW pack license pointed at
+  its served `/content-packs/hmtw/LICENSE.md` — raw markdown, which browsers
+  show as plain text or offer to download. Both `/hmtw` and `/credits` now link
+  the file on GitHub, which renders it and shows its history. The README also
+  documents HMtW's licensing, the second vault in the content pipeline, and the
+  two hand-authored parts of its pack; all three sections had been written when
+  Stonetop was the only game.
+
+- **The affiliate disclosure names DriveThruRPG's actual window** — 15 days,
+  their published figure — instead of "a couple of weeks".
+
 - **The HMtW logo is visible in dark mode.** The "Adherent of His Majesty the
   Worm" third-party logo is the book's ink line-art — every opaque pixel is
   pure black — so on the dark page it was black on near-black and simply gone.

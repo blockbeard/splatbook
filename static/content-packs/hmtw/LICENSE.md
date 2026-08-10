@@ -33,7 +33,6 @@ from the book is included; all artists retain copyright of their work.
 
 Deliberately omitted:
 
-- **The Castle Automatic** (not part of the open game text).
 - **The Tomb of Golden Ghosts** starter dungeon (Appendix E from "Building
   the Tutorial Dungeon" onward) — at the author's request. For a guided
   course on building it, see the official

@@ -140,8 +140,10 @@
 			{#if data.license?.url || creditsHref}
 				<p class="mt-3 text-xs text-muted">
 					{#if data.license?.url}
-						<!-- The pack's own LICENSE.md — the same file /credits points at. -->
-						<a href={data.license.url} rel="license" class="underline hover:text-text">
+						<!-- The pack's own license — the same target /credits points at. Not a
+						     new tab: a reader following a licensing claim should be able to
+						     come straight back with the back button. -->
+						<a href={data.license.url} rel="license external" class="underline hover:text-text">
 							Read the game-text license
 						</a>
 					{/if}

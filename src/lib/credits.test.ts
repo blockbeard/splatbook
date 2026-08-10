@@ -29,10 +29,14 @@ describe('licenseInfo', () => {
 		expect(info.shareAlike).toBe(false);
 	});
 
-	it('maps the HMtW LicenseRef to the pack’s served license text', () => {
+	it('maps the HMtW LicenseRef to the pack’s license on GitHub, rendered', () => {
 		const info = licenseInfo('LicenseRef-HMtW');
 		expect(info.label).toContain('HMtW');
-		expect(info.url).toBe('/content-packs/hmtw/LICENSE.md');
+		// The repo, not the served `/content-packs/…/LICENSE.md`: that path
+		// serves raw markdown, which browsers show as plain text or download.
+		expect(info.url).toBe(
+			'https://github.com/blockbeard/splatbook/blob/main/static/content-packs/hmtw/LICENSE.md'
+		);
 		expect(info.shareAlike).toBe(false);
 	});
 });

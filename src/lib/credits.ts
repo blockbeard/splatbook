@@ -5,6 +5,8 @@
  * the Svelte component so the mapping is unit-tested.
  */
 
+import { APP_REPO_URL } from '$lib/index';
+
 export interface LicenseInfo {
 	/** SPDX id as declared (e.g. `CC-BY-SA-4.0`). */
 	spdx: string;
@@ -28,10 +30,16 @@ const KNOWN: Record<string, { label: string; url: string }> = {
 	},
 	// A LicenseRef-* id is pack-specific by nature: the book's own reuse grant,
 	// reproduced verbatim (with what the pack omits and why) in the pack's
-	// served LICENSE.md.
+	// LICENSE.md.
+	//
+	// Linked on GitHub rather than at its served path: the served copy is raw
+	// markdown, which a browser shows as plain text or offers to download —
+	// shabby for the one link a reader follows to check a licensing claim.
+	// GitHub renders it, and shows its history, which is the better answer for
+	// a license anyway.
 	'LicenseRef-HMtW': {
 		label: 'HMtW open game text (see pack license)',
-		url: '/content-packs/hmtw/LICENSE.md'
+		url: `${APP_REPO_URL}/blob/main/static/content-packs/hmtw/LICENSE.md`
 	}
 };
 

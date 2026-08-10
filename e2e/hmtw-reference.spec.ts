@@ -57,7 +57,7 @@ test('the game landing speaks for the pack: logo, honest pitch, buy links, no bu
 	).toBeVisible();
 	await expect(page.getByRole('link', { name: /Read the game-text license/ })).toHaveAttribute(
 		'href',
-		'/content-packs/hmtw/LICENSE.md'
+		'https://github.com/blockbeard/splatbook/blob/main/static/content-packs/hmtw/LICENSE.md'
 	);
 	await expect(page.getByRole('link', { name: /Full credits from the book/ })).toHaveAttribute(
 		'href',

@@ -101,10 +101,13 @@
 					🎲 Shop DriveThruRPG through my affiliate link
 				</a>
 				<p class="mt-1 text-sm text-muted">
-					If you buy anything on DriveThruRPG within a couple of weeks of following this link, it
-					costs you nothing extra and the creators are paid in full — DriveThruRPG simply sends a
-					small share of <em>their</em> cut my way, which helps keep the lights on. (Stonetop isn't sold
-					there, so this is just for your other TTRPG shopping.)
+					<!-- 15 days is DriveThruRPG's own published window for affiliate credit, not
+					     an estimate — a money disclosure should be checkable, so it names the
+					     number rather than saying "a couple of weeks". -->
+					If you buy anything on DriveThruRPG within 15 days of following this link, it costs you nothing
+					extra and the creators are paid in full — DriveThruRPG simply sends a small share of
+					<em>their</em> cut my way, which helps keep the lights on. (Stonetop isn't sold there, so this
+					is just for your other TTRPG shopping.)
 				</p>
 			</div>
 		</div>

@@ -68,7 +68,8 @@ staging) is documented in [docs/deployment.md](docs/deployment.md).
   registry; the shell touches game code only through it
 - `static/content-packs/<gameId>/` — content packs: JSON data + markdown rules,
   no code, each with its own license (see [docs/content-packs.md](docs/content-packs.md))
-- `content/stonetop/` — pack authoring sources
+- `content/<gameId>/` — pack authoring sources (`rules/` is generated from the
+  game's Obsidian vault; everything beside it is hand-authored)
 - `docs/` — architecture, pack format, `adding-a-game.md` walkthrough, deployment,
   and the implementation plan
 - `tools/` — content pipeline and validation scripts
@@ -79,18 +80,35 @@ game strings in app code. To add a game, see
 
 ## Content pipeline
 
-The Stonetop rules text is maintained in an Obsidian vault (the source of truth)
-and converted here by:
+Each game's rules text is maintained in an Obsidian vault (the source of truth)
+and converted here — `content/<gameId>/rules/` is generated output, never edited
+by hand:
 
 ```
 python3 tools/build_rules.py --vault /path/to/StonetopVault --out content/stonetop/rules --config tools/rules.stonetop.json
+python3 tools/build_rules.py --vault "/path/to/His Majesty the Worm" --out content/hmtw/rules --config tools/rules.hmtw.json
 ```
 
-The conversion strips art and PDF embeds (not covered by the text license), remaps
+The conversion strips art and PDF embeds (not covered by the text licenses), remaps
 print page-number anchors to section links, and verifies that every cross-reference
-resolves. The search index is rebuilt with `npm run build:search`.
+resolves. Per-corpus behaviour — callout stripping and hoisting, insertions, owned-art
+allowlists, heading demotion — is configured per game in `tools/rules.<gameId>.json`;
+anything Splatbook adds lives in that config's `insertions` rather than in the vault.
+
+Then, in order: `python3 tools/build_srd.py` projects the notes into the packs'
+document trees, `npm run build:search` builds the search and link indexes, and
+`npm run build:pages` emits the reference's nav spine and per-page artifacts
+(wired into `prebuild`/`predev`, and gitignored — they are derived).
+
+Two pieces of HMtW's pack are deliberately hand-authored, not generated:
+`content/hmtw/gm-note/` (the Gamemaster-content opt-in page) and
+`content/hmtw/index-terms.json` (the curated pinned index terms, a fork of the
+vault's copy so term fixes survive a reimport).
 
 ## Licensing
+
+Each content pack is licensed separately from the application, and from each
+other.
 
 - Application source: [GPL-3.0-or-later](LICENSE).
 - Stonetop text (`content/stonetop/`, `static/content-packs/stonetop/`):
@@ -98,6 +116,16 @@ resolves. The search index is rebuilt with `npm run build:search`.
   © Jeremy Strandberg / Lampblack & Brimstone. Splatbook is an independent
   production and is not affiliated with Lampblack & Brimstone. No Stonetop
   artwork is reproduced.
+- His Majesty the Worm text (`content/hmtw/`, `static/content-packs/hmtw/`):
+  © 2023 Joshua McCrowell, published by Exalted Funeral Press. Used under the
+  book's own reuse grant for its mechanics and game text, with the author's
+  direct OK for this project (2026-08-06) — the grant, what the pack omits and
+  why, and the required compatibility statement are in
+  [the pack's LICENSE.md](static/content-packs/hmtw/LICENSE.md). No art from
+  the book is reproduced; all artists retain copyright of their work.
+
+  **Splatbook is an independent production by Chris Wilson and is not
+  affiliated with Joshua McCrowell or Exalted Funeral.**
 
 Architecture inspired by Arrowed's [guild-book](https://github.com/arrowedisgaming/guild-book)
 and [Miskatonic University Registrar](https://github.com/arrowedisgaming/MiskatonicUniversityRegistrar).
