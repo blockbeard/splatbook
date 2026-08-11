@@ -45,9 +45,19 @@ test('GM authors an Arcana mystery; the campaign setting gates its visibility', 
 	await page.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
 	const campaignUrl = page.url();
 
+	// Scoped to the row for the character this test just built, via the hidden
+	// entityId the attach form posts — not "the Attach button in the section".
+	// That shortcut assumes the account owns exactly one character, which is
+	// true only against a virgin database: the moment a second one exists the
+	// locator matches two elements and Playwright fails on strict mode, with an
+	// error that reads like a product bug rather than a test that outgrew its
+	// own assumption.
 	const myCharacters = page.locator('section', { hasText: 'Your characters' });
-	await myCharacters.getByRole('button', { name: /^Attach$/ }).click();
-	await expect(myCharacters.getByText('Attached · remove')).toBeVisible();
+	const characterRow = myCharacters.locator('li', {
+		has: page.locator(`input[name="entityId"][value="${characterId}"]`)
+	});
+	await characterRow.getByRole('button', { name: /^Attach$/ }).click();
+	await expect(characterRow.getByText('Attached · remove')).toBeVisible();
 
 	// Author a mystery through the GM Arcana tool.
 	await page.getByRole('link', { name: 'Author Arcana' }).click();

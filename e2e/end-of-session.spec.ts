@@ -77,10 +77,16 @@ test('the GM ends a session and the XP lands on the sheet', async ({ page }) => 
 	await page.getByRole('button', { name: 'Create campaign' }).click();
 	await page.waitForURL(/\/campaigns\/[0-9a-f-]{36}$/);
 
-	await page
-		.getByRole('button', { name: /Attach/ })
-		.first()
-		.click();
+	// Scoped to Ryn's own row (see the note in campaign-arcana-gm.spec.ts). The
+	// page-wide `.first()` this replaces was looser still: every attachable
+	// thing on the dashboard offers an Attach button, steadings included, so a
+	// second character — or a steading listed first — meant seating the wrong
+	// entity and then failing further down, where the cause is no longer visible.
+	const characterRow = page.locator('li', {
+		has: page.locator(`input[name="entityId"][value="${created.id}"]`)
+	});
+	await characterRow.getByRole('button', { name: /^Attach$/ }).click();
+	await expect(characterRow.getByText('Attached · remove')).toBeVisible();
 	await expect(page.getByText('Ryn').first()).toBeVisible();
 
 	// Run the move: two group "yes"es, and one personal prompt for Ryn.

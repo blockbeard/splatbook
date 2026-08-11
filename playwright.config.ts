@@ -48,6 +48,19 @@ export default defineConfig({
 		}
 	],
 	webServer: {
+		/**
+		 * NOTE: `reuseExistingServer` means the whole chain — including the database
+		 * reset — is skipped when a server is already listening on PORT. So CI always
+		 * runs against a virgin database and a local re-run never does: rows pile up
+		 * across runs until something trips over the second copy of its own fixture.
+		 *
+		 * A spec must therefore not assume an empty database. Scope locators to the
+		 * entity the test just created (both campaign specs do this through the
+		 * hidden `entityId` the attach form posts) rather than to "the first row" or
+		 * "the button in that section". A test that only passes on the first run of
+		 * the day is worse than a failing one — it reads as a product regression, and
+		 * that is exactly how an hour went missing on 2026-08-11.
+		 */
 		command: 'npm run build && tsx e2e/reset-db.ts && node build/index.js',
 		port: PORT,
 		reuseExistingServer: !process.env.CI,
