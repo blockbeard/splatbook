@@ -35,7 +35,7 @@ all artists retain copyright of their work.
 Deliberately omitted:
 
 - **The Tomb of Golden Ghosts** starter dungeon (Appendix E from "Building
-  the Tutorial Dungeon" onward). For a guided course on building it, see the
+  the Tutorial Dungeon" onward). For a guided course on building your own dungeon, with examples, see the
   official
   [Designing Dungeons course](https://dungeons.hismajestytheworm.games).
 
