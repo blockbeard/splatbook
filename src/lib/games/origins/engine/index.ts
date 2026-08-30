@@ -10,6 +10,7 @@
 export * from './character';
 export * from './abilities';
 export * from './derived';
+export * from './proficiencies';
 export * from './spellcasting';
 export * from './validation';
 

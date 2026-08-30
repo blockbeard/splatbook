@@ -18,7 +18,8 @@ const ctx = (backgroundId: string): PackContext => ({
 	reference,
 	equipment,
 	background: background(backgroundId),
-	referenceClass: referenceClass('cleric')
+	referenceClass: referenceClass('cleric'),
+	species: null
 });
 
 describe('who is a spellcaster', () => {

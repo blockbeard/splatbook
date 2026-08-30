@@ -22,10 +22,12 @@ import type {
 	OriginsRules,
 	ReferenceClass,
 	ReferenceData,
-	Skill
+	Skill,
+	Species
 } from '../pack-schemas';
 import { abilityModifier } from './abilities';
 import type { OriginsCharacter } from './character';
+import { skillProficiencyIds } from './proficiencies';
 
 /** Everything the derivations need from the pack, in one bag. */
 export interface PackContext {
@@ -34,6 +36,9 @@ export interface PackContext {
 	equipment: Equipment;
 	background: Background | null;
 	referenceClass: ReferenceClass | null;
+	/** Needed because a species choice can grant a skill (Elf's Keen Senses,
+	 * Human's Skillful), and skill proficiency is derived, not stored. */
+	species: Species | null;
 }
 
 /** Fixed for every Origins character: no levels, nothing to scale with. */
@@ -120,15 +125,20 @@ export function savingThrow(character: OriginsCharacter, ability: Ability): numb
 
 // --- Skills ---------------------------------------------------------------
 
-/** Is the character proficient in this skill? */
-export function hasSkill(character: OriginsCharacter, skill: Skill): boolean {
-	return character.skills.includes(skill.id);
+/**
+ * Is the character proficient in this skill?
+ *
+ * Derived from the background and the species choices rather than read off the
+ * character — see `proficiencies.ts` for why.
+ */
+export function hasSkill(character: OriginsCharacter, skill: Skill, ctx: PackContext): boolean {
+	return skillProficiencyIds(character, ctx).has(skill.id);
 }
 
 /** A skill check modifier: the governing ability, plus proficiency if trained. */
 export function skillModifier(character: OriginsCharacter, skill: Skill, ctx: PackContext): number {
 	const base = abilityModifier(character, skill.ability);
-	return base + (hasSkill(character, skill) ? proficiencyBonus(ctx.rules) : 0);
+	return base + (hasSkill(character, skill, ctx) ? proficiencyBonus(ctx.rules) : 0);
 }
 
 /** Passive Perception: 10 + the Perception modifier. */

@@ -21,15 +21,28 @@ import {
 	startingGold,
 	type PackContext
 } from './derived';
-import { background, equipment, reference, referenceClass, rules, skill } from './fixtures';
+import {
+	background,
+	equipment,
+	reference,
+	referenceClass,
+	rules,
+	skill,
+	speciesById
+} from './fixtures';
 
-function context(backgroundId: string | null, classId: string | null): PackContext {
+function context(
+	backgroundId: string | null,
+	classId: string | null,
+	speciesId: string | null = null
+): PackContext {
 	return {
 		rules,
 		reference,
 		equipment,
 		background: backgroundId ? background(backgroundId) : null,
-		referenceClass: classId ? referenceClass(classId) : null
+		referenceClass: classId ? referenceClass(classId) : null,
+		species: speciesId ? speciesById(speciesId) : null
 	};
 }
 
@@ -140,13 +153,16 @@ describe('skills', () => {
 
 	it('adds proficiency only where the character is proficient', () => {
 		const c = withScores({ WIS: 16, INT: 10 });
-		c.skills = ['religion'];
+		// Proficiency is derived from the background, not stored on the
+		// character — Acolyte grants Insight and Religion. See proficiencies.ts.
 		expect(skillModifier(c, skill('religion'), ctx)).toBe(2); // INT +0, +2 proficiency
-		expect(skillModifier(c, skill('insight'), ctx)).toBe(3); // WIS +3, untrained
+		expect(skillModifier(c, skill('insight'), ctx)).toBe(5); // WIS +3, +2 proficiency
+		expect(skillModifier(c, skill('arcana'), ctx)).toBe(0); // INT +0, untrained
 	});
 
 	it('computes passive Perception from the Perception modifier', () => {
 		const c = withScores({ WIS: 14 });
+		// Acolyte grants no Perception, so this is the bare 10 + WIS.
 		expect(passivePerception(c, ctx)).toBe(12);
 		c.skills = ['perception'];
 		expect(passivePerception(c, ctx)).toBe(14);
