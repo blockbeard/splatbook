@@ -1,0 +1,18 @@
+{
+	"id": "origins",
+	"name": "Origins 5.5e",
+	"version": "1.0.0",
+	"license": "CC-BY-4.0",
+	"attribution": "Origins 5.5e © 2026 by Patchwork Paladin, licensed under CC BY 4.0. This work includes material from the System Reference Document 5.2.1 (\"SRD 5.2.1\") by Wizards of the Coast LLC, available at https://www.dndbeyond.com/srd. The SRD 5.2.1 is licensed under the Creative Commons Attribution 4.0 International License, available at https://creativecommons.org/licenses/by/4.0/legalcode. Splatbook is an independent production by Chris Wilson and is not affiliated with Patchwork Paladin or Wizards of the Coast.",
+	"files": [
+		"landing.json",
+		"data/origins-rules.json",
+		"data/backgrounds.json",
+		"data/species.json",
+		"data/reference-classes.json",
+		"data/feats.json",
+		"data/equipment.json",
+		"data/spells.json",
+		"data/reference.json"
+	]
+}

@@ -1,0 +1,44 @@
+/*
+ * Origins 5.5e's skin.
+ *
+ * Same contract as the other games': override the shell's `--sb-*` tokens
+ * under `html[data-game='origins']` and every shell component picks them up.
+ * Nothing here is imported by the shell.
+ *
+ * Palette: parchment and oxblood — the look of a photocopied character sheet
+ * from a game that predates the one it is hacking. Deliberately warmer and
+ * plainer than Stonetop's, because that is what the hack is: low-power,
+ * old-school play, run off a single sheet of paper.
+ *
+ * No display face is loaded. The shell's own stack does the work: the pack
+ * ships tables and stat blocks rather than prose, and a builder is read in
+ * glances, not paragraphs.
+ */
+
+html[data-game='origins'] {
+	--sb-bg: #f6f1e6;
+	--sb-surface: #fffdf7;
+	--sb-text: #241f1a;
+	--sb-muted: #6b6157;
+	--sb-accent: #7a2e26;
+	--sb-accent-contrast: #fffdf7;
+	--sb-border: rgba(36, 31, 26, 0.2);
+	--sb-danger: #97372a;
+	--sb-callout-border: rgba(36, 31, 26, 0.25);
+	--sb-callout-bg: rgba(122, 46, 38, 0.05);
+	--sb-callout-label: var(--sb-accent);
+}
+
+html.dark[data-game='origins'] {
+	--sb-bg: #17140f;
+	--sb-surface: #201c16;
+	--sb-text: #ece5d8;
+	--sb-muted: #a89c8b;
+	--sb-accent: #d98d7c;
+	--sb-accent-contrast: #17140f;
+	--sb-border: rgba(236, 229, 216, 0.22);
+	--sb-danger: #e09880;
+	--sb-callout-border: rgba(236, 229, 216, 0.28);
+	--sb-callout-bg: rgba(217, 141, 124, 0.08);
+	--sb-callout-label: var(--sb-accent);
+}

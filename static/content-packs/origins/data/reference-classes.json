@@ -1,0 +1,502 @@
+{
+	"referenceClasses": [
+		{
+			"id": "barbarian",
+			"name": "Barbarian",
+			"hitDie": 12,
+			"armorTraining": {
+				"light": true,
+				"medium": true,
+				"heavy": false,
+				"shields": true,
+				"text": "Light and Medium armor and Shields"
+			},
+			"weaponProficiencies": "Simple and Martial weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Greataxe",
+							"4 Handaxes",
+							"Explorer's Pack"
+						],
+						"gp": 15
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 75
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Strength",
+				"savingThrowProficiencies": "Strength and Constitution",
+				"skillProficiencies": "Choose 2: Animal Handling, Athletics, Intimidation, Nature, Perception, or Survival"
+			}
+		},
+		{
+			"id": "bard",
+			"name": "Bard",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": true,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "Light armor"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Leather Armor",
+							"2 Daggers",
+							"Musical Instrument of your choice",
+							"Entertainer's Pack"
+						],
+						"gp": 19
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 90
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Charisma",
+				"savingThrowProficiencies": "Dexterity and Charisma",
+				"skillProficiencies": "Choose any 3 skills (see Playing the Game)"
+			}
+		},
+		{
+			"id": "cleric",
+			"name": "Cleric",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": true,
+				"medium": true,
+				"heavy": false,
+				"shields": true,
+				"text": "Light and Medium armor and Shields"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Chain Shirt",
+							"Shield",
+							"Mace",
+							"Holy Symbol",
+							"Priest's Pack"
+						],
+						"gp": 7
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 110
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Wisdom",
+				"savingThrowProficiencies": "Wisdom and Charisma",
+				"skillProficiencies": "Choose 2: History, Insight, Medicine, Persuasion, or Religion"
+			}
+		},
+		{
+			"id": "druid",
+			"name": "Druid",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": true,
+				"medium": false,
+				"heavy": false,
+				"shields": true,
+				"text": "Light armor and Shields"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Leather Armor",
+							"Shield",
+							"Sickle",
+							"Druidic Focus (Quarterstaff)",
+							"Explorer's Pack",
+							"Herbalism Kit"
+						],
+						"gp": 9
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 50
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Wisdom",
+				"savingThrowProficiencies": "Intelligence and Wisdom",
+				"skillProficiencies": "Choose 2: Animal Handling, Arcana, Insight, Medicine, Nature, Perception, Religion, or Survival"
+			}
+		},
+		{
+			"id": "fighter",
+			"name": "Fighter",
+			"hitDie": 10,
+			"armorTraining": {
+				"light": true,
+				"medium": true,
+				"heavy": true,
+				"shields": true,
+				"text": "Light, Medium, and Heavy armor and Shields"
+			},
+			"weaponProficiencies": "Simple and Martial weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Chain Mail",
+							"Greatsword",
+							"Flail",
+							"8 Javelins",
+							"Dungeoneer's Pack"
+						],
+						"gp": 4
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [
+							"Studded Leather Armor",
+							"Scimitar",
+							"Shortsword",
+							"Longbow",
+							"20 Arrows",
+							"Quiver",
+							"Dungeoneer's Pack"
+						],
+						"gp": 11
+					},
+					{
+						"id": "c",
+						"label": "C",
+						"items": [],
+						"gp": 155
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Strength or Dexterity",
+				"savingThrowProficiencies": "Strength and Constitution",
+				"skillProficiencies": "Choose 2: Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Persuasion, Perception, or Survival"
+			}
+		},
+		{
+			"id": "monk",
+			"name": "Monk",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": false,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "None"
+			},
+			"weaponProficiencies": "Simple weapons and Martial weapons that have the Light property",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Spear",
+							"5 Daggers",
+							"Artisan's Tools or Musical Instrument chosen for the tool proficiency above",
+							"Explorer's Pack"
+						],
+						"gp": 11
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 50
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Dexterity and Wisdom",
+				"savingThrowProficiencies": "Strength and Dexterity",
+				"skillProficiencies": "Choose 2: Acrobatics, Athletics, History, Insight, Religion, or Stealth"
+			}
+		},
+		{
+			"id": "paladin",
+			"name": "Paladin",
+			"hitDie": 10,
+			"armorTraining": {
+				"light": true,
+				"medium": true,
+				"heavy": true,
+				"shields": true,
+				"text": "Light, Medium, and Heavy armor and Shields"
+			},
+			"weaponProficiencies": "Simple and Martial weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Chain Mail",
+							"Shield",
+							"Longsword",
+							"6 Javelins",
+							"Holy Symbol",
+							"Priest's Pack"
+						],
+						"gp": 9
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 150
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Strength and Charisma",
+				"savingThrowProficiencies": "Wisdom and Charisma",
+				"skillProficiencies": "Choose 2: Athletics, Insight, Intimidation, Medicine, Persuasion, or Religion"
+			}
+		},
+		{
+			"id": "ranger",
+			"name": "Ranger",
+			"hitDie": 10,
+			"armorTraining": {
+				"light": true,
+				"medium": true,
+				"heavy": false,
+				"shields": true,
+				"text": "Light and Medium armor and Shields"
+			},
+			"weaponProficiencies": "Simple and Martial weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Studded Leather Armor",
+							"Scimitar",
+							"Shortsword",
+							"Longbow",
+							"20 Arrows",
+							"Quiver",
+							"Druidic Focus (sprig of mistletoe)",
+							"Explorer's Pack"
+						],
+						"gp": 7
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 150
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Dexterity and Wisdom",
+				"savingThrowProficiencies": "Strength and Dexterity",
+				"skillProficiencies": "Choose 3: Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, or Survival"
+			}
+		},
+		{
+			"id": "rogue",
+			"name": "Rogue",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": true,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "Light armor"
+			},
+			"weaponProficiencies": "Simple weapons and Martial weapons that have the Finesse or Light property",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Leather Armor",
+							"2 Daggers",
+							"Shortsword",
+							"Shortbow",
+							"20 Arrows",
+							"Quiver",
+							"Thieves' Tools",
+							"Burglar's Pack"
+						],
+						"gp": 8
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 100
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Dexterity",
+				"savingThrowProficiencies": "Dexterity and Intelligence",
+				"skillProficiencies": "Choose 4: Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Persuasion, Sleight of Hand, or Stealth"
+			}
+		},
+		{
+			"id": "sorcerer",
+			"name": "Sorcerer",
+			"hitDie": 6,
+			"armorTraining": {
+				"light": false,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "None"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Spear",
+							"2 Daggers",
+							"Arcane Focus (crystal)",
+							"Dungeoneer's Pack"
+						],
+						"gp": 28
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 50
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Charisma",
+				"savingThrowProficiencies": "Constitution and Charisma",
+				"skillProficiencies": "Choose 2: Arcana, Deception, Insight, Intimidation, Persuasion, or Religion"
+			}
+		},
+		{
+			"id": "warlock",
+			"name": "Warlock",
+			"hitDie": 8,
+			"armorTraining": {
+				"light": true,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "Light armor"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"Leather Armor",
+							"Sickle",
+							"2 Daggers",
+							"Arcane Focus (orb)",
+							"Book (occult lore)",
+							"Scholar's Pack"
+						],
+						"gp": 15
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 100
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Charisma",
+				"savingThrowProficiencies": "Wisdom and Charisma",
+				"skillProficiencies": "Choose 2: Arcana, Deception, History, Intimidation, Investigation, Nature, or Religion"
+			}
+		},
+		{
+			"id": "wizard",
+			"name": "Wizard",
+			"hitDie": 6,
+			"armorTraining": {
+				"light": false,
+				"medium": false,
+				"heavy": false,
+				"shields": false,
+				"text": "None"
+			},
+			"weaponProficiencies": "Simple weapons",
+			"startingEquipment": {
+				"options": [
+					{
+						"id": "a",
+						"label": "A",
+						"items": [
+							"2 Daggers",
+							"Arcane Focus (Quarterstaff)",
+							"Robe",
+							"Spellbook",
+							"Scholar's Pack"
+						],
+						"gp": 5
+					},
+					{
+						"id": "b",
+						"label": "B",
+						"items": [],
+						"gp": 55
+					}
+				]
+			},
+			"notGranted": {
+				"primaryAbility": "Intelligence",
+				"savingThrowProficiencies": "Intelligence and Wisdom",
+				"skillProficiencies": "Choose 2: Arcana, History, Insight, Investigation, Medicine, Nature, or Religion"
+			}
+		}
+	]
+}

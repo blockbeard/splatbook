@@ -112,7 +112,6 @@
 	"human": [
 		{
 			"id": "size",
-			"trait": "Size",
 			"label": "Size",
 			"options": [
 				{ "id": "medium", "name": "Medium", "note": "about 4–7 feet tall" },
@@ -139,7 +138,6 @@
 	"tiefling": [
 		{
 			"id": "size",
-			"trait": "Size",
 			"label": "Size",
 			"options": [
 				{ "id": "medium", "name": "Medium", "note": "about 4–7 feet tall" },

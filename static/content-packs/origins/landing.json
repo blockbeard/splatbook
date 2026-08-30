@@ -1,0 +1,17 @@
+{
+	"kicker": "Unofficial character builder",
+	"tagline": "Build a character for Patchwork Paladin's classless, level-less hack of the 5.2 SRD.",
+	"blurb": "No classes and no levels: you are a background, a species, and a set of ability scores, with a \"reference class\" borrowed for nothing but its hit die, armor training, shields, and weapon proficiencies. Made for low-level, old-school play, where your wits, your gear, and your contacts matter more than your character sheet.",
+	"links": [
+		{
+			"label": "Read the rules — Patchwork Paladin",
+			"url": "https://patchworkpaladin.com/2026/08/30/origins-5-5e/",
+			"note": "The whole hack is one blog post, free to read, CC BY 4.0."
+		},
+		{
+			"label": "SRD 5.2.1 — D&D Beyond",
+			"url": "https://www.dndbeyond.com/srd",
+			"note": "The System Reference Document these rules modify, also CC BY 4.0."
+		}
+	]
+}
