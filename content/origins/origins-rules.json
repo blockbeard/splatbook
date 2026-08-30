@@ -1,0 +1,87 @@
+{
+	"$comment": "Pack-authored, not extracted: the Origins 5.5e hack's own rules and text (Patchwork Paladin, CC BY 4.0), quoted from the post at https://patchworkpaladin.com/2026/08/30/origins-5-5e/. Copied into the pack verbatim by tools/build_origins_data.py. The DM-facing advice is deliberately absent — this pack is scoped to the character builder.",
+	"title": "Origins 5.5e",
+	"subtitle": "A classless, level-less rules hack for folk heroic play",
+	"source": {
+		"author": "Patchwork Paladin",
+		"url": "https://patchworkpaladin.com/2026/08/30/origins-5-5e/",
+		"published": "2026-08-30"
+	},
+	"intro": "Use these rules to play low-level and old school adventures. There are only a few changes to the 5.2 SRD, the most important of which are that classes and levels are eliminated. You build a character with just the character origin rules.",
+	"rules": {
+		"proficiencyBonus": 2,
+		"referenceClass": {
+			"grants": ["hitDie", "armorTraining", "shields", "weaponProficiencies"],
+			"text": "You should pick a background, and then also pick a reference class for your character. Add Hit Die Type, Armor Training, Shield, and Weapon Proficiency from the reference class to the background. For example, if you pick the Criminal background, you could use the hit die, armor training, shield and weapon proficiencies of the Rogue class. It's not always so obvious. For example, you pick the Artisan background but you have in mind a weaponsmith — in that case you might pick Fighter as a reference class for your training and equipment.",
+			"note": "A reference class gives you those four things and nothing else — no saving throw proficiencies, no class skills, and no class features."
+		},
+		"equipment": {
+			"text": "Add an appropriate ordinary equipment kit (like the Burglar's, Scholar's, Dungeoneer's, or Priest's Pack) and your clothes, weapons, and armor to the background equipment list (Option A in the background). These are usually listed in the reference class you picked in the previous step.",
+			"startingGold": {
+				"base": 100,
+				"withMediumOrHeavyArmorTraining": 150,
+				"text": "The background's starting gold (Option B in the background) should be increased to 100 gold, or to 150 gold for those with medium or heavy armor proficiency."
+			}
+		},
+		"hitPoints": {
+			"method": "roll",
+			"text": "Roll your Hit Die and add your CON bonus."
+		},
+		"spellcasting": {
+			"maxSpellLevel": 1,
+			"lists": ["cleric", "druid", "wizard"],
+			"text": "You are a spellcaster if your background indicates the Magic Initiate feat. In this system, you don't prepare spells or have spell slots. You may only cast any spell you have once per Long Rest, unless they are cantrips or spells cast as Rituals. Additional spells will be part of your adventure rewards. Those who choose from the Wizard list may learn additional spells from scrolls. Those who choose from the Cleric list may learn additional spells as a blessing from their deity. Those who choose from the Druid list may learn new spells by finding vital ingredients in nature."
+		},
+		"languages": {
+			"count": 2,
+			"text": "Choose two common languages your character speaks."
+		}
+	},
+	"steps": [
+		{
+			"id": "background",
+			"title": "Pick a background",
+			"text": "Pick a background, then pick a reference class to borrow Hit Die Type, Armor Training, Shield, and Weapon Proficiency from."
+		},
+		{
+			"id": "species",
+			"title": "Pick a species",
+			"text": "You gain the level 1 benefit of the species."
+		},
+		{
+			"id": "abilities",
+			"title": "Ability scores and other mechanical details",
+			"text": "Determine and assign your ability scores, either by rolling, standard array, or point buy system. Then, fill in remaining details, such as HP (roll your Hit Die and add your CON bonus), Armor Class, Weapons and Damage cantrips, saves, and passive Perception."
+		},
+		{
+			"id": "details",
+			"title": "History, languages, appearance, personality, alignment",
+			"text": "Consider your character's past and present and how they fit into the world and the campaign. Choose two common languages your character speaks. Describe your character's appearance and personality. If you are using alignment in your campaign, choose it now."
+		}
+	],
+	"playerAdvice": {
+		"intro": "Welcome to a world where you play someone who will make a difference to the world. You're a little bit special, sure, but you've got more going for you than just a knack or a bit of magic. You've got smarts, tools, friends, and most of all, your fellow adventurers to help you stay alive and achieve your goals.",
+		"points": [
+			"Use your wits, your equipment, and your contacts to overcome challenges that seem too difficult. With low-power characters, combat success is not assured.",
+			"If combat seems inevitable, try to stack the odds in your favour. Look for any advantages you can create through scouting, equipment, timing, allies, and so forth.",
+			"Remember that your abilities and features don't exclusively define your character, instead they are just one tool in your toolkit. One good contact with a grudge can be just as good as an invisibility spell for infiltrating an enemy hideout!",
+			"Look for ways to upgrade your character's abilities outside levelling — maybe there's a master armorer who will make you an exceptionally keen blade, or a blademaster to teach you a new move, or a temple where a god will bless you, or a rare book dealer who will trade you a scroll for a service. Actively seek these opportunities out, don't wait for the DM to drop them in your lap.",
+			"Inquire and seek out a patron who can give you advantages.",
+			"When you have enough money, hire guards and other employees to help you in your adventures.",
+			"Tell the DM what you'd like to do and play! \"I've always dreamed of finding a unicorn\" is a goal they can work with.",
+			"Listen carefully to the DM since you'll get clues and rumours from what they say. Elect someone to take notes in the party.",
+			"Team up with your fellow players to help their characters achieve their goals.",
+			"Talk with your DM and party about how you want to handle character deaths."
+		]
+	},
+	"abilityGeneration": {
+		"standardArray": [15, 14, 13, 12, 10, 8],
+		"pointBuy": {
+			"budget": 27,
+			"min": 8,
+			"max": 15,
+			"costs": { "8": 0, "9": 1, "10": 2, "11": 3, "12": 4, "13": 5, "14": 7, "15": 9 }
+		},
+		"roll": { "notation": "4d6", "dropLowest": 1, "count": 6 }
+	}
+}

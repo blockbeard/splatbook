@@ -1,0 +1,183 @@
+{
+	"$comment": "Pack-authored overlay: the choice points buried inside SRD species traits. The SRD writes these as prose ('Choose a lineage from the Elven Lineages table'); a builder needs them as options. Merged into species.json by tools/build_origins_data.py — a re-import never clobbers this file. Origins grants the level 1 benefit only, so the level 3/5 rows of the lineage tables are deliberately absent. 'from' draws options from reference.json/feats.json instead of listing them here.",
+	"dragonborn": [
+		{
+			"id": "draconic-ancestry",
+			"trait": "Draconic Ancestry",
+			"label": "Draconic ancestry",
+			"help": "Sets the damage type of your Breath Weapon and Damage Resistance.",
+			"options": [
+				{ "id": "black", "name": "Black", "note": "Acid" },
+				{ "id": "blue", "name": "Blue", "note": "Lightning" },
+				{ "id": "brass", "name": "Brass", "note": "Fire" },
+				{ "id": "bronze", "name": "Bronze", "note": "Lightning" },
+				{ "id": "copper", "name": "Copper", "note": "Acid" },
+				{ "id": "gold", "name": "Gold", "note": "Fire" },
+				{ "id": "green", "name": "Green", "note": "Poison" },
+				{ "id": "red", "name": "Red", "note": "Fire" },
+				{ "id": "silver", "name": "Silver", "note": "Cold" },
+				{ "id": "white", "name": "White", "note": "Cold" }
+			]
+		}
+	],
+	"elf": [
+		{
+			"id": "elven-lineage",
+			"trait": "Elven Lineage",
+			"label": "Elven lineage",
+			"options": [
+				{
+					"id": "drow",
+					"name": "Drow",
+					"note": "The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip."
+				},
+				{
+					"id": "high-elf",
+					"name": "High Elf",
+					"note": "You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list."
+				},
+				{
+					"id": "wood-elf",
+					"name": "Wood Elf",
+					"note": "Your Speed increases to 35 feet. You also know the Druidcraft cantrip."
+				}
+			]
+		},
+		{
+			"id": "elven-lineage-ability",
+			"trait": "Elven Lineage",
+			"label": "Spellcasting ability for your lineage",
+			"options": [
+				{ "id": "INT", "name": "Intelligence" },
+				{ "id": "WIS", "name": "Wisdom" },
+				{ "id": "CHA", "name": "Charisma" }
+			]
+		},
+		{
+			"id": "keen-senses",
+			"trait": "Keen Senses",
+			"label": "Keen Senses skill",
+			"options": [
+				{ "id": "insight", "name": "Insight" },
+				{ "id": "perception", "name": "Perception" },
+				{ "id": "survival", "name": "Survival" }
+			],
+			"grants": "skill"
+		}
+	],
+	"gnome": [
+		{
+			"id": "gnomish-lineage",
+			"trait": "Gnomish Lineage",
+			"label": "Gnomish lineage",
+			"options": [
+				{
+					"id": "forest-gnome",
+					"name": "Forest Gnome",
+					"note": "You know the Minor Illusion cantrip. You also always have the Speak with Animals spell prepared."
+				},
+				{
+					"id": "rock-gnome",
+					"name": "Rock Gnome",
+					"note": "You know the Mending and Prestidigitation cantrips, and can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device."
+				}
+			]
+		},
+		{
+			"id": "gnomish-lineage-ability",
+			"trait": "Gnomish Lineage",
+			"label": "Spellcasting ability for your lineage",
+			"options": [
+				{ "id": "INT", "name": "Intelligence" },
+				{ "id": "WIS", "name": "Wisdom" },
+				{ "id": "CHA", "name": "Charisma" }
+			]
+		}
+	],
+	"goliath": [
+		{
+			"id": "giant-ancestry",
+			"trait": "Giant Ancestry",
+			"label": "Giant ancestry",
+			"options": [
+				{ "id": "clouds-jaunt", "name": "Cloud's Jaunt", "note": "Cloud Giant" },
+				{ "id": "fires-burn", "name": "Fire's Burn", "note": "Fire Giant" },
+				{ "id": "frosts-chill", "name": "Frost's Chill", "note": "Frost Giant" },
+				{ "id": "hills-tumble", "name": "Hill's Tumble", "note": "Hill Giant" },
+				{ "id": "stones-endurance", "name": "Stone's Endurance", "note": "Stone Giant" },
+				{ "id": "storms-thunder", "name": "Storm's Thunder", "note": "Storm Giant" }
+			]
+		}
+	],
+	"human": [
+		{
+			"id": "size",
+			"trait": "Size",
+			"label": "Size",
+			"options": [
+				{ "id": "medium", "name": "Medium", "note": "about 4–7 feet tall" },
+				{ "id": "small", "name": "Small", "note": "about 2–4 feet tall" }
+			],
+			"grants": "size"
+		},
+		{
+			"id": "skillful",
+			"trait": "Skillful",
+			"label": "Skillful — one skill proficiency",
+			"from": "skills",
+			"grants": "skill"
+		},
+		{
+			"id": "versatile",
+			"trait": "Versatile",
+			"label": "Versatile — an Origin feat",
+			"help": "Skilled is recommended.",
+			"from": "origin-feats",
+			"grants": "feat"
+		}
+	],
+	"tiefling": [
+		{
+			"id": "size",
+			"trait": "Size",
+			"label": "Size",
+			"options": [
+				{ "id": "medium", "name": "Medium", "note": "about 4–7 feet tall" },
+				{ "id": "small", "name": "Small", "note": "about 3–4 feet tall" }
+			],
+			"grants": "size"
+		},
+		{
+			"id": "fiendish-legacy",
+			"trait": "Fiendish Legacy",
+			"label": "Fiendish legacy",
+			"options": [
+				{
+					"id": "abyssal",
+					"name": "Abyssal",
+					"note": "You have Resistance to Poison damage. You also know the Poison Spray cantrip."
+				},
+				{
+					"id": "chthonic",
+					"name": "Chthonic",
+					"note": "You have Resistance to Necrotic damage. You also know the Chill Touch cantrip."
+				},
+				{
+					"id": "infernal",
+					"name": "Infernal",
+					"note": "You have Resistance to Fire damage. You also know the Fire Bolt cantrip."
+				}
+			]
+		},
+		{
+			"id": "fiendish-legacy-ability",
+			"trait": "Fiendish Legacy",
+			"label": "Spellcasting ability for your legacy",
+			"options": [
+				{ "id": "INT", "name": "Intelligence" },
+				{ "id": "WIS", "name": "Wisdom" },
+				{ "id": "CHA", "name": "Charisma" }
+			]
+		}
+	]
+}
