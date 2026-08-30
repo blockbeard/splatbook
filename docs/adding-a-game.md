@@ -12,6 +12,17 @@ at code you can open and copy. Stonetop exercises the whole surface — a
 wizard-built entity type (characters), two editor-first ones (steadings, threats),
 a rules reference, and a GM guide — so a new game will use some subset of it.
 
+**The promise has now been walked three times.** Origins 5.5e (phase 28) is the
+third, and the one that tested it hardest: Stonetop and HMtW are both
+PbtA-shaped, while Origins is a d20 game whose character-creation grammar has
+nothing in common with a playbook. It landed in `content/origins/` +
+`static/content-packs/origins/` + `src/lib/games/origins/` plus the two
+registration lines — **and needed no shell change at all.** The generic wizard,
+the choices-so-far rail, the sheet/play slots and the entity-type map took a 5e
+character without argument. `src/lib/games/origins/` is the crib for a
+builder-only game: a pack loader, a pure engine, seven wizard steps, a sheet and
+a play mode, and no reference or GM guide.
+
 **The promise has now been walked twice.** His Majesty the Worm (phase 22) is the
 minimal subset: a rules reference and nothing else — no entity types, no engine,
 no GM guide. It landed in `content/hmtw/` + `static/content-packs/hmtw/` +

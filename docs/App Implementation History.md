@@ -623,3 +623,182 @@ The verification gap is closed by `npm run smoke` (`tools/smoke.ts`), wired into
 the deploy runbook as a required step: a real section page per game, asserting
 200, the section's own title, and page weight under 500 KB, sampled 15× because
 the failure only ever appeared on a cold isolate.
+
+## Phase 28 — Origins 5.5e: a character builder (game #3)
+
+*Filed 2026-08-30 from Chris's ask. Origins 5.5e (Patchwork Paladin,
+2026-08-30) is **a classless, level-less rules hack for folk-heroic play**: you
+build a character out of the SRD 5.2.1 character-origin rules alone — a
+background, a species, ability scores — and classes and levels are simply
+deleted. Initially a character builder and nothing else: no reference, no GM
+guide, no campaign surface.*
+
+*Neither source is reachable from the sandbox (the egress proxy 403s
+`patchworkpaladin.com` and `media.dndbeyond.com` at CONNECT — an organisation
+policy denial, not a network fault). The post came in as a saved HTML upload;
+the SRD comes from `downfallx/dnd-5e-srd-markdown`, a community markdown
+conversion of SRD 5.2.1 under the same CC BY 4.0.*
+
+### Licensing: one licence, two credits
+
+Both halves are **CC BY 4.0** — Origins 5.5e © 2026 by Patchwork Paladin, and
+SRD 5.2.1 © 2024 Wizards of the Coast LLC. So `manifest.license` stays a single
+SPDX string (`CC-BY-4.0`) and no shell change is needed; the pack's
+`attribution` and `LICENSE.md` carry both credits, with the SRD notice
+reproduced verbatim as the licence requires.
+
+*An earlier draft of this phase assumed the two halves would be separately
+licensed and planned a per-file-licensing layer in `PackManifest`. Recorded
+because it is the kind of thing a future game will genuinely need — but it is
+not needed here, and building it now would be abstraction without a second
+instance, which is exactly what the ground rules forbid.*
+
+**Provenance caveat, worth carrying:** the SRD markdown is a *community*
+conversion, not the publisher's PDF. Treat it as a source that can be wrong.
+The extraction tool must fail loudly on anything it cannot parse rather than
+silently drop it, and the pack test must snapshot every id so a re-import that
+loses a background or renames a feat fails CI instead of quietly shrinking the
+builder.
+
+### What Origins actually changes — the whole delta
+
+The builder is small because the hack is small. Every deviation from the SRD:
+
+1. **No class, no level.** Proficiency bonus is therefore fixed at **+2**, and
+   there is no progression to model.
+2. **Reference class.** You pick a class purely as a source of four things —
+   **Hit Point Die, Armor Training, Shields, Weapon Proficiencies** — and staple
+   them onto your background. Note what this *excludes*: **no saving-throw
+   proficiencies, no class skills, no class features.** The builder must not
+   quietly import them because 5e habit says it should. This is the single most
+   surprising rule in the hack and the one most likely to be got wrong.
+3. **Equipment.** Option A gains an ordinary equipment kit (Burglar's,
+   Scholar's, Dungeoneer's, Priest's Pack…) plus clothes, weapons and armour,
+   usually taken from the reference class's own starting equipment. Option B's
+   starting gold rises from the SRD's 50 GP to **100 GP**, or **150 GP** for a
+   character with Medium or Heavy armor training.
+4. **Spellcasting.** You are a caster only if your background grants **Magic
+   Initiate**. No spell slots and no preparation: each spell you know can be
+   cast **once per Long Rest**, except cantrips and spells cast as Rituals,
+   which are free. Cantrips and level 1 spells only. New spells arrive as
+   adventure rewards — scrolls (Wizard list), a deity's blessing (Cleric list),
+   or ingredients found in nature (Druid list).
+5. **Hit points.** Roll your Hit Die and add your CON modifier — *not* the usual
+   take-the-maximum at level 1.
+6. **Species.** Level 1 benefit only.
+
+Everything else — ability generation (roll / standard array / point buy),
+skills, languages, armour class, passive Perception — is the SRD's, unmodified.
+
+### The build surface is smaller than it looks
+
+SRD 5.2.1 is not the *Player's Handbook*: it ships **4 backgrounds** (Acolyte,
+Criminal, Sage, Soldier), **4 origin feats** (Alert, Magic Initiate, Savage
+Attacker, Skilled), **9 species**, and **12 classes** — of which the builder
+needs only each class's four reference traits and its starting equipment. Plus
+equipment, and the cantrip/level-1 slice of the Cleric, Druid and Wizard spell
+lists for Magic Initiate. That is the whole pack.
+
+### Pipeline
+
+`content/origins/` holds the *sources*: the vendored slice of SRD markdown we
+actually import, and `origins-rules.md` — the post's own rules text, extracted
+from the saved HTML. `tools/build_origins_data.py` turns them into the pack's
+JSON, written straight into `static/content-packs/origins/data/`.
+
+*Departure from Stonetop, deliberate: `content/stonetop/data/` and
+`static/content-packs/stonetop/data/` hold byte-identical copies of the same
+generated JSON, a duplication left over from before packs moved under
+`static/`. Origins keeps one copy — source in `content/`, artifact in the pack —
+matching how `rules/` already flows. Stonetop is not being migrated as part of
+this phase.*
+
+### The engine
+
+`src/lib/games/origins/engine/` — pure TypeScript, no UI or DB imports:
+
+- `character.ts` — the shape, `createCharacter()`, `migrateCharacter()`,
+  `SCHEMA_VERSION`. Store *choices*, derive everything else, so a rules fix
+  never has to migrate a stat block.
+- `abilities.ts` — modifiers, the three generation methods with a validator
+  each (an illegal point-buy spread should be refused, not warned about), and
+  the background's +2/+1 or +1/+1/+1 increases, capped at 20.
+- `derived.ts` — the one place the sheet's numbers come from: AC, HP,
+  initiative, saves (ability modifier only — see rule 2), skill modifiers,
+  passive Perception, carrying capacity.
+- `spellcasting.ts` — which list Magic Initiate opened, what may be chosen from
+  it, and the once-per-Long-Rest bookkeeping.
+- `validation.ts` — is this draft finishable, and which choices are still open?
+  The review step reads this rather than re-deriving it.
+
+Tests before UI on all of it. The rules that will actually bite — the four
+reference-class traits and nothing more, the 100/150 GP split, saves without
+proficiency — each get a test that fails if someone "fixes" them back to
+standard 5e.
+
+### The wizard
+
+Background → Reference class → Species → Ability scores → Equipment → Spells
+(only if Magic Initiate) → Details → Review, following the post's own order.
+Each step reads the pack, not the engine's opinion of the pack.
+
+This is the best test the wizard abstraction has had: Stonetop's playbooks and
+this are genuinely different character-creation grammars. **If a step needs
+shell work, that is a finding worth its own commit** — and worth writing down
+in `adding-a-game.md` either way.
+
+### Commits
+
+1. `feat(tools)`: `build_origins_data.py` — SRD markdown to pack JSON, strict.
+2. `content(origins)`: the pack — manifest, `LICENSE.md` with both notices,
+   `landing.json`, generated `data/`, and `SCHEMA.md`.
+3. `feat(origins)`: pack schemas and the round-trip pack test.
+4. `feat(origins)`: the engine, test-first, over several small commits.
+5. `feat(origins)`: the wizard steps.
+6. `feat(origins)`: the character sheet and play mode.
+7. `feat(origins)`: register and theme the game.
+8. `docs`: the third walkthrough note in `adding-a-game.md` — the promise held,
+   or here is what it cost.
+
+### Deliberately not in v1
+
+The rules reference (the post is short enough to read on its author's site, and
+the SRD is a click away), the DM-facing advice as a GM guide, encumbrance,
+downtime, and anything to do with monsters, magic items or treasure.
+
+### How it went
+
+*Built 2026-08-30, in one sitting, in the eight commits above.*
+
+**The framework promise held for the third time, and this was its hardest test
+yet.** Stonetop and HMtW are both PbtA-shaped; Origins is a d20 game with a
+completely different character-creation grammar. It still touched only
+`content/origins/`, `static/content-packs/origins/`, `src/lib/games/origins/`
+and `tools/`, plus the two one-line registrations — **and this time the shell
+needed no extraction at all.** The generic wizard, the choices-so-far rail, the
+sheet/play slots and the entity-type map all took a 5e character without
+argument.
+
+**Two things the plan got wrong, both recorded above rather than edited out.**
+The per-file-licensing layer in `PackManifest` was designed before the post was
+readable and turned out to be unnecessary — both halves are CC BY 4.0. And the
+plan assumed the pack data would be laborious; the SRD's *four* backgrounds and
+*four* Origin feats made it small.
+
+**Strict parsing earned its keep immediately.** The Spell Descriptions section
+is interrupted by stat blocks at its own heading level, which would have
+silently dropped two thirds of the spell list; and twelve spells of 339 write
+`**Component:**` rather than `**Components:**`. Both surfaced as hard errors
+rather than as a builder that quietly offered fewer spells.
+
+**The bug the unit tests could not have found.** Driving the finished builder in
+a real browser showed an Acolyte with Elven Keen Senses whose every skill read
+untrained and whose passive Perception was two points light: skill proficiency
+was a *stored* array that nothing ever wrote. Skills are a consequence of the
+background and the species choices, so they became derived like every other
+number — with their source carried, so the sheet can answer "why am I proficient
+in Perception?". The tests that now guard it are in
+`engine/proficiencies.test.ts`, and they exist because a screenshot found what
+79 passing unit tests did not. Worth remembering for game #4: build the thing,
+then *use* it.
+

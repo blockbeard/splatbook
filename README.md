@@ -2,11 +2,13 @@
 
 A game-agnostic framework for TTRPG companion apps: character builders, campaign
 and steading trackers, GM references, searchable rules, and shared dice — driven
-entirely by per-game content packs. Two game modules are live: a full companion
+entirely by per-game content packs. Three game modules are live: a full companion
 for [Stonetop](https://www.lampblackandbrimstone.com/) by Jeremy Strandberg /
-Lampblack & Brimstone at `/stonetop`, and a rules reference for
+Lampblack & Brimstone at `/stonetop`, a rules reference for
 [His Majesty the Worm](https://www.hismajestytheworm.games/) by Josh McCrowell
-at `/hmtw`.
+at `/hmtw`, and a character builder for
+[Origins 5.5e](https://patchworkpaladin.com/2026/08/30/origins-5-5e/) by
+Patchwork Paladin at `/origins`.
 
 > "Splat" is the old typesetter's slang for the asterisk in "the \* book."
 > The framework is named after a wildcard, which is the point.
@@ -39,6 +41,13 @@ What works today:
   curated pinned index terms, GM chapters behind a per-game spoiler opt-in,
   margin sidebars and the book's own monochrome look, and a chrome-less
   `?embed=1` mode built for reading inside a Zoom Whiteboard.
+- **Origins 5.5e** — a character builder for a classless, level-less hack of
+  SRD 5.2.1: a background, a species, ability scores, and a "reference class"
+  borrowed for its hit die, armor training, shields and weapon proficiencies
+  and nothing else. Seven wizard steps, a printable sheet, and a play mode with
+  the once-per-Long-Rest spell bookkeeping Origins uses instead of slots. The
+  framework promise walked a third time — and the first time with no shell
+  change at all.
 
 Production runs at [splatbook.app](https://splatbook.app) (Cloudflare Pages +
 D1); staging soaks on atlas. Unbuilt work lives in
@@ -100,6 +109,20 @@ document trees, `npm run build:search` builds the search and link indexes, and
 `npm run build:pages` emits the reference's nav spine and per-page artifacts
 (wired into `prebuild`/`predev`, and gitignored — they are derived).
 
+Origins 5.5e's pack is the exception to the vault pipeline: its source is SRD
+5.2.1 as markdown rather than an Obsidian vault, and what the builder needs is
+structured data rather than a document tree, so it has its own extractor:
+
+```
+python3 tools/build_origins_data.py --srd /path/to/dnd-5e-srd-markdown
+```
+
+That writes `static/content-packs/origins/data/` directly — generated, never
+hand-edited. Its two authored inputs live in `content/origins/`:
+`origins-rules.json` (the hack's own rules and text) and `species-choices.json`
+(the choice points the SRD writes as prose and a builder needs as options).
+`content/origins/SCHEMA.md` documents every file.
+
 Two pieces of HMtW's pack are deliberately hand-authored, not generated:
 `content/hmtw/gm-note/` (the Gamemaster-content opt-in page) and
 `content/hmtw/index-terms.json` (the curated pinned index terms, a fork of the
@@ -126,6 +149,15 @@ other.
 
   **Splatbook is an independent production by Chris Wilson and is not
   affiliated with Joshua McCrowell or Exalted Funeral.**
+
+- Origins 5.5e text (`content/origins/`, `static/content-packs/origins/`):
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Two sources, both
+  under the same licence — Origins 5.5e © 2026 by Patchwork Paladin, and
+  material from the System Reference Document 5.2.1 ("SRD 5.2.1") by Wizards of
+  the Coast LLC, available at <https://www.dndbeyond.com/srd>. The full notices,
+  what the pack omits, and how the SRD material was changed are in
+  [the pack's LICENSE.md](static/content-packs/origins/LICENSE.md). Splatbook is
+  not affiliated with Patchwork Paladin or Wizards of the Coast.
 
 Architecture inspired by Arrowed's [guild-book](https://github.com/arrowedisgaming/guild-book)
 and [Miskatonic University Registrar](https://github.com/arrowedisgaming/MiskatonicUniversityRegistrar).

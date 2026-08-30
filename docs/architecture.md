@@ -293,7 +293,16 @@ mode, page granularity — were each made deliberately, in their own commits,
 *before* the pack landed: the extraction moment done as designed, with two real
 games in hand.
 
-The rule now stands for game #3, with a richer surface to land on: a
-reference-only game is four small files (see `src/lib/games/hmtw/`), and a full
-companion is the Stonetop shape. The step-by-step is `docs/adding-a-game.md`,
-written against both.
+**Game #3 arrived (phase 28, Origins 5.5e) and needed no extraction at all.**
+That is the stronger result, because it was the harder case: Stonetop and HMtW
+are both PbtA-shaped, while Origins is a d20 game whose character creation has
+nothing in common with a playbook. The generic wizard, the choices-so-far rail,
+the sheet/play slots and the entity-type map took it without argument, and the
+diff stayed inside `content/origins/`, `static/content-packs/origins/`,
+`src/lib/games/origins/` and `tools/`, plus the two registration lines.
+
+There are now three shapes to land on: a reference-only game is four small files
+(`src/lib/games/hmtw/`), a builder-only game adds a pack loader, a pure engine,
+wizard steps and a sheet (`src/lib/games/origins/`), and a full companion is the
+Stonetop shape. The step-by-step is `docs/adding-a-game.md`, written against all
+three.
