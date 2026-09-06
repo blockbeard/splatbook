@@ -397,26 +397,36 @@ phase on the scale of a game module, not a side quest.
 
 ### Open questions — settle before commit 1
 
-1. **Which card set ships, and on what basis.** Resolved in guild-book already,
-   and the flag this plan first carried was wrong on both counts — worth
-   recording so it isn't re-raised a third time. The card backs are composed at
-   build time from the Adherent of the Worm third-party logo, whose template
-   terms state it is "allowed and encouraged" for third-party works
-   (`tarot-art.json`'s `backProvenance`). Permission for the 80-image RWS scan
-   set was confirmed by the project owner on 2026-07-15; the warning still
-   sitting in `scripts/fetch-rwsa-tarot.sh:8-10` is the stale text that
-   project's own art plan flagged for correction and predicted would mislead a
-   future reader — it did.
-   What remains is narrow: that permission was confirmed for **guild-book**, and
-   the roadmap deliberately kept the collection swappable because "the 1909
-   artwork is public domain and only these particular cleaned-up scans carry a
-   permission claim." Splatbook can sidestep it entirely with Chris's own SVG
-   set (`~/Desktop/Tarot/Rider SVG SouthForkSVG`, 78 files, Illustrator traces,
-   monochrome, no metadata or licence file) — faithful reproductions of a
-   public-domain work carry no new copyright (Bridgeman v. Corel; THJ v
-   Sheridan [2023] EWCA Civ 1354), though a colour-to-ink trace is a shade
-   further from a scan than either case addresses. Either way the decision and
-   its basis go in the pack's LICENSE.md, which is the actual deliverable here.
+1. ~~Which card set ships~~ **Decided (Chris, 2026-09-06): ship the provably
+   public-domain colour set first.** Source is Wikimedia Commons' 1909 first
+   edition — [Category:Rider-Waite tarot deck (Roses &
+   Lilies)](https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck_(Roses_%26_Lilies)),
+   80 files, complete at 22 majors + 56 minors, named `RWS1909 - 00 Fool.jpeg`
+   / `RWS1909 - Cups 01.jpeg`. The file-level tags are the point: PD-old-80-expired
+   (Waite, the copyright holder, died 1942) plus PD-US (published before
+   1 January 1931) — public domain in both jurisdictions this project cares
+   about, with no scan-level permission claim attached to anyone.
+
+   **Make the provenance provable per card, not asserted.** The fetch step
+   records each file's Commons licence tag into the art manifest beside the
+   hash and dimensions, and the build fails if any of the 80 lacks a
+   public-domain tag. guild-book's pipeline already writes a licence manifest,
+   so this is a field, not a mechanism. That is what goes in the pack's
+   LICENSE.md — a per-card basis rather than a sentence claiming one.
+
+   *Deferred, not rejected: a black-and-white set.* Chris will source or derive
+   one. Keep the collection swappable exactly as guild-book's Amendment 3 did
+   (a single `COLLECTION` constant that the source map, output paths, and
+   manifest all read), so a second set is a drop-in rather than a rewrite.
+
+   *Not used, and why:* the steve-p.org scans (permission was confirmed, but to
+   guild-book, and it does not travel) and Chris's Illustrator SVG traces
+   (`~/Desktop/Tarot/Rider SVG SouthForkSVG` — almost certainly fine, since
+   faithful reproductions of public-domain works carry no new copyright per
+   Bridgeman v. Corel and THJ v Sheridan [2023] EWCA Civ 1354, but a
+   colour-to-ink trace is a step further from a scan than either case
+   addresses, and "almost certainly" is a worse footing than a Commons PD tag
+   when the alternative is free).
 2. **Retention.** Crawlspace keeps a table ~6 weeks with a save-to-file escape
    hatch. Pick a number, and decide whether an export exists at all.
 3. **Divergence from guild-book.** Two GPL forks of one engine will drift. Worth
