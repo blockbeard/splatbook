@@ -329,9 +329,10 @@ that needs.
 Moving between modes never resets the piles: the deck is table state, and the
 modes are two views onto it. **Leaving Challenge dumps every card on the table
 to the discard — every card but the durable slots**, behind a confirmation.
-Crawlspace's answer exactly, including its exception, and the right one: this is state semantics, not rule enforcement, and it is the only thing
-that makes "one deck across two modes" well-defined when five hands and a
-populated initiative strip are still out.
+Crawlspace's answer exactly, including its exception, and the right one: this
+is state semantics, not rule enforcement, and it is the only thing that makes
+"one deck across two modes" well-defined when five hands and a populated
+initiative strip are still out.
 
 **Undo is universal within reach, and reach stops at another player's hand.**
 Any card *on the table* — a deck, a discard, a played card, a face-down card in
@@ -341,17 +342,24 @@ has to flip their face-down card for the turn to proceed. What no seat may do is
 reach into another seat's **hand**. Crawlspace permits even that ("ask them to
 return it"); we don't, and the divergence is deliberate.
 
-The durable slot inverts the hand rule rather than following it, because
-distribution runs the other way: **any seat may put a card in**, since that is
-how a card reaches a player who did not perform the chant, but **only the holder
-may take one out** or spend it. Nothing hides here — a held card is face-up and
-known to the table, so the slot raises no projection question at all.
+A durable slot is **on the table, not in a hand**: any seat may put a card in
+or take one out, like any other public card. An earlier draft made it
+owner-only for removal, which was wrong twice over — it contradicted the "clear
+all durable cards" affordance in the same breath, and it broke the AFK case
+that justifies open reach in the first place, leaving a wandered-off player
+holding a card nobody could spend for them. Crawlspace does restrict these to
+their holder; we don't, for that reason. Nothing hides here either — a held
+card is face-up and known to the table — so the slot raises no projection
+question at all.
 
-This makes the addressing model load-bearing: **commands name a slot, never a
-card.** "Flip whatever is in seat 3's initiative slot" is a command any seat may
-send and the server resolves; the card's *identity* still projects only to its
-owner until it is face-up. Card ids must never cross the wire to a seat not
-entitled to the face — otherwise the reach rule quietly becomes a peek.
+This makes the addressing model load-bearing: **a command names a card only
+where the card is already public.** In the discard pane — which is a *source*,
+since that is where a High Chant's cards come from — naming a card is fine and
+necessary. Everywhere else a command names a **slot**: "flip whatever is in
+seat 3's initiative slot" is something any seat may send and the server
+resolves, while the card's identity still projects only to its owner until it
+is face-up. A card id must never reach a seat not entitled to the face —
+otherwise the reach rule quietly becomes a peek.
 
 **Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip is
 a card flip), the gear model (notches, flickers, lit status, hands/belt/pack
@@ -436,17 +444,54 @@ hash/dimension/licence manifest with a CI verifier.
   fails with "already in use" until the domain is pulled off the Pages project
   first. That is a live-domain cutover on splatbook.app. Take it when a real
   table says the latency is annoying, not before.
-- **Seats are approved, not merely claimed.** A joiner supplies a character
-  name and waits; the GM admits or declines them. Crawlspace's model, and the
-  expectation here is the same as theirs — everyone is on voice, so approval is
-  a half-second and an unknown name is obvious. This is what makes a leaked
-  token URL survivable: it buys a stranger a pending request, not a seat at a
-  live table. "Permissive" governs *rules*, never *seats*; the engine declining
-  to rule on whether a play is legal says nothing about who may act.
-- **Retention: six weeks, by lazy expiry on read, no scheduler.** A table past
-  its window is treated as gone the next time anyone touches it, and its rows
-  are deleted then. Six weeks matches Crawlspace, which is the only calibration
-  anyone has. This needs no cron, which matters because there is nowhere good to put
+- **Seats: a room code, a list of seats, and a GM who admits.** The invite code
+  gets you into the room, where you see the seats — occupied ones and open ones
+  — and pick. Taking an **open** seat raises a request; the GM admits or
+  declines. Everyone is on voice, so that is a half-second and an unknown name
+  is obvious, and it is what makes a leaked code survivable: a stranger gets a
+  pending request, not a live table. "Permissive" governs *rules*, never
+  *seats* — the engine declining to rule on whether a play is legal says
+  nothing about who may act.
+- **The GM seat is claimable by anyone while it is vacant.** Crawlspace's rule,
+  and it is load-bearing rather than convenient: with joins gated on GM
+  approval, a GM who loses their cookie would otherwise lock out the whole
+  table *including themselves*, since there would be nobody left who could
+  re-admit anyone. A vacant GM seat any hand can pick up turns a table-ending
+  failure into ten awkward seconds.
+- **A seat is the identity; the cookie is only a claim ticket.** Private zones
+  key on the seat, never on the cookie, so a player who clears cookies, swaps
+  device, or opens a private window comes back through the same door: enter the
+  room code, and the GM hands them their seat back with its hand intact.
+  Reclaiming an **occupied** seat always needs the GM — that is what stops seat
+  theft — and re-seating must carry the private zones across, which is a test,
+  not a hope. Without this, a cleared cookie is a player's cards gone in the
+  middle of a four-hour game.
+- **Retention: six weeks, by lazy expiry on read, plus an opportunistic sweep.**
+  A table past its window is gone the next time anyone touches it. On its own
+  that is expiry-in-name-only for a table nobody revisits, and "kept for six
+  weeks" would be a claim the mechanism cannot keep — so any table read also
+  retires a bounded handful of stale tables. Still no scheduler, and no
+  dependence on a cron that (see below) has nowhere good to live. Six weeks
+  matches Crawlspace, the only calibration anyone has.
+- **Guest data: ask for a character name, and say so.** The privacy page carries
+  a standing instruction in its own header — *"Keep this factually true against
+  `src/lib/server/db/schema.ts`: if a migration adds a table that holds personal
+  data, say so here"* — and everything it currently describes is scoped to
+  accounts (*"When you sign in, Splatbook keeps:"*), with a deletion route that
+  reaches *"your account and everything attached to it"*. A guest has no
+  account, so none of that lands.
+
+  The cheapest honest fix is to hold less rather than to explain more: the join
+  field is **the character's name**, labelled as such and with the page saying
+  plainly not to put a real name in it. What a table then holds is a piece of
+  fiction, a random seat id in a cookie, and a list of card moves — no email, no
+  account, nothing that identifies a person. `/privacy` gains a short section
+  saying exactly that, that the name is visible to everyone at that table, and
+  that the whole table is deleted six weeks after it was last used. The
+  practical deletion route is the GM's own **delete this table** action, which
+  is immediate and needs no correspondence; the page should say so, and should
+  admit the honest corollary — with no account, an emailed request has nothing
+  to identify a guest by. This needs no cron, which matters because there is nowhere good to put
   one: `.github/workflows/` has only `ci.yml` with no `schedule:`, and the sole
   existing scheduled job is `ops/d1-export.sh`, which by its own header "runs
   from cron on atlas" — so a swept-on-schedule design would make table expiry on
@@ -486,11 +531,13 @@ in this table to hold constants for.
    **read** budget. Polling moved the exposure from writes to reads on an
    unauthenticated endpoint: six clients at ~1s for a four-hour session is
    roughly 86k D1 reads for a single table, and nothing stops a visitor opening
-   more tables. So: a poll answers from one small indexed read of the table's
-   version and returns commands since the client's cursor, never the whole
-   state; cadence is adaptive (quicker in Challenge, slower at rest) and pauses
-   on a hidden tab, as `RollLog.svelte` already does; idle tables back off
-   further; and tables-per-origin is capped.
+   more tables. Note what does *not* help: D1 bills per query, not per byte, so
+   "just read the version column" is still one read per client per second and
+   barely moves the number. The levers that work are all about **frequency and
+   count** — adaptive cadence (quicker in Challenge, slower at rest), a pause on
+   hidden tabs as `RollLog.svelte` already does, idle-table backoff, a cap on
+   tables per origin, and returning only commands after the client's cursor so a
+   quiet poll is small as well as rare.
 3. `feat(hmtw)`: `content/hmtw/data/` deck definition, schemas, SCHEMA.md.
 4. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
    shuffle, and move/flip/deal/return addressed **by slot, never by card id**.
@@ -499,12 +546,31 @@ in this table to hold constants for.
    this very phase would otherwise break a table someone is mid-round on. Pure
    TS, test-first, with an old-shape fixture from the commit that first bumps
    it.
+
+   **Ownership, since a table is not an entity type and the rule is written for
+   those:** the shape is HMtW's, so HMtW owns `migrateTable`, exposed through
+   the `cardTable` slot exactly as `entityTypes` expose theirs. The rows are the
+   shell's, so the shell calls it on every read, and never inspects what comes
+   back. Same division as `entities.data`; worth a line in
+   `docs/architecture.md` when commit 7 lands the slot.
 5. `feat(hmtw)`: per-seat projection **and its leak tests, in the same commit** —
    a face-down card's identity never reaches a seat not entitled to it.
 6. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
    service (observed/expected version, request-hash idempotency), and the poll
    endpoint plus client sync loop behind the `TableTransport` seam. One
    transport, both hosts.
+
+   **The command stream is projected per seat, exactly as state is.** This is
+   the trap the first three drafts walked past: a poll returns *commands since
+   your cursor*, so the sync channel is a second way out of the building, and a
+   projection that only guards state guards the front door alone. A shuffle
+   carrying a seed is the deck order in plaintext; a deal naming cards is every
+   hand at once. So a shuffle reduces to a version bump with no payload, a deal
+   emits one public fact ("seat 3 drew four") plus per-recipient rows in
+   `table_secrets`, and every command type declares what each seat may see of
+   it. The leak tests in commit 5 extend to cover the wire, not just the store —
+   a test that reads the projected state and never the projected stream would
+   have passed against a design that leaked everything.
 7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, and the
    seat rail — which shows each seat's durable card face-up, since the table is
    entitled to know who is holding what.
@@ -518,12 +584,21 @@ in this table to hold constants for.
    modes; commit 8 covers only the flipped case), and the confirmed
    dump-to-discard on leaving, sparing the durable slots.
 10. `feat(hmtw)`: undo and free handling — any card on the table moved or
-    flipped by any seat, no legality check; hands stay owner-only.
+    flipped by any seat, no legality check; hands stay owner-only. Includes the
+    one rejection this design has: `expected_version` means whoever loses a
+    simultaneous grab gets refused, and open reach makes that *likely* rather
+    than rare, since "two people flip the AFK player's card" is both the
+    motivating case and the collision case. It must read as "someone got there
+    first" and re-sync silently, never as an error — a permissive table that
+    scolds you is a broken promise.
 11. `feat(shell)`: lazy expiry on read.
 12. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step.
-13. `docs`: CREDITS (Crawlspace as prior art, guild-book for the two patterns),
-    CHANGELOG, pack docs, and the art basis in LICENSE.md.
+13. `docs`: `/privacy` gains its guest-data section (the page's own header
+    demands it whenever a migration stores personal data — so this rides with
+    commit 1's schema if it can, and no later than here); CREDITS (Crawlspace as
+    prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
+    art basis in LICENSE.md.
 
 Thirteen commits. Treat that as a floor rather than an estimate: the first draft
 said 25–30 in conversation and then produced a 17-commit list without justifying
