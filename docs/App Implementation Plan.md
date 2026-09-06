@@ -444,6 +444,34 @@ hash/dimension/licence manifest with a CI verifier.
   fails with "already in use" until the domain is pulled off the Pages project
   first. That is a live-domain cutover on splatbook.app. Take it when a real
   table says the latency is annoying, not before.
+- **Creating a table needs an account; sitting at one does not.** This is the
+  whole of the abuse story, and it replaces a rate limiter that would otherwise
+  have had to be invented from nothing — there is no rate limiting anywhere in
+  this codebase today, and on Cloudflare a per-IP counter wants KV or a Durable
+  Object (the primitive we just declined) or a WAF rule that a self-hoster would
+  never inherit. Requiring sign-in to *create* removes the only unbounded
+  anonymous write endpoint; the GM is the person who already has an account.
+  What remains is bounded by construction: at most six seats, a capped number of
+  pending join requests, and a per-table command ceiling kept as a column on the
+  table row and incremented in the same write as the command, costing nothing
+  extra. It also gives every table an owner — which is what the earlier drafts
+  were missing when they worried about orphaned guest storage.
+- **The room token goes in the URL; the seat capability does not.** The room
+  token is the thing you paste into chat, so the URL is where it belongs. A
+  *seat* token must not be, and the reason is specific to how this game gets
+  played: people share their screen. A seat capability in the address bar is
+  visible to everyone on the call the moment someone shares a tab, and taking
+  someone's seat means seeing their hand. So the seat stays a cookie, and
+  recovery runs through the GM re-seating a player — which works on any device,
+  in any browser, with no capability to leak.
+
+  (An earlier draft worried about third-party cookie blocking, on the strength
+  of this module's own note that its "primary consumer is a Zoom Whiteboard
+  iframe". That is stale — the table was awkward embedded, play moved to a
+  separate tab and then to Miro. The docstring in
+  `src/lib/games/hmtw/index.ts` should be corrected on its own account. If
+  embedding ever comes back, `Partitioned` cookies are the answer, and the GM
+  re-seat path works regardless.)
 - **Seats: a room code, a list of seats, and a GM who admits.** The invite code
   gets you into the room, where you see the seats — occupied ones and open ones
   — and pick. Taking an **open** seat raises a request; the GM admits or
@@ -524,38 +552,50 @@ in this table to hold constants for.
 
 ### Commits
 
-1. `feat(shell)`: `tables`/`table_seats` schema, token-URL creation, seat claim
-   via signed cookie capability.
-2. `feat(shell)`: harden the guest path *before* it can carry a card — rate
-   limit, table cap, per-table command ceiling, retention field, and the
-   **read** budget. Polling moved the exposure from writes to reads on an
-   unauthenticated endpoint: six clients at ~1s for a four-hour session is
-   roughly 86k D1 reads for a single table, and nothing stops a visitor opening
-   more tables. Note what does *not* help: D1 bills per query, not per byte, so
-   "just read the version column" is still one read per client per second and
-   barely moves the number. The levers that work are all about **frequency and
-   count** — adaptive cadence (quicker in Challenge, slower at rest), a pause on
-   hidden tabs as `RollLog.svelte` already does, idle-table backoff, a cap on
-   tables per origin, and returning only commands after the client's cursor so a
-   quiet poll is small as well as rare.
-3. `feat(hmtw)`: `content/hmtw/data/` deck definition, schemas, SCHEMA.md.
-4. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
-   shuffle, and move/flip/deal/return addressed **by slot, never by card id**.
-   Carries a `schemaVersion` and a `migrateTable` from the first blob written,
-   per the ground rule above: tables live for weeks, so a shape change during
-   this very phase would otherwise break a table someone is mid-round on. Pure
-   TS, test-first, with an old-shape fixture from the commit that first bumps
-   it.
+*Ordered so the pure, testable work comes first: commits 1–3 are plain
+TypeScript with no dependency on seats, transport, or infrastructure, so there
+is something real and reviewable while the shell questions are still being
+answered. Nothing needs hardening until commit 7 puts a guest write on the
+wire.*
+
+1. `feat(hmtw)`: `content/hmtw/data/` deck definition, Zod schemas, SCHEMA.md —
+   plus the new file in the pack's `manifest.json` `files` list and a `version`
+   bump. The manifest is hand-written and the harness fails a file that is
+   "listed in manifest but not found", so this is one commit's worth of detail
+   that otherwise breaks CI on first contact with the pack.
+2. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
+   shuffle, and move/flip/deal/return addressed **by slot** (naming a card only
+   in a public zone). Carries a `schemaVersion` and a `migrateTable` from the
+   first blob written, per the ground rule above: tables live for weeks, so a
+   shape change during this very phase would otherwise break a table someone is
+   mid-round on. Pure TS, test-first, with an old-shape fixture from the commit
+   that first bumps it.
 
    **Ownership, since a table is not an entity type and the rule is written for
    those:** the shape is HMtW's, so HMtW owns `migrateTable`, exposed through
    the `cardTable` slot exactly as `entityTypes` expose theirs. The rows are the
    shell's, so the shell calls it on every read, and never inspects what comes
-   back. Same division as `entities.data`; worth a line in
-   `docs/architecture.md` when commit 7 lands the slot.
-5. `feat(hmtw)`: per-seat projection **and its leak tests, in the same commit** —
-   a face-down card's identity never reaches a seat not entitled to it.
-6. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
+   back. Same division as `entities.data`.
+3. `feat(hmtw)`: per-seat projection of state, and its leak tests. (The command
+   stream's projection arrives with the stream, at commit 7, and extends these
+   same tests — see there for why that half matters more.)
+4. `feat(shell)`: `tables`/`table_seats` schema, room-token URLs, and table
+   creation — **signed-in only**.
+5. `feat(shell)`: guest seat identity — the signed cookie capability (reusing
+   `AUTH_SECRET`), a `hooks.server.ts` handle that resolves a seat *without*
+   calling `locals.auth()`, the seat list, the GM's admit/decline, the
+   claimable-while-vacant GM seat, and GM re-seating with private zones carried
+   across (a test, not a hope). This app has never set a cookie outside Auth.js;
+   budget accordingly.
+6. `feat(shell)`: the bounded limits — per-table command ceiling as a column
+   increment, seat cap, pending-join cap, and the read budget. On the last:
+   D1 bills per query, not per byte, so "just read the version column" is still
+   one read per client per second and barely moves the number. The levers that
+   work are **frequency and count** — adaptive cadence (quicker in Challenge,
+   slower at rest), a pause on hidden tabs as `RollLog.svelte` already does,
+   idle-table backoff, and returning only commands after the client's cursor so
+   a quiet poll is small as well as rare.
+7. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
    service (observed/expected version, request-hash idempotency), and the poll
    endpoint plus client sync loop behind the `TableTransport` seam. One
    transport, both hosts.
@@ -568,22 +608,25 @@ in this table to hold constants for.
    hand at once. So a shuffle reduces to a version bump with no payload, a deal
    emits one public fact ("seat 3 drew four") plus per-recipient rows in
    `table_secrets`, and every command type declares what each seat may see of
-   it. The leak tests in commit 5 extend to cover the wire, not just the store —
-   a test that reads the projected state and never the projected stream would
-   have passed against a design that leaked everything.
-7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, and the
-   seat rail — which shows each seat's durable card face-up, since the table is
-   entitled to know who is holding what.
-8. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
+   it. Commit 3's leak tests extend to cover the wire, not just the store — a
+   test that reads the projected state and never the projected stream would have
+   passed against a design that leaked everything.
+8. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route at
+   `/[game=game]/cards`, and the seat rail — which shows each seat's durable
+   card face-up, since the table is entitled to know who is holding what.
+   `docs/architecture.md` and `docs/adding-a-game.md` change **in this commit**:
+   the ground rules require boundary docs to move with the boundary, and this is
+   the commit that moves it.
+9. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
    discard pane as a *source*: a card drags from it into any seat's durable
    slot, which is how a High Chant reaches the table. Spending is the reverse
    trip, back to the discard.
-9. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
-   zones, minor-action queue and simultaneous reveal, Sweep, callout strip, the
-   Fool-was-dealt reshuffle prompt before the next deal (the Fool spans both
-   modes; commit 8 covers only the flipped case), and the confirmed
-   dump-to-discard on leaving, sparing the durable slots.
-10. `feat(hmtw)`: undo and free handling — any card on the table moved or
+10. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
+    zones, minor-action queue and simultaneous reveal, Sweep, callout strip, the
+    Fool-was-dealt reshuffle prompt before the next deal (the Fool spans both
+    modes; commit 9 covers only the flipped case), and the confirmed
+    dump-to-discard on leaving, sparing the durable slots.
+11. `feat(hmtw)`: undo and free handling — any card on the table moved or
     flipped by any seat, no legality check; hands stay owner-only. Includes the
     one rejection this design has: `expected_version` means whoever loses a
     simultaneous grab gets refused, and open reach makes that *likely* rather
@@ -591,21 +634,26 @@ in this table to hold constants for.
     motivating case and the collision case. It must read as "someone got there
     first" and re-sync silently, never as an error — a permissive table that
     scolds you is a broken promise.
-11. `feat(shell)`: lazy expiry on read.
-12. `test(e2e)`: Playwright multi-context — two seats through a full round, with
-    hidden information asserted hidden at every step.
-13. `docs`: `/privacy` gains its guest-data section (the page's own header
+12. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
+13. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+    hidden information asserted hidden at every step. `e2e/campaigns.spec.ts`
+    already has the multi-context pattern to follow.
+14. `docs`: `/privacy` gains its guest-data section (the page's own header
     demands it whenever a migration stores personal data — so this rides with
-    commit 1's schema if it can, and no later than here); CREDITS (Crawlspace as
+    commit 4's schema if it can, and no later than here); CREDITS (Crawlspace as
     prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
     art basis in LICENSE.md.
+15. `docs`: close phase 29 — move this section to [[App Implementation History]]
+    verbatim, per the housekeeping rule, in the commit that closes it.
 
-Thirteen commits. Treat that as a floor rather than an estimate: the first draft
-said 25–30 in conversation and then produced a 17-commit list without justifying
-the drop, which is exactly the arithmetic this project's history punishes. For
-calibration, Origins 5.5e was 6 commits and 10,091 lines *with no shell change*;
-this still has a shell slot and a new auth mode, though dropping the second
-transport took a whole adapter and its conformance suite out.
+Fifteen commits, up from thirteen — nothing was added to the scope, the count
+went up because commit 1 was three pieces of work wearing one bullet and the
+phase had no closing commit. Treat it as a floor rather than an estimate: an
+earlier draft said 25–30 in conversation and then produced a 17-commit list
+without justifying the drop, which is exactly the arithmetic this project's
+history punishes. For calibration, Origins 5.5e was 6 commits and 10,091 lines
+*with no shell change*; this still has a shell slot and a new identity
+mechanism, in a codebase that has never set a cookie of its own.
 
 ### Art — decided
 
