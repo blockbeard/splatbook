@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A card-table engine for HMtW.** Pure TypeScript — no UI, no database, no
+  ambient randomness — modelling the table as zones of cards with a visibility
+  and a capacity. That one idea does a lot of work: flipping the top of a deck
+  into the discard and revealing a facedown card are the _same_ operation, a
+  move between zones, because a card's face is visible on account of where it
+  is rather than a flag it carries.
+
+  Shuffles take a seeded generator the caller supplies, so the deck order
+  belongs to the server and a test can assert an exact deal. A command names a
+  _slot_, and may name a specific card only where that card is already public —
+  the discard, which is where a High Chant's inspiration cards get chosen from.
+  Asking for a named card in a hidden pile or someone else's hand is refused,
+  because being able to ask means already knowing.
+
+  What it will not do is referee. It refuses the impossible and the unsafe and
+  has no opinion about the merely illegal: play a Cups card for a Swords action
+  and it will move the card, because the people at the table have the book open
+  and this is a card table, not an umpire.
+
 - **The HMtW pack learns the deck and the Challenge Phase.** A new
   `data/` section of the pack (hand-authored, tracked in both `content/` and
   `static/`, with its own `SCHEMA.md`) holds what the coming card table needs:
