@@ -306,10 +306,30 @@ Two modes over **one persistent deck state**:
   played and face-down zones, minor actions queued then revealed
   simultaneously, Sweep, an initiative callout strip with ±.
 
+Plus one thing that belongs to neither mode: **a durable slot per seat**, for a
+card that outlives rounds, sweeps, and mode switches. The book has exactly one
+such card today — the inspiration card from the High Chant talent (Ch5) — and
+its rules text is what shapes the slot: cards are *"select[ed] … from the minor
+arcana discard pile"*, *"No player can ever have more than one"*, and they *"may
+be spent as actions during a Challenge"* or *"instead of drawing from the deck
+when you test fate or push fate"* — which is a Decks-mode action. A card that
+enters from the discard, is held across both modes, and leaves by being spent.
+
+The engine calls the zone **durable** and holds one card; the pack supplies the
+word "Inspiration", per the no-game-strings-in-app-code rule. If the book ever
+grows a second kind of persistent card, the zone is already the right shape.
+
+We model the *cards*, not the talent: nothing computes how many a performer may
+distribute (that is their Cups, and they know it), nothing enforces one-per-
+player beyond the slot holding one, and nothing expires them at end of session —
+Crawlspace doesn't either, and tells the GM to have players discard carryovers
+when play begins. A GM "clear all durable cards" affordance is the whole of what
+that needs.
+
 Moving between modes never resets the piles: the deck is table state, and the
 modes are two views onto it. **Leaving Challenge dumps every card on the table
-to the discard**, behind a confirmation — Crawlspace's answer, and the right
-one: this is state semantics, not rule enforcement, and it is the only thing
+to the discard — every card but the durable slots**, behind a confirmation.
+Crawlspace's answer exactly, including its exception, and the right one: this is state semantics, not rule enforcement, and it is the only thing
 that makes "one deck across two modes" well-defined when five hands and a
 populated initiative strip are still out.
 
@@ -320,6 +340,12 @@ legality check. That is deliberate: a player goes AFK mid-round and someone else
 has to flip their face-down card for the turn to proceed. What no seat may do is
 reach into another seat's **hand**. Crawlspace permits even that ("ask them to
 return it"); we don't, and the divergence is deliberate.
+
+The durable slot inverts the hand rule rather than following it, because
+distribution runs the other way: **any seat may put a card in**, since that is
+how a card reaches a player who did not perform the chant, but **only the holder
+may take one out** or spend it. Nothing hides here — a held card is face-up and
+known to the table, so the slot raises no projection question at all.
 
 This makes the addressing model load-bearing: **commands name a slot, never a
 card.** "Flip whatever is in seat 3's initiative slot" is a command any seat may
@@ -417,9 +443,10 @@ hash/dimension/licence manifest with a CI verifier.
   token URL survivable: it buys a stranger a pending request, not a seat at a
   live table. "Permissive" governs *rules*, never *seats*; the engine declining
   to rule on whether a play is legal says nothing about who may act.
-- **Retention: lazy expiry on read, no scheduler.** A table past its window is
-  treated as gone the next time anyone touches it, and its rows are deleted
-  then. This needs no cron, which matters because there is nowhere good to put
+- **Retention: six weeks, by lazy expiry on read, no scheduler.** A table past
+  its window is treated as gone the next time anyone touches it, and its rows
+  are deleted then. Six weeks matches Crawlspace, which is the only calibration
+  anyone has. This needs no cron, which matters because there is nowhere good to put
   one: `.github/workflows/` has only `ci.yml` with no `schedule:`, and the sole
   existing scheduled job is `ops/d1-export.sh`, which by its own header "runs
   from cron on atlas" — so a swept-on-schedule design would make table expiry on
@@ -478,13 +505,18 @@ in this table to hold constants for.
    service (observed/expected version, request-hash idempotency), and the poll
    endpoint plus client sync loop behind the `TableTransport` seam. One
    transport, both hosts.
-7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, the seat rail.
-8. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
+7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, and the
+   seat rail — which shows each seat's durable card face-up, since the table is
+   entitled to know who is holding what.
+8. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
+   discard pane as a *source*: a card drags from it into any seat's durable
+   slot, which is how a High Chant reaches the table. Spending is the reverse
+   trip, back to the discard.
 9. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
    zones, minor-action queue and simultaneous reveal, Sweep, callout strip, the
    Fool-was-dealt reshuffle prompt before the next deal (the Fool spans both
    modes; commit 8 covers only the flipped case), and the confirmed
-   dump-to-discard on leaving.
+   dump-to-discard on leaving, sparing the durable slots.
 10. `feat(hmtw)`: undo and free handling — any card on the table moved or
     flipped by any seat, no legality check; hands stay owner-only.
 11. `feat(shell)`: lazy expiry on read.
@@ -533,10 +565,7 @@ free).
 
 ### Open questions
 
-1. **How long is the retention window?** The mechanism is settled (lazy expiry
-   on read); the number is not. Crawlspace keeps a table about six weeks, which
-   is the obvious default and the one to take absent a reason.
-2. **Two HMtW card tables, one maintainer.** guild-book has one; this will be a
+1. **Two HMtW card tables, one maintainer.** guild-book has one; this will be a
    second. The divergence cost is real, recurring, and was priced at one
    dismissive sentence in the first draft. The honest version: this is a
    deliberate duplication, justified only if the table's value is being *beside
