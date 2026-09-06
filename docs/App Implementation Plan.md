@@ -638,14 +638,32 @@ trace is a step further from a scan than either case addresses, and "almost
 certainly" is a worse footing than a Commons PD tag when the alternative is
 free).
 
-### Open questions
+### Why build it, given guild-book has one
 
-1. **Two HMtW card tables, one maintainer.** guild-book has one; this will be a
-   second. The divergence cost is real, recurring, and was priced at one
-   dismissive sentence in the first draft. The honest version: this is a
-   deliberate duplication, justified only if the table's value is being *beside
-   the reference people already have open*. If that stops being the reason, the
-   right move is to stop and send people to guild-book.
+*The last open question, settled 2026-09-06.*
+
+Because **nothing playable is actually available**. Crawlspace is live and
+good, but it is closed source and there is no way to self-host it. guild-book's
+table is open source and excellent, but it has never gone live, may never, and
+is welded to campaigns, characters, and tenures — a Splatbook player cannot use
+it. So "two tables, one maintainer" overstates the duplication: there is one
+deployed table in the world, and running your own is not among the options it
+offers.
+
+That is also the reason the transport decision came out where it did. An open,
+self-hostable card table for this game does not exist; the point of building one
+is that other people can run it. A design that needed a Cloudflare-only
+primitive would have thrown away the only justification the phase has.
+
+And because it is a nice thing to build, which is a sufficient reason for a
+project like this one and does not need dressing up as strategy.
+
+**The legal footing, stated once so nothing drifts onto shakier ground.** This
+is a clean-room build from the book's own text, under the book's own reuse
+grant. That is the entire basis, it is enough on its own, and it holds
+regardless of anything true or untrue about any other implementation's
+copyright. No argument about the status of anyone else's code belongs in this
+plan or in the work.
 
 ### Considered and rejected
 
