@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The HMtW pack learns the deck and the Challenge Phase.** A new
+  `data/` section of the pack (hand-authored, tracked in both `content/` and
+  `static/`, with its own `SCHEMA.md`) holds what the coming card table needs:
+  the two decks and how the book splits them — fifty-six minors plus the Fool
+  borrowed into the player deck, the majors I–XXI without it — every card's
+  value from ch.7's sidebar, the lesser and greater doom bands, the four suit
+  glyphs the pack already served, and the Challenge Actions grouped by the suit
+  that pays for them. Hand sizes come with it: four for a player, and for the GM
+  a base of three plus the book's six cumulative reasons to draw more, as a
+  checklist rather than a number.
+
+  It is all data because none of it may live in app code, and it is deliberately
+  short of one thing: any way to compute a total. An action's value is a card
+  plus an attribute, and this pack holds no character at all. The catalogues fill
+  menus and suggest counts; the table never rules on a play.
+
 ### Changed
 
 - **A game's front door says whose it is.** `/hmtw` was titled with the game's

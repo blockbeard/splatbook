@@ -16,6 +16,7 @@ import { validatePack } from '../../packs/harness';
 import type { PackManifest } from '../../packs/types';
 import { documentTreeSchema, type DocumentTree } from '../../reference/document-tree';
 import { landingSchema } from '../../packs/landing';
+import { challengeSchema, deckSchema } from './pack-schemas';
 import '../index'; // register game modules (wires hmtw schemas into the harness)
 import { hmtw } from './index';
 
@@ -39,9 +40,84 @@ beforeAll(async () => {
 	gmNote = documentTreeSchema.parse(await loadPackFile(packRoot, 'rules/gm-note.json'));
 });
 
+describe('hmtw card-table data', () => {
+	it('deals a whole tarot deck, split the way the book splits it', async () => {
+		const deck = deckSchema.parse(await loadPackFile(packRoot, 'data/deck.json'));
+		// Ch1: fifty-six minors in four suits of fourteen, plus twenty-two majors.
+		expect(deck.minors).toHaveLength(56);
+		expect(deck.majors).toHaveLength(22);
+		expect(new Set(deck.minors.map((c) => c.id)).size).toBe(56);
+
+		// The Fool is borrowed into the player deck; the GM holds I–XXI.
+		const player = deck.decks.find((d) => d.id === 'player')!;
+		const gm = deck.decks.find((d) => d.id === 'gm')!;
+		expect(player.includesMajors).toEqual(['fool']);
+		expect(gm.excludesMajors).toEqual(['fool']);
+	});
+
+	it('uses the ch.7 card values, and RWS major numbering', async () => {
+		const deck = deckSchema.parse(await loadPackFile(packRoot, 'data/deck.json'));
+		const value = (rank: string) => deck.ranks.find((r) => r.id === rank)!.value;
+		expect([value('ace'), value('page'), value('knight'), value('queen'), value('king')]).toEqual([
+			1, 11, 12, 13, 14
+		]);
+		// The book's worked example deals "Justice [XI]" — Waite's numbering, not
+		// Marseille's, so Strength is VIII.
+		const major = (id: string) => deck.majors.find((m) => m.id === id)!;
+		expect(major('strength').value).toBe(8);
+		expect(major('justice').value).toBe(11);
+		expect(major('fool').value).toBe(0);
+	});
+
+	it('splits dooms where ch.7 splits them', async () => {
+		const deck = deckSchema.parse(await loadPackFile(packRoot, 'data/deck.json'));
+		const lesser = deck.doomTiers.find((t) => t.id === 'lesser')!;
+		const greater = deck.doomTiers.find((t) => t.id === 'greater')!;
+		expect([lesser.min, lesser.max]).toEqual([1, 14]);
+		expect([greater.min, greater.max]).toEqual([15, 21]);
+		// Contiguous and total across the majors the GM actually holds.
+		expect(greater.min).toBe(lesser.max + 1);
+	});
+
+	it('carries the GM draw rule as data, summing the book’s worked example', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		expect(c.handSizes.player.default).toBe(4);
+		expect(c.handSizes.gm.base).toBe(3);
+
+		// Ch7's example: two enemy types, outnumbering, and double-outnumbering,
+		// against four adventurers — the book says the GM draws 7.
+		const by = (id: string) => c.handSizes.gm.modifiers.find((m) => m.id === id)!;
+		const total =
+			c.handSizes.gm.base +
+			by('enemy-type').amount * 2 +
+			by('outnumber').amount +
+			by('double').amount;
+		expect(total).toBe(7);
+	});
+
+	it('groups actions by the suit that pays for them', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		expect(Object.keys(c.actions.bySuit).sort()).toEqual(['cups', 'pentacles', 'swords', 'wands']);
+		expect(c.actions.bySuit.swords.map((a) => a.name)).toEqual(['Attack', 'Riposte']);
+		// Ch7: a greater doom pays for any miscellaneous action *except* Vigilance.
+		const forbidden = c.actions.anySuit.filter((a) => a.greaterDoomForbidden).map((a) => a.id);
+		expect(forbidden).toEqual(['vigilance']);
+	});
+
+	it('every suit named by an action group is a real suit, and every minor maps to one', async () => {
+		const deck = deckSchema.parse(await loadPackFile(packRoot, 'data/deck.json'));
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		const suits = new Set(deck.suits.map((s) => s.id));
+		for (const suit of Object.keys(c.actions.bySuit)) expect(suits.has(suit)).toBe(true);
+		for (const card of deck.minors) expect(suits.has(card.suit)).toBe(true);
+	});
+});
+
 describe('hmtw pack round-trip', () => {
 	it('has the expected inventory of files', () => {
 		expect(manifest.files.sort()).toEqual([
+			'data/challenge.json',
+			'data/deck.json',
 			'landing.json',
 			'rules/book.json',
 			'rules/gm-note.json'
