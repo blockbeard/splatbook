@@ -307,14 +307,39 @@ Two modes over **one persistent deck state**:
   simultaneously, Sweep, an initiative callout strip with ±.
 
 Moving between modes never resets the piles: the deck is table state, and the
-modes are two views onto it. Undo is universal — any card goes back where it
-came from, at any time, with no legality check and no permission beyond holding
-a seat.
+modes are two views onto it. **Leaving Challenge dumps every card on the table
+to the discard**, behind a confirmation — Crawlspace's answer, and the right
+one: this is state semantics, not rule enforcement, and it is the only thing
+that makes "one deck across two modes" well-defined when five hands and a
+populated initiative strip are still out.
+
+**Undo is universal within reach, and reach stops at another player's hand.**
+Any card *on the table* — a deck, a discard, a played card, a face-down card in
+an initiative or played slot — may be moved or flipped by any seat, with no
+legality check. That is deliberate: a player goes AFK mid-round and someone else
+has to flip their face-down card for the turn to proceed. What no seat may do is
+reach into another seat's **hand**. Crawlspace permits even that ("ask them to
+return it"); we don't, and the divergence is deliberate.
+
+This makes the addressing model load-bearing: **commands name a slot, never a
+card.** "Flip whatever is in seat 3's initiative slot" is a command any seat may
+send and the server resolves; the card's *identity* still projects only to its
+owner until it is face-up. Card ids must never cross the wire to a seat not
+entitled to the face — otherwise the reach rule quietly becomes a peek.
 
 **Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip is
 a card flip), the gear model (notches, flickers, lit status, hands/belt/pack
 slots), and the one-off city-location workarounds. Tower Gnostic's Scrabble
 tiles are out of Crawlspace's jurisdiction and out of ours.
+
+**Also out: save/restore.** Crawlspace has it; we don't need it. With no gear to
+preserve, the whole of what a restore would carry is a handful of player names,
+and retyping those is not a burden worth a feature. It also removes a genuine
+hazard rather than merely declining a nicety — table state contains the undrawn
+deck order, so an export handed to a client is the deck handed to a player,
+defeating the per-seat projection through a download button. (Crawlspace looks
+to have met the same wall: its save file restores players and gear, "not card
+state or phase.")
 
 ### What we take from guild-book, and what we don't
 
@@ -385,6 +410,26 @@ hash/dimension/licence manifest with a CI verifier.
   fails with "already in use" until the domain is pulled off the Pages project
   first. That is a live-domain cutover on splatbook.app. Take it when a real
   table says the latency is annoying, not before.
+- **Seats are approved, not merely claimed.** A joiner supplies a character
+  name and waits; the GM admits or declines them. Crawlspace's model, and the
+  expectation here is the same as theirs — everyone is on voice, so approval is
+  a half-second and an unknown name is obvious. This is what makes a leaked
+  token URL survivable: it buys a stranger a pending request, not a seat at a
+  live table. "Permissive" governs *rules*, never *seats*; the engine declining
+  to rule on whether a play is legal says nothing about who may act.
+- **Retention: lazy expiry on read, no scheduler.** A table past its window is
+  treated as gone the next time anyone touches it, and its rows are deleted
+  then. This needs no cron, which matters because there is nowhere good to put
+  one: `.github/workflows/` has only `ci.yml` with no `schedule:`, and the sole
+  existing scheduled job is `ops/d1-export.sh`, which by its own header "runs
+  from cron on atlas" — so a swept-on-schedule design would make table expiry on
+  splatbook.app depend on a home server, and would hand self-hosters nothing at
+  all. Rows for tables nobody ever revisits linger; storage is cheap and a
+  bounded opportunistic sweep can ride along on any table read if it matters.
+- **Route: `/[game=game]/cards`**, with a table at `/[game=game]/cards/[token]`.
+  Not `/[game=game]/table` — that path exists and belongs to
+  `GameModule.tableReference` (Stonetop's Moves & Gear), and letting "table"
+  mean two things inside one game is a confusion that would outlive the phase.
 - **Art: ship the provably public-domain colour set first** (see the art
   decision below). A black-and-white set is deferred, not rejected.
 - **One narrow `GameModule` slot, named honestly.** The project rule is
@@ -409,12 +454,24 @@ in this table to hold constants for.
 
 1. `feat(shell)`: `tables`/`table_seats` schema, token-URL creation, seat claim
    via signed cookie capability.
-2. `feat(shell)`: harden the guest write path *before* it can carry a card —
-   rate limit, table cap, per-table command ceiling, retention field.
+2. `feat(shell)`: harden the guest path *before* it can carry a card — rate
+   limit, table cap, per-table command ceiling, retention field, and the
+   **read** budget. Polling moved the exposure from writes to reads on an
+   unauthenticated endpoint: six clients at ~1s for a four-hour session is
+   roughly 86k D1 reads for a single table, and nothing stops a visitor opening
+   more tables. So: a poll answers from one small indexed read of the table's
+   version and returns commands since the client's cursor, never the whole
+   state; cadence is adaptive (quicker in Challenge, slower at rest) and pauses
+   on a hidden tab, as `RollLog.svelte` already does; idle tables back off
+   further; and tables-per-origin is capped.
 3. `feat(hmtw)`: `content/hmtw/data/` deck definition, schemas, SCHEMA.md.
 4. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
-   shuffle, and move/flip/deal/return as unconditional operations. Pure TS,
-   test-first.
+   shuffle, and move/flip/deal/return addressed **by slot, never by card id**.
+   Carries a `schemaVersion` and a `migrateTable` from the first blob written,
+   per the ground rule above: tables live for weeks, so a shape change during
+   this very phase would otherwise break a table someone is mid-round on. Pure
+   TS, test-first, with an old-shape fixture from the commit that first bumps
+   it.
 5. `feat(hmtw)`: per-seat projection **and its leak tests, in the same commit** —
    a face-down card's identity never reaches a seat not entitled to it.
 6. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
@@ -424,10 +481,13 @@ in this table to hold constants for.
 7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, the seat rail.
 8. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
 9. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
-   zones, minor-action queue and simultaneous reveal, Sweep, callout strip.
-10. `feat(hmtw)`: universal undo — any card back where it came from, including
-    out of another seat's hand.
-11. `feat(shell)`: retention sweep, and table export/restore as JSON.
+   zones, minor-action queue and simultaneous reveal, Sweep, callout strip, the
+   Fool-was-dealt reshuffle prompt before the next deal (the Fool spans both
+   modes; commit 8 covers only the flipped case), and the confirmed
+   dump-to-discard on leaving.
+10. `feat(hmtw)`: undo and free handling — any card on the table moved or
+    flipped by any seat, no legality check; hands stay owner-only.
+11. `feat(shell)`: lazy expiry on read.
 12. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step.
 13. `docs`: CREDITS (Crawlspace as prior art, guild-book for the two patterns),
@@ -473,11 +533,9 @@ free).
 
 ### Open questions
 
-1. **Retention.** Crawlspace keeps a table ~6 weeks with a save-to-file escape
-   hatch. Proposed default: the same, plus the JSON export at commit 13. This
-   needs settling at commit 2, not later — a guest table has no owner to
-   attribute storage to, notify, or bill, so the sweep is part of the write
-   path's design rather than a tidy-up after it.
+1. **How long is the retention window?** The mechanism is settled (lazy expiry
+   on read); the number is not. Crawlspace keeps a table about six weeks, which
+   is the obvious default and the one to take absent a reason.
 2. **Two HMtW card tables, one maintainer.** guild-book has one; this will be a
    second. The divergence cost is real, recurring, and was priced at one
    dismissive sentence in the first draft. The honest version: this is a
@@ -510,6 +568,14 @@ free).
   second in prospect. A concrete `cardTable` slot instead.
 - **Full Crawlspace parity.** The gear model alone is a phase; the city/camp
   panels add UI for something a card flip already covers.
+- **Save/restore to a file.** Nothing worth preserving once gear is out, and a
+  client-side export of table state would leak the undrawn deck order.
+- **Letting a seat take a card from another seat's hand.** Crawlspace allows it
+  and asks the holder to hand it back. Rejected: the table needs the AFK case
+  (flip the card of a player who has wandered off), and that is satisfied by
+  reach over the *table* alone.
+- **A scheduled retention sweep.** No good home for a cron, and it would make
+  hosted expiry depend on atlas while giving self-hosters nothing.
 
 ## Sequencing notes
 
