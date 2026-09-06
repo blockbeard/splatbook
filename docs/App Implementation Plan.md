@@ -433,6 +433,13 @@ hands back to the GM to advance the count.
 Off: the same table, with no pings and no menus — cards and slots, moved by
 hand.
 
+One disclosure rule, and only one: **the prompter never surfaces an initiative
+before the count reaches it** — no "next up: seat 3" while the count sits on
+four. Whether the count *steps* through empty numbers or skips them does not
+matter and was briefly mistaken for a leak: reaching seven with nobody having
+answered tells the table that two through six are empty either way, which is
+exactly what the count-up is for.
+
 **The line that must not be crossed:** guided mode is a *suggestion pointer and
 a set of shortcuts over the same free table*. Every manual action stays
 available while it is on — any seat can still move any table card, out of turn,
@@ -704,17 +711,32 @@ and nothing gets built as UI until it has been designed.*
     the ground rules require boundary docs to move with the boundary.
 11. `design`: the design pass, **before any of the UI below is built** — the
     table surface, the card, the hand, the seat rail, the discard pane, the
-    guided prompts. One considered design per surface rather than a component
-    library's defaults; the standing note about templated-looking UI is the
-    reason this is a commit and not an afterthought. Includes the **input model**
-    decision (see commit 17), because it changes every surface.
+    guided prompts. Run the `frontend-design` skill here, named so it happens:
+    one considered design per surface rather than a component library's
+    defaults, because the standing note is that defaults read as templated.
+
+    Lands the **shared input primitive** in the same commit, since it governs
+    every surface below and retrofitting it later would rewrite them: **both
+    drag and click-to-select-then-place**, either one sufficient for every
+    action. Click-to-place is what makes touch and keyboard work; drag is what
+    makes it feel like a card table. Real touch targets. **No action reachable
+    only by right-click**, and where a context menu exists, `ctrl`-click on
+    macOS must register as one.
 12. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
-    discard pane as a *source*: a card drags from it into any seat's durable
+    discard pane as a *source*: a card moves from it into any seat's durable
     slot, which is how a High Chant reaches the table. Spending is the reverse
     trip, back to the discard.
-13. `feat(hmtw)`: Challenge mode, free play — hands **sorted by value** (the
-    GM's grouped minors-then-majors), initiative placement, played and facedown
-    slots, the GM's hand-size checklist and mulligan, Sweep, callout strip, the
+
+    **Milestone — ship this.** A shared deck two people can flip for Tests of
+    Fate is most of what a Crawl session needs, and it is independently useful
+    without a single Challenge feature. The sequencing rule asks for a
+    phase-boundary every 5–10 commits; this is the natural one, and it puts the
+    thing in front of a real table halfway through rather than at the end.
+13. `feat(hmtw)`: Challenge mode, free play — hands **sorted by value**, the
+    GM's **grouped by doom tier** (lesser dooms are majors 1–14, greater 15–21),
+    which is a value threshold and also makes the mulligan judgement — "mostly
+    greater dooms" — readable at a glance. Initiative placement, played and
+    facedown slots, the GM's hand-size checklist and mulligan, Sweep, callout strip, the
     Fool-was-dealt reshuffle before the next deal, and the confirmed
     dump-to-discard on leaving, sparing the durable slots.
 14. `feat(hmtw)`: guided mode, **toggleable per table** — start-of-round
@@ -722,9 +744,22 @@ and nothing gets built as UI until it has been designed.*
     whoever is next, the minor-action prompt with a pass, and the simultaneous
     reveal. A pointer and a set of shortcuts over the same free table: it
     advances a highlight and never gates a command.
-15. `feat(hmtw)`: action menus — offered from the played card's suit, per Ch7's
-    suit-matching rule, with the GM exempt because majors have no suits. Menus
-    only: picking one is a label on a play, never a rule the table enforces.
+15. `feat(hmtw)`: action menus, **bidirectional and non-binding**. Pick a card
+    and the actions it pays for are highlighted; pick an action and the cards
+    that pay for it are highlighted. Highlighted, *not* filtered — everything
+    stays selectable, because a menu that only lists legal choices is
+    enforcement wearing a quieter coat, and the GM rules on things the book
+    never anticipated. So there is always a **"something else"** entry with a
+    free-text line for whatever was just ruled at the table.
+
+    What highlights depends on who is playing. A player's minor action must be
+    paid with a **matching suit** (Ch7), and their main action likewise reads
+    from the suit. The GM reads from **doom tier** instead: a lesser doom pays
+    for any Challenge Action; a greater doom pays for greater doom abilities,
+    for any miscellaneous action except Vigilance, or can be discarded for
+    favour. The suit exemption applies to the GM's *minor* actions specifically,
+    because majors have no suits — it is not a blanket exemption, which an
+    earlier draft implied.
 16. `feat(hmtw)`: undo and free handling — any card on the table moved or
     flipped by any seat, no legality check; hands stay owner-only. Includes the
     one rejection this design has: `expected_version` means whoever loses a
@@ -732,31 +767,26 @@ and nothing gets built as UI until it has been designed.*
     people flip the AFK player's card" is both the motivating case and the
     collision case. It must read as "someone got there first" and re-sync
     silently, never as an error.
-17. `feat(hmtw)`: the input model — **tap to select, tap to place**, as the
-    primary interaction rather than drag, because it is better on touch and
-    carries most of the keyboard and screen-reader story with it; drag stays as
-    an enhancement where a pointer exists. Real touch targets. **No action
-    reachable only by right-click**, and where a context menu exists,
-    `ctrl`-click on macOS must register as one.
-18. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
-19. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+17. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
+18. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step. `e2e/campaigns.spec.ts`
     already has the multi-context pattern to follow.
-20. `design`: the coherence and accessibility pass — the whole table seen at
+19. `design`: the coherence and accessibility pass — the whole table seen at
     once, after the scope creep that will certainly have happened by here, plus
     a WCAG 2.1 AA audit via the `design:accessibility-review` skill. Live
     updates, hidden information, and card manipulation together are a hard
     accessibility surface; guild-book had to make its cards announce themselves
     to screen readers, and it will not be free here either.
-21. `docs`: `/privacy` gains its guest-data section (the page's own header
+20. `docs`: `/privacy` gains its guest-data section (the page's own header
     demands it whenever a migration stores personal data — so this rides with
     commit 6's schema if it can, and no later than here); CREDITS (Crawlspace as
     prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
     art basis in LICENSE.md.
-22. `docs`: close phase 29 — move this section to [[App Implementation History]]
+21. `docs`: close phase 29 — move this section to [[App Implementation History]]
     verbatim, per the housekeeping rule, in the commit that closes it.
 
-Twenty-two commits, up from fifteen, and this time **scope genuinely was added**:
+Twenty-one commits, with a shippable milestone at 12. Up from fifteen, and this
+time **scope genuinely was added**:
 opponents and the round procedure were missing rather than deferred, guided mode
 is new, and design, input, and accessibility went from absent to three commits.
 Treat it as a floor. For calibration, Origins 5.5e was 6 commits and 10,091
