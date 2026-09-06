@@ -354,16 +354,37 @@ hash/dimension/licence manifest with a CI verifier.
   gated out of campaign creation on exactly that basis
   (`campaigns/+page.server.ts:33`, `+layout.svelte:28`). Optional campaign
   attachment is a later commit, not a prerequisite.
-- **Transport: one protocol, two adapters.** A Durable Object + WebSocket
-  adapter for Cloudflare; an in-process WebSocket adapter for `adapter-node`, so
-  atlas stays a full staging soak rather than a partial mirror.
-  *Recorded against this, since it was argued and lost:* the operations whose
-  latency is most visible — a deal, a reveal — cannot be applied optimistically
-  by a client that does not hold the cards, so they round-trip on any transport;
-  the ones that can be optimistic are already invisible under polling, which is
-  what guild-book runs a real campaign on. The protocol is transport-agnostic,
-  so this stays cheap to revisit; build the in-process adapter first and let one
-  conformance suite hold both honest.
+- **Transport: polling, one implementation, everywhere.** Behind a
+  `TableTransport` seam so the choice stays reversible, but one code path on
+  Cloudflare and on `adapter-node`.
+
+  This reverses a first-pass decision to build Durable Object + WebSocket push
+  with two adapters. The goal that decision was serving is that **other people
+  can self-host this**, and on inspection it argues the other way. A Durable
+  Object is the least self-hostable primitive available — nobody runs one on
+  their own box, so that adapter serves splatbook.app alone. And WebSockets add
+  three frictions polling does not: a custom server entrypoint (today's
+  Dockerfile is a bare `CMD ["node", "build"]`, with no `ws` dependency
+  anywhere), reverse-proxy upgrade configuration for every self-hoster, and a
+  silent replica trap — in-process fanout assumes one process, so a self-hoster
+  who scales to two containers gets two half-tables and no error.
+
+  The real principle underneath was **parity**: self-hosters should not get a
+  visibly worse product than the hosted one. Polling everywhere satisfies that
+  with one implementation instead of two plus a conformance suite. It is also
+  what guild-book runs a real campaign on, at roughly a 1s cadence.
+
+  *The push path, recorded so it can be taken later with evidence rather than in
+  advance:* a Durable Object + WebSocket adapter behind the same seam. Its price
+  is not just the adapter — Splatbook is on Pages (`pages_build_output_dir`),
+  and Cloudflare is explicit that a Durable Object cannot be created and
+  deployed within a Pages project. So it needs either a separate Worker with
+  bindings declared in both Production and Preview, or a Pages → Workers Static
+  Assets migration. guild-book paid exactly that, and its wrangler.toml records
+  the sharp edge: a hostname attaches to one service at a time, so the deploy
+  fails with "already in use" until the domain is pulled off the Pages project
+  first. That is a live-domain cutover on splatbook.app. Take it when a real
+  table says the latency is annoying, not before.
 - **Art: ship the provably public-domain colour set first** (see the art
   decision below). A black-and-white set is deferred, not rejected.
 - **One narrow `GameModule` slot, named honestly.** The project rule is
@@ -396,28 +417,28 @@ in this table to hold constants for.
    test-first.
 5. `feat(hmtw)`: per-seat projection **and its leak tests, in the same commit** —
    a face-down card's identity never reaches a seat not entitled to it.
-6. `feat(shell)`: `table_commands`/`table_secrets` + the versioned command
-   service (observed/expected version, request-hash idempotency).
-7. `feat(shell)`: `TableTransport` + the in-process WebSocket adapter.
-8. `feat(cloudflare)`: the Durable Object adapter and binding; one conformance
-   suite both adapters must pass.
-9. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, the seat rail.
-10. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
-11. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
-    zones, minor-action queue and simultaneous reveal, Sweep, callout strip.
-12. `feat(hmtw)`: universal undo — any card back where it came from, including
+6. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
+   service (observed/expected version, request-hash idempotency), and the poll
+   endpoint plus client sync loop behind the `TableTransport` seam. One
+   transport, both hosts.
+7. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, the seat rail.
+8. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
+9. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
+   zones, minor-action queue and simultaneous reveal, Sweep, callout strip.
+10. `feat(hmtw)`: universal undo — any card back where it came from, including
     out of another seat's hand.
-13. `feat(shell)`: retention sweep, and table export/restore as JSON.
-14. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+11. `feat(shell)`: retention sweep, and table export/restore as JSON.
+12. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step.
-15. `docs`: CREDITS (Crawlspace as prior art, guild-book for the two patterns),
+13. `docs`: CREDITS (Crawlspace as prior art, guild-book for the two patterns),
     CHANGELOG, pack docs, and the art basis in LICENSE.md.
 
-Fifteen commits. Treat that as a floor rather than an estimate: the first draft
+Thirteen commits. Treat that as a floor rather than an estimate: the first draft
 said 25–30 in conversation and then produced a 17-commit list without justifying
 the drop, which is exactly the arithmetic this project's history punishes. For
 calibration, Origins 5.5e was 6 commits and 10,091 lines *with no shell change*;
-this has a shell slot, a new auth mode, and a two-backend transport.
+this still has a shell slot and a new auth mode, though dropping the second
+transport took a whole adapter and its conformance suite out.
 
 ### Art — decided
 
@@ -476,9 +497,12 @@ free).
   worth having survive as patterns.
 - **Extending guild-book instead of building here.** Still a real option — see
   open question 2.
-- **Polling, like guild-book's ~1s `GET /sync`.** Host-agnostic and proven at a
-  real table; overruled in favour of push, with the counter-argument recorded
-  above so it can be revisited without re-deriving.
+- **Durable Object + WebSocket push, with a second in-process adapter for
+  `adapter-node`.** Chosen on the first pass, then reversed: the goal was
+  self-hostability, and a Durable Object is the one primitive a self-hoster
+  cannot run, while WebSockets add entrypoint, proxy, and single-process
+  frictions that polling does not have. Recorded as an upgrade path with its
+  Pages-migration cost priced, above.
 - **Campaign-attached tables.** Would reuse invite tokens, roles, and the roll
   log almost for free, but forces campaigns onto a game that has none and puts
   an account between a player and their seat.
