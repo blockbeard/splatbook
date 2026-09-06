@@ -4,8 +4,10 @@
  * Deliberately a rules reference and nothing else: no entity types, no
  * builders, no trackers, no campaign surface. The reader lives at
  * `/hmtw/reference`, with the Gamemaster's chapters (10, and Appendices C–E)
- * behind the per-game spoiler opt-in. Primary consumer is a Zoom Whiteboard
- * iframe via the shell's embed mode (`?embed=1`).
+ * behind the per-game spoiler opt-in. The shell's embed mode (`?embed=1`) was
+ * built for it to live in a Zoom Whiteboard iframe; in practice that proved
+ * awkward and play moved to a separate tab (and to Miro). Embed mode still
+ * works and is still supported — it is just no longer how this is mostly read.
  *
  * Text used under the book's own published reuse grant — its mechanics and
  * game text may be reused freely, and third-party compatible works are
