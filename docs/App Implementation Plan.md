@@ -418,6 +418,64 @@ The procedure, and the parts an earlier draft had wrong:
    round, **both decks shuffle** — not just the player deck, which is what an
    earlier draft implied.
 
+### The exceptions the flow hides
+
+The five steps above are the easy part. These are the rules with *structural*
+consequences — each one changes what a slot is or what a turn can be, and each
+was missed by a draft that read Crawlspace instead of the chapter.
+
+**Facedown is one slot, and its position is meaning.** "You may only have one
+facedown action at a time. (Your Initiative card does not count towards this
+limit!)" — a second placement replaces the first and discards it. Position
+encodes the reveal: facedown **above** your initiative was played on your turn
+and adds your attribute when flipped; **below** it was a minor action and counts
+face value only. So this is one tagged slot per seat, not a zone of many, and
+the "minor-action queue" of earlier drafts is simply its below-position.
+
+**What is hidden is the value, not the intent.** "When a player declares an
+action that places a card facedown, they state what action they are taking, but
+only they know the card's value until it is flipped up. No peeking!" So a
+facedown card carries a **public label** — "Riposte", "Dodge" — and a private
+value. The label is the book's rule, not a convenience.
+
+And the owner must see their own card's value *without it ceasing to read as
+facedown to them* — they need to know both what it is and that it is still
+hidden from everyone else. A number and suit glyph shown against the card back
+is the obvious first idea; the design commit should find a better one.
+
+**The Fool is a paired play and an interrupt.** "The Fool has a value of 0 and
+is always played in conjunction with another card… you get an additional turn…
+this counts as an interrupt action. The Fool *always* goes first, no matter
+what." Two cards go down together, so a played slot must accept a pair; and the
+holder takes two turns and **no minor actions** that round.
+
+**Interrupts are general.** "Some talents or circumstances can turn an action
+into an interrupt. Interrupt actions take place *before* the acting player's
+action" and do not count against one-action-per-turn. A Riposte before the
+goblin's Attack resolves — so this is an affordance any seat needs during
+someone else's turn, not a Fool special case.
+
+**Skipping is a branch, not an absence.** "You do not *have* to take an action…
+If you do not take an action, the GM continues counting. **Nobody takes minor
+actions**." Same if your hand is empty when your number is called. So a skip
+suppresses the minor-action window that a normal turn opens.
+
+**Some actions need no card at all.** Free actions — talking in character,
+moving within a zone — "can freely be done on anybody's turn". And an ambush
+opens with a surprise round in which "each GM character takes an action before
+the Challenge begins; the action is automatically successful and doesn't require
+a card to be played." The table therefore needs turns that consume nothing.
+
+**Card values, for the pack:** aces are 1, pages 11, knights 12, queens 13,
+kings 14. Which is also why the book itself pairs a Roman numeral with an Arabic
+value, and why sorting by value is well-defined.
+
+**What the table deliberately never computes:** a total. An action's value is
+the card plus an attribute, with favour and disfavour at ±3 and Resolve
+spendable for favour — and we hold no attributes, no Resolve, no character at
+all. Nothing here adds up a number. Recorded so that nobody later builds a value
+calculator and discovers halfway that it needs character sheets.
+
 ### Guided mode — a prompter, never a gate
 
 The table can run the loop above for you, and this is **toggleable per table**
@@ -429,6 +487,12 @@ round; from there it counts up, pings whoever is next, offers the acting player
 a menu of the actions their played card's suit allows, then prompts everyone for
 minor actions or a pass, reveals simultaneously when all have answered, and
 hands back to the GM to advance the count.
+
+It also has to handle the exceptions above, which is most of its real work: a
+**skip** (which suppresses the minor-action window rather than opening it), an
+**interrupt** any seat can raise during someone else's turn, the **Fool's**
+always-first paired play, and an **ambush** opening where GM characters act
+without playing a card.
 
 Off: the same table, with no pings and no menus — cards and slots, moved by
 hand.
@@ -636,6 +700,9 @@ It also holds the two catalogues the guided menus read, both straight from Ch7:
   Move, Pull Item from Belt, Reload Crossbow, Test Fate, Trivial Action,
   Vigilance); plus free actions. This is what makes "here is what this card lets
   you do" possible without the app knowing any rule beyond *suit matches action*.
+- **Card values** — aces 1, pages 11, knights 12, queens 13, kings 14, majors by
+  their number, the Fool 0. Sorting, doom tiers (lesser 1–14, greater 15–21) and
+  every display of a card read from this one table.
 - **Hand-size defaults and the GM's modifier list** — four for a player, three
   for the GM plus the six cumulative reasons. Numbers and words both live here,
   never in app code, so a table that wants to house-rule them edits a pack.
@@ -649,7 +716,7 @@ overridable.
 *Ordered so the pure, testable work comes first: commits 1–5 are plain
 TypeScript with no dependency on seats, transport, or infrastructure, so there
 is something real and reviewable while the shell questions are still being
-answered. Nothing needs hardening until commit 9 puts a guest write on the wire,
+answered. Nothing needs hardening until commit 10 puts a guest write on the wire,
 and nothing gets built as UI until it has been designed.*
 
 1. `feat(hmtw)`: `content/hmtw/data/` — deck definition, the Ch7 action
@@ -674,25 +741,34 @@ and nothing gets built as UI until it has been designed.*
    king, the minor-action window, and the end of the round: unused hand cards
    and initiative discarded, **facedown cards left in play**, and **both decks
    shuffled** if the Fool was drawn.
-5. `feat(hmtw)`: per-seat projection of state, and its leak tests. (The command
-   stream's projection arrives with the stream, at commit 9, and extends these
+5. `feat(hmtw)`: the round's exceptions, which is where its real shape is — the
+   **single tagged facedown slot** (one per seat, initiative excluded, a second
+   placement replacing and discarding the first) with its position carrying the
+   reveal semantics; the **public action label** on a facedown card beside its
+   private value; the **Fool** as a paired play that always goes first and grants
+   a second turn with no minor actions; **interrupts** any seat may raise during
+   another's turn; **skipping**, which suppresses the minor-action window rather
+   than opening it; and **cardless turns**, for free actions and for an ambush's
+   surprise round.
+6. `feat(hmtw)`: per-seat projection of state, and its leak tests. (The command
+   stream's projection arrives with the stream, at commit 10, and extends these
    same tests — see there for why that half matters more.)
-6. `feat(shell)`: `tables`/`table_seats` schema, room-token URLs, and table
+7. `feat(shell)`: `tables`/`table_seats` schema, room-token URLs, and table
    creation — **signed-in only**.
-7. `feat(shell)`: guest seat identity — the signed cookie capability (reusing
+8. `feat(shell)`: guest seat identity — the signed cookie capability (reusing
    `AUTH_SECRET`), a `hooks.server.ts` handle that resolves a seat *without*
    calling `locals.auth()`, the seat list, the GM's admit/decline, the
    claimable-while-vacant GM seat, and GM re-seating with private zones carried
    across (a test, not a hope). This app has never set a cookie outside Auth.js;
    budget accordingly.
-8. `feat(shell)`: the bounded limits — per-table command ceiling as a column
+9. `feat(shell)`: the bounded limits — per-table command ceiling as a column
    increment, seat cap, pending-join cap, and the read budget. On the last: D1
    bills per query, not per byte, so "just read the version column" is still one
    read per client per second and barely moves the number. The levers that work
    are **frequency and count** — adaptive cadence (quicker in Challenge, slower
    at rest), a pause on hidden tabs as `RollLog.svelte` already does, idle-table
    backoff, and returning only commands after the client's cursor.
-9. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
+10. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
    service (observed/expected version, request-hash idempotency), and the poll
    endpoint plus client sync loop behind the `TableTransport` seam.
 
@@ -703,17 +779,23 @@ and nothing gets built as UI until it has been designed.*
    cards is every hand at once. So a shuffle reduces to a version bump with no
    payload, a deal emits one public fact ("seat 3 drew four") plus per-recipient
    rows in `table_secrets`, and every command type declares what each seat may
-   see of it. Commit 5's leak tests extend to cover the wire, not just the store.
-10. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route at
+   see of it. Commit 6's leak tests extend to cover the wire, not just the store.
+11. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route at
     `/[game=game]/cards`, and the seat rail — showing each seat's durable card
     face-up, since the table is entitled to know who holds what.
     `docs/architecture.md` and `docs/adding-a-game.md` change **in this commit**:
     the ground rules require boundary docs to move with the boundary.
-11. `design`: the design pass, **before any of the UI below is built** — the
+12. `design`: the design pass, **before any of the UI below is built** — the
     table surface, the card, the hand, the seat rail, the discard pane, the
     guided prompts. Run the `frontend-design` skill here, named so it happens:
     one considered design per surface rather than a component library's
     defaults, because the standing note is that defaults read as templated.
+
+    The **facedown card** is the hardest surface here and the one to solve
+    first: its owner must read both the value *and* that it is still hidden from
+    everyone else, while every other seat sees only a card back and the public
+    action label ("Riposte") the book requires. A number and suit glyph against
+    the back is the obvious first idea and probably not the best one.
 
     Lands the **shared input primitive** in the same commit, since it governs
     every surface below and retrofitting it later would rewrite them: **both
@@ -722,7 +804,7 @@ and nothing gets built as UI until it has been designed.*
     makes it feel like a card table. Real touch targets. **No action reachable
     only by right-click**, and where a context menu exists, `ctrl`-click on
     macOS must register as one.
-12. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
+13. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
     discard pane as a *source*: a card moves from it into any seat's durable
     slot, which is how a High Chant reaches the table. Spending is the reverse
     trip, back to the discard.
@@ -732,19 +814,19 @@ and nothing gets built as UI until it has been designed.*
     without a single Challenge feature. The sequencing rule asks for a
     phase-boundary every 5–10 commits; this is the natural one, and it puts the
     thing in front of a real table halfway through rather than at the end.
-13. `feat(hmtw)`: Challenge mode, free play — hands **sorted by value**, the
+14. `feat(hmtw)`: Challenge mode, free play — hands **sorted by value**, the
     GM's **grouped by doom tier** (lesser dooms are majors 1–14, greater 15–21),
     which is a value threshold and also makes the mulligan judgement — "mostly
     greater dooms" — readable at a glance. Initiative placement, played and
     facedown slots, the GM's hand-size checklist and mulligan, Sweep, callout strip, the
     Fool-was-dealt reshuffle before the next deal, and the confirmed
     dump-to-discard on leaving, sparing the durable slots.
-14. `feat(hmtw)`: guided mode, **toggleable per table** — start-of-round
+15. `feat(hmtw)`: guided mode, **toggleable per table** — start-of-round
     confirmation once every initiative is placed, the count-up, the ping for
     whoever is next, the minor-action prompt with a pass, and the simultaneous
     reveal. A pointer and a set of shortcuts over the same free table: it
     advances a highlight and never gates a command.
-15. `feat(hmtw)`: action menus, **bidirectional and non-binding**. Pick a card
+16. `feat(hmtw)`: action menus, **bidirectional and non-binding**. Pick a card
     and the actions it pays for are highlighted; pick an action and the cards
     that pay for it are highlighted. Highlighted, *not* filtered — everything
     stays selectable, because a menu that only lists legal choices is
@@ -760,29 +842,29 @@ and nothing gets built as UI until it has been designed.*
     favour. The suit exemption applies to the GM's *minor* actions specifically,
     because majors have no suits — it is not a blanket exemption, which an
     earlier draft implied.
-16. `feat(hmtw)`: undo and free handling — any card on the table moved or
+17. `feat(hmtw)`: undo and free handling — any card on the table moved or
     flipped by any seat, no legality check; hands stay owner-only. Includes the
     one rejection this design has: `expected_version` means whoever loses a
     simultaneous grab is refused, and open reach makes that *likely*, since "two
     people flip the AFK player's card" is both the motivating case and the
     collision case. It must read as "someone got there first" and re-sync
     silently, never as an error.
-17. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
-18. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+18. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
+19. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step. `e2e/campaigns.spec.ts`
     already has the multi-context pattern to follow.
-19. `design`: the coherence and accessibility pass — the whole table seen at
+20. `design`: the coherence and accessibility pass — the whole table seen at
     once, after the scope creep that will certainly have happened by here, plus
     a WCAG 2.1 AA audit via the `design:accessibility-review` skill. Live
     updates, hidden information, and card manipulation together are a hard
     accessibility surface; guild-book had to make its cards announce themselves
     to screen readers, and it will not be free here either.
-20. `docs`: `/privacy` gains its guest-data section (the page's own header
+21. `docs`: `/privacy` gains its guest-data section (the page's own header
     demands it whenever a migration stores personal data — so this rides with
-    commit 6's schema if it can, and no later than here); CREDITS (Crawlspace as
+    commit 7's schema if it can, and no later than here); CREDITS (Crawlspace as
     prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
     art basis in LICENSE.md.
-21. `docs`: close phase 29 — move this section to [[App Implementation History]]
+22. `docs`: close phase 29 — move this section to [[App Implementation History]]
     verbatim, per the housekeeping rule, in the commit that closes it.
 
 Twenty-one commits, with a shippable milestone at 12. Up from fifteen, and this
