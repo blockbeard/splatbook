@@ -363,7 +363,12 @@ otherwise the reach rule quietly becomes a peek.
 
 **Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip is
 a card flip), the gear model (notches, flickers, lit status, hands/belt/pack
-slots), and the one-off city-location workarounds. Tower Gnostic's Scrabble
+slots), and the one-off city-location workarounds. **Zones too** — checked
+against the book rather than assumed: Ch7's zones are narrative positioning
+("Backstage, Stage, Orchestra pit, Seating, Balcony"), explicitly theatre of the
+mind with "sketch a quick map" as the fallback, and engaged/disengaged is a
+status rather than geometry. They do not belong in a card handler. Recorded as a
+decision so nobody later restores them believing they were forgotten. Tower Gnostic's Scrabble
 tiles are out of Crawlspace's jurisdiction and out of ours.
 
 **Also out: save/restore.** Crawlspace has it; we don't need it. With no gear to
@@ -374,6 +379,73 @@ deck order, so an export handed to a client is the deck handed to a player,
 defeating the per-seat projection through a download button. (Crawlspace looks
 to have met the same wall: its save file restores players and gear, "not card
 state or phase.")
+
+### The round, from Chapter 7 rather than from Crawlspace
+
+*Added on the fifth review, which found the Challenge mode had no opponents in
+it. That gap came from designing against Crawlspace's description of its own UI
+instead of against the book; the chapter has since been read properly and the
+model below is grounded in it. Anything a future session adds here should be
+checked the same way.*
+
+The procedure, and the parts an earlier draft had wrong:
+
+0. **Set the scene.** The GM names the combatants. **Opponents are first-class:**
+   the GM "plays an Initiative card for every significant character *or group of
+   characters* they control", and takes "a turn for each important character".
+   So an opponent is structurally a seat without hand privacy — a name, an
+   initiative slot, played and facedown slots — created here and **addable
+   mid-Challenge**, since reinforcements arrive and a group may need splitting
+   (the mob rules turn on how many enemies fight one adventurer, so splitting is
+   a real move, not an edge case).
+1. **Draw.** Players draw **four** minor arcana. The GM draws **three** majors
+   plus a cumulative list checked *at the start of every round*: +1 per enemy
+   type, +1 if enemies outnumber the adventurers, +1 if twice as many, +1 per
+   enemy larger than a human, +2 for an elite, +3 for a dungeon lord. So the GM
+   gets a **checklist, not a number box** — tick what is true, get a suggested
+   count, override freely. Also a **mulligan** button: the book lets the GM
+   discard and redraw a hand that is "*mostly* greater dooms", with no numeric
+   threshold, so it is a button and never a computed condition.
+2. **Play Initiative.** One card, facedown. Low goes first.
+3. **Take turns.** The GM counts **up from the Ace through the king**; whoever's
+   initiative is called takes their turn.
+4. **Minor actions.** After each turn resolves, anyone may declare one; all are
+   revealed and resolved simultaneously. **A player's minor action must be paid
+   with a card whose suit matches the action.** The GM, holding suitless majors,
+   is exempt — and each enemy or group may take one.
+5. **End the round.** Everyone discards **unused hand cards and their initiative
+   card**; **facedown cards remain in play**; and if the Fool was drawn this
+   round, **both decks shuffle** — not just the player deck, which is what an
+   earlier draft implied.
+
+### Guided mode — a prompter, never a gate
+
+The table can run the loop above for you, and this is **toggleable per table**
+because not every group wants it and some players are ill-served by software
+that takes the wheel.
+
+On: once every seat has placed an initiative card, the table offers to start the
+round; from there it counts up, pings whoever is next, offers the acting player
+a menu of the actions their played card's suit allows, then prompts everyone for
+minor actions or a pass, reveals simultaneously when all have answered, and
+hands back to the GM to advance the count.
+
+Off: the same table, with no pings and no menus — cards and slots, moved by
+hand.
+
+**The line that must not be crossed:** guided mode is a *suggestion pointer and
+a set of shortcuts over the same free table*. Every manual action stays
+available while it is on — any seat can still move any table card, out of turn,
+against the prompt, with no rejection. It advances a highlight; it never gates a
+command. The moment the prompter can refuse a play, this has become the
+enforcing engine the phase exists to not build.
+
+*Worth recording honestly:* a guided turn loop is closer to guild-book's
+`turns.ts` and `initiative.ts` than anything in earlier drafts, which narrows —
+though does not close — the argument for building fresh. Theirs still enforces
+where ours prompts, and is still welded to `tenureId`. But those two files are
+now worth reading as reference while building this, rather than only as
+rejected code.
 
 ### What we take from guild-book, and what we don't
 
@@ -547,113 +619,149 @@ HMtW has no `content/hmtw/data/` yet — only generated `rules/`, which is never
 hand-edited. This phase creates one (hand-authored, like Stonetop's) holding the
 deck composition (suits, ranks, values, the Fool's borrow into the player deck)
 and every string the table renders. Zod schemas join `hmtw/pack-schemas.ts`; a
-`SCHEMA.md` documents it. No formulas, no rules constants — there are no rules
-in this table to hold constants for.
+`SCHEMA.md` documents it.
+
+It also holds the two catalogues the guided menus read, both straight from Ch7:
+
+- **Challenge actions by suit** — Swords (Attack, Riposte); Pentacles (Avoid,
+  Dash, Dodge, Roughhouse); Cups (Aid Another, Command, Pull Item from Pack, Use
+  Item); Wands (Banter, Speak Incantation, Recover); any-suit (Bid Lore, Guard,
+  Move, Pull Item from Belt, Reload Crossbow, Test Fate, Trivial Action,
+  Vigilance); plus free actions. This is what makes "here is what this card lets
+  you do" possible without the app knowing any rule beyond *suit matches action*.
+- **Hand-size defaults and the GM's modifier list** — four for a player, three
+  for the GM plus the six cumulative reasons. Numbers and words both live here,
+  never in app code, so a table that wants to house-rule them edits a pack.
+
+The one thing that stays out: nothing that would let the app *rule* on a play.
+The catalogues populate menus and suggest counts. Every one of them is
+overridable.
 
 ### Commits
 
-*Ordered so the pure, testable work comes first: commits 1–3 are plain
+*Ordered so the pure, testable work comes first: commits 1–5 are plain
 TypeScript with no dependency on seats, transport, or infrastructure, so there
 is something real and reviewable while the shell questions are still being
-answered. Nothing needs hardening until commit 7 puts a guest write on the
-wire.*
+answered. Nothing needs hardening until commit 9 puts a guest write on the wire,
+and nothing gets built as UI until it has been designed.*
 
-1. `feat(hmtw)`: `content/hmtw/data/` deck definition, Zod schemas, SCHEMA.md —
-   plus the new file in the pack's `manifest.json` `files` list and a `version`
-   bump. The manifest is hand-written and the harness fails a file that is
-   "listed in manifest but not found", so this is one commit's worth of detail
-   that otherwise breaks CI on first contact with the pack.
-2. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
-   shuffle, and move/flip/deal/return addressed **by slot** (naming a card only
-   in a public zone). Carries a `schemaVersion` and a `migrateTable` from the
-   first blob written, per the ground rule above: tables live for weeks, so a
-   shape change during this very phase would otherwise break a table someone is
-   mid-round on. Pure TS, test-first, with an old-shape fixture from the commit
-   that first bumps it.
-
-   **Ownership, since a table is not an entity type and the rule is written for
-   those:** the shape is HMtW's, so HMtW owns `migrateTable`, exposed through
-   the `cardTable` slot exactly as `entityTypes` expose theirs. The rows are the
-   shell's, so the shell calls it on every read, and never inspects what comes
-   back. Same division as `entities.data`.
-3. `feat(hmtw)`: per-seat projection of state, and its leak tests. (The command
-   stream's projection arrives with the stream, at commit 7, and extends these
+1. `feat(hmtw)`: `content/hmtw/data/` — deck definition, the Ch7 action
+   catalogue by suit, hand-size defaults and the GM's six modifiers; Zod
+   schemas, SCHEMA.md, the new files in the pack's `manifest.json` `files` list
+   and a `version` bump. The manifest is hand-written and the harness fails a
+   file that is "listed in manifest but not found".
+2. `feat(hmtw)`: engine foundations — zones, piles, slots, seeded
+   **server-side** shuffle, move/flip/deal/return addressed **by slot** (naming
+   a card only in a public zone). Carries `schemaVersion` and `migrateTable`
+   from the first blob written: tables live for weeks, so a shape change during
+   this phase would otherwise break a table someone is mid-round on. HMtW owns
+   `migrateTable` and exposes it through the `cardTable` slot exactly as
+   `entityTypes` expose theirs; the shell calls it on every read and never
+   inspects what comes back.
+3. `feat(hmtw)`: opponents — named characters or groups, created when the scene
+   is set and addable mid-Challenge, each with an initiative slot and played and
+   facedown slots. Removable, and splittable, since the mob rules make group
+   size matter.
+4. `feat(hmtw)`: the round — draw (four for a player; three plus the modifier
+   checklist for the GM, with a mulligan), initiative, the count up from Ace to
+   king, the minor-action window, and the end of the round: unused hand cards
+   and initiative discarded, **facedown cards left in play**, and **both decks
+   shuffled** if the Fool was drawn.
+5. `feat(hmtw)`: per-seat projection of state, and its leak tests. (The command
+   stream's projection arrives with the stream, at commit 9, and extends these
    same tests — see there for why that half matters more.)
-4. `feat(shell)`: `tables`/`table_seats` schema, room-token URLs, and table
+6. `feat(shell)`: `tables`/`table_seats` schema, room-token URLs, and table
    creation — **signed-in only**.
-5. `feat(shell)`: guest seat identity — the signed cookie capability (reusing
+7. `feat(shell)`: guest seat identity — the signed cookie capability (reusing
    `AUTH_SECRET`), a `hooks.server.ts` handle that resolves a seat *without*
    calling `locals.auth()`, the seat list, the GM's admit/decline, the
    claimable-while-vacant GM seat, and GM re-seating with private zones carried
    across (a test, not a hope). This app has never set a cookie outside Auth.js;
    budget accordingly.
-6. `feat(shell)`: the bounded limits — per-table command ceiling as a column
-   increment, seat cap, pending-join cap, and the read budget. On the last:
-   D1 bills per query, not per byte, so "just read the version column" is still
-   one read per client per second and barely moves the number. The levers that
-   work are **frequency and count** — adaptive cadence (quicker in Challenge,
-   slower at rest), a pause on hidden tabs as `RollLog.svelte` already does,
-   idle-table backoff, and returning only commands after the client's cursor so
-   a quiet poll is small as well as rare.
-7. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
+8. `feat(shell)`: the bounded limits — per-table command ceiling as a column
+   increment, seat cap, pending-join cap, and the read budget. On the last: D1
+   bills per query, not per byte, so "just read the version column" is still one
+   read per client per second and barely moves the number. The levers that work
+   are **frequency and count** — adaptive cadence (quicker in Challenge, slower
+   at rest), a pause on hidden tabs as `RollLog.svelte` already does, idle-table
+   backoff, and returning only commands after the client's cursor.
+9. `feat(shell)`: `table_commands`/`table_secrets`, the versioned command
    service (observed/expected version, request-hash idempotency), and the poll
-   endpoint plus client sync loop behind the `TableTransport` seam. One
-   transport, both hosts.
+   endpoint plus client sync loop behind the `TableTransport` seam.
 
-   **The command stream is projected per seat, exactly as state is.** This is
-   the trap the first three drafts walked past: a poll returns *commands since
-   your cursor*, so the sync channel is a second way out of the building, and a
-   projection that only guards state guards the front door alone. A shuffle
-   carrying a seed is the deck order in plaintext; a deal naming cards is every
-   hand at once. So a shuffle reduces to a version bump with no payload, a deal
-   emits one public fact ("seat 3 drew four") plus per-recipient rows in
-   `table_secrets`, and every command type declares what each seat may see of
-   it. Commit 3's leak tests extend to cover the wire, not just the store — a
-   test that reads the projected state and never the projected stream would have
-   passed against a design that leaked everything.
-8. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route at
-   `/[game=game]/cards`, and the seat rail — which shows each seat's durable
-   card face-up, since the table is entitled to know who is holding what.
-   `docs/architecture.md` and `docs/adding-a-game.md` change **in this commit**:
-   the ground rules require boundary docs to move with the boundary, and this is
-   the commit that moves it.
-9. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
-   discard pane as a *source*: a card drags from it into any seat's durable
-   slot, which is how a High Chant reaches the table. Spending is the reverse
-   trip, back to the discard.
-10. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
-    zones, minor-action queue and simultaneous reveal, Sweep, callout strip, the
-    Fool-was-dealt reshuffle prompt before the next deal (the Fool spans both
-    modes; commit 9 covers only the flipped case), and the confirmed
+   **The command stream is projected per seat, exactly as state is.** A poll
+   returns *commands since your cursor*, so the sync channel is a second way out
+   of the building, and a projection that only guards state guards the front door
+   alone. A shuffle carrying a seed is the deck order in plaintext; a deal naming
+   cards is every hand at once. So a shuffle reduces to a version bump with no
+   payload, a deal emits one public fact ("seat 3 drew four") plus per-recipient
+   rows in `table_secrets`, and every command type declares what each seat may
+   see of it. Commit 5's leak tests extend to cover the wire, not just the store.
+10. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route at
+    `/[game=game]/cards`, and the seat rail — showing each seat's durable card
+    face-up, since the table is entitled to know who holds what.
+    `docs/architecture.md` and `docs/adding-a-game.md` change **in this commit**:
+    the ground rules require boundary docs to move with the boundary.
+11. `design`: the design pass, **before any of the UI below is built** — the
+    table surface, the card, the hand, the seat rail, the discard pane, the
+    guided prompts. One considered design per surface rather than a component
+    library's defaults; the standing note about templated-looking UI is the
+    reason this is a commit and not an afterthought. Includes the **input model**
+    decision (see commit 17), because it changes every surface.
+12. `feat(hmtw)`: Decks mode — flip, zoom, reshuffle, Fool prompt, and the
+    discard pane as a *source*: a card drags from it into any seat's durable
+    slot, which is how a High Chant reaches the table. Spending is the reverse
+    trip, back to the discard.
+13. `feat(hmtw)`: Challenge mode, free play — hands **sorted by value** (the
+    GM's grouped minors-then-majors), initiative placement, played and facedown
+    slots, the GM's hand-size checklist and mulligan, Sweep, callout strip, the
+    Fool-was-dealt reshuffle before the next deal, and the confirmed
     dump-to-discard on leaving, sparing the durable slots.
-11. `feat(hmtw)`: undo and free handling — any card on the table moved or
+14. `feat(hmtw)`: guided mode, **toggleable per table** — start-of-round
+    confirmation once every initiative is placed, the count-up, the ping for
+    whoever is next, the minor-action prompt with a pass, and the simultaneous
+    reveal. A pointer and a set of shortcuts over the same free table: it
+    advances a highlight and never gates a command.
+15. `feat(hmtw)`: action menus — offered from the played card's suit, per Ch7's
+    suit-matching rule, with the GM exempt because majors have no suits. Menus
+    only: picking one is a label on a play, never a rule the table enforces.
+16. `feat(hmtw)`: undo and free handling — any card on the table moved or
     flipped by any seat, no legality check; hands stay owner-only. Includes the
     one rejection this design has: `expected_version` means whoever loses a
-    simultaneous grab gets refused, and open reach makes that *likely* rather
-    than rare, since "two people flip the AFK player's card" is both the
-    motivating case and the collision case. It must read as "someone got there
-    first" and re-sync silently, never as an error — a permissive table that
-    scolds you is a broken promise.
-12. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
-13. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+    simultaneous grab is refused, and open reach makes that *likely*, since "two
+    people flip the AFK player's card" is both the motivating case and the
+    collision case. It must read as "someone got there first" and re-sync
+    silently, never as an error.
+17. `feat(hmtw)`: the input model — **tap to select, tap to place**, as the
+    primary interaction rather than drag, because it is better on touch and
+    carries most of the keyboard and screen-reader story with it; drag stays as
+    an enhancement where a pointer exists. Real touch targets. **No action
+    reachable only by right-click**, and where a context menu exists,
+    `ctrl`-click on macOS must register as one.
+18. `feat(shell)`: lazy expiry on read, plus the bounded opportunistic sweep.
+19. `test(e2e)`: Playwright multi-context — two seats through a full round, with
     hidden information asserted hidden at every step. `e2e/campaigns.spec.ts`
     already has the multi-context pattern to follow.
-14. `docs`: `/privacy` gains its guest-data section (the page's own header
+20. `design`: the coherence and accessibility pass — the whole table seen at
+    once, after the scope creep that will certainly have happened by here, plus
+    a WCAG 2.1 AA audit via the `design:accessibility-review` skill. Live
+    updates, hidden information, and card manipulation together are a hard
+    accessibility surface; guild-book had to make its cards announce themselves
+    to screen readers, and it will not be free here either.
+21. `docs`: `/privacy` gains its guest-data section (the page's own header
     demands it whenever a migration stores personal data — so this rides with
-    commit 4's schema if it can, and no later than here); CREDITS (Crawlspace as
+    commit 6's schema if it can, and no later than here); CREDITS (Crawlspace as
     prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
     art basis in LICENSE.md.
-15. `docs`: close phase 29 — move this section to [[App Implementation History]]
+22. `docs`: close phase 29 — move this section to [[App Implementation History]]
     verbatim, per the housekeeping rule, in the commit that closes it.
 
-Fifteen commits, up from thirteen — nothing was added to the scope, the count
-went up because commit 1 was three pieces of work wearing one bullet and the
-phase had no closing commit. Treat it as a floor rather than an estimate: an
-earlier draft said 25–30 in conversation and then produced a 17-commit list
-without justifying the drop, which is exactly the arithmetic this project's
-history punishes. For calibration, Origins 5.5e was 6 commits and 10,091 lines
-*with no shell change*; this still has a shell slot and a new identity
-mechanism, in a codebase that has never set a cookie of its own.
+Twenty-two commits, up from fifteen, and this time **scope genuinely was added**:
+opponents and the round procedure were missing rather than deferred, guided mode
+is new, and design, input, and accessibility went from absent to three commits.
+Treat it as a floor. For calibration, Origins 5.5e was 6 commits and 10,091
+lines *with no shell change*; this has a shell slot, a new identity mechanism in
+a codebase that has never set a cookie of its own, and a game procedure to model.
 
 ### Art — decided
 
