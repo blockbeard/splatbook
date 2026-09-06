@@ -264,24 +264,39 @@ deciding a format rule.*
 
 ## Phase 29 — HMtW: a shared card table
 
-*Filed 2026-09-06. Prompted by [Crawlspace](https://worm.jmac.org/) (Jason
-McIntosh) — a free, well-made virtual card table for HMtW that is closed source
-with no repo, so there is nothing to fork. A clean-room build is squarely inside
-the book's grant (mechanics and game text may be reused freely); Crawlspace's
-code, assets, and docs prose are not ours to copy, and its docs were read for
-**what a card table needs**, not for how it does it. Credit it as prior art on
-`/credits` when this ships.*
+*Filed 2026-09-06; **rewritten the same day** after an adversarial review of the
+first draft, which proposed porting guild-book's Challenge engine. That draft is
+recorded under "Considered and rejected" rather than deleted, because the
+reasons it failed are the reasons this one is shaped as it is.*
 
-*The material fact found while planning: **guild-book already built this.** Chris's
-fork (`~/Documents/guild-book`, upstream `arrowedisgaming/guild-book`, GPL-3.0,
-SvelteKit 2 + Drizzle + D1) ships a live shared tarot table with a synchronised
-Challenge phase, per-actor projections, a versioned command log, and a
-deterministic tarot art pipeline. Splatbook is GPL-3.0-or-later, so the engine
-ports with attribution. This phase is therefore a **port plus a new shell**, not
-a from-scratch build — which also changes the risk profile: the subtle part
-(hidden information and command concurrency) arrives already tested.*
+*Prompted by [Crawlspace](https://worm.jmac.org/) (Jason McIntosh) — a free,
+well-made virtual card table for HMtW, closed source with no repo, so there is
+nothing to fork. A clean-room build is squarely inside the book's own reuse
+grant; Crawlspace's code, assets, and docs prose are not ours to copy, and its
+docs were read for **what a card table needs**, not for how it does it. Credit
+it as prior art on `/credits` when this ships.*
 
-### Scope — deliberately not Crawlspace parity
+### The governing principle: permissive, not enforcing
+
+Crawlspace's undo model is the product: a misplay is undone by moving the card
+back — including out of someone else's hand — because it is built to behave like
+a physical table where you drop something, say "whoops," and pick it up.
+
+This table does the same. **The engine moves cards; it does not rule on
+whether a move was legal.** No offered-command set, no rejection of a play the
+rules don't sanction, no modelling of Dooms, death, grit, or equipment. Those
+belong to the people at the table, who have the book open.
+
+That single decision is what makes this phase small, and it is why the
+first draft's plan to port guild-book's Challenge engine was abandoned:
+that engine is deliberately the opposite. `command.ts`'s
+`legalChallengeCommands` computes what an actor may do and
+`applyChallengeCommand` rejects anything else outright — ``reject(
+'illegal-command', `${command.type} is not currently offered to this actor`)``
+— with a `guard-coverage.test.ts` proving the guards exhaustive. Excellent
+work, and the wrong product for this.
+
+### Scope
 
 Two modes over **one persistent deck state**:
 
@@ -289,167 +304,188 @@ Two modes over **one persistent deck state**:
   GM reshuffle, automatic reshuffle when a pile empties, Fool-flipped prompt.
 - **Challenge** — deal hands, face-down initiative visible only to its owner,
   played and face-down zones, minor actions queued then revealed
-  simultaneously, Sweep, an initiative callout strip with ±, and per-step undo
-  after Reveal and Sweep.
+  simultaneously, Sweep, an initiative callout strip with ±.
 
-The deck is table state; the modes are two views onto it, and moving between
-them never resets the piles.
+Moving between modes never resets the piles: the deck is table state, and the
+modes are two views onto it. Undo is universal — any card goes back where it
+came from, at any time, with no legality check and no permission beyond holding
+a seat.
 
-**Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip
-is a card flip — those phases need no dedicated UI), the whole gear/inventory
-model (notches, flickers, lit status, hands/belt/pack slots), and the
-one-off city-location workarounds. Tower Gnostic's Scrabble tiles are out of
-Crawlspace's jurisdiction and out of ours.
+**Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip is
+a card flip), the gear model (notches, flickers, lit status, hands/belt/pack
+slots), and the one-off city-location workarounds. Tower Gnostic's Scrabble
+tiles are out of Crawlspace's jurisdiction and out of ours.
+
+### What we take from guild-book, and what we don't
+
+Chris's fork (`~/Documents/guild-book`, upstream `arrowedisgaming/guild-book`,
+GPL-3.0, same stack) has solved two problems worth not re-deriving. Both are
+**patterns, a few hundred lines of idea** — not code to lift:
+
+1. **The command protocol.** `session_commands` carries `client_observed_version`,
+   `expected_version`, and a `request_hash` for idempotency, against a versioned
+   public-state blob. Copy that shape.
+2. **Per-recipient secrets.** `campaign_event_secrets` holds a payload keyed to
+   (event, recipient), and one combined loader builds every viewer's slice from
+   a single read rather than one loader per concern. Copy that shape too.
+
+**Not taken: the Challenge engine.** Beyond the permissive/enforcing mismatch
+above, it is not separable from guild-book's domain model. `tenureId` appears
+239 times across it — 82 in `reducer.ts` alone — and `ChallengeStateV1` is built
+from `participantTenureIds`, `tenureOwners`, `budgets`, `enemyFacts`,
+`mulliganUsedThisRound`, and `modifiers`. A tenure is not a seat; the type's own
+comment says it "is NOT a user id" and exists because "on death the same user
+attaches a NEW tenure." This design has no campaigns, no adventurers, no death,
+and guest seats with no user id at all. Pure of UI and DB is not the same as
+portable. Nor is `modifiers.ts` a clean thing to drop: it imports *from* the
+reducer and re-exports its constants to avoid a cycle, and `ChallengeState`
+carries a `modifiers` field the reducer reads.
+
+**Also taken, and genuinely reusable as code:** the deterministic art pipeline
+(`scripts/tarot-art/`) — an explicit source map, size variants, and a
+hash/dimension/licence manifest with a CI verifier.
 
 ### Decisions (Chris, 2026-09-06)
 
 - **Access: standalone token-URL tables with guest seats.** A `tables` row with
   an invite token; a guest claims a seat behind a signed cookie capability, no
   account required; a signed-in user gets their real identity. This deliberately
-  does *not* force campaigns onto HMtW (which contributes no entity types, and
-  the shell gates campaign creation on that — `campaigns/+page.server.ts:33`,
-  `+layout.svelte:28`). Optional "attach this table to a campaign" is a later
-  commit, not a prerequisite.
+  does not force campaigns onto HMtW, which contributes no entity types and is
+  gated out of campaign creation on exactly that basis
+  (`campaigns/+page.server.ts:33`, `+layout.svelte:28`). Optional campaign
+  attachment is a later commit, not a prerequisite.
 - **Transport: one protocol, two adapters.** A Durable Object + WebSocket
-  adapter for Cloudflare; an in-process WebSocket adapter for `adapter-node` on
-  atlas. DOs are Cloudflare-only and `wrangler.toml` is explicit that the atlas
-  deployment ignores that file entirely — a DO-only design would quietly demote
-  atlas from staging soak to partial mirror. The engine and UI see only the
-  interface.
-- **Engine: port from guild-book, don't re-derive.**
-
-### The port
-
-| From guild-book | Lines | Fate |
-|---|---|---|
-| `src/lib/engine/session/*.ts` (state, zones, reducer, card-commands, private-transfer, projection, invariants, shuffle, result) | ~2,100 | port |
-| `src/lib/engine/session/procedures/challenge/*` minus `modifiers.ts` | ~3,500 | port |
-| `challenge/modifiers.ts` | 1,192 | **drop** — derives modifiers from guild-book's character model; HMtW-in-Splatbook has no characters |
-| `src/lib/types/session.ts`, `types/common.ts` | ~630 | port, trimmed |
-| `tests/unit/session/challenge/*` (13 files) | ~4,900 | port minus `modifiers.test.ts` |
-
-Lands in `src/lib/games/hmtw/engine/` — pure TS, no UI or DB imports, per the
-layer rule. guild-book's own `tests/unit/session/import-boundaries.test.ts`
-enforces the same discipline; port that guard too.
-
-**Not ported:** the persistence and route layers. guild-book's table hangs off
-campaigns, `play_sessions`, content-pack digests, and runtime content ids — a
-much heavier model than a token-URL table needs.
-
-**Attribution:** a `CREDITS`/`LICENSE` note naming guild-book and Arrowed, since
-this is derived GPL-3.0 work, not merely inspired-by.
-
-### Shell changes forced — the extraction moment
-
-The sequencing note said the test of the framework is whether game #2 touches
-only its own pack and module, and that a forced shell change is the moment to
-extract. This forces one, with two real games in hand:
-
-- `GameModule` gains a slot for a **live shared surface**: the shell owns
-  transport, seating, persistence, and per-seat projection dispatch; the game
-  owns the deck definition, the reducer, and every rendered string.
-- The **server runs game engine code**. Precedent exists — `entityTypes.pdf`
-  already does — but this is the first time a reducer and a `project(state,
-  seat)` run per request. Hidden information is a server-side guarantee, not a
-  UI one: a face-down card's identity must never reach a seat not entitled to
-  it. guild-book solves this with `campaign_event_secrets` (per-recipient
-  payloads keyed to an event) and one combined projection loader per poll;
-  keep both shapes.
-- **New tables:** `tables`, `table_seats`, `table_commands`, `table_secrets`.
-  The command log carries guild-book's optimistic-concurrency columns —
-  `client_observed_version`, `expected_version`, and a `request_hash` for
-  idempotency — against a versioned public-state blob.
-- **First anonymous-writable surface on a public host.** Guest seats mean rate
-  limiting, a table cap, and a retention policy are launch requirements, not
-  polish.
+  adapter for Cloudflare; an in-process WebSocket adapter for `adapter-node`, so
+  atlas stays a full staging soak rather than a partial mirror.
+  *Recorded against this, since it was argued and lost:* the operations whose
+  latency is most visible — a deal, a reveal — cannot be applied optimistically
+  by a client that does not hold the cards, so they round-trip on any transport;
+  the ones that can be optimistic are already invisible under polling, which is
+  what guild-book runs a real campaign on. The protocol is transport-agnostic,
+  so this stays cheap to revisit; build the in-process adapter first and let one
+  conformance suite hold both honest.
+- **Art: ship the provably public-domain colour set first** (see the art
+  decision below). A black-and-white set is deferred, not rejected.
+- **One narrow `GameModule` slot, named honestly.** The project rule is
+  "abstract only when a second game forces it," and no second game is coming —
+  Stonetop has no cards. So this adds `GameModule.cardTable?`, which is
+  unapologetically about decks, seats, and zones, rather than a speculative
+  "live shared surface" contract with pluggable reducers and transports. Adding
+  a concrete slot for one consumer is a small, reversible cost; inventing a
+  universal abstraction for one consumer is the thing the rule forbids. When a
+  second game wants a live surface, *that* is the extraction moment.
 
 ### Content pack
 
-HMtW has no `content/hmtw/data/` yet — only generated `rules/`, which is
-never hand-edited. This phase creates one (hand-authored, like Stonetop's),
-holding the deck definition (suits, ranks, values, the Fool's borrow into the
-player deck), the Fool's fixed interrupt constants, and every string the table
-renders. Zod schemas join `hmtw/pack-schemas.ts`; a `SCHEMA.md` documents it,
-same as Stonetop's.
+HMtW has no `content/hmtw/data/` yet — only generated `rules/`, which is never
+hand-edited. This phase creates one (hand-authored, like Stonetop's) holding the
+deck composition (suits, ranks, values, the Fool's borrow into the player deck)
+and every string the table renders. Zod schemas join `hmtw/pack-schemas.ts`; a
+`SCHEMA.md` documents it. No formulas, no rules constants — there are no rules
+in this table to hold constants for.
 
-### Commits, roughly
+### Commits
 
-1. `feat(shell)`: `tables`/`table_seats` schema + token-URL creation and the join/claim-a-seat flow.
-2. `feat(shell)`: guest identity — signed cookie capability bound to the invite token.
-3. `feat(hmtw)`: `content/hmtw/data/` deck config + schemas + SCHEMA.md.
-4. `feat(hmtw)`: port the session engine layer (state, zones, reducer, card-commands, shuffle) with its tests.
-5. `feat(hmtw)`: port private-transfer + projection + invariants, with the import-boundary guard.
-6. `feat(shell)`: `table_commands`/`table_secrets` + the versioned command service (expected-version, request-hash idempotency).
-7. `feat(shell)`: `TableTransport` interface + the adapter-node in-process WebSocket adapter.
-8. `feat(cloudflare)`: the Durable Object adapter + binding; both adapters against one protocol test.
-9. `feat(shell)`: `GameModule` live-surface slot; the generic table route and seat rail.
+1. `feat(shell)`: `tables`/`table_seats` schema, token-URL creation, seat claim
+   via signed cookie capability.
+2. `feat(shell)`: harden the guest write path *before* it can carry a card —
+   rate limit, table cap, per-table command ceiling, retention field.
+3. `feat(hmtw)`: `content/hmtw/data/` deck definition, schemas, SCHEMA.md.
+4. `feat(hmtw)`: the card-table engine — zones, piles, seeded **server-side**
+   shuffle, and move/flip/deal/return as unconditional operations. Pure TS,
+   test-first.
+5. `feat(hmtw)`: per-seat projection **and its leak tests, in the same commit** —
+   a face-down card's identity never reaches a seat not entitled to it.
+6. `feat(shell)`: `table_commands`/`table_secrets` + the versioned command
+   service (observed/expected version, request-hash idempotency).
+7. `feat(shell)`: `TableTransport` + the in-process WebSocket adapter.
+8. `feat(cloudflare)`: the Durable Object adapter and binding; one conformance
+   suite both adapters must pass.
+9. `feat(shell)`: the `GameModule.cardTable` slot, the mounted route, the seat rail.
 10. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
-11. `feat(hmtw)`: port the Challenge engine (deal, initiative, fool, turns, transfers) with its tests.
-12. `feat(hmtw)`: Challenge UI — hands, initiative placement, played/face-down zones.
-13. `feat(hmtw)`: simultaneous minor-action reveal, Sweep, callout strip.
-14. `feat(hmtw)`: undo after Reveal and Sweep; the confirmation gates on New Round and End Challenge.
-15. `feat(shell)`: retention policy + table cap + rate limiting on the guest write path.
-16. `test(e2e)`: Playwright multi-context — two seats, hidden information stays hidden.
-17. `docs`: CREDITS attribution (guild-book/Arrowed, Crawlspace as prior art), CHANGELOG, pack docs.
+11. `feat(hmtw)`: Challenge mode — deal, hidden initiative, played/face-down
+    zones, minor-action queue and simultaneous reveal, Sweep, callout strip.
+12. `feat(hmtw)`: universal undo — any card back where it came from, including
+    out of another seat's hand.
+13. `feat(shell)`: retention sweep, and table export/restore as JSON.
+14. `test(e2e)`: Playwright multi-context — two seats through a full round, with
+    hidden information asserted hidden at every step.
+15. `docs`: CREDITS (Crawlspace as prior art, guild-book for the two patterns),
+    CHANGELOG, pack docs, and the art basis in LICENSE.md.
 
-Call it 17 commits before it is worth showing anyone, gear excluded. That is a
-phase on the scale of a game module, not a side quest.
+Fifteen commits. Treat that as a floor rather than an estimate: the first draft
+said 25–30 in conversation and then produced a 17-commit list without justifying
+the drop, which is exactly the arithmetic this project's history punishes. For
+calibration, Origins 5.5e was 6 commits and 10,091 lines *with no shell change*;
+this has a shell slot, a new auth mode, and a two-backend transport.
 
-### Open questions — settle before commit 1
+### Art — decided
 
-1. ~~Which card set ships~~ **Decided (Chris, 2026-09-06): ship the provably
-   public-domain colour set first.** Source is Wikimedia Commons' 1909 first
-   edition — [Category:Rider-Waite tarot deck (Roses &
-   Lilies)](https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck_(Roses_%26_Lilies)),
-   80 files, complete at 22 majors + 56 minors, named `RWS1909 - 00 Fool.jpeg`
-   / `RWS1909 - Cups 01.jpeg`. The file-level tags are the point: PD-old-80-expired
-   (Waite, the copyright holder, died 1942) plus PD-US (published before
-   1 January 1931) — public domain in both jurisdictions this project cares
-   about, with no scan-level permission claim attached to anyone.
+Ship the provably public-domain colour set: Wikimedia Commons' 1909 first
+edition, [Category:Rider-Waite tarot deck (Roses &
+Lilies)](https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck_(Roses_%26_Lilies)),
+80 files, complete at 22 majors + 56 minors, named `RWS1909 - 00 Fool.jpeg` /
+`RWS1909 - Cups 01.jpeg`. The file-level tags are the point: PD-old-80-expired
+(Waite, the copyright holder, died 1942) plus PD-US (published before 1 January
+1931) — public domain in both jurisdictions this project cares about, with no
+scan-level permission claim held by anyone.
 
-   **Make the provenance provable per card, not asserted.** The fetch step
-   records each file's Commons licence tag into the art manifest beside the
-   hash and dimensions, and the build fails if any of the 80 lacks a
-   public-domain tag. guild-book's pipeline already writes a licence manifest,
-   so this is a field, not a mechanism. That is what goes in the pack's
-   LICENSE.md — a per-card basis rather than a sentence claiming one.
+**Make the provenance provable per card, not asserted.** The fetch step records
+each file's Commons licence tag into the art manifest beside the hash and
+dimensions, and the build fails if any of the 80 lacks a public-domain tag.
+guild-book's pipeline already writes a licence manifest, so this is a field, not
+a mechanism. That is what goes in the pack's LICENSE.md — a per-card basis
+rather than a sentence claiming one.
 
-   *Deferred, not rejected: a black-and-white set.* Chris will source or derive
-   one. Keep the collection swappable exactly as guild-book's Amendment 3 did
-   (a single `COLLECTION` constant that the source map, output paths, and
-   manifest all read), so a second set is a drop-in rather than a rewrite.
+*Deferred, not rejected: a black-and-white set.* Chris will source or derive one.
+Keep the collection swappable exactly as guild-book's Amendment 3 did (a single
+`COLLECTION` constant that the source map, output paths, and manifest all read).
 
-   *Not used, and why:* the steve-p.org scans (permission was confirmed, but to
-   guild-book, and it does not travel) and Chris's Illustrator SVG traces
-   (`~/Desktop/Tarot/Rider SVG SouthForkSVG` — almost certainly fine, since
-   faithful reproductions of public-domain works carry no new copyright per
-   Bridgeman v. Corel and THJ v Sheridan [2023] EWCA Civ 1354, but a
-   colour-to-ink trace is a step further from a scan than either case
-   addresses, and "almost certainly" is a worse footing than a Commons PD tag
-   when the alternative is free).
-2. **Retention.** Crawlspace keeps a table ~6 weeks with a save-to-file escape
-   hatch. Pick a number, and decide whether an export exists at all.
-3. **Divergence from guild-book.** Two GPL forks of one engine will drift. Worth
-   deciding early whether the engine eventually becomes a shared package, or
-   whether these are simply two apps that once shared a starting point.
+*Not used, and why:* the steve-p.org scans (permission was confirmed on
+2026-07-15, but to guild-book, and it does not travel) and Chris's Illustrator
+SVG traces (`~/Desktop/Tarot/Rider SVG SouthForkSVG` — almost certainly fine,
+since faithful reproductions of public-domain works carry no new copyright per
+Bridgeman v. Corel and THJ v Sheridan [2023] EWCA Civ 1354, but a colour-to-ink
+trace is a step further from a scan than either case addresses, and "almost
+certainly" is a worse footing than a Commons PD tag when the alternative is
+free).
+
+### Open questions
+
+1. **Retention.** Crawlspace keeps a table ~6 weeks with a save-to-file escape
+   hatch. Proposed default: the same, plus the JSON export at commit 13. This
+   needs settling at commit 2, not later — a guest table has no owner to
+   attribute storage to, notify, or bill, so the sweep is part of the write
+   path's design rather than a tidy-up after it.
+2. **Two HMtW card tables, one maintainer.** guild-book has one; this will be a
+   second. The divergence cost is real, recurring, and was priced at one
+   dismissive sentence in the first draft. The honest version: this is a
+   deliberate duplication, justified only if the table's value is being *beside
+   the reference people already have open*. If that stops being the reason, the
+   right move is to stop and send people to guild-book.
 
 ### Considered and rejected
 
 - **Cloning Crawlspace.** No repo, no licence. Clean-room from the book only.
-- **Writing the Challenge engine fresh.** Cleaner fit to Splatbook's much
-  simpler model, but re-derives the exact logic most likely to hide subtle bugs,
-  when a tested implementation exists under a compatible licence.
-- **Extending guild-book instead of building here.** A real option — it is
-  already an HMtW app with this feature. Rejected because the table belongs next
-  to the reference the table already has open, and because Splatbook's
-  reference-only HMtW is the thing people are actually pointed at.
-- **Polling, like guild-book's ~1s `GET /sync`.** Proven at a real table and
-  host-agnostic, but drag-and-drop deserves push.
+- **Porting guild-book's Challenge engine** — the first draft's whole premise.
+  Rejected on review: it is an enforcing engine for a permissive product; it is
+  welded to `tenureId` (239 references) and a campaign/adventurer/death model
+  this design does not have; `modifiers.ts` cannot be cleanly dropped because the
+  reducer and state shape reach into it; and a meaningful share of what would be
+  ported (Dooms, death, equipment) is explicitly out of scope. The two patterns
+  worth having survive as patterns.
+- **Extending guild-book instead of building here.** Still a real option — see
+  open question 2.
+- **Polling, like guild-book's ~1s `GET /sync`.** Host-agnostic and proven at a
+  real table; overruled in favour of push, with the counter-argument recorded
+  above so it can be revisited without re-deriving.
 - **Campaign-attached tables.** Would reuse invite tokens, roles, and the roll
   log almost for free, but forces campaigns onto a game that has none and puts
   an account between a player and their seat.
-- **Full Crawlspace parity.** The gear model alone is a phase; city/camp panels
-  add UI for something a card flip already covers.
+- **A generic "live shared surface" `GameModule` contract.** One consumer, no
+  second in prospect. A concrete `cardTable` slot instead.
+- **Full Crawlspace parity.** The gear model alone is a phase; the city/camp
+  panels add UI for something a card flip already covers.
 
 ## Sequencing notes
 
