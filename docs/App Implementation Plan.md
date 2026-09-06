@@ -262,6 +262,178 @@ Nitro's 4,000: 43 (12%).
 *Method note, since it earned its keep twice: paste into the real client before
 deciding a format rule.*
 
+## Phase 29 — HMtW: a shared card table
+
+*Filed 2026-09-06. Prompted by [Crawlspace](https://worm.jmac.org/) (Jason
+McIntosh) — a free, well-made virtual card table for HMtW that is closed source
+with no repo, so there is nothing to fork. A clean-room build is squarely inside
+the book's grant (mechanics and game text may be reused freely); Crawlspace's
+code, assets, and docs prose are not ours to copy, and its docs were read for
+**what a card table needs**, not for how it does it. Credit it as prior art on
+`/credits` when this ships.*
+
+*The material fact found while planning: **guild-book already built this.** Chris's
+fork (`~/Documents/guild-book`, upstream `arrowedisgaming/guild-book`, GPL-3.0,
+SvelteKit 2 + Drizzle + D1) ships a live shared tarot table with a synchronised
+Challenge phase, per-actor projections, a versioned command log, and a
+deterministic tarot art pipeline. Splatbook is GPL-3.0-or-later, so the engine
+ports with attribution. This phase is therefore a **port plus a new shell**, not
+a from-scratch build — which also changes the risk profile: the subtle part
+(hidden information and command concurrency) arrives already tested.*
+
+### Scope — deliberately not Crawlspace parity
+
+Two modes over **one persistent deck state**:
+
+- **Decks** — flip the top card to discard, open a discard pane, zoom a card,
+  GM reshuffle, automatic reshuffle when a pile empties, Fool-flipped prompt.
+- **Challenge** — deal hands, face-down initiative visible only to its owner,
+  played and face-down zones, minor actions queued then revealed
+  simultaneously, Sweep, an initiative callout strip with ±, and per-step undo
+  after Reveal and Sweep.
+
+The deck is table state; the modes are two views onto it, and moving between
+them never resets the piles.
+
+**Out of scope, decided:** the Crawl/City/Camp procedure panels (a card flip
+is a card flip — those phases need no dedicated UI), the whole gear/inventory
+model (notches, flickers, lit status, hands/belt/pack slots), and the
+one-off city-location workarounds. Tower Gnostic's Scrabble tiles are out of
+Crawlspace's jurisdiction and out of ours.
+
+### Decisions (Chris, 2026-09-06)
+
+- **Access: standalone token-URL tables with guest seats.** A `tables` row with
+  an invite token; a guest claims a seat behind a signed cookie capability, no
+  account required; a signed-in user gets their real identity. This deliberately
+  does *not* force campaigns onto HMtW (which contributes no entity types, and
+  the shell gates campaign creation on that — `campaigns/+page.server.ts:33`,
+  `+layout.svelte:28`). Optional "attach this table to a campaign" is a later
+  commit, not a prerequisite.
+- **Transport: one protocol, two adapters.** A Durable Object + WebSocket
+  adapter for Cloudflare; an in-process WebSocket adapter for `adapter-node` on
+  atlas. DOs are Cloudflare-only and `wrangler.toml` is explicit that the atlas
+  deployment ignores that file entirely — a DO-only design would quietly demote
+  atlas from staging soak to partial mirror. The engine and UI see only the
+  interface.
+- **Engine: port from guild-book, don't re-derive.**
+
+### The port
+
+| From guild-book | Lines | Fate |
+|---|---|---|
+| `src/lib/engine/session/*.ts` (state, zones, reducer, card-commands, private-transfer, projection, invariants, shuffle, result) | ~2,100 | port |
+| `src/lib/engine/session/procedures/challenge/*` minus `modifiers.ts` | ~3,500 | port |
+| `challenge/modifiers.ts` | 1,192 | **drop** — derives modifiers from guild-book's character model; HMtW-in-Splatbook has no characters |
+| `src/lib/types/session.ts`, `types/common.ts` | ~630 | port, trimmed |
+| `tests/unit/session/challenge/*` (13 files) | ~4,900 | port minus `modifiers.test.ts` |
+
+Lands in `src/lib/games/hmtw/engine/` — pure TS, no UI or DB imports, per the
+layer rule. guild-book's own `tests/unit/session/import-boundaries.test.ts`
+enforces the same discipline; port that guard too.
+
+**Not ported:** the persistence and route layers. guild-book's table hangs off
+campaigns, `play_sessions`, content-pack digests, and runtime content ids — a
+much heavier model than a token-URL table needs.
+
+**Attribution:** a `CREDITS`/`LICENSE` note naming guild-book and Arrowed, since
+this is derived GPL-3.0 work, not merely inspired-by.
+
+### Shell changes forced — the extraction moment
+
+The sequencing note said the test of the framework is whether game #2 touches
+only its own pack and module, and that a forced shell change is the moment to
+extract. This forces one, with two real games in hand:
+
+- `GameModule` gains a slot for a **live shared surface**: the shell owns
+  transport, seating, persistence, and per-seat projection dispatch; the game
+  owns the deck definition, the reducer, and every rendered string.
+- The **server runs game engine code**. Precedent exists — `entityTypes.pdf`
+  already does — but this is the first time a reducer and a `project(state,
+  seat)` run per request. Hidden information is a server-side guarantee, not a
+  UI one: a face-down card's identity must never reach a seat not entitled to
+  it. guild-book solves this with `campaign_event_secrets` (per-recipient
+  payloads keyed to an event) and one combined projection loader per poll;
+  keep both shapes.
+- **New tables:** `tables`, `table_seats`, `table_commands`, `table_secrets`.
+  The command log carries guild-book's optimistic-concurrency columns —
+  `client_observed_version`, `expected_version`, and a `request_hash` for
+  idempotency — against a versioned public-state blob.
+- **First anonymous-writable surface on a public host.** Guest seats mean rate
+  limiting, a table cap, and a retention policy are launch requirements, not
+  polish.
+
+### Content pack
+
+HMtW has no `content/hmtw/data/` yet — only generated `rules/`, which is
+never hand-edited. This phase creates one (hand-authored, like Stonetop's),
+holding the deck definition (suits, ranks, values, the Fool's borrow into the
+player deck), the Fool's fixed interrupt constants, and every string the table
+renders. Zod schemas join `hmtw/pack-schemas.ts`; a `SCHEMA.md` documents it,
+same as Stonetop's.
+
+### Commits, roughly
+
+1. `feat(shell)`: `tables`/`table_seats` schema + token-URL creation and the join/claim-a-seat flow.
+2. `feat(shell)`: guest identity — signed cookie capability bound to the invite token.
+3. `feat(hmtw)`: `content/hmtw/data/` deck config + schemas + SCHEMA.md.
+4. `feat(hmtw)`: port the session engine layer (state, zones, reducer, card-commands, shuffle) with its tests.
+5. `feat(hmtw)`: port private-transfer + projection + invariants, with the import-boundary guard.
+6. `feat(shell)`: `table_commands`/`table_secrets` + the versioned command service (expected-version, request-hash idempotency).
+7. `feat(shell)`: `TableTransport` interface + the adapter-node in-process WebSocket adapter.
+8. `feat(cloudflare)`: the Durable Object adapter + binding; both adapters against one protocol test.
+9. `feat(shell)`: `GameModule` live-surface slot; the generic table route and seat rail.
+10. `feat(hmtw)`: Decks mode — flip, discard pane, zoom, reshuffle, Fool prompt.
+11. `feat(hmtw)`: port the Challenge engine (deal, initiative, fool, turns, transfers) with its tests.
+12. `feat(hmtw)`: Challenge UI — hands, initiative placement, played/face-down zones.
+13. `feat(hmtw)`: simultaneous minor-action reveal, Sweep, callout strip.
+14. `feat(hmtw)`: undo after Reveal and Sweep; the confirmation gates on New Round and End Challenge.
+15. `feat(shell)`: retention policy + table cap + rate limiting on the guest write path.
+16. `test(e2e)`: Playwright multi-context — two seats, hidden information stays hidden.
+17. `docs`: CREDITS attribution (guild-book/Arrowed, Crawlspace as prior art), CHANGELOG, pack docs.
+
+Call it 17 commits before it is worth showing anyone, gear excluded. That is a
+phase on the scale of a game module, not a side quest.
+
+### Open questions — settle before commit 1
+
+1. **Card art provenance is unresolved, in all three candidate sources.** The
+   SouthFork SVGs (`~/Desktop/Tarot/Rider SVG SouthForkSVG`, 78 files, 16 MB,
+   ~220 KB each) are unattributed traced path art with no licence metadata —
+   they would optimise well with svgo, but the provenance needs establishing.
+   guild-book's RWSa scans carry Chris's own warning in
+   `scripts/fetch-rwsa-tarot.sh`: the steve-p.org images are that site owner's
+   cleaned-up scans and the page asks for permission by e-mail — "fine for
+   private/dev use; get permission before shipping them in a public build," a
+   note still outstanding. And the worm card backs composite
+   `scripts/tarot-art/adherent-logo.png`, whose origin must be confirmed as
+   original: the book's grant excludes art outright. The 1909 deck itself is
+   public domain (Smith d. 1951); the question is which *scan or trace* we
+   ship. Fallback if none clears: original SVG/typographic faces.
+2. **Retention.** Crawlspace keeps a table ~6 weeks with a save-to-file escape
+   hatch. Pick a number, and decide whether an export exists at all.
+3. **Divergence from guild-book.** Two GPL forks of one engine will drift. Worth
+   deciding early whether the engine eventually becomes a shared package, or
+   whether these are simply two apps that once shared a starting point.
+
+### Considered and rejected
+
+- **Cloning Crawlspace.** No repo, no licence. Clean-room from the book only.
+- **Writing the Challenge engine fresh.** Cleaner fit to Splatbook's much
+  simpler model, but re-derives the exact logic most likely to hide subtle bugs,
+  when a tested implementation exists under a compatible licence.
+- **Extending guild-book instead of building here.** A real option — it is
+  already an HMtW app with this feature. Rejected because the table belongs next
+  to the reference the table already has open, and because Splatbook's
+  reference-only HMtW is the thing people are actually pointed at.
+- **Polling, like guild-book's ~1s `GET /sync`.** Proven at a real table and
+  host-agnostic, but drag-and-drop deserves push.
+- **Campaign-attached tables.** Would reuse invite tokens, roles, and the roll
+  log almost for free, but forces campaigns onto a game that has none and puts
+  an account between a player and their seat.
+- **Full Crawlspace parity.** The gear model alone is a phase; city/camp panels
+  add UI for something a card flip already covers.
+
 ## Sequencing notes
 
 - Natural session-sized bites: a phase-boundary milestone every 5–10 commits, and each commit is small enough to finish in one sitting.
