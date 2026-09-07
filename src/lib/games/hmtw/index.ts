@@ -17,6 +17,7 @@
  */
 
 import type { GameModule } from '../types';
+import { hmtwCardTable } from './card-table';
 import { schemaFor } from './pack-schemas';
 import { referencePageDepth } from './reference-config';
 import './theme.css';
@@ -42,6 +43,10 @@ export const hmtw: GameModule = {
 	// Omitted here, not deleted from the pack: the text stays in
 	// `content/hmtw/rules/` and this line is the whole of the decision.
 	referenceOmitCallouts: ['epigraph'],
+	// The live card table (phase 29). The only stateful surface this game has:
+	// it contributes no entity types, so a table is reached by its own link
+	// rather than through a campaign.
+	cardTable: hmtwCardTable,
 	referenceSpoilers: {
 		badge: 'GM',
 		toggleLabel: 'Include the Gamemaster’s chapters — monsters, secrets, and the underworld',

@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A game can contribute a card table.** `GameModule` grows a `cardTable`
+  slot, and HMtW fills it: six functions covering what a card means, against a
+  shell that supplies room-token URLs, seats with or without accounts, versioned
+  commands, the public log and the polling loop. Two endpoints join them — a
+  read-only poll that hands back the table as your seat may see it, and a
+  command post that only an admitted seat may make.
+
+  The slot is named for what it is rather than generalised into a "live shared
+  surface", because no second game is coming: Stonetop has no cards. A narrow
+  slot for one consumer is a small reversible cost; a universal abstraction for
+  one consumer is the thing the architecture rules exist to prevent.
+  `docs/architecture.md` and `docs/adding-a-game.md` say so, in the same commit
+  as the boundary moved.
+
 - **Commands, a public log, and the sync loop.** Applying a command to a table
   is now one guarded operation: a retried command lands once, a command that
   lost a race changes nothing at all, and each accepted one appends an event
