@@ -94,13 +94,15 @@
 				<!-- Yours to read, and unmistakably still face down. -->
 				<span class="ct-card__mine">
 					{face.rank}
-					{#if face.glyph}<img src={face.glyph} alt="" />{/if}
+					{#if face.glyph}
+						<span class="ct-glyph" style="--ct-glyph: url({face.glyph})"></span>
+					{/if}
 				</span>
 			{/if}
 		{:else if face}
 			<span class="ct-card__rank">{face.rank}</span>
 			{#if face.glyph}
-				<img class="ct-card__suit" src={face.glyph} alt="" />
+				<span class="ct-glyph ct-card__suit" style="--ct-glyph: url({face.glyph})"></span>
 			{/if}
 			<span class="ct-card__foot">{face.value}</span>
 		{/if}

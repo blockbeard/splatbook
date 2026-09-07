@@ -112,6 +112,28 @@ Selection is quiet: an outline on what is held, a hairline on where it could go.
 A table that lights up like a pinball machine because somebody picked up a card
 is a table you cannot read.
 
+## Two things only rendering could tell me
+
+Both were invisible in the CSS and obvious on screen, which is the argument for
+this commit existing at all rather than the design being decided while building
+the first component.
+
+**The card backs were too faint** to read as printed cards — they looked like
+holes in the table rather than objects on it. They now carry a lighter hatch and
+an inner hairline.
+
+**The suit glyphs are `fill="currentColor"`**, which does exactly what you want
+inside the document and nothing at all through an `<img>`: the colour resolves
+against the SVG's own root and comes out black. On a paper card that is right by
+luck; on the amber mark over a dark back it is an invisible glyph. They are drawn
+as CSS masks instead, so the element is the ink and takes whatever colour it is
+standing in.
+
+And one that reading the CSS *should* have caught: a rotated element keeps its
+upright layout box, so a sideways card left a tall gap where it was not and
+overflowed sideways where it was. The margin correcting it had the sign the
+wrong way round and added the space instead of taking it.
+
 ## The floor
 
 Touch targets are the cards themselves, comfortably over 44px at every size used.

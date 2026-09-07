@@ -108,6 +108,7 @@
 	inline-size: 1.6rem;
 	block-size: 1.6rem;
 	opacity: 0.9;
+	color: var(--ct-card-ink);
 }
 
 [data-game='hmtw'] .ct-card__foot {
@@ -176,10 +177,28 @@
 	text-shadow: 0 0 3px rgb(0 0 0 / 90%);
 }
 
-[data-game='hmtw'] .ct-card__mine svg,
-[data-game='hmtw'] .ct-card__mine img {
-	inline-size: 0.7rem;
-	block-size: 0.7rem;
+/*
+ * The suit glyph, as a mask rather than an image.
+ *
+ * The pack's glyphs are `fill="currentColor"`, which does what you want inside
+ * the document and nothing at all through an `<img>` — the colour resolves
+ * against the SVG's own root and comes out black. On a paper card that is right
+ * by luck; on the amber mark over a dark back it is an invisible glyph. Masking
+ * makes the element the ink, so it takes whatever colour it is standing in.
+ */
+[data-game='hmtw'] .ct-glyph {
+	display: inline-block;
+	inline-size: 1em;
+	block-size: 1em;
+	background: currentColor;
+	mask: var(--ct-glyph) center / contain no-repeat;
+	-webkit-mask: var(--ct-glyph) center / contain no-repeat;
+	vertical-align: -0.12em;
+}
+
+[data-game='hmtw'] .ct-card__mine .ct-glyph {
+	inline-size: 0.72em;
+	block-size: 0.72em;
 }
 
 /* The public tag: what the card is for, where everyone can read it. */
@@ -201,9 +220,17 @@
  * a minor action, because the position is what tells you whether the card gains
  * an attribute when it turns over. The rule is positional, so the interface is.
  */
+/*
+ * A rotated element keeps its upright layout box, so a sideways card leaves a
+ * tall gap where it is not and overflows sideways where it is. The margins
+ * correct both: pull the vertical space in by what the rotation freed, and push
+ * the horizontal out by what it now needs. An earlier version had the vertical
+ * one the wrong way round and added the space instead of taking it.
+ */
 [data-game='hmtw'] .ct-card--sideways {
 	transform: rotate(90deg);
-	margin: calc((var(--ct-card-h) - var(--ct-card-w)) / 2) 0;
+	margin-block: calc((var(--ct-card-w) - var(--ct-card-h)) / 2);
+	margin-inline: calc((var(--ct-card-h) - var(--ct-card-w)) / 2);
 }
 
 /*
