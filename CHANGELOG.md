@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Seats without accounts.** A player can hold a seat at a card table with no
+  sign-up at all: they give a character's name and the table issues a ticket
+  their browser keeps. The seat is the identity and the ticket is only proof of
+  it, so somebody who clears their cookies has not lost their hand — the GM
+  re-seats them, the same row comes back with the same cards, and the old
+  ticket stops working.
+
+  Arriving is gated on the GM's approval, except when there is no GM, because a
+  table whose first arrival had to wait would have nobody able to grant it. For
+  the same reason a vacant GM seat may be claimed by anyone at the table: a GM
+  who loses their cookie would otherwise lock out everybody including
+  themselves.
+
+  Secrets are stored as hashes and never in the URL, since people share their
+  screen mid-game and a capability in the address bar is a capability everyone
+  on the call can read.
+
 - **Card tables persist.** Two new tables: a card table (its game, its owner,
   the token that goes in its URL, the game's opaque state blob and the version
   that guards writes to it) and the seats at it. Creating one requires an
