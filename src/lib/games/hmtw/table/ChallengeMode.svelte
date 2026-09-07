@@ -209,11 +209,7 @@
 						>
 					{/if}
 
-					<div
-						class="combatant__played ct-drop"
-						role="presentation"
-						onclick={() => drop(`seat:${seat.id}:played`)}
-					>
+					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
 						{#each zone(`seat:${seat.id}:played`).cards ?? [] as card (card)}
 							<Card
 								face={faces[card] ?? null}
@@ -222,6 +218,16 @@
 								onSelect={select}
 							/>
 						{/each}
+						{#if selectedPick}
+							<!-- A real button, not a clickable div. Click-to-place is what
+							     carries the keyboard story, and a drop target you cannot tab
+							     to would quietly hand that back. -->
+							<button
+								type="button"
+								class="slot slot--drop"
+								onclick={() => drop(`seat:${seat.id}:played`)}>Play here</button
+							>
+						{/if}
 					</div>
 				</div>
 
@@ -281,11 +287,7 @@
 					{:else}
 						<button type="button" class="slot" onclick={() => drop(init.id)}>Initiative</button>
 					{/if}
-					<div
-						class="combatant__played ct-drop"
-						role="presentation"
-						onclick={() => drop(`opponent:${enemy.id}:played`)}
-					>
+					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
 						{#each zone(`opponent:${enemy.id}:played`).cards ?? [] as card (card)}
 							<Card
 								face={faces[card] ?? null}
@@ -294,6 +296,13 @@
 								onSelect={select}
 							/>
 						{/each}
+						{#if selectedPick}
+							<button
+								type="button"
+								class="slot slot--drop"
+								onclick={() => drop(`opponent:${enemy.id}:played`)}>Play here</button
+							>
+						{/if}
 					</div>
 				</div>
 			</section>
@@ -399,6 +408,11 @@
 		min-inline-size: var(--ct-card-w);
 		min-block-size: var(--ct-card-h);
 		border-radius: 4px;
+	}
+	.slot--drop {
+		border-style: solid;
+		border-color: var(--ct-light-soft);
+		color: var(--ct-light);
 	}
 	.slot {
 		inline-size: var(--ct-card-w);
