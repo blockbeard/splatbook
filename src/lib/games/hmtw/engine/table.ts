@@ -8,6 +8,7 @@
  * otherwise break a table that people are sitting at mid-round.
  */
 
+import { newRound, type Round } from './round';
 import { opponentZones, seatZones, tableZones, type Zone } from './zones';
 
 /**
@@ -15,9 +16,10 @@ import { opponentZones, seatZones, tableZones, type Zone } from './zones';
  * extend `migrateTable` with a test that loads a fixture of the old shape.
  *
  * v1: seats, zones, and the two decks.
- * v2 (this commit): `gmSeat` and `opponents`.
+ * v2: `gmSeat` and `opponents`.
+ * v3 (this commit): `round` and `foolCards`.
  */
-export const TABLE_SCHEMA_VERSION = 2;
+export const TABLE_SCHEMA_VERSION = 3;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -54,6 +56,17 @@ export interface CardTable {
 	gmSeat: string | null;
 	/** The enemies in play, in the order the GM added them. */
 	opponents: Opponent[];
+	/** Where the round has got to. `number: 0` before the first one. */
+	round: Round;
+	/**
+	 * The cards whose drawing shuffles both decks at the end of the round — the
+	 * Fool, and whatever else a future pack borrows between decks.
+	 *
+	 * Taken from the pack rather than written here as `'fool'`: the pack already
+	 * says which majors are lent to the player deck, and the engine has no
+	 * business knowing a card id by name.
+	 */
+	foolCards: string[];
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -117,6 +130,8 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		seats: [...seats],
 		gmSeat: null,
 		opponents: [],
+		round: newRound(),
+		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
 		zones
 	};
 }
@@ -149,6 +164,12 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v2 → v3: a round that has not started, and no Fool. `foolCards` cannot be
+ * recovered from an old blob — the deck definition is not in it — so a migrated
+ * table gets an empty list and the caller reseeds it with `withFoolCards` when
+ * it next has the pack to hand. An empty list is the safe wrong answer: the
+ * worst it does is miss a reshuffle the GM can still press.
  */
 export function migrateTable(raw: CardTable): CardTable {
 	if (raw.schemaVersion > TABLE_SCHEMA_VERSION) return raw;
@@ -156,8 +177,16 @@ export function migrateTable(raw: CardTable): CardTable {
 		...raw,
 		gmSeat: raw.gmSeat ?? null,
 		opponents: raw.opponents ?? [],
+		round: raw.round ?? newRound(),
+		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
 	};
+}
+
+/** Reseed which cards trigger the end-of-round reshuffle, from the pack. */
+export function withFoolCards(table: CardTable, deck: DeckDefinition): CardTable {
+	const fools = deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [];
+	return { ...table, foolCards: [...fools] };
 }
 
 /** The table with a given seat running it. Pass `null` to vacate the seat. */

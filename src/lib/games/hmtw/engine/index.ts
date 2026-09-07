@@ -33,10 +33,26 @@ export {
 	setGmSeat,
 	splitOpponent,
 	updateOpponent,
+	withFoolCards,
 	type CardTable,
 	type DeckDefinition,
 	type Opponent
 } from './table';
+export {
+	advanceCount,
+	beginRound,
+	endRound,
+	mulliganGmHand,
+	newRound,
+	rewindCount,
+	rngFromSeed,
+	setCount,
+	setMinorActions,
+	suggestGmHandSize,
+	type BeginRoundOptions,
+	type GmHandConfig,
+	type Round
+} from './round';
 export {
 	deal,
 	emptyInto,

@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The round.** Ch.7's five steps as table state: a round number, the
+  initiative currently being called, whether the minor-action window is open,
+  and whether the Fool has come out. Beginning a round deals four to each
+  player from the minors and the GM's own number from the majors, reshuffling
+  the discard back in if a pile runs dry mid-hand — which the book does not
+  cover, because at a physical table you shuffle and carry on.
+
+  The GM's draw is a suggestion, not a total. The six cumulative reasons from
+  ch.7 compute what the ticked boxes come to — and the tests check that sum
+  against the book's own worked examples, including the imps who dwindle from
+  twelve to seven and take the GM's hand from six cards down to five. The
+  mulligan is a button: the book's condition is "mostly greater dooms" with no
+  threshold, so there is nothing to test for and the judgement stays the GM's.
+
+  The count is not capped at the king. That is the _players'_ range; the GM
+  plays initiative from the majors, so an enemy can sit at a greater doom's 17
+  and still has to be called.
+
+  Ending a round discards unused hands and initiative cards to the right piles,
+  and **leaves facedown cards in play** — a readied Dodge survives into the next
+  round, which is most of what facedown actions are for. If the Fool was drawn,
+  both decks shuffle, the major arcana included even though nobody drew from
+  it.
+
 - **Opponents at the card table.** The GM's enemies are now part of the table
   state: named entries with an initiative slot, a played pile and a facedown
   slot, added when the scene is set and equally addable mid-fight, because
