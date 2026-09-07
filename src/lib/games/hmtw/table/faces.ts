@@ -15,7 +15,9 @@ export interface CardFace {
 	name: string;
 	/** What is printed: "Ace", "VII", "King", or a major's numeral. */
 	rank: string;
-	/** Served path to the suit glyph. Absent for a major, which has no suit. */
+	/** Which suit, for the rules. Absent for a major, which has none. */
+	suit?: string;
+	/** Served path to the suit glyph. Absent for a major. */
 	glyph?: string;
 	value: number;
 	/** Majors of 15 and over. The GM's mulligan judgement reads off this. */
@@ -45,6 +47,7 @@ export function buildFaces(deck: DeckPack, packBase = '/content-packs/hmtw'): Fa
 			id: card.id,
 			name: card.name,
 			rank: rankOf.get(card.rank) ?? card.rank,
+			suit: card.suit,
 			glyph: glyphOf.get(card.suit),
 			value: card.value,
 			greaterDoom: false

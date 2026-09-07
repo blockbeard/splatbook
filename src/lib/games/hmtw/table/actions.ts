@@ -38,10 +38,6 @@ export interface ActionCatalogue {
 	gmOnly: Action[];
 }
 
-/** Which suit a card belongs to, if it has one. Majors do not. */
-const suitOf = (face: CardFace): string | undefined =>
-	face.glyph?.match(/suit-([a-z]+)\.svg$/)?.[1];
-
 export interface Offer {
 	/** What the book suggests this card pays for. */
 	fits: Action[];
@@ -75,7 +71,11 @@ export function actionsForCard(
 			// action except for Vigilance."
 			return catalogue.anySuit.includes(action) && !action.greaterDoomForbidden;
 		}
-		const suit = suitOf(face);
+		// The card's own suit, from the pack. An earlier version read it out of the
+		// glyph's *filename*, which worked and was wrong: renaming an asset would
+		// have silently stopped every Swords card paying for an Attack, and a
+		// rules question has no business depending on a path.
+		const suit = face.suit;
 		if (!suit) return catalogue.anySuit.includes(action);
 		return (catalogue.bySuit[suit] ?? []).includes(action) || catalogue.anySuit.includes(action);
 	});

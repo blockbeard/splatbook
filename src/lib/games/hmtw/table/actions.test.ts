@@ -134,3 +134,20 @@ describe('the other direction', () => {
 		}
 	});
 });
+
+describe('the suit comes from the pack, not from an asset path', () => {
+	it('still pairs correctly for a card whose glyph is missing entirely', () => {
+		// A rules question must not depend on whether a picture loaded.
+		const noPicture = { ...faces['swords-v'], glyph: undefined };
+		const { fits } = actionsForCard(catalogue, noPicture);
+		expect(names(fits)).toContain('Attack');
+		expect(names(fits)).toContain('Riposte');
+	});
+
+	it('treats a card with no suit at all as any-suit only', () => {
+		const suitless = { ...faces['swords-v'], suit: undefined, glyph: undefined };
+		const { fits } = actionsForCard(catalogue, suitless);
+		expect(names(fits)).toContain('Move');
+		expect(names(fits)).not.toContain('Attack');
+	});
+});

@@ -49,4 +49,13 @@ describe('card faces', () => {
 		expect(faces['cups-v'].glyph).toBe('/content-packs/hmtw/art/suit-cups.svg');
 		expect(faces['star'].glyph).toBeUndefined();
 	});
+
+	it('carries the suit itself, not only a path to a picture of it', () => {
+		// The rules question — which actions a card pays for — reads this. It used
+		// to read the glyph's filename, so renaming an asset would have silently
+		// stopped every Swords card paying for an Attack.
+		expect(faces['cups-v'].suit).toBe('cups');
+		expect(faces['swords-king'].suit).toBe('swords');
+		expect(faces['star'].suit).toBeUndefined();
+	});
 });
