@@ -54,32 +54,60 @@ export interface ApplyCommandInput {
 	requestHash: string;
 }
 
+/** A claimed-but-not-yet-finished event carries this instead of a version. */
+const UNWRITTEN = 0;
+
 /**
  * Run one command against a table.
  *
- * The order matters. Idempotency is checked first, so a client that retried
- * after a dropped response gets the original answer rather than playing the
- * card twice. Then the reducer runs on the current state, then the write goes
- * in against the expected version — and if somebody else got there first, the
- * write is refused and nothing was changed, because the reducer is pure and its
- * result is simply discarded.
+ * **The request hash is a lock, not a lookup.** Checking for a previous run and
+ * then applying would leave a window: a client that retried the same command
+ * with a refreshed version — which is exactly what a naive retry-on-conflict
+ * loop does — could slip between another copy's check and its write, and the
+ * command would apply twice. Two cards moved for one click.
+ *
+ * So the hash is *claimed* first, by inserting the event before the state is
+ * written. The unique index makes that claim atomic without a transaction,
+ * which matters because this codebase avoids them so the same code runs on
+ * better-sqlite3 and on D1. Whoever wins the claim owns the command; whoever
+ * loses is told to re-sync. If the write then fails, the claim is released so a
+ * legitimate retry is not locked out by its own earlier attempt.
  */
 export async function applyCommand(
 	db: Db,
 	input: ApplyCommandInput,
 	reduce: (state: unknown) => CommandOutcome
 ): Promise<ApplyResult> {
-	const replayed = await findByRequest(db, input.tableId, input.requestHash);
-	if (replayed) {
-		const table = await getCardTable(db, input.tableId);
-		if (table) return { ok: true, table, event: replayed, replayed: true };
-	}
-
 	const table = await getCardTable(db, input.tableId);
 	if (!table) return { ok: false, reason: 'no-such-table' };
 
+	const existing = await findByRequest(db, input.tableId, input.requestHash);
+	if (existing) return replayOf(table, existing);
+
+	// Reduce before claiming: the reducer is pure, so a refusal costs nothing
+	// and must not leave a claim behind.
 	const outcome = reduce(table.state);
 	if (!outcome.ok) return { ok: false, reason: 'rejected', detail: outcome.reason };
+
+	let claim: CardTableEvent;
+	try {
+		[claim] = await db
+			.insert(cardTableEvents)
+			.values({
+				tableId: input.tableId,
+				version: UNWRITTEN,
+				actorSeatId: input.actorSeatId,
+				kind: outcome.kind,
+				data: outcome.data ?? {},
+				requestHash: input.requestHash
+			})
+			.returning();
+	} catch {
+		// Somebody else holds this command. Whatever they are doing with it, this
+		// caller's answer is to look again rather than to apply it a second time.
+		const theirs = await findByRequest(db, input.tableId, input.requestHash);
+		return theirs ? replayOf(table, theirs) : { ok: false, reason: 'conflict' };
+	}
 
 	const saved = await saveTableState(
 		db,
@@ -88,23 +116,34 @@ export async function applyCommand(
 		outcome.state,
 		outcome.stateVersion
 	);
-	if (!saved.ok) return { ok: false, reason: saved.reason };
+	if (!saved.ok) {
+		// Release the claim, or a client retrying after losing a race would find
+		// its own abandoned attempt and believe the command had landed.
+		await db.delete(cardTableEvents).where(eq(cardTableEvents.id, claim.id));
+		return { ok: false, reason: saved.reason };
+	}
 
 	// The event's version is the version the write produced, so a client's
 	// cursor is simply the version it already holds — one counter, not two.
 	const [event] = await db
-		.insert(cardTableEvents)
-		.values({
-			tableId: input.tableId,
-			version: saved.table.version,
-			actorSeatId: input.actorSeatId,
-			kind: outcome.kind,
-			data: outcome.data ?? {},
-			requestHash: input.requestHash
-		})
+		.update(cardTableEvents)
+		.set({ version: saved.table.version })
+		.where(eq(cardTableEvents.id, claim.id))
 		.returning();
 
 	return { ok: true, table: saved.table, event, replayed: false };
+}
+
+/**
+ * The answer for a command somebody has already run — or is still running.
+ *
+ * An event with no version yet is a claim in flight: its owner has not finished
+ * writing, so there is no settled answer to give and the honest reply is that
+ * this caller should re-sync.
+ */
+function replayOf(table: CardTableRow, event: CardTableEvent): ApplyResult {
+	if (event.version === UNWRITTEN) return { ok: false, reason: 'conflict' };
+	return { ok: true, table, event, replayed: true };
 }
 
 /** The event a given request already produced, if it has run before. */
@@ -124,6 +163,10 @@ export async function findByRequest(
 /**
  * Events after a client's cursor, oldest first.
  *
+ * Claims in flight are excluded: an event with no version yet is a command
+ * somebody is still writing, and it has no place in a client's history until
+ * it lands.
+ *
  * Capped, because a client returning to a long-running table should be given
  * the current state and the recent past rather than an afternoon of history it
  * cannot use.
@@ -137,7 +180,12 @@ export async function eventsSince(
 	return db
 		.select()
 		.from(cardTableEvents)
-		.where(and(eq(cardTableEvents.tableId, tableId), gt(cardTableEvents.version, sinceVersion)))
+		.where(
+			and(
+				eq(cardTableEvents.tableId, tableId),
+				gt(cardTableEvents.version, Math.max(sinceVersion, UNWRITTEN))
+			)
+		)
 		.orderBy(asc(cardTableEvents.version))
 		.limit(limit);
 }

@@ -153,6 +153,56 @@ describe('applying a command', () => {
 	});
 });
 
+describe('the request hash is a lock, not a lookup', () => {
+	it('will not apply a command twice when a retry arrives with a fresh version', async () => {
+		// The window a check-then-apply would leave: a naive retry-on-conflict
+		// loop re-reads the version and asks again with the same command. Two
+		// cards moved for one click is the failure this prevents.
+		const first = await run({ requestHash: 'same' });
+		expect(first.ok).toBe(true);
+
+		const retry = await run({ expectedVersion: 1, requestHash: 'same' });
+		expect(retry.ok).toBe(true);
+		if (!retry.ok) return;
+		expect(retry.replayed).toBe(true);
+
+		const table = await getCardTable(db, tableId);
+		expect(table?.state).toEqual({ moves: 1 });
+		expect(table?.version).toBe(1);
+	});
+
+	it('releases the claim when the write loses its race', async () => {
+		// Otherwise a client retrying after a conflict would meet its own
+		// abandoned attempt and believe the command had landed.
+		await run({ requestHash: 'winner' });
+		const loser = await run({ expectedVersion: 0, requestHash: 'loser' });
+		expect(loser).toMatchObject({ ok: false, reason: 'conflict' });
+
+		// No orphan left behind, so the same command can be tried again properly.
+		expect(await findByRequest(db, tableId, 'loser')).toBeUndefined();
+		const retried = await run({ expectedVersion: 1, requestHash: 'loser' });
+		expect(retried.ok).toBe(true);
+	});
+
+	it('leaves no claim behind when the reducer refuses', async () => {
+		await run({ requestHash: 'refused' }, () => ({ ok: false, reason: 'no-such-zone' }));
+		expect(await findByRequest(db, tableId, 'refused')).toBeUndefined();
+	});
+
+	it('keeps a claim in flight out of a client’s history', async () => {
+		// A claimed event has no version yet; it is not part of anyone's past
+		// until it lands.
+		await db.insert(schema.cardTableEvents).values({
+			tableId,
+			version: 0,
+			kind: 'in-flight',
+			data: {},
+			requestHash: 'pending'
+		});
+		expect(await eventsSince(db, tableId, 0)).toEqual([]);
+	});
+});
+
 describe('the event log is public by contract', () => {
 	it('records only what the game chose to say out loud', async () => {
 		// The reducer decides what goes in `data`. The point of the contract is
