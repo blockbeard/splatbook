@@ -73,9 +73,12 @@ describe('createTable', () => {
 		const table = createTable(deck, ['s1', 's2']);
 		expect(table.seats).toEqual(['s1', 's2']);
 		expect(table.zones[seatZone('s1', 'hand')].visibility).toBe('owner');
-		// One initiative card per round; one inspiration card ever.
+		// One initiative card per round — that one *is* structural, since a second
+		// would have no meaning in the round.
 		expect(table.zones[seatZone('s1', 'initiative')].capacity).toBe(1);
-		expect(table.zones[seatZone('s1', 'durable')].capacity).toBe(1);
+		// Inspiration is uncapped: "no more than one" is the table's rule to
+		// keep, and a slot that cannot hold a second card is enforcement.
+		expect(table.zones[seatZone('s1', 'durable')].capacity).toBeNull();
 		// A durable card is held in the open — the table knows who has one.
 		expect(table.zones[seatZone('s1', 'durable')].visibility).toBe('public');
 		expect(table.zones[seatZone('s2', 'hand')].owner).toBe('s2');
@@ -106,9 +109,13 @@ describe('migrateTable', () => {
 		// moment anything iterates it.
 		const migrated = migrateTable({ schemaVersion: 1 } as never);
 		expect(migrated.seats).toEqual([]);
-		expect(migrated.zones).toEqual({});
 		expect(migrated.opponents).toEqual([]);
 		expect(() => [...migrated.seats]).not.toThrow();
+		// The table's own zones are restored rather than left missing: a blob
+		// without them is broken, and every later version adds one or two, so the
+		// migration seeds any the stored shape predates.
+		expect(migrated.zones['deck:player']).toBeDefined();
+		expect(migrated.zones['fate']).toBeDefined();
 	});
 
 	it('stamps the current version on a current blob', () => {

@@ -35,6 +35,8 @@
 	// writes no card — so it is its own state, refreshed by every poll.
 	// svelte-ignore state_referenced_locally
 	let seats = $state(data.view.seats);
+	// svelte-ignore state_referenced_locally
+	let polledSeatId = $state<string | null>(data.view.seatId);
 	let busy = $state(false);
 	let notice = $state<string | null>(null);
 
@@ -45,7 +47,19 @@
 		}
 	});
 
-	const admitted = $derived(data.mySeat?.status === 'admitted');
+	/**
+	 * Whose seat this is, and whether it is sitting — read from the *polled*
+	 * roster rather than the page load.
+	 *
+	 * Taking it from `data` meant being let in did nothing until you reloaded:
+	 * the GM admitted you, the roster updated, and your own client carried on
+	 * believing it was still waiting. The sync already carries both the roster
+	 * and your seat id, so this follows them.
+	 */
+	const mySeatId = $derived(polledSeatId ?? data.mySeat?.id ?? null);
+	const mySeat = $derived(seats.find((s) => s.id === mySeatId) ?? null);
+	const admitted = $derived(mySeat?.status === 'admitted');
+	const isGm = $derived(admitted && table.gmSeat === mySeatId);
 
 	onMount(() => {
 		const token = data.token;
@@ -55,6 +69,7 @@
 				version = snapshot.version;
 				table = snapshot.state as ProjectedTable;
 				if (snapshot.seats) seats = snapshot.seats;
+				if (snapshot.seatId) polledSeatId = snapshot.seatId;
 			},
 			isHidden: () => document.hidden,
 			// Decks mode is the quiet one; the Challenge is where a beat of delay
@@ -79,6 +94,14 @@
 			'End the Challenge? Every card on the table goes to the discards. Inspiration cards stay.'
 		);
 		if (ok) run({ type: 'set-mode', mode: 'decks' });
+	}
+
+	/** Everything back in the decks, shuffled. Destroys work, so it asks first. */
+	function resetTable() {
+		const ok = confirm(
+			'Reset the table? Every card goes back into the decks and both are shuffled — hands, inspiration, enemies and all.'
+		);
+		if (ok) run({ type: 'reset-table' });
 	}
 
 	async function run(command: unknown) {
@@ -115,12 +138,12 @@
 <div class="ct ct-page">
 	<header class="ct-page__head">
 		<h1>{data.name}</h1>
-		{#if data.mySeat === null}
+		{#if mySeat === null}
 			<p class="ct-page__watching">You are watching.</p>
 		{/if}
 	</header>
 
-	{#if data.mySeat === null}
+	{#if mySeat === null}
 		<form
 			method="POST"
 			action="?/join"
@@ -150,7 +173,7 @@
 		<p class="waiting">Waiting for the GM to let you in. You can watch in the meantime.</p>
 	{/if}
 
-	{#if data.mySeat && admitted && table.gmSeat === null}
+	{#if mySeat && admitted && table.gmSeat === null}
 		<form method="POST" action="?/claimGm" use:enhance class="claim">
 			<p>Nobody is running this table.</p>
 			<button type="submit">Take the GM's chair</button>
@@ -161,14 +184,21 @@
 
 	{#if admitted}
 		<div class="modes">
-			<button type="button" class:on={table.mode === 'decks'} onclick={() => leaveChallenge()}
-				>Decks</button
-			>
-			<button
-				type="button"
-				class:on={table.mode === 'challenge'}
-				onclick={() => run({ type: 'set-mode', mode: 'challenge' })}>Challenge</button
-			>
+			{#if isGm}
+				<!-- Switching is the GM's: leaving a Challenge sweeps every hand on
+				     the table, which is not something one player does to everyone. -->
+				<button type="button" class:on={table.mode === 'decks'} onclick={leaveChallenge}>
+					Decks
+				</button>
+				<button
+					type="button"
+					class:on={table.mode === 'challenge'}
+					onclick={() => run({ type: 'set-mode', mode: 'challenge' })}>Challenge</button
+				>
+				<button type="button" class="modes__reset" onclick={resetTable}>Reset the table</button>
+			{:else}
+				<span class="modes__state">{table.mode === 'challenge' ? 'Challenge' : 'Decks'}</span>
+			{/if}
 		</div>
 	{/if}
 
@@ -178,21 +208,14 @@
 			{seats}
 			{faces}
 			challengePack={data.pack['data/challenge.json'] as never}
-			mySeatId={data.mySeat?.id ?? null}
+			waiting={seats.filter((s) => s.status === 'pending')}
+			{mySeatId}
 			canAct={admitted}
 			{busy}
 			onCommand={run}
 		/>
 	{:else}
-		<DecksMode
-			{table}
-			{seats}
-			{faces}
-			mySeatId={data.mySeat?.id ?? null}
-			canAct={admitted}
-			{busy}
-			onCommand={run}
-		/>
+		<DecksMode {table} {seats} {faces} {mySeatId} canAct={admitted} {busy} onCommand={run} />
 	{/if}
 </div>
 
@@ -285,5 +308,13 @@
 	.modes button.on {
 		border-color: var(--ct-mark);
 		color: var(--ct-mark);
+	}
+	.modes__reset {
+		margin-inline-start: auto;
+	}
+	.modes__state {
+		font-family: 'IM Fell Great Primer SC', Georgia, serif;
+		color: var(--ct-quiet);
+		align-self: center;
 	}
 </style>

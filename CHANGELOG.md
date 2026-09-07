@@ -45,6 +45,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **A pass over everything the first real session found.** The decks were dealt
+  in pack order, because creating a table never shuffled them. Turning over the
+  Fool raised no prompt, since only a Challenge deal was watching for it. Any
+  player could switch the table into a Challenge, which sweeps everyone's hands
+  — that is the GM's. The GM had an initiative slot and an inspiration slot,
+  and has neither: ch.7 gives them no adventurer, they play initiative for each
+  _enemy_.
+
+  Being let in needed a page refresh, because the client read its own seat from
+  the page load while the roster came from the poll. Waiting players could not
+  be admitted during a Challenge at all. And the combatants reflowed whenever a
+  control appeared, so names slid under the cursor and an initiative card went
+  to the wrong seat — they sit on a fixed grid now, and the space controls
+  occupy is reserved whether they are there or not.
+
+  Turned-over cards no longer vanish into the discard. They gather in front of
+  you with their values added up, so a Test of Fate can be pushed and read —
+  labelled as the cards' value, since your attribute and favour are yours to
+  add and this table holds no character. The Challenge shows both deck counts,
+  so "the decks did not reset" is visible rather than a promise. Inspiration
+  slots hold more than one card: "no more than one" is the table's rule to
+  keep, and a slot that physically refuses a second card is enforcement in
+  disguise. And the GM has a reset button.
+
 - **Three things wrong with getting to a table.** The card table existed and
   nothing linked to it — it now sits beside Rules reference on the game's front
   door. Starting a table then asked you to fill in a join form and wait for a

@@ -26,6 +26,7 @@
 		faces,
 		challengePack,
 		mySeatId,
+		waiting = [],
 		canAct = false,
 		busy = false,
 		onCommand
@@ -44,6 +45,8 @@
 			};
 		};
 		mySeatId: string | null;
+		/** Seats waiting on the GM, so they can be let in without leaving the fight. */
+		waiting?: { id: string; name: string }[];
 		canAct?: boolean;
 		busy?: boolean;
 		onCommand: (command: unknown) => void;
@@ -170,6 +173,39 @@
 		</div>
 	{/if}
 
+	<!-- The decks, so you can see they did not reset when the mode changed —
+	     the promise the shared-deck design makes, and one you otherwise have to
+	     take on trust. -->
+	<div class="ch__decks">
+		{#each [['player', 'Player deck'], ['gm', 'GM deck']] as [deck, label] (deck)}
+			<span class="ch__deck">
+				<span class="ct-zone-label">{label}</span>
+				<strong>{zone(`deck:${deck}`).count}</strong>
+				<span class="ct-zone-label">discard</span>
+				<strong>{zone(`discard:${deck}`).count}</strong>
+			</span>
+		{/each}
+	</div>
+
+	{#if isGm && waiting.length > 0}
+		<div class="ch__waiting">
+			<span class="ct-zone-label">Waiting</span>
+			{#each waiting as seat (seat.id)}
+				<span class="ch__waiter">
+					{seat.name}
+					<form method="POST" action="?/admit">
+						<input type="hidden" name="seatId" value={seat.id} />
+						<button type="submit">Let in</button>
+					</form>
+					<form method="POST" action="?/decline">
+						<input type="hidden" name="seatId" value={seat.id} />
+						<button type="submit" class="quiet">Turn away</button>
+					</form>
+				</span>
+			{/each}
+		</div>
+	{/if}
+
 	<div class="ch__combatants">
 		{#each admitted as seat (seat.id)}
 			{@const init = zone(`seat:${seat.id}:initiative`)}
@@ -193,20 +229,25 @@
 				{/if}
 
 				<div class="combatant__row">
-					{#if init.count > 0}
-						<Card
-							face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
-							faceDown={init.cards === undefined}
-							pick={{ zone: init.id }}
-							onSelect={select}
-						/>
-					{:else}
-						<button
-							type="button"
-							class="slot"
-							onclick={() => drop(init.id)}
-							aria-label={`${seat.name}'s initiative, empty`}>Initiative</button
-						>
+					<!-- The GM plays initiative for each *enemy*, never for themselves —
+					     ch.7 gives them no adventurer to act as — so their own seat has no
+					     initiative slot for a card to land in by mistake. -->
+					{#if !seat.isGm}
+						{#if init.count > 0}
+							<Card
+								face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
+								faceDown={init.cards === undefined}
+								pick={{ zone: init.id }}
+								onSelect={select}
+							/>
+						{:else}
+							<button
+								type="button"
+								class="slot"
+								onclick={() => drop(init.id)}
+								aria-label={`${seat.name}'s initiative, empty`}>Initiative</button
+							>
+						{/if}
 					{/if}
 
 					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
@@ -249,14 +290,18 @@
 							type="button"
 							onclick={() => (declaring = { holder: seat.id, position: 'turn' })}
 						>
-							Lay it down for your turn
+							Play facedown — your turn
 						</button>
 						<button
 							type="button"
 							onclick={() => (declaring = { holder: seat.id, position: 'minor' })}
 						>
-							…as a minor action
+							Play facedown — minor action
 						</button>
+						<p class="declare__note">
+							A defensive card stays in front of you even when it is for somebody else — ch.7 lets
+							you Riposte or Dodge for anyone in your zone. Say who in the label.
+						</p>
 					</div>
 				{/if}
 			</section>
@@ -371,15 +416,38 @@
 		gap: 0.5rem;
 		align-content: start;
 	}
-	.ch__combatants {
+	.ch__decks {
 		display: flex;
-		gap: 1.5rem;
+		gap: 2rem;
 		flex-wrap: wrap;
+	}
+	.ch__deck,
+	.ch__waiting,
+	.ch__waiter {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	/*
+	 * A grid with fixed tracks, not a wrapping flex row.
+	 *
+	 * The combatants reflowed whenever a drop target or a declare button
+	 * appeared, so names slid between rows under the cursor — and an initiative
+	 * card went onto the wrong seat because of it. Fixed columns mean the layout
+	 * cannot move while somebody is aiming at it.
+	 */
+	.ch__combatants {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+		gap: 1.5rem;
+		align-items: start;
 	}
 	.combatant {
 		border-block-start: 1px solid var(--ct-rule);
 		padding-block-start: 0.5rem;
-		min-inline-size: 12rem;
+		/* Room for the controls that come and go, so their arrival moves nothing. */
+		min-block-size: calc(var(--ct-card-h) + 6rem);
 	}
 	.combatant--mine {
 		border-block-start-color: var(--ct-rule-strong);
@@ -444,6 +512,12 @@
 		gap: 0.4rem;
 		flex-wrap: wrap;
 		margin-block-start: 0.5rem;
+	}
+	.declare__note {
+		flex-basis: 100%;
+		margin: 0.25rem 0 0;
+		font-size: 0.78rem;
+		color: var(--ct-quiet);
 	}
 	.declare__ask {
 		position: fixed;

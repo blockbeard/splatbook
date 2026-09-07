@@ -18,6 +18,7 @@ import { z } from 'zod';
 import type { CardTableModule, CardTableOutcome } from '../types';
 import {
 	TABLE_SCHEMA_VERSION,
+	FATE_ZONE,
 	addOpponent,
 	addSeat,
 	advanceCount,
@@ -69,6 +70,10 @@ export const commandSchema = z.discriminatedUnion('type', [
 	}),
 	/** Shuffle a deck's discard back into it. */
 	z.strictObject({ type: z.literal('reshuffle'), deck: z.enum(['player', 'gm']) }),
+	/** Everything back in the decks, shuffled. The GM's, and it confirms first. */
+	z.strictObject({ type: z.literal('reset-table') }),
+	/** Sweep the turned-over cards into the discard once the test is settled. */
+	z.strictObject({ type: z.literal('clear-fate') }),
 
 	/* ---- The Challenge ---------------------------------------------------- */
 
@@ -141,8 +146,15 @@ const deckOf = (pack: Record<string, unknown>): DeckDefinition =>
 export const hmtwCardTable: CardTableModule = {
 	packFiles: ['data/deck.json', 'data/challenge.json'],
 
-	create(pack) {
-		return { state: createTable(deckOf(pack)), stateVersion: TABLE_SCHEMA_VERSION };
+	create(pack, rng) {
+		// Shuffled here rather than in `createTable`, which stays pure and
+		// ordered so tests can assert an exact deal. A table that opened in pack
+		// order was the bug: the first hand dealt was the Ace, Two, Three of
+		// Swords, which nobody noticed until somebody played on it.
+		let table = createTable(deckOf(pack));
+		table = reshuffleDeck(table, 'player', rng);
+		table = reshuffleDeck(table, 'gm', rng);
+		return { state: table, stateVersion: TABLE_SCHEMA_VERSION };
 	},
 
 	migrate(raw, pack) {
@@ -178,15 +190,26 @@ export const hmtwCardTable: CardTableModule = {
 			case 'move': {
 				const moved = moveCard(table, parsed.data.from, parsed.data.to, actor);
 				if (!moved.ok) return fail(moved.reason);
+				// "When the Fool is drawn, shuffle both decks at the end of the
+				// round." Drawn is drawn: turning it over onto a discard during a
+				// Test of Fate counts, not only being dealt it in a Challenge.
+				const drewFool =
+					parsed.data.from.zone.startsWith('deck:') && table.foolCards.includes(moved.card);
+				const next = drewFool
+					? { ...moved.table, round: { ...moved.table.round, foolDrawn: true } }
+					: moved.table;
 				// Zones, never the card: the destination's own visibility decides
 				// who gets to see what actually moved.
-				return state(moved.table, 'move', {
+				return state(next, 'move', {
 					from: parsed.data.from.zone,
 					to: parsed.data.to,
 					seat: context.actorSeatId
 				});
 			}
 			case 'set-mode': {
+				// Not a rules judgement — a seat one. Leaving a Challenge sweeps
+				// every hand on the table, so it belongs to whoever is running it.
+				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
 				return state(setMode(table, parsed.data.mode), 'set-mode', {
 					mode: parsed.data.mode,
 					seat: context.actorSeatId
@@ -290,6 +313,27 @@ export const hmtwCardTable: CardTableModule = {
 				return state(clearFacedown(table, parsed.data.holder), 'clear-facedown', {
 					holder: parsed.data.holder
 				});
+			case 'clear-fate':
+				return state(emptyInto(table, FATE_ZONE, discardZone('player')), 'clear-fate', {
+					seat: context.actorSeatId
+				});
+			case 'reset-table': {
+				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
+				// Back to a table nobody has played on: every card home, both decks
+				// shuffled, no enemies, no round. Inspiration goes too — this is
+				// the button for starting again, not for ending a fight.
+				let next = setMode(table, 'decks');
+				for (const seat of next.seats) {
+					const deck = seat === next.gmSeat ? 'gm' : 'player';
+					for (const kind of ['hand', 'initiative', 'played', 'facedown', 'durable'] as const) {
+						next = emptyInto(next, seatZone(seat, kind), discardZone(deck));
+					}
+				}
+				next = emptyInto(next, FATE_ZONE, discardZone('player'));
+				next = reshuffleDeck(next, 'player', context.rng);
+				next = reshuffleDeck(next, 'gm', context.rng);
+				return state(next, 'reset-table', { seat: context.actorSeatId });
+			}
 			case 'reshuffle': {
 				// The seed stays here. A shuffle's event carries no payload at all,
 				// because anything derived from the order is the order.

@@ -63,7 +63,10 @@ beforeEach(async () => {
 	const [user] = await db.insert(schema.users).values({ email: 'gm@x' }).returning();
 	// Created the way a route will: the game makes its own opening state.
 	const module = getGame('hmtw')!.cardTable!;
-	const opening = module.create(await loadPack(packFetch().fn, 'hmtw', module.packFiles));
+	const opening = module.create(
+		await loadPack(packFetch().fn, 'hmtw', module.packFiles),
+		seededRng(3)
+	);
 	const created = await createCardTable(db, {
 		gameId: 'hmtw',
 		name: 'Thursday',

@@ -25,18 +25,26 @@
 	</p>
 	<p><a href={resolve('/auth/signin')}>Sign in</a></p>
 {:else}
-	<form method="POST" action="?/create" use:enhance class="new">
+	<!--
+		One heading, one field, one button. The first version stacked a heading, a
+		question, a hint and a button in four near-identical lines of the same
+		serif, and reading it top to bottom told you almost nothing about which
+		one you were supposed to act on.
+
+		The field carries a plainly-grey "Table name" — a generic word for the
+		thing, not an example of one. "Thursday game" in the box read as a table
+		that already existed, which is a different failure from having no
+		placeholder at all.
+	-->
+	<section class="new">
 		<h2>Start a table</h2>
-		<label for="table-name">What is this table called?</label>
-		<!-- No ghost text in the field. "Thursday game" sitting in an empty input
-		     reads as a table that already exists rather than as a prompt to type,
-		     which is exactly how it was misread. The example goes beside the
-		     label, where it is plainly an example. -->
-		<input id="table-name" name="name" required autocomplete="off" />
-		<p class="new__hint">Whatever you call it between yourselves — “Thursday game” does fine.</p>
-		<button type="submit">Start the table</button>
+		<form method="POST" action="?/create" use:enhance>
+			<label class="sr-only" for="table-name">Table name</label>
+			<input id="table-name" name="name" placeholder="Table name" required autocomplete="off" />
+			<button type="submit">Start</button>
+		</form>
 		{#if form?.message}<p class="error">{form.message}</p>{/if}
-	</form>
+	</section>
 
 	{#if data.tables.length === 0}
 		<p>No tables yet. Start one, then send the link to your players.</p>
@@ -66,25 +74,40 @@
 
 <style>
 	.new {
-		display: grid;
-		gap: 0.4rem;
-		justify-items: start;
-		max-inline-size: 26rem;
-		margin-block: 1rem 1.5rem;
+		max-inline-size: 30rem;
+		margin-block: 1.25rem 2rem;
 	}
 	.new h2 {
-		margin: 0;
-		font-size: 1.1rem;
+		margin: 0 0 0.5rem;
+		font-size: 1.05rem;
+	}
+	.new form {
+		display: flex;
+		gap: 0.5rem;
 	}
 	.new input {
-		inline-size: 100%;
-		padding: 0.5rem;
+		flex: 1;
+		padding: 0.55rem 0.7rem;
 		min-block-size: 2.75rem;
+		border: 1px solid var(--sb-border);
+		border-radius: 4px;
+		background: var(--sb-surface);
+		color: var(--sb-text);
+		font: inherit;
 	}
-	.new__hint {
-		margin: 0;
+	.new input::placeholder {
 		color: var(--sb-muted);
-		font-size: 0.85rem;
+		opacity: 1;
+	}
+	.new button {
+		padding: 0 1.1rem;
+		min-block-size: 2.75rem;
+		border: 1px solid var(--sb-text);
+		border-radius: 4px;
+		background: var(--sb-accent);
+		color: var(--sb-accent-contrast);
+		font: inherit;
+		cursor: pointer;
 	}
 	.tables {
 		list-style: none;

@@ -104,6 +104,32 @@
 			</p>
 		{/if}
 
+		{#if zone('fate').count > 0}
+			{@const drawn = zone('fate').cards ?? []}
+			<section class="fate">
+				<p class="ct-zone-label">
+					Turned over — {drawn.reduce((n, c) => n + (faces[c]?.value ?? 0), 0)}
+				</p>
+				<div class="fate__cards">
+					{#each drawn as card (card)}
+						<Card
+							face={faces[card] ?? null}
+							greaterDoom={faces[card]?.greaterDoom ?? false}
+							selected={selectedPick?.card === card}
+							pick={{ zone: 'fate', card }}
+							onSelect={select}
+						/>
+					{/each}
+				</div>
+				<p class="fate__note">
+					Card values only. Your attribute, favour and Resolve are yours to add.
+				</p>
+				<button type="button" onclick={() => onCommand({ type: 'clear-fate' })}>
+					Into the discard
+				</button>
+			</section>
+		{/if}
+
 		<div class="decks__piles">
 			{#each [['player', 'Player deck', 'Minor arcana discard'], ['gm', 'GM deck', 'Major arcana discard']] as [deck, deckLabel, discardLabel] (deck)}
 				<div class="decks__pair">
@@ -121,7 +147,15 @@
 						class="decks__flip"
 						disabled={locked || zone(`deck:${deck}`).count === 0}
 						onclick={() =>
-							onCommand({ type: 'move', from: { zone: `deck:${deck}` }, to: `discard:${deck}` })}
+							onCommand({
+								type: 'move',
+								from: { zone: `deck:${deck}` },
+								// Onto the table, not into the discard. A card that vanished
+								// the instant it landed meant nobody could see what a test of
+								// fate came to, and pushing fate adds a second card to the
+								// first.
+								to: 'fate'
+							})}
 					>
 						Turn one over
 					</button>
@@ -202,6 +236,32 @@
 	}
 	.decks__table {
 		flex: 1 1 22rem;
+	}
+	.fate {
+		border: 1px solid var(--ct-rule-strong);
+		border-radius: 4px;
+		padding: 0.75rem;
+		margin-block-end: 1.25rem;
+		display: grid;
+		gap: 0.5rem;
+		justify-items: start;
+	}
+	.fate__cards {
+		display: flex;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+	}
+	/*
+	 * The sum is of the cards and nothing else, and it says so.
+	 *
+	 * An action's total is the card plus an attribute, with favour at plus or
+	 * minus three — and this table holds no character, so a number labelled
+	 * "total" would be wrong in a way that costs somebody a fight.
+	 */
+	.fate__note {
+		margin: 0;
+		font-size: 0.78rem;
+		color: var(--ct-quiet);
 	}
 	.decks__piles {
 		display: flex;

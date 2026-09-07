@@ -22,9 +22,10 @@ import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zon
  * v3: `round` and `foolCards`.
  * v4: `facedown`, and the round's `interrupt` / `extraTurn`.
  * v5: `reach` on every zone.
- * v6 (this commit): `mode`.
+ * v6: `mode`.
+ * v7 (this commit): a shared `fate` zone.
  */
-export const TABLE_SCHEMA_VERSION = 6;
+export const TABLE_SCHEMA_VERSION = 7;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -188,6 +189,9 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v6 → v7: a table that predates the fate pile gains an empty one. Nothing
+ * moves: cards that already went to a discard belong there.
+ *
  * v5 → v6: a table that predates the modes opens on the decks, which is what
  * it was.
  *
@@ -220,15 +224,26 @@ export function migrateTable(raw: CardTable): CardTable {
 		mode: raw.mode ?? 'decks',
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
-		zones: Object.fromEntries(
-			Object.entries(raw.zones ?? {}).map(([id, zone]) => [
-				id,
-				{ ...zone, reach: zone.reach ?? (id.endsWith(':hand') ? 'owner' : 'table') }
-			])
+		// Two migrations in one pass: every zone gains a `reach` (v5), and any
+		// table zone the blob predates is added (v7).
+		zones: withTableZones(
+			Object.fromEntries(
+				Object.entries(raw.zones ?? {}).map(([id, zone]) => [
+					id,
+					{ ...zone, reach: zone.reach ?? (id.endsWith(':hand') ? 'owner' : 'table') }
+				])
+			)
 		),
 		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
 	};
+}
+
+/** Add any table zone a stored blob predates, leaving what it has alone. */
+function withTableZones(zones: Record<string, Zone>): Record<string, Zone> {
+	const next = { ...zones };
+	for (const zone of tableZones()) if (!next[zone.id]) next[zone.id] = zone;
+	return next;
 }
 
 /** Reseed which cards trigger the end-of-round reshuffle, from the pack. */

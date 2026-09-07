@@ -83,6 +83,16 @@ export type SeatZoneKind =
  */
 export type OpponentZoneKind = 'initiative' | 'played' | 'facedown';
 
+/**
+ * Where a turned-over card lands before anyone decides what it meant.
+ *
+ * A Test of Fate is a card off the top; pushing fate is another card added to
+ * it. Sending each straight to the discard made both disappear the instant they
+ * arrived, so nobody could see what the test came to. They gather here, face up,
+ * until somebody clears them.
+ */
+export const FATE_ZONE = 'fate';
+
 export const deckZone = (deck: DeckId): string => `deck:${deck}`;
 export const discardZone = (deck: DeckId): string => `discard:${deck}`;
 export const seatZone = (seat: string, kind: SeatZoneKind): string => `seat:${seat}:${kind}`;
@@ -114,10 +124,16 @@ export function seatZones(seat: string): Zone[] {
 		// does not count towards this limit!)" Placing a second replaces the first
 		// rather than being refused — see `exceptions.ts`.
 		zone('facedown', 'owner', 1),
-		// "No player can ever have more than one inspiration card" (ch.5). The cap
-		// is structure, not a rule the engine enforces: a second card has nowhere
-		// to go rather than being refused.
-		zone('durable', 'public', 1)
+		// "No player can ever have more than one inspiration card" (ch.5) — and
+		// that limit is the table's to keep, not this slot's.
+		//
+		// It used to hold one, justified as structure rather than enforcement.
+		// That was enforcement wearing a better coat: a slot that physically
+		// cannot hold a second card refuses the play just as surely as a rule
+		// would, and it refused things the table wanted — a GM handing out
+		// inspiration before taking the last one back, a house rule, a mistake
+		// somebody wanted to fix by hand.
+		zone('durable', 'public', null)
 	];
 }
 
@@ -166,6 +182,7 @@ export function tableZones(): Zone[] {
 		pile(deckZone('player'), 'hidden'),
 		pile(deckZone('gm'), 'hidden'),
 		pile(discardZone('player'), 'public'),
-		pile(discardZone('gm'), 'public')
+		pile(discardZone('gm'), 'public'),
+		pile(FATE_ZONE, 'public')
 	];
 }

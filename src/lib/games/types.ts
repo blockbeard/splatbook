@@ -242,8 +242,15 @@ export interface CampaignSettingField {
 export interface CardTableModule {
 	/** Pack-relative files the table needs, fetched and handed to `create`. */
 	packFiles: readonly string[];
-	/** A fresh table, given those files parsed. */
-	create(pack: Record<string, unknown>): { state: unknown; stateVersion: number };
+	/**
+	 * A fresh table, given those files parsed. The `rng` is the shell's, seeded
+	 * server-side — a game that deals from a deck needs it shuffled before the
+	 * first hand, and the order must not be something a client could derive.
+	 */
+	create(
+		pack: Record<string, unknown>,
+		rng: () => number
+	): { state: unknown; stateVersion: number };
 	/**
 	 * Bring a stored blob up to the current shape. Called by the shell on every
 	 * read, exactly as `entityTypes` migrations are — tables live for weeks, so

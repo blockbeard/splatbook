@@ -31,7 +31,9 @@ beforeAll(async () => {
 	};
 });
 
-const fresh = () => hmtwCardTable.create(pack).state as CardTable;
+// Seeded, so a test can assert an exact deal — the shuffle itself is tested
+// where it lives, and here it only has to be *a* shuffle.
+const fresh = () => hmtwCardTable.create(pack, seededRng(2)).state as CardTable;
 const ctx = (actorSeatId: string | null = null) => ({ actorSeatId, rng: seededRng(7) });
 
 describe('creating and migrating', () => {

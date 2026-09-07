@@ -34,7 +34,10 @@ const pack = Object.fromEntries(
 		])
 	)
 );
-const opening = module.create(pack as never);
+const opening = module.create(
+	pack as never,
+	() => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32
+);
 const created = await createCardTable(db as never, {
 	gameId: 'hmtw',
 	name: 'Thursday game',

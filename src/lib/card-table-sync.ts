@@ -33,6 +33,8 @@ export interface TableSnapshot {
 	 * version-only check would never notice somebody arriving.
 	 */
 	seats?: { id: string; name: string; status: string; isGm: boolean }[];
+	/** Which seat the asker holds, if any — it can change while they watch. */
+	seatId?: string | null;
 }
 
 export interface TableTransport {

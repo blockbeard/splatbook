@@ -54,7 +54,12 @@ export const actions: Actions = {
 		const name = String(form.get('name') ?? '').trim();
 		if (!name) return fail(400, { message: 'Give the table a name.' });
 
-		const opening = module.create(await loadPack(fetch, params.game, module.packFiles));
+		// The platform's randomness: the deck order is decided on the server and
+		// never travels.
+		const opening = module.create(
+			await loadPack(fetch, params.game, module.packFiles),
+			() => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32
+		);
 		const created = await createCardTable(locals.db, {
 			gameId: params.game,
 			name,

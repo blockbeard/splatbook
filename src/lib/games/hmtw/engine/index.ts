@@ -8,6 +8,7 @@
 
 export { seededRng, shuffle, type Rng } from './shuffle';
 export {
+	FATE_ZONE,
 	deckZone,
 	discardZone,
 	opponentZone,
