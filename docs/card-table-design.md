@@ -3,54 +3,51 @@
 *Phase 29, commit 12. Written before any of the table's UI, which is the whole
 point of it having its own commit.*
 
+## The first version, and why it was wrong
+
+The first pass had a desaturated dark-green ground, grey furniture, a gold
+accent and brown card backs. Chris named it on sight as machine-made, and he was
+right. The diagnosis is worth keeping, because it is a failure mode rather than
+a mistake.
+
+Every choice in it was defensible sentence by sentence — stone for the
+underworld, amber from the game's light mechanic — and the whole was still one
+of the looks that appear regardless of subject. The fault was that it **invented
+a palette when the book already had one**. A design that has to argue its way to
+a colour scheme has usually walked past a better answer.
+
 ## The one decision everything else follows from
 
-`/hmtw/reference` is a book: black ink on white paper, IM Fell, no colour at
-all. That is right for reading and wrong for playing.
+The book is black ink on white paper with no colour at all, and its dark mode is
+a straight inversion — the same thing its own figures do, as light and dark pairs
+of one drawing. The table does that too:
 
-A table is not a page. It is a surface you put things on, and the things are the
-point — so the relationship inverts. **The ground goes dark and the cards become
-the brightest objects on screen**, because the cards are the content and
-everything else is furniture. Nothing else in this document is a free choice;
-it all falls out of that.
+| | the room | the cards | the ink |
+|---|---|---|---|
+| light | grey `#b8b6b1` | white | black |
+| dark | near-black `#1c1c1c` | bone `#e9e7e2` | black |
 
-## Palette
+**What inverts is the room, not the objects on it.** Paper is paper: a card
+keeps its ink in both modes, which is what makes it read as a thing lying on a
+table rather than a shape that changes with the lights.
 
-| token | value | what it is |
-|---|---|---|
-| `--ct-table` | `#191e1c` | the surface — cold graphite with green in it |
-| `--ct-table-low` | `#121615` | its far edge, so the table has a horizon |
-| `--ct-card` | `#ece7db` | paper. Warm, against a cold ground |
-| `--ct-card-ink` | `#14100c` | the book's ink |
-| `--ct-back` | `#241d19` | a card back |
-| `--ct-light` | `#c99a4e` | a lantern's edge. **The only colour** |
-| `--ct-doom` | `#8c2f22` | greater dooms, borrowed from the book's one red |
+**There is no accent colour.** The reference's own note settles it — *"the
+interior is monochrome, so the accent IS the ink"* — so emphasis here is weight,
+rule and contrast. The single exception is the book's one red, for greater
+dooms, which is the sort of thing the book reserves it for.
 
-Three things worth defending.
-
-**The ground is not black.** Black is the reference's dark mode, and a void
-behind a card reads as nothing at all. This is wet stone — the material the game
-is played over — and it sits back far enough that paper lifts off it without a
-shadow having to announce that it has.
-
-**There is no bright accent.** Near-black with one acid highlight is what this
-would look like if nobody had thought about it. The single colour here is a dim,
-low-chroma amber taken from the game's own light mechanic, where a light source
-burns down in flickers, and it means exactly one thing: *this is yours*. The
-design's contrast comes from the content — paper against stone — rather than
-from a colour chosen to supply some.
-
-**Warm paper on a cold ground** is most of why a card reads as an object rather
-than a rectangle. It is doing more work than the shadow is.
+**Card backs are the Adherent of the Worm**, the mark whose own terms call it
+"allowed and encouraged" for third-party work. It was already in the pack and
+already cleared, so no Creative Commons hunt was needed. It is printed *on the
+card stock* rather than on some other material, which is what a card back
+actually is — the same paper, with something on it — and it means a facedown
+card still reads as a card rather than a dark hole where one used to be.
 
 ## Type
 
 The reference's own faces, unchanged: IM Fell English for text, IM Fell Great
-Primer SC for labels and ranks, Goudy for prose. They are already loaded,
-already licensed, and already carry the identity.
-
-A second type system here would be boldness spent in the wrong place. There is
-one place to spend it, and it is this:
+Primer SC for labels and ranks. They already carry the identity, and a second
+type system would be boldness spent in the wrong place.
 
 ## The signature: a facedown card
 
@@ -67,8 +64,8 @@ worth stating plainly: **then the owner cannot tell at a glance whether the tabl
 can see it too**, and that is the one thing they must never be unsure about.
 
 So the back stays a back for everybody, always. Its owner gets the value as a
-*mark on the back* — rank and suit in lantern amber, small, in the corner,
-unmistakably an annotation rather than a face. You read your own card without it
+*mark on the back* — rank and suit in a small ruled box in the corner, printed
+over the worm, unmistakably an annotation rather than a face. You read your own card without it
 ever appearing to turn over, which is precisely the state it is in.
 
 The declared action hangs **outside** the card, on a tag beneath it. Public
@@ -108,7 +105,8 @@ than left to the browser, because on a surface where every card is clickable it
 is easy to swallow the gesture by accident, and a player who has never found
 right-click in a VTT should not lose half the table.
 
-Selection is quiet: an outline on what is held, a hairline on where it could go.
+Selection is quiet: an ink outline on what is held, a hairline on where it could
+go.
 A table that lights up like a pinball machine because somebody picked up a card
 is a table you cannot read.
 
@@ -137,7 +135,7 @@ wrong way round and added the space instead of taking it.
 ## The floor
 
 Touch targets are the cards themselves, comfortably over 44px at every size used.
-Focus is visible in the same amber. Motion is a 120ms lift on hover and nothing
+Focus is visible in the ink. Motion is a 120ms lift on hover and nothing
 else, inside `prefers-reduced-motion: no-preference`. Colour never carries
 meaning alone — the greater-doom red is reinforced by the numeral's band, and
 "yours" by the mark's presence rather than its hue.
