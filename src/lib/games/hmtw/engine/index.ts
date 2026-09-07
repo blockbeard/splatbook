@@ -34,7 +34,7 @@ export {
 	setGmSeat,
 	splitOpponent,
 	updateOpponent,
-	withFoolCards,
+	withDeckFacts,
 	type CardTable,
 	type DeckDefinition,
 	type Opponent

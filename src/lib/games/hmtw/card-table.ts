@@ -45,7 +45,7 @@ import {
 	setMinorActions,
 	setMode,
 	updateOpponent,
-	withFoolCards,
+	withDeckFacts,
 	type CardTable,
 	type DeckDefinition
 } from './engine';
@@ -160,7 +160,7 @@ export const hmtwCardTable: CardTableModule = {
 	migrate(raw, pack) {
 		// `foolCards` cannot be recovered from an old blob — the deck definition
 		// was never in it — so the pack reseeds it on the way through.
-		const migrated = withFoolCards(migrateTable(raw as CardTable), deckOf(pack));
+		const migrated = withDeckFacts(migrateTable(raw as CardTable), deckOf(pack));
 		return { state: migrated, stateVersion: TABLE_SCHEMA_VERSION };
 	},
 

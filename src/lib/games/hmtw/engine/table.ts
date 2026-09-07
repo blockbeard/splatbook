@@ -11,7 +11,7 @@
 import type { FacedownAction } from './exceptions';
 import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
-import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zones';
+import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone } from './zones';
 
 /**
  * Bump on any change to the saved shape, in the same commit as the change, and
@@ -23,9 +23,10 @@ import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zon
  * v4: `facedown`, and the round's `interrupt` / `extraTurn`.
  * v5: `reach` on every zone.
  * v6: `mode`.
- * v7 (this commit): a shared `fate` zone.
+ * v7: a shared `fate` zone.
+ * v8 (this commit): `deckOf`, which deck each card belongs to.
  */
-export const TABLE_SCHEMA_VERSION = 7;
+export const TABLE_SCHEMA_VERSION = 8;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -75,6 +76,19 @@ export interface CardTable {
 	 * business knowing a card id by name.
 	 */
 	foolCards: string[];
+	/**
+	 * Which deck each card belongs to.
+	 *
+	 * The table lets you put a card on the wrong discard, because a physical one
+	 * does and because picking it back up is how you fix a mistake. What a
+	 * physical table does *not* do is shuffle a minor arcana card into the major
+	 * deck and leave it there — and that was the failure: a stray card became
+	 * permanent the moment somebody shuffled, with no way back.
+	 *
+	 * So membership is a fact about the card, kept here, and a shuffle uses it.
+	 * Taken from the pack, like `foolCards`, rather than inferred.
+	 */
+	deckOf: Record<string, DeckId>;
 	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
@@ -156,6 +170,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		round: newRound(),
 		facedown: {},
 		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
+		deckOf: membershipOf(deck),
 		zones
 	};
 }
@@ -222,6 +237,7 @@ export function migrateTable(raw: CardTable): CardTable {
 		gmSeat: raw.gmSeat ?? null,
 		opponents: raw.opponents ?? [],
 		mode: raw.mode ?? 'decks',
+		deckOf: raw.deckOf ?? {},
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
@@ -239,6 +255,15 @@ export function migrateTable(raw: CardTable): CardTable {
 	};
 }
 
+/** Which deck each card belongs to, from the pack's own split. */
+export function membershipOf(deck: DeckDefinition): Record<string, DeckId> {
+	const decks = buildDecks(deck);
+	const map: Record<string, DeckId> = {};
+	for (const card of decks.player) map[card] = 'player';
+	for (const card of decks.gm) map[card] = 'gm';
+	return map;
+}
+
 /** Add any table zone a stored blob predates, leaving what it has alone. */
 function withTableZones(zones: Record<string, Zone>): Record<string, Zone> {
 	const next = { ...zones };
@@ -246,10 +271,16 @@ function withTableZones(zones: Record<string, Zone>): Record<string, Zone> {
 	return next;
 }
 
-/** Reseed which cards trigger the end-of-round reshuffle, from the pack. */
-export function withFoolCards(table: CardTable, deck: DeckDefinition): CardTable {
+/**
+ * Reseed the facts about the deck that a stored blob cannot carry — which cards
+ * trigger the end-of-round reshuffle, and which deck each card belongs to.
+ *
+ * Neither is recoverable from an old blob, because the deck definition was
+ * never in it. The pack is the authority, so the caller supplies it on read.
+ */
+export function withDeckFacts(table: CardTable, deck: DeckDefinition): CardTable {
 	const fools = deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [];
-	return { ...table, foolCards: [...fools] };
+	return { ...table, foolCards: [...fools], deckOf: membershipOf(deck) };
 }
 
 /** The table with a given seat running it. Pass `null` to vacate the seat. */

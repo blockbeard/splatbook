@@ -218,3 +218,67 @@ describe('reach is not the same question as sight', () => {
 		conserved(swept);
 	});
 });
+
+describe('a shuffle only takes back its own cards', () => {
+	/** A table that knows which deck each card belongs to, as a real one does. */
+	const known = (): CardTable => {
+		const t = createTable(deck, ['s1']);
+		return {
+			...t,
+			deckOf: {
+				...Object.fromEntries(deck.minors.map((c) => [c.id, 'player' as const])),
+				...Object.fromEntries(deck.majors.map((c) => [c.id, 'gm' as const])),
+				fool: 'player' as const
+			}
+		};
+	};
+
+	it('leaves a stray out of the deck it does not belong to', () => {
+		// The table lets you drop a card on the wrong pile, because a physical one
+		// does. What it must not do is bury it in the wrong deck, where nobody can
+		// find it and every later draw is wrong.
+		let t = known();
+		const moved = moveCard(t, { zone: 'deck:player' }, 'discard:gm');
+		expect(moved.ok).toBe(true);
+		if (!moved.ok) return;
+		t = moved.table;
+		const stray = moved.card;
+
+		t = reshuffleDeck(t, 'gm', seededRng(1));
+		expect(t.zones['deck:gm'].cards).not.toContain(stray);
+		// And it is somewhere a person can see it: its own discard.
+		expect(t.zones['discard:player'].cards).toContain(stray);
+		conserved(t);
+	});
+
+	it('sends the stray home, so the next shuffle puts it back properly', () => {
+		let t = known();
+		const moved = moveCard(t, { zone: 'deck:player' }, 'discard:gm');
+		if (!moved.ok) return;
+		t = reshuffleDeck(moved.table, 'gm', seededRng(1));
+		t = reshuffleDeck(t, 'player', seededRng(1));
+		expect(t.zones['deck:player'].cards).toContain(moved.card);
+		conserved(t);
+	});
+
+	it('still gathers its own discard, which is the point of shuffling', () => {
+		let t = known();
+		const dealt = deal(t, 'deck:player', 'discard:player', 4);
+		if (!dealt.ok) return;
+		t = reshuffleDeck(dealt.table, 'player', seededRng(1));
+		expect(t.zones['discard:player'].cards).toEqual([]);
+		expect(t.zones['deck:player'].cards).toHaveLength(21);
+		conserved(t);
+	});
+
+	it('does nothing surprising when it has no membership to go on', () => {
+		// An old blob has no `deckOf` until the pack reseeds it. Until then a
+		// shuffle behaves as it always did rather than throwing cards away.
+		let t = createTable(deck, ['s1']);
+		const dealt = deal(t, 'deck:player', 'discard:player', 3);
+		if (!dealt.ok) return;
+		t = reshuffleDeck(dealt.table, 'player', seededRng(1));
+		expect(t.zones['discard:player'].cards).toEqual([]);
+		conserved(t);
+	});
+});

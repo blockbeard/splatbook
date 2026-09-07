@@ -174,19 +174,45 @@ export function deal(table: CardTable, from: string, to: string, count: number):
  * This is both the GM's button and what happens on its own when a draw pile
  * empties. The `rng` is seeded by the caller and the seed stays on the server —
  * see `shuffle.ts`. Nothing about the resulting order may reach a client.
+ *
+ * **A shuffle only takes back cards that belong to this deck.** The table lets
+ * you drop a card on the wrong discard, because a physical one does and because
+ * picking it up again is how you fix a mistake. What a physical table will not
+ * do is shuffle a minor arcana card into the major deck and leave it there,
+ * where nobody can find it and every later draw is wrong. Strays are sent to
+ * the discard they belong to instead, so the mistake stays visible and fixes
+ * itself the next time that deck is shuffled.
  */
 export function reshuffleDeck(table: CardTable, deck: DeckId, rng: Rng): CardTable {
 	const draw = table.zones[deckZone(deck)];
 	const discard = table.zones[discardZone(deck)];
 	if (!draw || !discard) return table;
-	return {
-		...table,
-		zones: {
-			...table.zones,
-			[draw.id]: { ...draw, cards: shuffle([...draw.cards, ...discard.cards], rng) },
-			[discard.id]: { ...discard, cards: [] }
-		}
+
+	const belongs = (card: string) => (table.deckOf[card] ?? deck) === deck;
+	const gathered = [...draw.cards, ...discard.cards];
+	const mine = gathered.filter(belongs);
+	const strays = gathered.filter((card) => !belongs(card));
+
+	const zones: Record<string, Zone> = {
+		...table.zones,
+		[draw.id]: { ...draw, cards: shuffle(mine, rng) },
+		[discard.id]: { ...discard, cards: [] }
 	};
+
+	// Send each stray to its own discard, so it is somewhere a person can see it
+	// rather than buried in a deck it does not belong to.
+	for (const card of strays) {
+		const home = table.deckOf[card];
+		const target = home ? zones[discardZone(home)] : undefined;
+		if (!target) {
+			// Nowhere to send it — better in the pile it was in than gone.
+			zones[discard.id] = { ...zones[discard.id], cards: [...zones[discard.id].cards, card] };
+			continue;
+		}
+		zones[target.id] = { ...target, cards: [card, ...target.cards] };
+	}
+
+	return { ...table, zones };
 }
 
 /** Move every card out of a zone into another, top-first. Used by sweeps and cleanups. */

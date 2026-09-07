@@ -45,6 +45,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **A shuffle only takes back its own cards.** You can still drop a card on the
+  wrong discard — a physical table lets you, and picking it up again is how a
+  mistake gets fixed — but shuffling no longer buries it in a deck it does not
+  belong to, where nobody could find it and every later draw would be wrong.
+  Strays are sent to the discard they belong to, so the mistake stays visible
+  and sorts itself out at the next shuffle.
+
+- **Chapter 7's worked example runs through the table.** The Steel-Clad Snakes,
+  six goblins and the pendulum blade, played end to end as a test: the GM's
+  draw coming to seven the way the book counts it, the hand splitting into the
+  lesser and greater dooms it names, initiative down facedown and hidden from
+  everyone but its owner, the count reaching four, Justice played for the
+  goblins, three initiative cards turning over at 14, 11 and 5, three minor
+  actions, the pendulum's VII revealed, and the count going on to seven — with
+  every card the book leaves in each hand still there at the end.
+
 - **A pass over everything the first real session found.** The decks were dealt
   in pack order, because creating a table never shuffled them. Turning over the
   Fool raised no prompt, since only a Challenge deal was watching for it. Any
