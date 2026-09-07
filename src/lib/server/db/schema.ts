@@ -19,7 +19,14 @@
  */
 
 import { sql } from 'drizzle-orm';
-import { integer, sqliteTable, text, index, primaryKey } from 'drizzle-orm/sqlite-core';
+import {
+	integer,
+	sqliteTable,
+	text,
+	index,
+	primaryKey,
+	uniqueIndex
+} from 'drizzle-orm/sqlite-core';
 import type { RollResult } from '$lib/dice';
 
 /**
@@ -476,6 +483,55 @@ export const cardTableSeats = sqliteTable(
 	(t) => [index('card_table_seats_table_idx').on(t.tableId)]
 );
 
+/**
+ * The public log of what happened at a card table (phase 29).
+ *
+ * **Everything in here is public.** That is the whole design, and it is what
+ * makes the sync channel safe: private state — a hand, a facedown card's value —
+ * travels only through the game's per-seat projection of the table, which has
+ * its own leak tests. An event says "seat 3 drew four cards", never which four.
+ *
+ * The plan had this log carrying per-recipient secret rows alongside, mirroring
+ * guild-book. Syncing projected *state* rather than replayable commands made
+ * that unnecessary: a player learns their new cards because their hand is in
+ * their own projection, so there is nothing private left for an event to carry,
+ * and one leak surface is easier to hold correct than two.
+ *
+ * `version` is the table version this event produced — the same counter, so a
+ * client's cursor is simply the version it already has. `requestHash` makes a
+ * retried command land once: the unique index is the enforcement, not a check.
+ */
+export const cardTableEvents = sqliteTable(
+	'card_table_events',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		tableId: text('table_id')
+			.notNull()
+			.references(() => cardTables.id, { onDelete: 'cascade' }),
+		/** The table version this event produced. Monotonic per table. */
+		version: integer('version').notNull(),
+		/** Which seat did it. Null for something the table did to itself. */
+		actorSeatId: text('actor_seat_id').references(() => cardTableSeats.id, {
+			onDelete: 'set null'
+		}),
+		/** Game-defined event kind, e.g. `deal`. The shell never interprets it. */
+		kind: text('kind').notNull(),
+		/** Game-defined, and public by contract. Opaque here. */
+		data: text('data', { mode: 'json' }).notNull().default('{}'),
+		/** Idempotency key: the same command retried produces one event. */
+		requestHash: text('request_hash').notNull(),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [
+		index('card_table_events_table_idx').on(t.tableId, t.version),
+		uniqueIndex('card_table_events_request_uq').on(t.tableId, t.requestHash)
+	]
+);
+
 /** Row types inferred from the tables, for the save/load service (commit 32). */
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -495,3 +551,5 @@ export type CardTableRow = typeof cardTables.$inferSelect;
 export type NewCardTableRow = typeof cardTables.$inferInsert;
 export type CardTableSeat = typeof cardTableSeats.$inferSelect;
 export type NewCardTableSeat = typeof cardTableSeats.$inferInsert;
+export type CardTableEvent = typeof cardTableEvents.$inferSelect;
+export type NewCardTableEvent = typeof cardTableEvents.$inferInsert;

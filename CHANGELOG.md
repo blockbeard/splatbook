@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Commands, a public log, and the sync loop.** Applying a command to a table
+  is now one guarded operation: a retried command lands once, a command that
+  lost a race changes nothing at all, and each accepted one appends an event
+  numbered with the version it produced — so a client's cursor is simply the
+  version it already holds, one counter rather than two.
+
+  The plan had clients replaying a stream of commands, which meant every command
+  needing its own per-seat projection and a table of per-recipient secrets: a
+  second way out of the building, guarded separately from the first. Syncing
+  projected _state_ instead removed the problem rather than defending it. A
+  player learns their new cards because their hand is in their own projection,
+  so nothing private is left for an event to carry, and the log holds public
+  facts alone — "seat 3 drew four cards", never which four.
+
+  The client loop sits behind a seam so the polling decision stays cheap to
+  revisit. It never has two requests in flight, measures quiet from the last
+  _change_ rather than the last poll, and a hidden tab asks the server nothing
+  while still waking promptly when you come back to it.
+
 - **Bounds on a table.** Six seats, ten people waiting, a hundred thousand
   commands in a table's life, twenty-five live tables per account, and a name
   that has to be a name. The one that matters is the queue: asking for a seat is
