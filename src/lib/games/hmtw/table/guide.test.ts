@@ -116,6 +116,26 @@ describe('the guide', () => {
 		expect(s.text).toMatch(/before the turn/);
 	});
 
+	it('stops saying "that is you" once the number is done', () => {
+		// The loop this closes: the count still matches whoever just acted, so the
+		// guide went on prompting somebody who had already had their turn and was
+		// waiting for the count to move.
+		const s = suggest(
+			table({ round: { ...table().round, count: 4, settled: 4 }, upNow: ['daria'] }),
+			seats
+		);
+		expect(s.text).toBe('4 is done.');
+		expect(s.action?.command).toEqual({ type: 'advance-count' });
+	});
+
+	it('still names whoever is up on a number that has not been settled', () => {
+		const s = suggest(
+			table({ round: { ...table().round, count: 5, settled: 4 }, upNow: ['daria'] }),
+			seats
+		);
+		expect(s.text).toBe('5 — Daria, that is you.');
+	});
+
 	it('holds the minor-action window open until the GM closes it', () => {
 		const s = suggest(
 			table({ round: { ...table().round, count: 4, minorActions: true }, upNow: ['daria'] }),

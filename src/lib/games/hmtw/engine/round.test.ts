@@ -298,3 +298,26 @@ describe('migrateTable v2 → v3', () => {
 		expect(migrated.foolCards).toEqual(['fool']);
 	});
 });
+
+describe('when a number is finished', () => {
+	it('settles on closing the minor-action window, and clears on moving the count', () => {
+		let t = setCount(table(), 4);
+		expect(t.round.settled).toBeNull();
+
+		t = setMinorActions(t, true);
+		expect(t.round.settled).toBeNull(); // opening settles nothing
+
+		t = setMinorActions(t, false);
+		expect(t.round.settled).toBe(4);
+
+		t = advanceCount(t);
+		expect(t.round.settled).toBeNull();
+	});
+
+	it('forgets it at the end of a round', () => {
+		let t = setMinorActions(setCount(table(), 6), false);
+		expect(t.round.settled).toBe(6);
+		t = endRound(t, rng());
+		expect(t.round.settled).toBeNull();
+	});
+});

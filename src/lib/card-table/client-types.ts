@@ -28,6 +28,8 @@ export interface ProjectedTable {
 		foolDrawn: boolean;
 		interrupt: string | null;
 		extraTurn: string | null;
+		/** The number whose turn and minor actions are finished. */
+		settled: number | null;
 	};
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
 	/** Whether the table is walking the round for whoever is looking. */

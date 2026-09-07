@@ -94,6 +94,16 @@ export function suggest(
 		};
 	}
 
+	// The number has had its turn and its minor actions. Saying "that is you" to
+	// somebody who has already gone is how a prompter becomes noise.
+	if (round.settled !== null && round.settled === round.count) {
+		return {
+			text: `${round.count} is done.`,
+			action: { label: 'Count on', command: { type: 'advance-count' } },
+			gmOnly: true
+		};
+	}
+
 	if (table.upNow.length > 0) {
 		const who = listOf(table.upNow.map((id) => nameOf(id, seats, table.opponents)));
 		return {

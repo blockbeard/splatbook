@@ -46,6 +46,16 @@ export interface Round {
 	 * minor actions with it; spent when they take it.
 	 */
 	extraTurn: string | null;
+	/**
+	 * The initiative number whose turn and minor actions are finished.
+	 *
+	 * Without it the guide loops: the count still matches whoever just acted, so
+	 * it goes on saying "four — Daria, that is you" at somebody who has had
+	 * their turn and is waiting for the count to move. Closing the minor-action
+	 * window is the moment a number is done, so that is where this is set;
+	 * moving the count clears it.
+	 */
+	settled: number | null;
 }
 
 export const newRound = (): Round => ({
@@ -54,7 +64,8 @@ export const newRound = (): Round => ({
 	minorActions: false,
 	foolDrawn: false,
 	interrupt: null,
-	extraTurn: null
+	extraTurn: null,
+	settled: null
 });
 
 /** What the GM's draw is built from — `data/challenge.json`'s `handSizes.gm`, structurally. */
@@ -159,6 +170,7 @@ export function beginRound(table: CardTable, opts: BeginRoundOptions): CardTable
 			minorActions: false,
 			interrupt: null,
 			extraTurn: null,
+			settled: null,
 			// The Fool may already have been drawn earlier in the same round by a
 			// refill; never clear a flag that is waiting to be spent.
 			foolDrawn: table.round.foolDrawn || fool
@@ -191,7 +203,8 @@ export function mulliganGmHand(table: CardTable, rng: Rng): CardTable {
 
 /** Call an initiative number. `null` stops counting. */
 export function setCount(table: CardTable, count: number | null): CardTable {
-	return { ...table, round: { ...table.round, count } };
+	// Moving the count un-settles it: the new number has had no turn yet.
+	return { ...table, round: { ...table.round, count, settled: null } };
 }
 
 /** The next number up. Starts at 1 — the ace — when nobody is counting yet. */
@@ -205,9 +218,21 @@ export function rewindCount(table: CardTable): CardTable {
 	return setCount(table, Math.max(1, table.round.count - 1));
 }
 
-/** Open or close the window in which anyone may declare a minor action. */
+/**
+ * Open or close the window in which anyone may declare a minor action.
+ *
+ * Closing it settles the number being called: the turn happened, the minor
+ * actions were revealed, and there is nothing else owed on it.
+ */
 export function setMinorActions(table: CardTable, open: boolean): CardTable {
-	return { ...table, round: { ...table.round, minorActions: open } };
+	return {
+		...table,
+		round: {
+			...table.round,
+			minorActions: open,
+			settled: open ? table.round.settled : table.round.count
+		}
+	};
 }
 
 /**
@@ -248,7 +273,8 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 			minorActions: false,
 			foolDrawn: false,
 			interrupt: null,
-			extraTurn: null
+			extraTurn: null,
+			settled: null
 		}
 	};
 }
