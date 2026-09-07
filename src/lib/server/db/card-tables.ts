@@ -45,6 +45,15 @@ export type CreateResult = { ok: true; table: CardTableRow } | { ok: false; reas
 /**
  * How many live tables an account has. Expired ones do not count — the cap is
  * on tables in play, not on a lifetime of them.
+ *
+ * A note covering every cap in this file and its neighbour: they are
+ * check-then-insert rather than atomic, because this codebase deliberately
+ * avoids explicit transactions so the same code runs on better-sqlite3 and on
+ * D1. Two requests arriving in the same instant can both pass a cap and
+ * overshoot it by one or two. That is accepted — the caps exist to stop
+ * *unbounded* growth, and since every request still pays for a count, the
+ * overshoot is bounded by how much concurrency someone can muster rather than
+ * by how long they are willing to keep asking.
  */
 export async function countLiveTables(
 	db: Db,
@@ -223,7 +232,28 @@ export async function listSeats(db: Db, tableId: string): Promise<CardTableSeat[
  * thousand card moves; a hundred thousand is unreachable by play and reachable
  * by a script, so a table that meets it stops accepting rather than growing
  * without end. Nobody at a real table will ever see it.
+ *
+ * **Why this returns a reason rather than nothing.** Three different conditions
+ * make the same UPDATE match no rows, and a caller has to tell them apart.
+ * Losing a race is normal — the client re-syncs and carries on, which is the
+ * "someone got there first" this design accepts as its only refusal. A table
+ * that has expired or exhausted its commands is *finished*, and a client unable
+ * to tell the difference would retry it forever. So a failed write spends one
+ * extra read to say which it was, on the path where being wrong is expensive
+ * and being slow costs nothing.
  */
+export type SaveRefusal =
+	/** Somebody else's command landed first. Re-sync and try again. */
+	| 'conflict'
+	/** No such table — it may have been deleted while this was in flight. */
+	| 'gone'
+	/** Past its retention window. Every read path already treats it as absent. */
+	| 'expired'
+	/** It has accepted all the commands it ever will. */
+	| 'exhausted';
+
+export type SaveResult = { ok: true; table: CardTableRow } | { ok: false; reason: SaveRefusal };
+
 export async function saveTableState(
 	db: Db,
 	id: string,
@@ -231,7 +261,7 @@ export async function saveTableState(
 	state: unknown,
 	stateVersion: number,
 	now: number = Date.now()
-): Promise<CardTableRow | undefined> {
+): Promise<SaveResult> {
 	const [row] = await db
 		.update(cardTables)
 		.set({
@@ -255,5 +285,13 @@ export async function saveTableState(
 			)
 		)
 		.returning();
-	return row;
+	if (row) return { ok: true, table: row };
+
+	// Nothing matched. One read to say why, so a caller can tell a race worth
+	// retrying from a table it should stop asking about.
+	const current = await getCardTable(db, id);
+	if (!current) return { ok: false, reason: 'gone' };
+	if (isExpired(current, now)) return { ok: false, reason: 'expired' };
+	if (current.commandCount >= MAX_COMMANDS_PER_TABLE) return { ok: false, reason: 'exhausted' };
+	return { ok: false, reason: 'conflict' };
 }

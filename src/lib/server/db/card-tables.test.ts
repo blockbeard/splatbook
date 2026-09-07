@@ -138,7 +138,12 @@ describe('the limits', () => {
 			.update(schema.cardTables)
 			.set({ commandCount: MAX_COMMANDS_PER_TABLE })
 			.where(eq(schema.cardTables.id, row.id));
-		expect(await saveTableState(db, row.id, 0, { more: true }, 5)).toBeUndefined();
+		// Distinguishable from a race, because a client that could not tell would
+		// retry a finished table forever.
+		expect(await saveTableState(db, row.id, 0, { more: true }, 5)).toEqual({
+			ok: false,
+			reason: 'exhausted'
+		});
 	});
 });
 
@@ -240,9 +245,11 @@ describe('saving state', () => {
 	it('bumps the version and counts the command', async () => {
 		const row = await make();
 		const saved = await saveTableState(db, row.id, 0, { zones: { a: 1 } }, 5);
-		expect(saved?.version).toBe(1);
-		expect(saved?.commandCount).toBe(1);
-		expect(saved?.state).toEqual({ zones: { a: 1 } });
+		expect(saved.ok).toBe(true);
+		if (!saved.ok) return;
+		expect(saved.table.version).toBe(1);
+		expect(saved.table.commandCount).toBe(1);
+		expect(saved.table.state).toEqual({ zones: { a: 1 } });
 	});
 
 	it('refuses a write built on a version someone has already moved past', async () => {
@@ -251,10 +258,20 @@ describe('saving state', () => {
 
 		// Whoever was still holding version 0 loses — "someone got there first",
 		// which is the only refusal this design has.
-		expect(await saveTableState(db, row.id, 0, { second: true }, 5)).toBeUndefined();
+		// A lost race is normal: re-sync and carry on.
+		expect(await saveTableState(db, row.id, 0, { second: true }, 5)).toEqual({
+			ok: false,
+			reason: 'conflict'
+		});
 		const current = await getCardTable(db, row.id);
 		expect(current?.state).toEqual({ first: true });
 		expect(current?.version).toBe(1);
+	});
+
+	it('says a deleted table is gone, not merely contended', async () => {
+		const row = await make();
+		await deleteCardTable(db, row.id, owner);
+		expect(await saveTableState(db, row.id, 0, {}, 5)).toEqual({ ok: false, reason: 'gone' });
 	});
 
 	it('keeps a table alive by being used', async () => {
@@ -270,7 +287,10 @@ describe('saving state', () => {
 		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1000);
 		// Every read path already treats this table as gone; a client still
 		// holding its id and version must not be able to resurrect it.
-		expect(await saveTableState(db, row.id, 0, { sneaky: true }, 5)).toBeUndefined();
+		expect(await saveTableState(db, row.id, 0, { sneaky: true }, 5)).toEqual({
+			ok: false,
+			reason: 'expired'
+		});
 	});
 
 	it('counts each command once, however many land', async () => {
@@ -278,7 +298,8 @@ describe('saving state', () => {
 		let version = 0;
 		for (let i = 0; i < 5; i++) {
 			const saved = await saveTableState(db, row.id, version, { i }, 5);
-			version = saved!.version;
+			if (!saved.ok) throw new Error(saved.reason);
+			version = saved.table.version;
 		}
 		const current = await getCardTable(db, row.id);
 		expect(current?.version).toBe(5);
