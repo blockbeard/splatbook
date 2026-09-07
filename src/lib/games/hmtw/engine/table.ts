@@ -203,6 +203,10 @@ export function migrateTable(raw: CardTable): CardTable {
 	if (raw.schemaVersion > TABLE_SCHEMA_VERSION) return raw;
 	return {
 		...raw,
+		// Defaulted rather than assumed. A blob can arrive from a version that
+		// never had these, and a table whose `seats` is undefined is not merely
+		// empty — it throws the moment anything iterates it.
+		seats: raw.seats ?? [],
 		gmSeat: raw.gmSeat ?? null,
 		opponents: raw.opponents ?? [],
 		round: { ...newRound(), ...(raw.round ?? {}) },

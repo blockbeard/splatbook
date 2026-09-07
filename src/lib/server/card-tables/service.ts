@@ -16,7 +16,18 @@ import { getCardTableByToken, touchCardTable, sweepExpiredTables } from '../db/c
 import { listSeats } from '../db/card-tables';
 import { resolveSeat } from '../db/card-table-seats';
 import { applyCommand, eventsSince } from '../db/card-table-commands';
-import { seededRng } from '$lib/games/hmtw/engine/shuffle';
+/**
+ * Randomness for a shuffle, straight from the platform.
+ *
+ * The plan called for a *seeded* generator, and the reasoning behind that word
+ * was determinism in tests and keeping the order on the server. Production
+ * needs only the second. Seeding from a single 32-bit value would have made
+ * this strictly worse than it looks: a tarot deck has 57! orderings and a
+ * 32-bit seed can reach about four billion of them, so almost every possible
+ * shuffle would have been unreachable. Tests still inject `seededRng`, where
+ * repeatability is the whole point.
+ */
+const cryptoRng = (): number => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
 import type { CardTableRow, CardTableSeat } from '../db/schema';
 import type { SeatClaim } from '$lib/seat-claims';
 
@@ -26,10 +37,22 @@ export function cardTableOf(gameId: string): CardTableModule | undefined {
 }
 
 /**
+ * Parsed pack files, kept for the life of the process (or the isolate).
+ *
+ * Pack files are static and immutable for a deployment, and a table's busiest
+ * path fetches them on every request. Without this, one command meant four HTTP
+ * round trips for content that cannot have changed — on Workers, four
+ * subrequests against a fixed budget, for nothing. A deploy replaces the
+ * process, so there is no staleness to manage.
+ */
+const packCache = new Map<string, Promise<unknown>>();
+
+/**
  * Load a game's pack files for its table.
  *
  * Takes the event's `fetch` so the same code runs on node and on Workers, the
- * way the PDF endpoint already does.
+ * way the PDF endpoint already does. The promise is cached rather than the
+ * value, so simultaneous first requests share one fetch instead of racing.
  */
 export async function loadPack(
 	fetchFn: typeof fetch,
@@ -38,13 +61,25 @@ export async function loadPack(
 ): Promise<Record<string, unknown>> {
 	const entries = await Promise.all(
 		files.map(async (file) => {
-			const res = await fetchFn(`/content-packs/${gameId}/${file}`);
-			if (!res.ok) throw new Error(`pack file missing: ${gameId}/${file}`);
-			return [file, await res.json()] as const;
+			const key = `${gameId}/${file}`;
+			let pending = packCache.get(key);
+			if (!pending) {
+				pending = fetchFn(`/content-packs/${key}`).then((res) => {
+					if (!res.ok) throw new Error(`pack file missing: ${key}`);
+					return res.json();
+				});
+				// A failed fetch must not be remembered as the answer forever.
+				pending.catch(() => packCache.delete(key));
+				packCache.set(key, pending);
+			}
+			return [file, await pending] as const;
 		})
 	);
 	return Object.fromEntries(entries);
 }
+
+/** Drop the cache. For tests, which serve different packs from one process. */
+export const clearPackCache = (): void => void packCache.clear();
 
 export interface TableContext {
 	row: CardTableRow;
@@ -126,9 +161,12 @@ export async function runCommand(
 	ctx: TableContext,
 	command: unknown,
 	expectedVersion: number,
-	requestHash: string
+	requestHash: string,
+	/** Injectable for tests; production takes the platform's own randomness. */
+	rng?: () => number
 ) {
-	return applyCommand(
+	let applied: unknown;
+	const result = await applyCommand(
 		db,
 		{
 			tableId: ctx.row.id,
@@ -144,12 +182,17 @@ export async function runCommand(
 				.filter((s) => s.status === 'admitted')
 				.map((s) => ({ id: s.id, isGm: s.isGm }));
 			const synced = ctx.module.syncSeats(migrated.state, admitted);
-			return ctx.module.reduce(synced, command, {
+			const outcome = ctx.module.reduce(synced, command, {
 				actorSeatId: ctx.seat?.id ?? null,
-				rng: seededRng(crypto.getRandomValues(new Uint32Array(1))[0])
+				rng: rng ?? cryptoRng
 			});
+			// Kept so the caller can render the result without loading the whole
+			// table again; discarded along with everything else if the write loses.
+			if (outcome.ok) applied = outcome.state;
+			return outcome;
 		}
 	);
+	return result.ok ? { ...result, state: applied } : result;
 }
 
 /**

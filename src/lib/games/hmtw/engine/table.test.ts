@@ -100,6 +100,17 @@ describe('seats', () => {
 });
 
 describe('migrateTable', () => {
+	it('survives a blob that is missing whole fields', () => {
+		// Not hypothetical: a table row's state column defaults to `{}`, and a
+		// table whose seats are undefined does not read as empty — it throws the
+		// moment anything iterates it.
+		const migrated = migrateTable({ schemaVersion: 1 } as never);
+		expect(migrated.seats).toEqual([]);
+		expect(migrated.zones).toEqual({});
+		expect(migrated.opponents).toEqual([]);
+		expect(() => [...migrated.seats]).not.toThrow();
+	});
+
 	it('stamps the current version on a current blob', () => {
 		expect(migrateTable(createTable(deck)).schemaVersion).toBe(TABLE_SCHEMA_VERSION);
 	});

@@ -56,13 +56,15 @@ export const POST: RequestHandler = async ({ locals, params, request, fetch }) =
 		return json({ ok: false, reason: result.reason, detail: result.detail }, { status });
 	}
 
-	const fresh = await loadTable(
-		locals.db,
-		fetch,
-		params.token,
-		locals.seatClaims[params.token],
-		session?.user?.id
-	);
-	if (!fresh) error(404, 'No such table.');
-	return json({ ok: true, ...(await viewFor(locals.db, fresh, parsed.data.expectedVersion)) });
+	// Reuse the context rather than loading the whole table a second time — the
+	// only thing the command changed is the row, and the seats and pack are the
+	// ones we already have.
+	return json({
+		ok: true,
+		...(await viewFor(
+			locals.db,
+			{ ...table, row: result.table, state: result.state ?? table.state },
+			parsed.data.expectedVersion
+		))
+	});
 };
