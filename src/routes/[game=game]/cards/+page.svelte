@@ -26,9 +26,15 @@
 	<p><a href={resolve('/auth/signin')}>Sign in</a></p>
 {:else}
 	<form method="POST" action="?/create" use:enhance class="new">
-		<label for="table-name">Start a table</label>
-		<input id="table-name" name="name" placeholder="Thursday game" required autocomplete="off" />
-		<button type="submit">Start</button>
+		<h2>Start a table</h2>
+		<label for="table-name">What is this table called?</label>
+		<!-- No ghost text in the field. "Thursday game" sitting in an empty input
+		     reads as a table that already exists rather than as a prompt to type,
+		     which is exactly how it was misread. The example goes beside the
+		     label, where it is plainly an example. -->
+		<input id="table-name" name="name" required autocomplete="off" />
+		<p class="new__hint">Whatever you call it between yourselves — “Thursday game” does fine.</p>
+		<button type="submit">Start the table</button>
 		{#if form?.message}<p class="error">{form.message}</p>{/if}
 	</form>
 
@@ -60,14 +66,25 @@
 
 <style>
 	.new {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-		flex-wrap: wrap;
+		display: grid;
+		gap: 0.4rem;
+		justify-items: start;
+		max-inline-size: 26rem;
 		margin-block: 1rem 1.5rem;
 	}
-	.new label {
+	.new h2 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+	.new input {
 		inline-size: 100%;
+		padding: 0.5rem;
+		min-block-size: 2.75rem;
+	}
+	.new__hint {
+		margin: 0;
+		color: var(--sb-muted);
+		font-size: 0.85rem;
 	}
 	.tables {
 		list-style: none;

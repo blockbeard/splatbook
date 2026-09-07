@@ -45,6 +45,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **Three things wrong with getting to a table.** The card table existed and
+  nothing linked to it — it now sits beside Rules reference on the game's front
+  door. Starting a table then asked you to fill in a join form and wait for a
+  GM's approval, when you _are_ the GM: the creator is seated as GM straight
+  away. And the name field carried "Thursday game" as ghost text, which read as
+  a table that already existed rather than as a prompt to type; the example
+  moved beside the label, where it is plainly an example.
+
 - **The card table looks like the book now.** The first pass invented a palette
   — dark green, grey, gold, brown backs — and read as machine-made because of
   it. This one uses the palette the book already has: black ink, and a room that

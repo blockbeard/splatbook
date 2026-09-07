@@ -13,6 +13,7 @@ import {
 	deleteCardTable,
 	listCardTablesForOwner
 } from '$lib/server/db/card-tables';
+import { claimGmSeat, requestSeat } from '$lib/server/db/card-table-seats';
 import { cardTableOf, loadPack } from '$lib/server/card-tables/service';
 import { MAX_TABLES_PER_OWNER } from '$lib/card-table-limits';
 import type { Actions, PageServerLoad } from './$types';
@@ -66,6 +67,20 @@ export const actions: Actions = {
 				message: `You have ${MAX_TABLES_PER_OWNER} tables already. Delete one to start another.`
 			});
 		}
+		// Seat the creator as GM straight away. Making somebody who has just
+		// started a table fill in a join form and wait for a GM's approval — when
+		// they *are* the GM — is a door that opens onto another door.
+		//
+		// They need no ticket: signed in, the seat is found by their account,
+		// which is also how they keep it across devices.
+		const seat = await requestSeat(
+			locals.db,
+			created.table.id,
+			session.user.name?.trim() || 'The GM',
+			session.user.id
+		);
+		if (seat.ok) await claimGmSeat(locals.db, created.table.id, seat.ticket.seat.id);
+
 		redirect(303, `/${params.game}/cards/${created.table.roomToken}`);
 	},
 

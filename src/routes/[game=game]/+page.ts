@@ -70,6 +70,9 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		hasCampaigns: Object.keys(game.entityTypes ?? {}).length > 0,
 		hasGmGuide: !!game.gmGuide,
 		// The player-facing handout page, if this game registered one (commit 113).
-		tableReferenceLabel: game.tableReference?.label ?? null
+		tableReferenceLabel: game.tableReference?.label ?? null,
+		// The live shared card table, if this game has one (phase 29). Without
+		// this the feature existed and nothing linked to it.
+		hasCardTable: !!game.cardTable
 	};
 };
