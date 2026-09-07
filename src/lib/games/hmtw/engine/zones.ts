@@ -33,11 +33,27 @@ export type ZoneVisibility =
 	/** Nobody sees the faces, including the owner: the draw piles. */
 	| 'hidden';
 
+/**
+ * Who may *take* a card out of a zone — a different question from who may see
+ * its faces, and one an earlier draft of this engine conflated.
+ *
+ * The table is permissive about reach: any card lying on the table may be moved
+ * or flipped by any seat, which is what lets someone flip the initiative card of
+ * a player who has wandered off. The exception is a hand, which nobody reaches
+ * into but its owner.
+ */
+export type ZoneReach =
+	/** Anyone at the table. Decks, discards, played piles, initiative, facedown. */
+	| 'table'
+	/** The owning seat alone. Hands. */
+	| 'owner';
+
 export interface Zone {
 	id: string;
 	/** Seat id, or `null` for a zone belonging to the table rather than a person. */
 	owner: string | null;
 	visibility: ZoneVisibility;
+	reach: ZoneReach;
 	/** `null` is unbounded. The book caps some places at one card. */
 	capacity: number | null;
 	/** Index 0 is the top of the pile — what a draw or a flip takes. */
@@ -73,15 +89,22 @@ export const seatZone = (seat: string, kind: SeatZoneKind): string => `seat:${se
 
 /** The zones every seat gets, with the visibility and capacity the book implies. */
 export function seatZones(seat: string): Zone[] {
-	const zone = (kind: SeatZoneKind, visibility: ZoneVisibility, capacity: number | null): Zone => ({
+	const zone = (
+		kind: SeatZoneKind,
+		visibility: ZoneVisibility,
+		capacity: number | null,
+		reach: ZoneReach = 'table'
+	): Zone => ({
 		id: seatZone(seat, kind),
 		owner: seat,
 		visibility,
+		reach,
 		capacity,
 		cards: []
 	});
 	return [
-		zone('hand', 'owner', null),
+		// The one zone nobody else reaches into.
+		zone('hand', 'owner', null, 'owner'),
 		// One initiative card per round (ch.7 step 2), face down until the count
 		// reaches it. It is excluded from the facedown-action limit by the book's
 		// own parenthesis, which is why it is its own zone rather than a tag.
@@ -114,6 +137,7 @@ export function opponentZones(opponent: string): Zone[] {
 		id: opponentZone(opponent, kind),
 		owner: null,
 		visibility,
+		reach: 'table',
 		capacity,
 		cards: []
 	});
@@ -134,6 +158,7 @@ export function tableZones(): Zone[] {
 		id,
 		owner: null,
 		visibility,
+		reach: 'table',
 		capacity: null,
 		cards: []
 	});

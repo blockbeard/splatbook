@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Fixed: cards could be duplicated, and one seat could empty another's hand.**
+  Moving a card into the zone it already occupied produced a second copy of it,
+  because the two zone assignments collided on a single key. It is now a
+  reorder, which is a useful operation in its own right — bringing a card to the
+  top of its pile.
+
+  And _seeing_ a zone had been conflated with _reaching_ into it. Those are
+  different questions: any card lying on the table may be moved or flipped by
+  any seat, which is what lets someone turn over the initiative card of a
+  player who has wandered off, while a hand is reached into by nobody but its
+  owner. Zones now carry both properties, and a hand is the only thing whose
+  reach is restricted.
+
+  Both survived six commits because nothing checked the most basic invariant of
+  a card game: that cards are conserved. There is now a test that plays a whole
+  round — dealing, a mulligan, a facedown card replaced and revealed, a sweep,
+  the end of the round, two reshuffles — and counts after every step.
+
 - **Per-seat projection, and the leak tests that hold it to account.** A client
   is never handed the table; it is handed the part of it that its seat may see.
   Zones whose faces a viewer is entitled to read come with their card ids; the

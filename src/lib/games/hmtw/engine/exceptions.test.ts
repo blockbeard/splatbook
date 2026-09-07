@@ -54,12 +54,18 @@ describe('naming a card you are entitled to see', () => {
 		expect(res.ok && res.card).toBe(mine);
 	});
 
-	it('still refuses someone else’s hand', () => {
+	it('still refuses someone else’s hand — for reach, before naming even matters', () => {
 		const t = dealt();
 		const theirs = cards(t, seatZone('s1', 'hand'))[0];
+		// Naming it would also be refused, but the earlier answer is the truer
+		// one: you may not take from that zone at all, named or not.
 		expect(
 			moveCard(t, { zone: seatZone('s1', 'hand'), card: theirs }, 'discard:player', 's2')
-		).toEqual({ ok: false, reason: 'card-named-in-private-zone' });
+		).toEqual({ ok: false, reason: 'not-your-hand' });
+		expect(moveCard(t, { zone: seatZone('s1', 'hand') }, 'discard:player', 's2')).toEqual({
+			ok: false,
+			reason: 'not-your-hand'
+		});
 	});
 
 	it('refuses the draw pile to everyone, the GM included', () => {

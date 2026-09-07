@@ -45,7 +45,9 @@ export type MoveFailure =
 	| 'full'
 	/** A card was named in a zone whose faces the asker cannot see. Refused
 	 * because the request itself leaks: you cannot name what you cannot read. */
-	| 'card-named-in-private-zone';
+	| 'card-named-in-private-zone'
+	/** Someone tried to take a card out of a hand that is not theirs. */
+	| 'not-your-hand';
 
 /**
  * Whether `actor` may read the faces in a zone — and therefore whether they may
@@ -56,6 +58,13 @@ export type MoveFailure =
  * resolves against the table's current GM seat, which is why the seat is a
  * pointer.
  */
+export function canTakeFrom(zone: Zone, actor?: string): boolean {
+	// No actor means the server itself — an end-of-round sweep has no asker to
+	// vouch for and must still be able to clear every hand.
+	if (zone.reach === 'table' || actor === undefined) return true;
+	return actor === zone.owner;
+}
+
 export function canSeeFaces(table: CardTable, zone: Zone, actor?: string): boolean {
 	switch (zone.visibility) {
 		case 'public':
@@ -86,6 +95,8 @@ export function moveCard(table: CardTable, from: Pick, to: string, actor?: strin
 	const target = table.zones[to];
 	if (!source || !target) return fail('no-such-zone');
 
+	if (!canTakeFrom(source, actor)) return fail('not-your-hand');
+
 	let index = 0;
 	if (from.card !== undefined) {
 		if (!canSeeFaces(table, source, actor)) return fail('card-named-in-private-zone');
@@ -97,9 +108,25 @@ export function moveCard(table: CardTable, from: Pick, to: string, actor?: strin
 
 	const card = source.cards[index];
 	if (card === undefined) return fail('empty');
-	if (target.capacity !== null && target.cards.length >= target.capacity) return fail('full');
 
 	const remaining = source.cards.filter((_, i) => i !== index);
+
+	// Same zone in and out: a reorder, bringing a card to the top of its own
+	// pile. Handled before the general case because the two assignments below
+	// collide on one key when the ids match and would duplicate the card. Cards
+	// must be conserved, and this is the one path where that could go wrong.
+	if (source.id === target.id) {
+		return {
+			ok: true,
+			card,
+			table: {
+				...table,
+				zones: { ...table.zones, [source.id]: { ...source, cards: [card, ...remaining] } }
+			}
+		};
+	}
+
+	if (target.capacity !== null && target.cards.length >= target.capacity) return fail('full');
 	return {
 		ok: true,
 		card,

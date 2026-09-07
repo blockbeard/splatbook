@@ -10,7 +10,7 @@
 
 import type { FacedownAction } from './exceptions';
 import { newRound, type Round } from './round';
-import { opponentZones, seatZones, tableZones, type Zone } from './zones';
+import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zones';
 
 /**
  * Bump on any change to the saved shape, in the same commit as the change, and
@@ -19,9 +19,10 @@ import { opponentZones, seatZones, tableZones, type Zone } from './zones';
  * v1: seats, zones, and the two decks.
  * v2: `gmSeat` and `opponents`.
  * v3: `round` and `foolCards`.
- * v4 (this commit): `facedown`, and the round's `interrupt` / `extraTurn`.
+ * v4: `facedown`, and the round's `interrupt` / `extraTurn`.
+ * v5 (this commit): `reach` on every zone.
  */
-export const TABLE_SCHEMA_VERSION = 4;
+export const TABLE_SCHEMA_VERSION = 5;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -119,6 +120,11 @@ export function buildDecks(deck: DeckDefinition): { player: string[]; gm: string
 	return { player: forDeck('player'), gm: forDeck('gm') };
 }
 
+/** The zone id for a deck, without the string literals `createTable` used to use. */
+function stock(zones: Record<string, Zone>, id: string, cards: string[]): void {
+	zones[id] = { ...zones[id], cards };
+}
+
 /**
  * A fresh table: four table zones, per-seat zones for each seat given, and both
  * draw piles stocked in pack order.
@@ -133,8 +139,8 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 	for (const seat of seats) for (const zone of seatZones(seat)) zones[zone.id] = zone;
 
 	const decks = buildDecks(deck);
-	zones['deck:player'] = { ...zones['deck:player'], cards: decks.player };
-	zones['deck:gm'] = { ...zones['deck:gm'], cards: decks.gm };
+	stock(zones, deckZone('player'), decks.player);
+	stock(zones, deckZone('gm'), decks.gm);
 
 	return {
 		schemaVersion: TABLE_SCHEMA_VERSION,
@@ -177,6 +183,11 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v4 → v5: every zone gains a `reach`. Derived from the zone's own id, since a
+ * hand is the only thing nobody else may take from and hands are exactly the
+ * zones whose ids end in `:hand`. A migration is the right place for a
+ * string-shaped inference like that; everything built afresh declares it.
+ *
  * v3 → v4: no facedown declarations, and a round with nobody interrupting and
  * no turn owed. A table mid-round keeps any card already sitting facedown; it
  * simply has no label for it, which is the honest state of a card played before
@@ -196,6 +207,12 @@ export function migrateTable(raw: CardTable): CardTable {
 		opponents: raw.opponents ?? [],
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
+		zones: Object.fromEntries(
+			Object.entries(raw.zones ?? {}).map(([id, zone]) => [
+				id,
+				{ ...zone, reach: zone.reach ?? (id.endsWith(':hand') ? 'owner' : 'table') }
+			])
+		),
 		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
 	};
