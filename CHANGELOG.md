@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The card table has a design.** Dark ground, paper cards: the reference is a
+  book and this is a surface you put things on, so the relationship inverts and
+  the cards become the brightest objects on screen. The ground is wet stone
+  rather than black, because a void behind a card reads as nothing; the single
+  colour is a dim lantern amber from the game's own light mechanic, meaning
+  exactly one thing — _this is yours_.
+
+  The hard part was the facedown card, which must tell three people three
+  different things at once. Showing its owner the face is the obvious answer and
+  the wrong one: they would no longer be able to tell whether the table can see
+  it too. So the back stays a back for everybody, and its owner gets the value
+  as a mark _on_ the back — unmistakably an annotation, never a face. The
+  declared action hangs outside the card on a public tag, because public
+  information does not belong printed on a hidden object.
+
+  Every action is reachable by click-to-place and by drag, neither a fallback
+  for the other, and nothing is reachable only by right-click — with ctrl-click
+  on macOS checked explicitly rather than left to the browser.
+
 - **A game can contribute a card table.** `GameModule` grows a `cardTable`
   slot, and HMtW fills it: six functions covering what a card means, against a
   shell that supplies room-token URLs, seats with or without accounts, versioned

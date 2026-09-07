@@ -1,0 +1,270 @@
+/*
+ * The card table's surface (phase 29).
+ *
+ * WHY THIS DOES NOT LOOK LIKE THE REFERENCE
+ *
+ * `/hmtw/reference` is a book: black ink on white paper, IM Fell, no colour at
+ * all. That is right for reading and wrong for playing. A table is not a page —
+ * it is a surface you put things on, and the things are the point. So the
+ * relationship inverts: the ground goes dark and the cards become the brightest
+ * objects on screen, because the cards are the content and everything else is
+ * furniture.
+ *
+ * The ground is not black. Black would be the reference's dark mode, and a void
+ * behind a card reads as nothing. This is a cold graphite with green in it —
+ * wet stone, the material the game is played over. It sits back far enough that
+ * a paper-white card lifts off it without needing a shadow to say so.
+ *
+ * There is no bright accent. The one colour is a dim lantern amber, and it is
+ * used for exactly one idea: *this is yours*. That comes out of the game's own
+ * light mechanic, where a light source burns down in flickers, and it is
+ * deliberately low-chroma — candle-spill rather than a highlight. The design's
+ * contrast comes from the content, not from a colour picked to supply some.
+ *
+ * The type is the reference's own. IM Fell and Goudy are already loaded, already
+ * licensed, and already carry the identity; a second type system here would be
+ * boldness spent in the wrong place. What boldness there is goes into the
+ * facedown card, below.
+ */
+
+[data-game='hmtw'] .ct {
+	/* The surface. Cold, low, and slightly green — stone, not void. */
+	--ct-table: #191e1c;
+	--ct-table-low: #121615;
+	--ct-rule: rgb(233 229 218 / 14%);
+	--ct-rule-strong: rgb(233 229 218 / 28%);
+
+	/* The cards. Warm paper against the cold ground, which is most of why a
+	   card reads as an object rather than a rectangle. */
+	--ct-card: #ece7db;
+	--ct-card-ink: #14100c;
+	--ct-card-quiet: #6b6357;
+	--ct-back: #241d19;
+	--ct-back-line: #3a2e26;
+
+	/* The only colour: a lantern's edge. "This is yours", and nothing else. */
+	--ct-light: #c99a4e;
+	--ct-light-soft: rgb(201 154 78 / 34%);
+
+	/* Greater dooms, borrowed from the book's one red. */
+	--ct-doom: #8c2f22;
+
+	--ct-radius: 3px;
+	--ct-card-w: 4.25rem;
+	--ct-card-h: 7.1rem;
+
+	background: radial-gradient(
+		120% 90% at 50% 0%,
+		#1e2422 0%,
+		var(--ct-table) 46%,
+		var(--ct-table-low) 100%
+	);
+	color: var(--ct-card);
+	font-family: 'IM Fell English', Georgia, serif;
+}
+
+/* ---- Zone furniture ------------------------------------------------------ */
+
+[data-game='hmtw'] .ct-zone-label {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.8125rem;
+	letter-spacing: 0.04em;
+	color: rgb(236 231 219 / 62%);
+}
+
+/* ---- The card ------------------------------------------------------------ */
+
+[data-game='hmtw'] .ct-card {
+	position: relative;
+	inline-size: var(--ct-card-w);
+	block-size: var(--ct-card-h);
+	border-radius: var(--ct-radius);
+	background: var(--ct-card);
+	color: var(--ct-card-ink);
+	border: 1px solid rgb(20 16 12 / 22%);
+	/* One shadow, doing the whole job of lifting paper off stone. */
+	box-shadow:
+		0 1px 0 rgb(0 0 0 / 40%),
+		0 6px 14px -8px rgb(0 0 0 / 70%);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	padding: 0.3rem 0.35rem;
+	font-family: 'IM Fell English', Georgia, serif;
+	cursor: pointer;
+	/* Touch targets: the card itself is the target, and it is comfortably over
+	   the 44px floor at every size this uses. */
+	touch-action: manipulation;
+}
+
+[data-game='hmtw'] .ct-card__rank {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.9rem;
+	line-height: 1;
+}
+
+[data-game='hmtw'] .ct-card__suit {
+	justify-self: center;
+	align-self: center;
+	inline-size: 1.6rem;
+	block-size: 1.6rem;
+	opacity: 0.9;
+}
+
+[data-game='hmtw'] .ct-card__foot {
+	justify-self: end;
+	font-size: 0.75rem;
+	color: var(--ct-card-quiet);
+}
+
+/* A major arcana in the greater-doom band reads at a glance, because the GM's
+   whole mulligan judgement is "is this hand mostly greater dooms?". */
+[data-game='hmtw'] .ct-card--greater .ct-card__rank {
+	color: var(--ct-doom);
+}
+
+/* ---- The facedown card --------------------------------------------------- */
+
+/*
+ * THE SIGNATURE, AND THE HARDEST PART OF THE BRIEF.
+ *
+ * A facedown card has to say three different things to three different people
+ * at once, and the book is precise about which:
+ *
+ *   everyone   — that a card is there, and *what it is for* ("Riposte"), because
+ *                ch.7 has the player declare the action aloud
+ *   its owner  — additionally, its value, because they are holding it
+ *   nobody     — the value, if it is not theirs. "No peeking!"
+ *
+ * The obvious answer — show the owner the face — is wrong, because then the
+ * owner cannot tell at a glance whether the table can see it too, and that is
+ * the one thing they must never be unsure about.
+ *
+ * So the back stays a back for everybody, always. The owner gets the value as a
+ * *mark on the back*: rank and suit in lantern amber, small, in the corner,
+ * unmistakably an annotation rather than a face. You read your own card without
+ * ever seeing it "turn over", which is exactly the state it is in.
+ *
+ * The declared action hangs *outside* the card on a tag below it, where
+ * everyone can read it — public information in a public place, rather than
+ * printed on an object whose whole meaning is that it is hidden.
+ */
+[data-game='hmtw'] .ct-card--down {
+	background:
+		repeating-linear-gradient(45deg, transparent 0 4px, rgb(92 74 60 / 50%) 4px 6px),
+		radial-gradient(120% 100% at 50% 0%, #2e2520 0%, var(--ct-back) 70%), var(--ct-back);
+	color: var(--ct-card);
+	border-color: rgb(0 0 0 / 55%);
+	/* An inner line, so a back reads as a printed card rather than a hole. */
+	box-shadow:
+		inset 0 0 0 1px rgb(150 122 96 / 22%),
+		0 1px 0 rgb(0 0 0 / 40%),
+		0 6px 14px -8px rgb(0 0 0 / 70%);
+}
+
+[data-game='hmtw'] .ct-card__mine {
+	position: absolute;
+	inset-block-end: 0.3rem;
+	inset-inline-end: 0.35rem;
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.8rem;
+	line-height: 1;
+	color: var(--ct-light);
+	display: flex;
+	align-items: center;
+	gap: 0.15rem;
+	/* Legible over the back's hatching without a panel behind it. */
+	text-shadow: 0 0 3px rgb(0 0 0 / 90%);
+}
+
+[data-game='hmtw'] .ct-card__mine svg,
+[data-game='hmtw'] .ct-card__mine img {
+	inline-size: 0.7rem;
+	block-size: 0.7rem;
+}
+
+/* The public tag: what the card is for, where everyone can read it. */
+[data-game='hmtw'] .ct-declared {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.75rem;
+	letter-spacing: 0.03em;
+	color: rgb(236 231 219 / 78%);
+	border-block-start: 1px solid var(--ct-rule-strong);
+	padding-block-start: 0.15rem;
+	margin-block-start: 0.25rem;
+	text-align: center;
+	max-inline-size: var(--ct-card-w);
+}
+
+/*
+ * Sideways, and above or below. Not decoration — ch.7 says to "set the card
+ * down sideways above your Initiative card" for a turn action and below it for
+ * a minor action, because the position is what tells you whether the card gains
+ * an attribute when it turns over. The rule is positional, so the interface is.
+ */
+[data-game='hmtw'] .ct-card--sideways {
+	transform: rotate(90deg);
+	margin: calc((var(--ct-card-h) - var(--ct-card-w)) / 2) 0;
+}
+
+/*
+ * The owner's mark stays upright on a sideways card.
+ *
+ * The card turns because the book says to lay it sideways; the mark is not
+ * printing on the card, it is the interface telling its owner what they hold.
+ * Rotating it with the card would make the one person entitled to read it tilt
+ * their head, and would blur the distinction the whole treatment rests on —
+ * that this is an annotation, not a face.
+ */
+[data-game='hmtw'] .ct-card--sideways .ct-card__mine {
+	transform: rotate(-90deg);
+	transform-origin: 100% 100%;
+	inset-block-end: 1rem;
+	inset-inline-end: 0.6rem;
+}
+
+/* ---- Selection: the input model ------------------------------------------ */
+
+/*
+ * Every action is reachable two ways: click the card then click where it goes,
+ * or drag it. Click-to-place is the primary one — it is the only one that works
+ * on a phone without fighting scroll, and it is most of the keyboard and
+ * screen-reader story for free. Drag is the enhancement, for people with a
+ * pointer who expect a card table to behave like one.
+ *
+ * Nothing is reachable only by right-click. Where a context menu exists it is
+ * a duplicate of a visible control, and `ctrl`-click on macOS opens it, because
+ * a player who has never found right-click in a VTT should not be locked out of
+ * half the table.
+ */
+[data-game='hmtw'] .ct-card--selected {
+	outline: 2px solid var(--ct-light);
+	outline-offset: 2px;
+}
+
+/* Where a selected card can go. Quiet: the table should not light up like a
+   pinball machine because somebody picked up a card. */
+[data-game='hmtw'] .ct-drop {
+	outline: 1px dashed var(--ct-light-soft);
+	outline-offset: 3px;
+}
+
+[data-game='hmtw'] .ct-drop--over {
+	outline: 2px solid var(--ct-light);
+	background: rgb(201 154 78 / 8%);
+}
+
+[data-game='hmtw'] .ct :focus-visible {
+	outline: 2px solid var(--ct-light);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-game='hmtw'] .ct-card {
+		transition:
+			transform 120ms ease,
+			box-shadow 120ms ease;
+	}
+	[data-game='hmtw'] .ct-card:hover {
+		transform: translateY(-2px);
+	}
+}
