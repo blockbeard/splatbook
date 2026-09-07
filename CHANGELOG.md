@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Card tables persist.** Two new tables: a card table (its game, its owner,
+  the token that goes in its URL, the game's opaque state blob and the version
+  that guards writes to it) and the seats at it. Creating one requires an
+  account; sitting at one does not, which is the whole abuse story — it removes
+  the only unbounded anonymous write endpoint, and what remains is bounded by
+  the seats a table holds.
+
+  Retention is six weeks and is kept by the act of asking: a table nobody has
+  touched reads as gone and is deleted on the way past, with a bounded sweep
+  riding along so tables nobody ever revisits do not live forever. No
+  scheduler, because there is nowhere good in this deployment to put one.
+
+  Writes are guarded by a version rather than a read-then-write, so two
+  commands landing together cannot both win: the second is refused, which is
+  the "someone got there first" that is the only refusal this design has.
+
 - **Fixed: cards could be duplicated, and one seat could empty another's hand.**
   Moving a card into the zone it already occupied produced a second copy of it,
   because the two zone assignments collided on a single key. It is now a

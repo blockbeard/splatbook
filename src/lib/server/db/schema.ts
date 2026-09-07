@@ -363,6 +363,119 @@ export const preferences = sqliteTable(
 	(t) => [primaryKey({ columns: [t.userId, t.key] })]
 );
 
+/**
+ * A card table (phase 29) — a live shared surface for a game that has one.
+ *
+ * Unlike a campaign, a table is reached by a *token in its URL* rather than by
+ * membership: the room token is what you paste into chat, and holding it is how
+ * you arrive at the seat list. Creating one needs an account, which is the
+ * whole of the abuse story — the alternative was inventing a rate limiter this
+ * codebase does not have, and on Cloudflare a per-IP counter wants KV or a
+ * Durable Object (the primitive this phase deliberately declined) or a WAF rule
+ * a self-hoster would never inherit. Requiring sign-in to create removes the
+ * only unbounded anonymous write endpoint; everything left is bounded by the
+ * seats a table can hold.
+ *
+ * `state` is the game's own blob, opaque here exactly as `entities.data` is.
+ * `version` is the optimistic-concurrency counter the command service will
+ * check against (phase 29 commit 10), and `commandCount` is the per-table
+ * ceiling, kept as a column so incrementing it costs nothing extra on a write
+ * that was happening anyway.
+ */
+export const cardTables = sqliteTable(
+	'card_tables',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		/** Which game module owns the surface, e.g. `hmtw`. */
+		gameId: text('game_id').notNull(),
+		/** Display name for the creator's own listings. */
+		name: text('name').notNull().default(''),
+		/** The creator. Cascades so deleting an account tidies their tables. */
+		ownerId: text('owner_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		/**
+		 * The secret in the URL. Rotate to revoke every outstanding link — which
+		 * is the only way to shut a table nobody should still be at, since seats
+		 * are not accounts.
+		 */
+		roomToken: text('room_token')
+			.notNull()
+			.unique()
+			.$defaultFn(() => crypto.randomUUID()),
+		/** The game's own table state. Opaque: the shell migrates nothing here. */
+		state: text('state', { mode: 'json' }).notNull().default('{}'),
+		/** The game's schema version for `state`, so a read can migrate it. */
+		stateVersion: integer('state_version').notNull().default(0),
+		/** Monotonic, bumped on every accepted command. */
+		version: integer('version').notNull().default(0),
+		/** How many commands this table has accepted, against its ceiling. */
+		commandCount: integer('command_count').notNull().default(0),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`),
+		/**
+		 * Last time anyone touched it. Retention is six weeks by lazy expiry, so
+		 * this is the column that decides whether a table is still there when
+		 * someone comes back to it.
+		 */
+		lastActiveAt: integer('last_active_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [
+		index('card_tables_owner_idx').on(t.ownerId),
+		index('card_tables_active_idx').on(t.lastActiveAt)
+	]
+);
+
+/** What a seat is doing: waiting for the GM, or sitting at the table. */
+export const SEAT_STATUSES = ['pending', 'admitted'] as const;
+export type SeatStatus = (typeof SEAT_STATUSES)[number];
+
+/**
+ * A seat at a card table.
+ *
+ * Not a membership row: a seat may be held by somebody with no account at all,
+ * which is the point — a player at 8pm on a call should not have to sign up to
+ * pick up cards. `userId` is therefore nullable and `claimSecret` is what a
+ * guest presents instead (phase 29 commit 8).
+ *
+ * The *seat* is the identity, not the browser: a player who clears their
+ * cookies comes back through the GM re-seating them, and their private zones
+ * are keyed to this row rather than to whatever proved it last.
+ *
+ * `name` is the **character's** name, and the join form says so. That keeps
+ * what a table stores to a piece of fiction, a random id and a list of card
+ * moves — no account, and nothing that identifies a person.
+ */
+export const cardTableSeats = sqliteTable(
+	'card_table_seats',
+	{
+		id: text('id')
+			.primaryKey()
+			.$defaultFn(() => crypto.randomUUID()),
+		tableId: text('table_id')
+			.notNull()
+			.references(() => cardTables.id, { onDelete: 'cascade' }),
+		/** The character's name, as shown to the table. */
+		name: text('name').notNull(),
+		/** Set when a signed-in user holds the seat; null for a guest. */
+		userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+		/** Hash of the capability a guest presents to prove this seat is theirs. */
+		claimSecret: text('claim_secret'),
+		status: text('status', { enum: SEAT_STATUSES }).notNull().default('pending'),
+		/** Whether this seat is running the game. Vacatable, and then claimable. */
+		isGm: integer('is_gm', { mode: 'boolean' }).notNull().default(false),
+		createdAt: integer('created_at', { mode: 'timestamp_ms' })
+			.notNull()
+			.default(sql`(unixepoch() * 1000)`)
+	},
+	(t) => [index('card_table_seats_table_idx').on(t.tableId)]
+);
+
 /** Row types inferred from the tables, for the save/load service (commit 32). */
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -378,3 +491,7 @@ export type CampaignSession = typeof campaignSessions.$inferSelect;
 export type NewCampaignSession = typeof campaignSessions.$inferInsert;
 export type Preference = typeof preferences.$inferSelect;
 export type NewPreference = typeof preferences.$inferInsert;
+export type CardTableRow = typeof cardTables.$inferSelect;
+export type NewCardTableRow = typeof cardTables.$inferInsert;
+export type CardTableSeat = typeof cardTableSeats.$inferSelect;
+export type NewCardTableSeat = typeof cardTableSeats.$inferInsert;
