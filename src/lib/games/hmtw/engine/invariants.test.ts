@@ -17,8 +17,11 @@ import { seededRng } from './shuffle';
 import { opponentZone, seatZone } from './zones';
 
 const deck: DeckDefinition = {
-	minors: Array.from({ length: 20 }, (_, i) => ({ id: `m${i + 1}` })),
-	majors: [{ id: 'fool' }, ...Array.from({ length: 10 }, (_, i) => ({ id: `j${i + 1}` }))],
+	minors: Array.from({ length: 20 }, (_, i) => ({ id: `m${i + 1}`, value: i + 1 })),
+	majors: [
+		{ id: 'fool', value: 0 },
+		...Array.from({ length: 10 }, (_, i) => ({ id: `j${i + 1}`, value: i + 1 }))
+	],
 	decks: [
 		{ id: 'player', arcana: 'minor', includesMajors: ['fool'] },
 		{ id: 'gm', arcana: 'major', excludesMajors: ['fool'] }

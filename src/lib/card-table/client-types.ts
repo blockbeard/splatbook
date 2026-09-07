@@ -30,6 +30,15 @@ export interface ProjectedTable {
 		extraTurn: string | null;
 	};
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
+	/** Whether the table is walking the round for whoever is looking. */
+	guided: boolean;
+	/**
+	 * Whose initiative the count has reached, seats and enemies alike.
+	 *
+	 * Computed on the server, since it reads facedown cards. Empty while nobody
+	 * is counting, so nothing here can run ahead of the GM calling a number.
+	 */
+	upNow: string[];
 	zones: Record<string, ProjectedZone>;
 	viewer: string | null;
 }

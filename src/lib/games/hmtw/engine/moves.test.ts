@@ -6,8 +6,17 @@ import { seatZone } from './zones';
 
 /** A tiny stand-in deck: enough structure to exercise the moves, small enough to read. */
 const deck: DeckDefinition = {
-	minors: [{ id: 'm1' }, { id: 'm2' }, { id: 'm3' }, { id: 'm4' }],
-	majors: [{ id: 'fool' }, { id: 'j1' }, { id: 'j2' }],
+	minors: [
+		{ id: 'm1', value: 1 },
+		{ id: 'm2', value: 2 },
+		{ id: 'm3', value: 3 },
+		{ id: 'm4', value: 4 }
+	],
+	majors: [
+		{ id: 'fool', value: 0 },
+		{ id: 'j1', value: 1 },
+		{ id: 'j2', value: 2 }
+	],
 	decks: [
 		{ id: 'player', arcana: 'minor', includesMajors: ['fool'] },
 		{ id: 'gm', arcana: 'major', excludesMajors: ['fool'] }

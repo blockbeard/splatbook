@@ -11,14 +11,17 @@ import { describe, expect, it } from 'vitest';
 import { createTable, addOpponent, setGmSeat, type CardTable, type DeckDefinition } from './table';
 import { beginRound } from './round';
 import { placeFacedown } from './exceptions';
-import { hiddenFrom, projectFor } from './projection';
+import { hiddenFrom, projectFor, whoIsUp } from './projection';
 import { moveCard } from './moves';
 import { seededRng } from './shuffle';
 import { opponentZone, seatZone } from './zones';
 
 const deck: DeckDefinition = {
-	minors: Array.from({ length: 20 }, (_, i) => ({ id: `m${i + 1}` })),
-	majors: [{ id: 'fool' }, ...Array.from({ length: 10 }, (_, i) => ({ id: `j${i + 1}` }))],
+	minors: Array.from({ length: 20 }, (_, i) => ({ id: `m${i + 1}`, value: i + 1 })),
+	majors: [
+		{ id: 'fool', value: 0 },
+		...Array.from({ length: 10 }, (_, i) => ({ id: `j${i + 1}`, value: i + 1 }))
+	],
 	decks: [
 		{ id: 'player', arcana: 'minor', includesMajors: ['fool'] },
 		{ id: 'gm', arcana: 'major', excludesMajors: ['fool'] }
@@ -190,5 +193,56 @@ describe('projection is a copy, not a window', () => {
 		view.opponents[0].name = 'Not imps';
 		expect(table.zones[seatZone('s1', 'hand')].cards).not.toContain('m99');
 		expect(table.opponents[0].name).toBe('Imps');
+	});
+});
+
+describe('who the count has reached', () => {
+	/** A round with initiative down: s1 on 3, s2 on 7, the imps on 3. */
+	function counting(count: number | null): CardTable {
+		let t = addOpponent(setGmSeat(createTable(deck, ['s1', 's2', 'gm']), 'gm'), {
+			id: 'imps',
+			name: 'Imps'
+		});
+		t = {
+			...t,
+			valueOf: { m3: 3, m7: 7, j3: 3 },
+			round: { ...t.round, count },
+			zones: {
+				...t.zones,
+				'seat:s1:initiative': { ...t.zones['seat:s1:initiative'], cards: ['m3'] },
+				'seat:s2:initiative': { ...t.zones['seat:s2:initiative'], cards: ['m7'] },
+				'opponent:imps:initiative': { ...t.zones['opponent:imps:initiative'], cards: ['j3'] }
+			}
+		};
+		return t;
+	}
+
+	it('names whoever holds the number being called, players and enemies alike', () => {
+		expect(whoIsUp(counting(3)).sort()).toEqual(['imps', 's1']);
+		expect(whoIsUp(counting(7))).toEqual(['s2']);
+		expect(whoIsUp(counting(5))).toEqual([]);
+	});
+
+	it('says nothing at all before anyone is counting', () => {
+		// The one rule guided mode must not break: a prompt may not run ahead of
+		// the call. With no count there is nothing to disclose, and it discloses
+		// nothing.
+		expect(whoIsUp(counting(null))).toEqual([]);
+		expect(projectFor(counting(null), 's1').upNow).toEqual([]);
+	});
+
+	it('tells everyone the same thing, because the count is said out loud', () => {
+		const table = counting(3);
+		for (const viewer of ['s1', 's2', 'gm', undefined]) {
+			expect(projectFor(table, viewer).upNow.sort()).toEqual(['imps', 's1']);
+		}
+	});
+
+	it('still never sends the card itself', () => {
+		// Saying "s1 is up" is what the GM calling four does. Saying *which card*
+		// is not, and the leak test above covers every viewpoint.
+		const view = JSON.stringify(projectFor(counting(3), 's2'));
+		expect(view).not.toContain('"m3"');
+		expect(view).toContain('s1');
 	});
 });

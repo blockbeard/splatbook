@@ -16,6 +16,7 @@
 	import Card from './Card.svelte';
 	import Hand from './Hand.svelte';
 	import GmDraw from './GmDraw.svelte';
+	import { suggest } from './guide';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { createSelection, type Pick } from '$lib/card-table/selection';
@@ -66,6 +67,13 @@
 	let declaredAs = $state('');
 
 	const isGm = $derived(canAct && table.gmSeat === mySeatId);
+
+	/**
+	 * What the table would do next — derived rather than stored, so it cannot
+	 * drift from the round it describes. A prompt, never a gate: every control
+	 * below stays exactly as available with the guide on as with it off.
+	 */
+	const guide = $derived(table.guided ? suggest(table, seats) : null);
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
 	const zone = (id: string) => table.zones[id];
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
@@ -109,6 +117,18 @@
 </script>
 
 <div class="ch">
+	{#if guide}
+		<p class="guide">
+			<span class="guide__text">{guide.text}</span>
+			{#if guide.action && (!guide.gmOnly || isGm)}
+				{@const action = guide.action}
+				<button type="button" disabled={busy} onclick={() => onCommand(action.command)}>
+					{action.label}
+				</button>
+			{/if}
+		</p>
+	{/if}
+
 	<div class="ch__strip">
 		<span class="ct-zone-label">Round {table.round.number || '—'}</span>
 		<span class="ch__count">
@@ -116,6 +136,13 @@
 			<strong>{table.round.count ?? '—'}</strong>
 		</span>
 		{#if isGm}
+			<button
+				type="button"
+				class:on={table.guided}
+				onclick={() => onCommand({ type: 'guided', on: !table.guided })}
+			>
+				{table.guided ? 'Stop guiding' : 'Guide the round'}
+			</button>
 			<button
 				type="button"
 				onclick={() => onCommand({ type: 'rewind-count' })}
@@ -385,6 +412,24 @@
 		padding: 1.25rem;
 		display: grid;
 		gap: 1.25rem;
+	}
+	/*
+	 * Quiet. The guide is a voice at the table rather than an instruction from
+	 * the software: it says what is happening and offers the obvious next thing,
+	 * and everything it suggests is also reachable by hand a few inches below.
+	 */
+	.guide {
+		display: flex;
+		gap: 0.75rem;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 0;
+		padding: 0.6rem 0.8rem;
+		border: 1px solid var(--ct-rule-strong);
+		border-radius: 4px;
+	}
+	.guide__text {
+		font-family: 'IM Fell English', Georgia, serif;
 	}
 	.ch__strip {
 		display: flex;

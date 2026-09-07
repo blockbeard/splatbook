@@ -24,9 +24,10 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v5: `reach` on every zone.
  * v6: `mode`.
  * v7: a shared `fate` zone.
- * v8 (this commit): `deckOf`, which deck each card belongs to.
+ * v8: `deckOf`, which deck each card belongs to.
+ * v9 (this commit): `guided`, and `valueOf` so the count can find who is up.
  */
-export const TABLE_SCHEMA_VERSION = 8;
+export const TABLE_SCHEMA_VERSION = 9;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -89,6 +90,16 @@ export interface CardTable {
 	 * Taken from the pack, like `foolCards`, rather than inferred.
 	 */
 	deckOf: Record<string, DeckId>;
+	/** Each card's value, so the count can tell whose initiative it has reached. */
+	valueOf: Record<string, number>;
+	/**
+	 * Whether the table is walking the round for you.
+	 *
+	 * Off by default and the GM's to turn on. Guided mode is a pointer and a set
+	 * of shortcuts over the same free table — it never gates a command, so a
+	 * table with it on can still be played entirely by hand.
+	 */
+	guided: boolean;
 	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
@@ -108,8 +119,8 @@ export interface CardTable {
  * passes the parsed pack, which is compatible.
  */
 export interface DeckDefinition {
-	minors: readonly { id: string }[];
-	majors: readonly { id: string }[];
+	minors: readonly { id: string; value: number }[];
+	majors: readonly { id: string; value: number }[];
 	decks: readonly {
 		id: string;
 		arcana: 'minor' | 'major';
@@ -171,6 +182,8 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		facedown: {},
 		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
 		deckOf: membershipOf(deck),
+		valueOf: valuesOf(deck),
+		guided: false,
 		zones
 	};
 }
@@ -238,6 +251,8 @@ export function migrateTable(raw: CardTable): CardTable {
 		opponents: raw.opponents ?? [],
 		mode: raw.mode ?? 'decks',
 		deckOf: raw.deckOf ?? {},
+		valueOf: raw.valueOf ?? {},
+		guided: raw.guided ?? false,
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
@@ -253,6 +268,14 @@ export function migrateTable(raw: CardTable): CardTable {
 		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
 	};
+}
+
+/** Each card's value, from the pack. */
+export function valuesOf(deck: DeckDefinition): Record<string, number> {
+	const map: Record<string, number> = {};
+	for (const card of deck.minors) map[card.id] = card.value;
+	for (const card of deck.majors) map[card.id] = card.value;
+	return map;
 }
 
 /** Which deck each card belongs to, from the pack's own split. */
@@ -280,7 +303,12 @@ function withTableZones(zones: Record<string, Zone>): Record<string, Zone> {
  */
 export function withDeckFacts(table: CardTable, deck: DeckDefinition): CardTable {
 	const fools = deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [];
-	return { ...table, foolCards: [...fools], deckOf: membershipOf(deck) };
+	return {
+		...table,
+		foolCards: [...fools],
+		deckOf: membershipOf(deck),
+		valueOf: valuesOf(deck)
+	};
 }
 
 /** The table with a given seat running it. Pass `null` to vacate the seat. */

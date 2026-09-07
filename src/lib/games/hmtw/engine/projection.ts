@@ -22,7 +22,7 @@ import type { FacedownAction } from './exceptions';
 import type { Opponent, CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
-import type { Zone, ZoneVisibility } from './zones';
+import { opponentZone, seatZone, type Zone, type ZoneVisibility } from './zones';
 
 export interface ProjectedZone {
 	id: string;
@@ -51,6 +51,18 @@ export interface ProjectedTable {
 	zones: Record<string, ProjectedZone>;
 	/** Who this was built for, so a client can tell whose view it holds. */
 	viewer: string | null;
+	/** Whether the table is walking the round for whoever is looking. */
+	guided: boolean;
+	/**
+	 * Whose initiative the count has reached — seat and opponent ids.
+	 *
+	 * Computed on the server, because the values it reads are facedown and no
+	 * client holds them. It discloses exactly what the count-up discloses and
+	 * not a card more: the GM calls a number, whoever holds it says so, and the
+	 * table now says it for them. Empty while nobody is counting, so a prompt
+	 * can never run ahead of the call.
+	 */
+	upNow: string[];
 }
 
 function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZone {
@@ -84,6 +96,8 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		schemaVersion: table.schemaVersion,
 		seats: [...table.seats],
 		mode: table.mode,
+		guided: table.guided,
+		upNow: whoIsUp(table),
 		gmSeat: table.gmSeat,
 		opponents: table.opponents.map((o) => ({ ...o })),
 		round: { ...table.round },
@@ -91,6 +105,30 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		zones,
 		viewer: viewer ?? null
 	};
+}
+
+/**
+ * Whose initiative matches the number currently being called.
+ *
+ * Reads facedown cards, which is why it lives on the server. It returns nothing
+ * at all while `count` is null, so nothing can be learned before the GM starts
+ * counting — and once counting, it says only what saying the number out loud
+ * already says.
+ */
+export function whoIsUp(table: CardTable): string[] {
+	const count = table.round.count;
+	if (count === null) return [];
+
+	const holders: string[] = [];
+	const at = (zoneId: string, holder: string) => {
+		const card = table.zones[zoneId]?.cards[0];
+		if (card !== undefined && table.valueOf[card] === count) holders.push(holder);
+	};
+	for (const seat of table.seats) at(seatZone(seat, 'initiative'), seat);
+	for (const opponent of table.opponents) {
+		at(opponentZone(opponent.id, 'initiative'), opponent.id);
+	}
+	return holders;
 }
 
 /**

@@ -74,6 +74,8 @@ export const commandSchema = z.discriminatedUnion('type', [
 	z.strictObject({ type: z.literal('reset-table') }),
 	/** Sweep the turned-over cards into the discard once the test is settled. */
 	z.strictObject({ type: z.literal('clear-fate') }),
+	/** Let the table walk the round, or stop it. The GM's, and never a gate. */
+	z.strictObject({ type: z.literal('guided'), on: z.boolean() }),
 
 	/* ---- The Challenge ---------------------------------------------------- */
 
@@ -313,6 +315,10 @@ export const hmtwCardTable: CardTableModule = {
 				return state(clearFacedown(table, parsed.data.holder), 'clear-facedown', {
 					holder: parsed.data.holder
 				});
+			case 'guided': {
+				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
+				return state({ ...table, guided: parsed.data.on }, 'guided', { on: parsed.data.on });
+			}
 			case 'clear-fate':
 				return state(emptyInto(table, FATE_ZONE, discardZone('player')), 'clear-fate', {
 					seat: context.actorSeatId

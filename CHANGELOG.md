@@ -45,6 +45,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **Guided mode — the table walks the round, if you want it to.** The GM turns
+  it on and the table says what is happening and offers the obvious next thing:
+  who is still to place initiative, when everything is down, whose number the
+  count has reached, when to ask for minor actions and when to reveal them.
+
+  It is a prompter and never a gate. Every control stays exactly as available
+  with it on as with it off, and the suggestions are derived from the state
+  rather than stored beside it, so a table played entirely by hand leaves the
+  guide correct rather than confused. The one place it declines to help is the
+  opening deal: that needs the GM's own draw count, and a button that guessed it
+  would be the guide making a ruling.
+
+  Whose number the count has reached is worked out on the server, because it
+  reads facedown cards. It discloses exactly what calling a number out loud
+  discloses and nothing more — and while nobody is counting it says nothing at
+  all, so a prompt can never run ahead of the call.
+
 - **A shuffle only takes back its own cards.** You can still drop a card on the
   wrong discard — a physical table lets you, and picking it up again is how a
   mistake gets fixed — but shuffling no longer buries it in a deck it does not
