@@ -34,9 +34,25 @@ export function parseSeatClaims(raw: string | undefined): SeatClaims {
 	return claims;
 }
 
-/** Format claims back into the cookie's value. */
+/**
+ * How many tables one cookie carries before the oldest are dropped.
+ *
+ * Each entry runs to about 110 characters and browsers cap a cookie near 4KB,
+ * so an unbounded list would eventually stop being sent at all — losing every
+ * seat at once rather than the stalest one. Twenty is more tables than anyone
+ * plays at, with headroom.
+ */
+export const MAX_SEAT_CLAIMS = 20;
+
+/**
+ * Format claims back into the cookie's value, keeping the most recent.
+ *
+ * Insertion order is age order, because `withSeatClaim` appends, so trimming
+ * from the front drops the tables this browser touched longest ago.
+ */
 export function formatSeatClaims(claims: SeatClaims): string {
 	return Object.entries(claims)
+		.slice(-MAX_SEAT_CLAIMS)
 		.map(([tableId, c]) => `${tableId}.${c.seatId}.${c.secret}`)
 		.join(' ');
 }
@@ -46,10 +62,14 @@ export const withSeatClaim = (
 	claims: SeatClaims,
 	tableId: string,
 	claim: SeatClaim
-): SeatClaims => ({
-	...claims,
-	[tableId]: claim
-});
+): SeatClaims => {
+	// Deleted first so a re-seat moves the table to the newest end rather than
+	// keeping its old place — the freshest claim should be the last to be
+	// trimmed, not the first.
+	const next = { ...claims };
+	delete next[tableId];
+	return { ...next, [tableId]: claim };
+};
 
 /**
  * Cookie attributes.

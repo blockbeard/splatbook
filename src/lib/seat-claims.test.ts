@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatSeatClaims, parseSeatClaims, withSeatClaim } from './seat-claims';
+import { MAX_SEAT_CLAIMS, formatSeatClaims, parseSeatClaims, withSeatClaim } from './seat-claims';
 
 describe('seat claim cookies', () => {
 	it('round-trips several tables in one cookie', () => {
@@ -28,6 +28,28 @@ describe('seat claim cookies', () => {
 		expect(next.t2).toEqual({ seatId: 's2', secret: 'bbb' });
 		// And the original is untouched.
 		expect(Object.keys(claims)).toEqual(['t1']);
+	});
+
+	it('keeps the cookie under a browser’s size limit', () => {
+		// An unbounded list would eventually stop being sent at all, losing every
+		// seat at once rather than the stalest one.
+		let claims = {};
+		for (let i = 0; i < MAX_SEAT_CLAIMS + 5; i++) {
+			claims = withSeatClaim(claims, `table-${i}`, { seatId: `s${i}`, secret: 'x'.repeat(72) });
+		}
+		const parsed = parseSeatClaims(formatSeatClaims(claims));
+		expect(Object.keys(parsed)).toHaveLength(MAX_SEAT_CLAIMS);
+		// The ones kept are the most recent.
+		expect(parsed['table-24']).toBeDefined();
+		expect(parsed['table-0']).toBeUndefined();
+		expect(formatSeatClaims(claims).length).toBeLessThan(4096);
+	});
+
+	it('moves a re-seated table to the newest end, not its old place', () => {
+		let claims = withSeatClaim({}, 'old', { seatId: 's1', secret: 'a' });
+		claims = withSeatClaim(claims, 'new', { seatId: 's2', secret: 'b' });
+		claims = withSeatClaim(claims, 'old', { seatId: 's1', secret: 'refreshed' });
+		expect(Object.keys(claims)).toEqual(['new', 'old']);
 	});
 
 	it('re-seating overwrites the ticket for that table', () => {

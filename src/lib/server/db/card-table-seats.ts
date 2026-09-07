@@ -124,13 +124,25 @@ export async function removeSeat(
 }
 
 /**
- * Take the GM seat, which anyone at the table may do **while it is vacant**.
+ * Take the GM seat, which anyone **already at the table** may do while it is
+ * vacant.
  *
  * Load-bearing rather than convenient. Joins need a GM's approval, so a GM who
  * loses their cookie would otherwise lock out the whole table including
  * themselves: there would be nobody left who could re-admit anybody. A vacant
- * seat any hand can pick up turns a table-ending failure into ten awkward
- * seconds.
+ * seat an admitted hand can pick up turns a table-ending failure into ten
+ * awkward seconds.
+ *
+ * "Already at the table" is the important half, and an earlier version of this
+ * function was missing it. A *pending* seat is somebody the GM has not let in —
+ * often a stranger who found the room link. Letting one take the GM seat the
+ * moment it fell vacant would have handed them the table, and with it the power
+ * to admit whoever else they liked. Waiting on approval is not the same as
+ * sitting down.
+ *
+ * That leaves no deadlock: if every remaining seat is pending, nobody claims
+ * the seat, but the next person to arrive is admitted outright — because
+ * `requestSeat` skips approval when there is no GM to ask — and they can.
  */
 export async function claimGmSeat(
 	db: Db,
@@ -140,13 +152,26 @@ export async function claimGmSeat(
 	if (await gmSeatOf(db, tableId)) return undefined;
 	const [row] = await db
 		.update(cardTableSeats)
-		.set({ isGm: true, status: 'admitted' })
-		.where(and(eq(cardTableSeats.id, seatId), eq(cardTableSeats.tableId, tableId)))
+		.set({ isGm: true })
+		.where(
+			and(
+				eq(cardTableSeats.id, seatId),
+				eq(cardTableSeats.tableId, tableId),
+				eq(cardTableSeats.status, 'admitted')
+			)
+		)
 		.returning();
 	return row;
 }
 
-/** Step down, leaving the seat for someone else to pick up. */
+/**
+ * Step down, leaving the seat for someone else to pick up.
+ *
+ * `seatId` is the *caller's own* seat, as with every other guarded call here:
+ * the `isGm` condition means a player passing somebody else's id changes
+ * nothing, so a route that passes the resolved caller cannot be used to depose
+ * a sitting GM.
+ */
 export async function vacateGmSeat(db: Db, tableId: string, seatId: string): Promise<boolean> {
 	const rows = await db
 		.update(cardTableSeats)

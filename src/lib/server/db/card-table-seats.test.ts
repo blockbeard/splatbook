@@ -101,6 +101,7 @@ describe('the GM seat', () => {
 	it('is claimable while vacant, and only while vacant', async () => {
 		const gm = await seatedGm();
 		const player = await requestSeat(db, tableId, 'Grimwold');
+		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 		expect(await claimGmSeat(db, tableId, player.seat.id)).toBeUndefined();
 
 		await vacateGmSeat(db, tableId, gm.seat.id);
@@ -122,6 +123,30 @@ describe('the GM seat', () => {
 		// And the table can take new arrivals again.
 		const newcomer = await requestSeat(db, tableId, 'Late arrival');
 		expect(await admitSeat(db, tableId, newcomer.seat.id, player.seat.id)).toBeDefined();
+	});
+
+	it('is not claimable by someone the GM has not let in', async () => {
+		// A stranger with the room link is *waiting*, not sitting. Letting a
+		// pending seat take a vacant GM chair would hand them the table, and with
+		// it the power to admit whoever else they liked.
+		const gm = await seatedGm();
+		const stranger = await requestSeat(db, tableId, 'Uninvited');
+		expect(stranger.seat.status).toBe('pending');
+
+		await vacateGmSeat(db, tableId, gm.seat.id);
+		expect(await claimGmSeat(db, tableId, stranger.seat.id)).toBeUndefined();
+		expect(await gmSeatOf(db, tableId)).toBeUndefined();
+	});
+
+	it('cannot be taken from a sitting GM by passing their id', async () => {
+		const gm = await seatedGm();
+		const player = await requestSeat(db, tableId, 'Grimwold');
+		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
+
+		// Routes pass the caller's own seat; the isGm condition is what makes
+		// passing somebody else's harmless.
+		expect(await vacateGmSeat(db, tableId, player.seat.id)).toBe(false);
+		expect((await gmSeatOf(db, tableId))?.id).toBe(gm.seat.id);
 	});
 
 	it('admits the next arrival outright once the seat is empty', async () => {
