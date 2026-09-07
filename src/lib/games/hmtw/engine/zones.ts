@@ -19,6 +19,17 @@ export type ZoneVisibility =
 	| 'public'
 	/** Only the owning seat sees the faces: a hand, a facedown card, an unrevealed initiative. */
 	| 'owner'
+	/**
+	 * Whoever holds the GM seat sees the faces: an opponent's initiative before
+	 * the count reaches it, an opponent's facedown card.
+	 *
+	 * A role rather than an owner id, deliberately. The GM seat changes hands —
+	 * a vacant one may be claimed by anyone, which is what stops a lost cookie
+	 * locking out a table whose joins the GM has to approve — and a zone that
+	 * stored a concrete owner would have to be rewritten on every handover.
+	 * Resolved against the table's `gmSeat` when a view is projected.
+	 */
+	| 'gm'
 	/** Nobody sees the faces, including the owner: the draw piles. */
 	| 'hidden';
 
@@ -49,6 +60,13 @@ export type SeatZoneKind =
 	/** A held card that outlives rounds and mode switches — the inspiration card. */
 	| 'durable';
 
+/**
+ * The zones an opponent gets. An opponent is a seat without a hand: the GM
+ * draws one hand of majors and plays from it for everything they control
+ * (ch.7, "it's not practical to draw four cards per opponent").
+ */
+export type OpponentZoneKind = 'initiative' | 'played' | 'facedown';
+
 export const deckZone = (deck: DeckId): string => `deck:${deck}`;
 export const discardZone = (deck: DeckId): string => `discard:${deck}`;
 export const seatZone = (seat: string, kind: SeatZoneKind): string => `seat:${seat}:${kind}`;
@@ -74,6 +92,34 @@ export function seatZones(seat: string): Zone[] {
 		// is structure, not a rule the engine enforces: a second card has nowhere
 		// to go rather than being refused.
 		zone('durable', 'public', 1)
+	];
+}
+
+export const opponentZone = (opponent: string, kind: OpponentZoneKind): string =>
+	`opponent:${opponent}:${kind}`;
+
+/**
+ * An opponent's zones. Owned by nobody in particular — they belong to the GM
+ * *role*, so they survive the seat changing hands.
+ */
+export function opponentZones(opponent: string): Zone[] {
+	const zone = (
+		kind: OpponentZoneKind,
+		visibility: ZoneVisibility,
+		capacity: number | null
+	): Zone => ({
+		id: opponentZone(opponent, kind),
+		owner: null,
+		visibility,
+		capacity,
+		cards: []
+	});
+	return [
+		// "The GM plays an Initiative card for every significant character or
+		// group of characters they control" (ch.7 step 2).
+		zone('initiative', 'gm', 1),
+		zone('played', 'public', null),
+		zone('facedown', 'gm', null)
 	];
 }
 

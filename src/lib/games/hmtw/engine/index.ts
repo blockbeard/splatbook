@@ -10,23 +10,32 @@ export { seededRng, shuffle, type Rng } from './shuffle';
 export {
 	deckZone,
 	discardZone,
+	opponentZone,
+	opponentZones,
 	seatZone,
 	seatZones,
 	tableZones,
 	type DeckId,
+	type OpponentZoneKind,
 	type SeatZoneKind,
 	type Zone,
 	type ZoneVisibility
 } from './zones';
 export {
 	TABLE_SCHEMA_VERSION,
+	addOpponent,
 	addSeat,
 	buildDecks,
 	createTable,
 	migrateTable,
+	removeOpponent,
 	removeSeat,
+	setGmSeat,
+	splitOpponent,
+	updateOpponent,
 	type CardTable,
-	type DeckDefinition
+	type DeckDefinition,
+	type Opponent
 } from './table';
 export {
 	deal,

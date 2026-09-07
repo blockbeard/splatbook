@@ -8,21 +8,52 @@
  * otherwise break a table that people are sitting at mid-round.
  */
 
-import { seatZones, tableZones, type Zone } from './zones';
+import { opponentZones, seatZones, tableZones, type Zone } from './zones';
 
 /**
  * Bump on any change to the saved shape, in the same commit as the change, and
  * extend `migrateTable` with a test that loads a fixture of the old shape.
  *
- * v1 (this commit): seats, zones, and the two decks.
+ * v1: seats, zones, and the two decks.
+ * v2 (this commit): `gmSeat` and `opponents`.
  */
-export const TABLE_SCHEMA_VERSION = 1;
+export const TABLE_SCHEMA_VERSION = 2;
+
+/**
+ * An enemy, or a group of them, that the GM plays.
+ *
+ * Not a seat: the GM draws one hand of majors and plays from it for everything
+ * they control, because ch.7 says "it's not practical to draw four cards per
+ * opponent". So an opponent has an initiative slot, a played pile and a
+ * facedown slot, and no hand at all.
+ */
+export interface Opponent {
+	id: string;
+	name: string;
+	/**
+	 * How many creatures this entry stands for. The mob rules turn on it — two
+	 * enemies on one adventurer grant favour, four add piercing, eight critical
+	 * — and it feeds the GM's draw ("+1 if the enemies outnumber the
+	 * adventurers"). The engine stores it and counts nothing: the arithmetic is
+	 * the GM's, and the checklist only ever suggests.
+	 */
+	count: number;
+}
 
 export interface CardTable {
 	schemaVersion: number;
 	/** Seat ids in table order. Seat *identity* is the shell's; the engine only
 	 * needs to know which zones exist and who owns them. */
 	seats: string[];
+	/**
+	 * Which seat is running the game, if any. Held as a pointer rather than
+	 * baked into zone ownership because the seat changes hands: a vacant GM
+	 * seat may be claimed by anyone, and every opponent zone would otherwise
+	 * need rewriting on each handover.
+	 */
+	gmSeat: string | null;
+	/** The enemies in play, in the order the GM added them. */
+	opponents: Opponent[];
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -81,7 +112,13 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 	zones['deck:player'] = { ...zones['deck:player'], cards: decks.player };
 	zones['deck:gm'] = { ...zones['deck:gm'], cards: decks.gm };
 
-	return { schemaVersion: TABLE_SCHEMA_VERSION, seats: [...seats], zones };
+	return {
+		schemaVersion: TABLE_SCHEMA_VERSION,
+		seats: [...seats],
+		gmSeat: null,
+		opponents: [],
+		zones
+	};
 }
 
 /** A table with a seat added, and its zones created. Pure. */
@@ -105,13 +142,97 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
 /**
  * Bring a saved blob up to the current shape.
  *
- * v1 is the first shape, so there is nothing to convert yet and this is the
- * seam rather than the work. It still runs on every read: a blob written by a
- * *newer* version than this build (a rollback, a stale worker) keeps its own
- * version rather than being silently relabelled, so a mismatch surfaces instead
- * of corrupting quietly.
+ * Runs on every read. A blob written by a *newer* version than this build (a
+ * rollback, a stale worker) keeps its own version rather than being silently
+ * relabelled, so a mismatch surfaces instead of corrupting quietly.
+ *
+ * v1 → v2: a table that predates opponents gains an empty roster and no GM
+ * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
+ * fight, which was true of it.
  */
 export function migrateTable(raw: CardTable): CardTable {
 	if (raw.schemaVersion > TABLE_SCHEMA_VERSION) return raw;
-	return { ...raw, schemaVersion: TABLE_SCHEMA_VERSION };
+	return {
+		...raw,
+		gmSeat: raw.gmSeat ?? null,
+		opponents: raw.opponents ?? [],
+		schemaVersion: TABLE_SCHEMA_VERSION
+	};
+}
+
+/** The table with a given seat running it. Pass `null` to vacate the seat. */
+export function setGmSeat(table: CardTable, seat: string | null): CardTable {
+	return { ...table, gmSeat: seat };
+}
+
+/**
+ * Add an enemy, or a group of them, with its zones. Works whenever it is
+ * called: the scene is set at the start, but reinforcements arrive.
+ */
+export function addOpponent(
+	table: CardTable,
+	opponent: { id: string; name: string; count?: number }
+): CardTable {
+	if (table.opponents.some((o) => o.id === opponent.id)) return table;
+	const zones = { ...table.zones };
+	for (const zone of opponentZones(opponent.id)) zones[zone.id] = zone;
+	return {
+		...table,
+		opponents: [
+			...table.opponents,
+			{ id: opponent.id, name: opponent.name, count: opponent.count ?? 1 }
+		],
+		zones
+	};
+}
+
+/**
+ * Remove an opponent and its zones. Any cards it held go nowhere on their own —
+ * where they land is a table decision, the same as for a departing seat.
+ */
+export function removeOpponent(table: CardTable, id: string): CardTable {
+	const prefix = `opponent:${id}:`;
+	return {
+		...table,
+		opponents: table.opponents.filter((o) => o.id !== id),
+		zones: Object.fromEntries(
+			Object.entries(table.zones).filter(([zid]) => !zid.startsWith(prefix))
+		)
+	};
+}
+
+/** Rename an opponent, or change how many it stands for. */
+export function updateOpponent(
+	table: CardTable,
+	id: string,
+	patch: { name?: string; count?: number }
+): CardTable {
+	return {
+		...table,
+		opponents: table.opponents.map((o) => (o.id === id ? { ...o, ...patch } : o))
+	};
+}
+
+/**
+ * Peel some of a group off into a new entry — the six unwolves become five and
+ * one, because they are no longer all on the same adventurer and the mob rules
+ * count per target.
+ *
+ * The new entry starts with empty slots; the original keeps its cards. Splitting
+ * a group of one, or taking more than it has, does nothing: there is no such
+ * table state, so there is nothing to represent.
+ */
+export function splitOpponent(
+	table: CardTable,
+	id: string,
+	split: { id: string; name?: string; count: number }
+): CardTable {
+	const source = table.opponents.find((o) => o.id === id);
+	if (!source || split.count < 1 || split.count >= source.count) return table;
+	const reduced = updateOpponent(table, id, { count: source.count - split.count });
+	return addOpponent(reduced, {
+		id: split.id,
+		name: split.name ?? source.name,
+		count: split.count
+	});
 }

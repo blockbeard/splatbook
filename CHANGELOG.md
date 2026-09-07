@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Opponents at the card table.** The GM's enemies are now part of the table
+  state: named entries with an initiative slot, a played pile and a facedown
+  slot, added when the scene is set and equally addable mid-fight, because
+  reinforcements arrive. They have no hand — ch.7 has the GM draw one hand of
+  majors and play from it for everything they control, since "it's not
+  practical to draw four cards per opponent".
+
+  A group carries how many creatures it stands for, and can be split: five
+  unwolves become three and two when they stop being on the same adventurer,
+  and the mob rules count per target. The original keeps its cards; the new
+  entry starts empty.
+
+  An opponent's hidden cards belong to the GM _role_ rather than to a person,
+  so the seat can change hands — which it must, since a vacant GM seat is
+  claimable and joins need GM approval — without rewriting a single zone.
+
 - **A card-table engine for HMtW.** Pure TypeScript — no UI, no database, no
   ambient randomness — modelling the table as zones of cards with a visibility
   and a capacity. That one idea does a lot of work: flipping the top of a deck
