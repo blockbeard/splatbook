@@ -67,6 +67,7 @@ export {
 	type FacedownAction,
 	type FacedownPosition
 } from './exceptions';
+export { hiddenFrom, projectFor, type ProjectedTable, type ProjectedZone } from './projection';
 export {
 	canSeeFaces,
 	deal,

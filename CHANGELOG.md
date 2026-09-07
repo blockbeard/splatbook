@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Per-seat projection, and the leak tests that hold it to account.** A client
+  is never handed the table; it is handed the part of it that its seat may see.
+  Zones whose faces a viewer is entitled to read come with their card ids; the
+  rest come with a count alone, which is not a secret — everyone at a real table
+  can see how thick a hand is.
+
+  The test that matters serialises a whole projection and searches it for every
+  card the viewer should not know, rather than checking the fields anyone
+  happened to think of, so a leak through a field added later fails without
+  anyone remembering to look for it.
+
+  Two things stay public on purpose. A facedown card's declared action, because
+  ch.7 has the player state the action while only they know the value. And that
+  the Fool is in play, because the end-of-round reshuffle is required and one
+  nobody knows to perform is worse than a hand that is slightly less secret —
+  _whose_ hand holds it, the part that would change how anyone plays, stays
+  hidden.
+
 - **The exceptions that give the round its shape.** A facedown card is now one
   slot per holder rather than a pile, because the book allows one facedown
   action at a time and answers a second by replacing the first — so the table
