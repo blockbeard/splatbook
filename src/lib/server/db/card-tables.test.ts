@@ -93,13 +93,26 @@ describe('finding a table by its token', () => {
 		expect(await getCardTableByToken(db, 'not-a-token')).toBeUndefined();
 	});
 
-	it('treats a table nobody has touched for six weeks as gone, and deletes it', async () => {
+	it('treats a table nobody has touched for six weeks as gone', async () => {
+		const row = await make();
+		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1000);
+		expect(await getCardTableByToken(db, row.roomToken)).toBeUndefined();
+	});
+
+	it('does not delete on the way past — the poll path must never write', async () => {
+		// The sync loop asks this about once a second per client. A read that
+		// wrote would turn a quiet table into a stream of billed writes on D1.
 		const row = await make();
 		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1000);
 
-		// Expiry is kept by the act of asking, since there is nowhere good in this
-		// deployment to put a scheduler.
-		expect(await getCardTableByToken(db, row.roomToken)).toBeUndefined();
+		await getCardTableByToken(db, row.roomToken);
+		const [still] = await db
+			.select()
+			.from(schema.cardTables)
+			.where(eq(schema.cardTables.id, row.id));
+		expect(still).toBeDefined();
+		// It is gone when the sweep gets to it, which page loads call.
+		expect(await sweepExpiredTables(db)).toBe(1);
 		expect(await getCardTable(db, row.id)).toBeUndefined();
 	});
 
@@ -190,6 +203,14 @@ describe('saving state', () => {
 		const before = (await getCardTable(db, row.id))!.lastActiveAt.getTime();
 		await saveTableState(db, row.id, 0, {}, 5);
 		expect((await getCardTable(db, row.id))!.lastActiveAt.getTime()).toBeGreaterThan(before);
+	});
+
+	it('cannot write an expired table back to life', async () => {
+		const row = await make();
+		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1000);
+		// Every read path already treats this table as gone; a client still
+		// holding its id and version must not be able to resurrect it.
+		expect(await saveTableState(db, row.id, 0, { sneaky: true }, 5)).toBeUndefined();
 	});
 
 	it('counts each command once, however many land', async () => {

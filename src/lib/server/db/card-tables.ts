@@ -19,7 +19,7 @@
  * Server-only.
  */
 
-import { and, asc, desc, eq, lt, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gte, lt, sql } from 'drizzle-orm';
 import type { Db } from './entities.ts';
 import { cardTables, cardTableSeats, type CardTableRow, type CardTableSeat } from './schema.ts';
 
@@ -52,6 +52,10 @@ export async function createCardTable(db: Db, input: NewCardTableInput): Promise
 	return row;
 }
 
+/** Whether a table has fallen outside the retention window. */
+export const isExpired = (row: CardTableRow, now: number = Date.now()): boolean =>
+	now - row.lastActiveAt.getTime() > TABLE_RETENTION_MS;
+
 /** Find a table by id. */
 export async function getCardTable(db: Db, id: string): Promise<CardTableRow | undefined> {
 	const [row] = await db.select().from(cardTables).where(eq(cardTables.id, id)).limit(1);
@@ -62,10 +66,13 @@ export async function getCardTable(db: Db, id: string): Promise<CardTableRow | u
  * Find a table by the token in its URL — the lookup that works for someone with
  * no account, which is most of the people who will use one.
  *
- * Expiry is applied here rather than by a scheduler. A table nobody has touched
- * for six weeks reads as gone, and is deleted on the way past, so the retention
- * promise is kept by the act of asking rather than by a cron job that has
- * nowhere good to live in this deployment.
+ * An expired table reads as **absent**, which is what keeps the retention
+ * promise, and this function does **not** delete it. That separation is
+ * deliberate and load-bearing: the sync loop polls this path about once a second
+ * per client, and a read that writes would turn a quiet table into a steady
+ * stream of billed writes on D1 — the opposite of the read budget this phase
+ * went to some trouble over. Removing the row is `sweepExpiredTables`'s job,
+ * called from page loads and never from a poll.
  */
 export async function getCardTableByToken(
 	db: Db,
@@ -73,11 +80,7 @@ export async function getCardTableByToken(
 	now: number = Date.now()
 ): Promise<CardTableRow | undefined> {
 	const [row] = await db.select().from(cardTables).where(eq(cardTables.roomToken, token)).limit(1);
-	if (!row) return undefined;
-	if (now - row.lastActiveAt.getTime() > TABLE_RETENTION_MS) {
-		await db.delete(cardTables).where(eq(cardTables.id, row.id));
-		return undefined;
-	}
+	if (!row || isExpired(row, now)) return undefined;
 	return row;
 }
 
@@ -141,9 +144,13 @@ export async function deleteCardTable(db: Db, id: string, ownerId: string): Prom
  * Retire a bounded number of tables nobody has come back to.
  *
  * Expiry on access alone never reaches a table nobody revisits, which would
- * make "kept for six weeks" a claim the mechanism could not keep. So any read
- * can also sweep a few stale ones. Bounded, because this rides along with a
- * request somebody is waiting on.
+ * make "kept for six weeks" a claim the mechanism could not keep. So a page load
+ * sweeps a few stale ones on its way past.
+ *
+ * **Page loads only — never a poll.** This deletes, and the sync loop asks for a
+ * table roughly once a second per client; hanging writes off that path would
+ * cost more than the whole feature is worth. Bounded for the same reason: it
+ * rides along with a request somebody is already waiting on.
  */
 export async function sweepExpiredTables(
 	db: Db,
@@ -197,7 +204,16 @@ export async function saveTableState(
 			commandCount: sql`${cardTables.commandCount} + 1`,
 			lastActiveAt: new Date(now)
 		})
-		.where(and(eq(cardTables.id, id), eq(cardTables.version, expectedVersion)))
+		.where(
+			and(
+				eq(cardTables.id, id),
+				eq(cardTables.version, expectedVersion),
+				// An expired table cannot be written back to life. Without this, a
+				// client holding an id and a version could resurrect a table every
+				// read path already treats as gone.
+				gte(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS))
+			)
+		)
 		.returning();
 	return row;
 }
