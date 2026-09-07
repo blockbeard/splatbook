@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Bounds on a table.** Six seats, ten people waiting, a hundred thousand
+  commands in a table's life, twenty-five live tables per account, and a name
+  that has to be a name. The one that matters is the queue: asking for a seat is
+  the single unauthenticated write in the feature — deliberately, since that is
+  how someone without an account sits down — so it is the one place rows could
+  otherwise pile up.
+
+  Expired tables stop counting against an account, so the cap is on tables in
+  play rather than on a lifetime of them. And the seat cap is checked again at
+  the door as well as at the request, because a queue can outlive the space it
+  was queuing for.
+
+  The polling policy lives beside them, because it is the same problem seen from
+  the client: a hidden tab asks nothing, a Challenge is asked about every
+  second, everything else every three, and a table nobody has touched backs off
+  by doubling to a fifteen-second ceiling. D1 bills per query rather than per
+  byte, so how _often_ a client asks is the only lever that exists.
+
 - **Seats without accounts.** A player can hold a seat at a card table with no
   sign-up at all: they give a character's name and the table issues a ticket
   their browser keeps. The seat is the identity and the ticket is only proof of

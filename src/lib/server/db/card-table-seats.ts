@@ -24,15 +24,46 @@
  * Server-only.
  */
 
-import { and, eq } from 'drizzle-orm';
+import { and, count, eq } from 'drizzle-orm';
 import type { Db } from './entities.ts';
 import { cardTableSeats, type CardTableSeat } from './schema.ts';
+import {
+	MAX_PENDING_SEATS,
+	MAX_SEATS_PER_TABLE,
+	MAX_SEAT_NAME_LENGTH
+} from '../../card-table-limits.ts';
 
 /** A seat plus the one-time secret its holder must keep. */
 export interface SeatTicket {
 	seat: CardTableSeat;
 	/** Shown to its holder exactly once, then only ever compared as a hash. */
 	secret: string;
+}
+
+/** Why a seat request was turned away, when it was. */
+export type SeatRefusal =
+	/** Every seat is taken. */
+	| 'table-full'
+	/** The GM has more people waiting than they are going to work through. */
+	| 'too-many-waiting'
+	/** A name that is empty, or longer than anything a person would type. */
+	| 'bad-name';
+
+export type SeatRequestResult =
+	{ ok: true; ticket: SeatTicket } | { ok: false; reason: SeatRefusal };
+
+/** How many seats are sitting, and how many are waiting. */
+export async function seatCounts(
+	db: Db,
+	tableId: string
+): Promise<{ admitted: number; pending: number }> {
+	const rows = await db
+		.select({ status: cardTableSeats.status, n: count() })
+		.from(cardTableSeats)
+		.where(eq(cardTableSeats.tableId, tableId))
+		.groupBy(cardTableSeats.status);
+	const of = (status: string) => rows.find((r) => r.status === status)?.n ?? 0;
+	return { admitted: of('admitted'), pending: of('pending') };
 }
 
 /** SHA-256, via Web Crypto — the one implementation node and Workers share. */
@@ -68,29 +99,47 @@ export async function gmSeatOf(db: Db, tableId: string): Promise<CardTableSeat |
  * a table whose first arrival had to wait for permission would have nobody able
  * to grant it, and the same deadlock returns every time a GM's seat falls
  * vacant. So the rule is: no GM, no gatekeeper.
+ *
+ * This is **the** unauthenticated write in the whole feature: anybody holding a
+ * room token can call it, which is the point, so it is also the one that has to
+ * be bounded. A full table takes nobody, a queue of waiting strangers stops
+ * growing, and a name has to be a name.
  */
 export async function requestSeat(
 	db: Db,
 	tableId: string,
 	name: string,
 	userId?: string
-): Promise<SeatTicket> {
+): Promise<SeatRequestResult> {
+	const trimmed = name.trim();
+	if (!trimmed || trimmed.length > MAX_SEAT_NAME_LENGTH) {
+		return { ok: false, reason: 'bad-name' };
+	}
+
+	const counts = await seatCounts(db, tableId);
+	if (counts.admitted >= MAX_SEATS_PER_TABLE) return { ok: false, reason: 'table-full' };
+	if (counts.pending >= MAX_PENDING_SEATS) return { ok: false, reason: 'too-many-waiting' };
+
 	const gm = await gmSeatOf(db, tableId);
 	const secret = newSecret();
 	const [seat] = await db
 		.insert(cardTableSeats)
 		.values({
 			tableId,
-			name,
+			name: trimmed,
 			userId: userId ?? null,
 			claimSecret: await hashSecret(secret),
 			status: gm ? 'pending' : 'admitted'
 		})
 		.returning();
-	return { seat, secret };
+	return { ok: true, ticket: { seat, secret } };
 }
 
-/** Let a waiting seat sit down. Only the GM may. */
+/**
+ * Let a waiting seat sit down. Only the GM may, and only into a table with
+ * room: the seat cap is checked here as well as at the request, because a
+ * queue can outlive the space it was queuing for.
+ */
 export async function admitSeat(
 	db: Db,
 	tableId: string,
@@ -99,6 +148,8 @@ export async function admitSeat(
 ): Promise<CardTableSeat | undefined> {
 	const gm = await gmSeatOf(db, tableId);
 	if (!gm || gm.id !== bySeatId) return undefined;
+	const counts = await seatCounts(db, tableId);
+	if (counts.admitted >= MAX_SEATS_PER_TABLE) return undefined;
 	const [row] = await db
 		.update(cardTableSeats)
 		.set({ status: 'admitted' })

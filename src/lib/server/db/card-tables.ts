@@ -19,9 +19,10 @@
  * Server-only.
  */
 
-import { and, asc, desc, eq, gte, lt, sql } from 'drizzle-orm';
+import { and, asc, count, desc, eq, gte, lt, sql } from 'drizzle-orm';
 import type { Db } from './entities.ts';
 import { cardTables, cardTableSeats, type CardTableRow, type CardTableSeat } from './schema.ts';
+import { MAX_COMMANDS_PER_TABLE, MAX_TABLES_PER_OWNER } from '../../card-table-limits.ts';
 
 /** Six weeks, in milliseconds — the retention window, matching Crawlspace. */
 export const TABLE_RETENTION_MS = 42 * 24 * 60 * 60 * 1000;
@@ -37,8 +38,41 @@ export interface NewCardTableInput {
 	stateVersion: number;
 }
 
-/** Create a table. Its room token is generated for it and goes in the URL. */
-export async function createCardTable(db: Db, input: NewCardTableInput): Promise<CardTableRow> {
+/** Why a table could not be created. */
+export type CreateRefusal = 'too-many-tables';
+export type CreateResult = { ok: true; table: CardTableRow } | { ok: false; reason: CreateRefusal };
+
+/**
+ * How many live tables an account has. Expired ones do not count — the cap is
+ * on tables in play, not on a lifetime of them.
+ */
+export async function countLiveTables(
+	db: Db,
+	ownerId: string,
+	now: number = Date.now()
+): Promise<number> {
+	const [row] = await db
+		.select({ n: count() })
+		.from(cardTables)
+		.where(
+			and(
+				eq(cardTables.ownerId, ownerId),
+				gte(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS))
+			)
+		);
+	return row?.n ?? 0;
+}
+
+/**
+ * Create a table. Its room token is generated for it and goes in the URL.
+ *
+ * Capped per account. Sign-in makes creation attributable rather than free, but
+ * an account is itself cheap to get, so attribution alone is not a limit.
+ */
+export async function createCardTable(db: Db, input: NewCardTableInput): Promise<CreateResult> {
+	if ((await countLiveTables(db, input.ownerId)) >= MAX_TABLES_PER_OWNER) {
+		return { ok: false, reason: 'too-many-tables' };
+	}
 	const [row] = await db
 		.insert(cardTables)
 		.values({
@@ -49,7 +83,7 @@ export async function createCardTable(db: Db, input: NewCardTableInput): Promise
 			stateVersion: input.stateVersion
 		})
 		.returning();
-	return row;
+	return { ok: true, table: row };
 }
 
 /** Whether a table has fallen outside the retention window. */
@@ -184,6 +218,11 @@ export async function listSeats(db: Db, tableId: string): Promise<CardTableSeat[
  * fails rather than clobbering whoever got there first. That is the whole
  * mechanism behind "someone got there first" being the only refusal this design
  * has, and it is enforced by the WHERE clause rather than by a read-then-write.
+ *
+ * The command ceiling rides in the same clause. A very long session is a few
+ * thousand card moves; a hundred thousand is unreachable by play and reachable
+ * by a script, so a table that meets it stops accepting rather than growing
+ * without end. Nobody at a real table will ever see it.
  */
 export async function saveTableState(
 	db: Db,
@@ -211,7 +250,8 @@ export async function saveTableState(
 				// An expired table cannot be written back to life. Without this, a
 				// client holding an id and a version could resurrect a table every
 				// read path already treats as gone.
-				gte(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS))
+				gte(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS)),
+				lt(cardTables.commandCount, MAX_COMMANDS_PER_TABLE)
 			)
 		)
 		.returning();

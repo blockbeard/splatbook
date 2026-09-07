@@ -14,12 +14,18 @@ import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
 import { createCardTable } from './card-tables.ts';
 import {
+	MAX_PENDING_SEATS,
+	MAX_SEATS_PER_TABLE,
+	MAX_SEAT_NAME_LENGTH
+} from '../../card-table-limits.ts';
+import {
 	admitSeat,
 	claimGmSeat,
 	gmSeatOf,
 	removeSeat,
 	requestSeat,
 	reseat,
+	seatCounts,
 	resolveSeat,
 	vacateGmSeat
 } from './card-table-seats.ts';
@@ -40,19 +46,27 @@ beforeEach(async () => {
 	db = freshDb();
 	const [user] = await db.insert(schema.users).values({ email: 'gm@x' }).returning();
 	ownerId = user.id;
-	const table = await createCardTable(db, {
+	const created = await createCardTable(db, {
 		gameId: 'hmtw',
 		name: 'Thursday',
 		ownerId,
 		state: {},
 		stateVersion: 5
 	});
-	tableId = table.id;
+	if (!created.ok) throw new Error('create refused');
+	tableId = created.table.id;
 });
+
+/** Unwrap a successful request; a refusal in these tests is a test failure. */
+async function seat(name: string, userId?: string) {
+	const res = await requestSeat(db, tableId, name, userId);
+	if (!res.ok) throw new Error(`seat request refused: ${res.reason}`);
+	return res.ticket;
+}
 
 /** The common opening: someone arrives first and takes the GM seat. */
 async function seatedGm() {
-	const ticket = await requestSeat(db, tableId, 'The GM');
+	const ticket = await seat('The GM');
 	await claimGmSeat(db, tableId, ticket.seat.id);
 	return ticket;
 }
@@ -61,20 +75,20 @@ describe('arriving at a table', () => {
 	it('admits the first person, because there is nobody to ask', async () => {
 		// Joins need a GM's approval, so a table whose first arrival had to wait
 		// would have nobody able to grant it.
-		const ticket = await requestSeat(db, tableId, 'Grimwold');
+		const ticket = await seat('Grimwold');
 		expect(ticket.seat.status).toBe('admitted');
 	});
 
 	it('makes everyone after that wait for the GM', async () => {
 		await seatedGm();
-		const ticket = await requestSeat(db, tableId, 'Grimwold');
+		const ticket = await seat('Grimwold');
 		expect(ticket.seat.status).toBe('pending');
 	});
 
 	it('lets the GM admit, and turn away', async () => {
 		const gm = await seatedGm();
-		const first = await requestSeat(db, tableId, 'Grimwold');
-		const second = await requestSeat(db, tableId, 'A stranger');
+		const first = await seat('Grimwold');
+		const second = await seat('A stranger');
 
 		expect((await admitSeat(db, tableId, first.seat.id, gm.seat.id))?.status).toBe('admitted');
 		expect(await removeSeat(db, tableId, second.seat.id, gm.seat.id)).toBe(true);
@@ -88,19 +102,78 @@ describe('arriving at a table', () => {
 
 	it('lets nobody but the GM admit or remove', async () => {
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
-		const waiting = await requestSeat(db, tableId, 'Another');
+		const waiting = await seat('Another');
 
 		expect(await admitSeat(db, tableId, waiting.seat.id, player.seat.id)).toBeUndefined();
 		expect(await removeSeat(db, tableId, waiting.seat.id, player.seat.id)).toBe(false);
 	});
 });
 
+describe('the limits', () => {
+	it('turns nobody away until every seat is taken', async () => {
+		const gm = await seatedGm();
+		for (let i = 1; i < MAX_SEATS_PER_TABLE; i++) {
+			const t = await requestSeat(db, tableId, `Player ${i}`);
+			expect(t.ok).toBe(true);
+			if (t.ok) await admitSeat(db, tableId, t.ticket.seat.id, gm.seat.id);
+		}
+		expect(await requestSeat(db, tableId, 'One too many')).toEqual({
+			ok: false,
+			reason: 'table-full'
+		});
+	});
+
+	it('stops a queue of strangers growing without end', async () => {
+		// The one unauthenticated write in the feature: anybody with the room
+		// token can ask, so the queue is where rows would otherwise pile up.
+		await seatedGm();
+		for (let i = 0; i < MAX_PENDING_SEATS; i++) {
+			expect((await requestSeat(db, tableId, `Waiting ${i}`)).ok).toBe(true);
+		}
+		expect(await requestSeat(db, tableId, 'Yet another')).toEqual({
+			ok: false,
+			reason: 'too-many-waiting'
+		});
+	});
+
+	it('insists a name is a name', async () => {
+		expect(await requestSeat(db, tableId, '   ')).toEqual({ ok: false, reason: 'bad-name' });
+		expect(await requestSeat(db, tableId, 'x'.repeat(MAX_SEAT_NAME_LENGTH + 1))).toEqual({
+			ok: false,
+			reason: 'bad-name'
+		});
+		const ok = await requestSeat(db, tableId, '  Grimwold  ');
+		expect(ok.ok && ok.ticket.seat.name).toBe('Grimwold');
+	});
+
+	it('will not admit into a table that filled up while someone waited', async () => {
+		// A queue can outlive the space it was queuing for, so the cap is checked
+		// again at the door rather than only at the request.
+		const gm = await seatedGm();
+		const waiting = await requestSeat(db, tableId, 'Hopeful');
+		if (!waiting.ok) throw new Error('unexpected');
+
+		for (let i = 1; i < MAX_SEATS_PER_TABLE; i++) {
+			const t = await requestSeat(db, tableId, `Player ${i}`);
+			if (t.ok) await admitSeat(db, tableId, t.ticket.seat.id, gm.seat.id);
+		}
+		expect(await admitSeat(db, tableId, waiting.ticket.seat.id, gm.seat.id)).toBeUndefined();
+	});
+
+	it('counts who is sitting and who is waiting', async () => {
+		const gm = await seatedGm();
+		await requestSeat(db, tableId, 'Waiting');
+		expect(await seatCounts(db, tableId)).toEqual({ admitted: 1, pending: 1 });
+		expect(gm.seat.status).toBe('admitted');
+	});
+});
+
 describe('the GM seat', () => {
 	it('is claimable while vacant, and only while vacant', async () => {
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 		expect(await claimGmSeat(db, tableId, player.seat.id)).toBeUndefined();
 
@@ -114,14 +187,14 @@ describe('the GM seat', () => {
 		// way to take a vacant seat, a GM who loses their claim locks out the
 		// whole table including themselves.
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 
 		await vacateGmSeat(db, tableId, gm.seat.id);
 		await claimGmSeat(db, tableId, player.seat.id);
 
 		// And the table can take new arrivals again.
-		const newcomer = await requestSeat(db, tableId, 'Late arrival');
+		const newcomer = await seat('Late arrival');
 		expect(await admitSeat(db, tableId, newcomer.seat.id, player.seat.id)).toBeDefined();
 	});
 
@@ -130,7 +203,7 @@ describe('the GM seat', () => {
 		// pending seat take a vacant GM chair would hand them the table, and with
 		// it the power to admit whoever else they liked.
 		const gm = await seatedGm();
-		const stranger = await requestSeat(db, tableId, 'Uninvited');
+		const stranger = await seat('Uninvited');
 		expect(stranger.seat.status).toBe('pending');
 
 		await vacateGmSeat(db, tableId, gm.seat.id);
@@ -140,7 +213,7 @@ describe('the GM seat', () => {
 
 	it('cannot be taken from a sitting GM by passing their id', async () => {
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 
 		// Routes pass the caller's own seat; the isGm condition is what makes
@@ -152,13 +225,13 @@ describe('the GM seat', () => {
 	it('admits the next arrival outright once the seat is empty', async () => {
 		const gm = await seatedGm();
 		await vacateGmSeat(db, tableId, gm.seat.id);
-		expect((await requestSeat(db, tableId, 'Anyone')).seat.status).toBe('admitted');
+		expect((await seat('Anyone')).seat.status).toBe('admitted');
 	});
 });
 
 describe('proving a seat is yours', () => {
 	it('accepts the ticket it issued, and nothing else', async () => {
-		const ticket = await requestSeat(db, tableId, 'Grimwold');
+		const ticket = await seat('Grimwold');
 		const claim = { seatId: ticket.seat.id, secret: ticket.secret };
 		expect((await resolveSeat(db, tableId, claim))?.id).toBe(ticket.seat.id);
 		expect(await resolveSeat(db, tableId, { ...claim, secret: 'wrong' })).toBeUndefined();
@@ -167,7 +240,7 @@ describe('proving a seat is yours', () => {
 
 	it('never stores the secret itself', async () => {
 		// A leaked database must not be a set of keys to every table.
-		const ticket = await requestSeat(db, tableId, 'Grimwold');
+		const ticket = await seat('Grimwold');
 		const [row] = await db
 			.select()
 			.from(schema.cardTableSeats)
@@ -184,15 +257,16 @@ describe('proving a seat is yours', () => {
 			state: {},
 			stateVersion: 5
 		});
-		const ticket = await requestSeat(db, tableId, 'Grimwold');
+		if (!other.ok) throw new Error('create refused');
+		const ticket = await seat('Grimwold');
 		expect(
-			await resolveSeat(db, other.id, { seatId: ticket.seat.id, secret: ticket.secret })
+			await resolveSeat(db, other.table.id, { seatId: ticket.seat.id, secret: ticket.secret })
 		).toBeUndefined();
 	});
 
 	it('recognises a signed-in user without a ticket at all', async () => {
 		// Which is how an account keeps its seat across devices.
-		const ticket = await requestSeat(db, tableId, 'Grimwold', ownerId);
+		const ticket = await seat('Grimwold', ownerId);
 		expect((await resolveSeat(db, tableId, undefined, ownerId))?.id).toBe(ticket.seat.id);
 	});
 });
@@ -200,7 +274,7 @@ describe('proving a seat is yours', () => {
 describe('re-seating', () => {
 	it('hands back the same seat with a new ticket, and kills the old one', async () => {
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 
 		const fresh = await reseat(db, tableId, player.seat.id, gm.seat.id);
@@ -220,7 +294,7 @@ describe('re-seating', () => {
 		// Private zones are keyed to the seat row, so a returning player finds
 		// their hand as they left it. This asserts the row survives untouched.
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
 
 		const fresh = await reseat(db, tableId, player.seat.id, gm.seat.id);
@@ -231,9 +305,9 @@ describe('re-seating', () => {
 
 	it('is the GM’s to do, which is what stops seat theft', async () => {
 		const gm = await seatedGm();
-		const player = await requestSeat(db, tableId, 'Grimwold');
+		const player = await seat('Grimwold');
 		await admitSeat(db, tableId, player.seat.id, gm.seat.id);
-		const thief = await requestSeat(db, tableId, 'Opportunist');
+		const thief = await seat('Opportunist');
 
 		expect(await reseat(db, tableId, player.seat.id, thief.seat.id)).toBeUndefined();
 	});

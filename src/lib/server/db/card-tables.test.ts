@@ -14,6 +14,7 @@ import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
 import {
 	TABLE_RETENTION_MS,
+	countLiveTables,
 	createCardTable,
 	deleteCardTable,
 	getCardTable,
@@ -25,6 +26,7 @@ import {
 	sweepExpiredTables,
 	touchCardTable
 } from './card-tables.ts';
+import { MAX_COMMANDS_PER_TABLE, MAX_TABLES_PER_OWNER } from '../../card-table-limits.ts';
 
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
@@ -46,14 +48,18 @@ beforeEach(async () => {
 	other = b.id;
 });
 
-const make = (name = 'Thursday game') =>
-	createCardTable(db, {
+/** Unwrap a successful create; a refusal here is a test failure. */
+async function make(name = 'Thursday game') {
+	const res = await createCardTable(db, {
 		gameId: 'hmtw',
 		name,
 		ownerId: owner,
 		state: { zones: {} },
 		stateVersion: 5
 	});
+	if (!res.ok) throw new Error(`create refused: ${res.reason}`);
+	return res.table;
+}
 
 describe('creating a table', () => {
 	it('stores the game’s blob without looking inside it', async () => {
@@ -79,6 +85,60 @@ describe('creating a table', () => {
 		const rows = await listCardTablesForOwner(db, owner);
 		expect(rows.map((r) => r.name)).toEqual(['newer', 'older']);
 		expect(await listCardTablesForOwner(db, other)).toEqual([]);
+	});
+});
+
+describe('the limits', () => {
+	it('caps how many live tables one account may hold', async () => {
+		for (let i = 0; i < MAX_TABLES_PER_OWNER; i++) await make(`table ${i}`);
+		const refused = await createCardTable(db, {
+			gameId: 'hmtw',
+			name: 'One too many',
+			ownerId: owner,
+			state: {},
+			stateVersion: 5
+		});
+		expect(refused).toEqual({ ok: false, reason: 'too-many-tables' });
+	});
+
+	it('counts live tables only, so an expired one frees its place', async () => {
+		const first = await make('old');
+		for (let i = 1; i < MAX_TABLES_PER_OWNER; i++) await make(`table ${i}`);
+		expect(await countLiveTables(db, owner)).toBe(MAX_TABLES_PER_OWNER);
+
+		await touchCardTable(db, first.id, Date.now() - TABLE_RETENTION_MS - 1);
+		expect(await countLiveTables(db, owner)).toBe(MAX_TABLES_PER_OWNER - 1);
+		const created = await createCardTable(db, {
+			gameId: 'hmtw',
+			name: 'Room again',
+			ownerId: owner,
+			state: {},
+			stateVersion: 5
+		});
+		expect(created.ok).toBe(true);
+	});
+
+	it('does not count someone else’s tables against you', async () => {
+		for (let i = 0; i < MAX_TABLES_PER_OWNER; i++) await make(`table ${i}`);
+		const theirs = await createCardTable(db, {
+			gameId: 'hmtw',
+			name: 'Theirs',
+			ownerId: other,
+			state: {},
+			stateVersion: 5
+		});
+		expect(theirs.ok).toBe(true);
+	});
+
+	it('stops accepting commands at the ceiling', async () => {
+		const row = await make();
+		// Reach the ceiling directly; playing there would take a hundred thousand
+		// card moves, which is the point of the number.
+		await db
+			.update(schema.cardTables)
+			.set({ commandCount: MAX_COMMANDS_PER_TABLE })
+			.where(eq(schema.cardTables.id, row.id));
+		expect(await saveTableState(db, row.id, 0, { more: true }, 5)).toBeUndefined();
 	});
 });
 
