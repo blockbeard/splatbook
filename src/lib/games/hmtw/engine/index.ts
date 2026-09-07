@@ -54,6 +54,21 @@ export {
 	type Round
 } from './round';
 export {
+	beginInterrupt,
+	clearExtraTurn,
+	clearFacedown,
+	endInterrupt,
+	facedownZoneOf,
+	placeFacedown,
+	playFool,
+	revealFacedown,
+	skipTurn,
+	type ExceptionResult,
+	type FacedownAction,
+	type FacedownPosition
+} from './exceptions';
+export {
+	canSeeFaces,
 	deal,
 	emptyInto,
 	moveCard,

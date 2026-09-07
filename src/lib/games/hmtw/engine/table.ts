@@ -8,6 +8,7 @@
  * otherwise break a table that people are sitting at mid-round.
  */
 
+import type { FacedownAction } from './exceptions';
 import { newRound, type Round } from './round';
 import { opponentZones, seatZones, tableZones, type Zone } from './zones';
 
@@ -17,9 +18,10 @@ import { opponentZones, seatZones, tableZones, type Zone } from './zones';
  *
  * v1: seats, zones, and the two decks.
  * v2: `gmSeat` and `opponents`.
- * v3 (this commit): `round` and `foolCards`.
+ * v3: `round` and `foolCards`.
+ * v4 (this commit): `facedown`, and the round's `interrupt` / `extraTurn`.
  */
-export const TABLE_SCHEMA_VERSION = 3;
+export const TABLE_SCHEMA_VERSION = 4;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -67,6 +69,15 @@ export interface CardTable {
 	 * business knowing a card id by name.
 	 */
 	foolCards: string[];
+	/**
+	 * What each facedown card is *for*, keyed by its zone.
+	 *
+	 * Kept beside the zones rather than inside them because a zone holds card
+	 * ids and nothing else, and this is not about the card — it is the declared
+	 * action, which ch.7 makes public, and the position that decides what the
+	 * card is worth when it turns over.
+	 */
+	facedown: Record<string, FacedownAction>;
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -131,6 +142,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		gmSeat: null,
 		opponents: [],
 		round: newRound(),
+		facedown: {},
 		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
 		zones
 	};
@@ -165,6 +177,11 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v3 → v4: no facedown declarations, and a round with nobody interrupting and
+ * no turn owed. A table mid-round keeps any card already sitting facedown; it
+ * simply has no label for it, which is the honest state of a card played before
+ * labels existed.
+ *
  * v2 → v3: a round that has not started, and no Fool. `foolCards` cannot be
  * recovered from an old blob — the deck definition is not in it — so a migrated
  * table gets an empty list and the caller reseeds it with `withFoolCards` when
@@ -177,7 +194,8 @@ export function migrateTable(raw: CardTable): CardTable {
 		...raw,
 		gmSeat: raw.gmSeat ?? null,
 		opponents: raw.opponents ?? [],
-		round: raw.round ?? newRound(),
+		round: { ...newRound(), ...(raw.round ?? {}) },
+		facedown: raw.facedown ?? {},
 		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
 	};

@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The exceptions that give the round its shape.** A facedown card is now one
+  slot per holder rather than a pile, because the book allows one facedown
+  action at a time and answers a second by replacing the first — so the table
+  replaces and discards rather than refusing. Which side of the initiative card
+  it sits on is remembered, because that is what decides whether the card gains
+  an attribute when it turns over or counts its face value alone.
+
+  A facedown card also carries a **public label**. That is the rule rather than
+  a nicety: ch.7 has the player state what action they are taking while only
+  they know the card's value, so intent is table knowledge and the number is
+  not.
+
+  The Fool goes down with a partner in a single move, never alone, and it goes
+  first, owes its player a second turn, and brings no minor actions with it.
+  Interrupts are general rather than a Fool special case — a polearm's riposte
+  before the charging goblin's attack resolves. Skipping a turn _closes_ the
+  minor-action window rather than merely not opening it.
+
 - **The round.** Ch.7's five steps as table state: a round number, the
   initiative currently being called, whether the minor-action window is open,
   and whether the Fool has come out. Beginning a round deals four to each

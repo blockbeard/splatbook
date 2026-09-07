@@ -36,13 +36,25 @@ export interface Round {
 	 * round" — so this is remembered at the draw and spent at the end.
 	 */
 	foolDrawn: boolean;
+	/**
+	 * Who is acting out of turn, if anyone. Interrupts "take place *before* the
+	 * acting player's action", so the count waits rather than moving on.
+	 */
+	interrupt: string | null;
+	/**
+	 * Who is owed a second turn by the Fool. The book grants the turn but no
+	 * minor actions with it; spent when they take it.
+	 */
+	extraTurn: string | null;
 }
 
 export const newRound = (): Round => ({
 	number: 0,
 	count: null,
 	minorActions: false,
-	foolDrawn: false
+	foolDrawn: false,
+	interrupt: null,
+	extraTurn: null
 });
 
 /** What the GM's draw is built from — `data/challenge.json`'s `handSizes.gm`, structurally. */
@@ -145,6 +157,8 @@ export function beginRound(table: CardTable, opts: BeginRoundOptions): CardTable
 			number: table.round.number + 1,
 			count: null,
 			minorActions: false,
+			interrupt: null,
+			extraTurn: null,
 			// The Fool may already have been drawn earlier in the same round by a
 			// refill; never clear a flag that is waiting to be spent.
 			foolDrawn: table.round.foolDrawn || fool
@@ -228,7 +242,14 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 
 	return {
 		...current,
-		round: { ...current.round, count: null, minorActions: false, foolDrawn: false }
+		round: {
+			...current.round,
+			count: null,
+			minorActions: false,
+			foolDrawn: false,
+			interrupt: null,
+			extraTurn: null
+		}
 	};
 }
 

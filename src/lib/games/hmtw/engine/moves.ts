@@ -10,12 +10,15 @@
  * If a refusal here ever encodes a rule, the phase has gone wrong.
  *
  * **Addressing.** A command names a *slot*, and may name a *card* only where the
- * card is already public. "Flip whatever is in seat 3's initiative slot" is
- * something any seat may send and the server resolves; "move the Ace of Cups out
- * of seat 3's hand" is not a request the wire will carry, because being able to
- * ask it means already knowing the answer. The discard is the one place naming
- * a card is both legal and necessary — that is where a High Chant's inspiration
- * cards are chosen from.
+ * asker is entitled to see that card's face. Anyone may name a card in the
+ * discard — that is where a High Chant's inspiration cards are chosen from. You
+ * may name a card in your own hand, because you are holding it. Nobody may name
+ * one in a hidden pile or in someone else's hand, because being able to ask
+ * means already knowing the answer.
+ *
+ * The `actor` argument is what makes that distinction possible, and it is
+ * optional: omitted, only public zones can be named. That default is the safe
+ * one for a server-internal call with nobody to speak for.
  *
  * **Flipping is moving.** A card's face is visible because of the zone it is in,
  * so revealing a facedown card is a move to a public zone and turning the top of
@@ -24,7 +27,7 @@
 
 import type { CardTable } from './table';
 import { shuffle, type Rng } from './shuffle';
-import { deckZone, discardZone, type DeckId } from './zones';
+import { deckZone, discardZone, type DeckId, type Zone } from './zones';
 
 /**
  * Where a card is coming from. `card` picks a specific one and is only accepted
@@ -44,6 +47,28 @@ export type MoveFailure =
 	 * because the request itself leaks: you cannot name what you cannot read. */
 	| 'card-named-in-private-zone';
 
+/**
+ * Whether `actor` may read the faces in a zone — and therefore whether they may
+ * name a card in it.
+ *
+ * This is the engine's one privacy invariant, kept here rather than in the
+ * command layer so that it cannot be forgotten by a caller. A `gm` zone
+ * resolves against the table's current GM seat, which is why the seat is a
+ * pointer.
+ */
+export function canSeeFaces(table: CardTable, zone: Zone, actor?: string): boolean {
+	switch (zone.visibility) {
+		case 'public':
+			return true;
+		case 'owner':
+			return actor !== undefined && actor === zone.owner;
+		case 'gm':
+			return actor !== undefined && actor === table.gmSeat;
+		case 'hidden':
+			return false;
+	}
+}
+
 export type MoveResult =
 	{ ok: true; table: CardTable; card: string } | { ok: false; reason: MoveFailure };
 
@@ -56,14 +81,14 @@ const fail = (reason: MoveFailure): MoveResult => ({ ok: false, reason });
  * A card arrives on top of its destination, which is what a physical table does:
  * flip a card onto a discard and it is the one you see.
  */
-export function moveCard(table: CardTable, from: Pick, to: string): MoveResult {
+export function moveCard(table: CardTable, from: Pick, to: string, actor?: string): MoveResult {
 	const source = table.zones[from.zone];
 	const target = table.zones[to];
 	if (!source || !target) return fail('no-such-zone');
 
 	let index = 0;
 	if (from.card !== undefined) {
-		if (source.visibility !== 'public') return fail('card-named-in-private-zone');
+		if (!canSeeFaces(table, source, actor)) return fail('card-named-in-private-zone');
 		index = source.cards.indexOf(from.card);
 		if (index === -1) return fail('no-such-card');
 	} else if (source.cards.length === 0) {

@@ -87,7 +87,10 @@ export function seatZones(seat: string): Zone[] {
 		// own parenthesis, which is why it is its own zone rather than a tag.
 		zone('initiative', 'owner', 1),
 		zone('played', 'public', null),
-		zone('facedown', 'owner', null),
+		// "You may only have one facedown action at a time. (Your Initiative card
+		// does not count towards this limit!)" Placing a second replaces the first
+		// rather than being refused — see `exceptions.ts`.
+		zone('facedown', 'owner', 1),
 		// "No player can ever have more than one inspiration card" (ch.5). The cap
 		// is structure, not a rule the engine enforces: a second card has nowhere
 		// to go rather than being refused.
@@ -119,7 +122,9 @@ export function opponentZones(opponent: string): Zone[] {
 		// group of characters they control" (ch.7 step 2).
 		zone('initiative', 'gm', 1),
 		zone('played', 'public', null),
-		zone('facedown', 'gm', null)
+		// "Every enemy that has an Initiative card can have one facedown Challenge
+		// Action" — the same limit the players have.
+		zone('facedown', 'gm', 1)
 	];
 }
 

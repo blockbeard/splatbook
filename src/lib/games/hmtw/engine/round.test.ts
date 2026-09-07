@@ -13,6 +13,7 @@ import {
 	beginRound,
 	endRound,
 	mulliganGmHand,
+	newRound,
 	rewindCount,
 	setCount,
 	setMinorActions,
@@ -276,12 +277,9 @@ describe('migrateTable v2 → v3', () => {
 
 		const migrated = migrateTable(v2);
 		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
-		expect(migrated.round).toEqual({
-			number: 0,
-			count: null,
-			minorActions: false,
-			foolDrawn: false
-		});
+		// Compared against newRound() rather than a literal, so this keeps meaning
+		// "an unstarted round" as the shape grows instead of pinning today's fields.
+		expect(migrated.round).toEqual(newRound());
 		// The deck definition is not in an old blob, so this cannot be recovered
 		// here; the caller reseeds it from the pack.
 		expect(migrated.foolCards).toEqual([]);
