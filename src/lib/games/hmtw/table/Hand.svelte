@@ -87,7 +87,7 @@
 		flex-wrap: wrap;
 	}
 	.hand__hidden {
-		color: rgb(236 231 219 / 45%);
+		color: var(--ct-quiet);
 		margin: 0;
 	}
 </style>

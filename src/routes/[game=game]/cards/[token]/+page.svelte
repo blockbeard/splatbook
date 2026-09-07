@@ -211,11 +211,11 @@
 		font-weight: 400;
 		font-size: 1.5rem;
 		margin: 0;
-		color: var(--ct-card);
+		color: inherit;
 	}
 	.ct-page__watching,
 	.waiting {
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 		margin: 0;
 	}
 	.join,
@@ -233,10 +233,10 @@
 		font-size: 0.85rem;
 	}
 	.join input {
-		background: rgb(0 0 0 / 25%);
+		background: transparent;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		font: inherit;
 		padding: 0.5rem;
 		min-block-size: 2.75rem;
@@ -244,20 +244,20 @@
 	.join__hint {
 		margin: 0;
 		font-size: 0.8rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	.join__error,
 	.notice {
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		margin: 0.5rem 1.25rem;
 	}
 	.join button,
 	.claim button {
 		justify-self: start;
 		background: none;
-		border: 1px solid var(--ct-light-soft);
+		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		font: inherit;
 		padding: 0.5rem 1rem;
 		min-block-size: 2.75rem;
@@ -283,7 +283,7 @@
 		cursor: pointer;
 	}
 	.modes button.on {
-		border-color: var(--ct-light);
-		color: var(--ct-light);
+		border-color: var(--ct-mark);
+		color: var(--ct-mark);
 	}
 </style>

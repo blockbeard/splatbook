@@ -352,11 +352,11 @@
 	.ch__count strong {
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		font-size: 1.3rem;
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		margin-inline-start: 0.35rem;
 	}
 	.ch__fool {
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		font-size: 0.85rem;
 	}
 	.ch__gm {
@@ -382,10 +382,10 @@
 		min-inline-size: 12rem;
 	}
 	.combatant--mine {
-		border-block-start-color: var(--ct-light-soft);
+		border-block-start-color: var(--ct-rule-strong);
 	}
 	.combatant--enemy h3 {
-		color: rgb(236 231 219 / 80%);
+		color: var(--ct-quiet);
 	}
 	.combatant h3 {
 		font-family: 'IM Fell English', Georgia, serif;
@@ -411,8 +411,8 @@
 	}
 	.slot--drop {
 		border-style: solid;
-		border-color: var(--ct-light-soft);
-		color: var(--ct-light);
+		border-color: var(--ct-rule-strong);
+		color: var(--ct-mark);
 	}
 	.slot {
 		inline-size: var(--ct-card-w);
@@ -420,7 +420,7 @@
 		border: 1px dashed var(--ct-rule);
 		border-radius: var(--ct-radius);
 		background: none;
-		color: rgb(236 231 219 / 40%);
+		color: var(--ct-quiet);
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		font-size: 0.7rem;
 		cursor: pointer;
@@ -428,14 +428,14 @@
 	.tag {
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		font-size: 0.7rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	.tag-btn {
 		background: none;
 		border: 0;
 		font: inherit;
 		font-size: 0.7rem;
-		color: rgb(236 231 219 / 45%);
+		color: var(--ct-quiet);
 		text-decoration: underline;
 		cursor: pointer;
 	}
@@ -451,7 +451,7 @@
 		inset-inline-start: 50%;
 		transform: translateX(-50%);
 		background: var(--ct-table-low);
-		border: 1px solid var(--ct-light-soft);
+		border: 1px solid var(--ct-rule-strong);
 		border-radius: 4px;
 		padding: 1rem;
 		display: grid;
@@ -461,7 +461,7 @@
 	.declare__hint {
 		margin: 0;
 		font-size: 0.8rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	button,
 	input {
@@ -471,28 +471,28 @@
 		background: none;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		padding: 0.3rem 0.7rem;
 		min-block-size: 2.4rem;
 		cursor: pointer;
 	}
 	button.on {
-		border-color: var(--ct-light);
-		color: var(--ct-light);
+		border-color: var(--ct-mark);
+		color: var(--ct-mark);
 	}
 	button.quiet {
 		border-color: transparent;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	button:disabled {
 		opacity: 0.4;
 		cursor: default;
 	}
 	input {
-		background: rgb(0 0 0 / 25%);
+		background: transparent;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		padding: 0.35rem 0.5rem;
 		min-block-size: 2.4rem;
 	}

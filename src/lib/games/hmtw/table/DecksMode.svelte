@@ -220,7 +220,7 @@
 		background: none;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		font: inherit;
 		font-size: 0.85rem;
 		padding: 0.3rem 0.7rem;
@@ -233,11 +233,11 @@
 		cursor: default;
 	}
 	.prompt {
-		border: 1px solid var(--ct-light-soft);
+		border: 1px solid var(--ct-rule-strong);
 		border-radius: 4px;
 		padding: 0.6rem 0.8rem;
 		margin: 0 0 1.25rem;
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		display: flex;
 		gap: 0.75rem;
 		align-items: center;
@@ -262,14 +262,14 @@
 	.pane__hint {
 		margin: 0;
 		font-size: 0.85rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	.pane__head button {
 		margin-inline-start: auto;
 		background: none;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		font: inherit;
 		padding: 0.25rem 0.75rem;
 		cursor: pointer;
@@ -292,7 +292,7 @@
 		padding: 0.25rem;
 		font: inherit;
 		font-size: 0.75rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 		text-decoration: underline;
 		text-underline-offset: 2px;
 		cursor: pointer;

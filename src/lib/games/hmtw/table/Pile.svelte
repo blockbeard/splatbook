@@ -87,7 +87,7 @@
 	.pile__count {
 		font-family: 'IM Fell English', Georgia, serif;
 		font-size: 0.8rem;
-		color: rgb(236 231 219 / 50%);
+		color: var(--ct-quiet);
 		margin: 0;
 		display: flex;
 		gap: 0.5rem;
@@ -98,7 +98,7 @@
 		border: 0;
 		padding: 0;
 		font: inherit;
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		text-decoration: underline;
 		text-underline-offset: 2px;
 		cursor: pointer;

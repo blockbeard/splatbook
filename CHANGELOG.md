@@ -45,6 +45,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **The card table looks like the book now.** The first pass invented a palette
+  — dark green, grey, gold, brown backs — and read as machine-made because of
+  it. This one uses the palette the book already has: black ink, and a room that
+  inverts. Grey table and white cards in light mode, near-black table and bone
+  cards in dark, with the ink unchanged in both, because paper is paper and what
+  inverts is the room rather than the objects on it.
+
+  No accent colour at all, per the reference's own reasoning that in a
+  monochrome interior the accent _is_ the ink. The one exception is the book's
+  single red, for greater dooms. Card backs are the Adherent of the Worm — the
+  mark the book's terms call "allowed and encouraged" for third-party work,
+  already in the pack — printed on the card stock, so a facedown card still
+  reads as a card.
+
 - **The card table has a design.** Dark ground, paper cards: the reference is a
   book and this is a surface you put things on, so the relationship inverts and
   the cards become the brightest objects on screen. The ground is wet stone

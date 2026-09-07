@@ -109,10 +109,10 @@
 	}
 	input[type='number'] {
 		inline-size: 3.5rem;
-		background: rgb(0 0 0 / 25%);
+		background: transparent;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		font: inherit;
 		padding: 0.25rem;
 		min-block-size: 2.2rem;
@@ -123,7 +123,7 @@
 	}
 	.draw__amount {
 		margin-inline-start: auto;
-		color: rgb(236 231 219 / 45%);
+		color: var(--ct-quiet);
 		font-size: 0.8rem;
 	}
 	.draw__total {
@@ -139,13 +139,13 @@
 		border: 0;
 		font: inherit;
 		font-size: 0.8rem;
-		color: var(--ct-light);
+		color: var(--ct-mark);
 		text-decoration: underline;
 		cursor: pointer;
 	}
 	.draw__note {
 		margin: 0.5rem 0 0;
 		font-size: 0.8rem;
-		color: rgb(236 231 219 / 50%);
+		color: var(--ct-quiet);
 	}
 </style>

@@ -122,7 +122,7 @@
 		padding-block-start: 0.5rem;
 	}
 	.seat--mine {
-		border-block-start-color: var(--ct-light-soft);
+		border-block-start-color: var(--ct-rule-strong);
 	}
 	.seat__who {
 		display: flex;
@@ -131,20 +131,22 @@
 	}
 	.seat__name {
 		font-family: 'IM Fell English', Georgia, serif;
-		color: var(--ct-card);
+		/* The room's own colour, so it inverts with the room. `--ct-card` is the
+		   colour of *paper*, which is white in light mode and would vanish. */
+		color: inherit;
 	}
 	.seat__tag {
 		font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
 		font-size: 0.7rem;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 	.seat__tag--mine {
-		color: var(--ct-light);
+		color: var(--ct-mark);
 	}
 	.seat__hand {
 		margin: 0.15rem 0 0.4rem;
 		font-size: 0.8rem;
-		color: rgb(236 231 219 / 50%);
+		color: var(--ct-quiet);
 	}
 	.seat__durable {
 		border-radius: 4px;
@@ -155,7 +157,7 @@
 		border: 1px dashed var(--ct-rule);
 		border-radius: var(--ct-radius);
 		background: none;
-		color: rgb(236 231 219 / 40%);
+		color: var(--ct-quiet);
 		font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
 		font-size: 0.7rem;
 		cursor: pointer;
@@ -169,7 +171,7 @@
 		background: none;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: var(--ct-card);
+		color: inherit;
 		font: inherit;
 		font-size: 0.8rem;
 		padding: 0.15rem 0.5rem;
@@ -177,6 +179,6 @@
 	}
 	.seat__actions .quiet {
 		border-color: transparent;
-		color: rgb(236 231 219 / 55%);
+		color: var(--ct-quiet);
 	}
 </style>
