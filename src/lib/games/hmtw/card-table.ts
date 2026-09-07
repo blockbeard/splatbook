@@ -18,14 +18,32 @@ import { z } from 'zod';
 import type { CardTableModule, CardTableOutcome } from '../types';
 import {
 	TABLE_SCHEMA_VERSION,
+	addOpponent,
 	addSeat,
+	advanceCount,
+	beginRound,
+	clearFacedown,
 	createTable,
+	discardZone,
+	emptyInto,
+	endRound,
 	migrateTable,
 	moveCard,
+	mulliganGmHand,
+	opponentZone,
+	placeFacedown,
 	projectFor,
+	removeOpponent,
 	removeSeat,
 	reshuffleDeck,
+	revealFacedown,
+	rewindCount,
+	seatZone,
+	setCount,
 	setGmSeat,
+	setMinorActions,
+	setMode,
+	updateOpponent,
 	withFoolCards,
 	type CardTable,
 	type DeckDefinition
@@ -50,7 +68,59 @@ export const commandSchema = z.discriminatedUnion('type', [
 		to: zoneId
 	}),
 	/** Shuffle a deck's discard back into it. */
-	z.strictObject({ type: z.literal('reshuffle'), deck: z.enum(['player', 'gm']) })
+	z.strictObject({ type: z.literal('reshuffle'), deck: z.enum(['player', 'gm']) }),
+
+	/* ---- The Challenge ---------------------------------------------------- */
+
+	/**
+	 * Switch views. Leaving a Challenge sweeps the table, which is why the
+	 * interface confirms first — this is the one command that destroys work.
+	 */
+	z.strictObject({ type: z.literal('set-mode'), mode: z.enum(['decks', 'challenge']) }),
+	/** Deal a round. The GM's number is theirs to decide; the checklist suggests. */
+	z.strictObject({
+		type: z.literal('begin-round'),
+		playerHand: z.number().int().min(0).max(20),
+		gmHand: z.number().int().min(0).max(30)
+	}),
+	z.strictObject({ type: z.literal('end-round') }),
+	/** Discard the GM's hand and draw the same number again. */
+	z.strictObject({ type: z.literal('mulligan') }),
+	/** Call an initiative number, or stop counting. */
+	z.strictObject({
+		type: z.literal('set-count'),
+		count: z.number().int().min(1).max(30).nullable()
+	}),
+	z.strictObject({ type: z.literal('advance-count') }),
+	z.strictObject({ type: z.literal('rewind-count') }),
+	/** Open or shut the window in which anyone may declare a minor action. */
+	z.strictObject({ type: z.literal('minor-actions'), open: z.boolean() }),
+	/** Move everything played face up into the discard. Ch.7's Sweep. */
+	z.strictObject({ type: z.literal('sweep') }),
+	/** Name an enemy, or a group of them. */
+	z.strictObject({
+		type: z.literal('add-opponent'),
+		id: z.string().min(1).max(60),
+		name: z.string().min(1).max(60),
+		count: z.number().int().min(1).max(999)
+	}),
+	z.strictObject({ type: z.literal('remove-opponent'), id: z.string().min(1).max(60) }),
+	z.strictObject({
+		type: z.literal('update-opponent'),
+		id: z.string().min(1).max(60),
+		name: z.string().min(1).max(60).optional(),
+		count: z.number().int().min(1).max(999).optional()
+	}),
+	/** Lay a card down, declaring what it is for. The label is public. */
+	z.strictObject({
+		type: z.literal('place-facedown'),
+		holder: z.string().min(1).max(60),
+		from: z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() }),
+		position: z.enum(['turn', 'minor']),
+		label: z.string().min(1).max(60)
+	}),
+	z.strictObject({ type: z.literal('reveal-facedown'), holder: z.string().min(1).max(60) }),
+	z.strictObject({ type: z.literal('clear-facedown'), holder: z.string().min(1).max(60) })
 ]);
 
 export type CardTableCommand = z.infer<typeof commandSchema>;
@@ -116,6 +186,110 @@ export const hmtwCardTable: CardTableModule = {
 					seat: context.actorSeatId
 				});
 			}
+			case 'set-mode': {
+				return state(setMode(table, parsed.data.mode), 'set-mode', {
+					mode: parsed.data.mode,
+					seat: context.actorSeatId
+				});
+			}
+			case 'begin-round': {
+				const next = beginRound(table, {
+					playerHand: parsed.data.playerHand,
+					gmHand: parsed.data.gmHand,
+					rng: context.rng
+				});
+				// Counts, never cards: how many you drew is table knowledge, what
+				// you drew is not.
+				return state(next, 'begin-round', {
+					round: next.round.number,
+					playerHand: parsed.data.playerHand,
+					gmHand: parsed.data.gmHand
+				});
+			}
+			case 'end-round': {
+				const next = endRound(table, context.rng);
+				return state(next, 'end-round', { round: table.round.number });
+			}
+			case 'mulligan': {
+				return state(mulliganGmHand(table, context.rng), 'mulligan', {
+					seat: context.actorSeatId
+				});
+			}
+			case 'set-count':
+				return state(setCount(table, parsed.data.count), 'count', { count: parsed.data.count });
+			case 'advance-count': {
+				const next = advanceCount(table);
+				return state(next, 'count', { count: next.round.count });
+			}
+			case 'rewind-count': {
+				const next = rewindCount(table);
+				return state(next, 'count', { count: next.round.count });
+			}
+			case 'minor-actions':
+				return state(setMinorActions(table, parsed.data.open), 'minor-actions', {
+					open: parsed.data.open
+				});
+			case 'sweep': {
+				// Ch.7's Sweep: what was played face up goes to the discard, and
+				// facedown cards stay, because they have not happened yet.
+				let next = table;
+				for (const seat of table.seats) {
+					const deck = seat === table.gmSeat ? 'gm' : 'player';
+					next = emptyInto(next, seatZone(seat, 'played'), discardZone(deck));
+				}
+				for (const opponent of table.opponents) {
+					next = emptyInto(next, opponentZone(opponent.id, 'played'), discardZone('gm'));
+				}
+				return state(next, 'sweep', { seat: context.actorSeatId });
+			}
+			case 'add-opponent':
+				return state(
+					addOpponent(table, {
+						id: parsed.data.id,
+						name: parsed.data.name,
+						count: parsed.data.count
+					}),
+					'add-opponent',
+					{ name: parsed.data.name, count: parsed.data.count }
+				);
+			case 'remove-opponent':
+				return state(removeOpponent(table, parsed.data.id), 'remove-opponent', {
+					id: parsed.data.id
+				});
+			case 'update-opponent':
+				return state(
+					updateOpponent(table, parsed.data.id, {
+						name: parsed.data.name,
+						count: parsed.data.count
+					}),
+					'update-opponent',
+					{ id: parsed.data.id }
+				);
+			case 'place-facedown': {
+				const placed = placeFacedown(
+					table,
+					parsed.data.holder,
+					parsed.data.from,
+					{ position: parsed.data.position, label: parsed.data.label },
+					actor
+				);
+				if (!placed.ok) return fail(placed.reason);
+				// The declared action is public by ch.7's own rule; the value is not.
+				return state(placed.table, 'place-facedown', {
+					holder: parsed.data.holder,
+					position: parsed.data.position,
+					label: parsed.data.label
+				});
+			}
+			case 'reveal-facedown': {
+				const revealed = revealFacedown(table, parsed.data.holder);
+				if (!revealed.ok) return fail(revealed.reason);
+				return state(revealed.table, 'reveal-facedown', { holder: parsed.data.holder });
+			}
+			case 'clear-facedown':
+				return state(clearFacedown(table, parsed.data.holder), 'clear-facedown', {
+					holder: parsed.data.holder
+				});
 			case 'reshuffle': {
 				// The seed stays here. A shuffle's event carries no payload at all,
 				// because anything derived from the order is the order.

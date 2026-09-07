@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The Challenge, played by hand.** Deal a round, place initiative, play cards
+  face up or lay one face down with a declared action, sweep, count the
+  initiative up, and end the round. The table shows you where everything is and
+  moves what you tell it to; it does not run the round and never refuses a play.
+
+  The GM's draw is a checklist rather than a number box — ch.7's three cards
+  plus six cumulative reasons, rechecked every round — and it suggests a number
+  the GM can overrule. Hands sort by value, because the book's own worked
+  example has the GM do exactly that, and the GM's hand also splits lesser dooms
+  from greater, because the mulligan is offered for a hand that is "mostly
+  greater dooms" and grouping is the interface answering the only question that
+  rule asks.
+
+  Both modes share one pair of decks, which was the point of having modes at
+  all. Leaving a Challenge sweeps the table to the discards — Crawlspace's
+  answer, and the book's — sparing inspiration cards, which last until used or
+  until the session ends rather than until the fight does. It confirms first,
+  since it is the one control here that destroys work.
+
 - **Decks mode — a shared card table you can actually play at.** Two decks and
   their discards, a card turned over into the discard, a shuffle, and the Fool
   prompting both decks to be shuffled when it comes out. Seats join by link

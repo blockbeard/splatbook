@@ -9,6 +9,7 @@
  */
 
 import type { FacedownAction } from './exceptions';
+import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
 import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zones';
 
@@ -20,9 +21,10 @@ import { deckZone, opponentZones, seatZones, tableZones, type Zone } from './zon
  * v2: `gmSeat` and `opponents`.
  * v3: `round` and `foolCards`.
  * v4: `facedown`, and the round's `interrupt` / `extraTurn`.
- * v5 (this commit): `reach` on every zone.
+ * v5: `reach` on every zone.
+ * v6 (this commit): `mode`.
  */
-export const TABLE_SCHEMA_VERSION = 5;
+export const TABLE_SCHEMA_VERSION = 6;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -59,6 +61,8 @@ export interface CardTable {
 	gmSeat: string | null;
 	/** The enemies in play, in the order the GM added them. */
 	opponents: Opponent[];
+	/** Which view is up. The decks are shared by both, deliberately. */
+	mode: TableMode;
 	/** Where the round has got to. `number: 0` before the first one. */
 	round: Round;
 	/**
@@ -147,6 +151,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		seats: [...seats],
 		gmSeat: null,
 		opponents: [],
+		mode: 'decks',
 		round: newRound(),
 		facedown: {},
 		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
@@ -183,6 +188,9 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v5 → v6: a table that predates the modes opens on the decks, which is what
+ * it was.
+ *
  * v4 → v5: every zone gains a `reach`. Derived from the zone's own id, since a
  * hand is the only thing nobody else may take from and hands are exactly the
  * zones whose ids end in `:hand`. A migration is the right place for a
@@ -209,6 +217,7 @@ export function migrateTable(raw: CardTable): CardTable {
 		seats: raw.seats ?? [],
 		gmSeat: raw.gmSeat ?? null,
 		opponents: raw.opponents ?? [],
+		mode: raw.mode ?? 'decks',
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
 		zones: Object.fromEntries(

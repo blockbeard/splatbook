@@ -38,6 +38,7 @@ export {
 	type DeckDefinition,
 	type Opponent
 } from './table';
+export { setMode, type TableMode } from './mode';
 export {
 	advanceCount,
 	beginRound,

@@ -17,6 +17,8 @@ export interface ProjectedZone {
 
 export interface ProjectedTable {
 	seats: string[];
+	/** Which view is up. Both share one pair of decks. */
+	mode: 'decks' | 'challenge';
 	gmSeat: string | null;
 	opponents: { id: string; name: string; count: number }[];
 	round: {

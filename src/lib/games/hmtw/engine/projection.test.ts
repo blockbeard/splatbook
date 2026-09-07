@@ -165,6 +165,17 @@ describe('what stays public on purpose', () => {
 		expect(view.round.number).toBe(1);
 	});
 
+	it('carries every public field a client needs to render, not just the zones', () => {
+		// The failure this catches: `mode` was added to the table's state and not
+		// to the projection, so a command switched the view and no client ever
+		// saw it. Nothing type-checked it, because a projection is a different
+		// shape from the state it comes from.
+		const view = projectFor(inPlay(), 's1');
+		for (const key of ['mode', 'seats', 'gmSeat', 'opponents', 'round', 'facedown', 'zones']) {
+			expect(view).toHaveProperty(key);
+		}
+	});
+
 	it('says whose view it is', () => {
 		expect(projectFor(inPlay(), 's1').viewer).toBe('s1');
 		expect(projectFor(inPlay()).viewer).toBeNull();

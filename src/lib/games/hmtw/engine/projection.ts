@@ -20,6 +20,7 @@
 import { canSeeFaces } from './moves';
 import type { FacedownAction } from './exceptions';
 import type { Opponent, CardTable } from './table';
+import type { TableMode } from './mode';
 import type { Round } from './round';
 import type { Zone, ZoneVisibility } from './zones';
 
@@ -37,6 +38,8 @@ export interface ProjectedZone {
 export interface ProjectedTable {
 	schemaVersion: number;
 	seats: string[];
+	/** Which view is up. Public: everyone at a table is at the same one. */
+	mode: TableMode;
 	gmSeat: string | null;
 	opponents: Opponent[];
 	round: Round;
@@ -80,6 +83,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 	return {
 		schemaVersion: table.schemaVersion,
 		seats: [...table.seats],
+		mode: table.mode,
 		gmSeat: table.gmSeat,
 		opponents: table.opponents.map((o) => ({ ...o })),
 		round: { ...table.round },

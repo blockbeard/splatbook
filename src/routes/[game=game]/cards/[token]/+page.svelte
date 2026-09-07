@@ -12,6 +12,7 @@
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import DecksMode from '$lib/games/hmtw/table/DecksMode.svelte';
+	import ChallengeMode from '$lib/games/hmtw/table/ChallengeMode.svelte';
 	import { buildFaces } from '$lib/games/hmtw/table/faces';
 	import { pollingTransport } from '$lib/card-table-sync';
 	import { fetchSince, newRequestKey, sendCommand } from '$lib/card-table/client';
@@ -58,12 +59,27 @@
 			isHidden: () => document.hidden,
 			// Decks mode is the quiet one; the Challenge is where a beat of delay
 			// would show, and it will say so when it exists.
-			isBusy: () => false,
+			// A Challenge is where a beat of delay shows, so it is asked about more
+			// often; the decks are quiet enough for the slower cadence.
+			isBusy: () => table.mode === 'challenge',
 			version
 		});
 		transport.start();
 		return () => transport.stop();
 	});
+
+	/**
+	 * Leaving a Challenge sweeps the table to the discards, so it asks first.
+	 * This is the one control here that destroys work, and a misclick costing a
+	 * readied Dodge and five hands is how people stop trusting an app.
+	 */
+	function leaveChallenge() {
+		if (table.mode === 'decks') return;
+		const ok = confirm(
+			'End the Challenge? Every card on the table goes to the discards. Inspiration cards stay.'
+		);
+		if (ok) run({ type: 'set-mode', mode: 'decks' });
+	}
 
 	async function run(command: unknown) {
 		if (busy) return;
@@ -143,15 +159,41 @@
 
 	{#if notice}<p class="notice">{notice}</p>{/if}
 
-	<DecksMode
-		{table}
-		{seats}
-		{faces}
-		mySeatId={data.mySeat?.id ?? null}
-		canAct={admitted}
-		{busy}
-		onCommand={run}
-	/>
+	{#if admitted}
+		<div class="modes">
+			<button type="button" class:on={table.mode === 'decks'} onclick={() => leaveChallenge()}
+				>Decks</button
+			>
+			<button
+				type="button"
+				class:on={table.mode === 'challenge'}
+				onclick={() => run({ type: 'set-mode', mode: 'challenge' })}>Challenge</button
+			>
+		</div>
+	{/if}
+
+	{#if table.mode === 'challenge'}
+		<ChallengeMode
+			{table}
+			{seats}
+			{faces}
+			challengePack={data.pack['data/challenge.json'] as never}
+			mySeatId={data.mySeat?.id ?? null}
+			canAct={admitted}
+			{busy}
+			onCommand={run}
+		/>
+	{:else}
+		<DecksMode
+			{table}
+			{seats}
+			{faces}
+			mySeatId={data.mySeat?.id ?? null}
+			canAct={admitted}
+			{busy}
+			onCommand={run}
+		/>
+	{/if}
 </div>
 
 <style>
@@ -223,5 +265,25 @@
 	}
 	.waiting {
 		margin: 1rem 1.25rem;
+	}
+	.modes {
+		display: flex;
+		gap: 0.4rem;
+		padding: 0 1.25rem;
+	}
+	.modes button {
+		background: none;
+		border: 1px solid var(--ct-rule-strong);
+		border-radius: 3px;
+		color: rgb(236 231 219 / 60%);
+		font: inherit;
+		font-family: 'IM Fell Great Primer SC', Georgia, serif;
+		padding: 0.35rem 0.9rem;
+		min-block-size: 2.4rem;
+		cursor: pointer;
+	}
+	.modes button.on {
+		border-color: var(--ct-light);
+		color: var(--ct-light);
 	}
 </style>
