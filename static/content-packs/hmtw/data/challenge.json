@@ -166,6 +166,18 @@
 				"name": "Vigilance",
 				"greaterDoomForbidden": true
 			}
+		],
+		"gmOnly": [
+			{
+				"id": "greater-doom",
+				"name": "Greater doom ability",
+				"requires": "greater"
+			},
+			{
+				"id": "favour",
+				"name": "Discard for favour",
+				"requires": "greater"
+			}
 		]
 	}
 }

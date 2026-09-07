@@ -17,6 +17,8 @@
 	import Hand from './Hand.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { suggest } from './guide';
+	import Actions from './Actions.svelte';
+	import { cardsForAction, type Action } from './actions';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { createSelection, type Pick } from '$lib/card-table/selection';
@@ -36,6 +38,7 @@
 		seats: { id: string; name: string; status: string; isGm: boolean }[];
 		faces: FaceIndex;
 		challengePack: {
+			actions: import('./actions').ActionCatalogue;
 			handSizes: {
 				player: { default: number };
 				gm: {
@@ -63,6 +66,8 @@
 	// svelte-ignore state_referenced_locally
 	let playerHand = $state(challengePack.handSizes.player.default);
 	let newEnemy = $state('');
+	let chosenAction = $state<Action | null>(null);
+	let customAction = $state('');
 	let declaring = $state<{ holder: string; position: 'turn' | 'minor' } | null>(null);
 	let declaredAs = $state('');
 
@@ -74,6 +79,24 @@
 	 * below stays exactly as available with the guide on as with it off.
 	 */
 	const guide = $derived(table.guided ? suggest(table, seats) : null);
+
+	const myHand = $derived(mySeatId ? (table.zones[`seat:${mySeatId}:hand`]?.cards ?? []) : []);
+	/**
+	 * The other direction: with an action picked, the cards that pay for it lift
+	 * in the hand. Empty when nothing is picked, so the hand is quiet by default.
+	 */
+	const litCards = $derived(
+		chosenAction
+			? cardsForAction(
+					challengePack.actions,
+					chosenAction,
+					myHand.map((c) => faces[c]).filter(Boolean),
+					{ asGm: isGm }
+				)
+			: []
+	);
+	/** Whatever the player has said this play is for — a menu pick or their own words. */
+	const declaredLabel = $derived(customAction.trim() || chosenAction?.name || '');
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
 	const zone = (id: string) => table.zones[id];
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
@@ -96,7 +119,7 @@
 			holder: declaring.holder,
 			from: selectedPick,
 			position: declaring.position,
-			label: declaredAs.trim() || 'Facedown'
+			label: declaredAs.trim() || declaredLabel || 'Facedown'
 		});
 		selection.clear();
 		declaring = null;
@@ -383,13 +406,26 @@
 
 	{#if mySeatId}
 		<div class="ch__hand">
-			<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>
-			<Hand
-				zone={zone(`seat:${mySeatId}:hand`)}
+			<div>
+				<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>
+				<Hand
+					zone={zone(`seat:${mySeatId}:hand`)}
+					{faces}
+					grouped={table.gmSeat === mySeatId}
+					selected={selectedPick}
+					lit={litCards}
+					onSelect={select}
+				/>
+			</div>
+			<Actions
+				catalogue={challengePack.actions}
 				{faces}
-				grouped={table.gmSeat === mySeatId}
-				selected={selectedPick}
-				onSelect={select}
+				heldCard={selectedPick?.zone === `seat:${mySeatId}:hand`
+					? (selectedPick.card ?? null)
+					: null}
+				bind:chosen={chosenAction}
+				bind:custom={customAction}
+				asGm={isGm}
 			/>
 		</div>
 	{/if}
@@ -624,6 +660,10 @@
 	.ch__hand {
 		border-block-start: 1px solid var(--ct-rule-strong);
 		padding-block-start: 0.75rem;
+		display: flex;
+		gap: 2rem;
+		flex-wrap: wrap;
+		align-items: flex-start;
 	}
 	.tag-btn,
 	.declare button {

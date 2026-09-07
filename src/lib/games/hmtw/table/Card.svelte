@@ -37,6 +37,7 @@
 		declared = null,
 		sideways = false,
 		selected = false,
+		lit = false,
 		greaterDoom = false,
 		pick,
 		onSelect,
@@ -49,6 +50,8 @@
 		declared?: string | null;
 		sideways?: boolean;
 		selected?: boolean;
+		/** This card would pay for the action currently picked. A hint, not a gate. */
+		lit?: boolean;
 		greaterDoom?: boolean;
 		pick: Pick;
 		onSelect?: (pick: Pick) => void;
@@ -83,6 +86,7 @@
 		class:ct-card--down={faceDown}
 		class:ct-card--sideways={sideways}
 		class:ct-card--selected={selected}
+		class:ct-card--lit={lit}
 		class:ct-card--greater={greaterDoom}
 		aria-label={label}
 		aria-pressed={selected}

@@ -127,7 +127,14 @@ export const challengeSchema = z.strictObject({
 	actions: z.strictObject({
 		free: z.array(actionSchema),
 		bySuit: z.record(id, z.array(actionSchema)),
-		anySuit: z.array(actionSchema)
+		anySuit: z.array(actionSchema),
+		/**
+		 * What only the GM can spend a card on: a creature's greater doom
+		 * ability, or a greater doom discarded for favour (ch.7, "Greater
+		 * dooms"). Here rather than in app code because they are game strings,
+		 * and `requires` names the doom tier that pays for them.
+		 */
+		gmOnly: z.array(actionSchema.extend({ requires: z.enum(['lesser', 'greater']) }))
 	})
 });
 

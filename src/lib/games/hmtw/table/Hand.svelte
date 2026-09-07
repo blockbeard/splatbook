@@ -20,6 +20,7 @@
 		zone,
 		faces,
 		grouped = false,
+		lit = [],
 		selected = null,
 		onSelect
 	}: {
@@ -27,6 +28,8 @@
 		faces: FaceIndex;
 		/** Split lesser dooms from greater — the GM's hand, and only theirs. */
 		grouped?: boolean;
+		/** Cards the chosen action would be paid with — lifted, never filtered. */
+		lit?: string[];
 		selected?: Pick | null;
 		onSelect?: (pick: Pick) => void;
 	} = $props();
@@ -53,6 +56,7 @@
 								face={faces[card] ?? null}
 								greaterDoom={faces[card]?.greaterDoom ?? false}
 								selected={selected?.card === card && selected?.zone === zone.id}
+								lit={lit.includes(card)}
 								pick={{ zone: zone.id, card }}
 								{onSelect}
 							/>
@@ -68,6 +72,7 @@
 			<Card
 				face={faces[card] ?? null}
 				selected={selected?.card === card && selected?.zone === zone.id}
+				lit={lit.includes(card)}
 				pick={{ zone: zone.id, card }}
 				{onSelect}
 			/>

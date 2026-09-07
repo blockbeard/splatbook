@@ -45,6 +45,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   top of the player deck — which is why it ships before any of the Challenge
   machinery exists.
 
+- **Action menus, in both directions.** Pick up a card and the actions it pays
+  for lift; pick an action and the cards that pay for it lift in your hand.
+  Neither filters the other — everything stays selectable, because a menu that
+  lists only legal choices refuses a play exactly as a rule would, and the GM
+  rules on things the book never anticipated. There is always a "something
+  else" line to type in whatever was just ruled.
+
+  What lifts depends on who is holding the card. A player reads from the suit,
+  per ch.7's suit-matching rule. The GM reads from the doom tier instead,
+  because majors have no suits: a lesser doom pays for any Challenge Action, a
+  greater doom for a creature's greater doom abilities, for any miscellaneous
+  action _except_ Vigilance, or discarded for favour. Those last two are game
+  strings, so they live in the pack rather than in the code.
+
 - **Guided mode — the table walks the round, if you want it to.** The GM turns
   it on and the table says what is happening and offers the obvious next thing:
   who is still to place initiative, when everything is down, whose number the

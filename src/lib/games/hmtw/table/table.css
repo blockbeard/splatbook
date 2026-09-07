@@ -239,6 +239,16 @@ html.dark .ct {
 	outline-offset: 2px;
 }
 
+/*
+ * A card the chosen action would be paid with. Quieter than selection, because
+ * it is an answer to a question rather than a thing you have picked up — and
+ * every other card is still just as clickable.
+ */
+[data-game='hmtw'] .ct-card--lit {
+	outline: 1px solid var(--ct-mark);
+	outline-offset: 2px;
+}
+
 [data-game='hmtw'] .ct-drop {
 	outline: 1px dashed var(--ct-rule-strong);
 	outline-offset: 3px;
