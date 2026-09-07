@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Decks mode — a shared card table you can actually play at.** Two decks and
+  their discards, a card turned over into the discard, a shuffle, and the Fool
+  prompting both decks to be shuffled when it comes out. Seats join by link
+  with a character's name and no account; the GM lets them in, and a vacant GM
+  chair can be taken by anyone already at the table.
+
+  The discard is a _source_ as well as a destination, which is the one
+  non-obvious thing here: ch.5's High Chant picks inspiration cards out of the
+  minor arcana discard and hands them round, so you look through the pile, take
+  a named card, and drop it into a seat's slot. It is also the only pile a
+  command may name a card in, because it is the only one whose faces everyone
+  can already see.
+
+  This is most of a Crawl session on its own — a Test of Fate is a card off the
+  top of the player deck — which is why it ships before any of the Challenge
+  machinery exists.
+
 - **The card table has a design.** Dark ground, paper cards: the reference is a
   book and this is a surface you put things on, so the relationship inverts and
   the cards become the brightest objects on screen. The ground is wet stone
