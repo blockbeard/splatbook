@@ -30,6 +30,10 @@
 	let version = $state(data.view.version);
 	// svelte-ignore state_referenced_locally
 	let table = $state(data.view.state as ProjectedTable);
+	// The roster moves without the version moving — somebody asking for a seat
+	// writes no card — so it is its own state, refreshed by every poll.
+	// svelte-ignore state_referenced_locally
+	let seats = $state(data.view.seats);
 	let busy = $state(false);
 	let notice = $state<string | null>(null);
 
@@ -49,6 +53,7 @@
 			onUpdate: (snapshot) => {
 				version = snapshot.version;
 				table = snapshot.state as ProjectedTable;
+				if (snapshot.seats) seats = snapshot.seats;
 			},
 			isHidden: () => document.hidden,
 			// Decks mode is the quiet one; the Challenge is where a beat of delay
@@ -71,6 +76,7 @@
 		if (reply.ok && reply.view) {
 			version = reply.view.version;
 			table = reply.view.state as ProjectedTable;
+			if (reply.view.seats) seats = reply.view.seats;
 		} else if (reply.reason === 'conflict') {
 			// Ordinary: somebody got there first. Re-sync and let them try again,
 			// rather than telling them off for it.
@@ -78,6 +84,7 @@
 			if (fresh) {
 				version = fresh.version;
 				table = fresh.state as ProjectedTable;
+				if (fresh.seats) seats = fresh.seats;
 			}
 			notice = 'Someone got there first.';
 		} else {
@@ -138,11 +145,12 @@
 
 	<DecksMode
 		{table}
-		seats={data.seats}
+		{seats}
 		{faces}
 		mySeatId={data.mySeat?.id ?? null}
+		canAct={admitted}
 		{busy}
-		onCommand={(c) => (admitted ? run(c) : (notice = 'You need a seat to move cards.'))}
+		onCommand={run}
 	/>
 </div>
 

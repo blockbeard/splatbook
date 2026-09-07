@@ -37,4 +37,6 @@ export interface TableSnapshot {
 	state: ProjectedTable;
 	events: { version: number; kind: string; data: unknown }[];
 	seatId: string | null;
+	/** The roster, which changes without the table's version moving. */
+	seats: { id: string; name: string; status: string; isGm: boolean }[];
 }

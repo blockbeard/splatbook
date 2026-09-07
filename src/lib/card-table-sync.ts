@@ -27,6 +27,12 @@ export interface TableSnapshot {
 	state: unknown;
 	/** Public facts since the client's cursor, oldest first. */
 	events: { version: number; kind: string; data: unknown }[];
+	/**
+	 * Who is at the table. Carried on every poll because the roster moves
+	 * without the version moving — asking for a seat writes no card — so a
+	 * version-only check would never notice somebody arriving.
+	 */
+	seats?: { id: string; name: string; status: string; isGm: boolean }[];
 }
 
 export interface TableTransport {
@@ -103,9 +109,13 @@ export function pollingTransport(opts: SyncOptions): TableTransport {
 		inFlight = true;
 		try {
 			const snapshot = await opts.fetchSince(version);
-			if (snapshot && snapshot.version !== version) {
+			if (snapshot) {
+				// Delivered whenever anything came back, not only when the version
+				// moved: the roster changes without a card moving, and a GM has to
+				// see a join request arrive.
+				const moved = snapshot.version !== version;
 				version = snapshot.version;
-				lastChangeAt = now();
+				if (moved) lastChangeAt = now();
 				opts.onUpdate(snapshot);
 			}
 		} catch (error) {

@@ -138,6 +138,16 @@ export interface TableView {
 	events: { version: number; kind: string; data: unknown }[];
 	/** The viewer's own seat id, or null. */
 	seatId: string | null;
+	/**
+	 * Who is here and who is waiting.
+	 *
+	 * Carried on every poll rather than only in the page load, because the
+	 * roster changes without the table's version moving: somebody asking for a
+	 * seat writes no card. Leaving it to the page load meant a GM never saw a
+	 * join request arrive — the one person who has to act on it — until they
+	 * happened to reload.
+	 */
+	seats: { id: string; name: string; status: string; isGm: boolean }[];
 }
 
 export async function viewFor(db: Db, ctx: TableContext, sinceVersion: number): Promise<TableView> {
@@ -146,7 +156,8 @@ export async function viewFor(db: Db, ctx: TableContext, sinceVersion: number): 
 		version: ctx.row.version,
 		state: ctx.module.project(ctx.state, ctx.seat?.id ?? null),
 		events: events.map((e) => ({ version: e.version, kind: e.kind, data: e.data })),
-		seatId: ctx.seat?.id ?? null
+		seatId: ctx.seat?.id ?? null,
+		seats: ctx.seats.map((s) => ({ id: s.id, name: s.name, status: s.status, isGm: s.isGm }))
 	};
 }
 

@@ -96,7 +96,7 @@ describe('the polling transport', () => {
 		expect(h.updates.map((u) => u.version)).toEqual([4, 7]);
 	});
 
-	it('says nothing happened when nothing did', async () => {
+	it('says nothing happened when the server sent nothing', async () => {
 		const h = harness();
 		h.reply(null, null);
 		h.transport.start();
@@ -104,6 +104,32 @@ describe('the polling transport', () => {
 		await h.fire();
 		expect(h.updates).toEqual([]);
 		expect(h.transport.version).toBe(0);
+	});
+
+	it('delivers a reply whose version has not moved', async () => {
+		// The roster changes without a card moving — asking for a seat writes no
+		// card — so a version-only check would never show a GM a join request.
+		const h = harness();
+		h.reply({
+			version: 0,
+			state: {},
+			events: [],
+			seats: [{ id: 's1', name: 'Grimwold', status: 'pending', isGm: false }]
+		});
+		h.transport.start();
+		await h.fire();
+		expect(h.updates).toHaveLength(1);
+		expect(h.updates[0].seats?.[0].name).toBe('Grimwold');
+	});
+
+	it('does not treat a roster change as table activity', async () => {
+		// Otherwise a table where people join and leave would never back off.
+		const h = harness();
+		h.reply({ version: 0, state: {}, events: [] }, null);
+		h.transport.start();
+		h.advance(120_000);
+		await h.fire();
+		expect(h.delayOf()).toBe(POLL_IDLE_MS * 4);
 	});
 
 	it('asks the server nothing while the tab is hidden', async () => {

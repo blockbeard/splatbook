@@ -25,6 +25,7 @@
 		seats,
 		faces,
 		mySeatId,
+		canAct = false,
 		busy = false,
 		onCommand
 	}: {
@@ -32,6 +33,8 @@
 		seats: { id: string; name: string; status: string; isGm: boolean }[];
 		faces: FaceIndex;
 		mySeatId: string | null;
+		/** Whether this viewer holds an admitted seat. Watchers may look, not touch. */
+		canAct?: boolean;
 		busy?: boolean;
 		onCommand: (command: unknown) => void;
 	} = $props();
@@ -42,21 +45,37 @@
 	let openPile = $state<string | null>(null);
 	let zoomed = $state<string | null>(null);
 
-	const isGm = $derived(mySeatId !== null && table.gmSeat === mySeatId);
+	const isGm = $derived(canAct && table.gmSeat === mySeatId);
+	/** Nothing is offered to somebody who cannot use it. A control that refuses
+	 * when pressed is worse than one that is plainly not for you. */
+	const locked = $derived(busy || !canAct);
 	const zone = (id: string) => table.zones[id];
 
 	function select(pick: Pick) {
+		if (!canAct) return;
 		selection.select(pick);
 	}
 
 	function drop(zoneId: string) {
+		if (!canAct) return;
 		const move = selection.place(zoneId);
 		if (move) onCommand({ type: 'move', from: move.from, to: move.to });
 	}
 
 	/** The Fool has come out, so both decks want shuffling at the end of the round. */
 	const foolIsOut = $derived(table.round.foolDrawn);
+
+	function onKey(event: KeyboardEvent) {
+		if (event.key !== 'Escape') return;
+		// One key, in the order you would expect to back out: close the zoom,
+		// then the pane, then put down whatever you are holding.
+		if (zoomed) zoomed = null;
+		else if (openPile) openPile = null;
+		else selection.clear();
+	}
 </script>
+
+<svelte:window onkeydown={onKey} />
 
 <div class="decks">
 	<SeatRail
@@ -100,7 +119,7 @@
 					<button
 						type="button"
 						class="decks__flip"
-						disabled={busy || zone(`deck:${deck}`).count === 0}
+						disabled={locked || zone(`deck:${deck}`).count === 0}
 						onclick={() =>
 							onCommand({ type: 'move', from: { zone: `deck:${deck}` }, to: `discard:${deck}` })}
 					>
@@ -143,14 +162,21 @@
 		</div>
 		<div class="pane__cards">
 			{#each pile.cards ?? [] as card (card)}
-				<Card
-					face={faces[card] ?? null}
-					greaterDoom={faces[card]?.greaterDoom ?? false}
-					selected={selectedPick?.card === card}
-					pick={{ zone: pile.id, card }}
-					onSelect={select}
-					onContext={() => (zoomed = card)}
-				/>
+				<div class="pane__card">
+					<Card
+						face={faces[card] ?? null}
+						greaterDoom={faces[card]?.greaterDoom ?? false}
+						selected={selectedPick?.card === card}
+						pick={{ zone: pile.id, card }}
+						onSelect={select}
+						onContext={() => (zoomed = card)}
+					/>
+					<!-- A visible control, because nothing may be reachable only by
+					     right-click. The context gesture is the shortcut, not the way. -->
+					<button type="button" class="pane__zoom" onclick={() => (zoomed = card)}>
+						Look closer
+					</button>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -253,6 +279,23 @@
 		gap: 0.6rem;
 		flex-wrap: wrap;
 		margin-block-start: 0.75rem;
+	}
+	.pane__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.2rem;
+	}
+	.pane__zoom {
+		background: none;
+		border: 0;
+		padding: 0.25rem;
+		font: inherit;
+		font-size: 0.75rem;
+		color: rgb(236 231 219 / 55%);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		cursor: pointer;
 	}
 	.zoom {
 		position: fixed;
