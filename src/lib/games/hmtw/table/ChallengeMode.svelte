@@ -178,37 +178,58 @@
 		</p>
 	{/if}
 
+	<!--
+		The round, and what is being done to it.
+
+		The state leads, because "Round 3, Initiative 7" is the only question
+		anybody asks mid-fight — it is how a player knows their turn has come —
+		and it used to be set in the smallest type on the page while six
+		equal-weight buttons shouted over it. The stepper sits *inside* the count
+		it moves, rather than floating among wordy buttons that have nothing to do
+		with it; everything else is round bookkeeping and reads as such.
+	-->
 	<div class="ch__strip">
-		<span class="ct-zone-label">Round {table.round.number || '—'}</span>
-		<span class="ch__count">
-			Initiative
-			<strong>{table.round.count ?? '—'}</strong>
-		</span>
+		<p class="ch__state">
+			<span class="ch__state__round">Round {table.round.number || '—'}</span>
+			<span class="ch__state__count">
+				Initiative
+				<strong>{table.round.count ?? '—'}</strong>
+				{#if isGm}
+					<span class="ch__stepper">
+						<button
+							type="button"
+							onclick={() => onCommand({ type: 'rewind-count' })}
+							aria-label="Back one">−</button
+						>
+						<button
+							type="button"
+							onclick={() => onCommand({ type: 'advance-count' })}
+							aria-label="On one">+</button
+						>
+					</span>
+				{/if}
+			</span>
+		</p>
 		{#if isGm}
-			<button
-				type="button"
-				class:on={table.guided}
-				onclick={() => onCommand({ type: 'guided', on: !table.guided })}
-			>
-				{table.guided ? 'Stop guiding' : 'Guide the round'}
-			</button>
-			<button
-				type="button"
-				onclick={() => onCommand({ type: 'rewind-count' })}
-				aria-label="Back one">−</button
-			>
-			<button type="button" onclick={() => onCommand({ type: 'advance-count' })} aria-label="On one"
-				>+</button
-			>
-			<button
-				type="button"
-				class:on={table.round.minorActions}
-				onclick={() => onCommand({ type: 'minor-actions', open: !table.round.minorActions })}
-			>
-				{table.round.minorActions ? 'Close minor actions' : 'Any minor actions?'}
-			</button>
-			<button type="button" onclick={() => onCommand({ type: 'sweep' })}>Sweep</button>
-			<button type="button" onclick={() => onCommand({ type: 'end-round' })}>End the round</button>
+			<div class="ch__round-controls">
+				<button
+					type="button"
+					class:on={table.guided}
+					onclick={() => onCommand({ type: 'guided', on: !table.guided })}
+				>
+					{table.guided ? 'Stop guiding' : 'Guide the round'}
+				</button>
+				<button
+					type="button"
+					class:on={table.round.minorActions}
+					onclick={() => onCommand({ type: 'minor-actions', open: !table.round.minorActions })}
+				>
+					{table.round.minorActions ? 'Close minor actions' : 'Any minor actions?'}
+				</button>
+				<button type="button" onclick={() => onCommand({ type: 'sweep' })}>Sweep</button>
+				<button type="button" onclick={() => onCommand({ type: 'end-round' })}>End the round</button
+				>
+			</div>
 		{/if}
 		{#if table.round.foolDrawn}
 			<span class="ch__fool">The Fool is out — both decks shuffle at the end of the round.</span>
@@ -539,17 +560,72 @@
 	}
 	.ch__strip {
 		display: flex;
-		gap: 0.75rem;
+		gap: 0.75rem 1.25rem;
 		align-items: center;
 		flex-wrap: wrap;
 		border-block-end: 1px solid var(--ct-rule);
 		padding-block-end: 0.75rem;
 	}
-	.ch__count strong {
+	/* The state, at the top of the scale. */
+	.ch__state {
+		margin: 0;
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
-		font-size: 1.3rem;
+		font-size: var(--ct-step-loud);
 		color: var(--ct-mark);
-		margin-inline-start: 0.35rem;
+		line-height: 1.1;
+	}
+	.ch__state__round {
+		color: var(--ct-quiet);
+	}
+	.ch__state__count {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		/* At 320px the word, the number and the stepper together are wider than
+		   the gutter allows, and a flex item's default `min-width: auto` lets
+		   them push past it rather than wrap. Wrapping drops the stepper under
+		   the number it moves, which keeps them together — the point of putting
+		   them in one element. */
+		flex-wrap: wrap;
+		min-inline-size: 0;
+	}
+	.ch__state__count strong {
+		font-weight: 400;
+		/* The number is the answer; the word in front of it is the question. */
+		min-inline-size: 1.2em;
+		display: inline-block;
+	}
+	/* Bound to the number it moves, rather than loose among wordy buttons. */
+	.ch__stepper {
+		display: flex;
+		gap: 0.25rem;
+		align-self: center;
+	}
+	.ch__stepper button {
+		font-size: var(--ct-step-body);
+		min-inline-size: 2.75rem;
+		padding-inline: 0;
+	}
+	/* Round bookkeeping: once a round each, and sized accordingly. */
+	.ch__round-controls {
+		display: flex;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-inline-start: auto;
+	}
+	.ch__round-controls button {
+		font-size: var(--ct-step-label);
+		color: var(--ct-quiet);
+		padding: 0.35rem 0.7rem;
+	}
+	.ch__round-controls button.on {
+		color: var(--ct-mark);
+		border-color: var(--ct-mark);
 	}
 	.ch__fool {
 		color: var(--ct-mark);

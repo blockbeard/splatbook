@@ -407,6 +407,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **The round now says where it is, loudly.** "Round 3, Initiative 7" is the
+  only question anybody asks mid-fight — it is how a player knows their turn has
+  come — and it was set in the smallest type on the page while six equal-weight
+  buttons shouted over it. It leads the strip now, at a type step the table did
+  not previously have, and the count's − and + sit inside the number they move
+  rather than floating among wordy buttons with nothing to do with it. Guide,
+  minor actions, Sweep and End the round are once-a-round bookkeeping and are
+  sized like it.
+
 - **Dealing a round got out of the way of playing one.** The GM's draw
   checklist, the two hand-size fields and Deal took the whole first screen of
   every Challenge — on a phone, some 1,700 pixels of setup before a single card

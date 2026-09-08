@@ -65,6 +65,21 @@
 	--ct-mark: #111111;
 	--ct-doom: #8c2f22;
 
+	/*
+	 * Three type steps, and only three.
+	 *
+	 * The table had two — a small-caps label and body — and no way to emphasise
+	 * anything except by drawing a box round it, which is why every attempt at
+	 * emphasis so far has been a border. `loud` is the missing step. It is not a
+	 * general-purpose scale and no second consumer has been found for it: the
+	 * round state is what it is for, because "Round 3, Initiative 7" is the one
+	 * thing anybody looks up mid-fight and it was set in the smallest type on
+	 * the page.
+	 */
+	--ct-step-label: 0.8125rem;
+	--ct-step-body: 1rem;
+	--ct-step-loud: 1.45rem;
+
 	--ct-radius: 2px;
 	--ct-card-w: 4.25rem;
 	--ct-card-h: 7.1rem;
@@ -97,7 +112,7 @@ html.dark .ct {
 
 [data-game='hmtw'] .ct-zone-label {
 	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
-	font-size: 0.8125rem;
+	font-size: var(--ct-step-label);
 	letter-spacing: 0.04em;
 	color: var(--ct-quiet);
 }
