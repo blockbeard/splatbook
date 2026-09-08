@@ -224,18 +224,23 @@ export async function touchOnPageLoad(db: Db, tableId: string): Promise<void> {
 }
 
 /**
- * Retire a table whose token has just failed to resolve, and sweep a few more.
+ * Retire the table a token names, when a page load has just failed to find it.
  *
  * The other half of `touchOnPageLoad`: somebody followed a link to a table that
  * has aged out, which is the earliest anyone will ever know it is gone. Doing
  * the delete here means the commonest way a stale table is *found* is also the
  * way it goes, rather than waiting for the global sweep to reach it.
  *
- * Safe for a token that names nothing: that costs one select and no writes.
+ * **The token, and nothing else.** This runs on a 404, which anyone can provoke
+ * without an account by asking for a token that was never issued. Sweeping here
+ * too would have hung a scan and up to five deletes off an unauthenticated
+ * request that could be repeated at will — so the global sweep stays on the
+ * paths that found something: a table page, and the owner's own listing. A
+ * token that names no live expired table costs exactly one statement that
+ * matches nothing.
  */
 export async function retireOnMiss(db: Db, token: string): Promise<void> {
 	await expireByToken(db, token);
-	await sweepExpiredTables(db);
 }
 
 /**

@@ -148,10 +148,19 @@ export async function expireByToken(
 	token: string,
 	now: number = Date.now()
 ): Promise<boolean> {
-	const [row] = await db.select().from(cardTables).where(eq(cardTables.roomToken, token)).limit(1);
-	if (!row || !isExpired(row, now)) return false;
-	await db.delete(cardTables).where(eq(cardTables.id, row.id));
-	return true;
+	// One statement, with the expiry in the WHERE clause rather than in a read
+	// before it: a live table is untouched without ever being fetched, and two
+	// requests arriving together cannot both decide to delete the same row.
+	const rows = await db
+		.delete(cardTables)
+		.where(
+			and(
+				eq(cardTables.roomToken, token),
+				lt(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS))
+			)
+		)
+		.returning({ id: cardTables.id });
+	return rows.length > 0;
 }
 
 /**

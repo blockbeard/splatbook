@@ -256,8 +256,19 @@ describe('expiry on read', () => {
 	});
 
 	it('writes nothing for a token that names nothing', async () => {
-		// Guessing at tokens must not buy an attacker writes.
+		// A 404 is something anyone can provoke without an account, so this path
+		// must stay one statement that matches nothing. Guessing at tokens buys
+		// no writes and no sweep.
 		expect(await expireByToken(db, 'not-a-token')).toBe(false);
+	});
+
+	it('does not retire a table a *different* token names', async () => {
+		const mine = await make('mine');
+		const theirs = await make('theirs');
+		await touchCardTable(db, theirs.id, Date.now() - TABLE_RETENTION_MS - 1);
+
+		expect(await expireByToken(db, mine.roomToken)).toBe(false);
+		expect(await getCardTable(db, theirs.id)).toBeDefined();
 	});
 
 	it('takes the seats with it', async () => {
