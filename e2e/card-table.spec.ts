@@ -252,6 +252,17 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 		0
 	);
 
+	// --- The table says what happened, for somebody who cannot see it. ---
+	// Everything here moves because somebody else moved it. Without a live
+	// region you are sitting at a table that silently rearranges itself, and the
+	// count is the case that matters most: it is how the table says your turn
+	// has come.
+	const spoken = player.locator('.sr-only[aria-live="polite"]');
+	// "On one" — the count buttons carry real names rather than a bare glyph,
+	// which is the only reason this locator can exist.
+	await gm.getByRole('button', { name: 'On one' }).click();
+	await expect(spoken).toHaveText(/Initiative \d+\./, POLLED);
+
 	// --- Sweep and end the round. Facedown cards stay; the round moves on. ---
 	await gm.getByRole('button', { name: 'End the round' }).click();
 	await expect

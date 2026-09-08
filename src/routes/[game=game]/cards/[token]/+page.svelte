@@ -17,6 +17,7 @@
 	import { pollingTransport } from '$lib/card-table-sync';
 	import { fetchSince, newRequestKey, sendCommand } from '$lib/card-table/client';
 	import { reverseOf, type PublicEvent } from '$lib/games/hmtw/table/undo';
+	import { announce } from '$lib/games/hmtw/table/announce';
 	import { MAX_SEAT_NAME_LENGTH } from '$lib/card-table-limits';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import '$lib/games/hmtw/table/table.css';
@@ -54,6 +55,8 @@
 	 */
 	let notice = $state<{ text: string; passing: boolean } | null>(null);
 	let noticeTimer: ReturnType<typeof setTimeout> | undefined;
+	/** The last thing worth saying out loud. Read by the live region below. */
+	let said = $state('');
 
 	// A passing note outliving the page it belonged to is nobody's idea of tidy.
 	$effect(() => () => clearTimeout(noticeTimer));
@@ -82,6 +85,11 @@
 		fresh.sort((a, b) => a.version - b.version);
 		seenTo = fresh[fresh.length - 1].version;
 		events = [...events, ...fresh].slice(-EVENT_TAIL);
+		// Everything on this table moves because somebody else moved it. Sighted
+		// players catch that from the corner of an eye; this is the same news for
+		// anyone who cannot, and the count-up in particular is how the table says
+		// your turn has come.
+		said = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone') ?? said;
 	}
 
 	$effect(() => {
@@ -238,6 +246,13 @@
 		{notice?.text ?? ''}
 	</p>
 
+	<!--
+		What just happened, for somebody who cannot see it happen. Polite, so it
+		waits for a gap rather than cutting across whatever is being read, and
+		off-screen because everyone else can see the table itself.
+	-->
+	<p class="sr-only" aria-live="polite" aria-atomic="true">{said}</p>
+
 	{#if admitted}
 		<div class="modes">
 			{#if isGm}
@@ -382,16 +397,23 @@
 		display: flex;
 		gap: 0.4rem;
 		padding: 0 1.25rem;
+		/* 1.4.10: without this the reset button's `margin-inline-start: auto`
+		   pushed the row 23px past a 320px viewport, which is a horizontal
+		   scrollbar on the narrowest phone the criterion asks about. */
+		flex-wrap: wrap;
 	}
 	.modes button {
 		background: none;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 3px;
-		color: rgb(236 231 219 / 60%);
+		/* Was a bone-coloured literal left over from the rejected palette, which
+		   on the light table came out at 1.36:1 — very nearly invisible, and the
+		   clearest sign that this rule had never been looked at in both rooms. */
+		color: var(--ct-quiet);
 		font: inherit;
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		padding: 0.35rem 0.9rem;
-		min-block-size: 2.4rem;
+		min-block-size: 2.75rem;
 		cursor: pointer;
 	}
 	.modes button.on {

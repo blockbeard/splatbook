@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The card table says what just happened.** Everything on this table moves
+  because somebody else moved it; sighted players catch that from the corner of
+  an eye, and without it you were sitting at a table that silently rearranged
+  itself. A polite live region now reads the last thing worth saying — the deal,
+  a card played, a card laid face down and what it was declared for, the sweep,
+  and above all the count, which is how the table says your turn has come. It is
+  built from the public event log, so it cannot say anything the log does not
+  already make public.
+
 - **Card tables age out, and the mechanism now matches the promise.** A table
   nobody has come back to for six weeks goes, and takes its seats with it —
   which is what matters, because a seat holds a name a guest typed. Retention
@@ -397,6 +406,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   menus and suggest counts; the table never rules on a play.
 
 ### Changed
+
+- **The card table's quiet greys were too quiet.** An audit against WCAG 2.1 AA
+  found the light room failing 1.4.3 wherever it spoke softly: labels, counts,
+  hints and seat lines were 55% ink on a grey table, which is 3.35:1 against a
+  required 4.5. The values are now set by measurement rather than by eye —
+  quiet text at 5.60:1, and the edge of every button and field at 3.35:1 for
+  1.4.11, which asks 3. The quiet value is measured against the _recessed_
+  ground rather than the table, since that is the darkest surface it ever lands
+  on.
+
+  A leftover from the rejected palette turned up in the same pass: the mode
+  buttons were a bone-coloured literal that came out at 1.36:1 on the light
+  table — very nearly invisible, and the clearest sign that rule had never been
+  seen in both rooms. The narrow-screen layout also stopped pushing 23 pixels
+  past a 320px viewport, and the controls that were a pixel under a 44px target
+  are no longer.
+
+  Looking through a discard now takes the keyboard with it. The panel is
+  appended after everything else, so focus used to stay on the pile behind it
+  and a keyboard user had to tab through the whole table to reach the cards they
+  had just asked to see.
 
 - **A game's front door says whose it is.** `/hmtw` was titled with the game's
   name and nothing else — which is how the publisher would title it — so a

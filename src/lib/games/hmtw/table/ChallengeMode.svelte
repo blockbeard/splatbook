@@ -646,7 +646,7 @@
 		border-radius: 3px;
 		color: inherit;
 		padding: 0.3rem 0.7rem;
-		min-block-size: 2.4rem;
+		min-block-size: 2.75rem;
 		cursor: pointer;
 	}
 	button.on {
@@ -667,7 +667,7 @@
 		border-radius: 3px;
 		color: inherit;
 		padding: 0.35rem 0.5rem;
-		min-block-size: 2.4rem;
+		min-block-size: 2.75rem;
 	}
 	label {
 		display: flex;

@@ -34,12 +34,31 @@
 	--ct-table: #b8b6b1;
 	--ct-table-low: #a8a6a1;
 	--ct-rule: rgb(17 17 17 / 22%);
-	--ct-rule-strong: rgb(17 17 17 / 42%);
-	--ct-quiet: rgb(17 17 17 / 55%);
+	/*
+	 * The two of these carry weight, so both are set by measurement rather than
+	 * by eye. `--ct-rule-strong` is the edge of every button and field on this
+	 * table, which 1.4.11 wants at 3:1 against the ground: 42% ink on the grey
+	 * gave 2.41 and 55% gives 3.35. `--ct-quiet` is small text — labels, counts,
+	 * hints, seat lines — which 1.4.3 wants at 4.5:1: 55% gave 3.35 and 75%
+	 * gives 5.60.
+	 *
+	 * `--ct-quiet` is measured against `--ct-table-low`, not against the table
+	 * itself: the recessed ground is the darkest surface this text ever lands on
+	 * — the declare prompt sits there — and 70% cleared the table at 4.95 while
+	 * failing the prompt at 4.41. One token, two grounds; it has to satisfy the
+	 * worse one.
+	 *
+	 * The light room was the failing half throughout. A monochrome design has
+	 * nothing but value to spend, and it was spending too little.
+	 */
+	--ct-rule-strong: rgb(17 17 17 / 55%);
+	--ct-quiet: rgb(17 17 17 / 75%);
 
 	/* The objects. Paper and ink, unchanged between modes. */
 	--ct-card: #ffffff;
 	--ct-card-ink: #111111;
+	/* The card's own small print. On card stock, which never inverts. */
+	--ct-card-ink-quiet: rgb(17 17 17 / 62%);
 	--ct-back-ink: rgb(17 17 17 / 14%);
 
 	/* Emphasis is the ink, per the reference's own reasoning. */
@@ -63,8 +82,11 @@ html.dark .ct {
 	--ct-table: #1c1c1c;
 	--ct-table-low: #141414;
 	--ct-rule: rgb(233 231 226 / 20%);
-	--ct-rule-strong: rgb(233 231 226 / 40%);
-	--ct-quiet: rgb(233 231 226 / 60%);
+	/* 3.30 → 3.81 and 5.76 → 6.52. The dark room already passed; these keep the
+	   two rooms within sight of each other rather than letting light do all the
+	   work. */
+	--ct-rule-strong: rgb(233 231 226 / 45%);
+	--ct-quiet: rgb(233 231 226 / 65%);
 	--ct-card: #e9e7e2;
 	--ct-mark: #e9e7e2;
 	--ct-doom: #b04434;
@@ -116,7 +138,7 @@ html.dark .ct {
 [data-game='hmtw'] .ct-card__foot {
 	justify-self: end;
 	font-size: 0.75rem;
-	color: rgb(17 17 17 / 55%);
+	color: var(--ct-card-ink-quiet);
 }
 
 /* The book's own red, and the only colour on the table. */

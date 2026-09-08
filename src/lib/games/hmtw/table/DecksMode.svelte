@@ -65,12 +65,39 @@
 	/** The Fool has come out, so both decks want shuffling at the end of the round. */
 	const foolIsOut = $derived(table.round.foolDrawn);
 
+	/**
+	 * Focus follows the pane, and comes back when it goes.
+	 *
+	 * The pane is appended after everything else in the DOM, so leaving focus on
+	 * the pile that opened it meant a keyboard user had to tab through the whole
+	 * rest of the table to reach the cards they had just asked to look at. It is
+	 * not a modal — the table behind it stays usable, which is deliberate, so
+	 * this moves focus rather than trapping it.
+	 */
+	let paneEl = $state<HTMLElement | null>(null);
+	let openedFrom: HTMLElement | null = null;
+
+	function openPileFrom(id: string, event?: Event) {
+		openedFrom = (event?.currentTarget as HTMLElement) ?? (document.activeElement as HTMLElement);
+		openPile = id;
+	}
+
+	function closePane() {
+		openPile = null;
+		openedFrom?.focus();
+		openedFrom = null;
+	}
+
+	$effect(() => {
+		if (openPile && paneEl) paneEl.focus();
+	});
+
 	function onKey(event: KeyboardEvent) {
 		if (event.key !== 'Escape') return;
 		// One key, in the order you would expect to back out: close the zoom,
 		// then the pane, then put down whatever you are holding.
 		if (zoomed) zoomed = null;
-		else if (openPile) openPile = null;
+		else if (openPile) closePane();
 		else selection.clear();
 	}
 </script>
@@ -167,7 +194,7 @@
 						droppable={selectedPick !== null}
 						onSelect={select}
 						onDrop={drop}
-						onOpen={(id) => (openPile = id)}
+						onOpen={(id) => openPileFrom(id)}
 					/>
 					{#if isGm}
 						<button
@@ -186,13 +213,13 @@
 
 {#if openPile}
 	{@const pile = zone(openPile)}
-	<div class="pane">
+	<div class="pane" bind:this={paneEl} tabindex="-1" aria-label="{pile.count} cards">
 		<div class="pane__head">
 			<h2 class="ct-zone-label">{pile.count} cards</h2>
 			<p class="pane__hint">
 				Pick one up, then click a seat's Inspiration slot to give it to them.
 			</p>
-			<button type="button" onclick={() => (openPile = null)}>Close</button>
+			<button type="button" onclick={closePane}>Close</button>
 		</div>
 		<div class="pane__cards">
 			{#each pile.cards ?? [] as card (card)}
@@ -286,7 +313,7 @@
 		padding: 0.3rem 0.7rem;
 		cursor: pointer;
 		/* Comfortably over the 44px touch floor with the padding above. */
-		min-block-size: 2.4rem;
+		min-block-size: 2.75rem;
 	}
 	.decks__flip:disabled {
 		opacity: 0.4;
