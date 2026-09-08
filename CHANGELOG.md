@@ -407,6 +407,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Dealing a round got out of the way of playing one.** The GM's draw
+  checklist, the two hand-size fields and Deal took the whole first screen of
+  every Challenge — on a phone, some 1,700 pixels of setup before a single card
+  was visible, every round, for the life of the table. They fold into one
+  control that says what it leads to, opens on a table that has never dealt, and
+  closes once it has.
+
+  The Mulligan does not go with them. It is judged holding the hand — "discard
+  and draw again when it is mostly greater dooms" — so it now sits beside the
+  GM's hand, next to the lesser and greater grouping that answers the question,
+  rather than behind a panel that has closed by the time anyone can decide.
+  Adding an enemy moved to the combatants, where the enemies are; it read as a
+  pair with Deal only because the two had been put side by side.
+
 - **The card table's quiet greys were too quiet.** An audit against WCAG 2.1 AA
   found the light room failing 1.4.3 wherever it spoke softly: labels, counts,
   hints and seat lines were 55% ink on a grey table, which is 3.35:1 against a

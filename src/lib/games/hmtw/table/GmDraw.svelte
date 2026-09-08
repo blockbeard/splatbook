@@ -17,12 +17,10 @@
 	let {
 		base,
 		modifiers,
-		mulliganNote,
 		value = $bindable()
 	}: {
 		base: number;
 		modifiers: Modifier[];
-		mulliganNote: string;
 		value: number;
 	} = $props();
 
@@ -83,7 +81,6 @@
 			</button>
 		{/if}
 	</p>
-	<p class="draw__note">{mulliganNote}</p>
 </fieldset>
 
 <style>
@@ -142,10 +139,5 @@
 		color: var(--ct-mark);
 		text-decoration: underline;
 		cursor: pointer;
-	}
-	.draw__note {
-		margin: 0.5rem 0 0;
-		font-size: 0.8rem;
-		color: var(--ct-quiet);
 	}
 </style>

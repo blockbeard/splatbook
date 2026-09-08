@@ -67,12 +67,37 @@
 	// svelte-ignore state_referenced_locally
 	let playerHand = $state(challengePack.handSizes.player.default);
 	let newEnemy = $state('');
+	/**
+	 * Whether the deal panel is open — **local to this GM's browser**, never a
+	 * table command. It is one person's view of their own controls, and putting
+	 * it in the shared blob would open a panel on every screen at the table.
+	 */
+	// svelte-ignore state_referenced_locally
+	let dealOpen = $state(table.round.number === 0);
+	// svelte-ignore state_referenced_locally
+	let lastRound = table.round.number;
 	let chosenAction = $state<Action | null>(null);
 	let customAction = $state('');
 	let declaring = $state<{ holder: string; position: 'turn' | 'minor' } | null>(null);
 	let declaredAs = $state('');
 
 	const isGm = $derived(canAct && table.gmSeat === mySeatId);
+
+	/**
+	 * The panel opens by itself on a table that has never dealt, and closes when
+	 * a round arrives. Round zero and nothing else: an earlier draft opened it
+	 * whenever the GM's hand was empty, which springs a panel over the table the
+	 * moment they play their last card mid-round.
+	 *
+	 * Between those two moments it is the GM's to open, and stays where they put
+	 * it — this only reacts to the round *changing*.
+	 */
+	$effect(() => {
+		const round = table.round.number;
+		if (round === lastRound) return;
+		lastRound = round;
+		dealOpen = round === 0;
+	});
 
 	/**
 	 * What the table would do next — derived rather than stored, so it cannot
@@ -191,37 +216,36 @@
 	</div>
 
 	{#if isGm}
-		<div class="ch__gm">
-			<GmDraw
-				base={challengePack.handSizes.gm.base}
-				modifiers={challengePack.handSizes.gm.modifiers}
-				mulliganNote={challengePack.handSizes.gm.mulligan.note}
-				bind:value={gmHand}
-			/>
-			<div class="ch__deal">
-				<label>
-					Each player draws
-					<input type="number" min="0" max="20" bind:value={playerHand} />
-				</label>
-				<button
-					type="button"
-					disabled={busy}
-					onclick={() => onCommand({ type: 'begin-round', playerHand, gmHand })}
-				>
-					Deal the round
-				</button>
-				<button type="button" onclick={() => onCommand({ type: 'mulligan' })}>
-					{challengePack.handSizes.gm.mulligan.label}
-				</button>
+		<!--
+			Dealing is a once-a-round decision that was taking the permanent first
+			screen: on a phone the GM scrolled some 1,700px of checklist and fields
+			before one card was visible, every round, forever. A native <details>
+			rather than a hand-rolled panel, so the keyboard and the expanded/
+			collapsed announcement come with it.
+		-->
+		<details class="ch__deal" bind:open={dealOpen}>
+			<summary>Deal the round…</summary>
+			<div class="ch__deal__body">
+				<GmDraw
+					base={challengePack.handSizes.gm.base}
+					modifiers={challengePack.handSizes.gm.modifiers}
+					bind:value={gmHand}
+				/>
+				<div class="ch__deal__go">
+					<label>
+						Each player draws
+						<input type="number" min="0" max="20" bind:value={playerHand} />
+					</label>
+					<button
+						type="button"
+						disabled={busy}
+						onclick={() => onCommand({ type: 'begin-round', playerHand, gmHand })}
+					>
+						Deal the round
+					</button>
+				</div>
 			</div>
-			<div class="ch__enemies">
-				<label>
-					Add an enemy
-					<input bind:value={newEnemy} placeholder="Imps" autocomplete="off" />
-				</label>
-				<button type="button" onclick={addEnemy}>Add</button>
-			</div>
-		</div>
+		</details>
 	{/if}
 
 	<!-- The decks, and not merely their counts.
@@ -419,6 +443,20 @@
 				</div>
 			</section>
 		{/each}
+
+		{#if isGm}
+			<!-- With the combatants, not with the deal: an enemy arriving is a thing
+			     that happens to this row, and it read as a pair with "Deal the round"
+			     only because the two were put side by side. -->
+			<section class="combatant combatant--add">
+				<h3>Add an enemy</h3>
+				<form class="add-enemy" onsubmit={(e) => (e.preventDefault(), addEnemy())}>
+					<label class="sr-only" for="new-enemy">Enemy name</label>
+					<input id="new-enemy" bind:value={newEnemy} placeholder="Imps" autocomplete="off" />
+					<button type="submit" disabled={busy || newEnemy.trim() === ''}>Add</button>
+				</form>
+			</section>
+		{/if}
 	</div>
 
 	{#if mySeatId}
@@ -435,6 +473,20 @@
 					onDrop={drop}
 				/>
 			</div>
+			{#if isGm}
+				<!--
+					Judged holding the hand — "discard and draw again when it is mostly
+					greater dooms" — so it belongs here, beside the doom grouping that
+					answers the question, and not in the deal panel, which has closed by
+					the time anyone can decide this.
+				-->
+				<p class="ch__mulligan">
+					<button type="button" disabled={busy} onclick={() => onCommand({ type: 'mulligan' })}>
+						{challengePack.handSizes.gm.mulligan.label}
+					</button>
+					<span>{challengePack.handSizes.gm.mulligan.note}</span>
+				</p>
+			{/if}
 			<Actions
 				catalogue={challengePack.actions}
 				{faces}
@@ -503,17 +555,54 @@
 		color: var(--ct-mark);
 		font-size: 0.85rem;
 	}
-	.ch__gm {
+	/* The deal panel. Closed it is one line; open it is what it always was. */
+	.ch__deal > summary {
+		font-family: 'IM Fell Great Primer SC', Georgia, serif;
+		cursor: pointer;
+		inline-size: fit-content;
+		padding: 0.5rem 0.9rem;
+		min-block-size: 2.75rem;
+		display: flex;
+		align-items: center;
+		border: 1px solid var(--ct-rule-strong);
+		border-radius: 3px;
+		color: var(--ct-mark);
+	}
+	.ch__deal[open] > summary {
+		margin-block-end: 0.75rem;
+	}
+	.ch__deal__body {
 		display: flex;
 		gap: 1.5rem;
 		flex-wrap: wrap;
 		align-items: flex-start;
 	}
-	.ch__deal,
-	.ch__enemies {
+	.ch__deal__go {
 		display: grid;
 		gap: 0.5rem;
 		align-content: start;
+	}
+	.ch__mulligan {
+		margin: 0.75rem 0 0;
+		display: flex;
+		gap: 0.6rem;
+		align-items: baseline;
+		flex-wrap: wrap;
+		max-inline-size: 30rem;
+	}
+	.ch__mulligan span {
+		color: var(--ct-quiet);
+		font-size: 0.8rem;
+	}
+	.add-enemy {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.add-enemy input {
+		min-inline-size: 0;
+		inline-size: 7rem;
 	}
 	.ch__decks {
 		display: flex;
