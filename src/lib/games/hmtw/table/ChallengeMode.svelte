@@ -198,11 +198,13 @@
 					<span class="ch__stepper">
 						<button
 							type="button"
+							class="ct-btn"
 							onclick={() => onCommand({ type: 'rewind-count' })}
 							aria-label="Back one">−</button
 						>
 						<button
 							type="button"
+							class="ct-btn"
 							onclick={() => onCommand({ type: 'advance-count' })}
 							aria-label="On one">+</button
 						>
@@ -214,20 +216,29 @@
 			<div class="ch__round-controls">
 				<button
 					type="button"
-					class:on={table.guided}
+					class="ct-btn ct-btn--quiet"
+					class:ct-btn--on={table.guided}
 					onclick={() => onCommand({ type: 'guided', on: !table.guided })}
 				>
 					{table.guided ? 'Stop guiding' : 'Guide the round'}
 				</button>
 				<button
 					type="button"
-					class:on={table.round.minorActions}
+					class="ct-btn ct-btn--quiet"
+					class:ct-btn--on={table.round.minorActions}
 					onclick={() => onCommand({ type: 'minor-actions', open: !table.round.minorActions })}
 				>
 					{table.round.minorActions ? 'Close minor actions' : 'Any minor actions?'}
 				</button>
-				<button type="button" onclick={() => onCommand({ type: 'sweep' })}>Sweep</button>
-				<button type="button" onclick={() => onCommand({ type: 'end-round' })}>End the round</button
+				<button
+					type="button"
+					class="ct-btn ct-btn--quiet"
+					onclick={() => onCommand({ type: 'sweep' })}>Sweep</button
+				>
+				<button
+					type="button"
+					class="ct-btn ct-btn--quiet"
+					onclick={() => onCommand({ type: 'end-round' })}>End the round</button
 				>
 			</div>
 		{/if}
@@ -257,8 +268,13 @@
 						Each player draws
 						<input type="number" min="0" max="20" bind:value={playerHand} />
 					</label>
+					<!-- The one action this panel exists for, so it is the one filled
+					     button on it — which is also what tells it apart from the summary
+					     above, which says nearly the same words and opens rather than
+					     acts. -->
 					<button
 						type="button"
+						class="ct-btn ct-btn--primary"
 						disabled={busy}
 						onclick={() => onCommand({ type: 'begin-round', playerHand, gmHand })}
 					>
@@ -307,11 +323,11 @@
 					{seat.name}
 					<form method="POST" action="?/admit">
 						<input type="hidden" name="seatId" value={seat.id} />
-						<button type="submit">Let in</button>
+						<button type="submit" class="ct-btn ct-btn--primary">Let in</button>
 					</form>
 					<form method="POST" action="?/decline">
 						<input type="hidden" name="seatId" value={seat.id} />
-						<button type="submit" class="quiet">Turn away</button>
+						<button type="submit" class="ct-btn ct-btn--quiet">Turn away</button>
 					</form>
 				</span>
 			{/each}
@@ -474,7 +490,8 @@
 				<form class="add-enemy" onsubmit={(e) => (e.preventDefault(), addEnemy())}>
 					<label class="sr-only" for="new-enemy">Enemy name</label>
 					<input id="new-enemy" bind:value={newEnemy} placeholder="Imps" autocomplete="off" />
-					<button type="submit" disabled={busy || newEnemy.trim() === ''}>Add</button>
+					<button type="submit" class="ct-btn" disabled={busy || newEnemy.trim() === ''}>Add</button
+					>
 				</form>
 			</section>
 		{/if}
@@ -502,7 +519,12 @@
 					the time anyone can decide this.
 				-->
 				<p class="ch__mulligan">
-					<button type="button" disabled={busy} onclick={() => onCommand({ type: 'mulligan' })}>
+					<button
+						type="button"
+						class="ct-btn"
+						disabled={busy}
+						onclick={() => onCommand({ type: 'mulligan' })}
+					>
 						{challengePack.handSizes.gm.mulligan.label}
 					</button>
 					<span>{challengePack.handSizes.gm.mulligan.note}</span>
@@ -529,8 +551,10 @@
 			<input bind:value={declaredAs} placeholder="Riposte" autocomplete="off" />
 		</label>
 		<p class="declare__hint">Everyone sees this. Only you see the card.</p>
-		<button type="button" onclick={declare}>Lay it down</button>
-		<button type="button" class="quiet" onclick={() => (declaring = null)}>Never mind</button>
+		<button type="button" class="ct-btn ct-btn--primary" onclick={declare}>Lay it down</button>
+		<button type="button" class="ct-btn ct-btn--quiet" onclick={() => (declaring = null)}
+			>Never mind</button
+		>
 	</div>
 {/if}
 
@@ -606,7 +630,6 @@
 		align-self: center;
 	}
 	.ch__stepper button {
-		font-size: var(--ct-step-body);
 		min-inline-size: 2.75rem;
 		padding-inline: 0;
 	}
@@ -626,15 +649,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 	}
-	.ch__round-controls button {
-		font-size: var(--ct-step-label);
-		color: var(--ct-quiet);
-		padding: 0.35rem 0.7rem;
-	}
-	.ch__round-controls button.on {
-		color: var(--ct-mark);
-		border-color: var(--ct-mark);
-	}
+
 	.ch__fool {
 		color: var(--ct-mark);
 		font-size: 0.85rem;
@@ -770,6 +785,9 @@
 		font-size: 0.7rem;
 		color: var(--ct-quiet);
 	}
+	/* Not one of the three tiers: it is a word inside a heading, and giving it
+	   the tiers' 44px floor would inflate the row it sits in. An underline is
+	   what identifies it. */
 	.tag-btn {
 		background: none;
 		border: 0;
@@ -809,30 +827,10 @@
 		font-size: 0.8rem;
 		color: var(--ct-quiet);
 	}
-	button,
+	/* Buttons take their look from `.ct-btn` in table.css; what is left here is
+	   layout. */
 	input {
 		font: inherit;
-	}
-	button {
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		padding: 0.3rem 0.7rem;
-		min-block-size: 2.75rem;
-		cursor: pointer;
-	}
-	button.on {
-		border-color: var(--ct-mark);
-		color: var(--ct-mark);
-	}
-	button.quiet {
-		border-color: transparent;
-		color: var(--ct-quiet);
-	}
-	button:disabled {
-		opacity: 0.4;
-		cursor: default;
 	}
 	input {
 		background: transparent;

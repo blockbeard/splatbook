@@ -121,10 +121,18 @@
 			<p class="prompt">
 				The Fool is out. Both decks are shuffled at the end of the round.
 				{#if isGm}
-					<button type="button" onclick={() => onCommand({ type: 'reshuffle', deck: 'player' })}>
+					<button
+						type="button"
+						class="ct-btn"
+						onclick={() => onCommand({ type: 'reshuffle', deck: 'player' })}
+					>
 						Shuffle the player deck
 					</button>
-					<button type="button" onclick={() => onCommand({ type: 'reshuffle', deck: 'gm' })}>
+					<button
+						type="button"
+						class="ct-btn"
+						onclick={() => onCommand({ type: 'reshuffle', deck: 'gm' })}
+					>
 						Shuffle the GM deck
 					</button>
 				{/if}
@@ -171,7 +179,7 @@
 					/>
 					<button
 						type="button"
-						class="decks__flip"
+						class="ct-btn decks__flip"
 						disabled={locked || zone(`deck:${deck}`).count === 0}
 						onclick={() =>
 							onCommand({
@@ -199,7 +207,7 @@
 					{#if isGm}
 						<button
 							type="button"
-							class="decks__shuffle"
+							class="ct-btn ct-btn--quiet decks__shuffle"
 							onclick={() => onCommand({ type: 'reshuffle', deck })}
 						>
 							Shuffle the discard back in
@@ -219,7 +227,7 @@
 			<p class="pane__hint">
 				Pick one up, then click a seat's Inspiration slot to give it to them.
 			</p>
-			<button type="button" onclick={closePane}>Close</button>
+			<button type="button" class="ct-btn ct-btn--quiet" onclick={closePane}>Close</button>
 		</div>
 		<div class="pane__cards">
 			{#each pile.cards ?? [] as card (card)}
@@ -301,24 +309,7 @@
 		align-items: center;
 		gap: 0.5rem;
 	}
-	.decks__flip,
-	.decks__shuffle,
-	.prompt button {
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		font: inherit;
-		font-size: 0.85rem;
-		padding: 0.3rem 0.7rem;
-		cursor: pointer;
-		/* Comfortably over the 44px touch floor with the padding above. */
-		min-block-size: 2.75rem;
-	}
-	.decks__flip:disabled {
-		opacity: 0.4;
-		cursor: default;
-	}
+
 	.prompt {
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 4px;
@@ -353,13 +344,6 @@
 	}
 	.pane__head button {
 		margin-inline-start: auto;
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		font: inherit;
-		padding: 0.25rem 0.75rem;
-		cursor: pointer;
 	}
 	.pane__cards {
 		display: flex;

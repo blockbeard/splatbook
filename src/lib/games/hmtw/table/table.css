@@ -117,6 +117,75 @@ html.dark .ct {
 	color: var(--ct-quiet);
 }
 
+/* ---- Buttons: three tiers, and only three -------------------------------- */
+
+/*
+ * Every button on this table used to be the same border, the same size and the
+ * same weight, so "Deal the round", "Sweep" and "Reset the table" were
+ * indistinguishable — and on a phone the last of those wrapped onto its own row
+ * and became the most prominent control on screen.
+ *
+ * Monochrome has no accent to reach for, so the tiers are the three things it
+ * does have: fill, ink and type.
+ *
+ *   primary   filled with the ink, lettered in the room's own colour — a stamp.
+ *             At most one to a region: the action that region exists for.
+ *   (default) the outline this table already had. Ordinary controls.
+ *   quiet     the label step in quiet ink. Bookkeeping, and the things you do
+ *             once and then not again.
+ *
+ * Destructive is **not a fourth tier**. It takes `quiet` and gets its safety
+ * from distance and from asking first, because a destructive control nobody can
+ * find is its own kind of failure and one that merely looks like every other
+ * quiet control is the misclick this is meant to prevent.
+ *
+ * Quiet keeps the full border rather than losing it: `--ct-rule-strong` is the
+ * 3:1 that 1.4.11 wants of a control's boundary, and dropping to a hairline to
+ * look quieter would have bought the look with the criterion. It is quieter by
+ * ink and by type, which cost nothing.
+ */
+
+[data-game='hmtw'] .ct-btn {
+	font: inherit;
+	font-size: var(--ct-step-body);
+	background: none;
+	border: 1px solid var(--ct-rule-strong);
+	border-radius: 3px;
+	color: var(--ct-mark);
+	padding: 0.35rem 0.8rem;
+	/* Comfortably over the 44px floor once the padding is counted. */
+	min-block-size: 2.75rem;
+	cursor: pointer;
+	text-align: center;
+}
+
+[data-game='hmtw'] .ct-btn--primary {
+	background: var(--ct-mark);
+	/* The room's colour, not the card's: in dark mode the mark *is* the card, so
+	   lettering it in card colour would print bone on bone. This way it reads as
+	   ink on the light table and as a bone stamp on the dark one — 9.3:1 and
+	   13.8:1, the same inversion the cards make. */
+	color: var(--ct-table);
+	border-color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-btn--quiet {
+	font-size: var(--ct-step-label);
+	color: var(--ct-quiet);
+}
+
+/* A control that is currently *on* — guided mode, the open minor-action window,
+   the mode you are in. Reads as pressed rather than as another tier. */
+[data-game='hmtw'] .ct-btn--on {
+	border-color: var(--ct-mark);
+	color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-btn:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+
 /* ---- The card ------------------------------------------------------------ */
 
 [data-game='hmtw'] .ct-card {

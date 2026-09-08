@@ -251,7 +251,7 @@
 				use your character's name, not your own.
 			</p>
 			{#if form?.message}<p class="join__error">{form.message}</p>{/if}
-			<button type="submit">Ask for a seat</button>
+			<button type="submit" class="ct-btn ct-btn--primary">Ask for a seat</button>
 		</form>
 	{:else if !admitted}
 		<p class="waiting">Waiting for the GM to let you in. You can watch in the meantime.</p>
@@ -260,7 +260,7 @@
 	{#if mySeat && admitted && table.gmSeat === null}
 		<form method="POST" action="?/claimGm" use:enhance class="claim">
 			<p>Nobody is running this table.</p>
-			<button type="submit">Take the GM's chair</button>
+			<button type="submit" class="ct-btn ct-btn--primary">Take the GM's chair</button>
 		</form>
 	{/if}
 
@@ -284,12 +284,18 @@
 			{#if isGm}
 				<!-- Switching is the GM's: leaving a Challenge sweeps every hand on
 				     the table, which is not something one player does to everyone. -->
-				<button type="button" class:on={table.mode === 'decks'} onclick={leaveChallenge}>
+				<button
+					type="button"
+					class="ct-btn"
+					class:ct-btn--on={table.mode === 'decks'}
+					onclick={leaveChallenge}
+				>
 					Decks
 				</button>
 				<button
 					type="button"
-					class:on={table.mode === 'challenge'}
+					class="ct-btn"
+					class:ct-btn--on={table.mode === 'challenge'}
 					onclick={() => run({ type: 'set-mode', mode: 'challenge' })}>Challenge</button
 				>
 			{:else}
@@ -302,7 +308,7 @@
 			{#if reversal}
 				<button
 					type="button"
-					class="modes__undo"
+					class="ct-btn modes__undo"
 					disabled={busy}
 					onclick={() => reversal && run(reversal.command)}>{reversal.label}</button
 				>
@@ -310,7 +316,12 @@
 			{#if isGm}
 				<!-- Last, and alone on the right: this one throws work away, and it
 				     should never sit under a thumb aiming for the undo. -->
-				<button type="button" class="modes__reset" onclick={resetTable}>Reset the table</button>
+				<!-- Destructive, and therefore *quiet*: it takes its safety from sitting
+				     apart from the controls a thumb is aiming for and from asking
+				     before it acts, not from shouting. -->
+				<button type="button" class="ct-btn ct-btn--quiet modes__reset" onclick={resetTable}
+					>Reset the table</button
+				>
 			{/if}
 		</div>
 	{/if}
@@ -407,14 +418,6 @@
 	.join button,
 	.claim button {
 		justify-self: start;
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: var(--ct-mark);
-		font: inherit;
-		padding: 0.5rem 1rem;
-		min-block-size: 2.75rem;
-		cursor: pointer;
 	}
 	.waiting {
 		margin: 1rem 1.25rem;
@@ -429,29 +432,10 @@
 		flex-wrap: wrap;
 	}
 	.modes button {
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		/* Was a bone-coloured literal left over from the rejected palette, which
-		   on the light table came out at 1.36:1 — very nearly invisible, and the
-		   clearest sign that this rule had never been looked at in both rooms. */
-		color: var(--ct-quiet);
-		font: inherit;
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
-		padding: 0.35rem 0.9rem;
-		min-block-size: 2.75rem;
-		cursor: pointer;
-	}
-	.modes button.on {
-		border-color: var(--ct-mark);
-		color: var(--ct-mark);
 	}
 	.modes__reset {
 		margin-inline-start: auto;
-	}
-	.modes button:disabled {
-		cursor: default;
-		opacity: 0.5;
 	}
 	.modes__state {
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;

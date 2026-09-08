@@ -407,6 +407,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Buttons have three weights now, and the destructive one stopped shouting.**
+  Every button on the table was the same border, size and weight, so "Deal the
+  round", "Sweep" and "Reset the table" were indistinguishable — and on a phone
+  the last of those wrapped onto its own row and became the most prominent
+  control on screen. Monochrome has no accent to reach for, so the weights are
+  fill, ink and type: the action a region exists for is filled with the ink and
+  lettered in the room's own colour, ordinary controls keep the outline the
+  table already had, and bookkeeping drops to the label step in quiet ink.
+
+  Destructive is not a fourth weight. "Reset the table" takes the quiet one and
+  gets its safety from sitting apart from the controls a thumb is aiming for and
+  from asking before it acts — a destructive control nobody can find is its own
+  kind of failure.
+
 - **The round now says where it is, loudly.** "Round 3, Initiative 7" is the
   only question anybody asks mid-fight — it is how a player knows their turn has
   come — and it was set in the smallest type on the page while six equal-weight

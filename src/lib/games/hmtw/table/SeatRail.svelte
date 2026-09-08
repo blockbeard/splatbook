@@ -88,11 +88,11 @@
 						<span class="seat__actions">
 							<form method="POST" action="?/admit">
 								<input type="hidden" name="seatId" value={seat.id} />
-								<button type="submit">Let in</button>
+								<button type="submit" class="ct-btn ct-btn--primary">Let in</button>
 							</form>
 							<form method="POST" action="?/decline">
 								<input type="hidden" name="seatId" value={seat.id} />
-								<button type="submit" class="quiet">Turn away</button>
+								<button type="submit" class="ct-btn ct-btn--quiet">Turn away</button>
 							</form>
 						</span>
 					{/if}
@@ -166,19 +166,5 @@
 		display: flex;
 		gap: 0.5rem;
 		margin-block-start: 0.3rem;
-	}
-	.seat__actions button {
-		background: none;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		font: inherit;
-		font-size: 0.8rem;
-		padding: 0.15rem 0.5rem;
-		cursor: pointer;
-	}
-	.seat__actions .quiet {
-		border-color: transparent;
-		color: var(--ct-quiet);
 	}
 </style>
