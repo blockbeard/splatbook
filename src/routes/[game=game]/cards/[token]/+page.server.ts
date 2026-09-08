@@ -39,7 +39,12 @@ export const load: PageServerLoad = async ({ locals, params, fetch }) => {
 		name: table.row.name,
 		token: params.token,
 		pack: table.pack,
-		view: await viewFor(locals.db, table, 0),
+		// No history: the cursor starts where the table is. `eventsSince` returns
+		// the *oldest* rows past its cursor, so asking from zero handed a
+		// long-running table the first fifty things that ever happened — which
+		// read as if they had just happened. The page only needs what occurs
+		// while somebody is looking at it, and the poll brings that.
+		view: await viewFor(locals.db, table, table.row.version),
 		seats: table.seats.map((s) => ({
 			id: s.id,
 			name: s.name,

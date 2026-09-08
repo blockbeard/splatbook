@@ -16,6 +16,7 @@
 	import { buildFaces } from '$lib/games/hmtw/table/faces';
 	import { pollingTransport } from '$lib/card-table-sync';
 	import { fetchSince, newRequestKey, sendCommand } from '$lib/card-table/client';
+	import { reverseOf, type PublicEvent } from '$lib/card-table/undo';
 	import { MAX_SEAT_NAME_LENGTH } from '$lib/card-table-limits';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import '$lib/games/hmtw/table/table.css';
@@ -38,7 +39,47 @@
 	// svelte-ignore state_referenced_locally
 	let polledSeatId = $state<string | null>(data.view.seatId);
 	let busy = $state(false);
-	let notice = $state<string | null>(null);
+	/**
+	 * What has happened since this page opened.
+	 *
+	 * Only since: the page load asks for no history, so "put that card back"
+	 * can only reverse a move somebody here actually saw. Trimmed to a short
+	 * tail because nothing reads further back than the most recent move.
+	 */
+	let events = $state<PublicEvent[]>([]);
+	/**
+	 * A passing word, or a standing one. Losing a race is passing — it clears
+	 * itself, because "someone got there first" is news for a moment and clutter
+	 * after that. A table that has stopped taking cards is standing, and stays.
+	 */
+	let notice = $state<{ text: string; passing: boolean } | null>(null);
+	let noticeTimer: ReturnType<typeof setTimeout> | undefined;
+
+	function say(text: string, passing: boolean) {
+		clearTimeout(noticeTimer);
+		notice = { text, passing };
+		if (passing) noticeTimer = setTimeout(() => (notice = null), 4000);
+	}
+
+	const EVENT_TAIL = 40;
+	/** The highest event version already folded in — the tail's own cursor. */
+	let seenTo = $state(0);
+	/**
+	 * Fold new events onto the tail, in order, once each.
+	 *
+	 * A poll and a command overlap freely: a poll asking from v4 can come back
+	 * with v5 and v6 *after* the reply to our own command already added v5, v6
+	 * and v7. Appending blind would leave v6 as the last thing that happened and
+	 * "put that card back" would reverse the wrong move. Versions only ever go
+	 * up, so the cursor settles it.
+	 */
+	function remember(incoming: PublicEvent[] | undefined) {
+		const fresh = (incoming ?? []).filter((e) => e.version > seenTo);
+		if (fresh.length === 0) return;
+		fresh.sort((a, b) => a.version - b.version);
+		seenTo = fresh[fresh.length - 1].version;
+		events = [...events, ...fresh].slice(-EVENT_TAIL);
+	}
 
 	$effect(() => {
 		if (data.view.version > version) {
@@ -61,6 +102,9 @@
 	const admitted = $derived(mySeat?.status === 'admitted');
 	const isGm = $derived(admitted && table.gmSeat === mySeatId);
 
+	/** The move that would put the last card back, if it is one you may make. */
+	const reversal = $derived(admitted ? reverseOf(events, mySeatId) : null);
+
 	onMount(() => {
 		const token = data.token;
 		const transport = pollingTransport({
@@ -70,6 +114,7 @@
 				table = snapshot.state as ProjectedTable;
 				if (snapshot.seats) seats = snapshot.seats;
 				if (snapshot.seatId) polledSeatId = snapshot.seatId;
+				remember(snapshot.events);
 			},
 			isHidden: () => document.hidden,
 			// Decks mode is the quiet one; the Challenge is where a beat of delay
@@ -107,6 +152,7 @@
 	async function run(command: unknown) {
 		if (busy) return;
 		busy = true;
+		clearTimeout(noticeTimer);
 		notice = null;
 		// One key per intent, reused if we retry: the server treats it as a lock,
 		// so regenerating it on a retry would move two cards for one click.
@@ -116,18 +162,23 @@
 			version = reply.view.version;
 			table = reply.view.state as ProjectedTable;
 			if (reply.view.seats) seats = reply.view.seats;
+			remember(reply.view.events);
 		} else if (reply.reason === 'conflict') {
-			// Ordinary: somebody got there first. Re-sync and let them try again,
-			// rather than telling them off for it.
-			const fresh = await fetchSince(data.token, 0);
+			// Ordinary, and with open reach the *likely* outcome: two people
+			// reached for the same card and one of them got there first. Catch up
+			// and let them look, rather than telling them off for it. Asking from
+			// our own version rather than zero keeps the event tail the recent
+			// end of the log instead of the oldest fifty.
+			const fresh = await fetchSince(data.token, version);
 			if (fresh) {
 				version = fresh.version;
 				table = fresh.state as ProjectedTable;
 				if (fresh.seats) seats = fresh.seats;
+				remember(fresh.events);
 			}
-			notice = 'Someone got there first.';
+			say('Someone got there first. This is the table as it stands now.', true);
 		} else {
-			notice = 'This table is no longer taking cards.';
+			say('This table is no longer taking cards.', false);
 		}
 		busy = false;
 	}
@@ -180,7 +231,9 @@
 		</form>
 	{/if}
 
-	{#if notice}<p class="notice">{notice}</p>{/if}
+	<p class="notice" class:notice--on={notice !== null} aria-live="polite">
+		{notice?.text ?? ''}
+	</p>
 
 	{#if admitted}
 		<div class="modes">
@@ -195,9 +248,25 @@
 					class:on={table.mode === 'challenge'}
 					onclick={() => run({ type: 'set-mode', mode: 'challenge' })}>Challenge</button
 				>
-				<button type="button" class="modes__reset" onclick={resetTable}>Reset the table</button>
 			{:else}
 				<span class="modes__state">{table.mode === 'challenge' ? 'Challenge' : 'Decks'}</span>
+			{/if}
+			<!-- The undo this table has: pick the card up and put it back. Anybody
+			     may, which is why nothing here refuses a misplay in the first
+			     place. It hides itself when the last move touched a hand that is
+			     not yours, since that is the one place reach stops. -->
+			{#if reversal}
+				<button
+					type="button"
+					class="modes__undo"
+					disabled={busy}
+					onclick={() => reversal && run(reversal.command)}>{reversal.label}</button
+				>
+			{/if}
+			{#if isGm}
+				<!-- Last, and alone on the right: this one throws work away, and it
+				     should never sit under a thumb aiming for the undo. -->
+				<button type="button" class="modes__reset" onclick={resetTable}>Reset the table</button>
 			{/if}
 		</div>
 	{/if}
@@ -269,10 +338,27 @@
 		font-size: 0.8rem;
 		color: var(--ct-quiet);
 	}
-	.join__error,
-	.notice {
+	.join__error {
 		color: var(--ct-mark);
 		margin: 0.5rem 1.25rem;
+	}
+	/* Always in the layout, so a passing word does not shove the table down a
+	   line and back up again — the surest way to make somebody misclick. */
+	.notice {
+		margin: 0.5rem 1.25rem;
+		min-block-size: 1.25rem;
+		font-size: 0.85rem;
+		color: var(--ct-quiet);
+		opacity: 0;
+		transition: opacity 200ms ease;
+	}
+	.notice--on {
+		opacity: 1;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.notice {
+			transition: none;
+		}
 	}
 	.join button,
 	.claim button {
@@ -311,6 +397,10 @@
 	}
 	.modes__reset {
 		margin-inline-start: auto;
+	}
+	.modes button:disabled {
+		cursor: default;
+		opacity: 0.5;
 	}
 	.modes__state {
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;

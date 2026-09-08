@@ -15,6 +15,7 @@
 <script lang="ts">
 	import Card from './Card.svelte';
 	import Hand from './Hand.svelte';
+	import Pile from './Pile.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { suggest } from './guide';
 	import Actions from './Actions.svelte';
@@ -223,17 +224,33 @@
 		</div>
 	{/if}
 
-	<!-- The decks, so you can see they did not reset when the mode changed —
-	     the promise the shared-deck design makes, and one you otherwise have to
-	     take on trust. -->
+	<!-- The decks, and not merely their counts.
+	     Showing the numbers proved the shared-deck promise — they do not reset
+	     when the mode changes — but it left the Challenge with nowhere to put a
+	     card. The book asks for that on its own terms: the GM discards a card
+	     for a Favour, and anyone who plays the wrong card wants it off the
+	     table. Real piles here mean every card in a Challenge can go where a
+	     card can go, without leaving the Challenge to do it. -->
 	<div class="ch__decks">
-		{#each [['player', 'Player deck'], ['gm', 'GM deck']] as [deck, label] (deck)}
-			<span class="ch__deck">
-				<span class="ct-zone-label">{label}</span>
-				<strong>{zone(`deck:${deck}`).count}</strong>
-				<span class="ct-zone-label">discard</span>
-				<strong>{zone(`discard:${deck}`).count}</strong>
-			</span>
+		{#each [['player', 'Player'], ['gm', 'GM']] as [deck, who] (deck)}
+			<Pile
+				zone={zone(`deck:${deck}`)}
+				label={`${who} deck`}
+				{faces}
+				selected={selectedPick}
+				droppable={selectedPick !== null}
+				onSelect={select}
+				onDrop={drop}
+			/>
+			<Pile
+				zone={zone(`discard:${deck}`)}
+				label={`${who} discard`}
+				{faces}
+				selected={selectedPick}
+				droppable={selectedPick !== null}
+				onSelect={select}
+				onDrop={drop}
+			/>
 		{/each}
 	</div>
 
@@ -415,6 +432,7 @@
 					selected={selectedPick}
 					lit={litCards}
 					onSelect={select}
+					onDrop={drop}
 				/>
 			</div>
 			<Actions
@@ -499,10 +517,10 @@
 	}
 	.ch__decks {
 		display: flex;
-		gap: 2rem;
+		gap: 1rem;
 		flex-wrap: wrap;
+		align-items: flex-start;
 	}
-	.ch__deck,
 	.ch__waiting,
 	.ch__waiter {
 		display: flex;

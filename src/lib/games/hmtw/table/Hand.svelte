@@ -22,7 +22,8 @@
 		grouped = false,
 		lit = [],
 		selected = null,
-		onSelect
+		onSelect,
+		onDrop
 	}: {
 		zone: ProjectedZone;
 		faces: FaceIndex;
@@ -32,6 +33,16 @@
 		lit?: string[];
 		selected?: Pick | null;
 		onSelect?: (pick: Pick) => void;
+		/**
+		 * Take a card back into this hand. Offered only where the hand is the
+		 * viewer's own — the caller decides that by passing it or not, since a
+		 * hand is the one place reach stops and the engine would refuse anyway.
+		 *
+		 * This is the ordinary way to unplay a card: you picked up the wrong one,
+		 * so you put it back. Without it the only route was the undo, which can
+		 * only reverse the very last thing that happened.
+		 */
+		onDrop?: (zoneId: string) => void;
 	} = $props();
 
 	const byValue = (a: string, b: string) => (faces[a]?.value ?? 0) - (faces[b]?.value ?? 0);
@@ -80,6 +91,12 @@
 	</div>
 {/if}
 
+{#if onDrop && selected && selected.zone !== zone.id}
+	<button type="button" class="hand__take" onclick={() => onDrop?.(zone.id)}>
+		Take it back into your hand
+	</button>
+{/if}
+
 <style>
 	.hand {
 		display: flex;
@@ -90,6 +107,17 @@
 		display: flex;
 		gap: 1.5rem;
 		flex-wrap: wrap;
+	}
+	.hand__take {
+		margin-block-start: 0.5rem;
+		background: none;
+		border: 1px dashed var(--ct-rule-strong);
+		border-radius: 3px;
+		color: var(--ct-mark);
+		font: inherit;
+		padding: 0.4rem 0.8rem;
+		min-block-size: 2.75rem;
+		cursor: pointer;
 	}
 	.hand__hidden {
 		color: var(--ct-quiet);

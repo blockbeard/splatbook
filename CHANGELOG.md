@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Put that card back.** Any card on the table can be moved by anyone sitting
+  at it, and the last move can be reversed by whoever notices — the misplayer or
+  the neighbour. That is the whole of the undo, and deliberately so: it is what
+  a physical table does, and it is the reason nothing here refuses a play in the
+  first place. It steps aside when the last move touched a hand that is not
+  yours, because reaching into a hand is the one thing the table does not allow,
+  and it stops offering once anything else could have disturbed the pile, since
+  by then "that card" would be the wrong one.
+
+  A Challenge now shows the decks and discards as real piles rather than counts,
+  so a card can go where a card can go — discard one for a Favour, or take back
+  one you played by mistake — without leaving the Challenge to do it.
+
+  Two people reaching for the same card is ordinary rather than an error, and
+  now reads that way: the table catches up, says who got there first, and clears
+  the note after a moment.
+
 - **The Challenge, played by hand.** Deal a round, place initiative, play cards
   face up or lay one face down with a declared action, sweep, count the
   initiative up, and end the round. The table shows you where everything is and
