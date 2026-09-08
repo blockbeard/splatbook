@@ -82,7 +82,23 @@ export const deckSchema = z.strictObject({
 				note: z.string().min(1)
 			})
 		)
-		.length(2)
+		.length(2),
+	/**
+	 * Where the pack keeps a picture for each card, by card id.
+	 *
+	 * The pack says where its own art lives rather than the app assuming a path,
+	 * and it is optional so a pack without pictures still validates — the table
+	 * falls back to the suit glyph, which is what it drew before there were any.
+	 */
+	art: z
+		.strictObject({
+			plates: z.strictObject({
+				dir: z.string().min(1),
+				ext: z.string().min(1),
+				note: z.string().min(1).optional()
+			})
+		})
+		.optional()
 });
 
 /** One entry in a menu of Challenge Actions. */

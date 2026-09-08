@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The cards have pictures.** Pamela Colman Smith's seventy-eight designs, as
+  printed in the 1911 first edition of A. E. Waite's _The Pictorial Key to the
+  Tarot_ — the black-and-white plates, not the colour deck. The book is black
+  ink on white paper and this table's dark mode inverts the room while the cards
+  keep their ink, so the 1911 plates are not a compromise on the colour set;
+  they are the same decision the book already made, and they are the only
+  version that survives being 68 pixels wide.
+
+  Under each picture sits the value and the suit — the two things ch.7 asks of a
+  card, one for the total and one for which action it pays for. Not the rank: on
+  a minor the rank is the value in Roman numerals, and on a court card the
+  picture says "knight" better than the word does.
+
+  The provenance is proved per plate rather than claimed. `art-manifest.json`
+  records every plate's source file, its Wikimedia licence tag, the crop taken
+  and the hash of what shipped, and the import re-checks all seventy-eight tags
+  on every run and refuses to build if one of them is not public domain.
+
 - **The card table says what just happened.** Everything on this table moves
   because somebody else moved it; sighted players catch that from the corner of
   an eye, and without it you were sitting at a table that silently rearranged

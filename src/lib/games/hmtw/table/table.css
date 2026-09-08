@@ -82,7 +82,18 @@
 
 	--ct-radius: 2px;
 	--ct-card-w: 4.25rem;
-	--ct-card-h: 7.1rem;
+	/*
+	 * 68 × 124 — 1:1.82, near a real tarot's 1:1.75.
+	 *
+	 * Sized to its contents rather than picked: the plates' illustrations are
+	 * 1:1.59, and a picture plus a band you can read lands near 1:1.9 whatever
+	 * the width. Showing the top 92% of the picture buys back the difference,
+	 * and what the 8% removes is the blank margin inside the plate's own rule —
+	 * no figure loses so much as a foot. Nothing else hard-codes a card's size;
+	 * the empty slots, the sideways facedown card and the combatant floor all
+	 * read this.
+	 */
+	--ct-card-h: 7.75rem;
 	--ct-back: url('/content-packs/hmtw/art/adherent-of-the-worm.png');
 
 	background: var(--ct-table);
@@ -267,6 +278,61 @@ html.dark .ct {
 	font-family: 'IM Fell English', Georgia, serif;
 	cursor: pointer;
 	touch-action: manipulation;
+}
+
+/* ---- A card with a picture on it ----------------------------------------- */
+
+/*
+ * The plate fills the card above a band carrying the value and the suit. Two
+ * rows, not three: the rank has nowhere to be because it has nothing to say —
+ * on a minor it is the value in Roman, and on a court card the picture is a
+ * better word for "knight" than the word is.
+ */
+[data-game='hmtw'] .ct-card:has(.ct-card__art) {
+	grid-template-rows: 1fr auto;
+	gap: 0.14rem;
+	padding: 0.18rem;
+}
+
+[data-game='hmtw'] .ct-card__art {
+	inline-size: 100%;
+	block-size: 100%;
+	min-block-size: 0;
+	object-fit: cover;
+	/* Anchored to the top, so the 8% that falls outside comes off the blank
+	   margin at the foot of the plate rather than out of the figure's head. */
+	object-position: top;
+	border: 1px solid var(--ct-card-ink);
+	/*
+	 * The plates are ink on white paper. Multiply lets the card's own stock show
+	 * through the white, so in the dark room the picture prints on bone instead
+	 * of sitting in a lit rectangle — the cards keep their ink and the room
+	 * inverts around them, which is the whole premise of this surface.
+	 */
+	mix-blend-mode: multiply;
+}
+
+[data-game='hmtw'] .ct-card__band {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.26rem;
+}
+
+[data-game='hmtw'] .ct-card__value {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 1.45rem;
+	line-height: 1;
+}
+
+[data-game='hmtw'] .ct-card__band-suit {
+	inline-size: 1.35rem;
+	block-size: 1.35rem;
+}
+
+/* The book's one red, on the numeral, exactly as it is on the typeset face. */
+[data-game='hmtw'] .ct-card--greater .ct-card__value {
+	color: var(--ct-doom);
 }
 
 [data-game='hmtw'] .ct-card__rank {

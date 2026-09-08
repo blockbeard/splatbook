@@ -1006,36 +1006,59 @@ Treat it as a floor. For calibration, Origins 5.5e was 6 commits and 10,091
 lines *with no shell change*; this has a shell slot, a new identity mechanism in
 a codebase that has never set a cookie of its own, and a game procedure to model.
 
-### Art — decided
+### Art — decided, then decided again
 
-Ship the provably public-domain colour set: Wikimedia Commons' 1909 first
-edition, [Category:Rider-Waite tarot deck (Roses &
-Lilies)](https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck_(Roses_%26_Lilies)),
-80 files, complete at 22 majors + 56 minors, named `RWS1909 - 00 Fool.jpeg` /
-`RWS1909 - Cups 01.jpeg`. The file-level tags are the point: PD-old-80-expired
-(Waite, the copyright holder, died 1942) plus PD-US (published before 1 January
-1931) — public domain in both jurisdictions this project cares about, with no
-scan-level permission claim held by anyone.
+**Shipped: the 1911 black-and-white plates.** Pamela Colman Smith's
+seventy-eight designs as printed in Part II of A. E. Waite's _The Pictorial Key
+to the Tarot_ (William Rider & Son, 1911), which Wikimedia Commons holds as
+individual files, complete, every one tagged public domain. Published 1911, so
+PD in both jurisdictions this project cares about on publication date alone.
+`tools/build_card_art.py` fetches them, re-checks every tag and fails if one is
+not free, crops each plate at its own printed rule, and writes
+`art/art-manifest.json` — the per-plate basis the pack's LICENSE.md points at.
 
-**Make the provenance provable per card, not asserted.** The fetch step records
-each file's Commons licence tag into the art manifest beside the hash and
-dimensions, and the build fails if any of the 80 lacks a public-domain tag.
-guild-book's pipeline already writes a licence manifest, so this is a field, not
-a mechanism. That is what goes in the pack's LICENSE.md — a per-card basis
-rather than a sentence claiming one.
+**This replaces the earlier decision, which was the colour set** (Commons'
+1909 Roses & Lilies edition, PD-old-80-expired plus PD-US). That decision was
+made on licensing grounds alone, before there was a table to put the cards on,
+and it does not survive contact with the one that got built:
 
-*Deferred, not rejected: a black-and-white set.* Chris will source or derive one.
-Keep the collection swappable exactly as guild-book's Amendment 3 did (a single
-`COLLECTION` constant that the source map, output paths, and manifest all read).
+- **The surface is monochrome on purpose.** The book is black ink on white
+  paper and the table's dark mode is a straight inversion, the cards keeping
+  their ink while the room flips. Twenty-two colour rectangles would be the only
+  colour on it — and would spend the one signal it reserves, the book's red for
+  greater dooms, on decoration.
+- **Line art survives the size; a scan does not.** A card is 68px wide. Flat ink
+  loses detail and keeps silhouette; a photographic colour scan loses the colour
+  it was chosen for first.
+- **The licensing is cleaner, not merely equal.** One 1911 book, one date, and
+  no need for the Bridgeman/THJ reasoning the Illustrator traces would have
+  needed.
+
+*Still deferred, and now the other way round: a colour option.* The collection
+stays swappable — the pack declares where its plates live (`deck.json`'s `art`
+block) and the app composes no paths of its own, so a second set is a directory
+and a line of JSON.
 
 *Not used, and why:* the steve-p.org scans (permission was confirmed on
-2026-07-15, but to guild-book, and it does not travel) and Chris's Illustrator
-SVG traces (`~/Desktop/Tarot/Rider SVG SouthForkSVG` — almost certainly fine,
-since faithful reproductions of public-domain works carry no new copyright per
+2026-07-15, but to guild-book, and it does not travel); Chris's Illustrator SVG
+traces (`~/Desktop/Tarot/Rider SVG SouthForkSVG` — almost certainly fine, since
+faithful reproductions of public-domain works carry no new copyright per
 Bridgeman v. Corel and THJ v Sheridan [2023] EWCA Civ 1354, but a colour-to-ink
 trace is a step further from a scan than either case addresses, and "almost
 certainly" is a worse footing than a Commons PD tag when the alternative is
-free).
+free); and the archive.org "Pictorial Key" PDFs, which turned out to be modern
+colour reissues rather than the 1911 plates — checked, not assumed.
+
+**The card that came out of it.** The plate fills the card above a band
+carrying the **value and the suit** — the two things ch.7 actually asks of a
+card, one for the total and one for which action it pays. Not the rank: on a
+minor the rank is the value in Roman, and on a court card the picture says
+"knight" better than the word does. No doom mark: the book has no symbol for
+one, and inventing a glyph that only its author can read is worse than the red
+numeral already there. The card grew from 68×114 to 68×124 — 1:1.82, near a
+real tarot's 1:1.75 — because a picture plus a legible band lands near 1:1.9 at
+any width, and showing the top 92% of the illustration buys the difference back
+out of the blank margin inside the plate's rule.
 
 ### Why build it, given guild-book has one
 

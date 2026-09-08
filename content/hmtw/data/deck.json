@@ -663,5 +663,12 @@
 			],
 			"note": "The major arcana I–XXI. The Fool sits in the player deck."
 		}
-	]
+	],
+	"art": {
+		"plates": {
+			"dir": "art/plates",
+			"ext": "webp",
+			"note": "Pamela Colman Smith's line plates from the 1911 Pictorial Key to the Tarot, one per card id. See art/art-manifest.json for each plate's source and licence, and LICENSE.md for the basis."
+		}
+	}
 }

@@ -28,6 +28,8 @@
 		rank: string;
 		/** Pack-relative suit glyph, absent for a major. */
 		glyph?: string;
+		/** The card's picture, when the pack carries one. */
+		art?: string;
 		value: number;
 	}
 
@@ -104,11 +106,33 @@
 				</span>
 			{/if}
 		{:else if face}
-			<span class="ct-card__rank">{face.rank}</span>
-			{#if face.glyph}
-				<span class="ct-glyph ct-card__suit" style="--ct-glyph: url({face.glyph})"></span>
+			{#if face.art}
+				<!--
+					The picture, and under it the two things the rules ask of a card:
+					what it is worth, and which suit pays for what. Not the rank — on a
+					minor the rank *is* the value, and on a court card the picture says
+					"knight" better than the word does.
+
+					Decorative, so no alt text: the button around it is already named
+					"Knight of Wands", and a screen reader repeating that as an image
+					description would say it twice.
+				-->
+				<img class="ct-card__art" src={face.art} alt="" />
+				<span class="ct-card__band">
+					<span class="ct-card__value">{face.value}</span>
+					{#if face.glyph}
+						<span class="ct-glyph ct-card__band-suit" style="--ct-glyph: url({face.glyph})"></span>
+					{/if}
+				</span>
+			{:else}
+				<!-- No plate in the pack: the face this table had before there were
+				     pictures, which is still perfectly playable. -->
+				<span class="ct-card__rank">{face.rank}</span>
+				{#if face.glyph}
+					<span class="ct-glyph ct-card__suit" style="--ct-glyph: url({face.glyph})"></span>
+				{/if}
+				<span class="ct-card__foot">{face.value}</span>
 			{/if}
-			<span class="ct-card__foot">{face.value}</span>
 		{/if}
 	</button>
 
