@@ -345,7 +345,11 @@
 
 <style>
 	.ct-page {
-		min-block-size: 100vh;
+		/* The room *is* the page now (see the shell's `bleed`), so it fills what
+		   is left between the header and the footer rather than sitting inside
+		   the reading column with white either side of it. */
+		min-block-size: 100%;
+		padding-block-end: 3rem;
 	}
 	.ct-page__head {
 		display: flex;

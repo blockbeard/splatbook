@@ -171,10 +171,7 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await player.locator('.actions button').first().click();
 	failures.push(...(await scan(player, 'action chosen')));
 	await player.locator('.actions button').first().click();
-	await player
-		.locator('.combatant--mine')
-		.getByRole('button', { name: /Play facedown — your turn/ })
-		.click();
+	await player.getByRole('button', { name: /Play facedown — your turn/ }).click();
 	failures.push(...(await scan(player, 'declaring')));
 	await player.getByRole('button', { name: 'Never mind' }).click();
 

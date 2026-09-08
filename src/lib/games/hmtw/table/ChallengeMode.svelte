@@ -267,7 +267,13 @@
 				<div class="ch__deal__go">
 					<label>
 						Each player draws
-						<input type="number" min="0" max="20" bind:value={playerHand} />
+						<input
+							type="number"
+							min="0"
+							max="20"
+							class="ct-field ct-field--number"
+							bind:value={playerHand}
+						/>
 					</label>
 					<!-- The one action this panel exists for, so it is the one filled
 					     button on it — which is also what tells it apart from the summary
@@ -444,27 +450,6 @@
 							canAct ? onCommand({ type: 'reveal-facedown', holder: seat.id }) : null}
 					/>
 				{/if}
-
-				{#if seat.id === mySeatId && selectedPick && facedown.count === 0}
-					<div class="declare">
-						<button
-							type="button"
-							onclick={() => (declaring = { holder: seat.id, position: 'turn' })}
-						>
-							Play facedown — your turn
-						</button>
-						<button
-							type="button"
-							onclick={() => (declaring = { holder: seat.id, position: 'minor' })}
-						>
-							Play facedown — minor action
-						</button>
-						<p class="declare__note">
-							A defensive card stays in front of you even when it is for somebody else — ch.7 lets
-							you Riposte or Dodge for anyone in your zone. Say who in the label.
-						</p>
-					</div>
-				{/if}
 			</section>
 		{/each}
 
@@ -522,7 +507,13 @@
 				<h3>Add an enemy</h3>
 				<form class="add-enemy" onsubmit={(e) => (e.preventDefault(), addEnemy())}>
 					<label class="sr-only" for="new-enemy">Enemy name</label>
-					<input id="new-enemy" bind:value={newEnemy} placeholder="Imps" autocomplete="off" />
+					<input
+						id="new-enemy"
+						class="ct-field"
+						bind:value={newEnemy}
+						placeholder="Imps"
+						autocomplete="off"
+					/>
 					<button type="submit" class="ct-btn" disabled={busy || newEnemy.trim() === ''}>Add</button
 					>
 				</form>
@@ -544,6 +535,39 @@
 					onDrop={drop}
 				/>
 			</div>
+			{#if mySeatId && selectedPick && (table.zones[`seat:${mySeatId}:facedown`]?.count ?? 0) === 0}
+				<!--
+					Moved here from inside your own combatant.
+
+					It only ever appeared on your seat — a facedown card goes in front of
+					its holder, and you are the only holder you can be — so it was never
+					really about the seat it sat in. Where it *did* have an effect was on
+					the layout: every combatant had to reserve room for a block that only
+					one of them could ever show, which is where the empty track under the
+					fight came from. Down here it grows the hand, which is below
+					everything and moves nothing.
+				-->
+				<div class="declare">
+					<button
+						type="button"
+						class="ct-btn"
+						onclick={() => (declaring = { holder: mySeatId, position: 'turn' })}
+					>
+						Play facedown — your turn
+					</button>
+					<button
+						type="button"
+						class="ct-btn"
+						onclick={() => (declaring = { holder: mySeatId, position: 'minor' })}
+					>
+						Play facedown — minor action
+					</button>
+					<p class="declare__note">
+						A defensive card stays in front of you even when it is for somebody else — ch.7 lets you
+						Riposte or Dodge for anyone in your zone. Say who in the label.
+					</p>
+				</div>
+			{/if}
 			{#if isGm}
 				<!--
 					Judged holding the hand — "discard and draw again when it is mostly
@@ -581,7 +605,7 @@
 	<div class="declare__ask">
 		<label>
 			What is it for?
-			<input bind:value={declaredAs} placeholder="Riposte" autocomplete="off" />
+			<input class="ct-field" bind:value={declaredAs} placeholder="Riposte" autocomplete="off" />
 		</label>
 		<p class="declare__hint">Everyone sees this. Only you see the card.</p>
 		<button type="button" class="ct-btn ct-btn--primary" onclick={declare}>Lay it down</button>
@@ -732,10 +756,6 @@
 		align-items: center;
 		flex-wrap: wrap;
 	}
-	.add-enemy input {
-		min-inline-size: 0;
-		inline-size: 7rem;
-	}
 	.ch__decks {
 		display: flex;
 		gap: 1rem;
@@ -766,8 +786,25 @@
 	.combatant {
 		border-block-start: 1px solid var(--ct-rule);
 		padding-block-start: 0.5rem;
-		/* Room for the controls that come and go, so their arrival moves nothing. */
-		min-block-size: calc(var(--ct-card-h) + 6rem);
+		/*
+		 * A heading and one row of cards, and no more.
+		 *
+		 * This used to reserve six rem above a card's height, for controls that
+		 * came and went — and the tallest of those, the two "Play facedown"
+		 * buttons and their note, could only ever appear on *one* combatant.
+		 * Every other seat and every enemy reserved room for a block they could
+		 * not show, which is where the empty band under the fight came from: 236
+		 * reserved against 174 used.
+		 *
+		 * With that block moved down to the hand, nothing that appears on
+		 * *selection* changes a combatant's height any more — the drop slot and
+		 * the inspiration slot are card-sized and sit inside a row that already
+		 * reserves a card's height. Checked rather than assumed: with the
+		 * reservation removed entirely, picking a card up moved no combatant by a
+		 * pixel. What is left is a floor, so a fight keeps a regular rhythm
+		 * instead of ragged boxes.
+		 */
+		min-block-size: calc(var(--ct-card-h) + 3rem);
 	}
 	.combatant--mine {
 		border-block-start-color: var(--ct-rule-strong);
@@ -862,17 +899,7 @@
 	}
 	/* Buttons take their look from `.ct-btn` in table.css; what is left here is
 	   layout. */
-	input {
-		font: inherit;
-	}
-	input {
-		background: transparent;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		padding: 0.35rem 0.5rem;
-		min-block-size: 2.75rem;
-	}
+	/* Fields take their look and their width from `.ct-field` in table.css. */
 	label {
 		display: flex;
 		gap: 0.4rem;

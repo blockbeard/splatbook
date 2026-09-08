@@ -212,10 +212,10 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 	// hardest thing on this table to get right: three audiences, one card.
 	const hidden = playerHand[1];
 	await player.getByRole('button', { name: CARD_NAMES[hidden], exact: true }).click();
-	await player
-		.locator('.combatant', { hasText: playerName })
-		.getByRole('button', { name: 'Play facedown — your turn' })
-		.click();
+	// Not scoped to a combatant any more: the two "Play facedown" buttons only
+	// ever appeared on your own seat, and they moved down to the hand so that
+	// every *other* seat stopped reserving room for a block it could not show.
+	await player.getByRole('button', { name: 'Play facedown — your turn' }).click();
 	await player.getByLabel('What is it for?').fill('Riposte');
 	await player.getByRole('button', { name: 'Lay it down' }).click();
 

@@ -416,6 +416,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **The table is the room now, not a rectangle in the middle of one.** It sat
+  inside the shell's reading column with white either side, and scrolling
+  detached it from the header — it read as an embedded widget rather than a
+  place. Pages can now ask the shell for the whole window, which the card table
+  does; nothing in the shell knows whose page it is.
+
+  The empty band under a fight closed with it. Every combatant was reserving
+  room for the two "Play facedown" buttons and their note — a block only _one_
+  of them could ever show, since a facedown card goes in front of its holder and
+  you are the only holder you can be. Those moved down to the hand, beside the
+  card they are about, and a combatant now reserves a heading and one row of
+  cards.
+
+  Fields got one scale between them. "Imps" was twice the width of "4", which
+  was twice "3", sized by the words inside them rather than by what they hold.
+  There are two things a field on this table holds — a small number or a name —
+  so there are two widths.
+
 - **A seat reads as the same person in both modes.** Decks mode drew a seat as
   a rail entry and the Challenge drew it again as a section heading, from two
   sets of rules that had drifted: the Challenge never said which combatant was

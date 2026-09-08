@@ -186,6 +186,33 @@ html.dark .ct {
 	cursor: default;
 }
 
+/* ---- Fields: two widths, and only two ------------------------------------ */
+
+/*
+ * Every field on the table set its own width, so "Imps" was twice as wide as
+ * "4", which was twice "3" — sized by the words inside them rather than by what
+ * they hold. There are two things a field on this table ever holds: a small
+ * number, or a name. So there are two widths.
+ */
+
+[data-game='hmtw'] .ct-field {
+	background: transparent;
+	border: 1px solid var(--ct-rule-strong);
+	border-radius: 3px;
+	color: inherit;
+	font: inherit;
+	padding: 0.35rem 0.5rem;
+	min-block-size: 2.75rem;
+	min-inline-size: 0;
+	inline-size: 11rem;
+}
+
+/* A hand size, a count of enemies: never more than two digits. */
+[data-game='hmtw'] .ct-field--number {
+	inline-size: 3.75rem;
+	text-align: center;
+}
+
 /* ---- Who is sitting there -------------------------------------------------- */
 
 /*

@@ -73,7 +73,14 @@
 	<p class="draw__total">
 		<label>
 			Cards
-			<input type="number" min="0" max="30" bind:value oninput={() => (overridden = true)} />
+			<input
+				type="number"
+				class="ct-field ct-field--number"
+				min="0"
+				max="30"
+				bind:value
+				oninput={() => (overridden = true)}
+			/>
 		</label>
 		{#if overridden && value !== suggested}
 			<button type="button" class="draw__reset" onclick={() => (overridden = false)}>
@@ -103,16 +110,6 @@
 		align-items: center;
 		gap: 0.4rem;
 		font-size: 0.9rem;
-	}
-	input[type='number'] {
-		inline-size: 3.5rem;
-		background: transparent;
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 3px;
-		color: inherit;
-		font: inherit;
-		padding: 0.25rem;
-		min-block-size: 2.2rem;
 	}
 	input[type='checkbox'] {
 		inline-size: 1.1rem;

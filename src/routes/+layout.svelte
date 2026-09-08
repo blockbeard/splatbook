@@ -97,7 +97,17 @@
 		</div>
 	</header>
 
-	<main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
+	<!--
+		Most pages are a column of text and read best measured; a few are a
+		*surface* and want the whole window. A page asks for the second by
+		returning `bleed: true` from its load, which is as much as the shell knows
+		about it — no route list here, and nothing about whose page it is.
+
+		Both class strings are written out in full rather than composed, because
+		Tailwind scans the source for literal class names and would not find one
+		built at runtime.
+	-->
+	<main class={page.data.bleed ? 'w-full flex-1' : 'mx-auto w-full max-w-5xl flex-1 px-4 py-8'}>
 		{@render children()}
 	</main>
 

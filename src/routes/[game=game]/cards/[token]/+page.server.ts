@@ -40,6 +40,9 @@ export const load: PageServerLoad = async ({ locals, params, fetch }) => {
 	await touchOnPageLoad(locals.db, table.row.id);
 
 	return {
+		// This page is a surface rather than a column of text: the room should be
+		// the window, not a grey rectangle with the shell's margins round it.
+		bleed: true,
 		gameId: table.row.gameId,
 		name: table.row.name,
 		token: params.token,
