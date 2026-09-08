@@ -120,10 +120,11 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 	// --- The GM sees the request arrive without touching the page. ---
 	// The roster rides on the poll precisely so this works; it used to need a
 	// reload, which meant the one person who has to act never saw it.
-	const waiting = gm.locator('.ch__waiting, .decks__waiting, [class*="waiting"]');
+	// Scoped to the row bearing this run's name rather than to the first one on
+	// the page: the database is not reset between local runs.
+	const request = gm.locator('.ch__waiter, li, span', { hasText: playerName });
 	await expect(gm.getByText(playerName)).toBeVisible(POLLED);
-	await gm.getByRole('button', { name: 'Let in' }).first().click();
-	expect(await waiting.count()).toBeGreaterThanOrEqual(0);
+	await request.getByRole('button', { name: 'Let in' }).first().click();
 
 	// Being let in reaches the player the same way — no reload.
 	await expect(player.getByText(/Waiting for the GM to let you in/)).toHaveCount(0, POLLED);
@@ -133,6 +134,15 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 	await expect(player.getByText('Challenge', { exact: true })).toBeVisible(POLLED);
 
 	await gm.getByRole('button', { name: 'Deal the round' }).click();
+	// The click only dispatches the command; the cards land a round trip later.
+	// Reading the projection straight afterwards was a race that happened to
+	// win, and would have failed as an empty hand rather than as a leak.
+	await expect
+		.poll(async () => {
+			const view = await projectionFor(gmContext, token);
+			return view.state.zones[`seat:${view.seatId}:hand`].count;
+		}, POLLED)
+		.toBeGreaterThan(0);
 
 	// --- Hidden information, checked on the wire. ---
 	const gmView = await projectionFor(gmContext, token);
