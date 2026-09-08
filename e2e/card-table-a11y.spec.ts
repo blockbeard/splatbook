@@ -102,7 +102,17 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await gm.getByRole('button', { name: 'Let in' }).first().click();
 
 	await gm.getByRole('button', { name: 'Challenge', exact: true }).click();
-	await gm.getByRole('button', { name: 'Deal the round' }).click();
+
+	// The deal panel, open. It auto-opens on a table that has never dealt and
+	// closes once it has, so scanning only after the deal would have left the
+	// checklist — six checkboxes, two number fields and a note — audited
+	// nowhere at all. That coverage was lost the moment it went behind a
+	// disclosure, which is exactly the kind of thing a redesign takes with it
+	// quietly.
+	await expect(gm.getByText('The GM draws')).toBeVisible({ timeout: 15_000 });
+	failures.push(...(await scan(gm, 'deal panel, open')));
+
+	await gm.getByRole('button', { name: 'Deal the round', exact: true }).click();
 	await expect(gm.getByText('Lesser dooms', { exact: false })).toBeVisible({ timeout: 15_000 });
 	failures.push(...(await scan(gm, 'challenge, dealt')));
 
