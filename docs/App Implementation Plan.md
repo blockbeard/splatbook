@@ -859,18 +859,149 @@ and nothing gets built as UI until it has been designed.*
     updates, hidden information, and card manipulation together are a hard
     accessibility surface; guild-book had to make its cards announce themselves
     to screen readers, and it will not be free here either.
-21. `docs`: `/privacy` gains its guest-data section (the page's own header
+21. `design(hmtw)`: **fold the GM's round setup behind a disclosure.** The
+    checklist, the two hand-size fields, Deal and Mulligan are a once-a-round
+    decision occupying the permanent first screen; on a phone a GM scrolls some
+    1,700px of it before one card is visible, every round, forever. They collapse
+    into a single control that reads as the action it leads to — "Deal the
+    round…" — which opens the checklist, carries the suggested number, and
+    closes on dealing.
+
+    **The Mulligan does not go in.** It is judged *after* the deal — "discard the
+    hand and draw again when it is mostly greater dooms" is a decision you can
+    only make holding the hand — so a disclosure that closes on dealing would
+    hide it at exactly the moment it is wanted. It belongs beside the GM's hand,
+    where the greater-doom grouping that answers the question already is.
+
+    Two constraints. The disclosure's **open state is local**, never a table
+    command: it is one GM's view of their own controls, and putting it in the
+    shared blob would open a panel on every screen at the table. And it **opens
+    by itself when `round.number === 0`** and at no other time, because a
+    collapsed control on a table that has never dealt is a dead end — the first
+    thing a new GM must do would be behind a triangle. Deliberately not "when
+    the GM's hand is empty", which was the first draft of this rule and is a bug:
+    a GM who has played their last card mid-round would have the panel spring
+    open over the table. Once dealt, opening it again is the GM's business.
+
+    That rule also keeps both e2e specs working unchanged — a fresh table is at
+    round 0, so "Deal the round" is present without anyone opening anything —
+    which is a good sign the rule is the right one rather than a convenience.
+
+    "Add an enemy" leaves the deal block in the same commit. It reads as a pair
+    with Deal only because they were put side by side; it belongs with the
+    combatants, which is where enemies are.
+
+22. `design(hmtw)`: **the round state gets a type step, and the controls around
+    it lose one.** `Round 1  Initiative —` is currently set in the smallest type
+    on the page, and it is the single most-consulted fact in a Challenge — it is
+    how a player knows their turn has come. It becomes the loudest thing in the
+    strip; Guide, minor actions, Sweep and End quieten to match their frequency,
+    and the `−`/`+` stepper binds to the count as one unit instead of floating
+    among wordy buttons.
+
+    This needs a **third type step**, which the table does not have: it has two
+    sizes and boxes things when it wants emphasis, which is why every attempt at
+    emphasis so far has been a border. Adding the step is the substance of the
+    commit. It lands in `table.css` because that is where the other two live —
+    not because a second consumer has been found for it, which it has not.
+
+23. `design(hmtw)`: **three button tiers, and one destructive style.** Every
+    button on the table is the same border, size and weight, so primary,
+    secondary and destructive are indistinguishable — "Reset the table" reads
+    exactly like "Deal the round", and on a phone it wraps onto its own row and
+    becomes the *most* prominent control on screen. Monochrome has no accent to
+    reach for, so the tiers are weight, fill and rule: a filled mark for the
+    action a screen exists for, the present outline for ordinary controls, and
+    rule-only for the quiet ones. Destructive takes the quiet tier, and takes
+    its safety from **distance and confirmation** rather than from being hard to
+    find: it stays at the far end of the bar, away from the control a thumb is
+    aiming for, and it already asks before it acts. Stating that as "make it the
+    quietest" would be the wrong lesson — a destructive control nobody can find
+    is its own failure, and one that merely looks like every other quiet control
+    is the misclick this is meant to prevent.
+
+    Scope note: this touches every `<button>` on the table, so it is a commit on
+    its own rather than a rider. The classes live in `table.css`; the components
+    only choose a tier.
+
+24. `design(hmtw)`: **one seat *identity*, in both modes — not one layout.**
+    Decks mode has a left seat rail; the Challenge turns the same people into
+    horizontal sections, and the reader pays for the switch every time the mode
+    changes.
+
+    The obvious fix — adopt the rail everywhere — was checked against the
+    measurements and does not survive them. The rail is `min-inline-size: 12rem`
+    (192px) and a card is `--ct-card-w: 4.25rem` (68px), so a rail holds about
+    two cards abreast. A Challenge seat carries an initiative card, a facedown
+    slot and a played row that grows without limit; four played cards do not fit
+    and never will. The layouts differ because the *content* differs, and that
+    is legitimate: one mode is a lobby, the other is a fight.
+
+    So what unifies is the **seat block** — name, GM tag, "you", hand count,
+    inspiration — which currently exists twice, drawn differently, from two sets
+    of rules. It becomes one component used by both, and the seats then read as
+    the same people whichever mode the table is in, while the space around them
+    is free to be what each mode needs. Smaller than the commit this replaces,
+    and it fixes the thing the critique actually noticed.
+
+    Deliberately after 21–23: the type scale from 22 is what sizes the block.
+
+25. `design(hmtw)`: **the room reaches the edges, and the dead track closes.**
+    The table is a grey rectangle with white margins inside the app shell, and
+    scrolling detaches the room from the header — it reads as an embedded
+    widget rather than a place. The ground runs to the viewport instead. In the
+    same pass the combatants grid loses the ~180px of empty track under two
+    seats: the fixed tracks were the right instinct against layout jumping and
+    too generous in execution, and the fix is to size the track to a seat's
+    contents rather than to its worst case.
+
+    Two smaller findings ride here, both from the same critique and both too
+    small to carry a commit: the Actions catalogue drops a weight, so a
+    twenty-one-item reference stops competing with the cards it is a reference
+    *for*; and the number and name fields get one scale between them, instead of
+    "Imps" being twice the width of "4" for no reason but the text inside it.
+
+    Ordered last because it is the only one of these that is purely
+    presentational, and because the four before it all change how tall the page
+    is. Decks mode's unused width is **not** in scope: it is two decks and two
+    discards, and spreading four piles across a widescreen to fill it would be
+    decoration. It is left as it is, on purpose.
+
+26. `docs`: `/privacy` gains its guest-data section (the page's own header
     demands it whenever a migration stores personal data — so this rides with
     commit 7's schema if it can, and no later than here); CREDITS (Crawlspace as
     prior art, guild-book for the two patterns); CHANGELOG; pack docs; and the
     art basis in LICENSE.md.
-22. `docs`: close phase 29 — move this section to [[App Implementation History]]
+27. `docs`: close phase 29 — move this section to [[App Implementation History]]
     verbatim, per the housekeeping rule, in the commit that closes it.
 
-Twenty-one commits, with a shippable milestone at 12. Up from fifteen, and this
+**Guards that apply to all of 21–25.** Every one of them is a change to the same
+surface the accessibility spec covers, so `card-table-a11y.spec.ts` is the floor:
+eleven states, two rooms, no new violations. Contrast is *computed* rather than
+eyeballed, because a monochrome palette is always one measurement from failing
+1.4.3 and the failure is invisible to whoever made it. New controls keep the
+44px target and the accessible names the audit relies on — the count stepper's
+"Back one" / "On one" are load-bearing, since the e2e finds that button by name.
+And `card-table.spec.ts` must keep passing without its locators being loosened
+to accommodate a redesign: if a selector has to change, the change is described
+in the commit message, because a test quietly bent to fit is how a regression
+ships.
+
+What none of that guards is the thing this batch is actually for. There is no
+test for "the loudest element is the right one", and there will not be; the
+hierarchy was inverted for twenty commits with every check passing. The guard
+against it happening again is that somebody looks at the finished screens, at
+the widths people really use, which is what produced this list. Say so rather
+than implying the specs cover it.
+
+Twenty-six commits, with a shippable milestone at 12. Up from fifteen, and this
 time **scope genuinely was added**:
 opponents and the round procedure were missing rather than deferred, guided mode
-is new, and design, input, and accessibility went from absent to three commits.
+is new, and design, input, and accessibility went from absent to three commits —
+and then to eight, when a critique of the finished surface found the hierarchy
+inverted: setup loud, state quiet, and every button the same weight. That the
+five design commits were added *after* the thing worked is the shape of the
+lesson, not a failure of the estimate.
 Treat it as a floor. For calibration, Origins 5.5e was 6 commits and 10,091
 lines *with no shell change*; this has a shell slot, a new identity mechanism in
 a codebase that has never set a cookie of its own, and a game procedure to model.
