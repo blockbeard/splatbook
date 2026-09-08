@@ -19,7 +19,7 @@
  * Server-only.
  */
 
-import { and, asc, count, desc, eq, gte, lt, sql } from 'drizzle-orm';
+import { and, asc, count, desc, eq, gte, inArray, lt, sql } from 'drizzle-orm';
 import type { Db } from './entities.ts';
 import { cardTables, cardTableSeats, type CardTableRow, type CardTableSeat } from './schema.ts';
 import { MAX_COMMANDS_PER_TABLE, MAX_TABLES_PER_OWNER } from '../../card-table-limits.ts';
@@ -127,12 +127,56 @@ export async function getCardTableByToken(
 	return row;
 }
 
-/** The tables a user created, newest first. */
-export async function listCardTablesForOwner(db: Db, ownerId: string): Promise<CardTableRow[]> {
+/**
+ * Retire the table a token names, if it has expired. Nothing otherwise.
+ *
+ * This is the "lazy expiry on read" half of retention, and it is deliberately
+ * not part of `getCardTableByToken`: that function is on the sync path, which
+ * every client asks about once a second, and it must never write. A *page load*
+ * is not a poll — somebody arrived — so it can afford the delete, and doing it
+ * there means the commonest way a stale table is discovered is also the way it
+ * goes.
+ *
+ * A token that names nothing costs one select and writes nothing, so guessing
+ * at tokens buys no writes. A token that names an expired table can spend that
+ * delete once.
+ *
+ * Returns whether anything was retired.
+ */
+export async function expireByToken(
+	db: Db,
+	token: string,
+	now: number = Date.now()
+): Promise<boolean> {
+	const [row] = await db.select().from(cardTables).where(eq(cardTables.roomToken, token)).limit(1);
+	if (!row || !isExpired(row, now)) return false;
+	await db.delete(cardTables).where(eq(cardTables.id, row.id));
+	return true;
+}
+
+/**
+ * The tables a user created, newest first — the live ones.
+ *
+ * Expired tables are left out, because every other read path already treats
+ * them as absent and a list that disagreed would be the one place the retention
+ * promise looked broken: a row with a working-looking link that answers 404.
+ * The row may still be on disk; whether it has been swept yet is not something
+ * a reader should be able to tell.
+ */
+export async function listCardTablesForOwner(
+	db: Db,
+	ownerId: string,
+	now: number = Date.now()
+): Promise<CardTableRow[]> {
 	return db
 		.select()
 		.from(cardTables)
-		.where(eq(cardTables.ownerId, ownerId))
+		.where(
+			and(
+				eq(cardTables.ownerId, ownerId),
+				gte(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS))
+			)
+		)
 		.orderBy(desc(cardTables.lastActiveAt));
 }
 
@@ -206,7 +250,16 @@ export async function sweepExpiredTables(
 		.where(lt(cardTables.lastActiveAt, new Date(now - TABLE_RETENTION_MS)))
 		.orderBy(asc(cardTables.lastActiveAt))
 		.limit(limit);
-	for (const row of stale) await db.delete(cardTables).where(eq(cardTables.id, row.id));
+	if (stale.length === 0) return 0;
+	// One statement for the batch. A delete per row was up to five extra round
+	// trips on D1, charged to a request somebody is already waiting on, for
+	// rows nobody is coming back to.
+	await db.delete(cardTables).where(
+		inArray(
+			cardTables.id,
+			stale.map((row) => row.id)
+		)
+	);
 	return stale.length;
 }
 

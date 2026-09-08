@@ -14,7 +14,7 @@ import {
 	listCardTablesForOwner
 } from '$lib/server/db/card-tables';
 import { claimGmSeat, requestSeat } from '$lib/server/db/card-table-seats';
-import { cardTableOf, loadPack } from '$lib/server/card-tables/service';
+import { cardTableOf, loadPack, sweepOnPageLoad } from '$lib/server/card-tables/service';
 import { MAX_TABLES_PER_OWNER } from '$lib/card-table-limits';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -25,6 +25,11 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 	const session = await locals.auth();
 	if (!session?.user?.id)
 		return { gameId: game.id, gameName: game.name, signedIn: false, tables: [] };
+
+	// Retention rides on the pages people actually open. A table nobody has a
+	// link to any more is exactly the one no table page will ever sweep, so the
+	// owner's own listing pays the toll too.
+	await sweepOnPageLoad(locals.db);
 
 	const tables = await listCardTablesForOwner(locals.db, session.user.id);
 	return {

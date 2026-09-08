@@ -12,7 +12,12 @@
 import type { Db } from '../db/entities';
 import type { CardTableModule } from '$lib/games/types';
 import { getGame } from '$lib/games';
-import { getCardTableByToken, touchCardTable, sweepExpiredTables } from '../db/card-tables';
+import {
+	expireByToken,
+	getCardTableByToken,
+	touchCardTable,
+	sweepExpiredTables
+} from '../db/card-tables';
 import { listSeats } from '../db/card-tables';
 import { resolveSeat } from '../db/card-table-seats';
 import { applyCommand, eventsSince } from '../db/card-table-commands';
@@ -215,5 +220,32 @@ export async function runCommand(
  */
 export async function touchOnPageLoad(db: Db, tableId: string): Promise<void> {
 	await touchCardTable(db, tableId);
+	await sweepExpiredTables(db);
+}
+
+/**
+ * Retire a table whose token has just failed to resolve, and sweep a few more.
+ *
+ * The other half of `touchOnPageLoad`: somebody followed a link to a table that
+ * has aged out, which is the earliest anyone will ever know it is gone. Doing
+ * the delete here means the commonest way a stale table is *found* is also the
+ * way it goes, rather than waiting for the global sweep to reach it.
+ *
+ * Safe for a token that names nothing: that costs one select and no writes.
+ */
+export async function retireOnMiss(db: Db, token: string): Promise<void> {
+	await expireByToken(db, token);
+	await sweepExpiredTables(db);
+}
+
+/**
+ * The sweep on its own, for a page load that has no table in hand.
+ *
+ * Retention that only ran when somebody opened a table page depended on
+ * somebody still holding a room link — precisely what a forgotten table does
+ * not have. An owner's own listing is the page they do open, so it pays the
+ * same small toll on the way past.
+ */
+export async function sweepOnPageLoad(db: Db): Promise<void> {
 	await sweepExpiredTables(db);
 }

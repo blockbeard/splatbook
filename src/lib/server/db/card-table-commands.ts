@@ -170,6 +170,15 @@ export async function findByRequest(
  * Capped, because a client returning to a long-running table should be given
  * the current state and the recent past rather than an afternoon of history it
  * cannot use.
+ *
+ * **Why the log is never trimmed, though retention trims everything else.**
+ * The request hash lives on the event row and is the idempotency lock, so
+ * deleting old events would delete the record that a command had already run.
+ * A retry arriving after the trim would apply a second time — two cards moved
+ * for one click, which is the exact failure the lock exists to prevent. The
+ * storage it would save is bounded anyway: a table stops accepting commands at
+ * the ceiling, and the whole log goes when the table does. Growth within one
+ * table's six weeks is the price of the guarantee, and it is worth it.
  */
 export async function eventsSince(
 	db: Db,

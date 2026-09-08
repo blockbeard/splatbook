@@ -17,6 +17,7 @@ import {
 	countLiveTables,
 	createCardTable,
 	deleteCardTable,
+	expireByToken,
 	getCardTable,
 	getCardTableByToken,
 	listCardTablesForOwner,
@@ -118,6 +119,18 @@ describe('the limits', () => {
 		expect(created.ok).toBe(true);
 	});
 
+	it('leaves an expired table out of its owner’s list', async () => {
+		// Every other read path treats it as absent. A listing that disagreed
+		// would be the one place the promise looked broken: a row with a
+		// working-looking link that answers 404.
+		const live = await make('in use');
+		const stale = await make('abandoned');
+		await touchCardTable(db, stale.id, Date.now() - TABLE_RETENTION_MS - 1);
+
+		const listed = await listCardTablesForOwner(db, owner);
+		expect(listed.map((t) => t.id)).toEqual([live.id]);
+	});
+
 	it('does not count someone else’s tables against you', async () => {
 		for (let i = 0; i < MAX_TABLES_PER_OWNER; i++) await make(`table ${i}`);
 		const theirs = await createCardTable(db, {
@@ -205,7 +218,55 @@ describe('sweeping', () => {
 			await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1);
 		}
 		expect(await sweepExpiredTables(db, 2)).toBe(2);
-		expect(await listCardTablesForOwner(db, owner)).toHaveLength(2);
+		// Counted off the rows rather than the listing: the listing hides an
+		// expired table whether or not the sweep has reached it, which is the
+		// point of it, and would say two were gone either way.
+		expect(await db.select().from(schema.cardTables)).toHaveLength(2);
+	});
+
+	it('deletes the seats at a table it retires, names and all', async () => {
+		// The retention promise is about the guests, not the cards: a seat holds
+		// a name somebody typed, and "it ages out after six weeks" has to reach
+		// it. The cascade does the work; this is the assertion that it is on.
+		const row = await make();
+		await db.insert(schema.cardTableSeats).values({ tableId: row.id, name: 'Grimwold' });
+		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1);
+
+		expect(await sweepExpiredTables(db)).toBe(1);
+		expect(await db.select().from(schema.cardTableSeats)).toHaveLength(0);
+	});
+});
+
+describe('expiry on read', () => {
+	it('retires the table a stale link names, when somebody follows it', async () => {
+		// The earliest anyone ever learns a table has aged out is when they open
+		// it, so that is where it goes — rather than waiting for the global sweep
+		// to happen past.
+		const row = await make();
+		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1);
+
+		expect(await expireByToken(db, row.roomToken)).toBe(true);
+		expect(await getCardTable(db, row.id)).toBeUndefined();
+	});
+
+	it('leaves a live table alone', async () => {
+		const row = await make();
+		expect(await expireByToken(db, row.roomToken)).toBe(false);
+		expect(await getCardTable(db, row.id)).toBeDefined();
+	});
+
+	it('writes nothing for a token that names nothing', async () => {
+		// Guessing at tokens must not buy an attacker writes.
+		expect(await expireByToken(db, 'not-a-token')).toBe(false);
+	});
+
+	it('takes the seats with it', async () => {
+		const row = await make();
+		await db.insert(schema.cardTableSeats).values({ tableId: row.id, name: 'Grimwold' });
+		await touchCardTable(db, row.id, Date.now() - TABLE_RETENTION_MS - 1);
+
+		await expireByToken(db, row.roomToken);
+		expect(await db.select().from(schema.cardTableSeats)).toHaveLength(0);
 	});
 });
 

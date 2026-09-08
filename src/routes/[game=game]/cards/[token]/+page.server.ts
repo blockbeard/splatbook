@@ -8,7 +8,7 @@
  */
 
 import { error, fail } from '@sveltejs/kit';
-import { loadTable, touchOnPageLoad, viewFor } from '$lib/server/card-tables/service';
+import { loadTable, retireOnMiss, touchOnPageLoad, viewFor } from '$lib/server/card-tables/service';
 import { claimGmSeat, admitSeat, removeSeat, requestSeat } from '$lib/server/db/card-table-seats';
 import {
 	SEAT_COOKIE,
@@ -29,8 +29,13 @@ export const load: PageServerLoad = async ({ locals, params, fetch }) => {
 		session?.user?.id
 	);
 	// A token naming no table and one whose table has expired give the same
-	// answer, so neither reveals whether it ever existed.
-	if (!table) error(404, 'No such table.');
+	// answer, so neither reveals whether it ever existed. The difference shows
+	// on the way out instead: if the token did name a table and that table has
+	// aged out, this is where it goes.
+	if (!table) {
+		await retireOnMiss(locals.db, params.token);
+		error(404, 'No such table.');
+	}
 
 	await touchOnPageLoad(locals.db, table.row.id);
 

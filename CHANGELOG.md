@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Card tables age out, and the mechanism now matches the promise.** A table
+  nobody has come back to for six weeks goes, and takes its seats with it —
+  which is what matters, because a seat holds a name a guest typed. Retention
+  rides on the pages people open rather than on a scheduler: following a stale
+  link retires that table then and there, and both the table page and the
+  owner's own listing sweep a few more on the way past. An expired table no
+  longer appears in that listing, so every way of asking about one now gives the
+  same answer.
+
 - **Put that card back.** Any card on the table can be moved by anyone sitting
   at it, and the last move can be reversed by whoever notices — the misplayer or
   the neighbour. That is the whole of the undo, and deliberately so: it is what
