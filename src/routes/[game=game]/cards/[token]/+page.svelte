@@ -55,8 +55,29 @@
 	 */
 	let notice = $state<{ text: string; passing: boolean } | null>(null);
 	let noticeTimer: ReturnType<typeof setTimeout> | undefined;
-	/** The last thing worth saying out loud. Read by the live region below. */
-	let said = $state('');
+	/**
+	 * The last thing worth saying out loud, held in one of two live regions.
+	 *
+	 * Two, alternating, because a region whose text does not change is not
+	 * announced — and "Grimwold played a card" twice running is an ordinary
+	 * thing to happen at a table and exactly the moment silence would mislead.
+	 * Writing into whichever region is currently empty makes every announcement
+	 * a change, without timers or a re-render trick to get the timing right.
+	 */
+	let saidA = $state('');
+	let saidB = $state('');
+	let sayInA = true;
+
+	function sayAloud(text: string) {
+		if (sayInA) {
+			saidA = text;
+			saidB = '';
+		} else {
+			saidB = text;
+			saidA = '';
+		}
+		sayInA = !sayInA;
+	}
 
 	// A passing note outliving the page it belonged to is nobody's idea of tidy.
 	$effect(() => () => clearTimeout(noticeTimer));
@@ -89,7 +110,8 @@
 		// players catch that from the corner of an eye; this is the same news for
 		// anyone who cannot, and the count-up in particular is how the table says
 		// your turn has come.
-		said = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone') ?? said;
+		const heard = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone');
+		if (heard) sayAloud(heard);
 	}
 
 	$effect(() => {
@@ -249,9 +271,13 @@
 	<!--
 		What just happened, for somebody who cannot see it happen. Polite, so it
 		waits for a gap rather than cutting across whatever is being read, and
-		off-screen because everyone else can see the table itself.
+		off-screen because everyone else can see the table itself. Two regions,
+		used in turn — see `sayAloud`.
 	-->
-	<p class="sr-only" aria-live="polite" aria-atomic="true">{said}</p>
+	<div class="ct-announcer sr-only">
+		<p aria-live="polite" aria-atomic="true">{saidA}</p>
+		<p aria-live="polite" aria-atomic="true">{saidB}</p>
+	</div>
 
 	{#if admitted}
 		<div class="modes">

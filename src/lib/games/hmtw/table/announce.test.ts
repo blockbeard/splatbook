@@ -34,8 +34,15 @@ suite('saying what happened', () => {
 		});
 
 		it('an initiative card, credited to whose slot it landed in', () => {
-			// The GM places initiative for the enemies; the player for themselves.
 			expect(describe(move('deck:player', 'seat:s2:initiative', 's2'), nameOf)).toBe(
+				'Aldis placed an initiative card.'
+			);
+		});
+
+		it('credits an enemy’s initiative to whoever placed it', () => {
+			// An enemy has no seat, so there is no name in the slot to use — and
+			// the GM is the one who places them.
+			expect(describe(move('deck:gm', 'opponent:imps:initiative', 's2'), nameOf)).toBe(
 				'Aldis placed an initiative card.'
 			);
 		});

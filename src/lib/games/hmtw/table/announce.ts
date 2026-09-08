@@ -50,7 +50,10 @@ function announceMove(data: { from: string; to: string; seat?: string | null }, 
 	const toSeat = seatOfZone(data.to);
 
 	if (to === 'played') return `${who} played a card.`;
-	if (to === 'initiative') return `${nameOf(toSeat) || who} placed an initiative card.`;
+	// An enemy's initiative belongs to no seat, so it is credited to whoever
+	// placed it — the GM. Asking `nameOf` for a null id would have answered
+	// "Someone", which is both true and useless.
+	if (to === 'initiative') return `${toSeat ? nameOf(toSeat) : who} placed an initiative card.`;
 	if (to === 'durable') return `${who} took an inspiration card.`;
 	if (to === 'fate') return `${who} turned a card over for a Test of Fate.`;
 	if (data.to.startsWith('discard:')) {

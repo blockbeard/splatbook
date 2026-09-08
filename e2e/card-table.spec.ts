@@ -257,7 +257,7 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 	// region you are sitting at a table that silently rearranges itself, and the
 	// count is the case that matters most: it is how the table says your turn
 	// has come.
-	const spoken = player.locator('.sr-only[aria-live="polite"]');
+	const spoken = player.locator('.ct-announcer');
 	// "On one" — the count buttons carry real names rather than a bare glyph,
 	// which is the only reason this locator can exist.
 	await gm.getByRole('button', { name: 'On one' }).click();
