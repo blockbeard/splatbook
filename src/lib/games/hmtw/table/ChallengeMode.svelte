@@ -611,12 +611,20 @@
 		padding-inline: 0;
 	}
 	/* Round bookkeeping: once a round each, and sized accordingly. */
+	/*
+	 * Beside the state, not flush right.
+	 *
+	 * Pushing these to the far edge put "End the round" 23px directly below
+	 * "Reset the table", both right-aligned to the same pixel and both
+	 * work-destroying — a misclick between the two costs a fight or a table.
+	 * The hierarchy here is type and colour; the alignment was doing nothing for
+	 * it and quite a lot against it.
+	 */
 	.ch__round-controls {
 		display: flex;
 		gap: 0.4rem;
 		flex-wrap: wrap;
 		align-items: center;
-		margin-inline-start: auto;
 	}
 	.ch__round-controls button {
 		font-size: var(--ct-step-label);
