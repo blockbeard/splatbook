@@ -18,8 +18,15 @@ import { test, expect, type Page } from '@playwright/test';
 
 const AXE = readFileSync('node_modules/axe-core/axe.min.js', 'utf8');
 
+interface AxeIssue {
+	id: string;
+	impact: string | null;
+	nodes: { target: string[]; any?: { message?: string }[] }[];
+}
 interface AxeResult {
-	violations: { id: string; impact: string | null; nodes: { target: string[] }[] }[];
+	violations: AxeIssue[];
+	/** Checks axe declined to judge. Not all of these are failures — see below. */
+	incomplete: AxeIssue[];
 }
 
 /** Scan the page as it stands, in both rooms. Returns the failures, flattened. */
@@ -39,6 +46,33 @@ async function scan(page: Page, label: string): Promise<string[]> {
 		)) as AxeResult;
 		for (const v of result.violations) {
 			for (const n of v.nodes) found.push(`${label} [${theme}] ${v.id} — ${n.target.join(' ')}`);
+		}
+		/*
+		 * Contrast checks axe would not commit to — and the reason this is here.
+		 *
+		 * axe reports a **1:1 ratio as `incomplete`, not as a violation**: text
+		 * the same colour as its background is usually decorative or covered by
+		 * something, so it declines to judge. Which means a spec reading only
+		 * `violations` is blind to the worst contrast failure there is, and this
+		 * one was: a chosen action was lettered bone-on-bone in dark mode for
+		 * seven commits with the sweep green throughout.
+		 *
+		 * Only `color-contrast` incompletes are treated as failures. The rest
+		 * (background images, gradients) are genuinely undecidable from the DOM
+		 * and would be noise.
+		 */
+		for (const v of result.incomplete) {
+			if (v.id !== 'color-contrast') continue;
+			for (const n of v.nodes) {
+				const why = n.any?.[0]?.message ?? '';
+				// Only the same-colour case. axe phrases that one as "Element has a
+				// 1:1 contrast ratio with the background"; its other incompletes are
+				// things like a glyph with no text characters or a background image,
+				// which really are undecidable from the DOM and would be noise —
+				// the shell's ◐ theme toggle raises one on every page.
+				if (!/contrast ratio with the background/.test(why)) continue;
+				found.push(`${label} [${theme}] invisible text — ${n.target.join(' ')} — ${why}`);
+			}
 		}
 	}
 	await page.evaluate(() => document.documentElement.classList.remove('dark'));
@@ -122,6 +156,15 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	// A card in hand: drop targets and the declare buttons appear.
 	await player.locator('.hand button').first().click();
 	failures.push(...(await scan(player, 'card picked up')));
+
+	// An action *chosen*, which is a different state from a card being held and
+	// was never on screen while axe was looking. It shipped for seven commits
+	// with the chosen action lettered bone-on-bone in dark mode — a fill and a
+	// label that are the same value there — because nothing in the sweep ever
+	// pressed one.
+	await player.locator('.actions button').first().click();
+	failures.push(...(await scan(player, 'action chosen')));
+	await player.locator('.actions button').first().click();
 	await player
 		.locator('.combatant--mine')
 		.getByRole('button', { name: /Play facedown — your turn/ })

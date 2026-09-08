@@ -407,6 +407,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+### Fixed
+
+- **A chosen Challenge Action was invisible in dark mode.** It was filled with
+  the mark and lettered in the card's colour, and in the dark room those are the
+  same value — bone on bone, at a contrast ratio of 1:1. It is lettered in the
+  room's colour now, like every other filled control.
+
+### Changed
+
 - **Buttons have three weights now, and the destructive one stopped shouting.**
   Every button on the table was the same border, size and weight, so "Deal the
   round", "Sweep" and "Reset the table" were indistinguishable — and on a phone

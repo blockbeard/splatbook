@@ -67,6 +67,7 @@
 			<li>
 				<button
 					type="button"
+					class="ct-btn ct-btn--quiet"
 					class:fits={held ? fitsThisCard(action) : false}
 					class:chosen={chosen?.id === action.id}
 					onclick={() => (chosen = chosen?.id === action.id ? null : action)}
@@ -110,26 +111,29 @@
 		flex-wrap: wrap;
 		gap: 0.3rem;
 	}
+	/* The quiet tier, twenty-three times: this is a reference you read, not a
+	   panel you drive, and its weight comes off through ink and type rather than
+	   through a fainter border — the border is the 3:1 boundary 1.4.11 asks of a
+	   control. */
 	button {
-		background: none;
-		border: 1px solid var(--ct-rule);
-		border-radius: 3px;
-		color: var(--ct-quiet);
-		font: inherit;
-		font-size: 0.85rem;
-		padding: 0.25rem 0.55rem;
-		min-block-size: 2.2rem;
-		cursor: pointer;
+		padding-inline: 0.6rem;
 	}
 	/* What the held card pays for. Lifted, not isolated: everything else is
 	   still right there and still works. */
 	button.fits {
 		border-color: var(--ct-mark);
-		color: inherit;
+		color: var(--ct-mark);
 	}
 	button.chosen {
 		background: var(--ct-mark);
-		color: var(--ct-card);
+		/*
+		 * The room's colour, not the card's.
+		 *
+		 * This was `--ct-card`, and in dark mode the mark *is* the card — both
+		 * `#e9e7e2` — so a chosen action was bone lettering on a bone fill at
+		 * 1:1. Invisible, and shipped.
+		 */
+		color: var(--ct-table);
 		border-color: var(--ct-mark);
 	}
 	.actions__else {
