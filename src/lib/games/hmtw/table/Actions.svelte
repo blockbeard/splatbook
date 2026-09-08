@@ -80,6 +80,7 @@
 			<label class="actions__else">
 				Something else
 				<input
+					class="ct-field"
 					bind:value={custom}
 					placeholder="whatever you just ruled"
 					autocomplete="off"

@@ -341,6 +341,11 @@
 		</div>
 	{/if}
 
+	<!-- Decks mode heads its rail with "At the table"; the Challenge had nothing,
+	     so its combatant headings were h3s under an h1 with the level between them
+	     missing. Somebody navigating this page by heading was being told the
+	     combatants belong to a section that does not exist. -->
+	<h2 class="ct-zone-label">In the fight</h2>
 	<div class="ch__combatants">
 		{#each admitted as seat (seat.id)}
 			{@const init = zone(`seat:${seat.id}:initiative`)}
@@ -914,8 +919,8 @@
 		flex-wrap: wrap;
 		align-items: flex-start;
 	}
-	.tag-btn,
-	.declare button {
+	/* The one control that keeps its natural height, and says why above. */
+	.tag-btn {
 		min-block-size: auto;
 	}
 </style>
