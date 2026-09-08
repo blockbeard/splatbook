@@ -11,12 +11,19 @@
  * ordinary move command that reverses it. No new privilege, no new state, and
  * every guard that applies to a move applies to undoing one.
  *
+ * It lives with the game rather than in the shell's `card-table/` because
+ * everything it knows is His Majesty the Worm's: which event kinds can disturb
+ * a pile, and what a hand's zone id looks like. A second game would name its
+ * own; there is no shared shape to lift out until one does.
+ *
  * The events carry zone ids and never card ids — naming the card would leak it
  * to a table that is not entitled to know — so the reversal takes whatever is
  * now on top of the destination. That is the right card exactly while nothing
  * else has landed there since, which is why anything that could have moved
  * cards in between cancels the offer.
  */
+
+import { seatZone } from '../engine/zones';
 
 export interface PublicEvent {
 	version: number;
@@ -51,9 +58,16 @@ const MOVES_NO_CARDS = new Set([
 	'update-opponent'
 ]);
 
-/** A hand belongs to its seat and nobody reaches into it — not even to help. */
+/**
+ * A hand belongs to its seat and nobody reaches into it — not even to help.
+ *
+ * Seats are the only thing with a hand; an enemy has an initiative, a played
+ * row and a facedown slot, and nothing to hold. So the suffix is enough to
+ * recognise one, and the id it is compared against comes from the engine's own
+ * naming rather than a copy of it.
+ */
 const isSomeoneElsesHand = (zone: string, mySeatId: string | null): boolean =>
-	zone.endsWith(':hand') && zone !== `seat:${mySeatId}:hand`;
+	zone.endsWith(':hand') && (mySeatId === null || zone !== seatZone(mySeatId, 'hand'));
 
 export interface Reversal {
 	/** The command that puts it back. */

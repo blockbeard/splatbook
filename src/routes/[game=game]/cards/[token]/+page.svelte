@@ -16,7 +16,7 @@
 	import { buildFaces } from '$lib/games/hmtw/table/faces';
 	import { pollingTransport } from '$lib/card-table-sync';
 	import { fetchSince, newRequestKey, sendCommand } from '$lib/card-table/client';
-	import { reverseOf, type PublicEvent } from '$lib/card-table/undo';
+	import { reverseOf, type PublicEvent } from '$lib/games/hmtw/table/undo';
 	import { MAX_SEAT_NAME_LENGTH } from '$lib/card-table-limits';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import '$lib/games/hmtw/table/table.css';
@@ -54,6 +54,9 @@
 	 */
 	let notice = $state<{ text: string; passing: boolean } | null>(null);
 	let noticeTimer: ReturnType<typeof setTimeout> | undefined;
+
+	// A passing note outliving the page it belonged to is nobody's idea of tidy.
+	$effect(() => () => clearTimeout(noticeTimer));
 
 	function say(text: string, passing: boolean) {
 		clearTimeout(noticeTimer);
