@@ -90,6 +90,7 @@
 		class:ct-card--selected={selected}
 		class:ct-card--lit={lit}
 		class:ct-card--greater={greaterDoom}
+		class:ct-card--pictured={!faceDown && !!face?.art}
 		aria-label={label}
 		aria-pressed={selected}
 		onclick={activate}
@@ -117,7 +118,9 @@
 					"Knight of Wands", and a screen reader repeating that as an image
 					description would say it twice.
 				-->
-				<img class="ct-card__art" src={face.art} alt="" />
+				<!-- Lazy, because a discard pile opened in the pane renders every card
+				     in it at once, and thirty plates is a megabyte nobody asked for. -->
+				<img class="ct-card__art" src={face.art} alt="" loading="lazy" decoding="async" />
 				<span class="ct-card__band">
 					<span class="ct-card__value">{face.value}</span>
 					{#if face.glyph}

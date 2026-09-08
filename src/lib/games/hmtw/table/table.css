@@ -288,7 +288,7 @@ html.dark .ct {
  * on a minor it is the value in Roman, and on a court card the picture is a
  * better word for "knight" than the word is.
  */
-[data-game='hmtw'] .ct-card:has(.ct-card__art) {
+[data-game='hmtw'] .ct-card--pictured {
 	grid-template-rows: 1fr auto;
 	gap: 0.14rem;
 	padding: 0.18rem;

@@ -261,8 +261,17 @@
 	{@const face = faces[zoomed]}
 	<button type="button" class="zoom" onclick={() => (zoomed = null)} aria-label="Close">
 		<span class="zoom__card">
-			<span class="zoom__rank">{face?.rank}</span>
+			{#if face?.art}
+				<!-- The plates are 360px wide, which is five times what the table
+				     draws. This is the view that spends the rest of them, and it was
+				     the argument for having pictures at all — a card you can
+				     actually look at. -->
+				<img class="zoom__art" src={face.art} alt="" />
+			{/if}
 			<span class="zoom__name">{face?.name}</span>
+			<!-- The value alone: "X of Wands" already contains the rank, and saying
+			     it twice was the same redundancy the card face drops. -->
+			<span class="zoom__rank">{face?.value}</span>
 		</span>
 	</button>
 {/if}
@@ -383,10 +392,16 @@
 		place-items: center;
 		cursor: zoom-out;
 	}
+	.zoom__art {
+		inline-size: min(62vw, 20rem);
+		block-size: auto;
+		border: 1px solid var(--ct-card-ink);
+		mix-blend-mode: multiply;
+	}
 	.zoom__card {
 		background: var(--ct-card);
 		color: var(--ct-card-ink);
-		padding: 2rem 2.5rem;
+		padding: 1.25rem 1.25rem 1rem;
 		border-radius: 4px;
 		display: grid;
 		gap: 0.5rem;
