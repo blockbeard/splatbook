@@ -157,6 +157,12 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await player.locator('.hand button').first().click();
 	failures.push(...(await scan(player, 'card picked up')));
 
+	// Holding a card also offers an inspiration slot on every combatant, which
+	// only exists while something is picked up.
+	await expect(
+		player.getByRole('button', { name: /Give .* an inspiration card/ }).first()
+	).toBeVisible();
+
 	// An action *chosen*, which is a different state from a card being held and
 	// was never on screen while axe was looking. It shipped for seven commits
 	// with the chosen action lettered bone-on-bone in dark mode — a fill and a

@@ -426,6 +426,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that grows without limit, so no rail was ever going to hold one. What is
   shared is the person, not the space around them.
 
+  Inspiration cards show in a Challenge now too. Ch.5's cards are held
+  publicly and survive both the Sweep and the end of a Challenge on purpose, so
+  the one place they were invisible was the one place you would reach for one.
+
   The discards took a name change with it. They read "Minor arcana discard" and
   "Major arcana discard" in Decks mode while the deck beside them said "Player
   deck", and "Player discard" in a Challenge — the same pair labelled by what is

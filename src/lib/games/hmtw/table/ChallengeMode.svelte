@@ -340,6 +340,8 @@
 			{@const init = zone(`seat:${seat.id}:initiative`)}
 			{@const facedown = zone(`seat:${seat.id}:facedown`)}
 			{@const declaredHere = table.facedown[`seat:${seat.id}:facedown`]}
+			{@const durable = zone(`seat:${seat.id}:durable`)}
+			{@const inspiration = durable?.cards?.[0]}
 			<section class="combatant" class:combatant--mine={seat.id === mySeatId}>
 				<h3>
 					<SeatName
@@ -384,6 +386,31 @@
 						{/if}
 					{/if}
 
+					<!--
+						Inspiration, in the fight where it gets spent.
+
+						Ch.5's cards are held publicly and they survive both the Sweep and
+						the end of a Challenge on purpose — so the one place they were
+						invisible was the one place you would reach for one. Shown when a
+						seat holds one, and offered as a slot when somebody is carrying a
+						card, so it does not put an empty frame in front of every
+						combatant for the whole fight.
+					-->
+					{#if inspiration}
+						<Card
+							face={faces[inspiration] ?? null}
+							pick={{ zone: durable.id, card: inspiration }}
+							selected={selectedPick?.zone === durable.id}
+							onSelect={(p) => (selectedPick ? drop(durable.id) : select(p))}
+						/>
+					{:else if selectedPick && durable}
+						<button
+							type="button"
+							class="slot slot--drop"
+							onclick={() => drop(durable.id)}
+							aria-label={`Give ${seat.name} an inspiration card`}>Inspiration</button
+						>
+					{/if}
 					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
 						{#each zone(`seat:${seat.id}:played`).cards ?? [] as card (card)}
 							<Card
