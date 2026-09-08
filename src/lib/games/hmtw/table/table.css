@@ -186,6 +186,43 @@ html.dark .ct {
 	cursor: default;
 }
 
+/* ---- Who is sitting there -------------------------------------------------- */
+
+/*
+ * One look for a seat, in both modes. See SeatName.svelte for why the *layouts*
+ * are allowed to differ and the person is not.
+ */
+
+[data-game='hmtw'] .ct-seat {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.4rem;
+	flex-wrap: wrap;
+}
+
+[data-game='hmtw'] .ct-seat__name {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: var(--ct-step-body);
+	/* Inherited, so it inverts with the room. `--ct-card` is the colour of
+	   *paper*, which is white in light mode and would vanish here. */
+	color: inherit;
+}
+
+[data-game='hmtw'] .ct-seat__tag {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.7rem;
+	color: var(--ct-quiet);
+}
+
+[data-game='hmtw'] .ct-seat__tag--mine {
+	color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-seat__hand {
+	font-size: var(--ct-step-label);
+	color: var(--ct-quiet);
+}
+
 /* ---- The card ------------------------------------------------------------ */
 
 [data-game='hmtw'] .ct-card {

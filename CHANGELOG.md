@@ -416,6 +416,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A seat reads as the same person in both modes.** Decks mode drew a seat as
+  a rail entry and the Challenge drew it again as a section heading, from two
+  sets of rules that had drifted: the Challenge never said which combatant was
+  _yours_, and never said how many cards anyone was holding, though both are
+  public and both matter in a fight. One block does it now, and both modes use
+  it. The layouts still differ, and should — a rail is 12rem wide and a
+  Challenge seat carries an initiative card, a facedown slot and a played row
+  that grows without limit, so no rail was ever going to hold one. What is
+  shared is the person, not the space around them.
+
+  The discards took a name change with it. They read "Minor arcana discard" and
+  "Major arcana discard" in Decks mode while the deck beside them said "Player
+  deck", and "Player discard" in a Challenge — the same pair labelled by what is
+  in it in one place and by whose it is in another. They are all named for whose
+  pile it is now; what a pile holds is on the card facing up.
+
 - **Buttons have three weights now, and the destructive one stopped shouting.**
   Every button on the table was the same border, size and weight, so "Deal the
   round", "Sweep" and "Reset the table" were indistinguishable — and on a phone

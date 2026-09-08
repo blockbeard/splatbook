@@ -166,7 +166,13 @@
 		{/if}
 
 		<div class="decks__piles">
-			{#each [['player', 'Player deck', 'Minor arcana discard'], ['gm', 'GM deck', 'Major arcana discard']] as [deck, deckLabel, discardLabel] (deck)}
+			<!-- Named for whose pile it is, matching the deck above it and the same
+			     four piles in a Challenge. They read "Minor arcana discard" and
+			     "Major arcana discard" here while the deck beside them said "Player
+			     deck" — the same pair labelled by what is in it in one mode and by
+			     whose it is in the other, which is a thing to work out rather than
+			     read. What the pile holds is on the card facing up. -->
+			{#each [['player', 'Player deck', 'Player discard'], ['gm', 'GM deck', 'GM discard']] as [deck, deckLabel, discardLabel] (deck)}
 				<div class="decks__pair">
 					<Pile
 						zone={zone(`deck:${deck}`)}

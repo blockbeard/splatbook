@@ -15,6 +15,7 @@
 <script lang="ts">
 	import Card from './Card.svelte';
 	import Hand from './Hand.svelte';
+	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { suggest } from './guide';
@@ -341,7 +342,12 @@
 			{@const declaredHere = table.facedown[`seat:${seat.id}:facedown`]}
 			<section class="combatant" class:combatant--mine={seat.id === mySeatId}>
 				<h3>
-					{seat.name}{#if seat.isGm}<span class="tag">GM</span>{/if}
+					<SeatName
+						name={seat.name}
+						isGm={seat.isGm}
+						mine={seat.id === mySeatId}
+						hand={zone(`seat:${seat.id}:hand`)?.count ?? 0}
+					/>
 				</h3>
 
 				{#if declaredHere?.position === 'turn' && facedown.count > 0}

@@ -9,6 +9,7 @@
 -->
 <script lang="ts">
 	import Card from './Card.svelte';
+	import SeatName from './SeatName.svelte';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import type { Pick } from '$lib/card-table/selection';
@@ -47,13 +48,12 @@
 			{@const durable = durableOf(seat.id)}
 			{@const top = durable?.cards?.[0]}
 			<li class="seat" class:seat--mine={seat.id === mySeatId}>
-				<div class="seat__who">
-					<span class="seat__name">{seat.name}</span>
-					{#if seat.isGm}<span class="seat__tag">GM</span>{/if}
-					{#if seat.id === mySeatId}<span class="seat__tag seat__tag--mine">you</span>{/if}
-				</div>
-
-				<p class="seat__hand">{handOf(seat.id)?.count ?? 0} in hand</p>
+				<SeatName
+					name={seat.name}
+					isGm={seat.isGm}
+					mine={seat.id === mySeatId}
+					hand={handOf(seat.id)?.count ?? 0}
+				/>
 
 				{#if durable}
 					<div class="seat__durable" class:ct-drop={!!selected}>
@@ -83,7 +83,7 @@
 		<ul class="rail__list">
 			{#each waiting as seat (seat.id)}
 				<li class="seat seat--waiting">
-					<span class="seat__name">{seat.name}</span>
+					<SeatName name={seat.name} />
 					{#if isGm}
 						<span class="seat__actions">
 							<form method="POST" action="?/admit">
@@ -120,33 +120,13 @@
 	.seat {
 		border-block-start: 1px solid var(--ct-rule);
 		padding-block-start: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.4rem;
 	}
 	.seat--mine {
 		border-block-start-color: var(--ct-rule-strong);
-	}
-	.seat__who {
-		display: flex;
-		align-items: baseline;
-		gap: 0.4rem;
-	}
-	.seat__name {
-		font-family: 'IM Fell English', Georgia, serif;
-		/* The room's own colour, so it inverts with the room. `--ct-card` is the
-		   colour of *paper*, which is white in light mode and would vanish. */
-		color: inherit;
-	}
-	.seat__tag {
-		font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
-		font-size: 0.7rem;
-		color: var(--ct-quiet);
-	}
-	.seat__tag--mine {
-		color: var(--ct-mark);
-	}
-	.seat__hand {
-		margin: 0.15rem 0 0.4rem;
-		font-size: 0.8rem;
-		color: var(--ct-quiet);
 	}
 	.seat__durable {
 		border-radius: 4px;
