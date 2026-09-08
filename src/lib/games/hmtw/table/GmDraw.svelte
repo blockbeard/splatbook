@@ -110,6 +110,13 @@
 		align-items: center;
 		gap: 0.4rem;
 		font-size: 0.9rem;
+		/* One rhythm down the checklist. Two of these six rows carry a number
+		   field and four carry a checkbox, and once the fields went onto the
+		   table's own scale — 44px, like every other target — those two rows
+		   stood taller than the rest. The floor makes them all the taller one
+		   rather than making the fields smaller, which would have put a third
+		   field width back on a table that has just got down to two. */
+		min-block-size: 2.75rem;
 	}
 	input[type='checkbox'] {
 		inline-size: 1.1rem;
