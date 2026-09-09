@@ -7,8 +7,11 @@
 	a table that holds personal data, say so here — `card_table_seats` holds a name
 	typed by somebody who may have no account at all, which is why there is a
 	section about it. Count the cookies here against `hooks.server.ts` and
-	`$lib/seat-claims` too: this page said "one cookie" for a while after a second
-	one shipped. It claims no tracking and no
+	`$lib/seat-claims` too — and check by *loading the site* rather than by reading
+	the code, which is how the count went wrong twice: this page said "one cookie"
+	for a while after a second shipped, and then "two" while Auth.js was quietly
+	setting a callback-url cookie on the landing page to visitors who never sign
+	in at all. It claims no tracking and no
 	advertising — that is currently true and should stay that way, or this page must
 	change with it. The one measurement on the site is Cloudflare Web Analytics
 	(commit 116): cookieless, aggregate page counts, nothing stored about the
@@ -131,16 +134,25 @@
 
 	<section>
 		<h2 class="text-xl font-semibold">Cookies</h2>
-		<p class="mt-2">Two, and both are essential rather than tracking:</p>
+		<p class="mt-2">
+			Three at most, and never all three at once. Every one is needed to make something work; none
+			of them watches you.
+		</p>
 		<ul class="mt-3 list-disc space-y-2 pl-5">
 			<li>
-				<strong>Your sign-in session</strong>, so the site knows it is still you on the next page.
-				Set only when you sign in.
+				<strong>Where to send you back to</strong>, set the moment you arrive — before you sign in,
+				and even if you never do. It is part of the sign-in machinery and holds a page address on
+				this site, nothing else.
 			</li>
 			<li>
-				<strong>Your seat at a card table</strong>, set only if you take one. It holds a secret that
-				proves the seat is yours, so that closing the tab does not lose your hand. It cannot be read
-				by scripts, it is not sent to other sites, and it says nothing about who you are.
+				<strong>Your sign-in session</strong>, once you have signed in, so the site knows it is
+				still you on the next page.
+			</li>
+			<li>
+				<strong>Your seat at a card table</strong>, and only if you take one <em>without</em> an account
+				— signed in, your seat is found by your account and this is never set. It holds a secret proving
+				the seat is yours, so closing the tab does not lose your hand. Scripts cannot read it, it is not
+				sent to other sites, and it says nothing about who you are.
 			</li>
 		</ul>
 		<p class="mt-3">

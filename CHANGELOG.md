@@ -16,10 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be forgotten sooner is the person who started the table deleting it. A seat is
   not an account, and there is nothing for an erasure request to name you by.
 
-  The cookie section said "one cookie" for a while after a second one shipped.
-  There are two, both essential: your sign-in session, and — only if you take a
-  seat — the secret that proves the seat is yours so closing the tab does not
-  lose your hand.
+  The cookie section was also out of date, and counted by reading the code
+  rather than by loading the site — which missed that Auth.js sets a
+  callback-url cookie on arrival, to visitors who never sign in. There are three
+  at most and never all three at once: that one, your sign-in session once you
+  have signed in, and — only if you take a seat _without_ an account — the secret
+  that proves the seat is yours, so closing the tab does not lose your hand.
 
 - **Credits for the card art and the prior art.** Pamela Colman Smith's 1911
   plates and where they came from, the Adherent of the Worm under the book's own
