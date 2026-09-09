@@ -262,6 +262,72 @@ Nitro's 4,000: 43 (12%).
 *Method note, since it earned its keep twice: paste into the real client before
 deciding a format rule.*
 
+## Phase 30 — HMtW card table: what playing it decides (parked)
+
+**Parked until Chris has run a real game on it.** Everything here is a question
+the built thing raised and that a session will answer better than an argument
+will. Nothing in this list is committed to; the point of writing it down is that
+it stops being carried around in someone's head.
+
+### 1. A player who wanders off, and no way to see them out
+
+Somebody joins, plays half a fight and vanishes, and their seat sits there
+holding cards. There is no control for it: "Turn away" is offered for a seat
+that is *waiting*, and nothing removes one that is already in.
+
+The server can already do it — `removeSeat` is GM-only but takes any seat id and
+does not check status — so this is a missing button rather than a missing
+mechanism. **But do not just add the button**, because the engine's half is
+wrong underneath it:
+
+```
+export function removeSeat(table, seat) {
+  const zones = Object.fromEntries(Object.entries(table.zones).filter(([, z]) => z.owner !== seat));
+  ...
+```
+
+The seat's zones go, and every card in them goes with them — out of the game,
+not to a discard. A reshuffle gathers a deck's own discard, so those cards do
+not come back until someone resets the table. A GM who kicks a player mid-fight
+would quietly shorten the deck by four cards.
+
+So the real question is the one the sweep already answers for a round: **where do
+a leaver's cards go?** Almost certainly the discard for their deck, the way
+`endRound` empties a hand — but that is a table decision, which is exactly why
+`syncSeats` refuses to make it on its own today.
+
+Worth deciding at the same time: does a kicked seat's *name* go immediately
+(it is the one personal thing a table holds), and can a player leave voluntarily
+rather than only be removed?
+
+### 2. Room codes, and what a seat is proved by
+
+Chris is not sold on the cookie. Worth separating, because "a code like
+playingcards.io" is two changes and only one of them is about cookies:
+
+- **The room's name.** Today a table is a UUID in the URL — unreadable aloud,
+  fine to paste. A short code would be better over voice chat and worse to guess
+  against, so it needs its own rate limit and a bigger alphabet than four digits.
+- **What proves a seat is yours.** Today a cookie holds a per-seat secret, so a
+  refresh keeps your hand. A code you are shown and can type would let you
+  reclaim a seat *from another device or browser*, which the cookie cannot do —
+  it is a capability the cookie lacks rather than a replacement for it.
+
+The two compose: a short room code to get in, and the cookie as the convenience
+path with a typed seat code as the fallback. Do the second only if playing
+actually shows the cookie failing; the privacy page currently promises the
+cookie says nothing about who you are, and a code that a person keeps is not
+obviously better for them than one a browser keeps for them.
+
+### 3. Housekeeping noticed on the way past
+
+`CHANGELOG.md`'s Unreleased section has grown eight `###` subsections — Added,
+Fixed, Changed, Fixed, Changed, Added, Fixed, Fixed — where Keep a Changelog
+wants one of each. It predates this phase (six before it started) and every
+release since has appended rather than merged. Tidying it is a mechanical move
+of a few hundred lines and should be its own commit, not a rider on one that
+happens to touch the file.
+
 ## Phase 29 — HMtW: a shared card table
 
 *Filed 2026-09-06; **rewritten the same day** after an adversarial review of the
