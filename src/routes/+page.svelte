@@ -6,20 +6,47 @@
 
 	let { data } = $props();
 
-	// The front door is game-agnostic: every registered module gets a card, with
-	// its own creatable entity types read off the registry. Today that's one card.
-	const games = listGames().map((game) => ({
-		id: game.id,
-		name: game.name,
-		creators: Object.entries(game.entityTypes ?? {})
+	/**
+	 * The front door is game-agnostic: every registered module gets a card, and
+	 * what goes on it is read off the registry rather than listed here.
+	 *
+	 * That last part is the point. This page used to name three of the six things
+	 * a game can offer, by an unwritten rule, and the rule went stale twice
+	 * without anyone noticing — the table reference was missing from the day it
+	 * shipped, and so was the card table. A slot added to `GameModule` now shows
+	 * up here on its own.
+	 */
+	const games = listGames().map((game) => {
+		const creators = Object.entries(game.entityTypes ?? {})
 			.filter(([, type]) => type.newDraft)
 			.map(([entityType, type]) => ({
 				entityType,
 				label: type.label,
 				via: type.wizardSteps?.length ? ('build' as const) : ('play' as const)
-			})),
-		hasGmGuide: !!game.gmGuide
-	}));
+			}));
+		return {
+			id: game.id,
+			name: game.name,
+			creators,
+			/**
+			 * The one thing this game most wants a stranger to do. A game you can
+			 * build a character for opens with that; a reference-only game opens
+			 * with the book. Everything else on the card is a quiet link, so two
+			 * games' worth of tools stays a front door rather than a wall of
+			 * twelve equal buttons.
+			 */
+			primary: creators.length
+				? {
+						href: creators[0].via === 'build' ? 'build' : 'play',
+						entityType: creators[0].entityType,
+						label: `Build a ${creators[0].label.toLowerCase()}`
+					}
+				: null,
+			tableReferenceLabel: game.tableReference?.label ?? null,
+			hasCardTable: !!game.cardTable,
+			hasGmGuide: !!game.gmGuide
+		};
+	});
 
 	const signedIn = $derived(!!data.session?.user);
 </script>
@@ -28,7 +55,7 @@
 	<title>{APP_NAME}</title>
 	<meta
 		name="description"
-		content="Character builders, campaign trackers, and searchable rules for the tabletop games you actually play."
+		content="Character builders, campaign trackers, searchable rules and a shared card table for the tabletop games you actually play."
 	/>
 </svelte:head>
 
@@ -38,7 +65,8 @@
 			{APP_NAME}<span class="text-accent">*</span>
 		</h1>
 		<p class="mt-4 text-lg text-muted">
-			Character builders, campaign trackers, and searchable rules — for the games you actually play.
+			Character builders, campaign trackers, searchable rules and a shared card table — for the
+			games you actually play.
 		</p>
 	</div>
 
@@ -49,32 +77,64 @@
 					>{game.name}</a
 				>
 			</h2>
-			<div class="mt-5 flex flex-wrap gap-3">
-				{#each game.creators as creator, i (creator.entityType)}
+			<div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+				{#if game.primary}
+					<a
+						href={game.primary.href === 'build'
+							? resolve('/[game=game]/[type]/build', {
+									game: game.id,
+									type: game.primary.entityType
+								})
+							: resolve('/[game=game]/[type]/play', {
+									game: game.id,
+									type: game.primary.entityType
+								})}
+						class="rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90"
+					>
+						{game.primary.label}
+					</a>
+				{:else}
+					<!-- Nothing to build: the book itself is what this game opens with. -->
+					<a
+						href={resolve('/[game=game]/reference', { game: game.id })}
+						class="rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90"
+					>
+						Open the reference
+					</a>
+				{/if}
+
+				<!-- Everything else the game has, quietly. -->
+				{#each game.creators.slice(1) as creator (creator.entityType)}
 					<a
 						href={creator.via === 'build'
 							? resolve('/[game=game]/[type]/build', { game: game.id, type: creator.entityType })
 							: resolve('/[game=game]/[type]/play', { game: game.id, type: creator.entityType })}
-						class={i === 0
-							? 'rounded-md bg-accent px-4 py-2 font-medium text-accent-contrast hover:opacity-90'
-							: 'rounded-md border border-border px-4 py-2 font-medium hover:bg-bg'}
+						class="underline hover:text-accent">Build a {creator.label.toLowerCase()}</a
 					>
-						Build a {creator.label.toLowerCase()}
-					</a>
 				{/each}
-				<a
-					href={resolve('/[game=game]/reference', { game: game.id })}
-					class="rounded-md border border-border px-4 py-2 font-medium hover:bg-bg"
-				>
-					Open the reference
-				</a>
+				{#if game.primary}
+					<a
+						href={resolve('/[game=game]/reference', { game: game.id })}
+						class="underline hover:text-accent">Rules reference</a
+					>
+				{/if}
+				{#if game.tableReferenceLabel}
+					<a
+						href={resolve('/[game=game]/table', { game: game.id })}
+						class="underline hover:text-accent">{game.tableReferenceLabel}</a
+					>
+				{/if}
+				{#if game.hasCardTable}
+					<a
+						href={resolve('/[game=game]/cards', { game: game.id })}
+						class="underline hover:text-accent">Card table</a
+					>
+				{/if}
 				{#if game.hasGmGuide}
 					<a
 						href={resolve('/[game=game]/gm', { game: game.id })}
-						class="rounded-md border border-border px-4 py-2 font-medium hover:bg-bg"
+						class="underline hover:text-accent">GM guide</a
 					>
-						Run the game
-					</a>
 				{/if}
 			</div>
 		</article>

@@ -442,8 +442,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   plus an attribute, and this pack holds no character at all. The catalogues fill
   menus and suggest counts; the table never rules on a play.
 
-### Changed
-
 ### Fixed
 
 - **A chosen Challenge Action was invisible in dark mode.** It was filled with
@@ -452,6 +450,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   room's colour now, like every other filled control.
 
 ### Changed
+
+- **The front page lists everything a game has.** It named three of the six
+  things a game can offer, by a rule nobody had written down, and the rule went
+  stale twice without anyone noticing — Stonetop's Moves & Gear was missing from
+  the day it shipped, and so was the card table. His Majesty the Worm's card had
+  one button on it, and it was not the interactive thing.
+
+  It reads the registry now, so a new kind of page appears there on its own. To
+  keep two games' worth of tools a front door rather than a wall of twelve equal
+  buttons, each game leads with the one thing it most wants a stranger to do —
+  build a character, or open the book — and everything else is a quiet link
+  beside it.
 
 - **The table is the room now, not a rectangle in the middle of one.** It sat
   inside the shell's reading column with white either side, and scrolling
