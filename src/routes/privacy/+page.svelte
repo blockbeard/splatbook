@@ -4,7 +4,14 @@
 	honest disclosure is worth having regardless.
 
 	Keep this factually true against src/lib/server/db/schema.ts: if a migration adds
-	a table that holds personal data, say so here. It claims no tracking and no
+	a table that holds personal data, say so here — `card_table_seats` holds a name
+	typed by somebody who may have no account at all, which is why there is a
+	section about it. Count the cookies here against `hooks.server.ts` and
+	`$lib/seat-claims` too — and check by *loading the site* rather than by reading
+	the code, which is how the count went wrong twice: this page said "one cookie"
+	for a while after a second shipped, and then "two" while Auth.js was quietly
+	setting a callback-url cookie on the landing page to visitors who never sign
+	in at all. It claims no tracking and no
 	advertising — that is currently true and should stay that way, or this page must
 	change with it. The one measurement on the site is Cloudflare Web Analytics
 	(commit 116): cookieless, aggregate page counts, nothing stored about the
@@ -15,7 +22,7 @@
 	import { APP_NAME, APP_REPO_URL } from '$lib';
 	import { CONTACT_EMAIL, KOFI_URL, DRIVETHRU_AFFILIATE_URL } from '$lib/support';
 
-	const LAST_UPDATED = '17 July 2026';
+	const LAST_UPDATED = '9 September 2026';
 </script>
 
 <svelte:head>
@@ -60,6 +67,34 @@
 	</section>
 
 	<section>
+		<h2 class="text-xl font-semibold">Card tables, and playing without an account</h2>
+		<p class="mt-2">
+			A card table is the one part of {APP_NAME} you can use without signing in. Somebody with an account
+			starts the table and shares its link; anyone holding that link can take a seat. If that is you,
+			here is the whole of what is kept:
+		</p>
+		<ul class="mt-3 list-disc space-y-2 pl-5">
+			<li>
+				<strong>The name you type when you sit down.</strong> The form asks for your character's name
+				rather than yours, and that is the honest advice — it is shown to everyone at the table and it
+				is the only thing about you that is stored. Nothing asks for an email address, and nothing tries
+				to work out who you are.
+			</li>
+			<li>
+				<strong>What happens at the table.</strong> Which cards moved between which piles, and any label
+				somebody types onto a face-down card. It is the game, not you.
+			</li>
+		</ul>
+		<p class="mt-3">
+			<strong>A table is deleted six weeks after it was last used</strong>, and the seats go with it
+			— names included. Nobody has to ask and no reminder is sent; it simply goes. If you want your
+			name off a table sooner than that, the person who started it can delete the whole table at
+			once, which takes effect immediately. That is the practical route for a guest, because a seat
+			is not an account and there is nothing for an erasure request to name you by.
+		</p>
+	</section>
+
+	<section>
 		<h2 class="text-xl font-semibold">Why it is stored</h2>
 		<p class="mt-2">
 			Solely to make the app work: to know who you are between visits, to show your characters back
@@ -100,10 +135,29 @@
 	<section>
 		<h2 class="text-xl font-semibold">Cookies</h2>
 		<p class="mt-2">
-			One cookie, holding your sign-in session, so the site knows it is still you on the next page.
-			It is essential to signing in and is not used to track you. There are no advertising or
-			analytics cookies — the page-count measurement above is cookieless by design — which is why
-			you are not being asked to click a consent banner.
+			Three at most, and never all three at once. Every one is needed to make something work; none
+			of them watches you.
+		</p>
+		<ul class="mt-3 list-disc space-y-2 pl-5">
+			<li>
+				<strong>Where to send you back to</strong>, set the moment you arrive — before you sign in,
+				and even if you never do. It is part of the sign-in machinery and holds a page address on
+				this site, nothing else.
+			</li>
+			<li>
+				<strong>Your sign-in session</strong>, once you have signed in, so the site knows it is
+				still you on the next page.
+			</li>
+			<li>
+				<strong>Your seat at a card table</strong>, and only if you take one <em>without</em> an account
+				— signed in, your seat is found by your account and this is never set. It holds a secret proving
+				the seat is yours, so closing the tab does not lose your hand. Scripts cannot read it, it is not
+				sent to other sites, and it says nothing about who you are.
+			</li>
+		</ul>
+		<p class="mt-3">
+			There are no advertising or analytics cookies — the page-count measurement above is cookieless
+			by design — which is why you are not being asked to click a consent banner.
 		</p>
 	</section>
 
@@ -114,6 +168,11 @@
 			<a href="mailto:{CONTACT_EMAIL}" class="underline hover:text-accent">{CONTACT_EMAIL}</a>
 			and ask, and your account and everything attached to it will be deleted. There is no retention period
 			and no dark pattern — asking once is enough. You may also ask for a copy of what is held about you.
+		</p>
+		<p class="mt-3 text-sm text-muted">
+			If you only ever sat at somebody's card table, there is no account to delete and no need to
+			write: ask whoever started the table to delete it, or leave it and it will age out within six
+			weeks by itself.
 		</p>
 	</section>
 

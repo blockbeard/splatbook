@@ -88,6 +88,11 @@
 				{data.tableReferenceLabel}
 			</a>
 		{/if}
+		{#if data.hasCardTable}
+			<a href={resolve('/[game=game]/cards', { game: data.gameId })} class={SECONDARY}>
+				Card table
+			</a>
+		{/if}
 		{#if data.hasGmGuide}
 			<a href={resolve('/[game=game]/gm', { game: data.gameId })} class={SECONDARY}> GM guide </a>
 		{/if}

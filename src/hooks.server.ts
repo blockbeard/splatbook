@@ -3,6 +3,7 @@ import type { Handle } from '@sveltejs/kit';
 import { handle as auth } from '$lib/server/auth';
 import { getDb } from '$lib/server/db';
 import { getPreferences } from '$lib/server/db/preferences';
+import { SEAT_COOKIE, parseSeatClaims } from '$lib/seat-claims';
 
 /** Game ids are kebab-case (registry.ts). Anything else never matches a theme,
  * and this value goes into an HTML attribute — so refuse to interpolate it. */
@@ -70,6 +71,22 @@ const gameTheme: Handle = async ({ event, resolve }) => {
  * reference. Any future security-headers work must carve out the reference
  * routes or embedding breaks.
  */
+/**
+ * Parse this browser's card-table seat tickets onto `locals` (phase 29).
+ *
+ * Deliberately does **no database work and never calls `locals.auth()`**. It
+ * runs on every request the site serves, most of which have nothing to do with
+ * a card table, so it must cost a cookie parse and nothing more. Turning a
+ * claim into a seat is the table service's job, on the routes that need one.
+ *
+ * Guests are the reason it cannot lean on auth: the whole point of a seat is
+ * that somebody with no account can hold one.
+ */
+const seatClaims: Handle = async ({ event, resolve }) => {
+	event.locals.seatClaims = parseSeatClaims(event.cookies.get(SEAT_COOKIE));
+	return resolve(event);
+};
+
 const embedMode: Handle = async ({ event, resolve }) => {
 	if (event.url.searchParams.get('embed') !== '1') return resolve(event);
 	return resolve(event, {
@@ -80,4 +97,4 @@ const embedMode: Handle = async ({ event, resolve }) => {
 // The database first: Auth.js needs it to build its adapter for the request.
 // Preferences after auth (needs the session); gameTheme/embedMode last
 // (order-independent).
-export const handle = sequence(database, auth, preferences, gameTheme, embedMode);
+export const handle = sequence(database, auth, preferences, seatClaims, gameTheme, embedMode);

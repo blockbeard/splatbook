@@ -1,0 +1,674 @@
+{
+	"schemaVersion": 1,
+	"source": {
+		"book": "His Majesty the Worm",
+		"chapters": [
+			1,
+			7
+		],
+		"note": "Composition from ch.1 “Players use the minor arcana cards plus the Fool”; values from ch.7’s Card values sidebar."
+	},
+	"suits": [
+		{
+			"id": "swords",
+			"name": "Swords",
+			"glyph": "art/suit-swords.svg"
+		},
+		{
+			"id": "pentacles",
+			"name": "Pentacles",
+			"glyph": "art/suit-pentacles.svg"
+		},
+		{
+			"id": "cups",
+			"name": "Cups",
+			"glyph": "art/suit-cups.svg"
+		},
+		{
+			"id": "wands",
+			"name": "Wands",
+			"glyph": "art/suit-wands.svg"
+		}
+	],
+	"ranks": [
+		{
+			"id": "ace",
+			"name": "Ace",
+			"value": 1
+		},
+		{
+			"id": "ii",
+			"name": "II",
+			"value": 2
+		},
+		{
+			"id": "iii",
+			"name": "III",
+			"value": 3
+		},
+		{
+			"id": "iv",
+			"name": "IV",
+			"value": 4
+		},
+		{
+			"id": "v",
+			"name": "V",
+			"value": 5
+		},
+		{
+			"id": "vi",
+			"name": "VI",
+			"value": 6
+		},
+		{
+			"id": "vii",
+			"name": "VII",
+			"value": 7
+		},
+		{
+			"id": "viii",
+			"name": "VIII",
+			"value": 8
+		},
+		{
+			"id": "ix",
+			"name": "IX",
+			"value": 9
+		},
+		{
+			"id": "x",
+			"name": "X",
+			"value": 10
+		},
+		{
+			"id": "page",
+			"name": "Page",
+			"value": 11
+		},
+		{
+			"id": "knight",
+			"name": "Knight",
+			"value": 12
+		},
+		{
+			"id": "queen",
+			"name": "Queen",
+			"value": 13
+		},
+		{
+			"id": "king",
+			"name": "King",
+			"value": 14
+		}
+	],
+	"minors": [
+		{
+			"id": "swords-ace",
+			"suit": "swords",
+			"rank": "ace",
+			"value": 1,
+			"name": "Ace of Swords"
+		},
+		{
+			"id": "swords-ii",
+			"suit": "swords",
+			"rank": "ii",
+			"value": 2,
+			"name": "II of Swords"
+		},
+		{
+			"id": "swords-iii",
+			"suit": "swords",
+			"rank": "iii",
+			"value": 3,
+			"name": "III of Swords"
+		},
+		{
+			"id": "swords-iv",
+			"suit": "swords",
+			"rank": "iv",
+			"value": 4,
+			"name": "IV of Swords"
+		},
+		{
+			"id": "swords-v",
+			"suit": "swords",
+			"rank": "v",
+			"value": 5,
+			"name": "V of Swords"
+		},
+		{
+			"id": "swords-vi",
+			"suit": "swords",
+			"rank": "vi",
+			"value": 6,
+			"name": "VI of Swords"
+		},
+		{
+			"id": "swords-vii",
+			"suit": "swords",
+			"rank": "vii",
+			"value": 7,
+			"name": "VII of Swords"
+		},
+		{
+			"id": "swords-viii",
+			"suit": "swords",
+			"rank": "viii",
+			"value": 8,
+			"name": "VIII of Swords"
+		},
+		{
+			"id": "swords-ix",
+			"suit": "swords",
+			"rank": "ix",
+			"value": 9,
+			"name": "IX of Swords"
+		},
+		{
+			"id": "swords-x",
+			"suit": "swords",
+			"rank": "x",
+			"value": 10,
+			"name": "X of Swords"
+		},
+		{
+			"id": "swords-page",
+			"suit": "swords",
+			"rank": "page",
+			"value": 11,
+			"name": "Page of Swords"
+		},
+		{
+			"id": "swords-knight",
+			"suit": "swords",
+			"rank": "knight",
+			"value": 12,
+			"name": "Knight of Swords"
+		},
+		{
+			"id": "swords-queen",
+			"suit": "swords",
+			"rank": "queen",
+			"value": 13,
+			"name": "Queen of Swords"
+		},
+		{
+			"id": "swords-king",
+			"suit": "swords",
+			"rank": "king",
+			"value": 14,
+			"name": "King of Swords"
+		},
+		{
+			"id": "pentacles-ace",
+			"suit": "pentacles",
+			"rank": "ace",
+			"value": 1,
+			"name": "Ace of Pentacles"
+		},
+		{
+			"id": "pentacles-ii",
+			"suit": "pentacles",
+			"rank": "ii",
+			"value": 2,
+			"name": "II of Pentacles"
+		},
+		{
+			"id": "pentacles-iii",
+			"suit": "pentacles",
+			"rank": "iii",
+			"value": 3,
+			"name": "III of Pentacles"
+		},
+		{
+			"id": "pentacles-iv",
+			"suit": "pentacles",
+			"rank": "iv",
+			"value": 4,
+			"name": "IV of Pentacles"
+		},
+		{
+			"id": "pentacles-v",
+			"suit": "pentacles",
+			"rank": "v",
+			"value": 5,
+			"name": "V of Pentacles"
+		},
+		{
+			"id": "pentacles-vi",
+			"suit": "pentacles",
+			"rank": "vi",
+			"value": 6,
+			"name": "VI of Pentacles"
+		},
+		{
+			"id": "pentacles-vii",
+			"suit": "pentacles",
+			"rank": "vii",
+			"value": 7,
+			"name": "VII of Pentacles"
+		},
+		{
+			"id": "pentacles-viii",
+			"suit": "pentacles",
+			"rank": "viii",
+			"value": 8,
+			"name": "VIII of Pentacles"
+		},
+		{
+			"id": "pentacles-ix",
+			"suit": "pentacles",
+			"rank": "ix",
+			"value": 9,
+			"name": "IX of Pentacles"
+		},
+		{
+			"id": "pentacles-x",
+			"suit": "pentacles",
+			"rank": "x",
+			"value": 10,
+			"name": "X of Pentacles"
+		},
+		{
+			"id": "pentacles-page",
+			"suit": "pentacles",
+			"rank": "page",
+			"value": 11,
+			"name": "Page of Pentacles"
+		},
+		{
+			"id": "pentacles-knight",
+			"suit": "pentacles",
+			"rank": "knight",
+			"value": 12,
+			"name": "Knight of Pentacles"
+		},
+		{
+			"id": "pentacles-queen",
+			"suit": "pentacles",
+			"rank": "queen",
+			"value": 13,
+			"name": "Queen of Pentacles"
+		},
+		{
+			"id": "pentacles-king",
+			"suit": "pentacles",
+			"rank": "king",
+			"value": 14,
+			"name": "King of Pentacles"
+		},
+		{
+			"id": "cups-ace",
+			"suit": "cups",
+			"rank": "ace",
+			"value": 1,
+			"name": "Ace of Cups"
+		},
+		{
+			"id": "cups-ii",
+			"suit": "cups",
+			"rank": "ii",
+			"value": 2,
+			"name": "II of Cups"
+		},
+		{
+			"id": "cups-iii",
+			"suit": "cups",
+			"rank": "iii",
+			"value": 3,
+			"name": "III of Cups"
+		},
+		{
+			"id": "cups-iv",
+			"suit": "cups",
+			"rank": "iv",
+			"value": 4,
+			"name": "IV of Cups"
+		},
+		{
+			"id": "cups-v",
+			"suit": "cups",
+			"rank": "v",
+			"value": 5,
+			"name": "V of Cups"
+		},
+		{
+			"id": "cups-vi",
+			"suit": "cups",
+			"rank": "vi",
+			"value": 6,
+			"name": "VI of Cups"
+		},
+		{
+			"id": "cups-vii",
+			"suit": "cups",
+			"rank": "vii",
+			"value": 7,
+			"name": "VII of Cups"
+		},
+		{
+			"id": "cups-viii",
+			"suit": "cups",
+			"rank": "viii",
+			"value": 8,
+			"name": "VIII of Cups"
+		},
+		{
+			"id": "cups-ix",
+			"suit": "cups",
+			"rank": "ix",
+			"value": 9,
+			"name": "IX of Cups"
+		},
+		{
+			"id": "cups-x",
+			"suit": "cups",
+			"rank": "x",
+			"value": 10,
+			"name": "X of Cups"
+		},
+		{
+			"id": "cups-page",
+			"suit": "cups",
+			"rank": "page",
+			"value": 11,
+			"name": "Page of Cups"
+		},
+		{
+			"id": "cups-knight",
+			"suit": "cups",
+			"rank": "knight",
+			"value": 12,
+			"name": "Knight of Cups"
+		},
+		{
+			"id": "cups-queen",
+			"suit": "cups",
+			"rank": "queen",
+			"value": 13,
+			"name": "Queen of Cups"
+		},
+		{
+			"id": "cups-king",
+			"suit": "cups",
+			"rank": "king",
+			"value": 14,
+			"name": "King of Cups"
+		},
+		{
+			"id": "wands-ace",
+			"suit": "wands",
+			"rank": "ace",
+			"value": 1,
+			"name": "Ace of Wands"
+		},
+		{
+			"id": "wands-ii",
+			"suit": "wands",
+			"rank": "ii",
+			"value": 2,
+			"name": "II of Wands"
+		},
+		{
+			"id": "wands-iii",
+			"suit": "wands",
+			"rank": "iii",
+			"value": 3,
+			"name": "III of Wands"
+		},
+		{
+			"id": "wands-iv",
+			"suit": "wands",
+			"rank": "iv",
+			"value": 4,
+			"name": "IV of Wands"
+		},
+		{
+			"id": "wands-v",
+			"suit": "wands",
+			"rank": "v",
+			"value": 5,
+			"name": "V of Wands"
+		},
+		{
+			"id": "wands-vi",
+			"suit": "wands",
+			"rank": "vi",
+			"value": 6,
+			"name": "VI of Wands"
+		},
+		{
+			"id": "wands-vii",
+			"suit": "wands",
+			"rank": "vii",
+			"value": 7,
+			"name": "VII of Wands"
+		},
+		{
+			"id": "wands-viii",
+			"suit": "wands",
+			"rank": "viii",
+			"value": 8,
+			"name": "VIII of Wands"
+		},
+		{
+			"id": "wands-ix",
+			"suit": "wands",
+			"rank": "ix",
+			"value": 9,
+			"name": "IX of Wands"
+		},
+		{
+			"id": "wands-x",
+			"suit": "wands",
+			"rank": "x",
+			"value": 10,
+			"name": "X of Wands"
+		},
+		{
+			"id": "wands-page",
+			"suit": "wands",
+			"rank": "page",
+			"value": 11,
+			"name": "Page of Wands"
+		},
+		{
+			"id": "wands-knight",
+			"suit": "wands",
+			"rank": "knight",
+			"value": 12,
+			"name": "Knight of Wands"
+		},
+		{
+			"id": "wands-queen",
+			"suit": "wands",
+			"rank": "queen",
+			"value": 13,
+			"name": "Queen of Wands"
+		},
+		{
+			"id": "wands-king",
+			"suit": "wands",
+			"rank": "king",
+			"value": 14,
+			"name": "King of Wands"
+		}
+	],
+	"majors": [
+		{
+			"id": "fool",
+			"name": "The Fool",
+			"numeral": "0",
+			"value": 0
+		},
+		{
+			"id": "magician",
+			"name": "The Magician",
+			"numeral": "I",
+			"value": 1
+		},
+		{
+			"id": "high-priestess",
+			"name": "The High Priestess",
+			"numeral": "II",
+			"value": 2
+		},
+		{
+			"id": "empress",
+			"name": "The Empress",
+			"numeral": "III",
+			"value": 3
+		},
+		{
+			"id": "emperor",
+			"name": "The Emperor",
+			"numeral": "IV",
+			"value": 4
+		},
+		{
+			"id": "hierophant",
+			"name": "The Hierophant",
+			"numeral": "V",
+			"value": 5
+		},
+		{
+			"id": "lovers",
+			"name": "The Lovers",
+			"numeral": "VI",
+			"value": 6
+		},
+		{
+			"id": "chariot",
+			"name": "The Chariot",
+			"numeral": "VII",
+			"value": 7
+		},
+		{
+			"id": "strength",
+			"name": "Strength",
+			"numeral": "VIII",
+			"value": 8
+		},
+		{
+			"id": "hermit",
+			"name": "The Hermit",
+			"numeral": "IX",
+			"value": 9
+		},
+		{
+			"id": "wheel-of-fortune",
+			"name": "Wheel of Fortune",
+			"numeral": "X",
+			"value": 10
+		},
+		{
+			"id": "justice",
+			"name": "Justice",
+			"numeral": "XI",
+			"value": 11
+		},
+		{
+			"id": "hanged-man",
+			"name": "The Hanged Man",
+			"numeral": "XII",
+			"value": 12
+		},
+		{
+			"id": "death",
+			"name": "Death",
+			"numeral": "XIII",
+			"value": 13
+		},
+		{
+			"id": "temperance",
+			"name": "Temperance",
+			"numeral": "XIV",
+			"value": 14
+		},
+		{
+			"id": "devil",
+			"name": "The Devil",
+			"numeral": "XV",
+			"value": 15
+		},
+		{
+			"id": "tower",
+			"name": "The Tower",
+			"numeral": "XVI",
+			"value": 16
+		},
+		{
+			"id": "star",
+			"name": "The Star",
+			"numeral": "XVII",
+			"value": 17
+		},
+		{
+			"id": "moon",
+			"name": "The Moon",
+			"numeral": "XVIII",
+			"value": 18
+		},
+		{
+			"id": "sun",
+			"name": "The Sun",
+			"numeral": "XIX",
+			"value": 19
+		},
+		{
+			"id": "judgement",
+			"name": "Judgement",
+			"numeral": "XX",
+			"value": 20
+		},
+		{
+			"id": "world",
+			"name": "The World",
+			"numeral": "XXI",
+			"value": 21
+		}
+	],
+	"doomTiers": [
+		{
+			"id": "lesser",
+			"name": "Lesser doom",
+			"min": 1,
+			"max": 14
+		},
+		{
+			"id": "greater",
+			"name": "Greater doom",
+			"min": 15,
+			"max": 21
+		}
+	],
+	"decks": [
+		{
+			"id": "player",
+			"name": "Player deck",
+			"arcana": "minor",
+			"includesMajors": [
+				"fool"
+			],
+			"note": "Fifty-six minor arcana plus the Fool, borrowed from the major arcana deck."
+		},
+		{
+			"id": "gm",
+			"name": "GM deck",
+			"arcana": "major",
+			"excludesMajors": [
+				"fool"
+			],
+			"note": "The major arcana I–XXI. The Fool sits in the player deck."
+		}
+	],
+	"art": {
+		"plates": {
+			"dir": "art/plates",
+			"ext": "webp",
+			"note": "Pamela Colman Smith's line plates from the 1911 Pictorial Key to the Tarot, one per card id. See art/art-manifest.json for each plate's source and licence, and LICENSE.md for the basis."
+		}
+	}
+}

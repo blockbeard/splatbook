@@ -1,0 +1,1805 @@
+{
+	"source": {
+		"work": "A. E. Waite, The Pictorial Key to the Tarot (William Rider & Son, 1911)",
+		"illustrator": "Pamela Colman Smith",
+		"via": "Wikimedia Commons",
+		"basis": "Published 1911; public domain in the United Kingdom and the United States. Every file's Commons licence tag is recorded below and checked on every build."
+	},
+	"tool": "tools/build_card_art.py",
+	"plates": [
+		{
+			"card": "fool",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_00_The_Fool.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_00_The_Fool.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				328,
+				562
+			],
+			"cropBox": [
+				5,
+				5,
+				320,
+				511
+			],
+			"output": "fool.webp",
+			"outputSize": [
+				360,
+				578
+			],
+			"sha256": "e14bd16e7213c1d8f32248a55a41845312a37fc8370fb17630a84cb1fde749f8"
+		},
+		{
+			"card": "magician",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_01_The_Magician.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_01_The_Magician.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				4,
+				5,
+				321,
+				518
+			],
+			"output": "magician.webp",
+			"outputSize": [
+				360,
+				583
+			],
+			"sha256": "1f5d7c9ea6416e97db4688d806f38ce1c350547233ac189c1b000f605d9fba75"
+		},
+		{
+			"card": "high-priestess",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_02_The_High_Priestess.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_02_The_High_Priestess.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				559
+			],
+			"cropBox": [
+				3,
+				5,
+				321,
+				510
+			],
+			"output": "high-priestess.webp",
+			"outputSize": [
+				360,
+				572
+			],
+			"sha256": "b2c1ca6ccdf768ea971ee400a10bb9287aafd6172021c80b4919b539a6a1e6a2"
+		},
+		{
+			"card": "empress",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_03_The_Empress.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_03_The_Empress.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				328,
+				559
+			],
+			"cropBox": [
+				3,
+				6,
+				321,
+				511
+			],
+			"output": "empress.webp",
+			"outputSize": [
+				360,
+				572
+			],
+			"sha256": "1f7d56231bb37dad3f50e13c10fabf57fd22110c855bb878a73fee0ea789aa61"
+		},
+		{
+			"card": "emperor",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_04_The_Emperor.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_04_The_Emperor.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				559
+			],
+			"cropBox": [
+				4,
+				4,
+				320,
+				512
+			],
+			"output": "emperor.webp",
+			"outputSize": [
+				360,
+				579
+			],
+			"sha256": "d603729c22bcb7ef6f75b50080780d0cac3922e7fcbc5750d888b4079d9c6ff2"
+		},
+		{
+			"card": "hierophant",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_05_The_Hierophant.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_05_The_Hierophant.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				561
+			],
+			"cropBox": [
+				5,
+				5,
+				320,
+				513
+			],
+			"output": "hierophant.webp",
+			"outputSize": [
+				360,
+				581
+			],
+			"sha256": "423aea07c4920376d2a6fce20a2cbab5c8ebd0e95a8e7a9a686149dfceb9e57c"
+		},
+		{
+			"card": "lovers",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_06_The_Lovers.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_06_The_Lovers.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				333,
+				572
+			],
+			"cropBox": [
+				6,
+				5,
+				325,
+				520
+			],
+			"output": "lovers.webp",
+			"outputSize": [
+				360,
+				581
+			],
+			"sha256": "b40920fd8812530db19c17c138ecda2e6402287da88a1a924ed17b19abaedbb9"
+		},
+		{
+			"card": "chariot",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_07_The_Chariot.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_07_The_Chariot.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				331,
+				564
+			],
+			"cropBox": [
+				6,
+				4,
+				322,
+				512
+			],
+			"output": "chariot.webp",
+			"outputSize": [
+				360,
+				579
+			],
+			"sha256": "8d0bc7d07a8f73e4304fabfff91c4d39c1dab55ff98abddd87bc35b24fc315b6"
+		},
+		{
+			"card": "strength",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_08_Strength.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_08_Strength.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				574
+			],
+			"cropBox": [
+				7,
+				5,
+				320,
+				522
+			],
+			"output": "strength.webp",
+			"outputSize": [
+				360,
+				595
+			],
+			"sha256": "3caf17ebc297032d4ee8120b37f52e05f58ae823e6a63c34ec4d09f39d1a908d"
+		},
+		{
+			"card": "hermit",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_09_The_Hermit.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_09_The_Hermit.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				564
+			],
+			"cropBox": [
+				4,
+				4,
+				322,
+				516
+			],
+			"output": "hermit.webp",
+			"outputSize": [
+				360,
+				580
+			],
+			"sha256": "094322f580bd021950de9771d2c596b9b7c3b6159c255df112ecd790442a1f4e"
+		},
+		{
+			"card": "wheel-of-fortune",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_10_Wheel_of_Fortune.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_10_Wheel_of_Fortune.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				3,
+				5,
+				320,
+				515
+			],
+			"output": "wheel-of-fortune.webp",
+			"outputSize": [
+				360,
+				579
+			],
+			"sha256": "2744cada345ceb46faf0008ab5e86e5718a6eafcdebe3b29c10002918330951d"
+		},
+		{
+			"card": "justice",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_11_Justice.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_11_Justice.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				570
+			],
+			"cropBox": [
+				4,
+				6,
+				322,
+				518
+			],
+			"output": "justice.webp",
+			"outputSize": [
+				360,
+				580
+			],
+			"sha256": "d1b0b58f8f897380becb42417cb9b6107845b6cede2e60fb99758ab3fe84e1b9"
+		},
+		{
+			"card": "hanged-man",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_12_The_Hanged_Man.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_12_The_Hanged_Man.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				331,
+				579
+			],
+			"cropBox": [
+				5,
+				6,
+				323,
+				527
+			],
+			"output": "hanged-man.webp",
+			"outputSize": [
+				360,
+				590
+			],
+			"sha256": "8e161e2ba6300ca2c4c26062a7daf08b8768bf78d6f82807841f8d82bb5a41f6"
+		},
+		{
+			"card": "death",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_13_Death.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_13_Death.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				4,
+				4,
+				320,
+				518
+			],
+			"output": "death.webp",
+			"outputSize": [
+				360,
+				586
+			],
+			"sha256": "256732a1539f994047bf8c64bb9c0b723dc8ca60655c08c4214a58750e3b308a"
+		},
+		{
+			"card": "temperance",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_14_Temperance.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_14_Temperance.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				333,
+				564
+			],
+			"cropBox": [
+				4,
+				4,
+				325,
+				512
+			],
+			"output": "temperance.webp",
+			"outputSize": [
+				360,
+				570
+			],
+			"sha256": "dad6c6c72e13d7618f4dbdabdfba6d45c35fe760a75c3744a1affb2e18f9d062"
+		},
+		{
+			"card": "devil",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_15_The_Devil.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_15_The_Devil.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				568
+			],
+			"cropBox": [
+				3,
+				7,
+				317,
+				516
+			],
+			"output": "devil.webp",
+			"outputSize": [
+				360,
+				584
+			],
+			"sha256": "f0b5b4703a17fe9543e20698ef418973d5cc03785dab4f837a0aee778394ced0"
+		},
+		{
+			"card": "tower",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_16_The_Tower.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_16_The_Tower.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				561
+			],
+			"cropBox": [
+				5,
+				4,
+				323,
+				509
+			],
+			"output": "tower.webp",
+			"outputSize": [
+				360,
+				572
+			],
+			"sha256": "e66551e15eb608eb02981367c8cf116cf42ef0dd9c249e55724776989b04eecd"
+		},
+		{
+			"card": "star",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_17_The_Star.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_17_The_Star.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				331,
+				564
+			],
+			"cropBox": [
+				5,
+				5,
+				324,
+				514
+			],
+			"output": "star.webp",
+			"outputSize": [
+				360,
+				574
+			],
+			"sha256": "3072a66bd2bc5ee0412639ee68f40e23beaf86620442de926c953b001a11a8e8"
+		},
+		{
+			"card": "moon",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_18_The_Moon.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_18_The_Moon.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				327,
+				569
+			],
+			"cropBox": [
+				6,
+				4,
+				319,
+				518
+			],
+			"output": "moon.webp",
+			"outputSize": [
+				360,
+				591
+			],
+			"sha256": "566d926a515f3408d455ffe75acd76b168c103b6dd1b2ae585e710abc9be9eff"
+		},
+		{
+			"card": "sun",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_19_The_Sun.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				562
+			],
+			"cropBox": [
+				4,
+				6,
+				322,
+				509
+			],
+			"output": "sun.webp",
+			"outputSize": [
+				360,
+				569
+			],
+			"sha256": "7df714dd7bccea075a6ca8c529de1183f11ceb9c2ff84dbf7eecacfd929cda14"
+		},
+		{
+			"card": "judgement",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_20_Judgement.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				569
+			],
+			"cropBox": [
+				5,
+				5,
+				322,
+				519
+			],
+			"output": "judgement.webp",
+			"outputSize": [
+				360,
+				584
+			],
+			"sha256": "de2f4cba2e50c669bc23378a713e45849561475293e47dcb7389d44b1fe65b99"
+		},
+		{
+			"card": "world",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_21_The_World.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_21_The_World.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				566
+			],
+			"cropBox": [
+				4,
+				5,
+				322,
+				515
+			],
+			"output": "world.webp",
+			"outputSize": [
+				360,
+				577
+			],
+			"sha256": "c6f47b199d717ab39731ebcac15bdecd602dd604beaeba52daf63cd8f496264a"
+		},
+		{
+			"card": "cups-ace",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_01.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_01.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				331,
+				565
+			],
+			"cropBox": [
+				5,
+				3,
+				321,
+				515
+			],
+			"output": "cups-ace.webp",
+			"outputSize": [
+				360,
+				583
+			],
+			"sha256": "b8c0de72c2bea117a35b129e7ad8fc281a33aeeaf08ab17441579baa72078e08"
+		},
+		{
+			"card": "cups-ii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_02.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_02.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				324,
+				572
+			],
+			"cropBox": [
+				3,
+				5,
+				317,
+				491
+			],
+			"output": "cups-ii.webp",
+			"outputSize": [
+				360,
+				557
+			],
+			"sha256": "4439e3726f369b163a3a78f875859fd274aced89c16365630a3946bbc81484c5"
+		},
+		{
+			"card": "cups-iii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_03.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_03.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				333,
+				566
+			],
+			"cropBox": [
+				4,
+				3,
+				323,
+				486
+			],
+			"output": "cups-iii.webp",
+			"outputSize": [
+				360,
+				545
+			],
+			"sha256": "4a1c1ca5a1c9243b41a75317bd5d5598fa2a20851a73632c3da56d0a568bf51e"
+		},
+		{
+			"card": "cups-iv",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_04.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_04.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				567
+			],
+			"cropBox": [
+				5,
+				3,
+				322,
+				487
+			],
+			"output": "cups-iv.webp",
+			"outputSize": [
+				360,
+				550
+			],
+			"sha256": "9517777ec83090ac6bf0973c16ba06eb1534b1b82f7115475d362ef7af47a5b0"
+		},
+		{
+			"card": "cups-v",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_05.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_05.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				324,
+				569
+			],
+			"cropBox": [
+				4,
+				4,
+				317,
+				489
+			],
+			"output": "cups-v.webp",
+			"outputSize": [
+				360,
+				558
+			],
+			"sha256": "a28f2eeb266806c235a3e70cdf2ff24f1036fc4df6f9b571b4d2f1eb02525d29"
+		},
+		{
+			"card": "cups-vi",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_06.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_06.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				4,
+				6,
+				319,
+				487
+			],
+			"output": "cups-vi.webp",
+			"outputSize": [
+				360,
+				550
+			],
+			"sha256": "358fc7e42a2c494ea4d4a219e09496485ab69e7291c17e07e2f214d356dbe7c6"
+		},
+		{
+			"card": "cups-vii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_07.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_07.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				325,
+				561
+			],
+			"cropBox": [
+				3,
+				4,
+				316,
+				482
+			],
+			"output": "cups-vii.webp",
+			"outputSize": [
+				360,
+				550
+			],
+			"sha256": "7d442dbcd81d4d22911ee89459f66e9d4518ca846048084545ebf596a9f7901b"
+		},
+		{
+			"card": "cups-viii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_08.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_08.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				325,
+				567
+			],
+			"cropBox": [
+				4,
+				6,
+				317,
+				487
+			],
+			"output": "cups-viii.webp",
+			"outputSize": [
+				360,
+				553
+			],
+			"sha256": "4c88233731857160f36274e5ec6f52ba7495de0cf21999604435bcaee1ffd178"
+		},
+		{
+			"card": "cups-ix",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_09.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_09.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				325,
+				566
+			],
+			"cropBox": [
+				6,
+				5,
+				316,
+				486
+			],
+			"output": "cups-ix.webp",
+			"outputSize": [
+				360,
+				559
+			],
+			"sha256": "931893b19d3bacd70a58d15f50ed51f298f281b739e04febe823d47b722e1e48"
+		},
+		{
+			"card": "cups-x",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_10.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_10.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				327,
+				566
+			],
+			"cropBox": [
+				3,
+				4,
+				318,
+				486
+			],
+			"output": "cups-x.webp",
+			"outputSize": [
+				360,
+				551
+			],
+			"sha256": "606d26318a5561511277d0811523292774cfdd700745e4b2520f26a70adadd33"
+		},
+		{
+			"card": "cups-page",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_11.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_11.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				570
+			],
+			"cropBox": [
+				5,
+				5,
+				319,
+				520
+			],
+			"output": "cups-page.webp",
+			"outputSize": [
+				360,
+				590
+			],
+			"sha256": "aa5d8220d8c7d716e941c172d275d256ef15f24918ae0ae55d9578cbf5971d4d"
+		},
+		{
+			"card": "cups-knight",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_12.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_12.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				566
+			],
+			"cropBox": [
+				6,
+				5,
+				321,
+				513
+			],
+			"output": "cups-knight.webp",
+			"outputSize": [
+				360,
+				581
+			],
+			"sha256": "b93ed7407af356cff986539c8fe468e401e68accb093d8c3a2addca3f0a9bbba"
+		},
+		{
+			"card": "cups-queen",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_13.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_13.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				565
+			],
+			"cropBox": [
+				3,
+				5,
+				321,
+				516
+			],
+			"output": "cups-queen.webp",
+			"outputSize": [
+				360,
+				578
+			],
+			"sha256": "eb76e787840d21dd0482287382063c4290d28299d16b7085b181f4c93726f566"
+		},
+		{
+			"card": "cups-king",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Cups_14.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Cups_14.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				574
+			],
+			"cropBox": [
+				3,
+				6,
+				317,
+				522
+			],
+			"output": "cups-king.webp",
+			"outputSize": [
+				360,
+				592
+			],
+			"sha256": "64c8233648f6fc7ecf0d5351ca854a1597f8be50ea57542055e474e1072d0bdc"
+		},
+		{
+			"card": "pentacles-ace",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_01.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_01.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				569
+			],
+			"cropBox": [
+				4,
+				5,
+				321,
+				516
+			],
+			"output": "pentacles-ace.webp",
+			"outputSize": [
+				360,
+				580
+			],
+			"sha256": "9fadfbfb160171c5edc20016a7bb53f2675c5919caba0330f06699146be9b1b5"
+		},
+		{
+			"card": "pentacles-ii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_02.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_02.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				334,
+				564
+			],
+			"cropBox": [
+				7,
+				4,
+				326,
+				485
+			],
+			"output": "pentacles-ii.webp",
+			"outputSize": [
+				360,
+				543
+			],
+			"sha256": "902dc8300889a3dc20d7e1b4bf788f4d94fcc18d64c468f89c89d482e348d630"
+		},
+		{
+			"card": "pentacles-iii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_03.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_03.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				325,
+				567
+			],
+			"cropBox": [
+				4,
+				5,
+				318,
+				487
+			],
+			"output": "pentacles-iii.webp",
+			"outputSize": [
+				360,
+				553
+			],
+			"sha256": "3d05e5159a494d34392db13795a6200b84b6aa950ddba45b808dbf6ed2170397"
+		},
+		{
+			"card": "pentacles-iv",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_04.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_04.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				564
+			],
+			"cropBox": [
+				5,
+				4,
+				322,
+				485
+			],
+			"output": "pentacles-iv.webp",
+			"outputSize": [
+				360,
+				546
+			],
+			"sha256": "5cf57a1b06557fba15159a8bb792e300a6e36a94c029e9befc0be7e019ac8750"
+		},
+		{
+			"card": "pentacles-v",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_05.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_05.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				557
+			],
+			"cropBox": [
+				4,
+				3,
+				320,
+				479
+			],
+			"output": "pentacles-v.webp",
+			"outputSize": [
+				360,
+				542
+			],
+			"sha256": "c87df6b8b1c57670c3ee83dccff76ec04c168a97bfd35f7b482e3e5d693850ea"
+		},
+		{
+			"card": "pentacles-vi",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_06.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_06.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				561
+			],
+			"cropBox": [
+				4,
+				4,
+				320,
+				482
+			],
+			"output": "pentacles-vi.webp",
+			"outputSize": [
+				360,
+				545
+			],
+			"sha256": "09241cb9836fa6de50f952f461a4314b8adcf4ebdcd4d177245aaf15acfd6979"
+		},
+		{
+			"card": "pentacles-vii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_07.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_07.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				570
+			],
+			"cropBox": [
+				4,
+				6,
+				318,
+				499
+			],
+			"output": "pentacles-vii.webp",
+			"outputSize": [
+				360,
+				565
+			],
+			"sha256": "a85abfe176acd614a44fd6eb28919677f3a0e509886e6b70c2d6295830067581"
+		},
+		{
+			"card": "pentacles-viii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_08.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_08.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				355,
+				605
+			],
+			"cropBox": [
+				5,
+				5,
+				347,
+				520
+			],
+			"output": "pentacles-viii.webp",
+			"outputSize": [
+				360,
+				542
+			],
+			"sha256": "08bfd31b26d2c66f9408976d0c2145032097bcc339b7f470895208d809dfe3aa"
+		},
+		{
+			"card": "pentacles-ix",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_09.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_09.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				328,
+				567
+			],
+			"cropBox": [
+				3,
+				5,
+				319,
+				487
+			],
+			"output": "pentacles-ix.webp",
+			"outputSize": [
+				360,
+				549
+			],
+			"sha256": "84b3870249d599174ab6b3eb2727a40170d19fb233ee4638488cf87199be97f6"
+		},
+		{
+			"card": "pentacles-x",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_10.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_10.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				564
+			],
+			"cropBox": [
+				3,
+				6,
+				322,
+				485
+			],
+			"output": "pentacles-x.webp",
+			"outputSize": [
+				360,
+				541
+			],
+			"sha256": "7b66688f105843cbb53baedc56bb7d265ee9f8c159cbac76fd81a175cab54c0a"
+		},
+		{
+			"card": "pentacles-page",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_11.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_11.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				569
+			],
+			"cropBox": [
+				5,
+				5,
+				322,
+				521
+			],
+			"output": "pentacles-page.webp",
+			"outputSize": [
+				360,
+				586
+			],
+			"sha256": "9f4380373575350f8549ff24436c05ab53e4bb782ebcac2bc98be6b637565f65"
+		},
+		{
+			"card": "pentacles-knight",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_12.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_12.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				569
+			],
+			"cropBox": [
+				4,
+				3,
+				320,
+				521
+			],
+			"output": "pentacles-knight.webp",
+			"outputSize": [
+				360,
+				590
+			],
+			"sha256": "4f1e2b05bb95edcc1dc2331e451c1e834472f8cc0a1a9b00e491e71b155605b7"
+		},
+		{
+			"card": "pentacles-queen",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_13.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_13.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				4,
+				5,
+				319,
+				516
+			],
+			"output": "pentacles-queen.webp",
+			"outputSize": [
+				360,
+				584
+			],
+			"sha256": "054cc0cc9bdf1d1d9893a5b6980550add97bcdb4b83618d1258c6b94c973adce"
+		},
+		{
+			"card": "pentacles-king",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Pentacles_14.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Pentacles_14.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				559
+			],
+			"cropBox": [
+				4,
+				5,
+				319,
+				509
+			],
+			"output": "pentacles-king.webp",
+			"outputSize": [
+				360,
+				576
+			],
+			"sha256": "8c129bb9c2795f9a86bc9442621d0091b9f3b37dd55c4a2e16f2b2e7cace2a3c"
+		},
+		{
+			"card": "swords-ace",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_01.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_01.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				567
+			],
+			"cropBox": [
+				5,
+				3,
+				324,
+				516
+			],
+			"output": "swords-ace.webp",
+			"outputSize": [
+				360,
+				579
+			],
+			"sha256": "1252fae4d0137833300e3ac6d5896e2c6fb242962b62e6df92d97f04b3bffd3f"
+		},
+		{
+			"card": "swords-ii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_02.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_02.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				567
+			],
+			"cropBox": [
+				3,
+				5,
+				320,
+				487
+			],
+			"output": "swords-ii.webp",
+			"outputSize": [
+				360,
+				547
+			],
+			"sha256": "82312bfa8d6e75a06895f11fd30e26ea2665a0a0c9b9cdea28db2bc8fd6b561d"
+		},
+		{
+			"card": "swords-iii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_03.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_03.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				573
+			],
+			"cropBox": [
+				3,
+				4,
+				316,
+				503
+			],
+			"output": "swords-iii.webp",
+			"outputSize": [
+				360,
+				574
+			],
+			"sha256": "47ba4d881e68cc76d6efeed95328377f3e73c1f7fac53b589b54611405b014c0"
+		},
+		{
+			"card": "swords-iv",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_04.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_04.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				322,
+				574
+			],
+			"cropBox": [
+				4,
+				4,
+				315,
+				493
+			],
+			"output": "swords-iv.webp",
+			"outputSize": [
+				360,
+				566
+			],
+			"sha256": "fe4781edbc98858620b53105670ecbb1b3318b8d142141c6716b195416750793"
+		},
+		{
+			"card": "swords-v",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_05.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_05.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				572
+			],
+			"cropBox": [
+				4,
+				5,
+				318,
+				491
+			],
+			"output": "swords-v.webp",
+			"outputSize": [
+				360,
+				557
+			],
+			"sha256": "707b550eeecf13cd281d670319387d1748d967e7bbe386161ed1eee248e1a123"
+		},
+		{
+			"card": "swords-vi",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_06.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_06.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				566
+			],
+			"cropBox": [
+				4,
+				5,
+				322,
+				486
+			],
+			"output": "swords-vi.webp",
+			"outputSize": [
+				360,
+				545
+			],
+			"sha256": "0dbbf47d226b62bdf6b0de03e6445f0f545cd1b06391a908a467cb3334b365e4"
+		},
+		{
+			"card": "swords-vii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_07.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_07.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				566
+			],
+			"cropBox": [
+				4,
+				4,
+				322,
+				486
+			],
+			"output": "swords-vii.webp",
+			"outputSize": [
+				360,
+				546
+			],
+			"sha256": "f07119b649b4a3e66dd46b9abe1cc06b4b5fc2eae37e863308b68f7a25e6b44e"
+		},
+		{
+			"card": "swords-viii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_08.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_08.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				333,
+				570
+			],
+			"cropBox": [
+				4,
+				4,
+				324,
+				506
+			],
+			"output": "swords-viii.webp",
+			"outputSize": [
+				360,
+				565
+			],
+			"sha256": "06b0dcb79eea5e1885ca2116e5c915f51a465d45eb85dd31f12b74b15b1cbba2"
+		},
+		{
+			"card": "swords-ix",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_09.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_09.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				328,
+				564
+			],
+			"cropBox": [
+				6,
+				6,
+				318,
+				534
+			],
+			"output": "swords-ix.webp",
+			"outputSize": [
+				360,
+				609
+			],
+			"sha256": "f4857d0b1e5151290bac802e3c9fd1d73ae7072559671b816644578f97ec18f7"
+		},
+		{
+			"card": "swords-x",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_10.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_10.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				558
+			],
+			"cropBox": [
+				4,
+				4,
+				320,
+				479
+			],
+			"output": "swords-x.webp",
+			"outputSize": [
+				360,
+				541
+			],
+			"sha256": "08f2a2eae589bcc472eab0563b642c0a382bca7984de5459731c9ea9de37bed0"
+		},
+		{
+			"card": "swords-page",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_11.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_11.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				575
+			],
+			"cropBox": [
+				3,
+				4,
+				321,
+				520
+			],
+			"output": "swords-page.webp",
+			"outputSize": [
+				360,
+				584
+			],
+			"sha256": "e679f751e9881f5333cbf4e67bbc245ea0d7eb10cbac2fef35ff42336dcfdf13"
+		},
+		{
+			"card": "swords-knight",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_12.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_12.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				327,
+				572
+			],
+			"cropBox": [
+				4,
+				3,
+				319,
+				521
+			],
+			"output": "swords-knight.webp",
+			"outputSize": [
+				360,
+				592
+			],
+			"sha256": "aebcef997909f2a5dcb7e4a99f093916732d31869653008a9d3ea263e6f53ebb"
+		},
+		{
+			"card": "swords-queen",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_13.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_13.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				331,
+				572
+			],
+			"cropBox": [
+				6,
+				4,
+				322,
+				519
+			],
+			"output": "swords-queen.webp",
+			"outputSize": [
+				360,
+				587
+			],
+			"sha256": "bfaf43af56f52375d034bb6b0e1d8310ec4940df82819673483148835ce7d6a2"
+		},
+		{
+			"card": "swords-king",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Swords_14.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Swords_14.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				566
+			],
+			"cropBox": [
+				4,
+				3,
+				319,
+				518
+			],
+			"output": "swords-king.webp",
+			"outputSize": [
+				360,
+				589
+			],
+			"sha256": "05582a3ef012bdb99226dc3b28f54b40f25641005f963b3c160ca1fc7a8d0544"
+		},
+		{
+			"card": "wands-ace",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_01.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_01.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				569
+			],
+			"cropBox": [
+				3,
+				4,
+				321,
+				517
+			],
+			"output": "wands-ace.webp",
+			"outputSize": [
+				360,
+				581
+			],
+			"sha256": "5065ddea300d58a5afd04fcd6e9e72bc4073c766f1d7e065990cccaa8c526649"
+		},
+		{
+			"card": "wands-ii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_02.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_02.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				326,
+				562
+			],
+			"cropBox": [
+				4,
+				4,
+				318,
+				498
+			],
+			"output": "wands-ii.webp",
+			"outputSize": [
+				360,
+				566
+			],
+			"sha256": "10e710d31ce69f8515bf3135621cd6c323cba5424fd1f53736bd296d9b19ba61"
+		},
+		{
+			"card": "wands-iii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_03.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_03.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				327,
+				573
+			],
+			"cropBox": [
+				5,
+				5,
+				321,
+				492
+			],
+			"output": "wands-iii.webp",
+			"outputSize": [
+				360,
+				555
+			],
+			"sha256": "a0752ec467fd54e1db8943b4ef20acf38eb875bfa0d07a832a15a2a7496cba3a"
+		},
+		{
+			"card": "wands-iv",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_04.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_04.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				572
+			],
+			"cropBox": [
+				3,
+				6,
+				321,
+				491
+			],
+			"output": "wands-iv.webp",
+			"outputSize": [
+				360,
+				549
+			],
+			"sha256": "a66a8f096dbc48e2d6e61a3814fd431208af3ceb801f1896d7ead46075cb76c0"
+		},
+		{
+			"card": "wands-v",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_05.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_05.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				567
+			],
+			"cropBox": [
+				3,
+				3,
+				322,
+				487
+			],
+			"output": "wands-v.webp",
+			"outputSize": [
+				360,
+				546
+			],
+			"sha256": "46e1c2aa787a9d20eccd4a70888bb81a16717ab8ff1c1be576d70887826b0ba2"
+		},
+		{
+			"card": "wands-vi",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_06.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_06.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				569
+			],
+			"cropBox": [
+				4,
+				5,
+				322,
+				489
+			],
+			"output": "wands-vi.webp",
+			"outputSize": [
+				360,
+				548
+			],
+			"sha256": "7b0f92ccdac4bd005fcb28f1bf8e187dd420628b92430e12c3dfb07846b7bbd0"
+		},
+		{
+			"card": "wands-vii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_07.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_07.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				332,
+				570
+			],
+			"cropBox": [
+				5,
+				4,
+				323,
+				491
+			],
+			"output": "wands-vii.webp",
+			"outputSize": [
+				360,
+				551
+			],
+			"sha256": "ff96332b71341dae35acaab8e0206577f3664dfcbfdbcaceb5b131be2b9df766"
+		},
+		{
+			"card": "wands-viii",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_08.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_08.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				328,
+				577
+			],
+			"cropBox": [
+				5,
+				5,
+				319,
+				544
+			],
+			"output": "wands-viii.webp",
+			"outputSize": [
+				360,
+				618
+			],
+			"sha256": "16ca8397968527437e16a82d0e377e8069e223ccbe0e6fc194bd3032cf047241"
+		},
+		{
+			"card": "wands-ix",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_09.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_09.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				332,
+				569
+			],
+			"cropBox": [
+				5,
+				6,
+				324,
+				489
+			],
+			"output": "wands-ix.webp",
+			"outputSize": [
+				360,
+				545
+			],
+			"sha256": "40ef7bea6790363628a2a4247e825b7e3bbde3cc05c14eb0e26801e756d517f9"
+		},
+		{
+			"card": "wands-x",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_10.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_10.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				562
+			],
+			"cropBox": [
+				4,
+				5,
+				322,
+				483
+			],
+			"output": "wands-x.webp",
+			"outputSize": [
+				360,
+				541
+			],
+			"sha256": "710f5a8968cfcd10ef33b664beba6ac8f0aff432890a2163ffaec809ca058e56"
+		},
+		{
+			"card": "wands-page",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_11.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_11.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				568
+			],
+			"cropBox": [
+				4,
+				4,
+				321,
+				520
+			],
+			"output": "wands-page.webp",
+			"outputSize": [
+				360,
+				586
+			],
+			"sha256": "a48fcd00b1eea63eb3c548518d5b12a13dbbbe937b6458df1ba04f3f9f42edde"
+		},
+		{
+			"card": "wands-knight",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_12.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_12.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				329,
+				572
+			],
+			"cropBox": [
+				4,
+				6,
+				320,
+				523
+			],
+			"output": "wands-knight.webp",
+			"outputSize": [
+				360,
+				589
+			],
+			"sha256": "dcfc5aa064e97f3c94989dbf990cf5a48924015fe0a9ef49c04224fc5e05f76a"
+		},
+		{
+			"card": "wands-queen",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_13.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_13.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				567
+			],
+			"cropBox": [
+				5,
+				7,
+				321,
+				487
+			],
+			"output": "wands-queen.webp",
+			"outputSize": [
+				360,
+				547
+			],
+			"sha256": "219d8ee2ef5d9ea3d06b18a38f1809392bd6e7c085fdaf5f61918663546de1cd"
+		},
+		{
+			"card": "wands-king",
+			"commonsFile": "Pictorial_Key_to_the_Tarot_Wands_14.jpg",
+			"commonsPage": "https://commons.wikimedia.org/wiki/File:Pictorial_Key_to_the_Tarot_Wands_14.jpg",
+			"licence": "Public domain",
+			"date": "1910",
+			"sourceSize": [
+				330,
+				573
+			],
+			"cropBox": [
+				5,
+				6,
+				321,
+				523
+			],
+			"output": "wands-king.webp",
+			"outputSize": [
+				360,
+				589
+			],
+			"sha256": "5fa57d4b846a68af12b896d0fc3e1f9bb879fd9240691d8865295155aa07a8a3"
+		}
+	]
+}

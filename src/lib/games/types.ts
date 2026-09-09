@@ -224,6 +224,75 @@ export interface CampaignSettingField {
 	default: boolean;
 }
 
+/**
+ * What a game's card table does, when a game has one (phase 29).
+ *
+ * Named `cardTable` rather than something like `liveSurface`, deliberately. The
+ * project's rule is to abstract only when a second game forces it, and no
+ * second game is coming — Stonetop has no cards. A narrow slot for one consumer
+ * is a small, reversible cost; a speculative contract for pluggable reducers and
+ * transports would be the thing the rule forbids. When a second game wants a
+ * live surface, *that* is the extraction moment.
+ *
+ * The division of labour: the shell owns versions, idempotency, the event log,
+ * seats and the wire, and knows nothing about cards. The game owns the state
+ * shape, what a command means, and who may see what. Neither inspects the
+ * other's half — `state` is as opaque here as `entities.data` is.
+ */
+export interface CardTableModule {
+	/** Pack-relative files the table needs, fetched and handed to `create`. */
+	packFiles: readonly string[];
+	/**
+	 * A fresh table, given those files parsed. The `rng` is the shell's, seeded
+	 * server-side — a game that deals from a deck needs it shuffled before the
+	 * first hand, and the order must not be something a client could derive.
+	 */
+	create(
+		pack: Record<string, unknown>,
+		rng: () => number
+	): { state: unknown; stateVersion: number };
+	/**
+	 * Bring a stored blob up to the current shape. Called by the shell on every
+	 * read, exactly as `entityTypes` migrations are — tables live for weeks, so
+	 * a blob written before a mid-phase change must still open.
+	 */
+	migrate(state: unknown, pack: Record<string, unknown>): { state: unknown; stateVersion: number };
+	/**
+	 * Reconcile the game's own seat list with the shell's, which is the
+	 * authority on who is sitting. The game decides what a new or departed seat
+	 * means for its state — which zones exist, where a leaver's cards go.
+	 */
+	syncSeats(state: unknown, seats: readonly { id: string; isGm: boolean }[]): unknown;
+	/**
+	 * Apply a command. Pure: given the same state and command it must return the
+	 * same result, because the shell may discard that result when the write
+	 * loses a race.
+	 *
+	 * `rng` is supplied by the shell and seeded server-side, so a shuffle's
+	 * order is never derivable by a client.
+	 */
+	reduce(
+		state: unknown,
+		command: unknown,
+		context: { actorSeatId: string | null; rng: () => number }
+	): CardTableOutcome;
+	/**
+	 * The table as one seat may see it. **This is the only thing a client is
+	 * ever handed**, so anything it includes is public to that viewer by
+	 * definition. `viewer` is null for somebody with no seat.
+	 */
+	project(state: unknown, viewer: string | null): unknown;
+}
+
+/**
+ * What `reduce` hands back. `data` is logged publicly and shown to the whole
+ * table, so it must carry no card a viewer is not entitled to — the shell
+ * stores it verbatim and cannot tell.
+ */
+export type CardTableOutcome =
+	| { ok: true; state: unknown; stateVersion: number; kind: string; data?: unknown }
+	| { ok: false; reason: string };
+
 export interface GameModule {
 	/** Game id, kebab-case. Matches the content-pack folder and the `/[game=game]` URL segment. */
 	id: string;
@@ -298,6 +367,11 @@ export interface GameModule {
 	 * section for this game.
 	 */
 	campaignSettingsFields?: readonly CampaignSettingField[];
+	/**
+	 * This game's live shared card table, if it has one (phase 29). Absent → the
+	 * shell offers no table routes for the game at all.
+	 */
+	cardTable?: CardTableModule;
 	/**
 	 * How the reference presents a `visibility: 'gm'` section to this game's
 	 * readers (phase 13, commit 97) — the shell's own vocabulary is deliberately

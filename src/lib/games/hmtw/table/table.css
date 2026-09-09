@@ -1,0 +1,512 @@
+/*
+ * The card table's surface.
+ *
+ * REVISED, and the first version is worth recording because the reason it was
+ * wrong is a useful one. It had a desaturated dark-green ground, grey furniture,
+ * a gold accent and brown card backs — a combination that is defensible
+ * sentence by sentence and, seen whole, is one of the looks machines reach for
+ * when nobody has decided anything. Chris named it on sight. The fault was that
+ * it invented a palette instead of using the one the book already has.
+ *
+ * So this version has no palette to invent. The book is black ink on white
+ * paper and its dark mode is a straight inversion — the same thing its own
+ * figures do, light and dark pairs of one drawing. The table does that too:
+ *
+ *   light   a grey table, white cards, black ink
+ *   dark    a near-black table, bone cards, the same black ink
+ *
+ * Cards keep their ink in both, because paper is paper. What inverts is the
+ * room, not the objects on it.
+ *
+ * There is no accent colour at all. The reference's own note says it best —
+ * "the interior is monochrome, so the accent IS the ink" — so emphasis here is
+ * weight, rule and contrast. The single exception is the book's one red, for
+ * greater dooms, which the book itself reserves for exactly that kind of thing.
+ *
+ * Card backs are the Adherent of the Worm, the mark the book's own terms say is
+ * "allowed and encouraged" for third-party work. It is printed on the card
+ * stock rather than on some other material, which is what a real card back is:
+ * the same paper, with something on it.
+ */
+
+[data-game='hmtw'] .ct {
+	/* The room. */
+	--ct-table: #b8b6b1;
+	--ct-table-low: #a8a6a1;
+	--ct-rule: rgb(17 17 17 / 22%);
+	/*
+	 * The two of these carry weight, so both are set by measurement rather than
+	 * by eye. `--ct-rule-strong` is the edge of every button and field on this
+	 * table, which 1.4.11 wants at 3:1 against the ground: 42% ink on the grey
+	 * gave 2.41 and 55% gives 3.35. `--ct-quiet` is small text — labels, counts,
+	 * hints, seat lines — which 1.4.3 wants at 4.5:1: 55% gave 3.35 and 75%
+	 * gives 5.60.
+	 *
+	 * `--ct-quiet` is measured against `--ct-table-low`, not against the table
+	 * itself: the recessed ground is the darkest surface this text ever lands on
+	 * — the declare prompt sits there — and 70% cleared the table at 4.95 while
+	 * failing the prompt at 4.41. One token, two grounds; it has to satisfy the
+	 * worse one.
+	 *
+	 * The light room was the failing half throughout. A monochrome design has
+	 * nothing but value to spend, and it was spending too little.
+	 */
+	--ct-rule-strong: rgb(17 17 17 / 55%);
+	--ct-quiet: rgb(17 17 17 / 75%);
+
+	/* The objects. Paper and ink, unchanged between modes. */
+	--ct-card: #ffffff;
+	--ct-card-ink: #111111;
+	/* The card's own small print. On card stock, which never inverts. */
+	--ct-card-ink-quiet: rgb(17 17 17 / 62%);
+	--ct-back-ink: rgb(17 17 17 / 14%);
+
+	/* Emphasis is the ink, per the reference's own reasoning. */
+	--ct-mark: #111111;
+	--ct-doom: #8c2f22;
+
+	/*
+	 * Three type steps, and only three.
+	 *
+	 * The table had two — a small-caps label and body — and no way to emphasise
+	 * anything except by drawing a box round it, which is why every attempt at
+	 * emphasis so far has been a border. `loud` is the missing step. It is not a
+	 * general-purpose scale and no second consumer has been found for it: the
+	 * round state is what it is for, because "Round 3, Initiative 7" is the one
+	 * thing anybody looks up mid-fight and it was set in the smallest type on
+	 * the page.
+	 */
+	--ct-step-label: 0.8125rem;
+	--ct-step-body: 1rem;
+	--ct-step-loud: 1.45rem;
+
+	--ct-radius: 2px;
+	--ct-card-w: 4.25rem;
+	/*
+	 * 68 × 124 — 1:1.82, near a real tarot's 1:1.75.
+	 *
+	 * Sized to its contents rather than picked: the plates' illustrations are
+	 * 1:1.59, and a picture plus a band you can read lands near 1:1.9 whatever
+	 * the width. Showing the top 92% of the picture buys back the difference,
+	 * and what the 8% removes is the blank margin inside the plate's own rule —
+	 * no figure loses so much as a foot. Nothing else hard-codes a card's size;
+	 * the empty slots, the sideways facedown card and the combatant floor all
+	 * read this.
+	 */
+	--ct-card-h: 7.75rem;
+	--ct-back: url('/content-packs/hmtw/art/adherent-of-the-worm.png');
+
+	background: var(--ct-table);
+	color: var(--ct-card-ink);
+	font-family: 'IM Fell English', Georgia, serif;
+}
+
+/* The inversion. Only the room changes; the cards do not. */
+html.dark [data-game='hmtw'] .ct,
+[data-game='hmtw'] html.dark .ct,
+html.dark .ct {
+	--ct-table: #1c1c1c;
+	--ct-table-low: #141414;
+	--ct-rule: rgb(233 231 226 / 20%);
+	/* 3.30 → 3.81 and 5.76 → 6.52. The dark room already passed; these keep the
+	   two rooms within sight of each other rather than letting light do all the
+	   work. */
+	--ct-rule-strong: rgb(233 231 226 / 45%);
+	--ct-quiet: rgb(233 231 226 / 65%);
+	--ct-card: #e9e7e2;
+	--ct-mark: #e9e7e2;
+	--ct-doom: #b04434;
+	color: var(--ct-card);
+}
+
+/* ---- Zone furniture ------------------------------------------------------ */
+
+[data-game='hmtw'] .ct-zone-label {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: var(--ct-step-label);
+	letter-spacing: 0.04em;
+	color: var(--ct-quiet);
+}
+
+/* ---- Buttons: three tiers, and only three -------------------------------- */
+
+/*
+ * Every button on this table used to be the same border, the same size and the
+ * same weight, so "Deal the round", "Sweep" and "Reset the table" were
+ * indistinguishable — and on a phone the last of those wrapped onto its own row
+ * and became the most prominent control on screen.
+ *
+ * Monochrome has no accent to reach for, so the tiers are the three things it
+ * does have: fill, ink and type.
+ *
+ *   primary   filled with the ink, lettered in the room's own colour — a stamp.
+ *             At most one to a region: the action that region exists for.
+ *   (default) the outline this table already had. Ordinary controls.
+ *   quiet     the label step in quiet ink. Bookkeeping, and the things you do
+ *             once and then not again.
+ *
+ * Destructive is **not a fourth tier**. It takes `quiet` and gets its safety
+ * from distance and from asking first, because a destructive control nobody can
+ * find is its own kind of failure and one that merely looks like every other
+ * quiet control is the misclick this is meant to prevent.
+ *
+ * Quiet keeps the full border rather than losing it: `--ct-rule-strong` is the
+ * 3:1 that 1.4.11 wants of a control's boundary, and dropping to a hairline to
+ * look quieter would have bought the look with the criterion. It is quieter by
+ * ink and by type, which cost nothing.
+ */
+
+[data-game='hmtw'] .ct-btn {
+	font: inherit;
+	font-size: var(--ct-step-body);
+	background: none;
+	border: 1px solid var(--ct-rule-strong);
+	border-radius: 3px;
+	color: var(--ct-mark);
+	padding: 0.35rem 0.8rem;
+	/* Comfortably over the 44px floor once the padding is counted. */
+	min-block-size: 2.75rem;
+	cursor: pointer;
+	text-align: center;
+}
+
+[data-game='hmtw'] .ct-btn--primary {
+	background: var(--ct-mark);
+	/* The room's colour, not the card's: in dark mode the mark *is* the card, so
+	   lettering it in card colour would print bone on bone. This way it reads as
+	   ink on the light table and as a bone stamp on the dark one — 9.3:1 and
+	   13.8:1, the same inversion the cards make. */
+	color: var(--ct-table);
+	border-color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-btn--quiet {
+	font-size: var(--ct-step-label);
+	color: var(--ct-quiet);
+}
+
+/* A control that is currently *on* — guided mode, the open minor-action window,
+   the mode you are in. Reads as pressed rather than as another tier. */
+[data-game='hmtw'] .ct-btn--on {
+	border-color: var(--ct-mark);
+	color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-btn:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+
+/* ---- Fields: two widths, and only two ------------------------------------ */
+
+/*
+ * Every field on the table set its own width, so "Imps" was twice as wide as
+ * "4", which was twice "3" — sized by the words inside them rather than by what
+ * they hold. There are two things a field on this table ever holds: a small
+ * number, or a name. So there are two widths.
+ */
+
+[data-game='hmtw'] .ct-field {
+	background: transparent;
+	border: 1px solid var(--ct-rule-strong);
+	border-radius: 3px;
+	color: inherit;
+	font: inherit;
+	padding: 0.35rem 0.5rem;
+	min-block-size: 2.75rem;
+	min-inline-size: 0;
+	inline-size: 11rem;
+}
+
+/* A hand size, a count of enemies: never more than two digits. */
+[data-game='hmtw'] .ct-field--number {
+	inline-size: 3.75rem;
+	text-align: center;
+}
+
+/* ---- Who is sitting there -------------------------------------------------- */
+
+/*
+ * One look for a seat, in both modes. See SeatName.svelte for why the *layouts*
+ * are allowed to differ and the person is not.
+ */
+
+[data-game='hmtw'] .ct-seat {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.4rem;
+	flex-wrap: wrap;
+}
+
+[data-game='hmtw'] .ct-seat__name {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: var(--ct-step-body);
+	/* Inherited, so it inverts with the room. `--ct-card` is the colour of
+	   *paper*, which is white in light mode and would vanish here. */
+	color: inherit;
+}
+
+[data-game='hmtw'] .ct-seat__tag {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.7rem;
+	color: var(--ct-quiet);
+}
+
+[data-game='hmtw'] .ct-seat__tag--mine {
+	color: var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-seat__hand {
+	font-size: var(--ct-step-label);
+	color: var(--ct-quiet);
+}
+
+/* ---- The card ------------------------------------------------------------ */
+
+[data-game='hmtw'] .ct-card {
+	position: relative;
+	inline-size: var(--ct-card-w);
+	block-size: var(--ct-card-h);
+	border-radius: var(--ct-radius);
+	background: var(--ct-card);
+	color: var(--ct-card-ink);
+	/* An ink hairline, the way a printed card is edged — not a soft border. */
+	border: 1px solid var(--ct-card-ink);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	padding: 0.3rem 0.35rem;
+	font-family: 'IM Fell English', Georgia, serif;
+	cursor: pointer;
+	touch-action: manipulation;
+}
+
+/* ---- A card with a picture on it ----------------------------------------- */
+
+/*
+ * The plate fills the card above a band carrying the value and the suit. Two
+ * rows, not three: the rank has nowhere to be because it has nothing to say —
+ * on a minor it is the value in Roman, and on a court card the picture is a
+ * better word for "knight" than the word is.
+ */
+[data-game='hmtw'] .ct-card--pictured {
+	grid-template-rows: 1fr auto;
+	gap: 0.14rem;
+	padding: 0.18rem;
+}
+
+[data-game='hmtw'] .ct-card__art {
+	inline-size: 100%;
+	block-size: 100%;
+	min-block-size: 0;
+	object-fit: cover;
+	/* Anchored to the top, so the 8% that falls outside comes off the blank
+	   margin at the foot of the plate rather than out of the figure's head. */
+	object-position: top;
+	border: 1px solid var(--ct-card-ink);
+	/*
+	 * The plates are ink on white paper. Multiply lets the card's own stock show
+	 * through the white, so in the dark room the picture prints on bone instead
+	 * of sitting in a lit rectangle — the cards keep their ink and the room
+	 * inverts around them, which is the whole premise of this surface.
+	 */
+	mix-blend-mode: multiply;
+}
+
+[data-game='hmtw'] .ct-card__band {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.26rem;
+}
+
+[data-game='hmtw'] .ct-card__value {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 1.45rem;
+	line-height: 1;
+}
+
+[data-game='hmtw'] .ct-card__band-suit {
+	inline-size: 1.35rem;
+	block-size: 1.35rem;
+}
+
+/* The book's one red, on the numeral, exactly as it is on the typeset face. */
+[data-game='hmtw'] .ct-card--greater .ct-card__value {
+	color: var(--ct-doom);
+}
+
+[data-game='hmtw'] .ct-card__rank {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.95rem;
+	line-height: 1;
+}
+
+[data-game='hmtw'] .ct-card__suit {
+	justify-self: center;
+	align-self: center;
+	inline-size: 1.7rem;
+	block-size: 1.7rem;
+	color: var(--ct-card-ink);
+}
+
+[data-game='hmtw'] .ct-card__foot {
+	justify-self: end;
+	font-size: 0.75rem;
+	color: var(--ct-card-ink-quiet);
+}
+
+/* The book's own red, and the only colour on the table. */
+[data-game='hmtw'] .ct-card--greater .ct-card__rank {
+	color: var(--ct-doom);
+}
+
+/* ---- The facedown card --------------------------------------------------- */
+
+/*
+ * A facedown card says three things to three people at once, and ch.7 decides
+ * which: everyone sees a card is there and what it is *for*; its owner also
+ * sees the value; nobody else does.
+ *
+ * Showing the owner the face is the obvious answer and the wrong one, because
+ * then they cannot tell at a glance whether the table can see it too — the one
+ * thing they must never be unsure about. So the back stays a back for everybody
+ * and its owner reads the value as a mark printed *on* the back.
+ *
+ * The back is the Adherent, on the same stock as a face. That is what a card
+ * back is, and it means a facedown card still reads as a card rather than as a
+ * dark hole where one used to be.
+ */
+[data-game='hmtw'] .ct-card--down {
+	background:
+		var(--ct-back) center / 78% no-repeat,
+		var(--ct-card);
+	/* Knocked back so it reads as printing on paper, not as a picture. */
+	background-blend-mode: luminosity;
+	opacity: 1;
+}
+
+[data-game='hmtw'] .ct-card--down::after {
+	/* A second, fainter impression at full bleed, so the back has some depth
+	   without the mark itself getting louder. */
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--ct-back) center / 78% no-repeat;
+	opacity: 0.12;
+	pointer-events: none;
+}
+
+[data-game='hmtw'] .ct-card__mine {
+	position: absolute;
+	inset-block-end: 0.25rem;
+	inset-inline-end: 0.3rem;
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.85rem;
+	line-height: 1;
+	color: var(--ct-card-ink);
+	background: var(--ct-card);
+	padding: 0.1rem 0.25rem;
+	border: 1px solid var(--ct-card-ink);
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	gap: 0.15rem;
+	z-index: 1;
+}
+
+[data-game='hmtw'] .ct-glyph {
+	display: inline-block;
+	inline-size: 1em;
+	block-size: 1em;
+	background: currentColor;
+	mask: var(--ct-glyph) center / contain no-repeat;
+	-webkit-mask: var(--ct-glyph) center / contain no-repeat;
+	vertical-align: -0.12em;
+}
+
+[data-game='hmtw'] .ct-card__mine .ct-glyph {
+	inline-size: 0.72em;
+	block-size: 0.72em;
+}
+
+/* The public tag: what the card is for, where everyone can read it. */
+[data-game='hmtw'] .ct-declared {
+	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
+	font-size: 0.75rem;
+	letter-spacing: 0.03em;
+	color: var(--ct-quiet);
+	border-block-start: 1px solid var(--ct-rule-strong);
+	padding-block-start: 0.15rem;
+	margin-block-start: 0.25rem;
+	text-align: center;
+	max-inline-size: var(--ct-card-w);
+}
+
+/*
+ * Sideways, above or below. Ch.7 lays a facedown card sideways above the
+ * initiative card for a turn action and below it for a minor one, and that
+ * position decides what the card is worth when it turns over. The rule is
+ * positional, so the interface is.
+ *
+ * A rotated element keeps its upright layout box, so the margins pull the
+ * vertical space in by what the rotation freed and push the horizontal out by
+ * what it now needs.
+ */
+[data-game='hmtw'] .ct-card--sideways {
+	transform: rotate(90deg);
+	margin-block: calc((var(--ct-card-w) - var(--ct-card-h)) / 2);
+	margin-inline: calc((var(--ct-card-h) - var(--ct-card-w)) / 2);
+}
+
+/* The owner's mark stays upright: it is the interface talking to its owner,
+   not printing on the card, and rotating it would make the one person entitled
+   to read it tilt their head. */
+[data-game='hmtw'] .ct-card--sideways .ct-card__mine {
+	transform: rotate(-90deg);
+	transform-origin: 100% 100%;
+	inset-block-end: 1.15rem;
+	inset-inline-end: 0.5rem;
+}
+
+/* ---- Selection ----------------------------------------------------------- */
+
+[data-game='hmtw'] .ct-card--selected {
+	outline: 2px solid var(--ct-mark);
+	outline-offset: 2px;
+}
+
+/*
+ * A card the chosen action would be paid with. Quieter than selection, because
+ * it is an answer to a question rather than a thing you have picked up — and
+ * every other card is still just as clickable.
+ */
+[data-game='hmtw'] .ct-card--lit {
+	outline: 1px solid var(--ct-mark);
+	outline-offset: 2px;
+}
+
+[data-game='hmtw'] .ct-drop {
+	outline: 1px dashed var(--ct-rule-strong);
+	outline-offset: 3px;
+}
+
+[data-game='hmtw'] .ct-drop--over {
+	outline: 2px solid var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct :focus-visible {
+	outline: 2px solid var(--ct-mark);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-game='hmtw'] .ct-card {
+		transition: transform 120ms ease;
+	}
+	[data-game='hmtw'] .ct-card:hover {
+		transform: translateY(-2px);
+	}
+	[data-game='hmtw'] .ct-card--sideways:hover {
+		transform: rotate(90deg) translateY(-2px);
+	}
+}

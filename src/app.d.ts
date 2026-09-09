@@ -3,6 +3,7 @@
 
 import type { D1Database } from '@cloudflare/workers-types';
 import type { Db } from '$lib/server/db/entities';
+import type { SeatClaims } from '$lib/seat-claims';
 
 declare global {
 	namespace App {
@@ -23,6 +24,15 @@ declare global {
 			 * (`$lib/preferences/client`), not here.
 			 */
 			prefs: Record<string, string>;
+
+			/**
+			 * Card-table seat tickets this browser presented, by table id (phase
+			 * 29). Parsed from a cookie in `hooks.server.ts` with no database work
+			 * and no session lookup, because it runs on every request and a guest
+			 * seat exists precisely so that somebody without an account can hold
+			 * one. Turning a claim into a seat happens in the routes that need it.
+			 */
+			seatClaims: SeatClaims;
 		}
 
 		/**

@@ -70,3 +70,4 @@ e2e-failures.log
 # -A` can ever sweep one in; a near miss on 2026-08-10 staged all five.
 /prod-pre-*.sql
 /*.db
+.cache/

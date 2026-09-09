@@ -1,8 +1,14 @@
 {
 	"id": "hmtw",
 	"name": "His Majesty the Worm",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "LicenseRef-HMtW",
 	"attribution": "His Majesty the Worm is copyright Joshua McCrowell, published by Exalted Funeral Press. Game text used under the book's open reuse grant. Splatbook is an independent production by Chris Wilson and is not affiliated with Joshua McCrowell or Exalted Funeral.",
-	"files": ["landing.json", "rules/book.json", "rules/gm-note.json"]
+	"files": [
+		"data/challenge.json",
+		"data/deck.json",
+		"landing.json",
+		"rules/book.json",
+		"rules/gm-note.json"
+	]
 }

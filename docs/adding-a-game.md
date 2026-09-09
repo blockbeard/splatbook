@@ -165,12 +165,40 @@ the `gmGuide` slot (step 4). The interactive bits — rollable tables, diagrams 
 your component’s concern, built from the same typed pack data; keep their logic in
 pure, tested helpers (Stonetop’s `gm/roll.ts`, `gm/diagram.ts`).
 
-## 8. Theme it (optional)
+## 8. Card table (optional)
+
+If the game is played with a shared deck, add the `cardTable` slot (step 4) and the
+shell will host it: room-token URLs, seats with or without accounts, versioned
+commands, a public event log and the polling loop are all its side of the line.
+
+Yours is the whole of what a card means. Six functions:
+
+| function | what it owes |
+|---|---|
+| `packFiles` | which pack files your table needs |
+| `create` | a fresh table's state, from those files |
+| `migrate` | an older blob brought up to date — tables live for weeks |
+| `syncSeats` | your seat list reconciled with the shell's, which is the authority |
+| `reduce` | a command turned into new state plus one **public** fact |
+| `project` | the table as one seat may see it |
+
+Two rules carry real weight. `project` is the only thing a client is ever handed, so
+anything it includes is public to that viewer by definition — write leak tests that
+serialise a projection and search it for cards the viewer should not know, rather
+than checking the fields you thought of. And `reduce`'s `data` is stored verbatim and
+shown to the whole table: put zones, counts and seat ids in it, never a card. Anyone
+entitled to know which card can see it in their own projection.
+
+`reduce` must be pure. The shell discards its result when a write loses a race, and
+randomness arrives as a seeded `rng` so a shuffle's order is decided on the server
+and never travels.
+
+## 9. Theme it (optional)
 
 Override the `--sb-*` design tokens under a `[data-game="<gameId>"]` scope in your own
 CSS (`architecture.md`, "Theming"). Never introduce raw colors in components.
 
-## 9. Prove it
+## 10. Prove it
 
 - `npm run validate:packs` green (every pack file parses against its schema).
 - Round-trip tests like `src/lib/games/stonetop/pack.test.ts`: parse every file,

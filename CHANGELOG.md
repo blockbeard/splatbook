@@ -7,7 +7,557 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The privacy policy covers playing without an account.** A card table is the
+  one part of Splatbook you can use signed out, and it stores a name you typed —
+  so the policy now says what that is, that a table and its seats are deleted six
+  weeks after the table was last used, and that the practical way for a guest to
+  be forgotten sooner is the person who started the table deleting it. A seat is
+  not an account, and there is nothing for an erasure request to name you by.
+
+  The cookie section was also out of date, and counted by reading the code
+  rather than by loading the site — which missed that Auth.js sets a
+  callback-url cookie on arrival, to visitors who never sign in. There are three
+  at most and never all three at once: that one, your sign-in session once you
+  have signed in, and — only if you take a seat _without_ an account — the secret
+  that proves the seat is yours, so closing the tab does not lose your hand.
+
+- **Credits for the card art and the prior art.** Pamela Colman Smith's 1911
+  plates and where they came from, the Adherent of the Worm under the book's own
+  grant, and Crawlspace, which worked out most of what a virtual table for this
+  game should do before this one existed.
+
+- **The cards have pictures.** Pamela Colman Smith's seventy-eight designs, as
+  printed in the 1911 first edition of A. E. Waite's _The Pictorial Key to the
+  Tarot_ — the black-and-white plates, not the colour deck. The book is black
+  ink on white paper and this table's dark mode inverts the room while the cards
+  keep their ink, so the 1911 plates are not a compromise on the colour set;
+  they are the same decision the book already made, and they are the only
+  version that survives being 68 pixels wide.
+
+  Under each picture sits the value and the suit — the two things ch.7 asks of a
+  card, one for the total and one for which action it pays for. Not the rank: on
+  a minor the rank is the value in Roman numerals, and on a court card the
+  picture says "knight" better than the word does.
+
+  The provenance is proved per plate rather than claimed. `art-manifest.json`
+  records every plate's source file, its Wikimedia licence tag, the crop taken
+  and the hash of what shipped, and the import re-checks all seventy-eight tags
+  on every run and refuses to build if one of them is not public domain.
+
+- **The card table says what just happened.** Everything on this table moves
+  because somebody else moved it; sighted players catch that from the corner of
+  an eye, and without it you were sitting at a table that silently rearranged
+  itself. A polite live region now reads the last thing worth saying — the deal,
+  a card played, a card laid face down and what it was declared for, the sweep,
+  and above all the count, which is how the table says your turn has come. It is
+  built from the public event log, so it cannot say anything the log does not
+  already make public.
+
+- **Card tables age out, and the mechanism now matches the promise.** A table
+  nobody has come back to for six weeks goes, and takes its seats with it —
+  which is what matters, because a seat holds a name a guest typed. Retention
+  rides on the pages people open rather than on a scheduler: following a stale
+  link retires that table then and there, and both the table page and the
+  owner's own listing sweep a few more on the way past. An expired table no
+  longer appears in that listing, so every way of asking about one now gives the
+  same answer.
+
+- **Put that card back.** Any card on the table can be moved by anyone sitting
+  at it, and the last move can be reversed by whoever notices — the misplayer or
+  the neighbour. That is the whole of the undo, and deliberately so: it is what
+  a physical table does, and it is the reason nothing here refuses a play in the
+  first place. It steps aside when the last move touched a hand that is not
+  yours, because reaching into a hand is the one thing the table does not allow,
+  and it stops offering once anything else could have disturbed the pile, since
+  by then "that card" would be the wrong one.
+
+  A Challenge now shows the decks and discards as real piles rather than counts,
+  so a card can go where a card can go — discard one for a Favour, or take back
+  one you played by mistake — without leaving the Challenge to do it.
+
+  Two people reaching for the same card is ordinary rather than an error, and
+  now reads that way: the table catches up, says who got there first, and clears
+  the note after a moment.
+
+- **The Challenge, played by hand.** Deal a round, place initiative, play cards
+  face up or lay one face down with a declared action, sweep, count the
+  initiative up, and end the round. The table shows you where everything is and
+  moves what you tell it to; it does not run the round and never refuses a play.
+
+  The GM's draw is a checklist rather than a number box — ch.7's three cards
+  plus six cumulative reasons, rechecked every round — and it suggests a number
+  the GM can overrule. Hands sort by value, because the book's own worked
+  example has the GM do exactly that, and the GM's hand also splits lesser dooms
+  from greater, because the mulligan is offered for a hand that is "mostly
+  greater dooms" and grouping is the interface answering the only question that
+  rule asks.
+
+  Both modes share one pair of decks, which was the point of having modes at
+  all. Leaving a Challenge sweeps the table to the discards — Crawlspace's
+  answer, and the book's — sparing inspiration cards, which last until used or
+  until the session ends rather than until the fight does. It confirms first,
+  since it is the one control here that destroys work.
+
+- **Decks mode — a shared card table you can actually play at.** Two decks and
+  their discards, a card turned over into the discard, a shuffle, and the Fool
+  prompting both decks to be shuffled when it comes out. Seats join by link
+  with a character's name and no account; the GM lets them in, and a vacant GM
+  chair can be taken by anyone already at the table.
+
+  The discard is a _source_ as well as a destination, which is the one
+  non-obvious thing here: ch.5's High Chant picks inspiration cards out of the
+  minor arcana discard and hands them round, so you look through the pile, take
+  a named card, and drop it into a seat's slot. It is also the only pile a
+  command may name a card in, because it is the only one whose faces everyone
+  can already see.
+
+  This is most of a Crawl session on its own — a Test of Fate is a card off the
+  top of the player deck — which is why it ships before any of the Challenge
+  machinery exists.
+
+- **Action menus, in both directions.** Pick up a card and the actions it pays
+  for lift; pick an action and the cards that pay for it lift in your hand.
+  Neither filters the other — everything stays selectable, because a menu that
+  lists only legal choices refuses a play exactly as a rule would, and the GM
+  rules on things the book never anticipated. There is always a "something
+  else" line to type in whatever was just ruled.
+
+  What lifts depends on who is holding the card. A player reads from the suit,
+  per ch.7's suit-matching rule. The GM reads from the doom tier instead,
+  because majors have no suits: a lesser doom pays for any Challenge Action, a
+  greater doom for a creature's greater doom abilities, for any miscellaneous
+  action _except_ Vigilance, or discarded for favour. Those last two are game
+  strings, so they live in the pack rather than in the code.
+
+- **Guided mode — the table walks the round, if you want it to.** The GM turns
+  it on and the table says what is happening and offers the obvious next thing:
+  who is still to place initiative, when everything is down, whose number the
+  count has reached, when to ask for minor actions and when to reveal them.
+
+  It is a prompter and never a gate. Every control stays exactly as available
+  with it on as with it off, and the suggestions are derived from the state
+  rather than stored beside it, so a table played entirely by hand leaves the
+  guide correct rather than confused. The one place it declines to help is the
+  opening deal: that needs the GM's own draw count, and a button that guessed it
+  would be the guide making a ruling.
+
+  Whose number the count has reached is worked out on the server, because it
+  reads facedown cards. It discloses exactly what calling a number out loud
+  discloses and nothing more — and while nobody is counting it says nothing at
+  all, so a prompt can never run ahead of the call.
+
+- **A shuffle only takes back its own cards.** You can still drop a card on the
+  wrong discard — a physical table lets you, and picking it up again is how a
+  mistake gets fixed — but shuffling no longer buries it in a deck it does not
+  belong to, where nobody could find it and every later draw would be wrong.
+  Strays are sent to the discard they belong to, so the mistake stays visible
+  and sorts itself out at the next shuffle.
+
+- **Chapter 7's worked example runs through the table.** The Steel-Clad Snakes,
+  six goblins and the pendulum blade, played end to end as a test: the GM's
+  draw coming to seven the way the book counts it, the hand splitting into the
+  lesser and greater dooms it names, initiative down facedown and hidden from
+  everyone but its owner, the count reaching four, Justice played for the
+  goblins, three initiative cards turning over at 14, 11 and 5, three minor
+  actions, the pendulum's VII revealed, and the count going on to seven — with
+  every card the book leaves in each hand still there at the end.
+
+- **A pass over everything the first real session found.** The decks were dealt
+  in pack order, because creating a table never shuffled them. Turning over the
+  Fool raised no prompt, since only a Challenge deal was watching for it. Any
+  player could switch the table into a Challenge, which sweeps everyone's hands
+  — that is the GM's. The GM had an initiative slot and an inspiration slot,
+  and has neither: ch.7 gives them no adventurer, they play initiative for each
+  _enemy_.
+
+  Being let in needed a page refresh, because the client read its own seat from
+  the page load while the roster came from the poll. Waiting players could not
+  be admitted during a Challenge at all. And the combatants reflowed whenever a
+  control appeared, so names slid under the cursor and an initiative card went
+  to the wrong seat — they sit on a fixed grid now, and the space controls
+  occupy is reserved whether they are there or not.
+
+  Turned-over cards no longer vanish into the discard. They gather in front of
+  you with their values added up, so a Test of Fate can be pushed and read —
+  labelled as the cards' value, since your attribute and favour are yours to
+  add and this table holds no character. The Challenge shows both deck counts,
+  so "the decks did not reset" is visible rather than a promise. Inspiration
+  slots hold more than one card: "no more than one" is the table's rule to
+  keep, and a slot that physically refuses a second card is enforcement in
+  disguise. And the GM has a reset button.
+
+- **Three things wrong with getting to a table.** The card table existed and
+  nothing linked to it — it now sits beside Rules reference on the game's front
+  door. Starting a table then asked you to fill in a join form and wait for a
+  GM's approval, when you _are_ the GM: the creator is seated as GM straight
+  away. And the name field carried "Thursday game" as ghost text, which read as
+  a table that already existed rather than as a prompt to type; the example
+  moved beside the label, where it is plainly an example.
+
+- **The card table looks like the book now.** The first pass invented a palette
+  — dark green, grey, gold, brown backs — and read as machine-made because of
+  it. This one uses the palette the book already has: black ink, and a room that
+  inverts. Grey table and white cards in light mode, near-black table and bone
+  cards in dark, with the ink unchanged in both, because paper is paper and what
+  inverts is the room rather than the objects on it.
+
+  No accent colour at all, per the reference's own reasoning that in a
+  monochrome interior the accent _is_ the ink. The one exception is the book's
+  single red, for greater dooms. Card backs are the Adherent of the Worm — the
+  mark the book's terms call "allowed and encouraged" for third-party work,
+  already in the pack — printed on the card stock, so a facedown card still
+  reads as a card.
+
+- **The card table has a design.** Dark ground, paper cards: the reference is a
+  book and this is a surface you put things on, so the relationship inverts and
+  the cards become the brightest objects on screen. The ground is wet stone
+  rather than black, because a void behind a card reads as nothing; the single
+  colour is a dim lantern amber from the game's own light mechanic, meaning
+  exactly one thing — _this is yours_.
+
+  The hard part was the facedown card, which must tell three people three
+  different things at once. Showing its owner the face is the obvious answer and
+  the wrong one: they would no longer be able to tell whether the table can see
+  it too. So the back stays a back for everybody, and its owner gets the value
+  as a mark _on_ the back — unmistakably an annotation, never a face. The
+  declared action hangs outside the card on a public tag, because public
+  information does not belong printed on a hidden object.
+
+  Every action is reachable by click-to-place and by drag, neither a fallback
+  for the other, and nothing is reachable only by right-click — with ctrl-click
+  on macOS checked explicitly rather than left to the browser.
+
+- **A game can contribute a card table.** `GameModule` grows a `cardTable`
+  slot, and HMtW fills it: six functions covering what a card means, against a
+  shell that supplies room-token URLs, seats with or without accounts, versioned
+  commands, the public log and the polling loop. Two endpoints join them — a
+  read-only poll that hands back the table as your seat may see it, and a
+  command post that only an admitted seat may make.
+
+  The slot is named for what it is rather than generalised into a "live shared
+  surface", because no second game is coming: Stonetop has no cards. A narrow
+  slot for one consumer is a small reversible cost; a universal abstraction for
+  one consumer is the thing the architecture rules exist to prevent.
+  `docs/architecture.md` and `docs/adding-a-game.md` say so, in the same commit
+  as the boundary moved.
+
+- **Commands, a public log, and the sync loop.** Applying a command to a table
+  is now one guarded operation: a retried command lands once, a command that
+  lost a race changes nothing at all, and each accepted one appends an event
+  numbered with the version it produced — so a client's cursor is simply the
+  version it already holds, one counter rather than two.
+
+  The plan had clients replaying a stream of commands, which meant every command
+  needing its own per-seat projection and a table of per-recipient secrets: a
+  second way out of the building, guarded separately from the first. Syncing
+  projected _state_ instead removed the problem rather than defending it. A
+  player learns their new cards because their hand is in their own projection,
+  so nothing private is left for an event to carry, and the log holds public
+  facts alone — "seat 3 drew four cards", never which four.
+
+  The client loop sits behind a seam so the polling decision stays cheap to
+  revisit. It never has two requests in flight, measures quiet from the last
+  _change_ rather than the last poll, and a hidden tab asks the server nothing
+  while still waking promptly when you come back to it.
+
+- **Bounds on a table.** Six seats, ten people waiting, a hundred thousand
+  commands in a table's life, twenty-five live tables per account, and a name
+  that has to be a name. The one that matters is the queue: asking for a seat is
+  the single unauthenticated write in the feature — deliberately, since that is
+  how someone without an account sits down — so it is the one place rows could
+  otherwise pile up.
+
+  Expired tables stop counting against an account, so the cap is on tables in
+  play rather than on a lifetime of them. And the seat cap is checked again at
+  the door as well as at the request, because a queue can outlive the space it
+  was queuing for.
+
+  The polling policy lives beside them, because it is the same problem seen from
+  the client: a hidden tab asks nothing, a Challenge is asked about every
+  second, everything else every three, and a table nobody has touched backs off
+  by doubling to a fifteen-second ceiling. D1 bills per query rather than per
+  byte, so how _often_ a client asks is the only lever that exists.
+
+- **Seats without accounts.** A player can hold a seat at a card table with no
+  sign-up at all: they give a character's name and the table issues a ticket
+  their browser keeps. The seat is the identity and the ticket is only proof of
+  it, so somebody who clears their cookies has not lost their hand — the GM
+  re-seats them, the same row comes back with the same cards, and the old
+  ticket stops working.
+
+  Arriving is gated on the GM's approval, except when there is no GM, because a
+  table whose first arrival had to wait would have nobody able to grant it. For
+  the same reason a vacant GM seat may be claimed by anyone at the table: a GM
+  who loses their cookie would otherwise lock out everybody including
+  themselves.
+
+  Secrets are stored as hashes and never in the URL, since people share their
+  screen mid-game and a capability in the address bar is a capability everyone
+  on the call can read.
+
+- **Card tables persist.** Two new tables: a card table (its game, its owner,
+  the token that goes in its URL, the game's opaque state blob and the version
+  that guards writes to it) and the seats at it. Creating one requires an
+  account; sitting at one does not, which is the whole abuse story — it removes
+  the only unbounded anonymous write endpoint, and what remains is bounded by
+  the seats a table holds.
+
+  Retention is six weeks and is kept by the act of asking: a table nobody has
+  touched reads as gone and is deleted on the way past, with a bounded sweep
+  riding along so tables nobody ever revisits do not live forever. No
+  scheduler, because there is nowhere good in this deployment to put one.
+
+  Writes are guarded by a version rather than a read-then-write, so two
+  commands landing together cannot both win: the second is refused, which is
+  the "someone got there first" that is the only refusal this design has.
+
+- **Fixed: cards could be duplicated, and one seat could empty another's hand.**
+  Moving a card into the zone it already occupied produced a second copy of it,
+  because the two zone assignments collided on a single key. It is now a
+  reorder, which is a useful operation in its own right — bringing a card to the
+  top of its pile.
+
+  And _seeing_ a zone had been conflated with _reaching_ into it. Those are
+  different questions: any card lying on the table may be moved or flipped by
+  any seat, which is what lets someone turn over the initiative card of a
+  player who has wandered off, while a hand is reached into by nobody but its
+  owner. Zones now carry both properties, and a hand is the only thing whose
+  reach is restricted.
+
+  Both survived six commits because nothing checked the most basic invariant of
+  a card game: that cards are conserved. There is now a test that plays a whole
+  round — dealing, a mulligan, a facedown card replaced and revealed, a sweep,
+  the end of the round, two reshuffles — and counts after every step.
+
+- **Per-seat projection, and the leak tests that hold it to account.** A client
+  is never handed the table; it is handed the part of it that its seat may see.
+  Zones whose faces a viewer is entitled to read come with their card ids; the
+  rest come with a count alone, which is not a secret — everyone at a real table
+  can see how thick a hand is.
+
+  The test that matters serialises a whole projection and searches it for every
+  card the viewer should not know, rather than checking the fields anyone
+  happened to think of, so a leak through a field added later fails without
+  anyone remembering to look for it.
+
+  Two things stay public on purpose. A facedown card's declared action, because
+  ch.7 has the player state the action while only they know the value. And that
+  the Fool is in play, because the end-of-round reshuffle is required and one
+  nobody knows to perform is worse than a hand that is slightly less secret —
+  _whose_ hand holds it, the part that would change how anyone plays, stays
+  hidden.
+
+- **The exceptions that give the round its shape.** A facedown card is now one
+  slot per holder rather than a pile, because the book allows one facedown
+  action at a time and answers a second by replacing the first — so the table
+  replaces and discards rather than refusing. Which side of the initiative card
+  it sits on is remembered, because that is what decides whether the card gains
+  an attribute when it turns over or counts its face value alone.
+
+  A facedown card also carries a **public label**. That is the rule rather than
+  a nicety: ch.7 has the player state what action they are taking while only
+  they know the card's value, so intent is table knowledge and the number is
+  not.
+
+  The Fool goes down with a partner in a single move, never alone, and it goes
+  first, owes its player a second turn, and brings no minor actions with it.
+  Interrupts are general rather than a Fool special case — a polearm's riposte
+  before the charging goblin's attack resolves. Skipping a turn _closes_ the
+  minor-action window rather than merely not opening it.
+
+- **The round.** Ch.7's five steps as table state: a round number, the
+  initiative currently being called, whether the minor-action window is open,
+  and whether the Fool has come out. Beginning a round deals four to each
+  player from the minors and the GM's own number from the majors, reshuffling
+  the discard back in if a pile runs dry mid-hand — which the book does not
+  cover, because at a physical table you shuffle and carry on.
+
+  The GM's draw is a suggestion, not a total. The six cumulative reasons from
+  ch.7 compute what the ticked boxes come to — and the tests check that sum
+  against the book's own worked examples, including the imps who dwindle from
+  twelve to seven and take the GM's hand from six cards down to five. The
+  mulligan is a button: the book's condition is "mostly greater dooms" with no
+  threshold, so there is nothing to test for and the judgement stays the GM's.
+
+  The count is not capped at the king. That is the _players'_ range; the GM
+  plays initiative from the majors, so an enemy can sit at a greater doom's 17
+  and still has to be called.
+
+  Ending a round discards unused hands and initiative cards to the right piles,
+  and **leaves facedown cards in play** — a readied Dodge survives into the next
+  round, which is most of what facedown actions are for. If the Fool was drawn,
+  both decks shuffle, the major arcana included even though nobody drew from
+  it.
+
+- **Opponents at the card table.** The GM's enemies are now part of the table
+  state: named entries with an initiative slot, a played pile and a facedown
+  slot, added when the scene is set and equally addable mid-fight, because
+  reinforcements arrive. They have no hand — ch.7 has the GM draw one hand of
+  majors and play from it for everything they control, since "it's not
+  practical to draw four cards per opponent".
+
+  A group carries how many creatures it stands for, and can be split: five
+  unwolves become three and two when they stop being on the same adventurer,
+  and the mob rules count per target. The original keeps its cards; the new
+  entry starts empty.
+
+  An opponent's hidden cards belong to the GM _role_ rather than to a person,
+  so the seat can change hands — which it must, since a vacant GM seat is
+  claimable and joins need GM approval — without rewriting a single zone.
+
+- **A card-table engine for HMtW.** Pure TypeScript — no UI, no database, no
+  ambient randomness — modelling the table as zones of cards with a visibility
+  and a capacity. That one idea does a lot of work: flipping the top of a deck
+  into the discard and revealing a facedown card are the _same_ operation, a
+  move between zones, because a card's face is visible on account of where it
+  is rather than a flag it carries.
+
+  Shuffles take a seeded generator the caller supplies, so the deck order
+  belongs to the server and a test can assert an exact deal. A command names a
+  _slot_, and may name a specific card only where that card is already public —
+  the discard, which is where a High Chant's inspiration cards get chosen from.
+  Asking for a named card in a hidden pile or someone else's hand is refused,
+  because being able to ask means already knowing.
+
+  What it will not do is referee. It refuses the impossible and the unsafe and
+  has no opinion about the merely illegal: play a Cups card for a Swords action
+  and it will move the card, because the people at the table have the book open
+  and this is a card table, not an umpire.
+
+- **The HMtW pack learns the deck and the Challenge Phase.** A new
+  `data/` section of the pack (hand-authored, tracked in both `content/` and
+  `static/`, with its own `SCHEMA.md`) holds what the coming card table needs:
+  the two decks and how the book splits them — fifty-six minors plus the Fool
+  borrowed into the player deck, the majors I–XXI without it — every card's
+  value from ch.7's sidebar, the lesser and greater doom bands, the four suit
+  glyphs the pack already served, and the Challenge Actions grouped by the suit
+  that pays for them. Hand sizes come with it: four for a player, and for the GM
+  a base of three plus the book's six cumulative reasons to draw more, as a
+  checklist rather than a number.
+
+  It is all data because none of it may live in app code, and it is deliberately
+  short of one thing: any way to compute a total. An action's value is a card
+  plus an attribute, and this pack holds no character at all. The catalogues fill
+  menus and suggest counts; the table never rules on a play.
+
+### Fixed
+
+- **A chosen Challenge Action was invisible in dark mode.** It was filled with
+  the mark and lettered in the card's colour, and in the dark room those are the
+  same value — bone on bone, at a contrast ratio of 1:1. It is lettered in the
+  room's colour now, like every other filled control.
+
 ### Changed
+
+- **The front page lists everything a game has.** It named three of the six
+  things a game can offer, by a rule nobody had written down, and the rule went
+  stale twice without anyone noticing — Stonetop's Moves & Gear was missing from
+  the day it shipped, and so was the card table. His Majesty the Worm's card had
+  one button on it, and it was not the interactive thing.
+
+  It reads the registry now, so a new kind of page appears there on its own. To
+  keep two games' worth of tools a front door rather than a wall of twelve equal
+  buttons, each game leads with the one thing it most wants a stranger to do —
+  build a character, or open the book — and everything else is a quiet link
+  beside it.
+
+- **The table is the room now, not a rectangle in the middle of one.** It sat
+  inside the shell's reading column with white either side, and scrolling
+  detached it from the header — it read as an embedded widget rather than a
+  place. Pages can now ask the shell for the whole window, which the card table
+  does; nothing in the shell knows whose page it is.
+
+  The empty band under a fight closed with it. Every combatant was reserving
+  room for the two "Play facedown" buttons and their note — a block only _one_
+  of them could ever show, since a facedown card goes in front of its holder and
+  you are the only holder you can be. Those moved down to the hand, beside the
+  card they are about, and a combatant now reserves a heading and one row of
+  cards.
+
+  Fields got one scale between them. "Imps" was twice the width of "4", which
+  was twice "3", sized by the words inside them rather than by what they hold.
+  There are two things a field on this table holds — a small number or a name —
+  so there are two widths.
+
+- **A seat reads as the same person in both modes.** Decks mode drew a seat as
+  a rail entry and the Challenge drew it again as a section heading, from two
+  sets of rules that had drifted: the Challenge never said which combatant was
+  _yours_, and never said how many cards anyone was holding, though both are
+  public and both matter in a fight. One block does it now, and both modes use
+  it. The layouts still differ, and should — a rail is 12rem wide and a
+  Challenge seat carries an initiative card, a facedown slot and a played row
+  that grows without limit, so no rail was ever going to hold one. What is
+  shared is the person, not the space around them.
+
+  Inspiration cards show in a Challenge now too. Ch.5's cards are held
+  publicly and survive both the Sweep and the end of a Challenge on purpose, so
+  the one place they were invisible was the one place you would reach for one.
+
+  The discards took a name change with it. They read "Minor arcana discard" and
+  "Major arcana discard" in Decks mode while the deck beside them said "Player
+  deck", and "Player discard" in a Challenge — the same pair labelled by what is
+  in it in one place and by whose it is in another. They are all named for whose
+  pile it is now; what a pile holds is on the card facing up.
+
+- **Buttons have three weights now, and the destructive one stopped shouting.**
+  Every button on the table was the same border, size and weight, so "Deal the
+  round", "Sweep" and "Reset the table" were indistinguishable — and on a phone
+  the last of those wrapped onto its own row and became the most prominent
+  control on screen. Monochrome has no accent to reach for, so the weights are
+  fill, ink and type: the action a region exists for is filled with the ink and
+  lettered in the room's own colour, ordinary controls keep the outline the
+  table already had, and bookkeeping drops to the label step in quiet ink.
+
+  Destructive is not a fourth weight. "Reset the table" takes the quiet one and
+  gets its safety from sitting apart from the controls a thumb is aiming for and
+  from asking before it acts — a destructive control nobody can find is its own
+  kind of failure.
+
+- **The round now says where it is, loudly.** "Round 3, Initiative 7" is the
+  only question anybody asks mid-fight — it is how a player knows their turn has
+  come — and it was set in the smallest type on the page while six equal-weight
+  buttons shouted over it. It leads the strip now, at a type step the table did
+  not previously have, and the count's − and + sit inside the number they move
+  rather than floating among wordy buttons with nothing to do with it. Guide,
+  minor actions, Sweep and End the round are once-a-round bookkeeping and are
+  sized like it.
+
+- **Dealing a round got out of the way of playing one.** The GM's draw
+  checklist, the two hand-size fields and Deal took the whole first screen of
+  every Challenge — on a phone, some 1,700 pixels of setup before a single card
+  was visible, every round, for the life of the table. They fold into one
+  control that says what it leads to, opens on a table that has never dealt, and
+  closes once it has.
+
+  The Mulligan does not go with them. It is judged holding the hand — "discard
+  and draw again when it is mostly greater dooms" — so it now sits beside the
+  GM's hand, next to the lesser and greater grouping that answers the question,
+  rather than behind a panel that has closed by the time anyone can decide.
+  Adding an enemy moved to the combatants, where the enemies are; it read as a
+  pair with Deal only because the two had been put side by side.
+
+- **The card table's quiet greys were too quiet.** An audit against WCAG 2.1 AA
+  found the light room failing 1.4.3 wherever it spoke softly: labels, counts,
+  hints and seat lines were 55% ink on a grey table, which is 3.35:1 against a
+  required 4.5. The values are now set by measurement rather than by eye —
+  quiet text at 5.60:1, and the edge of every button and field at 3.35:1 for
+  1.4.11, which asks 3. The quiet value is measured against the _recessed_
+  ground rather than the table, since that is the darkest surface it ever lands
+  on.
+
+  A leftover from the rejected palette turned up in the same pass: the mode
+  buttons were a bone-coloured literal that came out at 1.36:1 on the light
+  table — very nearly invisible, and the clearest sign that rule had never been
+  seen in both rooms. The narrow-screen layout also stopped pushing 23 pixels
+  past a 320px viewport, and the controls that were a pixel under a 44px target
+  are no longer.
+
+  Looking through a discard now takes the keyboard with it. The panel is
+  appended after everything else, so focus used to stay on the pile behind it
+  and a keyboard user had to tab through the whole table to reach the cards they
+  had just asked to see.
 
 - **A game's front door says whose it is.** `/hmtw` was titled with the game's
   name and nothing else — which is how the publisher would title it — so a

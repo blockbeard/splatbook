@@ -1,0 +1,183 @@
+{
+	"schemaVersion": 1,
+	"source": {
+		"book": "His Majesty the Worm",
+		"chapters": [
+			7
+		],
+		"note": "Hand sizes and the GM’s modifiers from ch.7 “Draw Challenge cards”; actions from ch.7 “Challenge Actions”."
+	},
+	"handSizes": {
+		"player": {
+			"default": 4,
+			"note": "Players always draw four; facedown cards in play do not reduce the draw."
+		},
+		"gm": {
+			"base": 3,
+			"note": "Recheck every round — as enemies fall, the GM draws fewer.",
+			"modifiers": [
+				{
+					"id": "enemy-type",
+					"label": "Each type of enemy",
+					"amount": 1,
+					"kind": "count"
+				},
+				{
+					"id": "outnumber",
+					"label": "Enemies outnumber the adventurers",
+					"amount": 1,
+					"kind": "toggle"
+				},
+				{
+					"id": "double",
+					"label": "Twice as many enemies as adventurers",
+					"amount": 1,
+					"kind": "toggle"
+				},
+				{
+					"id": "larger-than-human",
+					"label": "Each enemy larger than a human",
+					"amount": 1,
+					"kind": "count"
+				},
+				{
+					"id": "elite",
+					"label": "An elite enemy is present",
+					"amount": 2,
+					"kind": "toggle"
+				},
+				{
+					"id": "dungeon-lord",
+					"label": "A dungeon lord is present",
+					"amount": 3,
+					"kind": "toggle"
+				}
+			],
+			"mulligan": {
+				"label": "Mulligan",
+				"note": "Discard the hand and draw again when it is mostly greater dooms. The book sets no threshold; the GM judges."
+			}
+		}
+	},
+	"actions": {
+		"free": [
+			{
+				"id": "talk",
+				"name": "Talk in character"
+			},
+			{
+				"id": "move-within-zone",
+				"name": "Move within your zone"
+			}
+		],
+		"bySuit": {
+			"swords": [
+				{
+					"id": "attack",
+					"name": "Attack"
+				},
+				{
+					"id": "riposte",
+					"name": "Riposte"
+				}
+			],
+			"pentacles": [
+				{
+					"id": "avoid",
+					"name": "Avoid"
+				},
+				{
+					"id": "dash",
+					"name": "Dash"
+				},
+				{
+					"id": "dodge",
+					"name": "Dodge"
+				},
+				{
+					"id": "roughhouse",
+					"name": "Roughhouse"
+				}
+			],
+			"cups": [
+				{
+					"id": "aid-another",
+					"name": "Aid Another"
+				},
+				{
+					"id": "command",
+					"name": "Command"
+				},
+				{
+					"id": "pull-item-from-pack",
+					"name": "Pull Item from Pack"
+				},
+				{
+					"id": "use-item",
+					"name": "Use Item"
+				}
+			],
+			"wands": [
+				{
+					"id": "banter",
+					"name": "Banter"
+				},
+				{
+					"id": "speak-incantation",
+					"name": "Speak Incantation"
+				},
+				{
+					"id": "recover",
+					"name": "Recover"
+				}
+			]
+		},
+		"anySuit": [
+			{
+				"id": "bid-lore",
+				"name": "Bid Lore"
+			},
+			{
+				"id": "guard",
+				"name": "Guard"
+			},
+			{
+				"id": "move",
+				"name": "Move"
+			},
+			{
+				"id": "pull-item-from-belt",
+				"name": "Pull Item from Belt"
+			},
+			{
+				"id": "reload-crossbow",
+				"name": "Reload Crossbow"
+			},
+			{
+				"id": "test-fate",
+				"name": "Test Fate"
+			},
+			{
+				"id": "trivial-action",
+				"name": "Trivial Action"
+			},
+			{
+				"id": "vigilance",
+				"name": "Vigilance",
+				"greaterDoomForbidden": true
+			}
+		],
+		"gmOnly": [
+			{
+				"id": "greater-doom",
+				"name": "Greater doom ability",
+				"requires": "greater"
+			},
+			{
+				"id": "favour",
+				"name": "Discard for favour",
+				"requires": "greater"
+			}
+		]
+	}
+}

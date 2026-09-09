@@ -37,8 +37,16 @@ problem to solve, not an exception to grant.
    interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide?,
    sessionComponent? }`) is the entire surface area. If the shell needs something
    new from a game, the interface grows — explicitly, in its own commit (as
-   `entityTypes` did in phase 6, `gmGuide` in phase 7, `dice` in phase 10, and
-   `sessionComponent` in phase 11).
+   `entityTypes` did in phase 6, `gmGuide` in phase 7, `dice` in phase 10,
+   `sessionComponent` in phase 11, and `cardTable` in phase 29).
+
+   `cardTable` is worth a note, because it is the first slot added for a game
+   with no prospect of a second consumer — Stonetop has no cards. It is
+   deliberately named for what it is rather than generalised into a "live shared
+   surface" contract with pluggable reducers and transports. Adding a narrow
+   slot for one consumer is a small, reversible cost; inventing a universal
+   abstraction for one consumer is what rule 1 exists to prevent. When a second
+   game wants a live surface, that is the extraction moment.
 
 2. **Game modules never import each other.** Stonetop code may not know HMtW
    exists. Shared needs get promoted to the shell (via rule 1), never traded

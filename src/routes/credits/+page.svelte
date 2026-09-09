@@ -47,6 +47,42 @@
 	</section>
 
 	<section>
+		<h2 class="text-xl font-semibold">Card art</h2>
+		<p class="mt-2">
+			The cards for <em>His Majesty the Worm</em> carry Pamela Colman Smith's designs as they were
+			printed in A. E. Waite's
+			<em>The Pictorial Key to the Tarot</em> (William Rider &amp; Son, 1911) — the black-and-white
+			plates from that book, in the public domain on both sides of the Atlantic since publication.
+			They come from
+			<a
+				href="https://commons.wikimedia.org/wiki/Category:Rider-Waite_tarot_deck"
+				rel="noopener external"
+				class="underline hover:text-accent">Wikimedia Commons</a
+			>, and each plate's source file and licence tag is recorded in the game's own art manifest
+			rather than summarised here.
+		</p>
+		<p class="mt-3 text-sm text-muted">
+			The card backs are the Adherent of the Worm, used under the book's own grant for third-party
+			work. That mark belongs to Joshua McCrowell.
+		</p>
+	</section>
+
+	<section>
+		<h2 class="text-xl font-semibold">Prior art</h2>
+		<p class="mt-2 text-sm text-muted">
+			The card table follows
+			<a
+				href="https://jmac.org/crawlspace/"
+				rel="noopener external"
+				class="underline hover:text-accent">Crawlspace</a
+			>, Jason McIntosh's virtual table for <em>His Majesty the Worm</em>, which worked out most of
+			what such a thing should do — that the table should move cards and not referee them, that
+			leaving a fight sweeps it, and how long a table is worth keeping. This one exists to be free
+			software and to live beside the rest of {APP_NAME}; the thinking it starts from is his.
+		</p>
+	</section>
+
+	<section>
 		<h2 class="text-xl font-semibold">Game text</h2>
 		<div class="mt-3 space-y-5">
 			{#each data.games as game (game.id)}
