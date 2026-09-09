@@ -358,6 +358,40 @@ from the game landing and the play view. `label` is nav chrome; the component
 fetches its own pack data, exactly like the session component. Absent → no
 page, no links.
 
+## The card-table slot
+
+`GameModule.cardTable` (phase 29) is a shared, live surface: a table of cards
+several people move at once, reached by a token in its URL rather than through
+a campaign. HMtW has one; Stonetop does not, and the shell shows no card-table
+routes for a game that leaves the slot empty.
+
+The module supplies the whole of the game's half:
+
+| field        | what it does                                                        |
+| ------------ | ------------------------------------------------------------------- |
+| `packFiles`  | pack paths the shell fetches and hands back to every call below      |
+| `create`     | the opening state, given the pack and a random source                |
+| `migrate`    | an older stored blob, brought up to the current shape                |
+| `syncSeats`  | reconcile the engine's seats with the shell's, which owns the roster |
+| `reduce`     | apply one command, returning new state plus a public event           |
+| `project`    | the table **as one seat may see it** — the privacy boundary          |
+
+Two rules hold this apart from everything else in the pack system.
+
+**The shell never inspects the state.** It is the game's blob, stored and
+versioned exactly as `entities.data` is, and the shell's only opinions about it
+are optimistic concurrency and a size it will not exceed.
+
+**`project` is the only thing standing between a hand and the people who may
+not see it.** Every byte a client receives passes through it, so a field added
+to the state is invisible until projected — which is the safe direction — and a
+field projected carelessly is a leak. `card-table.spec.ts` serialises what a
+seat is sent and searches it for cards that seat has no business holding.
+
+Art, if the game has any, is declared by the pack rather than assumed by the
+shell — see the HMtW pack's `SCHEMA.md` for the shape and
+`tools/build_card_art.py` for how a generated set gets its licence basis.
+
 ## Adding a new game
 
 This file is the **pack-format reference** — the manifest, validation, document

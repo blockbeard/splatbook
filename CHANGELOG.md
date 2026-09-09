@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The privacy policy covers playing without an account.** A card table is the
+  one part of Splatbook you can use signed out, and it stores a name you typed —
+  so the policy now says what that is, that a table and its seats are deleted six
+  weeks after the table was last used, and that the practical way for a guest to
+  be forgotten sooner is the person who started the table deleting it. A seat is
+  not an account, and there is nothing for an erasure request to name you by.
+
+  The cookie section said "one cookie" for a while after a second one shipped.
+  There are two, both essential: your sign-in session, and — only if you take a
+  seat — the secret that proves the seat is yours so closing the tab does not
+  lose your hand.
+
+- **Credits for the card art and the prior art.** Pamela Colman Smith's 1911
+  plates and where they came from, the Adherent of the Worm under the book's own
+  grant, and Crawlspace, which worked out most of what a virtual table for this
+  game should do before this one existed.
+
 - **The cards have pictures.** Pamela Colman Smith's seventy-eight designs, as
   printed in the 1911 first edition of A. E. Waite's _The Pictorial Key to the
   Tarot_ — the black-and-white plates, not the colour deck. The book is black
