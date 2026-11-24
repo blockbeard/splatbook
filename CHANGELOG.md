@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Where everyone is.** A Challenge now has a scene: the GM names its zones
+  — the Arena and the King's Pillar, the chapel's Door, Nave, Niches and Altar
+  — and every adventurer has a drop-down for the zone they are standing in.
+  Above the fight, one short list says who is where, which is also ch.7's
+  "restate where every character is" at the start of each round, read off the
+  screen instead of off a whiteboard in another window.
+
+  Anyone can move anyone, as anyone can move a card. A renamed zone keeps the
+  people in it; removing a zone somebody is standing in asks first, because they
+  become unplaced and re-adding the zone does not put them back. The scene
+  survives leaving the Challenge — one fight can run for three sessions — and
+  goes only when the GM starts a new one, or resets the table.
+
 - **The privacy policy covers playing without an account.** A card table is the
   one part of Splatbook you can use signed out, and it stores a name you typed —
   so the policy now says what that is, that a table and its seats are deleted six

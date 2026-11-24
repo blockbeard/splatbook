@@ -18,6 +18,8 @@
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import GmDraw from './GmDraw.svelte';
+	import Scene from './Scene.svelte';
+	import ZonePicker from './ZonePicker.svelte';
 	import { suggest } from './guide';
 	import Actions from './Actions.svelte';
 	import { cardsForAction, type Action } from './actions';
@@ -292,6 +294,8 @@
 		</details>
 	{/if}
 
+	<Scene {table} {seats} {isGm} {busy} {onCommand} />
+
 	<!-- The decks, and not merely their counts.
 	     Showing the numbers proved the shared-deck promise — they do not reset
 	     when the mode changes — but it left the Challenge with nowhere to put a
@@ -362,6 +366,16 @@
 						hand={zone(`seat:${seat.id}:hand`)?.count ?? 0}
 					/>
 				</h3>
+				{#if !seat.isGm}
+					<ZonePicker
+						who={seat.id}
+						label={seat.name}
+						zones={table.scene.zones}
+						at={table.scene.at[seat.id]}
+						disabled={!canAct || busy}
+						{onCommand}
+					/>
+				{/if}
 
 				{#if declaredHere?.position === 'turn' && facedown.count > 0}
 					<Card
