@@ -12,7 +12,7 @@
 	import { APP_NAME, APP_REPO_URL } from '$lib';
 	import { CONTACT_EMAIL } from '$lib/support';
 
-	const LAST_UPDATED = '11 July 2026';
+	const LAST_UPDATED = '24 November 2026';
 </script>
 
 <svelte:head>
@@ -55,6 +55,11 @@
 			so the app can show them back to you and to your fellow players — see the
 			<a href={resolve('/privacy')} class="underline hover:text-accent">privacy policy</a>. You can
 			have them deleted at any time by asking.
+		</p>
+		<p class="mt-2">
+			A picture you put up on a card table is shown to everyone holding that table's link. Only put
+			up pictures you have the right to show the people at your table — your own drawings, or art
+			your copy of a game lets you use at the table — and nothing you would not want them to see.
 		</p>
 	</section>
 

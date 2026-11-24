@@ -484,6 +484,41 @@ export const cardTableSeats = sqliteTable(
 );
 
 /**
+ * The picture a card table's scene shows (phase 31).
+ *
+ * One per table, keyed by the table, so putting up a new one replaces the old
+ * and expiring or deleting a table takes its picture with it through the
+ * cascade — the six-week promise covers pictures without any code having to
+ * remember them.
+ *
+ * Stored as a base64 `data:` URL in a text column, not as a BLOB, on purpose.
+ * D1 hands a BLOB back to a Worker as an array of numbers (`Array.from` of the
+ * bytes), and turning a megabyte into a million-element array and back costs
+ * CPU time the free plan does not have (10 ms a request). As text, the browser
+ * does the encoding, the server checks and stores a string, and serving it is
+ * passing the string through; the browser shows it as it is. A megabyte of
+ * image is about 1.37 MB of base64, inside D1's 2 MB row.
+ *
+ * `id` changes on every upload. The table state names it, so clients fetch the
+ * picture again exactly when it changes; the shell deletes the row as soon as
+ * the state stops naming it (a new scene, a reset, taking it down).
+ */
+export const cardTablePictures = sqliteTable('card_table_pictures', {
+	tableId: text('table_id')
+		.primaryKey()
+		.references(() => cardTables.id, { onDelete: 'cascade' }),
+	id: text('id').notNull(),
+	mime: text('mime').notNull(),
+	/** `data:<mime>;base64,<...>`, checked on the way in. */
+	dataUrl: text('data_url').notNull(),
+	/** Decoded size, for the record and the limit. */
+	bytes: integer('bytes').notNull(),
+	createdAt: integer('created_at', { mode: 'timestamp_ms' })
+		.notNull()
+		.default(sql`(unixepoch() * 1000)`)
+});
+
+/**
  * The public log of what happened at a card table (phase 29).
  *
  * **Everything in here is public.** That is the whole design, and it is what

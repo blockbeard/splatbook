@@ -70,7 +70,12 @@ export interface ProjectedTable {
 	 * The room: the zones the GM named, and where each adventurer or creature
 	 * stands. A missing or `null` entry is "not placed".
 	 */
-	scene: { zones: { id: string; name: string }[]; at: Record<string, string | null> };
+	scene: {
+		zones: { id: string; name: string }[];
+		at: Record<string, string | null>;
+		/** The GM's picture of the room, fetched by id when it changes. */
+		picture: { id: string; mime: string } | null;
+	};
 	zones: Record<string, ProjectedZone>;
 	viewer: string | null;
 }

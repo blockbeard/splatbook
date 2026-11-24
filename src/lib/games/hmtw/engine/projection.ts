@@ -118,7 +118,8 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
-			at: { ...table.scene.at }
+			at: { ...table.scene.at },
+			picture: table.scene.picture ? { ...table.scene.picture } : null
 		},
 		zones,
 		viewer: viewer ?? null

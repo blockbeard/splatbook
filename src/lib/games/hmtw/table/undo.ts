@@ -59,6 +59,8 @@ const MOVES_NO_CARDS = new Set([
 	// The scene and its creatures: positions, HD, letters. A split creates empty
 	// slots and moves no card. A merge *does* move cards, so it is not here.
 	'set-scene-zones',
+	'set-scene-picture',
+	'clear-scene-picture',
 	'clear-scene',
 	'place',
 	'add-creatures',

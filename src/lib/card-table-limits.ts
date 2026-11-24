@@ -88,3 +88,14 @@ export function pollDelayMs(state: PollState): number | null {
 	const doublings = Math.floor(Math.max(0, state.quietMs) / 60_000);
 	return Math.min(POLL_MAX_MS, base * 2 ** Math.min(doublings, 10));
 }
+
+/**
+ * The largest picture a table's scene may hold, decoded (phase 31). A zone map
+ * scaled to 2,560 pixels is a few hundred KB as WebP; the browser steps the
+ * quality and then the size down until it fits. As base64 it is about 1.37 MB,
+ * inside D1's 2 MB row with room to spare.
+ */
+export const MAX_PICTURE_BYTES = 1_000_000;
+
+/** The long edge a picture is scaled to before upload, in pixels. */
+export const PICTURE_LONG_EDGE = 2560;

@@ -31,6 +31,7 @@ import {
 	removeCreature,
 	setDown,
 	setHd,
+	setScenePicture,
 	setSceneZones,
 	splitOpponent,
 	FATE_ZONE,
@@ -164,6 +165,17 @@ export const commandSchema = z.discriminatedUnion('type', [
 			)
 			.max(MAX_SCENE_ZONES)
 	}),
+	/**
+	 * Put up the scene's picture, or take it down. The GM's, and sent by the
+	 * shell's picture endpoint after it has stored the bytes — a client that
+	 * sends it directly names a picture that does not exist, and gets nothing.
+	 */
+	z.strictObject({
+		type: z.literal('set-scene-picture'),
+		id: z.string().uuid(),
+		mime: z.enum(['image/png', 'image/jpeg', 'image/webp'])
+	}),
+	z.strictObject({ type: z.literal('clear-scene-picture') }),
 	/** A new scene: no zones, nobody placed. The GM's. */
 	z.strictObject({ type: z.literal('clear-scene') }),
 	/** Stand an adventurer or a creature in a zone, or nowhere. Anyone's. */
@@ -410,6 +422,16 @@ export const hmtwCardTable: CardTableModule = {
 				const next = setSceneZones(table, parsed.data.zones);
 				return state(next, 'set-scene-zones', { zones: next.scene.zones.map((z) => z.name) });
 			}
+			case 'set-scene-picture':
+				if (!isGm(table, actor)) return fail('gm-only');
+				return state(
+					setScenePicture(table, { id: parsed.data.id, mime: parsed.data.mime }),
+					'set-scene-picture',
+					{}
+				);
+			case 'clear-scene-picture':
+				if (!isGm(table, actor)) return fail('gm-only');
+				return state(setScenePicture(table, null), 'clear-scene-picture', {});
 			case 'clear-scene':
 				if (!isGm(table, actor)) return fail('gm-only');
 				return state(clearScene(table), 'clear-scene', {});
@@ -518,5 +540,9 @@ export const hmtwCardTable: CardTableModule = {
 
 	project(raw, viewer) {
 		return projectFor(raw as CardTable, viewer ?? undefined);
+	},
+
+	pictureOf(raw) {
+		return (raw as CardTable).scene?.picture?.id ?? null;
 	}
 };
