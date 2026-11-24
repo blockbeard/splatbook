@@ -20,6 +20,7 @@
 	import GmDraw from './GmDraw.svelte';
 	import Scene from './Scene.svelte';
 	import ZonePicker from './ZonePicker.svelte';
+	import Creatures from './Creatures.svelte';
 	import { suggest } from './guide';
 	import Actions from './Actions.svelte';
 	import { cardsForAction, type Action } from './actions';
@@ -70,6 +71,10 @@
 	// svelte-ignore state_referenced_locally
 	let playerHand = $state(challengePack.handSizes.player.default);
 	let newEnemy = $state('');
+	let newEnemyCount = $state(1);
+	/** Blank means "not tracking HD" — a number the GM did not type is not a zero. */
+	let newEnemyHealth = $state<number | null>(null);
+	let newEnemyDefense = $state<number | null>(null);
 	/**
 	 * Whether the deal panel is open — **local to this GM's browser**, never a
 	 * table command. It is one person's view of their own controls, and putting
@@ -158,13 +163,22 @@
 	function addEnemy() {
 		const name = newEnemy.trim();
 		if (!name) return;
+		const hd = (n: number | null) =>
+			typeof n === 'number' && Number.isFinite(n)
+				? Math.max(0, Math.min(99, Math.floor(n)))
+				: undefined;
 		onCommand({
 			type: 'add-opponent',
 			id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now().toString(36)}`,
 			name,
-			count: 1
+			count: Math.max(1, Math.min(52, Math.floor(newEnemyCount || 1))),
+			health: hd(newEnemyHealth),
+			defense: hd(newEnemyDefense)
 		});
 		newEnemy = '';
+		newEnemyCount = 1;
+		newEnemyHealth = null;
+		newEnemyDefense = null;
 	}
 </script>
 
@@ -477,7 +491,6 @@
 			<section class="combatant combatant--enemy">
 				<h3>
 					{enemy.name}
-					{#if enemy.count > 1}<span class="tag">×{enemy.count}</span>{/if}
 					{#if isGm}
 						<button
 							type="button"
@@ -486,6 +499,7 @@
 						>
 					{/if}
 				</h3>
+				<Creatures group={enemy} {table} {isGm} {canAct} {busy} {onCommand} />
 				<div class="combatant__row">
 					{#if init.count > 0}
 						<Card
@@ -530,9 +544,41 @@
 						id="new-enemy"
 						class="ct-field"
 						bind:value={newEnemy}
-						placeholder="Imps"
+						placeholder="Zombie"
 						autocomplete="off"
 					/>
+					<label>
+						How many
+						<input
+							type="number"
+							min="1"
+							max="52"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyCount}
+						/>
+					</label>
+					<!-- Once for the type: every creature in the group starts with these.
+					     Left blank, the group's HD is simply not tracked. -->
+					<label>
+						Health
+						<input
+							type="number"
+							min="0"
+							max="99"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyHealth}
+						/>
+					</label>
+					<label>
+						Defense
+						<input
+							type="number"
+							min="0"
+							max="99"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyDefense}
+						/>
+					</label>
 					<button type="submit" class="ct-btn" disabled={busy || newEnemy.trim() === ''}>Add</button
 					>
 				</form>
@@ -868,11 +914,6 @@
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		font-size: 0.7rem;
 		cursor: pointer;
-	}
-	.tag {
-		font-family: 'IM Fell Great Primer SC', Georgia, serif;
-		font-size: 0.7rem;
-		color: var(--ct-quiet);
 	}
 	/* Not one of the three tiers: it is a word inside a heading, and giving it
 	   the tiers' 44px floor would inflate the row it sits in. An underline is

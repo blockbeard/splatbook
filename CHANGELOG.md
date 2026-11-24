@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Lettered creatures, each with its own Health and Defense.** "Add an
+  enemy" now takes how many and, once for the type, their Health and Defense:
+  three zombies at 1/0 arrive as Zombie A, B and C. Each creature has its own
+  zone, its own −/+ for Health and Defense, and a Down button; a creature that
+  is down keeps its letter, crossed out, so "Zombie B" never means two zombies.
+  Reinforcements carry on at D. A lone enemy is just "King of Swords", no letter.
+
+  The group still takes one turn with one initiative card, as the mob rule has
+  it — creatures in different zones do not need splitting. A larger group folds
+  to one line ("3 of 4 up · Arena 2, King's Pillar 1") and opens to edit. When
+  some of a group start acting on their own, the GM ticks them and splits them
+  off with their own initiative slot, letters and places intact; "Rejoin the
+  rest" puts them back.
+
+  Health and Defense are on show to everyone and anyone can change them, which
+  is how a player catches a miscount. Each change says what it changes from, so
+  two people pressing the same button at once apply the hit once.
+
 - **Where everyone is.** A Challenge now has a scene: the GM names its zones
   — the Arena and the King's Pillar, the chapel's Door, Nave, Niches and Altar
   — and every adventurer has a drop-down for the zone they are standing in.
