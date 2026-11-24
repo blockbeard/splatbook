@@ -168,3 +168,44 @@ test('the scene, lettered creatures and their HD, shared between two browsers', 
 	await gmContext.close();
 	await playerContext.close();
 });
+
+test('an action says what it does, and links to the rule', async ({ page }) => {
+	const run = Date.now().toString(36);
+	await signIn(page, 'Rules GM', `e2e-rules-gm-${run}@localhost`);
+	await page.goto('/hmtw/cards');
+	await page.locator('input[name="name"]').fill(`Rules ${run}`);
+	await page.getByRole('button', { name: 'Start' }).click();
+	await page.waitForURL(/\/hmtw\/cards\/[0-9a-f-]{36}$/);
+	await page.getByRole('button', { name: 'Challenge', exact: true }).click();
+
+	const line = page.locator('.actions__rule');
+	await expect(line).toContainText('Point at an action');
+
+	// Pointing explains, and nothing is chosen.
+	await page.getByRole('button', { name: 'Riposte', exact: true }).hover();
+	await expect(line).toContainText('Play it facedown. When you are next Attacked or Roughhoused');
+	await expect(page.getByRole('link', { name: /Read the rule/ })).toHaveCount(0);
+
+	// A screen reader hears the same words as the button's description.
+	await expect(
+		page.getByRole('button', { name: 'Riposte', exact: true })
+	).toHaveAccessibleDescription(/beat its value to deal them 1 Wound/);
+
+	// Choosing is how a touch screen reads a rule, and it brings the link.
+	await page.getByRole('button', { name: 'Vigilance', exact: true }).click();
+	await page.mouse.move(0, 0);
+	await expect(line).toContainText("A greater doom can't pay for it.");
+	const link = page.getByRole('link', { name: /Read the rule: Vigilance/ });
+	await expect(link).toHaveAttribute('href', /07-chapter-7-the-challenge-phase--vigilance$/);
+	await expect(link).toHaveAttribute('target', '_blank');
+
+	// The link goes somewhere real.
+	const href = await link.getAttribute('href');
+	const res = await page.request.get(new URL(href!, page.url()).toString());
+	expect(res.ok()).toBeTruthy();
+
+	if (SHOTS) {
+		await page.locator('.actions').screenshot({ path: `${SHOTS}/actions-chosen.png` });
+	}
+	expect(await violations(page)).toEqual([]);
+});

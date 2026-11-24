@@ -63,120 +63,170 @@
 		"free": [
 			{
 				"id": "talk",
-				"name": "Talk in character"
+				"name": "Talk in character",
+				"summary": "No card needed. Talk in character on anybody's turn, unless something is restraining you.",
+				"rule": "07-chapter-7-the-challenge-phase--free-actions"
 			},
 			{
 				"id": "move-within-zone",
-				"name": "Move within your zone"
+				"name": "Move within your zone",
+				"summary": "No card needed. Move around inside your zone on anybody's turn, unless something is restraining you.",
+				"rule": "07-chapter-7-the-challenge-phase--free-actions"
 			}
 		],
 		"bySuit": {
 			"swords": [
 				{
 					"id": "attack",
-					"name": "Attack"
+					"name": "Attack",
+					"summary": "Beat their Initiative to deal 1 Wound; a tie is yours unless they have a shield. Reveal their Initiative either way. A melee hit leaves you both engaged.",
+					"rule": "07-chapter-7-the-challenge-phase--attack"
 				},
 				{
 					"id": "riposte",
-					"name": "Riposte"
+					"name": "Riposte",
+					"summary": "Play it facedown. When you are next Attacked or Roughhoused, reveal it after their action: beat its value to deal them 1 Wound. A tie is yours unless they have a shield.",
+					"rule": "07-chapter-7-the-challenge-phase--riposte"
 				}
 			],
 			"pentacles": [
 				{
 					"id": "avoid",
-					"name": "Avoid"
+					"name": "Avoid",
+					"summary": "Beat a guard's Initiative to get past it into an adjacent zone. To disengage, match or beat each engaged foe's Initiative; any you fall short of may deal you 1 Wound, and you move either way.",
+					"rule": "07-chapter-7-the-challenge-phase--avoid"
 				},
 				{
 					"id": "dash",
-					"name": "Dash"
+					"name": "Dash",
+					"summary": "Leave your zone and move two zones away.",
+					"rule": "07-chapter-7-the-challenge-phase--dash"
 				},
 				{
 					"id": "dodge",
-					"name": "Dodge"
+					"name": "Dodge",
+					"summary": "Play it facedown. When you are next Attacked or Roughhoused, add its value to your Initiative; if that beats their action's value, it misses.",
+					"rule": "07-chapter-7-the-challenge-phase--dodge"
 				},
 				{
 					"id": "roughhouse",
-					"name": "Roughhouse"
+					"name": "Roughhouse",
+					"summary": "Beat their Initiative to Disarm, Displace, Root or Trip them. They need a Recover action to get rid of it.",
+					"rule": "07-chapter-7-the-challenge-phase--roughhouse"
 				}
 			],
 			"cups": [
 				{
 					"id": "aid-another",
-					"name": "Aid Another"
+					"name": "Aid Another",
+					"summary": "Play it facedown and name another adventurer's action as the trigger. When they take it, reveal it and add your value to theirs — the way past an Initiative above 14.",
+					"rule": "07-chapter-7-the-challenge-phase--aid-another"
 				},
 				{
 					"id": "command",
-					"name": "Command"
+					"name": "Command",
+					"summary": "Order an animal companion to perform a command it knows. Against a foe, compare your value with their Initiative; otherwise any value will do. Companions act only when Commanded.",
+					"rule": "07-chapter-7-the-challenge-phase--command"
 				},
 				{
 					"id": "pull-item-from-pack",
-					"name": "Pull Item from Pack"
+					"name": "Pull Item from Pack",
+					"summary": "Swap an item from your backpack with one you are holding.",
+					"rule": "07-chapter-7-the-challenge-phase--pull-item-from-pack"
 				},
 				{
 					"id": "use-item",
-					"name": "Use Item"
+					"name": "Use Item",
+					"summary": "Use an item you are holding. On yourself any value will do; against a foe, compare with their Initiative. A thrown bomb is an Attack in almost every respect, but on Cups.",
+					"rule": "07-chapter-7-the-challenge-phase--use-item"
 				}
 			],
 			"wands": [
 				{
 					"id": "banter",
-					"name": "Banter"
+					"name": "Banter",
+					"summary": "Taunt, intimidate or frighten. Beat the enemy's Morale (the GM judges it) and the GM shifts their Disposition one step — perhaps towards fleeing or surrender.",
+					"rule": "07-chapter-7-the-challenge-phase--banter"
 				},
 				{
 					"id": "speak-incantation",
-					"name": "Speak Incantation"
+					"name": "Speak Incantation",
+					"summary": "Cast a spell whose talent you have, holding its component in one hand. Beat their Initiative and it takes effect; a tie is yours unless they have a shield.",
+					"rule": "07-chapter-7-the-challenge-phase--speak-incantation"
 				},
 				{
 					"id": "recover",
-					"name": "Recover"
+					"name": "Recover",
+					"summary": "Get rid of one Effect you are suffering: stand up, retrieve a dropped weapon, wipe your eyes. The GM says which Effects can't be shaken off this way.",
+					"rule": "07-chapter-7-the-challenge-phase--recover"
 				}
 			]
 		},
 		"anySuit": [
 			{
 				"id": "bid-lore",
-				"name": "Bid Lore"
+				"name": "Bid Lore",
+				"summary": "Any card. Try to recall an esoteric detail; the GM accepts, rejects or asks you to rephrase, and the card is spent either way.",
+				"rule": "07-chapter-7-the-challenge-phase--bid-lore"
 			},
 			{
 				"id": "guard",
-				"name": "Guard"
+				"name": "Guard",
+				"summary": "Any card, if you have a shield: replace your Initiative with a card from your hand, and discard the old one.",
+				"rule": "07-chapter-7-the-challenge-phase--guard"
 			},
 			{
 				"id": "move",
-				"name": "Move"
+				"name": "Move",
+				"summary": "Any card. Move to an adjacent zone. If you are engaged, each foe engaged with you may deal you 1 Wound or let you pass; Avoid is the safe way out.",
+				"rule": "07-chapter-7-the-challenge-phase--move"
 			},
 			{
 				"id": "pull-item-from-belt",
-				"name": "Pull Item from Belt"
+				"name": "Pull Item from Belt",
+				"summary": "Any card. Swap an item from your belt with one you are holding.",
+				"rule": "07-chapter-7-the-challenge-phase--pull-item-from-belt"
 			},
 			{
 				"id": "reload-crossbow",
-				"name": "Reload Crossbow"
+				"name": "Reload Crossbow",
+				"summary": "Any card. A crossbow must be reloaded after every shot.",
+				"rule": "07-chapter-7-the-challenge-phase--reload-crossbow"
 			},
 			{
 				"id": "test-fate",
-				"name": "Test Fate"
+				"name": "Test Fate",
+				"summary": "Any card, when the GM calls for a test of fate mid-fight. The card you play doesn't count: draw from the minor arcana deck and resolve it as a normal test of fate.",
+				"rule": "07-chapter-7-the-challenge-phase--test-fate"
 			},
 			{
 				"id": "trivial-action",
-				"name": "Trivial Action"
+				"name": "Trivial Action",
+				"summary": "Any card. Anything quick and uncontested: open a door, throw a lever, pick something up, drop prone.",
+				"rule": "07-chapter-7-the-challenge-phase--trivial-action"
 			},
 			{
 				"id": "vigilance",
 				"name": "Vigilance",
-				"greaterDoomForbidden": true
+				"greaterDoomForbidden": true,
+				"summary": "Play it facedown, in the suit of the action you will take, and name another character's action as the trigger. When it happens, flip it and act. A greater doom can't pay for it.",
+				"rule": "07-chapter-7-the-challenge-phase--vigilance"
 			}
 		],
 		"gmOnly": [
 			{
 				"id": "greater-doom",
 				"name": "Greater doom ability",
-				"requires": "greater"
+				"requires": "greater",
+				"summary": "GM: a greater doom (15–21) pays for a creature's greater doom ability. Against an adventurer, play it with a lesser doom Attack; it lands if the Attack hits, and is spent either way.",
+				"rule": "07-chapter-7-the-challenge-phase--greater-dooms"
 			},
 			{
 				"id": "favour",
 				"name": "Discard for favour",
-				"requires": "greater"
+				"requires": "greater",
+				"summary": "GM: discard a greater doom to gain favour (+3) on another Challenge Action.",
+				"rule": "07-chapter-7-the-challenge-phase--greater-dooms"
 			}
 		]
 	},

@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **What an action does, under the action menu.** Point at an action, or tab to
+  it, and one line underneath says what it does in a sentence or two — Riposte,
+  Aid Another, Vigilance and the other twenty-two — written against ch.7 rather
+  than cut from it. Choosing an action keeps its line up and adds "Read the
+  rule", which opens the rules reference at that action in a new tab, so the
+  table keeps its place. On a touch screen, where there is no pointing, choosing
+  an action is how you read it. A screen reader hears the same words as each
+  button's description. Talents and spells are not covered; they live on
+  character sheets.
+
 - **The end-of-round check, said every round.** Ch.7 ends each round with a
   quick look at the fight — surrender if the guild has clearly won, ask whether
   they want to retreat if they are in a bad way — and it is the step most easily

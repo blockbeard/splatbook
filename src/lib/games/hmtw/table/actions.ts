@@ -27,6 +27,10 @@ import type { CardFace } from './faces';
 export interface Action {
 	id: string;
 	name: string;
+	/** The rule in a sentence or two. A reminder, never the rule. */
+	summary?: string;
+	/** The reference page holding the rule itself. */
+	rule?: string;
 	greaterDoomForbidden?: boolean;
 	requires?: 'lesser' | 'greater';
 }
