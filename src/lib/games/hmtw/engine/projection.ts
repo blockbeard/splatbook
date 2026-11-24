@@ -66,6 +66,12 @@ export interface ProjectedTable {
 	 * can never run ahead of the call.
 	 */
 	upNow: string[];
+	/**
+	 * Every placed initiative has had its turn and its minor actions: ch.7's
+	 * "the round is over". A yes/no and nothing more — it says that nobody is
+	 * left to go, which the table already knows, and nothing about any card.
+	 */
+	roundDone: boolean;
 }
 
 function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZone {
@@ -101,6 +107,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		mode: table.mode,
 		guided: table.guided,
 		upNow: whoIsUp(table),
+		roundDone: roundIsDone(table),
 		gmSeat: table.gmSeat,
 		opponents: table.opponents.map((o) => ({
 			...o,
@@ -126,6 +133,30 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
  * counting — and once counting, it says only what saying the number out loud
  * already says.
  */
+/**
+ * Whether the count has passed everybody: it is running, the current number is
+ * settled (its turn and minor actions done), nobody is interrupting or owed a
+ * turn, the minor-action window is shut, and no initiative card on the table is
+ * worth more than the number reached. Seats that never put an initiative down
+ * do not hold the round open — a physical table would not wait for them either.
+ */
+export function roundIsDone(table: CardTable): boolean {
+	const { count, settled, interrupt, extraTurn, minorActions } = table.round;
+	if (count === null || settled !== count || interrupt || extraTurn || minorActions) return false;
+	const slots = [
+		...table.seats.map((s) => seatZone(s, 'initiative')),
+		...table.opponents.map((o) => opponentZone(o.id, 'initiative'))
+	];
+	let anyPlaced = false;
+	for (const slot of slots) {
+		const card = table.zones[slot]?.cards[0];
+		if (card === undefined) continue;
+		anyPlaced = true;
+		if ((table.valueOf[card] ?? 0) > count) return false;
+	}
+	return anyPlaced;
+}
+
 export function whoIsUp(table: CardTable): string[] {
 	const count = table.round.count;
 	if (count === null) return [];

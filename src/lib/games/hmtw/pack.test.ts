@@ -217,3 +217,13 @@ describe('hmtw pack round-trip', () => {
 		expect(gmNote.sections.every((s) => s.visibility === 'player')).toBe(true);
 	});
 });
+
+describe('the end-of-round prompt', () => {
+	it('links to a page the generated reference really has', async () => {
+		// A reimport that renamed the heading would otherwise leave a dead link
+		// that nothing notices until somebody clicks it mid-fight.
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		const page = await loadPackFile(packRoot, `rules/pages/${c.endOfRound.rule.page}.json`);
+		expect(page).toBeTruthy();
+	});
+});

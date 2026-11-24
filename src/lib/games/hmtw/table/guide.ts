@@ -20,6 +20,13 @@ export interface Suggestion {
 	action?: { label: string; command: unknown };
 	/** True when only the GM can act on it. */
 	gmOnly?: boolean;
+	/** Where the book says more: a page of this game's rules reference. */
+	rule?: { label: string; page: string };
+}
+
+/** The pack's words for the guide (`data/challenge.json`). */
+export interface GuideWords {
+	endOfRound: { text: string; rule: { label: string; page: string } };
 }
 
 const nameOf = (
@@ -36,7 +43,8 @@ function listOf(names: string[]): string {
 
 export function suggest(
 	table: ProjectedTable,
-	seats: { id: string; name: string; status: string; isGm: boolean }[]
+	seats: { id: string; name: string; status: string; isGm: boolean }[],
+	words?: GuideWords
 ): Suggestion {
 	const playing = seats.filter((s) => s.status === 'admitted' && !s.isGm);
 	const round = table.round;
@@ -91,6 +99,19 @@ export function suggest(
 				command: { type: 'minor-actions', open: false }
 			},
 			gmOnly: true
+		};
+	}
+
+	// Ch.7 step 5: when everyone has had a turn, the round is over — and that is
+	// the moment the book asks for a look at how the fight is going. It is the
+	// check that is easiest to skip, and skipping it is how one fight ran for
+	// three sessions; so it is said out loud here, to everyone, not only the GM.
+	if (table.roundDone && words) {
+		return {
+			text: words.endOfRound.text,
+			action: { label: 'End the round', command: { type: 'end-round' } },
+			gmOnly: true,
+			rule: { ...words.endOfRound.rule }
 		};
 	}
 

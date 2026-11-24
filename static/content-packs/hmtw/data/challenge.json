@@ -179,5 +179,12 @@
 				"requires": "greater"
 			}
 		]
+	},
+	"endOfRound": {
+		"text": "Everyone has had a turn. Take a quick look at the fight: if the guild has clearly won, the enemies surrender; if the guild is in a bad way, ask whether they want to retreat.",
+		"rule": {
+			"label": "Retreating",
+			"page": "07-chapter-7-the-challenge-phase--retreating"
+		}
 	}
 }

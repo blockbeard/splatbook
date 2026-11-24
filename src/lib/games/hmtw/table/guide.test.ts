@@ -16,6 +16,7 @@ const table = (over: Partial<ProjectedTable> = {}): ProjectedTable =>
 		opponents: [],
 		guided: true,
 		upNow: [],
+		roundDone: false,
 		round: {
 			number: 1,
 			count: null,
@@ -150,5 +151,36 @@ describe('the guide', () => {
 		// count, `upNow` is empty and the guide has nobody to name.
 		const s = suggest(table({ upNow: [] }), seats);
 		expect(s.text).not.toMatch(/Daria|Chirm/);
+	});
+});
+
+describe('the end of the round', () => {
+	const words = {
+		endOfRound: {
+			text: 'Everyone has had a turn. Surrender, or retreat?',
+			rule: { label: 'Retreating', page: '07-chapter-7-the-challenge-phase--retreating' }
+		}
+	};
+	const done = () =>
+		table({ round: { ...table().round, count: 14, settled: 14 } as never, roundDone: true });
+
+	it('asks the book’s question when everyone has had a turn', () => {
+		const s = suggest(done(), seats, words);
+		expect(s.text).toBe(words.endOfRound.text);
+		expect(s.action).toEqual({ label: 'End the round', command: { type: 'end-round' } });
+		expect(s.gmOnly).toBe(true);
+		expect(s.rule).toEqual({
+			label: 'Retreating',
+			page: '07-chapter-7-the-challenge-phase--retreating'
+		});
+	});
+
+	it('keeps counting while somebody is still to go', () => {
+		const s = suggest(
+			table({ round: { ...table().round, count: 9, settled: 9 } as never, roundDone: false }),
+			seats,
+			words
+		);
+		expect(s.text).toBe('9 is done.');
 	});
 });

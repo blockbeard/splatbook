@@ -77,6 +77,14 @@ miscellaneous action other than Vigilance. The suit-matching requirement is
 waived for the GM's *minor* actions specifically, because the majors have no
 suits.
 
+`endOfRound` is ch.7 step 5's assessment, which the table says once everybody
+who put an initiative down has had their turn: `text` is the prompt (surrender
+if the guild has clearly won, ask about retreating if it is in a bad way), and
+`rule` names a page of the generated reference — `page` is its id, `label` the
+link text. The pack test loads `rules/pages/<page>.json`, so a reimport that
+renames the heading fails a test rather than leaving a dead link. It is a prompt
+to say aloud, and it shows whether or not the GM has guiding switched on.
+
 ## Not here yet
 
 Rule links. A menu entry that could open the reference at its own rule would be

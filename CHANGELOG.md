@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The end-of-round check, said every round.** Ch.7 ends each round with a
+  quick look at the fight — surrender if the guild has clearly won, ask whether
+  they want to retreat if they are in a bad way — and it is the step most easily
+  skipped. Once everybody who put an initiative down has had their turn, the
+  table now says so, asks the book's question, offers the GM "End the round",
+  and links to the rules for Retreating. It shows whether or not guiding is on.
+
 - **Lettered creatures, each with its own Health and Defense.** "Add an
   enemy" now takes how many and, once for the type, their Health and Defense:
   three zombies at 1/0 arrive as Zombie A, B and C. Each creature has its own

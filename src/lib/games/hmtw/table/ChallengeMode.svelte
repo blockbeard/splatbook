@@ -13,6 +13,7 @@
 	facedown cards in play.
 -->
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Card from './Card.svelte';
 	import Hand from './Hand.svelte';
 	import SeatName from './SeatName.svelte';
@@ -44,6 +45,7 @@
 		faces: FaceIndex;
 		challengePack: {
 			actions: import('./actions').ActionCatalogue;
+			endOfRound: import('./guide').GuideWords['endOfRound'];
 			handSizes: {
 				player: { default: number };
 				gm: {
@@ -112,7 +114,15 @@
 	 * drift from the round it describes. A prompt, never a gate: every control
 	 * below stays exactly as available with the guide on as with it off.
 	 */
-	const guide = $derived(table.guided ? suggest(table, seats) : null);
+	/*
+	 * One prompt shows even with guiding off: the end-of-round check. It is the
+	 * step of ch.7 most easily skipped, and the one the Castle Automatic table
+	 * was promised would be said out loud every round — so it does not wait for
+	 * the GM to have switched guiding on.
+	 */
+	const guide = $derived(
+		table.guided || table.roundDone ? suggest(table, seats, challengePack) : null
+	);
 
 	const myHand = $derived(mySeatId ? (table.zones[`seat:${mySeatId}:hand`]?.cards ?? []) : []);
 	/**
@@ -191,6 +201,18 @@
 				<button type="button" disabled={busy} onclick={() => onCommand(action.command)}>
 					{action.label}
 				</button>
+			{/if}
+			{#if guide.rule}
+				<!-- A new tab, so the table keeps its place mid-fight. -->
+				<a
+					class="guide__rule"
+					href={resolve('/[game=game]/reference/[section]', {
+						game: 'hmtw',
+						section: guide.rule.page
+					})}
+					target="_blank"
+					rel="noopener">{guide.rule.label}<span class="sr-only"> (opens in a new tab)</span></a
+				>
 			{/if}
 		</p>
 	{/if}
@@ -703,6 +725,10 @@
 	}
 	.guide__text {
 		font-family: 'IM Fell English', Georgia, serif;
+	}
+	.guide__rule {
+		color: var(--ct-mark);
+		font-size: var(--ct-step-label);
 	}
 	.ch__strip {
 		display: flex;
