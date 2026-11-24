@@ -13,11 +13,15 @@
 	facedown cards in play.
 -->
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Card from './Card.svelte';
 	import Hand from './Hand.svelte';
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import GmDraw from './GmDraw.svelte';
+	import Scene from './Scene.svelte';
+	import ZonePicker from './ZonePicker.svelte';
+	import Creatures from './Creatures.svelte';
 	import { suggest } from './guide';
 	import Actions from './Actions.svelte';
 	import { cardsForAction, type Action } from './actions';
@@ -41,6 +45,7 @@
 		faces: FaceIndex;
 		challengePack: {
 			actions: import('./actions').ActionCatalogue;
+			endOfRound: import('./guide').GuideWords['endOfRound'];
 			handSizes: {
 				player: { default: number };
 				gm: {
@@ -68,6 +73,10 @@
 	// svelte-ignore state_referenced_locally
 	let playerHand = $state(challengePack.handSizes.player.default);
 	let newEnemy = $state('');
+	let newEnemyCount = $state(1);
+	/** Blank means "not tracking HD" — a number the GM did not type is not a zero. */
+	let newEnemyHealth = $state<number | null>(null);
+	let newEnemyDefense = $state<number | null>(null);
 	/**
 	 * Whether the deal panel is open — **local to this GM's browser**, never a
 	 * table command. It is one person's view of their own controls, and putting
@@ -105,7 +114,15 @@
 	 * drift from the round it describes. A prompt, never a gate: every control
 	 * below stays exactly as available with the guide on as with it off.
 	 */
-	const guide = $derived(table.guided ? suggest(table, seats) : null);
+	/*
+	 * One prompt shows even with guiding off: the end-of-round check. It is the
+	 * step of ch.7 most easily skipped, and the one the Castle Automatic table
+	 * was promised would be said out loud every round — so it does not wait for
+	 * the GM to have switched guiding on.
+	 */
+	const guide = $derived(
+		table.guided || table.roundDone ? suggest(table, seats, challengePack) : null
+	);
 
 	const myHand = $derived(mySeatId ? (table.zones[`seat:${mySeatId}:hand`]?.cards ?? []) : []);
 	/**
@@ -156,13 +173,22 @@
 	function addEnemy() {
 		const name = newEnemy.trim();
 		if (!name) return;
+		const hd = (n: number | null) =>
+			typeof n === 'number' && Number.isFinite(n)
+				? Math.max(0, Math.min(99, Math.floor(n)))
+				: undefined;
 		onCommand({
 			type: 'add-opponent',
 			id: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now().toString(36)}`,
 			name,
-			count: 1
+			count: Math.max(1, Math.min(52, Math.floor(newEnemyCount || 1))),
+			health: hd(newEnemyHealth),
+			defense: hd(newEnemyDefense)
 		});
 		newEnemy = '';
+		newEnemyCount = 1;
+		newEnemyHealth = null;
+		newEnemyDefense = null;
 	}
 </script>
 
@@ -175,6 +201,18 @@
 				<button type="button" disabled={busy} onclick={() => onCommand(action.command)}>
 					{action.label}
 				</button>
+			{/if}
+			{#if guide.rule}
+				<!-- A new tab, so the table keeps its place mid-fight. -->
+				<a
+					class="guide__rule"
+					href={resolve('/[game=game]/reference/[section]', {
+						game: 'hmtw',
+						section: guide.rule.page
+					})}
+					target="_blank"
+					rel="noopener">{guide.rule.label}<span class="sr-only"> (opens in a new tab)</span></a
+				>
 			{/if}
 		</p>
 	{/if}
@@ -292,6 +330,8 @@
 		</details>
 	{/if}
 
+	<Scene {table} {seats} {isGm} {busy} {onCommand} />
+
 	<!-- The decks, and not merely their counts.
 	     Showing the numbers proved the shared-deck promise — they do not reset
 	     when the mode changes — but it left the Challenge with nowhere to put a
@@ -362,6 +402,16 @@
 						hand={zone(`seat:${seat.id}:hand`)?.count ?? 0}
 					/>
 				</h3>
+				{#if !seat.isGm}
+					<ZonePicker
+						who={seat.id}
+						label={seat.name}
+						zones={table.scene.zones}
+						at={table.scene.at[seat.id]}
+						disabled={!canAct || busy}
+						{onCommand}
+					/>
+				{/if}
 
 				{#if declaredHere?.position === 'turn' && facedown.count > 0}
 					<Card
@@ -463,7 +513,6 @@
 			<section class="combatant combatant--enemy">
 				<h3>
 					{enemy.name}
-					{#if enemy.count > 1}<span class="tag">×{enemy.count}</span>{/if}
 					{#if isGm}
 						<button
 							type="button"
@@ -501,6 +550,10 @@
 						{/if}
 					</div>
 				</div>
+				<!-- Below the cards, like an adventurer's: the turn first, the bookkeeping
+				     after it. Above them, a folded group's controls pushed its initiative
+				     slot out of line with every other combatant's. -->
+				<Creatures group={enemy} {table} {isGm} {canAct} {busy} {onCommand} />
 			</section>
 		{/each}
 
@@ -516,9 +569,41 @@
 						id="new-enemy"
 						class="ct-field"
 						bind:value={newEnemy}
-						placeholder="Imps"
+						placeholder="Zombie"
 						autocomplete="off"
 					/>
+					<label>
+						How many
+						<input
+							type="number"
+							min="1"
+							max="52"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyCount}
+						/>
+					</label>
+					<!-- Once for the type: every creature in the group starts with these.
+					     Left blank, the group's HD is simply not tracked. -->
+					<label>
+						Health
+						<input
+							type="number"
+							min="0"
+							max="99"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyHealth}
+						/>
+					</label>
+					<label>
+						Defense
+						<input
+							type="number"
+							min="0"
+							max="99"
+							class="ct-field ct-field--number"
+							bind:value={newEnemyDefense}
+						/>
+					</label>
 					<button type="submit" class="ct-btn" disabled={busy || newEnemy.trim() === ''}>Add</button
 					>
 				</form>
@@ -643,6 +728,10 @@
 	}
 	.guide__text {
 		font-family: 'IM Fell English', Georgia, serif;
+	}
+	.guide__rule {
+		color: var(--ct-mark);
+		font-size: var(--ct-step-label);
 	}
 	.ch__strip {
 		display: flex;
@@ -854,11 +943,6 @@
 		font-family: 'IM Fell Great Primer SC', Georgia, serif;
 		font-size: 0.7rem;
 		cursor: pointer;
-	}
-	.tag {
-		font-family: 'IM Fell Great Primer SC', Georgia, serif;
-		font-size: 0.7rem;
-		color: var(--ct-quiet);
 	}
 	/* Not one of the three tiers: it is a word inside a heading, and giving it
 	   the tiers' 44px floor would inflate the row it sits in. An underline is

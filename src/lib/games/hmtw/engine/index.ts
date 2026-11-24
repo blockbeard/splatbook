@@ -25,6 +25,8 @@ export {
 export {
 	TABLE_SCHEMA_VERSION,
 	addOpponent,
+	nextLetterIndex,
+	upCount,
 	addSeat,
 	buildDecks,
 	createTable,
@@ -81,3 +83,38 @@ export {
 	type MoveResult,
 	type Pick
 } from './moves';
+export {
+	MAX_SCENE_ZONES,
+	MAX_SCENE_ZONE_NAME,
+	clearScene,
+	emptyScene,
+	forgetPlacements,
+	placeInScene,
+	placeable,
+	setSceneZones,
+	type Scene,
+	type SceneZone
+} from './scene';
+export {
+	MAX_CREATURES,
+	MAX_HD,
+	clampHd,
+	creatureId,
+	creatureLabel,
+	freshPools,
+	letterFor,
+	letterIndex,
+	makeCreatures,
+	type Creature,
+	type HdPool
+} from './creatures';
+export {
+	addCreatures,
+	findCreature,
+	mergeOpponent,
+	removeCreature,
+	setDown,
+	setHd,
+	type HdResult,
+	type HdStat
+} from './groups';

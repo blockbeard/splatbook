@@ -19,9 +19,10 @@
 
 import { canSeeFaces } from './moves';
 import type { FacedownAction } from './exceptions';
-import type { Opponent, CardTable } from './table';
+import { upCount, type Opponent, type CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
+import type { Scene } from './scene';
 import { opponentZone, seatZone, type Zone, type ZoneVisibility } from './zones';
 
 export interface ProjectedZone {
@@ -41,13 +42,15 @@ export interface ProjectedTable {
 	/** Which view is up. Public: everyone at a table is at the same one. */
 	mode: TableMode;
 	gmSeat: string | null;
-	opponents: Opponent[];
+	/** Each group with its creatures, and `count` — how many are still up. */
+	opponents: (Opponent & { count: number })[];
 	round: Round;
 	/**
 	 * The declared actions on facedown cards — public by the book's own rule,
 	 * even though the cards they describe are not.
 	 */
 	facedown: Record<string, FacedownAction>;
+	scene: Scene;
 	zones: Record<string, ProjectedZone>;
 	/** Who this was built for, so a client can tell whose view it holds. */
 	viewer: string | null;
@@ -63,6 +66,12 @@ export interface ProjectedTable {
 	 * can never run ahead of the call.
 	 */
 	upNow: string[];
+	/**
+	 * Every placed initiative has had its turn and its minor actions: ch.7's
+	 * "the round is over". A yes/no and nothing more — it says that nobody is
+	 * left to go, which the table already knows, and nothing about any card.
+	 */
+	roundDone: boolean;
 }
 
 function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZone {
@@ -98,10 +107,19 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		mode: table.mode,
 		guided: table.guided,
 		upNow: whoIsUp(table),
+		roundDone: roundIsDone(table),
 		gmSeat: table.gmSeat,
-		opponents: table.opponents.map((o) => ({ ...o })),
+		opponents: table.opponents.map((o) => ({
+			...o,
+			count: upCount(o),
+			creatures: o.creatures.map((c) => ({ ...c, pools: c.pools.map((p) => ({ ...p })) }))
+		})),
 		round: { ...table.round },
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
+		scene: {
+			zones: table.scene.zones.map((z) => ({ ...z })),
+			at: { ...table.scene.at }
+		},
 		zones,
 		viewer: viewer ?? null
 	};
@@ -115,6 +133,30 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
  * counting — and once counting, it says only what saying the number out loud
  * already says.
  */
+/**
+ * Whether the count has passed everybody: it is running, the current number is
+ * settled (its turn and minor actions done), nobody is interrupting or owed a
+ * turn, the minor-action window is shut, and no initiative card on the table is
+ * worth more than the number reached. Seats that never put an initiative down
+ * do not hold the round open — a physical table would not wait for them either.
+ */
+export function roundIsDone(table: CardTable): boolean {
+	const { count, settled, interrupt, extraTurn, minorActions } = table.round;
+	if (count === null || settled !== count || interrupt || extraTurn || minorActions) return false;
+	const slots = [
+		...table.seats.map((s) => seatZone(s, 'initiative')),
+		...table.opponents.map((o) => opponentZone(o.id, 'initiative'))
+	];
+	let anyPlaced = false;
+	for (const slot of slots) {
+		const card = table.zones[slot]?.cards[0];
+		if (card === undefined) continue;
+		anyPlaced = true;
+		if ((table.valueOf[card] ?? 0) > count) return false;
+	}
+	return anyPlaced;
+}
+
 export function whoIsUp(table: CardTable): string[] {
 	const count = table.round.count;
 	if (count === null) return [];

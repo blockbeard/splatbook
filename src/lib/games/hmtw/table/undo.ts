@@ -44,7 +44,7 @@ const isMove = (event: PublicEvent): event is PublicEvent & { data: MoveData } =
 
 /**
  * The kinds that cannot have disturbed a pile — the count, the guided toggle,
- * the minor-actions flag, and the opponent roster. Anything else (a deal, a
+ * the minor-actions flag, the opponent roster, and the scene. Anything else (a deal, a
  * sweep, a reshuffle, a reset, leaving the Challenge) may have put a different
  * card on top of the destination, and after one of those "put it back" would
  * put back the wrong card. An unknown kind is treated as disturbing, so a new
@@ -55,7 +55,17 @@ const MOVES_NO_CARDS = new Set([
 	'guided',
 	'minor-actions',
 	'add-opponent',
-	'update-opponent'
+	'update-opponent',
+	// The scene and its creatures: positions, HD, letters. A split creates empty
+	// slots and moves no card. A merge *does* move cards, so it is not here.
+	'set-scene-zones',
+	'clear-scene',
+	'place',
+	'add-creatures',
+	'remove-creature',
+	'set-hd',
+	'set-down',
+	'split-opponent'
 ]);
 
 /**

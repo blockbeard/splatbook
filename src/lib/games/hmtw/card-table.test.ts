@@ -270,13 +270,159 @@ describe('the Challenge', () => {
 		expect(t.round.count).toBe(14);
 	});
 
-	it('keeps opponents, and lets the GM name and re-count them', () => {
+	it('keeps opponents, and lets the GM name them', () => {
 		let t = run(seated(), { type: 'set-mode', mode: 'challenge' }).state as CardTable;
 		t = run(t, { type: 'add-opponent', id: 'imps', name: 'Imps', count: 12 }).state as CardTable;
-		expect(t.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 12 }]);
-		t = run(t, { type: 'update-opponent', id: 'imps', count: 7 }).state as CardTable;
-		expect(t.opponents[0].count).toBe(7);
+		expect(t.opponents[0].creatures).toHaveLength(12);
+		t = run(t, { type: 'update-opponent', id: 'imps', name: 'Surviving imps' }).state as CardTable;
+		expect(t.opponents[0].name).toBe('Surviving imps');
+		// How many there are is the creatures, not a number to edit.
+		const recount = hmtwCardTable.reduce(
+			t,
+			{ type: 'update-opponent', id: 'imps', count: 7 },
+			{ actorSeatId: 'gm', rng: seededRng(4) }
+		);
+		expect(recount.ok).toBe(false);
 		t = run(t, { type: 'remove-opponent', id: 'imps' }).state as CardTable;
 		expect(t.opponents).toEqual([]);
+	});
+});
+
+describe('the scene and its creatures', () => {
+	const seated = () =>
+		hmtwCardTable.syncSeats(fresh(), [
+			{ id: 'regan', isGm: false },
+			{ id: 'gm', isGm: true }
+		]) as CardTable;
+	const reduce = (t: CardTable, command: unknown, actor = 'gm') =>
+		hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = reduce(t, command, actor);
+		if (!out.ok) throw new Error(out.reason);
+		return out;
+	};
+	/** Session 11: the Arena, the King's Pillar, and two zombies at HD 1/0. */
+	const arena = () => {
+		let t = run(seated(), {
+			type: 'set-scene-zones',
+			zones: [
+				{ id: 'arena', name: 'Arena' },
+				{ id: 'pillar', name: "King's Pillar" }
+			]
+		}).state as CardTable;
+		t = run(t, {
+			type: 'add-opponent',
+			id: 'zombies',
+			name: 'Zombie',
+			count: 2,
+			health: 1,
+			defense: 0
+		}).state as CardTable;
+		return t;
+	};
+	const zombie = (t: CardTable, letter: string) =>
+		t.opponents.flatMap((o) => o.creatures).find((c) => c.letter === letter)!.id;
+
+	it('lets only the GM name the zones or clear the scene', () => {
+		const zones = { type: 'set-scene-zones', zones: [{ id: 'a', name: 'Arena' }] };
+		expect(reduce(seated(), zones, 'regan')).toEqual({ ok: false, reason: 'gm-only' });
+		expect(reduce(arena(), { type: 'clear-scene' }, 'regan')).toEqual({
+			ok: false,
+			reason: 'gm-only'
+		});
+		const out = run(arena(), { type: 'clear-scene' });
+		expect((out.state as CardTable).scene.zones).toEqual([]);
+	});
+
+	it('lets anyone place anyone, and logs the zone by name', () => {
+		const t = arena();
+		const out = run(t, { type: 'place', who: zombie(t, 'A'), zone: 'pillar' }, 'regan');
+		expect(out.data).toEqual({ who: zombie(t, 'A'), label: 'Zombie A', zone: "King's Pillar" });
+		const seat = run(
+			out.state as CardTable,
+			{ type: 'place', who: 'regan', zone: 'arena' },
+			'regan'
+		);
+		expect(seat.data).toEqual({ who: 'regan', seat: 'regan', zone: 'Arena' });
+	});
+
+	it('refuses a place for nobody, a zone that is not there, or the GM', () => {
+		const t = arena();
+		expect(reduce(t, { type: 'place', who: 'nobody', zone: 'arena' }).ok).toBe(false);
+		expect(reduce(t, { type: 'place', who: 'regan', zone: 'balcony' }).ok).toBe(false);
+		expect(reduce(t, { type: 'place', who: 'gm', zone: 'arena' }).ok).toBe(false);
+	});
+
+	it('adds a group with HD, then reinforcements lettered on', () => {
+		const out = run(arena(), { type: 'add-creatures', id: 'zombies', count: 2 });
+		expect(out.data).toEqual({ labels: ['Zombie C', 'Zombie D'] });
+		const t = out.state as CardTable;
+		expect(t.opponents[0].creatures[3].pools[0]).toMatchObject({ health: 1, healthMax: 1 });
+	});
+
+	it('changes HD from what the asker saw, and refuses a stale change', () => {
+		const t = arena();
+		const hit = {
+			type: 'set-hd',
+			creature: zombie(t, 'B'),
+			pool: 0,
+			stat: 'health',
+			from: 1,
+			to: 0
+		};
+		const out = run(t, hit, 'regan');
+		expect(out.data).toEqual({ label: 'Zombie B', stat: 'health', value: 0, max: 1 });
+		expect(reduce(out.state as CardTable, hit, 'regan')).toEqual({ ok: false, reason: 'stale' });
+	});
+
+	it('marks a creature down and back up', () => {
+		const t = arena();
+		const down = run(t, { type: 'set-down', creature: zombie(t, 'A'), down: true }, 'regan');
+		expect(down.data).toEqual({ label: 'Zombie A', down: true });
+		expect((down.state as CardTable).opponents[0].creatures[0].down).toBe(true);
+	});
+
+	it('lets only the GM split and merge, and merges back to one group', () => {
+		const t = arena();
+		const split = {
+			type: 'split-opponent',
+			id: 'zombies',
+			newId: 'raised',
+			creatures: [zombie(t, 'B')]
+		};
+		expect(reduce(t, split, 'regan')).toEqual({ ok: false, reason: 'gm-only' });
+		const out = run(t, split);
+		expect(out.data).toEqual({ labels: ['Zombie B'] });
+		const merged = run(out.state as CardTable, { type: 'merge-opponent', id: 'raised' });
+		expect((merged.state as CardTable).opponents).toHaveLength(1);
+		expect(reduce(merged.state as CardTable, { type: 'merge-opponent', id: 'zombies' }).ok).toBe(
+			false
+		);
+	});
+
+	it('calls a lone enemy by its name, without a letter', () => {
+		let t = run(arena(), { type: 'add-opponent', id: 'king', name: 'King of Swords', count: 1 })
+			.state as CardTable;
+		const king = t.opponents[1].creatures[0].id;
+		t = run(t, { type: 'set-scene-zones', zones: [{ id: 'arena', name: 'Arena' }] })
+			.state as CardTable;
+		const out = run(t, { type: 'place', who: king, zone: 'arena' });
+		expect(out.data).toMatchObject({ label: 'King of Swords' });
+	});
+
+	it('puts no card in any of these events', () => {
+		// The public-log contract: these events carry names, zones and numbers.
+		const t = arena();
+		const events = [
+			run(t, { type: 'place', who: zombie(t, 'A'), zone: 'arena' }),
+			run(t, { type: 'set-down', creature: zombie(t, 'A'), down: true }),
+			run(t, { type: 'add-creatures', id: 'zombies', count: 1 })
+		];
+		const cards = new Set(Object.keys(t.deckOf));
+		for (const e of events) {
+			for (const value of JSON.stringify(e.data).match(/"[^"]*"/g) ?? []) {
+				expect(cards.has(value.slice(1, -1))).toBe(false);
+			}
+		}
 	});
 });

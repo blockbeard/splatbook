@@ -20,7 +20,30 @@ export interface ProjectedTable {
 	/** Which view is up. Both share one pair of decks. */
 	mode: 'decks' | 'challenge';
 	gmSeat: string | null;
-	opponents: { id: string; name: string; count: number }[];
+	/**
+	 * Enemy groups. A group takes one turn; its creatures are the bodies, each
+	 * with a letter kept for life and optional Health/Defense pools. `count` is
+	 * how many are still up, derived on the server.
+	 */
+	opponents: {
+		id: string;
+		name: string;
+		count: number;
+		family: string;
+		splitFrom?: string;
+		creatures: {
+			id: string;
+			letter: string;
+			down: boolean;
+			pools: {
+				name?: string;
+				health: number;
+				healthMax: number;
+				defense: number;
+				defenseMax: number;
+			}[];
+		}[];
+	}[];
 	round: {
 		number: number;
 		count: number | null;
@@ -41,6 +64,13 @@ export interface ProjectedTable {
 	 * is counting, so nothing here can run ahead of the GM calling a number.
 	 */
 	upNow: string[];
+	/** Everybody who put an initiative down has had their turn: the round is over. */
+	roundDone: boolean;
+	/**
+	 * The room: the zones the GM named, and where each adventurer or creature
+	 * stands. A missing or `null` entry is "not placed".
+	 */
+	scene: { zones: { id: string; name: string }[]; at: Record<string, string | null> };
 	zones: Record<string, ProjectedZone>;
 	viewer: string | null;
 }

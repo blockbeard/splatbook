@@ -11,7 +11,7 @@ import { describe, expect, it } from 'vitest';
 import { createTable, addOpponent, setGmSeat, type CardTable, type DeckDefinition } from './table';
 import { beginRound } from './round';
 import { placeFacedown } from './exceptions';
-import { hiddenFrom, projectFor, whoIsUp } from './projection';
+import { hiddenFrom, projectFor, roundIsDone, whoIsUp } from './projection';
 import { moveCard } from './moves';
 import { seededRng } from './shuffle';
 import { opponentZone, seatZone } from './zones';
@@ -162,7 +162,16 @@ describe('what stays public on purpose', () => {
 	it('shows the roster, the count and whose turn it is', () => {
 		const table = inPlay();
 		const view = projectFor(table, 's1');
-		expect(view.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 6 }]);
+		expect(view.opponents).toHaveLength(1);
+		expect(view.opponents[0]).toMatchObject({ id: 'imps', name: 'Imps', count: 6 });
+		expect(view.opponents[0].creatures.map((c) => c.letter)).toEqual([
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F'
+		]);
 		expect(view.seats).toEqual(['s1', 's2', 'gm']);
 		expect(view.gmSeat).toBe('gm');
 		expect(view.round.number).toBe(1);
@@ -244,5 +253,30 @@ describe('who the count has reached', () => {
 		const view = JSON.stringify(projectFor(counting(3), 's2'));
 		expect(view).not.toContain('"m3"');
 		expect(view).toContain('s1');
+	});
+});
+
+describe('the round being over', () => {
+	it('is not over until the count has settled past every initiative card', () => {
+		const t = inPlay();
+		expect(roundIsDone(t)).toBe(false);
+		const values = Object.values(t.zones)
+			.filter((z) => z.id.endsWith(':initiative'))
+			.flatMap((z) => z.cards.slice(0, 1))
+			.map((c) => t.valueOf[c]);
+		const top = Math.max(...values);
+		const at = (n: number) => ({ ...t, round: { ...t.round, count: n, settled: n } });
+		expect(roundIsDone(at(top - 1))).toBe(false);
+		expect(roundIsDone(at(top))).toBe(true);
+		// A number not yet settled, or a minor-action window still open, holds it.
+		expect(roundIsDone({ ...t, round: { ...t.round, count: top, settled: null } })).toBe(false);
+		expect(
+			roundIsDone({ ...t, round: { ...t.round, count: top, settled: top, minorActions: true } })
+		).toBe(false);
+	});
+
+	it('says only yes or no — no card or value rides along', () => {
+		const view = projectFor(inPlay(), 's1');
+		expect(typeof view.roundDone).toBe('boolean');
 	});
 });

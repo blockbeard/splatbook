@@ -7,12 +7,15 @@ import {
 	removeOpponent,
 	setGmSeat,
 	splitOpponent,
+	upCount,
 	updateOpponent,
 	type CardTable,
 	type DeckDefinition
 } from './table';
 import { moveCard } from './moves';
 import { opponentZone } from './zones';
+import { MAX_CREATURES, letterFor, letterIndex } from './creatures';
+import { placeInScene, setSceneZones } from './scene';
 
 const deck: DeckDefinition = {
 	minors: [
@@ -39,7 +42,8 @@ describe('opponents', () => {
 
 	it('adds an enemy with its zones, and no hand', () => {
 		const t = addOpponent(table(), { id: 'imps', name: 'Imps', count: 12 });
-		expect(t.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 12 }]);
+		expect(t.opponents).toHaveLength(1);
+		expect(upCount(t.opponents[0])).toBe(12);
 		expect(t.zones[opponentZone('imps', 'initiative')]).toBeDefined();
 		expect(t.zones[opponentZone('imps', 'played')]).toBeDefined();
 		expect(t.zones[opponentZone('imps', 'facedown')]).toBeDefined();
@@ -47,9 +51,9 @@ describe('opponents', () => {
 		expect(t.zones['opponent:imps:hand']).toBeUndefined();
 	});
 
-	it('defaults a lone enemy to a count of one', () => {
+	it('defaults a lone enemy to one creature', () => {
 		const t = addOpponent(table(), { id: 'ogre', name: 'Ogre' });
-		expect(t.opponents[0].count).toBe(1);
+		expect(upCount(t.opponents[0])).toBe(1);
 	});
 
 	it('can be added mid-fight, because reinforcements arrive', () => {
@@ -78,47 +82,155 @@ describe('opponents', () => {
 		expect(t.zones['deck:gm']).toBeDefined();
 	});
 
-	it('renames and re-counts', () => {
+	it('renames, and ignores a blank name', () => {
 		let t = addOpponent(table(), { id: 'imps', name: 'Imps', count: 12 });
-		t = updateOpponent(t, 'imps', { count: 7 });
-		expect(t.opponents[0]).toEqual({ id: 'imps', name: 'Imps', count: 7 });
 		t = updateOpponent(t, 'imps', { name: 'Surviving imps' });
 		expect(t.opponents[0].name).toBe('Surviving imps');
+		expect(updateOpponent(t, 'imps', { name: '   ' })).toBe(t);
+	});
+});
+
+describe('creatures', () => {
+	it('letters a group from A, each with the HD the GM gave', () => {
+		const t = addOpponent(table(), {
+			id: 'zombies',
+			name: 'Zombie',
+			count: 3,
+			health: 1,
+			defense: 0
+		});
+		const [group] = t.opponents;
+		expect(group.creatures.map((c) => c.letter)).toEqual(['A', 'B', 'C']);
+		expect(group.creatures[0].pools).toEqual([
+			{ health: 1, healthMax: 1, defense: 0, defenseMax: 0 }
+		]);
+		expect(group.creatures.every((c) => !c.down)).toBe(true);
+	});
+
+	it('tracks no HD when none is given', () => {
+		const t = addOpponent(table(), { id: 'imps', name: 'Imps', count: 2 });
+		expect(t.opponents[0].creatures[0].pools).toEqual([]);
+	});
+
+	it('runs A–Z, then AA–ZZ, and stops at fifty-two', () => {
+		expect(letterFor(0)).toBe('A');
+		expect(letterFor(25)).toBe('Z');
+		expect(letterFor(26)).toBe('AA');
+		expect(letterFor(51)).toBe('ZZ');
+		expect(letterIndex('ZZ')).toBe(51);
+		expect(letterIndex('AB')).toBe(-1);
+		const t = addOpponent(table(), { id: 'rats', name: 'Rat', count: 999 });
+		expect(t.opponents[0].creatures).toHaveLength(MAX_CREATURES);
+	});
+
+	it('gives every creature an id no seat or other group can share', () => {
+		let t = addOpponent(table(), { id: 'zombies', name: 'Zombie', count: 2 });
+		t = addOpponent(t, { id: 'skeletons', name: 'Skeleton', count: 2 });
+		const ids = t.opponents.flatMap((o) => o.creatures.map((c) => c.id));
+		expect(new Set(ids).size).toBe(4);
+		expect(ids).not.toContain('s1');
+	});
+
+	it('takes its creatures out of the scene when the group goes', () => {
+		let t = addOpponent(table(), { id: 'zombies', name: 'Zombie', count: 2 });
+		t = setSceneZones(t, [{ id: 'arena', name: 'Arena' }]);
+		const [a] = t.opponents[0].creatures;
+		t = placeInScene(t, a.id, 'arena');
+		expect(t.scene.at[a.id]).toBe('arena');
+		t = removeOpponent(t, 'zombies');
+		expect(a.id in t.scene.at).toBe(false);
 	});
 });
 
 describe('splitting a group', () => {
-	it('peels some off into a new entry with its own slots', () => {
-		let t = addOpponent(table(), { id: 'unwolves', name: 'Unwolves', count: 5 });
-		t = splitOpponent(t, 'unwolves', { id: 'unwolves-b', count: 2 });
-		expect(t.opponents).toEqual([
-			{ id: 'unwolves', name: 'Unwolves', count: 3 },
-			{ id: 'unwolves-b', name: 'Unwolves', count: 2 }
+	const unwolves = () => addOpponent(table(), { id: 'unwolves', name: 'Unwolf', count: 5 });
+	const ids = (t: CardTable, ...letters: string[]) =>
+		t.opponents[0].creatures.filter((c) => letters.includes(c.letter)).map((c) => c.id);
+
+	it('moves the chosen creatures, letters and all, into a group with its own slots', () => {
+		let t = unwolves();
+		t = splitOpponent(t, 'unwolves', { id: 'unwolves-b', creatures: ids(t, 'B', 'D') });
+		expect(t.opponents.map((o) => o.creatures.map((c) => c.letter))).toEqual([
+			['A', 'C', 'E'],
+			['B', 'D']
 		]);
+		expect(t.opponents[1]).toMatchObject({ family: 'unwolves', splitFrom: 'unwolves' });
 		expect(t.zones[opponentZone('unwolves-b', 'initiative')].cards).toEqual([]);
 	});
 
 	it('leaves the original’s cards where they were', () => {
-		let t = addOpponent(table(), { id: 'unwolves', name: 'Unwolves', count: 5 });
+		let t = unwolves();
 		const played = moveCard(t, { zone: 'deck:gm' }, opponentZone('unwolves', 'played'));
 		if (!played.ok) return;
-		t = splitOpponent(played.table, 'unwolves', { id: 'unwolves-b', count: 2 });
+		t = splitOpponent(played.table, 'unwolves', { id: 'unwolves-b', creatures: ids(t, 'A') });
 		expect(t.zones[opponentZone('unwolves', 'played')].cards).toHaveLength(1);
 		expect(t.zones[opponentZone('unwolves-b', 'played')].cards).toEqual([]);
 	});
 
+	it('keeps a split creature standing where it stood', () => {
+		let t = setSceneZones(unwolves(), [{ id: 'nave', name: 'Nave' }]);
+		const [b] = ids(t, 'B');
+		t = placeInScene(t, b, 'nave');
+		t = splitOpponent(t, 'unwolves', { id: 'unwolves-b', creatures: [b] });
+		expect(t.scene.at[b]).toBe('nave');
+	});
+
 	it('takes a new name when given one', () => {
-		let t = addOpponent(table(), { id: 'unwolves', name: 'Unwolves', count: 5 });
-		t = splitOpponent(t, 'unwolves', { id: 'flankers', name: 'Flanking unwolves', count: 2 });
-		expect(t.opponents[1].name).toBe('Flanking unwolves');
+		let t = unwolves();
+		t = splitOpponent(t, 'unwolves', {
+			id: 'flankers',
+			name: 'Flanking unwolf',
+			creatures: ids(t, 'A')
+		});
+		expect(t.opponents[1].name).toBe('Flanking unwolf');
 	});
 
 	it('does nothing when there is no such state to represent', () => {
-		const t = addOpponent(table(), { id: 'ogre', name: 'Ogre', count: 1 });
-		// A group of one cannot be split, and you cannot take more than there are.
-		expect(splitOpponent(t, 'ogre', { id: 'ogre-b', count: 1 })).toBe(t);
-		expect(splitOpponent(t, 'ogre', { id: 'ogre-b', count: 0 })).toBe(t);
-		expect(splitOpponent(t, 'nobody', { id: 'x', count: 1 })).toBe(t);
+		const t = unwolves();
+		// Nobody moving is no change; everybody moving is a rename.
+		expect(splitOpponent(t, 'unwolves', { id: 'b', creatures: [] })).toBe(t);
+		expect(
+			splitOpponent(t, 'unwolves', { id: 'b', creatures: ids(t, 'A', 'B', 'C', 'D', 'E') })
+		).toBe(t);
+		expect(splitOpponent(t, 'nobody', { id: 'x', creatures: ids(t, 'A') })).toBe(t);
+		// An id already in use would merge two groups' card slots.
+		expect(splitOpponent(t, 'unwolves', { id: 'unwolves', creatures: ids(t, 'A') })).toBe(t);
+	});
+});
+
+describe('migrating to v11', () => {
+	it('turns a stored count into lettered creatures with no HD', () => {
+		const v10 = {
+			...table(),
+			schemaVersion: 10,
+			opponents: [{ id: 'imps', name: 'Imps', count: 6 }]
+		};
+		const t = migrateTable(v10 as never);
+		expect(t.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
+		expect(t.opponents[0]).toMatchObject({ id: 'imps', name: 'Imps', family: 'imps' });
+		expect(t.opponents[0].creatures.map((c) => c.letter)).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
+		expect(t.opponents[0].creatures[0].pools).toEqual([]);
+		expect('count' in t.opponents[0]).toBe(false);
+	});
+
+	it('caps a group the old command allowed to be 999', () => {
+		const v10 = {
+			...table(),
+			schemaVersion: 10,
+			opponents: [{ id: 'rats', name: 'Rats', count: 999 }]
+		};
+		expect(migrateTable(v10 as never).opponents[0].creatures).toHaveLength(MAX_CREATURES);
+	});
+
+	it('leaves a current group as it is', () => {
+		const t = addOpponent(table(), {
+			id: 'zombies',
+			name: 'Zombie',
+			count: 2,
+			health: 1,
+			defense: 0
+		});
+		expect(migrateTable(t).opponents).toEqual(t.opponents);
 	});
 });
 
@@ -181,7 +293,7 @@ describe('migrateTable v1 → v2', () => {
 	it('leaves a v2 table’s own roster alone', () => {
 		const t = addOpponent(setGmSeat(table(), 's1'), { id: 'imps', name: 'Imps', count: 4 });
 		const migrated = migrateTable(t);
-		expect(migrated.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 4 }]);
+		expect(migrated.opponents).toEqual(t.opponents);
 		expect(migrated.gmSeat).toBe('s1');
 	});
 });

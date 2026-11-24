@@ -11,6 +11,14 @@
 import type { FacedownAction } from './exceptions';
 import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
+import {
+	MAX_CREATURES,
+	letterIndex,
+	makeCreatures,
+	migrateCreature,
+	type Creature
+} from './creatures';
+import { emptyScene, forgetPlacements, migrateScene, type Scene } from './scene';
 import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone } from './zones';
 
 /**
@@ -25,9 +33,12 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v6: `mode`.
  * v7: a shared `fate` zone.
  * v8: `deckOf`, which deck each card belongs to.
- * v9 (this commit): `guided`, and `valueOf` so the count can find who is up.
+ * v9: `guided`, and `valueOf` so the count can find who is up.
+ * v10: `scene` — the book's zones, and who stands in which.
+ * v11 (this commit): an opponent holds `creatures`, with letters and HD, and
+ *   its `count` is no longer stored but derived from the creatures still up.
  */
-export const TABLE_SCHEMA_VERSION = 9;
+export const TABLE_SCHEMA_VERSION = 11;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -36,18 +47,44 @@ export const TABLE_SCHEMA_VERSION = 9;
  * they control, because ch.7 says "it's not practical to draw four cards per
  * opponent". So an opponent has an initiative slot, a played pile and a
  * facedown slot, and no hand at all.
+ *
+ * A group is the unit that takes a turn; its creatures are the bodies, each
+ * with a letter, a zone and its own Health and Defense. See `creatures.ts`.
  */
 export interface Opponent {
 	id: string;
 	name: string;
 	/**
-	 * How many creatures this entry stands for. The mob rules turn on it — two
-	 * enemies on one adventurer grant favour, four add piercing, eight critical
-	 * — and it feeds the GM's draw ("+1 if the enemies outnumber the
-	 * adventurers"). The engine stores it and counts nothing: the arithmetic is
-	 * the GM's, and the checklist only ever suggests.
+	 * The group this one descends from by splitting — itself, for a group the GM
+	 * added. Letters are handed out across a family, so a split-off group that
+	 * gains reinforcements does not mint a second Zombie C.
 	 */
-	count: number;
+	family: string;
+	/** The group this one was split from, which is where a merge sends it back. */
+	splitFrom?: string;
+	creatures: Creature[];
+}
+
+/**
+ * How many of a group's creatures are still up. The mob rule turns on it, and
+ * so does the GM's draw ("+1 if the enemies outnumber the adventurers"), which
+ * ch.7 rechecks every round — so a number that falls as creatures go down is
+ * what the book asks for. Derived, never stored, so it cannot drift.
+ */
+export function upCount(opponent: Opponent): number {
+	return opponent.creatures.filter((c) => !c.down).length;
+}
+
+/** The index of the next unused letter in a family, across all its groups. */
+export function nextLetterIndex(table: CardTable, family: string): number {
+	let next = 0;
+	for (const opponent of table.opponents) {
+		if (opponent.family !== family) continue;
+		for (const creature of opponent.creatures) {
+			next = Math.max(next, letterIndex(creature.letter) + 1);
+		}
+	}
+	return next;
 }
 
 export interface CardTable {
@@ -109,6 +146,12 @@ export interface CardTable {
 	 * card is worth when it turns over.
 	 */
 	facedown: Record<string, FacedownAction>;
+	/**
+	 * The room the fight is in: the zones the GM named and who is standing in
+	 * which. Survives leaving a Challenge, and goes only with "New scene" or a
+	 * reset. See `scene.ts`.
+	 */
+	scene: Scene;
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -184,6 +227,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		deckOf: membershipOf(deck),
 		valueOf: valuesOf(deck),
 		guided: false,
+		scene: emptyScene(),
 		zones
 	};
 }
@@ -203,7 +247,9 @@ export function addSeat(table: CardTable, seat: string): CardTable {
  */
 export function removeSeat(table: CardTable, seat: string): CardTable {
 	const zones = Object.fromEntries(Object.entries(table.zones).filter(([, z]) => z.owner !== seat));
-	return { ...table, seats: table.seats.filter((s) => s !== seat), zones };
+	return forgetPlacements({ ...table, seats: table.seats.filter((s) => s !== seat), zones }, [
+		seat
+	]);
 }
 
 /**
@@ -216,6 +262,10 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v10 → v11: groups gain creatures; see `migrateOpponent`.
+ *
+ * v9 → v10: an empty scene. Nobody was placed anywhere before, which is true.
  *
  * v6 → v7: a table that predates the fate pile gains an empty one. Nothing
  * moves: cards that already went to a discard belong there.
@@ -248,13 +298,14 @@ export function migrateTable(raw: CardTable): CardTable {
 		// empty — it throws the moment anything iterates it.
 		seats: raw.seats ?? [],
 		gmSeat: raw.gmSeat ?? null,
-		opponents: raw.opponents ?? [],
+		opponents: (raw.opponents ?? []).map(migrateOpponent),
 		mode: raw.mode ?? 'decks',
 		deckOf: raw.deckOf ?? {},
 		valueOf: raw.valueOf ?? {},
 		guided: raw.guided ?? false,
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
+		scene: migrateScene(raw.scene),
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
 		// table zone the blob predates is added (v7).
 		zones: withTableZones(
@@ -319,19 +370,33 @@ export function setGmSeat(table: CardTable, seat: string | null): CardTable {
 /**
  * Add an enemy, or a group of them, with its zones. Works whenever it is
  * called: the scene is set at the start, but reinforcements arrive.
+ *
+ * `count` creatures are made, lettered from A, each with the same Health and
+ * Defense if the GM gave them — HD is optional, and a creature without it is
+ * simply not tracked. At most `MAX_CREATURES`.
  */
 export function addOpponent(
 	table: CardTable,
-	opponent: { id: string; name: string; count?: number }
+	opponent: { id: string; name: string; count?: number; health?: number; defense?: number }
 ): CardTable {
 	if (table.opponents.some((o) => o.id === opponent.id)) return table;
+	const count = Math.max(1, Math.min(MAX_CREATURES, Math.floor(opponent.count ?? 1)));
+	const hd =
+		opponent.health === undefined && opponent.defense === undefined
+			? undefined
+			: { health: opponent.health, defense: opponent.defense };
 	const zones = { ...table.zones };
 	for (const zone of opponentZones(opponent.id)) zones[zone.id] = zone;
 	return {
 		...table,
 		opponents: [
 			...table.opponents,
-			{ id: opponent.id, name: opponent.name, count: opponent.count ?? 1 }
+			{
+				id: opponent.id,
+				name: opponent.name,
+				family: opponent.id,
+				creatures: makeCreatures(opponent.id, 0, count, hd)
+			}
 		],
 		zones
 	};
@@ -339,51 +404,91 @@ export function addOpponent(
 
 /**
  * Remove an opponent and its zones. Any cards it held go nowhere on their own —
- * where they land is a table decision, the same as for a departing seat.
+ * where they land is a table decision, the same as for a departing seat. Its
+ * creatures leave the scene with it.
  */
 export function removeOpponent(table: CardTable, id: string): CardTable {
 	const prefix = `opponent:${id}:`;
-	return {
-		...table,
-		opponents: table.opponents.filter((o) => o.id !== id),
-		zones: Object.fromEntries(
-			Object.entries(table.zones).filter(([zid]) => !zid.startsWith(prefix))
-		)
-	};
+	const gone = table.opponents.find((o) => o.id === id);
+	return forgetPlacements(
+		{
+			...table,
+			opponents: table.opponents.filter((o) => o.id !== id),
+			zones: Object.fromEntries(
+				Object.entries(table.zones).filter(([zid]) => !zid.startsWith(prefix))
+			)
+		},
+		gone?.creatures.map((c) => c.id) ?? []
+	);
 }
 
-/** Rename an opponent, or change how many it stands for. */
-export function updateOpponent(
-	table: CardTable,
-	id: string,
-	patch: { name?: string; count?: number }
-): CardTable {
+/** Rename an opponent. How many it stands for is its creatures, not a number. */
+export function updateOpponent(table: CardTable, id: string, patch: { name?: string }): CardTable {
+	const name = patch.name?.trim();
+	if (!name) return table;
 	return {
 		...table,
-		opponents: table.opponents.map((o) => (o.id === id ? { ...o, ...patch } : o))
+		opponents: table.opponents.map((o) => (o.id === id ? { ...o, name } : o))
 	};
 }
 
 /**
- * Peel some of a group off into a new entry — the six unwolves become five and
- * one, because they are no longer all on the same adventurer and the mob rules
- * count per target.
+ * Move some of a group's creatures into a new group of their own — for when
+ * they start acting apart, like the zombie the King of Swords raised, which
+ * drew its own initiative. Creatures standing in different zones do *not* need
+ * this: the zone is the creature's, not the group's.
  *
- * The new entry starts with empty slots; the original keeps its cards. Splitting
- * a group of one, or taking more than it has, does nothing: there is no such
- * table state, so there is nothing to represent.
+ * The new group starts with empty card slots; the original keeps its cards.
+ * The creatures keep their ids and letters, so Zombie C is still Zombie C and
+ * still standing where it stood. Splitting nobody, or everybody, does nothing:
+ * the first is no change and the second is a rename.
  */
 export function splitOpponent(
 	table: CardTable,
 	id: string,
-	split: { id: string; name?: string; count: number }
+	split: { id: string; name?: string; creatures: readonly string[] }
 ): CardTable {
 	const source = table.opponents.find((o) => o.id === id);
-	if (!source || split.count < 1 || split.count >= source.count) return table;
-	const reduced = updateOpponent(table, id, { count: source.count - split.count });
-	return addOpponent(reduced, {
+	if (!source || table.opponents.some((o) => o.id === split.id)) return table;
+	const moving = new Set(split.creatures);
+	const leaving = source.creatures.filter((c) => moving.has(c.id));
+	const staying = source.creatures.filter((c) => !moving.has(c.id));
+	if (leaving.length === 0 || staying.length === 0) return table;
+
+	const zones = { ...table.zones };
+	for (const zone of opponentZones(split.id)) zones[zone.id] = zone;
+	const at = table.opponents.findIndex((o) => o.id === id);
+	const opponents = [...table.opponents];
+	opponents[at] = { ...source, creatures: staying };
+	opponents.splice(at + 1, 0, {
 		id: split.id,
-		name: split.name ?? source.name,
-		count: split.count
+		name: split.name?.trim() || source.name,
+		family: source.family,
+		splitFrom: source.id,
+		creatures: leaving
 	});
+	return { ...table, opponents, zones };
+}
+
+/**
+ * Bring a stored opponent into shape.
+ *
+ * v10 → v11: a group stored as a bare `count` becomes that many creatures,
+ * lettered from A, with no HD tracked — the honest state of a group whose HD
+ * nobody had anywhere to write down. Capped at `MAX_CREATURES`: the old command
+ * accepted 999, and a thousand creatures would ride along in every poll.
+ */
+function migrateOpponent(raw: Partial<Opponent> & { count?: number }): Opponent {
+	const id = String(raw.id);
+	const family = typeof raw.family === 'string' ? raw.family : id;
+	const creatures = Array.isArray(raw.creatures)
+		? raw.creatures.map(migrateCreature).filter((c): c is Creature => c !== null)
+		: makeCreatures(family, 0, Math.max(1, Math.min(MAX_CREATURES, Math.floor(raw.count ?? 1))));
+	return {
+		id,
+		name: String(raw.name ?? ''),
+		family,
+		...(typeof raw.splitFrom === 'string' ? { splitFrom: raw.splitFrom } : {}),
+		creatures
+	};
 }

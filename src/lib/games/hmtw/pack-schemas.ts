@@ -151,6 +151,16 @@ export const challengeSchema = z.strictObject({
 		 * and `requires` names the doom tier that pays for them.
 		 */
 		gmOnly: z.array(actionSchema.extend({ requires: z.enum(['lesser', 'greater']) }))
+	}),
+	/**
+	 * Ch.7 step 5's assessment, said when everyone has had a turn: surrender if
+	 * the guild has clearly won, ask about retreating if it is in a bad way. A
+	 * prompt to say aloud, never a ruling. `rule.page` is a reference page id,
+	 * checked against the generated reference by the pack test.
+	 */
+	endOfRound: z.strictObject({
+		text: z.string().min(1),
+		rule: z.strictObject({ label: z.string().min(1), page: z.string().regex(/^[a-z0-9-]+$/) })
 	})
 });
 

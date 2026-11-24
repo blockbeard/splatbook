@@ -9,6 +9,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The end-of-round check, said every round.** Ch.7 ends each round with a
+  quick look at the fight — surrender if the guild has clearly won, ask whether
+  they want to retreat if they are in a bad way — and it is the step most easily
+  skipped. Once everybody who put an initiative down has had their turn, the
+  table now says so, asks the book's question, offers the GM "End the round",
+  and links to the rules for Retreating. It shows whether or not guiding is on.
+
+- **Lettered creatures, each with its own Health and Defense.** "Add an
+  enemy" now takes how many and, once for the type, their Health and Defense:
+  three zombies at 1/0 arrive as Zombie A, B and C. Each creature has its own
+  zone, its own −/+ for Health and Defense, and a Down button; a creature that
+  is down keeps its letter, crossed out, so "Zombie B" never means two zombies.
+  Reinforcements carry on at D. A lone enemy is just "King of Swords", no letter.
+
+  The group still takes one turn with one initiative card, as the mob rule has
+  it — creatures in different zones do not need splitting. A larger group folds
+  to one line ("3 of 4 up · Arena 2, King's Pillar 1") and opens to edit. When
+  some of a group start acting on their own, the GM ticks them and splits them
+  off with their own initiative slot, letters and places intact; "Rejoin the
+  rest" puts them back.
+
+  Health and Defense are on show to everyone and anyone can change them, which
+  is how a player catches a miscount. Each change says what it changes from, so
+  two people pressing the same button at once apply the hit once.
+
+- **Where everyone is.** A Challenge now has a scene: the GM names its zones
+  — the Arena and the King's Pillar, the chapel's Door, Nave, Niches and Altar
+  — and every adventurer has a drop-down for the zone they are standing in.
+  Above the fight, one short list says who is where, which is also ch.7's
+  "restate where every character is" at the start of each round, read off the
+  screen instead of off a whiteboard in another window.
+
+  Anyone can move anyone, as anyone can move a card. A renamed zone keeps the
+  people in it; removing a zone somebody is standing in asks first, because they
+  become unplaced and re-adding the zone does not put them back. The scene
+  survives leaving the Challenge — one fight can run for three sessions — and
+  goes only when the GM starts a new one, or resets the table.
+
 - **The privacy policy covers playing without an account.** A card table is the
   one part of Splatbook you can use signed out, and it stores a name you typed —
   so the policy now says what that is, that a table and its seats are deleted six
