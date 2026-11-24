@@ -19,6 +19,8 @@ import { landingSchema } from '../../packs/landing';
 import { challengeSchema, deckSchema } from './pack-schemas';
 import '../index'; // register game modules (wires hmtw schemas into the harness)
 import { hmtw } from './index';
+import { buildDeepLinks, buildPages } from '../../reference/page-artifacts';
+import { REFERENCE_LAYOUT } from '../reference-configs';
 
 const packRoot = join(
 	dirname(fileURLToPath(import.meta.url)),
@@ -218,13 +220,26 @@ describe('hmtw pack round-trip', () => {
 	});
 });
 
+/**
+ * Every page id the reference serves for the book, worked out the way
+ * `tools/build_pages.ts` works it out — from the committed `rules/book.json` —
+ * rather than read off `rules/pages/`, which is generated, git-ignored, and so
+ * absent on a fresh checkout. Checking the files passed here and failed in CI.
+ */
+function servedPageIds(): Set<string> {
+	const depth = REFERENCE_LAYOUT.hmtw?.pageDepth ?? Infinity;
+	return new Set([
+		...buildPages(book, depth).map((p) => p.id),
+		...Object.keys(buildDeepLinks(book, depth))
+	]);
+}
+
 describe('the end-of-round prompt', () => {
 	it('links to a page the generated reference really has', async () => {
 		// A reimport that renamed the heading would otherwise leave a dead link
 		// that nothing notices until somebody clicks it mid-fight.
 		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
-		const page = await loadPackFile(packRoot, `rules/pages/${c.endOfRound.rule.page}.json`);
-		expect(page).toBeTruthy();
+		expect(servedPageIds().has(c.endOfRound.rule.page)).toBe(true);
 	});
 });
 
@@ -242,8 +257,7 @@ describe('action summaries', () => {
 			expect(action.summary.length, action.id).toBeGreaterThan(20);
 			// A reimport that renamed a heading would otherwise leave a dead link
 			// in the middle of a fight.
-			const page = await loadPackFile(packRoot, `rules/pages/${action.rule}.json`);
-			expect(page, `${action.id} → ${action.rule}`).toBeTruthy();
+			expect(servedPageIds().has(action.rule), `${action.id} → ${action.rule}`).toBe(true);
 		}
 	});
 
