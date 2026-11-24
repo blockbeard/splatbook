@@ -41,6 +41,11 @@ export interface ProjectedTable {
 	 * is counting, so nothing here can run ahead of the GM calling a number.
 	 */
 	upNow: string[];
+	/**
+	 * The room: the zones the GM named, and where each adventurer or creature
+	 * stands. A missing or `null` entry is "not placed".
+	 */
+	scene: { zones: { id: string; name: string }[]; at: Record<string, string | null> };
 	zones: Record<string, ProjectedZone>;
 	viewer: string | null;
 }

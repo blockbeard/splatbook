@@ -24,6 +24,7 @@ import {
 	advanceCount,
 	beginRound,
 	clearFacedown,
+	clearScene,
 	createTable,
 	discardZone,
 	emptyInto,
@@ -338,6 +339,7 @@ export const hmtwCardTable: CardTableModule = {
 				next = emptyInto(next, FATE_ZONE, discardZone('player'));
 				next = reshuffleDeck(next, 'player', context.rng);
 				next = reshuffleDeck(next, 'gm', context.rng);
+				next = clearScene(next);
 				return state(next, 'reset-table', { seat: context.actorSeatId });
 			}
 			case 'reshuffle': {

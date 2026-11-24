@@ -22,6 +22,7 @@ import type { FacedownAction } from './exceptions';
 import type { Opponent, CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
+import type { Scene } from './scene';
 import { opponentZone, seatZone, type Zone, type ZoneVisibility } from './zones';
 
 export interface ProjectedZone {
@@ -48,6 +49,7 @@ export interface ProjectedTable {
 	 * even though the cards they describe are not.
 	 */
 	facedown: Record<string, FacedownAction>;
+	scene: Scene;
 	zones: Record<string, ProjectedZone>;
 	/** Who this was built for, so a client can tell whose view it holds. */
 	viewer: string | null;
@@ -102,6 +104,10 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		opponents: table.opponents.map((o) => ({ ...o })),
 		round: { ...table.round },
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
+		scene: {
+			zones: table.scene.zones.map((z) => ({ ...z })),
+			at: { ...table.scene.at }
+		},
 		zones,
 		viewer: viewer ?? null
 	};

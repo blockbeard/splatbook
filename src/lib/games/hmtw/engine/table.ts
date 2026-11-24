@@ -11,6 +11,7 @@
 import type { FacedownAction } from './exceptions';
 import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
+import { emptyScene, forgetPlacements, migrateScene, type Scene } from './scene';
 import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone } from './zones';
 
 /**
@@ -25,9 +26,10 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v6: `mode`.
  * v7: a shared `fate` zone.
  * v8: `deckOf`, which deck each card belongs to.
- * v9 (this commit): `guided`, and `valueOf` so the count can find who is up.
+ * v9: `guided`, and `valueOf` so the count can find who is up.
+ * v10 (this commit): `scene` — the book's zones, and who stands in which.
  */
-export const TABLE_SCHEMA_VERSION = 9;
+export const TABLE_SCHEMA_VERSION = 10;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -109,6 +111,12 @@ export interface CardTable {
 	 * card is worth when it turns over.
 	 */
 	facedown: Record<string, FacedownAction>;
+	/**
+	 * The room the fight is in: the zones the GM named and who is standing in
+	 * which. Survives leaving a Challenge, and goes only with "New scene" or a
+	 * reset. See `scene.ts`.
+	 */
+	scene: Scene;
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -184,6 +192,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		deckOf: membershipOf(deck),
 		valueOf: valuesOf(deck),
 		guided: false,
+		scene: emptyScene(),
 		zones
 	};
 }
@@ -203,7 +212,9 @@ export function addSeat(table: CardTable, seat: string): CardTable {
  */
 export function removeSeat(table: CardTable, seat: string): CardTable {
 	const zones = Object.fromEntries(Object.entries(table.zones).filter(([, z]) => z.owner !== seat));
-	return { ...table, seats: table.seats.filter((s) => s !== seat), zones };
+	return forgetPlacements({ ...table, seats: table.seats.filter((s) => s !== seat), zones }, [
+		seat
+	]);
 }
 
 /**
@@ -216,6 +227,8 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v9 → v10: an empty scene. Nobody was placed anywhere before, which is true.
  *
  * v6 → v7: a table that predates the fate pile gains an empty one. Nothing
  * moves: cards that already went to a discard belong there.
@@ -255,6 +268,7 @@ export function migrateTable(raw: CardTable): CardTable {
 		guided: raw.guided ?? false,
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
+		scene: migrateScene(raw.scene),
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
 		// table zone the blob predates is added (v7).
 		zones: withTableZones(

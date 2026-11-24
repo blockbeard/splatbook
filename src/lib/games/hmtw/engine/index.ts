@@ -81,3 +81,15 @@ export {
 	type MoveResult,
 	type Pick
 } from './moves';
+export {
+	MAX_SCENE_ZONES,
+	MAX_SCENE_ZONE_NAME,
+	clearScene,
+	emptyScene,
+	forgetPlacements,
+	placeInScene,
+	placeable,
+	setSceneZones,
+	type Scene,
+	type SceneZone
+} from './scene';
