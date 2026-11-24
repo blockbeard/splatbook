@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { deflateSync } from 'node:zlib';
 import { test, expect, type Page } from '@playwright/test';
 
 /**
@@ -208,4 +209,136 @@ test('an action says what it does, and links to the rule', async ({ page }) => {
 		await page.locator('.actions').screenshot({ path: `${SHOTS}/actions-chosen.png` });
 	}
 	expect(await violations(page)).toEqual([]);
+});
+
+/**
+ * A real 640×400 PNG, made here so the test carries no art: bands of grey, so
+ * the browser has something to decode, scale and re-encode, and a screenshot
+ * shows how a picture sits on the table.
+ */
+const TINY_PNG = (() => {
+	const w = 640;
+	const h = 400;
+	const crcTable = Array.from({ length: 256 }, (_, n) => {
+		let c = n;
+		for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+		return c >>> 0;
+	});
+	const crc = (buf: Buffer) => {
+		let c = 0xffffffff;
+		for (const b of buf) c = crcTable[(c ^ b) & 0xff] ^ (c >>> 8);
+		return (c ^ 0xffffffff) >>> 0;
+	};
+	const chunk = (type: string, data: Buffer) => {
+		const len = Buffer.alloc(4);
+		len.writeUInt32BE(data.length);
+		const body = Buffer.concat([Buffer.from(type), data]);
+		const sum = Buffer.alloc(4);
+		sum.writeUInt32BE(crc(body));
+		return Buffer.concat([len, body, sum]);
+	};
+	const header = Buffer.alloc(13);
+	header.writeUInt32BE(w, 0);
+	header.writeUInt32BE(h, 4);
+	header.set([8, 0, 0, 0, 0], 8); // 8-bit greyscale
+	const rows = Buffer.alloc((w + 1) * h);
+	for (let y = 0; y < h; y++) {
+		for (let x = 0; x < w; x++) rows[y * (w + 1) + 1 + x] = ((x >> 5) + (y >> 5)) % 2 ? 90 : 200;
+	}
+	return Buffer.concat([
+		Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+		chunk('IHDR', header),
+		chunk('IDAT', deflateSync(rows)),
+		chunk('IEND', Buffer.alloc(0))
+	]);
+})();
+
+test('a picture of the scene goes up, is seen, and is deleted with the scene', async ({
+	browser
+}) => {
+	const run = Date.now().toString(36);
+	const hero = `Regan ${run}`;
+	const gmContext = await browser.newContext();
+	const gm = await gmContext.newPage();
+	await signIn(gm, 'Picture GM', `e2e-picture-gm-${run}@localhost`);
+	await gm.goto('/hmtw/cards');
+	await gm.locator('input[name="name"]').fill(`Picture ${run}`);
+	await gm.getByRole('button', { name: 'Start' }).click();
+	await gm.waitForURL(/\/hmtw\/cards\/[0-9a-f-]{36}$/);
+	const roomUrl = gm.url();
+	const token = roomUrl.split('/').pop()!;
+
+	const playerContext = await browser.newContext();
+	const player = await playerContext.newPage();
+	await player.goto(roomUrl);
+	await player.getByLabel("Your character's name").fill(hero);
+	await player.getByRole('button', { name: 'Ask for a seat' }).click();
+	await expect(gm.getByText(hero)).toBeVisible(POLLED);
+	await gm
+		.locator('.ch__waiter, li, span', { hasText: hero })
+		.getByRole('button', { name: 'Let in' })
+		.first()
+		.click();
+	await gm.getByRole('button', { name: 'Challenge', exact: true }).click();
+
+	// --- The GM puts a picture up. ---
+	gm.on('dialog', (d) => d.accept());
+	const chooser = gm.waitForEvent('filechooser');
+	await gm.getByRole('button', { name: 'Put up a picture…' }).click();
+	await (await chooser).setFiles({ name: 'arena.png', mimeType: 'image/png', buffer: TINY_PNG });
+	await expect(gm.getByRole('status')).toHaveText('The picture is up.');
+	await expect(gm.getByRole('img', { name: /picture of the scene/ })).toBeVisible();
+	await shot(gm, 'gm-picture');
+
+	const pictureId = async () => {
+		const res = await gm.request.get(`/api/card-tables/${token}/sync?since=0`);
+		return ((await res.json()) as { state: { scene: { picture: { id: string } | null } } }).state
+			.scene.picture?.id;
+	};
+	const firstId = await pictureId();
+	expect(firstId).toBeTruthy();
+
+	// What was stored is a re-encoded image, not the file as uploaded.
+	const stored = await gm.request.get(`/api/card-tables/${token}/picture?id=${firstId}`);
+	expect(stored.ok()).toBeTruthy();
+	expect(await stored.text()).toMatch(/^data:image\/(webp|jpeg);base64,/);
+
+	// --- The player sees it, by poll, without the GM's controls. ---
+	await expect(player.getByRole('img', { name: "The GM's picture of the scene" })).toBeVisible(
+		POLLED
+	);
+	await expect(player.getByRole('button', { name: /Put up a picture|Take it down/ })).toHaveCount(
+		0
+	);
+	await player.getByRole('button', { name: 'Look closer' }).click();
+	await expect(player.getByRole('dialog')).toBeVisible();
+	await player.getByRole('button', { name: 'Close', exact: true }).click();
+
+	// A picture cannot be put up by somebody who is not the GM.
+	const refused = await player.request.put(`/api/card-tables/${token}/picture`, {
+		data: { dataUrl: 'data:image/png;base64,' + TINY_PNG.toString('base64') }
+	});
+	expect(refused.status()).toBe(403);
+
+	// --- A new scene deletes it: the bytes, not only the pointer. ---
+	await gm.getByRole('button', { name: 'New scene' }).click();
+	await expect(gm.getByRole('img', { name: /picture of the scene/ })).toHaveCount(0);
+	const gone = await gm.request.get(`/api/card-tables/${token}/picture?id=${firstId}`);
+	expect(gone.status()).toBe(404);
+
+	// --- So does taking one down. ---
+	const again = gm.waitForEvent('filechooser');
+	await gm.getByRole('button', { name: 'Put up a picture…' }).click();
+	await (await again).setFiles({ name: 'pillar.png', mimeType: 'image/png', buffer: TINY_PNG });
+	await expect(gm.getByRole('status')).toHaveText('The picture is up.');
+	const secondId = await pictureId();
+	expect(secondId).not.toBe(firstId);
+	await gm.getByRole('button', { name: 'Take it down' }).click();
+	await expect(gm.getByRole('img', { name: /picture of the scene/ })).toHaveCount(0);
+	const down = await gm.request.get(`/api/card-tables/${token}/picture?id=${secondId}`);
+	expect(down.status()).toBe(404);
+
+	expect(await violations(gm)).toEqual([]);
+	await gmContext.close();
+	await playerContext.close();
 });

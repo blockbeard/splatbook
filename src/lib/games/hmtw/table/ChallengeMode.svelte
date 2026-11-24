@@ -38,7 +38,9 @@
 		waiting = [],
 		canAct = false,
 		busy = false,
-		onCommand
+		onCommand,
+		token = '',
+		onPicture
 	}: {
 		table: ProjectedTable;
 		seats: { id: string; name: string; status: string; isGm: boolean }[];
@@ -61,6 +63,10 @@
 		canAct?: boolean;
 		busy?: boolean;
 		onCommand: (command: unknown) => void;
+		/** The room token, for fetching the scene's picture. */
+		token?: string;
+		/** Put up the scene's picture; resolves to why not, or null. */
+		onPicture?: (dataUrl: string) => Promise<string | null>;
 	} = $props();
 
 	let selectedPick = $state<Pick | null>(null);
@@ -330,7 +336,7 @@
 		</details>
 	{/if}
 
-	<Scene {table} {seats} {isGm} {busy} {onCommand} />
+	<Scene {table} {seats} {isGm} {busy} {onCommand} {token} {onPicture} />
 
 	<!-- The decks, and not merely their counts.
 	     Showing the numbers proved the shared-deck promise — they do not reset

@@ -16,6 +16,8 @@
 	import { buildFaces } from '$lib/games/hmtw/table/faces';
 	import { pollingTransport } from '$lib/card-table-sync';
 	import { fetchSince, newRequestKey, sendCommand } from '$lib/card-table/client';
+	import { sendPicture } from '$lib/card-table/picture';
+	import type { TableSnapshot } from '$lib/card-table/client-types';
 	import { reverseOf, type PublicEvent } from '$lib/games/hmtw/table/undo';
 	import { announce } from '$lib/games/hmtw/table/announce';
 	import { MAX_SEAT_NAME_LENGTH } from '$lib/card-table-limits';
@@ -182,6 +184,26 @@
 		if (ok) run({ type: 'reset-table' });
 	}
 
+	/**
+	 * Put up the scene's picture. Not a command — the bytes go to their own
+	 * endpoint — but it answers with the table like one, so it lands the same
+	 * way. Returns why not, for the scene panel to say, or null.
+	 */
+	async function putPicture(dataUrl: string): Promise<string | null> {
+		const reply = await sendPicture(data.token, dataUrl);
+		if (!reply.ok) {
+			return reply.reason === 'too-large'
+				? 'That picture is too large, even made smaller.'
+				: 'The table did not take that picture. Try again?';
+		}
+		const view = reply.view as TableSnapshot;
+		version = view.version;
+		table = view.state as ProjectedTable;
+		if (view.seats) seats = view.seats;
+		remember(view.events);
+		return null;
+	}
+
 	async function run(command: unknown) {
 		if (busy) return;
 		busy = true;
@@ -342,6 +364,8 @@
 			canAct={admitted}
 			{busy}
 			onCommand={run}
+			token={data.token}
+			onPicture={putPicture}
 		/>
 	{:else}
 		<DecksMode {table} {seats} {faces} {mySeatId} canAct={admitted} {busy} onCommand={run} />

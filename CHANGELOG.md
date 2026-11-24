@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A picture of the scene.** The GM can put up one picture above "Where
+  everyone is" — a Miro drawing screenshotted, or one of the zone pictures that
+  come with an adventure — and everyone at the table sees it, with "Look closer"
+  for full size. The browser shrinks and re-encodes it before it leaves, which
+  keeps it small and strips whatever a camera wrote into the file. A table holds
+  one picture: putting up another, taking it down, starting a new scene,
+  resetting the table, or the table's six weeks running out all delete it, and
+  the privacy policy and terms say so.
+
 - **What an action does, under the action menu.** Point at an action, or tab to
   it, and one line underneath says what it does in a sentence or two — Riposte,
   Aid Another, Vigilance and the other twenty-two — written against ch.7 rather

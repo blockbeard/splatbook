@@ -22,7 +22,7 @@
 	import { APP_NAME, APP_REPO_URL } from '$lib';
 	import { CONTACT_EMAIL, KOFI_URL, DRIVETHRU_AFFILIATE_URL } from '$lib/support';
 
-	const LAST_UPDATED = '9 September 2026';
+	const LAST_UPDATED = '24 November 2026';
 </script>
 
 <svelte:head>
@@ -84,13 +84,21 @@
 				<strong>What happens at the table.</strong> Which cards moved between which piles, and any label
 				somebody types onto a face-down card. It is the game, not you.
 			</li>
+			<li>
+				<strong>A picture of the scene, if the GM puts one up.</strong> Only the person running the table
+				can upload one, and anyone holding the table's link can see it. Before it leaves the GM's browser
+				it is shrunk and re-encoded, which also strips whatever a camera wrote into the file, such as
+				where a photo was taken. A table holds one picture at a time: putting up another, taking it down,
+				or starting a new scene deletes the old one there and then.
+			</li>
 		</ul>
 		<p class="mt-3">
 			<strong>A table is deleted six weeks after it was last used</strong>, and the seats go with it
-			— names included. Nobody has to ask and no reminder is sent; it simply goes. If you want your
-			name off a table sooner than that, the person who started it can delete the whole table at
-			once, which takes effect immediately. That is the practical route for a guest, because a seat
-			is not an account and there is nothing for an erasure request to name you by.
+			— names included — and so does its picture. Nobody has to ask and no reminder is sent; it
+			simply goes. If you want your name off a table sooner than that, the person who started it can
+			delete the whole table at once, which takes effect immediately. That is the practical route
+			for a guest, because a seat is not an account and there is nothing for an erasure request to
+			name you by.
 		</p>
 	</section>
 

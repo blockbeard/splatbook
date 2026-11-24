@@ -11,24 +11,89 @@
 	one line until the GM wants it. Removing a zone somebody is standing in asks
 	first: they become unplaced, and re-adding a zone of the same name does not put
 	them back.
+
+	The picture (phase 31) sits above the list: a Miro drawing screenshotted, or
+	one of the book's zone pictures. It is for looking at; the list is the record.
+	It is fetched by id when the table names a new one, shown at a height that
+	leaves the fight on screen, and opened full size in a dialog by "Look closer".
+	Only the GM puts one up or takes it down, and taking it down asks first.
 -->
 <script lang="ts">
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { placeablePeople, strandedBy, whoIsWhere } from './scene-view';
+	import { PictureTooLarge, fetchPicture, preparePicture } from '$lib/card-table/picture';
 
 	let {
 		table,
 		seats,
 		isGm = false,
 		busy = false,
-		onCommand
+		onCommand,
+		token = '',
+		onPicture
 	}: {
 		table: ProjectedTable;
 		seats: { id: string; name: string; status: string; isGm: boolean }[];
 		isGm?: boolean;
 		busy?: boolean;
 		onCommand: (command: unknown) => void;
+		token?: string;
+		onPicture?: (dataUrl: string) => Promise<string | null>;
 	} = $props();
+
+	/** The picture as a `data:` URL, once fetched. Local to this browser. */
+	let picture = $state<string | null>(null);
+	let pictureFor = '';
+	let pictureNote = $state('');
+	let uploading = $state(false);
+	let fileInput = $state<HTMLInputElement | null>(null);
+	let closer = $state<HTMLDialogElement | null>(null);
+
+	/** Fetch the picture when the table names a different one, and only then. */
+	$effect(() => {
+		const id = table.scene.picture?.id ?? '';
+		if (id === pictureFor) return;
+		pictureFor = id;
+		if (!id || !token) {
+			picture = null;
+			return;
+		}
+		fetchPicture(token, id).then((url) => {
+			if (pictureFor === id) picture = url;
+		});
+	});
+
+	const pictureAlt = $derived(
+		table.scene.zones.length
+			? `The GM's picture of the scene: ${table.scene.zones.map((z) => z.name).join(', ')}`
+			: "The GM's picture of the scene"
+	);
+
+	async function chosen(file: File | undefined) {
+		if (!file || !onPicture) return;
+		uploading = true;
+		pictureNote = 'Putting the picture up…';
+		try {
+			const dataUrl = await preparePicture(file);
+			const why = await onPicture(dataUrl);
+			pictureNote = why ?? 'The picture is up.';
+		} catch (e) {
+			pictureNote =
+				e instanceof PictureTooLarge
+					? 'That picture is too large, even made smaller.'
+					: 'That file could not be read as a picture.';
+		} finally {
+			uploading = false;
+			if (fileInput) fileInput.value = '';
+		}
+	}
+
+	function takeDown() {
+		if (confirm('Take the picture down? It is deleted, not hidden.')) {
+			onCommand({ type: 'clear-scene-picture' });
+			pictureNote = '';
+		}
+	}
 
 	const rows = $derived(whoIsWhere(table, seats));
 	const people = $derived(placeablePeople(table, seats));
@@ -64,13 +129,32 @@
 	}
 
 	function newScene() {
-		const ok = confirm('Start a new scene? The zones go, and nobody is placed anywhere.');
+		const ok = confirm(
+			'Start a new scene? The zones go, nobody is placed anywhere, and the picture is deleted.'
+		);
 		if (ok) onCommand({ type: 'clear-scene' });
 	}
 </script>
 
 <section class="scene" aria-labelledby="scene-heading">
 	<h2 id="scene-heading" class="ct-zone-label">Where everyone is</h2>
+
+	{#if picture}
+		<figure class="scene__picture">
+			<img src={picture} alt={pictureAlt} />
+			<figcaption>
+				<button type="button" class="ct-btn ct-btn--quiet" onclick={() => closer?.showModal()}
+					>Look closer</button
+				>
+			</figcaption>
+		</figure>
+		<dialog class="scene__closer" bind:this={closer} aria-label={pictureAlt}>
+			<img src={picture} alt={pictureAlt} />
+			<form method="dialog">
+				<button type="submit" class="ct-btn">Close</button>
+			</form>
+		</dialog>
+	{/if}
 
 	{#if rows.length === 0}
 		<p class="scene__empty">
@@ -142,17 +226,78 @@
 					</div>
 				</form>
 			</details>
-			{#if table.scene.zones.length > 0}
+			{#if onPicture}
+				<input
+					bind:this={fileInput}
+					type="file"
+					accept="image/*"
+					hidden
+					onchange={(e) => chosen((e.currentTarget as HTMLInputElement).files?.[0])}
+				/>
+				<button
+					type="button"
+					class="ct-btn"
+					disabled={busy || uploading}
+					onclick={() => fileInput?.click()}
+				>
+					{table.scene.picture ? 'Change the picture…' : 'Put up a picture…'}
+				</button>
+				{#if table.scene.picture}
+					<button type="button" class="ct-btn ct-btn--quiet" disabled={busy} onclick={takeDown}
+						>Take it down</button
+					>
+				{/if}
+			{/if}
+			{#if table.scene.zones.length > 0 || table.scene.picture}
 				<!-- Destructive, so quiet, apart, and it asks. -->
 				<button type="button" class="ct-btn ct-btn--quiet scene__new" onclick={newScene}
 					>New scene</button
 				>
 			{/if}
 		</div>
+		<p class="scene__note" role="status">{pictureNote}</p>
 	{/if}
 </section>
 
 <style>
+	.scene__picture {
+		margin: 0;
+		display: grid;
+		gap: 0.35rem;
+		justify-items: start;
+	}
+	/* Big enough to read a zone's name off; small enough to leave the fight on screen. */
+	.scene__picture img {
+		display: block;
+		max-inline-size: 100%;
+		max-block-size: 45vh;
+		object-fit: contain;
+		border: 1px solid var(--ct-rule);
+		border-radius: 3px;
+	}
+	.scene__closer {
+		max-inline-size: 96vw;
+		max-block-size: 94vh;
+		padding: 0.75rem;
+		background: var(--ct-table-low);
+		color: inherit;
+		border: 1px solid var(--ct-rule-strong);
+	}
+	.scene__closer img {
+		display: block;
+		max-inline-size: 100%;
+		max-block-size: 84vh;
+		object-fit: contain;
+		margin-block-end: 0.5rem;
+	}
+	.scene__closer::backdrop {
+		background: rgb(0 0 0 / 0.7);
+	}
+	.scene__note {
+		margin: 0;
+		color: var(--ct-quiet);
+		font-size: 0.85rem;
+	}
 	.scene {
 		display: grid;
 		gap: 0.6rem;
