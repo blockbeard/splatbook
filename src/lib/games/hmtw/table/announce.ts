@@ -126,6 +126,10 @@ export function describe(event: TableEvent, nameOf: NameOf): string | null {
 		}
 		case 'clear-scene':
 			return 'A new scene. The zones were cleared.';
+		case 'set-scene-picture':
+			return 'The GM put up a picture of the scene.';
+		case 'clear-scene-picture':
+			return 'The picture of the scene was taken down.';
 		case 'place': {
 			const who = typeof d.label === 'string' ? d.label : nameOf(d.seat as string);
 			return typeof d.zone === 'string' ? `${who} moves to ${d.zone}.` : `${who} is not placed.`;

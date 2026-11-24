@@ -282,6 +282,16 @@ export interface CardTableModule {
 	 * definition. `viewer` is null for somebody with no seat.
 	 */
 	project(state: unknown, viewer: string | null): unknown;
+	/**
+	 * The id of the uploaded picture this state refers to, if any (phase 31).
+	 *
+	 * The shell stores a table's picture apart from its state, and keeps at most
+	 * the one the state names: after an accepted command it compares this before
+	 * and after, and deletes whatever the table no longer refers to. That is how
+	 * "New scene", Reset table and taking a picture down remove the bytes, not
+	 * merely the reference. A game with no pictures leaves it out.
+	 */
+	pictureOf?(state: unknown): string | null;
 }
 
 /**

@@ -182,10 +182,20 @@ Only the twenty-five core actions are covered. Talents and spells (Gramarye,
 Chirurgeon) stay on the character sheet and on the cheat sheet Chris is making.
 
 **The picture is stored in the database** (Chris, 2026-11-24): a
-`card_table_pictures` table holding the bytes as a BLOB, with `ON DELETE
-CASCADE` from `card_tables`. A scaled WebP or JPEG of a zone map is a few
-hundred KB, comfortably under D1's per-row limit. That limit is 2 MB, to be
-confirmed against Cloudflare's current limits page in commit 10.
+`card_table_pictures` table, one row per card table, with `ON DELETE CASCADE`
+from `card_tables`.
+
+*Changed in commit 10, after checking Cloudflare's own pages on 2026-11-24:*
+D1's row limit is confirmed at 2,000,000 bytes, but D1 hands a BLOB back to a
+Worker as an **array of numbers** (`Array.from` of the bytes), and the Workers
+free plan allows **10 ms of CPU** a request. Turning a megabyte into a
+million-element array and back could cost more than that. So the picture is
+stored as a base64 `data:` URL in a **text** column instead. The browser does
+the encoding; the server checks the shape, the size and the first twelve bytes,
+and stores the string; serving it is passing the string through, and the
+browser shows it as it is. The decoded cap is **1 MB** (about 1.37 MB as
+text), and the browser steps the quality, then the size, down until a picture
+fits.
 
 - **Deletion comes free.** Every path that removes a table already removes its
   picture, which is the hardest part of the six-week promise.
@@ -209,14 +219,13 @@ The upload rules:
   cannot re-encode cheaply. Safari has not historically encoded WebP from a
   canvas, and asking for it quietly returns a PNG, so the client checks the
   blob type it actually got and falls back to JPEG at quality 0.85. The server
-  refuses anything over 1.5 MB, which keeps a row well inside D1's limit. A
-  2,560-pixel map as WebP or JPEG fits easily.
+  refuses anything over 1 MB decoded (see above).
 - **One picture per scene.** Replacing it deletes the old one. Fights are
   set up one at a time, and one picture keeps the storage story simple.
 - **Who can see it: anyone holding the table's link**, the same as the table.
-  It is served through `/api/card-tables/[token]/scene-picture` with
-  `Cache-Control: private` and `nosniff`, with the content type it was stored
-  with, never sniffed.
+  It is served through `/api/card-tables/[token]/picture?id=…` as the text it
+  was stored as, with `Cache-Control: no-store` and `nosniff`; the browser
+  shows the `data:` URL directly.
   The table state holds a content hash, so clients fetch it again only when it
   changes and the polling loop stays cheap.
 - **It goes with the table.** The six-week promise covers pictures, or it is

@@ -19,9 +19,21 @@ export interface SceneZone {
 	name: string;
 }
 
+/**
+ * The picture the GM put up for the scene. Only a reference: the bytes live in
+ * the shell's own table, keyed to the card table and deleted with it, because
+ * a table's state rides along in every poll and a picture must not.
+ */
+export interface ScenePicture {
+	/** Changes on every upload, so a client fetches again exactly when it must. */
+	id: string;
+	mime: 'image/png' | 'image/jpeg' | 'image/webp';
+}
+
 export interface Scene {
 	/** The zones the GM has named, in the order they named them. */
 	zones: SceneZone[];
+	picture: ScenePicture | null;
 	/**
 	 * Where each adventurer or creature stands, by scene-zone id. A key that is
 	 * missing, or `null`, is "not placed" — the honest state of somebody nobody
@@ -31,7 +43,7 @@ export interface Scene {
 }
 
 export function emptyScene(): Scene {
-	return { zones: [], at: {} };
+	return { zones: [], at: {}, picture: null };
 }
 
 /** At most this many zones in a scene, and this long a name. Generous; a guard, not a rule. */
@@ -62,7 +74,7 @@ export function setSceneZones(table: CardTable, zones: readonly SceneZone[]): Ca
 	const at = Object.fromEntries(
 		Object.entries(table.scene.at).map(([who, zone]) => [who, zone && seen.has(zone) ? zone : null])
 	);
-	return { ...table, scene: { zones: kept, at } };
+	return { ...table, scene: { ...table.scene, zones: kept, at } };
 }
 
 /**
@@ -99,8 +111,13 @@ export function forgetPlacements(table: CardTable, who: Iterable<string>): CardT
 	return { ...table, scene: { ...table.scene, at } };
 }
 
+/** Put up a picture for the scene, replacing any there was. */
+export function setScenePicture(table: CardTable, picture: ScenePicture | null): CardTable {
+	return { ...table, scene: { ...table.scene, picture } };
+}
+
 /**
- * A new scene: no zones, nobody placed. The GM's "New scene", and part of
+ * A new scene: no zones, nobody placed, no picture. The GM's "New scene", and part of
  * Reset table. Leaving a Challenge does *not* do this — the King of Swords was
  * one fight across three sessions, with the guild going in and out of it.
  */
@@ -121,5 +138,15 @@ export function migrateScene(raw: Partial<Scene> | undefined): Scene {
 	for (const [who, zone] of Object.entries(raw?.at ?? {})) {
 		at[who] = typeof zone === 'string' && ids.has(zone) ? zone : null;
 	}
-	return { zones, at };
+	const picture = raw?.picture;
+	const mimes = ['image/png', 'image/jpeg', 'image/webp'];
+	return {
+		zones,
+		at,
+		// v11 → v12: a scene that predates pictures has none.
+		picture:
+			picture && typeof picture.id === 'string' && mimes.includes(picture.mime)
+				? { id: picture.id, mime: picture.mime }
+				: null
+	};
 }

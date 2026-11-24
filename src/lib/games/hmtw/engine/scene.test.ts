@@ -4,6 +4,7 @@ import {
 	clearScene,
 	forgetPlacements,
 	placeInScene,
+	setScenePicture,
 	setSceneZones
 } from './scene';
 import {
@@ -37,7 +38,7 @@ const arena = (): CardTable =>
 
 describe('the scene', () => {
 	it('starts empty — a table is not a room', () => {
-		expect(createTable(deck).scene).toEqual({ zones: [], at: {} });
+		expect(createTable(deck).scene).toEqual({ zones: [], at: {}, picture: null });
 	});
 
 	it('takes the zones the GM names, trimmed, in order', () => {
@@ -107,7 +108,7 @@ describe('the scene', () => {
 
 	it('clears to a new scene', () => {
 		const t = clearScene(placeInScene(arena(), 'regan', 'arena'));
-		expect(t.scene).toEqual({ zones: [], at: {} });
+		expect(t.scene).toEqual({ zones: [], at: {}, picture: null });
 	});
 });
 
@@ -118,15 +119,47 @@ describe('migrating to v10', () => {
 		delete v9.scene;
 		const migrated = migrateTable(v9 as CardTable);
 		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
-		expect(migrated.scene).toEqual({ zones: [], at: {} });
+		expect(migrated.scene).toEqual({ zones: [], at: {}, picture: null });
 		expect(migrated.seats).toEqual(['s1']);
 	});
 
 	it('unplaces anybody a stored scene puts in a zone it no longer has', () => {
 		const stored = {
 			...arena(),
-			scene: { zones: [{ id: 'arena', name: 'Arena' }], at: { regan: 'arena', tatyana: 'gone' } }
+			scene: {
+				zones: [{ id: 'arena', name: 'Arena' }],
+				at: { regan: 'arena', tatyana: 'gone' },
+				picture: null
+			}
 		};
 		expect(migrateTable(stored).scene.at).toEqual({ regan: 'arena', tatyana: null });
+	});
+});
+
+describe('the scene picture', () => {
+	it('is put up, replaced and taken down by reference only', () => {
+		const id = '6f1c1b0e-0000-4000-8000-000000000001';
+		let t = setScenePicture(arena(), { id, mime: 'image/webp' });
+		expect(t.scene.picture).toEqual({ id, mime: 'image/webp' });
+		t = setScenePicture(t, null);
+		expect(t.scene.picture).toBeNull();
+	});
+
+	it('goes with a new scene, and survives renaming the zones', () => {
+		const pic = { id: '6f1c1b0e-0000-4000-8000-000000000002', mime: 'image/png' as const };
+		let t = setScenePicture(arena(), pic);
+		t = setSceneZones(t, [{ id: 'arena', name: 'The Arena floor' }]);
+		expect(t.scene.picture).toEqual(pic);
+		expect(clearScene(t).scene.picture).toBeNull();
+	});
+
+	it('migrates a v11 scene to no picture, and drops one it cannot read', () => {
+		const v11 = { ...arena(), schemaVersion: 11, scene: { zones: [], at: {} } };
+		expect(migrateTable(v11 as never).scene.picture).toBeNull();
+		const odd = {
+			...arena(),
+			scene: { zones: [], at: {}, picture: { id: 'x', mime: 'image/svg+xml' } }
+		};
+		expect(migrateTable(odd as never).scene.picture).toBeNull();
 	});
 });

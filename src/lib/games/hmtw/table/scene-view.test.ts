@@ -12,7 +12,7 @@ const seats = [
 const creature = (id: string, letter: string, down = false) => ({ id, letter, down, pools: [] });
 
 /** Session 13: the Arena and the King's Pillar, the King, and the zombie he raised. */
-const table = (scene: ProjectedTable['scene']): ProjectedTable =>
+const table = (scene: Omit<ProjectedTable['scene'], 'picture'>): ProjectedTable =>
 	({
 		gmSeat: 'gm',
 		opponents: [
@@ -31,7 +31,7 @@ const table = (scene: ProjectedTable['scene']): ProjectedTable =>
 				creatures: [creature('zombies:A', 'A'), creature('zombies:B', 'B', true)]
 			}
 		],
-		scene
+		scene: { ...scene, picture: null }
 	}) as unknown as ProjectedTable;
 
 const arena = [

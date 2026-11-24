@@ -13,6 +13,7 @@
 import { error, json } from '@sveltejs/kit';
 import { z } from 'zod';
 import { loadTable, runCommand, viewFor } from '$lib/server/card-tables/service';
+import { keepOnlyPicture } from '$lib/server/db/card-table-pictures';
 import type { RequestHandler } from './$types';
 
 const body = z.strictObject({
@@ -54,6 +55,17 @@ export const POST: RequestHandler = async ({ locals, params, request, fetch }) =
 		// or it will retry a finished table forever.
 		const status = result.reason === 'conflict' ? 409 : result.reason === 'rejected' ? 422 : 410;
 		return json({ ok: false, reason: result.reason, detail: result.detail }, { status });
+	}
+
+	// A table keeps at most the picture its state names. When a command changed
+	// which one that is — a new scene, a reset, taking it down — the bytes go
+	// with the reference, which is what makes the six-week promise and "take it
+	// down" true of the picture and not only of the pointer to it.
+	const pictureOf = table.module.pictureOf;
+	if (pictureOf) {
+		const before = pictureOf(table.state);
+		const after = pictureOf(result.state ?? table.state);
+		if (before !== after) await keepOnlyPicture(locals.db, table.row.id, after);
 	}
 
 	// Reuse the context rather than loading the whole table a second time — the

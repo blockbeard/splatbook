@@ -35,10 +35,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v8: `deckOf`, which deck each card belongs to.
  * v9: `guided`, and `valueOf` so the count can find who is up.
  * v10: `scene` — the book's zones, and who stands in which.
- * v11 (this commit): an opponent holds `creatures`, with letters and HD, and
- *   its `count` is no longer stored but derived from the creatures still up.
+ * v11: an opponent holds `creatures`, with letters and HD, and its `count` is
+ *   no longer stored but derived from the creatures still up.
+ * v12 (this commit): the scene's `picture`, a reference to an uploaded image.
  */
-export const TABLE_SCHEMA_VERSION = 11;
+export const TABLE_SCHEMA_VERSION = 12;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -262,6 +263,8 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v11 → v12: a scene gains `picture: null`; see `migrateScene`.
  *
  * v10 → v11: groups gain creatures; see `migrateOpponent`.
  *

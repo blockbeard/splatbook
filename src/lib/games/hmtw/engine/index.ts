@@ -91,8 +91,10 @@ export {
 	forgetPlacements,
 	placeInScene,
 	placeable,
+	setScenePicture,
 	setSceneZones,
 	type Scene,
+	type ScenePicture,
 	type SceneZone
 } from './scene';
 export {
