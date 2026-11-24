@@ -124,3 +124,45 @@ suite('a batch from one poll', () => {
 		expect(announce([ev('update-opponent', { id: 'x' })], nameOf)).toBeNull();
 	});
 });
+
+suite('the scene and its creatures', () => {
+	it('says who moved where, by name', () => {
+		expect(describe(ev('place', { who: 's1', seat: 's1', zone: 'the Arena' }), nameOf)).toBe(
+			'Grimwold moves to the Arena.'
+		);
+		expect(describe(ev('place', { who: 'z:A', label: 'Zombie A', zone: null }), nameOf)).toBe(
+			'Zombie A is not placed.'
+		);
+	});
+
+	it('reads out where HD ended, with its maximum', () => {
+		expect(
+			describe(ev('set-hd', { label: 'Zombie B', stat: 'health', value: 2, max: 6 }), nameOf)
+		).toBe('Zombie B: Health 2 of 6.');
+	});
+
+	it('reads a run of HD clicks once, as the last of them', () => {
+		const run = [1, 2, 3].map((v, i) =>
+			ev('set-hd', { label: 'Skeleton C', stat: 'health', value: 6 - v, max: 6 }, i + 1)
+		);
+		expect(announce(run, nameOf)).toBe('Skeleton C: Health 3 of 6.');
+	});
+
+	it('says who went down, who arrived, and who split off', () => {
+		expect(describe(ev('set-down', { label: 'Zombie B', down: true }), nameOf)).toBe(
+			'Zombie B is down.'
+		);
+		expect(describe(ev('add-creatures', { labels: ['Zombie C', 'Zombie D'] }), nameOf)).toBe(
+			'Zombie C and Zombie D joined the fight.'
+		);
+		expect(describe(ev('split-opponent', { labels: ['Zombie B'] }), nameOf)).toBe(
+			'Zombie B now acts on its own.'
+		);
+	});
+
+	it('names the zones of a new scene', () => {
+		expect(describe(ev('set-scene-zones', { zones: ['Arena', "King's Pillar"] }), nameOf)).toBe(
+			"The zones are Arena and King's Pillar."
+		);
+	});
+});

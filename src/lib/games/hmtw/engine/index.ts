@@ -100,6 +100,7 @@ export {
 	MAX_HD,
 	clampHd,
 	creatureId,
+	creatureLabel,
 	freshPools,
 	letterFor,
 	letterIndex,

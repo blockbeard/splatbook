@@ -106,3 +106,27 @@ export function migrateCreature(raw: Partial<Creature> | undefined): Creature | 
 		});
 	return { id: raw.id, letter: raw.letter, down: raw.down === true, pools };
 }
+
+/** The shape `creatureLabel` reads — an engine `Opponent` or a client's projection of one. */
+interface LabelGroup {
+	name: string;
+	family: string;
+	creatures: readonly { id: string; letter: string }[];
+}
+
+/**
+ * What to call a creature out loud: "Zombie B", or just "King of Swords" when
+ * its family has only ever had one member, because "King of Swords A" is a
+ * letter nobody needs. Null for an id that names no creature.
+ */
+export function creatureLabel(groups: readonly LabelGroup[], id: string): string | null {
+	for (const group of groups) {
+		const creature = group.creatures.find((c) => c.id === id);
+		if (!creature) continue;
+		const family = groups
+			.filter((g) => g.family === group.family)
+			.reduce((n, g) => n + g.creatures.length, 0);
+		return family > 1 ? `${group.name} ${creature.letter}` : group.name;
+	}
+	return null;
+}

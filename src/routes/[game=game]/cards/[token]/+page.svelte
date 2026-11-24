@@ -196,7 +196,12 @@
 			table = reply.view.state as ProjectedTable;
 			if (reply.view.seats) seats = reply.view.seats;
 			remember(reply.view.events);
-		} else if (reply.reason === 'conflict') {
+		} else if (
+			reply.reason === 'conflict' ||
+			// A Health or Defense change that found its number already moved: the
+			// same news as a card somebody else picked up first.
+			(reply.reason === 'rejected' && reply.detail === 'stale')
+		) {
 			// Ordinary, and with open reach the *likely* outcome: two people
 			// reached for the same card and one of them got there first. Catch up
 			// and let them look, rather than telling them off for it. Asking from

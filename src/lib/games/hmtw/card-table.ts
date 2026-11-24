@@ -18,7 +18,21 @@ import { z } from 'zod';
 import type { CardTableModule, CardTableOutcome } from '../types';
 import {
 	MAX_CREATURES,
+	MAX_HD,
+	MAX_SCENE_ZONES,
+	MAX_SCENE_ZONE_NAME,
 	TABLE_SCHEMA_VERSION,
+	addCreatures,
+	creatureLabel,
+	findCreature,
+	mergeOpponent,
+	placeInScene,
+	placeable,
+	removeCreature,
+	setDown,
+	setHd,
+	setSceneZones,
+	splitOpponent,
 	FATE_ZONE,
 	addOpponent,
 	addSeat,
@@ -51,6 +65,9 @@ import {
 	type CardTable,
 	type DeckDefinition
 } from './engine';
+
+/** A Health or Defense value. */
+const hd = z.number().int().min(0).max(MAX_HD);
 
 /** The zone-id shape the engine uses. Kept loose: the engine owns the vocabulary. */
 const zoneId = z.string().min(1).max(120);
@@ -111,7 +128,10 @@ export const commandSchema = z.discriminatedUnion('type', [
 		type: z.literal('add-opponent'),
 		id: z.string().min(1).max(60),
 		name: z.string().min(1).max(60),
-		count: z.number().int().min(1).max(MAX_CREATURES)
+		count: z.number().int().min(1).max(MAX_CREATURES),
+		/** Given once for the type; every creature in the group starts with it. */
+		health: hd.optional(),
+		defense: hd.optional()
 	}),
 	z.strictObject({ type: z.literal('remove-opponent'), id: z.string().min(1).max(60) }),
 	z.strictObject({
@@ -128,12 +148,74 @@ export const commandSchema = z.discriminatedUnion('type', [
 		label: z.string().min(1).max(60)
 	}),
 	z.strictObject({ type: z.literal('reveal-facedown'), holder: z.string().min(1).max(60) }),
-	z.strictObject({ type: z.literal('clear-facedown'), holder: z.string().min(1).max(60) })
+	z.strictObject({ type: z.literal('clear-facedown'), holder: z.string().min(1).max(60) }),
+
+	/* ---- The scene and its creatures (phase 31) ------------------------------ */
+
+	/** Name the scene's zones. The GM's. A zone keeps its occupants while it keeps its id. */
+	z.strictObject({
+		type: z.literal('set-scene-zones'),
+		zones: z
+			.array(
+				z.strictObject({
+					id: z.string().min(1).max(60),
+					name: z.string().min(1).max(MAX_SCENE_ZONE_NAME)
+				})
+			)
+			.max(MAX_SCENE_ZONES)
+	}),
+	/** A new scene: no zones, nobody placed. The GM's. */
+	z.strictObject({ type: z.literal('clear-scene') }),
+	/** Stand an adventurer or a creature in a zone, or nowhere. Anyone's. */
+	z.strictObject({
+		type: z.literal('place'),
+		who: z.string().min(1).max(120),
+		zone: z.string().min(1).max(60).nullable()
+	}),
+	/** More of a group, lettered on. */
+	z.strictObject({
+		type: z.literal('add-creatures'),
+		id: z.string().min(1).max(60),
+		count: z.number().int().min(1).max(MAX_CREATURES),
+		health: hd.optional(),
+		defense: hd.optional()
+	}),
+	/** Take off a creature added by mistake. */
+	z.strictObject({ type: z.literal('remove-creature'), creature: z.string().min(1).max(120) }),
+	/** "Zombie B, Health 3 → 2". Carries what it replaces, so a double click cannot land twice. */
+	z.strictObject({
+		type: z.literal('set-hd'),
+		creature: z.string().min(1).max(120),
+		pool: z.number().int().min(0).max(9),
+		stat: z.enum(['health', 'defense']),
+		from: hd,
+		to: hd
+	}),
+	/** Down, or back up. Anyone's: the table moves things, it does not rule. */
+	z.strictObject({
+		type: z.literal('set-down'),
+		creature: z.string().min(1).max(120),
+		down: z.boolean()
+	}),
+	/** Some of a group start acting on their own. The GM's. */
+	z.strictObject({
+		type: z.literal('split-opponent'),
+		id: z.string().min(1).max(60),
+		newId: z.string().min(1).max(60),
+		name: z.string().min(1).max(60).optional(),
+		creatures: z.array(z.string().min(1).max(120)).min(1).max(MAX_CREATURES)
+	}),
+	/** A split-off group rejoins the one it came from. The GM's. */
+	z.strictObject({ type: z.literal('merge-opponent'), id: z.string().min(1).max(60) })
 ]);
 
 export type CardTableCommand = z.infer<typeof commandSchema>;
 
 const fail = (reason: string): CardTableOutcome => ({ ok: false, reason });
+
+/** With nobody in the GM seat, anyone may run the table — the rule `reset-table` already follows. */
+const isGm = (table: CardTable, actor: string | undefined): boolean =>
+	!table.gmSeat || actor === table.gmSeat;
 const state = (table: CardTable, kind: string, data: unknown): CardTableOutcome => ({
 	ok: true,
 	state: table,
@@ -273,7 +355,9 @@ export const hmtwCardTable: CardTableModule = {
 					addOpponent(table, {
 						id: parsed.data.id,
 						name: parsed.data.name,
-						count: parsed.data.count
+						count: parsed.data.count,
+						health: parsed.data.health,
+						defense: parsed.data.defense
 					}),
 					'add-opponent',
 					{ name: parsed.data.name, count: parsed.data.count }
@@ -321,6 +405,87 @@ export const hmtwCardTable: CardTableModule = {
 				return state(emptyInto(table, FATE_ZONE, discardZone('player')), 'clear-fate', {
 					seat: context.actorSeatId
 				});
+			case 'set-scene-zones': {
+				if (!isGm(table, actor)) return fail('gm-only');
+				const next = setSceneZones(table, parsed.data.zones);
+				return state(next, 'set-scene-zones', { zones: next.scene.zones.map((z) => z.name) });
+			}
+			case 'clear-scene':
+				if (!isGm(table, actor)) return fail('gm-only');
+				return state(clearScene(table), 'clear-scene', {});
+			case 'place': {
+				const { who, zone } = parsed.data;
+				if (!placeable(table).has(who)) return fail('no-such-person');
+				if (zone !== null && !table.scene.zones.some((z) => z.id === zone)) {
+					return fail('no-such-zone');
+				}
+				const isSeat = table.seats.includes(who);
+				return state(placeInScene(table, who, zone), 'place', {
+					who,
+					...(isSeat ? { seat: who } : { label: creatureLabel(table.opponents, who) }),
+					zone: table.scene.zones.find((z) => z.id === zone)?.name ?? null
+				});
+			}
+			case 'add-creatures': {
+				const before = new Set(table.opponents.flatMap((o) => o.creatures.map((c) => c.id)));
+				const hdGiven =
+					parsed.data.health === undefined && parsed.data.defense === undefined
+						? undefined
+						: { health: parsed.data.health, defense: parsed.data.defense };
+				const next = addCreatures(table, parsed.data.id, parsed.data.count, hdGiven);
+				if (next === table) return fail('no-room');
+				const added = next.opponents
+					.flatMap((o) => o.creatures)
+					.filter((c) => !before.has(c.id))
+					.map((c) => creatureLabel(next.opponents, c.id));
+				return state(next, 'add-creatures', { labels: added });
+			}
+			case 'remove-creature': {
+				const label = creatureLabel(table.opponents, parsed.data.creature);
+				const next = removeCreature(table, parsed.data.creature);
+				if (next === table) return fail('no-such-creature');
+				return state(next, 'remove-creature', { label });
+			}
+			case 'set-hd': {
+				const { creature, pool, stat, from, to } = parsed.data;
+				const changed = setHd(table, creature, { pool, stat, from, to });
+				if (!changed.ok) return fail(changed.reason);
+				const now = findCreature(changed.table, creature)?.creature.pools[pool];
+				return state(changed.table, 'set-hd', {
+					label: creatureLabel(changed.table.opponents, creature),
+					stat,
+					value: now?.[stat] ?? to,
+					max: stat === 'health' ? now?.healthMax : now?.defenseMax
+				});
+			}
+			case 'set-down': {
+				const next = setDown(table, parsed.data.creature, parsed.data.down);
+				if (!findCreature(table, parsed.data.creature)) return fail('no-such-creature');
+				return state(next, 'set-down', {
+					label: creatureLabel(table.opponents, parsed.data.creature),
+					down: parsed.data.down
+				});
+			}
+			case 'split-opponent': {
+				if (!isGm(table, actor)) return fail('gm-only');
+				const next = splitOpponent(table, parsed.data.id, {
+					id: parsed.data.newId,
+					name: parsed.data.name,
+					creatures: parsed.data.creatures
+				});
+				if (next === table) return fail('cannot-split');
+				return state(next, 'split-opponent', {
+					labels: parsed.data.creatures.map((c) => creatureLabel(next.opponents, c))
+				});
+			}
+			case 'merge-opponent': {
+				if (!isGm(table, actor)) return fail('gm-only');
+				const { id } = parsed.data;
+				const name = table.opponents.find((o) => o.id === id)?.name;
+				const next = mergeOpponent(table, id);
+				if (next === table) return fail('cannot-merge');
+				return state(next, 'merge-opponent', { name });
+			}
 			case 'reset-table': {
 				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
 				// Back to a table nobody has played on: every card home, both decks

@@ -28,6 +28,12 @@ export type NameOf = (seatId: string | null | undefined) => string;
 
 const deckName = (deck: unknown): string => (deck === 'gm' ? 'GM' : 'player');
 
+/** "A", "A and B", "A, B and C". */
+const listOf = (names: string[]): string =>
+	names.length <= 1
+		? (names[0] ?? '')
+		: `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+
 /** The seat a `seat:<id>:<kind>` zone belongs to, or nothing. */
 const seatOfZone = (zone: string): string | null => {
 	const parts = zone.split(':');
@@ -114,6 +120,33 @@ export function describe(event: TableEvent, nameOf: NameOf): string | null {
 			return 'The Test of Fate was cleared.';
 		case 'guided':
 			return d.on ? 'The table is walking the round.' : 'The table has stopped walking the round.';
+		case 'set-scene-zones': {
+			const zones = Array.isArray(d.zones) ? (d.zones as string[]) : [];
+			return zones.length ? `The zones are ${listOf(zones)}.` : 'The scene has no zones.';
+		}
+		case 'clear-scene':
+			return 'A new scene. The zones were cleared.';
+		case 'place': {
+			const who = typeof d.label === 'string' ? d.label : nameOf(d.seat as string);
+			return typeof d.zone === 'string' ? `${who} moves to ${d.zone}.` : `${who} is not placed.`;
+		}
+		case 'add-creatures': {
+			const labels = Array.isArray(d.labels) ? (d.labels as string[]) : [];
+			return labels.length ? `${listOf(labels)} joined the fight.` : null;
+		}
+		case 'remove-creature':
+			return `${d.label} was taken off the table.`;
+		case 'set-hd':
+			// The latest only, so a run of clicks reads out once, as where it ended.
+			return `${d.label}: ${d.stat === 'defense' ? 'Defense' : 'Health'} ${d.value}${typeof d.max === 'number' ? ` of ${d.max}` : ''}.`;
+		case 'set-down':
+			return d.down ? `${d.label} is down.` : `${d.label} is back up.`;
+		case 'split-opponent': {
+			const labels = Array.isArray(d.labels) ? (d.labels as string[]) : [];
+			return `${listOf(labels)} now ${labels.length === 1 ? 'acts' : 'act'} on ${labels.length === 1 ? 'its' : 'their'} own.`;
+		}
+		case 'merge-opponent':
+			return `The split-off ${d.name} group rejoined the rest.`;
 		// Bookkeeping nobody would notice happening: an enemy renamed, a
 		// facedown slot cleared behind a reveal. Silence is the right answer.
 		default:
