@@ -105,6 +105,10 @@ export const deckSchema = z.strictObject({
 const actionSchema = z.strictObject({
 	id,
 	name: z.string().min(1),
+	/** The rule in a sentence or two, shown under the action menu (phase 31). */
+	summary: z.string().min(1).max(240),
+	/** The reference page holding the rule itself; the pack test checks it exists. */
+	rule: z.string().regex(/^[a-z0-9-]+$/),
 	/** Vigilance, alone among the miscellaneous actions, cannot be paid for with
 	 * a greater doom (ch.7, "Greater dooms"). */
 	greaterDoomForbidden: z.boolean().optional()

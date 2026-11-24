@@ -64,12 +64,19 @@ start of every round — as enemies fall, the GM draws fewer.
 hand that is "*mostly* greater dooms", with no threshold given, so this is a
 button the GM chooses to press and never a computed state.
 
-**Action** — `{ id, name, greaterDoomForbidden? }`. Grouped by the suit that
+**Action** — `{ id, name, summary, rule, greaterDoomForbidden? }`. Grouped by the suit that
 pays for them, plus `anySuit` (the miscellaneous actions) and `free` (talking,
 moving within your zone — no card at all). The grouping is what lets the table
 answer "what does this card let me do?" while knowing only one rule: *suit
 matches action*. `greaterDoomForbidden` marks Vigilance, the single
 miscellaneous action a greater doom may not pay for.
+
+`summary` is the rule in one or two sentences, written by hand against ch.7
+rather than cut from its first paragraph, and read by Chris before it shipped
+(2026-11-24). It is what the table shows under the action menu. It is a
+reminder, never the rule: `rule` is the reference page that holds the rule
+itself — a page id, as for `endOfRound`, checked by the pack test. The two free
+actions point at "Free actions", and the GM's two at "Greater dooms".
 
 The GM reads this catalogue by doom tier rather than by suit: a lesser doom pays
 for any Challenge Action, a greater doom for greater doom abilities or a
@@ -87,5 +94,5 @@ to say aloud, and it shows whether or not the GM has guiding switched on.
 
 ## Not here yet
 
-Rule links. A menu entry that could open the reference at its own rule would be
-worth having, and needs section anchors this file does not yet carry.
+Summaries for talents and spells. Only the core Challenge Actions are here;
+Gramarye, Chirurgeon and the rest live on character sheets.

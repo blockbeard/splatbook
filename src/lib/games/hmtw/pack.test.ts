@@ -227,3 +227,29 @@ describe('the end-of-round prompt', () => {
 		expect(page).toBeTruthy();
 	});
 });
+
+describe('action summaries', () => {
+	it('gives every action a summary and a rule page the reference really has', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		const all = [
+			...c.actions.free,
+			...Object.values(c.actions.bySuit).flat(),
+			...c.actions.anySuit,
+			...c.actions.gmOnly
+		];
+		expect(all).toHaveLength(25);
+		for (const action of all) {
+			expect(action.summary.length, action.id).toBeGreaterThan(20);
+			// A reimport that renamed a heading would otherwise leave a dead link
+			// in the middle of a fight.
+			const page = await loadPackFile(packRoot, `rules/pages/${action.rule}.json`);
+			expect(page, `${action.id} → ${action.rule}`).toBeTruthy();
+		}
+	});
+
+	it('keeps the one rule the menu itself depends on: Vigilance is not a greater doom’s', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		const vigilance = c.actions.anySuit.find((a) => a.id === 'vigilance');
+		expect(vigilance?.summary).toMatch(/greater doom can't pay/);
+	});
+});
