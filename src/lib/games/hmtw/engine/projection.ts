@@ -19,7 +19,7 @@
 
 import { canSeeFaces } from './moves';
 import type { FacedownAction } from './exceptions';
-import type { Opponent, CardTable } from './table';
+import { upCount, type Opponent, type CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
 import type { Scene } from './scene';
@@ -42,7 +42,8 @@ export interface ProjectedTable {
 	/** Which view is up. Public: everyone at a table is at the same one. */
 	mode: TableMode;
 	gmSeat: string | null;
-	opponents: Opponent[];
+	/** Each group with its creatures, and `count` — how many are still up. */
+	opponents: (Opponent & { count: number })[];
 	round: Round;
 	/**
 	 * The declared actions on facedown cards — public by the book's own rule,
@@ -101,7 +102,11 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		guided: table.guided,
 		upNow: whoIsUp(table),
 		gmSeat: table.gmSeat,
-		opponents: table.opponents.map((o) => ({ ...o })),
+		opponents: table.opponents.map((o) => ({
+			...o,
+			count: upCount(o),
+			creatures: o.creatures.map((c) => ({ ...c, pools: c.pools.map((p) => ({ ...p })) }))
+		})),
 		round: { ...table.round },
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
 		scene: {

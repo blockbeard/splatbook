@@ -25,6 +25,8 @@ export {
 export {
 	TABLE_SCHEMA_VERSION,
 	addOpponent,
+	nextLetterIndex,
+	upCount,
 	addSeat,
 	buildDecks,
 	createTable,
@@ -93,3 +95,15 @@ export {
 	type Scene,
 	type SceneZone
 } from './scene';
+export {
+	MAX_CREATURES,
+	MAX_HD,
+	clampHd,
+	creatureId,
+	freshPools,
+	letterFor,
+	letterIndex,
+	makeCreatures,
+	type Creature,
+	type HdPool
+} from './creatures';

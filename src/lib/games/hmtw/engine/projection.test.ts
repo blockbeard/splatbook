@@ -162,7 +162,16 @@ describe('what stays public on purpose', () => {
 	it('shows the roster, the count and whose turn it is', () => {
 		const table = inPlay();
 		const view = projectFor(table, 's1');
-		expect(view.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 6 }]);
+		expect(view.opponents).toHaveLength(1);
+		expect(view.opponents[0]).toMatchObject({ id: 'imps', name: 'Imps', count: 6 });
+		expect(view.opponents[0].creatures.map((c) => c.letter)).toEqual([
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F'
+		]);
 		expect(view.seats).toEqual(['s1', 's2', 'gm']);
 		expect(view.gmSeat).toBe('gm');
 		expect(view.round.number).toBe(1);

@@ -66,11 +66,15 @@ export function setSceneZones(table: CardTable, zones: readonly SceneZone[]): Ca
 }
 
 /**
- * Everybody the scene may place: the adventurers' seats, not the GM's — the GM
- * is not standing in the room.
+ * Everybody the scene may place: the adventurers' seats (not the GM's — the GM
+ * is not standing in the room) and every creature.
  */
 export function placeable(table: CardTable): Set<string> {
-	return new Set(table.seats.filter((s) => s !== table.gmSeat));
+	const ids = new Set(table.seats.filter((s) => s !== table.gmSeat));
+	for (const opponent of table.opponents) {
+		for (const creature of opponent.creatures) ids.add(creature.id);
+	}
+	return ids;
 }
 
 /**

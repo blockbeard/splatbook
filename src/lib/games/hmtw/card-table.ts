@@ -17,6 +17,7 @@
 import { z } from 'zod';
 import type { CardTableModule, CardTableOutcome } from '../types';
 import {
+	MAX_CREATURES,
 	TABLE_SCHEMA_VERSION,
 	FATE_ZONE,
 	addOpponent,
@@ -110,14 +111,13 @@ export const commandSchema = z.discriminatedUnion('type', [
 		type: z.literal('add-opponent'),
 		id: z.string().min(1).max(60),
 		name: z.string().min(1).max(60),
-		count: z.number().int().min(1).max(999)
+		count: z.number().int().min(1).max(MAX_CREATURES)
 	}),
 	z.strictObject({ type: z.literal('remove-opponent'), id: z.string().min(1).max(60) }),
 	z.strictObject({
 		type: z.literal('update-opponent'),
 		id: z.string().min(1).max(60),
-		name: z.string().min(1).max(60).optional(),
-		count: z.number().int().min(1).max(999).optional()
+		name: z.string().min(1).max(60)
 	}),
 	/** Lay a card down, declaring what it is for. The label is public. */
 	z.strictObject({
@@ -284,10 +284,7 @@ export const hmtwCardTable: CardTableModule = {
 				});
 			case 'update-opponent':
 				return state(
-					updateOpponent(table, parsed.data.id, {
-						name: parsed.data.name,
-						count: parsed.data.count
-					}),
+					updateOpponent(table, parsed.data.id, { name: parsed.data.name }),
 					'update-opponent',
 					{ id: parsed.data.id }
 				);

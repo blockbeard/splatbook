@@ -88,7 +88,7 @@ describe('the guide', () => {
 			table({
 				round: { ...table().round, count: 4 },
 				upNow: ['imps'],
-				opponents: [{ id: 'imps', name: 'Imps', count: 6 }]
+				opponents: [{ id: 'imps', name: 'Imps', count: 6, family: 'imps', creatures: [] }]
 			}),
 			seats
 		);
@@ -100,7 +100,7 @@ describe('the guide', () => {
 			table({
 				round: { ...table().round, count: 4 },
 				upNow: ['daria', 'chirm', 'imps'],
-				opponents: [{ id: 'imps', name: 'Imps', count: 6 }]
+				opponents: [{ id: 'imps', name: 'Imps', count: 6, family: 'imps', creatures: [] }]
 			}),
 			seats
 		);

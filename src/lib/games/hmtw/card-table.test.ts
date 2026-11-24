@@ -270,12 +270,19 @@ describe('the Challenge', () => {
 		expect(t.round.count).toBe(14);
 	});
 
-	it('keeps opponents, and lets the GM name and re-count them', () => {
+	it('keeps opponents, and lets the GM name them', () => {
 		let t = run(seated(), { type: 'set-mode', mode: 'challenge' }).state as CardTable;
 		t = run(t, { type: 'add-opponent', id: 'imps', name: 'Imps', count: 12 }).state as CardTable;
-		expect(t.opponents).toEqual([{ id: 'imps', name: 'Imps', count: 12 }]);
-		t = run(t, { type: 'update-opponent', id: 'imps', count: 7 }).state as CardTable;
-		expect(t.opponents[0].count).toBe(7);
+		expect(t.opponents[0].creatures).toHaveLength(12);
+		t = run(t, { type: 'update-opponent', id: 'imps', name: 'Surviving imps' }).state as CardTable;
+		expect(t.opponents[0].name).toBe('Surviving imps');
+		// How many there are is the creatures, not a number to edit.
+		const recount = hmtwCardTable.reduce(
+			t,
+			{ type: 'update-opponent', id: 'imps', count: 7 },
+			{ actorSeatId: 'gm', rng: seededRng(4) }
+		);
+		expect(recount.ok).toBe(false);
 		t = run(t, { type: 'remove-opponent', id: 'imps' }).state as CardTable;
 		expect(t.opponents).toEqual([]);
 	});
