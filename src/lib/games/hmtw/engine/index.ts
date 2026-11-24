@@ -107,3 +107,13 @@ export {
 	type Creature,
 	type HdPool
 } from './creatures';
+export {
+	addCreatures,
+	findCreature,
+	mergeOpponent,
+	removeCreature,
+	setDown,
+	setHd,
+	type HdResult,
+	type HdStat
+} from './groups';
