@@ -521,7 +521,6 @@
 						>
 					{/if}
 				</h3>
-				<Creatures group={enemy} {table} {isGm} {canAct} {busy} {onCommand} />
 				<div class="combatant__row">
 					{#if init.count > 0}
 						<Card
@@ -551,6 +550,10 @@
 						{/if}
 					</div>
 				</div>
+				<!-- Below the cards, like an adventurer's: the turn first, the bookkeeping
+				     after it. Above them, a folded group's controls pushed its initiative
+				     slot out of line with every other combatant's. -->
+				<Creatures group={enemy} {table} {isGm} {canAct} {busy} {onCommand} />
 			</section>
 		{/each}
 

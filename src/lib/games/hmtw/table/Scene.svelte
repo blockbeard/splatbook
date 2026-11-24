@@ -85,12 +85,13 @@
 						{#if row.people.length === 0}
 							<span class="scene__nobody">nobody</span>
 						{:else}
-							{#each row.people as person, i (person.id)}<span
-									class="scene__who"
-									class:scene__who--down={person.down}
+							{#each row.people as person, i (person.id)}
+								<!-- The separator is an expression, not template whitespace, which
+								     Svelte trims: "Zombie B,Zombie C" was the result. -->
+								<span class="scene__who" class:scene__who--down={person.down}
 									>{person.label}{#if person.down}<span class="sr-only">, down</span>{/if}</span
-								>{#if i < row.people.length - 1},
-								{/if}{/each}
+								>{i < row.people.length - 1 ? ', ' : ''}
+							{/each}
 						{/if}
 					</dd>
 				</div>

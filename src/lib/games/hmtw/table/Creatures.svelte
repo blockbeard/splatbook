@@ -98,9 +98,15 @@
 					<span class="sr-only">Choose {name} to split off</span>
 				</label>
 			{/if}
-			<span class="cr__name"
-				>{name}{#if creature.down}<span class="sr-only">, down</span>{/if}</span
-			>
+			<!-- A group of one is named by the heading above it; saying "King of
+			     Swords" twice was the first thing a screenshot showed. -->
+			{#if group.creatures.length > 1}
+				<span class="cr__name"
+					>{name}{#if creature.down}<span class="sr-only">, down</span>{/if}</span
+				>
+			{:else if creature.down}
+				<span class="cr__name">Down</span>
+			{/if}
 			<ZonePicker
 				who={creature.id}
 				label={name}
