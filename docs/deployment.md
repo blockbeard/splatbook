@@ -89,6 +89,30 @@ runs). Deploy only what CI has blessed: `git pull --ff-only` from a green
 main, never an unpushed working tree. After deploying, spot-check whatever
 the release actually changed, not just the health endpoint.
 
+### Card-table pictures (phase 31) — what to know when deploying
+
+Migration `0013` adds `card_table_pictures`: one row per card table, the
+scene's picture as a base64 `data:` URL of at most about 1.37 MB, cascading
+from `card_tables`. It needs no new binding, bucket or secret — the generic
+steps above (backup, `migrations apply`, build, deploy, smoke) are the whole
+of it.
+
+Spot-check after the first deploy that carries it, on a throwaway table:
+put up a picture, open the table in a second browser and see it arrive, then
+press **New scene** and check the old picture is gone —
+`curl -s -o /dev/null -w "%{http_code}" "https://splatbook.app/api/card-tables/<token>/picture?id=<old id>"`
+should say `404`. That is the six-week promise and "take it down" being true
+of the bytes, which no unit test can prove against D1 itself.
+
+Two things this changes elsewhere:
+
+- **The nightly export grows** by whatever pictures are live — a few hundred
+  KB to a megabyte each, gone with their tables.
+- **D1's own limits** are what shaped the format (checked 2026-11-24): a row
+  may be 2 MB, a BLOB comes back to a Worker as an array of numbers, and the
+  free plan allows 10 ms of CPU a request. If any of those change, the reasons
+  in `cardTablePictures` (schema.ts) are where to start.
+
 ## Deploying in detail
 
 One honesty note about staging: it runs the node adapter on sqlite, so it
