@@ -8,8 +8,19 @@
 	never anticipated.
 
 	Hence the last entry, always: something else, with a line to type it in.
+
+	Under the menu, one line says what an action does (phase 31): the action
+	under the pointer or the keyboard, or else the one chosen. Not a tooltip,
+	because on a touch screen a tap already *chooses* an action and cannot also
+	mean "explain" — so choosing is how an iPad reads a rule. "Read the rule"
+	appears for the chosen action only, so it stays put while the mouse travels
+	down to it across the other buttons. Each button also carries its own
+	summary as its accessible description, which is what a screen reader hears
+	on focus; the visible line is for eyes and is hidden from assistive tech so
+	the same words are not read twice.
 -->
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { actionsForCard, type Action, type ActionCatalogue } from './actions';
 	import type { CardFace, FaceIndex } from './faces';
 
@@ -49,6 +60,11 @@
 				]
 	);
 	const fitsThisCard = (action: Action) => offer.fits.includes(action);
+
+	/** The action under the pointer or the keyboard, if any. Local and fleeting. */
+	let preview = $state<Action | null>(null);
+	const explained = $derived(preview ?? chosen);
+	const describedBy = (action: Action) => `action-summary-${action.id}`;
 </script>
 
 <div class="actions">
@@ -70,10 +86,20 @@
 					class="ct-btn ct-btn--quiet"
 					class:fits={held ? fitsThisCard(action) : false}
 					class:chosen={chosen?.id === action.id}
+					aria-describedby={action.summary ? describedBy(action) : undefined}
 					onclick={() => (chosen = chosen?.id === action.id ? null : action)}
+					onpointerenter={() => (preview = action)}
+					onpointerleave={() => (preview = null)}
+					onfocus={() => (preview = action)}
+					onblur={() => (preview = null)}
 				>
 					{action.name}
 				</button>
+				{#if action.summary}
+					<!-- `hidden`, not visually hidden: a description may point at a hidden
+					     element, and this way browse mode does not read all 25 inline. -->
+					<span hidden id={describedBy(action)}>{action.summary}</span>
+				{/if}
 			</li>
 		{/each}
 		<li>
@@ -89,6 +115,27 @@
 			</label>
 		</li>
 	</ul>
+
+	<p class="actions__rule" aria-hidden="true">
+		{#if explained?.summary}
+			<span class="actions__rule-name">{explained.name}.</span>
+			{explained.summary}
+		{:else}
+			<span class="actions__rule-hint">Point at an action, or choose one, to see what it does.</span
+			>
+		{/if}
+	</p>
+	{#if chosen?.rule}
+		<!-- Outside the aria-hidden line: the link is a control and must stay
+		     reachable. A new tab, so the table keeps its place mid-fight. -->
+		<a
+			class="actions__link"
+			href={resolve('/[game=game]/reference/[section]', { game: 'hmtw', section: chosen.rule })}
+			target="_blank"
+			rel="noopener"
+			>Read the rule: {chosen.name}<span class="sr-only"> (opens in a new tab)</span></a
+		>
+	{/if}
 
 	{#if catalogue.free.length > 0}
 		<p class="actions__free">
@@ -153,6 +200,35 @@
 		padding: 0.25rem 0.4rem;
 		min-block-size: 2.2rem;
 		inline-size: 10rem;
+	}
+	/*
+	 * A fixed place, a reserved height: the line changes as the pointer moves,
+	 * and a box that grew and shrank with it would jog the hand and the menu
+	 * under the cursor — the reflow phase 29 already had to take out once.
+	 */
+	.actions__rule {
+		margin: 0.6rem 0 0;
+		max-inline-size: 40rem;
+		min-block-size: 3.2em;
+		font-family: 'IM Fell English', Georgia, serif;
+		line-height: 1.45;
+	}
+	.actions__rule-name {
+		font-family: 'IM Fell Great Primer SC', Georgia, serif;
+		color: var(--ct-mark);
+	}
+	.actions__rule-hint {
+		color: var(--ct-quiet);
+		font-size: 0.85rem;
+	}
+	.actions__link {
+		display: inline-flex;
+		align-items: center;
+		min-block-size: 2.75rem;
+		color: var(--ct-mark);
+		font-size: var(--ct-step-label);
+		/* Underlined: on a monochrome table, ink alone cannot say "link". */
+		text-decoration: underline;
 	}
 	.actions__free {
 		margin: 0.5rem 0 0;
