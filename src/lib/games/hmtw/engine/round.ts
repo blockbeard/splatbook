@@ -15,57 +15,71 @@ import type { CardTable } from './table';
 import { seededRng, type Rng } from './shuffle';
 import { deckZone, seatZone, opponentZone, type DeckId } from './zones';
 
+/**
+ * Where the round has got to (phase 32). The first live test (25 November
+ * 2026) ran the round by hand — a count stepper, a minor-action window, a
+ * Sweep — and nobody could tell what was going on. The round now runs as the
+ * book's steps, and each step that happens by itself happens inside the command
+ * that completes it: the last initiative card starts the count, the last answer
+ * to minor actions turns the cards over. The GM can always move it on.
+ *
+ * - `deal`: nobody has drawn this round.
+ * - `initiative`: everyone is choosing an initiative card.
+ * - `turn`: the count is on a number, and whoever holds it is acting.
+ * - `minor`: everyone else is putting down a minor action or passing.
+ * - `resolve`: the number's cards are face up; the GM applies them and moves on.
+ * - `over`: everyone has acted; the end-of-round check.
+ */
+export type RoundStep = 'deal' | 'initiative' | 'turn' | 'minor' | 'resolve' | 'over';
+
 export interface Round {
 	/** 0 before the first round of a Challenge. */
 	number: number;
 	/**
-	 * The initiative currently being called, or `null` when nobody is counting.
+	 * The initiative number being acted on, or `null` before the count starts.
 	 *
-	 * Not capped at the king. Ch.7 tells the GM to count "from lowest card (I)
-	 * through the highest card (king)", which is the *players'* range — they hold
-	 * minors. The GM plays initiative from the majors, so an enemy can sit at a
-	 * greater doom's 17 and must still get its turn. The count is a number that
-	 * goes up; when it stops is the table's business.
+	 * Not capped at the king: the GM plays initiative from the majors, so an
+	 * enemy can sit at a greater doom's 17 and must still get its turn.
 	 */
 	count: number | null;
-	/** Whether the window after a turn is open, when anyone may declare a minor action. */
-	minorActions: boolean;
 	/**
 	 * Set when the Fool comes out of the deck this round. "When the Fool is
 	 * drawn, shuffle both the minor and major arcana decks at the end of the
 	 * round" — so this is remembered at the draw and spent at the end.
 	 */
 	foolDrawn: boolean;
+	step: RoundStep;
 	/**
-	 * Who is acting out of turn, if anyone. Interrupts "take place *before* the
-	 * acting player's action", so the count waits rather than moving on.
+	 * Who has had their turn this round — per round, not per number, so Guard's
+	 * new initiative card cannot give anyone a second one.
 	 */
-	interrupt: string | null;
+	acted: string[];
+	/** Who has put down a minor action, readied one, or passed, at this number. */
+	answered: string[];
 	/**
-	 * Who is owed a second turn by the Fool. The book grants the turn but no
-	 * minor actions with it; spent when they take it.
+	 * Whose initiative card is face up. A card cannot be moved out of its slot
+	 * to turn it over, because the count reads it there; so the slot is shown to
+	 * everyone instead. Its holder's number coming up, being named as a target,
+	 * or "Show my initiative" adds to it; the end of the round clears it.
 	 */
-	extraTurn: string | null;
+	shown: string[];
 	/**
-	 * The initiative number whose turn and minor actions are finished.
-	 *
-	 * Without it the guide loops: the count still matches whoever just acted, so
-	 * it goes on saying "four — Daria, that is you" at somebody who has had
-	 * their turn and is waiting for the count to move. Closing the minor-action
-	 * window is the moment a number is done, so that is where this is set;
-	 * moving the count clears it.
+	 * Whether a card was played at this number. "If you do not take an action
+	 * … Nobody takes minor actions", so a number where everyone skipped opens no
+	 * minor actions.
 	 */
-	settled: number | null;
+	playedHere: boolean;
 }
 
 export const newRound = (): Round => ({
 	number: 0,
 	count: null,
-	minorActions: false,
 	foolDrawn: false,
-	interrupt: null,
-	extraTurn: null,
-	settled: null
+	step: 'deal',
+	acted: [],
+	answered: [],
+	shown: [],
+	playedHere: false
 });
 
 /** What the GM's draw is built from — `data/challenge.json`'s `handSizes.gm`, structurally. */
@@ -166,12 +180,9 @@ export function beginRound(table: CardTable, opts: BeginRoundOptions): CardTable
 	return {
 		...current,
 		round: {
+			...newRound(),
 			number: table.round.number + 1,
-			count: null,
-			minorActions: false,
-			interrupt: null,
-			extraTurn: null,
-			settled: null,
+			step: 'initiative',
 			// The Fool may already have been drawn earlier in the same round by a
 			// refill; never clear a flag that is waiting to be spent.
 			foolDrawn: table.round.foolDrawn || fool
@@ -202,40 +213,6 @@ export function mulliganGmHand(table: CardTable, rng: Rng): CardTable {
 	};
 }
 
-/** Call an initiative number. `null` stops counting. */
-export function setCount(table: CardTable, count: number | null): CardTable {
-	// Moving the count un-settles it: the new number has had no turn yet.
-	return { ...table, round: { ...table.round, count, settled: null } };
-}
-
-/** The next number up. Starts at 1 — the ace — when nobody is counting yet. */
-export function advanceCount(table: CardTable): CardTable {
-	return setCount(table, (table.round.count ?? 0) + 1);
-}
-
-/** Back one, for the GM who called a number too soon. Never below the ace. */
-export function rewindCount(table: CardTable): CardTable {
-	if (table.round.count === null) return table;
-	return setCount(table, Math.max(1, table.round.count - 1));
-}
-
-/**
- * Open or close the window in which anyone may declare a minor action.
- *
- * Closing it settles the number being called: the turn happened, the minor
- * actions were revealed, and there is nothing else owed on it.
- */
-export function setMinorActions(table: CardTable, open: boolean): CardTable {
-	return {
-		...table,
-		round: {
-			...table.round,
-			minorActions: open,
-			settled: open ? table.round.settled : table.round.count
-		}
-	};
-}
-
 /**
  * End the round, per ch.7 step 5.
  *
@@ -252,13 +229,18 @@ export function setMinorActions(table: CardTable, open: boolean): CardTable {
 export function endRound(table: CardTable, rng: Rng): CardTable {
 	let current = table;
 
+	// Hands and initiative, as the book says; and anything still lying played
+	// or put down as a minor action, which a round ended early can leave behind.
 	for (const seat of table.seats) {
 		const deck: DeckId = seat === table.gmSeat ? 'gm' : 'player';
-		current = discardAll(current, seatZone(seat, 'hand'), deck);
-		current = discardAll(current, seatZone(seat, 'initiative'), deck);
+		for (const kind of ['hand', 'initiative', 'played', 'minor'] as const) {
+			current = discardAll(current, seatZone(seat, kind), deck);
+		}
 	}
 	for (const opponent of table.opponents) {
-		current = discardAll(current, opponentZone(opponent.id, 'initiative'), 'gm');
+		for (const kind of ['initiative', 'played', 'minor'] as const) {
+			current = discardAll(current, opponentZone(opponent.id, kind), 'gm');
+		}
 	}
 
 	if (current.round.foolDrawn) {
@@ -268,15 +250,9 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 
 	return {
 		...current,
-		round: {
-			...current.round,
-			count: null,
-			minorActions: false,
-			foolDrawn: false,
-			interrupt: null,
-			extraTurn: null,
-			settled: null
-		}
+		plays: {},
+		minorDeclared: {},
+		round: { ...newRound(), number: current.round.number }
 	};
 }
 

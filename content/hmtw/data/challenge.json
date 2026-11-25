@@ -97,7 +97,8 @@
 					"id": "riposte",
 					"name": "Riposte",
 					"summary": "Play it facedown. When you are next Attacked or Roughhoused, reveal it after their action: beat its value to deal them 1 Wound. A tie is yours unless they have a shield.",
-					"rule": "07-chapter-7-the-challenge-phase--riposte"
+					"rule": "07-chapter-7-the-challenge-phase--riposte",
+					"play": "ready"
 				}
 			],
 			"pentacles": [
@@ -117,7 +118,8 @@
 					"id": "dodge",
 					"name": "Dodge",
 					"summary": "Play it facedown. When you are next Attacked or Roughhoused, add its value to your Initiative; if that beats their action's value, it misses.",
-					"rule": "07-chapter-7-the-challenge-phase--dodge"
+					"rule": "07-chapter-7-the-challenge-phase--dodge",
+					"play": "ready"
 				},
 				{
 					"id": "roughhouse",
@@ -131,7 +133,8 @@
 					"id": "aid-another",
 					"name": "Aid Another",
 					"summary": "Play it facedown and name another adventurer's action as the trigger. When they take it, reveal it and add your value to theirs — the way past an Initiative above 14.",
-					"rule": "07-chapter-7-the-challenge-phase--aid-another"
+					"rule": "07-chapter-7-the-challenge-phase--aid-another",
+					"play": "ready"
 				},
 				{
 					"id": "command",
@@ -184,7 +187,8 @@
 				"id": "guard",
 				"name": "Guard",
 				"summary": "Any card, if you have a shield: replace your Initiative with a card from your hand, and discard the old one.",
-				"rule": "07-chapter-7-the-challenge-phase--guard"
+				"rule": "07-chapter-7-the-challenge-phase--guard",
+				"play": "initiative"
 			},
 			{
 				"id": "move",
@@ -221,7 +225,8 @@
 				"name": "Vigilance",
 				"greaterDoomForbidden": true,
 				"summary": "Play it facedown, in the suit of the action you will take, and name another character's action as the trigger. When it happens, flip it and act. A greater doom can't pay for it.",
-				"rule": "07-chapter-7-the-challenge-phase--vigilance"
+				"rule": "07-chapter-7-the-challenge-phase--vigilance",
+				"play": "ready"
 			}
 		],
 		"gmOnly": [

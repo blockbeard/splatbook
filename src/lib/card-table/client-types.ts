@@ -43,19 +43,34 @@ export interface ProjectedTable {
 			}[];
 		}[];
 	}[];
+	/** Where the round has got to; see the engine's `steps.ts`. */
 	round: {
 		number: number;
 		count: number | null;
-		minorActions: boolean;
 		foolDrawn: boolean;
-		interrupt: string | null;
-		extraTurn: string | null;
-		/** The number whose turn and minor actions are finished. */
-		settled: number | null;
+		step: 'deal' | 'initiative' | 'turn' | 'minor' | 'resolve' | 'over';
+		/** Who has had their turn this round. */
+		acted: string[];
+		/** Who has answered minor actions at this number. */
+		answered: string[];
+		/** Whose initiative card is face up. */
+		shown: string[];
+		playedHere: boolean;
 	};
+	/** What each face-up played card was for, by card id. */
+	plays: Record<
+		string,
+		{
+			by: string;
+			action: string;
+			target?: string;
+			kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
+			number: number | null;
+		}
+	>;
+	/** The declared action of each face-down minor-action card, by zone. */
+	minorDeclared: Record<string, string>;
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
-	/** Whether the table is walking the round for whoever is looking. */
-	guided: boolean;
 	/**
 	 * Whose initiative the count has reached, seats and enemies alike.
 	 *
@@ -75,6 +90,8 @@ export interface ProjectedTable {
 	 * only, never values: it is what is holding the round open.
 	 */
 	stillToAct: string[];
+	/** Who the round is waiting on: initiative to play, or a minor action to answer. */
+	waitingOn: string[];
 	/**
 	 * The room: the zones the GM named, and where each adventurer or creature
 	 * stands. A missing or `null` entry is "not placed".

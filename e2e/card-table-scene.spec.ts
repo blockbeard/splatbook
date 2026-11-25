@@ -182,6 +182,15 @@ test('an action says what it does, and links to the rule', async ({ page }) => {
 	await page.waitForURL(/\/hmtw\/cards\/[0-9a-f-]{36}$/);
 	await page.getByRole('button', { name: 'Challenge', exact: true }).click();
 
+	// The action menu is offered on a turn (phase 32), so get to one: an imp,
+	// a deal, and its initiative.
+	await page.getByLabel('Enemy name').fill('Imp');
+	await page.locator('.add-enemy').getByRole('button', { name: 'Add' }).click();
+	await page.getByRole('button', { name: 'Deal the round', exact: true }).click();
+	await page.locator('.hand button').first().click({ timeout: 15_000 });
+	await page.getByRole('button', { name: 'Initiative for Imp' }).click();
+	await expect(page.locator('.guide')).toContainText('your turn', POLLED);
+
 	const line = page.locator('.actions__rule');
 	await expect(line).toContainText('Point at an action');
 

@@ -38,34 +38,53 @@ export {
 	withDeckFacts,
 	type CardTable,
 	type DeckDefinition,
-	type Opponent
+	type Opponent,
+	type Play
 } from './table';
 export { setMode, type TableMode } from './mode';
 export {
-	advanceCount,
 	beginRound,
 	endRound,
 	mulliganGmHand,
 	newRound,
-	rewindCount,
 	rngFromSeed,
-	setCount,
-	setMinorActions,
 	suggestGmHandSize,
 	type BeginRoundOptions,
 	type GmHandConfig,
-	type Round
+	type Round,
+	type RoundStep
 } from './round';
 export {
-	beginInterrupt,
-	clearExtraTurn,
+	declareMinor,
+	dropReadied,
+	expectedInitiative,
+	expectedMinor,
+	nextNumber,
+	passMinor,
+	playInitiative,
+	playOutOfTurn,
+	playTurn,
+	readyMinor,
+	resolveNumber,
+	revealMinors,
+	showInitiative,
+	skipTurn,
+	startCount,
+	stepOn,
+	takeBack,
+	upAt,
+	useReadied,
+	waitingForInitiative,
+	waitingForMinor,
+	type StepFailure,
+	type StepResult,
+	type TurnPlay
+} from './steps';
+export {
 	clearFacedown,
-	endInterrupt,
 	facedownZoneOf,
 	placeFacedown,
-	playFool,
 	revealFacedown,
-	skipTurn,
 	type ExceptionResult,
 	type FacedownAction,
 	type FacedownPosition

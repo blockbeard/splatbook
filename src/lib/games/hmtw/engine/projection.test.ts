@@ -226,7 +226,7 @@ describe('who the count has reached', () => {
 		t = {
 			...t,
 			valueOf: { m3: 3, m7: 7, j3: 3 },
-			round: { ...t.round, count },
+			round: { ...t.round, count, step: count === null ? 'initiative' : 'turn' },
 			zones: {
 				...t.zones,
 				'seat:s1:initiative': { ...t.zones['seat:s1:initiative'], cards: ['m3'] },
@@ -268,42 +268,19 @@ describe('who the count has reached', () => {
 });
 
 describe('the round being over', () => {
-	it('is not over until the count has settled past every initiative card', () => {
+	it('is over when the steps say so, and not before', () => {
 		const t = inPlay();
 		expect(roundIsDone(t)).toBe(false);
-		const values = Object.values(t.zones)
-			.filter((z) => z.id.endsWith(':initiative'))
-			.flatMap((z) => z.cards.slice(0, 1))
-			.map((c) => t.valueOf[c]);
-		const top = Math.max(...values);
-		const at = (n: number) => ({ ...t, round: { ...t.round, count: n, settled: n } });
-		expect(roundIsDone(at(top - 1))).toBe(false);
-		expect(roundIsDone(at(top))).toBe(true);
-		// A number not yet settled, or a minor-action window still open, holds it.
-		expect(roundIsDone({ ...t, round: { ...t.round, count: top, settled: null } })).toBe(false);
-		expect(
-			roundIsDone({ ...t, round: { ...t.round, count: top, settled: top, minorActions: true } })
-		).toBe(false);
-	});
-
-	it('is over once the count has gone past the last card, settled or not', () => {
-		// The first live test's missing prompt: the GM pressed + after the last
-		// turn, which clears "settled", and the end-of-round check never came.
-		const t = inPlay();
-		const values = Object.values(t.zones)
-			.filter((z) => z.id.endsWith(':initiative'))
-			.flatMap((z) => z.cards.slice(0, 1))
-			.map((c) => t.valueOf[c]);
-		const top = Math.max(...values);
-		expect(roundIsDone({ ...t, round: { ...t.round, count: top + 1, settled: null } })).toBe(true);
+		expect(roundIsDone({ ...t, round: { ...t.round, step: 'over' } })).toBe(true);
 	});
 
 	it('names who is still to act, and never what they hold', () => {
 		const t = inPlay();
-		const counting = { ...t, round: { ...t.round, count: 1 } };
+		const counting = { ...t, round: { ...t.round, count: 1, step: 'turn' as const } };
 		const view = projectFor(counting, 's2');
 		expect(view.stillToAct.length).toBeGreaterThan(0);
-		expect(projectFor(t, 's2').stillToAct).toEqual([]);
+		const acted = { ...counting, round: { ...counting.round, acted: view.stillToAct } };
+		expect(projectFor(acted, 's2').stillToAct).toEqual([]);
 	});
 
 	it('says only yes or no — no card or value rides along', () => {

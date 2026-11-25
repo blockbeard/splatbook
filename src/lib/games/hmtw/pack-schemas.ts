@@ -111,7 +111,14 @@ const actionSchema = z.strictObject({
 	rule: z.string().regex(/^[a-z0-9-]+$/),
 	/** Vigilance, alone among the miscellaneous actions, cannot be paid for with
 	 * a greater doom (ch.7, "Greater dooms"). */
-	greaterDoomForbidden: z.boolean().optional()
+	greaterDoomForbidden: z.boolean().optional(),
+	/**
+	 * How the table plays it, when not simply face up (phase 32): `ready` for the
+	 * actions the book plays face down and keeps until triggered (Riposte,
+	 * Dodge, Aid Another, Vigilance); `initiative` for Guard, whose card replaces
+	 * your initiative.
+	 */
+	play: z.enum(['ready', 'initiative']).optional()
 });
 
 /**

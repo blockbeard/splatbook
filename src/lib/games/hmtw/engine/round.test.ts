@@ -8,17 +8,7 @@ import {
 	type CardTable,
 	type DeckDefinition
 } from './table';
-import {
-	advanceCount,
-	beginRound,
-	endRound,
-	mulliganGmHand,
-	newRound,
-	rewindCount,
-	setCount,
-	setMinorActions,
-	suggestGmHandSize
-} from './round';
+import { beginRound, endRound, mulliganGmHand, newRound, suggestGmHandSize } from './round';
 import { moveCard } from './moves';
 import { seededRng } from './shuffle';
 import { opponentZone, seatZone } from './zones';
@@ -101,11 +91,9 @@ describe('beginRound', () => {
 		expect(t.round.number).toBe(2);
 	});
 
-	it('starts each round with nobody counting and the minor-action window shut', () => {
-		const started = setMinorActions(setCount(table(), 9), true);
-		const t = beginRound(started, { playerHand: 4, gmHand: 3, rng: rng() });
-		expect(t.round.count).toBeNull();
-		expect(t.round.minorActions).toBe(false);
+	it('starts each round on initiative, with nobody counting and nobody acted', () => {
+		const t = beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() });
+		expect(t.round).toMatchObject({ count: null, step: 'initiative', acted: [], shown: [] });
 	});
 
 	it('remembers that the Fool came out', () => {
@@ -154,32 +142,6 @@ describe('mulliganGmHand', () => {
 		expect(mulliganGmHand(noGm, seededRng(1))).toBe(noGm);
 		const t = table();
 		expect(mulliganGmHand(t, seededRng(1))).toBe(t);
-	});
-});
-
-describe('the count', () => {
-	it('starts at the ace and goes up', () => {
-		let t = advanceCount(table());
-		expect(t.round.count).toBe(1);
-		t = advanceCount(t);
-		expect(t.round.count).toBe(2);
-	});
-
-	it('is not capped at the king, because the GM plays majors for initiative', () => {
-		// A greater doom initiative sits at 15–21 and still has to be called.
-		const t = setCount(table(), 17);
-		expect(advanceCount(t).round.count).toBe(18);
-	});
-
-	it('rewinds for a number called too soon, but never below the ace', () => {
-		expect(rewindCount(setCount(table(), 5)).round.count).toBe(4);
-		expect(rewindCount(setCount(table(), 1)).round.count).toBe(1);
-		expect(rewindCount(table()).round.count).toBeNull();
-	});
-
-	it('opens and shuts the minor-action window', () => {
-		expect(setMinorActions(table(), true).round.minorActions).toBe(true);
-		expect(setMinorActions(setMinorActions(table(), true), false).round.minorActions).toBe(false);
 	});
 });
 
@@ -249,14 +211,12 @@ describe('endRound', () => {
 		expect(cards(t, 'discard:player')).toHaveLength(4);
 	});
 
-	it('stops the count and shuts the window', () => {
-		let t = setMinorActions(
-			setCount(beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() }), 7),
-			true
-		);
+	it('stops the count and waits for the next deal', () => {
+		let t = beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() });
+		t = { ...t, round: { ...t.round, count: 7, step: 'resolve', acted: ['s1'], shown: ['s1'] } };
 		t = endRound(t, rng());
-		expect(t.round.count).toBeNull();
-		expect(t.round.minorActions).toBe(false);
+		expect(t.round).toMatchObject({ count: null, step: 'deal', acted: [], shown: [] });
+		expect(t.round.number).toBe(1);
 	});
 });
 
@@ -291,33 +251,12 @@ describe('migrateTable v2 → v3', () => {
 	});
 
 	it('leaves a live round alone', () => {
-		const t = setCount(beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() }), 4);
+		const dealt = beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() });
+		const t = { ...dealt, round: { ...dealt.round, count: 4, step: 'turn' as const } };
 		const migrated = migrateTable(t);
 		expect(migrated.round.number).toBe(1);
 		expect(migrated.round.count).toBe(4);
+		expect(migrated.round.step).toBe('turn');
 		expect(migrated.foolCards).toEqual(['fool']);
-	});
-});
-
-describe('when a number is finished', () => {
-	it('settles on closing the minor-action window, and clears on moving the count', () => {
-		let t = setCount(table(), 4);
-		expect(t.round.settled).toBeNull();
-
-		t = setMinorActions(t, true);
-		expect(t.round.settled).toBeNull(); // opening settles nothing
-
-		t = setMinorActions(t, false);
-		expect(t.round.settled).toBe(4);
-
-		t = advanceCount(t);
-		expect(t.round.settled).toBeNull();
-	});
-
-	it('forgets it at the end of a round', () => {
-		let t = setMinorActions(setCount(table(), 6), false);
-		expect(t.round.settled).toBe(6);
-		t = endRound(t, rng());
-		expect(t.round.settled).toBeNull();
 	});
 });

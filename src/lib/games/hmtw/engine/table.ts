@@ -40,10 +40,15 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  *   no longer stored but derived from the creatures still up.
  * v12: the scene's `picture`, a reference to an uploaded image.
  * v13: `enemyHealth`, whether players see enemy Health and Defense.
- * v14 (this commit): no split groups. A group shares one initiative wherever
- *   its creatures stand, so any split-off group is rejoined to its family.
+ * v14: no split groups. A group shares one initiative wherever its creatures
+ *   stand, so any split-off group is rejoined to its family.
+ * v15 (this commit): the round as steps — `round.step`, `acted`, `answered`,
+ *   `shown`, `playedHere` in place of the hand-run count's `minorActions`,
+ *   `settled`, `interrupt` and `extraTurn`; a `minor` zone per seat and
+ *   group; `plays` and `minorDeclared`; and `guided` gone, since the steps are
+ *   the guide.
  */
-export const TABLE_SCHEMA_VERSION = 14;
+export const TABLE_SCHEMA_VERSION = 15;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -56,6 +61,19 @@ export const TABLE_SCHEMA_VERSION = 14;
  * A group is the unit that takes a turn; its creatures are the bodies, each
  * with a letter, a zone and its own Health and Defense. See `creatures.ts`.
  */
+/** What a card on the table was played for. See `CardTable.plays`. */
+export interface Play {
+	/** The seat or enemy group that played it. */
+	by: string;
+	/** The action, as its player named it. */
+	action: string;
+	/** Who it was aimed at, if anyone was named: a seat, a group or a creature. */
+	target?: string;
+	kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
+	/** The initiative number it was played at. */
+	number: number | null;
+}
+
 export interface Opponent {
 	id: string;
 	name: string;
@@ -133,13 +151,15 @@ export interface CardTable {
 	/** Each card's value, so the count can tell whose initiative it has reached. */
 	valueOf: Record<string, number>;
 	/**
-	 * Whether the table is walking the round for you.
-	 *
-	 * Off by default and the GM's to turn on. Guided mode is a pointer and a set
-	 * of shortcuts over the same free table — it never gates a command, so a
-	 * table with it on can still be played entirely by hand.
+	 * What each face-up card in a played pile was played for, by card id: who,
+	 * the action, at whom, and whether on a turn, as a minor action, readied, or
+	 * out of turn. Card ids are the cards' identities, which is safe only because
+	 * these cards lie face up; a face-down minor action is labelled by its zone
+	 * in `minorDeclared` until it is turned over.
 	 */
-	guided: boolean;
+	plays: Record<string, Play>;
+	/** The declared action of each face-down minor-action card, by zone. Public, as the book has it. */
+	minorDeclared: Record<string, string>;
 	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
@@ -236,7 +256,8 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		foolCards: [...(deck.decks.find((d) => d.id === 'player')?.includesMajors ?? [])],
 		deckOf: membershipOf(deck),
 		valueOf: valuesOf(deck),
-		guided: false,
+		plays: {},
+		minorDeclared: {},
 		scene: emptyScene(),
 		enemyHealth: 'shown',
 		zones
@@ -288,6 +309,9 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v14 → v15: the round in steps; see `migrateRound`. A `minor` zone for every
+ * seat and group, empty `plays` and `minorDeclared`; `guided` is dropped.
+ *
  * v13 → v14: split-off groups rejoin their families — see `rejoinSplitGroups`,
  * which the game module runs after this.
  *
@@ -323,32 +347,91 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  */
 export function migrateTable(raw: CardTable): CardTable {
 	if (raw.schemaVersion > TABLE_SCHEMA_VERSION) return raw;
+	// `guided` went in v15: the steps are the guide now.
+	const { guided: _guided, ...migrated } = migrateShape(raw) as CardTable & { guided?: unknown };
+	return { ...migrated, round: migrateRound(raw.round, migrated) };
+}
+
+/**
+ * v14 → v15: a round run by hand becomes a round in steps.
+ *
+ * Not a reconstruction of what happened — the old round never recorded who had
+ * acted — but the obvious reading of where the count stood: before a deal it
+ * is the deal; dealt but not counting, it is initiative; counting, everyone
+ * below the number has acted and everyone at or below it is face up, and it is
+ * the turn of whoever holds the number. The GM can move it on from there.
+ */
+function migrateRound(raw: Partial<Round> | undefined, table: CardTable): Round {
+	const base = { ...newRound(), ...(raw ?? {}) } as Round & Record<string, unknown>;
+	const current: Round = {
+		number: base.number,
+		count: base.count,
+		foolDrawn: base.foolDrawn,
+		step: base.step,
+		acted: base.acted ?? [],
+		answered: base.answered ?? [],
+		shown: base.shown ?? [],
+		playedHere: base.playedHere ?? false
+	};
+	if (raw && 'step' in raw && raw.step) return current;
+
+	if (current.number === 0) return { ...current, step: 'deal' };
+	if (current.count === null) return { ...current, step: 'initiative' };
+	const count = current.count;
+	const values: [string, number][] = [];
+	for (const seat of table.seats) {
+		const card = table.zones[`seat:${seat}:initiative`]?.cards[0];
+		if (card !== undefined) values.push([seat, table.valueOf[card] ?? 0]);
+	}
+	for (const opponent of table.opponents) {
+		const card = table.zones[`opponent:${opponent.id}:initiative`]?.cards[0];
+		if (card !== undefined) values.push([opponent.id, table.valueOf[card] ?? 0]);
+	}
+	return {
+		...current,
+		step: 'turn',
+		acted: values.filter(([, v]) => v < count).map(([h]) => h),
+		shown: values.filter(([, v]) => v <= count).map(([h]) => h)
+	};
+}
+
+function migrateShape(raw: CardTable): CardTable {
+	const opponents = (raw.opponents ?? []).map(migrateOpponent);
+	const seats = raw.seats ?? [];
 	return {
 		...raw,
 		// Defaulted rather than assumed. A blob can arrive from a version that
 		// never had these, and a table whose `seats` is undefined is not merely
 		// empty — it throws the moment anything iterates it.
-		seats: raw.seats ?? [],
+		seats,
 		gmSeat: raw.gmSeat ?? null,
-		opponents: (raw.opponents ?? []).map(migrateOpponent),
+		opponents,
 		mode: raw.mode ?? 'decks',
 		deckOf: raw.deckOf ?? {},
 		valueOf: raw.valueOf ?? {},
-		guided: raw.guided ?? false,
-		round: { ...newRound(), ...(raw.round ?? {}) },
+		// v15: what played cards were for starts unknown, which is true of them.
+		plays: raw.plays ?? {},
+		minorDeclared: raw.minorDeclared ?? {},
+		round: newRound(),
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),
 		// v13: everyone saw Health before there was a switch.
 		enemyHealth: raw.enemyHealth === 'hidden' ? 'hidden' : 'shown',
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
 		// table zone the blob predates is added (v7).
-		zones: withTableZones(
-			Object.fromEntries(
-				Object.entries(raw.zones ?? {}).map(([id, zone]) => [
-					id,
-					{ ...zone, reach: zone.reach ?? (id.endsWith(':hand') ? 'owner' : 'table') }
-				])
-			)
+		// v15: any seat or group zone the blob predates, such as `minor`, is
+		// added empty.
+		zones: withHolderZones(
+			withTableZones(
+				Object.fromEntries(
+					Object.entries(raw.zones ?? {}).map(([id, zone]) => [
+						id,
+						{ ...zone, reach: zone.reach ?? (id.endsWith(':hand') ? 'owner' : 'table') }
+					])
+				)
+			),
+			seats,
+			opponents.map((o) => o.id)
 		),
 		foolCards: raw.foolCards ?? [],
 		schemaVersion: TABLE_SCHEMA_VERSION
@@ -370,6 +453,22 @@ export function membershipOf(deck: DeckDefinition): Record<string, DeckId> {
 	for (const card of decks.player) map[card] = 'player';
 	for (const card of decks.gm) map[card] = 'gm';
 	return map;
+}
+
+/** Add any seat or group zone a stored blob predates, leaving what it has alone. */
+function withHolderZones(
+	zones: Record<string, Zone>,
+	seats: readonly string[],
+	opponents: readonly string[]
+): Record<string, Zone> {
+	const next = { ...zones };
+	for (const seat of seats) {
+		for (const zone of seatZones(seat)) if (!next[zone.id]) next[zone.id] = zone;
+	}
+	for (const opponent of opponents) {
+		for (const zone of opponentZones(opponent)) if (!next[zone.id]) next[zone.id] = zone;
+	}
+	return next;
 }
 
 /** Add any table zone a stored blob predates, leaving what it has alone. */

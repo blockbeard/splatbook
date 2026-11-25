@@ -222,52 +222,31 @@ describe('the Challenge', () => {
 		expect(JSON.stringify(out.data)).not.toMatch(/swords|cups|wands|pentacles/);
 	});
 
-	it('sweeps played cards but leaves facedown ones, which have not happened yet', () => {
+	it('plays a turn into the open, keeps a readied card, and never logs a card', () => {
 		let t = run(seated(), { type: 'set-mode', mode: 'challenge' }).state as CardTable;
 		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 0 }).state as CardTable;
-		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:played' }, 'p1')
+		t = run(t, { type: 'play-initiative', holder: 'p1', from: { zone: 'seat:p1:hand' } }, 'p1')
 			.state as CardTable;
-		t = run(
-			t,
-			{
-				type: 'place-facedown',
-				holder: 'p1',
-				from: { zone: 'seat:p1:hand' },
-				position: 'turn',
-				label: 'Dodge'
-			},
-			'p1'
-		).state as CardTable;
-
-		t = run(t, { type: 'sweep' }).state as CardTable;
-		expect(t.zones['seat:p1:played'].cards).toEqual([]);
-		expect(t.zones['seat:p1:facedown'].cards).toHaveLength(1);
-	});
-
-	it('says what a facedown card is for, and never which card it is', () => {
-		let t = run(seated(), { type: 'set-mode', mode: 'challenge' }).state as CardTable;
-		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 0 }).state as CardTable;
+		// The only initiative down, so the count is already on it.
+		expect(t.round.step).toBe('turn');
 		const out = run(
 			t,
 			{
-				type: 'place-facedown',
+				type: 'play-turn',
 				holder: 'p1',
 				from: { zone: 'seat:p1:hand' },
-				position: 'minor',
-				label: 'Riposte'
+				action: 'Dodge',
+				mode: 'ready'
 			},
 			'p1'
 		);
-		expect(out.data).toEqual({ holder: 'p1', position: 'minor', label: 'Riposte' });
+		expect(out.data).toMatchObject({ holder: 'p1', action: 'Dodge', mode: 'ready' });
 		expect(JSON.stringify(out.data)).not.toMatch(/swords|cups|wands|pentacles/);
-	});
-
-	it('counts up without stopping at the king', () => {
-		let t = run(seated(), { type: 'set-count', count: 14 }).state as CardTable;
-		t = run(t, { type: 'advance-count' }).state as CardTable;
-		expect(t.round.count).toBe(15);
-		t = run(t, { type: 'rewind-count' }).state as CardTable;
-		expect(t.round.count).toBe(14);
+		t = out.state as CardTable;
+		expect(t.zones['seat:p1:facedown'].cards).toHaveLength(1);
+		// Nobody else to answer minor actions and nothing face up: the round
+		// runs on to its end, and the readied card stays.
+		expect(t.round.step).toBe('over');
 	});
 
 	it('keeps opponents, and lets the GM name them', () => {
@@ -426,7 +405,7 @@ describe('the scene and its creatures', () => {
 		delete old.enemyHealth;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
 		expect(migrated.enemyHealth).toBe('shown');
-		expect(migrated.schemaVersion).toBe(14);
+		expect(migrated.schemaVersion).toBe(15);
 	});
 
 	it('marks a creature down and back up', () => {
@@ -466,7 +445,7 @@ describe('the scene and its creatures', () => {
 			]
 		} as unknown as CardTable;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
-		expect(migrated.schemaVersion).toBe(14);
+		expect(migrated.schemaVersion).toBe(15);
 		expect(migrated.opponents).toHaveLength(1);
 		expect(migrated.opponents[0].creatures.map((c) => c.letter)).toEqual(['A', 'B']);
 	});
@@ -543,25 +522,34 @@ describe('every card goes to its own deck’s discard', () => {
 		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:played' }, 'p1');
 		t = run(t, { type: 'move', from: { zone: 'seat:p1:played' }, to: 'opponent:zombies:played' });
 		t = run(t, { type: 'move', from: { zone: 'seat:p2:hand' }, to: 'seat:p2:initiative' }, 'p2');
-		// A major as a player's facedown card.
-		t = run(t, {
-			type: 'place-facedown',
-			holder: 'gm',
-			from: { zone: 'seat:gm:hand' },
-			position: 'minor',
-			label: 'Dodge'
-		});
+		// A major as the GM's own facedown card, placed as a turn would.
+		const major = t.zones['seat:gm:hand'].cards[0];
+		t = {
+			...t,
+			zones: {
+				...t.zones,
+				'seat:gm:hand': {
+					...t.zones['seat:gm:hand'],
+					cards: t.zones['seat:gm:hand'].cards.slice(1)
+				},
+				'seat:gm:facedown': { ...t.zones['seat:gm:facedown'], cards: [major] }
+			},
+			facedown: { 'seat:gm:facedown': { position: 'minor', label: 'Dodge' } }
+		};
 		holds(t);
 		return t;
 	}
 
-	it('on the Sweep', () => holds(run(crossed(), { type: 'sweep' })));
+	it('when a number is resolved', () => {
+		const t = crossed();
+		holds(run({ ...t, round: { ...t.round, step: 'resolve', count: 3 } }, { type: 'step-on' }));
+	});
 	it('at the end of the round', () => holds(run(crossed(), { type: 'end-round' })));
 	it('on leaving the Challenge', () => holds(run(crossed(), { type: 'set-mode', mode: 'decks' })));
 	it('on Reset', () => holds(run(crossed(), { type: 'reset-table' })));
 	it('on the mulligan', () => holds(run(crossed(), { type: 'mulligan' })));
 	it('when a facedown card is given up', () =>
-		holds(run(crossed(), { type: 'clear-facedown', holder: 'gm' })));
+		holds(run(crossed(), { type: 'drop-readied', holder: 'gm' })));
 	it('when an enemy group is removed with cards on it', () =>
 		holds(run(crossed(), { type: 'remove-opponent', id: 'zombies' })));
 	it('when a seat leaves holding cards', () => {
@@ -661,25 +649,16 @@ describe('the end-of-round check', () => {
 	const done = (t: CardTable, viewer = 'p1') =>
 		(hmtwCardTable.project(t, viewer) as { roundDone: boolean }).roundDone;
 
-	function atLastNumber() {
+	it('comes once the last number is through, however the GM moves it on', () => {
+		// The first live test never saw it: it only came after "Close minor
+		// actions". Now the round's own steps reach it.
 		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
 		t = run(t, { type: 'set-mode', mode: 'challenge' });
 		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 });
-		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:initiative' }, 'p1');
-		const card = t.zones['seat:p1:initiative'].cards[0];
-		return run(t, { type: 'set-count', count: t.valueOf[card] });
-	}
-
-	it('comes when the GM sweeps instead of closing minor actions', () => {
-		const t = run(atLastNumber(), { type: 'minor-actions', open: true });
+		t = run(t, { type: 'play-initiative', holder: 'p1', from: { zone: 'seat:p1:hand' } }, 'p1');
 		expect(done(t)).toBe(false);
-		expect(done(run(t, { type: 'sweep' }))).toBe(true);
-	});
-
-	it('comes when the GM counts on past the last card', () => {
-		const t = atLastNumber();
-		expect(done(t)).toBe(false);
-		expect(done(run(t, { type: 'advance-count' }))).toBe(true);
+		t = run(t, { type: 'step-on' });
+		expect(done(t)).toBe(true);
 	});
 });
 
@@ -709,16 +688,12 @@ describe('who may do what', () => {
 	// redraw the GM's hand, because only a few commands were checked.
 	const gmOnly = [
 		{ type: 'reshuffle', deck: 'player' },
-		{ type: 'guided', on: true },
 		{ type: 'set-mode', mode: 'decks' },
 		{ type: 'begin-round', playerHand: 4, gmHand: 3 },
 		{ type: 'end-round' },
 		{ type: 'mulligan' },
-		{ type: 'set-count', count: 3 },
-		{ type: 'advance-count' },
-		{ type: 'rewind-count' },
-		{ type: 'minor-actions', open: true },
-		{ type: 'sweep' },
+		{ type: 'start-count' },
+		{ type: 'step-on' },
 		{ type: 'add-opponent', id: 'imps', name: 'Imp', count: 1 },
 		{ type: 'remove-opponent', id: 'zombies' },
 		{ type: 'update-opponent', id: 'zombies', name: 'Ghoul' },
@@ -737,23 +712,21 @@ describe('who may do what', () => {
 		});
 	}
 
-	it('keeps a facedown slot to its holder and the GM', () => {
+	it('keeps a seat’s own steps to it and the GM', () => {
 		const t = table();
-		const lay = (holder: string, actor: string) =>
-			reduce(
+		const play = (holder: string, actor: string) =>
+			hmtwCardTable.reduce(
 				t,
-				{
-					type: 'place-facedown',
-					holder,
-					from: { zone: `seat:${actor}:hand` },
-					position: 'turn',
-					label: 'Dodge'
-				},
-				actor
+				{ type: 'play-initiative', holder, from: { zone: `seat:${actor}:hand` } },
+				{ actorSeatId: actor, rng: seededRng(4) }
 			);
-		expect(lay('p2', 'p1')).toEqual({ ok: false, reason: 'not-yours' });
-		expect(lay('p1', 'p1').ok).toBe(true);
-		expect(reduce(t, { type: 'clear-facedown', holder: 'p1' }, 'p2')).toEqual({
+		expect(play('p2', 'p1')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(play('p1', 'p1').ok).toBe(true);
+		expect(reduce(t, { type: 'drop-readied', holder: 'p1' }, 'p2')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+		expect(reduce(t, { type: 'pass-minor', holders: ['p1', 'p2'] }, 'p1')).toEqual({
 			ok: false,
 			reason: 'not-yours'
 		});

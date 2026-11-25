@@ -30,7 +30,8 @@
 		heldCard = null,
 		chosen = $bindable(),
 		custom = $bindable(),
-		asGm = false
+		asGm = false,
+		onTurn = false
 	}: {
 		catalogue: ActionCatalogue;
 		faces: FaceIndex;
@@ -40,7 +41,23 @@
 		chosen: Action | null;
 		custom: string;
 		asGm?: boolean;
+		/** It is your turn, when "you can use *any* card to perform *any* action". */
+		onTurn?: boolean;
 	} = $props();
+
+	/**
+	 * The actions by suit, then the ones any suit pays for, then the GM's — the
+	 * book's own table (ch.7, Take turns). The first live test asked for the menu
+	 * "split out by suit or any suit as well as just highlighted".
+	 */
+	const groups = $derived([
+		...Object.entries(catalogue.bySuit).map(([suit, actions]) => ({
+			name: suit.charAt(0).toUpperCase() + suit.slice(1),
+			actions
+		})),
+		{ name: 'Any suit', actions: catalogue.anySuit },
+		...(asGm ? [{ name: 'The GM’s', actions: catalogue.gmOnly }] : [])
+	]);
 
 	const held = $derived<CardFace | null>(heldCard ? (faces[heldCard] ?? null) : null);
 
@@ -49,15 +66,6 @@
 		held
 			? actionsForCard(catalogue, held, { asGm })
 			: { fits: [] as Action[], rest: [] as Action[] }
-	);
-	const listed = $derived(
-		held
-			? [...offer.fits, ...offer.rest]
-			: [
-					...Object.values(catalogue.bySuit).flat(),
-					...catalogue.anySuit,
-					...(asGm ? catalogue.gmOnly : [])
-				]
 	);
 	const fitsThisCard = (action: Action) => offer.fits.includes(action);
 
@@ -78,28 +86,38 @@
 		{/if}
 	</p>
 
-	<ul>
-		{#each listed as action (action.id)}
-			<li>
-				<button
-					type="button"
-					class="ct-btn ct-btn--quiet"
-					class:fits={held ? fitsThisCard(action) : false}
-					class:chosen={chosen?.id === action.id}
-					aria-describedby={action.summary ? describedBy(action) : undefined}
-					onclick={() => (chosen = chosen?.id === action.id ? null : action)}
-					onpointerenter={() => (preview = action)}
-					onpointerleave={() => (preview = null)}
-					onfocus={() => (preview = action)}
-					onblur={() => (preview = null)}
-				>
-					{action.name}
-				</button>
-				{#if action.summary}
-					<!-- `hidden`, not visually hidden: a description may point at a hidden
-					     element, and this way browse mode does not read all 25 inline. -->
-					<span hidden id={describedBy(action)}>{action.summary}</span>
-				{/if}
+	{#if onTurn}
+		<p class="actions__turn">On your turn, any card pays for any action.</p>
+	{/if}
+	<ul class="actions__groups">
+		{#each groups as group (group.name)}
+			<li class="actions__group">
+				<span class="actions__suit">{group.name}</span>
+				<ul>
+					{#each group.actions as action (action.id)}
+						<li>
+							<button
+								type="button"
+								class="ct-btn ct-btn--quiet"
+								class:fits={held ? fitsThisCard(action) : false}
+								class:chosen={chosen?.id === action.id}
+								aria-describedby={action.summary ? describedBy(action) : undefined}
+								onclick={() => (chosen = chosen?.id === action.id ? null : action)}
+								onpointerenter={() => (preview = action)}
+								onpointerleave={() => (preview = null)}
+								onfocus={() => (preview = action)}
+								onblur={() => (preview = null)}
+							>
+								{action.name}
+							</button>
+							{#if action.summary}
+								<!-- `hidden`, not visually hidden: a description may point at a hidden
+								     element, and this way browse mode does not read all 25 inline. -->
+								<span hidden id={describedBy(action)}>{action.summary}</span>
+							{/if}
+						</li>
+					{/each}
+				</ul>
 			</li>
 		{/each}
 		<li>
@@ -158,6 +176,26 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.3rem;
+	}
+	.actions__groups {
+		display: grid;
+		gap: 0.5rem;
+	}
+	.actions__group {
+		display: grid;
+		gap: 0.15rem;
+	}
+	.actions__group ul {
+		margin: 0;
+	}
+	.actions__suit {
+		font-family: 'IM Fell Great Primer SC', Georgia, serif;
+		font-size: 0.8rem;
+		color: var(--ct-quiet);
+	}
+	.actions__turn {
+		margin: 0.35rem 0 0;
+		font-size: 0.85rem;
 	}
 	/* The quiet tier, twenty-three times: this is a reference you read, not a
 	   panel you drive, and its weight comes off through ink and type rather than

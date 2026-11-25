@@ -9,6 +9,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A Challenge on the card table runs one step at a time.** It used to be
+  played by hand — the GM stepped the count, opened and closed minor actions and
+  swept the table — and in the first live test nobody could tell what was going
+  on. Now the round walks the book's steps, and "Your move" offers each person
+  exactly what the step allows:
+  - **Initiative.** Pick a card and press Play as initiative; the GM plays one
+    for each group of enemies. The last card down starts the count.
+  - **The count** jumps to the lowest initiative still to act, and those cards
+    turn face up. Only the person whose turn it is is told so.
+  - **Your turn.** Choose an action — grouped by suit, with "any suit" its own
+    group — a card, and who it is aimed at, then Play it. Dodge, Riposte, Aid
+    Another and Vigilance are readied face down and kept; Guard makes the card
+    your new initiative. Or skip. Naming someone as a target turns their
+    initiative face up, and anyone can show theirs.
+  - **Minor actions.** Everyone else puts one down face down, readies one, or
+    passes. When the last person answers, they all turn over together.
+  - **In play.** Every card played shows in the open with who played it and
+    what for. The GM presses Next to clear them away to the right discards and
+    move on.
+  - The Fool and interrupts can be played out of turn, a readied card can be
+    used on anyone's turn, and what nobody has answered yet can be taken back.
+  - The GM can move the round on at any step, for somebody who has gone quiet.
+
+  The count buttons, "Guide the round", the minor-action window and the Sweep
+  are gone. Pressing at the same moment as somebody else no longer bounces: the
+  table tries again. And a refused press says what happened, rather than that
+  the table was no longer taking cards.
+
 - **On the card table, your cards are yours and the GM runs the table.** Anyone
   could move any card, which in the first live test made it impossible to tell
   what was going on. Now you move your own cards, initiative, facedown card and

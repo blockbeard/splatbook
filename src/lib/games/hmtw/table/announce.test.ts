@@ -43,24 +43,48 @@ suite('saying what happened', () => {
 		expect(describe(hidden, nameOf, gmView)).toBe('Zombie B: Health 2 of 6.');
 	});
 
-	it('says "your turn" to the acting player only', () => {
-		const count = ev('count', { count: 7 });
-		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
-			'Initiative 7. Your turn.'
+	it('says "your turn" to the acting player only, when the count reaches them', () => {
+		const played = ev('play-turn', {
+			holder: 's2',
+			action: 'Attack',
+			mode: 'play',
+			step: 'turn',
+			count: 7
+		});
+		expect(describe(played, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
+			'Aldis: Attack. Initiative 7. Your turn.'
 		);
-		expect(describe(count, nameOf, { viewer: 's2', upNow: ['s1'] })).toBe('Initiative 7.');
-		expect(describe(count, nameOf, { viewer: null, upNow: ['s1'] })).toBe('Initiative 7.');
+		expect(describe(played, nameOf, { viewer: 's2', upNow: ['s1'] })).toBe(
+			'Aldis: Attack. Initiative 7.'
+		);
 	});
 
-	it('calls the count, because that is how the table says it is your turn', () => {
-		expect(describe(ev('count', { count: 7 }), nameOf)).toBe('Initiative 7.');
-		expect(describe(ev('count', { count: null }), nameOf)).toBe('The count has stopped.');
+	it('says what an action was for and at whom, and never what card it was', () => {
+		expect(
+			describe(
+				ev('play-turn', { holder: 's1', action: 'Attack', mode: 'play', targetLabel: 'Zombie B' }),
+				nameOf
+			)
+		).toBe('Grimwold: Attack at Zombie B.');
+		expect(
+			describe(ev('play-turn', { holder: 's1', action: 'Dodge', mode: 'ready' }), nameOf)
+		).toBe('Grimwold readied Dodge.');
+		expect(describe(ev('declare-minor', { holder: 's1', label: 'Roughhouse' }), nameOf)).toBe(
+			'Grimwold put down a minor action: Roughhouse.'
+		);
+		// There is nothing else it *could* say: the events carry no card.
 	});
 
-	it('says what a facedown card is for, and never what it is', () => {
-		const said = describe(ev('place-facedown', { holder: 's1', label: 'Riposte' }), nameOf);
-		expect(said).toBe('Grimwold laid a card face down for Riposte.');
-		// There is nothing else it *could* say: the event carries no card.
+	it('says when minor actions open and when they turn over', () => {
+		expect(
+			describe(
+				ev('play-turn', { holder: 's1', action: 'Attack', mode: 'play', step: 'minor', count: 4 }),
+				nameOf
+			)
+		).toBe('Grimwold: Attack. Any minor actions?');
+		expect(
+			describe(ev('pass-minor', { holders: ['s2', 'gm'], step: 'resolve', count: 4 }), nameOf)
+		).toBe('Aldis and The GM passed. Everything is face up.');
 	});
 
 	suite('moves, in the table’s own terms rather than in zone ids', () => {
@@ -131,8 +155,8 @@ suite('saying what happened', () => {
 	});
 
 	it('names a seat it has never heard of without falling over', () => {
-		expect(describe(ev('reveal-facedown', { holder: 'gone' }), nameOf)).toBe(
-			'Someone turned their face-down card over.'
+		expect(describe(ev('show-initiative', { holder: 'gone' }), nameOf)).toBe(
+			'Someone showed their initiative.'
 		);
 	});
 });
@@ -144,8 +168,8 @@ suite('a batch from one poll', () => {
 		const said = announce(
 			[
 				ev('begin-round', { round: 1, playerHand: 4, gmHand: 3 }, 1),
-				ev('count', { count: 2 }, 2),
-				ev('count', { count: 5 }, 3)
+				ev('start-count', { step: 'turn', count: 2 }, 2),
+				ev('step-on', { step: 'turn', count: 5 }, 3)
 			],
 			nameOf
 		);
@@ -154,7 +178,10 @@ suite('a batch from one poll', () => {
 
 	it('looks past events that have nothing to say', () => {
 		expect(
-			announce([ev('count', { count: 9 }, 1), ev('clear-facedown', { holder: 's1' }, 2)], nameOf)
+			announce(
+				[ev('step-on', { step: 'turn', count: 9 }, 1), ev('update-opponent', { id: 'x' }, 2)],
+				nameOf
+			)
 		).toBe('Initiative 9.');
 	});
 

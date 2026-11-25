@@ -94,6 +94,32 @@ function announceMove(data: { from: string; to: string; seat?: string | null }, 
 }
 
 /**
+ * Add where the round got to, when an event moved it: the count jumping, minor
+ * actions opening or turning over, the round ending.
+ */
+function withRound(
+	said: string,
+	d: Record<string, unknown>,
+	listener: Listener | undefined,
+	latest: boolean
+): string {
+	if (typeof d.step !== 'string') return said;
+	const step =
+		d.step === 'turn'
+			? latest && listener?.viewer && listener.upNow.includes(listener.viewer)
+				? `Initiative ${d.count}. Your turn.`
+				: `Initiative ${d.count}.`
+			: d.step === 'minor'
+				? 'Any minor actions?'
+				: d.step === 'resolve'
+					? 'Everything is face up.'
+					: d.step === 'over'
+						? 'Everyone has had a turn.'
+						: '';
+	return [said, step].filter(Boolean).join(' ');
+}
+
+/**
  * What to say about one event, or nothing if it is not worth saying.
  *
  * `nameOf` resolves a seat id to the name the table shows; it should answer
@@ -122,21 +148,62 @@ export function describe(
 			return d.shuffled
 				? `Round ${d.round} ended. The Fool came out, so both decks were shuffled.`
 				: `Round ${d.round} ended.`;
-		case 'count':
-			// The one a player most needs, and the reason this exists: it is how
-			// the table says your turn has come.
-			if (d.count === null || d.count === undefined) return 'The count has stopped.';
-			return latest && listener?.viewer && listener.upNow.includes(listener.viewer)
-				? `Initiative ${d.count}. Your turn.`
-				: `Initiative ${d.count}.`;
-		case 'minor-actions':
-			return d.open ? 'Minor actions are open.' : 'Minor actions are closed.';
-		case 'place-facedown':
-			return `${nameOf(d.holder as string)} laid a card face down for ${d.label}.`;
-		case 'reveal-facedown':
-			return `${nameOf(d.holder as string)} turned their face-down card over.`;
-		case 'sweep':
-			return 'The table was swept.';
+		// The round's steps (phase 32). Each says who did what; when the round
+		// moved because of it, where it got to — "Initiative 7. Your turn." to
+		// the one person it is true for.
+		case 'play-initiative':
+			return withRound(`${nameOf(d.holder as string)} played initiative.`, d, listener, latest);
+		case 'start-count':
+		case 'step-on':
+			return withRound('', d, listener, latest) || null;
+		case 'play-turn': {
+			const who = nameOf(d.holder as string);
+			const at =
+				typeof d.target === 'string'
+					? ` at ${nameOf(d.target)}`
+					: typeof d.targetLabel === 'string'
+						? ` at ${d.targetLabel}`
+						: '';
+			const what =
+				d.mode === 'ready'
+					? `${who} readied ${d.action}.`
+					: d.mode === 'guard'
+						? `${who} Guards: a new initiative.`
+						: `${who}: ${d.action}${at}.`;
+			return withRound(what, d, listener, latest);
+		}
+		case 'skip-turn':
+			return withRound(`${nameOf(d.holder as string)} skipped their turn.`, d, listener, latest);
+		case 'play-out-of-turn': {
+			const at =
+				typeof d.target === 'string'
+					? ` at ${nameOf(d.target)}`
+					: typeof d.targetLabel === 'string'
+						? ` at ${d.targetLabel}`
+						: '';
+			return `Out of turn, ${nameOf(d.holder as string)}: ${d.action}${at}.`;
+		}
+		case 'show-initiative':
+			return `${nameOf(d.holder as string)} showed their initiative.`;
+		case 'declare-minor':
+			return withRound(
+				`${nameOf(d.holder as string)} put down a minor action: ${d.label}.`,
+				d,
+				listener,
+				latest
+			);
+		case 'ready-minor':
+			return withRound(`${nameOf(d.holder as string)} readied ${d.label}.`, d, listener, latest);
+		case 'pass-minor': {
+			const holders = Array.isArray(d.holders) ? (d.holders as string[]) : [];
+			return withRound(`${listOf(holders.map((h) => nameOf(h)))} passed.`, d, listener, latest);
+		}
+		case 'take-back':
+			return `${nameOf(d.holder as string)} took it back.`;
+		case 'use-readied':
+			return `${nameOf(d.holder as string)} used ${typeof d.label === 'string' ? d.label : 'a readied card'}.`;
+		case 'drop-readied':
+			return `${nameOf(d.holder as string)} gave up a readied card.`;
 		case 'mulligan':
 			return 'The GM took a new hand.';
 		case 'reshuffle':
@@ -151,8 +218,6 @@ export function describe(
 			return 'An enemy left the fight.';
 		case 'clear-fate':
 			return 'The Test of Fate was cleared.';
-		case 'guided':
-			return d.on ? 'The table is walking the round.' : 'The table has stopped walking the round.';
 		case 'set-scene-zones': {
 			const zones = Array.isArray(d.zones) ? (d.zones as string[]) : [];
 			return zones.length ? `The zones are ${listOf(zones)}.` : 'The scene has no zones.';

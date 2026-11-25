@@ -188,36 +188,37 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 		player.getByRole('button', { name: CARD_NAMES[playerHand[0]], exact: true })
 	).toBeVisible();
 
-	// --- The player plays a card face up. Everyone may see that one. ---
+	// --- Initiative: pick a card, then say it is your initiative (phase 32). ---
 	// Picked by name, not by position: a hand is rendered sorted by value —
 	// ch.7's own worked example has the GM do that — so "the first card in the
 	// hand" and "the first card in the projection" are different cards.
-	const played = playerHand[0];
-	await player.getByRole('button', { name: CARD_NAMES[played], exact: true }).click();
-	await player
-		.locator('.combatant', { hasText: playerName })
-		.getByRole('button', { name: 'Play here' })
-		.click();
+	const spoken = player.locator('.ct-announcer');
+	const initiative = playerHand[0];
+	await player.getByRole('button', { name: CARD_NAMES[initiative], exact: true }).click();
+	await player.getByRole('button', { name: 'Play as initiative' }).click();
 
+	// The only initiative down, so the count starts by itself and it is the
+	// player's turn — said to them, and to nobody else. The live region is how
+	// a player who cannot see the table learns their turn has come.
+	await expect(player.getByText(/— your turn: play a card or skip\./)).toBeVisible(POLLED);
+	await expect(spoken).toHaveText(/Initiative \d+\. Your turn\./, POLLED);
+	await expect(gm.getByText(new RegExp(`— ${playerName} to act\\.`))).toBeVisible(POLLED);
+	// Turned face up for everyone, because its number came.
 	await expect
 		.poll(
 			async () =>
-				(await projectionFor(gmContext, token)).state.zones[`seat:${playerSeat}:played`].cards,
-			{ timeout: 10_000 }
+				(await projectionFor(gmContext, token)).state.zones[`seat:${playerSeat}:initiative`].cards,
+			POLLED
 		)
-		.toContain(played);
+		.toEqual([initiative]);
 
-	// --- And one face down, with a declared action. ---
+	// --- The turn: a Riposte, readied face down with what it is for. ---
 	// Ch.7 makes the intent public while the value stays private, which is the
 	// hardest thing on this table to get right: three audiences, one card.
 	const hidden = playerHand[1];
 	await player.getByRole('button', { name: CARD_NAMES[hidden], exact: true }).click();
-	// Not scoped to a combatant any more: the two "Play facedown" buttons only
-	// ever appeared on your own seat, and they moved down to the hand so that
-	// every *other* seat stopped reserving room for a block it could not show.
-	await player.getByRole('button', { name: 'Play facedown — your turn' }).click();
-	await player.getByLabel('What is it for?').fill('Riposte');
-	await player.getByRole('button', { name: 'Lay it down' }).click();
+	await player.locator('.actions').getByRole('button', { name: 'Riposte', exact: true }).click();
+	await player.getByRole('button', { name: 'Ready it', exact: true }).click();
 
 	const afterDown = { gm: await projectionFor(gmContext, token) };
 	await expect
@@ -233,18 +234,14 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 	expect(afterDown.gm.state.zones[`seat:${playerSeat}:facedown`].cards).toBeUndefined();
 	assertUnseen(afterDown.gm, [hidden], 'the GM');
 
-	// Its owner sees both: what it is, and that it is still face down. A card
-	// that looked face-up to its holder would leave them guessing about the one
-	// thing they must never guess about — so the mark sits on an intact back
-	// rather than turning it over, and the accessible name says both.
+	// Its owner sees both: what it is, and that it is still face down.
 	const ownerView = await projectionFor(playerContext, token);
 	expect(ownerView.state.zones[`seat:${playerSeat}:facedown`].cards).toEqual([hidden]);
 	await expect(
 		player.getByRole('button', { name: `${CARD_NAMES[hidden]}, face down, declared Riposte` })
 	).toBeVisible(POLLED);
 
-	// The three audiences, in one assertion each. The GM is shown a back that
-	// says what it is for and not what it is.
+	// The GM is shown a back that says what it is for and not what it is.
 	await expect(gm.getByRole('button', { name: 'Face-down card, declared Riposte' })).toBeVisible(
 		POLLED
 	);
@@ -252,19 +249,23 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 		0
 	);
 
-	// --- The table says what happened, for somebody who cannot see it. ---
-	// Everything here moves because somebody else moved it. Without a live
-	// region you are sitting at a table that silently rearranges itself, and the
-	// count is the case that matters most: it is how the table says your turn
-	// has come.
-	const spoken = player.locator('.ct-announcer');
-	// "On one" — the count buttons carry real names rather than a bare glyph,
-	// which is the only reason this locator can exist.
-	await gm.getByRole('button', { name: 'On one' }).click();
-	await expect(spoken).toHaveText(/Initiative \d+\./, POLLED);
+	// Nothing face up and nobody else to answer: the round is over, and the
+	// end-of-round check is said to everyone.
+	await expect(player.getByText(/the enemies surrender/)).toBeVisible(POLLED);
 
-	// --- Sweep and end the round. Facedown cards stay; the round moves on. ---
-	await gm.getByRole('button', { name: 'End the round' }).click();
+	// --- The readied card is used: face up, into the open, with its label. ---
+	await player.getByRole('button', { name: 'Use my readied card' }).click();
+	await expect
+		.poll(
+			async () =>
+				(await projectionFor(gmContext, token)).state.zones[`seat:${playerSeat}:played`].cards,
+			POLLED
+		)
+		.toContain(hidden);
+	await expect(gm.locator('.play')).toContainText('Riposte', POLLED);
+
+	// --- End the round. Hands and initiative go; the round waits for a deal. ---
+	await gm.locator('.guide').getByRole('button', { name: 'End the round' }).click();
 	await expect
 		.poll(async () => (await projectionFor(gmContext, token)).state.zones['discard:player'].count, {
 			timeout: 10_000
