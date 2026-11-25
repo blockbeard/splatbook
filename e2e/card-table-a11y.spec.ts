@@ -90,7 +90,8 @@ async function signIn(page: Page, name: string, email: string) {
 }
 
 test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ browser }) => {
-	test.slow();
+	// Fourteen states, each scanned in two rooms: well past the default budget.
+	test.setTimeout(240_000);
 	const run = Date.now().toString(36);
 	const failures: string[] = [];
 
@@ -174,6 +175,38 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await player.getByRole('button', { name: /Play facedown — your turn/ }).click();
 	failures.push(...(await scan(player, 'declaring')));
 	await player.getByRole('button', { name: 'Never mind' }).click();
+
+	// Phase 31's states: the zone editor open, a scene with somebody placed, and
+	// a group of creatures unfolded with its Health and Defense steppers — the
+	// densest controls on the table, and the ones a player now touches mid-fight.
+	await gm.getByText('Name the zones…').click();
+	await gm.getByRole('textbox', { name: 'Zone 1', exact: true }).fill('Nave');
+	await gm.getByRole('textbox', { name: 'Zone 2', exact: true }).fill('Altar');
+	failures.push(...(await scan(gm, 'zone editor')));
+	await gm.getByRole('button', { name: 'Save the zones' }).click();
+	await expect(gm.locator('.scene').getByText('Altar', { exact: true })).toBeVisible();
+	await player.getByLabel(`Where Grimwold ${run} is`).selectOption({ label: 'Nave' });
+	// Wait for the GM's page to catch up first. A command sent from a version
+	// behind is refused as a conflict and not sent again (phase 32 changes that
+	// for the round's own steps), so "Add" would be lost.
+	await expect(gm.locator('.scene__row', { hasText: 'Nave' })).toContainText(`Grimwold ${run}`, {
+		timeout: 15_000
+	});
+	await gm.getByLabel('Enemy name').fill('Zombie');
+	await gm.getByLabel('How many').fill('3');
+	await gm.getByLabel('Health', { exact: true }).fill('4');
+	await gm.getByLabel('Defense', { exact: true }).fill('2');
+	await gm.locator('.add-enemy').getByRole('button', { name: 'Add' }).click();
+	await gm.getByText('3 of 3 up').click();
+	await gm
+		.locator('.cr', { hasText: 'Zombie B' })
+		.getByRole('button', { name: 'Down', exact: true })
+		.click();
+	await expect(gm.getByText('2 of 3 up')).toBeVisible({ timeout: 15_000 });
+	failures.push(...(await scan(gm, 'scene and creatures, GM')));
+	await expect(player.getByText('2 of 3 up')).toBeVisible({ timeout: 15_000 });
+	await player.getByText('2 of 3 up').click();
+	failures.push(...(await scan(player, 'scene and creatures, player')));
 
 	await gm.getByRole('button', { name: 'Guide the round' }).click();
 	failures.push(...(await scan(gm, 'guided')));
