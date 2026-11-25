@@ -284,7 +284,16 @@ export const hmtwCardTable: CardTableModule = {
 
 		switch (parsed.data.type) {
 			case 'move': {
-				const moved = moveCard(table, parsed.data.from, parsed.data.to, actor);
+				// A draw from an empty deck shuffles its discard back in first, as a
+				// deal already does and as anyone at a physical table would. Without
+				// it a Test of Fate from an empty deck simply failed, and only the GM
+				// may shuffle.
+				const fromDeck = parsed.data.from.zone.match(/^deck:(player|gm)$/)?.[1] as
+					'player' | 'gm' | undefined;
+				const refill =
+					fromDeck !== undefined && (table.zones[parsed.data.from.zone]?.cards.length ?? 1) === 0;
+				const source = refill && fromDeck ? reshuffleDeck(table, fromDeck, context.rng) : table;
+				const moved = moveCard(source, parsed.data.from, parsed.data.to, actor);
 				if (!moved.ok) return fail(moved.reason);
 				// "When the Fool is drawn, shuffle both decks at the end of the
 				// round." Drawn is drawn: turning it over onto a discard during a
@@ -299,7 +308,8 @@ export const hmtwCardTable: CardTableModule = {
 				return state(next, 'move', {
 					from: parsed.data.from.zone,
 					to: parsed.data.to,
-					seat: context.actorSeatId
+					seat: context.actorSeatId,
+					...(refill ? { reshuffled: true } : {})
 				});
 			}
 			case 'set-mode': {

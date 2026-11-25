@@ -18,6 +18,7 @@
 	import Hand from './Hand.svelte';
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
+	import PileViewer from './PileViewer.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { gmDrawFacts } from './draw';
 	import Scene from './Scene.svelte';
@@ -167,6 +168,31 @@
 		if (move) onCommand({ type: 'move', from: move.from, to: move.to });
 	}
 
+	/*
+	 * A discard opened to look through, as Decks mode has always allowed. The
+	 * first live test found the Challenge's could not be opened at all.
+	 */
+	let openPile = $state<string | null>(null);
+	let zoomed = $state<string | null>(null);
+	let openedFrom: HTMLElement | null = null;
+
+	function openPileFrom(id: string) {
+		openedFrom = document.activeElement as HTMLElement | null;
+		openPile = id;
+	}
+
+	function closePane() {
+		openPile = null;
+		openedFrom?.focus();
+		openedFrom = null;
+	}
+
+	function onKey(event: KeyboardEvent) {
+		if (event.key !== 'Escape') return;
+		if (zoomed) zoomed = null;
+		else if (openPile) closePane();
+	}
+
 	function declare() {
 		if (!declaring || !selectedPick) return;
 		onCommand({
@@ -202,6 +228,8 @@
 		newEnemyDefense = null;
 	}
 </script>
+
+<svelte:window onkeydown={onKey} />
 
 <div class="ch">
 	{#if guide}
@@ -370,6 +398,7 @@
 				droppable={selectedPick !== null}
 				onSelect={select}
 				onDrop={drop}
+				onOpen={(id) => openPileFrom(id)}
 			/>
 		{/each}
 	</div>
@@ -702,6 +731,18 @@
 		</div>
 	{/if}
 </div>
+
+{#if openPile}
+	<PileViewer
+		pile={zone(openPile)}
+		{faces}
+		selected={selectedPick}
+		hint="Pick a card up to move it, or look closer."
+		bind:zoomed
+		onSelect={select}
+		onClose={closePane}
+	/>
+{/if}
 
 {#if declaring}
 	<div class="declare__ask">

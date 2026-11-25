@@ -92,10 +92,13 @@ function announceMove(data: { from: string; to: string; seat?: string | null }, 
 export function describe(event: TableEvent, nameOf: NameOf, listener?: Listener): string | null {
 	const d = (event.data ?? {}) as Record<string, unknown>;
 	switch (event.kind) {
-		case 'move':
-			return typeof d.from === 'string' && typeof d.to === 'string'
-				? announceMove({ from: d.from, to: d.to, seat: d.seat as string | null }, nameOf)
-				: null;
+		case 'move': {
+			if (typeof d.from !== 'string' || typeof d.to !== 'string') return null;
+			const said = announceMove({ from: d.from, to: d.to, seat: d.seat as string | null }, nameOf);
+			return d.reshuffled
+				? `The ${deckName(d.from.split(':')[1])} deck was empty, so its discard was shuffled back in. ${said}`
+				: said;
+		}
 		case 'begin-round':
 			return `Round ${d.round} dealt. Players draw ${d.playerHand}, the GM draws ${d.gmHand}.`;
 		case 'end-round':

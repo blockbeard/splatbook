@@ -16,6 +16,7 @@
 	import Pile from './Pile.svelte';
 	import SeatRail from './SeatRail.svelte';
 	import Card from './Card.svelte';
+	import PileViewer from './PileViewer.svelte';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { createSelection, type Pick } from '$lib/card-table/selection';
@@ -74,7 +75,6 @@
 	 * not a modal — the table behind it stays usable, which is deliberate, so
 	 * this moves focus rather than trapping it.
 	 */
-	let paneEl = $state<HTMLElement | null>(null);
 	let openedFrom: HTMLElement | null = null;
 
 	function openPileFrom(id: string, event?: Event) {
@@ -87,10 +87,6 @@
 		openedFrom?.focus();
 		openedFrom = null;
 	}
-
-	$effect(() => {
-		if (openPile && paneEl) paneEl.focus();
-	});
 
 	function onKey(event: KeyboardEvent) {
 		if (event.key !== 'Escape') return;
@@ -226,54 +222,15 @@
 </div>
 
 {#if openPile}
-	{@const pile = zone(openPile)}
-	<div class="pane" bind:this={paneEl} tabindex="-1" aria-label="{pile.count} cards">
-		<div class="pane__head">
-			<h2 class="ct-zone-label">{pile.count} cards</h2>
-			<p class="pane__hint">
-				Pick one up, then click a seat's Inspiration slot to give it to them.
-			</p>
-			<button type="button" class="ct-btn ct-btn--quiet" onclick={closePane}>Close</button>
-		</div>
-		<div class="pane__cards">
-			{#each pile.cards ?? [] as card (card)}
-				<div class="pane__card">
-					<Card
-						face={faces[card] ?? null}
-						greaterDoom={faces[card]?.greaterDoom ?? false}
-						selected={selectedPick?.card === card}
-						pick={{ zone: pile.id, card }}
-						onSelect={select}
-						onContext={() => (zoomed = card)}
-					/>
-					<!-- A visible control, because nothing may be reachable only by
-					     right-click. The context gesture is the shortcut, not the way. -->
-					<button type="button" class="pane__zoom" onclick={() => (zoomed = card)}>
-						Look closer
-					</button>
-				</div>
-			{/each}
-		</div>
-	</div>
-{/if}
-
-{#if zoomed}
-	{@const face = faces[zoomed]}
-	<button type="button" class="zoom" onclick={() => (zoomed = null)} aria-label="Close">
-		<span class="zoom__card">
-			{#if face?.art}
-				<!-- The plates are 360px wide, which is five times what the table
-				     draws. This is the view that spends the rest of them, and it was
-				     the argument for having pictures at all — a card you can
-				     actually look at. -->
-				<img class="zoom__art" src={face.art} alt="" />
-			{/if}
-			<span class="zoom__name">{face?.name}</span>
-			<!-- The value alone: "X of Wands" already contains the rank, and saying
-			     it twice was the same redundancy the card face drops. -->
-			<span class="zoom__rank">{face?.value}</span>
-		</span>
-	</button>
+	<PileViewer
+		pile={zone(openPile)}
+		{faces}
+		selected={selectedPick}
+		hint="Pick one up, then click a seat's Inspiration slot to give it to them."
+		bind:zoomed
+		onSelect={select}
+		onClose={closePane}
+	/>
 {/if}
 
 <style>
@@ -335,83 +292,5 @@
 		gap: 0.75rem;
 		align-items: center;
 		flex-wrap: wrap;
-	}
-	.pane {
-		position: fixed;
-		inset-block-end: 0;
-		inset-inline: 0;
-		max-block-size: 60vh;
-		overflow: auto;
-		background: var(--ct-table-low);
-		border-block-start: 1px solid var(--ct-rule-strong);
-		padding: 1rem;
-	}
-	.pane__head {
-		display: flex;
-		gap: 1rem;
-		align-items: baseline;
-		flex-wrap: wrap;
-	}
-	.pane__hint {
-		margin: 0;
-		font-size: 0.85rem;
-		color: var(--ct-quiet);
-	}
-	.pane__head button {
-		margin-inline-start: auto;
-	}
-	.pane__cards {
-		display: flex;
-		gap: 0.6rem;
-		flex-wrap: wrap;
-		margin-block-start: 0.75rem;
-	}
-	.pane__card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.2rem;
-	}
-	.pane__zoom {
-		background: none;
-		border: 0;
-		padding: 0.25rem;
-		font: inherit;
-		font-size: 0.75rem;
-		color: var(--ct-quiet);
-		text-decoration: underline;
-		text-underline-offset: 2px;
-		cursor: pointer;
-	}
-	.zoom {
-		position: fixed;
-		inset: 0;
-		background: rgb(0 0 0 / 78%);
-		border: 0;
-		display: grid;
-		place-items: center;
-		cursor: zoom-out;
-	}
-	.zoom__art {
-		inline-size: min(62vw, 20rem);
-		block-size: auto;
-		border: 1px solid var(--ct-card-ink);
-		mix-blend-mode: multiply;
-	}
-	.zoom__card {
-		background: var(--ct-card);
-		color: var(--ct-card-ink);
-		padding: 1.25rem 1.25rem 1rem;
-		border-radius: 4px;
-		display: grid;
-		gap: 0.5rem;
-		text-align: center;
-	}
-	.zoom__rank {
-		font-family: 'IM Fell Great Primer SC', Georgia, serif;
-		font-size: 2.5rem;
-	}
-	.zoom__name {
-		font-family: 'IM Fell English', Georgia, serif;
 	}
 </style>

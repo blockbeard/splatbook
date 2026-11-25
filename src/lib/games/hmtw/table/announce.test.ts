@@ -20,6 +20,12 @@ suite('saying what happened', () => {
 		);
 	});
 
+	it('says when an empty deck was shuffled to make a draw', () => {
+		expect(
+			describe(ev('move', { from: 'deck:gm', to: 'fate', seat: 's1', reshuffled: true }), nameOf)
+		).toMatch(/^The GM deck was empty, so its discard was shuffled back in\. /);
+	});
+
 	it('says "your turn" to the acting player only', () => {
 		const count = ev('count', { count: 7 });
 		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(

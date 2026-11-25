@@ -547,3 +547,34 @@ describe('the Fool’s reshuffle', () => {
 		expect(loud.ok && loud.data).toMatchObject({ shuffled: true });
 	});
 });
+
+describe('a draw from an empty deck', () => {
+	const run = (t: CardTable, command: unknown, actor = 'p1') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out;
+	};
+
+	it('shuffles the discard back in first, so a Test of Fate never just fails', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), [
+			{ id: 'p1', isGm: false },
+			{ id: 'gm', isGm: true }
+		]) as CardTable;
+		// Everything in the GM deck to its discard.
+		while (t.zones['deck:gm'].cards.length > 0) {
+			t = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'discard:gm' }).state as CardTable;
+		}
+		const out = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'fate' });
+		const after = out.state as CardTable;
+		expect(after.zones.fate.cards).toHaveLength(1);
+		expect(after.zones['deck:gm'].cards).toHaveLength(20);
+		expect(after.zones['discard:gm'].cards).toHaveLength(0);
+		expect(out.ok && out.data).toMatchObject({ reshuffled: true });
+	});
+
+	it('says nothing about shuffling when the deck had cards', () => {
+		const t = hmtwCardTable.syncSeats(fresh(), [{ id: 'p1', isGm: false }]) as CardTable;
+		const out = run(t, { type: 'move', from: { zone: 'deck:player' }, to: 'fate' });
+		expect(out.ok && out.data).not.toHaveProperty('reshuffled');
+	});
+});

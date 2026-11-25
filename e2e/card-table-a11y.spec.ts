@@ -151,6 +151,17 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await expect(gm.getByText('Lesser dooms', { exact: false })).toBeVisible({ timeout: 15_000 });
 	failures.push(...(await scan(gm, 'challenge, dealt')));
 
+	// A Challenge discard opened to look through. The first live test found it
+	// could not be opened at all; a mulligan is the quickest way to fill one.
+	await gm.getByRole('button', { name: 'Mulligan' }).click();
+	await gm.locator('.ch__decks').getByRole('button', { name: 'look through' }).click({
+		timeout: 15_000
+	});
+	await expect(gm.locator('.pane')).toBeVisible();
+	failures.push(...(await scan(gm, 'challenge discard pane')));
+	await gm.keyboard.press('Escape');
+	await expect(gm.locator('.pane')).toHaveCount(0);
+
 	await expect(player.locator('.hand button').first()).toBeVisible({ timeout: 15_000 });
 	failures.push(...(await scan(player, 'challenge, player')));
 
