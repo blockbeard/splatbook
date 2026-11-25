@@ -147,6 +147,18 @@ describe('the guide', () => {
 		expect(s.action?.command).toEqual({ type: 'advance-count' });
 	});
 
+	it('says who is holding the round open, by name only', () => {
+		const s = suggest(
+			table({
+				round: { ...table().round, count: 4, settled: 4 },
+				upNow: ['daria'],
+				stillToAct: ['chirm']
+			}),
+			seats
+		);
+		expect(s.text).toBe('4 is done. Still to act: Chirm.');
+	});
+
 	it('still names whoever is up on a number that has not been settled', () => {
 		const s = suggest(
 			table({ round: { ...table().round, count: 5, settled: 4 }, upNow: ['daria'] }),

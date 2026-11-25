@@ -578,3 +578,38 @@ describe('a draw from an empty deck', () => {
 		expect(out.ok && out.data).not.toHaveProperty('reshuffled');
 	});
 });
+
+describe('the end-of-round check', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out.state as CardTable;
+	};
+	const done = (t: CardTable, viewer = 'p1') =>
+		(hmtwCardTable.project(t, viewer) as { roundDone: boolean }).roundDone;
+
+	function atLastNumber() {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' });
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 });
+		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:initiative' }, 'p1');
+		const card = t.zones['seat:p1:initiative'].cards[0];
+		return run(t, { type: 'set-count', count: t.valueOf[card] });
+	}
+
+	it('comes when the GM sweeps instead of closing minor actions', () => {
+		const t = run(atLastNumber(), { type: 'minor-actions', open: true });
+		expect(done(t)).toBe(false);
+		expect(done(run(t, { type: 'sweep' }))).toBe(true);
+	});
+
+	it('comes when the GM counts on past the last card', () => {
+		const t = atLastNumber();
+		expect(done(t)).toBe(false);
+		expect(done(run(t, { type: 'advance-count' }))).toBe(true);
+	});
+});

@@ -117,9 +117,13 @@ export function suggest(
 
 	// The number has had its turn and its minor actions. Saying "that is you" to
 	// somebody who has already gone is how a prompter becomes noise.
+	// Who is holding the round open, by name only; never their numbers.
+	const waiting = listOf((table.stillToAct ?? []).map((id) => nameOf(id, seats, table.opponents)));
+	const stillToCome = waiting ? ` Still to act: ${waiting}.` : '';
+
 	if (round.settled !== null && round.settled === round.count) {
 		return {
-			text: `${round.count} is done.`,
+			text: `${round.count} is done.${stillToCome}`,
 			action: { label: 'Count on', command: { type: 'advance-count' } },
 			gmOnly: true
 		};
@@ -150,7 +154,7 @@ export function suggest(
 
 	// Nobody on this number. Ch.7's count simply carries on.
 	return {
-		text: `${round.count} — nobody.`,
+		text: `${round.count} — nobody.${stillToCome}`,
 		action: { label: 'Count on', command: { type: 'advance-count' } },
 		gmOnly: true
 	};

@@ -373,6 +373,12 @@ export const hmtwCardTable: CardTableModule = {
 				for (const opponent of table.opponents) {
 					next = discardAll(next, opponentZone(opponent.id, 'played'), 'gm');
 				}
+				// Sweeping is what you do once a number is over, so it settles the
+				// number as closing minor actions does. Without this, sweeping instead
+				// of closing held the end-of-round check back (first live test).
+				if (next.round.count !== null && next.round.settled !== next.round.count) {
+					next = setMinorActions(next, false);
+				}
 				return state(next, 'sweep', { seat: context.actorSeatId });
 			}
 			case 'add-opponent':

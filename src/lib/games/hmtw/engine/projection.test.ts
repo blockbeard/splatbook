@@ -286,6 +286,26 @@ describe('the round being over', () => {
 		).toBe(false);
 	});
 
+	it('is over once the count has gone past the last card, settled or not', () => {
+		// The first live test's missing prompt: the GM pressed + after the last
+		// turn, which clears "settled", and the end-of-round check never came.
+		const t = inPlay();
+		const values = Object.values(t.zones)
+			.filter((z) => z.id.endsWith(':initiative'))
+			.flatMap((z) => z.cards.slice(0, 1))
+			.map((c) => t.valueOf[c]);
+		const top = Math.max(...values);
+		expect(roundIsDone({ ...t, round: { ...t.round, count: top + 1, settled: null } })).toBe(true);
+	});
+
+	it('names who is still to act, and never what they hold', () => {
+		const t = inPlay();
+		const counting = { ...t, round: { ...t.round, count: 1 } };
+		const view = projectFor(counting, 's2');
+		expect(view.stillToAct.length).toBeGreaterThan(0);
+		expect(projectFor(t, 's2').stillToAct).toEqual([]);
+	});
+
 	it('says only yes or no — no card or value rides along', () => {
 		const view = projectFor(inPlay(), 's1');
 		expect(typeof view.roundDone).toBe('boolean');
