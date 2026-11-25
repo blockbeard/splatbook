@@ -32,6 +32,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     used on anyone's turn, and what nobody has answered yet can be taken back.
   - The GM can move the round on at any step, for somebody who has gone quiet.
 
+  From the second live test: a minor action can say who it is aimed at, and
+  their initiative turns face up when it is revealed; "Ready it" leads for
+  Dodge, Riposte, Aid Another and Vigilance and is not offered for the rest;
+  "Show my initiative" waits for the count to start; and the GM's Next is a
+  filled button, under the cards in play as well as in the top line. A player
+  who asks for a seat while a Challenge is running sees their hand without
+  reloading.
+
   The count buttons, "Guide the round", the minor-action window and the Sweep
   are gone. Pressing at the same moment as somebody else no longer bounces: the
   table tries again. And a refused press says what happened, rather than that

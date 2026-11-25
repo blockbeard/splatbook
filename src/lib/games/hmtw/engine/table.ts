@@ -42,13 +42,15 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v13: `enemyHealth`, whether players see enemy Health and Defense.
  * v14: no split groups. A group shares one initiative wherever its creatures
  *   stand, so any split-off group is rejoined to its family.
- * v15 (this commit): the round as steps — `round.step`, `acted`, `answered`,
+ * v15: the round as steps — `round.step`, `acted`, `answered`,
  *   `shown`, `playedHere` in place of the hand-run count's `minorActions`,
  *   `settled`, `interrupt` and `extraTurn`; a `minor` zone per seat and
  *   group; `plays` and `minorDeclared`; and `guided` gone, since the steps are
  *   the guide.
+ * v16 (this commit): `minorTargets`, who a face-down minor action is aimed at,
+ *   from the second live test (25 November 2026).
  */
-export const TABLE_SCHEMA_VERSION = 15;
+export const TABLE_SCHEMA_VERSION = 16;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -161,6 +163,13 @@ export interface CardTable {
 	/** The declared action of each face-down minor-action card, by zone. Public, as the book has it. */
 	minorDeclared: Record<string, string>;
 	/**
+	 * Who a face-down minor action is aimed at, by zone: a seat, a group or a
+	 * creature. Public, as the declaration is; it passes to the card's `plays`
+	 * label when the minor actions turn over, and turns the target's initiative
+	 * face up then.
+	 */
+	minorTargets: Record<string, string>;
+	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
 	 * Kept beside the zones rather than inside them because a zone holds card
@@ -258,6 +267,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		valueOf: valuesOf(deck),
 		plays: {},
 		minorDeclared: {},
+		minorTargets: {},
 		scene: emptyScene(),
 		enemyHealth: 'shown',
 		zones
@@ -308,6 +318,8 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v15 → v16: no minor-action targets yet.
  *
  * v14 → v15: the round in steps; see `migrateRound`. A `minor` zone for every
  * seat and group, empty `plays` and `minorDeclared`; `guided` is dropped.
@@ -412,6 +424,8 @@ function migrateShape(raw: CardTable): CardTable {
 		// v15: what played cards were for starts unknown, which is true of them.
 		plays: raw.plays ?? {},
 		minorDeclared: raw.minorDeclared ?? {},
+		// v16: nobody had named a target before there was a place to.
+		minorTargets: raw.minorTargets ?? {},
 		round: newRound(),
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),

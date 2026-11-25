@@ -246,6 +246,23 @@ describe('minor actions', () => {
 		expect(passMinor(t, ['ash'])).toEqual({ ok: false, reason: 'not-up' });
 	});
 
+	it('carry who they are aimed at, and turn the target’s initiative over with them', () => {
+		// The second live test: a minor Attack had nowhere to say who it was at.
+		let t = minorOpen();
+		const belCard = card(t, 'bel', 5);
+		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', 'zombies:A'));
+		expect(t.minorTargets[seatZone('bel', 'minor')]).toBe('zombies:A');
+		expect(t.round.shown).not.toContain('zombies');
+		t = ok(passMinor(t, ['zombies']));
+		expect(t.plays[belCard]).toMatchObject({
+			action: 'Attack',
+			target: 'zombies:A',
+			kind: 'minor'
+		});
+		expect(t.round.shown).toContain('zombies');
+		expect(t.minorTargets).toEqual({});
+	});
+
 	it('turn over at once on the GM’s say-so for somebody quiet', () => {
 		let t = minorOpen();
 		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Aid Another', 'bel'));

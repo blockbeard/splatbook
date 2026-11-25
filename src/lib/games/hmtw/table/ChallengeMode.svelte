@@ -235,7 +235,15 @@
 			<span class="guide__text">{guide.text}</span>
 			{#if guide.action && (!guide.gmOnly || runs)}
 				{@const action = guide.action}
-				<button type="button" disabled={busy} onclick={() => onCommand(action.command)}>
+				<!-- The filled button: the one thing the round is waiting for. "Next"
+				     was a quiet button among the text, and the GM went looking for it in
+				     the second live test. -->
+				<button
+					type="button"
+					class="ct-btn ct-btn--primary"
+					disabled={busy}
+					onclick={() => onCommand(action.command)}
+				>
 					{action.label}
 				</button>
 			{/if}
@@ -295,7 +303,7 @@
 		{/if}
 	</div>
 
-	<PlayArea {table} {seats} {faces} />
+	<PlayArea {table} {seats} {faces} {runs} {busy} {onCommand} />
 
 	{#if isGm}
 		<!--

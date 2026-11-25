@@ -187,7 +187,13 @@ export function describe(
 			return `${nameOf(d.holder as string)} showed their initiative.`;
 		case 'declare-minor':
 			return withRound(
-				`${nameOf(d.holder as string)} put down a minor action: ${d.label}.`,
+				`${nameOf(d.holder as string)} put down a minor action: ${d.label}${
+					typeof d.target === 'string'
+						? ` at ${nameOf(d.target)}`
+						: typeof d.targetLabel === 'string'
+							? ` at ${d.targetLabel}`
+							: ''
+				}.`,
 				d,
 				listener,
 				latest

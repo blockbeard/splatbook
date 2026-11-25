@@ -152,7 +152,13 @@ export const commandSchema = z.discriminatedUnion('type', [
 	}),
 	z.strictObject({ type: z.literal('show-initiative'), holder }),
 	/** A minor action, face down until everyone has answered. */
-	z.strictObject({ type: z.literal('declare-minor'), holder, from: pick, label }),
+	z.strictObject({
+		type: z.literal('declare-minor'),
+		holder,
+		from: pick,
+		label,
+		target: z.string().min(1).max(120).optional()
+	}),
 	/** A facedown action readied as a minor action: sideways, kept. */
 	z.strictObject({ type: z.literal('ready-minor'), holder, from: pick, label }),
 	/** No minor action. The GM may answer for several groups at once. */
@@ -519,11 +525,13 @@ export const hmtwCardTable: CardTableModule = {
 					holder: parsed.data.holder
 				});
 			case 'declare-minor': {
-				const { holder, from, label } = parsed.data;
-				return stepped(table, declareMinor(table, holder, from, label, actor), 'declare-minor', {
-					holder,
-					label
-				});
+				const { holder, from, label, target } = parsed.data;
+				return stepped(
+					table,
+					declareMinor(table, holder, from, label, actor, target),
+					'declare-minor',
+					{ holder, label, ...targetOf(table, target) }
+				);
 			}
 			case 'ready-minor': {
 				const { holder, from, label } = parsed.data;

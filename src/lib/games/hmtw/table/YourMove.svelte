@@ -164,8 +164,13 @@
 					0) > 0
 		)
 	);
+	// Only once the count is running: before it, nobody can be acting against
+	// you, and the button only invited a mistake (second live test).
 	const canShow = $derived(
-		!isGmSeat && step !== 'deal' && hasInitiative(mySeatId) && !table.round.shown.includes(mySeatId)
+		!isGmSeat &&
+			(step === 'turn' || step === 'minor' || step === 'resolve') &&
+			hasInitiative(mySeatId) &&
+			!table.round.shown.includes(mySeatId)
 	);
 	const midRound = $derived(step === 'turn' || step === 'minor' || step === 'resolve');
 </script>
@@ -217,36 +222,51 @@
 			asGm={isGmSeat}
 			onTurn={!minor}
 		/>
-		{#if !minor}
-			<label class="move__target">
-				At
-				<select class="ct-field" bind:value={target}>
-					<option value="">nobody in particular</option>
-					{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
-				</select>
-			</label>
-		{/if}
+		<!-- A minor Attack is aimed at somebody as much as a turn's is (second live
+		     test): their initiative turns over when the minor actions do. -->
+		<label class="move__target">
+			At
+			<select class="ct-field" bind:value={target}>
+				<option value="">nobody in particular</option>
+				{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
+			</select>
+		</label>
 		{#if card && extras.length > 0}
 			<p class="move__extras">With {extras.length} more card{extras.length === 1 ? '' : 's'}.</p>
 		{/if}
 		<div class="move__buttons">
 			{#if minor}
-				<button
-					type="button"
-					class="ct-btn ct-btn--primary"
-					disabled={busy || !card || !label}
-					onclick={() =>
-						card && send({ type: 'declare-minor', holder: actingNow, from: card, label })}
-					>Put it down</button
-				>
-				<button
-					type="button"
-					class="ct-btn"
-					disabled={busy || !card || !label}
-					onclick={() =>
-						card && send({ type: 'ready-minor', holder: actingNow, from: card, label })}
-					>Ready it (keep it)</button
-				>
+				<!-- The book readies Riposte, Dodge, Aid Another and Vigilance and keeps
+				     them; anything else put down as a minor action is turned over with the
+				     rest. So "Ready it" leads for those four and is not offered for an
+				     Attack: in the second live test a Riposte was put down and turned over
+				     instead of being kept. An action typed in gets both. -->
+				{#if chosen?.play !== 'ready'}
+					<button
+						type="button"
+						class="ct-btn ct-btn--primary"
+						disabled={busy || !card || !label}
+						onclick={() =>
+							card &&
+							send({
+								type: 'declare-minor',
+								holder: actingNow,
+								from: card,
+								label,
+								...(target ? { target } : {})
+							})}>Put it down</button
+					>
+				{/if}
+				{#if chosen?.play === 'ready' || (!chosen && custom.trim())}
+					<button
+						type="button"
+						class={chosen?.play === 'ready' ? 'ct-btn ct-btn--primary' : 'ct-btn'}
+						disabled={busy || !card || !label}
+						onclick={() =>
+							card && send({ type: 'ready-minor', holder: actingNow, from: card, label })}
+						>Ready it (keep it)</button
+					>
+				{/if}
 				<button
 					type="button"
 					class="ct-btn"

@@ -60,6 +60,8 @@ export interface ProjectedTable {
 	plays: CardTable['plays'];
 	/** The declared action of each face-down minor-action card, by zone. */
 	minorDeclared: Record<string, string>;
+	/** Who each face-down minor action is aimed at, by zone. */
+	minorTargets: Record<string, string>;
 	/**
 	 * Whose initiative the count has reached — seat and opponent ids.
 	 *
@@ -161,6 +163,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		// Only labels for cards lying face up, which anyone can already see.
 		plays: Object.fromEntries(Object.entries(table.plays).map(([k, v]) => [k, { ...v }])),
 		minorDeclared: { ...table.minorDeclared },
+		minorTargets: { ...table.minorTargets },
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
 			at: { ...table.scene.at },

@@ -274,7 +274,8 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 			}
 			const labels = Object.values(view.plays).map((p) => p.action);
 			expect(labels.length).toBeGreaterThan(0);
-			await gm.locator('.guide').getByRole('button', { name: 'Next' }).click();
+			// Next sits under the cards, where the GM is already looking (second live test).
+			await gm.locator('.play').getByRole('button', { name: /^Next/ }).click();
 		}
 		// Wait for the round to move on before looking again.
 		await expect
