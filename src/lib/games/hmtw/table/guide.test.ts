@@ -75,7 +75,25 @@ describe('the guide', () => {
 
 	it('says whose number it is, once the count has reached it', () => {
 		const s = suggest(table({ round: { ...table().round, count: 4 }, upNow: ['daria'] }), seats);
-		expect(s.text).toBe('4 — Daria, that is you.');
+		expect(s.text).toBe('4 — Daria to act.');
+	});
+
+	it('tells only the acting player that it is their turn', () => {
+		// The first live test: "that is you" on every screen told three players
+		// it was their turn when it was one player's.
+		const at4 = { round: { ...table().round, count: 4 }, upNow: ['daria'] };
+		expect(suggest(table({ ...at4, viewer: 'daria' }), seats).text).toBe('4 — your turn.');
+		expect(suggest(table({ ...at4, viewer: 'chirm' }), seats).text).toBe('4 — Daria to act.');
+		expect(suggest(table({ ...at4, viewer: 'gm' }), seats).text).toBe('4 — Daria to act.');
+		expect(suggest(table({ ...at4, viewer: null }), seats).text).toBe('4 — Daria to act.');
+	});
+
+	it('tells a tied player who else acts on their number', () => {
+		const s = suggest(
+			table({ round: { ...table().round, count: 4 }, upNow: ['daria', 'chirm'], viewer: 'chirm' }),
+			seats
+		);
+		expect(s.text).toBe('4 — your turn. Daria also acts on 4.');
 	});
 
 	it('carries on past a number nobody holds', () => {
@@ -105,7 +123,7 @@ describe('the guide', () => {
 			}),
 			seats
 		);
-		expect(s.text).toBe('4 — Daria, Chirm and Imps, that is you.');
+		expect(s.text).toBe('4 — Daria, Chirm and Imps to act.');
 	});
 
 	it('puts an interrupt before the turn, because the Fool always goes first', () => {
@@ -117,7 +135,7 @@ describe('the guide', () => {
 		expect(s.text).toMatch(/before the turn/);
 	});
 
-	it('stops saying "that is you" once the number is done', () => {
+	it('stops naming whoever is up once the number is done', () => {
 		// The loop this closes: the count still matches whoever just acted, so the
 		// guide went on prompting somebody who had already had their turn and was
 		// waiting for the count to move.
@@ -134,7 +152,7 @@ describe('the guide', () => {
 			table({ round: { ...table().round, count: 5, settled: 4 }, upNow: ['daria'] }),
 			seats
 		);
-		expect(s.text).toBe('5 — Daria, that is you.');
+		expect(s.text).toBe('5 — Daria to act.');
 	});
 
 	it('holds the minor-action window open until the GM closes it', () => {

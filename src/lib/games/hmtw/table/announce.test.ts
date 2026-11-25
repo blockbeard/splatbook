@@ -20,6 +20,15 @@ suite('saying what happened', () => {
 		);
 	});
 
+	it('says "your turn" to the acting player only', () => {
+		const count = ev('count', { count: 7 });
+		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
+			'Initiative 7. Your turn.'
+		);
+		expect(describe(count, nameOf, { viewer: 's2', upNow: ['s1'] })).toBe('Initiative 7.');
+		expect(describe(count, nameOf, { viewer: null, upNow: ['s1'] })).toBe('Initiative 7.');
+	});
+
 	it('calls the count, because that is how the table says it is your turn', () => {
 		expect(describe(ev('count', { count: 7 }), nameOf)).toBe('Initiative 7.');
 		expect(describe(ev('count', { count: null }), nameOf)).toBe('The count has stopped.');

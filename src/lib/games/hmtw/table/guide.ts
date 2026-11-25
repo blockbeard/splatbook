@@ -126,9 +126,20 @@ export function suggest(
 	}
 
 	if (table.upNow.length > 0) {
-		const who = listOf(table.upNow.map((id) => nameOf(id, seats, table.opponents)));
+		// Said to each person, not to the room: "that is you" on every screen
+		// told three players it was their turn when it was one player's (first
+		// live test, 25 November 2026). The viewer is whoever this projection
+		// was made for.
+		const mine = table.viewer !== null && table.upNow.includes(table.viewer);
+		const others = table.upNow.filter((id) => id !== table.viewer);
+		const names = listOf(others.map((id) => nameOf(id, seats, table.opponents)));
+		const text = mine
+			? others.length > 0
+				? `${round.count} — your turn. ${names} also ${others.length > 1 ? 'act' : 'acts'} on ${round.count}.`
+				: `${round.count} — your turn.`
+			: `${round.count} — ${names} to act.`;
 		return {
-			text: `${round.count} — ${who}, that is you.`,
+			text,
 			action: {
 				label: 'Turn resolved — any minor actions?',
 				command: { type: 'minor-actions', open: true }
