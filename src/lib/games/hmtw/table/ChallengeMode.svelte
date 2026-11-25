@@ -21,6 +21,7 @@
 	import PileViewer from './PileViewer.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { gmDrawFacts } from './draw';
+	import { mayReach } from '../engine/zones';
 	import Scene from './Scene.svelte';
 	import ZonePicker from './ZonePicker.svelte';
 	import Creatures from './Creatures.svelte';
@@ -100,6 +101,16 @@
 	let declaredAs = $state('');
 
 	const isGm = $derived(canAct && table.gmSeat === mySeatId);
+	/**
+	 * Whether this seat runs the table: the GM, or anyone while nobody holds the
+	 * GM seat — the same question the server asks.
+	 */
+	const runs = $derived(canAct && (!table.gmSeat || table.gmSeat === mySeatId));
+	/** Ask what the server will, so nothing is offered that it would refuse. */
+	const canPut = (zoneId: string) =>
+		canAct && mySeatId !== null && mayReach(zoneId, mySeatId, runs, 'put');
+	const canTake = (zoneId: string) =>
+		canAct && mySeatId !== null && mayReach(zoneId, mySeatId, runs, 'take');
 
 	/**
 	 * The panel opens by itself on a table that has never dealt, and closes when
@@ -158,12 +169,12 @@
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
 
 	function select(pick: Pick) {
-		if (!canAct) return;
+		if (!canTake(pick.zone)) return;
 		selection.select(pick);
 	}
 
 	function drop(zoneId: string) {
-		if (!canAct) return;
+		if (!canPut(zoneId)) return;
 		const move = selection.place(zoneId);
 		if (move) onCommand({ type: 'move', from: move.from, to: move.to });
 	}
@@ -449,7 +460,7 @@
 						label={seat.name}
 						zones={table.scene.zones}
 						at={table.scene.at[seat.id]}
-						disabled={!canAct || busy}
+						disabled={!canAct || busy || (seat.id !== mySeatId && !runs)}
 						{onCommand}
 					/>
 				{/if}
@@ -462,7 +473,9 @@
 						declared={declaredHere.label}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
-							canAct ? onCommand({ type: 'reveal-facedown', holder: seat.id }) : null}
+							canAct && (seat.id === mySeatId || runs)
+								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								: null}
 					/>
 				{/if}
 
@@ -478,13 +491,15 @@
 								pick={{ zone: init.id }}
 								onSelect={select}
 							/>
-						{:else}
+						{:else if canPut(init.id)}
 							<button
 								type="button"
 								class="slot"
 								onclick={() => drop(init.id)}
 								aria-label={`${seat.name}'s initiative, empty`}>Initiative</button
 							>
+						{:else}
+							<span class="slot slot--empty">Initiative</span>
 						{/if}
 					{/if}
 
@@ -522,7 +537,7 @@
 								onSelect={select}
 							/>
 						{/each}
-						{#if selectedPick}
+						{#if selectedPick && canPut(`seat:${seat.id}:played`)}
 							<!-- A real button, not a clickable div. Click-to-place is what
 							     carries the keyboard story, and a drop target you cannot tab
 							     to would quietly hand that back. -->
@@ -543,7 +558,9 @@
 						declared={declaredHere.label}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
-							canAct ? onCommand({ type: 'reveal-facedown', holder: seat.id }) : null}
+							canAct && (seat.id === mySeatId || runs)
+								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								: null}
 					/>
 				{/if}
 			</section>
@@ -570,8 +587,10 @@
 							pick={{ zone: init.id }}
 							onSelect={select}
 						/>
-					{:else}
+					{:else if canPut(init.id)}
 						<button type="button" class="slot" onclick={() => drop(init.id)}>Initiative</button>
+					{:else}
+						<span class="slot slot--empty">Initiative</span>
 					{/if}
 					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
 						{#each zone(`opponent:${enemy.id}:played`).cards ?? [] as card (card)}
@@ -582,7 +601,7 @@
 								onSelect={select}
 							/>
 						{/each}
-						{#if selectedPick}
+						{#if selectedPick && canPut(`opponent:${enemy.id}:played`)}
 							<button
 								type="button"
 								class="slot slot--drop"
@@ -594,7 +613,7 @@
 				<!-- Below the cards, like an adventurer's: the turn first, the bookkeeping
 				     after it. Above them, a folded group's controls pushed its initiative
 				     slot out of line with every other combatant's. -->
-				<Creatures group={enemy} {table} {isGm} {canAct} {busy} {onCommand} />
+				<Creatures group={enemy} {table} isGm={runs} {canAct} {busy} {onCommand} />
 			</section>
 		{/each}
 
@@ -985,6 +1004,12 @@
 		border-style: solid;
 		border-color: var(--ct-rule-strong);
 		color: var(--ct-mark);
+	}
+	/* An empty slot that is somebody else's to fill: the same shape, nothing to press. */
+	.slot.slot--empty {
+		display: grid;
+		place-items: center;
+		cursor: default;
 	}
 	.slot {
 		inline-size: var(--ct-card-w);

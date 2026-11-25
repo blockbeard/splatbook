@@ -224,6 +224,56 @@ export type CardTableCommand = z.infer<typeof commandSchema>;
 
 const fail = (reason: string): CardTableOutcome => ({ ok: false, reason });
 
+/**
+ * The commands that run the table rather than play on it: the round, the
+ * count, the decks, the roster and the scene. Players sent several of these in
+ * the first live test (25 November 2026) — a player could deal, move the count,
+ * shuffle or redraw the GM's hand — because only a few were checked.
+ */
+const GM_ONLY = new Set<CardTableCommand['type']>([
+	'reshuffle',
+	'reset-table',
+	'guided',
+	'set-mode',
+	'begin-round',
+	'end-round',
+	'mulligan',
+	'set-count',
+	'advance-count',
+	'rewind-count',
+	'minor-actions',
+	'sweep',
+	'add-opponent',
+	'remove-opponent',
+	'update-opponent',
+	'set-scene-zones',
+	'set-scene-picture',
+	'clear-scene-picture',
+	'clear-scene',
+	'add-creatures',
+	'remove-creature',
+	'split-opponent',
+	'merge-opponent'
+]);
+
+/**
+ * Whose a command acts on, when it acts on one person: a facedown slot's
+ * holder, or whoever is being placed in the scene. An enemy's id, or a
+ * creature's, is nobody's seat, so only the GM passes.
+ */
+function ownedBy(command: CardTableCommand): string | null {
+	switch (command.type) {
+		case 'place-facedown':
+		case 'reveal-facedown':
+		case 'clear-facedown':
+			return command.holder;
+		case 'place':
+			return command.who;
+		default:
+			return null;
+	}
+}
+
 /** With nobody in the GM seat, anyone may run the table — the rule `reset-table` already follows. */
 const isGm = (table: CardTable, actor: string | undefined): boolean =>
 	!table.gmSeat || actor === table.gmSeat;
@@ -281,6 +331,13 @@ export const hmtwCardTable: CardTableModule = {
 		if (!parsed.success) return fail('malformed-command');
 		const table = raw as CardTable;
 		const actor = context.actorSeatId ?? undefined;
+
+		// Who may do what. Running the round and the roster is the GM's; your
+		// own cards, facedown slot and place in the scene are yours and the
+		// GM's. Card moves are checked by the engine's `mayReach`.
+		if (GM_ONLY.has(parsed.data.type) && !isGm(table, actor)) return fail('gm-only');
+		const holder = ownedBy(parsed.data);
+		if (holder !== null && holder !== actor && !isGm(table, actor)) return fail('not-yours');
 
 		switch (parsed.data.type) {
 			case 'move': {

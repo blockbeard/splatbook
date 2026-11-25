@@ -141,7 +141,9 @@
 	const isGm = $derived(admitted && table.gmSeat === mySeatId);
 
 	/** The move that would put the last card back, if it is one you may make. */
-	const reversal = $derived(admitted ? reverseOf(events, mySeatId) : null);
+	const reversal = $derived(
+		admitted ? reverseOf(events, mySeatId, !table.gmSeat || table.gmSeat === mySeatId) : null
+	);
 
 	onMount(() => {
 		const token = data.token;

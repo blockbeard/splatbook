@@ -97,6 +97,53 @@ export const deckZone = (deck: DeckId): string => `deck:${deck}`;
 export const discardZone = (deck: DeckId): string => `discard:${deck}`;
 export const seatZone = (seat: string, kind: SeatZoneKind): string => `seat:${seat}:${kind}`;
 
+/**
+ * Whether `actor` may take a card out of a zone, or put one into it.
+ *
+ * Phase 29 let any seat move any card on the table, so that someone could flip
+ * the initiative of a player who had wandered off. The first live test (25
+ * November 2026) showed the cost: anybody could put any card anywhere, and
+ * nobody could tell what was going on. Now your cards are yours and the GM
+ * runs the table:
+ *
+ * - **Your own zones** are yours, and the GM's.
+ * - **A hand** is its owner's alone to take from, the GM's included: it is the
+ *   one place secret from the GM. The GM may put a card back into one.
+ * - **Somebody's inspiration slot** takes a card from anyone (the High Chant:
+ *   "Distribute the cards to other players"); taking it out is theirs or the
+ *   GM's.
+ * - **An enemy's zones** are the GM's.
+ * - **The decks, the discards and the turned-over cards** are anyone's: a Test
+ *   of Fate is a player's, and the High Chant picks from the discard.
+ *
+ * `runsTable` is whether the actor holds the GM seat — or nobody does, in which
+ * case everyone runs the table, the rule `reset-table` already followed. An
+ * undefined actor is the server itself, sweeping at the end of a round.
+ *
+ * On zone ids rather than zones, so the screen asks exactly what the server
+ * will, and offers nothing it would refuse. Ownership, not rules: whose turn it
+ * is, and what a card may pay for, are still never checked.
+ */
+export function mayReach(
+	zoneId: string,
+	actor: string | undefined,
+	runsTable: boolean,
+	how: 'take' | 'put'
+): boolean {
+	if (actor === undefined) return true;
+	if (zoneId.startsWith('seat:')) {
+		const cut = zoneId.lastIndexOf(':');
+		const owner = zoneId.slice('seat:'.length, cut);
+		const kind = zoneId.slice(cut + 1);
+		if (owner === actor) return true;
+		if (kind === 'hand') return how === 'put' && runsTable;
+		if (kind === 'durable' && how === 'put') return true;
+		return runsTable;
+	}
+	if (zoneId.startsWith('opponent:')) return runsTable;
+	return true;
+}
+
 /** The zones every seat gets, with the visibility and capacity the book implies. */
 export function seatZones(seat: string): Zone[] {
 	const zone = (

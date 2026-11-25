@@ -17,6 +17,7 @@
 	import SeatRail from './SeatRail.svelte';
 	import Card from './Card.svelte';
 	import PileViewer from './PileViewer.svelte';
+	import { mayReach } from '../engine/zones';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { createSelection, type Pick } from '$lib/card-table/selection';
@@ -52,13 +53,16 @@
 	const locked = $derived(busy || !canAct);
 	const zone = (id: string) => table.zones[id];
 
+	/** Whether this seat runs the table: the GM, or anyone while nobody holds the GM seat. */
+	const runs = $derived(canAct && (!table.gmSeat || table.gmSeat === mySeatId));
+
 	function select(pick: Pick) {
-		if (!canAct) return;
+		if (!canAct || !mySeatId || !mayReach(pick.zone, mySeatId, runs, 'take')) return;
 		selection.select(pick);
 	}
 
 	function drop(zoneId: string) {
-		if (!canAct) return;
+		if (!canAct || !mySeatId || !mayReach(zoneId, mySeatId, runs, 'put')) return;
 		const move = selection.place(zoneId);
 		if (move) onCommand({ type: 'move', from: move.from, to: move.to });
 	}

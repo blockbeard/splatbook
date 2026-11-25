@@ -112,7 +112,7 @@
 				label={name}
 				zones={table.scene.zones}
 				at={table.scene.at[creature.id]}
-				{disabled}
+				disabled={disabled || !isGm}
 				{onCommand}
 			/>
 		</div>

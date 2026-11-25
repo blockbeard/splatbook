@@ -334,16 +334,21 @@ describe('the scene and its creatures', () => {
 		expect((out.state as CardTable).scene.zones).toEqual([]);
 	});
 
-	it('lets anyone place anyone, and logs the zone by name', () => {
+	it('lets the GM place anyone, and logs the zone by name', () => {
 		const t = arena();
-		const out = run(t, { type: 'place', who: zombie(t, 'A'), zone: 'pillar' }, 'regan');
+		const out = run(t, { type: 'place', who: zombie(t, 'A'), zone: 'pillar' });
 		expect(out.data).toEqual({ who: zombie(t, 'A'), label: 'Zombie A', zone: "King's Pillar" });
-		const seat = run(
-			out.state as CardTable,
-			{ type: 'place', who: 'regan', zone: 'arena' },
-			'regan'
-		);
+	});
+
+	it('lets a player place themselves, and nobody else', () => {
+		// The first live test: players could move each other's zones.
+		const t = arena();
+		const seat = run(t, { type: 'place', who: 'regan', zone: 'arena' }, 'regan');
 		expect(seat.data).toEqual({ who: 'regan', seat: 'regan', zone: 'Arena' });
+		expect(reduce(t, { type: 'place', who: zombie(t, 'A'), zone: 'pillar' }, 'regan')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
 	});
 
 	it('refuses a place for nobody, a zone that is not there, or the GM', () => {
@@ -467,12 +472,10 @@ describe('every card goes to its own deck’s discard', () => {
 		// The GM plays a major in front of a player, and onto the zombies.
 		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'seat:p1:played' });
 		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'opponent:zombies:initiative' });
-		// A player's minor onto the zombies' played pile, and as their own initiative.
-		t = run(
-			t,
-			{ type: 'move', from: { zone: 'seat:p1:hand' }, to: 'opponent:zombies:played' },
-			'p1'
-		);
+		// A player's minor, moved by the GM onto the zombies' played pile; and a
+		// player's own initiative.
+		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:played' }, 'p1');
+		t = run(t, { type: 'move', from: { zone: 'seat:p1:played' }, to: 'opponent:zombies:played' });
 		t = run(t, { type: 'move', from: { zone: 'seat:p2:hand' }, to: 'seat:p2:initiative' }, 'p2');
 		// A major as a player's facedown card.
 		t = run(t, {
@@ -611,5 +614,104 @@ describe('the end-of-round check', () => {
 		const t = atLastNumber();
 		expect(done(t)).toBe(false);
 		expect(done(run(t, { type: 'advance-count' }))).toBe(true);
+	});
+});
+
+describe('who may do what', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'p2', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const reduce = (t: CardTable, command: unknown, actor: string) =>
+		hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+	const table = () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		for (const command of [
+			{ type: 'set-mode', mode: 'challenge' },
+			{ type: 'add-opponent', id: 'zombies', name: 'Zombie', count: 2 },
+			{ type: 'begin-round', playerHand: 4, gmHand: 3 }
+		]) {
+			const out = reduce(t, command, 'gm');
+			if (!out.ok) throw new Error(out.reason);
+			t = out.state as CardTable;
+		}
+		return t;
+	};
+
+	// The first live test: a player could deal, move the count, shuffle, or
+	// redraw the GM's hand, because only a few commands were checked.
+	const gmOnly = [
+		{ type: 'reshuffle', deck: 'player' },
+		{ type: 'guided', on: true },
+		{ type: 'set-mode', mode: 'decks' },
+		{ type: 'begin-round', playerHand: 4, gmHand: 3 },
+		{ type: 'end-round' },
+		{ type: 'mulligan' },
+		{ type: 'set-count', count: 3 },
+		{ type: 'advance-count' },
+		{ type: 'rewind-count' },
+		{ type: 'minor-actions', open: true },
+		{ type: 'sweep' },
+		{ type: 'add-opponent', id: 'imps', name: 'Imp', count: 1 },
+		{ type: 'remove-opponent', id: 'zombies' },
+		{ type: 'update-opponent', id: 'zombies', name: 'Ghoul' },
+		{ type: 'add-creatures', id: 'zombies', count: 1 },
+		{ type: 'remove-creature', creature: 'zombies:B' },
+		{ type: 'set-scene-zones', zones: [{ id: 'z1', name: 'Nave' }] },
+		{ type: 'clear-scene' },
+		{ type: 'reset-table' }
+	];
+
+	for (const command of gmOnly) {
+		it(`keeps ${command.type} to the GM`, () => {
+			const t = table();
+			expect(reduce(t, command, 'p1')).toEqual({ ok: false, reason: 'gm-only' });
+			expect(reduce(t, command, 'gm').ok).toBe(true);
+		});
+	}
+
+	it('keeps a facedown slot to its holder and the GM', () => {
+		const t = table();
+		const lay = (holder: string, actor: string) =>
+			reduce(
+				t,
+				{
+					type: 'place-facedown',
+					holder,
+					from: { zone: `seat:${actor}:hand` },
+					position: 'turn',
+					label: 'Dodge'
+				},
+				actor
+			);
+		expect(lay('p2', 'p1')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(lay('p1', 'p1').ok).toBe(true);
+		expect(reduce(t, { type: 'clear-facedown', holder: 'p1' }, 'p2')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+	});
+
+	it('lets a player play only in front of themselves', () => {
+		const t = table();
+		const play = (to: string) =>
+			reduce(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to }, 'p1');
+		expect(play('seat:p1:played').ok).toBe(true);
+		expect(play('seat:p1:initiative').ok).toBe(true);
+		expect(play('seat:p2:played')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(play('opponent:zombies:played')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(play('discard:player').ok).toBe(true);
+	});
+
+	it('runs open for everyone while nobody holds the GM seat', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), [
+			{ id: 'p1', isGm: false },
+			{ id: 'p2', isGm: false }
+		]) as CardTable;
+		const out = reduce(t, { type: 'set-mode', mode: 'challenge' }, 'p1');
+		if (!out.ok) throw new Error(out.reason);
+		t = out.state as CardTable;
+		expect(reduce(t, { type: 'begin-round', playerHand: 4, gmHand: 0 }, 'p2').ok).toBe(true);
 	});
 });
