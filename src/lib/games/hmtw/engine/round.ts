@@ -97,7 +97,8 @@ export function suggestGmHandSize(
 		const times = modifier.kind === 'count' ? Math.max(0, Math.floor(Number(picked) || 0)) : 1;
 		total += modifier.amount * times;
 	}
-	return total;
+	// A house rule can take a card off; it can never make the draw negative.
+	return Math.max(0, total);
 }
 
 /**

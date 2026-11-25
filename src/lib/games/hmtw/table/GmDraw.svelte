@@ -7,33 +7,52 @@
 	can still deal whatever they like. It suggests; it does not insist.
 -->
 <script lang="ts">
+	import type { DrawFact } from './draw';
+
 	interface Modifier {
 		id: string;
 		label: string;
 		amount: number;
 		kind: 'toggle' | 'count';
+		/** A fact the table knows, which fills this line in until the GM changes it. */
+		auto?: DrawFact;
+		/** Not the book's rule: labelled as the table's own. */
+		house?: boolean;
 	}
 
 	let {
 		base,
 		modifiers,
+		facts = {},
 		value = $bindable()
 	}: {
 		base: number;
 		modifiers: Modifier[];
+		facts?: Partial<Record<DrawFact, boolean | number>>;
 		value: number;
 	} = $props();
 
+	/** What the GM has set by hand. A line they have not touched follows the table. */
 	let ticks = $state<Record<string, boolean | number>>({});
 
+	function picked(m: Modifier): boolean | number | undefined {
+		if (m.id in ticks) return ticks[m.id];
+		return m.auto ? facts[m.auto] : undefined;
+	}
+
 	const suggested = $derived(
-		modifiers.reduce((total, m) => {
-			const picked = ticks[m.id];
-			if (picked === undefined || picked === false) return total;
-			const times = m.kind === 'count' ? Math.max(0, Math.floor(Number(picked) || 0)) : 1;
-			return total + m.amount * times;
-		}, base)
+		Math.max(
+			0,
+			modifiers.reduce((total, m) => {
+				const p = picked(m);
+				if (p === undefined || p === false) return total;
+				const times = m.kind === 'count' ? Math.max(0, Math.floor(Number(p) || 0)) : 1;
+				return total + m.amount * times;
+			}, base)
+		)
 	);
+
+	const signed = (n: number) => (n < 0 ? `−${-n}` : `+${n}`);
 
 	// Follow the checklist unless the GM has said otherwise this round.
 	let overridden = $state(false);
@@ -49,9 +68,13 @@
 			<li>
 				{#if m.kind === 'toggle'}
 					<label>
-						<input type="checkbox" bind:checked={ticks[m.id] as boolean} />
-						{m.label}
-						<span class="draw__amount">+{m.amount}</span>
+						<input
+							type="checkbox"
+							checked={Boolean(picked(m))}
+							onchange={(e) => (ticks[m.id] = e.currentTarget.checked)}
+						/>
+						{m.label}{#if m.house}<span class="draw__house">house rule</span>{/if}
+						<span class="draw__amount">{signed(m.amount)}</span>
 					</label>
 				{:else}
 					<label>
@@ -59,11 +82,12 @@
 							type="number"
 							min="0"
 							max="20"
-							bind:value={ticks[m.id] as number}
+							value={picked(m) ?? ''}
+							oninput={(e) => (ticks[m.id] = Number(e.currentTarget.value) || 0)}
 							placeholder="0"
 						/>
 						{m.label}
-						<span class="draw__amount">+{m.amount} each</span>
+						<span class="draw__amount">{signed(m.amount)} each</span>
 					</label>
 				{/if}
 			</li>
@@ -121,6 +145,12 @@
 	input[type='checkbox'] {
 		inline-size: 1.1rem;
 		block-size: 1.1rem;
+	}
+	.draw__house {
+		margin-inline-start: 0.35rem;
+		color: var(--ct-quiet);
+		font-size: 0.8rem;
+		font-style: italic;
 	}
 	.draw__amount {
 		margin-inline-start: auto;

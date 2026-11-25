@@ -19,6 +19,7 @@
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import GmDraw from './GmDraw.svelte';
+	import { gmDrawFacts } from './draw';
 	import Scene from './Scene.svelte';
 	import ZonePicker from './ZonePicker.svelte';
 	import Creatures from './Creatures.svelte';
@@ -149,6 +150,10 @@
 	const declaredLabel = $derived(customAction.trim() || chosenAction?.name || '');
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
 	const zone = (id: string) => table.zones[id];
+	/** The lines of the GM's draw the table can fill in itself. */
+	const drawFacts = $derived(
+		gmDrawFacts(table.opponents, admitted.filter((s) => !s.isGm && s.id !== table.gmSeat).length)
+	);
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
 
 	function select(pick: Pick) {
@@ -306,6 +311,7 @@
 				<GmDraw
 					base={challengePack.handSizes.gm.base}
 					modifiers={challengePack.handSizes.gm.modifiers}
+					facts={drawFacts}
 					bind:value={gmHand}
 				/>
 				<div class="ch__deal__go">
