@@ -26,6 +26,23 @@ suite('saying what happened', () => {
 		).toMatch(/^The GM deck was empty, so its discard was shuffled back in\. /);
 	});
 
+	it('reads hidden Health aloud only to a view that has the numbers', () => {
+		const hidden = ev('set-hd', { label: 'Zombie B', creature: 'z:B', stat: 'health' });
+		expect(describe(hidden, nameOf)).toBe('Zombie B: Health changed.');
+		const gmView = {
+			viewer: 'gm',
+			upNow: [],
+			opponents: [
+				{
+					creatures: [
+						{ id: 'z:B', pools: [{ health: 2, healthMax: 6, defense: 0, defenseMax: 0 }] }
+					]
+				}
+			]
+		};
+		expect(describe(hidden, nameOf, gmView)).toBe('Zombie B: Health 2 of 6.');
+	});
+
 	it('says "your turn" to the acting player only', () => {
 		const count = ev('count', { count: 7 });
 		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(

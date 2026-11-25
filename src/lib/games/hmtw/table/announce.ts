@@ -34,6 +34,17 @@ export type NameOf = (seatId: string | null | undefined) => string;
 export interface Listener {
 	viewer: string | null;
 	upNow: readonly string[];
+	/**
+	 * The enemies as this viewer is sent them. While Health is hidden the log
+	 * carries no numbers, so the GM — whose view still has them — hears them
+	 * from here instead.
+	 */
+	opponents?: readonly {
+		creatures: readonly {
+			id: string;
+			pools: readonly { health: number; healthMax: number; defense: number; defenseMax: number }[];
+		}[];
+	}[];
 }
 
 const deckName = (deck: unknown): string => (deck === 'gm' ? 'GM' : 'player');
@@ -89,7 +100,13 @@ function announceMove(data: { from: string; to: string; seat?: string | null }, 
  * something usable for an id it does not know, since a seat can leave between
  * an event landing and its being read.
  */
-export function describe(event: TableEvent, nameOf: NameOf, listener?: Listener): string | null {
+export function describe(
+	event: TableEvent,
+	nameOf: NameOf,
+	listener?: Listener,
+	/** Whether this is the newest event, about the table as it now stands. */
+	latest = true
+): string | null {
 	const d = (event.data ?? {}) as Record<string, unknown>;
 	switch (event.kind) {
 		case 'move': {
@@ -109,7 +126,7 @@ export function describe(event: TableEvent, nameOf: NameOf, listener?: Listener)
 			// The one a player most needs, and the reason this exists: it is how
 			// the table says your turn has come.
 			if (d.count === null || d.count === undefined) return 'The count has stopped.';
-			return listener?.viewer && listener.upNow.includes(listener.viewer)
+			return latest && listener?.viewer && listener.upNow.includes(listener.viewer)
 				? `Initiative ${d.count}. Your turn.`
 				: `Initiative ${d.count}.`;
 		case 'minor-actions':
@@ -156,9 +173,22 @@ export function describe(event: TableEvent, nameOf: NameOf, listener?: Listener)
 		}
 		case 'remove-creature':
 			return `${d.label} was taken off the table.`;
-		case 'set-hd':
+		case 'set-hd': {
 			// The latest only, so a run of clicks reads out once, as where it ended.
-			return `${d.label}: ${d.stat === 'defense' ? 'Defense' : 'Health'} ${d.value}${typeof d.max === 'number' ? ` of ${d.max}` : ''}.`;
+			const stat = d.stat === 'defense' ? 'Defense' : 'Health';
+			if (typeof d.value === 'number') {
+				return `${d.label}: ${stat} ${d.value}${typeof d.max === 'number' ? ` of ${d.max}` : ''}.`;
+			}
+			// Logged while Health was hidden: numbers only for a view that has them.
+			const pool = listener?.opponents?.flatMap((o) => o.creatures).find((c) => c.id === d.creature)
+				?.pools[0];
+			if (!pool) return `${d.label}: ${stat} changed.`;
+			const [value, max] =
+				d.stat === 'defense' ? [pool.defense, pool.defenseMax] : [pool.health, pool.healthMax];
+			return `${d.label}: ${stat} ${value} of ${max}.`;
+		}
+		case 'enemy-health':
+			return d.shown ? 'Players can see enemy Health.' : 'Enemy Health is hidden from players.';
 		case 'set-down':
 			return d.down ? `${d.label} is down.` : `${d.label} is back up.`;
 		case 'split-opponent': {
@@ -186,7 +216,7 @@ export function announce(events: TableEvent[], nameOf: NameOf, listener?: Listen
 	for (let i = events.length - 1; i >= 0; i--) {
 		// Only the newest event is about the table as it now stands, so only it
 		// may say "your turn".
-		const said = describe(events[i], nameOf, i === events.length - 1 ? listener : undefined);
+		const said = describe(events[i], nameOf, listener, i === events.length - 1);
 		if (said) return said;
 	}
 	return null;

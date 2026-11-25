@@ -114,7 +114,8 @@
 		// your turn has come.
 		const heard = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone', {
 			viewer: table.viewer,
-			upNow: table.upNow
+			upNow: table.upNow,
+			opponents: table.opponents
 		});
 		if (heard) sayAloud(heard);
 	}

@@ -38,9 +38,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v10: `scene` — the book's zones, and who stands in which.
  * v11: an opponent holds `creatures`, with letters and HD, and its `count` is
  *   no longer stored but derived from the creatures still up.
- * v12 (this commit): the scene's `picture`, a reference to an uploaded image.
+ * v12: the scene's `picture`, a reference to an uploaded image.
+ * v13 (this commit): `enemyHealth`, whether players see enemy Health and
+ *   Defense.
  */
-export const TABLE_SCHEMA_VERSION = 12;
+export const TABLE_SCHEMA_VERSION = 13;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -154,6 +156,13 @@ export interface CardTable {
 	 * reset. See `scene.ts`.
 	 */
 	scene: Scene;
+	/**
+	 * Whether the players see the enemies' Health and Defense. The GM's switch,
+	 * shown by default (Chris, 25 November 2026). While shown, anyone may change
+	 * it, so a player can catch a miscount; while hidden, players are sent none
+	 * of it and only the GM changes it. Down is seen either way.
+	 */
+	enemyHealth: 'shown' | 'hidden';
 	/** Every zone on the table, by id. */
 	zones: Record<string, Zone>;
 }
@@ -230,6 +239,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		valueOf: valuesOf(deck),
 		guided: false,
 		scene: emptyScene(),
+		enemyHealth: 'shown',
 		zones
 	};
 }
@@ -279,6 +289,8 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v12 → v13: `enemyHealth: 'shown'`, which is what every table did before.
+ *
  * v11 → v12: a scene gains `picture: null`; see `migrateScene`.
  *
  * v10 → v11: groups gain creatures; see `migrateOpponent`.
@@ -324,6 +336,8 @@ export function migrateTable(raw: CardTable): CardTable {
 		round: { ...newRound(), ...(raw.round ?? {}) },
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),
+		// v13: everyone saw Health before there was a switch.
+		enemyHealth: raw.enemyHealth === 'hidden' ? 'hidden' : 'shown',
 		// Two migrations in one pass: every zone gains a `reach` (v5), and any
 		// table zone the blob predates is added (v7).
 		zones: withTableZones(

@@ -16,6 +16,11 @@ export interface Placed {
 	kind: 'adventurer' | 'creature';
 	/** A creature that is down: still listed, crossed out, where it fell. */
 	down: boolean;
+	/**
+	 * A creature's Health as "4/6", when it is tracked and this viewer is sent
+	 * it — so the summary is the one place to read the fight (first live test).
+	 */
+	health?: string;
 }
 
 export interface ZoneRow {
@@ -33,12 +38,16 @@ export function placeablePeople(
 		.filter((s) => s.status === 'admitted' && !s.isGm && s.id !== table.gmSeat)
 		.map((s) => ({ id: s.id, label: s.name, kind: 'adventurer' as const, down: false }));
 	const creatures = table.opponents.flatMap((group) =>
-		group.creatures.map((c) => ({
-			id: c.id,
-			label: creatureLabel(table.opponents, c.id) ?? group.name,
-			kind: 'creature' as const,
-			down: c.down
-		}))
+		group.creatures.map((c) => {
+			const pool = c.pools[0];
+			return {
+				id: c.id,
+				label: creatureLabel(table.opponents, c.id) ?? group.name,
+				kind: 'creature' as const,
+				down: c.down,
+				...(pool && pool.healthMax > 0 ? { health: `${pool.health}/${pool.healthMax}` } : {})
+			};
+		})
 	);
 	return [...adventurers, ...creatures];
 }

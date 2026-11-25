@@ -667,6 +667,17 @@
 					<button type="submit" class="ct-btn" disabled={busy || newEnemy.trim() === ''}>Add</button
 					>
 				</form>
+				<!-- The GM's call, table-wide: Chris was undecided whether players
+				     should see enemy Health, so it is a switch, shown by default. -->
+				<label class="health-switch">
+					<input
+						type="checkbox"
+						checked={table.enemyHealth !== 'hidden'}
+						disabled={busy}
+						onchange={(e) => onCommand({ type: 'enemy-health', shown: e.currentTarget.checked })}
+					/>
+					Players see enemy Health
+				</label>
 			</section>
 		{/if}
 	</div>
@@ -1006,6 +1017,17 @@
 		color: var(--ct-mark);
 	}
 	/* An empty slot that is somebody else's to fill: the same shape, nothing to press. */
+	.health-switch {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-block-size: 2.75rem;
+		font-size: 0.9rem;
+	}
+	.health-switch input {
+		inline-size: 1.1rem;
+		block-size: 1.1rem;
+	}
 	.slot.slot--empty {
 		display: grid;
 		place-items: center;

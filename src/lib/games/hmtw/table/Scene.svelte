@@ -173,7 +173,9 @@
 								<!-- The separator is an expression, not template whitespace, which
 								     Svelte trims: "Zombie B,Zombie C" was the result. -->
 								<span class="scene__who" class:scene__who--down={person.down}
-									>{person.label}{#if person.down}<span class="sr-only">, down</span>{/if}</span
+									>{person.label}{#if person.health}<span class="scene__hp"
+											><span class="sr-only">, Health</span> {person.health}</span
+										>{/if}{#if person.down}<span class="sr-only">, down</span>{/if}</span
 								>{i < row.people.length - 1 ? ', ' : ''}
 							{/each}
 						{/if}
@@ -351,6 +353,10 @@
 	.scene__nobody {
 		color: var(--ct-quiet);
 		font-style: italic;
+	}
+	.scene__hp {
+		font-variant-numeric: tabular-nums;
+		color: var(--ct-quiet);
 	}
 	.scene__who--down {
 		text-decoration: line-through;

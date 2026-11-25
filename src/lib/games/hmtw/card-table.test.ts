@@ -376,8 +376,57 @@ describe('the scene and its creatures', () => {
 			to: 0
 		};
 		const out = run(t, hit, 'regan');
-		expect(out.data).toEqual({ label: 'Zombie B', stat: 'health', value: 0, max: 1 });
+		expect(out.data).toEqual({
+			label: 'Zombie B',
+			creature: zombie(t, 'B'),
+			stat: 'health',
+			value: 0,
+			max: 1
+		});
 		expect(reduce(out.state as CardTable, hit, 'regan')).toEqual({ ok: false, reason: 'stale' });
+	});
+
+	it('hides enemy Health from players when the GM says so, and keeps it to the GM', () => {
+		const shown = arena();
+		const t = run(shown, { type: 'enemy-health', shown: false }).state as CardTable;
+		expect(t.enemyHealth).toBe('hidden');
+		expect(reduce(shown, { type: 'enemy-health', shown: false }, 'regan')).toEqual({
+			ok: false,
+			reason: 'gm-only'
+		});
+
+		// A player is sent no pools at all; the GM still is. Down still shows.
+		const pools = (viewer: string) =>
+			(hmtwCardTable.project(t, viewer) as { opponents: { creatures: { pools: unknown[] }[] }[] })
+				.opponents[0].creatures[0].pools;
+		expect(pools('regan')).toEqual([]);
+		expect(pools('gm')).not.toEqual([]);
+		expect(JSON.stringify(hmtwCardTable.project(t, 'regan'))).not.toContain('healthMax');
+
+		// Only the GM changes it, and the public log carries no numbers.
+		const hit = {
+			type: 'set-hd',
+			creature: zombie(t, 'B'),
+			pool: 0,
+			stat: 'health',
+			from: 1,
+			to: 0
+		};
+		expect(reduce(t, hit, 'regan')).toEqual({ ok: false, reason: 'gm-only' });
+		expect(reduce(t, { type: 'set-down', creature: zombie(t, 'B'), down: true }, 'regan')).toEqual({
+			ok: false,
+			reason: 'gm-only'
+		});
+		const out = run(t, hit);
+		expect(out.data).toEqual({ label: 'Zombie B', creature: zombie(t, 'B'), stat: 'health' });
+	});
+
+	it('migrates a v12 table to Health shown, as everything was', () => {
+		const old = { ...arena(), schemaVersion: 12 } as Partial<CardTable>;
+		delete old.enemyHealth;
+		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
+		expect(migrated.enemyHealth).toBe('shown');
+		expect(migrated.schemaVersion).toBe(13);
 	});
 
 	it('marks a creature down and back up', () => {

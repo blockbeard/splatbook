@@ -147,7 +147,7 @@
 			<button
 				type="button"
 				class="ct-btn ct-btn--quiet"
-				{disabled}
+				disabled={disabled || (table.enemyHealth === 'hidden' && !isGm)}
 				onclick={() => onCommand({ type: 'set-down', creature: creature.id, down: !creature.down })}
 				>{creature.down ? 'Back up' : 'Down'}</button
 			>

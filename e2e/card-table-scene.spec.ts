@@ -146,6 +146,15 @@ test('the scene, lettered creatures and their HD, shared between two browsers', 
 	await shot(gm, 'gm-desktop');
 	await shot(player, 'player-desktop');
 
+	// --- Health in "Where everyone is", and the GM's switch to hide it. ---
+	await expect(playerScene.locator('.scene__who', { hasText: 'Zombie A' })).toContainText('1/1');
+	await gm.getByLabel('Players see enemy Health').uncheck();
+	await expect(playerScene.locator('.scene__hp')).toHaveCount(0, POLLED);
+	await expect(player.getByRole('button', { name: /Health down one/ })).toHaveCount(0);
+	await expect(gmScene.locator('.scene__who', { hasText: 'Zombie A' })).toContainText('1/1');
+	await gm.getByLabel('Players see enemy Health').check();
+	await expect(playerScene.locator('.scene__hp').first()).toBeVisible(POLLED);
+
 	// --- The GM splits Zombie C off, and rejoins it. ---
 	await gm.getByLabel('Choose Zombie C to split off').check();
 	await gm.getByRole('button', { name: /Split off 1/ }).click();

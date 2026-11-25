@@ -202,7 +202,9 @@ export const commandSchema = z.discriminatedUnion('type', [
 		from: hd,
 		to: hd
 	}),
-	/** Down, or back up. Anyone's: the table moves things, it does not rule. */
+	/** Whether the players see enemy Health and Defense. The GM's. */
+	z.strictObject({ type: z.literal('enemy-health'), shown: z.boolean() }),
+	/** Down, or back up. The GM's, and anyone's while Health is shown. */
 	z.strictObject({
 		type: z.literal('set-down'),
 		creature: z.string().min(1).max(120),
@@ -231,6 +233,7 @@ const fail = (reason: string): CardTableOutcome => ({ ok: false, reason });
  * shuffle or redraw the GM's hand — because only a few were checked.
  */
 const GM_ONLY = new Set<CardTableCommand['type']>([
+	'enemy-health',
 	'reshuffle',
 	'reset-table',
 	'guided',
@@ -338,6 +341,16 @@ export const hmtwCardTable: CardTableModule = {
 		if (GM_ONLY.has(parsed.data.type) && !isGm(table, actor)) return fail('gm-only');
 		const holder = ownedBy(parsed.data);
 		if (holder !== null && holder !== actor && !isGm(table, actor)) return fail('not-yours');
+		// Enemy Health is anyone's to change while it is shown, so a player can
+		// catch a miscount; while it is hidden, the players cannot see it to
+		// change it, and it is the GM's.
+		if (
+			(parsed.data.type === 'set-hd' || parsed.data.type === 'set-down') &&
+			table.enemyHealth === 'hidden' &&
+			!isGm(table, actor)
+		) {
+			return fail('gm-only');
+		}
 
 		switch (parsed.data.type) {
 			case 'move': {
@@ -549,12 +562,26 @@ export const hmtwCardTable: CardTableModule = {
 				const changed = setHd(table, creature, { pool, stat, from, to });
 				if (!changed.ok) return fail(changed.reason);
 				const now = findCreature(changed.table, creature)?.creature.pools[pool];
-				return state(changed.table, 'set-hd', {
-					label: creatureLabel(changed.table.opponents, creature),
-					stat,
-					value: now?.[stat] ?? to,
-					max: stat === 'health' ? now?.healthMax : now?.defenseMax
-				});
+				const label = creatureLabel(changed.table.opponents, creature);
+				// Events are the public log. While Health is hidden the change is
+				// logged without its numbers; the GM reads them off the table.
+				return state(
+					changed.table,
+					'set-hd',
+					table.enemyHealth === 'hidden'
+						? { label, creature, stat }
+						: {
+								label,
+								creature,
+								stat,
+								value: now?.[stat] ?? to,
+								max: stat === 'health' ? now?.healthMax : now?.defenseMax
+							}
+				);
+			}
+			case 'enemy-health': {
+				const enemyHealth = parsed.data.shown ? 'shown' : 'hidden';
+				return state({ ...table, enemyHealth }, 'enemy-health', { shown: parsed.data.shown });
 			}
 			case 'set-down': {
 				const next = setDown(table, parsed.data.creature, parsed.data.down);

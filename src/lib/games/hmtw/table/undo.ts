@@ -67,6 +67,7 @@ const MOVES_NO_CARDS = new Set([
 	'remove-creature',
 	'set-hd',
 	'set-down',
+	'enemy-health',
 	'split-opponent'
 ]);
 

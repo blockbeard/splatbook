@@ -67,6 +67,11 @@ export interface ProjectedTable {
 	/** Everybody who put an initiative down has had their turn: the round is over. */
 	roundDone: boolean;
 	/**
+	 * Whether players see enemy Health and Defense. While hidden, a player's
+	 * view has no pools at all; the GM's always does.
+	 */
+	enemyHealth: 'shown' | 'hidden';
+	/**
 	 * Who has an initiative card above the number reached, while counting. Ids
 	 * only, never values: it is what is holding the round open.
 	 */
