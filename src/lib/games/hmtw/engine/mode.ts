@@ -62,6 +62,7 @@ export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable
 		facedown: {},
 		plays: {},
 		minorDeclared: {},
+		minorTargets: {},
 		round: newRound()
 	};
 }

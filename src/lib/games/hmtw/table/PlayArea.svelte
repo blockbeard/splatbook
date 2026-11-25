@@ -22,11 +22,18 @@
 	let {
 		table,
 		seats,
-		faces
+		faces,
+		runs = false,
+		busy = false,
+		onCommand
 	}: {
 		table: ProjectedTable;
 		seats: readonly { id: string; name: string }[];
 		faces: FaceIndex;
+		/** Whether this viewer runs the table, and so moves the round on. */
+		runs?: boolean;
+		busy?: boolean;
+		onCommand?: (command: unknown) => void;
 	} = $props();
 
 	const nameOf = (id: string) =>
@@ -66,6 +73,7 @@
 				holder: h.id,
 				zone: `${h.zone}:minor`,
 				label: table.minorDeclared[`${h.zone}:minor`] ?? 'Minor action',
+				target: table.minorTargets?.[`${h.zone}:minor`],
 				card: table.zones[`${h.zone}:minor`]?.cards?.[0]
 			}))
 	);
@@ -105,11 +113,24 @@
 					<p class="play__what">
 						<span class="play__who">{nameOf(down.holder)}</span>
 						<span class="play__action">{down.label}</span>
+						{#if down.target}<span class="play__target">→ {nameOf(down.target)}</span>{/if}
 						<span class="play__kind">minor action, face down</span>
 					</p>
 				</li>
 			{/each}
 		</ul>
+		{#if runs && onCommand && table.round.step === 'resolve'}
+			<!-- Where the GM is already looking while working out the hits (second
+			     live test: "it needs to be more obvious"). -->
+			<p class="play__next">
+				<button
+					type="button"
+					class="ct-btn ct-btn--primary"
+					disabled={busy}
+					onclick={() => onCommand({ type: 'step-on' })}>Next: clear these and move on</button
+				>
+			</p>
+		{/if}
 	</section>
 {/if}
 
@@ -149,6 +170,9 @@
 	}
 	.play__action {
 		color: var(--ct-mark);
+	}
+	.play__next {
+		margin: 0.75rem 0 0;
 	}
 	.play__target,
 	.play__kind {

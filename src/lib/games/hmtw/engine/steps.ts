@@ -431,7 +431,8 @@ export function declareMinor(
 	holder: string,
 	from: Pick,
 	label: string,
-	actor?: string
+	actor?: string,
+	target?: string
 ): StepResult {
 	const refused = checkMinor(table, holder);
 	if (refused) return fail(refused);
@@ -439,9 +440,16 @@ export function declareMinor(
 	const moved = moveCard(table, from, zone, actor);
 	if (!moved.ok) return fail(moved.reason);
 	return ok(
-		answer({ ...moved.table, minorDeclared: { ...moved.table.minorDeclared, [zone]: label } }, [
-			holder
-		])
+		answer(
+			{
+				...moved.table,
+				minorDeclared: { ...moved.table.minorDeclared, [zone]: label },
+				minorTargets: target
+					? { ...moved.table.minorTargets, [zone]: target }
+					: moved.table.minorTargets
+			},
+			[holder]
+		)
 	);
 }
 
@@ -478,6 +486,8 @@ export function revealMinors(table: CardTable): CardTable {
 	let current = table;
 	const plays = { ...table.plays };
 	const minorDeclared = { ...table.minorDeclared };
+	const minorTargets = { ...table.minorTargets };
+	const targeted: string[] = [];
 	const holders = [...table.seats, ...table.opponents.map((o) => o.id)];
 	for (const holder of holders) {
 		const zone = zoneOf(current, holder, 'minor');
@@ -489,12 +499,21 @@ export function revealMinors(table: CardTable): CardTable {
 		plays[card] = {
 			by: holder,
 			action: minorDeclared[zone] ?? 'Minor action',
+			...(minorTargets[zone] ? { target: minorTargets[zone] } : {}),
 			kind: 'minor',
 			number: table.round.count
 		};
+		// "When other characters attempt to perform an action against you, flip
+		// your Initiative card face up" — a minor action as much as a turn.
+		const target = minorTargets[zone] ? holderOfTarget(current, minorTargets[zone]) : null;
+		if (target) targeted.push(target);
 		delete minorDeclared[zone];
+		delete minorTargets[zone];
 	}
-	const revealed = { ...current, plays, minorDeclared };
+	const revealed = withRound(
+		{ ...current, plays, minorDeclared, minorTargets },
+		{ shown: union(current.round.shown, targeted) }
+	);
 	// Nothing face up — a readied card, everyone passing — is nothing to work
 	// out, so the count moves straight on rather than waiting on the GM.
 	const anything = holders.some(

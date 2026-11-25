@@ -252,6 +252,7 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 		...current,
 		plays: {},
 		minorDeclared: {},
+		minorTargets: {},
 		round: { ...newRound(), number: current.round.number }
 	};
 }

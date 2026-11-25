@@ -70,6 +70,8 @@ export interface ProjectedTable {
 	>;
 	/** The declared action of each face-down minor-action card, by zone. */
 	minorDeclared: Record<string, string>;
+	/** Who each face-down minor action is aimed at, by zone. */
+	minorTargets: Record<string, string>;
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
 	/**
 	 * Whose initiative the count has reached, seats and enemies alike.

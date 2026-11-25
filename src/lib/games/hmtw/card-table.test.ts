@@ -405,7 +405,7 @@ describe('the scene and its creatures', () => {
 		delete old.enemyHealth;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
 		expect(migrated.enemyHealth).toBe('shown');
-		expect(migrated.schemaVersion).toBe(15);
+		expect(migrated.schemaVersion).toBe(16);
 	});
 
 	it('marks a creature down and back up', () => {
@@ -445,7 +445,7 @@ describe('the scene and its creatures', () => {
 			]
 		} as unknown as CardTable;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
-		expect(migrated.schemaVersion).toBe(15);
+		expect(migrated.schemaVersion).toBe(16);
 		expect(migrated.opponents).toHaveLength(1);
 		expect(migrated.opponents[0].creatures.map((c) => c.letter)).toEqual(['A', 'B']);
 	});
