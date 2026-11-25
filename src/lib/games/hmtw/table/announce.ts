@@ -191,12 +191,6 @@ export function describe(
 			return d.shown ? 'Players can see enemy Health.' : 'Enemy Health is hidden from players.';
 		case 'set-down':
 			return d.down ? `${d.label} is down.` : `${d.label} is back up.`;
-		case 'split-opponent': {
-			const labels = Array.isArray(d.labels) ? (d.labels as string[]) : [];
-			return `${listOf(labels)} now ${labels.length === 1 ? 'acts' : 'act'} on ${labels.length === 1 ? 'its' : 'their'} own.`;
-		}
-		case 'merge-opponent':
-			return `The split-off ${d.name} group rejoined the rest.`;
 		// Bookkeeping nobody would notice happening: an enemy renamed, a
 		// facedown slot cleared behind a reveal. Silence is the right answer.
 		default:

@@ -25,15 +25,14 @@ import {
 	addCreatures,
 	creatureLabel,
 	findCreature,
-	mergeOpponent,
 	placeInScene,
+	rejoinSplitGroups,
 	placeable,
 	removeCreature,
 	setDown,
 	setHd,
 	setScenePicture,
 	setSceneZones,
-	splitOpponent,
 	FATE_ZONE,
 	addOpponent,
 	addSeat,
@@ -209,17 +208,7 @@ export const commandSchema = z.discriminatedUnion('type', [
 		type: z.literal('set-down'),
 		creature: z.string().min(1).max(120),
 		down: z.boolean()
-	}),
-	/** Some of a group start acting on their own. The GM's. */
-	z.strictObject({
-		type: z.literal('split-opponent'),
-		id: z.string().min(1).max(60),
-		newId: z.string().min(1).max(60),
-		name: z.string().min(1).max(60).optional(),
-		creatures: z.array(z.string().min(1).max(120)).min(1).max(MAX_CREATURES)
-	}),
-	/** A split-off group rejoins the one it came from. The GM's. */
-	z.strictObject({ type: z.literal('merge-opponent'), id: z.string().min(1).max(60) })
+	})
 ]);
 
 export type CardTableCommand = z.infer<typeof commandSchema>;
@@ -254,9 +243,7 @@ const GM_ONLY = new Set<CardTableCommand['type']>([
 	'clear-scene-picture',
 	'clear-scene',
 	'add-creatures',
-	'remove-creature',
-	'split-opponent',
-	'merge-opponent'
+	'remove-creature'
 ]);
 
 /**
@@ -309,7 +296,8 @@ export const hmtwCardTable: CardTableModule = {
 	migrate(raw, pack) {
 		// `foolCards` cannot be recovered from an old blob — the deck definition
 		// was never in it — so the pack reseeds it on the way through.
-		const migrated = withDeckFacts(migrateTable(raw as CardTable), deckOf(pack));
+		// v14: split-off groups rejoin their families; see `rejoinSplitGroups`.
+		const migrated = rejoinSplitGroups(withDeckFacts(migrateTable(raw as CardTable), deckOf(pack)));
 		return { state: migrated, stateVersion: TABLE_SCHEMA_VERSION };
 	},
 
@@ -590,26 +578,6 @@ export const hmtwCardTable: CardTableModule = {
 					label: creatureLabel(table.opponents, parsed.data.creature),
 					down: parsed.data.down
 				});
-			}
-			case 'split-opponent': {
-				if (!isGm(table, actor)) return fail('gm-only');
-				const next = splitOpponent(table, parsed.data.id, {
-					id: parsed.data.newId,
-					name: parsed.data.name,
-					creatures: parsed.data.creatures
-				});
-				if (next === table) return fail('cannot-split');
-				return state(next, 'split-opponent', {
-					labels: parsed.data.creatures.map((c) => creatureLabel(next.opponents, c))
-				});
-			}
-			case 'merge-opponent': {
-				if (!isGm(table, actor)) return fail('gm-only');
-				const { id } = parsed.data;
-				const name = table.opponents.find((o) => o.id === id)?.name;
-				const next = mergeOpponent(table, id);
-				if (next === table) return fail('cannot-merge');
-				return state(next, 'merge-opponent', { name });
 			}
 			case 'reset-table': {
 				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');

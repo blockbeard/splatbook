@@ -34,7 +34,6 @@ export {
 	removeOpponent,
 	removeSeat,
 	setGmSeat,
-	splitOpponent,
 	updateOpponent,
 	withDeckFacts,
 	type CardTable,
@@ -114,7 +113,7 @@ export {
 export {
 	addCreatures,
 	findCreature,
-	mergeOpponent,
+	rejoinSplitGroups,
 	removeCreature,
 	setDown,
 	setHd,

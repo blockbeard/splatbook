@@ -39,10 +39,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v11: an opponent holds `creatures`, with letters and HD, and its `count` is
  *   no longer stored but derived from the creatures still up.
  * v12: the scene's `picture`, a reference to an uploaded image.
- * v13 (this commit): `enemyHealth`, whether players see enemy Health and
- *   Defense.
+ * v13: `enemyHealth`, whether players see enemy Health and Defense.
+ * v14 (this commit): no split groups. A group shares one initiative wherever
+ *   its creatures stand, so any split-off group is rejoined to its family.
  */
-export const TABLE_SCHEMA_VERSION = 13;
+export const TABLE_SCHEMA_VERSION = 14;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -59,13 +60,11 @@ export interface Opponent {
 	id: string;
 	name: string;
 	/**
-	 * The group this one descends from by splitting — itself, for a group the GM
-	 * added. Letters are handed out across a family, so a split-off group that
-	 * gains reinforcements does not mint a second Zombie C.
+	 * Which family the group's letters come from — its own id. Groups used to
+	 * split, and a split-off group kept its family's letters; since v14 there is
+	 * no splitting, and every group is its own family.
 	 */
 	family: string;
-	/** The group this one was split from, which is where a merge sends it back. */
-	splitFrom?: string;
 	creatures: Creature[];
 }
 
@@ -289,6 +288,9 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
  *
+ * v13 → v14: split-off groups rejoin their families — see `rejoinSplitGroups`,
+ * which the game module runs after this.
+ *
  * v12 → v13: `enemyHealth: 'shown'`, which is what every table did before.
  *
  * v11 → v12: a scene gains `picture: null`; see `migrateScene`.
@@ -473,44 +475,6 @@ export function updateOpponent(table: CardTable, id: string, patch: { name?: str
 }
 
 /**
- * Move some of a group's creatures into a new group of their own — for when
- * they start acting apart, like the zombie the King of Swords raised, which
- * drew its own initiative. Creatures standing in different zones do *not* need
- * this: the zone is the creature's, not the group's.
- *
- * The new group starts with empty card slots; the original keeps its cards.
- * The creatures keep their ids and letters, so Zombie C is still Zombie C and
- * still standing where it stood. Splitting nobody, or everybody, does nothing:
- * the first is no change and the second is a rename.
- */
-export function splitOpponent(
-	table: CardTable,
-	id: string,
-	split: { id: string; name?: string; creatures: readonly string[] }
-): CardTable {
-	const source = table.opponents.find((o) => o.id === id);
-	if (!source || table.opponents.some((o) => o.id === split.id)) return table;
-	const moving = new Set(split.creatures);
-	const leaving = source.creatures.filter((c) => moving.has(c.id));
-	const staying = source.creatures.filter((c) => !moving.has(c.id));
-	if (leaving.length === 0 || staying.length === 0) return table;
-
-	const zones = { ...table.zones };
-	for (const zone of opponentZones(split.id)) zones[zone.id] = zone;
-	const at = table.opponents.findIndex((o) => o.id === id);
-	const opponents = [...table.opponents];
-	opponents[at] = { ...source, creatures: staying };
-	opponents.splice(at + 1, 0, {
-		id: split.id,
-		name: split.name?.trim() || source.name,
-		family: source.family,
-		splitFrom: source.id,
-		creatures: leaving
-	});
-	return { ...table, opponents, zones };
-}
-
-/**
  * Bring a stored opponent into shape.
  *
  * v10 → v11: a group stored as a bare `count` becomes that many creatures,
@@ -528,7 +492,6 @@ function migrateOpponent(raw: Partial<Opponent> & { count?: number }): Opponent 
 		id,
 		name: String(raw.name ?? ''),
 		family,
-		...(typeof raw.splitFrom === 'string' ? { splitFrom: raw.splitFrom } : {}),
 		creatures
 	};
 }

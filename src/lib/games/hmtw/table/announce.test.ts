@@ -187,15 +187,12 @@ suite('the scene and its creatures', () => {
 		expect(announce(run, nameOf)).toBe('Skeleton C: Health 3 of 6.');
 	});
 
-	it('says who went down, who arrived, and who split off', () => {
+	it('says who went down, and who arrived', () => {
 		expect(describe(ev('set-down', { label: 'Zombie B', down: true }), nameOf)).toBe(
 			'Zombie B is down.'
 		);
 		expect(describe(ev('add-creatures', { labels: ['Zombie C', 'Zombie D'] }), nameOf)).toBe(
 			'Zombie C and Zombie D joined the fight.'
-		);
-		expect(describe(ev('split-opponent', { labels: ['Zombie B'] }), nameOf)).toBe(
-			'Zombie B now acts on its own.'
 		);
 	});
 

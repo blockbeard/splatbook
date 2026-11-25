@@ -56,8 +56,7 @@ const MOVES_NO_CARDS = new Set([
 	'minor-actions',
 	'add-opponent',
 	'update-opponent',
-	// The scene and its creatures: positions, HD, letters. A split creates empty
-	// slots and moves no card. A merge *does* move cards, so it is not here.
+	// The scene and its creatures: positions, HD, letters.
 	'set-scene-zones',
 	'set-scene-picture',
 	'clear-scene-picture',
@@ -67,8 +66,7 @@ const MOVES_NO_CARDS = new Set([
 	'remove-creature',
 	'set-hd',
 	'set-down',
-	'enemy-health',
-	'split-opponent'
+	'enemy-health'
 ]);
 
 /**

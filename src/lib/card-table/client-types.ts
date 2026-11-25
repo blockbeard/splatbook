@@ -30,7 +30,6 @@ export interface ProjectedTable {
 		name: string;
 		count: number;
 		family: string;
-		splitFrom?: string;
 		creatures: {
 			id: string;
 			letter: string;

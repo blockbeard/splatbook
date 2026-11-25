@@ -426,7 +426,7 @@ describe('the scene and its creatures', () => {
 		delete old.enemyHealth;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
 		expect(migrated.enemyHealth).toBe('shown');
-		expect(migrated.schemaVersion).toBe(13);
+		expect(migrated.schemaVersion).toBe(14);
 	});
 
 	it('marks a creature down and back up', () => {
@@ -436,7 +436,7 @@ describe('the scene and its creatures', () => {
 		expect((down.state as CardTable).opponents[0].creatures[0].down).toBe(true);
 	});
 
-	it('lets only the GM split and merge, and merges back to one group', () => {
+	it('no longer splits a group: one group, one initiative, wherever it stands', () => {
 		const t = arena();
 		const split = {
 			type: 'split-opponent',
@@ -444,14 +444,31 @@ describe('the scene and its creatures', () => {
 			newId: 'raised',
 			creatures: [zombie(t, 'B')]
 		};
-		expect(reduce(t, split, 'regan')).toEqual({ ok: false, reason: 'gm-only' });
-		const out = run(t, split);
-		expect(out.data).toEqual({ labels: ['Zombie B'] });
-		const merged = run(out.state as CardTable, { type: 'merge-opponent', id: 'raised' });
-		expect((merged.state as CardTable).opponents).toHaveLength(1);
-		expect(reduce(merged.state as CardTable, { type: 'merge-opponent', id: 'zombies' }).ok).toBe(
-			false
-		);
+		expect(reduce(t, split)).toEqual({ ok: false, reason: 'malformed-command' });
+	});
+
+	it('rejoins a split group saved before v14', () => {
+		const t = arena();
+		const zombies = t.opponents[0];
+		const b = zombies.creatures.find((c) => c.letter === 'B')!;
+		const old = {
+			...t,
+			schemaVersion: 13,
+			opponents: [
+				{ ...zombies, creatures: zombies.creatures.filter((c) => c !== b) },
+				{
+					id: 'raised',
+					name: 'Zombie',
+					family: zombies.family,
+					splitFrom: zombies.id,
+					creatures: [b]
+				}
+			]
+		} as unknown as CardTable;
+		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
+		expect(migrated.schemaVersion).toBe(14);
+		expect(migrated.opponents).toHaveLength(1);
+		expect(migrated.opponents[0].creatures.map((c) => c.letter)).toEqual(['A', 'B']);
 	});
 
 	it('calls a lone enemy by its name, without a letter', () => {
