@@ -41,6 +41,20 @@
 	let seats = $state(data.view.seats);
 	// svelte-ignore state_referenced_locally
 	let polledSeatId = $state<string | null>(data.view.seatId);
+	/**
+	 * The server's fingerprint of the roster in `seats`, sent back with each
+	 * poll so an unchanged table can be answered without being loaded. Not
+	 * reactive — nothing renders it — and only ever replaced together with
+	 * `seats`, so the two cannot drift: a stamp newer than the roster on screen
+	 * would tell the server this client had seen a change it had not.
+	 */
+	// svelte-ignore state_referenced_locally
+	let rosterStamp: string | undefined = data.view.stamp;
+	function takeRoster(view: { seats?: typeof seats; stamp?: string }) {
+		if (!view.seats) return;
+		seats = view.seats;
+		rosterStamp = view.stamp;
+	}
 	let busy = $state(false);
 	/**
 	 * What has happened since this page opened.
@@ -156,11 +170,11 @@
 	onMount(() => {
 		const token = data.token;
 		const transport = pollingTransport({
-			fetchSince: (v) => fetchSince(token, v),
+			fetchSince: (v) => fetchSince(token, v, rosterStamp),
 			onUpdate: (snapshot) => {
 				version = snapshot.version;
 				table = snapshot.state as ProjectedTable;
-				if (snapshot.seats) seats = snapshot.seats;
+				takeRoster(snapshot);
 				if (snapshot.seatId) polledSeatId = snapshot.seatId;
 				remember(snapshot.events);
 			},
@@ -212,7 +226,7 @@
 		const view = reply.view as TableSnapshot;
 		version = view.version;
 		table = view.state as ProjectedTable;
-		if (view.seats) seats = view.seats;
+		takeRoster(view);
 		remember(view.events);
 		return null;
 	}
@@ -244,11 +258,11 @@
 	async function catchUp() {
 		// Asking from our own version rather than zero keeps the event tail the
 		// recent end of the log instead of the oldest fifty.
-		const fresh = await fetchSince(data.token, version);
+		const fresh = await fetchSince(data.token, version, rosterStamp);
 		if (fresh) {
 			version = fresh.version;
 			table = fresh.state as ProjectedTable;
-			if (fresh.seats) seats = fresh.seats;
+			takeRoster(fresh);
 			remember(fresh.events);
 		}
 	}
@@ -274,7 +288,7 @@
 		if (reply.ok && reply.view) {
 			version = reply.view.version;
 			table = reply.view.state as ProjectedTable;
-			if (reply.view.seats) seats = reply.view.seats;
+			takeRoster(reply.view);
 			remember(reply.view.events);
 		} else if (
 			reply.reason === 'conflict' ||

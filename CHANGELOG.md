@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A card table that is sitting still costs one database query a poll, down
+  from five.** Every client at a table asks whether anything has changed about
+  once a second, and nearly every time the answer is no. That answer used to
+  load, migrate, project and send the whole table regardless. Now the client
+  hands back a fingerprint of the roster it last saw; if neither that nor the
+  version has moved, the server answers `204` from a single statement and the
+  table's state is never read. A poll with something to deliver takes three
+  queries. Three changes make that up:
+  - saved preferences are no longer loaded for `/api` requests, none of which
+    read them;
+  - the viewer's seat is found among the seats already loaded, on every
+    card-table request, instead of by a query of its own;
+  - the sync endpoint asks for the version and roster first, in one statement
+    (`peekTableByToken`), and fetches the table only on a change.
+
 - **A Challenge on the card table runs one step at a time.** It used to be
   played by hand — the GM stepped the count, opened and closed minor actions and
   swept the table — and in the first live test nobody could tell what was going

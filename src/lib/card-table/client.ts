@@ -42,8 +42,22 @@ export async function sendCommand(
 	return { ok: false, reason: body?.reason ?? 'no-such-table', detail: body?.detail };
 }
 
-export async function fetchSince(token: string, version: number): Promise<TableSnapshot | null> {
-	const res = await fetch(`/api/card-tables/${token}/sync?since=${version}`);
-	if (!res.ok) return null;
+/**
+ * Ask for anything after `version`. `null` means nothing has changed.
+ *
+ * `stamp` is the roster fingerprint from the last view this client was given.
+ * Sent back, it lets the server answer `204` when neither the version nor the
+ * roster has moved, without loading the table at all — which is nearly every
+ * poll. Left out, the server always sends a full view.
+ */
+export async function fetchSince(
+	token: string,
+	version: number,
+	stamp?: string
+): Promise<TableSnapshot | null> {
+	const query = new URLSearchParams({ since: String(version) });
+	if (stamp) query.set('stamp', stamp);
+	const res = await fetch(`/api/card-tables/${token}/sync?${query}`);
+	if (res.status === 204 || !res.ok) return null;
 	return (await res.json()) as TableSnapshot;
 }

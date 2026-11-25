@@ -14,12 +14,14 @@ import type { CardTableModule } from '$lib/games/types';
 import { getGame } from '$lib/games';
 import {
 	expireByToken,
+	getCardTable,
 	getCardTableByToken,
+	peekTableByToken,
 	touchCardTable,
 	sweepExpiredTables
 } from '../db/card-tables';
 import { listSeats } from '../db/card-tables';
-import { resolveSeat } from '../db/card-table-seats';
+import { seatAmong } from '../db/card-table-seats';
 import { applyCommand, eventsSince } from '../db/card-table-commands';
 /**
  * Randomness for a shuffle, straight from the platform.
@@ -118,9 +120,23 @@ export async function loadTable(
 	const module = cardTableOf(row.gameId);
 	if (!module) return undefined;
 
+	const seats = await listSeats(db, row.id);
+	// From the seats just loaded rather than a query of its own: the viewer's
+	// seat is one of those rows, and asking again was a round trip for nothing.
+	const seat = await seatAmong(seats, claim, userId);
+	return contextFor(fetchFn, row, module, seats, seat);
+}
+
+/** Assemble a request's view of a table from rows already in hand. */
+async function contextFor(
+	fetchFn: typeof fetch,
+	row: CardTableRow,
+	module: CardTableModule,
+	seats: CardTableSeat[],
+	seat: CardTableSeat | undefined
+): Promise<TableContext> {
 	const pack = await loadPack(fetchFn, row.gameId, module.packFiles);
 	const migrated = module.migrate(row.state, pack);
-	const seats = await listSeats(db, row.id);
 	const admitted = seats
 		.filter((s) => s.status === 'admitted')
 		.map((s) => ({ id: s.id, isGm: s.isGm }));
@@ -130,10 +146,38 @@ export async function loadTable(
 		module,
 		pack,
 		seats,
-		seat: await resolveSeat(db, row.id, claim, userId),
+		seat,
 		state: module.syncSeats(migrated.state, admitted),
 		stateVersion: migrated.stateVersion
 	};
+}
+
+/** The roster as a client sees it — the only seat fields that ever leave. */
+const rosterOf = (seats: readonly CardTableSeat[]) =>
+	seats.map((s) => ({ id: s.id, name: s.name, status: s.status, isGm: s.isGm }));
+
+/**
+ * A short fingerprint of everything a view holds that the version does not
+ * cover: who is at the table, and which seat the viewer has.
+ *
+ * The version only moves when a card does. Somebody asking for a seat, being
+ * admitted, or being re-seated changes what a client should show without
+ * touching it, so "same version" alone cannot mean "nothing to send". A client
+ * hands this back with its cursor, and the two together can.
+ *
+ * Opaque to the client and derived from the rows themselves, so there is no
+ * counter for a seat write to forget to bump. Truncated because it only has to
+ * tell one table's successive rosters apart.
+ */
+export async function rosterStamp(
+	seats: readonly CardTableSeat[],
+	seatId: string | null
+): Promise<string> {
+	const bytes = new TextEncoder().encode(JSON.stringify([rosterOf(seats), seatId]));
+	const digest = await crypto.subtle.digest('SHA-256', bytes);
+	return [...new Uint8Array(digest).slice(0, 8)]
+		.map((b) => b.toString(16).padStart(2, '0'))
+		.join('');
 }
 
 /** What a client is handed: the version, its own view, and public history. */
@@ -153,6 +197,12 @@ export interface TableView {
 	 * happened to reload.
 	 */
 	seats: { id: string; name: string; status: string; isGm: boolean }[];
+	/**
+	 * Fingerprint of `seats` and `seatId` (`rosterStamp`). A client sends it
+	 * back with its next poll so the server can answer "nothing has changed"
+	 * without loading the table.
+	 */
+	stamp: string;
 }
 
 export async function viewFor(db: Db, ctx: TableContext, sinceVersion: number): Promise<TableView> {
@@ -162,8 +212,65 @@ export async function viewFor(db: Db, ctx: TableContext, sinceVersion: number): 
 		state: ctx.module.project(ctx.state, ctx.seat?.id ?? null),
 		events: events.map((e) => ({ version: e.version, kind: e.kind, data: e.data })),
 		seatId: ctx.seat?.id ?? null,
-		seats: ctx.seats.map((s) => ({ id: s.id, name: s.name, status: s.status, isGm: s.isGm }))
+		seats: rosterOf(ctx.seats),
+		stamp: await rosterStamp(ctx.seats, ctx.seat?.id ?? null)
 	};
+}
+
+/** What the poll is asking from: the client's cursor and roster fingerprint. */
+export interface SyncCursor {
+	/** The version the client holds. */
+	since: number;
+	/** The `stamp` from the last view it was given, if it has had one. */
+	stamp?: string;
+}
+
+/**
+ * Answer a poll: the fresh view, `'unchanged'`, or nothing for no such table.
+ *
+ * Nearly every poll finds a table exactly as the client last saw it, so this
+ * asks the cheap question first. One statement fetches the version and the
+ * roster; if both match what the client holds, that is the whole request —
+ * the state blob is never read, migrated, projected or serialised, and nothing
+ * else is asked of the database. Only a poll that has something to deliver
+ * pays for the table itself.
+ *
+ * `'unchanged'` needs the client to have sent a stamp. A client that has none
+ * yet — its first poll — is always given a full view, which carries one.
+ *
+ * On a change the row is read *before* the events, in that order on purpose.
+ * A command landing between the two can then only make the events run ahead
+ * of the version handed back, and the next poll re-sends the surplus for the
+ * client to discard. The other order could hand back a version whose event
+ * the client never receives.
+ */
+export async function syncTable(
+	db: Db,
+	fetchFn: typeof fetch,
+	token: string,
+	claim: SeatClaim | undefined,
+	userId: string | undefined,
+	cursor: SyncCursor
+): Promise<TableView | 'unchanged' | undefined> {
+	const peek = await peekTableByToken(db, token);
+	if (!peek) return undefined;
+
+	const module = cardTableOf(peek.gameId);
+	if (!module) return undefined;
+
+	const seat = await seatAmong(peek.seats, claim, userId);
+	if (
+		cursor.stamp !== undefined &&
+		cursor.since === peek.version &&
+		cursor.stamp === (await rosterStamp(peek.seats, seat?.id ?? null))
+	) {
+		return 'unchanged';
+	}
+
+	const row = await getCardTable(db, peek.id);
+	// Deleted between the two reads. Same answer as never having existed.
+	if (!row) return undefined;
+	return viewFor(db, await contextFor(fetchFn, row, module, peek.seats, seat), cursor.since);
 }
 
 /**

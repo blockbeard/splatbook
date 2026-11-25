@@ -115,4 +115,9 @@ export interface TableSnapshot {
 	seatId: string | null;
 	/** The roster, which changes without the table's version moving. */
 	seats: { id: string; name: string; status: string; isGm: boolean }[];
+	/**
+	 * The server's fingerprint of the roster and this viewer's seat. Opaque:
+	 * kept alongside `seats` and sent back with the next poll.
+	 */
+	stamp?: string;
 }
