@@ -12,7 +12,7 @@ import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
 import { eq } from 'drizzle-orm';
 import * as schema from './schema.ts';
 import type { Db } from './entities.ts';
-import { createCardTable } from './card-tables.ts';
+import { createCardTable, listSeats } from './card-tables.ts';
 import {
 	MAX_PENDING_SEATS,
 	MAX_SEATS_PER_TABLE,
@@ -27,6 +27,7 @@ import {
 	reseat,
 	seatCounts,
 	resolveSeat,
+	seatAmong,
 	vacateGmSeat
 } from './card-table-seats.ts';
 
@@ -268,6 +269,37 @@ describe('proving a seat is yours', () => {
 		// Which is how an account keeps its seat across devices.
 		const ticket = await seat('Grimwold', ownerId);
 		expect((await resolveSeat(db, tableId, undefined, ownerId))?.id).toBe(ticket.seat.id);
+	});
+});
+
+describe('finding a seat among ones already loaded', () => {
+	it('agrees with the database lookup in every case', async () => {
+		const guest = await seat('Grimwold');
+		const member = await seat('Ysolde', ownerId);
+		const seats = await listSeats(db, tableId);
+		const claim = { seatId: guest.seat.id, secret: guest.secret };
+
+		const cases: [typeof claim | undefined, string | undefined][] = [
+			[claim, undefined],
+			[{ ...claim, secret: 'wrong' }, undefined],
+			[{ seatId: 'no-such-seat', secret: guest.secret }, undefined],
+			[undefined, undefined],
+			[undefined, ownerId],
+			// An account's seat wins over a ticket for a different one.
+			[claim, ownerId],
+			[undefined, 'no-such-user']
+		];
+		for (const [c, userId] of cases) {
+			expect((await seatAmong(seats, c, userId))?.id).toBe(
+				(await resolveSeat(db, tableId, c, userId))?.id
+			);
+		}
+		expect((await seatAmong(seats, claim))?.id).toBe(guest.seat.id);
+		expect((await seatAmong(seats, undefined, ownerId))?.id).toBe(member.seat.id);
+	});
+
+	it('finds nobody at an empty table', async () => {
+		expect(await seatAmong([], { seatId: 'x', secret: 'y' }, ownerId)).toBeUndefined();
 	});
 });
 

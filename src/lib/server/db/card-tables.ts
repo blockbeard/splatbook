@@ -127,6 +127,62 @@ export async function getCardTableByToken(
 	return row;
 }
 
+/** What a poll needs to decide whether anything has changed. */
+export interface TablePeek {
+	id: string;
+	gameId: string;
+	version: number;
+	/** Everybody at the table, oldest first — the same order as `listSeats`. */
+	seats: CardTableSeat[];
+}
+
+/**
+ * The table a token names and the seats at it, **in one statement** and
+ * without its state.
+ *
+ * This is the poll's first question and, most of the time, its only one. A
+ * table sits unchanged between nearly every pair of polls, so the commonest
+ * request by far needs to learn just two things: has the version moved, and
+ * has the roster. Both are here, in a single round trip — which matters on D1,
+ * where each statement is its own trip to a database that may be a region
+ * away — and the state blob stays on disk, unread and unparsed, until
+ * something has actually changed.
+ *
+ * A join rather than a batch so the same code runs on better-sqlite3 and D1.
+ * The table's columns repeat on every seat row, which is why the state is not
+ * among them.
+ *
+ * Read-only, like `getCardTableByToken`, and for the same reason. An expired
+ * table reads as absent.
+ */
+export async function peekTableByToken(
+	db: Db,
+	token: string,
+	now: number = Date.now()
+): Promise<TablePeek | undefined> {
+	const rows = await db
+		.select({
+			id: cardTables.id,
+			gameId: cardTables.gameId,
+			version: cardTables.version,
+			lastActiveAt: cardTables.lastActiveAt,
+			seat: cardTableSeats
+		})
+		.from(cardTables)
+		.leftJoin(cardTableSeats, eq(cardTableSeats.tableId, cardTables.id))
+		.where(eq(cardTables.roomToken, token))
+		.orderBy(asc(cardTableSeats.createdAt));
+	const first = rows[0];
+	if (!first || now - first.lastActiveAt.getTime() > TABLE_RETENTION_MS) return undefined;
+	return {
+		id: first.id,
+		gameId: first.gameId,
+		version: first.version,
+		// A table with nobody at it comes back as one row with no seat.
+		seats: rows.flatMap((row) => (row.seat ? [row.seat] : []))
+	};
+}
+
 /**
  * Retire the table a token names, if it has expired. Nothing otherwise.
  *

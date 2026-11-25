@@ -35,6 +35,8 @@ export interface TableSnapshot {
 	seats?: { id: string; name: string; status: string; isGm: boolean }[];
 	/** Which seat the asker holds, if any — it can change while they watch. */
 	seatId?: string | null;
+	/** The server's fingerprint of the roster, handed back with the next poll. */
+	stamp?: string;
 }
 
 export interface TableTransport {

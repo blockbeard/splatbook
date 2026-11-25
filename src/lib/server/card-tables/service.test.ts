@@ -13,9 +13,10 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import * as schema from '../db/schema.ts';
 import type { Db } from '../db/entities.ts';
-import { createCardTable } from '../db/card-tables.ts';
+import { createCardTable, TABLE_RETENTION_MS } from '../db/card-tables.ts';
+import { eq } from 'drizzle-orm';
 import { requestSeat, claimGmSeat } from '../db/card-table-seats.ts';
-import { clearPackCache, loadPack, loadTable, runCommand, viewFor } from './service.ts';
+import { clearPackCache, loadPack, loadTable, runCommand, syncTable, viewFor } from './service.ts';
 import { seededRng } from '$lib/games/hmtw/engine';
 import { getGame } from '$lib/games';
 import '$lib/games';
@@ -47,17 +48,25 @@ function packFetch() {
 let db: Db;
 let token: string;
 let gmSeatId: string;
+let gmClaim: { seatId: string; secret: string };
+let tableId: string;
+/** Every statement the database has been sent, for counting round trips. */
+let statements: string[];
 
 /** Same shape as the other db tests: migrate on the concrete type, then widen. */
 function freshDb(): Db {
 	const sqlite = new Database(':memory:');
 	sqlite.pragma('foreign_keys = ON');
-	const database = drizzle(sqlite, { schema });
+	const database = drizzle(sqlite, {
+		schema,
+		logger: { logQuery: (query) => statements.push(query) }
+	});
 	migrate(database, { migrationsFolder: './drizzle' });
 	return database;
 }
 
 beforeEach(async () => {
+	statements = [];
 	db = freshDb();
 
 	const [user] = await db.insert(schema.users).values({ email: 'gm@x' }).returning();
@@ -80,6 +89,8 @@ beforeEach(async () => {
 	const seat = await requestSeat(db, created.table.id, 'The GM');
 	if (!seat.ok) throw new Error('seat refused');
 	gmSeatId = seat.ticket.seat.id;
+	gmClaim = { seatId: gmSeatId, secret: seat.ticket.secret };
+	tableId = created.table.id;
 	await claimGmSeat(db, created.table.id, gmSeatId);
 
 	// Cleared *after* setup: this fixture loads the pack itself, and a warm
@@ -205,5 +216,123 @@ describe('what a viewer is handed', () => {
 	it('carries the version a client should send back as its cursor', async () => {
 		const ctx = (await load(packFetch()))!;
 		expect((await viewFor(db, ctx, 0)).version).toBe(ctx.row.version);
+	});
+});
+
+describe('answering a poll', () => {
+	const poll = (
+		cursor: { since: number; stamp?: string },
+		/** `null` for somebody holding no ticket; left out, the GM asks. */
+		claim: { seatId: string; secret: string } | null = gmClaim
+	) => syncTable(db, packFetch().fn, token, claim ?? undefined, undefined, cursor);
+
+	/** A first poll, which has no stamp to send and so always gets a view. */
+	async function firstView() {
+		const view = await poll({ since: 0 });
+		if (!view || view === 'unchanged') throw new Error('expected a view');
+		return view;
+	}
+
+	const move = async (version: number, key: string) => {
+		const ctx = (await load(packFetch(), gmClaim))!;
+		const res = await runCommand(
+			db,
+			ctx,
+			{ type: 'move', from: { zone: 'deck:player' }, to: 'discard:player' },
+			version,
+			key,
+			seededRng(1)
+		);
+		if (!res.ok) throw new Error(`command refused: ${res.reason}`);
+	};
+
+	it('gives a client with no stamp the whole view, and a stamp to send back', async () => {
+		const view = await firstView();
+		expect(view.version).toBe(0);
+		expect(view.seatId).toBe(gmSeatId);
+		expect(view.seats).toHaveLength(1);
+		expect(view.stamp).toMatch(/^[0-9a-f]{16}$/);
+	});
+
+	it('says nothing has changed in a single statement', async () => {
+		const { stamp } = await firstView();
+		statements.length = 0;
+		expect(await poll({ since: 0, stamp })).toBe('unchanged');
+		// The whole point: an idle table costs one round trip a poll, and its
+		// state is never read.
+		expect(statements).toHaveLength(1);
+		expect(statements[0]).not.toMatch(/"state"/);
+	});
+
+	it('delivers a command that landed', async () => {
+		const { stamp } = await firstView();
+		await move(0, 'poll-1');
+		const view = await poll({ since: 0, stamp });
+		if (!view || view === 'unchanged') throw new Error('expected a view');
+		expect(view.version).toBe(1);
+		expect(view.events.map((e) => e.kind)).toEqual(['move']);
+	});
+
+	it('spends three statements when there is something to deliver', async () => {
+		const { stamp } = await firstView();
+		await move(0, 'poll-2');
+		statements.length = 0;
+		await poll({ since: 0, stamp });
+		// The peek, the table, the events.
+		expect(statements).toHaveLength(3);
+	});
+
+	it('notices the roster move though the version has not', async () => {
+		const { stamp } = await firstView();
+		const arrival = await requestSeat(db, tableId, 'Grimwold');
+		expect(arrival.ok).toBe(true);
+		const view = await poll({ since: 0, stamp });
+		if (!view || view === 'unchanged') throw new Error('expected a view');
+		// No card moved, and the GM still has to see somebody asking to sit.
+		expect(view.version).toBe(0);
+		expect(view.seats.map((s) => s.name)).toEqual(['The GM', 'Grimwold']);
+		expect(view.stamp).not.toBe(stamp);
+		expect(await poll({ since: 0, stamp: view.stamp })).toBe('unchanged');
+	});
+
+	it('will not let one viewer’s stamp stand for another’s', async () => {
+		const { stamp } = await firstView();
+		// The same roster, asked about by somebody holding no seat: what they may
+		// see differs, so the GM's stamp must not earn them a "nothing changed".
+		const view = await poll({ since: 0, stamp }, null);
+		if (!view || view === 'unchanged') throw new Error('expected a view');
+		expect(view.seatId).toBeNull();
+		expect(view.stamp).not.toBe(stamp);
+	});
+
+	it('treats a cursor that has fallen behind as a change', async () => {
+		await move(0, 'poll-3');
+		const view = await poll({ since: 1 });
+		if (!view || view === 'unchanged') throw new Error('expected a view');
+		expect(await poll({ since: 0, stamp: view.stamp })).not.toBe('unchanged');
+		expect(await poll({ since: 1, stamp: view.stamp })).toBe('unchanged');
+	});
+
+	it('gives nothing for a token that names nothing, or a table that has expired', async () => {
+		expect(
+			await syncTable(db, packFetch().fn, 'not-a-token', undefined, undefined, { since: 0 })
+		).toBeUndefined();
+
+		const { stamp } = await firstView();
+		await db
+			.update(schema.cardTables)
+			.set({ lastActiveAt: new Date(Date.now() - TABLE_RETENTION_MS - 1000) })
+			.where(eq(schema.cardTables.id, tableId));
+		// Even to a client whose cursor and stamp still match: gone is gone.
+		expect(await poll({ since: 0, stamp })).toBeUndefined();
+	});
+
+	it('writes nothing, whatever it finds', async () => {
+		const { stamp } = await firstView();
+		await move(0, 'poll-4');
+		statements.length = 0;
+		await poll({ since: 0, stamp });
+		await poll({ since: 1 });
+		expect(statements.filter((q) => !/^select/i.test(q))).toEqual([]);
 	});
 });

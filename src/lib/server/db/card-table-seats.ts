@@ -295,3 +295,31 @@ export async function resolveSeat(
 	if (!seat?.claimSecret) return undefined;
 	return seat.claimSecret === (await hashSecret(claim.secret)) ? seat : undefined;
 }
+
+/**
+ * `resolveSeat`, answered from seats already in hand.
+ *
+ * Every path that needs the viewer's seat has just loaded the table's whole
+ * roster, and the viewer's seat is one of those rows. Asking the database for
+ * it again was a second round trip for something already in memory, paid on
+ * every poll. Same rules, same order: an account's seat first, then a guest's
+ * ticket checked against the stored hash.
+ *
+ * `seats` must be the seats of the one table in question; that is what stands
+ * in for `resolveSeat`'s table check.
+ */
+export async function seatAmong(
+	seats: readonly CardTableSeat[],
+	claim: { seatId: string; secret: string } | undefined,
+	userId?: string
+): Promise<CardTableSeat | undefined> {
+	if (userId) {
+		const byAccount = seats.find((s) => s.userId === userId);
+		if (byAccount) return byAccount;
+	}
+	if (!claim) return undefined;
+
+	const seat = seats.find((s) => s.id === claim.seatId);
+	if (!seat?.claimSecret) return undefined;
+	return seat.claimSecret === (await hashSecret(claim.secret)) ? seat : undefined;
+}

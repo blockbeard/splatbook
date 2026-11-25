@@ -27,8 +27,17 @@ const database: Handle = async ({ event, resolve }) => {
  * them without its own round trip. Runs after `auth` — it needs the session
  * to know whose preferences to load — and short-circuits to `{}` for a
  * signed-out request rather than querying with no `userId`.
+ *
+ * API routes are skipped as well. Nothing under `/api` reads `locals.prefs` —
+ * it exists for server-rendered pages — and the card table's sync endpoint is
+ * asked about once a second per client, so loading it there was a database
+ * round trip on every poll for a value nobody looked at.
  */
 const preferences: Handle = async ({ event, resolve }) => {
+	if (event.route.id?.startsWith('/api/')) {
+		event.locals.prefs = {};
+		return resolve(event);
+	}
 	const session = await event.locals.auth();
 	event.locals.prefs = session?.user?.id
 		? await getPreferences(event.locals.db, session.user.id)
