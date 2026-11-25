@@ -239,6 +239,9 @@
 					{action.label}
 				</button>
 			{/if}
+			{#if mySeatId}
+				<a class="guide__jump" href="#move-heading">Your move</a>
+			{/if}
 			{#if guide.rule}
 				<!-- A new tab, so the table keeps its place mid-fight. -->
 				<a
@@ -686,7 +689,16 @@
 	 * the software: it says what is happening and offers the obvious next thing,
 	 * and everything it suggests is also reachable by hand a few inches below.
 	 */
+	/*
+	 * Pinned to the top while the table scrolls under it. On a phone the
+	 * Challenge is some 2,700px tall, and the line that says whose turn it is
+	 * — and the GM's button to move on — was off the screen most of the time.
+	 */
 	.guide {
+		position: sticky;
+		inset-block-start: 0;
+		z-index: 2;
+		background: var(--ct-table);
 		display: flex;
 		gap: 0.75rem;
 		align-items: center;
@@ -695,6 +707,19 @@
 		padding: 0.6rem 0.8rem;
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 4px;
+	}
+	/* "Your move" sits under the hand, a long way down on a phone. */
+	.guide__jump {
+		display: none;
+		color: var(--ct-mark);
+		text-decoration: underline;
+		min-block-size: 2.75rem;
+		align-items: center;
+	}
+	@media (max-width: 48rem) {
+		.guide__jump {
+			display: inline-flex;
+		}
 	}
 	.guide__text {
 		font-family: 'IM Fell English', Georgia, serif;

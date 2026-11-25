@@ -96,8 +96,11 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	// --- Three players arrive by link and are let in. ---
 	const names = ['Ash', 'Bel', 'Cai'].map((n) => `${n} ${run}`);
 	const players: { name: string; context: BrowserContext; page: Page; seat: string }[] = [];
-	for (const name of names) {
-		const context = await browser.newContext();
+	for (const [i, name] of names.entries()) {
+		// Cai plays on a phone: the check the first live test deferred.
+		const context = await browser.newContext(
+			i === 2 ? { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true } : {}
+		);
 		const page = await context.newPage();
 		await page.goto(roomUrl);
 		await page.getByLabel("Your character's name").fill(name);
@@ -155,6 +158,23 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		holder === gmSeat || !players.some((p) => p.seat === holder)
 			? { page: gm, context: gmContext }
 			: players.find((p) => p.seat === holder)!;
+	const phone = players[2].page;
+	/** At phone width: nothing scrolls sideways, and every control is a real target. */
+	async function phoneCheck(label: string) {
+		const overflow = await phone.evaluate(
+			() => document.documentElement.scrollWidth - document.documentElement.clientWidth
+		);
+		expect(overflow, `${label}: the phone page scrolls sideways`).toBeLessThanOrEqual(0);
+		const small = await phone.evaluate(() =>
+			[...document.querySelectorAll('.move button, .move select, .actions button, .guide button')]
+				.filter((el) => (el as HTMLElement).offsetParent !== null)
+				.map((el) => ({ el, r: el.getBoundingClientRect() }))
+				.filter(({ r }) => r.height < 43.5 || r.width < 43.5)
+				.map(({ el }) => (el.textContent ?? '').trim().slice(0, 30))
+		);
+		expect(small, `${label}: controls under 44px on the phone`).toEqual([]);
+	}
+	const phoneShots = new Set<string>();
 	let readied = false;
 	let declared = false;
 	let sawMinor = false;
@@ -164,6 +184,15 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		const view = (await projectionFor(gmContext, token)).state;
 		const step = view.round.step;
 		if (step === 'over') break;
+		await phoneCheck(step);
+		const mineNow =
+			(step === 'turn' && view.upNow.includes(players[2].seat)) ||
+			(step === 'minor' && view.waitingOn.includes(players[2].seat));
+		if (mineNow && !phoneShots.has(step)) {
+			phoneShots.add(step);
+			await expect(phone.locator('.move')).toBeVisible(POLLED);
+			await shot(phone, `phone-${step}`);
+		}
 
 		if (step === 'turn') {
 			const holder = view.upNow[0];
@@ -266,7 +295,14 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);
+	// On the phone the guide stays on screen when scrolled, and jumps to "Your move".
+	await phone.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
+	await expect(phone.locator('.guide')).toBeInViewport();
+	await phone.locator('.guide').getByRole('link', { name: 'Your move' }).click();
+	await expect(phone.locator('#move-heading')).toBeInViewport();
 	await shot(gm, 'round-over');
+	await phoneCheck('over');
+	await shot(phone, 'phone-over');
 	failures.push(...(await violations(gm)));
 
 	await gm.locator('.guide').getByRole('button', { name: 'End the round' }).click();
