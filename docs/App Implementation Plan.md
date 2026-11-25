@@ -463,6 +463,49 @@ thrown away by Release C.
 21. `docs`: close phase 32.
     **Milestone D: deploy.**
 
+### As built (2026-11-25)
+
+All four releases were built the same day, each merged into `main` with lint,
+unit and browser tests green (1,169 unit tests and 49 browser tests at the end
+of Release C). Not yet pushed or deployed when this was written; no D1 migration
+is needed, because every change is inside the table's JSON state.
+
+- **Release A** went as planned (commits 1–7, plus the changelog). Commit 7
+  became "the round is over once the count is past the highest card, settled
+  or not", with a `stillToAct` list in the projection, which Release C then
+  replaced.
+- **Release B** went as planned. Commit 8's rule is `mayReach` on zone ids, so
+  the screen and the server ask the same question; with nobody in the GM seat
+  everyone runs the table, except for hands.
+- **Release C** landed as two commits rather than nine: the pack flags
+  (`content(hmtw)`), then the engine, commands, screens and tests together,
+  because the old round fields could not leave the engine without the screens
+  that read them going in the same commit. Differences from the design above:
+  - There is no `count` step: the count is a value, and the steps are `deal`,
+    `initiative`, `turn`, `minor`, `resolve` and `over`.
+  - Played cards stay in each seat's and group's `played` zone; "In play" is a
+    view over all of them (the review's simpler option). `plays` labels face-up
+    cards by card id, which is safe only because they are face up; face-down
+    minor actions are labelled by zone in `minorDeclared`.
+  - When nothing is face up after minor actions (a readied card, everyone
+    passing), the count moves straight on instead of waiting on the GM's Next.
+  - The GM's overrides are one command, `step-on`, which does what the step is
+    waiting for. There is no "Back one"; `take-back` covers the common case.
+  - Retrying on a conflict covers every step command except `step-on`, since
+    the server re-checks the round on each try.
+  - The worked example in ch.7 plays through the new commands in
+    `example-challenge.test.ts`; ties and the Fool are covered in
+    `steps.test.ts`, and a tie came up by chance in the four-browser spec and
+    read correctly.
+- **Release D** found no sideways scrolling and no target under 44px at 390px.
+  It found the page is about 2,700px long on a phone, so the guide line is
+  pinned to the top and carries a "Your move" link on narrow screens.
+
+**Still to do before closing this phase:** the second live test, with a
+checklist note like the first, and the player instructions (Chris asked for
+them, "better than assuming they know how it all works"). Close the phase once
+that test has been worked through.
+
 **Guards**, phase 31's carried forward: the a11y spec stays the floor and
 grows a state for each new panel, and contrast is computed. The second live
 test is not optional. The specs can't tell whether four people understand the
