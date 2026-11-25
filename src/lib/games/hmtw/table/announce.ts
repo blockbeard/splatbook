@@ -89,7 +89,9 @@ export function describe(event: TableEvent, nameOf: NameOf): string | null {
 		case 'begin-round':
 			return `Round ${d.round} dealt. Players draw ${d.playerHand}, the GM draws ${d.gmHand}.`;
 		case 'end-round':
-			return `Round ${d.round} ended.`;
+			return d.shuffled
+				? `Round ${d.round} ended. The Fool came out, so both decks were shuffled.`
+				: `Round ${d.round} ended.`;
 		case 'count':
 			// The one a player most needs, and the reason this exists: it is how
 			// the table says your turn has come.

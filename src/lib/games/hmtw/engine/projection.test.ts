@@ -142,21 +142,32 @@ describe('what stays public on purpose', () => {
 		expect(view.zones[seatZone('s2', 'facedown')].cards).toBeUndefined();
 	});
 
-	it('tells the table the Fool is in play, but not whose hand it is in', () => {
-		// The reshuffle is required at the end of the round, and one nobody knows
-		// to perform is worse than a hand that is slightly less secret. Which hand
-		// holds it — the part that would change how anyone plays — stays hidden.
+	it('tells only whoever can see the Fool that it is out', () => {
+		// The first live test showed the old public notice for what it was:
+		// every player told that somebody holds the Fool. The end of the round
+		// reshuffles by itself, so nobody else needs telling.
 		let t = setGmSeat(createTable(deck, ['s1', 's2', 'gm']), 'gm');
 		t = beginRound(t, { playerHand: 13, gmHand: 0, rng: seededRng(5) });
 		expect(t.round.foolDrawn).toBe(true);
 
 		// The deck is unshuffled, so this deal is exact: s1 takes m1-m13 and s2
-		// takes the rest, the Fool among them. So ask s1, who does not hold it —
-		// asking s2 would only prove that you can see your own hand.
+		// takes the rest, the Fool among them.
 		expect(t.zones[seatZone('s2', 'hand')].cards).toContain('fool');
-		const view = projectFor(t, 's1');
-		expect(view.round.foolDrawn).toBe(true);
-		expect(JSON.stringify(view).includes('"fool"')).toBe(false);
+		const other = projectFor(t, 's1');
+		expect(other.round.foolDrawn).toBe(false);
+		expect(JSON.stringify(other).includes('"fool"')).toBe(false);
+		expect(projectFor(t, 'gm').round.foolDrawn).toBe(false);
+		expect(projectFor(t, 's2').round.foolDrawn).toBe(true);
+
+		// Played face up, everyone sees it.
+		const played = moveCard(
+			t,
+			{ zone: seatZone('s2', 'hand'), card: 'fool' },
+			seatZone('s2', 'played'),
+			's2'
+		);
+		if (!played.ok) throw new Error(played.reason);
+		expect(projectFor(played.table, 's1').round.foolDrawn).toBe(true);
 	});
 
 	it('shows the roster, the count and whose turn it is', () => {

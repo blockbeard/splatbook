@@ -13,6 +13,13 @@ suite('saying what happened', () => {
 		);
 	});
 
+	it('says when the Fool’s reshuffle happened, since nobody else was told it was out', () => {
+		expect(describe(ev('end-round', { round: 2, shuffled: false }), nameOf)).toBe('Round 2 ended.');
+		expect(describe(ev('end-round', { round: 2, shuffled: true }), nameOf)).toBe(
+			'Round 2 ended. The Fool came out, so both decks were shuffled.'
+		);
+	});
+
 	it('calls the count, because that is how the table says it is your turn', () => {
 		expect(describe(ev('count', { count: 7 }), nameOf)).toBe('Initiative 7.');
 		expect(describe(ev('count', { count: null }), nameOf)).toBe('The count has stopped.');

@@ -89,12 +89,11 @@ function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZo
  * The table as `viewer` may see it. Pass no viewer for the view a stranger
  * gets — public zones only, which is also the safe default.
  *
- * Note what stays public: `round.foolDrawn`. Knowing the Fool is in play is
- * information — it tells the table someone holds it — but the book requires
- * both decks to be shuffled at the end of a round in which it was drawn, and a
- * reshuffle nobody knows to perform is worse than a hand that is slightly less
- * secret. Which *hand* holds it stays hidden, which is the part that would
- * change how anyone plays.
+ * `round.foolDrawn` is shown only to a viewer who can already see the Fool:
+ * its holder, or everyone once it lies face up. It used to be public, so that
+ * somebody would know to reshuffle; but `endRound` reshuffles both decks by
+ * itself, and the first live test (25 November 2026) showed the notice for
+ * what it was — every player told that somebody is holding the Fool.
  */
 export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 	const zones: Record<string, ProjectedZone> = {};
@@ -114,7 +113,12 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 			count: upCount(o),
 			creatures: o.creatures.map((c) => ({ ...c, pools: c.pools.map((p) => ({ ...p })) }))
 		})),
-		round: { ...table.round },
+		round: {
+			...table.round,
+			foolDrawn:
+				table.round.foolDrawn &&
+				Object.values(zones).some((z) => z.cards?.some((c) => table.foolCards.includes(c)))
+		},
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),

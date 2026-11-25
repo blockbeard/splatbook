@@ -13,7 +13,8 @@
  * of the session", not the end of a fight.
  */
 
-import { discardAll } from './moves';
+import { discardAll, reshuffleDeck } from './moves';
+import type { Rng } from './shuffle';
 import { newRound } from './round';
 import type { CardTable } from './table';
 import { opponentZone, seatZone } from './zones';
@@ -28,7 +29,7 @@ export type TableMode = 'decks' | 'challenge';
  * and a misclick costing a readied Dodge and five hands is exactly the sort of
  * thing that makes people stop trusting an app.
  */
-export function setMode(table: CardTable, mode: TableMode): CardTable {
+export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable {
 	if (table.mode === mode) return table;
 	if (mode === 'challenge') return { ...table, mode };
 
@@ -45,6 +46,13 @@ export function setMode(table: CardTable, mode: TableMode): CardTable {
 		for (const kind of ['initiative', 'played', 'facedown'] as const) {
 			next = discardAll(next, opponentZone(opponent.id, kind), 'gm');
 		}
+	}
+
+	// The Fool's reshuffle is owed at the end of the round, and leaving the
+	// Challenge ends it. Forgetting `foolDrawn` without shuffling skipped it.
+	if (table.round.foolDrawn && rng) {
+		next = reshuffleDeck(next, 'player', rng);
+		next = reshuffleDeck(next, 'gm', rng);
 	}
 
 	return {

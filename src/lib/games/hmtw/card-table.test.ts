@@ -511,3 +511,39 @@ describe('every card goes to its own deck’s discard', () => {
 		expect(t.zones['discard:player'].cards).toHaveLength(1);
 	});
 });
+
+describe('the Fool’s reshuffle', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out;
+	};
+
+	it('happens when a Challenge is left mid-round, not only at the end of one', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' }).state as CardTable;
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 }).state as CardTable;
+		t = { ...t, round: { ...t.round, foolDrawn: true } };
+		const before = t.zones['deck:player'].cards.length;
+		const left = run(t, { type: 'set-mode', mode: 'decks' }).state as CardTable;
+		// Hands went to the discard and the discard was shuffled back in.
+		expect(left.zones['discard:player'].cards).toHaveLength(0);
+		expect(left.zones['deck:player'].cards.length).toBeGreaterThan(before);
+	});
+
+	it('is announced when the round ends', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' }).state as CardTable;
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 }).state as CardTable;
+		t = { ...t, round: { ...t.round, foolDrawn: false } };
+		const quiet = run(t, { type: 'end-round' });
+		expect(quiet.ok && quiet.data).toMatchObject({ shuffled: false });
+		t = { ...t, round: { ...t.round, foolDrawn: true } };
+		const loud = run(t, { type: 'end-round' });
+		expect(loud.ok && loud.data).toMatchObject({ shuffled: true });
+	});
+});

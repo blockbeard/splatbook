@@ -306,7 +306,7 @@ export const hmtwCardTable: CardTableModule = {
 				// Not a rules judgement — a seat one. Leaving a Challenge sweeps
 				// every hand on the table, so it belongs to whoever is running it.
 				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
-				return state(setMode(table, parsed.data.mode), 'set-mode', {
+				return state(setMode(table, parsed.data.mode, context.rng), 'set-mode', {
 					mode: parsed.data.mode,
 					seat: context.actorSeatId
 				});
@@ -327,7 +327,11 @@ export const hmtwCardTable: CardTableModule = {
 			}
 			case 'end-round': {
 				const next = endRound(table, context.rng);
-				return state(next, 'end-round', { round: table.round.number });
+				// Said when it happens, now that nobody else was told the Fool was out.
+				return state(next, 'end-round', {
+					round: table.round.number,
+					shuffled: table.round.foolDrawn
+				});
 			}
 			case 'mulligan': {
 				return state(mulliganGmHand(table, context.rng), 'mulligan', {
@@ -512,7 +516,7 @@ export const hmtwCardTable: CardTableModule = {
 				// Back to a table nobody has played on: every card home, both decks
 				// shuffled, no enemies, no round. Inspiration goes too — this is
 				// the button for starting again, not for ending a fight.
-				let next = setMode(table, 'decks');
+				let next = setMode(table, 'decks', context.rng);
 				for (const seat of next.seats) {
 					const deck = seat === next.gmSeat ? 'gm' : 'player';
 					for (const kind of ['hand', 'initiative', 'played', 'facedown', 'durable'] as const) {
