@@ -17,13 +17,15 @@
  * to remember to look for it.
  */
 
+import { holdersWithInitiative, initiativeHolder } from './initiative';
+import { waitingForInitiative, waitingForMinor } from './steps';
 import { canSeeFaces } from './moves';
 import type { FacedownAction } from './exceptions';
 import { upCount, type Opponent, type CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
 import type { Scene } from './scene';
-import { opponentZone, seatZone, type Zone, type ZoneVisibility } from './zones';
+import type { Zone, ZoneVisibility } from './zones';
 
 export interface ProjectedZone {
 	id: string;
@@ -54,8 +56,10 @@ export interface ProjectedTable {
 	zones: Record<string, ProjectedZone>;
 	/** Who this was built for, so a client can tell whose view it holds. */
 	viewer: string | null;
-	/** Whether the table is walking the round for whoever is looking. */
-	guided: boolean;
+	/** What each face-up played card was for; see `CardTable.plays`. */
+	plays: CardTable['plays'];
+	/** The declared action of each face-down minor-action card, by zone. */
+	minorDeclared: Record<string, string>;
 	/**
 	 * Whose initiative the count has reached — seat and opponent ids.
 	 *
@@ -66,16 +70,17 @@ export interface ProjectedTable {
 	 * can never run ahead of the call.
 	 */
 	upNow: string[];
-	/**
-	 * Every placed initiative has had its turn and its minor actions: ch.7's
-	 * "the round is over". A yes/no and nothing more — it says that nobody is
-	 * left to go, which the table already knows, and nothing about any card.
-	 */
 	/** Whether players see enemy Health; see `CardTable.enemyHealth`. */
 	enemyHealth: 'shown' | 'hidden';
+	/** The round is over: ch.7's step 5. A yes/no and nothing more. */
 	roundDone: boolean;
-	/** Who has an initiative card above the number reached. Ids only, never values. */
+	/** Who has an initiative card down and has not yet acted. Ids only, never values. */
 	stillToAct: string[];
+	/**
+	 * Who the round is waiting on: initiative still to play, or a minor action
+	 * still to answer. Ids only — who has not answered, never what anyone holds.
+	 */
+	waitingOn: string[];
 }
 
 function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZone {
@@ -86,7 +91,18 @@ function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZo
 		capacity: zone.capacity,
 		count: zone.cards.length
 	};
-	return canSeeFaces(table, zone, viewer) ? { ...base, cards: [...zone.cards] } : base;
+	return canSeeFaces(table, zone, viewer) || isShown(table, zone.id)
+		? { ...base, cards: [...zone.cards] }
+		: base;
+}
+
+/**
+ * An initiative card turned face up: its number came up, it was named as a
+ * target, or its holder showed it. See `Round.shown`.
+ */
+function isShown(table: CardTable, zoneId: string): boolean {
+	const holder = initiativeHolder(zoneId);
+	return holder !== null && table.round.shown.includes(holder);
 }
 
 /**
@@ -111,10 +127,15 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		schemaVersion: table.schemaVersion,
 		seats: [...table.seats],
 		mode: table.mode,
-		guided: table.guided,
 		upNow: whoIsUp(table),
 		roundDone: roundIsDone(table),
-		stillToAct: table.round.count === null ? [] : stillToAct(table),
+		stillToAct: table.round.step === 'deal' ? [] : stillToAct(table),
+		waitingOn:
+			table.round.step === 'initiative'
+				? waitingForInitiative(table)
+				: table.round.step === 'minor'
+					? waitingForMinor(table)
+					: [],
 		gmSeat: table.gmSeat,
 		enemyHealth: table.enemyHealth,
 		// While enemy Health is hidden, players are sent none of it: not a
@@ -129,11 +150,17 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		})),
 		round: {
 			...table.round,
+			acted: [...table.round.acted],
+			answered: [...table.round.answered],
+			shown: [...table.round.shown],
 			foolDrawn:
 				table.round.foolDrawn &&
 				Object.values(zones).some((z) => z.cards?.some((c) => table.foolCards.includes(c)))
 		},
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
+		// Only labels for cards lying face up, which anyone can already see.
+		plays: Object.fromEntries(Object.entries(table.plays).map(([k, v]) => [k, { ...v }])),
+		minorDeclared: { ...table.minorDeclared },
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
 			at: { ...table.scene.at },
@@ -144,58 +171,21 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 	};
 }
 
-/**
- * Whether the count has passed everybody: it is running, nobody is
- * interrupting or owed a turn, the minor-action window is shut, no initiative
- * card on the table is worth more than the number reached — and the last
- * number is finished, either settled (its minor actions closed) or counted
- * past. Seats that never put an initiative down do not hold the round open — a
- * physical table would not wait for them either.
- *
- * "Counted past" is the first live test's missing prompt (25 November 2026).
- * Only closing the minor actions settled a number, and moving the count
- * clears that, so a GM who pressed + after the last turn, or swept instead of
- * closing minor actions, never saw the end-of-round check.
- */
+/** The round is over: everybody who put an initiative down has had their turn. */
 export function roundIsDone(table: CardTable): boolean {
-	const { count, settled, interrupt, extraTurn, minorActions } = table.round;
-	if (count === null || interrupt || extraTurn || minorActions) return false;
-	let highest: number | null = null;
-	for (const slot of initiativeSlots(table)) {
-		const card = table.zones[slot]?.cards[0];
-		if (card === undefined) continue;
-		const value = table.valueOf[card] ?? 0;
-		if (value > count) return false;
-		highest = Math.max(highest ?? 0, value);
-	}
-	if (highest === null) return false;
-	return count > highest || settled === count;
+	return table.round.step === 'over';
 }
 
 /**
- * Who still has a turn to come this round: their initiative card is worth more
- * than the number reached. Ids only, never values — a GM counting aloud tells
- * the table that much, since nobody answered the numbers already called.
+ * Who still has a turn to come this round: an initiative card down and not yet
+ * acted. Ids only, never values — a GM counting aloud tells the table that much,
+ * since nobody answered the numbers already called.
  */
 export function stillToAct(table: CardTable): string[] {
-	const count = table.round.count ?? 0;
-	const holders: string[] = [];
-	for (const seat of table.seats) {
-		const card = table.zones[seatZone(seat, 'initiative')]?.cards[0];
-		if (card !== undefined && (table.valueOf[card] ?? 0) > count) holders.push(seat);
-	}
-	for (const opponent of table.opponents) {
-		const card = table.zones[opponentZone(opponent.id, 'initiative')]?.cards[0];
-		if (card !== undefined && (table.valueOf[card] ?? 0) > count) holders.push(opponent.id);
-	}
-	return holders;
-}
-
-function initiativeSlots(table: CardTable): string[] {
-	return [
-		...table.seats.map((s) => seatZone(s, 'initiative')),
-		...table.opponents.map((o) => opponentZone(o.id, 'initiative'))
-	];
+	const acted = new Set(table.round.acted);
+	return holdersWithInitiative(table)
+		.filter(([holder]) => !acted.has(holder))
+		.map(([holder]) => holder);
 }
 
 /**
@@ -208,18 +198,11 @@ function initiativeSlots(table: CardTable): string[] {
  */
 export function whoIsUp(table: CardTable): string[] {
 	const count = table.round.count;
-	if (count === null) return [];
-
-	const holders: string[] = [];
-	const at = (zoneId: string, holder: string) => {
-		const card = table.zones[zoneId]?.cards[0];
-		if (card !== undefined && table.valueOf[card] === count) holders.push(holder);
-	};
-	for (const seat of table.seats) at(seatZone(seat, 'initiative'), seat);
-	for (const opponent of table.opponents) {
-		at(opponentZone(opponent.id, 'initiative'), opponent.id);
-	}
-	return holders;
+	if (count === null || table.round.step !== 'turn') return [];
+	const acted = new Set(table.round.acted);
+	return holdersWithInitiative(table)
+		.filter(([holder, value]) => value === count && !acted.has(holder))
+		.map(([holder]) => holder);
 }
 
 /**

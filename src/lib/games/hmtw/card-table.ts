@@ -36,33 +36,40 @@ import {
 	FATE_ZONE,
 	addOpponent,
 	addSeat,
-	advanceCount,
 	beginRound,
-	clearFacedown,
 	clearScene,
 	createTable,
 	discardAll,
+	declareMinor,
+	dropReadied,
+	passMinor,
+	playInitiative,
+	playOutOfTurn,
+	playTurn,
+	readyMinor,
+	showInitiative,
+	skipTurn,
+	stepOn,
+	takeBack,
+	useReadied,
 	endRound,
 	migrateTable,
 	moveCard,
 	mulliganGmHand,
-	opponentZone,
-	placeFacedown,
 	projectFor,
 	removeOpponent,
 	removeSeat,
 	reshuffleDeck,
-	revealFacedown,
-	rewindCount,
 	seatZone,
-	setCount,
 	setGmSeat,
-	setMinorActions,
 	setMode,
 	updateOpponent,
 	withDeckFacts,
+	facedownZoneOf,
+	startCount,
 	type CardTable,
-	type DeckDefinition
+	type DeckDefinition,
+	type StepResult
 } from './engine';
 
 /** A Health or Defense value. */
@@ -70,6 +77,13 @@ const hd = z.number().int().min(0).max(MAX_HD);
 
 /** The zone-id shape the engine uses. Kept loose: the engine owns the vocabulary. */
 const zoneId = z.string().min(1).max(120);
+
+/** A card to take: a zone, and the card in it where the asker may name one. */
+const pick = z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() });
+/** A seat or an enemy group. */
+const holder = z.string().min(1).max(60);
+/** What a card is played for, as its player names it. Public. */
+const label = z.string().min(1).max(60);
 
 /**
  * What a client may ask for.
@@ -92,8 +106,6 @@ export const commandSchema = z.discriminatedUnion('type', [
 	z.strictObject({ type: z.literal('reset-table') }),
 	/** Sweep the turned-over cards into the discard once the test is settled. */
 	z.strictObject({ type: z.literal('clear-fate') }),
-	/** Let the table walk the round, or stop it. The GM's, and never a gate. */
-	z.strictObject({ type: z.literal('guided'), on: z.boolean() }),
 
 	/* ---- The Challenge ---------------------------------------------------- */
 
@@ -111,17 +123,44 @@ export const commandSchema = z.discriminatedUnion('type', [
 	z.strictObject({ type: z.literal('end-round') }),
 	/** Discard the GM's hand and draw the same number again. */
 	z.strictObject({ type: z.literal('mulligan') }),
-	/** Call an initiative number, or stop counting. */
+
+	/* ---- The round, one step at a time (phase 32) -------------------------- */
+
+	/** Play a card as initiative, face down. The last one down starts the count. */
+	z.strictObject({ type: z.literal('play-initiative'), holder, from: pick }),
+	/** Start the count without waiting for everyone's initiative. The GM's. */
+	z.strictObject({ type: z.literal('start-count') }),
+	/** The acting holder's turn: play, ready or Guard. */
 	z.strictObject({
-		type: z.literal('set-count'),
-		count: z.number().int().min(1).max(30).nullable()
+		type: z.literal('play-turn'),
+		holder,
+		from: pick,
+		extra: z.array(pick).max(3).optional(),
+		action: label,
+		target: z.string().min(1).max(120).optional(),
+		mode: z.enum(['play', 'ready', 'guard'])
 	}),
-	z.strictObject({ type: z.literal('advance-count') }),
-	z.strictObject({ type: z.literal('rewind-count') }),
-	/** Open or shut the window in which anyone may declare a minor action. */
-	z.strictObject({ type: z.literal('minor-actions'), open: z.boolean() }),
-	/** Move everything played face up into the discard. Ch.7's Sweep. */
-	z.strictObject({ type: z.literal('sweep') }),
+	z.strictObject({ type: z.literal('skip-turn'), holder }),
+	/** The Fool, or a talent's interrupt: played on anybody's turn. */
+	z.strictObject({
+		type: z.literal('play-out-of-turn'),
+		holder,
+		from: pick,
+		extra: z.array(pick).max(3).optional(),
+		action: label,
+		target: z.string().min(1).max(120).optional()
+	}),
+	z.strictObject({ type: z.literal('show-initiative'), holder }),
+	/** A minor action, face down until everyone has answered. */
+	z.strictObject({ type: z.literal('declare-minor'), holder, from: pick, label }),
+	/** A facedown action readied as a minor action: sideways, kept. */
+	z.strictObject({ type: z.literal('ready-minor'), holder, from: pick, label }),
+	/** No minor action. The GM may answer for several groups at once. */
+	z.strictObject({ type: z.literal('pass-minor'), holders: z.array(holder).min(1).max(60) }),
+	/** Move the round on, whatever it is waiting for. The GM's. */
+	z.strictObject({ type: z.literal('step-on') }),
+	/** Take back your initiative, or your turn's cards, before anyone has answered them. */
+	z.strictObject({ type: z.literal('take-back'), holder }),
 	/** Name an enemy, or a group of them. */
 	z.strictObject({
 		type: z.literal('add-opponent'),
@@ -138,16 +177,10 @@ export const commandSchema = z.discriminatedUnion('type', [
 		id: z.string().min(1).max(60),
 		name: z.string().min(1).max(60)
 	}),
-	/** Lay a card down, declaring what it is for. The label is public. */
-	z.strictObject({
-		type: z.literal('place-facedown'),
-		holder: z.string().min(1).max(60),
-		from: z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() }),
-		position: z.enum(['turn', 'minor']),
-		label: z.string().min(1).max(60)
-	}),
-	z.strictObject({ type: z.literal('reveal-facedown'), holder: z.string().min(1).max(60) }),
-	z.strictObject({ type: z.literal('clear-facedown'), holder: z.string().min(1).max(60) }),
+	/** Use a readied card: it turns face up into the open, labelled. */
+	z.strictObject({ type: z.literal('use-readied'), holder }),
+	/** Give up a readied card without using it. */
+	z.strictObject({ type: z.literal('drop-readied'), holder }),
 
 	/* ---- The scene and its creatures (phase 31) ------------------------------ */
 
@@ -225,16 +258,12 @@ const GM_ONLY = new Set<CardTableCommand['type']>([
 	'enemy-health',
 	'reshuffle',
 	'reset-table',
-	'guided',
 	'set-mode',
 	'begin-round',
 	'end-round',
 	'mulligan',
-	'set-count',
-	'advance-count',
-	'rewind-count',
-	'minor-actions',
-	'sweep',
+	'start-count',
+	'step-on',
 	'add-opponent',
 	'remove-opponent',
 	'update-opponent',
@@ -253,9 +282,16 @@ const GM_ONLY = new Set<CardTableCommand['type']>([
  */
 function ownedBy(command: CardTableCommand): string | null {
 	switch (command.type) {
-		case 'place-facedown':
-		case 'reveal-facedown':
-		case 'clear-facedown':
+		case 'play-initiative':
+		case 'play-turn':
+		case 'skip-turn':
+		case 'play-out-of-turn':
+		case 'show-initiative':
+		case 'declare-minor':
+		case 'ready-minor':
+		case 'take-back':
+		case 'use-readied':
+		case 'drop-readied':
 			return command.holder;
 		case 'place':
 			return command.who;
@@ -267,6 +303,36 @@ function ownedBy(command: CardTableCommand): string | null {
 /** With nobody in the GM seat, anyone may run the table — the rule `reset-table` already follows. */
 const isGm = (table: CardTable, actor: string | undefined): boolean =>
 	!table.gmSeat || actor === table.gmSeat;
+/**
+ * A step command's outcome. Its event says who did what, and — when the round
+ * moved because of it — where it got to, so the announcer can say "Initiative
+ * 7" the moment the count jumps, whichever command made it jump. Never a card.
+ */
+function stepped(
+	before: CardTable,
+	result: StepResult,
+	kind: string,
+	data: Record<string, unknown>
+): CardTableOutcome {
+	if (!result.ok) return fail(result.reason);
+	const after = result.table;
+	const moved = after.round.step !== before.round.step || after.round.count !== before.round.count;
+	return state(after, kind, {
+		...data,
+		...(moved ? { step: after.round.step, count: after.round.count } : {})
+	});
+}
+
+/** A target as the log may name it: a seat by id, a group or creature by its label. */
+function targetOf(table: CardTable, target: string | undefined): Record<string, string> {
+	if (!target) return {};
+	if (table.seats.includes(target)) return { target };
+	const group = table.opponents.find((o) => o.id === target);
+	if (group) return { targetLabel: group.name };
+	const label = creatureLabel(table.opponents, target);
+	return label ? { targetLabel: label } : {};
+}
+
 const state = (table: CardTable, kind: string, data: unknown): CardTableOutcome => ({
 	ok: true,
 	state: table,
@@ -329,6 +395,13 @@ export const hmtwCardTable: CardTableModule = {
 		if (GM_ONLY.has(parsed.data.type) && !isGm(table, actor)) return fail('gm-only');
 		const holder = ownedBy(parsed.data);
 		if (holder !== null && holder !== actor && !isGm(table, actor)) return fail('not-yours');
+		if (
+			parsed.data.type === 'pass-minor' &&
+			parsed.data.holders.some((h) => h !== actor) &&
+			!isGm(table, actor)
+		) {
+			return fail('not-yours');
+		}
 		// Enemy Health is anyone's to change while it is shown, so a player can
 		// catch a miscount; while it is hidden, the players cannot see it to
 		// change it, and it is the GM's.
@@ -406,39 +479,69 @@ export const hmtwCardTable: CardTableModule = {
 					seat: context.actorSeatId
 				});
 			}
-			case 'set-count':
-				return state(setCount(table, parsed.data.count), 'count', { count: parsed.data.count });
-			case 'advance-count': {
-				const next = advanceCount(table);
-				return state(next, 'count', { count: next.round.count });
+			case 'play-initiative': {
+				const { holder } = parsed.data;
+				return stepped(
+					table,
+					playInitiative(table, holder, parsed.data.from, actor),
+					'play-initiative',
+					{
+						holder
+					}
+				);
 			}
-			case 'rewind-count': {
-				const next = rewindCount(table);
-				return state(next, 'count', { count: next.round.count });
+			case 'start-count':
+				return stepped(table, startCount(table), 'start-count', {});
+			case 'play-turn': {
+				const { holder, from, extra, action, target, mode } = parsed.data;
+				return stepped(
+					table,
+					playTurn(table, holder, { from, extra, action, target, mode }, actor),
+					'play-turn',
+					{ holder, action, mode, ...targetOf(table, target) }
+				);
 			}
-			case 'minor-actions':
-				return state(setMinorActions(table, parsed.data.open), 'minor-actions', {
-					open: parsed.data.open
+			case 'skip-turn':
+				return stepped(table, skipTurn(table, parsed.data.holder), 'skip-turn', {
+					holder: parsed.data.holder
 				});
-			case 'sweep': {
-				// Ch.7's Sweep: what was played face up goes to the discard, and
-				// facedown cards stay, because they have not happened yet.
-				let next = table;
-				for (const seat of table.seats) {
-					const deck = seat === table.gmSeat ? 'gm' : 'player';
-					next = discardAll(next, seatZone(seat, 'played'), deck);
-				}
-				for (const opponent of table.opponents) {
-					next = discardAll(next, opponentZone(opponent.id, 'played'), 'gm');
-				}
-				// Sweeping is what you do once a number is over, so it settles the
-				// number as closing minor actions does. Without this, sweeping instead
-				// of closing held the end-of-round check back (first live test).
-				if (next.round.count !== null && next.round.settled !== next.round.count) {
-					next = setMinorActions(next, false);
-				}
-				return state(next, 'sweep', { seat: context.actorSeatId });
+			case 'play-out-of-turn': {
+				const { holder, from, extra, action, target } = parsed.data;
+				return stepped(
+					table,
+					playOutOfTurn(table, holder, { from, extra, action, target }, actor),
+					'play-out-of-turn',
+					{ holder, action, ...targetOf(table, target) }
+				);
 			}
+			case 'show-initiative':
+				return stepped(table, showInitiative(table, parsed.data.holder), 'show-initiative', {
+					holder: parsed.data.holder
+				});
+			case 'declare-minor': {
+				const { holder, from, label } = parsed.data;
+				return stepped(table, declareMinor(table, holder, from, label, actor), 'declare-minor', {
+					holder,
+					label
+				});
+			}
+			case 'ready-minor': {
+				const { holder, from, label } = parsed.data;
+				return stepped(table, readyMinor(table, holder, from, label, actor), 'ready-minor', {
+					holder,
+					label
+				});
+			}
+			case 'pass-minor':
+				return stepped(table, passMinor(table, parsed.data.holders), 'pass-minor', {
+					holders: parsed.data.holders
+				});
+			case 'step-on':
+				return stepped(table, stepOn(table), 'step-on', { from: table.round.step });
+			case 'take-back':
+				return stepped(table, takeBack(table, parsed.data.holder), 'take-back', {
+					holder: parsed.data.holder
+				});
 			case 'add-opponent':
 				return state(
 					addOpponent(table, {
@@ -461,35 +564,17 @@ export const hmtwCardTable: CardTableModule = {
 					'update-opponent',
 					{ id: parsed.data.id }
 				);
-			case 'place-facedown': {
-				const placed = placeFacedown(
-					table,
-					parsed.data.holder,
-					parsed.data.from,
-					{ position: parsed.data.position, label: parsed.data.label },
-					actor
-				);
-				if (!placed.ok) return fail(placed.reason);
-				// The declared action is public by ch.7's own rule; the value is not.
-				return state(placed.table, 'place-facedown', {
+			case 'use-readied': {
+				const declared = table.facedown[facedownZoneOf(table, parsed.data.holder) ?? ''];
+				return stepped(table, useReadied(table, parsed.data.holder), 'use-readied', {
 					holder: parsed.data.holder,
-					position: parsed.data.position,
-					label: parsed.data.label
+					label: declared?.label ?? null
 				});
 			}
-			case 'reveal-facedown': {
-				const revealed = revealFacedown(table, parsed.data.holder);
-				if (!revealed.ok) return fail(revealed.reason);
-				return state(revealed.table, 'reveal-facedown', { holder: parsed.data.holder });
-			}
-			case 'clear-facedown':
-				return state(clearFacedown(table, parsed.data.holder), 'clear-facedown', {
+			case 'drop-readied':
+				return stepped(table, dropReadied(table, parsed.data.holder), 'drop-readied', {
 					holder: parsed.data.holder
 				});
-			case 'guided': {
-				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
-				return state({ ...table, guided: parsed.data.on }, 'guided', { on: parsed.data.on });
-			}
 			case 'clear-fate':
 				return state(discardAll(table, FATE_ZONE, 'player'), 'clear-fate', {
 					seat: context.actorSeatId
@@ -587,7 +672,14 @@ export const hmtwCardTable: CardTableModule = {
 				let next = setMode(table, 'decks', context.rng);
 				for (const seat of next.seats) {
 					const deck = seat === next.gmSeat ? 'gm' : 'player';
-					for (const kind of ['hand', 'initiative', 'played', 'facedown', 'durable'] as const) {
+					for (const kind of [
+						'hand',
+						'initiative',
+						'played',
+						'facedown',
+						'durable',
+						'minor'
+					] as const) {
 						next = discardAll(next, seatZone(seat, kind), deck);
 					}
 				}

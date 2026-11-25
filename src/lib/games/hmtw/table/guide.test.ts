@@ -14,16 +14,21 @@ const table = (over: Partial<ProjectedTable> = {}): ProjectedTable =>
 		mode: 'challenge',
 		gmSeat: 'gm',
 		opponents: [],
-		guided: true,
 		upNow: [],
 		roundDone: false,
+		stillToAct: [],
+		waitingOn: [],
+		plays: {},
+		minorDeclared: {},
 		round: {
 			number: 1,
 			count: null,
-			minorActions: false,
 			foolDrawn: false,
-			interrupt: null,
-			extraTurn: null
+			step: 'initiative',
+			acted: [],
+			answered: [],
+			shown: [],
+			playedHere: false
 		},
 		facedown: {},
 		zones: {
@@ -35,90 +40,65 @@ const table = (over: Partial<ProjectedTable> = {}): ProjectedTable =>
 	}) as ProjectedTable;
 
 describe('the guide', () => {
+	const at = (step: string, over: Partial<ProjectedTable> = {}) =>
+		table({ round: { ...table().round, step, count: 4 } as ProjectedTable['round'], ...over });
+
 	it('opens by asking for a deal, and offers no shortcut for it', () => {
 		// Dealing needs the GM's own draw count, and a button that guessed it
 		// would be the guide making a ruling rather than a suggestion.
-		const s = suggest(table({ round: { ...table().round, number: 0 } }), seats);
+		const s = suggest(at('deal'), seats);
 		expect(s.text).toMatch(/nobody has drawn/i);
 		expect(s.action).toBeUndefined();
 	});
 
-	it('names who is still to place initiative, and does not hurry them', () => {
+	it('asks whoever owes initiative to play it, and tells everyone else who is awaited', () => {
+		const waiting = at('initiative', { waitingOn: ['chirm'] });
+		expect(suggest({ ...waiting, viewer: 'chirm' }, seats).text).toMatch(/^Choose your initiative/);
+		expect(suggest({ ...waiting, viewer: 'daria' }, seats).text).toBe(
+			'Waiting on initiative from Chirm.'
+		);
+		// The GM can start without waiting.
+		expect(suggest(waiting, seats).action?.command).toEqual({ type: 'step-on' });
+		expect(suggest(waiting, seats).gmOnly).toBe(true);
+	});
+
+	it('asks the GM for the enemies’ initiative', () => {
 		const s = suggest(
-			table({
-				zones: {
-					'seat:daria:initiative': { count: 1 },
-					'seat:chirm:initiative': { count: 0 }
-				} as never
+			at('initiative', {
+				waitingOn: ['imps'],
+				opponents: [{ id: 'imps', name: 'Imps', count: 6, family: 'imps', creatures: [] }]
 			}),
 			seats
 		);
-		expect(s.text).toContain('Chirm');
-		expect(s.text).not.toContain('Daria');
-		// Nothing to press: it is waiting on a person, not on a click.
-		expect(s.action).toBeUndefined();
+		expect(s.text).toMatch(/^Choose your initiative.*\(for Imps\)/);
 	});
 
-	it('does not claim every initiative is down at an empty table', () => {
-		// Vacuously true, and it reads as nonsense: with nobody playing and
-		// nothing to fight, say what is actually missing.
-		const s = suggest(table({ zones: {} as never }), [seats[2]]);
+	it('does not claim anything is awaited at an empty table', () => {
+		const s = suggest(at('initiative'), [seats[2]]);
 		expect(s.text).toMatch(/nobody is at the table/i);
-		expect(s.action).toBeUndefined();
-	});
-
-	it('offers to start the count once everything is down', () => {
-		const s = suggest(table(), seats);
-		expect(s.action?.command).toEqual({ type: 'set-count', count: 1 });
-		expect(s.gmOnly).toBe(true);
-	});
-
-	it('says whose number it is, once the count has reached it', () => {
-		const s = suggest(table({ round: { ...table().round, count: 4 }, upNow: ['daria'] }), seats);
-		expect(s.text).toBe('4 — Daria to act.');
 	});
 
 	it('tells only the acting player that it is their turn', () => {
 		// The first live test: "that is you" on every screen told three players
 		// it was their turn when it was one player's.
-		const at4 = { round: { ...table().round, count: 4 }, upNow: ['daria'] };
-		expect(suggest(table({ ...at4, viewer: 'daria' }), seats).text).toBe('4 — your turn.');
-		expect(suggest(table({ ...at4, viewer: 'chirm' }), seats).text).toBe('4 — Daria to act.');
-		expect(suggest(table({ ...at4, viewer: 'gm' }), seats).text).toBe('4 — Daria to act.');
-		expect(suggest(table({ ...at4, viewer: null }), seats).text).toBe('4 — Daria to act.');
+		const turn = at('turn', { upNow: ['daria'] });
+		expect(suggest({ ...turn, viewer: 'daria' }, seats).text).toBe(
+			'4 — your turn: play a card or skip.'
+		);
+		expect(suggest({ ...turn, viewer: 'chirm' }, seats).text).toBe('4 — Daria to act.');
+		expect(suggest({ ...turn, viewer: null }, seats).text).toBe('4 — Daria to act.');
 	});
 
 	it('tells a tied player who else acts on their number', () => {
-		const s = suggest(
-			table({ round: { ...table().round, count: 4 }, upNow: ['daria', 'chirm'], viewer: 'chirm' }),
-			seats
-		);
-		expect(s.text).toBe('4 — your turn. Daria also acts on 4.');
+		const s = suggest(at('turn', { upNow: ['daria', 'chirm'], viewer: 'chirm' }), seats);
+		expect(s.text).toBe('4 — your turn: play a card or skip. Daria also acts on 4.');
 	});
 
-	it('carries on past a number nobody holds', () => {
-		const s = suggest(table({ round: { ...table().round, count: 5 } }), seats);
-		expect(s.text).toBe('5 — nobody.');
-		expect(s.action?.command).toEqual({ type: 'advance-count' });
-	});
-
-	it('names an enemy as readily as a player', () => {
+	it('names an enemy as readily as a player, and reads a list as a person would', () => {
 		const s = suggest(
-			table({
-				round: { ...table().round, count: 4 },
-				upNow: ['imps'],
-				opponents: [{ id: 'imps', name: 'Imps', count: 6, family: 'imps', creatures: [] }]
-			}),
-			seats
-		);
-		expect(s.text).toContain('Imps');
-	});
-
-	it('reads a list the way a person would say it', () => {
-		const s = suggest(
-			table({
-				round: { ...table().round, count: 4 },
+			at('turn', {
 				upNow: ['daria', 'chirm', 'imps'],
+				viewer: null,
 				opponents: [{ id: 'imps', name: 'Imps', count: 6, family: 'imps', creatures: [] }]
 			}),
 			seats
@@ -126,91 +106,30 @@ describe('the guide', () => {
 		expect(s.text).toBe('4 — Daria, Chirm and Imps to act.');
 	});
 
-	it('puts an interrupt before the turn, because the Fool always goes first', () => {
-		const s = suggest(
-			table({ round: { ...table().round, count: 4, interrupt: 'chirm' }, upNow: ['daria'] }),
-			seats
+	it('asks for minor actions, and says who is still deciding', () => {
+		const minor = at('minor', { waitingOn: ['daria', 'chirm'] });
+		expect(suggest({ ...minor, viewer: 'daria' }, seats).text).toBe(
+			'Any minor actions? Put one down, ready one, or pass. Also waiting on Chirm.'
 		);
-		expect(s.text).toContain('Chirm');
-		expect(s.text).toMatch(/before the turn/);
+		expect(suggest(minor, seats).text).toBe('Minor actions: waiting on Daria and Chirm.');
+		expect(suggest(minor, seats).action?.label).toBe('Turn them over now');
 	});
 
-	it('stops naming whoever is up once the number is done', () => {
-		// The loop this closes: the count still matches whoever just acted, so the
-		// guide went on prompting somebody who had already had their turn and was
-		// waiting for the count to move.
-		const s = suggest(
-			table({ round: { ...table().round, count: 4, settled: 4 }, upNow: ['daria'] }),
-			seats
+	it('hands the GM the next number once everything is face up', () => {
+		const s = suggest(at('resolve', { stillToAct: ['chirm'] }), seats);
+		expect(s.text).toBe(
+			'4: everything is face up. Work it out, then the GM moves on. Still to act: Chirm.'
 		);
-		expect(s.text).toBe('4 is done.');
-		expect(s.action?.command).toEqual({ type: 'advance-count' });
+		expect(s.action).toEqual({ label: 'Next', command: { type: 'step-on' } });
 	});
 
-	it('says who is holding the round open, by name only', () => {
-		const s = suggest(
-			table({
-				round: { ...table().round, count: 4, settled: 4 },
-				upNow: ['daria'],
-				stillToAct: ['chirm']
-			}),
-			seats
-		);
-		expect(s.text).toBe('4 is done. Still to act: Chirm.');
-	});
-
-	it('still names whoever is up on a number that has not been settled', () => {
-		const s = suggest(
-			table({ round: { ...table().round, count: 5, settled: 4 }, upNow: ['daria'] }),
-			seats
-		);
-		expect(s.text).toBe('5 — Daria to act.');
-	});
-
-	it('holds the minor-action window open until the GM closes it', () => {
-		const s = suggest(
-			table({ round: { ...table().round, count: 4, minorActions: true }, upNow: ['daria'] }),
-			seats
-		);
-		expect(s.text).toMatch(/minor actions/i);
-		expect(s.action?.command).toEqual({ type: 'minor-actions', open: false });
-	});
-
-	it('never suggests anything before the count has begun', () => {
-		// The disclosure rule: a prompt must not run ahead of the call. With no
-		// count, `upNow` is empty and the guide has nobody to name.
-		const s = suggest(table({ upNow: [] }), seats);
-		expect(s.text).not.toMatch(/Daria|Chirm/);
-	});
-});
-
-describe('the end of the round', () => {
-	const words = {
-		endOfRound: {
-			text: 'Everyone has had a turn. Surrender, or retreat?',
-			rule: { label: 'Retreating', page: '07-chapter-7-the-challenge-phase--retreating' }
-		}
-	};
-	const done = () =>
-		table({ round: { ...table().round, count: 14, settled: 14 } as never, roundDone: true });
-
-	it('asks the book’s question when everyone has had a turn', () => {
-		const s = suggest(done(), seats, words);
-		expect(s.text).toBe(words.endOfRound.text);
-		expect(s.action).toEqual({ label: 'End the round', command: { type: 'end-round' } });
-		expect(s.gmOnly).toBe(true);
-		expect(s.rule).toEqual({
-			label: 'Retreating',
-			page: '07-chapter-7-the-challenge-phase--retreating'
-		});
-	});
-
-	it('keeps counting while somebody is still to go', () => {
-		const s = suggest(
-			table({ round: { ...table().round, count: 9, settled: 9 } as never, roundDone: false }),
-			seats,
-			words
-		);
-		expect(s.text).toBe('9 is done.');
+	it('says the end-of-round check to everyone when the round is over', () => {
+		const words = {
+			endOfRound: { text: 'Surrender? Retreat?', rule: { label: 'Retreating', page: 'p' } }
+		};
+		const s = suggest(at('over'), seats, words);
+		expect(s.text).toBe('Surrender? Retreat?');
+		expect(s.action?.command).toEqual({ type: 'end-round' });
+		expect(s.rule).toEqual({ label: 'Retreating', page: 'p' });
 	});
 });

@@ -74,14 +74,20 @@ export type SeatZoneKind =
 	/** A card played face down, its value private until it is revealed. */
 	| 'facedown'
 	/** A held card that outlives rounds and mode switches — the inspiration card. */
-	| 'durable';
+	| 'durable'
+	/**
+	 * A minor action put down face down, waiting for everyone else's (phase 32).
+	 * Not the facedown slot: that is for a readied action, which is kept; this
+	 * is turned over with all the others and resolved at once.
+	 */
+	| 'minor';
 
 /**
  * The zones an opponent gets. An opponent is a seat without a hand: the GM
  * draws one hand of majors and plays from it for everything they control
  * (ch.7, "it's not practical to draw four cards per opponent").
  */
-export type OpponentZoneKind = 'initiative' | 'played' | 'facedown';
+export type OpponentZoneKind = 'initiative' | 'played' | 'facedown' | 'minor';
 
 /**
  * Where a turned-over card lands before anyone decides what it meant.
@@ -180,7 +186,8 @@ export function seatZones(seat: string): Zone[] {
 		// would, and it refused things the table wanted — a GM handing out
 		// inspiration before taking the last one back, a house rule, a mistake
 		// somebody wanted to fix by hand.
-		zone('durable', 'public', null)
+		zone('durable', 'public', null),
+		zone('minor', 'owner', 1)
 	];
 }
 
@@ -211,7 +218,10 @@ export function opponentZones(opponent: string): Zone[] {
 		zone('played', 'public', null),
 		// "Every enemy that has an Initiative card can have one facedown Challenge
 		// Action" — the same limit the players have.
-		zone('facedown', 'gm', 1)
+		zone('facedown', 'gm', 1),
+		// One minor action per group per turn: "Each enemy or enemy group can
+		// make *one* minor action on another character's turn."
+		zone('minor', 'gm', 1)
 	];
 }
 

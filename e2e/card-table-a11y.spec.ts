@@ -90,7 +90,7 @@ async function signIn(page: Page, name: string, email: string) {
 }
 
 test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ browser }) => {
-	// Fourteen states, each scanned in two rooms: well past the default budget.
+	// Some eighteen states, each scanned in two rooms: well past the default budget.
 	test.setTimeout(240_000);
 	const run = Date.now().toString(36);
 	const failures: string[] = [];
@@ -165,9 +165,9 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await expect(player.locator('.hand button').first()).toBeVisible({ timeout: 15_000 });
 	failures.push(...(await scan(player, 'challenge, player')));
 
-	// A card in hand: drop targets and the declare buttons appear.
+	// A card in hand, at initiative: "Your move" offers Play as initiative.
 	await player.locator('.hand button').first().click();
-	failures.push(...(await scan(player, 'card picked up')));
+	failures.push(...(await scan(player, 'card picked up, initiative')));
 
 	// Holding a card also offers an inspiration slot on every combatant, which
 	// only exists while something is picked up.
@@ -175,17 +175,29 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 		player.getByRole('button', { name: /Give .* an inspiration card/ }).first()
 	).toBeVisible();
 
+	// The only initiative down starts the count: the player's turn (phase 32).
+	await player.getByRole('button', { name: 'Play as initiative' }).click();
+	await expect(player.getByText(/— your turn: play a card or skip\./)).toBeVisible({
+		timeout: 15_000
+	});
+	failures.push(...(await scan(player, 'your turn')));
+
 	// An action *chosen*, which is a different state from a card being held and
 	// was never on screen while axe was looking. It shipped for seven commits
 	// with the chosen action lettered bone-on-bone in dark mode — a fill and a
 	// label that are the same value there — because nothing in the sweep ever
 	// pressed one.
-	await player.locator('.actions button').first().click();
+	await player.locator('.hand button').first().click();
+	await player.locator('.actions').getByRole('button', { name: 'Attack', exact: true }).click();
 	failures.push(...(await scan(player, 'action chosen')));
-	await player.locator('.actions button').first().click();
-	await player.getByRole('button', { name: /Play facedown — your turn/ }).click();
-	failures.push(...(await scan(player, 'declaring')));
-	await player.getByRole('button', { name: 'Never mind' }).click();
+	await player.getByRole('button', { name: 'Play it', exact: true }).click();
+
+	// The card face up in the open, labelled, waiting on the GM (phase 32).
+	await expect(gm.locator('.play')).toContainText('Attack', { timeout: 15_000 });
+	failures.push(...(await scan(gm, 'in play, resolving')));
+	await gm.locator('.guide').getByRole('button', { name: 'Next' }).click();
+	await expect(gm.locator('.guide')).toContainText('surrender', { timeout: 15_000 });
+	failures.push(...(await scan(gm, 'round over')));
 
 	// Phase 31's states: the zone editor open, a scene with somebody placed, and
 	// a group of creatures unfolded with its Health and Defense steppers — the
@@ -218,9 +230,6 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await expect(player.getByText('2 of 3 up')).toBeVisible({ timeout: 15_000 });
 	await player.getByText('2 of 3 up').click();
 	failures.push(...(await scan(player, 'scene and creatures, player')));
-
-	await gm.getByRole('button', { name: 'Guide the round' }).click();
-	failures.push(...(await scan(gm, 'guided')));
 
 	expect(failures, `\n${failures.join('\n')}\n`).toEqual([]);
 

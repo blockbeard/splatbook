@@ -1,16 +1,17 @@
 <!--
-	The Challenge, played by hand.
+	The Challenge, one step at a time (phase 32).
 
-	Free play: the table shows you where everything is and moves what you tell it
-	to. It does not run the round — guided mode does that, later and optionally —
-	and it never refuses a play. The count is a number the GM advances; the
-	minor-action window is a thing they open; a card goes where somebody puts it.
+	It used to be played by hand: a count the GM stepped, a minor-action window
+	they opened and shut, a Sweep, and any card movable by anyone. The first
+	live test (25 November 2026) found that nobody could tell what was going on.
+	Now the round walks ch.7's steps — initiative, the count, the turn, minor
+	actions, resolve — and "Your move" offers each person exactly what the step
+	allows. Played cards go into the open, labelled with who and what for. The
+	GM can move the round on at any point, and the table still never judges a
+	value, a suit or a target.
 
-	Sweep and end-of-round are the two places the book is precise about *what is
-	cleared*, so they are buttons rather than something you do by hand: sweeping
-	takes what was played face up and leaves facedown cards, which have not
-	happened yet, and ending a round discards hands and initiative while leaving
-	facedown cards in play.
+	End of round is a button because the book is precise about what it clears:
+	hands and initiative go, facedown (readied) cards stay in play.
 -->
 <script lang="ts">
 	import { resolve } from '$app/paths';
@@ -26,7 +27,8 @@
 	import ZonePicker from './ZonePicker.svelte';
 	import Creatures from './Creatures.svelte';
 	import { suggest } from './guide';
-	import Actions from './Actions.svelte';
+	import YourMove from './YourMove.svelte';
+	import PlayArea from './PlayArea.svelte';
 	import { cardsForAction, type Action } from './actions';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
@@ -92,13 +94,14 @@
 	 * it in the shared blob would open a panel on every screen at the table.
 	 */
 	// svelte-ignore state_referenced_locally
-	let dealOpen = $state(table.round.number === 0);
+	let dealOpen = $state(table.round.step === 'deal');
 	// svelte-ignore state_referenced_locally
 	let lastRound = table.round.number;
 	let chosenAction = $state<Action | null>(null);
 	let customAction = $state('');
-	let declaring = $state<{ holder: string; position: 'turn' | 'minor' } | null>(null);
-	let declaredAs = $state('');
+	/** Cards added to the one picked up, for a play of more than one card. */
+	let extras = $state<Pick[]>([]);
+	let collecting = $state(false);
 
 	const isGm = $derived(canAct && table.gmSeat === mySeatId);
 	/**
@@ -125,23 +128,15 @@
 		const round = table.round.number;
 		if (round === lastRound) return;
 		lastRound = round;
-		dealOpen = round === 0;
+		dealOpen = table.round.step === 'deal';
 	});
 
 	/**
-	 * What the table would do next — derived rather than stored, so it cannot
-	 * drift from the round it describes. A prompt, never a gate: every control
-	 * below stays exactly as available with the guide on as with it off.
+	 * What the table would do next, said to whoever is looking — derived from
+	 * the round's step, so it cannot drift from the round it describes. The
+	 * steps are the guide now; there is no switching it off.
 	 */
-	/*
-	 * One prompt shows even with guiding off: the end-of-round check. It is the
-	 * step of ch.7 most easily skipped, and the one the Castle Automatic table
-	 * was promised would be said out loud every round — so it does not wait for
-	 * the GM to have switched guiding on.
-	 */
-	const guide = $derived(
-		table.guided || table.roundDone ? suggest(table, seats, challengePack) : null
-	);
+	const guide = $derived(suggest(table, seats, challengePack));
 
 	const myHand = $derived(mySeatId ? (table.zones[`seat:${mySeatId}:hand`]?.cards ?? []) : []);
 	/**
@@ -154,12 +149,10 @@
 					challengePack.actions,
 					chosenAction,
 					myHand.map((c) => faces[c]).filter(Boolean),
-					{ asGm: isGm }
+					{ asGm: isGm, minor: table.round.step === 'minor' }
 				)
 			: []
 	);
-	/** Whatever the player has said this play is for — a menu pick or their own words. */
-	const declaredLabel = $derived(customAction.trim() || chosenAction?.name || '');
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
 	const zone = (id: string) => table.zones[id];
 	/** The lines of the GM's draw the table can fill in itself. */
@@ -170,6 +163,14 @@
 
 	function select(pick: Pick) {
 		if (!canTake(pick.zone)) return;
+		// Adding cards to a play: a pick from your hand joins it, or leaves it.
+		if (collecting && selectedPick && pick.zone === selectedPick.zone && pick.card) {
+			if (pick.card === selectedPick.card) return;
+			extras = extras.some((e) => e.card === pick.card)
+				? extras.filter((e) => e.card !== pick.card)
+				: [...extras, pick];
+			return;
+		}
 		selection.select(pick);
 	}
 
@@ -204,20 +205,6 @@
 		else if (openPile) closePane();
 	}
 
-	function declare() {
-		if (!declaring || !selectedPick) return;
-		onCommand({
-			type: 'place-facedown',
-			holder: declaring.holder,
-			from: selectedPick,
-			position: declaring.position,
-			label: declaredAs.trim() || declaredLabel || 'Facedown'
-		});
-		selection.clear();
-		declaring = null;
-		declaredAs = '';
-	}
-
 	function addEnemy() {
 		const name = newEnemy.trim();
 		if (!name) return;
@@ -246,7 +233,7 @@
 	{#if guide}
 		<p class="guide">
 			<span class="guide__text">{guide.text}</span>
-			{#if guide.action && (!guide.gmOnly || isGm)}
+			{#if guide.action && (!guide.gmOnly || runs)}
 				{@const action = guide.action}
 				<button type="button" disabled={busy} onclick={() => onCommand(action.command)}>
 					{action.label}
@@ -273,9 +260,8 @@
 		The state leads, because "Round 3, Initiative 7" is the only question
 		anybody asks mid-fight — it is how a player knows their turn has come —
 		and it used to be set in the smallest type on the page while six
-		equal-weight buttons shouted over it. The stepper sits *inside* the count
-		it moves, rather than floating among wordy buttons that have nothing to do
-		with it; everything else is round bookkeeping and reads as such.
+		equal-weight buttons shouted over it. The count moves itself now (phase
+		32); what the GM steps instead is the round, through the guide line.
 	-->
 	<div class="ch__strip">
 		<p class="ch__state">
@@ -283,22 +269,6 @@
 			<span class="ch__state__count">
 				Initiative
 				<strong>{table.round.count ?? '—'}</strong>
-				{#if isGm}
-					<span class="ch__stepper">
-						<button
-							type="button"
-							class="ct-btn"
-							onclick={() => onCommand({ type: 'rewind-count' })}
-							aria-label="Back one">−</button
-						>
-						<button
-							type="button"
-							class="ct-btn"
-							onclick={() => onCommand({ type: 'advance-count' })}
-							aria-label="On one">+</button
-						>
-					</span>
-				{/if}
 			</span>
 		</p>
 		{#if isGm}
@@ -306,28 +276,14 @@
 				<button
 					type="button"
 					class="ct-btn ct-btn--quiet"
-					class:ct-btn--on={table.guided}
-					onclick={() => onCommand({ type: 'guided', on: !table.guided })}
-				>
-					{table.guided ? 'Stop guiding' : 'Guide the round'}
-				</button>
-				<button
-					type="button"
-					class="ct-btn ct-btn--quiet"
-					class:ct-btn--on={table.round.minorActions}
-					onclick={() => onCommand({ type: 'minor-actions', open: !table.round.minorActions })}
-				>
-					{table.round.minorActions ? 'Close minor actions' : 'Any minor actions?'}
-				</button>
-				<button
-					type="button"
-					class="ct-btn ct-btn--quiet"
-					onclick={() => onCommand({ type: 'sweep' })}>Sweep</button
-				>
-				<button
-					type="button"
-					class="ct-btn ct-btn--quiet"
-					onclick={() => onCommand({ type: 'end-round' })}>End the round</button
+					disabled={table.round.step === 'deal'}
+					onclick={() => {
+						if (
+							table.round.step === 'over' ||
+							confirm('End the round now? Everyone still to act loses their turn.')
+						)
+							onCommand({ type: 'end-round' });
+					}}>End the round</button
 				>
 			</div>
 		{/if}
@@ -335,6 +291,8 @@
 			<span class="ch__fool">The Fool is out — both decks shuffle at the end of the round.</span>
 		{/if}
 	</div>
+
+	<PlayArea {table} {seats} {faces} />
 
 	{#if isGm}
 		<!--
@@ -484,20 +442,15 @@
 					     ch.7 gives them no adventurer to act as — so their own seat has no
 					     initiative slot for a card to land in by mistake. -->
 					{#if !seat.isGm}
+						<!-- Face down until its number comes up, it is named as a target, or
+						     its holder shows it (phase 32): played through "Your move", never
+						     dropped here, so a card meant for initiative cannot land in play. -->
 						{#if init.count > 0}
 							<Card
 								face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
-								faceDown={init.cards === undefined}
+								faceDown={!table.round.shown.includes(seat.id)}
 								pick={{ zone: init.id }}
-								onSelect={select}
 							/>
-						{:else if canPut(init.id)}
-							<button
-								type="button"
-								class="slot"
-								onclick={() => drop(init.id)}
-								aria-label={`${seat.name}'s initiative, empty`}>Initiative</button
-							>
 						{:else}
 							<span class="slot slot--empty">Initiative</span>
 						{/if}
@@ -528,26 +481,6 @@
 							aria-label={`Give ${seat.name} an inspiration card`}>Inspiration</button
 						>
 					{/if}
-					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
-						{#each zone(`seat:${seat.id}:played`).cards ?? [] as card (card)}
-							<Card
-								face={faces[card] ?? null}
-								greaterDoom={faces[card]?.greaterDoom ?? false}
-								pick={{ zone: `seat:${seat.id}:played`, card }}
-								onSelect={select}
-							/>
-						{/each}
-						{#if selectedPick && canPut(`seat:${seat.id}:played`)}
-							<!-- A real button, not a clickable div. Click-to-place is what
-							     carries the keyboard story, and a drop target you cannot tab
-							     to would quietly hand that back. -->
-							<button
-								type="button"
-								class="slot slot--drop"
-								onclick={() => drop(`seat:${seat.id}:played`)}>Play here</button
-							>
-						{/if}
-					</div>
 				</div>
 
 				{#if declaredHere?.position === 'minor' && facedown.count > 0}
@@ -583,32 +516,23 @@
 					{#if init.count > 0}
 						<Card
 							face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
-							faceDown={init.cards === undefined}
+							faceDown={!table.round.shown.includes(enemy.id)}
 							pick={{ zone: init.id }}
-							onSelect={select}
 						/>
-					{:else if canPut(init.id)}
-						<button type="button" class="slot" onclick={() => drop(init.id)}>Initiative</button>
 					{:else}
 						<span class="slot slot--empty">Initiative</span>
 					{/if}
-					<div class="combatant__played" class:ct-drop={selectedPick !== null}>
-						{#each zone(`opponent:${enemy.id}:played`).cards ?? [] as card (card)}
-							<Card
-								face={faces[card] ?? null}
-								greaterDoom={faces[card]?.greaterDoom ?? false}
-								pick={{ zone: `opponent:${enemy.id}:played`, card }}
-								onSelect={select}
-							/>
-						{/each}
-						{#if selectedPick && canPut(`opponent:${enemy.id}:played`)}
-							<button
-								type="button"
-								class="slot slot--drop"
-								onclick={() => drop(`opponent:${enemy.id}:played`)}>Play here</button
-							>
-						{/if}
-					</div>
+					{#if table.facedown[`opponent:${enemy.id}:facedown`] && zone(`opponent:${enemy.id}:facedown`).count > 0}
+						{@const readied = zone(`opponent:${enemy.id}:facedown`)}
+						<Card
+							face={readied.cards?.[0] ? (faces[readied.cards[0]] ?? null) : null}
+							faceDown
+							sideways
+							declared={table.facedown[readied.id].label}
+							pick={{ zone: readied.id }}
+							onSelect={() => (runs ? onCommand({ type: 'use-readied', holder: enemy.id }) : null)}
+						/>
+					{/if}
 				</div>
 				<!-- Below the cards, like an adventurer's: the turn first, the bookkeeping
 				     after it. Above them, a folded group's controls pushed its initiative
@@ -696,39 +620,6 @@
 					onDrop={drop}
 				/>
 			</div>
-			{#if mySeatId && selectedPick && (table.zones[`seat:${mySeatId}:facedown`]?.count ?? 0) === 0}
-				<!--
-					Moved here from inside your own combatant.
-
-					It only ever appeared on your seat — a facedown card goes in front of
-					its holder, and you are the only holder you can be — so it was never
-					really about the seat it sat in. Where it *did* have an effect was on
-					the layout: every combatant had to reserve room for a block that only
-					one of them could ever show, which is where the empty track under the
-					fight came from. Down here it grows the hand, which is below
-					everything and moves nothing.
-				-->
-				<div class="declare">
-					<button
-						type="button"
-						class="ct-btn"
-						onclick={() => (declaring = { holder: mySeatId, position: 'turn' })}
-					>
-						Play facedown — your turn
-					</button>
-					<button
-						type="button"
-						class="ct-btn"
-						onclick={() => (declaring = { holder: mySeatId, position: 'minor' })}
-					>
-						Play facedown — minor action
-					</button>
-					<p class="declare__note">
-						A defensive card stays in front of you even when it is for somebody else — ch.7 lets you
-						Riposte or Dodge for anyone in your zone. Say who in the label.
-					</p>
-				</div>
-			{/if}
 			{#if isGm}
 				<!--
 					Judged holding the hand — "discard and draw again when it is mostly
@@ -748,15 +639,25 @@
 					<span>{challengePack.handSizes.gm.mulligan.note}</span>
 				</p>
 			{/if}
-			<Actions
-				catalogue={challengePack.actions}
+			<YourMove
+				{table}
+				{seats}
 				{faces}
-				heldCard={selectedPick?.zone === `seat:${mySeatId}:hand`
-					? (selectedPick.card ?? null)
-					: null}
+				catalogue={challengePack.actions}
+				{mySeatId}
+				{runs}
+				{busy}
+				selected={selectedPick}
 				bind:chosen={chosenAction}
 				bind:custom={customAction}
-				asGm={isGm}
+				bind:extras
+				bind:collecting
+				{onCommand}
+				onDone={() => {
+					extras = [];
+					collecting = false;
+					selection.clear();
+				}}
 			/>
 		</div>
 	{/if}
@@ -772,20 +673,6 @@
 		onSelect={select}
 		onClose={closePane}
 	/>
-{/if}
-
-{#if declaring}
-	<div class="declare__ask">
-		<label>
-			What is it for?
-			<input class="ct-field" bind:value={declaredAs} placeholder="Riposte" autocomplete="off" />
-		</label>
-		<p class="declare__hint">Everyone sees this. Only you see the card.</p>
-		<button type="button" class="ct-btn ct-btn--primary" onclick={declare}>Lay it down</button>
-		<button type="button" class="ct-btn ct-btn--quiet" onclick={() => (declaring = null)}
-			>Never mind</button
-		>
-	</div>
 {/if}
 
 <style>
@@ -856,16 +743,6 @@
 		/* The number is the answer; the word in front of it is the question. */
 		min-inline-size: 1.2em;
 		display: inline-block;
-	}
-	/* Bound to the number it moves, rather than loose among wordy buttons. */
-	.ch__stepper {
-		display: flex;
-		gap: 0.25rem;
-		align-self: center;
-	}
-	.ch__stepper button {
-		min-inline-size: 2.75rem;
-		padding-inline: 0;
 	}
 	/* Round bookkeeping: once a round each, and sized accordingly. */
 	/*
@@ -1003,14 +880,6 @@
 		gap: 0.5rem;
 		align-items: flex-start;
 	}
-	.combatant__played {
-		display: flex;
-		gap: 0.3rem;
-		flex-wrap: wrap;
-		min-inline-size: var(--ct-card-w);
-		min-block-size: var(--ct-card-h);
-		border-radius: 4px;
-	}
 	.slot--drop {
 		border-style: solid;
 		border-color: var(--ct-rule-strong);
@@ -1055,36 +924,6 @@
 		color: var(--ct-quiet);
 		text-decoration: underline;
 		cursor: pointer;
-	}
-	.declare {
-		display: flex;
-		gap: 0.4rem;
-		flex-wrap: wrap;
-		margin-block-start: 0.5rem;
-	}
-	.declare__note {
-		flex-basis: 100%;
-		margin: 0.25rem 0 0;
-		font-size: 0.78rem;
-		color: var(--ct-quiet);
-	}
-	.declare__ask {
-		position: fixed;
-		inset-block-end: 1rem;
-		inset-inline-start: 50%;
-		transform: translateX(-50%);
-		background: var(--ct-table-low);
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 4px;
-		padding: 1rem;
-		display: grid;
-		gap: 0.5rem;
-		z-index: 10;
-	}
-	.declare__hint {
-		margin: 0;
-		font-size: 0.8rem;
-		color: var(--ct-quiet);
 	}
 	/* Buttons take their look from `.ct-btn` in table.css; what is left here is
 	   layout. */

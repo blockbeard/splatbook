@@ -9,16 +9,7 @@ import {
 	type DeckDefinition
 } from './table';
 import { beginRound } from './round';
-import {
-	beginInterrupt,
-	clearExtraTurn,
-	clearFacedown,
-	endInterrupt,
-	placeFacedown,
-	playFool,
-	revealFacedown,
-	skipTurn
-} from './exceptions';
+import { clearFacedown, placeFacedown, revealFacedown } from './exceptions';
 import { canSeeFaces, moveCard } from './moves';
 import { seededRng } from './shuffle';
 import { opponentZone, seatZone } from './zones';
@@ -188,69 +179,6 @@ describe('the facedown slot', () => {
 	});
 });
 
-describe('the Fool', () => {
-	it('goes down with a partner in one move, never alone', () => {
-		let t = dealt();
-		// Put the Fool in a hand deliberately rather than hoping for it.
-		const forced = moveCard(t, { zone: 'deck:player' }, seatZone('s1', 'hand'));
-		if (!forced.ok) return;
-		t = { ...forced.table };
-		t.zones[seatZone('s1', 'hand')] = {
-			...t.zones[seatZone('s1', 'hand')],
-			cards: ['fool', 'm7']
-		};
-
-		const res = playFool(t, 's1', 'fool', 'm7', 's1');
-		expect(res.ok).toBe(true);
-		if (!res.ok) return;
-		expect(cards(res.table, seatZone('s1', 'played'))).toEqual(
-			expect.arrayContaining(['fool', 'm7'])
-		);
-		expect(cards(res.table, seatZone('s1', 'hand'))).toEqual([]);
-	});
-
-	it('goes first, owes a second turn, and brings no minor actions with it', () => {
-		let t = dealt();
-		t = { ...t };
-		t.zones[seatZone('s1', 'hand')] = {
-			...t.zones[seatZone('s1', 'hand')],
-			cards: ['fool', 'm7']
-		};
-		const res = playFool(t, 's1', 'fool', 'm7', 's1');
-		if (!res.ok) return;
-		// "The Fool always goes first, no matter what" — an interrupt.
-		expect(res.table.round.interrupt).toBe('s1');
-		// "two turns (but no minor actions)".
-		expect(res.table.round.extraTurn).toBe('s1');
-		expect(res.table.round.minorActions).toBe(false);
-		expect(clearExtraTurn(res.table).round.extraTurn).toBeNull();
-	});
-
-	it('will not play half a pair', () => {
-		let t = dealt();
-		t = { ...t };
-		t.zones[seatZone('s1', 'hand')] = { ...t.zones[seatZone('s1', 'hand')], cards: ['fool'] };
-		expect(playFool(t, 's1', 'fool', 'm7', 's1')).toEqual({ ok: false, reason: 'no-such-card' });
-	});
-});
-
-describe('interrupts and skipping', () => {
-	it('records who is acting out of turn, generally — not only the Fool', () => {
-		// A halfling with a polearm ripostes the charging goblin.
-		const t = beginInterrupt(dealt(), 's2');
-		expect(t.round.interrupt).toBe('s2');
-		expect(endInterrupt(t).round.interrupt).toBeNull();
-	});
-
-	it('shuts the minor-action window when a turn is skipped', () => {
-		// "If you do not take an action… Nobody takes minor actions." So skipping
-		// closes the window rather than merely not opening it.
-		const t = dealt();
-		const open = { ...t, round: { ...t.round, minorActions: true } };
-		expect(skipTurn(open).round.minorActions).toBe(false);
-	});
-});
-
 describe('migrateTable v3 → v4', () => {
 	it('gives an older table no declarations and a quiet round', () => {
 		const v3 = {
@@ -274,8 +202,8 @@ describe('migrateTable v3 → v4', () => {
 		const migrated = migrateTable(v3);
 		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
 		expect(migrated.facedown).toEqual({});
-		expect(migrated.round.interrupt).toBeNull();
-		expect(migrated.round.extraTurn).toBeNull();
+		// v15 reads a round counting at 5 as somebody's turn at 5.
+		expect(migrated.round.step).toBe('turn');
 		// The round it was in the middle of survives intact.
 		expect(migrated.round.number).toBe(2);
 		expect(migrated.round.count).toBe(5);

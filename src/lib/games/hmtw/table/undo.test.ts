@@ -25,8 +25,8 @@ describe('putting a card back', () => {
 	it('looks past events that could not have disturbed a pile', () => {
 		const events: PublicEvent[] = [
 			move(1, 'deck:player', 'fate'),
-			{ version: 2, kind: 'count', data: { count: 4 } },
-			{ version: 3, kind: 'guided', data: { on: true } }
+			{ version: 2, kind: 'show-initiative', data: { holder: 's2' } },
+			{ version: 3, kind: 'place', data: { who: 's1', zone: 'nave' } }
 		];
 		expect(reverseOf(events, 's1')?.command).toMatchObject({ to: 'deck:player' });
 	});

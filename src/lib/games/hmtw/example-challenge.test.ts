@@ -91,7 +91,8 @@ function dealTheExample(): CardTable {
 	for (const [seat, cards] of Object.entries(HANDS)) {
 		zones[`seat:${seat}:hand`] = { ...zones[`seat:${seat}:hand`], cards: [...cards] };
 	}
-	return { ...table, zones };
+	// Round one, at initiative: what dealing would have left.
+	return { ...table, zones, round: { ...table.round, number: 1, step: 'initiative' } };
 }
 
 const cards = (t: CardTable, zone: string) => t.zones[zone].cards;
@@ -125,57 +126,15 @@ describe('Chapter 7’s example Challenge', () => {
 		// "Daria plays the King of Pentacles… Fergus the Page of Wands… Chirm a
 		// V of Wands." Each names a card in their own hand, which is the one
 		// private zone a player may name a card in.
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:daria:hand', card: 'pentacles-king' },
-				to: 'seat:daria:initiative'
-			},
-			'daria'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:fergus:hand', card: 'wands-page' },
-				to: 'seat:fergus:initiative'
-			},
-			'fergus'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:chirm:hand', card: 'wands-v' },
-				to: 'seat:chirm:initiative'
-			},
-			'chirm'
-		);
-
+		const initiative = (holder: string, seat: string, card: string) =>
+			run(t, { type: 'play-initiative', holder, from: { zone: `seat:${seat}:hand`, card } }, seat);
+		t = initiative('daria', 'daria', 'pentacles-king');
+		t = initiative('fergus', 'fergus', 'wands-page');
+		t = initiative('chirm', 'chirm', 'wands-v');
 		// "The GM plays 1 card for Initiative per enemy" — the Emperor for the
-		// goblins, the Chariot for the pendulum.
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:gm:hand', card: 'emperor' },
-				to: 'opponent:goblins:initiative'
-			},
-			'gm'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:gm:hand', card: 'chariot' },
-				to: 'opponent:pendulum:initiative'
-			},
-			'gm'
-		);
-
-		expect(cards(t, 'seat:daria:initiative')).toEqual(['pentacles-king']);
-		expect(cards(t, 'opponent:pendulum:initiative')).toEqual(['chariot']);
+		// goblins, and (below) the Chariot for the pendulum.
+		t = initiative('goblins', 'gm', 'emperor');
+		expect(t.round.step).toBe('initiative');
 
 		// Nobody may read anybody else's initiative yet. "No peeking!"
 		const dariaSees = hmtwCardTable.project(t, 'daria') as {
@@ -191,81 +150,86 @@ describe('Chapter 7’s example Challenge', () => {
 		expect(gmSees.zones['opponent:goblins:initiative'].cards).toEqual(['emperor']);
 		expect(gmSees.zones['seat:daria:initiative'].cards).toBeUndefined();
 
-		/* -- Step 3: the count reaches four -------------------------------- */
+		/* -- Step 3: the last card down starts the count, and it reaches four -- */
 
-		// "1… 2… 3… 4…"
-		for (let i = 0; i < 4; i++) t = run(t, { type: 'advance-count' }, 'gm');
+		t = initiative('pendulum', 'gm', 'chariot');
+		// "1… 2… 3… 4…" — said by the table now, which jumps to the lowest card.
 		expect(t.round.count).toBe(4);
-		expect(faces[cards(t, 'opponent:goblins:initiative')[0]].value).toBe(t.round.count);
+		expect(t.round.step).toBe('turn');
+		const up = hmtwCardTable.project(t, 'daria') as {
+			upNow: string[];
+			zones: Record<string, { cards?: string[] }>;
+		};
+		expect(up.upNow).toEqual(['goblins']);
+		// The goblins' initiative turns over for everyone.
+		expect(up.zones['opponent:goblins:initiative'].cards).toEqual(['emperor']);
 
-		// The goblins' initiative turns over, and they Attack with Justice [XI].
+		// They Attack with Justice [XI], at Fergus.
 		t = run(
 			t,
 			{
-				type: 'move',
-				from: { zone: 'opponent:goblins:initiative' },
-				to: 'opponent:goblins:played'
-			},
-			'gm'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
+				type: 'play-turn',
+				holder: 'goblins',
 				from: { zone: 'seat:gm:hand', card: 'justice' },
-				to: 'opponent:goblins:played'
+				action: 'Attack',
+				target: 'fergus',
+				mode: 'play'
 			},
 			'gm'
 		);
 		expect(faces['justice'].value).toBe(11); // + the goblins' Swords 4 = 15
+		expect(t.plays['justice']).toMatchObject({ by: 'goblins', action: 'Attack' });
 
 		// "Now that they've been attacked, each player flips over their Initiative
-		// cards" — King 14, Page 11, V 5.
-		for (const seat of ['daria', 'fergus', 'chirm']) {
-			t = run(
-				t,
-				{ type: 'move', from: { zone: `seat:${seat}:initiative` }, to: `seat:${seat}:played` },
-				seat
-			);
-		}
-		expect(faces[cards(t, 'seat:daria:played')[0]].value).toBe(14);
-		expect(faces[cards(t, 'seat:fergus:played')[0]].value).toBe(11);
-		expect(faces[cards(t, 'seat:chirm:played')[0]].value).toBe(5);
+		// cards" — King 14, Page 11, V 5. Fergus's turned over as the target;
+		// the others show theirs.
+		expect(t.round.shown).toContain('fergus');
+		t = run(t, { type: 'show-initiative', holder: 'daria' }, 'daria');
+		t = run(t, { type: 'show-initiative', holder: 'chirm' }, 'chirm');
+		const shown = hmtwCardTable.project(t, 'chirm') as {
+			zones: Record<string, { cards?: string[] }>;
+		};
+		expect(faces[shown.zones['seat:daria:initiative'].cards![0]].value).toBe(14);
+		expect(faces[shown.zones['seat:fergus:initiative'].cards![0]].value).toBe(11);
+		expect(faces[shown.zones['seat:chirm:initiative'].cards![0]].value).toBe(5);
 
 		/* -- Step 4: minor actions ----------------------------------------- */
 
-		t = run(t, { type: 'minor-actions', open: true }, 'gm');
-		expect(t.round.minorActions).toBe(true);
+		expect(t.round.step).toBe('minor');
 
 		// Fergus Uses an Item with the X of Cups; Chirm Avoids with the Page of
-		// Pentacles; Daria Attacks with the VII of Wands.
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:fergus:hand', card: 'cups-x' },
-				to: 'seat:fergus:played'
-			},
-			'fergus'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:chirm:hand', card: 'pentacles-page' },
-				to: 'seat:chirm:played'
-			},
-			'chirm'
-		);
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'seat:daria:hand', card: 'wands-vii' },
-				to: 'seat:daria:played'
-			},
-			'daria'
-		);
+		// Pentacles; Daria Attacks with the VII of Wands. Face down until the
+		// last of them answers.
+		const minor = (seat: string, card: string, label: string) =>
+			run(
+				t,
+				{
+					type: 'declare-minor',
+					holder: seat,
+					from: { zone: `seat:${seat}:hand`, card },
+					label
+				},
+				seat
+			);
+		t = minor('fergus', 'cups-x', 'Use Item');
+		t = minor('chirm', 'pentacles-page', 'Avoid');
+		expect(
+			(hmtwCardTable.project(t, 'daria') as { zones: Record<string, { cards?: string[] }> }).zones[
+				'seat:chirm:minor'
+			].cards
+		).toBeUndefined();
+		t = minor('daria', 'wands-vii', 'Attack');
+		// The pendulum, which did not just act, passes.
+		t = run(t, { type: 'pass-minor', holders: ['pendulum'] }, 'gm');
+
+		// Everyone has answered, so the cards are face up together.
+		expect(t.round.step).toBe('resolve');
+		expect(cards(t, 'seat:fergus:played')).toEqual(['cups-x']);
+		expect(t.plays['pentacles-page']).toMatchObject({
+			by: 'chirm',
+			action: 'Avoid',
+			kind: 'minor'
+		});
 
 		// "a minor action's total value equals the card's face value" — 10 and 11
 		// before the GM's disfavour, which is the table's arithmetic, not ours.
@@ -273,24 +237,17 @@ describe('Chapter 7’s example Challenge', () => {
 		expect(faces['pentacles-page'].value).toBe(11);
 		expect(faces['wands-vii'].value).toBe(7);
 
-		// The pendulum's initiative turns over: a VII.
-		t = run(
-			t,
-			{
-				type: 'move',
-				from: { zone: 'opponent:pendulum:initiative' },
-				to: 'opponent:pendulum:played'
-			},
-			'gm'
-		);
-		expect(faces[cards(t, 'opponent:pendulum:played')[0]].value).toBe(7);
-
-		t = run(t, { type: 'minor-actions', open: false }, 'gm');
-
 		/* -- Back to step 3: "I was on 4. 5… 6… 7…" ------------------------ */
 
-		for (let i = 0; i < 3; i++) t = run(t, { type: 'advance-count' }, 'gm');
+		t = run(t, { type: 'step-on' }, 'gm');
+		// Chirm's V is next; the table jumps there, past nobody.
+		expect(t.round.count).toBe(5);
+		expect(cards(t, 'seat:fergus:played')).toEqual([]);
+		t = run(t, { type: 'skip-turn', holder: 'chirm' }, 'chirm');
+		// The pendulum's initiative turns over: a VII.
 		expect(t.round.count).toBe(7);
+		expect(t.round.shown).toContain('pendulum');
+		expect(faces[cards(t, 'opponent:pendulum:initiative')[0]].value).toBe(7);
 
 		/* -- The state the book leaves the table in ------------------------ */
 
@@ -319,17 +276,19 @@ describe('Chapter 7’s example Challenge', () => {
 			},
 			'daria'
 		);
-		t = run(
-			t,
-			{
-				type: 'place-facedown',
-				holder: 'chirm',
-				from: { zone: 'seat:chirm:hand', card: 'swords-v' },
-				position: 'turn',
-				label: 'Dodge'
+		// Chirm readies a Dodge, as a turn would (placed here directly).
+		t = {
+			...t,
+			zones: {
+				...t.zones,
+				'seat:chirm:hand': {
+					...t.zones['seat:chirm:hand'],
+					cards: t.zones['seat:chirm:hand'].cards.filter((c) => c !== 'swords-v')
+				},
+				'seat:chirm:facedown': { ...t.zones['seat:chirm:facedown'], cards: ['swords-v'] }
 			},
-			'chirm'
-		);
+			facedown: { 'seat:chirm:facedown': { position: 'turn', label: 'Dodge' } }
+		};
 
 		t = run(t, { type: 'end-round' }, 'gm');
 

@@ -36,14 +36,14 @@ export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable
 	let next = table;
 	for (const seat of table.seats) {
 		const deck = seat === table.gmSeat ? 'gm' : 'player';
-		for (const kind of ['hand', 'initiative', 'played', 'facedown'] as const) {
+		for (const kind of ['hand', 'initiative', 'played', 'facedown', 'minor'] as const) {
 			next = discardAll(next, seatZone(seat, kind), deck);
 		}
 		// Not `durable`. An inspiration card outlives the fight it was carried
 		// into — ch.5 gives it until it is used or the session ends.
 	}
 	for (const opponent of table.opponents) {
-		for (const kind of ['initiative', 'played', 'facedown'] as const) {
+		for (const kind of ['initiative', 'played', 'facedown', 'minor'] as const) {
 			next = discardAll(next, opponentZone(opponent.id, kind), 'gm');
 		}
 	}
@@ -60,6 +60,8 @@ export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable
 		mode,
 		opponents: [],
 		facedown: {},
+		plays: {},
+		minorDeclared: {},
 		round: newRound()
 	};
 }

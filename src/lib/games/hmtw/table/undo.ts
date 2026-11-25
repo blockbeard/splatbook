@@ -51,9 +51,7 @@ const isMove = (event: PublicEvent): event is PublicEvent & { data: MoveData } =
  * command added later fails closed.
  */
 const MOVES_NO_CARDS = new Set([
-	'count',
-	'guided',
-	'minor-actions',
+	'show-initiative',
 	'add-opponent',
 	'update-opponent',
 	// The scene and its creatures: positions, HD, letters.

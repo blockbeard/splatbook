@@ -210,6 +210,42 @@
 		return null;
 	}
 
+	/**
+	 * Step commands that try again on a conflict (phase 32). With four people
+	 * pressing at once — everyone playing initiative, everyone answering minor
+	 * actions — most presses would otherwise bounce, and the person would have
+	 * to press again. Retrying these is safe because the server re-checks the
+	 * round on every try: a turn played after the round moved on is refused as
+	 * not yours, not played twice. Not a card move, where two hands on one card
+	 * is a real conflict; and not the GM's "move on", which on a changed table
+	 * could skip somebody.
+	 */
+	const RETRIES = new Set([
+		'play-initiative',
+		'play-turn',
+		'skip-turn',
+		'play-out-of-turn',
+		'declare-minor',
+		'ready-minor',
+		'pass-minor',
+		'show-initiative',
+		'use-readied',
+		'drop-readied',
+		'take-back'
+	]);
+
+	async function catchUp() {
+		// Asking from our own version rather than zero keeps the event tail the
+		// recent end of the log instead of the oldest fifty.
+		const fresh = await fetchSince(data.token, version);
+		if (fresh) {
+			version = fresh.version;
+			table = fresh.state as ProjectedTable;
+			if (fresh.seats) seats = fresh.seats;
+			remember(fresh.events);
+		}
+	}
+
 	async function run(command: unknown) {
 		if (busy) return;
 		busy = true;
@@ -218,7 +254,16 @@
 		// One key per intent, reused if we retry: the server treats it as a lock,
 		// so regenerating it on a retry would move two cards for one click.
 		const key = newRequestKey();
-		const reply = await sendCommand(data.token, command, version, key);
+		const kind = (command as { type?: string })?.type ?? '';
+		let reply = await sendCommand(data.token, command, version, key);
+		for (
+			let attempt = 0;
+			attempt < 3 && !reply.ok && reply.reason === 'conflict' && RETRIES.has(kind);
+			attempt++
+		) {
+			await catchUp();
+			reply = await sendCommand(data.token, command, version, key);
+		}
 		if (reply.ok && reply.view) {
 			version = reply.view.version;
 			table = reply.view.state as ProjectedTable;
@@ -230,19 +275,28 @@
 			// same news as a card somebody else picked up first.
 			(reply.reason === 'rejected' && reply.detail === 'stale')
 		) {
-			// Ordinary, and with open reach the *likely* outcome: two people
-			// reached for the same card and one of them got there first. Catch up
-			// and let them look, rather than telling them off for it. Asking from
-			// our own version rather than zero keeps the event tail the recent
-			// end of the log instead of the oldest fifty.
-			const fresh = await fetchSince(data.token, version);
-			if (fresh) {
-				version = fresh.version;
-				table = fresh.state as ProjectedTable;
-				if (fresh.seats) seats = fresh.seats;
-				remember(fresh.events);
-			}
+			// Ordinary: two people reached for the same thing and one of them got
+			// there first. Catch up and let them look, rather than telling them off.
+			await catchUp();
 			say('Someone got there first. This is the table as it stands now.', true);
+		} else if (
+			reply.reason === 'rejected' &&
+			['wrong-step', 'not-up', 'already-answered', 'nothing-to-take-back'].includes(
+				reply.detail ?? ''
+			)
+		) {
+			// The round moved on under a page a poll behind: say so, and show it.
+			await catchUp();
+			say('The round has moved on. This is the table as it stands now.', true);
+		} else if (
+			reply.reason === 'rejected' &&
+			['not-yours', 'gm-only'].includes(reply.detail ?? '')
+		) {
+			say('That is not yours to do.', false);
+		} else if (reply.reason === 'rejected') {
+			// It used to say the table was no longer taking cards, for any refusal
+			// at all — which read as the table having closed.
+			say('The table could not do that.', false);
 		} else {
 			say('This table is no longer taking cards.', false);
 		}
