@@ -10,9 +10,9 @@
  * not the same as being told no.
  */
 
-import { moveCard, type MoveFailure } from './moves';
+import { discardAll, moveCard, type MoveFailure } from './moves';
 import type { CardTable } from './table';
-import { discardZone, opponentZone, seatZone } from './zones';
+import { opponentZone, seatZone, type DeckId } from './zones';
 
 /**
  * Where a facedown card sits relative to the initiative card, which is not
@@ -45,10 +45,12 @@ export function facedownZoneOf(table: CardTable, holder: string): string | null 
 	return null;
 }
 
-/** Which discard a holder's cards belong in. */
-function discardFor(table: CardTable, holder: string): string {
-	const isPlayer = table.seats.includes(holder) && holder !== table.gmSeat;
-	return discardZone(isPlayer ? 'player' : 'gm');
+/**
+ * Whose deck a holder's cards are *usually* from — only the fallback for a
+ * card the table has no `deckOf` record of. The card's own deck decides.
+ */
+function usualDeck(table: CardTable, holder: string): DeckId {
+	return table.seats.includes(holder) && holder !== table.gmSeat ? 'player' : 'gm';
 }
 
 export type ExceptionResult =
@@ -92,8 +94,7 @@ export function placeFacedown(
 export function clearFacedown(table: CardTable, holder: string): CardTable {
 	const zone = facedownZoneOf(table, holder);
 	if (!zone) return table;
-	const moved = moveCard(table, { zone }, discardFor(table, holder));
-	const next = moved.ok ? moved.table : table;
+	const next = discardAll(table, zone, usualDeck(table, holder));
 	const facedown = { ...next.facedown };
 	delete facedown[zone];
 	return { ...next, facedown };

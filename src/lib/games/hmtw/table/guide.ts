@@ -117,18 +117,33 @@ export function suggest(
 
 	// The number has had its turn and its minor actions. Saying "that is you" to
 	// somebody who has already gone is how a prompter becomes noise.
+	// Who is holding the round open, by name only; never their numbers.
+	const waiting = listOf((table.stillToAct ?? []).map((id) => nameOf(id, seats, table.opponents)));
+	const stillToCome = waiting ? ` Still to act: ${waiting}.` : '';
+
 	if (round.settled !== null && round.settled === round.count) {
 		return {
-			text: `${round.count} is done.`,
+			text: `${round.count} is done.${stillToCome}`,
 			action: { label: 'Count on', command: { type: 'advance-count' } },
 			gmOnly: true
 		};
 	}
 
 	if (table.upNow.length > 0) {
-		const who = listOf(table.upNow.map((id) => nameOf(id, seats, table.opponents)));
+		// Said to each person, not to the room: "that is you" on every screen
+		// told three players it was their turn when it was one player's (first
+		// live test, 25 November 2026). The viewer is whoever this projection
+		// was made for.
+		const mine = table.viewer !== null && table.upNow.includes(table.viewer);
+		const others = table.upNow.filter((id) => id !== table.viewer);
+		const names = listOf(others.map((id) => nameOf(id, seats, table.opponents)));
+		const text = mine
+			? others.length > 0
+				? `${round.count} — your turn. ${names} also ${others.length > 1 ? 'act' : 'acts'} on ${round.count}.`
+				: `${round.count} — your turn.`
+			: `${round.count} — ${names} to act.`;
 		return {
-			text: `${round.count} — ${who}, that is you.`,
+			text,
 			action: {
 				label: 'Turn resolved — any minor actions?',
 				command: { type: 'minor-actions', open: true }
@@ -139,7 +154,7 @@ export function suggest(
 
 	// Nobody on this number. Ch.7's count simply carries on.
 	return {
-		text: `${round.count} — nobody.`,
+		text: `${round.count} — nobody.${stillToCome}`,
 		action: { label: 'Count on', command: { type: 'advance-count' } },
 		gmOnly: true
 	};

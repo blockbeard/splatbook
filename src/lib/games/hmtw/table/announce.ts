@@ -26,6 +26,16 @@ export interface TableEvent {
 /** Who a seat id belongs to, as the table shows it. */
 export type NameOf = (seatId: string | null | undefined) => string;
 
+/**
+ * Who is listening, and who is up on the table as it now stands — so the
+ * count can say "your turn" to the one person it is true for, and to nobody
+ * else.
+ */
+export interface Listener {
+	viewer: string | null;
+	upNow: readonly string[];
+}
+
 const deckName = (deck: unknown): string => (deck === 'gm' ? 'GM' : 'player');
 
 /** "A", "A and B", "A, B and C". */
@@ -79,22 +89,28 @@ function announceMove(data: { from: string; to: string; seat?: string | null }, 
  * something usable for an id it does not know, since a seat can leave between
  * an event landing and its being read.
  */
-export function describe(event: TableEvent, nameOf: NameOf): string | null {
+export function describe(event: TableEvent, nameOf: NameOf, listener?: Listener): string | null {
 	const d = (event.data ?? {}) as Record<string, unknown>;
 	switch (event.kind) {
-		case 'move':
-			return typeof d.from === 'string' && typeof d.to === 'string'
-				? announceMove({ from: d.from, to: d.to, seat: d.seat as string | null }, nameOf)
-				: null;
+		case 'move': {
+			if (typeof d.from !== 'string' || typeof d.to !== 'string') return null;
+			const said = announceMove({ from: d.from, to: d.to, seat: d.seat as string | null }, nameOf);
+			return d.reshuffled
+				? `The ${deckName(d.from.split(':')[1])} deck was empty, so its discard was shuffled back in. ${said}`
+				: said;
+		}
 		case 'begin-round':
 			return `Round ${d.round} dealt. Players draw ${d.playerHand}, the GM draws ${d.gmHand}.`;
 		case 'end-round':
-			return `Round ${d.round} ended.`;
+			return d.shuffled
+				? `Round ${d.round} ended. The Fool came out, so both decks were shuffled.`
+				: `Round ${d.round} ended.`;
 		case 'count':
 			// The one a player most needs, and the reason this exists: it is how
 			// the table says your turn has come.
-			return d.count === null || d.count === undefined
-				? 'The count has stopped.'
+			if (d.count === null || d.count === undefined) return 'The count has stopped.';
+			return listener?.viewer && listener.upNow.includes(listener.viewer)
+				? `Initiative ${d.count}. Your turn.`
 				: `Initiative ${d.count}.`;
 		case 'minor-actions':
 			return d.open ? 'Minor actions are open.' : 'Minor actions are closed.';
@@ -166,9 +182,11 @@ export function describe(event: TableEvent, nameOf: NameOf): string | null {
  * to say wins — it is the state the table is in now, which is what somebody
  * catching up actually needs.
  */
-export function announce(events: TableEvent[], nameOf: NameOf): string | null {
+export function announce(events: TableEvent[], nameOf: NameOf, listener?: Listener): string | null {
 	for (let i = events.length - 1; i >= 0; i--) {
-		const said = describe(events[i], nameOf);
+		// Only the newest event is about the table as it now stands, so only it
+		// may say "your turn".
+		const said = describe(events[i], nameOf, i === events.length - 1 ? listener : undefined);
 		if (said) return said;
 	}
 	return null;

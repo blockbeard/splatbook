@@ -42,8 +42,7 @@ import {
 	clearFacedown,
 	clearScene,
 	createTable,
-	discardZone,
-	emptyInto,
+	discardAll,
 	endRound,
 	migrateTable,
 	moveCard,
@@ -285,7 +284,16 @@ export const hmtwCardTable: CardTableModule = {
 
 		switch (parsed.data.type) {
 			case 'move': {
-				const moved = moveCard(table, parsed.data.from, parsed.data.to, actor);
+				// A draw from an empty deck shuffles its discard back in first, as a
+				// deal already does and as anyone at a physical table would. Without
+				// it a Test of Fate from an empty deck simply failed, and only the GM
+				// may shuffle.
+				const fromDeck = parsed.data.from.zone.match(/^deck:(player|gm)$/)?.[1] as
+					'player' | 'gm' | undefined;
+				const refill =
+					fromDeck !== undefined && (table.zones[parsed.data.from.zone]?.cards.length ?? 1) === 0;
+				const source = refill && fromDeck ? reshuffleDeck(table, fromDeck, context.rng) : table;
+				const moved = moveCard(source, parsed.data.from, parsed.data.to, actor);
 				if (!moved.ok) return fail(moved.reason);
 				// "When the Fool is drawn, shuffle both decks at the end of the
 				// round." Drawn is drawn: turning it over onto a discard during a
@@ -300,14 +308,15 @@ export const hmtwCardTable: CardTableModule = {
 				return state(next, 'move', {
 					from: parsed.data.from.zone,
 					to: parsed.data.to,
-					seat: context.actorSeatId
+					seat: context.actorSeatId,
+					...(refill ? { reshuffled: true } : {})
 				});
 			}
 			case 'set-mode': {
 				// Not a rules judgement — a seat one. Leaving a Challenge sweeps
 				// every hand on the table, so it belongs to whoever is running it.
 				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');
-				return state(setMode(table, parsed.data.mode), 'set-mode', {
+				return state(setMode(table, parsed.data.mode, context.rng), 'set-mode', {
 					mode: parsed.data.mode,
 					seat: context.actorSeatId
 				});
@@ -328,7 +337,11 @@ export const hmtwCardTable: CardTableModule = {
 			}
 			case 'end-round': {
 				const next = endRound(table, context.rng);
-				return state(next, 'end-round', { round: table.round.number });
+				// Said when it happens, now that nobody else was told the Fool was out.
+				return state(next, 'end-round', {
+					round: table.round.number,
+					shuffled: table.round.foolDrawn
+				});
 			}
 			case 'mulligan': {
 				return state(mulliganGmHand(table, context.rng), 'mulligan', {
@@ -355,10 +368,16 @@ export const hmtwCardTable: CardTableModule = {
 				let next = table;
 				for (const seat of table.seats) {
 					const deck = seat === table.gmSeat ? 'gm' : 'player';
-					next = emptyInto(next, seatZone(seat, 'played'), discardZone(deck));
+					next = discardAll(next, seatZone(seat, 'played'), deck);
 				}
 				for (const opponent of table.opponents) {
-					next = emptyInto(next, opponentZone(opponent.id, 'played'), discardZone('gm'));
+					next = discardAll(next, opponentZone(opponent.id, 'played'), 'gm');
+				}
+				// Sweeping is what you do once a number is over, so it settles the
+				// number as closing minor actions does. Without this, sweeping instead
+				// of closing held the end-of-round check back (first live test).
+				if (next.round.count !== null && next.round.settled !== next.round.count) {
+					next = setMinorActions(next, false);
 				}
 				return state(next, 'sweep', { seat: context.actorSeatId });
 			}
@@ -414,7 +433,7 @@ export const hmtwCardTable: CardTableModule = {
 				return state({ ...table, guided: parsed.data.on }, 'guided', { on: parsed.data.on });
 			}
 			case 'clear-fate':
-				return state(emptyInto(table, FATE_ZONE, discardZone('player')), 'clear-fate', {
+				return state(discardAll(table, FATE_ZONE, 'player'), 'clear-fate', {
 					seat: context.actorSeatId
 				});
 			case 'set-scene-zones': {
@@ -513,14 +532,14 @@ export const hmtwCardTable: CardTableModule = {
 				// Back to a table nobody has played on: every card home, both decks
 				// shuffled, no enemies, no round. Inspiration goes too — this is
 				// the button for starting again, not for ending a fight.
-				let next = setMode(table, 'decks');
+				let next = setMode(table, 'decks', context.rng);
 				for (const seat of next.seats) {
 					const deck = seat === next.gmSeat ? 'gm' : 'player';
 					for (const kind of ['hand', 'initiative', 'played', 'facedown', 'durable'] as const) {
-						next = emptyInto(next, seatZone(seat, kind), discardZone(deck));
+						next = discardAll(next, seatZone(seat, kind), deck);
 					}
 				}
-				next = emptyInto(next, FATE_ZONE, discardZone('player'));
+				next = discardAll(next, FATE_ZONE, 'player');
 				next = reshuffleDeck(next, 'player', context.rng);
 				next = reshuffleDeck(next, 'gm', context.rng);
 				next = clearScene(next);

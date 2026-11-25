@@ -426,3 +426,190 @@ describe('the scene and its creatures', () => {
 		}
 	});
 });
+
+/**
+ * The first live test (25 November 2026) found GM cards in the Player
+ * discard: the sweeps chose a discard by whose spot a card was in. Every way
+ * cards leave the table is run here with both decks' cards in every kind of
+ * spot, and two things must hold after each: every card still exists exactly
+ * once, and no discard holds the other deck's card.
+ */
+describe('every card goes to its own deck’s discard', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'p2', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out.state as CardTable;
+	};
+	const TOTAL = 78;
+
+	function holds(t: CardTable) {
+		const cards = Object.values(t.zones).flatMap((z) => z.cards);
+		expect(cards).toHaveLength(TOTAL);
+		expect(new Set(cards).size).toBe(TOTAL);
+		for (const deck of ['player', 'gm'] as const) {
+			for (const card of t.zones[`discard:${deck}`].cards) {
+				expect(t.deckOf[card], `${card} in the ${deck} discard`).toBe(deck);
+			}
+		}
+	}
+
+	/** A Challenge mid-round with majors and minors crossed over everywhere. */
+	function crossed(): CardTable {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' });
+		t = run(t, { type: 'add-opponent', id: 'zombies', name: 'Zombie', count: 3 });
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 5 });
+		// The GM plays a major in front of a player, and onto the zombies.
+		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'seat:p1:played' });
+		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'opponent:zombies:initiative' });
+		// A player's minor onto the zombies' played pile, and as their own initiative.
+		t = run(
+			t,
+			{ type: 'move', from: { zone: 'seat:p1:hand' }, to: 'opponent:zombies:played' },
+			'p1'
+		);
+		t = run(t, { type: 'move', from: { zone: 'seat:p2:hand' }, to: 'seat:p2:initiative' }, 'p2');
+		// A major as a player's facedown card.
+		t = run(t, {
+			type: 'place-facedown',
+			holder: 'gm',
+			from: { zone: 'seat:gm:hand' },
+			position: 'minor',
+			label: 'Dodge'
+		});
+		holds(t);
+		return t;
+	}
+
+	it('on the Sweep', () => holds(run(crossed(), { type: 'sweep' })));
+	it('at the end of the round', () => holds(run(crossed(), { type: 'end-round' })));
+	it('on leaving the Challenge', () => holds(run(crossed(), { type: 'set-mode', mode: 'decks' })));
+	it('on Reset', () => holds(run(crossed(), { type: 'reset-table' })));
+	it('on the mulligan', () => holds(run(crossed(), { type: 'mulligan' })));
+	it('when a facedown card is given up', () =>
+		holds(run(crossed(), { type: 'clear-facedown', holder: 'gm' })));
+	it('when an enemy group is removed with cards on it', () =>
+		holds(run(crossed(), { type: 'remove-opponent', id: 'zombies' })));
+	it('when a seat leaves holding cards', () => {
+		const t = hmtwCardTable.syncSeats(crossed(), [seats[1], seats[2]]) as CardTable;
+		expect(t.seats).not.toContain('p1');
+		holds(t);
+	});
+
+	it('when a Test of Fate turned over both decks', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'fate' }, 'p1');
+		t = run(t, { type: 'move', from: { zone: 'deck:player' }, to: 'fate' }, 'p1');
+		t = run(t, { type: 'clear-fate' }, 'p1');
+		holds(t);
+		expect(t.zones['discard:gm'].cards).toHaveLength(1);
+		expect(t.zones['discard:player'].cards).toHaveLength(1);
+	});
+});
+
+describe('the Fool’s reshuffle', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out;
+	};
+
+	it('happens when a Challenge is left mid-round, not only at the end of one', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' }).state as CardTable;
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 }).state as CardTable;
+		t = { ...t, round: { ...t.round, foolDrawn: true } };
+		const before = t.zones['deck:player'].cards.length;
+		const left = run(t, { type: 'set-mode', mode: 'decks' }).state as CardTable;
+		// Hands went to the discard and the discard was shuffled back in.
+		expect(left.zones['discard:player'].cards).toHaveLength(0);
+		expect(left.zones['deck:player'].cards.length).toBeGreaterThan(before);
+	});
+
+	it('is announced when the round ends', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' }).state as CardTable;
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 }).state as CardTable;
+		t = { ...t, round: { ...t.round, foolDrawn: false } };
+		const quiet = run(t, { type: 'end-round' });
+		expect(quiet.ok && quiet.data).toMatchObject({ shuffled: false });
+		t = { ...t, round: { ...t.round, foolDrawn: true } };
+		const loud = run(t, { type: 'end-round' });
+		expect(loud.ok && loud.data).toMatchObject({ shuffled: true });
+	});
+});
+
+describe('a draw from an empty deck', () => {
+	const run = (t: CardTable, command: unknown, actor = 'p1') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out;
+	};
+
+	it('shuffles the discard back in first, so a Test of Fate never just fails', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), [
+			{ id: 'p1', isGm: false },
+			{ id: 'gm', isGm: true }
+		]) as CardTable;
+		// Everything in the GM deck to its discard.
+		while (t.zones['deck:gm'].cards.length > 0) {
+			t = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'discard:gm' }).state as CardTable;
+		}
+		const out = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'fate' });
+		const after = out.state as CardTable;
+		expect(after.zones.fate.cards).toHaveLength(1);
+		expect(after.zones['deck:gm'].cards).toHaveLength(20);
+		expect(after.zones['discard:gm'].cards).toHaveLength(0);
+		expect(out.ok && out.data).toMatchObject({ reshuffled: true });
+	});
+
+	it('says nothing about shuffling when the deck had cards', () => {
+		const t = hmtwCardTable.syncSeats(fresh(), [{ id: 'p1', isGm: false }]) as CardTable;
+		const out = run(t, { type: 'move', from: { zone: 'deck:player' }, to: 'fate' });
+		expect(out.ok && out.data).not.toHaveProperty('reshuffled');
+	});
+});
+
+describe('the end-of-round check', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out.state as CardTable;
+	};
+	const done = (t: CardTable, viewer = 'p1') =>
+		(hmtwCardTable.project(t, viewer) as { roundDone: boolean }).roundDone;
+
+	function atLastNumber() {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' });
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 });
+		t = run(t, { type: 'move', from: { zone: 'seat:p1:hand' }, to: 'seat:p1:initiative' }, 'p1');
+		const card = t.zones['seat:p1:initiative'].cards[0];
+		return run(t, { type: 'set-count', count: t.valueOf[card] });
+	}
+
+	it('comes when the GM sweeps instead of closing minor actions', () => {
+		const t = run(atLastNumber(), { type: 'minor-actions', open: true });
+		expect(done(t)).toBe(false);
+		expect(done(run(t, { type: 'sweep' }))).toBe(true);
+	});
+
+	it('comes when the GM counts on past the last card', () => {
+		const t = atLastNumber();
+		expect(done(t)).toBe(false);
+		expect(done(run(t, { type: 'advance-count' }))).toBe(true);
+	});
+});

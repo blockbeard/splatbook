@@ -13,6 +13,28 @@ suite('saying what happened', () => {
 		);
 	});
 
+	it('says when the Fool’s reshuffle happened, since nobody else was told it was out', () => {
+		expect(describe(ev('end-round', { round: 2, shuffled: false }), nameOf)).toBe('Round 2 ended.');
+		expect(describe(ev('end-round', { round: 2, shuffled: true }), nameOf)).toBe(
+			'Round 2 ended. The Fool came out, so both decks were shuffled.'
+		);
+	});
+
+	it('says when an empty deck was shuffled to make a draw', () => {
+		expect(
+			describe(ev('move', { from: 'deck:gm', to: 'fate', seat: 's1', reshuffled: true }), nameOf)
+		).toMatch(/^The GM deck was empty, so its discard was shuffled back in\. /);
+	});
+
+	it('says "your turn" to the acting player only', () => {
+		const count = ev('count', { count: 7 });
+		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
+			'Initiative 7. Your turn.'
+		);
+		expect(describe(count, nameOf, { viewer: 's2', upNow: ['s1'] })).toBe('Initiative 7.');
+		expect(describe(count, nameOf, { viewer: null, upNow: ['s1'] })).toBe('Initiative 7.');
+	});
+
 	it('calls the count, because that is how the table says it is your turn', () => {
 		expect(describe(ev('count', { count: 7 }), nameOf)).toBe('Initiative 7.');
 		expect(describe(ev('count', { count: null }), nameOf)).toBe('The count has stopped.');

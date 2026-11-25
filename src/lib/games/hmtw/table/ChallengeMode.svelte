@@ -18,7 +18,9 @@
 	import Hand from './Hand.svelte';
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
+	import PileViewer from './PileViewer.svelte';
 	import GmDraw from './GmDraw.svelte';
+	import { gmDrawFacts } from './draw';
 	import Scene from './Scene.svelte';
 	import ZonePicker from './ZonePicker.svelte';
 	import Creatures from './Creatures.svelte';
@@ -149,6 +151,10 @@
 	const declaredLabel = $derived(customAction.trim() || chosenAction?.name || '');
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
 	const zone = (id: string) => table.zones[id];
+	/** The lines of the GM's draw the table can fill in itself. */
+	const drawFacts = $derived(
+		gmDrawFacts(table.opponents, admitted.filter((s) => !s.isGm && s.id !== table.gmSeat).length)
+	);
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
 
 	function select(pick: Pick) {
@@ -160,6 +166,31 @@
 		if (!canAct) return;
 		const move = selection.place(zoneId);
 		if (move) onCommand({ type: 'move', from: move.from, to: move.to });
+	}
+
+	/*
+	 * A discard opened to look through, as Decks mode has always allowed. The
+	 * first live test found the Challenge's could not be opened at all.
+	 */
+	let openPile = $state<string | null>(null);
+	let zoomed = $state<string | null>(null);
+	let openedFrom: HTMLElement | null = null;
+
+	function openPileFrom(id: string) {
+		openedFrom = document.activeElement as HTMLElement | null;
+		openPile = id;
+	}
+
+	function closePane() {
+		openPile = null;
+		openedFrom?.focus();
+		openedFrom = null;
+	}
+
+	function onKey(event: KeyboardEvent) {
+		if (event.key !== 'Escape') return;
+		if (zoomed) zoomed = null;
+		else if (openPile) closePane();
 	}
 
 	function declare() {
@@ -197,6 +228,8 @@
 		newEnemyDefense = null;
 	}
 </script>
+
+<svelte:window onkeydown={onKey} />
 
 <div class="ch">
 	{#if guide}
@@ -306,6 +339,7 @@
 				<GmDraw
 					base={challengePack.handSizes.gm.base}
 					modifiers={challengePack.handSizes.gm.modifiers}
+					facts={drawFacts}
 					bind:value={gmHand}
 				/>
 				<div class="ch__deal__go">
@@ -364,6 +398,7 @@
 				droppable={selectedPick !== null}
 				onSelect={select}
 				onDrop={drop}
+				onOpen={(id) => openPileFrom(id)}
 			/>
 		{/each}
 	</div>
@@ -696,6 +731,18 @@
 		</div>
 	{/if}
 </div>
+
+{#if openPile}
+	<PileViewer
+		pile={zone(openPile)}
+		{faces}
+		selected={selectedPick}
+		hint="Pick a card up to move it, or look closer."
+		bind:zoomed
+		onSelect={select}
+		onClose={closePane}
+	/>
+{/if}
 
 {#if declaring}
 	<div class="declare__ask">

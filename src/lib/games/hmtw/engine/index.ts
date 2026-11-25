@@ -76,6 +76,7 @@ export {
 	canSeeFaces,
 	deal,
 	emptyInto,
+	discardAll,
 	moveCard,
 	reshuffleDeck,
 	type DealResult,

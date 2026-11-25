@@ -215,6 +215,41 @@ export function reshuffleDeck(table: CardTable, deck: DeckId, rng: Rng): CardTab
 	return { ...table, zones };
 }
 
+/**
+ * Empty a zone into the discards, **each card to its own deck's**.
+ *
+ * Every sweep on the table goes through here: the Sweep, the end of a round,
+ * leaving a Challenge, Reset, clearing a Test of Fate, a facedown card given
+ * up, a group or a seat removed. They used to choose the discard by whose
+ * spot a card was in, which is right only while nobody holds the other
+ * deck's cards. Turning over the GM's deck onto the fate pile, or the GM
+ * playing onto a player, put majors in the minor discard; the shuffle's stray
+ * rule then carried them home, which looked like the shuffle was the fix.
+ * A card's deck is `deckOf`, recorded when the table was made, so ask that.
+ *
+ * `fallback` is for a card the table has no record of — a blob from before
+ * `deckOf` — and is whose spot it was in, the old answer.
+ *
+ * Same order as `emptyInto`: the top card goes first, so the last card out
+ * ends up on top of its discard.
+ */
+export function discardAll(table: CardTable, from: string, fallback: DeckId = 'player'): CardTable {
+	const source = table.zones[from];
+	if (!source || source.cards.length === 0) return table;
+	const zones: Record<string, Zone> = { ...table.zones, [from]: { ...source, cards: [] } };
+	for (const card of source.cards) {
+		const id = discardZone(table.deckOf[card] ?? fallback);
+		const target = zones[id];
+		if (!target || id === from) {
+			// Nowhere to send it, or it is already a discard: leave it where it was.
+			zones[from] = { ...zones[from], cards: [...zones[from].cards, card] };
+			continue;
+		}
+		zones[id] = { ...target, cards: [card, ...target.cards] };
+	}
+	return { ...table, zones };
+}
+
 /** Move every card out of a zone into another, top-first. Used by sweeps and cleanups. */
 export function emptyInto(table: CardTable, from: string, to: string): CardTable {
 	const source = table.zones[from];

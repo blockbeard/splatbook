@@ -275,20 +275,35 @@
 		border: 1px solid var(--ct-rule);
 		border-radius: 3px;
 	}
-	.scene__closer {
-		max-inline-size: 96vw;
-		max-block-size: 94vh;
-		padding: 0.75rem;
+	/*
+	 * The whole screen, given to the picture. It used to size itself to its
+	 * contents, and an image whose width is a percentage of a box sized by its
+	 * contents contributes almost nothing to that size — so "Look closer" opened
+	 * a box barely wider than its Close button (first live test, 25 November
+	 * 2026). Fixed to the viewport instead, with the picture scaled to fit inside.
+	 */
+	.scene__closer[open] {
+		inline-size: 98vw;
+		block-size: 96vh;
+		max-inline-size: none;
+		max-block-size: none;
+		padding: 0.5rem;
+		display: grid;
+		grid-template-rows: 1fr auto;
+		gap: 0.5rem;
 		background: var(--ct-table-low);
 		color: inherit;
 		border: 1px solid var(--ct-rule-strong);
 	}
 	.scene__closer img {
 		display: block;
-		max-inline-size: 100%;
-		max-block-size: 84vh;
+		inline-size: 100%;
+		block-size: 100%;
+		min-block-size: 0;
 		object-fit: contain;
-		margin-block-end: 0.5rem;
+	}
+	.scene__closer form {
+		justify-self: end;
 	}
 	.scene__closer::backdrop {
 		background: rgb(0 0 0 / 0.7);

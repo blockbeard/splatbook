@@ -112,7 +112,10 @@
 		// players catch that from the corner of an eye; this is the same news for
 		// anyone who cannot, and the count-up in particular is how the table says
 		// your turn has come.
-		const heard = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone');
+		const heard = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone', {
+			viewer: table.viewer,
+			upNow: table.upNow
+		});
 		if (heard) sayAloud(heard);
 	}
 

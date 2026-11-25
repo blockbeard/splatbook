@@ -13,10 +13,11 @@
  * of the session", not the end of a fight.
  */
 
-import { emptyInto } from './moves';
+import { discardAll, reshuffleDeck } from './moves';
+import type { Rng } from './shuffle';
 import { newRound } from './round';
 import type { CardTable } from './table';
-import { discardZone, opponentZone, seatZone } from './zones';
+import { opponentZone, seatZone } from './zones';
 
 export type TableMode = 'decks' | 'challenge';
 
@@ -28,7 +29,7 @@ export type TableMode = 'decks' | 'challenge';
  * and a misclick costing a readied Dodge and five hands is exactly the sort of
  * thing that makes people stop trusting an app.
  */
-export function setMode(table: CardTable, mode: TableMode): CardTable {
+export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable {
 	if (table.mode === mode) return table;
 	if (mode === 'challenge') return { ...table, mode };
 
@@ -36,15 +37,22 @@ export function setMode(table: CardTable, mode: TableMode): CardTable {
 	for (const seat of table.seats) {
 		const deck = seat === table.gmSeat ? 'gm' : 'player';
 		for (const kind of ['hand', 'initiative', 'played', 'facedown'] as const) {
-			next = emptyInto(next, seatZone(seat, kind), discardZone(deck));
+			next = discardAll(next, seatZone(seat, kind), deck);
 		}
 		// Not `durable`. An inspiration card outlives the fight it was carried
 		// into — ch.5 gives it until it is used or the session ends.
 	}
 	for (const opponent of table.opponents) {
 		for (const kind of ['initiative', 'played', 'facedown'] as const) {
-			next = emptyInto(next, opponentZone(opponent.id, kind), discardZone('gm'));
+			next = discardAll(next, opponentZone(opponent.id, kind), 'gm');
 		}
+	}
+
+	// The Fool's reshuffle is owed at the end of the round, and leaving the
+	// Challenge ends it. Forgetting `foolDrawn` without shuffling skipped it.
+	if (table.round.foolDrawn && rng) {
+		next = reshuffleDeck(next, 'player', rng);
+		next = reshuffleDeck(next, 'gm', rng);
 	}
 
 	return {

@@ -136,9 +136,17 @@ export const challengeSchema = z.strictObject({
 				z.strictObject({
 					id,
 					label: z.string().min(1),
-					amount: z.number().int().positive(),
+					/** Negative for a line that draws fewer, like the three-player house rule. */
+					amount: z
+						.number()
+						.int()
+						.refine((n) => n !== 0, 'a modifier that adds nothing is not a modifier'),
 					/** `toggle` applies once when true; `count` applies once per instance. */
-					kind: z.enum(['toggle', 'count'])
+					kind: z.enum(['toggle', 'count']),
+					/** A fact the table already knows, which fills this line in by itself. */
+					auto: z.enum(['enemy-types', 'outnumber', 'twice', 'three-adventurers']).optional(),
+					/** Not the book's: shown as a house rule. */
+					house: z.boolean().optional()
 				})
 			),
 			mulligan: z.strictObject({ label: z.string().min(1), note: z.string().min(1) })

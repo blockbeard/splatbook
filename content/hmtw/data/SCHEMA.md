@@ -55,10 +55,19 @@ player deck is the minor arcana *plus the Fool*, borrowed from the majors
 | `handSizes.gm` | object | `{ base: 3, modifiers, mulligan, note }` |
 | `actions` | object | `{ free, bySuit, anySuit }` |
 
-**GM modifier** — `{ id, label, amount, kind }`. `kind` is `"toggle"` (true or
-false: outnumbering, an elite, a dungeon lord) or `"count"` (once per instance:
-each enemy type, each larger-than-human enemy). Cumulative, and rechecked at the
-start of every round — as enemies fall, the GM draws fewer.
+**GM modifier** — `{ id, label, amount, kind, auto?, house? }`. `kind` is
+`"toggle"` (true or false: outnumbering, an elite, a dungeon lord) or `"count"`
+(once per instance: each enemy type, each larger-than-human enemy). Cumulative,
+and rechecked at the start of every round — as enemies fall, the GM draws fewer.
+
+- `amount` is never 0, and may be negative: a line that draws fewer.
+- `auto` names a fact the table already knows, which fills the line in by itself
+  until the GM changes it: `"enemy-types"` (types with a creature up),
+  `"outnumber"`, `"twice"` (at least double), `"three-adventurers"`.
+- `house: true` marks a line that is not the book's, and the table labels it
+  "house rule". The one here is Chris's for the Castle Automatic: one card fewer
+  when only three adventurers are playing, to keep the action economy fairer.
+  The total never goes below 0.
 
 **Mulligan** — `{ label, note }` and nothing more. The book's condition is a
 hand that is "*mostly* greater dooms", with no threshold given, so this is a

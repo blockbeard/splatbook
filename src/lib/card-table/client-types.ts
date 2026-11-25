@@ -67,6 +67,11 @@ export interface ProjectedTable {
 	/** Everybody who put an initiative down has had their turn: the round is over. */
 	roundDone: boolean;
 	/**
+	 * Who has an initiative card above the number reached, while counting. Ids
+	 * only, never values: it is what is holding the round open.
+	 */
+	stillToAct: string[];
+	/**
 	 * The room: the zones the GM named, and where each adventurer or creature
 	 * stands. A missing or `null` entry is "not placed".
 	 */

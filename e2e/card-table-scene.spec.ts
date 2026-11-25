@@ -312,6 +312,16 @@ test('a picture of the scene goes up, is seen, and is deleted with the scene', a
 	);
 	await player.getByRole('button', { name: 'Look closer' }).click();
 	await expect(player.getByRole('dialog')).toBeVisible();
+	// Look closer means bigger: the first live test found it opened barely
+	// wider than its Close button. The picture should use most of the screen.
+	const viewport = player.viewportSize();
+	const shown = await player.getByRole('dialog').locator('img').boundingBox();
+	expect(viewport && shown).toBeTruthy();
+	if (viewport && shown) {
+		expect(Math.max(shown.width / viewport.width, shown.height / viewport.height)).toBeGreaterThan(
+			0.8
+		);
+	}
 	await player.getByRole('button', { name: 'Close', exact: true }).click();
 
 	// A picture cannot be put up by somebody who is not the GM.

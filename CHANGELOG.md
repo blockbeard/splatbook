@@ -501,6 +501,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+These came out of the card table's first live test, a GM and three players on
+25 November 2026.
+
+- **GM cards no longer end up in the Player discard.** Clearing a Test of Fate,
+  the Sweep, the end of a round and leaving a Challenge all chose a discard by
+  whose spot a card was in, so a GM card turned over or played in front of a
+  player went to the wrong pile. Every card now goes to its own deck's discard.
+  Removing a player or an enemy that still held cards used to take those cards
+  out of the game; they go to the discards now too.
+- **"The Fool is out" is no longer shown to everyone.** It told the whole table
+  that somebody was holding the Fool. Only whoever can see the Fool is told; the
+  end of the round shuffles both decks as before, and now says so.
+- **Only the player whose turn it is is told so.** The turn line said "…that is
+  you" on every screen. Now the acting player reads "your turn" and everyone
+  else reads whose turn it is, and a screen reader hears "Your turn" only on the
+  right screen.
+- **The GM's draw fills itself in.** The number of enemy types still standing,
+  and whether they outnumber or double the adventurers, are ticked from the
+  table, and the GM can still change any line. The test drew 7 cards where the
+  book gave 6, because each enemy had been counted as a type. The Castle
+  Automatic's house rule — one card fewer with only three adventurers — is on
+  the list, labelled as a house rule, and ticks itself at three.
+- **A Challenge's discard piles can be opened** and looked through, as Decks
+  mode's always could.
+- **Look closer shows the scene picture at full size.** It opened a box barely
+  wider than its Close button.
+- **Drawing from an empty deck shuffles its discard back in first**, as dealing
+  already did, instead of failing.
+- **The end-of-round check always comes.** It only appeared after "Close minor
+  actions"; counting on past the last card or sweeping instead now brings it
+  too. Until then, the turn line names who is still to act.
 - **A chosen Challenge Action was invisible in dark mode.** It was filled with
   the mark and lettered in the card's colour, and in the dark room those are the
   same value — bone on bone, at a contrast ratio of 1:1. It is lettered in the

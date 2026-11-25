@@ -20,19 +20,22 @@
 					"id": "enemy-type",
 					"label": "Each type of enemy",
 					"amount": 1,
-					"kind": "count"
+					"kind": "count",
+					"auto": "enemy-types"
 				},
 				{
 					"id": "outnumber",
 					"label": "Enemies outnumber the adventurers",
 					"amount": 1,
-					"kind": "toggle"
+					"kind": "toggle",
+					"auto": "outnumber"
 				},
 				{
 					"id": "double",
 					"label": "Twice as many enemies as adventurers",
 					"amount": 1,
-					"kind": "toggle"
+					"kind": "toggle",
+					"auto": "twice"
 				},
 				{
 					"id": "larger-than-human",
@@ -51,6 +54,14 @@
 					"label": "A dungeon lord is present",
 					"amount": 3,
 					"kind": "toggle"
+				},
+				{
+					"id": "three-adventurers",
+					"label": "Only three adventurers",
+					"amount": -1,
+					"kind": "toggle",
+					"auto": "three-adventurers",
+					"house": true
 				}
 			],
 			"mulligan": {

@@ -72,6 +72,8 @@ export interface ProjectedTable {
 	 * left to go, which the table already knows, and nothing about any card.
 	 */
 	roundDone: boolean;
+	/** Who has an initiative card above the number reached. Ids only, never values. */
+	stillToAct: string[];
 }
 
 function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZone {
@@ -89,12 +91,11 @@ function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZo
  * The table as `viewer` may see it. Pass no viewer for the view a stranger
  * gets — public zones only, which is also the safe default.
  *
- * Note what stays public: `round.foolDrawn`. Knowing the Fool is in play is
- * information — it tells the table someone holds it — but the book requires
- * both decks to be shuffled at the end of a round in which it was drawn, and a
- * reshuffle nobody knows to perform is worse than a hand that is slightly less
- * secret. Which *hand* holds it stays hidden, which is the part that would
- * change how anyone plays.
+ * `round.foolDrawn` is shown only to a viewer who can already see the Fool:
+ * its holder, or everyone once it lies face up. It used to be public, so that
+ * somebody would know to reshuffle; but `endRound` reshuffles both decks by
+ * itself, and the first live test (25 November 2026) showed the notice for
+ * what it was — every player told that somebody is holding the Fool.
  */
 export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 	const zones: Record<string, ProjectedZone> = {};
@@ -108,13 +109,19 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		guided: table.guided,
 		upNow: whoIsUp(table),
 		roundDone: roundIsDone(table),
+		stillToAct: table.round.count === null ? [] : stillToAct(table),
 		gmSeat: table.gmSeat,
 		opponents: table.opponents.map((o) => ({
 			...o,
 			count: upCount(o),
 			creatures: o.creatures.map((c) => ({ ...c, pools: c.pools.map((p) => ({ ...p })) }))
 		})),
-		round: { ...table.round },
+		round: {
+			...table.round,
+			foolDrawn:
+				table.round.foolDrawn &&
+				Object.values(zones).some((z) => z.cards?.some((c) => table.foolCards.includes(c)))
+		},
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
@@ -127,6 +134,60 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 }
 
 /**
+ * Whether the count has passed everybody: it is running, nobody is
+ * interrupting or owed a turn, the minor-action window is shut, no initiative
+ * card on the table is worth more than the number reached — and the last
+ * number is finished, either settled (its minor actions closed) or counted
+ * past. Seats that never put an initiative down do not hold the round open — a
+ * physical table would not wait for them either.
+ *
+ * "Counted past" is the first live test's missing prompt (25 November 2026).
+ * Only closing the minor actions settled a number, and moving the count
+ * clears that, so a GM who pressed + after the last turn, or swept instead of
+ * closing minor actions, never saw the end-of-round check.
+ */
+export function roundIsDone(table: CardTable): boolean {
+	const { count, settled, interrupt, extraTurn, minorActions } = table.round;
+	if (count === null || interrupt || extraTurn || minorActions) return false;
+	let highest: number | null = null;
+	for (const slot of initiativeSlots(table)) {
+		const card = table.zones[slot]?.cards[0];
+		if (card === undefined) continue;
+		const value = table.valueOf[card] ?? 0;
+		if (value > count) return false;
+		highest = Math.max(highest ?? 0, value);
+	}
+	if (highest === null) return false;
+	return count > highest || settled === count;
+}
+
+/**
+ * Who still has a turn to come this round: their initiative card is worth more
+ * than the number reached. Ids only, never values — a GM counting aloud tells
+ * the table that much, since nobody answered the numbers already called.
+ */
+export function stillToAct(table: CardTable): string[] {
+	const count = table.round.count ?? 0;
+	const holders: string[] = [];
+	for (const seat of table.seats) {
+		const card = table.zones[seatZone(seat, 'initiative')]?.cards[0];
+		if (card !== undefined && (table.valueOf[card] ?? 0) > count) holders.push(seat);
+	}
+	for (const opponent of table.opponents) {
+		const card = table.zones[opponentZone(opponent.id, 'initiative')]?.cards[0];
+		if (card !== undefined && (table.valueOf[card] ?? 0) > count) holders.push(opponent.id);
+	}
+	return holders;
+}
+
+function initiativeSlots(table: CardTable): string[] {
+	return [
+		...table.seats.map((s) => seatZone(s, 'initiative')),
+		...table.opponents.map((o) => opponentZone(o.id, 'initiative'))
+	];
+}
+
+/**
  * Whose initiative matches the number currently being called.
  *
  * Reads facedown cards, which is why it lives on the server. It returns nothing
@@ -134,30 +195,6 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
  * counting — and once counting, it says only what saying the number out loud
  * already says.
  */
-/**
- * Whether the count has passed everybody: it is running, the current number is
- * settled (its turn and minor actions done), nobody is interrupting or owed a
- * turn, the minor-action window is shut, and no initiative card on the table is
- * worth more than the number reached. Seats that never put an initiative down
- * do not hold the round open — a physical table would not wait for them either.
- */
-export function roundIsDone(table: CardTable): boolean {
-	const { count, settled, interrupt, extraTurn, minorActions } = table.round;
-	if (count === null || settled !== count || interrupt || extraTurn || minorActions) return false;
-	const slots = [
-		...table.seats.map((s) => seatZone(s, 'initiative')),
-		...table.opponents.map((o) => opponentZone(o.id, 'initiative'))
-	];
-	let anyPlaced = false;
-	for (const slot of slots) {
-		const card = table.zones[slot]?.cards[0];
-		if (card === undefined) continue;
-		anyPlaced = true;
-		if ((table.valueOf[card] ?? 0) > count) return false;
-	}
-	return anyPlaced;
-}
-
 export function whoIsUp(table: CardTable): string[] {
 	const count = table.round.count;
 	if (count === null) return [];
