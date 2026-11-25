@@ -7,7 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **On the card table, your cards are yours and the GM runs the table.** Anyone
+  could move any card, which in the first live test made it impossible to tell
+  what was going on. Now you move your own cards, initiative, facedown card and
+  place in the scene; the GM can move anyone's except what is in a hand, which
+  stays private even from the GM. Anyone can still give an inspiration card,
+  draw, turn a card over or pick one from a discard. Dealing, the count, minor
+  actions, the Sweep, shuffling, the enemies and the scene are the GM's.
+  Nothing you could not do is offered. With nobody in the GM seat, everyone
+  can do what the GM can.
+- **Groups of enemies no longer split.** A group plays one initiative card and
+  acts together wherever its creatures stand, as the book has it; each creature
+  already has its own zone and Health. A creature that starts acting on its own
+  is added as a new enemy. A table saved with a split group rejoins it.
+
 ### Added
+
+- **The GM can hide enemy Health from the players.** "Players see enemy Health"
+  is on by default, and anyone can change Health and Down while it is. Off,
+  players see no numbers and only the GM changes them. Each creature's Health
+  now shows beside its name in "Where everyone is".
 
 - **A picture of the scene.** The GM can put up one picture above "Where
   everyone is" — a Miro drawing screenshotted, or one of the zone pictures that

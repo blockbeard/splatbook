@@ -26,6 +26,23 @@ suite('saying what happened', () => {
 		).toMatch(/^The GM deck was empty, so its discard was shuffled back in\. /);
 	});
 
+	it('reads hidden Health aloud only to a view that has the numbers', () => {
+		const hidden = ev('set-hd', { label: 'Zombie B', creature: 'z:B', stat: 'health' });
+		expect(describe(hidden, nameOf)).toBe('Zombie B: Health changed.');
+		const gmView = {
+			viewer: 'gm',
+			upNow: [],
+			opponents: [
+				{
+					creatures: [
+						{ id: 'z:B', pools: [{ health: 2, healthMax: 6, defense: 0, defenseMax: 0 }] }
+					]
+				}
+			]
+		};
+		expect(describe(hidden, nameOf, gmView)).toBe('Zombie B: Health 2 of 6.');
+	});
+
 	it('says "your turn" to the acting player only', () => {
 		const count = ev('count', { count: 7 });
 		expect(describe(count, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
@@ -170,15 +187,12 @@ suite('the scene and its creatures', () => {
 		expect(announce(run, nameOf)).toBe('Skeleton C: Health 3 of 6.');
 	});
 
-	it('says who went down, who arrived, and who split off', () => {
+	it('says who went down, and who arrived', () => {
 		expect(describe(ev('set-down', { label: 'Zombie B', down: true }), nameOf)).toBe(
 			'Zombie B is down.'
 		);
 		expect(describe(ev('add-creatures', { labels: ['Zombie C', 'Zombie D'] }), nameOf)).toBe(
 			'Zombie C and Zombie D joined the fight.'
-		);
-		expect(describe(ev('split-opponent', { labels: ['Zombie B'] }), nameOf)).toBe(
-			'Zombie B now acts on its own.'
 		);
 	});
 

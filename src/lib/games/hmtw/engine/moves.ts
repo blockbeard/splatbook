@@ -27,7 +27,7 @@
 
 import type { CardTable } from './table';
 import { shuffle, type Rng } from './shuffle';
-import { deckZone, discardZone, type DeckId, type Zone } from './zones';
+import { deckZone, discardZone, mayReach, type DeckId, type Zone } from './zones';
 
 /**
  * Where a card is coming from. `card` picks a specific one and is only accepted
@@ -47,7 +47,9 @@ export type MoveFailure =
 	 * because the request itself leaks: you cannot name what you cannot read. */
 	| 'card-named-in-private-zone'
 	/** Someone tried to take a card out of a hand that is not theirs. */
-	| 'not-your-hand';
+	| 'not-your-hand'
+	/** A card that is somebody else's to move — see `mayReach`. */
+	| 'not-yours';
 
 /**
  * Whether `actor` may read the faces in a zone — and therefore whether they may
@@ -63,6 +65,11 @@ export function canTakeFrom(zone: Zone, actor?: string): boolean {
 	// vouch for and must still be able to clear every hand.
 	if (zone.reach === 'table' || actor === undefined) return true;
 	return actor === zone.owner;
+}
+
+/** Whether `actor` runs the table: holds the GM seat, or nobody does. */
+export function runsTable(table: CardTable, actor?: string): boolean {
+	return actor === undefined || !table.gmSeat || actor === table.gmSeat;
 }
 
 export function canSeeFaces(table: CardTable, zone: Zone, actor?: string): boolean {
@@ -96,6 +103,10 @@ export function moveCard(table: CardTable, from: Pick, to: string, actor?: strin
 	if (!source || !target) return fail('no-such-zone');
 
 	if (!canTakeFrom(source, actor)) return fail('not-your-hand');
+	const runs = runsTable(table, actor);
+	if (!mayReach(source.id, actor, runs, 'take') || !mayReach(target.id, actor, runs, 'put')) {
+		return fail('not-yours');
+	}
 
 	let index = 0;
 	if (from.card !== undefined) {

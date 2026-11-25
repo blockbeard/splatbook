@@ -23,7 +23,7 @@
  * cards in between cancels the offer.
  */
 
-import { seatZone } from '../engine/zones';
+import { mayReach, seatZone } from '../engine/zones';
 
 export interface PublicEvent {
 	version: number;
@@ -56,8 +56,7 @@ const MOVES_NO_CARDS = new Set([
 	'minor-actions',
 	'add-opponent',
 	'update-opponent',
-	// The scene and its creatures: positions, HD, letters. A split creates empty
-	// slots and moves no card. A merge *does* move cards, so it is not here.
+	// The scene and its creatures: positions, HD, letters.
 	'set-scene-zones',
 	'set-scene-picture',
 	'clear-scene-picture',
@@ -67,7 +66,7 @@ const MOVES_NO_CARDS = new Set([
 	'remove-creature',
 	'set-hd',
 	'set-down',
-	'split-opponent'
+	'enemy-health'
 ]);
 
 /**
@@ -80,6 +79,16 @@ const MOVES_NO_CARDS = new Set([
  */
 const isSomeoneElsesHand = (zone: string, mySeatId: string | null): boolean =>
 	zone.endsWith(':hand') && (mySeatId === null || zone !== seatZone(mySeatId, 'hand'));
+
+/**
+ * Whether you may make the reversing move at all: take the card back out of
+ * where it went, and put it back where it came from. The server asks the same
+ * (`mayReach`), so a button it would refuse is never offered.
+ */
+const mayReverse = (from: string, to: string, mySeatId: string | null, runs: boolean): boolean =>
+	mySeatId !== null &&
+	mayReach(to, mySeatId, runs, 'take') &&
+	mayReach(from, mySeatId, runs, 'put');
 
 export interface Reversal {
 	/** The command that puts it back. */
@@ -96,12 +105,17 @@ export interface Reversal {
  * is worse than no button — the person whose hand it is can put it back
  * themselves.
  */
-export function reverseOf(events: PublicEvent[], mySeatId: string | null): Reversal | null {
+export function reverseOf(
+	events: PublicEvent[],
+	mySeatId: string | null,
+	runs = false
+): Reversal | null {
 	for (let i = events.length - 1; i >= 0; i--) {
 		const event = events[i];
 		if (isMove(event)) {
 			const { from, to } = event.data;
 			if (isSomeoneElsesHand(to, mySeatId) || isSomeoneElsesHand(from, mySeatId)) return null;
+			if (!mayReverse(from, to, mySeatId, runs)) return null;
 			return {
 				command: { type: 'move', from: { zone: to }, to: from },
 				label: 'Put that card back'

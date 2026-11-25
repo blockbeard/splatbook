@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	addCreatures,
 	findCreature,
-	mergeOpponent,
+	rejoinSplitGroups,
 	removeCreature,
 	setDown,
 	setHd
@@ -13,12 +13,11 @@ import {
 	addOpponent,
 	createTable,
 	removeOpponent,
-	splitOpponent,
 	upCount,
 	type CardTable,
 	type DeckDefinition
 } from './table';
-import { opponentZone } from './zones';
+import { opponentZone, opponentZones } from './zones';
 
 const deck: DeckDefinition = {
 	minors: [{ id: 'm1', value: 1 }],
@@ -56,19 +55,6 @@ describe('reinforcements', () => {
 			defense: 0,
 			defenseMax: 0
 		});
-	});
-
-	it('never mint a letter a split-off group already has', () => {
-		let t = chapel();
-		t = splitOpponent(t, 'monks', { id: 'monks-b', creatures: [id(t, 'E')] });
-		t = addCreatures(t, 'monks-b', 1);
-		// E is in the split-off group; the next skeleton is F, not a second E.
-		expect(letters(t)).toEqual([
-			['A', 'B', 'C', 'D'],
-			['E', 'F']
-		]);
-		t = addCreatures(t, 'monks', 1);
-		expect(letters(t)[0]).toEqual(['A', 'B', 'C', 'D', 'G']);
 	});
 
 	it('stop at the fifty-second letter', () => {
@@ -147,14 +133,40 @@ describe('removing a creature added by mistake', () => {
 	});
 });
 
-describe('merging a split back', () => {
+/**
+ * A v13 table with a split-off group, as the removed `splitOpponent` made one:
+ * the creatures moved, with their letters, into a group of the same family
+ * with its own empty card slots.
+ */
+function splitV13(t: CardTable, into: string, from: string, moving: string[]): CardTable {
+	const source = t.opponents.find((o) => o.id === from)!;
+	const zones = { ...t.zones };
+	for (const zone of opponentZones(into)) zones[zone.id] = zone;
+	return {
+		...t,
+		zones,
+		opponents: [
+			...t.opponents.map((o) =>
+				o.id === from ? { ...o, creatures: o.creatures.filter((c) => !moving.includes(c.id)) } : o
+			),
+			{
+				id: into,
+				name: source.name,
+				family: source.family,
+				creatures: source.creatures.filter((c) => moving.includes(c.id))
+			}
+		]
+	};
+}
+
+describe('rejoining split groups (v13 → v14)', () => {
 	const split = () => {
 		const t = chapel();
-		return splitOpponent(t, 'monks', { id: 'monks-b', creatures: [id(t, 'B'), id(t, 'D')] });
+		return splitV13(t, 'monks-b', 'monks', [id(t, 'B'), id(t, 'D')]);
 	};
 
-	it('returns the creatures, in letter order, to the group they left', () => {
-		const t = mergeOpponent(split(), 'monks-b');
+	it('returns the creatures, in letter order, to their family', () => {
+		const t = rejoinSplitGroups(split());
 		expect(letters(t)).toEqual([['A', 'B', 'C', 'D', 'E']]);
 		expect(t.zones[opponentZone('monks-b', 'initiative')]).toBeUndefined();
 	});
@@ -164,30 +176,30 @@ describe('merging a split back', () => {
 		const played = moveCard(t, { zone: 'deck:gm' }, opponentZone('monks-b', 'initiative'));
 		if (!played.ok) throw new Error('setup');
 		const discardBefore = played.table.zones['discard:gm'].cards.length;
-		const merged = mergeOpponent(played.table, 'monks-b');
+		const merged = rejoinSplitGroups(played.table);
 		expect(merged.zones['discard:gm'].cards).toHaveLength(discardBefore + 1);
 	});
 
 	it('keeps the creatures standing where they stood', () => {
 		let t = setSceneZones(split(), [{ id: 'niches', name: 'Niches' }]);
 		t = placeInScene(t, id(t, 'B', 1), 'niches');
-		t = mergeOpponent(t, 'monks-b');
+		t = rejoinSplitGroups(t);
 		expect(t.scene.at[id(t, 'B')]).toBe('niches');
 	});
 
-	it('rejoins the family when the group it left has gone', () => {
+	it('rejoins several split-off groups of one family', () => {
 		let t = split();
-		t = splitOpponent(t, 'monks-b', { id: 'monks-c', creatures: [id(t, 'D', 1)] });
-		t = mergeOpponent(t, 'monks-b');
-		// monks-c was split from monks-b, which is gone; it goes home to monks.
-		t = mergeOpponent(t, 'monks-c');
+		t = splitV13(t, 'monks-c', 'monks-b', [id(t, 'D', 1)]);
+		t = rejoinSplitGroups(t);
 		expect(letters(t)).toEqual([['A', 'B', 'C', 'D', 'E']]);
 	});
 
-	it('does nothing for a group that was never split, or has nowhere to go', () => {
+	it('leaves an unsplit table alone, and makes an orphan its own family', () => {
 		const t = chapel();
-		expect(mergeOpponent(t, 'monks')).toBe(t);
-		const orphaned = removeOpponent(split(), 'monks');
-		expect(mergeOpponent(orphaned, 'monks-b')).toBe(orphaned);
+		expect(rejoinSplitGroups(t)).toBe(t);
+		const orphaned = rejoinSplitGroups(removeOpponent(split(), 'monks'));
+		expect(orphaned.opponents).toHaveLength(1);
+		expect(orphaned.opponents[0]).toMatchObject({ id: 'monks-b', family: 'monks-b' });
+		expect(letters(orphaned)).toEqual([['B', 'D']]);
 	});
 });

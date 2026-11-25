@@ -69,6 +69,16 @@ describe('who is where', () => {
 		]);
 	});
 
+	it('shows a creature’s Health beside its name, when this view is sent it', () => {
+		const t = table({ zones: arena, at: {} });
+		t.opponents[0].creatures[0].pools = [{ health: 2, healthMax: 4, defense: 5, defenseMax: 10 }];
+		const king = placeablePeople(t, seats).find((p) => p.id === 'king:A');
+		expect(king?.health).toBe('2/4');
+		// Untracked, or not sent (Health hidden): nothing at all.
+		const zombie = placeablePeople(t, seats).find((p) => p.id === 'zombies:A');
+		expect(zombie).not.toHaveProperty('health');
+	});
+
 	it('finds who a new zone list would strand', () => {
 		const t = table({ zones: arena, at: { regan: 'arena', tatyana: 'pillar' } });
 		const stranded = strandedBy(t, ['pillar'], placeablePeople(t, seats));

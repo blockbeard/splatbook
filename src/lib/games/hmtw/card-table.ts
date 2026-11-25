@@ -25,15 +25,14 @@ import {
 	addCreatures,
 	creatureLabel,
 	findCreature,
-	mergeOpponent,
 	placeInScene,
+	rejoinSplitGroups,
 	placeable,
 	removeCreature,
 	setDown,
 	setHd,
 	setScenePicture,
 	setSceneZones,
-	splitOpponent,
 	FATE_ZONE,
 	addOpponent,
 	addSeat,
@@ -202,27 +201,68 @@ export const commandSchema = z.discriminatedUnion('type', [
 		from: hd,
 		to: hd
 	}),
-	/** Down, or back up. Anyone's: the table moves things, it does not rule. */
+	/** Whether the players see enemy Health and Defense. The GM's. */
+	z.strictObject({ type: z.literal('enemy-health'), shown: z.boolean() }),
+	/** Down, or back up. The GM's, and anyone's while Health is shown. */
 	z.strictObject({
 		type: z.literal('set-down'),
 		creature: z.string().min(1).max(120),
 		down: z.boolean()
-	}),
-	/** Some of a group start acting on their own. The GM's. */
-	z.strictObject({
-		type: z.literal('split-opponent'),
-		id: z.string().min(1).max(60),
-		newId: z.string().min(1).max(60),
-		name: z.string().min(1).max(60).optional(),
-		creatures: z.array(z.string().min(1).max(120)).min(1).max(MAX_CREATURES)
-	}),
-	/** A split-off group rejoins the one it came from. The GM's. */
-	z.strictObject({ type: z.literal('merge-opponent'), id: z.string().min(1).max(60) })
+	})
 ]);
 
 export type CardTableCommand = z.infer<typeof commandSchema>;
 
 const fail = (reason: string): CardTableOutcome => ({ ok: false, reason });
+
+/**
+ * The commands that run the table rather than play on it: the round, the
+ * count, the decks, the roster and the scene. Players sent several of these in
+ * the first live test (25 November 2026) — a player could deal, move the count,
+ * shuffle or redraw the GM's hand — because only a few were checked.
+ */
+const GM_ONLY = new Set<CardTableCommand['type']>([
+	'enemy-health',
+	'reshuffle',
+	'reset-table',
+	'guided',
+	'set-mode',
+	'begin-round',
+	'end-round',
+	'mulligan',
+	'set-count',
+	'advance-count',
+	'rewind-count',
+	'minor-actions',
+	'sweep',
+	'add-opponent',
+	'remove-opponent',
+	'update-opponent',
+	'set-scene-zones',
+	'set-scene-picture',
+	'clear-scene-picture',
+	'clear-scene',
+	'add-creatures',
+	'remove-creature'
+]);
+
+/**
+ * Whose a command acts on, when it acts on one person: a facedown slot's
+ * holder, or whoever is being placed in the scene. An enemy's id, or a
+ * creature's, is nobody's seat, so only the GM passes.
+ */
+function ownedBy(command: CardTableCommand): string | null {
+	switch (command.type) {
+		case 'place-facedown':
+		case 'reveal-facedown':
+		case 'clear-facedown':
+			return command.holder;
+		case 'place':
+			return command.who;
+		default:
+			return null;
+	}
+}
 
 /** With nobody in the GM seat, anyone may run the table — the rule `reset-table` already follows. */
 const isGm = (table: CardTable, actor: string | undefined): boolean =>
@@ -256,7 +296,8 @@ export const hmtwCardTable: CardTableModule = {
 	migrate(raw, pack) {
 		// `foolCards` cannot be recovered from an old blob — the deck definition
 		// was never in it — so the pack reseeds it on the way through.
-		const migrated = withDeckFacts(migrateTable(raw as CardTable), deckOf(pack));
+		// v14: split-off groups rejoin their families; see `rejoinSplitGroups`.
+		const migrated = rejoinSplitGroups(withDeckFacts(migrateTable(raw as CardTable), deckOf(pack)));
 		return { state: migrated, stateVersion: TABLE_SCHEMA_VERSION };
 	},
 
@@ -281,6 +322,23 @@ export const hmtwCardTable: CardTableModule = {
 		if (!parsed.success) return fail('malformed-command');
 		const table = raw as CardTable;
 		const actor = context.actorSeatId ?? undefined;
+
+		// Who may do what. Running the round and the roster is the GM's; your
+		// own cards, facedown slot and place in the scene are yours and the
+		// GM's. Card moves are checked by the engine's `mayReach`.
+		if (GM_ONLY.has(parsed.data.type) && !isGm(table, actor)) return fail('gm-only');
+		const holder = ownedBy(parsed.data);
+		if (holder !== null && holder !== actor && !isGm(table, actor)) return fail('not-yours');
+		// Enemy Health is anyone's to change while it is shown, so a player can
+		// catch a miscount; while it is hidden, the players cannot see it to
+		// change it, and it is the GM's.
+		if (
+			(parsed.data.type === 'set-hd' || parsed.data.type === 'set-down') &&
+			table.enemyHealth === 'hidden' &&
+			!isGm(table, actor)
+		) {
+			return fail('gm-only');
+		}
 
 		switch (parsed.data.type) {
 			case 'move': {
@@ -492,12 +550,26 @@ export const hmtwCardTable: CardTableModule = {
 				const changed = setHd(table, creature, { pool, stat, from, to });
 				if (!changed.ok) return fail(changed.reason);
 				const now = findCreature(changed.table, creature)?.creature.pools[pool];
-				return state(changed.table, 'set-hd', {
-					label: creatureLabel(changed.table.opponents, creature),
-					stat,
-					value: now?.[stat] ?? to,
-					max: stat === 'health' ? now?.healthMax : now?.defenseMax
-				});
+				const label = creatureLabel(changed.table.opponents, creature);
+				// Events are the public log. While Health is hidden the change is
+				// logged without its numbers; the GM reads them off the table.
+				return state(
+					changed.table,
+					'set-hd',
+					table.enemyHealth === 'hidden'
+						? { label, creature, stat }
+						: {
+								label,
+								creature,
+								stat,
+								value: now?.[stat] ?? to,
+								max: stat === 'health' ? now?.healthMax : now?.defenseMax
+							}
+				);
+			}
+			case 'enemy-health': {
+				const enemyHealth = parsed.data.shown ? 'shown' : 'hidden';
+				return state({ ...table, enemyHealth }, 'enemy-health', { shown: parsed.data.shown });
 			}
 			case 'set-down': {
 				const next = setDown(table, parsed.data.creature, parsed.data.down);
@@ -506,26 +578,6 @@ export const hmtwCardTable: CardTableModule = {
 					label: creatureLabel(table.opponents, parsed.data.creature),
 					down: parsed.data.down
 				});
-			}
-			case 'split-opponent': {
-				if (!isGm(table, actor)) return fail('gm-only');
-				const next = splitOpponent(table, parsed.data.id, {
-					id: parsed.data.newId,
-					name: parsed.data.name,
-					creatures: parsed.data.creatures
-				});
-				if (next === table) return fail('cannot-split');
-				return state(next, 'split-opponent', {
-					labels: parsed.data.creatures.map((c) => creatureLabel(next.opponents, c))
-				});
-			}
-			case 'merge-opponent': {
-				if (!isGm(table, actor)) return fail('gm-only');
-				const { id } = parsed.data;
-				const name = table.opponents.find((o) => o.id === id)?.name;
-				const next = mergeOpponent(table, id);
-				if (next === table) return fail('cannot-merge');
-				return state(next, 'merge-opponent', { name });
 			}
 			case 'reset-table': {
 				if (table.gmSeat && context.actorSeatId !== table.gmSeat) return fail('gm-only');

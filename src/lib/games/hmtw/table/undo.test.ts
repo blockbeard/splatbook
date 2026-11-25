@@ -76,4 +76,14 @@ describe('putting a card back', () => {
 		const odd: PublicEvent[] = [{ version: 1, kind: 'move', data: { nothing: true } }];
 		expect(reverseOf(odd, 's1')).toBeNull();
 	});
+
+	it('offers no undo a player could not make: an enemy’s card, or somebody else’s', () => {
+		const onEnemy = [move(1, 'seat:gm:hand', 'opponent:imps:played')];
+		expect(reverseOf(onEnemy, 's1')).toBeNull();
+		const onAnother = [move(1, 'seat:s2:played', 'discard:player')];
+		expect(reverseOf(onAnother, 's1')).toBeNull();
+		// The GM runs the table, so may put an enemy's card back.
+		const gmMove = [move(1, 'opponent:imps:played', 'discard:gm')];
+		expect(reverseOf(gmMove, 'gm', true)?.command).toMatchObject({ to: 'opponent:imps:played' });
+	});
 });

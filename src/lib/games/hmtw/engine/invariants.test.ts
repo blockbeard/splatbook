@@ -153,8 +153,10 @@ describe('cards are conserved', () => {
 });
 
 describe('reach is not the same question as sight', () => {
-	it('lets any seat flip the initiative of a player who has wandered off', () => {
-		// The AFK case, which is why reach is permissive everywhere but a hand.
+	it('lets the GM flip the initiative of a player who has wandered off, and nobody else', () => {
+		// Phase 29 let any seat do this, for the player who wandered off. The
+		// first live test showed the cost of anyone moving anything; the GM is
+		// enough for the AFK case.
 		let t = beginRound(setGmSeat(createTable(deck, ['s1', 's2', 'gm']), 'gm'), {
 			playerHand: 4,
 			gmHand: 0,
@@ -169,18 +171,15 @@ describe('reach is not the same question as sight', () => {
 		if (!placed.ok) return;
 		t = placed.table;
 
-		// s2 cannot see it — and can still turn it over, which is the point.
 		expect(t.zones[seatZone('s1', 'initiative')].visibility).toBe('owner');
-		const flipped = moveCard(
-			t,
-			{ zone: seatZone('s1', 'initiative') },
-			seatZone('s1', 'played'),
-			's2'
-		);
-		expect(flipped.ok).toBe(true);
+		const flip = (who: string) =>
+			moveCard(t, { zone: seatZone('s1', 'initiative') }, seatZone('s1', 'played'), who);
+		expect(flip('s2')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(flip('gm').ok).toBe(true);
+		expect(flip('s1').ok).toBe(true);
 	});
 
-	it('lets anyone move an opponent’s facedown card, which only the GM can read', () => {
+	it('keeps an opponent’s cards to the GM', () => {
 		let t = addOpponent(setGmSeat(createTable(deck, ['s1', 'gm']), 'gm'), {
 			id: 'imps',
 			name: 'Imps'
@@ -188,8 +187,48 @@ describe('reach is not the same question as sight', () => {
 		const placed = moveCard(t, { zone: 'deck:gm' }, opponentZone('imps', 'facedown'));
 		if (!placed.ok) return;
 		t = placed.table;
-		const moved = moveCard(t, { zone: opponentZone('imps', 'facedown') }, 'discard:gm', 's1');
-		expect(moved.ok).toBe(true);
+		const by = (who: string) =>
+			moveCard(t, { zone: opponentZone('imps', 'facedown') }, 'discard:gm', who);
+		expect(by('s1')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(by('gm').ok).toBe(true);
+	});
+
+	it('lets anyone give an inspiration card, and only its holder or the GM take it back', () => {
+		const t = beginRound(setGmSeat(createTable(deck, ['s1', 's2', 'gm']), 'gm'), {
+			playerHand: 4,
+			gmHand: 0,
+			rng: seededRng(1)
+		});
+		const given = moveCard(t, { zone: seatZone('s2', 'hand') }, seatZone('s1', 'durable'), 's2');
+		expect(given.ok).toBe(true);
+		if (!given.ok) return;
+		const back = (who: string) =>
+			moveCard(given.table, { zone: seatZone('s1', 'durable') }, 'discard:player', who);
+		expect(back('s2')).toEqual({ ok: false, reason: 'not-yours' });
+		expect(back('s1').ok).toBe(true);
+		expect(back('gm').ok).toBe(true);
+	});
+
+	it('runs open with nobody in the GM seat, except for hands', () => {
+		const t = beginRound(createTable(deck, ['s1', 's2']), {
+			playerHand: 4,
+			gmHand: 0,
+			rng: seededRng(1)
+		});
+		const placed = moveCard(
+			t,
+			{ zone: seatZone('s1', 'hand') },
+			seatZone('s1', 'initiative'),
+			's1'
+		);
+		if (!placed.ok) return;
+		expect(
+			moveCard(placed.table, { zone: seatZone('s1', 'initiative') }, 'discard:player', 's2').ok
+		).toBe(true);
+		expect(moveCard(t, { zone: seatZone('s1', 'hand') }, 'discard:player', 's2')).toEqual({
+			ok: false,
+			reason: 'not-your-hand'
+		});
 	});
 
 	it('still keeps every hand to its owner', () => {

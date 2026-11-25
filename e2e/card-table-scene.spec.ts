@@ -139,20 +139,23 @@ test('the scene, lettered creatures and their HD, shared between two browsers', 
 	// Down is crossed out and kept, never removed.
 	await expect(gmScene.locator('.scene__who--down', { hasText: 'Zombie B' })).toBeVisible();
 
-	// The player has no split or merge, and no "Add an enemy".
-	await expect(player.getByRole('button', { name: /Split off/ })).toHaveCount(0);
+	// The player has no "Add an enemy", and cannot move a creature.
 	await expect(player.getByLabel('Enemy name')).toHaveCount(0);
+	await expect(player.getByLabel('Where Zombie A is')).toBeDisabled();
+	// There is no splitting a group, for anyone (phase 32).
+	await expect(gm.getByRole('button', { name: /Split off/ })).toHaveCount(0);
 
 	await shot(gm, 'gm-desktop');
 	await shot(player, 'player-desktop');
 
-	// --- The GM splits Zombie C off, and rejoins it. ---
-	await gm.getByLabel('Choose Zombie C to split off').check();
-	await gm.getByRole('button', { name: /Split off 1/ }).click();
-	await expect(gm.getByRole('button', { name: 'Rejoin the rest' })).toBeVisible();
-	await shot(gm, 'gm-after-split');
-	await gm.getByRole('button', { name: 'Rejoin the rest' }).click();
-	await expect(gm.getByRole('button', { name: 'Rejoin the rest' })).toHaveCount(0);
+	// --- Health in "Where everyone is", and the GM's switch to hide it. ---
+	await expect(playerScene.locator('.scene__who', { hasText: 'Zombie A' })).toContainText('1/1');
+	await gm.getByLabel('Players see enemy Health').uncheck();
+	await expect(playerScene.locator('.scene__hp')).toHaveCount(0, POLLED);
+	await expect(player.getByRole('button', { name: /Health down one/ })).toHaveCount(0);
+	await expect(gmScene.locator('.scene__who', { hasText: 'Zombie A' })).toContainText('1/1');
+	await gm.getByLabel('Players see enemy Health').check();
+	await expect(playerScene.locator('.scene__hp').first()).toBeVisible(POLLED);
 
 	// --- Accessibility, with every new panel open and populated. ---
 	expect(await violations(gm)).toEqual([]);

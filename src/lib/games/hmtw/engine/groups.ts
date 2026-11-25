@@ -140,25 +140,36 @@ export function removeCreature(table: CardTable, id: string): CardTable {
 }
 
 /**
- * Put a split-off group back into the group it came from — the way back from a
- * split, which the table's undo cannot give because undo only puts cards back.
+ * Rejoin every split-off group to its family (v13 → v14).
  *
- * The creatures return with their letters and their places in the scene. The
- * split-off group's own cards go to the GM's discard, since the group they
- * served has stopped existing, and its facedown declaration goes with them.
- * If that group has since gone, it rejoins the family's original, or any group
- * of its family; with none left there is nowhere to go back to, and nothing
- * happens.
+ * Groups used to split, giving part of a group its own initiative. The first
+ * live test (25 November 2026) settled that a group shares one initiative and
+ * one card wherever its creatures stand, as the book has it — and each creature
+ * already has its own zone and Health — so splitting went. A table saved with a
+ * split group comes back as one group: the creatures with their letters and
+ * places, the split-off group's cards to the GM's discard.
  */
-export function mergeOpponent(table: CardTable, id: string): CardTable {
+export function rejoinSplitGroups(table: CardTable): CardTable {
+	let next = table;
+	for (const group of table.opponents) {
+		if (group.id !== group.family) next = rejoin(next, group.id);
+	}
+	return next;
+}
+
+function rejoin(table: CardTable, id: string): CardTable {
 	const group = table.opponents.find((o) => o.id === id);
-	if (!group?.splitFrom) return table;
-	// Back where it came from; failing that — that group was itself merged or
-	// removed since — to the family's original, then to any of its kin.
+	if (!group) return table;
+	// To the family's original; failing that — it was removed since — to any of
+	// its kin. With none left, the group simply becomes its own family.
 	const kin = table.opponents.filter((o) => o.id !== id && o.family === group.family);
-	const into =
-		kin.find((o) => o.id === group.splitFrom) ?? kin.find((o) => o.id === group.family) ?? kin[0];
-	if (!into) return table;
+	const into = kin.find((o) => o.id === group.family) ?? kin[0];
+	if (!into) {
+		return {
+			...table,
+			opponents: table.opponents.map((o) => (o.id === id ? { ...o, family: o.id } : o))
+		};
+	}
 
 	let next = table;
 	const kinds: OpponentZoneKind[] = ['initiative', 'played', 'facedown'];

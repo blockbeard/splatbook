@@ -71,6 +71,8 @@ export interface ProjectedTable {
 	 * "the round is over". A yes/no and nothing more — it says that nobody is
 	 * left to go, which the table already knows, and nothing about any card.
 	 */
+	/** Whether players see enemy Health; see `CardTable.enemyHealth`. */
+	enemyHealth: 'shown' | 'hidden';
 	roundDone: boolean;
 	/** Who has an initiative card above the number reached. Ids only, never values. */
 	stillToAct: string[];
@@ -98,6 +100,9 @@ function projectZone(table: CardTable, zone: Zone, viewer?: string): ProjectedZo
  * what it was — every player told that somebody is holding the Fool.
  */
 export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
+	const seesHealth =
+		table.enemyHealth !== 'hidden' ||
+		(viewer !== undefined && (!table.gmSeat || viewer === table.gmSeat));
 	const zones: Record<string, ProjectedZone> = {};
 	for (const zone of Object.values(table.zones)) {
 		zones[zone.id] = projectZone(table, zone, viewer);
@@ -111,10 +116,16 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		roundDone: roundIsDone(table),
 		stillToAct: table.round.count === null ? [] : stillToAct(table),
 		gmSeat: table.gmSeat,
+		enemyHealth: table.enemyHealth,
+		// While enemy Health is hidden, players are sent none of it: not a
+		// hidden field, no field at all. Down, and so the count, stay.
 		opponents: table.opponents.map((o) => ({
 			...o,
 			count: upCount(o),
-			creatures: o.creatures.map((c) => ({ ...c, pools: c.pools.map((p) => ({ ...p })) }))
+			creatures: o.creatures.map((c) => ({
+				...c,
+				pools: seesHealth ? c.pools.map((p) => ({ ...p })) : []
+			}))
 		})),
 		round: {
 			...table.round,

@@ -6,7 +6,6 @@ import {
 	migrateTable,
 	removeOpponent,
 	setGmSeat,
-	splitOpponent,
 	upCount,
 	updateOpponent,
 	type CardTable,
@@ -139,62 +138,6 @@ describe('creatures', () => {
 		expect(t.scene.at[a.id]).toBe('arena');
 		t = removeOpponent(t, 'zombies');
 		expect(a.id in t.scene.at).toBe(false);
-	});
-});
-
-describe('splitting a group', () => {
-	const unwolves = () => addOpponent(table(), { id: 'unwolves', name: 'Unwolf', count: 5 });
-	const ids = (t: CardTable, ...letters: string[]) =>
-		t.opponents[0].creatures.filter((c) => letters.includes(c.letter)).map((c) => c.id);
-
-	it('moves the chosen creatures, letters and all, into a group with its own slots', () => {
-		let t = unwolves();
-		t = splitOpponent(t, 'unwolves', { id: 'unwolves-b', creatures: ids(t, 'B', 'D') });
-		expect(t.opponents.map((o) => o.creatures.map((c) => c.letter))).toEqual([
-			['A', 'C', 'E'],
-			['B', 'D']
-		]);
-		expect(t.opponents[1]).toMatchObject({ family: 'unwolves', splitFrom: 'unwolves' });
-		expect(t.zones[opponentZone('unwolves-b', 'initiative')].cards).toEqual([]);
-	});
-
-	it('leaves the original’s cards where they were', () => {
-		let t = unwolves();
-		const played = moveCard(t, { zone: 'deck:gm' }, opponentZone('unwolves', 'played'));
-		if (!played.ok) return;
-		t = splitOpponent(played.table, 'unwolves', { id: 'unwolves-b', creatures: ids(t, 'A') });
-		expect(t.zones[opponentZone('unwolves', 'played')].cards).toHaveLength(1);
-		expect(t.zones[opponentZone('unwolves-b', 'played')].cards).toEqual([]);
-	});
-
-	it('keeps a split creature standing where it stood', () => {
-		let t = setSceneZones(unwolves(), [{ id: 'nave', name: 'Nave' }]);
-		const [b] = ids(t, 'B');
-		t = placeInScene(t, b, 'nave');
-		t = splitOpponent(t, 'unwolves', { id: 'unwolves-b', creatures: [b] });
-		expect(t.scene.at[b]).toBe('nave');
-	});
-
-	it('takes a new name when given one', () => {
-		let t = unwolves();
-		t = splitOpponent(t, 'unwolves', {
-			id: 'flankers',
-			name: 'Flanking unwolf',
-			creatures: ids(t, 'A')
-		});
-		expect(t.opponents[1].name).toBe('Flanking unwolf');
-	});
-
-	it('does nothing when there is no such state to represent', () => {
-		const t = unwolves();
-		// Nobody moving is no change; everybody moving is a rename.
-		expect(splitOpponent(t, 'unwolves', { id: 'b', creatures: [] })).toBe(t);
-		expect(
-			splitOpponent(t, 'unwolves', { id: 'b', creatures: ids(t, 'A', 'B', 'C', 'D', 'E') })
-		).toBe(t);
-		expect(splitOpponent(t, 'nobody', { id: 'x', creatures: ids(t, 'A') })).toBe(t);
-		// An id already in use would merge two groups' card slots.
-		expect(splitOpponent(t, 'unwolves', { id: 'unwolves', creatures: ids(t, 'A') })).toBe(t);
 	});
 });
 

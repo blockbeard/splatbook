@@ -9,10 +9,11 @@
 	otherwise bury the round under bookkeeping, which is the inversion phase 29
 	spent a batch of design commits undoing.
 
-	Everything here is anyone's except splitting and merging, which are how the
-	GM divides their own enemies. Health and Defense changes say what they change
-	*from*, so two people pressing the same button at once cannot apply one hit
-	twice.
+	Adding, removing and placing creatures are the GM's. Health, Defense and
+	Down are anyone's while the GM shows enemy Health, and the GM's alone while
+	it is hidden. There is no splitting: a group shares one initiative wherever
+	its creatures stand. Health and Defense changes say what they change *from*,
+	so two people pressing the same button at once cannot apply one hit twice.
 -->
 <script lang="ts">
 	import type { ProjectedTable } from '$lib/card-table/client-types';
@@ -38,8 +39,6 @@
 	} = $props();
 
 	let addMore = $state(1);
-	/** Creatures the GM has ticked to split off. Local to this browser. */
-	let picked = $state<string[]>([]);
 
 	const disabled = $derived(!canAct || busy);
 	const label = (id: string) => creatureLabel(table.opponents, id) ?? group.name;
@@ -68,36 +67,12 @@
 	) {
 		onCommand({ type: 'set-hd', creature, pool, stat, from, to: from + by });
 	}
-
-	function split() {
-		if (picked.length === 0 || picked.length >= group.creatures.length) return;
-		onCommand({
-			type: 'split-opponent',
-			id: group.id,
-			newId: `${group.family}-${Date.now().toString(36)}`,
-			creatures: picked
-		});
-		picked = [];
-	}
 </script>
 
 {#snippet creatureRow(creature: Group['creatures'][number])}
 	{@const name = label(creature.id)}
 	<li class="cr" class:cr--down={creature.down}>
 		<div class="cr__head">
-			{#if isGm && group.creatures.length > 1}
-				<label class="cr__pick">
-					<input
-						type="checkbox"
-						checked={picked.includes(creature.id)}
-						onchange={(e) =>
-							(picked = (e.currentTarget as HTMLInputElement).checked
-								? [...picked, creature.id]
-								: picked.filter((id) => id !== creature.id))}
-					/>
-					<span class="sr-only">Choose {name} to split off</span>
-				</label>
-			{/if}
 			<!-- A group of one is named by the heading above it; saying "King of
 			     Swords" twice was the first thing a screenshot showed. -->
 			{#if group.creatures.length > 1}
@@ -112,7 +87,7 @@
 				label={name}
 				zones={table.scene.zones}
 				at={table.scene.at[creature.id]}
-				{disabled}
+				disabled={disabled || !isGm}
 				{onCommand}
 			/>
 		</div>
@@ -147,7 +122,7 @@
 			<button
 				type="button"
 				class="ct-btn ct-btn--quiet"
-				{disabled}
+				disabled={disabled || (table.enemyHealth === 'hidden' && !isGm)}
 				onclick={() => onCommand({ type: 'set-down', creature: creature.id, down: !creature.down })}
 				>{creature.down ? 'Back up' : 'Down'}</button
 			>
@@ -194,24 +169,6 @@
 				</label>
 				<button type="submit" class="ct-btn" {disabled}>Add</button>
 			</form>
-			{#if group.creatures.length > 1}
-				<button
-					type="button"
-					class="ct-btn"
-					disabled={disabled || picked.length === 0 || picked.length >= group.creatures.length}
-					onclick={split}
-					>Split off {picked.length || ''} to act on {picked.length === 1 ? 'its' : 'their'} own</button
-				>
-			{/if}
-			{#if group.splitFrom}
-				<button
-					type="button"
-					class="ct-btn ct-btn--quiet"
-					{disabled}
-					onclick={() => onCommand({ type: 'merge-opponent', id: group.id })}
-					>Rejoin the rest</button
-				>
-			{/if}
 		</div>
 	{/if}
 {/snippet}
@@ -282,17 +239,6 @@
 	.cr--down .cr__name {
 		text-decoration: line-through;
 		color: var(--ct-quiet);
-	}
-	.cr__pick {
-		display: inline-flex;
-		align-items: center;
-		min-block-size: 2.75rem;
-		min-inline-size: 2.75rem;
-		justify-content: center;
-	}
-	.cr__pick input {
-		inline-size: 1.1rem;
-		block-size: 1.1rem;
 	}
 	.cr__pool {
 		display: flex;

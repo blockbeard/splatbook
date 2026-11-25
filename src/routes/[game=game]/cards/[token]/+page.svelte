@@ -114,7 +114,8 @@
 		// your turn has come.
 		const heard = announce(fresh, (id) => seats.find((s) => s.id === id)?.name ?? 'Someone', {
 			viewer: table.viewer,
-			upNow: table.upNow
+			upNow: table.upNow,
+			opponents: table.opponents
 		});
 		if (heard) sayAloud(heard);
 	}
@@ -141,7 +142,9 @@
 	const isGm = $derived(admitted && table.gmSeat === mySeatId);
 
 	/** The move that would put the last card back, if it is one you may make. */
-	const reversal = $derived(admitted ? reverseOf(events, mySeatId) : null);
+	const reversal = $derived(
+		admitted ? reverseOf(events, mySeatId, !table.gmSeat || table.gmSeat === mySeatId) : null
+	);
 
 	onMount(() => {
 		const token = data.token;
