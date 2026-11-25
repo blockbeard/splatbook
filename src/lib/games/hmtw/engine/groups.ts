@@ -7,10 +7,10 @@
  */
 
 import { MAX_CREATURES, clampHd, letterIndex, makeCreatures, type Creature } from './creatures';
-import { emptyInto } from './moves';
+import { discardAll } from './moves';
 import { forgetPlacements } from './scene';
 import { nextLetterIndex, type CardTable, type Opponent } from './table';
-import { discardZone, opponentZone, type OpponentZoneKind } from './zones';
+import { opponentZone, type OpponentZoneKind } from './zones';
 
 /** Creatures in letter order, which is the order they were added. */
 function byLetter(creatures: Creature[]): Creature[] {
@@ -162,7 +162,7 @@ export function mergeOpponent(table: CardTable, id: string): CardTable {
 
 	let next = table;
 	const kinds: OpponentZoneKind[] = ['initiative', 'played', 'facedown'];
-	for (const kind of kinds) next = emptyInto(next, opponentZone(id, kind), discardZone('gm'));
+	for (const kind of kinds) next = discardAll(next, opponentZone(id, kind), 'gm');
 
 	const prefix = `opponent:${id}:`;
 	const facedown = Object.fromEntries(

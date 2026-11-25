@@ -42,8 +42,7 @@ import {
 	clearFacedown,
 	clearScene,
 	createTable,
-	discardZone,
-	emptyInto,
+	discardAll,
 	endRound,
 	migrateTable,
 	moveCard,
@@ -355,10 +354,10 @@ export const hmtwCardTable: CardTableModule = {
 				let next = table;
 				for (const seat of table.seats) {
 					const deck = seat === table.gmSeat ? 'gm' : 'player';
-					next = emptyInto(next, seatZone(seat, 'played'), discardZone(deck));
+					next = discardAll(next, seatZone(seat, 'played'), deck);
 				}
 				for (const opponent of table.opponents) {
-					next = emptyInto(next, opponentZone(opponent.id, 'played'), discardZone('gm'));
+					next = discardAll(next, opponentZone(opponent.id, 'played'), 'gm');
 				}
 				return state(next, 'sweep', { seat: context.actorSeatId });
 			}
@@ -414,7 +413,7 @@ export const hmtwCardTable: CardTableModule = {
 				return state({ ...table, guided: parsed.data.on }, 'guided', { on: parsed.data.on });
 			}
 			case 'clear-fate':
-				return state(emptyInto(table, FATE_ZONE, discardZone('player')), 'clear-fate', {
+				return state(discardAll(table, FATE_ZONE, 'player'), 'clear-fate', {
 					seat: context.actorSeatId
 				});
 			case 'set-scene-zones': {
@@ -517,10 +516,10 @@ export const hmtwCardTable: CardTableModule = {
 				for (const seat of next.seats) {
 					const deck = seat === next.gmSeat ? 'gm' : 'player';
 					for (const kind of ['hand', 'initiative', 'played', 'facedown', 'durable'] as const) {
-						next = emptyInto(next, seatZone(seat, kind), discardZone(deck));
+						next = discardAll(next, seatZone(seat, kind), deck);
 					}
 				}
-				next = emptyInto(next, FATE_ZONE, discardZone('player'));
+				next = discardAll(next, FATE_ZONE, 'player');
 				next = reshuffleDeck(next, 'player', context.rng);
 				next = reshuffleDeck(next, 'gm', context.rng);
 				next = clearScene(next);

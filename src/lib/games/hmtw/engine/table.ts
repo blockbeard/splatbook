@@ -18,6 +18,7 @@ import {
 	migrateCreature,
 	type Creature
 } from './creatures';
+import { discardAll } from './moves';
 import { emptyScene, forgetPlacements, migrateScene, type Scene } from './scene';
 import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone } from './zones';
 
@@ -247,10 +248,24 @@ export function addSeat(table: CardTable, seat: string): CardTable {
  * discard" is a table decision and not the engine's to make.
  */
 export function removeSeat(table: CardTable, seat: string): CardTable {
-	const zones = Object.fromEntries(Object.entries(table.zones).filter(([, z]) => z.owner !== seat));
-	return forgetPlacements({ ...table, seats: table.seats.filter((s) => s !== seat), zones }, [
-		seat
-	]);
+	// Their cards go to the discards first. Deleting a zone that still held a
+	// hand took those cards out of the game, and the deck counts stopped adding
+	// up for the rest of the session.
+	let cleared = table;
+	const usual = seat === table.gmSeat ? 'gm' : 'player';
+	for (const zone of Object.values(table.zones)) {
+		if (zone.owner === seat) cleared = discardAll(cleared, zone.id, usual);
+	}
+	const zones = Object.fromEntries(
+		Object.entries(cleared.zones).filter(([, z]) => z.owner !== seat)
+	);
+	const facedown = Object.fromEntries(
+		Object.entries(cleared.facedown).filter(([zid]) => !zid.startsWith(`seat:${seat}:`))
+	);
+	return forgetPlacements(
+		{ ...cleared, seats: cleared.seats.filter((s) => s !== seat), zones, facedown },
+		[seat]
+	);
 }
 
 /**
@@ -413,12 +428,20 @@ export function addOpponent(
 export function removeOpponent(table: CardTable, id: string): CardTable {
 	const prefix = `opponent:${id}:`;
 	const gone = table.opponents.find((o) => o.id === id);
+	// Its initiative and played cards go to the discards, not out of the game.
+	let cleared = table;
+	for (const zid of Object.keys(table.zones)) {
+		if (zid.startsWith(prefix)) cleared = discardAll(cleared, zid, 'gm');
+	}
 	return forgetPlacements(
 		{
-			...table,
-			opponents: table.opponents.filter((o) => o.id !== id),
+			...cleared,
+			opponents: cleared.opponents.filter((o) => o.id !== id),
 			zones: Object.fromEntries(
-				Object.entries(table.zones).filter(([zid]) => !zid.startsWith(prefix))
+				Object.entries(cleared.zones).filter(([zid]) => !zid.startsWith(prefix))
+			),
+			facedown: Object.fromEntries(
+				Object.entries(cleared.facedown).filter(([zid]) => !zid.startsWith(prefix))
 			)
 		},
 		gone?.creatures.map((c) => c.id) ?? []

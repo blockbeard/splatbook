@@ -10,10 +10,10 @@
  * server.
  */
 
-import { deal, emptyInto, reshuffleDeck, type DealResult } from './moves';
+import { deal, discardAll, reshuffleDeck, type DealResult } from './moves';
 import type { CardTable } from './table';
 import { seededRng, type Rng } from './shuffle';
-import { deckZone, discardZone, seatZone, opponentZone, type DeckId } from './zones';
+import { deckZone, seatZone, opponentZone, type DeckId } from './zones';
 
 export interface Round {
 	/** 0 before the first round of a Challenge. */
@@ -191,7 +191,7 @@ export function mulliganGmHand(table: CardTable, rng: Rng): CardTable {
 	if (!hand || hand.cards.length === 0) return table;
 
 	const size = hand.cards.length;
-	const cleared = emptyInto(table, hand.id, discardZone('gm'));
+	const cleared = discardAll(table, hand.id, 'gm');
 	const result = dealRefilling(cleared, 'gm', hand.id, size, rng);
 	if (!result.ok) return cleared;
 	const fool = result.cards.some((card) => table.foolCards.includes(card));
@@ -253,11 +253,11 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 
 	for (const seat of table.seats) {
 		const deck: DeckId = seat === table.gmSeat ? 'gm' : 'player';
-		current = emptyInto(current, seatZone(seat, 'hand'), discardZone(deck));
-		current = emptyInto(current, seatZone(seat, 'initiative'), discardZone(deck));
+		current = discardAll(current, seatZone(seat, 'hand'), deck);
+		current = discardAll(current, seatZone(seat, 'initiative'), deck);
 	}
 	for (const opponent of table.opponents) {
-		current = emptyInto(current, opponentZone(opponent.id, 'initiative'), discardZone('gm'));
+		current = discardAll(current, opponentZone(opponent.id, 'initiative'), 'gm');
 	}
 
 	if (current.round.foolDrawn) {

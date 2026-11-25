@@ -426,3 +426,88 @@ describe('the scene and its creatures', () => {
 		}
 	});
 });
+
+/**
+ * The first live test (25 November 2026) found GM cards in the Player
+ * discard: the sweeps chose a discard by whose spot a card was in. Every way
+ * cards leave the table is run here with both decks' cards in every kind of
+ * spot, and two things must hold after each: every card still exists exactly
+ * once, and no discard holds the other deck's card.
+ */
+describe('every card goes to its own deck’s discard', () => {
+	const seats = [
+		{ id: 'p1', isGm: false },
+		{ id: 'p2', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out.state as CardTable;
+	};
+	const TOTAL = 78;
+
+	function holds(t: CardTable) {
+		const cards = Object.values(t.zones).flatMap((z) => z.cards);
+		expect(cards).toHaveLength(TOTAL);
+		expect(new Set(cards).size).toBe(TOTAL);
+		for (const deck of ['player', 'gm'] as const) {
+			for (const card of t.zones[`discard:${deck}`].cards) {
+				expect(t.deckOf[card], `${card} in the ${deck} discard`).toBe(deck);
+			}
+		}
+	}
+
+	/** A Challenge mid-round with majors and minors crossed over everywhere. */
+	function crossed(): CardTable {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' });
+		t = run(t, { type: 'add-opponent', id: 'zombies', name: 'Zombie', count: 3 });
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 5 });
+		// The GM plays a major in front of a player, and onto the zombies.
+		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'seat:p1:played' });
+		t = run(t, { type: 'move', from: { zone: 'seat:gm:hand' }, to: 'opponent:zombies:initiative' });
+		// A player's minor onto the zombies' played pile, and as their own initiative.
+		t = run(
+			t,
+			{ type: 'move', from: { zone: 'seat:p1:hand' }, to: 'opponent:zombies:played' },
+			'p1'
+		);
+		t = run(t, { type: 'move', from: { zone: 'seat:p2:hand' }, to: 'seat:p2:initiative' }, 'p2');
+		// A major as a player's facedown card.
+		t = run(t, {
+			type: 'place-facedown',
+			holder: 'gm',
+			from: { zone: 'seat:gm:hand' },
+			position: 'minor',
+			label: 'Dodge'
+		});
+		holds(t);
+		return t;
+	}
+
+	it('on the Sweep', () => holds(run(crossed(), { type: 'sweep' })));
+	it('at the end of the round', () => holds(run(crossed(), { type: 'end-round' })));
+	it('on leaving the Challenge', () => holds(run(crossed(), { type: 'set-mode', mode: 'decks' })));
+	it('on Reset', () => holds(run(crossed(), { type: 'reset-table' })));
+	it('on the mulligan', () => holds(run(crossed(), { type: 'mulligan' })));
+	it('when a facedown card is given up', () =>
+		holds(run(crossed(), { type: 'clear-facedown', holder: 'gm' })));
+	it('when an enemy group is removed with cards on it', () =>
+		holds(run(crossed(), { type: 'remove-opponent', id: 'zombies' })));
+	it('when a seat leaves holding cards', () => {
+		const t = hmtwCardTable.syncSeats(crossed(), [seats[1], seats[2]]) as CardTable;
+		expect(t.seats).not.toContain('p1');
+		holds(t);
+	});
+
+	it('when a Test of Fate turned over both decks', () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'move', from: { zone: 'deck:gm' }, to: 'fate' }, 'p1');
+		t = run(t, { type: 'move', from: { zone: 'deck:player' }, to: 'fate' }, 'p1');
+		t = run(t, { type: 'clear-fate' }, 'p1');
+		holds(t);
+		expect(t.zones['discard:gm'].cards).toHaveLength(1);
+		expect(t.zones['discard:player'].cards).toHaveLength(1);
+	});
+});
