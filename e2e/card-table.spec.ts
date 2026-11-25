@@ -310,3 +310,46 @@ test('somebody holding the link but no seat can watch and cannot act', async ({ 
 	await gmContext.close();
 	await strangerContext.close();
 });
+
+test('a player who asks for a seat mid-Challenge gets a hand without reloading', async ({
+	browser
+}) => {
+	// 25 November 2026: a seat waiting to be let in was treated as seated, the
+	// Challenge drew a hand that was not there yet, threw, and the page stopped
+	// updating — players saw no cards until they reloaded.
+	const run = Date.now().toString(36);
+	const gmContext = await browser.newContext();
+	const gm = await gmContext.newPage();
+	await signIn(gm, 'Midway GM', `e2e-midway-gm-${run}@localhost`);
+	await gm.goto('/hmtw/cards');
+	await gm.locator('input[name="name"]').fill(`Midway ${run}`);
+	await gm.getByRole('button', { name: 'Start' }).click();
+	await gm.waitForURL(/\/hmtw\/cards\/[0-9a-f-]{36}$/);
+	await gm.getByRole('button', { name: 'Challenge', exact: true }).click();
+	await expect(gm.getByText('The GM draws')).toBeVisible(POLLED);
+
+	const playerContext = await browser.newContext();
+	const player = await playerContext.newPage();
+	const errors: string[] = [];
+	player.on('pageerror', (e) => errors.push(e.message));
+	await player.goto(gm.url());
+	const name = `Latecomer ${run}`;
+	await player.getByLabel("Your character's name").fill(name);
+	await player.getByRole('button', { name: 'Ask for a seat' }).click();
+	await expect(player.getByText(/Waiting for the GM to let you in/)).toBeVisible(POLLED);
+
+	await expect(gm.getByText(name)).toBeVisible(POLLED);
+	await gm
+		.locator('.ch__waiter, li, span', { hasText: name })
+		.getByRole('button', { name: 'Let in' })
+		.first()
+		.click();
+	await expect(player.getByText(/Waiting for the GM to let you in/)).toHaveCount(0, POLLED);
+
+	await gm.getByRole('button', { name: 'Deal the round', exact: true }).click();
+	await expect(player.locator('.hand button')).toHaveCount(4, POLLED);
+	expect(errors).toEqual([]);
+
+	await gmContext.close();
+	await playerContext.close();
+});

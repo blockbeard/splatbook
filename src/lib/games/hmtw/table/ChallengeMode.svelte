@@ -239,7 +239,7 @@
 					{action.label}
 				</button>
 			{/if}
-			{#if mySeatId}
+			{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 				<a class="guide__jump" href="#move-heading">Your move</a>
 			{/if}
 			{#if guide.rule}
@@ -609,7 +609,10 @@
 		{/if}
 	</div>
 
-	{#if mySeatId}
+	<!-- Only with the hand actually on the table. A seat's zones arrive with the
+	     poll that admits it, and drawing a hand that is not there yet threw and
+	     froze the page (25 November 2026). -->
+	{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 		<div class="ch__hand">
 			<div>
 				<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>

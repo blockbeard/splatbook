@@ -139,6 +139,13 @@
 	const mySeatId = $derived(polledSeatId ?? data.mySeat?.id ?? null);
 	const mySeat = $derived(seats.find((s) => s.id === mySeatId) ?? null);
 	const admitted = $derived(mySeat?.status === 'admitted');
+	/**
+	 * Your seat at the table, once the GM has let you in — and not before. A
+	 * seat waiting to be let in has no zones yet, and the Challenge drew a hand
+	 * for it anyway, threw, and stopped updating: a player who asked for a seat
+	 * mid-Challenge saw no cards until they reloaded (25 November 2026).
+	 */
+	const seatedId = $derived(admitted ? mySeatId : null);
 	const isGm = $derived(admitted && table.gmSeat === mySeatId);
 
 	/** The move that would put the last card back, if it is one you may make. */
@@ -420,7 +427,7 @@
 			{faces}
 			challengePack={data.pack['data/challenge.json'] as never}
 			waiting={seats.filter((s) => s.status === 'pending')}
-			{mySeatId}
+			mySeatId={seatedId}
 			canAct={admitted}
 			{busy}
 			onCommand={run}
@@ -428,7 +435,15 @@
 			onPicture={putPicture}
 		/>
 	{:else}
-		<DecksMode {table} {seats} {faces} {mySeatId} canAct={admitted} {busy} onCommand={run} />
+		<DecksMode
+			{table}
+			{seats}
+			{faces}
+			mySeatId={seatedId}
+			canAct={admitted}
+			{busy}
+			onCommand={run}
+		/>
 	{/if}
 </div>
 
