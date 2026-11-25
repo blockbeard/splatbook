@@ -87,6 +87,12 @@ reminder, never the rule: `rule` is the reference page that holds the rule
 itself — a page id, as for `endOfRound`, checked by the pack test. The two free
 actions point at "Free actions", and the GM's two at "Greater dooms".
 
+`play` says how the card table lays an action's card down when it is not
+simply face up (phase 32): `"ready"` for the four the book plays face down and
+keeps until they trigger — Riposte, Dodge, Aid Another and Vigilance — and
+`"initiative"` for Guard, whose card replaces your initiative ("Your old
+Initiative is discarded"). Without it, a card is played face up into the open.
+
 The GM reads this catalogue by doom tier rather than by suit: a lesser doom pays
 for any Challenge Action, a greater doom for greater doom abilities or a
 miscellaneous action other than Vigilance. The suit-matching requirement is

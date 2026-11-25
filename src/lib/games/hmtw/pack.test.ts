@@ -266,4 +266,21 @@ describe('action summaries', () => {
 		const vigilance = c.actions.anySuit.find((a) => a.id === 'vigilance');
 		expect(vigilance?.summary).toMatch(/greater doom can't pay/);
 	});
+
+	it('readies the four the book plays face down, and makes Guard an initiative', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		const all = [
+			...c.actions.free,
+			...Object.values(c.actions.bySuit).flat(),
+			...c.actions.anySuit,
+			...c.actions.gmOnly
+		];
+		const by = (play: string) =>
+			all
+				.filter((a) => a.play === play)
+				.map((a) => a.id)
+				.sort();
+		expect(by('ready')).toEqual(['aid-another', 'dodge', 'riposte', 'vigilance']);
+		expect(by('initiative')).toEqual(['guard']);
+	});
 });

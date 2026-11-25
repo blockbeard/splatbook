@@ -33,6 +33,8 @@ export interface Action {
 	rule?: string;
 	greaterDoomForbidden?: boolean;
 	requires?: 'lesser' | 'greater';
+	/** Readied face down and kept, or made your new initiative (Guard). */
+	play?: 'ready' | 'initiative';
 }
 
 export interface ActionCatalogue {
