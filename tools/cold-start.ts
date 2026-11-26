@@ -16,8 +16,12 @@
  *
  * - startup: importing the bundle (its top level);
  * - the first, second and third request to a route;
- * - the same, after a request that touches nothing but the framework has let
- *   `server.init` finish, which is what moving work into `init` buys (commit 3).
+ * - the same, with startup allowed to run to the end of its pending work, so
+ *   `server.init` (and the hooks' `init`) has finished before the first
+ *   request. That is the case where Cloudflare drains startup's microtasks
+ *   before serving, and it is what moving work into `init` buys (commit 3).
+ *   Which case Cloudflare is in, this can't tell: compare the first requests'
+ *   CPU time in `wrangler pages deployment tail --format json` after a deploy.
  *
  * The stub D1 answers every query with no rows, so a table route finds no
  * table and stops at its first query. That is enough to load every module the
@@ -25,7 +29,9 @@
  * to there, which is the part a cold isolate pays for.
  *
  * Numbers are from node on whatever machine runs this; a Worker is slower.
- * Compare scenarios with each other, not with 10 ms.
+ * Compare scenarios with each other, not with 10 ms. Node's own fetch
+ * internals are warmed before anything is timed, because a Worker's are
+ * native and they would otherwise add about 10 ms to every first request.
  */
 
 import { build } from 'esbuild';
@@ -86,6 +92,11 @@ globalThis.__cfEnv = {
 	AUTH_DEV_LOGIN: 'false'
 };
 globalThis.caches = { default: { match: async () => undefined, put: async () => {} } };
+// Node's own fetch machinery (undici) loads lazily on first use and costs about
+// 10 ms; a Worker's is native. Warm it here so it isn't counted as the app's.
+await new Response('{}').json();
+new Request('https://warm.test/', { method: 'POST', body: '{}' });
+new Headers({ a: 'b' });
 const ctx = { waitUntil() {}, passThroughOnException() {} };
 const [route, signedIn, warmFirst] = process.argv.slice(2);
 const cookie = signedIn === 'yes' ? { cookie: ${JSON.stringify(`${COOKIE}=${session}`)} } : {};
@@ -102,11 +113,14 @@ const cpu = async (fn) => {
 	return +((used.user + used.system) / 1000).toFixed(1);
 };
 let worker;
-const startup = await cpu(async () => { worker = (await import('./worker.mjs')).default; });
+const startup = await cpu(async () => {
+	worker = (await import('./worker.mjs')).default;
+	// Let startup's pending promises settle, server.init included.
+	if (warmFirst === 'yes') for (let i = 0; i < 20; i++) await new Promise((r) => setTimeout(r, 0));
+});
 const send = ([path, init = {}]) =>
 	worker.fetch(new Request('https://splatbook.app' + path, { ...init, headers: { ...(init.headers ?? {}), ...cookie } }), globalThis.__cfEnv, ctx);
 const out = { startup };
-if (warmFirst === 'yes') out.health = await cpu(() => send(paths.health));
 out.first = await cpu(() => send(paths[route]));
 out.second = await cpu(() => send(paths[route]));
 out.third = await cpu(() => send(paths[route]));
@@ -131,9 +145,8 @@ const rows = scenarios.map(([route, signedIn, warmFirst]) => {
 	return {
 		route,
 		'signed in': signedIn,
-		'after init': warmFirst,
+		'init at startup': warmFirst,
 		'startup ms': out.startup,
-		'health first ms': out.health ?? '',
 		'first ms': out.first,
 		'second ms': out.second,
 		'third ms': out.third
