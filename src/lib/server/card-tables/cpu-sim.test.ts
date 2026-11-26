@@ -9,7 +9,9 @@
  * - a command (`loadTable`, `runCommand`, `viewFor`), as the commands route;
  * - the poll each other client sends after it, which finds a change and is
  *   handed a full view (`syncTable`);
- * - a poll that finds nothing (`syncTable` answering `'unchanged'`).
+ * - a poll that finds nothing (`syncTable` answering `'unchanged'`);
+ * - a picture going up at the start of each fight, through the picture
+ *   endpoint's own handler, at the largest size a table allows.
  *
  * The players are random but legal: they play initiative, take turns (play,
  * ready, Guard, skip, now and then the Fool), answer minor actions, and the GM
@@ -51,6 +53,8 @@ import {
 } from '$lib/games/hmtw/engine';
 import { getGame } from '$lib/games';
 import '$lib/games';
+import { MAX_PICTURE_BYTES } from '$lib/card-table-limits';
+import { PUT as putPicture } from '../../../routes/api/card-tables/[token]/picture/+server';
 
 const ROUNDS = Number(process.env.CPU_SIM_ROUNDS ?? 300);
 
@@ -418,6 +422,37 @@ describe.skipIf(!process.env.CPU_SIM)('simulated rounds, timed', () => {
 					};
 				});
 
+			// The largest picture a table takes, as the browser sends it: a WebP's
+			// data: URL inside a JSON body. Built once, outside the timing.
+			const bytes = new Uint8Array(MAX_PICTURE_BYTES);
+			bytes.set([0x52, 0x49, 0x46, 0x46, 0, 0, 0, 0, 0x57, 0x45, 0x42, 0x50]);
+			for (let i = 12; i < bytes.length; i++) bytes[i] = (i * 2654435761) >>> 24;
+			const pictureBody = JSON.stringify({
+				dataUrl: `data:image/webp;base64,${Buffer.from(bytes).toString('base64')}`
+			});
+			const upload = async () => {
+				const gm = seats[0];
+				const reply = await timed('picture upload', async () => {
+					const res = await putPicture({
+						locals: { db, auth: async () => null, seatClaims: { [token]: gm.claim } },
+						params: { token },
+						request: new Request(`https://splatbook.test/api/card-tables/${token}/picture`, {
+							method: 'PUT',
+							headers: { 'content-type': 'application/json' },
+							body: pictureBody
+						}),
+						fetch: packFetch
+					} as unknown as Parameters<typeof putPicture>[0]);
+					return (await res.json()) as { ok: boolean; version?: number; stamp?: string };
+				});
+				if (!reply.ok) refusals['picture upload'] = (refusals['picture upload'] ?? 0) + 1;
+				else if (reply.version !== undefined) {
+					gm.version = reply.version;
+					gm.stamp = reply.stamp;
+					await pollAll(gm);
+				}
+			};
+
 			const pollAll = async (except: Seat) => {
 				for (const seat of seats) {
 					if (seat === except) continue;
@@ -463,6 +498,10 @@ describe.skipIf(!process.env.CPU_SIM)('simulated rounds, timed', () => {
 				if (reply.ok && reply.version !== undefined) {
 					move.by.version = reply.version;
 					move.by.stamp = reply.stamp;
+					// Each fight opens on its map, as Bout I did.
+					if (move.command.type === 'set-mode' && move.command.mode === 'challenge') {
+						await upload();
+					}
 					// Session 14: the GM presses Next again, on a round that has moved.
 					if (move.command.type === 'step-on' && choose.chance(0.1)) {
 						doubleNext++;
