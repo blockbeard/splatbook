@@ -15,6 +15,28 @@ import type { Pick } from '$lib/card-table/selection';
 
 export type How = 'now' | 'ready' | 'minor' | 'out' | 'discard' | 'give';
 
+/** A talent from the pack's `talents` (phase 33): only the card's shape. */
+export interface Talent {
+	id: string;
+	name: string;
+	/** How the book has the card played. */
+	how: How;
+	/** The suits the book names; empty for any card. */
+	suits: string[];
+	summary: string;
+	rule: string;
+}
+
+/** Chapter 5's talents with a card shape in a Challenge, by path. */
+export type TalentsByPath = Record<string, Talent[]>;
+
+/** Whether a held card is one the talent names. A hint, as an action's is. */
+export const talentFits = (talent: Talent, suit: string | undefined): boolean =>
+	talent.suits.length === 0 || (suit !== undefined && talent.suits.includes(suit));
+
+/** Where the path choice is remembered: on this device, for this game. */
+export const TALENT_PATH_KEY = 'splatbook:hmtw:talent-path';
+
 /** Where the choice is being made: your turn, your minor action, or neither. */
 export type Moment = 'turn' | 'minor' | 'other';
 

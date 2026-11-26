@@ -55,6 +55,7 @@
 		faces: FaceIndex;
 		challengePack: {
 			actions: import('./actions').ActionCatalogue;
+			talents?: import('./talent').TalentsByPath;
 			endOfRound: import('./guide').GuideWords['endOfRound'];
 			handSizes: {
 				player: { default: number };
@@ -751,6 +752,7 @@
 				{seats}
 				{faces}
 				catalogue={challengePack.actions}
+				talents={challengePack.talents ?? {}}
 				{mySeatId}
 				{runs}
 				{busy}

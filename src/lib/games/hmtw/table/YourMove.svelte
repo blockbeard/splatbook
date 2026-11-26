@@ -27,13 +27,21 @@
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import type { Pick } from '$lib/card-table/selection';
 	import { creatureLabel } from '../engine/creatures';
-	import { howButton, howsFor, talentCommand, type How, type Moment } from './talent';
+	import {
+		howButton,
+		howsFor,
+		talentCommand,
+		type How,
+		type Moment,
+		type TalentsByPath
+	} from './talent';
 
 	let {
 		table,
 		seats,
 		faces,
 		catalogue,
+		talents = {},
 		mySeatId,
 		runs,
 		busy,
@@ -50,6 +58,8 @@
 		seats: readonly { id: string; name: string; status: string; isGm: boolean }[];
 		faces: FaceIndex;
 		catalogue: ActionCatalogue;
+		/** Chapter 5's talents by path, from the pack (phase 33). */
+		talents?: TalentsByPath;
 		mySeatId: string;
 		/** Whether you run the table, and so act for the enemy groups. */
 		runs: boolean;
@@ -457,6 +467,7 @@
 			{hows}
 			{moment}
 			bind:how
+			{talents}
 		/>
 		<!-- A minor Attack is aimed at somebody as much as a turn's is (second live
 		     test): their initiative turns over when the minor actions do. -->
@@ -577,6 +588,7 @@
 					{hows}
 					{moment}
 					bind:how
+					{talents}
 				/>
 				<label class="move__target">
 					At

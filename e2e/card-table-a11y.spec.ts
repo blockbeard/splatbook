@@ -191,6 +191,22 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await expect(player.getByRole('radio', { name: 'Play it now (face up)' })).toBeChecked();
 	failures.push(...(await scan(player, 'talent typed')));
 	await player.getByLabel('A talent, or something else').fill('');
+	// Talents by path: none shown until a path is picked, then its talents sit
+	// beside the actions, and picking one fills in its name and how.
+	await expect(player.getByRole('button', { name: 'Doom Eye' })).toHaveCount(0);
+	await player.getByLabel('Show talents for').selectOption('swords');
+	await player.getByRole('button', { name: 'Doom Eye' }).click();
+	await expect(player.getByLabel('A talent, or something else')).toHaveValue('Doom Eye');
+	await player.getByRole('button', { name: 'Heavy Metal Machine' }).click();
+	await expect(
+		player.getByRole('radio', { name: 'Discard it (a miscellaneous action)' })
+	).toBeChecked();
+	failures.push(...(await scan(player, 'talents by path')));
+	// Remembered on this device.
+	await player.reload();
+	await expect(player.getByLabel('Show talents for')).toHaveValue('swords', { timeout: 15_000 });
+	await player.getByLabel('Show talents for').selectOption('');
+	await player.locator('.hand button').first().click();
 	await player.locator('.actions').getByRole('button', { name: 'Attack', exact: true }).click();
 	failures.push(...(await scan(player, 'action chosen')));
 	await player.getByRole('button', { name: 'Play it', exact: true }).click();

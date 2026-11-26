@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { commandSchema } from '../card-table';
-import { howsFor, talentCommand, type How, type Moment } from './talent';
+import { howsFor, talentCommand, talentFits, type How, type Moment } from './talent';
 
 const play = {
 	holder: 's1',
@@ -47,6 +47,21 @@ describe('a talent, or something else', () => {
 		});
 		const bare = { ...play, label: 'Counsel', give: { to: 's2', action: ' ', interrupt: false } };
 		expect(talentCommand('give', 'turn', bare)).toMatchObject({ action: 'Counsel' });
+	});
+
+	it('lifts a talent for the suits the book names, or for any card', () => {
+		const focus = {
+			id: 'f',
+			name: 'F',
+			how: 'minor' as const,
+			suits: ['swords'],
+			summary: '',
+			rule: ''
+		};
+		expect(talentFits(focus, 'swords')).toBe(true);
+		expect(talentFits(focus, 'cups')).toBe(false);
+		expect(talentFits(focus, undefined)).toBe(false);
+		expect(talentFits({ ...focus, suits: [] }, undefined)).toBe(true);
 	});
 
 	it('discards with the talent’s name and no target', () => {

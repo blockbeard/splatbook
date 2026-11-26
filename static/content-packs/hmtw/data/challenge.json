@@ -252,5 +252,93 @@
 			"label": "Retreating",
 			"page": "07-chapter-7-the-challenge-phase--retreating"
 		}
+	},
+	"talents": {
+		"swords": [
+			{
+				"id": "doom-eye",
+				"name": "Doom Eye",
+				"how": "now",
+				"suits": [
+					"swords"
+				],
+				"summary": "With a missile weapon, spend a Swords card on your turn for a perfect shot: an Attack that hits whatever the target's Initiative.",
+				"rule": "05-chapter-5-the-four-paths--doom-eye"
+			},
+			{
+				"id": "heavy-metal-machine",
+				"name": "Heavy Metal Machine",
+				"how": "discard",
+				"suits": [],
+				"summary": "In iron or steel armor, discard any card as an interrupt to add your Swords to your Initiative against a single action. Once a round.",
+				"rule": "05-chapter-5-the-four-paths--heavy-metal-machine"
+			},
+			{
+				"id": "two-handed-focus",
+				"name": "Two-handed Focus",
+				"how": "minor",
+				"suits": [
+					"pentacles",
+					"swords"
+				],
+				"summary": "Wielding a melee weapon in both hands, Attack as a minor action with either a Pentacles or a Swords card.",
+				"rule": "05-chapter-5-the-four-paths--two-handed-focus"
+			}
+		],
+		"pentacles": [
+			{
+				"id": "fight-dirty",
+				"name": "Fight Dirty",
+				"how": "minor",
+				"suits": [
+					"pentacles",
+					"swords"
+				],
+				"summary": "Roughhouse as a minor action with either a Pentacles or a Swords card, with Exhaust, Notch and Silence as extra options.",
+				"rule": "05-chapter-5-the-four-paths--fight-dirty"
+			},
+			{
+				"id": "quick",
+				"name": "Quick!",
+				"how": "out",
+				"suits": [
+					"pentacles"
+				],
+				"summary": "In light or no armor, play Pentacles actions as interrupts.",
+				"rule": "05-chapter-5-the-four-paths--quick"
+			}
+		],
+		"cups": [
+			{
+				"id": "counsel",
+				"name": "Counsel",
+				"how": "give",
+				"suits": [],
+				"summary": "Hand another adventurer a card whose suit matches the action you advise; they may play it to take your advice. Spend a Resolve and they may play it as an interrupt.",
+				"rule": "05-chapter-5-the-four-paths--counsel"
+			}
+		],
+		"wands": [
+			{
+				"id": "counter-spell",
+				"name": "Counter-spell",
+				"how": "out",
+				"suits": [
+					"wands"
+				],
+				"summary": "Spend a Resolve to Speak Incantations as an interrupt against a sorcerer you see casting. The spell fizzles; unless you beat its total, you draw on Maleficence.",
+				"rule": "05-chapter-5-the-four-paths--counter-spell"
+			},
+			{
+				"id": "gramarye",
+				"name": "Gramarye",
+				"how": "now",
+				"suits": [
+					"wands"
+				],
+				"summary": "Attack with an archwood wand at up to one zone away, as a Wands action.",
+				"rule": "05-chapter-5-the-four-paths--gramarye"
+			}
+		]
 	}
 }

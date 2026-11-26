@@ -261,6 +261,20 @@ describe('action summaries', () => {
 		}
 	});
 
+	it('gives every talent by path a summary and a rule page the reference really has', async () => {
+		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
+		expect(Object.keys(c.talents)).toEqual(['swords', 'pentacles', 'cups', 'wands']);
+		const all = Object.values(c.talents).flat();
+		expect(all.length).toBeGreaterThan(5);
+		for (const talent of all) {
+			expect(talent.summary.length, talent.id).toBeGreaterThan(20);
+			expect(servedPageIds().has(talent.rule), `${talent.id} → ${talent.rule}`).toBe(true);
+			for (const suit of talent.suits) expect(Object.keys(c.actions.bySuit)).toContain(suit);
+		}
+		// Counsel is the one that hands a card over.
+		expect(all.find((t) => t.id === 'counsel')?.how).toBe('give');
+	});
+
 	it('keeps the one rule the menu itself depends on: Vigilance is not a greater doom’s', async () => {
 		const c = challengeSchema.parse(await loadPackFile(packRoot, 'data/challenge.json'));
 		const vigilance = c.actions.anySuit.find((a) => a.id === 'vigilance');
