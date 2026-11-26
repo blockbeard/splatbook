@@ -88,6 +88,16 @@ Three separate things are in that, and only one of them is the CPU limit:
   value only, with no attribute added.
 - **The letters A to F were hard to keep track of.** There is no way to name a
   creature.
+- **Nothing says which cards add your attribute** (Chris, 2026-11-26). The book
+  is exact about it: "On your turn, your action's total value equals the card's
+  face value _plus_ the associated attribute", and "A minor action's total value
+  equals the card's face value". The Fool's extra turn adds it too. A face-down
+  card goes by when it was put down: readied on your turn it adds the attribute
+  when turned over, readied as a minor it is face value (ch.7, Facedown cards).
+  The engine knows which, because a readied card's slot records `position`, but
+  the play it becomes when used is just `kind: 'readied'`, so nobody can tell
+  from the screen. Abilities stay out, so the table doesn't add anything; it
+  only says which kind each card is.
 
 **What the Discord asked for: talents and Counsel.** Eldritch had to play his
 Counsel card as Tatyana's Recover, because there is no way to hand a card over.
@@ -129,21 +139,18 @@ hand, so it never needs a second face-down slot.
 - **The layout waits for the design pass with Edmund**, except the Play it
   button, which two people forgot in one session and needs a fix now.
 
-### For Chris to decide
+### Decided after filing (Chris, 2026-11-26)
 
-1. **Talents: the "how" choice first, the path buttons after?** I'd build the
-   choice (commit 10) and Counsel (commit 11) first, since together they make
-   every talent playable. The path drop-down (commit 12) is a convenience on
-   top, and needs the pack to list each talent's card shape and a one-line
-   summary.
-2. **What did Olivia mean by "draw"?** Her options were "play, place, draw". No
-   talent in Chapter 5 draws a card during a Challenge (High Chant takes cards
-   from the discard, at Camp). "Hand it to someone" may be what she meant.
-3. **Tests of Fate with an attribute.** Leave them as the card's value, with the
-   player saying the total (my recommendation, in line with no character sheet),
-   or add an optional "+ attribute" box on the fate pile?
-4. **The lost Bout II picture.** Did it go up and then vanish, or was it never
-   put up? If it vanished, that's a bug for Release A.
+1. **The "how is it played" choice and Counsel first**, then talents by path
+   (commits 11, 12 and 13, in that order).
+2. **Olivia's "draw" meant handing a card to a player**, which is commit 12.
+   There is no draw option.
+3. **Tests of Fate stay the card's value.** "We decided to keep abilities out of
+   it for now."
+4. **The Bout II picture wasn't a bug.** Chris couldn't find the art, and the
+   zone list carried the Bout well enough without it.
+5. **Each play says whether it adds your attribute** (commit 8), added the same
+   day.
 
 ### The design
 
@@ -186,31 +193,41 @@ hand, so it never needs a second face-down slot.
 7. `fix(hmtw)`: **the small things on a card.** Your own face-down card shows its
    value ("2"), never its rank. A creature reads "Health 3 · Defense 3". The
    hand says "Sorted by value".
-8. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
+8. `feat(hmtw)`: **which plays add your attribute.** Each play carries whether
+   it adds the attribute: a turn and the Fool's extra turn do, a minor action
+   doesn't, and a readied card goes by the `position` it was put down at, kept
+   on the play when it's used. In play shows "+ attribute" or "face value"
+   under each card, and a readied card says which while it's still face down
+   ("readied on your turn: adds your attribute"). An interrupt from a talent
+   (Out of turn without the Fool) defaults to "+ attribute"; check the book's
+   wording for Quick! and Counter-spell while building it. Schema v17, with a
+   migration test (plays from before it say neither). The handout's "A round,
+   step by step" gains a line on it.
+9. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
    "Play the Fool", which picks it and starts adding its partner, instead of
    leaving it inside the closed "Out of turn".
-9. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
+10. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
    to the bottom of the screen carries the card, the chosen action and the
    button (Play it, Put it down, Ready it). It is the smallest change that puts
    the button where your finger is; the design pass may redo it.
 
 **Release B: any legal action.**
 
-10. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
+11. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
     name, typed, and how the card is played: Play it now (face up, on your turn),
     Ready it (face down, above), As a minor action (face down, below), Out of
     turn (an interrupt), Discard it (a miscellaneous action), or Hand it to
-    someone (commit 11). Each is an existing command except the last two. In
+    someone (commit 12). Each is an existing command except the last two. In
     play labels it with the name.
-11. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
+12. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
     your hand to another adventurer's, any time in a Challenge, with the action
     you counsel and whether it may interrupt (the Resolve was spent). The card
     arrives labelled "From Eldritch: Recover". Playing it picks that action, and
     with the interrupt it's offered under Out of turn. Everyone sees that a card
     was handed over and for what; only the giver and the receiver know which
     card. The label lives in a `counsel` map keyed by card, projected only to
-    those two. Schema v17, with a migration test.
-12. `feat(hmtw)` + `content(hmtw)`: **talents by path** (decision 1).
+    those two. Schema v18, with a migration test.
+13. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 11 and 12.
     `talents.json` in the pack lists, for each path, the talents with a card
     shape in a Challenge: the name, the default "how", the suits, a one-line
     summary written for the table, and a link to its Chapter 5 heading. Your
@@ -220,15 +237,15 @@ hand, so it never needs a second face-down slot.
 
 **Release C: the GM's table.**
 
-13. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
+14. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
     as "Red Cloak (A)"; the letter stays, for the count and for anyone who knew
-    it by that. Schema bump with a migration test.
-14. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
+    it by that. Schema v19 with a migration test.
+15. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
     table polls every 3 seconds. Poll at the busy cadence for a minute or two
     after any change. This is the poll cadence, so ask Edmund first: it may be
     one of his steps.
-15. `docs`: **close phase 33.** The player handout gains talents, handing a card
-    over and the Fool; the CHANGELOG; this section to the history.
+16. `docs`: **close phase 33.** The player handout gains talents, handing a card
+    over, the Fool and which cards add your attribute; the CHANGELOG; this section to the history.
 
 **Guards.** The a11y spec stays the floor and gains a state for the talent
 choice, the handed card and the pinned bar. The next real session is the test,
@@ -244,7 +261,7 @@ lint, unit and browser tests before it's merged.
   (Clarissa); Olivia's view filling only two-thirds of her screen height; enemies
   on one line and players on another (Chris); each player pinning sections to
   the top (Chris).
-- **The polling and request code**: Edmund's PRs. Commit 14 asks him first.
+- **The polling and request code**: Edmund's PRs. Commit 15 asks him first.
 - **Workers Paid**, declined.
 - **Phase 30's items** (a player who wanders off, room codes) and phase 31's
   stat-block links.
