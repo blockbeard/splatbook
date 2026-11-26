@@ -387,7 +387,7 @@ to 5) is the crash, A2 (6 to 12) the bugs.
 
 **As built: A1 (2026-11-26).** Commits 1 to 5 on `phase-33-release-a`, merged
 into `main` with type checks, lint, 1,201 unit tests and all 60 browser tests
-green. Not yet deployed.
+green, and deployed the same day.
 
 - **Commit 1** found more than the plan expected. Even `/api/health` paid about
   55 ms cold, because SvelteKit loads its param matchers on an isolate's first
@@ -399,9 +399,24 @@ green. Not yet deployed.
   command schema built on first use, the first card-table request went from
   62 ms to about 11 ms (signed out) and 17 ms (signed in).
 - **Commit 3** moved about 6 ms into startup: 5 ms signed out, 10 ms signed in.
-  **Still to check on Cloudflare**: deploy, open a table from a few devices,
-  and read the first requests' CPU time in
-  `npx wrangler pages deployment tail --project-name splatbook --format json`.
+  **Checked on Cloudflare, 2026-11-26.** Deployed (aa9cbd00), then the same 45
+  requests sent to it and to the deployment before it (582aae72, at b0826a7),
+  each read from the JSON tail's `cpuTime` (ms). The tail needs the deployment's
+  URL as an argument when it isn't run interactively.
+
+  | | Before: median, max | After: median, max |
+  | --- | --- | --- |
+  | `/api/health` | 3, **156** | 2, 4 |
+  | A sync (no such table) | 6, 16 | 4, 20 |
+  | A command (no such table) | 10, **123** | 4, 17 |
+
+  Before, the first requests on fresh isolates cost 70 to 156 ms; after, none
+  did more than 20. Every request in both runs came back `ok`: Free let them
+  all through, which fits one 1102 in Session 14's two hours. Cloudflare's
+  numbers run several times node's, so steady-state requests are near the
+  10 ms line rather than twenty times under it. A real table's requests (a
+  view to build, a table to load) weren't measured; that's the next game's
+  tail.
 - **Commit 4** went as planned, plus one automatic retry with the same key,
   which the server replays rather than runs twice if the first one landed.
 - **Commit 5** gained `doneHere` in the projection (who on the counted number
