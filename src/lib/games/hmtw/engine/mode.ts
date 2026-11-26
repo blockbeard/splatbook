@@ -64,6 +64,7 @@ export function setMode(table: CardTable, mode: TableMode, rng?: Rng): CardTable
 		minorDeclared: {},
 		minorTargets: {},
 		minorGuards: [],
+		counsel: {},
 		round: newRound()
 	};
 }

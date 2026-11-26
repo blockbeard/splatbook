@@ -6,14 +6,17 @@ const play = {
 	holder: 's1',
 	from: { zone: 'seat:s1:hand', card: 'swords-ii' },
 	label: 'Heavy Metal Machine',
-	target: 'zombies:A'
+	target: 'zombies:A',
+	give: { to: 's2', action: 'Recover', interrupt: true }
 };
 
 describe('a talent, or something else', () => {
 	it('offers only what the moment allows, the usual one first', () => {
-		expect(howsFor('turn')).toEqual(['now', 'ready', 'out', 'discard']);
-		expect(howsFor('minor')).toEqual(['minor', 'ready', 'out', 'discard']);
-		expect(howsFor('other')).toEqual(['out', 'discard']);
+		expect(howsFor('turn')).toEqual(['now', 'ready', 'out', 'discard', 'give']);
+		expect(howsFor('minor')).toEqual(['minor', 'ready', 'out', 'discard', 'give']);
+		expect(howsFor('other')).toEqual(['out', 'discard', 'give']);
+		// Nobody to hand it to (the GM, or a lone adventurer): no Counsel.
+		expect(howsFor('other', false)).toEqual(['out', 'discard']);
 	});
 
 	it('sends an existing command for every how, which the server accepts', () => {
@@ -31,6 +34,19 @@ describe('a talent, or something else', () => {
 			mode: 'ready'
 		});
 		expect(talentCommand('ready', 'minor', play)).toMatchObject({ type: 'ready-minor' });
+	});
+
+	it('hands a card over with the advice, or the talent’s name without it', () => {
+		expect(talentCommand('give', 'turn', play)).toEqual({
+			type: 'give-card',
+			holder: 's1',
+			from: play.from,
+			to: 's2',
+			action: 'Recover',
+			interrupt: true
+		});
+		const bare = { ...play, label: 'Counsel', give: { to: 's2', action: ' ', interrupt: false } };
+		expect(talentCommand('give', 'turn', bare)).toMatchObject({ action: 'Counsel' });
 	});
 
 	it('discards with the talent’s name and no target', () => {

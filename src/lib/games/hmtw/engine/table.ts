@@ -8,6 +8,7 @@
  * otherwise break a table that people are sitting at mid-round.
  */
 
+import type { Counsel } from './counsel';
 import type { FacedownAction } from './exceptions';
 import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
@@ -50,10 +51,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v16: `minorTargets`, who a face-down minor action is aimed at, from the
  *   second live test (25 November 2026).
  * v17: a play's `adds`, whether its total adds the attribute.
- * v18 (this commit): `minorGuards`, the minor actions put down as Guard, and
- *   the round's `readiedNow`, from Card Table Test 3 (26 November 2026).
+ * v18: `minorGuards`, the minor actions put down as Guard, and the round's
+ *   `readiedNow`, from Card Table Test 3 (26 November 2026).
+ * v19 (this commit): `counsel`, the advice on a card handed over.
  */
-export const TABLE_SCHEMA_VERSION = 18;
+export const TABLE_SCHEMA_VERSION = 19;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -193,6 +195,12 @@ export interface CardTable {
 	 */
 	minorGuards: string[];
 	/**
+	 * The advice on each card handed over with Counsel, by card id (v19, phase
+	 * 33): who gave it, to whom, the action, and whether it may interrupt.
+	 * Projected only to the receiver; see `counsel.ts`.
+	 */
+	counsel: Record<string, Counsel>;
+	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
 	 * Kept beside the zones rather than inside them because a zone holds card
@@ -292,6 +300,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		minorDeclared: {},
 		minorTargets: {},
 		minorGuards: [],
+		counsel: {},
 		scene: emptyScene(),
 		enemyHealth: 'shown',
 		zones
@@ -342,6 +351,8 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v18 → v19: no card has been handed over.
  *
  * v17 → v18: no minor Guards, and nobody has readied a minor at this number,
  * which is the safe reading: a minor already down turns over as it would have.
@@ -460,6 +471,8 @@ function migrateShape(raw: CardTable): CardTable {
 		minorTargets: raw.minorTargets ?? {},
 		// v18: no minor action had been put down as a Guard.
 		minorGuards: raw.minorGuards ?? [],
+		// v19: nobody had handed a card over.
+		counsel: raw.counsel ?? {},
 		round: newRound(),
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),

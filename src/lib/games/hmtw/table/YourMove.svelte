@@ -103,6 +103,9 @@
 		target = '';
 		chosen = null;
 		custom = '';
+		giveTo = '';
+		giveAction = '';
+		giveInterrupt = false;
 		onDone();
 	}
 
@@ -214,10 +217,21 @@
 	 */
 	const talent = $derived(!chosen && custom.trim().length > 0);
 	const moment = $derived<Moment>(picking ? (minorNow ? 'minor' : 'turn') : 'other');
-	const hows = $derived(howsFor(moment));
+	/** Somebody to hand a card to (Counsel): another adventurer, and you one yourself. */
+	const others = $derived(
+		seats.filter(
+			(s) => s.status === 'admitted' && !s.isGm && s.id !== table.gmSeat && s.id !== mySeatId
+		)
+	);
+	const hows = $derived(howsFor(moment, !isGmSeat && others.length > 0));
+	let giveTo = $state('');
+	let giveAction = $state('');
+	let giveInterrupt = $state(false);
 	let how = $state<How>('now');
 	/** The choice, kept valid for the moment: the usual one when it isn't. */
 	const howNow = $derived(hows.includes(how) ? how : hows[0]);
+	const giving = $derived(talent && howNow === 'give');
+	const give = $derived({ to: giveTo, action: giveAction, interrupt: giveInterrupt });
 	// Back to the usual one whenever the moment changes: "Out of turn" chosen
 	// while waiting would otherwise still be chosen when your turn came.
 	let lastMoment: Moment | null = null;
@@ -244,7 +258,35 @@
 	});
 
 	/** Out of turn plays out of turn, or, typed as a talent with its own picker, discards. */
-	const outHow = $derived<How>(talent && !picking && howNow === 'discard' ? 'discard' : 'out');
+	const outHow = $derived<How>(
+		talent && !picking && (howNow === 'discard' || howNow === 'give') ? howNow : 'out'
+	);
+
+	/*
+	 * A card handed to you (Counsel) is played to take the advice, so picking it
+	 * up picks that action: the catalogue's, if it is one, or the words given.
+	 */
+	let lastPicked: string | null = null;
+	$effect(() => {
+		const picked = card?.card ?? null;
+		if (picked === lastPicked) return;
+		lastPicked = picked;
+		const advice = picked ? table.counsel?.[picked] : undefined;
+		if (!advice) return;
+		const all = [
+			...Object.values(catalogue.bySuit).flat(),
+			...catalogue.anySuit,
+			...catalogue.gmOnly
+		];
+		const named = all.find((a) => a.name.toLowerCase() === advice.action.toLowerCase());
+		if (named) {
+			chosen = named;
+			custom = '';
+		} else {
+			chosen = null;
+			custom = advice.action;
+		}
+	});
 
 	function playTheFool() {
 		if (!myFool) return;
@@ -279,16 +321,17 @@
 		<button
 			type="button"
 			class="ct-btn ct-btn--primary"
-			disabled={busy || !card || !label}
+			disabled={busy || !card || !label || (giving && !giveTo)}
 			onclick={() =>
 				card &&
 				send(
 					talentCommand(howNow, moment, {
-						holder: actingNow,
+						holder: giving ? mySeatId : actingNow,
 						from: card,
 						extras,
 						label,
-						target: target || undefined
+						target: target || undefined,
+						give
 					})
 				)}>{howButton[howNow]}</button
 		>
@@ -343,6 +386,37 @@
 	{/if}
 {/snippet}
 
+{#snippet giveFields()}
+	{#if giving}
+		<!-- Counsel (phase 33): "yell advice to another adventurer and hand the
+		     player a card from your hand". The suit should match the advice; the
+		     table doesn't check. -->
+		<div class="move__give">
+			<label class="move__target">
+				To
+				<select class="ct-field" bind:value={giveTo}>
+					<option value="">choose who</option>
+					{#each others as o (o.id)}<option value={o.id}>{o.name}</option>{/each}
+				</select>
+			</label>
+			<label class="move__target">
+				Advice
+				<input
+					class="ct-field"
+					bind:value={giveAction}
+					placeholder="Recover, Attack…"
+					maxlength="60"
+					autocomplete="off"
+				/>
+			</label>
+			<label class="move__target">
+				<input type="checkbox" bind:checked={giveInterrupt} />
+				Spent a Resolve: they may play it as an interrupt
+			</label>
+		</div>
+	{/if}
+{/snippet}
+
 <section class="move" aria-labelledby="move-heading">
 	<h2 id="move-heading" class="ct-zone-label">Your move</h2>
 
@@ -393,6 +467,7 @@
 				{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
 			</select>
 		</label>
+		{@render giveFields()}
 		{#if card && extras.length > 0}
 			<p class="move__extras">With {extras.length} more card{extras.length === 1 ? '' : 's'}.</p>
 		{/if}
@@ -510,6 +585,7 @@
 						{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
 					</select>
 				</label>
+				{@render giveFields()}
 			{/if}
 			<div class="move__buttons">
 				{#each mine as h (h)}
@@ -525,7 +601,8 @@
 									from: card,
 									extras,
 									label,
-									target: target || undefined
+									target: target || undefined,
+									give
 								})
 							)}>{howButton[outHow]}{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button
 					>
@@ -637,6 +714,10 @@
 	}
 	.move__bar__what {
 		font-size: 0.9rem;
+	}
+	.move__give {
+		display: grid;
+		gap: 0.3rem;
 	}
 	.move__fool {
 		align-items: center;

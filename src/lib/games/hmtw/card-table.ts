@@ -43,6 +43,7 @@ import {
 	declareMinor,
 	discardFor,
 	dropReadied,
+	giveCard,
 	passMinor,
 	playInitiative,
 	playOutOfTurn,
@@ -167,6 +168,19 @@ function buildCommandSchema() {
 		 * (phase 33). The label is public; the card lands face up on its discard.
 		 */
 		z.strictObject({ type: z.literal('discard-for'), holder, from: pick, label }),
+		/**
+		 * Counsel (phase 33): a card from your hand to another adventurer's, with
+		 * the action you counsel and whether a Resolve was spent so it may
+		 * interrupt. The log says a card was handed over and what for, never which.
+		 */
+		z.strictObject({
+			type: z.literal('give-card'),
+			holder,
+			to: holder,
+			from: pick,
+			action: label,
+			interrupt: z.boolean()
+		}),
 		/** A minor action, face down until everyone has answered. */
 		z.strictObject({
 			type: z.literal('declare-minor'),
@@ -335,6 +349,7 @@ function ownedBy(command: CardTableCommand): string | null {
 		case 'skip-turn':
 		case 'play-out-of-turn':
 		case 'discard-for':
+		case 'give-card':
 		case 'show-initiative':
 		case 'declare-minor':
 		case 'ready-minor':
@@ -582,6 +597,12 @@ export const hmtwCardTable: CardTableModule = {
 					holder,
 					label
 				});
+			}
+			case 'give-card': {
+				const { holder, to, from, action, interrupt } = parsed.data;
+				const given = giveCard(table, holder, to, from, { action, interrupt });
+				if (!given.ok) return fail(given.reason);
+				return state(given.table, 'give-card', { holder, to, action, interrupt });
 			}
 			case 'show-initiative':
 				return stepped(table, showInitiative(table, parsed.data.holder), 'show-initiative', {

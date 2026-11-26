@@ -90,6 +90,7 @@ export {
 	type FacedownAction,
 	type FacedownPosition
 } from './exceptions';
+export { counselFor, giveCard, liveCounsel, type Counsel, type GiveFailure } from './counsel';
 export { hiddenFrom, projectFor, type ProjectedTable, type ProjectedZone } from './projection';
 export {
 	canSeeFaces,

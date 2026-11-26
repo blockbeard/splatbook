@@ -13,19 +13,24 @@
 
 import type { Pick } from '$lib/card-table/selection';
 
-export type How = 'now' | 'ready' | 'minor' | 'out' | 'discard';
+export type How = 'now' | 'ready' | 'minor' | 'out' | 'discard' | 'give';
 
 /** Where the choice is being made: your turn, your minor action, or neither. */
 export type Moment = 'turn' | 'minor' | 'other';
 
 /** What each "how" may be, by moment, in the order offered. The first is the default. */
 const BY_MOMENT: Record<Moment, How[]> = {
-	turn: ['now', 'ready', 'out', 'discard'],
-	minor: ['minor', 'ready', 'out', 'discard'],
-	other: ['out', 'discard']
+	turn: ['now', 'ready', 'out', 'discard', 'give'],
+	minor: ['minor', 'ready', 'out', 'discard', 'give'],
+	other: ['out', 'discard', 'give']
 };
 
-export const howsFor = (moment: Moment): How[] => BY_MOMENT[moment];
+/**
+ * What may be chosen now. Handing a card over is an adventurer's, to another
+ * adventurer, so it is offered only when there is somebody to hand it to.
+ */
+export const howsFor = (moment: Moment, canGive = true): How[] =>
+	BY_MOMENT[moment].filter((h) => h !== 'give' || canGive);
 
 /** The words for a "how" in the choice. Ready is above the initiative on a turn, below as a minor. */
 export function howLabel(how: How, moment: Moment): string {
@@ -42,6 +47,8 @@ export function howLabel(how: How, moment: Moment): string {
 			return 'Out of turn (an interrupt)';
 		case 'discard':
 			return 'Discard it (a miscellaneous action)';
+		case 'give':
+			return 'Hand it to someone (Counsel)';
 	}
 }
 
@@ -51,7 +58,8 @@ export const howButton: Record<How, string> = {
 	ready: 'Ready it',
 	minor: 'Put it down',
 	out: 'Play out of turn',
-	discard: 'Discard it'
+	discard: 'Discard it',
+	give: 'Hand it over'
 };
 
 export interface TalentPlay {
@@ -61,6 +69,8 @@ export interface TalentPlay {
 	/** The talent's name, or whatever else was typed. Public. */
 	label: string;
 	target?: string;
+	/** Counsel: who to hand it to, what they should do, and whether a Resolve was spent. */
+	give?: { to: string; action: string; interrupt: boolean };
 }
 
 /** The existing command a "how" sends. */
@@ -95,5 +105,15 @@ export function talentCommand(how: How, moment: Moment, p: TalentPlay): Record<s
 			};
 		case 'discard':
 			return { type: 'discard-for', holder: p.holder, from: p.from, label: p.label };
+		case 'give':
+			return {
+				type: 'give-card',
+				holder: p.holder,
+				from: p.from,
+				to: p.give?.to ?? '',
+				// The advice, or the talent's own name if none was given.
+				action: (p.give?.action.trim() || p.label).slice(0, 60),
+				interrupt: p.give?.interrupt ?? false
+			};
 	}
 }

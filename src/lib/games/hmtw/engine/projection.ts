@@ -20,6 +20,7 @@
 import { holdersWithInitiative, initiativeHolder } from './initiative';
 import { waitingForInitiative, waitingForMinor } from './steps';
 import { canSeeFaces } from './moves';
+import { counselFor, type Counsel } from './counsel';
 import type { FacedownAction } from './exceptions';
 import { upCount, type Opponent, type CardTable } from './table';
 import type { TableMode } from './mode';
@@ -64,6 +65,8 @@ export interface ProjectedTable {
 	minorTargets: Record<string, string>;
 	/** Which face-down minor actions are a Guard, by zone. Public, as the declaration is. */
 	minorGuards: string[];
+	/** The advice on cards handed to this viewer, by card; nobody else's. */
+	counsel: Record<string, Counsel>;
 	/**
 	 * Whose initiative the count has reached — seat and opponent ids.
 	 *
@@ -175,6 +178,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		minorDeclared: { ...table.minorDeclared },
 		minorTargets: { ...table.minorTargets },
 		minorGuards: [...table.minorGuards],
+		counsel: counselFor(table, viewer),
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
 			at: { ...table.scene.at },

@@ -221,6 +221,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	let sawMinor = false;
 	let sawResolve = false;
 	let outChecked = false;
+	let counselled = false;
 
 	for (let guard = 0; guard < 30; guard++) {
 		const view = (await projectionFor(gmContext, token)).state;
@@ -275,6 +276,32 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 					)
 					.toBe(discards + 1);
 				expect((await projectionFor(gmContext, token)).state.round.step).toBe('turn');
+				await out.locator('summary').click();
+			}
+			const bystanders = players.filter((p) => !view.upNow.includes(p.seat));
+			if (!counselled && bystanders.length >= 2) {
+				// Counsel (phase 33): a player who isn't acting hands another a card,
+				// with advice, and only the receiver is told which card it was.
+				counselled = true;
+				const [giver, receiver] = bystanders;
+				const out = giver.page.locator('.move__out');
+				await out.locator('summary').click();
+				await giver.page.locator('.hand button').first().click();
+				await out.getByLabel('A talent, or something else').fill('Counsel');
+				await out.getByRole('radio', { name: 'Hand it to someone (Counsel)' }).check();
+				await out
+					.getByRole('combobox', { name: 'To', exact: true })
+					.selectOption({ label: receiver.name });
+				await out.getByLabel('Advice', { exact: true }).fill('Recover');
+				await out.getByRole('button', { name: 'Hand it over' }).click();
+				await expect(receiver.page.locator('.ch__hand')).toContainText(
+					`From ${giver.name}: Recover`,
+					POLLED
+				);
+				await expect(giver.page.locator('.ch__hand')).not.toContainText('From ');
+				expect(Object.keys((await projectionFor(giver.context, token)).state as object)).toContain(
+					'counsel'
+				);
 				await out.locator('summary').click();
 			}
 			await page.locator('.hand button').first().click();
@@ -366,6 +393,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	}
 	expect(readied).toBe(true);
 	expect(outChecked).toBe(true);
+	expect(counselled).toBe(true);
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);

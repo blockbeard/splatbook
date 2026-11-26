@@ -912,6 +912,33 @@ describe('Session 14: two on initiative 1, and Next pressed twice', () => {
 		expect(JSON.stringify(out.ok && out.data)).not.toContain('moon');
 	});
 
+	it('hands a card over, and says what for but never which card (Counsel)', () => {
+		const t = tiedOnOne();
+		const give = {
+			type: 'give-card',
+			holder: 'bonnie',
+			to: 'tatyana',
+			from: { zone: 'seat:bonnie:hand', card: 'swords-iii' },
+			action: 'Attack',
+			interrupt: true
+		};
+		expect(reduce(t, give, 'tatyana')).toEqual({ ok: false, reason: 'not-yours' });
+		const out = reduce(t, give, 'bonnie');
+		expect(out.ok && out.data).toEqual({
+			holder: 'bonnie',
+			to: 'tatyana',
+			action: 'Attack',
+			interrupt: true
+		});
+		const after = run(t, give, 'bonnie');
+		expect(after.zones['seat:tatyana:hand'].cards).toContain('swords-iii');
+		const seen = (viewer: string) =>
+			(hmtwCardTable.project(after, viewer) as { counsel: Record<string, unknown> }).counsel;
+		expect(Object.keys(seen('tatyana'))).toEqual(['swords-iii']);
+		expect(seen('bonnie')).toEqual({});
+		expect(seen('gm')).toEqual({});
+	});
+
 	it('takes a Next with no round attached, as an older page sends it', () => {
 		const t = tiedOnOne();
 		expect(reduce(t, { type: 'step-on' }).ok).toBe(true);

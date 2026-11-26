@@ -78,6 +78,8 @@ export interface ProjectedTable {
 	minorTargets: Record<string, string>;
 	/** Which face-down minor actions are a Guard, by zone (v18). */
 	minorGuards?: string[];
+	/** The advice on cards handed to this viewer with Counsel, by card (v19). */
+	counsel?: Record<string, { from: string; to: string; action: string; interrupt: boolean }>;
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
 	/**
 	 * Whose initiative the count has reached, seats and enemies alike.

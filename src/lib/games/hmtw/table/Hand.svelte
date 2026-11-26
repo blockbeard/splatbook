@@ -21,6 +21,7 @@
 		faces,
 		grouped = false,
 		lit = [],
+		notes = {},
 		selected = null,
 		onSelect,
 		onDrop
@@ -31,6 +32,8 @@
 		grouped?: boolean;
 		/** Cards the chosen action would be paid with — lifted, never filtered. */
 		lit?: string[];
+		/** A line under a card, by card: the advice on one handed over (Counsel). */
+		notes?: Record<string, string>;
 		selected?: Pick | null;
 		onSelect?: (pick: Pick) => void;
 		/**
@@ -84,6 +87,7 @@
 				face={faces[card] ?? null}
 				selected={selected?.card === card && selected?.zone === zone.id}
 				lit={lit.includes(card)}
+				declared={notes[card] ?? null}
 				pick={{ zone: zone.id, card }}
 				{onSelect}
 			/>
