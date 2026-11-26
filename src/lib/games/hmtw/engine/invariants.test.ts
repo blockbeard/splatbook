@@ -122,8 +122,17 @@ describe('cards are conserved', () => {
 		t = emptyInto(t, seatZone('s1', 'played'), 'discard:player');
 		conserved(t);
 
+		// Tests of Fate in the middle of a round, from both decks: the end of the
+		// round has to find them (phase 33).
+		for (const from of ['deck:player', 'deck:gm', 'deck:player']) {
+			const turned = moveCard(t, { zone: from }, 'fate', 's1');
+			if (turned.ok) t = turned.table;
+			conserved(t);
+		}
+
 		t = endRound(t, seededRng(2));
 		conserved(t);
+		expect(t.zones.fate.cards).toEqual([]);
 
 		t = reshuffleDeck(t, 'player', seededRng(1));
 		t = reshuffleDeck(t, 'gm', seededRng(1));

@@ -20,6 +20,7 @@
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import PileViewer from './PileViewer.svelte';
+	import FatePile from './FatePile.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { gmDrawFacts } from './draw';
 	import { mayReach } from '../engine/zones';
@@ -400,7 +401,31 @@
 				onOpen={(id) => openPileFrom(id)}
 			/>
 		{/each}
+		{#if canAct}
+			<!-- A Test of Fate, in a fight as out of one (phase 33): Session 14 had
+			     no way to take one in a Challenge. The top of the player deck, onto
+			     the turned-over pile below, where anyone can see what it came to. -->
+			<button
+				type="button"
+				class="ct-btn ch__fate-btn"
+				disabled={busy}
+				onclick={() => onCommand({ type: 'move', from: { zone: 'deck:player' }, to: 'fate' })}
+			>
+				Test of Fate
+			</button>
+		{/if}
 	</div>
+
+	{#if zone('fate')?.count > 0}
+		<FatePile
+			zone={zone('fate')}
+			{faces}
+			selected={selectedPick}
+			locked={busy || !canAct}
+			onSelect={select}
+			onClear={() => onCommand({ type: 'clear-fate' })}
+		/>
+	{/if}
 
 	{#if isGm && waiting.length > 0}
 		<div class="ch__waiting">
@@ -870,6 +895,9 @@
 		gap: 1rem;
 		flex-wrap: wrap;
 		align-items: flex-start;
+	}
+	.ch__fate-btn {
+		align-self: center;
 	}
 	.ch__waiting,
 	.ch__waiter {

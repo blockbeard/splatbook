@@ -13,7 +13,7 @@
 import { deal, discardAll, reshuffleDeck, type DealResult } from './moves';
 import type { CardTable } from './table';
 import { seededRng, type Rng } from './shuffle';
-import { deckZone, seatZone, opponentZone, type DeckId } from './zones';
+import { FATE_ZONE, deckZone, seatZone, opponentZone, type DeckId } from './zones';
 
 /**
  * Where the round has got to (phase 32). The first live test (25 November
@@ -242,6 +242,12 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 			current = discardAll(current, opponentZone(opponent.id, kind), 'gm');
 		}
 	}
+
+	// The turned-over Tests of Fate too (phase 33). Left where they were, a Test
+	// of Fate taken in a Challenge sat out of the game: the reshuffle gathers
+	// only a deck and its discard, and Session 14's deck came back 54 cards, not
+	// 57. Before the reshuffle, so the Fool's shuffle takes them back in.
+	current = discardAll(current, FATE_ZONE, 'player');
 
 	if (current.round.foolDrawn) {
 		current = reshuffleDeck(current, 'player', rng);
