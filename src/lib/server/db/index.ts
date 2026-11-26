@@ -31,8 +31,22 @@ interface D1Platform {
 	env?: { DB?: D1Database };
 }
 
-/** One connection per node process; Workers get a fresh one per request. */
+/** One connection per node process. */
 let nodeDb: Db | undefined;
+
+/**
+ * One drizzle client per D1 binding, for the life of the isolate.
+ *
+ * Building a client is not free: drizzle walks the whole schema to work out
+ * its relations (`extractTablesRelationalConfig`) every time. Doing that per
+ * request was the largest single cost in a card-table command on Workers (a
+ * third of the CPU in workerd, phase 33), paid by every poll as well. The
+ * binding is the same object for every request an isolate serves, and the
+ * client holds nothing per request, so it is safe to keep. A WeakMap rather
+ * than a variable, so a different binding (tests, a second environment) never
+ * gets another's client.
+ */
+const d1Clients = new WeakMap<D1Database, Db>();
 
 async function nodeDatabase(): Promise<Db> {
 	if (nodeDb) return nodeDb;
@@ -57,6 +71,13 @@ async function nodeDatabase(): Promise<Db> {
  */
 export async function getDb(platform?: Readonly<D1Platform>): Promise<Db> {
 	const d1 = platform?.env?.DB;
-	if (d1) return drizzleD1(d1, { schema }) as unknown as Db;
+	if (d1) {
+		let db = d1Clients.get(d1);
+		if (!db) {
+			db = drizzleD1(d1, { schema }) as unknown as Db;
+			d1Clients.set(d1, db);
+		}
+		return db;
+	}
 	return nodeDatabase();
 }

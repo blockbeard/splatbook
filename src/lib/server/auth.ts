@@ -118,16 +118,26 @@ const authEnv: AuthEnv = {
 };
 
 /**
- * Auth.js is configured **per request**, not at module load: its Drizzle adapter
+ * Auth.js is configured **on the first request**, not at module load: its Drizzle adapter
  * needs a database, and on Cloudflare the database only exists once a request
  * arrives with its D1 binding (see `db/index.ts`). `hooks.server.ts` resolves it
  * onto `locals.db` before this handle runs; a direct hit on `/auth/*` that
  * somehow arrives without it falls back to resolving one from the platform.
  */
+/**
+ * Built once per database client and kept: the Drizzle adapter walks its
+ * tables (`defineTables`) and the providers are constructed afresh each time,
+ * which every request paid, polls included (phase 33). The client itself is
+ * kept for the isolate's life (`db/index.ts`), so this is too.
+ */
+const configs = new WeakMap<Db, SvelteKitAuthConfig>();
+
 export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 	const db = event.locals.db ?? (await getDb(event.platform));
+	const known = configs.get(db);
+	if (known) return known;
 
-	return {
+	const config = {
 		adapter: DrizzleAdapter(db, {
 			usersTable: users,
 			accountsTable: accounts,
@@ -144,4 +154,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 			session: ({ session, token }) => applySessionId(session, token)
 		}
 	} satisfies SvelteKitAuthConfig;
+	configs.set(db, config);
+	return config;
 });
