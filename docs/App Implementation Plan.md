@@ -424,6 +424,13 @@ green, and deployed the same day.
   GM overrides are quiet, not only Skip. The Session 14 replay test follows the
   engine: both sides of a tie go before minor actions, and a stale Next on the
   next number is refused.
+- **Measured at a live table, 2026-11-26** (Card Table Test 3 in the campaign
+  vault: the GM and three players, two rounds, 6,387 requests in 41 minutes,
+  every one `ok`). Polls with nothing new: 6,016 at 2 ms usual, 1% over 10 ms.
+  Polls with a change: 5 ms usual, 7% over. **Commands: 11 ms usual, half over
+  10 ms, worst 45 ms**, though the same code takes under half a millisecond in
+  node. Picture upload 55 ms; table page loads 24 to 31 ms. Reference pages
+  (other visitors) 64 ms usual, 93% over: the heaviest thing on the site.
 - **What's left over budget, cold, in node:** a signed-in request's first
   Auth.js decode (about 5 ms), and a page render (14 to 19 ms cold, 2 to 5 ms
   warm). A picture upload costs 3 to 5 ms warm, the heaviest request in play,
