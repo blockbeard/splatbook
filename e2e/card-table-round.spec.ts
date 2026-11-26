@@ -134,6 +134,23 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		await p.page.locator('.hand button').first().click();
 	}
 	failures.push(...(await violations(players[0].page)));
+	// With a card picked, the button that sends it is in a bar pinned to the
+	// bottom of the screen (phase 33), and on the phone the bar stays clear of
+	// the hand.
+	{
+		const phone = players[2].page;
+		const bar = phone.locator('.move__bar');
+		await expect(bar).toBeInViewport();
+		await expect(bar.getByRole('button', { name: 'Play as initiative' })).toBeVisible();
+		const barTop = (await bar.boundingBox())!.y;
+		const handBottom = await phone.evaluate(
+			() => document.getElementById('my-hand')!.getBoundingClientRect().bottom
+		);
+		expect(handBottom).toBeLessThanOrEqual(barTop);
+		// One button, not two: Your move doesn't also show it.
+		await expect(phone.getByRole('button', { name: 'Play as initiative' })).toHaveCount(1);
+		await shot(phone, 'phone-bar');
+	}
 	await Promise.all(
 		players.map((p) => p.page.getByRole('button', { name: 'Play as initiative' }).click())
 	);

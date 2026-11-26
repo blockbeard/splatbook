@@ -701,7 +701,7 @@
 	     froze the page (25 November 2026). -->
 	{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 		<div class="ch__hand">
-			<div>
+			<div id="my-hand">
 				<!-- Says how it is ordered: a player in Session 14 wondered whether their
 				     hand had been shuffled (phase 33). -->
 				<p class="ct-zone-label">
