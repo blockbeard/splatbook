@@ -569,11 +569,25 @@
 				</h3>
 				<div class="combatant__row">
 					{#if init.count > 0}
-						<Card
-							face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
-							faceDown={!table.round.shown.includes(enemy.id)}
-							pick={{ zone: init.id }}
-						/>
+						<div class="combatant__init">
+							<Card
+								face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
+								faceDown={!table.round.shown.includes(enemy.id)}
+								pick={{ zone: init.id }}
+							/>
+							<!-- The GM's, for when a player attacks this group: "flip your
+							     Initiative card face up" holds for enemies too, and Session 14
+							     had no way to (phase 33). -->
+							{#if runs && !table.round.shown.includes(enemy.id)}
+								<button
+									type="button"
+									class="tag-btn"
+									disabled={busy}
+									onclick={() => onCommand({ type: 'show-initiative', holder: enemy.id })}
+									>Turn over<span class="sr-only"> {enemy.name}'s initiative</span></button
+								>
+							{/if}
+						</div>
 					{:else}
 						<span class="slot slot--empty">Initiative</span>
 					{/if}
@@ -962,6 +976,11 @@
 		display: flex;
 		gap: 0.5rem;
 		align-items: flex-start;
+	}
+	.combatant__init {
+		display: grid;
+		gap: 0.25rem;
+		justify-items: center;
 	}
 	.slot--drop {
 		border-style: solid;

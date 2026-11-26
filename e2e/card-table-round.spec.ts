@@ -153,6 +153,30 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		.poll(async () => (await projectionFor(gmContext, token)).state.round.step, POLLED)
 		.toBe('turn');
 
+	// --- The GM turns the zombies' initiative over (phase 33), and a player
+	// then sees the card. Unless the count is on the zombies already, which
+	// turns it over by itself.
+	{
+		const before = (await projectionFor(players[0].context, token)).state as Projection['state'] & {
+			opponents: { id: string }[];
+			round: { shown: string[] };
+		};
+		const zombies = before.opponents[0].id;
+		const slot = `opponent:${zombies}:initiative`;
+		if (!before.round.shown.includes(zombies)) {
+			expect(before.zones[slot].cards).toBeUndefined();
+			await gm.getByRole('button', { name: /^Turn over Zombie/ }).click();
+			await expect
+				.poll(
+					async () => (await projectionFor(players[0].context, token)).state.zones[slot].cards,
+					POLLED
+				)
+				.toHaveLength(1);
+		}
+		await expect(gm.getByRole('button', { name: /^Turn over Zombie/ })).toHaveCount(0, POLLED);
+		await expect(players[0].page.getByRole('button', { name: /^Turn over/ })).toHaveCount(0);
+	}
+
 	// --- The round, step by step, acting for whoever it waits on. ---
 	const pageFor = (holder: string) =>
 		holder === gmSeat || !players.some((p) => p.seat === holder)
