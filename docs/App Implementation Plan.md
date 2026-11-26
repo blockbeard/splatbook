@@ -50,20 +50,24 @@ back with the game intact.
 
 Three separate things are in that, and only one of them is the CPU limit:
 
-1. **The second Next skipped a turn.** `step-on` carries nothing about what
-   it is moving on from, so a second click, or a click from a page a poll
-   behind, acts on whatever the round has become. At a tie it skips the second
-   person on the number.
+1. **The second Next skipped a turn.** After Bonnie's turn was cleared, the
+   count stayed on 1 for Tatyana, In play emptied and its Next went with it,
+   and the GM's button in the guide line changed in place from "Next" to "Skip
+   their turn". Nothing said why the round hadn't moved, so Chris pressed again
+   "to see where it goes", and the press skipped Tatyana. The page was very
+   likely up to date: `busy` drops a double click, and the reply to the first
+   Next updates the page at once. `step-on` also carries nothing about what it
+   is moving on from, so a press from a page a poll behind would do the same,
+   but that is the smaller half.
 2. **The page gave up on a table that was fine.** `sendCommand` turns any reply
    that is not the table's own JSON into `no-such-table`, so an HTML 1102 page
    reads as "This table is no longer taking cards." A fetch that throws never
    releases `busy`, so the page stops sending anything until a reload. That is
    what "stopped taking cards" was, and why a refresh fixed it.
-3. **A request went over 10 ms of CPU.** Which one isn't known yet. The engine's
-   commands run in under a millisecond, so the cost is around them: loading
-   and migrating the table's state, projecting it, the first request on a cold
-   route, or a picture upload. Splatbook stays on Workers Free (Chris,
-   2026-11-26), so 10 ms per request is a design limit, not a bill to pay.
+3. **A request went over 10 ms of CPU.** Measured on 2026-11-26 (below), it is
+   almost certainly the first request a fresh Worker serves, not any one
+   command. Splatbook stays on Workers Free (Chris, 2026-11-26), so 10 ms per
+   request is a design limit, not a bill to pay.
 
 **The bugs.**
 
@@ -80,8 +84,10 @@ Three separate things are in that, and only one of them is the CPU limit:
   that." It sits in Your move, well away from the hand you just tapped.
 - **Your own face-down card shows its rank, in Roman numerals.** A played 2
   showed "II", which read as 11, until it turned face up and showed "2".
-- **"3 3" on the lion** read as Health and Defense with no labels, while the
-  zone panel shows Health only.
+- **"3 3" on the lion** was the book's stat line (Health 3, Defense 3) in the
+  group's name, while the zone list in the scene shows Health only, as a bare
+  number. Edmund read the Creatures panel correctly ("Defense is 0 of 3, health
+  3 of 3"); the zone list is what misled.
 - **Clarissa wondered whether her hand had been shuffled.** It is sorted by
   value, and nothing says so.
 - **Tests of Fate took a second to appear for everyone**, and show the card's
@@ -128,6 +134,91 @@ book's rule rather than a bug: "You may only have one facedown action at a
 time" (ch.7, Facedown cards). The counselled card goes into the other player's
 hand, so it never needs a second face-down slot.
 
+### Measured (2026-11-26)
+
+Two experiments, on Chris's laptop (Node 26, an M-series Mac). A Worker's CPU
+is slower and its numbers will be higher. These say which path is heavy, not
+how heavy it is on Cloudflare.
+
+**Simulated rounds** (`src/lib/server/card-tables/cpu-sim.test.ts`): 300
+rounds over 34 fights at a Session 14-sized table. That is 9,752 commands and
+every poll that followed them, about 97,000 requests timed through the real
+service code, with SQLite's own time taken off (on a Worker, D1 is I/O and
+costs no CPU).
+
+| Request | p50 | p99 | Max |
+| --- | --- | --- | --- |
+| A command (load, reduce, write, view) | 0.43 ms | 0.9 ms | 12.4 ms |
+| A poll that finds a change (full view) | 0.20 ms | 0.6 ms | 8.8 ms |
+| A poll that finds nothing (`204`) | 0.09 ms | 0.14 ms | 6.1 ms |
+
+The steady state is twenty times under budget. The maxima are a dozen
+requests in 97,000, scattered through the run: garbage collection, not any one
+command. The double Next from Session 14 came up 95 times and cost no more than
+any other step. With V8's optimising compilers off (the way code runs the
+first time through), a command costs about 1 ms, and the first command of the
+run cost 6.5 ms. Code that has never run is several times slower.
+
+**A cold Worker.** The built Worker, bundled the way Wrangler bundles it and run
+in Node with a stub D1, cold and then warm:
+
+| | CPU |
+| --- | --- |
+| Startup (the bundle's top level) | 37.5 ms |
+| The first card-table request | **63.7 ms** |
+| The same request again | 1.0 ms |
+
+esbuild wraps about 700 modules in lazy initialisers, so a route's modules are
+first evaluated inside the first request that imports them. In the profile, the
+largest share of that first request is building zod schemas when the game
+registry loads. Each alone, cold: zod itself, 6.6 ms; HMtW's card table and
+pack schemas, 5.5 ms more; **Stonetop's pack schemas, 14 ms more**. Those are
+built on every cold card-table request, although a card table never reads them
+(680 zod calls in `stonetop/pack-schemas.ts`). The PDF libraries are in the
+bundle (2.3 MB) but load lazily, and never ran.
+
+So the likeliest story for Session 14: a request landed on a fresh isolate and
+paid tens of milliseconds of module loading. Cloudflare starts isolates often
+for a table this quiet, spread over five players' locations. It happened once
+in two hours, not on every cold start, so an overrun evidently isn't always
+fatal; why some are and some aren't is Cloudflare's, and not documented. None of
+this is proof. It is the one path that measures over budget, and the next game's
+log tail is the check.
+
+Cloudflare documents a separate limit for startup: a Worker gets 1 second to
+parse and run its top level ([limits](https://developers.cloudflare.com/workers/platform/limits/),
+raised from 400 ms in October 2025). Whether that time also counts against the
+first request's 10 ms isn't documented, which is why commit 3 is checked on
+Cloudflare rather than assumed.
+
+### Adversarial review of Release A (2026-11-26)
+
+Done the same day, against the code and Cloudflare's documentation. What it
+changed:
+
+- **The second Next.** The first draft blamed a stale page and fixed it with
+  `from`. Reading `PlayArea.svelte` and `guide.ts` says otherwise: the page was
+  current, and the button changed meaning in place. Commit 5 now leads with
+  the tie wording and a named, quiet, briefly-ignoring Skip; `from` stays as
+  the smaller half.
+- **"Startup isn't charged to a request"** was stated as fact. Cloudflare
+  documents startup as its own 1 s limit and says nothing either way, so the
+  claim is gone and commit 3 depends on what the tail shows.
+- **Commit 2 was lazy builders for 1,000 lines of schemas.** Nothing at run
+  time reads the pack schemas, so the smaller change is not to import them.
+- **The poll already survives a 1102**, so commit 4 only pins that with a test.
+- **The picture upload** had dropped out of commit 1's measurements; it's back.
+- **The fallback for commit 3** has to run inside `npm run build`, or Chris's
+  deploy never sees it.
+- Checked and left alone: `endRound` already does its discards first and the
+  Fool's reshuffle last, so adding the fate pile to the discards (commit 6)
+  puts its cards back in the deck with no reordering; the schema versions (v17 here,
+  v18 and v19 in Releases B and C) don't collide; the zone list is where "3 3"
+  misled (the Creatures panel is labelled already, and Edmund read it right).
+- **Still unproven:** the cold-start story. Node is not a Worker, and the stub
+  D1 means a page load wasn't measured. Commit 1's script and the next game's
+  tail are how this phase finds out whether A1 fixed it.
+
 ### Decided
 
 - **Stay on Workers Free** (Chris, 2026-11-26). Fix the CPU in code; don't
@@ -142,84 +233,165 @@ hand, so it never needs a second face-down slot.
 ### Decided after filing (Chris, 2026-11-26)
 
 1. **The "how is it played" choice and Counsel first**, then talents by path
-   (commits 11, 12 and 13, in that order).
-2. **Olivia's "draw" meant handing a card to a player**, which is commit 12.
+   (commits 13, 14 and 15, in that order).
+2. **Olivia's "draw" meant handing a card to a player**, which is commit 14.
    There is no draw option.
 3. **Tests of Fate stay the card's value.** "We decided to keep abilities out of
    it for now."
 4. **The Bout II picture wasn't a bug.** Chris couldn't find the art, and the
    zone list carried the Bout well enough without it.
-5. **Each play says whether it adds your attribute** (commit 8), added the same
+5. **Each play says whether it adds your attribute** (commit 9), added the same
    day.
 
 ### The design
 
-**Release A: nothing stops the table.** Needed before the next session.
+**Release A: nothing stops the table.** Needed before the next session. It comes
+in two halves, so the first can ship on its own if time is short: A1 (commits 1
+to 5) is the crash, A2 (6 to 12) the bugs.
 
-1. `test(hmtw)`: **measure first.** Build a table the size of Session 14's (the
-   GM, four players, three enemy groups with six creatures, a picture, two
-   rounds of events) and time each request path through the service on node:
-   `step-on` through `loadTable`, `runCommand` and `viewFor`; a changed poll for
-   each seat; the picture PUT. Include the exact sequence from the session (a
-   tie on 1, minors answered, Next, Next). Node is faster than a Worker, so the
-   numbers compare paths against each other rather than against 10 ms. They go
-   into this plan. Chris also runs the log tail at the next game, to catch the
-   one that goes over.
-2. `fix(card-table)`: **a hiccup isn't a closed table.** `sendCommand` tells a
-   reply from the table (404, 409, 410, 422 with JSON) from anything else (a
-   5xx, an HTML error page, a network failure). Anything else says "The table
-   didn't answer. Try again.", catches up, and leaves every control working;
-   `busy` is released in a `finally`. Only a real 404 or 410 says the table is
-   closed. A unit test drives each case through the page's `run`.
-3. `fix(hmtw)`: **Next knows what it's moving on from.** `step-on` carries the
-   step, the count and who is up when it was pressed. The server refuses a stale
-   one as `already-moved-on`, which the page reads as "The round has moved on".
-   At a tie, the guide names both people and says whose turn it is now:
-   "Bonnie and Tatyana are both on 1. Tatyana's turn." A `steps.test.ts` case
-   replays the session.
-4. `perf(hmtw)`: **cut whatever commit 1 finds over budget.** I can't name it
-   before measuring. If it's the state, migrate only when the stored
-   `schemaVersion` is behind, and project once per request rather than once per
-   question. If it's the picture upload, send the bytes as the body rather than
-   a 1.4 MB JSON string. If nothing stands out, say so here and leave it to the
-   tail.
-5. `fix(hmtw)`: **the Test of Fate pile in a Challenge.** Shown beside the decks
-   in Challenge mode, with its cards and a Clear button. The end of a round
-   discards it to the player discard, so the Fool's reshuffle gathers it.
-   `invariants.test.ts` gains a run that turns over Tests of Fate through a
-   round with the Fool and checks every card is somewhere, exactly once.
-6. `feat(hmtw)`: **the GM turns over an enemy's initiative.** A "Turn over"
-   button on each group's initiative in "In the fight", for the GM only.
-7. `fix(hmtw)`: **the small things on a card.** Your own face-down card shows its
-   value ("2"), never its rank. A creature reads "Health 3 · Defense 3". The
-   hand says "Sorted by value".
-8. `feat(hmtw)`: **which plays add your attribute.** Each play carries whether
-   it adds the attribute: a turn and the Fool's extra turn do, a minor action
-   doesn't, and a readied card goes by the `position` it was put down at, kept
-   on the play when it's used. In play shows "+ attribute" or "face value"
-   under each card, and a readied card says which while it's still face down
-   ("readied on your turn: adds your attribute"). An interrupt from a talent
-   (Out of turn without the Fool) defaults to "+ attribute"; check the book's
-   wording for Quick! and Counter-spell while building it. Schema v17, with a
-   migration test (plays from before it say neither). The handout's "A round,
-   step by step" gains a line on it.
-9. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
-   "Play the Fool", which picks it and starts adding its partner, instead of
-   leaving it inside the closed "Out of turn".
-10. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
-   to the bottom of the screen carries the card, the chosen action and the
-   button (Play it, Put it down, Ready it). It is the smallest change that puts
-   the button where your finger is; the design pass may redo it.
+*A1: the crash.*
+
+1. `test(card-table)`: **the measuring tools.** `cpu-sim.test.ts` (written on
+   2026-11-26, skipped unless `CPU_SIM=1`), plus `scripts/cold-start.mjs`. The
+   script builds the Worker bundle with esbuild the way Wrangler does, stubs
+   `cloudflare:workers`, D1 and `ASSETS`, and prints the startup cost and the
+   first, second and third request's CPU for the sync, commands and page
+   routes. It does that signed out and with a signed-in session cookie, since
+   Auth.js decodes a JWT on every signed-in request and the simulation doesn't
+   cover that, and it reports the first request twice: straight after loading
+   the bundle, and after `server.init` has finished, which is the number commit
+   3 is trying to move. The simulation gains a picture upload (a 1 MB WebP
+   through the picture endpoint's handler, with its 1.4 MB JSON body), which the
+   first run left out. Both print tables. Neither is a CI gate, because timings on a
+   shared runner are noise. The numbers above go in the commit message.
+2. `perf(games)`: **the app stops loading pack schemas.** Nothing at run time
+   reads them: packs are checked by `npm run validate:packs` and the tests, and
+   the runtime trusts what they passed (`stonetop/pack/gm.ts`, `steading.ts`).
+   They reach the server only because each game module hands `schemaFor` to the
+   registry (`GameModule.packSchemas`), and that import builds every schema.
+   `src/lib/games/schemas.ts` already registers them for the tooling on its own,
+   so `packSchemas` leaves `GameModule` and `registerGame`, and only
+   `schemas.ts` imports `pack-schemas.ts`. The other importers (Stonetop's
+   wizard, `pack/inserts.ts`, `export.ts`) take types only, which vanish in the
+   build. Separately, the card table's command schema (110 zod calls in
+   `hmtw/card-table.ts`) is built the first time a command is reduced, so the
+   sync route never builds it. Tests: `registry.test.ts` loses its
+   `packSchemas`, the pack tests import `schemas.ts`, and a new test checks that
+   the built server chunk for the registry contains no pack schema (by a
+   string from one, in `.svelte-kit/output`, after a build). Measured with
+   commit 1's script: about 20 ms off the first card-table request, and off
+   every other cold route that touches the registry.
+3. `perf(cloudflare)`: **load the game registry at startup.** An `init` hook in
+   `hooks.server.ts` imports `$lib/games`, so a new isolate evaluates the
+   registry, zod included, before it serves anything. SvelteKit runs `init` from
+   `server.init`, which the adapter's `_worker.js` calls at top level. These
+   tools can't show whether that finishes during Cloudflare's startup phase
+   (a 1 s budget, not charged to a request) or inside the first request. So
+   this commit is checked on Cloudflare: deploy, open a table, and read the
+   first requests' CPU time in `wrangler pages deployment tail --format json`.
+   If it hasn't moved, revert it and take the fallback: a post-build step that
+   adds a static import of the registry chunk to `_worker.js`, which esbuild
+   then evaluates at the bundle's top level. That step has to live in the
+   `build` script, run only when `ADAPTER=cloudflare`, because Chris's deploy
+   is `ADAPTER=cloudflare npm run build` and nothing else. The comment in `hooks.server.ts`
+   warns that importing the registry there instantiates it twice. The commit
+   checks for that in `npm run dev` and in the built output (one registration
+   each). If the tail then shows a table's first *command* still near the limit
+   (code that has never run is several times slower, above), the same `init`
+   can reduce a canned round on a scratch table once, so the engine's functions
+   are compiled before anyone plays. That is only if the numbers ask for it.
+4. `fix(card-table)`: **a hiccup isn't a closed table.** `sendCommand` tells a
+   reply from the table (JSON with a `reason`, at 404, 409, 410 or 422) from
+   anything else: a 5xx, Cloudflare's HTML error page, or a network failure
+   (the fetch throws). Anything else becomes `reason: 'unanswered'`, which the
+   page reads as "The table didn't answer. Try again.". It catches up and
+   leaves every control working, and `busy` is released in a `finally`. Only a
+   real 404 or 410 says the table is closed. The poll needs nothing: `fetchSince`
+   already treats any non-OK reply as "nothing new", and a fetch that throws is
+   a dropped poll in the transport. A test pins that, since the 1102 page is
+   exactly that case. Unit tests in
+   `client.test.ts` drive each reply shape. A browser spec covers the page's
+   `run`: it answers one command with a 503 HTML page (Playwright's `route`)
+   and checks that the next one goes through.
+5. `fix(hmtw)`: **a tie says so, and Skip is never where Next was.** Three
+   parts, the first two of which would have saved Tatyana's turn:
+   - **The tie, in words.** When the count stays on a number because someone
+     else is on it, the guide says so: "Bonnie and Tatyana are both on 1.
+     Bonnie's done; Tatyana's turn." The announcer says it too.
+   - **Skip is named and quiet.** The GM's override in a turn reads "Skip
+     Tatyana's turn" (the name, not "their"), in the quiet button style, never
+     the primary one. When a step changes, the guide's button ignores presses
+     for a moment (about 0.8 s), so a press aimed at the button that was just
+     there can't land on the one that replaced it.
+   - **Next knows what it's moving on from.** `step-on` gains an optional
+     `from: { step, count, up }`, the round as the page saw it. The server
+     refuses a mismatch as `rejected (moved-on)`, which the page reads as "The
+     round has moved on" (it joins `wrong-step` in that list). Every button that
+     sends `step-on` sends it. Without `from`, as from an old page, it behaves as
+     now. This covers a press from a page a poll behind, or two people running
+     the table with nobody in the GM seat.
+
+   Tests:
+   - a `steps.test.ts` case replays Session 14, a stale second Next refused;
+   - guide tests for the tie wording and the named Skip;
+   - a component test that a press within the moment after a step change does
+     nothing.
+
+*A2: the bugs.*
+
+6. `fix(hmtw)`: **the Test of Fate pile in a Challenge.** ChallengeMode shows
+   the fate pile beside the decks when it has cards, face up, with a Clear
+   button (the existing `clear-fate`). `endRound` discards it to the player
+   discard before the Fool's reshuffle, so the reshuffle gathers it. Tests:
+   - a round with a Test of Fate and the Fool ends with all 57 player cards in
+     the deck and the discard;
+   - `invariants.test.ts` gains Tests of Fate in its random runs (every card
+     somewhere, exactly once).
+7. `feat(hmtw)`: **the GM turns over an enemy's initiative.** A "Turn over"
+   button on each group's face-down initiative in In the fight, for the GM only.
+   It sends the existing `show-initiative` with the group as holder. A browser
+   check confirms a player then sees the card.
+8. `fix(hmtw)`: **the small things.**
+   - Your own face-down card shows its value ("2") where it shows the rank today
+     (the "mine" mark in `Card.svelte`).
+   - The scene's zone list shows "Health 3 · Defense 3", labelled, where it shows
+     a bare Health number now.
+   - The hand's heading says "Sorted by value".
+9. `feat(hmtw)`: **which plays add your attribute.** `Play` gains `adds: boolean`:
+   - true for a turn, and for an out-of-turn play (the Fool's extra turn, and
+     talent interrupts until the book says otherwise);
+   - false for a minor action;
+   - for a readied card, decided by the `position` it was put down at (`turn`
+     adds, `minor` doesn't). The position is carried from the facedown slot onto
+     the play in `useReadied` and `revealFacedown`.
+
+   In play shows "+ attribute" or "face value" under each card, and a readied
+   card says which while it is still face down. Schema v17: a play stored before
+   it has no `adds`, and shows neither. Tests cover each kind, the migration and
+   the Fool.
+10. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
+    "Play the Fool", which picks the Fool and starts adding its partner, instead
+    of leaving it inside the closed "Out of turn".
+11. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
+    to the bottom of the viewport carries the card's name, the chosen action and
+    the one button that sends it (Play it, Put it down or Ready it). It never
+    covers the hand: the page gains bottom padding the height of the bar while it
+    shows. It is the same control as in Your move, not a second one, so there is
+    one thing to press. The a11y spec gains the state, and the phone spec checks
+    that it stays clear of the hand at 390px. The design pass may redo it.
+12. `docs`: **Release A's changelog and handout.** The CHANGELOG, and the player
+    handout: the Test of Fate pile, "+ attribute" and "face value", the Fool,
+    the bar, and what "The table didn't answer" means.
 
 **Release B: any legal action.**
 
-11. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
+13. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
     name, typed, and how the card is played: Play it now (face up, on your turn),
     Ready it (face down, above), As a minor action (face down, below), Out of
     turn (an interrupt), Discard it (a miscellaneous action), or Hand it to
-    someone (commit 12). Each is an existing command except the last two. In
+    someone (commit 14). Each is an existing command except the last two. In
     play labels it with the name.
-12. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
+14. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
     your hand to another adventurer's, any time in a Challenge, with the action
     you counsel and whether it may interrupt (the Resolve was spent). The card
     arrives labelled "From Eldritch: Recover". Playing it picks that action, and
@@ -227,7 +399,7 @@ hand, so it never needs a second face-down slot.
     was handed over and for what; only the giver and the receiver know which
     card. The label lives in a `counsel` map keyed by card, projected only to
     those two. Schema v18, with a migration test.
-13. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 11 and 12.
+15. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 13 and 14.
     `talents.json` in the pack lists, for each path, the talents with a card
     shape in a Challenge: the name, the default "how", the suits, a one-line
     summary written for the table, and a link to its Chapter 5 heading. Your
@@ -237,15 +409,15 @@ hand, so it never needs a second face-down slot.
 
 **Release C: the GM's table.**
 
-14. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
+16. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
     as "Red Cloak (A)"; the letter stays, for the count and for anyone who knew
     it by that. Schema v19 with a migration test.
-15. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
+17. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
     table polls every 3 seconds. Poll at the busy cadence for a minute or two
     after any change. This is the poll cadence, so ask Edmund first: it may be
     one of his steps.
-16. `docs`: **close phase 33.** The player handout gains talents, handing a card
-    over, the Fool and which cards add your attribute; the CHANGELOG; this section to the history.
+18. `docs`: **close phase 33.** The player handout gains talents, handing a card
+    over and naming creatures; the CHANGELOG; this section to the history.
 
 **Guards.** The a11y spec stays the floor and gains a state for the talent
 choice, the handed card and the pinned bar. The next real session is the test,
@@ -261,7 +433,7 @@ lint, unit and browser tests before it's merged.
   (Clarissa); Olivia's view filling only two-thirds of her screen height; enemies
   on one line and players on another (Chris); each player pinning sections to
   the top (Chris).
-- **The polling and request code**: Edmund's PRs. Commit 15 asks him first.
+- **The polling and request code**: Edmund's PRs. Commit 17 asks him first.
 - **Workers Paid**, declined.
 - **Phase 30's items** (a player who wanders off, room codes) and phase 31's
   stat-block links.
@@ -269,6 +441,15 @@ lint, unit and browser tests before it's merged.
   fewer minor actions, how many players per session.
 
 ### Considered and rejected
+
+**Replacing zod on the card table.** zod costs 6.6 ms to load cold, and the card
+table could check its commands by hand. But it is the project's one validation
+library, and loading it at startup (commit 3) costs a request nothing. Revisit
+only if commit 3 fails and its fallback does too.
+
+**Lazily building each pack schema.** Considered for commit 2 and dropped: the
+app doesn't need the pack schemas at all, so not importing them is smaller and
+complete.
 
 **Automating each talent.** It would need the character sheet Chris ruled out,
 and the book's talents mostly change numbers the table already leaves to
