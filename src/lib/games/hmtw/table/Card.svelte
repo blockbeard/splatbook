@@ -98,9 +98,11 @@
 	>
 		{#if faceDown}
 			{#if mine && face}
-				<!-- Yours to read, and unmistakably still face down. -->
+				<!-- Yours to read, and unmistakably still face down. Its value, not
+				     its rank: a 2 marked "II" read as 11 in Session 14 until it
+				     turned over and showed "2" (phase 33). The value is what counts. -->
 				<span class="ct-card__mine">
-					{face.rank}
+					{face.value}
 					{#if face.glyph}
 						<span class="ct-glyph" style="--ct-glyph: url({face.glyph})"></span>
 					{/if}

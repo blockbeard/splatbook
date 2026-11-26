@@ -62,6 +62,8 @@ export interface ProjectedTable {
 	minorDeclared: Record<string, string>;
 	/** Who each face-down minor action is aimed at, by zone. */
 	minorTargets: Record<string, string>;
+	/** Which face-down minor actions are a Guard, by zone. Public, as the declaration is. */
+	minorGuards: string[];
 	/**
 	 * Whose initiative the count has reached — seat and opponent ids.
 	 *
@@ -172,6 +174,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		plays: Object.fromEntries(Object.entries(table.plays).map(([k, v]) => [k, { ...v }])),
 		minorDeclared: { ...table.minorDeclared },
 		minorTargets: { ...table.minorTargets },
+		minorGuards: [...table.minorGuards],
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
 			at: { ...table.scene.at },

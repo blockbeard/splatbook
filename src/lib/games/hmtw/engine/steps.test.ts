@@ -4,7 +4,14 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { addOpponent, createTable, migrateTable, setGmSeat, type CardTable } from './table';
+import {
+	TABLE_SCHEMA_VERSION,
+	addOpponent,
+	createTable,
+	migrateTable,
+	setGmSeat,
+	type CardTable
+} from './table';
 import type { DeckDefinition } from './table';
 import { beginRound, endRound } from './round';
 import { seededRng } from './shuffle';
@@ -134,7 +141,13 @@ describe('a turn', () => {
 			)
 		);
 		expect(t.zones[seatZone('ash', 'played')].cards).toContain(played);
-		expect(t.plays[played]).toMatchObject({ by: 'ash', action: 'Attack', kind: 'turn', number: 2 });
+		expect(t.plays[played]).toMatchObject({
+			by: 'ash',
+			action: 'Attack',
+			kind: 'turn',
+			adds: true,
+			number: 2
+		});
 		// Attacking Zombie B turns the zombies' initiative face up.
 		expect(t.round.shown).toContain('zombies');
 		expect(t.round.step).toBe('minor');
@@ -169,7 +182,13 @@ describe('a turn', () => {
 		expect(t.zones[seatZone('ash', 'facedown')].cards).toEqual([dodge]);
 		expect(t.facedown[seatZone('ash', 'facedown')]).toEqual({ position: 'turn', label: 'Dodge' });
 		t = ok(useReadied(t, 'ash'));
-		expect(t.plays[dodge]).toMatchObject({ by: 'ash', action: 'Dodge', kind: 'readied' });
+		// Readied on a turn, it adds the attribute when it turns over (ch.7).
+		expect(t.plays[dodge]).toMatchObject({
+			by: 'ash',
+			action: 'Dodge',
+			kind: 'readied',
+			adds: true
+		});
 	});
 
 	it('Guard replaces the initiative and cannot buy a second turn', () => {
@@ -222,7 +241,8 @@ describe('minor actions', () => {
 		t = ok(passMinor(t, ['zombies']));
 		expect(t.round.step).toBe('resolve');
 		expect(t.zones[seatZone('bel', 'played')].cards).toEqual([belCard]);
-		expect(t.plays[belCard]).toMatchObject({ action: 'Roughhouse', kind: 'minor' });
+		// "A minor action's total value equals the card's face value."
+		expect(t.plays[belCard]).toMatchObject({ action: 'Roughhouse', kind: 'minor', adds: false });
 		expect(projectFor(t, 'ash').zones[seatZone('bel', 'played')].cards).toEqual([belCard]);
 	});
 
@@ -237,6 +257,10 @@ describe('minor actions', () => {
 		t = ok(resolveNumber(t));
 		// Resolving the number does not touch a readied card.
 		expect(t.zones[seatZone('bel', 'facedown')].cards).toHaveLength(1);
+		// Readied as a minor, it is face value when it turns over.
+		const riposte = t.zones[seatZone('bel', 'facedown')].cards[0];
+		t = ok(useReadied(t, 'bel'));
+		expect(t.plays[riposte]).toMatchObject({ action: 'Riposte', kind: 'readied', adds: false });
 	});
 
 	it('refuse a second answer, and an answer from whoever just acted', () => {
@@ -296,7 +320,12 @@ describe('the Fool, out of turn', () => {
 		expect(t.round.acted).not.toContain('bel');
 		expect(t.round.step).toBe('turn');
 		const played = t.zones[seatZone('bel', 'played')].cards[0];
-		expect(t.plays[played]).toMatchObject({ kind: 'out-of-turn', action: 'Fool: Attack' });
+		// The Fool's extra turn is a turn: it adds the attribute.
+		expect(t.plays[played]).toMatchObject({
+			kind: 'out-of-turn',
+			action: 'Fool: Attack',
+			adds: true
+		});
 	});
 });
 
@@ -365,5 +394,150 @@ describe('a table saved mid-round before v15', () => {
 		expect(migrated.round.step).toBe('initiative');
 		expect(migrated.zones[seatZone('ash', 'minor')]).toBeDefined();
 		expect(migrated.zones[opponentZone('zombies', 'minor')]).toBeDefined();
+	});
+});
+
+describe('a table saved before v17', () => {
+	it('keeps its plays, with neither "+ attribute" nor "face value"', () => {
+		let t = initiative();
+		t = ok(playTurn(t, 'ash', { from: from(t, 'ash', 1), action: 'Attack', mode: 'play' }, 'ash'));
+		const played = t.zones[seatZone('ash', 'played')].cards[0];
+		const { adds: _adds, ...old } = t.plays[played];
+		const v16 = { ...t, schemaVersion: 16, plays: { [played]: old } } as CardTable;
+		const migrated = migrateTable(v16);
+		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
+		expect(migrated.plays[played]).toEqual(old);
+		expect(migrated.plays[played]).not.toHaveProperty('adds');
+	});
+});
+
+describe('minor actions, from Card Table Test 3', () => {
+	/** Ash has played on 2; Bel (6) and the zombies (3) are asked for minor actions. */
+	function minorOpen() {
+		const t = initiative();
+		return ok(
+			playTurn(t, 'ash', { from: from(t, 'ash', 1), action: 'Attack', mode: 'play' }, 'ash')
+		);
+	}
+	const initOf = (t: CardTable, slot: string) => t.zones[slot].cards[0];
+
+	it('Guard as a minor swaps the initiative when the minors turn over', () => {
+		let t = minorOpen();
+		const old = initOf(t, seatZone('bel', 'initiative'));
+		const eight = card(t, 'bel', 8);
+		t = ok(declareMinor(t, 'bel', from(t, 'bel', 8), 'Guard', 'bel', undefined, true));
+		// Face down until everyone has answered, like any minor action.
+		expect(initOf(t, seatZone('bel', 'initiative'))).toBe(old);
+		t = ok(passMinor(t, ['zombies']));
+		expect(initOf(t, seatZone('bel', 'initiative'))).toBe(eight);
+		expect(t.zones['discard:player'].cards).toContain(old);
+		expect(t.round.shown).toContain('bel');
+		expect(t.minorGuards).toEqual([]);
+		// Above the count, so Bel still has a turn to come: on 8 now, not 6.
+		expect(t.round.acted).not.toContain('bel');
+		t = ok(resolveNumber(t));
+		expect(upAt(t)).toEqual(['zombies']);
+		t = ok(skipTurn(t, 'zombies'));
+		expect(t.round.count).toBe(8);
+		expect(upAt(t)).toEqual(['bel']);
+	});
+
+	it('loses the turn when the new initiative has already gone (Chris, 26 November)', () => {
+		// Card Table Test 3: the Devil Guarded with a 1 as a minor, and its turn
+		// still came up on its old 14. If you move to an initiative that has
+		// already gone, you lose your turn.
+		let t = minorOpen();
+		const one = card(t, 'gm', 1);
+		t = ok(declareMinor(t, 'zombies', from(t, 'gm', 1), 'Guard', 'gm', undefined, true));
+		t = ok(passMinor(t, ['bel']));
+		expect(initOf(t, opponentZone('zombies', 'initiative'))).toBe(one);
+		expect(t.round.acted).toContain('zombies');
+		t = ok(resolveNumber(t));
+		// The count doesn't step back to 1, and the zombies' 3 is gone: Bel next.
+		expect(t.round.count).toBe(6);
+		expect(upAt(t)).toEqual(['bel']);
+	});
+
+	it('loses the turn on the number being counted too', () => {
+		let t = minorOpen();
+		t = ok(declareMinor(t, 'zombies', from(t, 'gm', 2), 'Guard', 'gm', undefined, true));
+		t = ok(passMinor(t, ['bel']));
+		expect(t.round.acted).toContain('zombies');
+	});
+
+	it('a Guard label without the flag is only a label', () => {
+		let t = minorOpen();
+		const old = initOf(t, seatZone('bel', 'initiative'));
+		t = ok(declareMinor(t, 'bel', from(t, 'bel', 8), 'Guard', 'bel'));
+		t = ok(passMinor(t, ['zombies']));
+		expect(initOf(t, seatZone('bel', 'initiative'))).toBe(old);
+	});
+
+	it('can be taken back until the minors turn over, and answered again', () => {
+		let t = minorOpen();
+		const five = card(t, 'bel', 5);
+		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', 'zombies:A', true));
+		t = ok(takeBack(t, 'bel'));
+		expect(hand(t, 'bel')).toContain(five);
+		expect(t.round.answered).not.toContain('bel');
+		expect(t.minorDeclared).toEqual({});
+		expect(t.minorTargets).toEqual({});
+		expect(t.minorGuards).toEqual([]);
+		expect(t.round.step).toBe('minor');
+		// Answered again, the minors turn over as usual.
+		t = ok(passMinor(t, ['bel', 'zombies']));
+		expect(t.round.step).toBe('resolve');
+	});
+
+	it('takes back a minor readied at this number, and not one readied before', () => {
+		let t = minorOpen();
+		const seven = card(t, 'bel', 7);
+		t = ok(readyMinor(t, 'bel', from(t, 'bel', 7), 'Riposte', 'bel'));
+		t = ok(takeBack(t, 'bel'));
+		expect(hand(t, 'bel')).toContain(seven);
+		expect(t.zones[seatZone('bel', 'facedown')].cards).toEqual([]);
+		expect(t.facedown[seatZone('bel', 'facedown')]).toBeUndefined();
+		expect(t.round.answered).not.toContain('bel');
+
+		t = ok(readyMinor(t, 'bel', from(t, 'bel', 7), 'Riposte', 'bel'));
+		t = ok(passMinor(t, ['zombies']));
+		// Turned over: it is a readied card now, kept, not this number's to take back.
+		expect(t.round.readiedNow).toEqual([]);
+		expect(t.zones[seatZone('bel', 'facedown')].cards).toEqual([seven]);
+	});
+
+	it('leaves the acting player’s own take-back as it was', () => {
+		let t = minorOpen();
+		t = ok(takeBack(t, 'ash'));
+		expect(t.round.step).toBe('turn');
+		expect(upAt(t)).toEqual(['ash']);
+	});
+
+	it('does not ask a holder whose only card is the Fool, which needs a partner', () => {
+		let t = minorOpen();
+		const lone = { ...t.zones[seatZone('bel', 'hand')], cards: ['fool'] };
+		t = { ...t, zones: { ...t.zones, [lone.id]: lone } };
+		expect(expectedMinor(t)).toEqual(['zombies']);
+	});
+
+	it('moves the count past a holder with only the Fool, as past an empty hand', () => {
+		let t = initiative();
+		const lone = { ...t.zones[seatZone('ash', 'hand')], cards: ['fool'] };
+		t = { ...t, zones: { ...t.zones, [lone.id]: lone } };
+		t = nextNumber({ ...t, round: { ...t.round, step: 'initiative', count: null, acted: [] } });
+		expect(t.round.acted).toContain('ash');
+		expect(t.round.count).toBe(3);
+	});
+});
+
+describe('a table saved before v18', () => {
+	it('has no minor Guards and nobody readied at this number', () => {
+		const t = initiative();
+		const { minorGuards: _g, ...rest } = t;
+		const { readiedNow: _r, ...round } = t.round;
+		const migrated = migrateTable({ ...rest, round, schemaVersion: 17 } as unknown as CardTable);
+		expect(migrated.minorGuards).toEqual([]);
+		expect(migrated.round.readiedNow).toEqual([]);
+		expect(migrated.round.step).toBe(t.round.step);
 	});
 });

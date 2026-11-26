@@ -19,6 +19,7 @@
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { creatureLabel } from '../engine/creatures';
+	import { addsWords } from './adds';
 
 	let {
 		table,
@@ -75,6 +76,7 @@
 				zone: `${h.zone}:minor`,
 				label: table.minorDeclared[`${h.zone}:minor`] ?? 'Minor action',
 				target: table.minorTargets?.[`${h.zone}:minor`],
+				guard: (table.minorGuards ?? []).includes(`${h.zone}:minor`),
 				card: table.zones[`${h.zone}:minor`]?.cards?.[0]
 			}))
 	);
@@ -99,6 +101,7 @@
 							<span class="play__action">{play.action}</span>
 							{#if play.target}<span class="play__target">→ {nameOf(play.target)}</span>{/if}
 							{#if kindWords[play.kind]}<span class="play__kind">{kindWords[play.kind]}</span>{/if}
+							{#if addsWords(play.adds)}<span class="play__adds">{addsWords(play.adds)}</span>{/if}
 						{/if}
 					</p>
 				</li>
@@ -116,6 +119,7 @@
 						<span class="play__action">{down.label}</span>
 						{#if down.target}<span class="play__target">→ {nameOf(down.target)}</span>{/if}
 						<span class="play__kind">minor action, face down</span>
+						<span class="play__adds">{down.guard ? 'becomes the initiative' : 'face value'}</span>
 					</p>
 				</li>
 			{/each}
@@ -174,6 +178,12 @@
 	}
 	.play__next {
 		margin: 0.75rem 0 0;
+	}
+	/* What the total is made of: read with the card, so the mark, not the quiet. */
+	.play__adds {
+		color: var(--ct-mark);
+		font-size: 0.8rem;
+		font-style: italic;
 	}
 	.play__target,
 	.play__kind {

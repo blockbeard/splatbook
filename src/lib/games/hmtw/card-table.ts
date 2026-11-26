@@ -167,7 +167,13 @@ function buildCommandSchema() {
 			holder,
 			from: pick,
 			label,
-			target: z.string().min(1).max(120).optional()
+			target: z.string().min(1).max(120).optional(),
+			/**
+			 * A Guard (phase 33): the card becomes the initiative when the minors
+			 * turn over. Sent for an action the pack flags `play: 'initiative'`,
+			 * as play-turn's guard is; a label alone is free text.
+			 */
+			mode: z.literal('guard').optional()
 		}),
 		/** A facedown action readied as a minor action: sideways, kept. */
 		z.strictObject({ type: z.literal('ready-minor'), holder, from: pick, label }),
@@ -568,12 +574,12 @@ export const hmtwCardTable: CardTableModule = {
 					holder: parsed.data.holder
 				});
 			case 'declare-minor': {
-				const { holder, from, label, target } = parsed.data;
+				const { holder, from, label, target, mode } = parsed.data;
 				return stepped(
 					table,
-					declareMinor(table, holder, from, label, actor, target),
+					declareMinor(table, holder, from, label, actor, target, mode === 'guard'),
 					'declare-minor',
-					{ holder, label, ...targetOf(table, target) }
+					{ holder, label, ...targetOf(table, target), ...(mode ? { mode } : {}) }
 				);
 			}
 			case 'ready-minor': {

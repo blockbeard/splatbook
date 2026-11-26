@@ -211,6 +211,35 @@ describe('endRound', () => {
 		expect(cards(t, 'discard:player')).toHaveLength(4);
 	});
 
+	it('gathers the Tests of Fate, so the Fool’s reshuffle puts every card back', () => {
+		// Session 14: two Tests of Fate in a Challenge, then the Fool, and the
+		// deck came back 54 cards, not 57. The reshuffle gathers a deck and its
+		// discard, and the turned-over cards were in neither.
+		let t = beginRound(table(), { playerHand: 4, gmHand: 0, rng: rng() });
+		// The Fool came out this round (drawn by somebody's Test of Fate, say).
+		t = { ...t, round: { ...t.round, foolDrawn: true } };
+		for (const from of ['deck:player', 'deck:player', 'deck:gm']) {
+			const turned = moveCard(t, { zone: from }, 'fate', 's1');
+			if (turned.ok) t = turned.table;
+		}
+		expect(cards(t, 'fate')).toHaveLength(3);
+		t = endRound(t, rng());
+		expect(cards(t, 'fate')).toEqual([]);
+		expect(cards(t, 'deck:player')).toHaveLength(25);
+		expect(cards(t, 'discard:player')).toEqual([]);
+		// The GM's card goes home to its own deck, not to the player discard.
+		expect(cards(t, 'deck:gm')).toHaveLength(12);
+	});
+
+	it('clears the Tests of Fate into the discard when the Fool stayed put', () => {
+		let t = beginRound(table(), { playerHand: 1, gmHand: 0, rng: rng() });
+		const turned = moveCard(t, { zone: 'deck:player' }, 'fate', 's1');
+		if (turned.ok) t = turned.table;
+		t = endRound(t, rng());
+		expect(cards(t, 'fate')).toEqual([]);
+		expect(cards(t, 'discard:player')).toHaveLength(3);
+	});
+
 	it('stops the count and waits for the next deal', () => {
 		let t = beginRound(table(), { playerHand: 4, gmHand: 3, rng: rng() });
 		t = { ...t, round: { ...t.round, count: 7, step: 'resolve', acted: ['s1'], shown: ['s1'] } };

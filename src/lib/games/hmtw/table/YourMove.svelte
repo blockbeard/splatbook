@@ -42,7 +42,8 @@
 		extras = $bindable(),
 		collecting = $bindable(),
 		onCommand,
-		onDone
+		onDone,
+		onPick
 	}: {
 		table: ProjectedTable;
 		seats: readonly { id: string; name: string; status: string; isGm: boolean }[];
@@ -66,6 +67,8 @@
 		onCommand: (command: unknown) => void;
 		/** Put down whatever is held, once a command has used it. */
 		onDone: () => void;
+		/** Pick a card up from your hand, as a click on it would. */
+		onPick?: (pick: Pick) => void;
 	} = $props();
 
 	const step = $derived(table.round.step);
@@ -148,6 +151,15 @@
 	const takeBackable = $derived(
 		mine.filter((h) => {
 			if (step === 'initiative') return hasInitiative(h);
+			// A minor action put down, or readied at this number, until the
+			// minors turn over (Card Table Test 3, phase 33).
+			const minorZone = h === mySeatId ? `seat:${h}:minor` : `opponent:${h}:minor`;
+			if (
+				step === 'minor' &&
+				table.round.answered.includes(h) &&
+				((table.zones[minorZone]?.count ?? 0) > 0 || (table.round.readiedNow ?? []).includes(h))
+			)
+				return true;
 			const open = step === 'turn' || (step === 'minor' && table.round.answered.length === 0);
 			return (
 				open &&
@@ -173,25 +185,132 @@
 			!table.round.shown.includes(mySeatId)
 	);
 	const midRound = $derived(step === 'turn' || step === 'minor' || step === 'resolve');
+
+	/** Whether the action picker is up for a turn or a minor action of yours. */
+	const picking = $derived(
+		needInitiative.length === 0 && (upMine.length > 0 || minorMine.length > 0)
+	);
+
+	/*
+	 * The Fool, up front (phase 33). It worked in Session 14, under the closed
+	 * "Out of turn", but the GM didn't remember it existed. A player's hand holds
+	 * minors and the one major the player deck borrows, so a card with no suit in
+	 * it is the Fool; the GM's hand is all majors and has none.
+	 */
+	const myFool = $derived(
+		isGmSeat ? undefined : (table.zones[hand]?.cards ?? []).find((c) => faces[c] && !faces[c].suit)
+	);
+	const foolHeld = $derived(!!myFool && card?.card === myFool);
+	/** Out of turn stays open once opened, through the turn, its minors and the resolve. */
+	let outOpen = $state(false);
+
+	const minorNow = $derived(minorMine.length > 0 && upMine.length === 0);
+	/** The bar by the hand: a card picked, and a play for it to send. */
+	const barShown = $derived(!!card && (needInitiative.length > 0 || picking));
+	const cardName = $derived(card?.card ? (faces[card.card]?.name ?? 'Your card') : '');
+	let barHeight = $state(0);
+
+	/*
+	 * The bar never covers the hand. The page gains room below it, and when a
+	 * card is picked with the hand's bottom under where the bar sits, the page
+	 * scrolls just enough to bring the hand clear of it.
+	 */
+	$effect(() => {
+		if (!barShown || barHeight === 0) return;
+		const handEl = document.getElementById('my-hand');
+		if (!handEl) return;
+		const overlap = handEl.getBoundingClientRect().bottom - (window.innerHeight - barHeight);
+		if (overlap > 0) window.scrollBy({ top: overlap + 8 });
+	});
+
+	function playTheFool() {
+		if (!myFool) return;
+		extras = [];
+		onPick?.({ zone: hand, card: myFool });
+		collecting = true;
+		outOpen = true;
+	}
 </script>
+
+<!--
+	The one button that sends the picked card: Play as initiative, Play it, Put
+	it down or Ready it. Rendered in one place at a time, so there is one thing
+	to press: in its place in Your move, or, once a card is picked, in the bar
+	pinned to the bottom of the screen (phase 33). Everyone in Session 14 forgot
+	to press it, because it sat in Your move, well away from the hand they had
+	just tapped.
+-->
+{#snippet primary()}
+	{#if needInitiative.length > 0}
+		{#each needInitiative as h (h)}
+			<button
+				type="button"
+				class="ct-btn ct-btn--primary"
+				disabled={busy || !card}
+				onclick={() => card && send({ type: 'play-initiative', holder: h, from: card })}
+			>
+				{h === mySeatId ? 'Play as initiative' : `Initiative for ${nameOf(h)}`}
+			</button>
+		{/each}
+	{:else if minorNow}
+		{#if chosen?.play !== 'ready'}
+			<button
+				type="button"
+				class="ct-btn ct-btn--primary"
+				disabled={busy || !card || !label}
+				onclick={() =>
+					card &&
+					send({
+						type: 'declare-minor',
+						holder: actingNow,
+						from: card,
+						label,
+						...(target ? { target } : {}),
+						// Guard as a minor swaps the initiative when the minors turn
+						// over (phase 33): sent from the pack's flag, as a turn's is.
+						...(chosen?.play === 'initiative' ? { mode: 'guard' } : {})
+					})}>Put it down</button
+			>
+		{/if}
+		{#if chosen?.play === 'ready' || (!chosen && custom.trim())}
+			<button
+				type="button"
+				class={chosen?.play === 'ready' ? 'ct-btn ct-btn--primary' : 'ct-btn'}
+				disabled={busy || !card || !label}
+				onclick={() => card && send({ type: 'ready-minor', holder: actingNow, from: card, label })}
+				>Ready it (keep it)</button
+			>
+		{/if}
+	{:else}
+		<button
+			type="button"
+			class="ct-btn ct-btn--primary"
+			disabled={busy || !card || !label}
+			onclick={() =>
+				card &&
+				send({
+					type: 'play-turn',
+					holder: actingNow,
+					from: card,
+					...(extras.length > 0 ? { extra: extras } : {}),
+					action: label,
+					...(target ? { target } : {}),
+					mode
+				})}
+		>
+			{mode === 'ready' ? 'Ready it' : mode === 'guard' ? 'Make it my initiative' : 'Play it'}
+		</button>
+	{/if}
+{/snippet}
 
 <section class="move" aria-labelledby="move-heading">
 	<h2 id="move-heading" class="ct-zone-label">Your move</h2>
 
 	{#if needInitiative.length > 0}
 		<p class="move__how">Pick a card from your hand for initiative, then:</p>
-		<div class="move__buttons">
-			{#each needInitiative as h (h)}
-				<button
-					type="button"
-					class="ct-btn ct-btn--primary"
-					disabled={busy || !card}
-					onclick={() => card && send({ type: 'play-initiative', holder: h, from: card })}
-				>
-					{h === mySeatId ? 'Play as initiative' : `Initiative for ${nameOf(h)}`}
-				</button>
-			{/each}
-		</div>
+		{#if !barShown}
+			<div class="move__buttons">{@render primary()}</div>
+		{/if}
 	{:else if upMine.length > 0 || minorMine.length > 0}
 		{@const minor = minorMine.length > 0 && upMine.length === 0}
 		{@const choices = minor ? minorMine : upMine}
@@ -241,32 +360,7 @@
 				     rest. So "Ready it" leads for those four and is not offered for an
 				     Attack: in the second live test a Riposte was put down and turned over
 				     instead of being kept. An action typed in gets both. -->
-				{#if chosen?.play !== 'ready'}
-					<button
-						type="button"
-						class="ct-btn ct-btn--primary"
-						disabled={busy || !card || !label}
-						onclick={() =>
-							card &&
-							send({
-								type: 'declare-minor',
-								holder: actingNow,
-								from: card,
-								label,
-								...(target ? { target } : {})
-							})}>Put it down</button
-					>
-				{/if}
-				{#if chosen?.play === 'ready' || (!chosen && custom.trim())}
-					<button
-						type="button"
-						class={chosen?.play === 'ready' ? 'ct-btn ct-btn--primary' : 'ct-btn'}
-						disabled={busy || !card || !label}
-						onclick={() =>
-							card && send({ type: 'ready-minor', holder: actingNow, from: card, label })}
-						>Ready it (keep it)</button
-					>
-				{/if}
+				{#if !barShown}{@render primary()}{/if}
 				<button
 					type="button"
 					class="ct-btn"
@@ -283,24 +377,7 @@
 					>
 				{/if}
 			{:else}
-				<button
-					type="button"
-					class="ct-btn ct-btn--primary"
-					disabled={busy || !card || !label}
-					onclick={() =>
-						card &&
-						send({
-							type: 'play-turn',
-							holder: actingNow,
-							from: card,
-							...(extras.length > 0 ? { extra: extras } : {}),
-							action: label,
-							...(target ? { target } : {}),
-							mode
-						})}
-				>
-					{mode === 'ready' ? 'Ready it' : mode === 'guard' ? 'Make it my initiative' : 'Play it'}
-				</button>
+				{#if !barShown}{@render primary()}{/if}
 				{#if mode !== 'play'}
 					<button
 						type="button"
@@ -344,13 +421,50 @@
 		<p class="move__how">Nothing for you to do just now.</p>
 	{/if}
 
+	{#if midRound && myFool && !foolHeld}
+		<p class="move__buttons move__fool">
+			<button type="button" class="ct-btn" disabled={busy} onclick={playTheFool}
+				>Play the Fool</button
+			>
+			<span class="move__how">An extra turn, before anyone else's: the Fool and one more card.</span
+			>
+		</p>
+	{/if}
+
 	{#if midRound}
-		<details class="move__out">
+		<!-- Always here mid-round, for the GM's groups as for a player (Card Table
+		     Test 3, note 9): it showed for the GM during minor actions and went,
+		     because the action picker it needs only came with a turn or a minor
+		     action. When neither is yours, it brings its own. -->
+		<details class="move__out" bind:open={outOpen}>
 			<summary>Out of turn: the Fool, or an interrupt</summary>
 			<p class="move__how">
-				Played before the acting turn, on anybody's turn. The Fool goes with another card: pick the
-				Fool, add its partner, choose the action.
+				{#if foolHeld}
+					The Fool is picked up. Now pick its partner from your hand, choose the action, and play it
+					out of turn.
+				{:else}
+					Played before the acting turn, on anybody's turn. The Fool goes with another card: pick
+					the Fool, add its partner, choose the action.
+				{/if}
 			</p>
+			{#if !picking}
+				<Actions
+					{catalogue}
+					{faces}
+					heldCard={card?.card ?? null}
+					bind:chosen
+					bind:custom
+					asGm={isGmSeat}
+					onTurn
+				/>
+				<label class="move__target">
+					At
+					<select class="ct-field" bind:value={target}>
+						<option value="">nobody in particular</option>
+						{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
+					</select>
+				</label>
+			{/if}
 			<div class="move__buttons">
 				{#each mine as h (h)}
 					<button
@@ -412,6 +526,21 @@
 			{/each}
 		</div>
 	{/if}
+
+	{#if barShown}
+		<div class="move__bar" bind:offsetHeight={barHeight} role="group" aria-label="The picked card">
+			<span class="move__bar__what"
+				><strong>{cardName}</strong>{needInitiative.length > 0
+					? ' — initiative'
+					: label
+						? ` — ${label}`
+						: ' — choose an action'}{extras.length > 0 ? `, with ${extras.length} more` : ''}</span
+			>
+			<span class="move__buttons">{@render primary()}</span>
+		</div>
+		<!-- Room for the bar, so nothing at the bottom of the page is under it. -->
+		<div class="move__bar-room" style:block-size="{barHeight}px" aria-hidden="true"></div>
+	{/if}
 </section>
 
 <style>
@@ -443,6 +572,28 @@
 		margin: 0;
 		font-size: 0.85rem;
 		color: var(--ct-quiet);
+	}
+	.move__bar {
+		position: fixed;
+		inset-inline: 0;
+		inset-block-end: 0;
+		z-index: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		align-items: center;
+		justify-content: center;
+		padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom));
+		background: var(--ct-table);
+		border-block-start: 1px solid var(--ct-rule-strong);
+		box-shadow: 0 -2px 8px rgb(0 0 0 / 0.15);
+	}
+	.move__bar__what {
+		font-size: 0.9rem;
+	}
+	.move__fool {
+		align-items: center;
+		margin: 0;
 	}
 	.move__out summary {
 		cursor: pointer;

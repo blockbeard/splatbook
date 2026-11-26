@@ -20,6 +20,7 @@
 	import SeatName from './SeatName.svelte';
 	import Pile from './Pile.svelte';
 	import PileViewer from './PileViewer.svelte';
+	import FatePile from './FatePile.svelte';
 	import GmDraw from './GmDraw.svelte';
 	import { gmDrawFacts } from './draw';
 	import { mayReach } from '../engine/zones';
@@ -29,6 +30,7 @@
 	import { suggest } from './guide';
 	import { HOLD_MS, actionKey, shouldHold } from './hold';
 	import YourMove from './YourMove.svelte';
+	import { addsWords, readiedAdds } from './adds';
 	import PlayArea from './PlayArea.svelte';
 	import { cardsForAction, type Action } from './actions';
 	import type { FaceIndex } from './faces';
@@ -247,10 +249,30 @@
 <svelte:window onkeydown={onKey} />
 
 <div class="ch">
-	{#if guide}
-		<p class="guide">
-			<span class="guide__text">{guide.text}</span>
-			{#if guide.action && (!guide.gmOnly || runs)}
+	{#if guide || (isGm && waiting.length > 0)}
+		<div class="guide">
+			{#if isGm}
+				<!-- A seat request in the line that stays on screen (Card Table Test 3,
+				     note 1): on a window a third of an ultrawide, the list further
+				     down was below the bottom of the screen, and nobody saw it. -->
+				{#each waiting as seat (seat.id)}
+					<span class="guide__ask">
+						<span>{seat.name} is asking for a seat</span>
+						<form method="POST" action="?/admit">
+							<input type="hidden" name="seatId" value={seat.id} />
+							<button type="submit" class="ct-btn ct-btn--primary">Let in</button>
+						</form>
+						<form method="POST" action="?/decline">
+							<input type="hidden" name="seatId" value={seat.id} />
+							<button type="submit" class="ct-btn ct-btn--quiet">Turn away</button>
+						</form>
+					</span>
+				{/each}
+			{/if}
+			{#if guide}
+				<span class="guide__text">{guide.text}</span>
+			{/if}
+			{#if guide?.action && (!guide.gmOnly || runs)}
 				{@const action = guide.action}
 				<!-- The filled button: the one thing the round is waiting for. "Next"
 				     was a quiet button among the text, and the GM went looking for it in
@@ -269,7 +291,7 @@
 			{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 				<a class="guide__jump" href="#move-heading">Your move</a>
 			{/if}
-			{#if guide.rule}
+			{#if guide?.rule}
 				<!-- A new tab, so the table keeps its place mid-fight. -->
 				<a
 					class="guide__rule"
@@ -281,7 +303,7 @@
 					rel="noopener">{guide.rule.label}<span class="sr-only"> (opens in a new tab)</span></a
 				>
 			{/if}
-		</p>
+		</div>
 	{/if}
 
 	<!--
@@ -400,7 +422,31 @@
 				onOpen={(id) => openPileFrom(id)}
 			/>
 		{/each}
+		{#if canAct}
+			<!-- A Test of Fate, in a fight as out of one (phase 33): Session 14 had
+			     no way to take one in a Challenge. The top of the player deck, onto
+			     the turned-over pile below, where anyone can see what it came to. -->
+			<button
+				type="button"
+				class="ct-btn ch__fate-btn"
+				disabled={busy}
+				onclick={() => onCommand({ type: 'move', from: { zone: 'deck:player' }, to: 'fate' })}
+			>
+				Test of Fate
+			</button>
+		{/if}
 	</div>
+
+	{#if zone('fate')?.count > 0}
+		<FatePile
+			zone={zone('fate')}
+			{faces}
+			selected={selectedPick}
+			locked={busy || !canAct}
+			onSelect={select}
+			onClear={() => onCommand({ type: 'clear-fate' })}
+		/>
+	{/if}
 
 	{#if isGm && waiting.length > 0}
 		<div class="ch__waiting">
@@ -458,11 +504,11 @@
 						face={facedown.cards?.[0] ? (faces[facedown.cards[0]] ?? null) : null}
 						faceDown
 						sideways
-						declared={declaredHere.label}
+						declared={`${declaredHere.label} · ${addsWords(readiedAdds(declaredHere.position))}`}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
-								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								? onCommand({ type: 'use-readied', holder: seat.id })
 								: null}
 					/>
 				{/if}
@@ -503,7 +549,7 @@
 							selected={selectedPick?.zone === durable.id}
 							onSelect={(p) => (selectedPick ? drop(durable.id) : select(p))}
 						/>
-					{:else if selectedPick && durable}
+					{:else if selectedPick && durable && runs}
 						<button
 							type="button"
 							class="slot slot--drop"
@@ -518,11 +564,11 @@
 						face={facedown.cards?.[0] ? (faces[facedown.cards[0]] ?? null) : null}
 						faceDown
 						sideways
-						declared={declaredHere.label}
+						declared={`${declaredHere.label} · ${addsWords(readiedAdds(declaredHere.position))}`}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
-								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								? onCommand({ type: 'use-readied', holder: seat.id })
 								: null}
 					/>
 				{/if}
@@ -544,11 +590,25 @@
 				</h3>
 				<div class="combatant__row">
 					{#if init.count > 0}
-						<Card
-							face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
-							faceDown={!table.round.shown.includes(enemy.id)}
-							pick={{ zone: init.id }}
-						/>
+						<div class="combatant__init">
+							<Card
+								face={init.cards?.[0] ? (faces[init.cards[0]] ?? null) : null}
+								faceDown={!table.round.shown.includes(enemy.id)}
+								pick={{ zone: init.id }}
+							/>
+							<!-- The GM's, for when a player attacks this group: "flip your
+							     Initiative card face up" holds for enemies too, and Session 14
+							     had no way to (phase 33). -->
+							{#if runs && !table.round.shown.includes(enemy.id)}
+								<button
+									type="button"
+									class="tag-btn"
+									disabled={busy}
+									onclick={() => onCommand({ type: 'show-initiative', holder: enemy.id })}
+									>Turn over<span class="sr-only"> {enemy.name}'s initiative</span></button
+								>
+							{/if}
+						</div>
 					{:else}
 						<span class="slot slot--empty">Initiative</span>
 					{/if}
@@ -558,7 +618,7 @@
 							face={readied.cards?.[0] ? (faces[readied.cards[0]] ?? null) : null}
 							faceDown
 							sideways
-							declared={table.facedown[readied.id].label}
+							declared={`${table.facedown[readied.id].label} · ${addsWords(readiedAdds(table.facedown[readied.id].position))}`}
 							pick={{ zone: readied.id }}
 							onSelect={() => (runs ? onCommand({ type: 'use-readied', holder: enemy.id }) : null)}
 						/>
@@ -641,8 +701,12 @@
 	     froze the page (25 November 2026). -->
 	{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 		<div class="ch__hand">
-			<div>
-				<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>
+			<div id="my-hand">
+				<!-- Says how it is ordered: a player in Session 14 wondered whether their
+				     hand had been shuffled (phase 33). -->
+				<p class="ct-zone-label">
+					{nameOf(mySeatId)} — your hand · sorted by value
+				</p>
 				<Hand
 					zone={zone(`seat:${mySeatId}:hand`)}
 					{faces}
@@ -691,6 +755,7 @@
 					collecting = false;
 					selection.clear();
 				}}
+				onPick={(pick) => selection.select(pick)}
 			/>
 		</div>
 	{/if}
@@ -750,6 +815,17 @@
 		.guide__jump {
 			display: inline-flex;
 		}
+	}
+	.guide__ask {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		flex-wrap: wrap;
+		flex-basis: 100%;
+		color: var(--ct-mark);
+	}
+	.guide__ask form {
+		margin: 0;
 	}
 	.guide__text {
 		font-family: 'IM Fell English', Georgia, serif;
@@ -871,6 +947,9 @@
 		flex-wrap: wrap;
 		align-items: flex-start;
 	}
+	.ch__fate-btn {
+		align-self: center;
+	}
 	.ch__waiting,
 	.ch__waiter {
 		display: flex;
@@ -934,6 +1013,11 @@
 		display: flex;
 		gap: 0.5rem;
 		align-items: flex-start;
+	}
+	.combatant__init {
+		display: grid;
+		gap: 0.25rem;
+		justify-items: center;
 	}
 	.slot--drop {
 		border-style: solid;

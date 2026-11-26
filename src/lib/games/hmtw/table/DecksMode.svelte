@@ -15,8 +15,8 @@
 <script lang="ts">
 	import Pile from './Pile.svelte';
 	import SeatRail from './SeatRail.svelte';
-	import Card from './Card.svelte';
 	import PileViewer from './PileViewer.svelte';
+	import FatePile from './FatePile.svelte';
 	import { mayReach } from '../engine/zones';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
@@ -114,6 +114,7 @@
 		selected={selectedPick}
 		onSelect={select}
 		onDrop={drop}
+		mayPut={() => runs}
 	/>
 
 	<div class="decks__table">
@@ -140,29 +141,16 @@
 		{/if}
 
 		{#if zone('fate').count > 0}
-			{@const drawn = zone('fate').cards ?? []}
-			<section class="fate">
-				<p class="ct-zone-label">
-					Turned over — {drawn.reduce((n, c) => n + (faces[c]?.value ?? 0), 0)}
-				</p>
-				<div class="fate__cards">
-					{#each drawn as card (card)}
-						<Card
-							face={faces[card] ?? null}
-							greaterDoom={faces[card]?.greaterDoom ?? false}
-							selected={selectedPick?.card === card}
-							pick={{ zone: 'fate', card }}
-							onSelect={select}
-						/>
-					{/each}
-				</div>
-				<p class="fate__note">
-					Card values only. Your attribute, favour and Resolve are yours to add.
-				</p>
-				<button type="button" onclick={() => onCommand({ type: 'clear-fate' })}>
-					Into the discard
-				</button>
-			</section>
+			<div class="decks__fate">
+				<FatePile
+					zone={zone('fate')}
+					{faces}
+					selected={selectedPick}
+					{locked}
+					onSelect={select}
+					onClear={() => onCommand({ type: 'clear-fate' })}
+				/>
+			</div>
 		{/if}
 
 		<div class="decks__piles">
@@ -230,7 +218,9 @@
 		pile={zone(openPile)}
 		{faces}
 		selected={selectedPick}
-		hint="Pick one up, then click a seat's Inspiration slot to give it to them."
+		hint={runs
+			? "Pick one up, then click a seat's Inspiration slot to give it to them."
+			: 'Pick one up to move it, or look closer.'}
 		bind:zoomed
 		onSelect={select}
 		onClose={closePane}
@@ -248,31 +238,8 @@
 	.decks__table {
 		flex: 1 1 22rem;
 	}
-	.fate {
-		border: 1px solid var(--ct-rule-strong);
-		border-radius: 4px;
-		padding: 0.75rem;
+	.decks__fate {
 		margin-block-end: 1.25rem;
-		display: grid;
-		gap: 0.5rem;
-		justify-items: start;
-	}
-	.fate__cards {
-		display: flex;
-		gap: 0.4rem;
-		flex-wrap: wrap;
-	}
-	/*
-	 * The sum is of the cards and nothing else, and it says so.
-	 *
-	 * An action's total is the card plus an attribute, with favour at plus or
-	 * minus three — and this table holds no character, so a number labelled
-	 * "total" would be wrong in a way that costs somebody a fight.
-	 */
-	.fate__note {
-		margin: 0;
-		font-size: 0.78rem;
-		color: var(--ct-quiet);
 	}
 	.decks__piles {
 		display: flex;

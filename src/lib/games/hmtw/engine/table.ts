@@ -47,10 +47,13 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  *   `settled`, `interrupt` and `extraTurn`; a `minor` zone per seat and
  *   group; `plays` and `minorDeclared`; and `guided` gone, since the steps are
  *   the guide.
- * v16 (this commit): `minorTargets`, who a face-down minor action is aimed at,
- *   from the second live test (25 November 2026).
+ * v16: `minorTargets`, who a face-down minor action is aimed at, from the
+ *   second live test (25 November 2026).
+ * v17: a play's `adds`, whether its total adds the attribute.
+ * v18 (this commit): `minorGuards`, the minor actions put down as Guard, and
+ *   the round's `readiedNow`, from Card Table Test 3 (26 November 2026).
  */
-export const TABLE_SCHEMA_VERSION = 16;
+export const TABLE_SCHEMA_VERSION = 18;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -72,6 +75,18 @@ export interface Play {
 	/** Who it was aimed at, if anyone was named: a seat, a group or a creature. */
 	target?: string;
 	kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
+	/**
+	 * Whether the card's total adds the player's attribute (v17, phase 33). The
+	 * book: "On your turn, your action's total value equals the card's face value
+	 * _plus_ the associated attribute", and "A minor action's total value equals
+	 * the card's face value". So a turn adds it, and an out-of-turn play does
+	 * (the Fool's extra turn is a turn); a minor action doesn't; a readied card
+	 * goes by where it was put down, above the initiative on your turn (adds) or
+	 * below it as a minor (face value). The table adds nothing itself: it only
+	 * says which kind each card is. Absent on a play stored before v17, which
+	 * shows neither.
+	 */
+	adds?: boolean;
 	/** The initiative number it was played at. */
 	number: number | null;
 }
@@ -169,6 +184,14 @@ export interface CardTable {
 	 * face up then.
 	 */
 	minorTargets: Record<string, string>;
+	/**
+	 * The face-down minor actions that are a Guard, by zone (v18, phase 33).
+	 * "Replace your Initiative with any card from your hand" is a
+	 * miscellaneous action, so it can be a minor one; when the minors turn
+	 * over, the card becomes its holder's initiative. Set from the pack's
+	 * `play: 'initiative'` flag, never from the label, which is free text.
+	 */
+	minorGuards: string[];
 	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
@@ -268,6 +291,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		plays: {},
 		minorDeclared: {},
 		minorTargets: {},
+		minorGuards: [],
 		scene: emptyScene(),
 		enemyHealth: 'shown',
 		zones
@@ -318,6 +342,13 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v17 → v18: no minor Guards, and nobody has readied a minor at this number,
+ * which is the safe reading: a minor already down turns over as it would have.
+ *
+ * v16 → v17: nothing moves. A play stored before `adds` has none, and the
+ * table shows neither "+ attribute" nor "face value" for it, which is honest:
+ * nobody recorded which it was.
  *
  * v15 → v16: no minor-action targets yet.
  *
@@ -383,7 +414,8 @@ function migrateRound(raw: Partial<Round> | undefined, table: CardTable): Round 
 		acted: base.acted ?? [],
 		answered: base.answered ?? [],
 		shown: base.shown ?? [],
-		playedHere: base.playedHere ?? false
+		playedHere: base.playedHere ?? false,
+		readiedNow: base.readiedNow ?? []
 	};
 	if (raw && 'step' in raw && raw.step) return current;
 
@@ -426,6 +458,8 @@ function migrateShape(raw: CardTable): CardTable {
 		minorDeclared: raw.minorDeclared ?? {},
 		// v16: nobody had named a target before there was a place to.
 		minorTargets: raw.minorTargets ?? {},
+		// v18: no minor action had been put down as a Guard.
+		minorGuards: raw.minorGuards ?? [],
 		round: newRound(),
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),

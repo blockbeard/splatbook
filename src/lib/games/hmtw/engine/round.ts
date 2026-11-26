@@ -13,7 +13,7 @@
 import { deal, discardAll, reshuffleDeck, type DealResult } from './moves';
 import type { CardTable } from './table';
 import { seededRng, type Rng } from './shuffle';
-import { deckZone, seatZone, opponentZone, type DeckId } from './zones';
+import { FATE_ZONE, deckZone, seatZone, opponentZone, type DeckId } from './zones';
 
 /**
  * Where the round has got to (phase 32). The first live test (25 November
@@ -69,6 +69,12 @@ export interface Round {
 	 * minor actions.
 	 */
 	playedHere: boolean;
+	/**
+	 * Who readied a card as a minor action at this number (v18, phase 33), so
+	 * it can be taken back until the minors turn over, as a minor put down can.
+	 * A readied card from an earlier number is kept, never taken back.
+	 */
+	readiedNow: string[];
 }
 
 export const newRound = (): Round => ({
@@ -79,7 +85,8 @@ export const newRound = (): Round => ({
 	acted: [],
 	answered: [],
 	shown: [],
-	playedHere: false
+	playedHere: false,
+	readiedNow: []
 });
 
 /** What the GM's draw is built from — `data/challenge.json`'s `handSizes.gm`, structurally. */
@@ -243,6 +250,12 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 		}
 	}
 
+	// The turned-over Tests of Fate too (phase 33). Left where they were, a Test
+	// of Fate taken in a Challenge sat out of the game: the reshuffle gathers
+	// only a deck and its discard, and Session 14's deck came back 54 cards, not
+	// 57. Before the reshuffle, so the Fool's shuffle takes them back in.
+	current = discardAll(current, FATE_ZONE, 'player');
+
 	if (current.round.foolDrawn) {
 		current = reshuffleDeck(current, 'player', rng);
 		current = reshuffleDeck(current, 'gm', rng);
@@ -253,6 +266,7 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 		plays: {},
 		minorDeclared: {},
 		minorTargets: {},
+		minorGuards: [],
 		round: { ...newRound(), number: current.round.number }
 	};
 }

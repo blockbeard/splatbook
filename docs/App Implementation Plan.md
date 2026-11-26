@@ -214,8 +214,8 @@ changed:
   deploy never sees it.
 - Checked and left alone: `endRound` already does its discards first and the
   Fool's reshuffle last, so adding the fate pile to the discards (commit 6)
-  puts its cards back in the deck with no reordering; the schema versions (v17 here,
-  v18 and v19 in Releases B and C) don't collide; the zone list is where "3 3"
+  puts its cards back in the deck with no reordering; the schema versions (v17
+  and v18 in A2, v19 to v21 in Releases B and C) don't collide; the zone list is where "3 3"
   misled (the Creatures panel is labelled already, and a player read it right).
 - **Still unproven:** the cold-start story. Node is not a Worker, and the stub
   D1 means a page load wasn't measured. Commit 1's script and the next game's
@@ -518,6 +518,32 @@ green, and deployed the same day.
   pages. A drizzle client and Auth.js config kept per isolate went in on
   2026-11-26 (`perf(db)`), with no measurable effect per request.
 
+**As built: A2 (2026-11-26).** Commits 6 to 13 on `phase-33-release-a2`, with
+type checks, lint, the unit tests and the card-table browser specs green.
+
+- **Commit 6**'s button and pile are one component, `FatePile`, shared with
+  Decks mode.
+- **Commit 8** found a bug on the way: clicking a seat's readied card sent
+  `reveal-facedown`, which is no command at all. It sends `use-readied`, as an
+  enemy's did. The inspiration slot shows only to whoever runs the table in
+  Decks mode too, and the seat request's pinned line made the guide a `div`,
+  since it holds forms.
+- **Commit 10**: what hid "Play out of turn" from the GM was the page, not the
+  engine. Its button needs an action, and the picker only came with a turn or a
+  minor action of your own, so it went once the GM had answered. Out of turn
+  now brings its own picker when neither is yours. The Fool is recognised as
+  the card with no suit in a player's hand.
+- **Commit 11** renders the send button from one snippet, in Your move or in the
+  bar, never both. When a card is picked with the hand under where the bar
+  sits, the page scrolls just enough to clear it.
+- **Commit 12** needed state as well as commands: which minors are a Guard
+  (`minorGuards`, public like the declaration) and who readied a minor at this
+  number (`round.readiedNow`), so only that card can be taken back. That is
+  schema v18, so Releases B and C move up one (v19 to v21). A take-back can't
+  restore a readied card that the new one replaced, since the book discards it.
+- **Commit 13**: the player handout lives in the campaign vault, and Chris
+  commits it.
+
 **Release B: any legal action.**
 
 14. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
@@ -535,7 +561,7 @@ green, and deployed the same day.
     with the interrupt it's offered under Out of turn. Everyone sees that a card
     was handed over and for what; only the giver and the receiver know which
     card. The label lives in a `counsel` map keyed by card, projected only to
-    those two. Schema v18, with a migration test.
+    those two. Schema v19, with a migration test.
 16. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 14 and 15.
     `talents.json` in the pack lists, for each path, the talents with a card
     shape in a Challenge: the name, the default "how", the suits, a one-line
@@ -552,13 +578,13 @@ green, and deployed the same day.
     `Play.target` and `minorTargets` become lists; the log names each one. Every
     target's initiative turns face up, as one target's does today when it is
     attacked.
-    Schema v19, with a migration test (a single target becomes a list of one).
+    Schema v20, with a migration test (a single target becomes a list of one).
 
 **Release C: the GM's table.**
 
 18. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
     as "Red Cloak (A)"; the letter stays, for the count and for anyone who knew
-    it by that. Schema v20 with a migration test.
+    it by that. Schema v21 with a migration test.
 19. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
     table polls every 3 seconds. Poll at the busy cadence for a minute or two
     after any change. This is the poll cadence, so ask Arrowed first: it may be

@@ -134,6 +134,23 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		await p.page.locator('.hand button').first().click();
 	}
 	failures.push(...(await violations(players[0].page)));
+	// With a card picked, the button that sends it is in a bar pinned to the
+	// bottom of the screen (phase 33), and on the phone the bar stays clear of
+	// the hand.
+	{
+		const phone = players[2].page;
+		const bar = phone.locator('.move__bar');
+		await expect(bar).toBeInViewport();
+		await expect(bar.getByRole('button', { name: 'Play as initiative' })).toBeVisible();
+		const barTop = (await bar.boundingBox())!.y;
+		const handBottom = await phone.evaluate(
+			() => document.getElementById('my-hand')!.getBoundingClientRect().bottom
+		);
+		expect(handBottom).toBeLessThanOrEqual(barTop);
+		// One button, not two: Your move doesn't also show it.
+		await expect(phone.getByRole('button', { name: 'Play as initiative' })).toHaveCount(1);
+		await shot(phone, 'phone-bar');
+	}
 	await Promise.all(
 		players.map((p) => p.page.getByRole('button', { name: 'Play as initiative' }).click())
 	);
@@ -152,6 +169,30 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	await expect
 		.poll(async () => (await projectionFor(gmContext, token)).state.round.step, POLLED)
 		.toBe('turn');
+
+	// --- The GM turns the zombies' initiative over (phase 33), and a player
+	// then sees the card. Unless the count is on the zombies already, which
+	// turns it over by itself.
+	{
+		const before = (await projectionFor(players[0].context, token)).state as Projection['state'] & {
+			opponents: { id: string }[];
+			round: { shown: string[] };
+		};
+		const zombies = before.opponents[0].id;
+		const slot = `opponent:${zombies}:initiative`;
+		if (!before.round.shown.includes(zombies)) {
+			expect(before.zones[slot].cards).toBeUndefined();
+			await gm.getByRole('button', { name: /^Turn over Zombie/ }).click();
+			await expect
+				.poll(
+					async () => (await projectionFor(players[0].context, token)).state.zones[slot].cards,
+					POLLED
+				)
+				.toHaveLength(1);
+		}
+		await expect(gm.getByRole('button', { name: /^Turn over Zombie/ })).toHaveCount(0, POLLED);
+		await expect(players[0].page.getByRole('button', { name: /^Turn over/ })).toHaveCount(0);
+	}
 
 	// --- The round, step by step, acting for whoever it waits on. ---
 	const pageFor = (holder: string) =>
@@ -179,6 +220,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	let declared = false;
 	let sawMinor = false;
 	let sawResolve = false;
+	let outChecked = false;
 
 	for (let guard = 0; guard < 30; guard++) {
 		const view = (await projectionFor(gmContext, token)).state;
@@ -204,6 +246,21 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				if (!view.upNow.includes(p.seat)) {
 					await expect(p.page.locator('.guide')).not.toContainText('your turn');
 				}
+			}
+			if (!outChecked && view.upNow.every((h) => pageFor(h).page !== gm)) {
+				// On a player's turn the GM has neither a turn nor a minor action,
+				// and Out of turn still offers a whole play for the groups (Card
+				// Table Test 3, note 9): its own action picker and the button.
+				outChecked = true;
+				const out = gm.locator('.move__out');
+				await out.locator('summary').click();
+				await expect(
+					out.locator('.actions').getByRole('button', { name: 'Attack', exact: true })
+				).toBeVisible();
+				await expect(
+					out.getByRole('button', { name: /^Play out of turn for Zombie/ })
+				).toBeVisible();
+				await out.locator('summary').click();
 			}
 			await page.locator('.hand button').first().click();
 			if (!readied && page !== gm) {
@@ -293,6 +350,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		await expect(p.locator('.guide')).toContainText('surrender', POLLED);
 	}
 	expect(readied).toBe(true);
+	expect(outChecked).toBe(true);
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);
