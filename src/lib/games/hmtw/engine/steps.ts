@@ -78,6 +78,18 @@ function hasCards(table: CardTable, holder: string): boolean {
 	return hand !== null && (table.zones[hand]?.cards.length ?? 0) > 0;
 }
 
+/**
+ * Whether a holder has a card they can play by itself (phase 33). The Fool
+ * needs a partner, so a hand of only the Fool is as good as empty: its holder
+ * isn't asked for a minor action (Card Table Test 3, note 5), and the count
+ * moves past them as it does an empty hand.
+ */
+function hasPlayable(table: CardTable, holder: string): boolean {
+	const hand = handOf(table, holder);
+	if (hand === null) return false;
+	return (table.zones[hand]?.cards ?? []).some((c) => !table.foolCards.includes(c));
+}
+
 /** A seat still at the table, or a group with a creature up. */
 const isLive = (table: CardTable, holder: string) =>
 	isSeat(table, holder) || groupsUp(table).includes(holder);
@@ -199,7 +211,7 @@ export function nextNumber(table: CardTable): CardTable {
 	}
 	const count = Math.min(...waiting.map(([, v]) => v));
 	const at = waiting.filter(([, v]) => v === count).map(([h]) => h);
-	const empty = at.filter((h) => !hasCards(table, h));
+	const empty = at.filter((h) => !hasPlayable(table, h));
 	const next = withRound(table, {
 		count,
 		step: 'turn',
@@ -395,8 +407,8 @@ export function showInitiative(table: CardTable, holder: string): StepResult {
  */
 export function expectedMinor(table: CardTable): string[] {
 	const acting = new Set(atCount(table));
-	const players = adventurers(table).filter((s) => !acting.has(s) && hasCards(table, s));
-	const groups = groupsUp(table).filter((g) => !acting.has(g) && hasCards(table, g));
+	const players = adventurers(table).filter((s) => !acting.has(s) && hasPlayable(table, s));
+	const groups = groupsUp(table).filter((g) => !acting.has(g) && hasPlayable(table, g));
 	return [...players, ...groups];
 }
 
@@ -407,7 +419,7 @@ export function waitingForMinor(table: CardTable): string[] {
 }
 
 function openMinor(table: CardTable): CardTable {
-	const open = withRound(table, { step: 'minor', answered: [] });
+	const open = withRound(table, { step: 'minor', answered: [], readiedNow: [] });
 	return expectedMinor(open).length === 0 ? revealMinors(open) : open;
 }
 
@@ -435,7 +447,9 @@ export function declareMinor(
 	from: Pick,
 	label: string,
 	actor?: string,
-	target?: string
+	target?: string,
+	/** A Guard: when the minors turn over, the card becomes the initiative. */
+	guard = false
 ): StepResult {
 	const refused = checkMinor(table, holder);
 	if (refused) return fail(refused);
@@ -449,7 +463,10 @@ export function declareMinor(
 				minorDeclared: { ...moved.table.minorDeclared, [zone]: label },
 				minorTargets: target
 					? { ...moved.table.minorTargets, [zone]: target }
-					: moved.table.minorTargets
+					: moved.table.minorTargets,
+				minorGuards: guard
+					? union(moved.table.minorGuards, [zone])
+					: moved.table.minorGuards.filter((z) => z !== zone)
 			},
 			[holder]
 		)
@@ -468,7 +485,10 @@ export function readyMinor(
 	if (refused) return fail(refused);
 	const placed = placeFacedown(table, holder, from, { position: 'minor', label }, actor);
 	if (!placed.ok) return fail(placed.reason);
-	return ok(answer(placed.table, [holder]));
+	const readied = withRound(placed.table, {
+		readiedNow: union(placed.table.round.readiedNow, [holder])
+	});
+	return ok(answer(readied, [holder]));
 }
 
 /** No minor action. The GM may pass for several groups at once. */
@@ -491,11 +511,33 @@ export function revealMinors(table: CardTable): CardTable {
 	const minorDeclared = { ...table.minorDeclared };
 	const minorTargets = { ...table.minorTargets };
 	const targeted: string[] = [];
+	const guarded: string[] = [];
+	const lostTurn: string[] = [];
 	const holders = [...table.seats, ...table.opponents.map((o) => o.id)];
 	for (const holder of holders) {
 		const zone = zoneOf(current, holder, 'minor');
 		const card = current.zones[zone]?.cards[0];
 		if (card === undefined) continue;
+		if (table.minorGuards.includes(zone)) {
+			// Guard as a minor action (Card Table Test 3, note 6): "replace your
+			// Initiative with any card from your hand … Your old Initiative is
+			// discarded." Turned over with the rest, it lands face up.
+			const slot = zoneOf(current, holder, 'initiative');
+			const cleared = discardAll(current, slot, isSeat(current, holder) ? 'player' : 'gm');
+			const swapped = moveCard(cleared, { zone }, slot);
+			if (!swapped.ok) continue;
+			current = swapped.table;
+			guarded.push(holder);
+			// A number at or below the count has gone, so its holder has lost
+			// their turn (Chris, 26 November 2026). At, because by the time the
+			// minors turn over the number's turns are done. Without this the
+			// count, which takes the lowest number still to act, would step back.
+			const count = table.round.count;
+			if (count !== null && (current.valueOf[card] ?? 0) <= count) lostTurn.push(holder);
+			delete minorDeclared[zone];
+			delete minorTargets[zone];
+			continue;
+		}
 		const moved = moveCard(current, { zone }, zoneOf(current, holder, 'played'));
 		if (!moved.ok) continue;
 		current = moved.table;
@@ -515,8 +557,12 @@ export function revealMinors(table: CardTable): CardTable {
 		delete minorTargets[zone];
 	}
 	const revealed = withRound(
-		{ ...current, plays, minorDeclared, minorTargets },
-		{ shown: union(current.round.shown, targeted) }
+		{ ...current, plays, minorDeclared, minorTargets, minorGuards: [] },
+		{
+			shown: union(current.round.shown, [...targeted, ...guarded]),
+			acted: union(current.round.acted, lostTurn),
+			readiedNow: []
+		}
 	);
 	// Nothing face up — a readied card, everyone passing — is nothing to work
 	// out, so the count moves straight on rather than waiting on the GM.
@@ -589,6 +635,11 @@ export function takeBack(table: CardTable, holder: string): StepResult {
 		return back.ok ? ok(back.table) : fail(back.reason);
 	}
 
+	if (inStep(table, 'minor') && table.round.answered.includes(holder)) {
+		const minor = takeBackMinor(table, holder, hand);
+		if (minor) return minor;
+	}
+
 	const open =
 		inStep(table, 'turn') || (inStep(table, 'minor') && table.round.answered.length === 0);
 	if (!open || !table.round.acted.includes(holder)) return fail('nothing-to-take-back');
@@ -621,6 +672,55 @@ export function takeBack(table: CardTable, holder: string): StepResult {
 			}
 		)
 	);
+}
+
+/**
+ * Take back a minor action until the minors turn over (Card Table Test 3,
+ * note 8): the card put down, or readied at this number, goes back to the hand
+ * it came from, and the answer is unanswered. A pass has no card to take back.
+ * Null when there is nothing of this holder's to take back.
+ */
+function takeBackMinor(table: CardTable, holder: string, hand: string): StepResult | null {
+	const zone = zoneOf(table, holder, 'minor');
+	const unanswered = (t: CardTable, round: Partial<CardTable['round']> = {}) =>
+		withRound(t, { answered: t.round.answered.filter((h) => h !== holder), ...round });
+
+	if ((table.zones[zone]?.cards.length ?? 0) > 0) {
+		const back = moveCard(table, { zone }, hand);
+		if (!back.ok) return fail(back.reason);
+		const minorDeclared = { ...back.table.minorDeclared };
+		const minorTargets = { ...back.table.minorTargets };
+		delete minorDeclared[zone];
+		delete minorTargets[zone];
+		return ok(
+			unanswered({
+				...back.table,
+				minorDeclared,
+				minorTargets,
+				minorGuards: back.table.minorGuards.filter((z) => z !== zone)
+			})
+		);
+	}
+
+	const facedown = facedownZoneOf(table, holder);
+	if (
+		facedown &&
+		table.round.readiedNow.includes(holder) &&
+		table.facedown[facedown]?.position === 'minor' &&
+		(table.zones[facedown]?.cards.length ?? 0) > 0
+	) {
+		const back = moveCard(table, { zone: facedown }, hand);
+		if (!back.ok) return fail(back.reason);
+		const kept = { ...back.table.facedown };
+		delete kept[facedown];
+		return ok(
+			unanswered(
+				{ ...back.table, facedown: kept },
+				{ readiedNow: table.round.readiedNow.filter((h) => h !== holder) }
+			)
+		);
+	}
+	return null;
 }
 
 /** Give up a readied card without using it — "If you no longer want to take the facedown action, discard the card." */

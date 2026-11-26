@@ -69,6 +69,12 @@ export interface Round {
 	 * minor actions.
 	 */
 	playedHere: boolean;
+	/**
+	 * Who readied a card as a minor action at this number (v18, phase 33), so
+	 * it can be taken back until the minors turn over, as a minor put down can.
+	 * A readied card from an earlier number is kept, never taken back.
+	 */
+	readiedNow: string[];
 }
 
 export const newRound = (): Round => ({
@@ -79,7 +85,8 @@ export const newRound = (): Round => ({
 	acted: [],
 	answered: [],
 	shown: [],
-	playedHere: false
+	playedHere: false,
+	readiedNow: []
 });
 
 /** What the GM's draw is built from — `data/challenge.json`'s `handSizes.gm`, structurally. */
@@ -259,6 +266,7 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 		plays: {},
 		minorDeclared: {},
 		minorTargets: {},
+		minorGuards: [],
 		round: { ...newRound(), number: current.round.number }
 	};
 }

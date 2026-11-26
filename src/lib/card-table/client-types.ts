@@ -56,6 +56,8 @@ export interface ProjectedTable {
 		/** Whose initiative card is face up. */
 		shown: string[];
 		playedHere: boolean;
+		/** Who readied a minor action at this number, and may take it back (v18). */
+		readiedNow?: string[];
 	};
 	/** What each face-up played card was for, by card id. */
 	plays: Record<
@@ -74,6 +76,8 @@ export interface ProjectedTable {
 	minorDeclared: Record<string, string>;
 	/** Who each face-down minor action is aimed at, by zone. */
 	minorTargets: Record<string, string>;
+	/** Which face-down minor actions are a Guard, by zone (v18). */
+	minorGuards?: string[];
 	facedown: Record<string, { position: 'turn' | 'minor'; label: string }>;
 	/**
 	 * Whose initiative the count has reached, seats and enemies alike.

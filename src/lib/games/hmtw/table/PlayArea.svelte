@@ -76,6 +76,7 @@
 				zone: `${h.zone}:minor`,
 				label: table.minorDeclared[`${h.zone}:minor`] ?? 'Minor action',
 				target: table.minorTargets?.[`${h.zone}:minor`],
+				guard: (table.minorGuards ?? []).includes(`${h.zone}:minor`),
 				card: table.zones[`${h.zone}:minor`]?.cards?.[0]
 			}))
 	);
@@ -118,7 +119,7 @@
 						<span class="play__action">{down.label}</span>
 						{#if down.target}<span class="play__target">→ {nameOf(down.target)}</span>{/if}
 						<span class="play__kind">minor action, face down</span>
-						<span class="play__adds">face value</span>
+						<span class="play__adds">{down.guard ? 'becomes the initiative' : 'face value'}</span>
 					</p>
 				</li>
 			{/each}

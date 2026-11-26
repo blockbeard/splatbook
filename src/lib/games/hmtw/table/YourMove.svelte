@@ -151,6 +151,15 @@
 	const takeBackable = $derived(
 		mine.filter((h) => {
 			if (step === 'initiative') return hasInitiative(h);
+			// A minor action put down, or readied at this number, until the
+			// minors turn over (Card Table Test 3, phase 33).
+			const minorZone = h === mySeatId ? `seat:${h}:minor` : `opponent:${h}:minor`;
+			if (
+				step === 'minor' &&
+				table.round.answered.includes(h) &&
+				((table.zones[minorZone]?.count ?? 0) > 0 || (table.round.readiedNow ?? []).includes(h))
+			)
+				return true;
 			const open = step === 'turn' || (step === 'minor' && table.round.answered.length === 0);
 			return (
 				open &&
@@ -256,7 +265,10 @@
 						holder: actingNow,
 						from: card,
 						label,
-						...(target ? { target } : {})
+						...(target ? { target } : {}),
+						// Guard as a minor swaps the initiative when the minors turn
+						// over (phase 33): sent from the pack's flag, as a turn's is.
+						...(chosen?.play === 'initiative' ? { mode: 'guard' } : {})
 					})}>Put it down</button
 			>
 		{/if}

@@ -9,7 +9,7 @@ import { dirname, join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { loadPackFile } from '../../packs/fs-loader';
 import { hmtwCardTable } from './card-table';
-import { seededRng } from './engine';
+import { TABLE_SCHEMA_VERSION, seededRng } from './engine';
 import type { CardTable } from './engine';
 
 const packRoot = join(
@@ -405,7 +405,7 @@ describe('the scene and its creatures', () => {
 		delete old.enemyHealth;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
 		expect(migrated.enemyHealth).toBe('shown');
-		expect(migrated.schemaVersion).toBe(17);
+		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
 	});
 
 	it('marks a creature down and back up', () => {
@@ -445,7 +445,7 @@ describe('the scene and its creatures', () => {
 			]
 		} as unknown as CardTable;
 		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
-		expect(migrated.schemaVersion).toBe(17);
+		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
 		expect(migrated.opponents).toHaveLength(1);
 		expect(migrated.opponents[0].creatures.map((c) => c.letter)).toEqual(['A', 'B']);
 	});
@@ -865,6 +865,32 @@ describe('Session 14: two on initiative 1, and Next pressed twice', () => {
 		// GM's override is the GM's.
 		const skipped = run(t, next(t));
 		expect(view(skipped).upNow).toEqual([]);
+	});
+
+	it('carries a minor Guard through the command (phase 33)', () => {
+		let t = tiedOnOne();
+		t = run(t, attack('bonnie', 'swords-ii'), 'bonnie');
+		t = run(t, attack('tatyana', 'cups-ii'), 'tatyana');
+		expect(view(t).round.step).toBe('minor');
+		const guard = {
+			type: 'declare-minor',
+			holder: 'lion',
+			from: { zone: 'seat:gm:hand', card: 'star' },
+			label: 'Guard',
+			mode: 'guard'
+		};
+		expect(reduce(t, { ...guard, mode: 'swap' })).toEqual({
+			ok: false,
+			reason: 'malformed-command'
+		});
+		const out = reduce(t, guard);
+		expect(out.ok && out.data).toMatchObject({ holder: 'lion', label: 'Guard', mode: 'guard' });
+		// The lion was the last to answer, so the minors turn over at once.
+		t = run(t, guard);
+		expect(t.round.step).toBe('resolve');
+		expect(t.zones['opponent:lion:initiative'].cards).toEqual(['star']);
+		expect(t.zones['discard:gm'].cards).toContain('sun');
+		expect(view(t, 'bonnie').round).toMatchObject({ step: 'resolve' });
 	});
 
 	it('takes a Next with no round attached, as an older page sends it', () => {
