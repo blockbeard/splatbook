@@ -16,6 +16,255 @@
 
 *Toward v2.3: offline/PWA first (precache the static reference + a web manifest, then a write queue for sheets), and the user-facing half of the data-safety story (a "download my data" JSON export on the dashboard — the operator half, the scheduled D1 export, was pulled forward into phase 19). Both were reviewed 2026-07-12 and deferred, not rejected. Also parked from the Hearthfire review: lines-and-veils safety tools (excluded / veiled / special handling) and shared "Threats" / "I wonder…" boards on the campaign dashboard — cheap, very Stonetop, and worth doing once the session ledger exists to hold them.*
 
+## Phase 33 — HMtW card table: what Session 14 found
+
+*Filed 2026-11-26, from Session 14 of the Castle Automatic on 2026-11-25: the
+first real game on the table, the GM and four players, two Bouts in about an
+hour. The notes are the "Card table feedback" write-up of the session and the
+group's Discord afterwards. It mostly worked: the private initiative, the
+automatic count, "click a card to see what it pays for", the minor-action
+prompts and the In play area were all named as wins. Olivia: "i understand it
+more now than i have the last three sessions ive played!" Edmund: "even just
+that, I feel like saved multiple dozens of minutes."*
+
+*What went wrong is one crash, a handful of bugs, and the thing the Discord
+picked up on: there is no way to play a talent, or to hand a card to someone.
+Chris, in the Discord: "There definitely needs to be a way to do any legal
+action."*
+
+*The layout wishes (a sticky header, the play area by zone, the map at the
+top) are not in this phase. They go into one design pass with Edmund, on
+Olivia's advice not to let it become too many cooks. The polling and request
+code is not in it either: Edmund is sending that as a series of PRs, and PR #1
+was step 1 of 15.*
+
+### What Session 14 found
+
+**The crash.** At the end of Bout I's first minor actions Chris pressed Next.
+Bonnie and Tatyana were both on Initiative 1, so the count rightly stayed on 1
+for Tatyana's turn, but nothing on screen said so. Chris pressed Next again,
+which skipped Tatyana, and the table answered "Worker exceeded resource
+limits", then Cloudflare's 1102 ("CPU time per HTTP request 10 milliseconds").
+After that the page said it was no longer taking cards. A refresh brought it
+back with the game intact.
+
+Three separate things are in that, and only one of them is the CPU limit:
+
+1. **The second Next skipped a turn.** `step-on` carries nothing about what
+   it is moving on from, so a second click, or a click from a page a poll
+   behind, acts on whatever the round has become. At a tie it skips the second
+   person on the number.
+2. **The page gave up on a table that was fine.** `sendCommand` turns any reply
+   that is not the table's own JSON into `no-such-table`, so an HTML 1102 page
+   reads as "This table is no longer taking cards." A fetch that throws never
+   releases `busy`, so the page stops sending anything until a reload. That is
+   what "stopped taking cards" was, and why a refresh fixed it.
+3. **A request went over 10 ms of CPU.** Which one isn't known yet. The engine's
+   commands run in under a millisecond, so the cost is around them: loading
+   and migrating the table's state, projecting it, the first request on a cold
+   route, or a picture upload. Splatbook stays on Workers Free (Chris,
+   2026-11-26), so 10 ms per request is a design limit, not a bill to pay.
+
+**The bugs.**
+
+- **The deck came to 54 cards, not 57, after the Fool's reshuffle.** Two Test
+  of Fate cards never went back. The fate pile is only shown in Decks mode, the
+  end of a round doesn't clear it, and the reshuffle gathers only the deck and
+  its discard, so a Test of Fate during a Challenge takes its card out of the
+  game until the table is reset.
+- **The GM couldn't turn an enemy's initiative over.** `show-initiative`
+  already accepts a group; there is no button for one.
+- **The Fool with its partner is hard to find.** It works ("Add a card to it",
+  under the closed "Out of turn"), but Chris didn't remember it existing.
+- **Everyone forgot to press Put it down / Play it.** Edmund: "we gotta move
+  that." It sits in Your move, well away from the hand you just tapped.
+- **Your own face-down card shows its rank, in Roman numerals.** A played 2
+  showed "II", which read as 11, until it turned face up and showed "2".
+- **"3 3" on the lion** read as Health and Defense with no labels, while the
+  zone panel shows Health only.
+- **Clarissa wondered whether her hand had been shuffled.** It is sorted by
+  value, and nothing says so.
+- **Tests of Fate took a second to appear for everyone**, and show the card's
+  value only, with no attribute added.
+- **The letters A to F were hard to keep track of.** There is no way to name a
+  creature.
+
+**What the Discord asked for: talents and Counsel.** Eldritch had to play his
+Counsel card as Tatyana's Recover, because there is no way to hand a card over.
+Clarissa suggested a "path talent" option with a choice of how the card is
+played. Olivia wanted just "Talent" with that choice, not a list of every
+talent. Edmund found the full list too long to scroll every time. Chris
+suggested a drop-down to pick which path's talents to show, none by default,
+each adding buttons like the general actions. And Chris drew the line: no
+character sheet, no abilities or favour, "to keep it closer to in person play".
+
+Going through Chapter 5's talents for what they do with a card in a Challenge,
+they come down to a few shapes, all but one of which the table already has:
+
+| What the talent does with the card | Examples | The table today |
+| --- | --- | --- |
+| A named action on your turn, face up | Doom Eye's perfect shot, Gramarye | "Something else" |
+| An action as a minor, with another suit | Two-handed Focus, Fight Dirty | Minor action (suits dim, never refuse) |
+| An interrupt | Quick!, Counter-spell, Heavy Metal Machine | Out of turn |
+| Discard any card for a miscellaneous action | Heavy Metal Machine | **Nothing** |
+| Hand a card to another adventurer | Counsel | **Nothing** |
+
+The rest (Monster Hunter, Ambusher, Aegis and so on) change a number, a Wound
+or a notch, which the table leaves to the people at it. The gap is therefore
+small: one "how is it played" choice, a discard, and handing a card over.
+
+**A second face-down card**, the other half of the Counsel problem, is the
+book's rule rather than a bug: "You may only have one facedown action at a
+time" (ch.7, Facedown cards). The counselled card goes into the other player's
+hand, so it never needs a second face-down slot.
+
+### Decided
+
+- **Stay on Workers Free** (Chris, 2026-11-26). Fix the CPU in code; don't
+  raise the Paid plan unless 1102s become frequent.
+- **No character sheet.** Talents are about how a card is played, never about
+  what they add to a number (Chris, in the Discord).
+- **Enemy stats stay shown by default**, with the GM's switch to hide them
+  (phase 32). Edmund likes not knowing; his GM can untick it.
+- **The layout waits for the design pass with Edmund**, except the Play it
+  button, which two people forgot in one session and needs a fix now.
+
+### For Chris to decide
+
+1. **Talents: the "how" choice first, the path buttons after?** I'd build the
+   choice (commit 10) and Counsel (commit 11) first, since together they make
+   every talent playable. The path drop-down (commit 12) is a convenience on
+   top, and needs the pack to list each talent's card shape and a one-line
+   summary.
+2. **What did Olivia mean by "draw"?** Her options were "play, place, draw". No
+   talent in Chapter 5 draws a card during a Challenge (High Chant takes cards
+   from the discard, at Camp). "Hand it to someone" may be what she meant.
+3. **Tests of Fate with an attribute.** Leave them as the card's value, with the
+   player saying the total (my recommendation, in line with no character sheet),
+   or add an optional "+ attribute" box on the fate pile?
+4. **The lost Bout II picture.** Did it go up and then vanish, or was it never
+   put up? If it vanished, that's a bug for Release A.
+
+### The design
+
+**Release A: nothing stops the table.** Needed before the next session.
+
+1. `test(hmtw)`: **measure first.** Build a table the size of Session 14's (the
+   GM, four players, three enemy groups with six creatures, a picture, two
+   rounds of events) and time each request path through the service on node:
+   `step-on` through `loadTable`, `runCommand` and `viewFor`; a changed poll for
+   each seat; the picture PUT. Include the exact sequence from the session (a
+   tie on 1, minors answered, Next, Next). Node is faster than a Worker, so the
+   numbers compare paths against each other rather than against 10 ms. They go
+   into this plan. Chris also runs the log tail at the next game, to catch the
+   one that goes over.
+2. `fix(card-table)`: **a hiccup isn't a closed table.** `sendCommand` tells a
+   reply from the table (404, 409, 410, 422 with JSON) from anything else (a
+   5xx, an HTML error page, a network failure). Anything else says "The table
+   didn't answer. Try again.", catches up, and leaves every control working;
+   `busy` is released in a `finally`. Only a real 404 or 410 says the table is
+   closed. A unit test drives each case through the page's `run`.
+3. `fix(hmtw)`: **Next knows what it's moving on from.** `step-on` carries the
+   step, the count and who is up when it was pressed. The server refuses a stale
+   one as `already-moved-on`, which the page reads as "The round has moved on".
+   At a tie, the guide names both people and says whose turn it is now:
+   "Bonnie and Tatyana are both on 1. Tatyana's turn." A `steps.test.ts` case
+   replays the session.
+4. `perf(hmtw)`: **cut whatever commit 1 finds over budget.** I can't name it
+   before measuring. If it's the state, migrate only when the stored
+   `schemaVersion` is behind, and project once per request rather than once per
+   question. If it's the picture upload, send the bytes as the body rather than
+   a 1.4 MB JSON string. If nothing stands out, say so here and leave it to the
+   tail.
+5. `fix(hmtw)`: **the Test of Fate pile in a Challenge.** Shown beside the decks
+   in Challenge mode, with its cards and a Clear button. The end of a round
+   discards it to the player discard, so the Fool's reshuffle gathers it.
+   `invariants.test.ts` gains a run that turns over Tests of Fate through a
+   round with the Fool and checks every card is somewhere, exactly once.
+6. `feat(hmtw)`: **the GM turns over an enemy's initiative.** A "Turn over"
+   button on each group's initiative in "In the fight", for the GM only.
+7. `fix(hmtw)`: **the small things on a card.** Your own face-down card shows its
+   value ("2"), never its rank. A creature reads "Health 3 · Defense 3". The
+   hand says "Sorted by value".
+8. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
+   "Play the Fool", which picks it and starts adding its partner, instead of
+   leaving it inside the closed "Out of turn".
+9. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
+   to the bottom of the screen carries the card, the chosen action and the
+   button (Play it, Put it down, Ready it). It is the smallest change that puts
+   the button where your finger is; the design pass may redo it.
+
+**Release B: any legal action.**
+
+10. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
+    name, typed, and how the card is played: Play it now (face up, on your turn),
+    Ready it (face down, above), As a minor action (face down, below), Out of
+    turn (an interrupt), Discard it (a miscellaneous action), or Hand it to
+    someone (commit 11). Each is an existing command except the last two. In
+    play labels it with the name.
+11. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
+    your hand to another adventurer's, any time in a Challenge, with the action
+    you counsel and whether it may interrupt (the Resolve was spent). The card
+    arrives labelled "From Eldritch: Recover". Playing it picks that action, and
+    with the interrupt it's offered under Out of turn. Everyone sees that a card
+    was handed over and for what; only the giver and the receiver know which
+    card. The label lives in a `counsel` map keyed by card, projected only to
+    those two. Schema v17, with a migration test.
+12. `feat(hmtw)` + `content(hmtw)`: **talents by path** (decision 1).
+    `talents.json` in the pack lists, for each path, the talents with a card
+    shape in a Challenge: the name, the default "how", the suits, a one-line
+    summary written for the table, and a link to its Chapter 5 heading. Your
+    move gains "Show talents for: none, Swords, Pentacles, Cups, Wands", none by
+    default and remembered on the device. A chosen path adds its talents as
+    buttons beside the actions. SCHEMA.md and `pack-schemas.ts` grow with it.
+
+**Release C: the GM's table.**
+
+13. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
+    as "Red Cloak (A)"; the letter stays, for the count and for anyone who knew
+    it by that. Schema bump with a migration test.
+14. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
+    table polls every 3 seconds. Poll at the busy cadence for a minute or two
+    after any change. This is the poll cadence, so ask Edmund first: it may be
+    one of his steps.
+15. `docs`: **close phase 33.** The player handout gains talents, handing a card
+    over and the Fool; the CHANGELOG; this section to the history.
+
+**Guards.** The a11y spec stays the floor and gains a state for the talent
+choice, the handed card and the pinned bar. The next real session is the test,
+as Session 14 was for phase 32. Each release builds, type-checks and passes
+lint, unit and browser tests before it's merged.
+
+### Not in this phase
+
+- **The layout pass with Edmund.** The wishes so far: a sticky header with the
+  round, initiative and whose turn it is (Edmund); the play area in columns by
+  zone, sketched before it's coded (Edmund, with Clarissa's worry about cards
+  jumping when people move); the map and zones at the top, cards below
+  (Clarissa); Olivia's view filling only two-thirds of her screen height; enemies
+  on one line and players on another (Chris); each player pinning sections to
+  the top (Chris).
+- **The polling and request code**: Edmund's PRs. Commit 14 asks him first.
+- **Workers Paid**, declined.
+- **Phase 30's items** (a player who wanders off, room codes) and phase 31's
+  stat-block links.
+- **Table talk that isn't the app's**: treasure, healing costs, physical decks,
+  fewer minor actions, how many players per session.
+
+### Considered and rejected
+
+**Automating each talent.** It would need the character sheet Chris ruled out,
+and the book's talents mostly change numbers the table already leaves to
+people. The "how" choice makes them all playable without the table knowing
+what they do.
+
+**A second face-down slot for Counsel.** The book allows one face-down action
+at a time. A counselled card goes into a hand, where the rule already allows it.
+
+**Refusing an off-suit card for a talent.** Suits dim, never refuse, as in
+phase 32. Two-handed Focus and Fight Dirty are exactly the cases where the
+"wrong" suit is right.
+
 ## Phase 21 — Manual test follow-ups (v2.2.0 binder pass)
 
 *Chris ran the first human-in-a-browser pass over the binder release (commits
