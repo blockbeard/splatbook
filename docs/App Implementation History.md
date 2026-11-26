@@ -1527,9 +1527,9 @@ Miro for:
   hands with real people before building on them. Chris chose to build first,
   so the group's first fight on the table has the zones and creatures. Live
   testing is therefore the two-browser fight after Milestone A (see "Guards").
-  Edmund's Session 13 warning is the reason it is not optional: this is
+  Arrowed's Session 13 warning is the reason it is not optional: this is
   "really hard to do without live humans testing it".
-- **Build it regardless of Guildbook.** Edmund is building a card table in
+- **Build it regardless of Guildbook.** Arrowed is building a card table in
   Guildbook and Chris offered to help test it. This goes ahead anyway, and the
   group can try both.
 - **Zones are a drop-down, not a map.** Every adventurer and every creature has
@@ -2382,5 +2382,5 @@ not worked through: Session 14 of the Castle Automatic that evening was the
 first real game on the table, the GM and four players, and Chris judged it "far
 more authoritative than anything we were doing". The player instructions were
 written (`Player Handouts/Card Table.md` in the campaign vault). What Session 14
-found is phase 33. Edmund's PR #1 (an unchanged poll answered from one query)
+found is phase 33. Arrowed's PR #1 (an unchanged poll answered from one query)
 was merged and deployed after it.*

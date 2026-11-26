@@ -23,8 +23,8 @@ first real game on the table, the GM and four players, two Bouts in about an
 hour. The notes are the "Card table feedback" write-up of the session and the
 group's Discord afterwards. It mostly worked: the private initiative, the
 automatic count, "click a card to see what it pays for", the minor-action
-prompts and the In play area were all named as wins. Olivia: "i understand it
-more now than i have the last three sessions ive played!" Edmund: "even just
+prompts and the In play area were all named as wins. One player: "i understand it
+more now than i have the last three sessions ive played!" Another: "even just
 that, I feel like saved multiple dozens of minutes."*
 
 *What went wrong is one crash, a handful of bugs, and the thing the Discord
@@ -33,9 +33,9 @@ Chris, in the Discord: "There definitely needs to be a way to do any legal
 action."*
 
 *The layout wishes (a sticky header, the play area by zone, the map at the
-top) are not in this phase. They go into one design pass with Edmund, on
-Olivia's advice not to let it become too many cooks. The polling and request
-code is not in it either: Edmund is sending that as a series of PRs, and PR #1
+top) are not in this phase. They go into one design pass with Arrowed, on a
+player's advice not to let it become too many cooks. The polling and request
+code is not in it either: Arrowed is sending that as a series of PRs, and PR #1
 was step 1 of 15.*
 
 ### What Session 14 found
@@ -80,15 +80,15 @@ Three separate things are in that, and only one of them is the CPU limit:
   already accepts a group; there is no button for one.
 - **The Fool with its partner is hard to find.** It works ("Add a card to it",
   under the closed "Out of turn"), but Chris didn't remember it existing.
-- **Everyone forgot to press Put it down / Play it.** Edmund: "we gotta move
+- **Everyone forgot to press Put it down / Play it.** A player: "we gotta move
   that." It sits in Your move, well away from the hand you just tapped.
 - **Your own face-down card shows its rank, in Roman numerals.** A played 2
   showed "II", which read as 11, until it turned face up and showed "2".
 - **"3 3" on the lion** was the book's stat line (Health 3, Defense 3) in the
   group's name, while the zone list in the scene shows Health only, as a bare
-  number. Edmund read the Creatures panel correctly ("Defense is 0 of 3, health
+  number. A player read the Creatures panel correctly ("Defense is 0 of 3, health
   3 of 3"); the zone list is what misled.
-- **Clarissa wondered whether her hand had been shuffled.** It is sorted by
+- **A player wondered whether their hand had been shuffled.** It is sorted by
   value, and nothing says so.
 - **Tests of Fate took a second to appear for everyone**, and show the card's
   value only, with no attribute added.
@@ -107,9 +107,9 @@ Three separate things are in that, and only one of them is the CPU limit:
 
 **What the Discord asked for: talents and Counsel.** Eldritch had to play his
 Counsel card as Tatyana's Recover, because there is no way to hand a card over.
-Clarissa suggested a "path talent" option with a choice of how the card is
-played. Olivia wanted just "Talent" with that choice, not a list of every
-talent. Edmund found the full list too long to scroll every time. Chris
+One player suggested a "path talent" option with a choice of how the card is
+played. Another wanted just "Talent" with that choice, not a list of every
+talent. A third found the full list too long to scroll every time. Chris
 suggested a drop-down to pick which path's talents to show, none by default,
 each adding buttons like the general actions. And Chris drew the line: no
 character sheet, no abilities or favour, "to keep it closer to in person play".
@@ -216,7 +216,7 @@ changed:
   Fool's reshuffle last, so adding the fate pile to the discards (commit 6)
   puts its cards back in the deck with no reordering; the schema versions (v17 here,
   v18 and v19 in Releases B and C) don't collide; the zone list is where "3 3"
-  misled (the Creatures panel is labelled already, and Edmund read it right).
+  misled (the Creatures panel is labelled already, and a player read it right).
 - **Still unproven:** the cold-start story. Node is not a Worker, and the stub
   D1 means a page load wasn't measured. Commit 1's script and the next game's
   tail are how this phase finds out whether A1 fixed it.
@@ -228,8 +228,8 @@ changed:
 - **No character sheet.** Talents are about how a card is played, never about
   what they add to a number (Chris, in the Discord).
 - **Enemy stats stay shown by default**, with the GM's switch to hide them
-  (phase 32). Edmund likes not knowing; his GM can untick it.
-- **The layout waits for the design pass with Edmund**, except the Play it
+  (phase 32). One player likes not knowing; their GM can untick it.
+- **The layout waits for the design pass with Arrowed**, except the Play it
   button, which two people forgot in one session and needs a fix now, and the
   seat request in the pinned line (commit 8), which a GM could not see at all.
 
@@ -237,7 +237,7 @@ changed:
 
 1. **The "how is it played" choice and Counsel first**, then talents by path
    (commits 14, 15 and 16, in that order).
-2. **Olivia's "draw" meant handing a card to a player**, which is commit 15.
+2. **The player's "draw" meant handing a card to a player**, which is commit 15.
    There is no draw option.
 3. **Tests of Fate stay the card's value.** "We decided to keep abilities out of
    it for now."
@@ -510,7 +510,7 @@ green, and deployed the same day.
   because the browser sends a 1.4 MB JSON string. None of these is in A2.
 - **Backend CPU from here is an issue, not this plan:**
   [blockbeard/splatbook#2](https://github.com/blockbeard/splatbook/issues/2),
-  filed 2026-11-26 so Edmund can take it if he wants it. Profiled in workerd
+  filed 2026-11-26 so Arrowed can take it if he wants it. Profiled in workerd
   (`tools/profile-commands.ts`), a command is about 3.5 to 4 ms of CPU and
   close to half of that is the database layer: eight queries, three of them
   writes, with the table's state read and parsed twice. The issue carries the
@@ -561,7 +561,7 @@ green, and deployed the same day.
     it by that. Schema v20 with a migration test.
 19. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
     table polls every 3 seconds. Poll at the busy cadence for a minute or two
-    after any change. This is the poll cadence, so ask Edmund first: it may be
+    after any change. This is the poll cadence, so ask Arrowed first: it may be
     one of his steps.
 20. `docs`: **close phase 33.** The player handout gains talents, handing a card
     over and naming creatures; the CHANGELOG; this section to the history.
@@ -573,14 +573,14 @@ lint, unit and browser tests before it's merged.
 
 ### Not in this phase
 
-- **The layout pass with Edmund.** The wishes so far: a sticky header with the
-  round, initiative and whose turn it is (Edmund); the play area in columns by
-  zone, sketched before it's coded (Edmund, with Clarissa's worry about cards
+- **The layout pass with Arrowed.** The wishes so far: a sticky header with the
+  round, initiative and whose turn it is (Arrowed); the play area in columns by
+  zone, sketched before it's coded (Arrowed, with a player's worry about cards
   jumping when people move); the map and zones at the top, cards below
-  (Clarissa); Olivia's view filling only two-thirds of her screen height; enemies
+  (a player); one player's view filling only two-thirds of their screen height; enemies
   on one line and players on another (Chris); each player pinning sections to
   the top (Chris).
-- **The polling and request code**: Edmund's PRs. Commit 19 asks him first.
+- **The polling and request code**: Arrowed's PRs. Commit 19 asks him first.
 - **Backend CPU**: [blockbeard/splatbook#2](https://github.com/blockbeard/splatbook/issues/2).
 - **Workers Paid**, declined.
 - **Phase 30's items** (a player who wanders off, room codes) and phase 31's

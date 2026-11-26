@@ -168,7 +168,7 @@ async function setUp() {
 	const table = created.table;
 
 	const seats: Seat[] = [];
-	for (const name of ['The GM', 'Bonnie', 'Tatyana', 'Eldritch', 'Dan']) {
+	for (const name of ['The GM', 'Bonnie', 'Tatyana', 'Eldritch', 'Elric']) {
 		const asked = await requestSeat(db, table.id, name);
 		if (!asked.ok) throw new Error('seat refused');
 		const seat = {

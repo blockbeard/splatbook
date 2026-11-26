@@ -13,7 +13,7 @@ describe('holding a button that just changed', () => {
 	});
 
 	it('does not hold for a table update that changes nothing about the button', () => {
-		const key = actionKey('turn', 4, "Skip Dan's turn");
+		const key = actionKey('turn', 4, "Skip Elric's turn");
 		expect(shouldHold(key, key)).toBe(false);
 	});
 
