@@ -754,3 +754,121 @@ describe('who may do what', () => {
 		expect(reduce(t, { type: 'begin-round', playerHand: 4, gmHand: 0 }, 'p2').ok).toBe(true);
 	});
 });
+
+describe('Session 14: two on initiative 1, and Next pressed twice', () => {
+	// Bonnie and Tatyana were both on 1. The GM pressed Next, read the table as
+	// not having moved ("there's two people on initiative one"), and pressed
+	// again to see what it would do. That press hit the CPU limit, so it did
+	// nothing; on a working table it would have skipped whoever was up then
+	// (phase 33). Both sides of a tie go before minor actions open.
+	const seats = [
+		{ id: 'bonnie', isGm: false },
+		{ id: 'tatyana', isGm: false },
+		{ id: 'gm', isGm: true }
+	];
+	const reduce = (t: CardTable, command: unknown, actor = 'gm') =>
+		hmtwCardTable.reduce(t, command, { actorSeatId: actor, rng: seededRng(4) });
+	const run = (t: CardTable, command: unknown, actor = 'gm') => {
+		const out = reduce(t, command, actor);
+		if (!out.ok) throw new Error(`${JSON.stringify(command)}: ${out.reason}`);
+		return out.state as CardTable;
+	};
+	const view = (t: CardTable, viewer = 'gm') =>
+		hmtwCardTable.project(t, viewer) as {
+			upNow: string[];
+			doneHere: string[];
+			round: { step: string; count: number | null };
+		};
+	/** Next as the page sends it: with the round it was pressed on. */
+	const next = (t: CardTable) => {
+		const v = view(t);
+		return { type: 'step-on', from: { step: v.round.step, count: v.round.count, up: v.upNow } };
+	};
+	/** Hand a seat exactly these cards, out of the decks, as the book's example does. */
+	const give = (t: CardTable, seat: string, cards: string[]): CardTable => {
+		const zones = { ...t.zones };
+		for (const deck of ['deck:player', 'deck:gm']) {
+			zones[deck] = { ...zones[deck], cards: zones[deck].cards.filter((c) => !cards.includes(c)) };
+		}
+		const hand = `seat:${seat}:hand`;
+		// What the deal gave them goes back on the deck it came from.
+		const back = zones[hand].cards;
+		for (const card of back) {
+			const deck = `deck:${t.deckOf[card] ?? 'player'}`;
+			zones[deck] = { ...zones[deck], cards: [...zones[deck].cards, card] };
+		}
+		zones[hand] = { ...zones[hand], cards: [...cards] };
+		return { ...t, zones };
+	};
+
+	const tiedOnOne = () => {
+		let t = hmtwCardTable.syncSeats(fresh(), seats) as CardTable;
+		t = run(t, { type: 'set-mode', mode: 'challenge' });
+		t = run(t, { type: 'add-opponent', id: 'lion', name: 'Lion', count: 1 });
+		t = run(t, { type: 'begin-round', playerHand: 4, gmHand: 3 });
+		t = give(t, 'bonnie', ['swords-ace', 'swords-ii', 'swords-iii', 'swords-iv']);
+		t = give(t, 'tatyana', ['cups-ace', 'cups-ii', 'cups-iii', 'cups-iv']);
+		t = give(t, 'gm', ['sun', 'moon', 'star']);
+		const init = (holder: string, actor: string, card: string) =>
+			run(
+				t,
+				{ type: 'play-initiative', holder, from: { zone: `seat:${actor}:hand`, card } },
+				actor
+			);
+		t = init('bonnie', 'bonnie', 'swords-ace');
+		t = init('tatyana', 'tatyana', 'cups-ace');
+		t = init('lion', 'gm', 'sun');
+		return t;
+	};
+
+	const attack = (holder: string, card: string) => ({
+		type: 'play-turn',
+		holder,
+		from: { zone: `seat:${holder}:hand`, card },
+		action: 'Attack',
+		target: 'lion',
+		mode: 'play'
+	});
+
+	it('says who on the number has gone, so the count staying put is explained', () => {
+		let t = tiedOnOne();
+		expect(view(t).round).toMatchObject({ step: 'turn', count: 1 });
+		expect(view(t).upNow.sort()).toEqual(['bonnie', 'tatyana']);
+		expect(view(t).doneHere).toEqual([]);
+
+		t = run(t, attack('bonnie', 'swords-ii'), 'bonnie');
+		expect(view(t).round).toMatchObject({ step: 'turn', count: 1 });
+		expect(view(t).upNow).toEqual(['tatyana']);
+		expect(view(t).doneHere).toEqual(['bonnie']);
+		// Only while counting: nobody "has gone" on a number in any other step.
+		expect(view(run(t, attack('tatyana', 'cups-ii'), 'tatyana')).doneHere).toEqual([]);
+	});
+
+	it('refuses a second Next pressed on a round that has moved', () => {
+		let t = tiedOnOne();
+		t = run(t, attack('bonnie', 'swords-ii'), 'bonnie');
+		t = run(t, attack('tatyana', 'cups-ii'), 'tatyana');
+		t = run(t, { type: 'pass-minor', holders: ['lion'] });
+		expect(view(t).round).toMatchObject({ step: 'resolve', count: 1 });
+
+		// Next, pressed on the resolve step: the count moves on to the lion.
+		const pressed = next(t);
+		t = run(t, pressed);
+		expect(view(t).round).toMatchObject({ step: 'turn', count: 19 });
+		expect(view(t).upNow).toEqual(['lion']);
+
+		// The same press again, from a page that hadn't caught up: refused, and
+		// the lion keeps its turn.
+		expect(reduce(t, pressed)).toEqual({ ok: false, reason: 'moved-on' });
+
+		// Skipping on purpose, from a page that has caught up, still works: the
+		// GM's override is the GM's.
+		const skipped = run(t, next(t));
+		expect(view(skipped).upNow).toEqual([]);
+	});
+
+	it('takes a Next with no round attached, as an older page sends it', () => {
+		const t = tiedOnOne();
+		expect(reduce(t, { type: 'step-on' }).ok).toBe(true);
+	});
+});

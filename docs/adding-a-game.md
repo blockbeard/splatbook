@@ -65,7 +65,10 @@ what the validation harness calls). Start **strict** for whatever the app consum
 first and pin looser envelopes for the rest, firming them up in the phase that
 consumes them — Stonetop's GM playbook was a loose envelope until the GM tools were
 built (`src/lib/games/stonetop/pack-schemas.ts`). Export the inferred types; the UI
-and engine import them.
+and engine import them **as types only** (`import type`). The app never loads the
+schemas themselves, and a test in `registry.test.ts` fails if anything but
+`src/lib/games/schemas.ts` imports them as values (phase 33: building them cost a
+cold Worker about 20 ms of its 10 ms budget).
 
 ## 3. Write the engine
 
@@ -84,7 +87,6 @@ portable and its rules trustworthy.
 ```ts
 {
   id, name,
-  packSchemas: schemaFor,   // from pack-schemas.ts
   engine,                   // opaque to the shell
   entityTypes: { … },       // one entry per creatable/saveable thing (optional)
   gmGuide?: { … },          // optional GM reference guide
@@ -127,8 +129,8 @@ Two one-line edits, both required and kept in sync:
 - `src/lib/games/index.ts` → `registerGame(<game>)` (the app shell; loads your
   Svelte components).
 - `src/lib/games/schemas.ts` → `registerPackSchemas('<gameId>', schemaFor)` (the
-  UI-free registration that `validate:packs` uses, since its tsx runner can’t load
-  `.svelte` files).
+  only registration of your schemas, used by `validate:packs` and the pack tests;
+  the app shell never loads them).
 
 `/<gameId>` now resolves (the `game` param matcher only accepts registered ids,
 so static routes can never be shadowed), and the header nav becomes a game

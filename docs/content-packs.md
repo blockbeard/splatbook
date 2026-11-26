@@ -69,10 +69,13 @@ folder under `static/content-packs/` that contains a manifest and checks:
    Unvalidated content is a bug, not a default.
 
 Game modules provide schemas as a resolver function — pack-relative path in, Zod
-schema (or `null`) out — via the `packSchemas` field of their `GameModule`.
-Registration happens as a side effect of `registerGame()`, so the app shell and
-the validation tooling always agree; both import `src/lib/games/index.ts`, which
-is where every built-in module gets registered.
+schema (or `null`) out — exported as `schemaFor` from their `pack-schemas.ts`.
+`src/lib/games/schemas.ts` registers every game's resolver with the harness, and
+it is the only place the schemas are loaded: the validation tooling and the
+tests import it, the app shell never does. The runtime trusts a pack that has
+passed. Until phase 33 the resolver was a `packSchemas` field on `GameModule`,
+which meant every cold Worker built every schema, at about 20 ms of CPU, for
+nothing it would read.
 
 **Strictness policy** (see `src/lib/games/stonetop/pack-schemas.ts` for the
 worked example): data the app consumes *now* validates strictly — every key

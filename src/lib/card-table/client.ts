@@ -11,8 +11,13 @@ export interface CommandReply {
 	ok: boolean;
 	/** Present on success — the table as this seat may now see it. */
 	view?: TableSnapshot & { seatId: string | null };
-	/** Present on refusal. `conflict` is ordinary; the rest are terminal. */
-	reason?: 'conflict' | 'rejected' | 'gone' | 'expired' | 'exhausted' | 'no-such-table';
+	/**
+	 * Present on refusal. `conflict` is ordinary; `unanswered` means the table
+	 * never gave an answer of its own (a server error, a CPU-limit page, the
+	 * network) and says nothing about the table; the rest are terminal.
+	 */
+	reason?:
+		'conflict' | 'rejected' | 'gone' | 'expired' | 'exhausted' | 'no-such-table' | 'unanswered';
 	detail?: string;
 }
 
@@ -32,14 +37,43 @@ export async function sendCommand(
 	expectedVersion: number,
 	requestHash: string
 ): Promise<CommandReply> {
-	const res = await fetch(`/api/card-tables/${token}/commands`, {
-		method: 'POST',
-		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({ command, expectedVersion, requestHash })
-	});
-	const body = await res.json().catch(() => null);
-	if (res.ok && body?.ok) return { ok: true, view: body };
-	return { ok: false, reason: body?.reason ?? 'no-such-table', detail: body?.detail };
+	let res: Response;
+	try {
+		res = await fetch(`/api/card-tables/${token}/commands`, {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ command, expectedVersion, requestHash })
+		});
+	} catch {
+		// The network, not the table.
+		return { ok: false, reason: 'unanswered' };
+	}
+	return readReply(res.status, await res.json().catch(() => null));
+}
+
+/**
+ * What a reply to a command means.
+ *
+ * Only an answer from the table itself is believed. Session 14 (phase 33): a
+ * Cloudflare CPU-limit page came back as HTML, which used to read as "no such
+ * table", and the page told everyone the table had stopped taking cards when
+ * it was fine. Now only a 404 or 410 says the table is gone; anything without
+ * a reason of the table's own is `unanswered`.
+ */
+export function readReply(status: number, body: unknown): CommandReply {
+	const json = (body && typeof body === 'object' ? body : null) as {
+		ok?: boolean;
+		reason?: CommandReply['reason'];
+		detail?: string;
+	} | null;
+	if (status >= 200 && status < 300 && json?.ok) {
+		return { ok: true, view: json as unknown as CommandReply['view'] };
+	}
+	if (json?.reason) return { ok: false, reason: json.reason, detail: json.detail };
+	// The route's own refusals that carry no reason: `error(404)`, `error(403)`.
+	if (status === 404 || status === 410) return { ok: false, reason: 'no-such-table' };
+	if (status === 403) return { ok: false, reason: 'rejected', detail: 'no-seat' };
+	return { ok: false, reason: 'unanswered' };
 }
 
 /**

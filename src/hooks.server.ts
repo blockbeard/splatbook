@@ -1,5 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle, ServerInit } from '@sveltejs/kit';
 import { handle as auth } from '$lib/server/auth';
 import { getDb } from '$lib/server/db';
 import { getPreferences } from '$lib/server/db/preferences';
@@ -101,6 +101,27 @@ const embedMode: Handle = async ({ event, resolve }) => {
 	return resolve(event, {
 		transformPageChunk: ({ html }) => html.replace('<html', '<html data-embed="1"')
 	});
+};
+
+/**
+ * Load the game registry while the server starts, not inside a request
+ * (phase 33).
+ *
+ * Every game route needs it, and building it (zod, the card table, each
+ * game's module) cost a fresh Cloudflare isolate about 10 ms of CPU, against
+ * Workers Free's 10 ms per request, whichever request happened to come first.
+ * The adapter's `_worker.js` calls `server.init` at its top level, which runs
+ * this; Cloudflare gives a Worker's startup its own 1 s budget. Whether the
+ * work lands there or in the first request is Cloudflare's to decide, and the
+ * JSON log tail is how to tell (`tools/cold-start.ts` explains).
+ *
+ * A dynamic import, not a static one at the top of this file, so that the dev
+ * server and the build both keep their single instance of the registry: this
+ * reaches the same module the routes import. Registering again would be
+ * harmless anyway (`registerGame` replaces).
+ */
+export const init: ServerInit = async () => {
+	await import('$lib/games');
 };
 
 // The database first: Auth.js needs it to build its adapter for the request.

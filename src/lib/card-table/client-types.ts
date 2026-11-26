@@ -82,6 +82,8 @@ export interface ProjectedTable {
 	upNow: string[];
 	/** Everybody who put an initiative down has had their turn: the round is over. */
 	roundDone: boolean;
+	/** Who shares the number being counted and has already gone (phase 33). */
+	doneHere?: string[];
 	/**
 	 * Whether players see enemy Health and Defense. While hidden, a player's
 	 * view has no pools at all; the GM's always does.

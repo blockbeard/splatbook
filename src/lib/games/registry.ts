@@ -3,18 +3,17 @@
  *
  * Modules register once at startup (via `./index.ts` side-effect imports);
  * the shell looks games up by id and never reaches past the `GameModule`
- * interface. Registering a game also wires its pack schemas into the
- * validation harness.
+ * interface. Pack schemas are not part of a game module: only the tooling
+ * reads them, and it registers them through `./schemas.ts` (phase 33).
  */
 
-import { registerPackSchemas } from '../packs/harness';
 import type { GameModule } from './types';
 
 const games = new Map<string, GameModule>();
 
 /**
  * Register a game module, replacing any earlier registration of the same id —
- * the same no-op-replacement contract `registerPackSchemas` already has.
+ * the same no-op-replacement contract `registerPackSchemas` has.
  *
  * Replacement rather than a duplicate-id throw because the dev server
  * re-evaluates SSR modules (a game importing its own theme CSS is enough to
@@ -26,7 +25,6 @@ const games = new Map<string, GameModule>();
  */
 export function registerGame(module: GameModule): void {
 	games.set(module.id, module);
-	registerPackSchemas(module.id, module.packSchemas);
 }
 
 /** Look a game up by id (the `/[game=game]` URL segment). */

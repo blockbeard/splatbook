@@ -72,6 +72,13 @@ export interface ProjectedTable {
 	 * can never run ahead of the call.
 	 */
 	upNow: string[];
+	/**
+	 * Who shares the number being counted and has already gone. Session 14
+	 * (phase 33): two players on 1, the first had gone, and nothing said why
+	 * the count hadn't moved, so the GM pressed again and skipped the second.
+	 * Discloses nothing new: initiative at the count is face up already.
+	 */
+	doneHere: string[];
 	/** Whether players see enemy Health; see `CardTable.enemyHealth`. */
 	enemyHealth: 'shown' | 'hidden';
 	/** The round is over: ch.7's step 5. A yes/no and nothing more. */
@@ -130,6 +137,7 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		seats: [...table.seats],
 		mode: table.mode,
 		upNow: whoIsUp(table),
+		doneHere: doneAtCount(table),
 		roundDone: roundIsDone(table),
 		stillToAct: table.round.step === 'deal' ? [] : stillToAct(table),
 		waitingOn:
@@ -199,6 +207,16 @@ export function stillToAct(table: CardTable): string[] {
  * counting — and once counting, it says only what saying the number out loud
  * already says.
  */
+/** Who is on the number being counted and has already had their turn. */
+export function doneAtCount(table: CardTable): string[] {
+	const count = table.round.count;
+	if (count === null || table.round.step !== 'turn') return [];
+	const acted = new Set(table.round.acted);
+	return holdersWithInitiative(table)
+		.filter(([holder, value]) => value === count && acted.has(holder))
+		.map(([holder]) => holder);
+}
+
 export function whoIsUp(table: CardTable): string[] {
 	const count = table.round.count;
 	if (count === null || table.round.step !== 'turn') return [];

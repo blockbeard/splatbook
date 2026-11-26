@@ -30,7 +30,6 @@ import type {
 // The game's own skin. Scoped to `[data-game="stonetop"]`, which the shell
 // stamps on the game's routes — inert everywhere else.
 import './theme.css';
-import { schemaFor } from './pack-schemas';
 import { engine, SCHEMA_VERSION, type StonetopCharacter } from './engine';
 import { STEADING_SCHEMA_VERSION, createSteading, type StonetopSteading } from './engine/steading';
 import { THREAT_SCHEMA_VERSION, createThreat, type StonetopThreat } from './engine/threat';
@@ -110,7 +109,6 @@ const threat: EntityTypeModule = {
 export const stonetop: GameModule = {
 	id: 'stonetop',
 	name: 'Stonetop',
-	packSchemas: schemaFor,
 	engine,
 	entityTypes: { character, steading, threat },
 	// The GM playbook as an in-app reference guide (phase 7): agenda, moves,

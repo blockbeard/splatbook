@@ -27,6 +27,7 @@
 	import ZonePicker from './ZonePicker.svelte';
 	import Creatures from './Creatures.svelte';
 	import { suggest } from './guide';
+	import { HOLD_MS, actionKey, shouldHold } from './hold';
 	import YourMove from './YourMove.svelte';
 	import PlayArea from './PlayArea.svelte';
 	import { cardsForAction, type Action } from './actions';
@@ -138,6 +139,22 @@
 	 */
 	const guide = $derived(suggest(table, seats, challengePack));
 
+	// A moment's grace when the guide's button changes what it does, so a press
+	// aimed at the old one can't land on the new (`hold.ts`, phase 33).
+	let held = $state(false);
+	let heldTimer: ReturnType<typeof setTimeout> | undefined;
+	let lastAction: string | null = null;
+	$effect(() => {
+		const key = actionKey(table.round.step, table.round.count, guide.action?.label);
+		if (shouldHold(lastAction, key)) {
+			held = true;
+			clearTimeout(heldTimer);
+			heldTimer = setTimeout(() => (held = false), HOLD_MS);
+		}
+		lastAction = key;
+	});
+	$effect(() => () => clearTimeout(heldTimer));
+
 	const myHand = $derived(mySeatId ? (table.zones[`seat:${mySeatId}:hand`]?.cards ?? []) : []);
 	/**
 	 * The other direction: with an action picked, the cards that pay for it lift
@@ -237,11 +254,13 @@
 				{@const action = guide.action}
 				<!-- The filled button: the one thing the round is waiting for. "Next"
 				     was a quiet button among the text, and the GM went looking for it in
-				     the second live test. -->
+				     the second live test. An override (skipping somebody, starting the
+				     count early) is quiet, so it is never taken for Next (Session 14). -->
 				<button
 					type="button"
-					class="ct-btn ct-btn--primary"
-					disabled={busy}
+					class="ct-btn"
+					class:ct-btn--primary={!guide.quiet}
+					disabled={busy || held}
 					onclick={() => onCommand(action.command)}
 				>
 					{action.label}

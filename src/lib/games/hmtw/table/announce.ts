@@ -103,7 +103,13 @@ function withRound(
 	listener: Listener | undefined,
 	latest: boolean
 ): string {
-	if (typeof d.step !== 'string') return said;
+	if (typeof d.step !== 'string') {
+		// The count stayed put after a turn: somebody else is on the same number
+		// (Session 14, phase 33). Tell them, since nothing else moved to say so.
+		return latest && listener?.viewer && listener.upNow.includes(listener.viewer)
+			? `${said} Your turn too, on the same number.`
+			: said;
+	}
 	const step =
 		d.step === 'turn'
 			? latest && listener?.viewer && listener.upNow.includes(listener.viewer)

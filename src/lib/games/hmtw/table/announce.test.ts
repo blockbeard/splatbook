@@ -59,6 +59,15 @@ suite('saying what happened', () => {
 		);
 	});
 
+	it('tells the other player on a tied number that it is their turn too (Session 14)', () => {
+		// The count stays on the number, so the event carries no step.
+		const played = ev('play-turn', { holder: 's2', action: 'Attack', mode: 'play' });
+		expect(describe(played, nameOf, { viewer: 's1', upNow: ['s1'] })).toBe(
+			'Aldis: Attack. Your turn too, on the same number.'
+		);
+		expect(describe(played, nameOf, { viewer: 'gm', upNow: ['s1'] })).toBe('Aldis: Attack.');
+	});
+
 	it('says what an action was for and at whom, and never what card it was', () => {
 		expect(
 			describe(

@@ -353,3 +353,48 @@ test('a player who asks for a seat mid-Challenge gets a hand without reloading',
 	await gmContext.close();
 	await playerContext.close();
 });
+
+test('a server hiccup is not a closed table', async ({ browser }) => {
+	// Session 14 (phase 33): one command came back as Cloudflare's 1102 page,
+	// and the page told everyone the table was no longer taking cards.
+	const run = Date.now().toString(36);
+	const context = await browser.newContext();
+	const gm = await context.newPage();
+	await signIn(gm, 'Hiccup GM', `e2e-hiccup-gm-${run}@localhost`);
+	await gm.goto('/hmtw/cards');
+	await gm.locator('input[name="name"]').fill(`Hiccup ${run}`);
+	await gm.getByRole('button', { name: 'Start' }).click();
+	await gm.waitForURL(/\/hmtw\/cards\/[0-9a-f-]{36}$/);
+
+	const cloudflarePage = {
+		status: 503,
+		contentType: 'text/html',
+		body: '<html><body>Error 1102: Worker exceeded resource limits</body></html>'
+	};
+	const commands = '**/api/card-tables/*/commands';
+
+	// Both the press and the page's own retry hit the error page.
+	let failures = 0;
+	await gm.route(commands, (route) =>
+		failures++ < 2 ? route.fulfill(cloudflarePage) : route.continue()
+	);
+	await gm.getByRole('button', { name: 'Challenge', exact: true }).click();
+	await expect(gm.getByText("The table didn't answer. Try again.")).toBeVisible();
+	await expect(gm.getByText('no longer taking cards')).toHaveCount(0);
+
+	// And the table is still there: the next press goes through.
+	await gm.getByRole('button', { name: 'Challenge', exact: true }).click();
+	await expect(gm.getByRole('button', { name: 'Deal the round' })).toBeVisible(POLLED);
+	await gm.unroute(commands);
+
+	// One error page, then a good answer: the retry covers it, and nobody is told.
+	let once = 0;
+	await gm.route(commands, (route) =>
+		once++ < 1 ? route.fulfill(cloudflarePage) : route.continue()
+	);
+	await gm.getByRole('button', { name: 'Deal the round' }).click();
+	await expect(gm.getByRole('button', { name: 'Deal the round' })).toHaveCount(0, POLLED);
+	await expect(gm.getByText("The table didn't answer.")).toHaveCount(0);
+
+	await context.close();
+});

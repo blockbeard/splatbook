@@ -20,6 +20,12 @@ export interface Suggestion {
 	action?: { label: string; command: unknown };
 	/** True when only the GM can act on it. */
 	gmOnly?: boolean;
+	/**
+	 * An override rather than the thing the round is waiting for: moving on
+	 * without somebody. Drawn as a quiet button, never the filled one, so it
+	 * can't be taken for Next (Session 14, phase 33).
+	 */
+	quiet?: boolean;
 	/** Where the book says more: a page of this game's rules reference. */
 	rule?: { label: string; page: string };
 }
@@ -34,6 +40,21 @@ const nameOf = (
 	seats: { id: string; name: string }[],
 	opponents: { id: string; name: string }[]
 ) => seats.find((s) => s.id === id)?.name ?? opponents.find((o) => o.id === id)?.name ?? 'Somebody';
+
+/**
+ * The GM's "move on", saying which round it was pressed on. The server refuses
+ * it if the round has since moved (`moved-on`), so a press from a page a poll
+ * behind can't skip whoever the round has reached since (phase 33).
+ */
+export function stepOn(table: ProjectedTable): {
+	type: 'step-on';
+	from: { step: ProjectedTable['round']['step']; count: number | null; up: string[] };
+} {
+	return {
+		type: 'step-on',
+		from: { step: table.round.step, count: table.round.count, up: [...table.upNow] }
+	};
+}
 
 /** A readable list: "Daria", "Daria and Chirm", "Daria, Chirm and the imps". */
 function listOf(names: string[]): string {
@@ -79,8 +100,9 @@ export function suggest(
 					: `Waiting on initiative from ${named(others)}.`;
 			return {
 				text,
-				action: { label: 'Start the count now', command: { type: 'step-on' } },
-				gmOnly: true
+				action: { label: 'Start the count now', command: stepOn(table) },
+				gmOnly: true,
+				quiet: true
 			};
 		}
 
@@ -91,8 +113,16 @@ export function suggest(
 			const up = table.upNow;
 			const yours = up.filter(mine);
 			const others = up.filter((id) => !mine(id));
+			// Somebody on this number has gone and the count stayed put: say why,
+			// or it reads as the table not having moved (Session 14, phase 33).
+			const done = table.doneHere ?? [];
+			const tie =
+				done.length > 0
+					? `${named([...done, ...up])} are ${done.length + up.length === 2 ? 'both' : 'all'} on ${round.count}, and ${named(done)} ${done.length > 1 ? 'have' : 'has'} gone. `
+					: '';
 			const text =
-				yours.length > 0
+				tie +
+				(yours.length > 0
 					? `${round.count} — your turn${
 							yours.some((id) => id !== me) ? ` (${named(yours)})` : ''
 						}: play a card or skip.${
@@ -100,11 +130,17 @@ export function suggest(
 								? ` ${named(others)} also ${others.length > 1 ? 'act' : 'acts'} on ${round.count}.`
 								: ''
 						}`
-					: `${round.count} — ${named(up)} to act.`;
+					: `${round.count} — ${named(up)} to act.`);
 			return {
 				text,
-				action: { label: 'Skip their turn', command: { type: 'step-on' } },
-				gmOnly: true
+				// Named, so it can't be read as Next: "Skip their turn" sat where the
+				// Next had just been, and a second press skipped Tatyana.
+				action: {
+					label: up.length === 1 ? `Skip ${named(up)}'s turn` : `Skip the turns of ${named(up)}`,
+					command: stepOn(table)
+				},
+				gmOnly: true,
+				quiet: true
 			};
 		}
 
@@ -119,8 +155,9 @@ export function suggest(
 					: `Minor actions: waiting on ${named(others)}.`;
 			return {
 				text,
-				action: { label: 'Turn them over now', command: { type: 'step-on' } },
-				gmOnly: true
+				action: { label: 'Turn them over now', command: stepOn(table) },
+				gmOnly: true,
+				quiet: true
 			};
 		}
 
@@ -130,7 +167,7 @@ export function suggest(
 				text: `${round.count}: everything is face up. Work it out, then the GM moves on.${
 					still.length > 0 ? ` Still to act: ${named(still)}.` : ''
 				}`,
-				action: { label: 'Next', command: { type: 'step-on' } },
+				action: { label: 'Next', command: stepOn(table) },
 				gmOnly: true
 			};
 		}

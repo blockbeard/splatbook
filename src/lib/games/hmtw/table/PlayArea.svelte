@@ -15,6 +15,7 @@
 -->
 <script lang="ts">
 	import Card from './Card.svelte';
+	import { stepOn } from './guide';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import { creatureLabel } from '../engine/creatures';
@@ -127,7 +128,7 @@
 					type="button"
 					class="ct-btn ct-btn--primary"
 					disabled={busy}
-					onclick={() => onCommand({ type: 'step-on' })}>Next: clear these and move on</button
+					onclick={() => onCommand(stepOn(table))}>Next: clear these and move on</button
 				>
 			</p>
 		{/if}

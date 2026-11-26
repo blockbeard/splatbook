@@ -257,8 +257,9 @@
 
 	async function catchUp() {
 		// Asking from our own version rather than zero keeps the event tail the
-		// recent end of the log instead of the oldest fifty.
-		const fresh = await fetchSince(data.token, version, rosterStamp);
+		// recent end of the log instead of the oldest fifty. A catch-up that
+		// fails is a dropped poll: the next one tries again.
+		const fresh = await fetchSince(data.token, version, rosterStamp).catch(() => null);
 		if (fresh) {
 			version = fresh.version;
 			table = fresh.state as ProjectedTable;
@@ -270,6 +271,16 @@
 	async function run(command: unknown) {
 		if (busy) return;
 		busy = true;
+		try {
+			await send(command);
+		} finally {
+			// However it ended. A press that never released this left the page
+			// refusing every later one until a reload (Session 14, phase 33).
+			busy = false;
+		}
+	}
+
+	async function send(command: unknown) {
 		clearTimeout(noticeTimer);
 		notice = null;
 		// One key per intent, reused if we retry: the server treats it as a lock,
@@ -277,6 +288,11 @@
 		const key = newRequestKey();
 		const kind = (command as { type?: string })?.type ?? '';
 		let reply = await sendCommand(data.token, command, version, key);
+		if (!reply.ok && reply.reason === 'unanswered') {
+			// Once more, with the same key: if the first one landed after all, the
+			// server replays its answer rather than running it twice.
+			reply = await sendCommand(data.token, command, version, key);
+		}
 		for (
 			let attempt = 0;
 			attempt < 3 && !reply.ok && reply.reason === 'conflict' && RETRIES.has(kind);
@@ -302,7 +318,7 @@
 			say('Someone got there first. This is the table as it stands now.', true);
 		} else if (
 			reply.reason === 'rejected' &&
-			['wrong-step', 'not-up', 'already-answered', 'nothing-to-take-back'].includes(
+			['wrong-step', 'moved-on', 'not-up', 'already-answered', 'nothing-to-take-back'].includes(
 				reply.detail ?? ''
 			)
 		) {
@@ -314,6 +330,11 @@
 			['not-yours', 'gm-only'].includes(reply.detail ?? '')
 		) {
 			say('That is not yours to do.', false);
+		} else if (reply.reason === 'unanswered') {
+			// A server error, a CPU-limit page, the network: nothing the table
+			// said. It is still there, so show it as it stands and let them retry.
+			await catchUp();
+			say("The table didn't answer. Try again.", true);
 		} else if (reply.reason === 'rejected') {
 			// It used to say the table was no longer taking cards, for any refusal
 			// at all — which read as the table having closed.
@@ -321,7 +342,6 @@
 		} else {
 			say('This table is no longer taking cards.', false);
 		}
-		busy = false;
 	}
 </script>
 
