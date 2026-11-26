@@ -94,6 +94,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Tests of Fate in a Challenge.** A "Test of Fate" button beside the decks,
+  for anyone seated, turns the top player card onto the table, where the
+  turned-over cards show with their total and "Into the discard". The end of a
+  round discards them before the Fool's reshuffle; in Session 14 two of them
+  never went back, and the deck came back 54 cards, not 57.
+- **Which plays add your attribute.** In play says "+ attribute" or "face value"
+  under each card, as the book has it: a turn and an out-of-turn play (the Fool
+  included) add the attribute, a minor action is face value, and a readied card
+  goes by where it was put down. A readied card says which while it is still
+  face down. The table adds nothing itself. (Card table schema v17.)
+- **The button by the hand.** Once a card is picked, a bar pinned to the bottom
+  of the screen shows the card, the chosen action and the button that plays it.
+  It is the same button as in Your move, in one place at a time, and the page
+  keeps the hand clear of it. In Session 14 everyone forgot to press it.
+- **Play the Fool.** Holding the Fool mid-round, Your move leads with it: it
+  picks the Fool up, waits for its partner and opens Out of turn.
+- **The GM turns over an enemy's initiative**, with "Turn over" on each group's
+  face-down card, for when a player acts against it.
+- **Guard as a minor action, and taking a minor action back.** A minor Guard
+  becomes the holder's initiative when the minors turn over, and a new
+  initiative at or below the number being counted loses that round's turn. A
+  minor action, or a card readied as one, can be taken back until the minors
+  turn over. (Card table schema v18.)
 - **The GM can hide enemy Health from the players.** "Players see enemy Health"
   is on by default, and anyone can change Health and Down while it is. Off,
   players see no numbers and only the GM changes them. Each creature's Health
@@ -591,6 +614,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **A seat request can't be missed.** For the GM, the line pinned to the top of
+  a Challenge says who is asking for a seat, with Let in and Turn away. On a
+  narrow window the list further down was below the bottom of the screen.
+- **Out of turn stays usable all through a turn**, its minor actions and working
+  it out, for the GM's enemies as for players. It needed an action, and the
+  action picker only came with a turn or a minor action of your own.
+- **Only the GM hands out inspiration.** Every player was offered "Give <name>
+  an inspiration card" on their own seat mid-fight, and the server let anyone
+  fill anyone's slot. Now the slot shows only to whoever runs the table, and the
+  server agrees.
+- **A player holding only the Fool isn't asked for a minor action**, and the
+  count moves past them, as past an empty hand.
+- **Small things from Session 14.** Your own face-down card shows its value
+  ("2") rather than its rank ("II", which read as 11); "Where everyone is"
+  labels a creature's numbers, "Health 3/3 · Defense 0/3"; the hand says it is
+  sorted by value; and clicking a seat's readied card uses it, where it sent a
+  command that doesn't exist.
 - **A server hiccup no longer reads as a closed table.** Any reply that wasn't
   the table's own, Cloudflare's error page included, said "This table is no
   longer taking cards", and a failed request could leave the page ignoring every
