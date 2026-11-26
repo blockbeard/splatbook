@@ -97,7 +97,9 @@
 	// svelte-ignore state_referenced_locally
 	let dealOpen = $state(table.round.step === 'deal');
 	// svelte-ignore state_referenced_locally
-	let lastRound = table.round.number;
+	let lastStep = table.round.step;
+	/** How tall the pinned guide is just now, so a jump can land clear of it. */
+	let guideHeight = $state(0);
 	let chosenAction = $state<Action | null>(null);
 	let customAction = $state('');
 	/** Cards added to the one picked up, for a play of more than one card. */
@@ -117,19 +119,23 @@
 		canAct && mySeatId !== null && mayReach(zoneId, mySeatId, runs, 'take');
 
 	/**
-	 * The panel opens by itself on a table that has never dealt, and closes when
-	 * a round arrives. Round zero and nothing else: an earlier draft opened it
-	 * whenever the GM's hand was empty, which springs a panel over the table the
-	 * moment they play their last card mid-round.
+	 * The panel opens by itself whenever the round is waiting for a deal — a
+	 * table that has never dealt, and again each time a round ends — and closes
+	 * when the deal lands. It used to open on round zero only, so every later
+	 * round began with the GM hunting for a closed panel.
 	 *
-	 * Between those two moments it is the GM's to open, and stays where they put
-	 * it — this only reacts to the round *changing*.
+	 * It reacts to the step *changing* into or out of the deal and to nothing
+	 * else: an earlier draft opened it whenever the GM's hand was empty, which
+	 * springs a panel over the table the moment they play their last card
+	 * mid-round. Between those two moments it is the GM's to open, and stays
+	 * where they put it.
 	 */
 	$effect(() => {
-		const round = table.round.number;
-		if (round === lastRound) return;
-		lastRound = round;
-		dealOpen = table.round.step === 'deal';
+		const step = table.round.step;
+		if (step === lastStep) return;
+		const was = lastStep;
+		lastStep = step;
+		if (step === 'deal' || was === 'deal') dealOpen = step === 'deal';
 	});
 
 	/**
@@ -246,9 +252,9 @@
 
 <svelte:window onkeydown={onKey} />
 
-<div class="ch">
+<div class="ch" style:--guide-h="{guideHeight}px">
 	{#if guide}
-		<p class="guide">
+		<p class="guide" bind:offsetHeight={guideHeight}>
 			<span class="guide__text">{guide.text}</span>
 			{#if guide.action && (!guide.gmOnly || runs)}
 				{@const action = guide.action}
@@ -267,7 +273,7 @@
 				</button>
 			{/if}
 			{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
-				<a class="guide__jump" href="#move-heading">Your move</a>
+				<a class="guide__jump" href="#your-hand">Your move</a>
 			{/if}
 			{#if guide.rule}
 				<!-- A new tab, so the table keeps its place mid-fight. -->
@@ -295,7 +301,11 @@
 	-->
 	<div class="ch__strip">
 		<p class="ch__state">
-			<span class="ch__state__round">Round {table.round.number || '—'}</span>
+			<span class="ch__state__round"
+				>Round {table.round.number || '—'}{table.round.step === 'deal' && table.round.number > 0
+					? ' over'
+					: ''}</span
+			>
 			<span class="ch__state__count">
 				Initiative
 				<strong>{table.round.count ?? '—'}</strong>
@@ -640,7 +650,7 @@
 	     poll that admits it, and drawing a hand that is not there yet threw and
 	     froze the page (25 November 2026). -->
 	{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
-		<div class="ch__hand">
+		<div class="ch__hand" id="your-hand">
 			<div>
 				<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>
 				<Hand
@@ -738,7 +748,9 @@
 		border: 1px solid var(--ct-rule-strong);
 		border-radius: 4px;
 	}
-	/* "Your move" sits under the hand, a long way down on a phone. */
+	/* The hand and "Your move" under it are a long way down on a phone. The
+	   jump lands on the hand, clear of this line: it used to land on the
+	   heading below the hand, which put the cards behind the pinned guide. */
 	.guide__jump {
 		display: none;
 		color: var(--ct-mark);
@@ -990,6 +1002,7 @@
 		font-size: 0.9rem;
 	}
 	.ch__hand {
+		scroll-margin-block-start: calc(var(--guide-h, 6rem) + 0.75rem);
 		border-block-start: 1px solid var(--ct-rule-strong);
 		padding-block-start: 0.75rem;
 		display: flex;

@@ -97,6 +97,8 @@
 		background: var(--ct-table-low);
 		border-block-start: 1px solid var(--ct-rule-strong);
 		padding: 1rem;
+		/* Over the pinned guide line (z-index 2 in ChallengeMode). */
+		z-index: 3;
 	}
 	.pane__head {
 		display: flex;
@@ -143,6 +145,9 @@
 		display: grid;
 		place-items: center;
 		cursor: zoom-out;
+		/* Over the pane it opened from, and over the pinned guide line, which
+		   used to print across the top of the card being looked at. */
+		z-index: 4;
 	}
 	.zoom__art {
 		inline-size: min(62vw, 20rem);

@@ -604,6 +604,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   skips and is a quiet button, as are the other overrides, and the button ignores
   presses for a moment after it changes what it does. Next carries the round it
   was pressed on, and the server refuses it if the round has moved since.
+- **Five fixes to the card table from a design review of a live table.**
+  - **"Your move" on a phone lands on your hand.** The link in the pinned guide
+    used to jump to the heading below the hand, which left the cards hidden
+    behind the guide itself.
+  - **The table says a round is over.** After a round ends the deal panel opens
+    by itself, the strip reads "Round 1 over", and the guide asks the GM to deal
+    round 2 while telling players who they are waiting for. Players used to be
+    shown the GM's instruction, and every round after the first began with a
+    closed panel.
+  - **A picked-up card looks picked up.** It lifts out of the row in a heavy
+    ring. Selected, lit and keyboard-focused cards used to share one outline.
+  - **Passing notices appear where you are.** "Someone got there first" is
+    pinned to the foot of the screen, not printed under the title two screens
+    above the hand.
+  - **"Look closer" is no longer covered by the guide line**, and nor is the
+    pane for looking through a pile.
 
 These came out of the card table's first live test, a GM and three players on
 25 November 2026.

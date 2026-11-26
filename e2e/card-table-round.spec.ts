@@ -300,7 +300,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	await phone.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
 	await expect(phone.locator('.guide')).toBeInViewport();
 	await phone.locator('.guide').getByRole('link', { name: 'Your move' }).click();
-	await expect(phone.locator('#move-heading')).toBeInViewport();
+	await expect(phone.locator('#your-hand')).toBeInViewport();
 	await shot(gm, 'round-over');
 	await phoneCheck('over');
 	await shot(phone, 'phone-over');
