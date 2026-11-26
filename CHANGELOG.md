@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **A fresh Worker's first request is light enough for Workers Free.** Session
+  14's 1102 was most likely a new isolate's first request: Wrangler's bundle
+  loads each module the first time a request needs it, and the first request of
+  any kind loaded the whole game registry. Measured in node (`tools/cold-start.ts`),
+  the first card-table request went from about 62 ms of CPU to 5 ms signed out
+  and 10 ms signed in, against Free's 10 ms. Three changes make that up:
+  - the app no longer loads any pack schema (about 750 zod schemas). Only the
+    tooling reads them, and it registers them through `src/lib/games/schemas.ts`;
+    `GameModule.packSchemas` is gone;
+  - the `[game=game]` URL matcher reads a plain list of ids instead of the
+    registry, so a request that isn't for a game no longer loads every game;
+  - the card table builds its command schema the first time a command arrives,
+    and the game registry loads in a server `init` hook, during startup.
+
+  `cpu-sim.test.ts` (`CPU_SIM=1`) plays hundreds of simulated rounds through the
+  real service and times each kind of request; the steady state is about
+  twenty times under budget.
+
 - **A card table that is sitting still costs one database query a poll, down
   from five.** Every client at a table asks whether anything has changed about
   once a second, and nearly every time the answer is no. That answer used to
@@ -572,6 +590,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   menus and suggest counts; the table never rules on a play.
 
 ### Fixed
+
+- **A server hiccup no longer reads as a closed table.** Any reply that wasn't
+  the table's own, Cloudflare's error page included, said "This table is no
+  longer taking cards", and a failed request could leave the page ignoring every
+  press until a reload. Now only a real 404 or 410 says the table has gone; a
+  command that gets no answer is sent once more with the same key (safe, since a
+  repeat is replayed, not run twice) and then says "The table didn't answer. Try
+  again."
+- **A tie on the card table says so, and Skip is never taken for Next.** When
+  two people share a number and one has gone, the line at the top says who, and
+  a screen reader tells the other it's their turn too. The GM's Skip names who it
+  skips and is a quiet button, as are the other overrides, and the button ignores
+  presses for a moment after it changes what it does. Next carries the round it
+  was pressed on, and the server refuses it if the round has moved since.
 
 These came out of the card table's first live test, a GM and three players on
 25 November 2026.

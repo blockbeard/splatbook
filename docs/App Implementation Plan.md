@@ -40,25 +40,25 @@ was step 1 of 15.*
 
 ### What Session 14 found
 
-**The crash.** At the end of Bout I's first minor actions Chris pressed Next.
-Bonnie and Tatyana were both on Initiative 1, so the count rightly stayed on 1
-for Tatyana's turn, but nothing on screen said so. Chris pressed Next again,
-which skipped Tatyana, and the table answered "Worker exceeded resource
-limits", then Cloudflare's 1102 ("CPU time per HTTP request 10 milliseconds").
-After that the page said it was no longer taking cards. A refresh brought it
-back with the game intact.
+**The crash.** At the end of Bout I's first minor actions (19:57 in the
+transcript), Chris pressed Next. Bonnie and Tatyana were both on Initiative 1,
+and he read the table as not having moved: "I think there's two people on
+initiative one, so I didn't move on." He pressed again "to see where it goes
+to the next", and that press came back as "Worker exceeded resource limits",
+then Cloudflare's 1102 ("CPU time per HTTP request 10 milliseconds"). The page
+said it was no longer taking cards. A refresh brought it back with the game
+intact.
 
 Three separate things are in that, and only one of them is the CPU limit:
 
-1. **The second Next skipped a turn.** After Bonnie's turn was cleared, the
-   count stayed on 1 for Tatyana, In play emptied and its Next went with it,
-   and the GM's button in the guide line changed in place from "Next" to "Skip
-   their turn". Nothing said why the round hadn't moved, so Chris pressed again
-   "to see where it goes", and the press skipped Tatyana. The page was very
-   likely up to date: `busy` drops a double click, and the reply to the first
-   Next updates the page at once. `step-on` also carries nothing about what it
-   is moving on from, so a press from a page a poll behind would do the same,
-   but that is the smaller half.
+1. **Nothing said why the count looked stuck, and the second press could
+   have skipped somebody.** On a tie both players act before minor actions,
+   and nothing on screen says who on the number has gone. Pressed again, the
+   GM's button would have done whatever the round now needed: in a turn, that
+   is "Skip their turn", in the place where Next had been. It hit the CPU
+   limit instead, so it changed nothing. `step-on` also carries nothing about
+   what it is moving on from, so a press from a page a poll behind would act on
+   whatever the round had become.
 2. **The page gave up on a table that was fine.** `sendCommand` turns any reply
    that is not the table's own JSON into `no-such-table`, so an HTML 1102 page
    reads as "This table is no longer taking cards." A fetch that throws never
@@ -197,10 +197,12 @@ Done the same day, against the code and Cloudflare's documentation. What it
 changed:
 
 - **The second Next.** The first draft blamed a stale page and fixed it with
-  `from`. Reading `PlayArea.svelte` and `guide.ts` says otherwise: the page was
-  current, and the button changed meaning in place. Commit 5 now leads with
-  the tie wording and a named, quiet, briefly-ignoring Skip; `from` stays as
-  the smaller half.
+  `from`. Reading `PlayArea.svelte` and `guide.ts` says the page was most
+  likely current, and the GM's button changes meaning in place. Commit 5 now
+  leads with the tie wording and a named, quiet, briefly-ignoring Skip; `from`
+  stays as the smaller half. (Reading the transcript while building it showed
+  the second press never landed at all: it was the request that hit the CPU
+  limit. The section above is corrected.)
 - **"Startup isn't charged to a request"** was stated as fact. Cloudflare
   documents startup as its own 1 s limit and says nothing either way, so the
   claim is gone and commit 3 depends on what the tail shows.
@@ -382,6 +384,36 @@ to 5) is the crash, A2 (6 to 12) the bugs.
 12. `docs`: **Release A's changelog and handout.** The CHANGELOG, and the player
     handout: the Test of Fate pile, "+ attribute" and "face value", the Fool,
     the bar, and what "The table didn't answer" means.
+
+**As built: A1 (2026-11-26).** Commits 1 to 5 on `phase-33-release-a`, merged
+into `main` with type checks, lint, 1,201 unit tests and all 60 browser tests
+green. Not yet deployed.
+
+- **Commit 1** found more than the plan expected. Even `/api/health` paid about
+  55 ms cold, because SvelteKit loads its param matchers on an isolate's first
+  request and the `[game=game]` matcher imported the whole game registry. Node's
+  own fetch internals (undici) add about 10 ms to every first request there,
+  which a Worker doesn't have, so the tool warms them before timing.
+- **Commit 2** took that too: the matcher reads `src/lib/games/ids.ts`, kept
+  equal to `BUILT_IN_GAMES` by a test. With the pack schemas gone and the
+  command schema built on first use, the first card-table request went from
+  62 ms to about 11 ms (signed out) and 17 ms (signed in).
+- **Commit 3** moved about 6 ms into startup: 5 ms signed out, 10 ms signed in.
+  **Still to check on Cloudflare**: deploy, open a table from a few devices,
+  and read the first requests' CPU time in
+  `npx wrangler pages deployment tail --project-name splatbook --format json`.
+- **Commit 4** went as planned, plus one automatic retry with the same key,
+  which the server replays rather than runs twice if the first one landed.
+- **Commit 5** gained `doneHere` in the projection (who on the counted number
+  has gone) and the announcer's "Your turn too, on the same number". All three
+  GM overrides are quiet, not only Skip. The Session 14 replay test follows the
+  engine: both sides of a tie go before minor actions, and a stale Next on the
+  next number is refused.
+- **What's left over budget, cold, in node:** a signed-in request's first
+  Auth.js decode (about 5 ms), and a page render (14 to 19 ms cold, 2 to 5 ms
+  warm). A picture upload costs 3 to 5 ms warm, the heaviest request in play,
+  because the browser sends a 1.4 MB JSON string. None of these is in A2. If
+  the tail shows them going over, they're next.
 
 **Release B: any legal action.**
 
