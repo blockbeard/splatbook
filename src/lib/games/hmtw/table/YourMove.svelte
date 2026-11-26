@@ -42,7 +42,8 @@
 		extras = $bindable(),
 		collecting = $bindable(),
 		onCommand,
-		onDone
+		onDone,
+		onPick
 	}: {
 		table: ProjectedTable;
 		seats: readonly { id: string; name: string; status: string; isGm: boolean }[];
@@ -66,6 +67,8 @@
 		onCommand: (command: unknown) => void;
 		/** Put down whatever is held, once a command has used it. */
 		onDone: () => void;
+		/** Pick a card up from your hand, as a click on it would. */
+		onPick?: (pick: Pick) => void;
 	} = $props();
 
 	const step = $derived(table.round.step);
@@ -173,6 +176,32 @@
 			!table.round.shown.includes(mySeatId)
 	);
 	const midRound = $derived(step === 'turn' || step === 'minor' || step === 'resolve');
+
+	/** Whether the action picker is up for a turn or a minor action of yours. */
+	const picking = $derived(
+		needInitiative.length === 0 && (upMine.length > 0 || minorMine.length > 0)
+	);
+
+	/*
+	 * The Fool, up front (phase 33). It worked in Session 14, under the closed
+	 * "Out of turn", but the GM didn't remember it existed. A player's hand holds
+	 * minors and the one major the player deck borrows, so a card with no suit in
+	 * it is the Fool; the GM's hand is all majors and has none.
+	 */
+	const myFool = $derived(
+		isGmSeat ? undefined : (table.zones[hand]?.cards ?? []).find((c) => faces[c] && !faces[c].suit)
+	);
+	const foolHeld = $derived(!!myFool && card?.card === myFool);
+	/** Out of turn stays open once opened, through the turn, its minors and the resolve. */
+	let outOpen = $state(false);
+
+	function playTheFool() {
+		if (!myFool) return;
+		extras = [];
+		onPick?.({ zone: hand, card: myFool });
+		collecting = true;
+		outOpen = true;
+	}
 </script>
 
 <section class="move" aria-labelledby="move-heading">
@@ -344,13 +373,50 @@
 		<p class="move__how">Nothing for you to do just now.</p>
 	{/if}
 
+	{#if midRound && myFool && !foolHeld}
+		<p class="move__buttons move__fool">
+			<button type="button" class="ct-btn" disabled={busy} onclick={playTheFool}
+				>Play the Fool</button
+			>
+			<span class="move__how">An extra turn, before anyone else's: the Fool and one more card.</span
+			>
+		</p>
+	{/if}
+
 	{#if midRound}
-		<details class="move__out">
+		<!-- Always here mid-round, for the GM's groups as for a player (Card Table
+		     Test 3, note 9): it showed for the GM during minor actions and went,
+		     because the action picker it needs only came with a turn or a minor
+		     action. When neither is yours, it brings its own. -->
+		<details class="move__out" bind:open={outOpen}>
 			<summary>Out of turn: the Fool, or an interrupt</summary>
 			<p class="move__how">
-				Played before the acting turn, on anybody's turn. The Fool goes with another card: pick the
-				Fool, add its partner, choose the action.
+				{#if foolHeld}
+					The Fool is picked up. Now pick its partner from your hand, choose the action, and play it
+					out of turn.
+				{:else}
+					Played before the acting turn, on anybody's turn. The Fool goes with another card: pick
+					the Fool, add its partner, choose the action.
+				{/if}
 			</p>
+			{#if !picking}
+				<Actions
+					{catalogue}
+					{faces}
+					heldCard={card?.card ?? null}
+					bind:chosen
+					bind:custom
+					asGm={isGmSeat}
+					onTurn
+				/>
+				<label class="move__target">
+					At
+					<select class="ct-field" bind:value={target}>
+						<option value="">nobody in particular</option>
+						{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
+					</select>
+				</label>
+			{/if}
 			<div class="move__buttons">
 				{#each mine as h (h)}
 					<button
@@ -443,6 +509,10 @@
 		margin: 0;
 		font-size: 0.85rem;
 		color: var(--ct-quiet);
+	}
+	.move__fool {
+		align-items: center;
+		margin: 0;
 	}
 	.move__out summary {
 		cursor: pointer;

@@ -755,6 +755,7 @@
 					collecting = false;
 					selection.clear();
 				}}
+				onPick={(pick) => selection.select(pick)}
 			/>
 		</div>
 	{/if}

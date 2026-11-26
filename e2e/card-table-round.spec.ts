@@ -203,6 +203,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	let declared = false;
 	let sawMinor = false;
 	let sawResolve = false;
+	let outChecked = false;
 
 	for (let guard = 0; guard < 30; guard++) {
 		const view = (await projectionFor(gmContext, token)).state;
@@ -228,6 +229,21 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				if (!view.upNow.includes(p.seat)) {
 					await expect(p.page.locator('.guide')).not.toContainText('your turn');
 				}
+			}
+			if (!outChecked && view.upNow.every((h) => pageFor(h).page !== gm)) {
+				// On a player's turn the GM has neither a turn nor a minor action,
+				// and Out of turn still offers a whole play for the groups (Card
+				// Table Test 3, note 9): its own action picker and the button.
+				outChecked = true;
+				const out = gm.locator('.move__out');
+				await out.locator('summary').click();
+				await expect(
+					out.locator('.actions').getByRole('button', { name: 'Attack', exact: true })
+				).toBeVisible();
+				await expect(
+					out.getByRole('button', { name: /^Play out of turn for Zombie/ })
+				).toBeVisible();
+				await out.locator('summary').click();
 			}
 			await page.locator('.hand button').first().click();
 			if (!readied && page !== gm) {
@@ -317,6 +333,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 		await expect(p.locator('.guide')).toContainText('surrender', POLLED);
 	}
 	expect(readied).toBe(true);
+	expect(outChecked).toBe(true);
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);
