@@ -72,185 +72,199 @@ import {
 	type StepResult
 } from './engine';
 
-/** A Health or Defense value. */
-const hd = z.number().int().min(0).max(MAX_HD);
-
-/** The zone-id shape the engine uses. Kept loose: the engine owns the vocabulary. */
-const zoneId = z.string().min(1).max(120);
-
-/** A card to take: a zone, and the card in it where the asker may name one. */
-const pick = z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() });
-/** A seat or an enemy group. */
-const holder = z.string().min(1).max(60);
-/** What a card is played for, as its player names it. Public. */
-const label = z.string().min(1).max(60);
-
 /**
- * What a client may ask for.
+ * What a client may ask for, built the first time a command arrives.
  *
- * Small on purpose. This is the vocabulary Decks mode needs; the Challenge
- * commands arrive with the mode that uses them. Everything is a move at heart —
- * flipping the top of a deck into its discard and revealing a facedown card are
- * the same operation to the engine, so they are the same command here.
+ * Built on demand rather than at import (phase 33): this is about a hundred zod
+ * schemas, and a fresh Worker paid for them inside its first request whatever
+ * that request was, a poll included, against a 10 ms CPU budget. A poll never
+ * parses a command, so an isolate that only answers polls never builds it.
  */
-export const commandSchema = z.discriminatedUnion('type', [
-	/** Move one card. Naming a card is only accepted where the asker may see it. */
-	z.strictObject({
-		type: z.literal('move'),
-		from: z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() }),
-		to: zoneId
-	}),
-	/** Shuffle a deck's discard back into it. */
-	z.strictObject({ type: z.literal('reshuffle'), deck: z.enum(['player', 'gm']) }),
-	/** Everything back in the decks, shuffled. The GM's, and it confirms first. */
-	z.strictObject({ type: z.literal('reset-table') }),
-	/** Sweep the turned-over cards into the discard once the test is settled. */
-	z.strictObject({ type: z.literal('clear-fate') }),
+function buildCommandSchema() {
+	/** A Health or Defense value. */
+	const hd = z.number().int().min(0).max(MAX_HD);
 
-	/* ---- The Challenge ---------------------------------------------------- */
+	/** The zone-id shape the engine uses. Kept loose: the engine owns the vocabulary. */
+	const zoneId = z.string().min(1).max(120);
+
+	/** A card to take: a zone, and the card in it where the asker may name one. */
+	const pick = z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() });
+	/** A seat or an enemy group. */
+	const holder = z.string().min(1).max(60);
+	/** What a card is played for, as its player names it. Public. */
+	const label = z.string().min(1).max(60);
 
 	/**
-	 * Switch views. Leaving a Challenge sweeps the table, which is why the
-	 * interface confirms first — this is the one command that destroys work.
+	 * What a client may ask for.
+	 *
+	 * Small on purpose. This is the vocabulary Decks mode needs; the Challenge
+	 * commands arrive with the mode that uses them. Everything is a move at heart —
+	 * flipping the top of a deck into its discard and revealing a facedown card are
+	 * the same operation to the engine, so they are the same command here.
 	 */
-	z.strictObject({ type: z.literal('set-mode'), mode: z.enum(['decks', 'challenge']) }),
-	/** Deal a round. The GM's number is theirs to decide; the checklist suggests. */
-	z.strictObject({
-		type: z.literal('begin-round'),
-		playerHand: z.number().int().min(0).max(20),
-		gmHand: z.number().int().min(0).max(30)
-	}),
-	z.strictObject({ type: z.literal('end-round') }),
-	/** Discard the GM's hand and draw the same number again. */
-	z.strictObject({ type: z.literal('mulligan') }),
+	return z.discriminatedUnion('type', [
+		/** Move one card. Naming a card is only accepted where the asker may see it. */
+		z.strictObject({
+			type: z.literal('move'),
+			from: z.strictObject({ zone: zoneId, card: z.string().min(1).max(120).optional() }),
+			to: zoneId
+		}),
+		/** Shuffle a deck's discard back into it. */
+		z.strictObject({ type: z.literal('reshuffle'), deck: z.enum(['player', 'gm']) }),
+		/** Everything back in the decks, shuffled. The GM's, and it confirms first. */
+		z.strictObject({ type: z.literal('reset-table') }),
+		/** Sweep the turned-over cards into the discard once the test is settled. */
+		z.strictObject({ type: z.literal('clear-fate') }),
 
-	/* ---- The round, one step at a time (phase 32) -------------------------- */
+		/* ---- The Challenge ---------------------------------------------------- */
 
-	/** Play a card as initiative, face down. The last one down starts the count. */
-	z.strictObject({ type: z.literal('play-initiative'), holder, from: pick }),
-	/** Start the count without waiting for everyone's initiative. The GM's. */
-	z.strictObject({ type: z.literal('start-count') }),
-	/** The acting holder's turn: play, ready or Guard. */
-	z.strictObject({
-		type: z.literal('play-turn'),
-		holder,
-		from: pick,
-		extra: z.array(pick).max(3).optional(),
-		action: label,
-		target: z.string().min(1).max(120).optional(),
-		mode: z.enum(['play', 'ready', 'guard'])
-	}),
-	z.strictObject({ type: z.literal('skip-turn'), holder }),
-	/** The Fool, or a talent's interrupt: played on anybody's turn. */
-	z.strictObject({
-		type: z.literal('play-out-of-turn'),
-		holder,
-		from: pick,
-		extra: z.array(pick).max(3).optional(),
-		action: label,
-		target: z.string().min(1).max(120).optional()
-	}),
-	z.strictObject({ type: z.literal('show-initiative'), holder }),
-	/** A minor action, face down until everyone has answered. */
-	z.strictObject({
-		type: z.literal('declare-minor'),
-		holder,
-		from: pick,
-		label,
-		target: z.string().min(1).max(120).optional()
-	}),
-	/** A facedown action readied as a minor action: sideways, kept. */
-	z.strictObject({ type: z.literal('ready-minor'), holder, from: pick, label }),
-	/** No minor action. The GM may answer for several groups at once. */
-	z.strictObject({ type: z.literal('pass-minor'), holders: z.array(holder).min(1).max(60) }),
-	/** Move the round on, whatever it is waiting for. The GM's. */
-	z.strictObject({ type: z.literal('step-on') }),
-	/** Take back your initiative, or your turn's cards, before anyone has answered them. */
-	z.strictObject({ type: z.literal('take-back'), holder }),
-	/** Name an enemy, or a group of them. */
-	z.strictObject({
-		type: z.literal('add-opponent'),
-		id: z.string().min(1).max(60),
-		name: z.string().min(1).max(60),
-		count: z.number().int().min(1).max(MAX_CREATURES),
-		/** Given once for the type; every creature in the group starts with it. */
-		health: hd.optional(),
-		defense: hd.optional()
-	}),
-	z.strictObject({ type: z.literal('remove-opponent'), id: z.string().min(1).max(60) }),
-	z.strictObject({
-		type: z.literal('update-opponent'),
-		id: z.string().min(1).max(60),
-		name: z.string().min(1).max(60)
-	}),
-	/** Use a readied card: it turns face up into the open, labelled. */
-	z.strictObject({ type: z.literal('use-readied'), holder }),
-	/** Give up a readied card without using it. */
-	z.strictObject({ type: z.literal('drop-readied'), holder }),
+		/**
+		 * Switch views. Leaving a Challenge sweeps the table, which is why the
+		 * interface confirms first — this is the one command that destroys work.
+		 */
+		z.strictObject({ type: z.literal('set-mode'), mode: z.enum(['decks', 'challenge']) }),
+		/** Deal a round. The GM's number is theirs to decide; the checklist suggests. */
+		z.strictObject({
+			type: z.literal('begin-round'),
+			playerHand: z.number().int().min(0).max(20),
+			gmHand: z.number().int().min(0).max(30)
+		}),
+		z.strictObject({ type: z.literal('end-round') }),
+		/** Discard the GM's hand and draw the same number again. */
+		z.strictObject({ type: z.literal('mulligan') }),
 
-	/* ---- The scene and its creatures (phase 31) ------------------------------ */
+		/* ---- The round, one step at a time (phase 32) -------------------------- */
 
-	/** Name the scene's zones. The GM's. A zone keeps its occupants while it keeps its id. */
-	z.strictObject({
-		type: z.literal('set-scene-zones'),
-		zones: z
-			.array(
-				z.strictObject({
-					id: z.string().min(1).max(60),
-					name: z.string().min(1).max(MAX_SCENE_ZONE_NAME)
-				})
-			)
-			.max(MAX_SCENE_ZONES)
-	}),
-	/**
-	 * Put up the scene's picture, or take it down. The GM's, and sent by the
-	 * shell's picture endpoint after it has stored the bytes — a client that
-	 * sends it directly names a picture that does not exist, and gets nothing.
-	 */
-	z.strictObject({
-		type: z.literal('set-scene-picture'),
-		id: z.string().uuid(),
-		mime: z.enum(['image/png', 'image/jpeg', 'image/webp'])
-	}),
-	z.strictObject({ type: z.literal('clear-scene-picture') }),
-	/** A new scene: no zones, nobody placed. The GM's. */
-	z.strictObject({ type: z.literal('clear-scene') }),
-	/** Stand an adventurer or a creature in a zone, or nowhere. Anyone's. */
-	z.strictObject({
-		type: z.literal('place'),
-		who: z.string().min(1).max(120),
-		zone: z.string().min(1).max(60).nullable()
-	}),
-	/** More of a group, lettered on. */
-	z.strictObject({
-		type: z.literal('add-creatures'),
-		id: z.string().min(1).max(60),
-		count: z.number().int().min(1).max(MAX_CREATURES),
-		health: hd.optional(),
-		defense: hd.optional()
-	}),
-	/** Take off a creature added by mistake. */
-	z.strictObject({ type: z.literal('remove-creature'), creature: z.string().min(1).max(120) }),
-	/** "Zombie B, Health 3 → 2". Carries what it replaces, so a double click cannot land twice. */
-	z.strictObject({
-		type: z.literal('set-hd'),
-		creature: z.string().min(1).max(120),
-		pool: z.number().int().min(0).max(9),
-		stat: z.enum(['health', 'defense']),
-		from: hd,
-		to: hd
-	}),
-	/** Whether the players see enemy Health and Defense. The GM's. */
-	z.strictObject({ type: z.literal('enemy-health'), shown: z.boolean() }),
-	/** Down, or back up. The GM's, and anyone's while Health is shown. */
-	z.strictObject({
-		type: z.literal('set-down'),
-		creature: z.string().min(1).max(120),
-		down: z.boolean()
-	})
-]);
+		/** Play a card as initiative, face down. The last one down starts the count. */
+		z.strictObject({ type: z.literal('play-initiative'), holder, from: pick }),
+		/** Start the count without waiting for everyone's initiative. The GM's. */
+		z.strictObject({ type: z.literal('start-count') }),
+		/** The acting holder's turn: play, ready or Guard. */
+		z.strictObject({
+			type: z.literal('play-turn'),
+			holder,
+			from: pick,
+			extra: z.array(pick).max(3).optional(),
+			action: label,
+			target: z.string().min(1).max(120).optional(),
+			mode: z.enum(['play', 'ready', 'guard'])
+		}),
+		z.strictObject({ type: z.literal('skip-turn'), holder }),
+		/** The Fool, or a talent's interrupt: played on anybody's turn. */
+		z.strictObject({
+			type: z.literal('play-out-of-turn'),
+			holder,
+			from: pick,
+			extra: z.array(pick).max(3).optional(),
+			action: label,
+			target: z.string().min(1).max(120).optional()
+		}),
+		z.strictObject({ type: z.literal('show-initiative'), holder }),
+		/** A minor action, face down until everyone has answered. */
+		z.strictObject({
+			type: z.literal('declare-minor'),
+			holder,
+			from: pick,
+			label,
+			target: z.string().min(1).max(120).optional()
+		}),
+		/** A facedown action readied as a minor action: sideways, kept. */
+		z.strictObject({ type: z.literal('ready-minor'), holder, from: pick, label }),
+		/** No minor action. The GM may answer for several groups at once. */
+		z.strictObject({ type: z.literal('pass-minor'), holders: z.array(holder).min(1).max(60) }),
+		/** Move the round on, whatever it is waiting for. The GM's. */
+		z.strictObject({ type: z.literal('step-on') }),
+		/** Take back your initiative, or your turn's cards, before anyone has answered them. */
+		z.strictObject({ type: z.literal('take-back'), holder }),
+		/** Name an enemy, or a group of them. */
+		z.strictObject({
+			type: z.literal('add-opponent'),
+			id: z.string().min(1).max(60),
+			name: z.string().min(1).max(60),
+			count: z.number().int().min(1).max(MAX_CREATURES),
+			/** Given once for the type; every creature in the group starts with it. */
+			health: hd.optional(),
+			defense: hd.optional()
+		}),
+		z.strictObject({ type: z.literal('remove-opponent'), id: z.string().min(1).max(60) }),
+		z.strictObject({
+			type: z.literal('update-opponent'),
+			id: z.string().min(1).max(60),
+			name: z.string().min(1).max(60)
+		}),
+		/** Use a readied card: it turns face up into the open, labelled. */
+		z.strictObject({ type: z.literal('use-readied'), holder }),
+		/** Give up a readied card without using it. */
+		z.strictObject({ type: z.literal('drop-readied'), holder }),
 
-export type CardTableCommand = z.infer<typeof commandSchema>;
+		/* ---- The scene and its creatures (phase 31) ------------------------------ */
+
+		/** Name the scene's zones. The GM's. A zone keeps its occupants while it keeps its id. */
+		z.strictObject({
+			type: z.literal('set-scene-zones'),
+			zones: z
+				.array(
+					z.strictObject({
+						id: z.string().min(1).max(60),
+						name: z.string().min(1).max(MAX_SCENE_ZONE_NAME)
+					})
+				)
+				.max(MAX_SCENE_ZONES)
+		}),
+		/**
+		 * Put up the scene's picture, or take it down. The GM's, and sent by the
+		 * shell's picture endpoint after it has stored the bytes — a client that
+		 * sends it directly names a picture that does not exist, and gets nothing.
+		 */
+		z.strictObject({
+			type: z.literal('set-scene-picture'),
+			id: z.string().uuid(),
+			mime: z.enum(['image/png', 'image/jpeg', 'image/webp'])
+		}),
+		z.strictObject({ type: z.literal('clear-scene-picture') }),
+		/** A new scene: no zones, nobody placed. The GM's. */
+		z.strictObject({ type: z.literal('clear-scene') }),
+		/** Stand an adventurer or a creature in a zone, or nowhere. Anyone's. */
+		z.strictObject({
+			type: z.literal('place'),
+			who: z.string().min(1).max(120),
+			zone: z.string().min(1).max(60).nullable()
+		}),
+		/** More of a group, lettered on. */
+		z.strictObject({
+			type: z.literal('add-creatures'),
+			id: z.string().min(1).max(60),
+			count: z.number().int().min(1).max(MAX_CREATURES),
+			health: hd.optional(),
+			defense: hd.optional()
+		}),
+		/** Take off a creature added by mistake. */
+		z.strictObject({ type: z.literal('remove-creature'), creature: z.string().min(1).max(120) }),
+		/** "Zombie B, Health 3 → 2". Carries what it replaces, so a double click cannot land twice. */
+		z.strictObject({
+			type: z.literal('set-hd'),
+			creature: z.string().min(1).max(120),
+			pool: z.number().int().min(0).max(9),
+			stat: z.enum(['health', 'defense']),
+			from: hd,
+			to: hd
+		}),
+		/** Whether the players see enemy Health and Defense. The GM's. */
+		z.strictObject({ type: z.literal('enemy-health'), shown: z.boolean() }),
+		/** Down, or back up. The GM's, and anyone's while Health is shown. */
+		z.strictObject({
+			type: z.literal('set-down'),
+			creature: z.string().min(1).max(120),
+			down: z.boolean()
+		})
+	]);
+}
+
+let builtCommandSchema: ReturnType<typeof buildCommandSchema> | undefined;
+/** The command schema, built once per isolate on first use. */
+export const commandSchema = () => (builtCommandSchema ??= buildCommandSchema());
+
+export type CardTableCommand = z.infer<ReturnType<typeof buildCommandSchema>>;
 
 const fail = (reason: string): CardTableOutcome => ({ ok: false, reason });
 
@@ -390,7 +404,7 @@ export const hmtwCardTable: CardTableModule = {
 	},
 
 	reduce(raw, command, context) {
-		const parsed = commandSchema.safeParse(command);
+		const parsed = commandSchema().safeParse(command);
 		if (!parsed.success) return fail('malformed-command');
 		const table = raw as CardTable;
 		const actor = context.actorSeatId ?? undefined;

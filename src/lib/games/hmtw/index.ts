@@ -20,14 +20,12 @@
 
 import type { GameModule } from '../types';
 import { hmtwCardTable } from './card-table';
-import { schemaFor } from './pack-schemas';
 import { referencePageDepth } from './reference-config';
 import './theme.css';
 
 export const hmtw: GameModule = {
 	id: 'hmtw',
 	name: 'His Majesty the Worm',
-	packSchemas: schemaFor,
 	favicon: '/content-packs/hmtw/art/ouroboros.svg',
 	// Pages stop at h3 (see ./reference-config, which the page-artifact build
 	// shares so the two can't disagree).

@@ -15,7 +15,6 @@
  */
 
 import type { Component } from 'svelte';
-import type { SchemaResolver } from '../packs/harness';
 import type { WizardStep, WizardSummary } from '../wizard/types';
 import type { DiceModule, RollMode } from '../dice';
 
@@ -308,8 +307,6 @@ export interface GameModule {
 	id: string;
 	/** Display name of the game. */
 	name: string;
-	/** Per-file Zod schemas for this game's content pack; wired into the validation harness on registration. */
-	packSchemas: SchemaResolver;
 	/** Optional favicon (served URL, e.g. into the pack's art/) shown while
 	 * the reader is inside this game's routes; absent falls back to the
 	 * shell's. */

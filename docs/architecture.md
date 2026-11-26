@@ -34,7 +34,7 @@ problem to solve, not an exception to grant.
 
 1. **The shell touches game code only through the `GameModule` registry.** No
    `import … from '$lib/games/stonetop/…'` anywhere in shell code. The module
-   interface (`{ id, name, packSchemas, engine, entityTypes, gmGuide?,
+   interface (`{ id, name, engine, entityTypes, gmGuide?,
    sessionComponent? }`) is the entire surface area. If the shell needs something
    new from a game, the interface grows — explicitly, in its own commit (as
    `entityTypes` did in phase 6, `gmGuide` in phase 7, `dice` in phase 10,

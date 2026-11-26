@@ -13,7 +13,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { loadManifest, loadPackFile } from '../../packs/fs-loader';
 import { validatePack } from '../../packs/harness';
 import type { PackManifest } from '../../packs/types';
-import '../index'; // register game modules (wires stonetop schemas into the harness)
+import '../schemas'; // wires every game's pack schemas into the harness
 import {
 	playbookSchema,
 	insertSchema,

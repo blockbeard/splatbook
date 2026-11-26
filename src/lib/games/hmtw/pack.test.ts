@@ -17,7 +17,7 @@ import type { PackManifest } from '../../packs/types';
 import { documentTreeSchema, type DocumentTree } from '../../reference/document-tree';
 import { landingSchema } from '../../packs/landing';
 import { challengeSchema, deckSchema } from './pack-schemas';
-import '../index'; // register game modules (wires hmtw schemas into the harness)
+import '../schemas'; // wires every game's pack schemas into the harness
 import { hmtw } from './index';
 import { buildDeepLinks, buildPages } from '../../reference/page-artifacts';
 import { REFERENCE_LAYOUT } from '../reference-configs';

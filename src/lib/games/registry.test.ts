@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative } from 'node:path';
+import { readdirSync, readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
-import { z } from 'zod';
 import { clearPackSchemas, validatePack } from '../packs/harness';
 import { clearGames, getGame, listGames, registerGame } from './registry';
 import type { GameModule } from './types';
@@ -11,7 +11,6 @@ const fixtures = join(dirname(fileURLToPath(import.meta.url)), '..', 'packs', 'f
 const module = (id: string, name: string): GameModule => ({
 	id,
 	name,
-	packSchemas: () => z.record(z.string(), z.unknown()),
 	entityTypes: {}
 });
 
@@ -51,9 +50,31 @@ describe('registry', () => {
 		expect(listGames()).toHaveLength(1);
 	});
 
-	it('wires the game pack schemas into the validation harness', async () => {
+	it('leaves the pack schemas to the tooling', async () => {
+		// Registering a game wires nothing into the harness: `schemas.ts` does that,
+		// for `validate:packs` and the tests (phase 33).
 		registerGame(module('test-pack', 'Test Pack'));
 		const result = await validatePack(join(fixtures, 'test-pack'));
-		expect(result.errors).toEqual([]);
+		expect(result.errors.join(' ')).toMatch(/no schemas registered/);
+	});
+});
+
+describe('what the app loads', () => {
+	/**
+	 * Phase 33: building every pack schema cost a cold Worker about 20 ms of its
+	 * 10 ms budget, on every route, for schemas only the tooling reads. Only
+	 * `schemas.ts` may import them as values; everyone else takes types, which
+	 * the build erases.
+	 */
+	it('imports pack schemas as values only from schemas.ts', () => {
+		const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+		const files = (readdirSync(root, { recursive: true }) as string[])
+			.filter((f) => /\.(ts|svelte)$/.test(f) && !/\.test\.ts$/.test(f))
+			.map((f) => join(root, f));
+		const valueImport = /^\s*import\s+(?!type\b)[^;]*?from\s+['"][^'"]*pack-schemas['"]/m;
+		const offenders = files
+			.filter((f) => valueImport.test(readFileSync(f, 'utf8')))
+			.map((f) => relative(root, f));
+		expect(offenders).toEqual([join('lib', 'games', 'schemas.ts')]);
 	});
 });
