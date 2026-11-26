@@ -34,8 +34,10 @@ import { clearFacedown, facedownZoneOf, placeFacedown } from './exceptions';
 import { discardAll, moveCard, type MoveFailure, type Pick } from './moves';
 import { holdersWithInitiative, initiativeHolder } from './initiative';
 import type { RoundStep } from './round';
-import { upCount, type CardTable, type Play } from './table';
-import { opponentZone, seatZone } from './zones';
+import { upCount, type Aim, type CardTable, type Play } from './table';
+
+type Pick_<T, K extends keyof T> = { [P in K]?: T[P] };
+import { discardZone, opponentZone, seatZone } from './zones';
 
 export type StepFailure =
 	| MoveFailure
@@ -93,6 +95,20 @@ function hasPlayable(table: CardTable, holder: string): boolean {
 /** A seat still at the table, or a group with a creature up. */
 const isLive = (table: CardTable, holder: string) =>
 	isSeat(table, holder) || groupsUp(table).includes(holder);
+
+/** The seats and groups an aim's targets belong to, once each. */
+function holdersOfAim(table: CardTable, targets: readonly string[] | undefined): string[] {
+	const holders = (targets ?? [])
+		.map((t) => holderOfTarget(table, t))
+		.filter((h): h is string => h !== null);
+	return [...new Set(holders)];
+}
+
+/** A play's label for an aim: nothing when nobody was named. */
+const aimed = (aim: Aim | undefined): Pick_<Play, 'targets' | 'inZone'> =>
+	aim && aim.targets.length > 0
+		? { targets: [...aim.targets], ...(aim.inZone ? { inZone: aim.inZone } : {}) }
+		: {};
 
 /** The group a target belongs to: a seat or group as itself, a creature as its group. */
 function holderOfTarget(table: CardTable, target: string): string | null {
@@ -231,8 +247,8 @@ export interface TurnPlay {
 	extra?: Pick[];
 	/** What it is for, as the player names it. */
 	action: string;
-	/** Who it is aimed at: a seat, a group or a creature. Their initiative turns face up. */
-	target?: string;
+	/** Who it is aimed at: seats, groups or creatures. Their initiatives turn face up. */
+	aim?: Aim;
 	/**
 	 * `play`: face up into the open. `ready`: face down and sideways above the
 	 * initiative, kept until used (Riposte, Dodge, Aid Another, Vigilance).
@@ -259,11 +275,11 @@ function layDown(
 		plays[moved.card] = { ...label, by: holder, number: table.round.count };
 	}
 	current = { ...current, plays };
-	if (label.target) {
-		// "When other characters attempt to perform an action against you, flip
-		// your Initiative card face up."
-		const target = holderOfTarget(current, label.target);
-		if (target) current = withRound(current, { shown: union(current.round.shown, [target]) });
+	// "When other characters attempt to perform an action against you, flip
+	// your Initiative card face up": every one of them (phase 33).
+	const targeted = holdersOfAim(current, label.targets);
+	if (targeted.length > 0) {
+		current = withRound(current, { shown: union(current.round.shown, targeted) });
 	}
 	return ok(current);
 }
@@ -307,7 +323,7 @@ export function playTurn(
 			table,
 			holder,
 			[turn.from, ...(turn.extra ?? [])],
-			{ action: turn.action, target: turn.target, kind: 'turn', adds: true },
+			{ action: turn.action, ...aimed(turn.aim), kind: 'turn', adds: true },
 			actor
 		);
 	}
@@ -352,9 +368,34 @@ export function playOutOfTurn(
 		table,
 		holder,
 		[turn.from, ...(turn.extra ?? [])],
-		{ action: turn.action, target: turn.target, kind: 'out-of-turn', adds: true },
+		{ action: turn.action, ...aimed(turn.aim), kind: 'out-of-turn', adds: true },
 		actor
 	);
+}
+
+/**
+ * Discard a card for a miscellaneous action (phase 33): a talent such as Heavy
+ * Metal Machine ("a miscellaneous action (discarding any card)"), or the GM
+ * discarding a greater doom to trigger an ability, which Card Table Test 3
+ * found no way to do. The card goes to its own deck's discard, face up on top
+ * where anyone can see it, and the round doesn't move: like a play out of turn,
+ * it costs nobody a turn. Mid-round only, as an interrupt is.
+ */
+export function discardFor(
+	table: CardTable,
+	holder: string,
+	from: Pick,
+	actor?: string
+): StepResult {
+	if (!inStep(table, 'turn', 'minor', 'resolve')) return fail('wrong-step');
+	if (!isSeat(table, holder) && !isGroup(table, holder)) return fail('no-such-holder');
+	const hand = handOf(table, holder);
+	if (!hand || from.zone !== hand) return fail('not-yours');
+	const card = from.card ?? table.zones[hand]?.cards[0];
+	const usual = isSeat(table, holder) && holder !== table.gmSeat ? 'player' : 'gm';
+	const deck = (card !== undefined ? table.deckOf[card] : undefined) ?? usual;
+	const moved = moveCard(table, from, discardZone(deck), actor);
+	return moved.ok ? ok(moved.table) : fail(moved.reason);
 }
 
 /**
@@ -447,7 +488,7 @@ export function declareMinor(
 	from: Pick,
 	label: string,
 	actor?: string,
-	target?: string,
+	aim?: Aim,
 	/** A Guard: when the minors turn over, the card becomes the initiative. */
 	guard = false
 ): StepResult {
@@ -461,9 +502,10 @@ export function declareMinor(
 			{
 				...moved.table,
 				minorDeclared: { ...moved.table.minorDeclared, [zone]: label },
-				minorTargets: target
-					? { ...moved.table.minorTargets, [zone]: target }
-					: moved.table.minorTargets,
+				minorTargets:
+					aim && aim.targets.length > 0
+						? { ...moved.table.minorTargets, [zone]: aimed(aim) as Aim }
+						: moved.table.minorTargets,
 				minorGuards: guard
 					? union(moved.table.minorGuards, [zone])
 					: moved.table.minorGuards.filter((z) => z !== zone)
@@ -544,15 +586,14 @@ export function revealMinors(table: CardTable): CardTable {
 		plays[card] = {
 			by: holder,
 			action: minorDeclared[zone] ?? 'Minor action',
-			...(minorTargets[zone] ? { target: minorTargets[zone] } : {}),
+			...aimed(minorTargets[zone]),
 			kind: 'minor',
 			adds: false,
 			number: table.round.count
 		};
 		// "When other characters attempt to perform an action against you, flip
 		// your Initiative card face up" — a minor action as much as a turn.
-		const target = minorTargets[zone] ? holderOfTarget(current, minorTargets[zone]) : null;
-		if (target) targeted.push(target);
+		targeted.push(...holdersOfAim(current, minorTargets[zone]?.targets));
 		delete minorDeclared[zone];
 		delete minorTargets[zone];
 	}

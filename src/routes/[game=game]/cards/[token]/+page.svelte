@@ -246,6 +246,11 @@
 		'play-turn',
 		'skip-turn',
 		'play-out-of-turn',
+		// Phase 33: a discard for an ability and a card handed over. Safe for the
+		// same reason, since the server checks again that the card is still in
+		// the hand it came from.
+		'discard-for',
+		'give-card',
 		'declare-minor',
 		'ready-minor',
 		'pass-minor',

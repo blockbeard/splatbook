@@ -172,6 +172,27 @@ export const challengeSchema = z.strictObject({
 		gmOnly: z.array(actionSchema.extend({ requires: z.enum(['lesser', 'greater']) }))
 	}),
 	/**
+	 * Chapter 5's talents that do something with a card in a Challenge, by path
+	 * (phase 33), offered as buttons beside the actions once a player picks a
+	 * path. Only the card's shape: `how` it is played, using the same choices
+	 * as "A talent, or something else", and the `suits` the book names (none:
+	 * any card). The table never knows what a talent does to a number; the
+	 * summary is a reminder, and `rule` the heading that holds it.
+	 */
+	talents: z.record(
+		id,
+		z.array(
+			z.strictObject({
+				id,
+				name: z.string().min(1),
+				how: z.enum(['now', 'ready', 'minor', 'out', 'discard', 'give']),
+				suits: z.array(id),
+				summary: z.string().min(1).max(240),
+				rule: z.string().regex(/^[a-z0-9-]+$/)
+			})
+		)
+	),
+	/**
 	 * Ch.7 step 5's assessment, said when everyone has had a turn: surrender if
 	 * the guild has clearly won, ask about retreating if it is in a bad way. A
 	 * prompt to say aloud, never a ruling. `rule.page` is a reference page id,

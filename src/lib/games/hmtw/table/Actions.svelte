@@ -23,6 +23,16 @@
 	import { resolve } from '$app/paths';
 	import { actionsForCard, type Action, type ActionCatalogue } from './actions';
 	import type { CardFace, FaceIndex } from './faces';
+	import {
+		TALENT_PATH_KEY,
+		howLabel,
+		talentFits,
+		type How,
+		type Moment,
+		type Talent,
+		type TalentsByPath
+	} from './talent';
+	import { onMount } from 'svelte';
 
 	let {
 		catalogue,
@@ -31,7 +41,11 @@
 		chosen = $bindable(),
 		custom = $bindable(),
 		asGm = false,
-		onTurn = false
+		onTurn = false,
+		hows = [],
+		moment = 'turn',
+		how = $bindable(),
+		talents = {}
 	}: {
 		catalogue: ActionCatalogue;
 		faces: FaceIndex;
@@ -43,7 +57,42 @@
 		asGm?: boolean;
 		/** It is your turn, when "you can use *any* card to perform *any* action". */
 		onTurn?: boolean;
+		/** How a talent, or something else, may be played just now. None: no choice. */
+		hows?: How[];
+		moment?: Moment;
+		how?: How;
+		/** Chapter 5's talents by path, from the pack. */
+		talents?: TalentsByPath;
 	} = $props();
+
+	/*
+	 * Talents by path (phase 33). The Discord after Session 14: one list of every
+	 * talent was too long to scroll every time, so a player picks which path's
+	 * to show, none by default, and the choice is remembered on this device.
+	 */
+	let path = $state('');
+	onMount(() => {
+		path = localStorage.getItem(TALENT_PATH_KEY) ?? '';
+	});
+	function choosePath(next: string) {
+		path = next;
+		if (next) localStorage.setItem(TALENT_PATH_KEY, next);
+		else localStorage.removeItem(TALENT_PATH_KEY);
+	}
+	const shownTalents = $derived<Talent[]>(path ? (talents[path] ?? []) : []);
+	const pickedTalent = $derived(shownTalents.find((t) => t.name === custom.trim()) ?? null);
+	function pickTalent(talent: Talent) {
+		if (pickedTalent?.id === talent.id) {
+			custom = '';
+			return;
+		}
+		chosen = null;
+		custom = talent.name;
+		if (hows.includes(talent.how)) how = talent.how;
+	}
+	const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+	const talentId = $props.id();
 
 	/**
 	 * The actions by suit, then the ones any suit pays for, then the GM's — the
@@ -70,8 +119,10 @@
 	const fitsThisCard = (action: Action) => offer.fits.includes(action);
 
 	/** The action under the pointer or the keyboard, if any. Local and fleeting. */
-	let preview = $state<Action | null>(null);
-	const explained = $derived(preview ?? chosen);
+	let preview = $state<Action | Talent | null>(null);
+	const explained = $derived<Action | Talent | null>(preview ?? chosen ?? pickedTalent);
+	const explainedRule = $derived(chosen?.rule ?? pickedTalent?.rule);
+	const explainedName = $derived(chosen?.name ?? pickedTalent?.name);
 	const describedBy = (action: Action) => `action-summary-${action.id}`;
 </script>
 
@@ -120,17 +171,65 @@
 				</ul>
 			</li>
 		{/each}
-		<li>
+		{#if Object.keys(talents).length > 0}
+			<li class="actions__group">
+				<label class="actions__path">
+					Show talents for
+					<select class="ct-field" value={path} onchange={(e) => choosePath(e.currentTarget.value)}>
+						<option value="">none</option>
+						{#each Object.keys(talents) as p (p)}<option value={p}>{capitalise(p)}</option>{/each}
+					</select>
+				</label>
+				{#if shownTalents.length > 0}
+					<ul>
+						{#each shownTalents as talent (talent.id)}
+							<li>
+								<button
+									type="button"
+									class="ct-btn ct-btn--quiet"
+									class:fits={held ? talentFits(talent, held.suit) : false}
+									class:chosen={pickedTalent?.id === talent.id}
+									aria-describedby={`talent-summary-${talent.id}`}
+									onclick={() => pickTalent(talent)}
+									onpointerenter={() => (preview = talent)}
+									onpointerleave={() => (preview = null)}
+									onfocus={() => (preview = talent)}
+									onblur={() => (preview = null)}
+								>
+									{talent.name}
+								</button>
+								<span hidden id={`talent-summary-${talent.id}`}>{talent.summary}</span>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</li>
+		{/if}
+		<li class="actions__talent">
+			<!-- A talent, or anything the table ruled (phase 33): its name, and how
+			     the card is played. The table never knows what a talent does; it
+			     only needs to know where the card goes. -->
 			<label class="actions__else">
-				Something else
+				A talent, or something else
 				<input
 					class="ct-field"
 					bind:value={custom}
-					placeholder="whatever you just ruled"
+					placeholder="Doom Eye, Quick!…"
 					autocomplete="off"
 					oninput={() => (chosen = null)}
 				/>
 			</label>
+			{#if custom.trim() && hows.length > 0}
+				<fieldset class="actions__how">
+					<legend>How is it played?</legend>
+					{#each hows as h (h)}
+						<label>
+							<input type="radio" name={`how-${talentId}`} value={h} bind:group={how} />
+							{howLabel(h, moment)}
+						</label>
+					{/each}
+				</fieldset>
+			{/if}
 		</li>
 	</ul>
 
@@ -143,15 +242,15 @@
 			>
 		{/if}
 	</p>
-	{#if chosen?.rule}
+	{#if explainedRule}
 		<!-- Outside the aria-hidden line: the link is a control and must stay
 		     reachable. A new tab, so the table keeps its place mid-fight. -->
 		<a
 			class="actions__link"
-			href={resolve('/[game=game]/reference/[section]', { game: 'hmtw', section: chosen.rule })}
+			href={resolve('/[game=game]/reference/[section]', { game: 'hmtw', section: explainedRule })}
 			target="_blank"
 			rel="noopener"
-			>Read the rule: {chosen.name}<span class="sr-only"> (opens in a new tab)</span></a
+			>Read the rule: {explainedName}<span class="sr-only"> (opens in a new tab)</span></a
 		>
 	{/if}
 
@@ -228,6 +327,36 @@
 		align-items: center;
 		font-size: 0.85rem;
 		color: var(--ct-quiet);
+	}
+	.actions__path {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		font-size: 0.85rem;
+		color: var(--ct-quiet);
+	}
+	.actions__talent {
+		display: grid;
+		gap: 0.35rem;
+	}
+	.actions__how {
+		border: 1px solid var(--ct-rule);
+		border-radius: 3px;
+		margin: 0;
+		padding: 0.35rem 0.6rem 0.5rem;
+		display: grid;
+		gap: 0.1rem;
+		font-size: 0.85rem;
+	}
+	.actions__how legend {
+		color: var(--ct-quiet);
+		padding-inline: 0.25rem;
+	}
+	.actions__how label {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		min-block-size: 2.75rem;
 	}
 	.actions__else input {
 		background: transparent;

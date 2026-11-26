@@ -20,8 +20,9 @@
 import { holdersWithInitiative, initiativeHolder } from './initiative';
 import { waitingForInitiative, waitingForMinor } from './steps';
 import { canSeeFaces } from './moves';
+import { counselFor, type Counsel } from './counsel';
 import type { FacedownAction } from './exceptions';
-import { upCount, type Opponent, type CardTable } from './table';
+import { upCount, type Aim, type Opponent, type CardTable } from './table';
 import type { TableMode } from './mode';
 import type { Round } from './round';
 import type { Scene } from './scene';
@@ -61,9 +62,11 @@ export interface ProjectedTable {
 	/** The declared action of each face-down minor-action card, by zone. */
 	minorDeclared: Record<string, string>;
 	/** Who each face-down minor action is aimed at, by zone. */
-	minorTargets: Record<string, string>;
+	minorTargets: Record<string, Aim>;
 	/** Which face-down minor actions are a Guard, by zone. Public, as the declaration is. */
 	minorGuards: string[];
+	/** The advice on cards handed to this viewer, by card; nobody else's. */
+	counsel: Record<string, Counsel>;
 	/**
 	 * Whose initiative the count has reached — seat and opponent ids.
 	 *
@@ -171,10 +174,18 @@ export function projectFor(table: CardTable, viewer?: string): ProjectedTable {
 		},
 		facedown: Object.fromEntries(Object.entries(table.facedown).map(([k, v]) => [k, { ...v }])),
 		// Only labels for cards lying face up, which anyone can already see.
-		plays: Object.fromEntries(Object.entries(table.plays).map(([k, v]) => [k, { ...v }])),
+		plays: Object.fromEntries(
+			Object.entries(table.plays).map(([k, v]) => [
+				k,
+				{ ...v, ...(v.targets ? { targets: [...v.targets] } : {}) }
+			])
+		),
 		minorDeclared: { ...table.minorDeclared },
-		minorTargets: { ...table.minorTargets },
+		minorTargets: Object.fromEntries(
+			Object.entries(table.minorTargets).map(([k, v]) => [k, { ...v, targets: [...v.targets] }])
+		),
 		minorGuards: [...table.minorGuards],
+		counsel: counselFor(table, viewer),
 		scene: {
 			zones: table.scene.zones.map((z) => ({ ...z })),
 			at: { ...table.scene.at },

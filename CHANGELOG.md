@@ -94,6 +94,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Any legal action: "A talent, or something else".** Type a talent's name, or
+  whatever the table ruled, and choose how the card is played: face up on your
+  turn, readied, as a minor action, out of turn, discarded for a miscellaneous
+  action, or handed to someone. Only what the moment allows is offered, to the
+  GM for each enemy group as to players. The table never knows what a talent
+  does, only where its card goes. Discarding puts the card face up on its own
+  discard and says what for, so the GM can discard a greater doom to trigger an
+  ability.
+- **Handing a card over (Counsel).** A card goes from your hand to another
+  adventurer's, with the advice and whether a Resolve was spent so it may
+  interrupt. The receiver sees "From Eldritch: Recover" under it, and picking it
+  up picks that action; everyone else sees only that a card was handed over and
+  what for. (Card table schema v19.)
+- **Talents by path.** "Show talents for" a path, none by default and
+  remembered on the device, puts that path's Challenge talents beside the
+  actions: Doom Eye, Heavy Metal Machine and Two-handed Focus; Fight Dirty and
+  Quick!; Counsel; Counter-spell and Gramarye. Picking one fills in its name and
+  how it is played, with a line on what it does and a link to the rule.
+- **More than one target.** "At" is a list: any number of people, or everyone in
+  a zone, which the table works out when the card is played. Every target's
+  initiative turns face up, and In play names them all. (Card table schema v20.)
 - **Tests of Fate in a Challenge.** A "Test of Fate" button beside the decks,
   for anyone seated, turns the top player card onto the table, where the
   turned-over cards show with their total and "Into the discard". The end of a

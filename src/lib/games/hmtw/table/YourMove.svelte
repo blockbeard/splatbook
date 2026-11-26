@@ -22,17 +22,28 @@
 -->
 <script lang="ts">
 	import Actions from './Actions.svelte';
+	import AimPicker from './AimPicker.svelte';
 	import type { Action, ActionCatalogue } from './actions';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import type { Pick } from '$lib/card-table/selection';
 	import { creatureLabel } from '../engine/creatures';
+	import {
+		howButton,
+		howsFor,
+		aimFields,
+		talentCommand,
+		type How,
+		type Moment,
+		type TalentsByPath
+	} from './talent';
 
 	let {
 		table,
 		seats,
 		faces,
 		catalogue,
+		talents = {},
 		mySeatId,
 		runs,
 		busy,
@@ -49,6 +60,8 @@
 		seats: readonly { id: string; name: string; status: string; isGm: boolean }[];
 		faces: FaceIndex;
 		catalogue: ActionCatalogue;
+		/** Chapter 5's talents by path, from the pack (phase 33). */
+		talents?: TalentsByPath;
 		mySeatId: string;
 		/** Whether you run the table, and so act for the enemy groups. */
 		runs: boolean;
@@ -92,16 +105,23 @@
 	/** What it is for: a menu choice, or the player's own words. */
 	const label = $derived((custom.trim() || chosen?.name || '').slice(0, 60));
 
-	let target = $state('');
+	/** Whom it is aimed at (phase 33): any number of people, or everyone in a zone. */
+	let aimTargets = $state<string[]>([]);
+	let aimZone = $state('');
+	const aim = $derived({ targets: aimTargets, inZone: aimZone || undefined });
 	/** Which of your holders is acting, when there is more than one. */
 	let acting = $state('');
 
 	function done() {
 		extras = [];
 		collecting = false;
-		target = '';
+		aimTargets = [];
+		aimZone = '';
 		chosen = null;
 		custom = '';
+		giveTo = '';
+		giveAction = '';
+		giveInterrupt = false;
 		onDone();
 	}
 
@@ -205,6 +225,36 @@
 	let outOpen = $state(false);
 
 	const minorNow = $derived(minorMine.length > 0 && upMine.length === 0);
+
+	/*
+	 * A talent, or something else (phase 33): typed, with how it is played.
+	 * The main picker's moment is your turn or your minor action; Out of turn's
+	 * own picker has neither.
+	 */
+	const talent = $derived(!chosen && custom.trim().length > 0);
+	const moment = $derived<Moment>(picking ? (minorNow ? 'minor' : 'turn') : 'other');
+	/** Somebody to hand a card to (Counsel): another adventurer, and you one yourself. */
+	const others = $derived(
+		seats.filter(
+			(s) => s.status === 'admitted' && !s.isGm && s.id !== table.gmSeat && s.id !== mySeatId
+		)
+	);
+	const hows = $derived(howsFor(moment, !isGmSeat && others.length > 0));
+	let giveTo = $state('');
+	let giveAction = $state('');
+	let giveInterrupt = $state(false);
+	let how = $state<How>('now');
+	/** The choice, kept valid for the moment: the usual one when it isn't. */
+	const howNow = $derived(hows.includes(how) ? how : hows[0]);
+	const giving = $derived(talent && howNow === 'give');
+	const give = $derived({ to: giveTo, action: giveAction, interrupt: giveInterrupt });
+	// Back to the usual one whenever the moment changes: "Out of turn" chosen
+	// while waiting would otherwise still be chosen when your turn came.
+	let lastMoment: Moment | null = null;
+	$effect(() => {
+		if (moment !== lastMoment || !hows.includes(how)) how = hows[0];
+		lastMoment = moment;
+	});
 	/** The bar by the hand: a card picked, and a play for it to send. */
 	const barShown = $derived(!!card && (needInitiative.length > 0 || picking));
 	const cardName = $derived(card?.card ? (faces[card.card]?.name ?? 'Your card') : '');
@@ -221,6 +271,37 @@
 		if (!handEl) return;
 		const overlap = handEl.getBoundingClientRect().bottom - (window.innerHeight - barHeight);
 		if (overlap > 0) window.scrollBy({ top: overlap + 8 });
+	});
+
+	/** Out of turn plays out of turn, or, typed as a talent with its own picker, discards. */
+	const outHow = $derived<How>(
+		talent && !picking && (howNow === 'discard' || howNow === 'give') ? howNow : 'out'
+	);
+
+	/*
+	 * A card handed to you (Counsel) is played to take the advice, so picking it
+	 * up picks that action: the catalogue's, if it is one, or the words given.
+	 */
+	let lastPicked: string | null = null;
+	$effect(() => {
+		const picked = card?.card ?? null;
+		if (picked === lastPicked) return;
+		lastPicked = picked;
+		const advice = picked ? table.counsel?.[picked] : undefined;
+		if (!advice) return;
+		const all = [
+			...Object.values(catalogue.bySuit).flat(),
+			...catalogue.anySuit,
+			...catalogue.gmOnly
+		];
+		const named = all.find((a) => a.name.toLowerCase() === advice.action.toLowerCase());
+		if (named) {
+			chosen = named;
+			custom = '';
+		} else {
+			chosen = null;
+			custom = advice.action;
+		}
 	});
 
 	function playTheFool() {
@@ -252,6 +333,24 @@
 				{h === mySeatId ? 'Play as initiative' : `Initiative for ${nameOf(h)}`}
 			</button>
 		{/each}
+	{:else if talent && picking}
+		<button
+			type="button"
+			class="ct-btn ct-btn--primary"
+			disabled={busy || !card || !label || (giving && !giveTo)}
+			onclick={() =>
+				card &&
+				send(
+					talentCommand(howNow, moment, {
+						holder: giving ? mySeatId : actingNow,
+						from: card,
+						extras,
+						label,
+						aim,
+						give
+					})
+				)}>{howButton[howNow]}</button
+		>
 	{:else if minorNow}
 		{#if chosen?.play !== 'ready'}
 			<button
@@ -265,14 +364,14 @@
 						holder: actingNow,
 						from: card,
 						label,
-						...(target ? { target } : {}),
+						...aimFields(aim),
 						// Guard as a minor swaps the initiative when the minors turn
 						// over (phase 33): sent from the pack's flag, as a turn's is.
 						...(chosen?.play === 'initiative' ? { mode: 'guard' } : {})
 					})}>Put it down</button
 			>
 		{/if}
-		{#if chosen?.play === 'ready' || (!chosen && custom.trim())}
+		{#if chosen?.play === 'ready'}
 			<button
 				type="button"
 				class={chosen?.play === 'ready' ? 'ct-btn ct-btn--primary' : 'ct-btn'}
@@ -294,12 +393,43 @@
 					from: card,
 					...(extras.length > 0 ? { extra: extras } : {}),
 					action: label,
-					...(target ? { target } : {}),
+					...aimFields(aim),
 					mode
 				})}
 		>
 			{mode === 'ready' ? 'Ready it' : mode === 'guard' ? 'Make it my initiative' : 'Play it'}
 		</button>
+	{/if}
+{/snippet}
+
+{#snippet giveFields()}
+	{#if giving}
+		<!-- Counsel (phase 33): "yell advice to another adventurer and hand the
+		     player a card from your hand". The suit should match the advice; the
+		     table doesn't check. -->
+		<div class="move__give">
+			<label class="move__target">
+				To
+				<select class="ct-field" bind:value={giveTo}>
+					<option value="">choose who</option>
+					{#each others as o (o.id)}<option value={o.id}>{o.name}</option>{/each}
+				</select>
+			</label>
+			<label class="move__target">
+				Advice
+				<input
+					class="ct-field"
+					bind:value={giveAction}
+					placeholder="Recover, Attack…"
+					maxlength="60"
+					autocomplete="off"
+				/>
+			</label>
+			<label class="move__target">
+				<input type="checkbox" bind:checked={giveInterrupt} />
+				Spent a Resolve: they may play it as an interrupt
+			</label>
+		</div>
 	{/if}
 {/snippet}
 
@@ -340,16 +470,20 @@
 			bind:custom
 			asGm={isGmSeat}
 			onTurn={!minor}
+			{hows}
+			{moment}
+			bind:how
+			{talents}
 		/>
 		<!-- A minor Attack is aimed at somebody as much as a turn's is (second live
 		     test): their initiative turns over when the minor actions do. -->
-		<label class="move__target">
-			At
-			<select class="ct-field" bind:value={target}>
-				<option value="">nobody in particular</option>
-				{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
-			</select>
-		</label>
+		<AimPicker
+			people={targets}
+			zones={table.scene.zones}
+			bind:targets={aimTargets}
+			bind:inZone={aimZone}
+		/>
+		{@render giveFields()}
 		{#if card && extras.length > 0}
 			<p class="move__extras">With {extras.length} more card{extras.length === 1 ? '' : 's'}.</p>
 		{/if}
@@ -390,7 +524,7 @@
 								holder: actingNow,
 								from: card,
 								action: label,
-								...(target ? { target } : {}),
+								...aimFields(aim),
 								mode: 'play'
 							})}>Play it face up instead</button
 					>
@@ -456,14 +590,18 @@
 					bind:custom
 					asGm={isGmSeat}
 					onTurn
+					{hows}
+					{moment}
+					bind:how
+					{talents}
 				/>
-				<label class="move__target">
-					At
-					<select class="ct-field" bind:value={target}>
-						<option value="">nobody in particular</option>
-						{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
-					</select>
-				</label>
+				<AimPicker
+					people={targets}
+					zones={table.scene.zones}
+					bind:targets={aimTargets}
+					bind:inZone={aimZone}
+				/>
+				{@render giveFields()}
 			{/if}
 			<div class="move__buttons">
 				{#each mine as h (h)}
@@ -473,14 +611,16 @@
 						disabled={busy || !card || !label}
 						onclick={() =>
 							card &&
-							send({
-								type: 'play-out-of-turn',
-								holder: h,
-								from: card,
-								...(extras.length > 0 ? { extra: extras } : {}),
-								action: label,
-								...(target ? { target } : {})
-							})}>Play out of turn{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button
+							send(
+								talentCommand(outHow, 'other', {
+									holder: h,
+									from: card,
+									extras,
+									label,
+									aim,
+									give
+								})
+							)}>{howButton[outHow]}{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button
 					>
 				{/each}
 				<button
@@ -590,6 +730,10 @@
 	}
 	.move__bar__what {
 		font-size: 0.9rem;
+	}
+	.move__give {
+		display: grid;
+		gap: 0.3rem;
 	}
 	.move__fool {
 		align-items: center;

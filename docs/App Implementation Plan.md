@@ -580,6 +580,25 @@ type checks, lint, the unit tests and the card-table browser specs green.
     attacked.
     Schema v20, with a migration test (a single target becomes a list of one).
 
+**As built: Release B (2026-11-26).** Commits 14 to 17 on `phase-33-release-b`.
+
+- **Commit 14** needed one new command, not two: `discard-for` sends the card
+  face up to its own discard with the talent's name in the log, and stores
+  nothing, so no schema change. `talent.ts` maps each "how" to its command, and
+  a test runs every one through the command schema.
+- **Commit 15**'s advice is projected to the receiver only. Sending it to the
+  giver too would put a card id in the giver's projection for a card now in
+  someone else's hand, which the leak test rightly refuses; the giver knows the
+  card anyway. `give-card` and `discard-for` join the commands that retry on a
+  conflict, after the round spec caught a hand-over refused because the GM had
+  just discarded.
+- **Commit 16**'s talents sit in `challenge.json` beside the actions, not in a
+  `talents.json`, since that is the file the table already loads. Eight talents
+  over the four paths; the ones that change a number (Monster Hunter, Aegis,
+  Ambusher, Reaver) are left out.
+- **Commit 17** expands "everyone in" a zone on the server when the card is
+  played, leaving out the one playing it and creatures that are down.
+
 **Release C: the GM's table.**
 
 18. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown

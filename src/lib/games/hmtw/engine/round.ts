@@ -267,6 +267,8 @@ export function endRound(table: CardTable, rng: Rng): CardTable {
 		minorDeclared: {},
 		minorTargets: {},
 		minorGuards: [],
+		// Hands are discarded, so any advice riding on them is spent.
+		counsel: {},
 		round: { ...newRound(), number: current.round.number }
 	};
 }

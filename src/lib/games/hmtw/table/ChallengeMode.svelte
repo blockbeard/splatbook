@@ -55,6 +55,7 @@
 		faces: FaceIndex;
 		challengePack: {
 			actions: import('./actions').ActionCatalogue;
+			talents?: import('./talent').TalentsByPath;
 			endOfRound: import('./guide').GuideWords['endOfRound'];
 			handSizes: {
 				player: { default: number };
@@ -179,6 +180,15 @@
 		gmDrawFacts(table.opponents, admitted.filter((s) => !s.isGm && s.id !== table.gmSeat).length)
 	);
 	const nameOf = (id: string) => admitted.find((s) => s.id === id)?.name ?? 'Seat';
+	/** The advice on a card handed to you (Counsel), shown under it in your hand. */
+	const counselNotes = $derived(
+		Object.fromEntries(
+			Object.entries(table.counsel ?? {}).map(([card, advice]) => [
+				card,
+				`From ${nameOf(advice.from)}: ${advice.action}${advice.interrupt ? ', may interrupt' : ''}`
+			])
+		)
+	);
 
 	function select(pick: Pick) {
 		if (!canTake(pick.zone)) return;
@@ -713,6 +723,7 @@
 					grouped={table.gmSeat === mySeatId}
 					selected={selectedPick}
 					lit={litCards}
+					notes={counselNotes}
 					onSelect={select}
 					onDrop={drop}
 				/>
@@ -741,6 +752,7 @@
 				{seats}
 				{faces}
 				catalogue={challengePack.actions}
+				talents={challengePack.talents ?? {}}
 				{mySeatId}
 				{runs}
 				{busy}

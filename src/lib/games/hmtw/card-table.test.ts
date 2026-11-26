@@ -893,6 +893,94 @@ describe('Session 14: two on initiative 1, and Next pressed twice', () => {
 		expect(view(t, 'bonnie').round).toMatchObject({ step: 'resolve' });
 	});
 
+	it('discards for an ability, the GM’s for a group and a player’s own (phase 33)', () => {
+		const t = tiedOnOne();
+		const doom = {
+			type: 'discard-for',
+			holder: 'lion',
+			from: { zone: 'seat:gm:hand', card: 'moon' },
+			label: 'Greater doom ability'
+		};
+		// Card Table Test 3, note 7: the Devil wanted to discard a greater doom.
+		expect(reduce(t, doom, 'bonnie')).toEqual({ ok: false, reason: 'not-yours' });
+		const out = reduce(t, doom);
+		expect(out.ok && out.data).toEqual({ holder: 'lion', label: 'Greater doom ability' });
+		const after = run(t, doom);
+		expect(after.zones['discard:gm'].cards[0]).toBe('moon');
+		expect(after.round).toEqual(t.round);
+		// Nobody but the discard's own face says which card it was.
+		expect(JSON.stringify(out.ok && out.data)).not.toContain('moon');
+	});
+
+	it('hands a card over, and says what for but never which card (Counsel)', () => {
+		const t = tiedOnOne();
+		const give = {
+			type: 'give-card',
+			holder: 'bonnie',
+			to: 'tatyana',
+			from: { zone: 'seat:bonnie:hand', card: 'swords-iii' },
+			action: 'Attack',
+			interrupt: true
+		};
+		expect(reduce(t, give, 'tatyana')).toEqual({ ok: false, reason: 'not-yours' });
+		const out = reduce(t, give, 'bonnie');
+		expect(out.ok && out.data).toEqual({
+			holder: 'bonnie',
+			to: 'tatyana',
+			action: 'Attack',
+			interrupt: true
+		});
+		const after = run(t, give, 'bonnie');
+		expect(after.zones['seat:tatyana:hand'].cards).toContain('swords-iii');
+		const seen = (viewer: string) =>
+			(hmtwCardTable.project(after, viewer) as { counsel: Record<string, unknown> }).counsel;
+		expect(Object.keys(seen('tatyana'))).toEqual(['swords-iii']);
+		expect(seen('bonnie')).toEqual({});
+		expect(seen('gm')).toEqual({});
+	});
+
+	it('aims at everyone in a zone, whoever stands there when it is played (phase 33)', () => {
+		let t = tiedOnOne();
+		t = run(t, {
+			type: 'set-scene-zones',
+			zones: [
+				{ id: 'middle', name: 'Middle Tower' },
+				{ id: 'terrace', name: 'Terrace' }
+			]
+		});
+		const lion = t.opponents[0].creatures[0].id;
+		for (const who of ['bonnie', 'tatyana', lion]) {
+			t = run(t, { type: 'place', who, zone: 'middle' });
+		}
+		const whip = {
+			type: 'play-out-of-turn',
+			holder: 'lion',
+			from: { zone: 'seat:gm:hand', card: 'moon' },
+			action: 'Tail Whip',
+			inZone: 'middle'
+		};
+		const out = reduce(t, whip);
+		expect(out.ok && out.data).toMatchObject({
+			targets: ['bonnie', 'tatyana'],
+			targetLabels: [],
+			inZone: 'Middle Tower'
+		});
+		const after = run(t, whip);
+		const play = after.plays['moon'];
+		// The lion isn't its own target.
+		expect(play.targets?.sort()).toEqual(['bonnie', 'tatyana']);
+		expect(play.inZone).toBe('Middle Tower');
+		expect(after.round.shown).toEqual(expect.arrayContaining(['bonnie', 'tatyana']));
+
+		// A list and a single target from an older page both still work.
+		const both = run(
+			t,
+			{ ...whip, inZone: undefined, target: 'bonnie', targets: ['tatyana'] },
+			'gm'
+		);
+		expect(both.plays['moon'].targets).toEqual(['bonnie', 'tatyana']);
+	});
+
 	it('takes a Next with no round attached, as an older page sends it', () => {
 		const t = tiedOnOne();
 		expect(reduce(t, { type: 'step-on' }).ok).toBe(true);

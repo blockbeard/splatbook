@@ -221,6 +221,8 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	let sawMinor = false;
 	let sawResolve = false;
 	let outChecked = false;
+	let counselled = false;
+	let multiAimed = false;
 
 	for (let guard = 0; guard < 30; guard++) {
 		const view = (await projectionFor(gmContext, token)).state;
@@ -260,6 +262,47 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				await expect(
 					out.getByRole('button', { name: /^Play out of turn for Zombie/ })
 				).toBeVisible();
+				// The GM discards a card for the zombies' ability, as a talent's
+				// miscellaneous action (Card Table Test 3, note 7): it lands face up
+				// on the GM discard and the turn carries on.
+				const discards = (await projectionFor(gmContext, token)).state.zones['discard:gm'].count;
+				await gm.locator('.hand button').first().click();
+				await out.getByLabel('A talent, or something else').fill('Greater doom ability');
+				await out.getByRole('radio', { name: 'Discard it (a miscellaneous action)' }).check();
+				await out.getByRole('button', { name: /^Discard it for Zombie/ }).click();
+				await expect
+					.poll(
+						async () => (await projectionFor(gmContext, token)).state.zones['discard:gm'].count,
+						POLLED
+					)
+					.toBe(discards + 1);
+				expect((await projectionFor(gmContext, token)).state.round.step).toBe('turn');
+				await out.locator('summary').click();
+			}
+			const bystanders = players.filter((p) => !view.upNow.includes(p.seat));
+			if (!counselled && bystanders.length >= 2) {
+				// Counsel (phase 33): a player who isn't acting hands another a card,
+				// with advice, and only the receiver is told which card it was.
+				counselled = true;
+				const [giver, receiver] = bystanders;
+				const out = giver.page.locator('.move__out');
+				await out.locator('summary').click();
+				await giver.page.locator('.hand button').first().click();
+				await out.getByLabel('A talent, or something else').fill('Counsel');
+				await out.getByRole('radio', { name: 'Hand it to someone (Counsel)' }).check();
+				await out
+					.getByRole('combobox', { name: 'To', exact: true })
+					.selectOption({ label: receiver.name });
+				await out.getByLabel('Advice', { exact: true }).fill('Recover');
+				await out.getByRole('button', { name: 'Hand it over' }).click();
+				await expect(receiver.page.locator('.ch__hand')).toContainText(
+					`From ${giver.name}: Recover`,
+					POLLED
+				);
+				await expect(giver.page.locator('.ch__hand')).not.toContainText('From ');
+				expect(Object.keys((await projectionFor(giver.context, token)).state as object)).toContain(
+					'counsel'
+				);
 				await out.locator('summary').click();
 			}
 			await page.locator('.hand button').first().click();
@@ -270,7 +313,25 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				readied = true;
 			} else {
 				await page.locator('.actions').getByRole('button', { name: 'Attack', exact: true }).click();
-				await page.getByRole('button', { name: 'Play it', exact: true }).click();
+				if (!multiAimed) {
+					// More than one target (Card Table Test 3, phase 33): both zombies.
+					multiAimed = true;
+					await page.locator('.aim').getByRole('checkbox', { name: 'Zombie A' }).check();
+					await page.locator('.aim').getByRole('checkbox', { name: 'Zombie B' }).check();
+					await page.getByRole('button', { name: 'Play it', exact: true }).click();
+					await expect
+						.poll(async () => {
+							const v = (await projectionFor(gmContext, token)).state as Projection['state'] & {
+								plays: Record<string, { targets?: string[] }>;
+								round: { shown: string[] };
+							};
+							return Object.values(v.plays).some((p) => p.targets?.length === 2);
+						}, POLLED)
+						.toBe(true);
+					await expect(gm.locator('.play')).toContainText('→ Zombie A, Zombie B', POLLED);
+				} else {
+					await page.getByRole('button', { name: 'Play it', exact: true }).click();
+				}
 			}
 		} else if (step === 'minor') {
 			const waiting = view.waitingOn;
@@ -292,14 +353,17 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				await page.getByRole('button', { name: 'Put it down', exact: true }).click();
 				declared = true;
 				const mine = players.find((p) => p.page === page)!;
+				// Landed: face down in the minor slot, or, if it was the last answer,
+				// already turned over with what it was for.
 				await expect
-					.poll(
-						async () =>
-							(await projectionFor(context, token)).state.zones[`seat:${mine.seat}:minor`]?.cards
-								?.length ?? 0,
-						POLLED
-					)
-					.toBeGreaterThan(0);
+					.poll(async () => {
+						const v = (await projectionFor(context, token)).state;
+						return (
+							(v.zones[`seat:${mine.seat}:minor`]?.cards?.length ?? 0) > 0 ||
+							Object.values(v.plays).some((p) => p.by === mine.seat && p.action === 'Roughhouse')
+						);
+					}, POLLED)
+					.toBe(true);
 				const after = await projectionFor(gmContext, token);
 				if (after.state.round.step === 'minor') {
 					// Declared to all; the card to nobody else.
@@ -351,6 +415,8 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	}
 	expect(readied).toBe(true);
 	expect(outChecked).toBe(true);
+	expect(counselled).toBe(true);
+	expect(multiAimed).toBe(true);
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);

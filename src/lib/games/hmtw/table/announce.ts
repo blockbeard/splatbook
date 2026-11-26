@@ -55,6 +55,20 @@ const listOf = (names: string[]): string =>
 		? (names[0] ?? '')
 		: `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
 
+/**
+ * " at Bonnie", " at Bonnie, Zombie A and Zombie B", or " at everyone in Middle
+ * Tower" (phase 33): whom a play is aimed at, from its event, or nothing.
+ */
+function atWhom(d: Record<string, unknown>, nameOf: NameOf): string {
+	if (typeof d.target === 'string') return ` at ${nameOf(d.target)}`;
+	if (typeof d.targetLabel === 'string') return ` at ${d.targetLabel}`;
+	if (typeof d.inZone === 'string') return ` at everyone in ${d.inZone}`;
+	const seats = Array.isArray(d.targets) ? (d.targets as string[]).map((t) => nameOf(t)) : [];
+	const labels = Array.isArray(d.targetLabels) ? (d.targetLabels as string[]) : [];
+	const all = [...seats, ...labels];
+	return all.length > 0 ? ` at ${listOf(all)}` : '';
+}
+
 /** The seat a `seat:<id>:<kind>` zone belongs to, or nothing. */
 const seatOfZone = (zone: string): string | null => {
 	const parts = zone.split(':');
@@ -164,12 +178,7 @@ export function describe(
 			return withRound('', d, listener, latest) || null;
 		case 'play-turn': {
 			const who = nameOf(d.holder as string);
-			const at =
-				typeof d.target === 'string'
-					? ` at ${nameOf(d.target)}`
-					: typeof d.targetLabel === 'string'
-						? ` at ${d.targetLabel}`
-						: '';
+			const at = atWhom(d, nameOf);
 			const what =
 				d.mode === 'ready'
 					? `${who} readied ${d.action}.`
@@ -181,25 +190,20 @@ export function describe(
 		case 'skip-turn':
 			return withRound(`${nameOf(d.holder as string)} skipped their turn.`, d, listener, latest);
 		case 'play-out-of-turn': {
-			const at =
-				typeof d.target === 'string'
-					? ` at ${nameOf(d.target)}`
-					: typeof d.targetLabel === 'string'
-						? ` at ${d.targetLabel}`
-						: '';
+			const at = atWhom(d, nameOf);
 			return `Out of turn, ${nameOf(d.holder as string)}: ${d.action}${at}.`;
 		}
 		case 'show-initiative':
 			return `${nameOf(d.holder as string)} showed their initiative.`;
+		case 'give-card':
+			return `${nameOf(d.holder as string)} handed ${nameOf(d.to as string)} a card: ${d.action}${
+				d.interrupt ? ', which may interrupt' : ''
+			}.`;
+		case 'discard-for':
+			return `${nameOf(d.holder as string)} discarded a card: ${d.label}.`;
 		case 'declare-minor':
 			return withRound(
-				`${nameOf(d.holder as string)} put down a minor action: ${d.label}${
-					typeof d.target === 'string'
-						? ` at ${nameOf(d.target)}`
-						: typeof d.targetLabel === 'string'
-							? ` at ${d.targetLabel}`
-							: ''
-				}.`,
+				`${nameOf(d.holder as string)} put down a minor action: ${d.label}${atWhom(d, nameOf)}.`,
 				d,
 				listener,
 				latest

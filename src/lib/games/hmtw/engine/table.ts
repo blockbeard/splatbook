@@ -8,6 +8,7 @@
  * otherwise break a table that people are sitting at mid-round.
  */
 
+import type { Counsel } from './counsel';
 import type { FacedownAction } from './exceptions';
 import type { TableMode } from './mode';
 import { newRound, type Round } from './round';
@@ -50,10 +51,13 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v16: `minorTargets`, who a face-down minor action is aimed at, from the
  *   second live test (25 November 2026).
  * v17: a play's `adds`, whether its total adds the attribute.
- * v18 (this commit): `minorGuards`, the minor actions put down as Guard, and
- *   the round's `readiedNow`, from Card Table Test 3 (26 November 2026).
+ * v18: `minorGuards`, the minor actions put down as Guard, and the round's
+ *   `readiedNow`, from Card Table Test 3 (26 November 2026).
+ * v19: `counsel`, the advice on a card handed over.
+ * v20 (this commit): a play's `targets` and `inZone`, and `minorTargets` as an
+ *   `Aim`, for more than one target (Card Table Test 3).
  */
-export const TABLE_SCHEMA_VERSION = 18;
+export const TABLE_SCHEMA_VERSION = 20;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -72,8 +76,15 @@ export interface Play {
 	by: string;
 	/** The action, as its player named it. */
 	action: string;
-	/** Who it was aimed at, if anyone was named: a seat, a group or a creature. */
-	target?: string;
+	/**
+	 * Who it was aimed at, if anyone was named: seats, groups or creatures (v20,
+	 * phase 33). A list since Card Table Test 3, where the Devil's Tail Whip hit
+	 * every adventurer in its zone and could only be aimed at "no one in
+	 * particular". Before v20 it was one `target`.
+	 */
+	targets?: string[];
+	/** "Everyone in <zone>": the zone's name when it was played, its people in `targets`. */
+	inZone?: string;
 	kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
 	/**
 	 * Whether the card's total adds the player's attribute (v17, phase 33). The
@@ -89,6 +100,25 @@ export interface Play {
 	adds?: boolean;
 	/** The initiative number it was played at. */
 	number: number | null;
+}
+
+/** Who something is aimed at: seats, groups or creatures, and the zone if it was "everyone in" one. */
+export interface Aim {
+	targets: string[];
+	inZone?: string;
+}
+
+/** v19 → v20: a single target becomes a list of one. */
+function migrateAim(raw: unknown): Aim | null {
+	if (typeof raw === 'string') return { targets: [raw] };
+	if (raw && typeof raw === 'object' && Array.isArray((raw as Aim).targets)) return raw as Aim;
+	return null;
+}
+
+function migratePlay(raw: Play & { target?: unknown }): Play {
+	const { target, ...rest } = raw;
+	if (typeof target === 'string' && !rest.targets) return { ...rest, targets: [target] };
+	return rest;
 }
 
 export interface Opponent {
@@ -183,7 +213,7 @@ export interface CardTable {
 	 * label when the minor actions turn over, and turns the target's initiative
 	 * face up then.
 	 */
-	minorTargets: Record<string, string>;
+	minorTargets: Record<string, Aim>;
 	/**
 	 * The face-down minor actions that are a Guard, by zone (v18, phase 33).
 	 * "Replace your Initiative with any card from your hand" is a
@@ -192,6 +222,12 @@ export interface CardTable {
 	 * `play: 'initiative'` flag, never from the label, which is free text.
 	 */
 	minorGuards: string[];
+	/**
+	 * The advice on each card handed over with Counsel, by card id (v19, phase
+	 * 33): who gave it, to whom, the action, and whether it may interrupt.
+	 * Projected only to the receiver; see `counsel.ts`.
+	 */
+	counsel: Record<string, Counsel>;
 	/**
 	 * What each facedown card is *for*, keyed by its zone.
 	 *
@@ -292,6 +328,7 @@ export function createTable(deck: DeckDefinition, seats: readonly string[] = [])
 		minorDeclared: {},
 		minorTargets: {},
 		minorGuards: [],
+		counsel: {},
 		scene: emptyScene(),
 		enemyHealth: 'shown',
 		zones
@@ -342,6 +379,11 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v19 → v20: a play's single `target` becomes `targets`, a list of one, and so
+ * does a face-down minor action's.
+ *
+ * v18 → v19: no card has been handed over.
  *
  * v17 → v18: no minor Guards, and nobody has readied a minor at this number,
  * which is the safe reading: a minor already down turns over as it would have.
@@ -454,12 +496,21 @@ function migrateShape(raw: CardTable): CardTable {
 		deckOf: raw.deckOf ?? {},
 		valueOf: raw.valueOf ?? {},
 		// v15: what played cards were for starts unknown, which is true of them.
-		plays: raw.plays ?? {},
+		// v20: one target becomes a list of one.
+		plays: Object.fromEntries(
+			Object.entries(raw.plays ?? {}).map(([card, play]) => [card, migratePlay(play)])
+		),
 		minorDeclared: raw.minorDeclared ?? {},
 		// v16: nobody had named a target before there was a place to.
-		minorTargets: raw.minorTargets ?? {},
+		minorTargets: Object.fromEntries(
+			Object.entries((raw.minorTargets ?? {}) as Record<string, unknown>)
+				.map(([zone, aim]) => [zone, migrateAim(aim)] as const)
+				.filter((e): e is readonly [string, Aim] => e[1] !== null)
+		),
 		// v18: no minor action had been put down as a Guard.
 		minorGuards: raw.minorGuards ?? [],
+		// v19: nobody had handed a card over.
+		counsel: raw.counsel ?? {},
 		round: newRound(),
 		facedown: raw.facedown ?? {},
 		scene: migrateScene(raw.scene),

@@ -84,6 +84,7 @@ clamped to that range.
 | `handSizes.player` | object | `{ default: 4, note }` — always four, and facedown cards in play do not reduce it |
 | `handSizes.gm` | object | `{ base: 3, modifiers, mulligan, note }` |
 | `actions` | object | `{ free, bySuit, anySuit }` |
+| `talents` | object | Chapter 5's talents with a card shape in a Challenge, by path: `{ swords, pentacles, cups, wands }` |
 
 **GM modifier** — `{ id, label, amount, kind }`. `kind` is `"toggle"` (true or
 false: outnumbering, an elite, a dungeon lord) or `"count"` (once per instance:
@@ -93,6 +94,14 @@ start of every round — as enemies fall, the GM draws fewer.
 **Mulligan** — `{ label, note }` and nothing more. The book's condition is a
 hand that is "*mostly* greater dooms", with no threshold given, so this is a
 button the GM chooses to press and never a computed state.
+
+**Talent** — `{ id, name, how, suits, summary, rule }`. Only what the talent does
+with a card: `how` is one of `now` (face up on your turn), `ready`, `minor`,
+`out` (an interrupt), `discard` (a miscellaneous action) or `give` (handed to
+another adventurer, Counsel), and `suits` the suits the book names, empty for
+any card. Talents that change a number, a Wound or a notch (Monster Hunter,
+Aegis, Ambusher) are left out: the table leaves those to the people at it.
+`rule` is the talent's own heading in the reference.
 
 **Action** — `{ id, name, greaterDoomForbidden? }`. Grouped by the suit that
 pays for them, plus `anySuit` (the miscellaneous actions) and `free` (talking,

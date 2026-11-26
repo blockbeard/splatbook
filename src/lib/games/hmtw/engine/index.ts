@@ -36,6 +36,7 @@ export {
 	setGmSeat,
 	updateOpponent,
 	withDeckFacts,
+	type Aim,
 	type CardTable,
 	type DeckDefinition,
 	type Opponent,
@@ -57,6 +58,7 @@ export {
 export {
 	declareMinor,
 	dropReadied,
+	discardFor,
 	expectedInitiative,
 	expectedMinor,
 	nextNumber,
@@ -89,6 +91,7 @@ export {
 	type FacedownAction,
 	type FacedownPosition
 } from './exceptions';
+export { counselFor, giveCard, liveCounsel, type Counsel, type GiveFailure } from './counsel';
 export { hiddenFrom, projectFor, type ProjectedTable, type ProjectedZone } from './projection';
 export {
 	canSeeFaces,

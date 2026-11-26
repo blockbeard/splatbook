@@ -68,6 +68,33 @@ suite('saying what happened', () => {
 		expect(describe(played, nameOf, { viewer: 'gm', upNow: ['s1'] })).toBe('Aldis: Attack.');
 	});
 
+	it('names every target, or everyone in a zone (phase 33)', () => {
+		expect(
+			describe(
+				ev('play-turn', {
+					holder: 's1',
+					action: 'Attack',
+					mode: 'play',
+					targets: ['s2'],
+					targetLabels: ['Zombie A']
+				}),
+				nameOf
+			)
+		).toBe('Grimwold: Attack at Aldis and Zombie A.');
+		expect(
+			describe(
+				ev('play-out-of-turn', {
+					holder: 's1',
+					action: 'Tail Whip',
+					targets: ['s2'],
+					targetLabels: [],
+					inZone: 'Middle Tower'
+				}),
+				nameOf
+			)
+		).toBe('Out of turn, Grimwold: Tail Whip at everyone in Middle Tower.');
+	});
+
 	it('says what an action was for and at whom, and never what card it was', () => {
 		expect(
 			describe(

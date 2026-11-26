@@ -19,6 +19,7 @@ import { opponentZone, seatZone } from './zones';
 import { projectFor } from './projection';
 import {
 	declareMinor,
+	discardFor,
 	expectedMinor,
 	nextNumber,
 	passMinor,
@@ -136,7 +137,12 @@ describe('a turn', () => {
 			playTurn(
 				t,
 				'ash',
-				{ from: from(t, 'ash', 1), action: 'Attack', target: 'zombies:B', mode: 'play' },
+				{
+					from: from(t, 'ash', 1),
+					action: 'Attack',
+					aim: { targets: ['zombies:B'] },
+					mode: 'play'
+				},
 				'ash'
 			)
 		);
@@ -274,13 +280,13 @@ describe('minor actions', () => {
 		// The second live test: a minor Attack had nowhere to say who it was at.
 		let t = minorOpen();
 		const belCard = card(t, 'bel', 5);
-		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', 'zombies:A'));
-		expect(t.minorTargets[seatZone('bel', 'minor')]).toBe('zombies:A');
+		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', { targets: ['zombies:A'] }));
+		expect(t.minorTargets[seatZone('bel', 'minor')]).toEqual({ targets: ['zombies:A'] });
 		expect(t.round.shown).not.toContain('zombies');
 		t = ok(passMinor(t, ['zombies']));
 		expect(t.plays[belCard]).toMatchObject({
 			action: 'Attack',
-			target: 'zombies:A',
+			targets: ['zombies:A'],
 			kind: 'minor'
 		});
 		expect(t.round.shown).toContain('zombies');
@@ -476,7 +482,9 @@ describe('minor actions, from Card Table Test 3', () => {
 	it('can be taken back until the minors turn over, and answered again', () => {
 		let t = minorOpen();
 		const five = card(t, 'bel', 5);
-		t = ok(declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', 'zombies:A', true));
+		t = ok(
+			declareMinor(t, 'bel', from(t, 'bel', 5), 'Attack', 'bel', { targets: ['zombies:A'] }, true)
+		);
 		t = ok(takeBack(t, 'bel'));
 		expect(hand(t, 'bel')).toContain(five);
 		expect(t.round.answered).not.toContain('bel');
@@ -539,5 +547,101 @@ describe('a table saved before v18', () => {
 		expect(migrated.minorGuards).toEqual([]);
 		expect(migrated.round.readiedNow).toEqual([]);
 		expect(migrated.round.step).toBe(t.round.step);
+	});
+});
+
+describe('discarding a card for a miscellaneous action (phase 33)', () => {
+	it('puts it face up on its own discard, and costs nobody a turn', () => {
+		let t = initiative();
+		const five = card(t, 'bel', 5);
+		const before = t.round;
+		t = ok(discardFor(t, 'bel', from(t, 'bel', 5), 'bel'));
+		expect(t.zones['discard:player'].cards[0]).toBe(five);
+		expect(hand(t, 'bel')).not.toContain(five);
+		expect(t.round).toEqual(before);
+	});
+
+	it('lets the GM discard for a group, from the GM’s hand, to the GM discard', () => {
+		let t = initiative();
+		const four = card(t, 'gm', 4);
+		t = ok(discardFor(t, 'zombies', from(t, 'gm', 4), 'gm'));
+		expect(t.zones['discard:gm'].cards[0]).toBe(four);
+	});
+
+	it('takes only from the holder’s own hand, and only mid-round', () => {
+		const t = initiative();
+		expect(discardFor(t, 'bel', from(t, 'ash', 1), 'bel')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+		expect(discardFor(t, 'bel', from(t, 'bel', 5), 'ash')).toEqual({
+			ok: false,
+			reason: 'not-your-hand'
+		});
+		const d = dealt();
+		expect(discardFor(d, 'bel', from(d, 'bel', 5), 'bel')).toEqual({
+			ok: false,
+			reason: 'wrong-step'
+		});
+	});
+});
+
+describe('more than one target (phase 33)', () => {
+	it('turns over every target’s initiative, on a turn and as a minor', () => {
+		// Card Table Test 3: the Devil's Tail Whip hit every adventurer in its
+		// zone and could only be aimed at "no one in particular".
+		let t = initiative();
+		t = ok(
+			playTurn(
+				t,
+				'ash',
+				{
+					from: from(t, 'ash', 1),
+					action: 'Tail Whip',
+					aim: { targets: ['bel', 'zombies:A'], inZone: 'Middle Tower' },
+					mode: 'play'
+				},
+				'ash'
+			)
+		);
+		const played = t.zones[seatZone('ash', 'played')].cards[0];
+		expect(t.plays[played]).toMatchObject({
+			targets: ['bel', 'zombies:A'],
+			inZone: 'Middle Tower'
+		});
+		expect(t.round.shown).toEqual(expect.arrayContaining(['bel', 'zombies']));
+	});
+
+	it('names nobody when the list is empty', () => {
+		let t = initiative();
+		t = ok(
+			playTurn(
+				t,
+				'ash',
+				{ from: from(t, 'ash', 1), action: 'Attack', aim: { targets: [] }, mode: 'play' },
+				'ash'
+			)
+		);
+		const played = t.zones[seatZone('ash', 'played')].cards[0];
+		expect(t.plays[played]).not.toHaveProperty('targets');
+	});
+});
+
+describe('a table saved before v20', () => {
+	it('turns one target into a list of one, on a play and a face-down minor', () => {
+		let t = initiative();
+		t = ok(playTurn(t, 'ash', { from: from(t, 'ash', 1), action: 'Attack', mode: 'play' }, 'ash'));
+		const played = t.zones[seatZone('ash', 'played')].cards[0];
+		const zone = seatZone('bel', 'minor');
+		const v19 = {
+			...t,
+			schemaVersion: 19,
+			plays: { [played]: { ...t.plays[played], target: 'zombies:B' } },
+			minorTargets: { [zone]: 'zombies:A' }
+		} as unknown as CardTable;
+		const migrated = migrateTable(v19);
+		expect(migrated.plays[played].targets).toEqual(['zombies:B']);
+		expect(migrated.plays[played]).not.toHaveProperty('target');
+		expect(migrated.minorTargets[zone]).toEqual({ targets: ['zombies:A'] });
 	});
 });
