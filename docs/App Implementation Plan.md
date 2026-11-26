@@ -230,13 +230,14 @@ changed:
 - **Enemy stats stay shown by default**, with the GM's switch to hide them
   (phase 32). Edmund likes not knowing; his GM can untick it.
 - **The layout waits for the design pass with Edmund**, except the Play it
-  button, which two people forgot in one session and needs a fix now.
+  button, which two people forgot in one session and needs a fix now, and the
+  seat request in the pinned line (commit 8), which a GM could not see at all.
 
 ### Decided after filing (Chris, 2026-11-26)
 
 1. **The "how is it played" choice and Counsel first**, then talents by path
-   (commits 13, 14 and 15, in that order).
-2. **Olivia's "draw" meant handing a card to a player**, which is commit 14.
+   (commits 14, 15 and 16, in that order).
+2. **Olivia's "draw" meant handing a card to a player**, which is commit 15.
    There is no draw option.
 3. **Tests of Fate stay the card's value.** "We decided to keep abilities out of
    it for now."
@@ -245,11 +246,36 @@ changed:
 5. **Each play says whether it adds your attribute** (commit 9), added the same
    day.
 
+### Card Table Test 3, folded in and reviewed (2026-11-26)
+
+The live CPU test's nine notes are in A2 (commits 6, 8, 10 and 12) and Release
+B (commits 14 and 17). A review against the code changed four things, and Chris's ruling a fifth:
+
+- **The Test of Fate button needs no new command.** `move` and `clear-fate`
+  are open to anyone, and a player may take from a shared deck.
+- **Note 2 is the server's as much as the page's.** `mayReach` lets anyone put
+  a card in anyone's durable zone, which is why every seat showed the
+  inspiration slot. Hiding the slot alone would leave the hole.
+- **A minor Guard can't be spotted by its label.** The label is free text, so
+  the swap rides on a `mode` flag set from the pack, as a turn's Guard does.
+- **Multi-target has to turn over every target's initiative**, or the
+  defence values the book compares against stay hidden.
+
+- **A Guard below the count loses the turn** (Chris's ruling, the same day).
+  The review first read the engine as settling it, since the count always takes
+  the lowest number still to act, which would have stepped the count back and
+  given the Devil its turn. Chris: if you move to an initiative that has already
+  gone, you lose your turn. Commit 12 marks such a holder as having acted.
+
+Checked and left alone: `step-on`'s `from` guard and the new minor take-back
+don't interact, since a take-back comes from the card's holder and Next from
+whoever runs the table.
+
 ### The design
 
 **Release A: nothing stops the table.** Needed before the next session. It comes
 in two halves, so the first can ship on its own if time is short: A1 (commits 1
-to 5) is the crash, A2 (6 to 12) the bugs.
+to 5) is the crash, A2 (6 to 13) the bugs.
 
 *A1: the crash.*
 
@@ -339,12 +365,18 @@ to 5) is the crash, A2 (6 to 12) the bugs.
    - a component test that a press within the moment after a step change does
      nothing.
 
-*A2: the bugs.*
+*A2: the bugs.* Card Table Test 3 (26 November, the live CPU test) added notes
+1 to 9, marked below; the full list is in that note in the campaign vault.
 
-6. `fix(hmtw)`: **the Test of Fate pile in a Challenge.** ChallengeMode shows
-   the fate pile beside the decks when it has cards, face up, with a Clear
-   button (the existing `clear-fate`). `endRound` discards it to the player
-   discard before the Fool's reshuffle, so the reshuffle gathers it. Tests:
+6. `fix(hmtw)`: **Tests of Fate in a Challenge.** A "Test of Fate" button beside
+   the decks, for anyone seated (note 4: there was no way to take one in a
+   Challenge at all), turns the top player card into the fate pile. It sends
+   the existing `move` from `deck:player` to `fate`, which anyone seated may
+   already do (neither is GM-only, and `mayReach` lets anyone take from a shared
+   deck), so this is a button, not a command; the empty-deck refill on `move`
+   covers a deck that runs out. The pile shows when it has cards, face up, with a Clear button (the existing
+   `clear-fate`). `endRound` discards it to the player discard before the Fool's
+   reshuffle, so the reshuffle gathers it. Tests:
    - a round with a Test of Fate and the Fool ends with all 57 player cards in
      the deck and the discard;
    - `invariants.test.ts` gains Tests of Fate in its random runs (every card
@@ -359,6 +391,16 @@ to 5) is the crash, A2 (6 to 12) the bugs.
    - The scene's zone list shows "Health 3 · Defense 3", labelled, where it shows
      a bare Health number now.
    - The hand's heading says "Sorted by value".
+   - **A seat request can't be missed** (note 1: on a window a third of an
+     ultrawide it appeared below the bottom of the screen). For whoever runs the
+     table, the pinned line at the top says "<name> is asking for a seat" with
+     Let in and Turn away, as well as the list where it is now.
+   - **The inspiration slot is the GM's** (note 2: a player picking a card saw
+     "Give <name> an inspiration card" on their own seat). Inspiration comes from
+     the High Chant at camp, so the drop slot shows only to whoever runs the
+     table; a seat that holds one still shows it to everyone. The server agrees:
+     `mayReach` lets anyone put a card into anyone's durable zone today, and it
+     becomes the owner or whoever runs the table.
 9. `feat(hmtw)`: **which plays add your attribute.** `Play` gains `adds: boolean`:
    - true for a turn, and for an out-of-turn play (the Fool's extra turn, and
      talent interrupts until the book says otherwise);
@@ -371,9 +413,13 @@ to 5) is the crash, A2 (6 to 12) the bugs.
    card says which while it is still face down. Schema v17: a play stored before
    it has no `adds`, and shows neither. Tests cover each kind, the migration and
    the Fool.
-10. `feat(hmtw)`: **the Fool up front.** Holding the Fool, Your move leads with
-    "Play the Fool", which picks the Fool and starts adding its partner, instead
-    of leaving it inside the closed "Out of turn".
+10. `feat(hmtw)`: **the Fool up front, and Out of turn always there.** Holding
+    the Fool, Your move leads with "Play the Fool", which picks the Fool and
+    starts adding its partner, instead of leaving it inside the closed "Out of
+    turn". And "Play out of turn" stays offered for the whole of a turn, its minor
+    actions and the resolve, to the GM for the enemies as to players (note 9: it
+    showed briefly for the GM and then went). Find what hides it first; the
+    engine already allows it in all three steps.
 11. `feat(hmtw)`: **the button by the hand.** Once a card is picked, a bar pinned
     to the bottom of the viewport carries the card's name, the chosen action and
     the one button that sends it (Play it, Put it down or Ready it). It never
@@ -381,9 +427,36 @@ to 5) is the crash, A2 (6 to 12) the bugs.
     shows. It is the same control as in Your move, not a second one, so there is
     one thing to press. The a11y spec gains the state, and the phone spec checks
     that it stays clear of the hand at 390px. The design pass may redo it.
-12. `docs`: **Release A's changelog and handout.** The CHANGELOG, and the player
-    handout: the Test of Fate pile, "+ attribute" and "face value", the Fool,
-    the bar, and what "The table didn't answer" means.
+12. `fix(hmtw)`: **minor actions, from Card Table Test 3.**
+    - **Guard as a minor action swaps the initiative** (note 6). The book makes
+      Guard a miscellaneous action: "replace your Initiative with any card from
+      your hand". Today only Guard on your own turn swaps; a minor Guard is a
+      label, so the Devil's turn still came up on its old 14 and had to be
+      skipped by hand. `declare-minor` gains `mode: 'guard'`, sent when the
+      chosen action carries the pack's `play: 'initiative'` flag, exactly as
+      `play-turn` does; a label alone is free text and can't be trusted. When a
+      Guard minor turns over, the card moves into the initiative slot, face up,
+      and the old one is discarded. **A new initiative at or below the number
+      being counted loses the turn** (Chris, 2026-11-26): that number has gone,
+      so the holder is marked as having acted. The engine needs telling,
+      because `nextNumber` takes the lowest number still to act and would
+      otherwise step the count back to it. At or below, because by the time
+      minor actions turn over, the current number's turns are done too. A
+      holder who has already acted this round only changes their defence.
+    - **A minor action can be taken back** until the minors turn over (note 8),
+      the same rule as a turn: back to your hand, and your answer unanswered. A
+      readied minor (sideways, below) comes back the same way. Whoever is acting
+      keeps today's rule for their turn's cards; this is for everyone else's
+      minor action.
+    - **The Fool alone isn't asked for a minor action** (note 5). A holder
+      whose only card is the Fool can't put anything down, so `expectedMinor`
+      leaves them out, as it does a holder with no cards. The same holds for a
+      turn: the Fool needs a partner, so `nextNumber` treats a hand of only the
+      Fool as empty and moves past it, as it does an empty hand.
+13. `docs`: **Release A's changelog and handout.** The CHANGELOG, and the player
+    handout: Tests of Fate, "+ attribute" and "face value", the Fool, the bar,
+    taking back a minor action, a minor Guard, and what "The table didn't answer"
+    means.
 
 **As built: A1 (2026-11-26).** Commits 1 to 5 on `phase-33-release-a`, merged
 into `main` with type checks, lint, 1,201 unit tests and all 60 browser tests
@@ -434,18 +507,28 @@ green, and deployed the same day.
 - **What's left over budget, cold, in node:** a signed-in request's first
   Auth.js decode (about 5 ms), and a page render (14 to 19 ms cold, 2 to 5 ms
   warm). A picture upload costs 3 to 5 ms warm, the heaviest request in play,
-  because the browser sends a 1.4 MB JSON string. None of these is in A2. If
-  the tail shows them going over, they're next.
+  because the browser sends a 1.4 MB JSON string. None of these is in A2.
+- **Backend CPU from here is an issue, not this plan:**
+  [blockbeard/splatbook#2](https://github.com/blockbeard/splatbook/issues/2),
+  filed 2026-11-26 so Edmund can take it if he wants it. Profiled in workerd
+  (`tools/profile-commands.ts`), a command is about 3.5 to 4 ms of CPU and
+  close to half of that is the database layer: eight queries, three of them
+  writes, with the table's state read and parsed twice. The issue carries the
+  query cuts, the picture upload as raw bytes, and prerendering the reference
+  pages. A drizzle client and Auth.js config kept per isolate went in on
+  2026-11-26 (`perf(db)`), with no measurable effect per request.
 
 **Release B: any legal action.**
 
-13. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
+14. `feat(hmtw)`: **"Something else" becomes "A talent, or something else".** A
     name, typed, and how the card is played: Play it now (face up, on your turn),
     Ready it (face down, above), As a minor action (face down, below), Out of
     turn (an interrupt), Discard it (a miscellaneous action), or Hand it to
-    someone (commit 14). Each is an existing command except the last two. In
-    play labels it with the name.
-14. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
+    someone (commit 15). Each is an existing command except the last two. In
+    play labels it with the name. It is offered to the GM for each enemy group
+    too, not only to players (Card Table Test 3, note 7: the Devil wanted to
+    discard a greater doom to trigger an ability and couldn't).
+15. `feat(hmtw)`: **handing a card over (Counsel).** A `give-card` command: from
     your hand to another adventurer's, any time in a Challenge, with the action
     you counsel and whether it may interrupt (the Resolve was spent). The card
     arrives labelled "From Eldritch: Recover". Playing it picks that action, and
@@ -453,7 +536,7 @@ green, and deployed the same day.
     was handed over and for what; only the giver and the receiver know which
     card. The label lives in a `counsel` map keyed by card, projected only to
     those two. Schema v18, with a migration test.
-15. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 13 and 14.
+16. `feat(hmtw)` + `content(hmtw)`: **talents by path**, after 14 and 15.
     `talents.json` in the pack lists, for each path, the talents with a card
     shape in a Challenge: the name, the default "how", the suits, a one-line
     summary written for the table, and a link to its Chapter 5 heading. Your
@@ -461,16 +544,26 @@ green, and deployed the same day.
     default and remembered on the device. A chosen path adds its talents as
     buttons beside the actions. SCHEMA.md and `pack-schemas.ts` grow with it.
 
+17. `feat(hmtw)`: **more than one target** (Card Table Test 3, note 3). The
+    Devil's Tail Whip hits every adventurer in its zone and could only be aimed
+    at "no one in particular". "At" becomes a list: pick several, or "everyone in
+    <zone>", which the table expands to whoever is in that zone when it's played
+    (and says so in In play: "→ everyone in Middle Tower: Firefox, Claude").
+    `Play.target` and `minorTargets` become lists; the log names each one. Every
+    target's initiative turns face up, as one target's does today when it is
+    attacked.
+    Schema v19, with a migration test (a single target becomes a list of one).
+
 **Release C: the GM's table.**
 
-16. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
+18. `feat(hmtw)`: **naming a creature.** The GM can give a creature a name, shown
     as "Red Cloak (A)"; the letter stays, for the count and for anyone who knew
-    it by that. Schema v19 with a migration test.
-17. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
+    it by that. Schema v20 with a migration test.
+19. `fix(card-table)`: **Tests of Fate appear sooner.** Outside a Challenge the
     table polls every 3 seconds. Poll at the busy cadence for a minute or two
     after any change. This is the poll cadence, so ask Edmund first: it may be
     one of his steps.
-18. `docs`: **close phase 33.** The player handout gains talents, handing a card
+20. `docs`: **close phase 33.** The player handout gains talents, handing a card
     over and naming creatures; the CHANGELOG; this section to the history.
 
 **Guards.** The a11y spec stays the floor and gains a state for the talent
@@ -487,7 +580,8 @@ lint, unit and browser tests before it's merged.
   (Clarissa); Olivia's view filling only two-thirds of her screen height; enemies
   on one line and players on another (Chris); each player pinning sections to
   the top (Chris).
-- **The polling and request code**: Edmund's PRs. Commit 17 asks him first.
+- **The polling and request code**: Edmund's PRs. Commit 19 asks him first.
+- **Backend CPU**: [blockbeard/splatbook#2](https://github.com/blockbeard/splatbook/issues/2).
 - **Workers Paid**, declined.
 - **Phase 30's items** (a player who wanders off, room codes) and phase 31's
   stat-block links.
