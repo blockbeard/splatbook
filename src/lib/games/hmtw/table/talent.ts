@@ -90,15 +90,24 @@ export interface TalentPlay {
 	extras?: Pick[];
 	/** The talent's name, or whatever else was typed. Public. */
 	label: string;
-	target?: string;
+	/** Whom it is aimed at: any number of targets, and "everyone in" a zone id. */
+	aim?: { targets: string[]; inZone?: string };
 	/** Counsel: who to hand it to, what they should do, and whether a Resolve was spent. */
 	give?: { to: string; action: string; interrupt: boolean };
+}
+
+/** An aim as a command carries it: nothing at all when nobody was named. */
+export function aimFields(aim: { targets: string[]; inZone?: string } | undefined) {
+	return {
+		...(aim && aim.targets.length > 0 ? { targets: [...aim.targets] } : {}),
+		...(aim?.inZone ? { inZone: aim.inZone } : {})
+	};
 }
 
 /** The existing command a "how" sends. */
 export function talentCommand(how: How, moment: Moment, p: TalentPlay): Record<string, unknown> {
 	const extra = p.extras && p.extras.length > 0 ? { extra: p.extras } : {};
-	const target = p.target ? { target: p.target } : {};
+	const target = aimFields(p.aim);
 	switch (how) {
 		case 'now':
 			return {

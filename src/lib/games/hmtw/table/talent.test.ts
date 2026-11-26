@@ -6,7 +6,7 @@ const play = {
 	holder: 's1',
 	from: { zone: 'seat:s1:hand', card: 'swords-ii' },
 	label: 'Heavy Metal Machine',
-	target: 'zombies:A',
+	aim: { targets: ['zombies:A', 's3'], inZone: 'middle' },
 	give: { to: 's2', action: 'Recover', interrupt: true }
 };
 

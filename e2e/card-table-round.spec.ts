@@ -222,6 +222,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	let sawResolve = false;
 	let outChecked = false;
 	let counselled = false;
+	let multiAimed = false;
 
 	for (let guard = 0; guard < 30; guard++) {
 		const view = (await projectionFor(gmContext, token)).state;
@@ -312,7 +313,25 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				readied = true;
 			} else {
 				await page.locator('.actions').getByRole('button', { name: 'Attack', exact: true }).click();
-				await page.getByRole('button', { name: 'Play it', exact: true }).click();
+				if (!multiAimed) {
+					// More than one target (Card Table Test 3, phase 33): both zombies.
+					multiAimed = true;
+					await page.locator('.aim').getByRole('checkbox', { name: 'Zombie A' }).check();
+					await page.locator('.aim').getByRole('checkbox', { name: 'Zombie B' }).check();
+					await page.getByRole('button', { name: 'Play it', exact: true }).click();
+					await expect
+						.poll(async () => {
+							const v = (await projectionFor(gmContext, token)).state as Projection['state'] & {
+								plays: Record<string, { targets?: string[] }>;
+								round: { shown: string[] };
+							};
+							return Object.values(v.plays).some((p) => p.targets?.length === 2);
+						}, POLLED)
+						.toBe(true);
+					await expect(gm.locator('.play')).toContainText('→ Zombie A, Zombie B', POLLED);
+				} else {
+					await page.getByRole('button', { name: 'Play it', exact: true }).click();
+				}
 			}
 		} else if (step === 'minor') {
 			const waiting = view.waitingOn;
@@ -394,6 +413,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	expect(readied).toBe(true);
 	expect(outChecked).toBe(true);
 	expect(counselled).toBe(true);
+	expect(multiAimed).toBe(true);
 	// A readied card is kept through the round.
 	const end = await projectionFor(gmContext, token);
 	expect(players.some((p) => end.state.zones[`seat:${p.seat}:facedown`].count === 1)).toBe(true);

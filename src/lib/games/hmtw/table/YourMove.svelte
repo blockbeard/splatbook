@@ -22,6 +22,7 @@
 -->
 <script lang="ts">
 	import Actions from './Actions.svelte';
+	import AimPicker from './AimPicker.svelte';
 	import type { Action, ActionCatalogue } from './actions';
 	import type { FaceIndex } from './faces';
 	import type { ProjectedTable } from '$lib/card-table/client-types';
@@ -30,6 +31,7 @@
 	import {
 		howButton,
 		howsFor,
+		aimFields,
 		talentCommand,
 		type How,
 		type Moment,
@@ -103,14 +105,18 @@
 	/** What it is for: a menu choice, or the player's own words. */
 	const label = $derived((custom.trim() || chosen?.name || '').slice(0, 60));
 
-	let target = $state('');
+	/** Whom it is aimed at (phase 33): any number of people, or everyone in a zone. */
+	let aimTargets = $state<string[]>([]);
+	let aimZone = $state('');
+	const aim = $derived({ targets: aimTargets, inZone: aimZone || undefined });
 	/** Which of your holders is acting, when there is more than one. */
 	let acting = $state('');
 
 	function done() {
 		extras = [];
 		collecting = false;
-		target = '';
+		aimTargets = [];
+		aimZone = '';
 		chosen = null;
 		custom = '';
 		giveTo = '';
@@ -340,7 +346,7 @@
 						from: card,
 						extras,
 						label,
-						target: target || undefined,
+						aim,
 						give
 					})
 				)}>{howButton[howNow]}</button
@@ -358,7 +364,7 @@
 						holder: actingNow,
 						from: card,
 						label,
-						...(target ? { target } : {}),
+						...aimFields(aim),
 						// Guard as a minor swaps the initiative when the minors turn
 						// over (phase 33): sent from the pack's flag, as a turn's is.
 						...(chosen?.play === 'initiative' ? { mode: 'guard' } : {})
@@ -387,7 +393,7 @@
 					from: card,
 					...(extras.length > 0 ? { extra: extras } : {}),
 					action: label,
-					...(target ? { target } : {}),
+					...aimFields(aim),
 					mode
 				})}
 		>
@@ -471,13 +477,12 @@
 		/>
 		<!-- A minor Attack is aimed at somebody as much as a turn's is (second live
 		     test): their initiative turns over when the minor actions do. -->
-		<label class="move__target">
-			At
-			<select class="ct-field" bind:value={target}>
-				<option value="">nobody in particular</option>
-				{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
-			</select>
-		</label>
+		<AimPicker
+			people={targets}
+			zones={table.scene.zones}
+			bind:targets={aimTargets}
+			bind:inZone={aimZone}
+		/>
 		{@render giveFields()}
 		{#if card && extras.length > 0}
 			<p class="move__extras">With {extras.length} more card{extras.length === 1 ? '' : 's'}.</p>
@@ -519,7 +524,7 @@
 								holder: actingNow,
 								from: card,
 								action: label,
-								...(target ? { target } : {}),
+								...aimFields(aim),
 								mode: 'play'
 							})}>Play it face up instead</button
 					>
@@ -590,13 +595,12 @@
 					bind:how
 					{talents}
 				/>
-				<label class="move__target">
-					At
-					<select class="ct-field" bind:value={target}>
-						<option value="">nobody in particular</option>
-						{#each targets as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
-					</select>
-				</label>
+				<AimPicker
+					people={targets}
+					zones={table.scene.zones}
+					bind:targets={aimTargets}
+					bind:inZone={aimZone}
+				/>
 				{@render giveFields()}
 			{/if}
 			<div class="move__buttons">
@@ -613,7 +617,7 @@
 									from: card,
 									extras,
 									label,
-									target: target || undefined,
+									aim,
 									give
 								})
 							)}>{howButton[outHow]}{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button

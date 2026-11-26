@@ -939,6 +939,48 @@ describe('Session 14: two on initiative 1, and Next pressed twice', () => {
 		expect(seen('gm')).toEqual({});
 	});
 
+	it('aims at everyone in a zone, whoever stands there when it is played (phase 33)', () => {
+		let t = tiedOnOne();
+		t = run(t, {
+			type: 'set-scene-zones',
+			zones: [
+				{ id: 'middle', name: 'Middle Tower' },
+				{ id: 'terrace', name: 'Terrace' }
+			]
+		});
+		const lion = t.opponents[0].creatures[0].id;
+		for (const who of ['bonnie', 'tatyana', lion]) {
+			t = run(t, { type: 'place', who, zone: 'middle' });
+		}
+		const whip = {
+			type: 'play-out-of-turn',
+			holder: 'lion',
+			from: { zone: 'seat:gm:hand', card: 'moon' },
+			action: 'Tail Whip',
+			inZone: 'middle'
+		};
+		const out = reduce(t, whip);
+		expect(out.ok && out.data).toMatchObject({
+			targets: ['bonnie', 'tatyana'],
+			targetLabels: [],
+			inZone: 'Middle Tower'
+		});
+		const after = run(t, whip);
+		const play = after.plays['moon'];
+		// The lion isn't its own target.
+		expect(play.targets?.sort()).toEqual(['bonnie', 'tatyana']);
+		expect(play.inZone).toBe('Middle Tower');
+		expect(after.round.shown).toEqual(expect.arrayContaining(['bonnie', 'tatyana']));
+
+		// A list and a single target from an older page both still work.
+		const both = run(
+			t,
+			{ ...whip, inZone: undefined, target: 'bonnie', targets: ['tatyana'] },
+			'gm'
+		);
+		expect(both.plays['moon'].targets).toEqual(['bonnie', 'tatyana']);
+	});
+
 	it('takes a Next with no round attached, as an older page sends it', () => {
 		const t = tiedOnOne();
 		expect(reduce(t, { type: 'step-on' }).ok).toBe(true);

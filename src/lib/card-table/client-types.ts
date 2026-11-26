@@ -65,7 +65,10 @@ export interface ProjectedTable {
 		{
 			by: string;
 			action: string;
-			target?: string;
+			/** Who it was aimed at: seats, groups or creatures (v20). */
+			targets?: string[];
+			/** "Everyone in <zone>": the zone's name when it was played. */
+			inZone?: string;
 			kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
 			/** Whether its total adds the attribute; absent on a play from before v17. */
 			adds?: boolean;
@@ -74,8 +77,8 @@ export interface ProjectedTable {
 	>;
 	/** The declared action of each face-down minor-action card, by zone. */
 	minorDeclared: Record<string, string>;
-	/** Who each face-down minor action is aimed at, by zone. */
-	minorTargets: Record<string, string>;
+	/** Who each face-down minor action is aimed at, by zone (a list since v20). */
+	minorTargets: Record<string, { targets: string[]; inZone?: string }>;
 	/** Which face-down minor actions are a Guard, by zone (v18). */
 	minorGuards?: string[];
 	/** The advice on cards handed to this viewer with Counsel, by card (v19). */

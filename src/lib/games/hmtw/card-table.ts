@@ -69,6 +69,7 @@ import {
 	withDeckFacts,
 	facedownZoneOf,
 	startCount,
+	type Aim,
 	type CardTable,
 	type DeckDefinition,
 	type StepResult
@@ -150,6 +151,9 @@ function buildCommandSchema() {
 			extra: z.array(pick).max(3).optional(),
 			action: label,
 			target: z.string().min(1).max(120).optional(),
+			/** More than one target (phase 33), and "everyone in" a scene zone, which the table expands. */
+			targets: z.array(z.string().min(1).max(120)).max(20).optional(),
+			inZone: z.string().min(1).max(60).optional(),
 			mode: z.enum(['play', 'ready', 'guard'])
 		}),
 		z.strictObject({ type: z.literal('skip-turn'), holder }),
@@ -160,7 +164,9 @@ function buildCommandSchema() {
 			from: pick,
 			extra: z.array(pick).max(3).optional(),
 			action: label,
-			target: z.string().min(1).max(120).optional()
+			target: z.string().min(1).max(120).optional(),
+			targets: z.array(z.string().min(1).max(120)).max(20).optional(),
+			inZone: z.string().min(1).max(60).optional()
 		}),
 		z.strictObject({ type: z.literal('show-initiative'), holder }),
 		/**
@@ -188,6 +194,9 @@ function buildCommandSchema() {
 			from: pick,
 			label,
 			target: z.string().min(1).max(120).optional(),
+			/** More than one target (phase 33), and "everyone in" a scene zone, which the table expands. */
+			targets: z.array(z.string().min(1).max(120)).max(20).optional(),
+			inZone: z.string().min(1).max(60).optional(),
 			/**
 			 * A Guard (phase 33): the card becomes the initiative when the minors
 			 * turn over. Sent for an action the pack flags `play: 'initiative'`,
@@ -400,14 +409,60 @@ function sameRound(
 	return up.length === seen.up.length && up.every((h) => seen.up.includes(h));
 }
 
-/** A target as the log may name it: a seat by id, a group or creature by its label. */
-function targetOf(table: CardTable, target: string | undefined): Record<string, string> {
-	if (!target) return {};
-	if (table.seats.includes(target)) return { target };
-	const group = table.opponents.find((o) => o.id === target);
-	if (group) return { targetLabel: group.name };
-	const label = creatureLabel(table.opponents, target);
-	return label ? { targetLabel: label } : {};
+/**
+ * Who a play is aimed at, from what the page sent: a single `target` from an
+ * older page, a list, or "everyone in" a scene zone, which is expanded here,
+ * when it's played, to whoever stands there (phase 33). The one playing is
+ * never their own target: an adventurer leaves themselves out, and a group its
+ * own creatures. Creatures that are down aren't anyone's target.
+ */
+function aimOf(
+	table: CardTable,
+	holder: string,
+	sent: { target?: string; targets?: string[]; inZone?: string }
+): Aim | undefined {
+	const named = [...(sent.target ? [sent.target] : []), ...(sent.targets ?? [])];
+	const zone = sent.inZone ? table.scene.zones.find((z) => z.id === sent.inZone) : undefined;
+	const own = new Set([
+		holder,
+		...(table.opponents.find((o) => o.id === holder)?.creatures.map((c) => c.id) ?? [])
+	]);
+	const down = new Set(
+		table.opponents.flatMap((o) => o.creatures.filter((c) => c.down).map((c) => c.id))
+	);
+	const there = zone
+		? [...placeable(table)].filter(
+				(who) => table.scene.at[who] === zone.id && !own.has(who) && !down.has(who)
+			)
+		: [];
+	const targets = [...new Set([...named, ...there])];
+	if (targets.length === 0 && !zone) return undefined;
+	return { targets, ...(zone ? { inZone: zone.name } : {}) };
+}
+
+/**
+ * An aim as the log may name it: seats by id, groups and creatures by label.
+ * One target keeps the single `target` or `targetLabel` older pages read.
+ */
+function targetOf(table: CardTable, aim: Aim | undefined): Record<string, unknown> {
+	if (!aim || (aim.targets.length === 0 && !aim.inZone)) return {};
+	const seats = aim.targets.filter((t) => table.seats.includes(t));
+	const labels = aim.targets
+		.filter((t) => !table.seats.includes(t))
+		.map((t) => table.opponents.find((o) => o.id === t)?.name ?? creatureLabel(table.opponents, t))
+		.filter((l): l is string => typeof l === 'string');
+	if (!aim.inZone && aim.targets.length === 1) {
+		return seats.length === 1
+			? { target: seats[0] }
+			: labels.length === 1
+				? { targetLabel: labels[0] }
+				: {};
+	}
+	return {
+		targets: seats,
+		targetLabels: labels,
+		...(aim.inZone ? { inZone: aim.inZone } : {})
+	};
 }
 
 const state = (table: CardTable, kind: string, data: unknown): CardTableOutcome => ({
@@ -570,12 +625,13 @@ export const hmtwCardTable: CardTableModule = {
 			case 'start-count':
 				return stepped(table, startCount(table), 'start-count', {});
 			case 'play-turn': {
-				const { holder, from, extra, action, target, mode } = parsed.data;
+				const { holder, from, extra, action, mode } = parsed.data;
+				const aim = aimOf(table, holder, parsed.data);
 				return stepped(
 					table,
-					playTurn(table, holder, { from, extra, action, target, mode }, actor),
+					playTurn(table, holder, { from, extra, action, aim, mode }, actor),
 					'play-turn',
-					{ holder, action, mode, ...targetOf(table, target) }
+					{ holder, action, mode, ...targetOf(table, aim) }
 				);
 			}
 			case 'skip-turn':
@@ -583,12 +639,13 @@ export const hmtwCardTable: CardTableModule = {
 					holder: parsed.data.holder
 				});
 			case 'play-out-of-turn': {
-				const { holder, from, extra, action, target } = parsed.data;
+				const { holder, from, extra, action } = parsed.data;
+				const aim = aimOf(table, holder, parsed.data);
 				return stepped(
 					table,
-					playOutOfTurn(table, holder, { from, extra, action, target }, actor),
+					playOutOfTurn(table, holder, { from, extra, action, aim }, actor),
 					'play-out-of-turn',
-					{ holder, action, ...targetOf(table, target) }
+					{ holder, action, ...targetOf(table, aim) }
 				);
 			}
 			case 'discard-for': {
@@ -609,12 +666,13 @@ export const hmtwCardTable: CardTableModule = {
 					holder: parsed.data.holder
 				});
 			case 'declare-minor': {
-				const { holder, from, label, target, mode } = parsed.data;
+				const { holder, from, label, mode } = parsed.data;
+				const aim = aimOf(table, holder, parsed.data);
 				return stepped(
 					table,
-					declareMinor(table, holder, from, label, actor, target, mode === 'guard'),
+					declareMinor(table, holder, from, label, actor, aim, mode === 'guard'),
 					'declare-minor',
-					{ holder, label, ...targetOf(table, target), ...(mode ? { mode } : {}) }
+					{ holder, label, ...targetOf(table, aim), ...(mode ? { mode } : {}) }
 				);
 			}
 			case 'ready-minor': {

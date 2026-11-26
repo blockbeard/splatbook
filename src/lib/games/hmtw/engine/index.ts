@@ -36,6 +36,7 @@ export {
 	setGmSeat,
 	updateOpponent,
 	withDeckFacts,
+	type Aim,
 	type CardTable,
 	type DeckDefinition,
 	type Opponent,

@@ -44,6 +44,17 @@
 		creatureLabel(table.opponents, id) ??
 		'Somebody';
 
+	/**
+	 * Whom it was aimed at: "→ Firefox, Claude", or "→ everyone in Middle
+	 * Tower: Firefox, Claude" (phase 33), so the zone's people at the moment it
+	 * was played are on the record.
+	 */
+	function aimText(aim: { targets?: string[]; inZone?: string }): string {
+		const names = (aim.targets ?? []).map(nameOf).join(', ');
+		if (aim.inZone) return `→ everyone in ${aim.inZone}${names ? `: ${names}` : ''}`;
+		return names ? `→ ${names}` : '';
+	}
+
 	const kindWords: Record<string, string> = {
 		turn: '',
 		minor: 'minor action',
@@ -75,7 +86,7 @@
 				holder: h.id,
 				zone: `${h.zone}:minor`,
 				label: table.minorDeclared[`${h.zone}:minor`] ?? 'Minor action',
-				target: table.minorTargets?.[`${h.zone}:minor`],
+				aim: table.minorTargets?.[`${h.zone}:minor`],
 				guard: (table.minorGuards ?? []).includes(`${h.zone}:minor`),
 				card: table.zones[`${h.zone}:minor`]?.cards?.[0]
 			}))
@@ -99,7 +110,7 @@
 						<span class="play__who">{nameOf(play?.by ?? holder)}</span>
 						{#if play}
 							<span class="play__action">{play.action}</span>
-							{#if play.target}<span class="play__target">→ {nameOf(play.target)}</span>{/if}
+							{#if aimText(play)}<span class="play__target">{aimText(play)}</span>{/if}
 							{#if kindWords[play.kind]}<span class="play__kind">{kindWords[play.kind]}</span>{/if}
 							{#if addsWords(play.adds)}<span class="play__adds">{addsWords(play.adds)}</span>{/if}
 						{/if}
@@ -117,7 +128,8 @@
 					<p class="play__what">
 						<span class="play__who">{nameOf(down.holder)}</span>
 						<span class="play__action">{down.label}</span>
-						{#if down.target}<span class="play__target">→ {nameOf(down.target)}</span>{/if}
+						{#if down.aim && aimText(down.aim)}<span class="play__target">{aimText(down.aim)}</span
+							>{/if}
 						<span class="play__kind">minor action, face down</span>
 						<span class="play__adds">{down.guard ? 'becomes the initiative' : 'face value'}</span>
 					</p>
