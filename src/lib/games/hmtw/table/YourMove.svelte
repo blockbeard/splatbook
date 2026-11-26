@@ -27,6 +27,7 @@
 	import type { ProjectedTable } from '$lib/card-table/client-types';
 	import type { Pick } from '$lib/card-table/selection';
 	import { creatureLabel } from '../engine/creatures';
+	import { howButton, howsFor, talentCommand, type How, type Moment } from './talent';
 
 	let {
 		table,
@@ -205,6 +206,25 @@
 	let outOpen = $state(false);
 
 	const minorNow = $derived(minorMine.length > 0 && upMine.length === 0);
+
+	/*
+	 * A talent, or something else (phase 33): typed, with how it is played.
+	 * The main picker's moment is your turn or your minor action; Out of turn's
+	 * own picker has neither.
+	 */
+	const talent = $derived(!chosen && custom.trim().length > 0);
+	const moment = $derived<Moment>(picking ? (minorNow ? 'minor' : 'turn') : 'other');
+	const hows = $derived(howsFor(moment));
+	let how = $state<How>('now');
+	/** The choice, kept valid for the moment: the usual one when it isn't. */
+	const howNow = $derived(hows.includes(how) ? how : hows[0]);
+	// Back to the usual one whenever the moment changes: "Out of turn" chosen
+	// while waiting would otherwise still be chosen when your turn came.
+	let lastMoment: Moment | null = null;
+	$effect(() => {
+		if (moment !== lastMoment || !hows.includes(how)) how = hows[0];
+		lastMoment = moment;
+	});
 	/** The bar by the hand: a card picked, and a play for it to send. */
 	const barShown = $derived(!!card && (needInitiative.length > 0 || picking));
 	const cardName = $derived(card?.card ? (faces[card.card]?.name ?? 'Your card') : '');
@@ -222,6 +242,9 @@
 		const overlap = handEl.getBoundingClientRect().bottom - (window.innerHeight - barHeight);
 		if (overlap > 0) window.scrollBy({ top: overlap + 8 });
 	});
+
+	/** Out of turn plays out of turn, or, typed as a talent with its own picker, discards. */
+	const outHow = $derived<How>(talent && !picking && howNow === 'discard' ? 'discard' : 'out');
 
 	function playTheFool() {
 		if (!myFool) return;
@@ -252,6 +275,23 @@
 				{h === mySeatId ? 'Play as initiative' : `Initiative for ${nameOf(h)}`}
 			</button>
 		{/each}
+	{:else if talent && picking}
+		<button
+			type="button"
+			class="ct-btn ct-btn--primary"
+			disabled={busy || !card || !label}
+			onclick={() =>
+				card &&
+				send(
+					talentCommand(howNow, moment, {
+						holder: actingNow,
+						from: card,
+						extras,
+						label,
+						target: target || undefined
+					})
+				)}>{howButton[howNow]}</button
+		>
 	{:else if minorNow}
 		{#if chosen?.play !== 'ready'}
 			<button
@@ -272,7 +312,7 @@
 					})}>Put it down</button
 			>
 		{/if}
-		{#if chosen?.play === 'ready' || (!chosen && custom.trim())}
+		{#if chosen?.play === 'ready'}
 			<button
 				type="button"
 				class={chosen?.play === 'ready' ? 'ct-btn ct-btn--primary' : 'ct-btn'}
@@ -340,6 +380,9 @@
 			bind:custom
 			asGm={isGmSeat}
 			onTurn={!minor}
+			{hows}
+			{moment}
+			bind:how
 		/>
 		<!-- A minor Attack is aimed at somebody as much as a turn's is (second live
 		     test): their initiative turns over when the minor actions do. -->
@@ -456,6 +499,9 @@
 					bind:custom
 					asGm={isGmSeat}
 					onTurn
+					{hows}
+					{moment}
+					bind:how
 				/>
 				<label class="move__target">
 					At
@@ -473,14 +519,15 @@
 						disabled={busy || !card || !label}
 						onclick={() =>
 							card &&
-							send({
-								type: 'play-out-of-turn',
-								holder: h,
-								from: card,
-								...(extras.length > 0 ? { extra: extras } : {}),
-								action: label,
-								...(target ? { target } : {})
-							})}>Play out of turn{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button
+							send(
+								talentCommand(outHow, 'other', {
+									holder: h,
+									from: card,
+									extras,
+									label,
+									target: target || undefined
+								})
+							)}>{howButton[outHow]}{h !== mySeatId ? ` for ${nameOf(h)}` : ''}</button
 					>
 				{/each}
 				<button

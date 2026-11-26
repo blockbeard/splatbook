@@ -23,6 +23,7 @@
 	import { resolve } from '$app/paths';
 	import { actionsForCard, type Action, type ActionCatalogue } from './actions';
 	import type { CardFace, FaceIndex } from './faces';
+	import { howLabel, type How, type Moment } from './talent';
 
 	let {
 		catalogue,
@@ -31,7 +32,10 @@
 		chosen = $bindable(),
 		custom = $bindable(),
 		asGm = false,
-		onTurn = false
+		onTurn = false,
+		hows = [],
+		moment = 'turn',
+		how = $bindable()
 	}: {
 		catalogue: ActionCatalogue;
 		faces: FaceIndex;
@@ -43,7 +47,13 @@
 		asGm?: boolean;
 		/** It is your turn, when "you can use *any* card to perform *any* action". */
 		onTurn?: boolean;
+		/** How a talent, or something else, may be played just now. None: no choice. */
+		hows?: How[];
+		moment?: Moment;
+		how?: How;
 	} = $props();
+
+	const talentId = $props.id();
 
 	/**
 	 * The actions by suit, then the ones any suit pays for, then the GM's — the
@@ -120,17 +130,31 @@
 				</ul>
 			</li>
 		{/each}
-		<li>
+		<li class="actions__talent">
+			<!-- A talent, or anything the table ruled (phase 33): its name, and how
+			     the card is played. The table never knows what a talent does; it
+			     only needs to know where the card goes. -->
 			<label class="actions__else">
-				Something else
+				A talent, or something else
 				<input
 					class="ct-field"
 					bind:value={custom}
-					placeholder="whatever you just ruled"
+					placeholder="Doom Eye, Quick!…"
 					autocomplete="off"
 					oninput={() => (chosen = null)}
 				/>
 			</label>
+			{#if custom.trim() && hows.length > 0}
+				<fieldset class="actions__how">
+					<legend>How is it played?</legend>
+					{#each hows as h (h)}
+						<label>
+							<input type="radio" name={`how-${talentId}`} value={h} bind:group={how} />
+							{howLabel(h, moment)}
+						</label>
+					{/each}
+				</fieldset>
+			{/if}
 		</li>
 	</ul>
 
@@ -228,6 +252,29 @@
 		align-items: center;
 		font-size: 0.85rem;
 		color: var(--ct-quiet);
+	}
+	.actions__talent {
+		display: grid;
+		gap: 0.35rem;
+	}
+	.actions__how {
+		border: 1px solid var(--ct-rule);
+		border-radius: 3px;
+		margin: 0;
+		padding: 0.35rem 0.6rem 0.5rem;
+		display: grid;
+		gap: 0.1rem;
+		font-size: 0.85rem;
+	}
+	.actions__how legend {
+		color: var(--ct-quiet);
+		padding-inline: 0.25rem;
+	}
+	.actions__how label {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		min-block-size: 2.75rem;
 	}
 	.actions__else input {
 		background: transparent;

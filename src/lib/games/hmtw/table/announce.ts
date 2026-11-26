@@ -191,6 +191,8 @@ export function describe(
 		}
 		case 'show-initiative':
 			return `${nameOf(d.holder as string)} showed their initiative.`;
+		case 'discard-for':
+			return `${nameOf(d.holder as string)} discarded a card: ${d.label}.`;
 		case 'declare-minor':
 			return withRound(
 				`${nameOf(d.holder as string)} put down a minor action: ${d.label}${

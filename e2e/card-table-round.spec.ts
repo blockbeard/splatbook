@@ -260,6 +260,21 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				await expect(
 					out.getByRole('button', { name: /^Play out of turn for Zombie/ })
 				).toBeVisible();
+				// The GM discards a card for the zombies' ability, as a talent's
+				// miscellaneous action (Card Table Test 3, note 7): it lands face up
+				// on the GM discard and the turn carries on.
+				const discards = (await projectionFor(gmContext, token)).state.zones['discard:gm'].count;
+				await gm.locator('.hand button').first().click();
+				await out.getByLabel('A talent, or something else').fill('Greater doom ability');
+				await out.getByRole('radio', { name: 'Discard it (a miscellaneous action)' }).check();
+				await out.getByRole('button', { name: /^Discard it for Zombie/ }).click();
+				await expect
+					.poll(
+						async () => (await projectionFor(gmContext, token)).state.zones['discard:gm'].count,
+						POLLED
+					)
+					.toBe(discards + 1);
+				expect((await projectionFor(gmContext, token)).state.round.step).toBe('turn');
 				await out.locator('summary').click();
 			}
 			await page.locator('.hand button').first().click();

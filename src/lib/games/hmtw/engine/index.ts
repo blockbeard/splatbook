@@ -57,6 +57,7 @@ export {
 export {
 	declareMinor,
 	dropReadied,
+	discardFor,
 	expectedInitiative,
 	expectedMinor,
 	nextNumber,

@@ -19,6 +19,7 @@ import { opponentZone, seatZone } from './zones';
 import { projectFor } from './projection';
 import {
 	declareMinor,
+	discardFor,
 	expectedMinor,
 	nextNumber,
 	passMinor,
@@ -539,5 +540,41 @@ describe('a table saved before v18', () => {
 		expect(migrated.minorGuards).toEqual([]);
 		expect(migrated.round.readiedNow).toEqual([]);
 		expect(migrated.round.step).toBe(t.round.step);
+	});
+});
+
+describe('discarding a card for a miscellaneous action (phase 33)', () => {
+	it('puts it face up on its own discard, and costs nobody a turn', () => {
+		let t = initiative();
+		const five = card(t, 'bel', 5);
+		const before = t.round;
+		t = ok(discardFor(t, 'bel', from(t, 'bel', 5), 'bel'));
+		expect(t.zones['discard:player'].cards[0]).toBe(five);
+		expect(hand(t, 'bel')).not.toContain(five);
+		expect(t.round).toEqual(before);
+	});
+
+	it('lets the GM discard for a group, from the GM’s hand, to the GM discard', () => {
+		let t = initiative();
+		const four = card(t, 'gm', 4);
+		t = ok(discardFor(t, 'zombies', from(t, 'gm', 4), 'gm'));
+		expect(t.zones['discard:gm'].cards[0]).toBe(four);
+	});
+
+	it('takes only from the holder’s own hand, and only mid-round', () => {
+		const t = initiative();
+		expect(discardFor(t, 'bel', from(t, 'ash', 1), 'bel')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+		expect(discardFor(t, 'bel', from(t, 'bel', 5), 'ash')).toEqual({
+			ok: false,
+			reason: 'not-your-hand'
+		});
+		const d = dealt();
+		expect(discardFor(d, 'bel', from(d, 'bel', 5), 'bel')).toEqual({
+			ok: false,
+			reason: 'wrong-step'
+		});
 	});
 });

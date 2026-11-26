@@ -41,6 +41,7 @@ import {
 	createTable,
 	discardAll,
 	declareMinor,
+	discardFor,
 	dropReadied,
 	passMinor,
 	playInitiative,
@@ -161,6 +162,11 @@ function buildCommandSchema() {
 			target: z.string().min(1).max(120).optional()
 		}),
 		z.strictObject({ type: z.literal('show-initiative'), holder }),
+		/**
+		 * A card discarded for a miscellaneous action, a talent's or the GM's
+		 * (phase 33). The label is public; the card lands face up on its discard.
+		 */
+		z.strictObject({ type: z.literal('discard-for'), holder, from: pick, label }),
 		/** A minor action, face down until everyone has answered. */
 		z.strictObject({
 			type: z.literal('declare-minor'),
@@ -328,6 +334,7 @@ function ownedBy(command: CardTableCommand): string | null {
 		case 'play-turn':
 		case 'skip-turn':
 		case 'play-out-of-turn':
+		case 'discard-for':
 		case 'show-initiative':
 		case 'declare-minor':
 		case 'ready-minor':
@@ -568,6 +575,13 @@ export const hmtwCardTable: CardTableModule = {
 					'play-out-of-turn',
 					{ holder, action, ...targetOf(table, target) }
 				);
+			}
+			case 'discard-for': {
+				const { holder, from, label } = parsed.data;
+				return stepped(table, discardFor(table, holder, from, actor), 'discard-for', {
+					holder,
+					label
+				});
 			}
 			case 'show-initiative':
 				return stepped(table, showInitiative(table, parsed.data.holder), 'show-initiative', {

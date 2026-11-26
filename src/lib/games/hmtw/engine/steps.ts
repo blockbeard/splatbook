@@ -35,7 +35,7 @@ import { discardAll, moveCard, type MoveFailure, type Pick } from './moves';
 import { holdersWithInitiative, initiativeHolder } from './initiative';
 import type { RoundStep } from './round';
 import { upCount, type CardTable, type Play } from './table';
-import { opponentZone, seatZone } from './zones';
+import { discardZone, opponentZone, seatZone } from './zones';
 
 export type StepFailure =
 	| MoveFailure
@@ -355,6 +355,31 @@ export function playOutOfTurn(
 		{ action: turn.action, target: turn.target, kind: 'out-of-turn', adds: true },
 		actor
 	);
+}
+
+/**
+ * Discard a card for a miscellaneous action (phase 33): a talent such as Heavy
+ * Metal Machine ("a miscellaneous action (discarding any card)"), or the GM
+ * discarding a greater doom to trigger an ability, which Card Table Test 3
+ * found no way to do. The card goes to its own deck's discard, face up on top
+ * where anyone can see it, and the round doesn't move: like a play out of turn,
+ * it costs nobody a turn. Mid-round only, as an interrupt is.
+ */
+export function discardFor(
+	table: CardTable,
+	holder: string,
+	from: Pick,
+	actor?: string
+): StepResult {
+	if (!inStep(table, 'turn', 'minor', 'resolve')) return fail('wrong-step');
+	if (!isSeat(table, holder) && !isGroup(table, holder)) return fail('no-such-holder');
+	const hand = handOf(table, holder);
+	if (!hand || from.zone !== hand) return fail('not-yours');
+	const card = from.card ?? table.zones[hand]?.cards[0];
+	const usual = isSeat(table, holder) && holder !== table.gmSeat ? 'player' : 'gm';
+	const deck = (card !== undefined ? table.deckOf[card] : undefined) ?? usual;
+	const moved = moveCard(table, from, discardZone(deck), actor);
+	return moved.ok ? ok(moved.table) : fail(moved.reason);
 }
 
 /**

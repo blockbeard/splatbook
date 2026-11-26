@@ -186,6 +186,11 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	// label that are the same value there — because nothing in the sweep ever
 	// pressed one.
 	await player.locator('.hand button').first().click();
+	// A talent typed in, with how the card is played (phase 33).
+	await player.getByLabel('A talent, or something else').fill('Doom Eye');
+	await expect(player.getByRole('radio', { name: 'Play it now (face up)' })).toBeChecked();
+	failures.push(...(await scan(player, 'talent typed')));
+	await player.getByLabel('A talent, or something else').fill('');
 	await player.locator('.actions').getByRole('button', { name: 'Attack', exact: true }).click();
 	failures.push(...(await scan(player, 'action chosen')));
 	await player.getByRole('button', { name: 'Play it', exact: true }).click();

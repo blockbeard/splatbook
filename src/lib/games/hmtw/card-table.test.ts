@@ -893,6 +893,25 @@ describe('Session 14: two on initiative 1, and Next pressed twice', () => {
 		expect(view(t, 'bonnie').round).toMatchObject({ step: 'resolve' });
 	});
 
+	it('discards for an ability, the GM’s for a group and a player’s own (phase 33)', () => {
+		const t = tiedOnOne();
+		const doom = {
+			type: 'discard-for',
+			holder: 'lion',
+			from: { zone: 'seat:gm:hand', card: 'moon' },
+			label: 'Greater doom ability'
+		};
+		// Card Table Test 3, note 7: the Devil wanted to discard a greater doom.
+		expect(reduce(t, doom, 'bonnie')).toEqual({ ok: false, reason: 'not-yours' });
+		const out = reduce(t, doom);
+		expect(out.ok && out.data).toEqual({ holder: 'lion', label: 'Greater doom ability' });
+		const after = run(t, doom);
+		expect(after.zones['discard:gm'].cards[0]).toBe('moon');
+		expect(after.round).toEqual(t.round);
+		// Nobody but the discard's own face says which card it was.
+		expect(JSON.stringify(out.ok && out.data)).not.toContain('moon');
+	});
+
 	it('takes a Next with no round attached, as an older page sends it', () => {
 		const t = tiedOnOne();
 		expect(reduce(t, { type: 'step-on' }).ok).toBe(true);
