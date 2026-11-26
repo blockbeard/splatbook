@@ -65,6 +65,8 @@ export interface ProjectedTable {
 			action: string;
 			target?: string;
 			kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
+			/** Whether its total adds the attribute; absent on a play from before v17. */
+			adds?: boolean;
 			number: number | null;
 		}
 	>;

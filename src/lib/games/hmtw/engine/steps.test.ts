@@ -134,7 +134,13 @@ describe('a turn', () => {
 			)
 		);
 		expect(t.zones[seatZone('ash', 'played')].cards).toContain(played);
-		expect(t.plays[played]).toMatchObject({ by: 'ash', action: 'Attack', kind: 'turn', number: 2 });
+		expect(t.plays[played]).toMatchObject({
+			by: 'ash',
+			action: 'Attack',
+			kind: 'turn',
+			adds: true,
+			number: 2
+		});
 		// Attacking Zombie B turns the zombies' initiative face up.
 		expect(t.round.shown).toContain('zombies');
 		expect(t.round.step).toBe('minor');
@@ -169,7 +175,13 @@ describe('a turn', () => {
 		expect(t.zones[seatZone('ash', 'facedown')].cards).toEqual([dodge]);
 		expect(t.facedown[seatZone('ash', 'facedown')]).toEqual({ position: 'turn', label: 'Dodge' });
 		t = ok(useReadied(t, 'ash'));
-		expect(t.plays[dodge]).toMatchObject({ by: 'ash', action: 'Dodge', kind: 'readied' });
+		// Readied on a turn, it adds the attribute when it turns over (ch.7).
+		expect(t.plays[dodge]).toMatchObject({
+			by: 'ash',
+			action: 'Dodge',
+			kind: 'readied',
+			adds: true
+		});
 	});
 
 	it('Guard replaces the initiative and cannot buy a second turn', () => {
@@ -222,7 +234,8 @@ describe('minor actions', () => {
 		t = ok(passMinor(t, ['zombies']));
 		expect(t.round.step).toBe('resolve');
 		expect(t.zones[seatZone('bel', 'played')].cards).toEqual([belCard]);
-		expect(t.plays[belCard]).toMatchObject({ action: 'Roughhouse', kind: 'minor' });
+		// "A minor action's total value equals the card's face value."
+		expect(t.plays[belCard]).toMatchObject({ action: 'Roughhouse', kind: 'minor', adds: false });
 		expect(projectFor(t, 'ash').zones[seatZone('bel', 'played')].cards).toEqual([belCard]);
 	});
 
@@ -237,6 +250,10 @@ describe('minor actions', () => {
 		t = ok(resolveNumber(t));
 		// Resolving the number does not touch a readied card.
 		expect(t.zones[seatZone('bel', 'facedown')].cards).toHaveLength(1);
+		// Readied as a minor, it is face value when it turns over.
+		const riposte = t.zones[seatZone('bel', 'facedown')].cards[0];
+		t = ok(useReadied(t, 'bel'));
+		expect(t.plays[riposte]).toMatchObject({ action: 'Riposte', kind: 'readied', adds: false });
 	});
 
 	it('refuse a second answer, and an answer from whoever just acted', () => {
@@ -296,7 +313,12 @@ describe('the Fool, out of turn', () => {
 		expect(t.round.acted).not.toContain('bel');
 		expect(t.round.step).toBe('turn');
 		const played = t.zones[seatZone('bel', 'played')].cards[0];
-		expect(t.plays[played]).toMatchObject({ kind: 'out-of-turn', action: 'Fool: Attack' });
+		// The Fool's extra turn is a turn: it adds the attribute.
+		expect(t.plays[played]).toMatchObject({
+			kind: 'out-of-turn',
+			action: 'Fool: Attack',
+			adds: true
+		});
 	});
 });
 
@@ -365,5 +387,19 @@ describe('a table saved mid-round before v15', () => {
 		expect(migrated.round.step).toBe('initiative');
 		expect(migrated.zones[seatZone('ash', 'minor')]).toBeDefined();
 		expect(migrated.zones[opponentZone('zombies', 'minor')]).toBeDefined();
+	});
+});
+
+describe('a table saved before v17', () => {
+	it('keeps its plays, with neither "+ attribute" nor "face value"', () => {
+		let t = initiative();
+		t = ok(playTurn(t, 'ash', { from: from(t, 'ash', 1), action: 'Attack', mode: 'play' }, 'ash'));
+		const played = t.zones[seatZone('ash', 'played')].cards[0];
+		const { adds: _adds, ...old } = t.plays[played];
+		const v16 = { ...t, schemaVersion: 16, plays: { [played]: old } } as CardTable;
+		const migrated = migrateTable(v16);
+		expect(migrated.schemaVersion).toBe(17);
+		expect(migrated.plays[played]).toEqual(old);
+		expect(migrated.plays[played]).not.toHaveProperty('adds');
 	});
 });

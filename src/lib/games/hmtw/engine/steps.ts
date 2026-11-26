@@ -295,7 +295,7 @@ export function playTurn(
 			table,
 			holder,
 			[turn.from, ...(turn.extra ?? [])],
-			{ action: turn.action, target: turn.target, kind: 'turn' },
+			{ action: turn.action, target: turn.target, kind: 'turn', adds: true },
 			actor
 		);
 	}
@@ -340,7 +340,7 @@ export function playOutOfTurn(
 		table,
 		holder,
 		[turn.from, ...(turn.extra ?? [])],
-		{ action: turn.action, target: turn.target, kind: 'out-of-turn' },
+		{ action: turn.action, target: turn.target, kind: 'out-of-turn', adds: true },
 		actor
 	);
 }
@@ -370,6 +370,9 @@ export function useReadied(table: CardTable, holder: string): StepResult {
 				by: holder,
 				action: declared?.label ?? 'Readied action',
 				kind: 'readied',
+				// Readied on your turn it adds the attribute when used; as a minor,
+				// face value (ch.7, Facedown cards). Unknown without a declaration.
+				...(declared ? { adds: declared.position === 'turn' } : {}),
 				number: table.round.count
 			}
 		}
@@ -501,6 +504,7 @@ export function revealMinors(table: CardTable): CardTable {
 			action: minorDeclared[zone] ?? 'Minor action',
 			...(minorTargets[zone] ? { target: minorTargets[zone] } : {}),
 			kind: 'minor',
+			adds: false,
 			number: table.round.count
 		};
 		// "When other characters attempt to perform an action against you, flip

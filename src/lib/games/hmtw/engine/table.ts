@@ -47,10 +47,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  *   `settled`, `interrupt` and `extraTurn`; a `minor` zone per seat and
  *   group; `plays` and `minorDeclared`; and `guided` gone, since the steps are
  *   the guide.
- * v16 (this commit): `minorTargets`, who a face-down minor action is aimed at,
- *   from the second live test (25 November 2026).
+ * v16: `minorTargets`, who a face-down minor action is aimed at, from the
+ *   second live test (25 November 2026).
+ * v17 (this commit): a play's `adds`, whether its total adds the attribute.
  */
-export const TABLE_SCHEMA_VERSION = 16;
+export const TABLE_SCHEMA_VERSION = 17;
 
 /**
  * An enemy, or a group of them, that the GM plays.
@@ -72,6 +73,18 @@ export interface Play {
 	/** Who it was aimed at, if anyone was named: a seat, a group or a creature. */
 	target?: string;
 	kind: 'turn' | 'minor' | 'readied' | 'out-of-turn';
+	/**
+	 * Whether the card's total adds the player's attribute (v17, phase 33). The
+	 * book: "On your turn, your action's total value equals the card's face value
+	 * _plus_ the associated attribute", and "A minor action's total value equals
+	 * the card's face value". So a turn adds it, and an out-of-turn play does
+	 * (the Fool's extra turn is a turn); a minor action doesn't; a readied card
+	 * goes by where it was put down, above the initiative on your turn (adds) or
+	 * below it as a minor (face value). The table adds nothing itself: it only
+	 * says which kind each card is. Absent on a play stored before v17, which
+	 * shows neither.
+	 */
+	adds?: boolean;
 	/** The initiative number it was played at. */
 	number: number | null;
 }
@@ -318,6 +331,10 @@ export function removeSeat(table: CardTable, seat: string): CardTable {
  * v1 → v2: a table that predates opponents gains an empty roster and no GM
  * seat. A live table mid-Challenge keeps its cards; it simply had nobody to
  * fight, which was true of it.
+ *
+ * v16 → v17: nothing moves. A play stored before `adds` has none, and the
+ * table shows neither "+ attribute" nor "face value" for it, which is honest:
+ * nobody recorded which it was.
  *
  * v15 → v16: no minor-action targets yet.
  *

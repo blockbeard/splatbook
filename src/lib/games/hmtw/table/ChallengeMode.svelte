@@ -30,6 +30,7 @@
 	import { suggest } from './guide';
 	import { HOLD_MS, actionKey, shouldHold } from './hold';
 	import YourMove from './YourMove.svelte';
+	import { addsWords, readiedAdds } from './adds';
 	import PlayArea from './PlayArea.svelte';
 	import { cardsForAction, type Action } from './actions';
 	import type { FaceIndex } from './faces';
@@ -503,7 +504,7 @@
 						face={facedown.cards?.[0] ? (faces[facedown.cards[0]] ?? null) : null}
 						faceDown
 						sideways
-						declared={declaredHere.label}
+						declared={`${declaredHere.label} · ${addsWords(readiedAdds(declaredHere.position))}`}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
@@ -563,7 +564,7 @@
 						face={facedown.cards?.[0] ? (faces[facedown.cards[0]] ?? null) : null}
 						faceDown
 						sideways
-						declared={declaredHere.label}
+						declared={`${declaredHere.label} · ${addsWords(readiedAdds(declaredHere.position))}`}
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
@@ -617,7 +618,7 @@
 							face={readied.cards?.[0] ? (faces[readied.cards[0]] ?? null) : null}
 							faceDown
 							sideways
-							declared={table.facedown[readied.id].label}
+							declared={`${table.facedown[readied.id].label} · ${addsWords(readiedAdds(table.facedown[readied.id].position))}`}
 							pick={{ zone: readied.id }}
 							onSelect={() => (runs ? onCommand({ type: 'use-readied', holder: enemy.id }) : null)}
 						/>
