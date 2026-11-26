@@ -248,10 +248,30 @@
 <svelte:window onkeydown={onKey} />
 
 <div class="ch">
-	{#if guide}
-		<p class="guide">
-			<span class="guide__text">{guide.text}</span>
-			{#if guide.action && (!guide.gmOnly || runs)}
+	{#if guide || (isGm && waiting.length > 0)}
+		<div class="guide">
+			{#if isGm}
+				<!-- A seat request in the line that stays on screen (Card Table Test 3,
+				     note 1): on a window a third of an ultrawide, the list further
+				     down was below the bottom of the screen, and nobody saw it. -->
+				{#each waiting as seat (seat.id)}
+					<span class="guide__ask">
+						<span>{seat.name} is asking for a seat</span>
+						<form method="POST" action="?/admit">
+							<input type="hidden" name="seatId" value={seat.id} />
+							<button type="submit" class="ct-btn ct-btn--primary">Let in</button>
+						</form>
+						<form method="POST" action="?/decline">
+							<input type="hidden" name="seatId" value={seat.id} />
+							<button type="submit" class="ct-btn ct-btn--quiet">Turn away</button>
+						</form>
+					</span>
+				{/each}
+			{/if}
+			{#if guide}
+				<span class="guide__text">{guide.text}</span>
+			{/if}
+			{#if guide?.action && (!guide.gmOnly || runs)}
 				{@const action = guide.action}
 				<!-- The filled button: the one thing the round is waiting for. "Next"
 				     was a quiet button among the text, and the GM went looking for it in
@@ -270,7 +290,7 @@
 			{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 				<a class="guide__jump" href="#move-heading">Your move</a>
 			{/if}
-			{#if guide.rule}
+			{#if guide?.rule}
 				<!-- A new tab, so the table keeps its place mid-fight. -->
 				<a
 					class="guide__rule"
@@ -282,7 +302,7 @@
 					rel="noopener">{guide.rule.label}<span class="sr-only"> (opens in a new tab)</span></a
 				>
 			{/if}
-		</p>
+		</div>
 	{/if}
 
 	<!--
@@ -487,7 +507,7 @@
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
-								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								? onCommand({ type: 'use-readied', holder: seat.id })
 								: null}
 					/>
 				{/if}
@@ -528,7 +548,7 @@
 							selected={selectedPick?.zone === durable.id}
 							onSelect={(p) => (selectedPick ? drop(durable.id) : select(p))}
 						/>
-					{:else if selectedPick && durable}
+					{:else if selectedPick && durable && runs}
 						<button
 							type="button"
 							class="slot slot--drop"
@@ -547,7 +567,7 @@
 						pick={{ zone: facedown.id }}
 						onSelect={() =>
 							canAct && (seat.id === mySeatId || runs)
-								? onCommand({ type: 'reveal-facedown', holder: seat.id })
+								? onCommand({ type: 'use-readied', holder: seat.id })
 								: null}
 					/>
 				{/if}
@@ -681,7 +701,11 @@
 	{#if mySeatId && zone(`seat:${mySeatId}:hand`)}
 		<div class="ch__hand">
 			<div>
-				<p class="ct-zone-label">{nameOf(mySeatId)} — your hand</p>
+				<!-- Says how it is ordered: a player in Session 14 wondered whether their
+				     hand had been shuffled (phase 33). -->
+				<p class="ct-zone-label">
+					{nameOf(mySeatId)} — your hand · sorted by value
+				</p>
 				<Hand
 					zone={zone(`seat:${mySeatId}:hand`)}
 					{faces}
@@ -789,6 +813,17 @@
 		.guide__jump {
 			display: inline-flex;
 		}
+	}
+	.guide__ask {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		flex-wrap: wrap;
+		flex-basis: 100%;
+		color: var(--ct-mark);
+	}
+	.guide__ask form {
+		margin: 0;
 	}
 	.guide__text {
 		font-family: 'IM Fell English', Georgia, serif;

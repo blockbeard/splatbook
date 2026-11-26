@@ -169,11 +169,9 @@ test('the table meets WCAG 2.1 AA in every state, in both rooms', async ({ brows
 	await player.locator('.hand button').first().click();
 	failures.push(...(await scan(player, 'card picked up, initiative')));
 
-	// Holding a card also offers an inspiration slot on every combatant, which
-	// only exists while something is picked up.
-	await expect(
-		player.getByRole('button', { name: /Give .* an inspiration card/ }).first()
-	).toBeVisible();
+	// Holding a card offers no inspiration slot to a player, not even their own:
+	// inspiration is the GM's to hand out (Card Table Test 3, phase 33).
+	await expect(player.getByRole('button', { name: /Give .* an inspiration card/ })).toHaveCount(0);
 
 	// The only initiative down starts the count: the player's turn (phase 32).
 	await player.getByRole('button', { name: 'Play as initiative' }).click();

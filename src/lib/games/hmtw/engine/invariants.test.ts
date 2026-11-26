@@ -202,13 +202,22 @@ describe('reach is not the same question as sight', () => {
 		expect(by('gm').ok).toBe(true);
 	});
 
-	it('lets anyone give an inspiration card, and only its holder or the GM take it back', () => {
+	it('keeps an inspiration slot to its holder and the GM, giving as taking', () => {
 		const t = beginRound(setGmSeat(createTable(deck, ['s1', 's2', 'gm']), 'gm'), {
 			playerHand: 4,
 			gmHand: 0,
 			rng: seededRng(1)
 		});
-		const given = moveCard(t, { zone: seatZone('s2', 'hand') }, seatZone('s1', 'durable'), 's2');
+		// Another player can't put one there (Card Table Test 3, phase 33).
+		expect(moveCard(t, { zone: seatZone('s2', 'hand') }, seatZone('s1', 'durable'), 's2')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+		expect(moveCard(t, { zone: 'discard:player' }, seatZone('s1', 'durable'), 's2')).toEqual({
+			ok: false,
+			reason: 'not-yours'
+		});
+		const given = moveCard(t, { zone: seatZone('s1', 'hand') }, seatZone('s1', 'durable'), 's1');
 		expect(given.ok).toBe(true);
 		if (!given.ok) return;
 		const back = (who: string) =>

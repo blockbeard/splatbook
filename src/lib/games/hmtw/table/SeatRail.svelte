@@ -22,7 +22,8 @@
 		isGm = false,
 		selected = null,
 		onSelect,
-		onDrop
+		onDrop,
+		mayPut = () => true
 	}: {
 		table: ProjectedTable;
 		seats: { id: string; name: string; status: string; isGm: boolean }[];
@@ -32,6 +33,9 @@
 		selected?: Pick | null;
 		onSelect?: (pick: Pick) => void;
 		onDrop?: (zoneId: string) => void;
+		/** Whether this viewer may put a card in a zone: an empty inspiration
+		 * slot is a button only for whoever could fill it (phase 33). */
+		mayPut?: (zoneId: string) => boolean;
 	} = $props();
 
 	const admitted = $derived(seats.filter((s) => s.status === 'admitted'));
@@ -64,13 +68,15 @@
 								selected={selected?.zone === durable.id}
 								onSelect={(p) => (selected ? onDrop?.(durable.id) : onSelect?.(p))}
 							/>
-						{:else}
+						{:else if mayPut(durable.id)}
 							<button
 								type="button"
 								class="seat__slot"
 								aria-label={`${seat.name}'s inspiration card, empty`}
 								onclick={() => onDrop?.(durable.id)}>Inspiration</button
 							>
+						{:else}
+							<span class="seat__slot seat__slot--empty">Inspiration</span>
 						{/if}
 					</div>
 				{/if}
@@ -141,6 +147,11 @@
 		font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
 		font-size: 0.7rem;
 		cursor: pointer;
+	}
+	.seat__slot--empty {
+		display: grid;
+		place-items: center;
+		cursor: default;
 	}
 	.seat__actions {
 		display: flex;

@@ -114,6 +114,7 @@
 		selected={selectedPick}
 		onSelect={select}
 		onDrop={drop}
+		mayPut={() => runs}
 	/>
 
 	<div class="decks__table">
@@ -217,7 +218,9 @@
 		pile={zone(openPile)}
 		{faces}
 		selected={selectedPick}
-		hint="Pick one up, then click a seat's Inspiration slot to give it to them."
+		hint={runs
+			? "Pick one up, then click a seat's Inspiration slot to give it to them."
+			: 'Pick one up to move it, or look closer.'}
 		bind:zoomed
 		onSelect={select}
 		onClose={closePane}

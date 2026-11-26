@@ -115,9 +115,12 @@ export const seatZone = (seat: string, kind: SeatZoneKind): string => `seat:${se
  * - **Your own zones** are yours, and the GM's.
  * - **A hand** is its owner's alone to take from, the GM's included: it is the
  *   one place secret from the GM. The GM may put a card back into one.
- * - **Somebody's inspiration slot** takes a card from anyone (the High Chant:
- *   "Distribute the cards to other players"); taking it out is theirs or the
- *   GM's.
+ * - **Somebody's inspiration slot** is theirs and the GM's, both ways. It
+ *   used to take a card from anyone, for the High Chant's "Distribute the
+ *   cards to other players"; Card Table Test 3 (phase 33) found every player
+ *   offered "Give <name> an inspiration card" mid-fight, on their own seat,
+ *   which looked like a GM control because it is one. Whoever runs the table
+ *   hands inspiration out.
  * - **An enemy's zones** are the GM's.
  * - **The decks, the discards and the turned-over cards** are anyone's: a Test
  *   of Fate is a player's, and the High Chant picks from the discard.
@@ -143,7 +146,6 @@ export function mayReach(
 		const kind = zoneId.slice(cut + 1);
 		if (owner === actor) return true;
 		if (kind === 'hand') return how === 'put' && runsTable;
-		if (kind === 'durable' && how === 'put') return true;
 		return runsTable;
 	}
 	if (zoneId.startsWith('opponent:')) return runsTable;

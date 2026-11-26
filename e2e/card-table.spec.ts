@@ -338,13 +338,14 @@ test('a player who asks for a seat mid-Challenge gets a hand without reloading',
 	await player.getByRole('button', { name: 'Ask for a seat' }).click();
 	await expect(player.getByText(/Waiting for the GM to let you in/)).toBeVisible(POLLED);
 
-	await expect(gm.getByText(name)).toBeVisible(POLLED);
-	await gm
-		.locator('.ch__waiter, li, span', { hasText: name })
-		.getByRole('button', { name: 'Let in' })
-		.first()
-		.click();
+	// In the pinned line at the top, where a GM can't miss it (Card Table Test 3,
+	// phase 33), and let in from there.
+	const ask = gm.locator('.guide__ask', { hasText: `${name} is asking for a seat` });
+	await expect(ask).toBeVisible(POLLED);
+	await expect(ask).toBeInViewport();
+	await ask.getByRole('button', { name: 'Let in' }).click();
 	await expect(player.getByText(/Waiting for the GM to let you in/)).toHaveCount(0, POLLED);
+	await expect(gm.locator('.guide__ask')).toHaveCount(0, POLLED);
 
 	await gm.getByRole('button', { name: 'Deal the round', exact: true }).click();
 	await expect(player.locator('.hand button')).toHaveCount(4, POLLED);

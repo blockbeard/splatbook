@@ -17,16 +17,31 @@ export interface Placed {
 	/** A creature that is down: still listed, crossed out, where it fell. */
 	down: boolean;
 	/**
-	 * A creature's Health as "4/6", when it is tracked and this viewer is sent
-	 * it — so the summary is the one place to read the fight (first live test).
+	 * A creature's Health and Defense, labelled — "Health 4/6 · Defense 2/3" —
+	 * when they are tracked and this viewer is sent them, so the summary is the
+	 * one place to read the fight (first live test). Labelled since Session 14,
+	 * where a bare "3" beside a lion named for its stat line read as "3 3".
 	 */
-	health?: string;
+	stats?: string;
 }
 
 export interface ZoneRow {
 	/** `null` is the "not placed" row. */
 	zone: { id: string; name: string } | null;
 	people: Placed[];
+}
+
+function statsOf(pool: {
+	health: number;
+	healthMax: number;
+	defense: number;
+	defenseMax: number;
+}): { stats?: string } {
+	const parts = [
+		...(pool.healthMax > 0 ? [`Health ${pool.health}/${pool.healthMax}`] : []),
+		...(pool.defenseMax > 0 ? [`Defense ${pool.defense}/${pool.defenseMax}`] : [])
+	];
+	return parts.length > 0 ? { stats: parts.join(' · ') } : {};
 }
 
 /** Everybody who can stand somewhere: adventurers first, in seat order, then creatures by group. */
@@ -45,7 +60,7 @@ export function placeablePeople(
 				label: creatureLabel(table.opponents, c.id) ?? group.name,
 				kind: 'creature' as const,
 				down: c.down,
-				...(pool && pool.healthMax > 0 ? { health: `${pool.health}/${pool.healthMax}` } : {})
+				...(pool ? statsOf(pool) : {})
 			};
 		})
 	);
