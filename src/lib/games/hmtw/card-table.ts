@@ -71,6 +71,7 @@ import {
 	type DeckDefinition,
 	type StepResult
 } from './engine';
+import { whoIsUp } from './engine/projection';
 
 /**
  * What a client may ask for, built the first time a command arrives.
@@ -173,7 +174,22 @@ function buildCommandSchema() {
 		/** No minor action. The GM may answer for several groups at once. */
 		z.strictObject({ type: z.literal('pass-minor'), holders: z.array(holder).min(1).max(60) }),
 		/** Move the round on, whatever it is waiting for. The GM's. */
-		z.strictObject({ type: z.literal('step-on') }),
+		z.strictObject({
+			type: z.literal('step-on'),
+			/**
+			 * The round as the page saw it when the GM pressed (phase 33). Refused
+			 * as `moved-on` if the round has since moved, so a press from a page a
+			 * poll behind can't skip whoever it has reached. Absent from an older
+			 * page, which keeps the old behaviour.
+			 */
+			from: z
+				.strictObject({
+					step: z.enum(['deal', 'initiative', 'turn', 'minor', 'resolve', 'over']),
+					count: z.number().int().nullable(),
+					up: z.array(holder).max(60)
+				})
+				.optional()
+		}),
 		/** Take back your initiative, or your turn's cards, before anyone has answered them. */
 		z.strictObject({ type: z.literal('take-back'), holder }),
 		/** Name an enemy, or a group of them. */
@@ -341,6 +357,19 @@ function stepped(
 		...data,
 		...(moved ? { step: after.round.step, count: after.round.count } : {})
 	});
+}
+
+/**
+ * Whether the round is where a page saw it: the same step, the same number, and
+ * the same people up. Who is up is compared as a set, in no order.
+ */
+function sameRound(
+	table: CardTable,
+	seen: { step: string; count: number | null; up: string[] }
+): boolean {
+	if (seen.step !== table.round.step || seen.count !== table.round.count) return false;
+	const up = whoIsUp(table);
+	return up.length === seen.up.length && up.every((h) => seen.up.includes(h));
 }
 
 /** A target as the log may name it: a seat by id, a group or creature by its label. */
@@ -558,8 +587,11 @@ export const hmtwCardTable: CardTableModule = {
 				return stepped(table, passMinor(table, parsed.data.holders), 'pass-minor', {
 					holders: parsed.data.holders
 				});
-			case 'step-on':
+			case 'step-on': {
+				const from = parsed.data.from;
+				if (from && !sameRound(table, from)) return fail('moved-on');
 				return stepped(table, stepOn(table), 'step-on', { from: table.round.step });
+			}
 			case 'take-back':
 				return stepped(table, takeBack(table, parsed.data.holder), 'take-back', {
 					holder: parsed.data.holder

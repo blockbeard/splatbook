@@ -58,7 +58,10 @@ describe('the guide', () => {
 			'Waiting on initiative from Chirm.'
 		);
 		// The GM can start without waiting.
-		expect(suggest(waiting, seats).action?.command).toEqual({ type: 'step-on' });
+		expect(suggest(waiting, seats).action?.command).toEqual({
+			type: 'step-on',
+			from: { step: 'initiative', count: 4, up: [] }
+		});
 		expect(suggest(waiting, seats).gmOnly).toBe(true);
 	});
 
@@ -94,6 +97,32 @@ describe('the guide', () => {
 		expect(s.text).toBe('4 — your turn: play a card or skip. Daria also acts on 4.');
 	});
 
+	it('says why the count stayed put when somebody on the number has gone (Session 14)', () => {
+		// Bonnie and Tatyana on 1; Bonnie's turn is done and cleared.
+		const tied = at('turn', { upNow: ['chirm'], doneHere: ['daria'] });
+		expect(suggest({ ...tied, viewer: 'chirm' }, seats).text).toBe(
+			'Daria and Chirm are both on 4, and Daria has gone. 4 — your turn: play a card or skip.'
+		);
+		expect(suggest(tied, seats).text).toBe(
+			'Daria and Chirm are both on 4, and Daria has gone. 4 — Chirm to act.'
+		);
+	});
+
+	it('names who the GM’s Skip skips, and keeps it quiet', () => {
+		// "Skip their turn" sat where Next had been, and the second press skipped
+		// a player.
+		const one = suggest(at('turn', { upNow: ['chirm'] }), seats);
+		expect(one.action?.label).toBe("Skip Chirm's turn");
+		expect(one.quiet).toBe(true);
+		expect(one.action?.command).toEqual({
+			type: 'step-on',
+			from: { step: 'turn', count: 4, up: ['chirm'] }
+		});
+		expect(suggest(at('turn', { upNow: ['daria', 'chirm'] }), seats).action?.label).toBe(
+			'Skip the turns of Daria and Chirm'
+		);
+	});
+
 	it('names an enemy as readily as a player, and reads a list as a person would', () => {
 		const s = suggest(
 			at('turn', {
@@ -120,7 +149,12 @@ describe('the guide', () => {
 		expect(s.text).toBe(
 			'4: everything is face up. Work it out, then the GM moves on. Still to act: Chirm.'
 		);
-		expect(s.action).toEqual({ label: 'Next', command: { type: 'step-on' } });
+		expect(s.action).toEqual({
+			label: 'Next',
+			command: { type: 'step-on', from: { step: 'resolve', count: 4, up: [] } }
+		});
+		// Next is the thing the round is waiting for: the filled button.
+		expect(s.quiet).toBeFalsy();
 	});
 
 	it('says the end-of-round check to everyone when the round is over', () => {

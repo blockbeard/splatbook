@@ -318,7 +318,7 @@
 			say('Someone got there first. This is the table as it stands now.', true);
 		} else if (
 			reply.reason === 'rejected' &&
-			['wrong-step', 'not-up', 'already-answered', 'nothing-to-take-back'].includes(
+			['wrong-step', 'moved-on', 'not-up', 'already-answered', 'nothing-to-take-back'].includes(
 				reply.detail ?? ''
 			)
 		) {
