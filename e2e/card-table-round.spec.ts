@@ -353,14 +353,17 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				await page.getByRole('button', { name: 'Put it down', exact: true }).click();
 				declared = true;
 				const mine = players.find((p) => p.page === page)!;
+				// Landed: face down in the minor slot, or, if it was the last answer,
+				// already turned over with what it was for.
 				await expect
-					.poll(
-						async () =>
-							(await projectionFor(context, token)).state.zones[`seat:${mine.seat}:minor`]?.cards
-								?.length ?? 0,
-						POLLED
-					)
-					.toBeGreaterThan(0);
+					.poll(async () => {
+						const v = (await projectionFor(context, token)).state;
+						return (
+							(v.zones[`seat:${mine.seat}:minor`]?.cards?.length ?? 0) > 0 ||
+							Object.values(v.plays).some((p) => p.by === mine.seat && p.action === 'Roughhouse')
+						);
+					}, POLLED)
+					.toBe(true);
 				const after = await projectionFor(gmContext, token);
 				if (after.state.round.step === 'minor') {
 					// Declared to all; the card to nobody else.
