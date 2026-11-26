@@ -14,7 +14,10 @@ export default ts.config(
 			// In-repo git worktrees are separate checkouts; don't lint into them.
 			'.worktrees/',
 			// Game content and pipeline output are data, not lintable source.
-			'content/'
+			'content/',
+			// Wrangler's local state, and the Worker bundles tools/profile-commands.ts
+			// writes there (phase 33).
+			'.wrangler/'
 		]
 	},
 	js.configs.recommended,

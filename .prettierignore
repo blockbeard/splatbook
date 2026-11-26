@@ -33,3 +33,6 @@ src/lib/packs/fixtures/not-json/
 
 # Sandbox scratch litter — see .gitignore
 .trash/
+
+# Wrangler local state and profiling bundles (phase 33)
+.wrangler/
