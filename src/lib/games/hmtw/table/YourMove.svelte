@@ -273,6 +273,18 @@
 		if (overlap > 0) window.scrollBy({ top: overlap + 8 });
 	});
 
+	/*
+	 * The page's passing notices sit at the foot of the screen too (PR #3), and
+	 * over the bar they would print across the button. While the bar is up it
+	 * says how tall it is, and the notice rises above it.
+	 */
+	$effect(() => {
+		if (!barShown || barHeight === 0) return;
+		const root = document.documentElement;
+		root.style.setProperty('--ct-bar-h', `${barHeight}px`);
+		return () => root.style.removeProperty('--ct-bar-h');
+	});
+
 	/** Out of turn plays out of turn, or, typed as a talent with its own picker, discards. */
 	const outHow = $derived<How>(
 		talent && !picking && (howNow === 'discard' || howNow === 'give') ? howNow : 'out'

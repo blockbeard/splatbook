@@ -553,7 +553,8 @@
 	 */
 	.notice {
 		position: fixed;
-		inset-block-end: max(1rem, env(safe-area-inset-bottom));
+		/* Above the pinned bar by the hand while it is up; it sets the height. */
+		inset-block-end: calc(max(1rem, env(safe-area-inset-bottom)) + var(--ct-bar-h, 0px));
 		inset-inline: 1rem;
 		z-index: 5;
 		inline-size: fit-content;

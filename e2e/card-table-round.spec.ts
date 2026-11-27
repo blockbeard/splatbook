@@ -147,6 +147,10 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 			() => document.getElementById('my-hand')!.getBoundingClientRect().bottom
 		);
 		expect(handBottom).toBeLessThanOrEqual(barTop);
+		// A passing notice sits at the foot of the screen too (PR #3); while the
+		// bar is up it rises above it rather than printing over the button.
+		const noticeBottom = (await phone.locator('.notice').boundingBox())!;
+		expect(noticeBottom.y + noticeBottom.height).toBeLessThanOrEqual(barTop);
 		// One button, not two: Your move doesn't also show it.
 		await expect(phone.getByRole('button', { name: 'Play as initiative' })).toHaveCount(1);
 		await shot(phone, 'phone-bar');
