@@ -54,10 +54,11 @@ import { deckZone, opponentZones, seatZones, tableZones, type DeckId, type Zone 
  * v18: `minorGuards`, the minor actions put down as Guard, and the round's
  *   `readiedNow`, from Card Table Test 3 (26 November 2026).
  * v19: `counsel`, the advice on a card handed over.
- * v20 (this commit): a play's `targets` and `inZone`, and `minorTargets` as an
- *   `Aim`, for more than one target (Card Table Test 3).
+ * v20: a play's `targets` and `inZone`, and `minorTargets` as an `Aim`, for
+ *   more than one target (Card Table Test 3).
+ * v21 (this commit): a creature's `name`, given by the GM (Session 14).
  */
-export const TABLE_SCHEMA_VERSION = 20;
+export const TABLE_SCHEMA_VERSION = 21;
 
 /**
  * An enemy, or a group of them, that the GM plays.

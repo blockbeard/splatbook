@@ -33,6 +33,12 @@ export interface Creature {
 	/** Stable for the creature's life, including across a split. */
 	id: string;
 	letter: string;
+	/**
+	 * A name the GM gave it once the table could tell it apart: "Red Cloak"
+	 * (v21, Session 14). The letter stays, for the count and for anyone who
+	 * knew it by that, so it reads "Red Cloak (A)".
+	 */
+	name?: string;
 	down: boolean;
 	/** Empty when the GM is not tracking this creature's HD. */
 	pools: HdPool[];
@@ -40,6 +46,9 @@ export interface Creature {
 
 /** A–Z, then AA–ZZ. Fifty-two bodies in one family is already a swarm. */
 export const MAX_CREATURES = 52;
+
+/** A creature's name: a nickname, not a description. */
+export const MAX_CREATURE_NAME = 40;
 
 /** Health and Defense above this are a typo, not a monster. */
 export const MAX_HD = 99;
@@ -104,20 +113,29 @@ export function migrateCreature(raw: Partial<Creature> | undefined): Creature | 
 				defenseMax
 			};
 		});
-	return { id: raw.id, letter: raw.letter, down: raw.down === true, pools };
+	const name = typeof raw.name === 'string' ? raw.name.trim().slice(0, MAX_CREATURE_NAME) : '';
+	return {
+		id: raw.id,
+		letter: raw.letter,
+		...(name ? { name } : {}),
+		down: raw.down === true,
+		pools
+	};
 }
 
 /** The shape `creatureLabel` reads — an engine `Opponent` or a client's projection of one. */
 interface LabelGroup {
 	name: string;
 	family: string;
-	creatures: readonly { id: string; letter: string }[];
+	creatures: readonly { id: string; letter: string; name?: string }[];
 }
 
 /**
  * What to call a creature out loud: "Zombie B", or just "King of Swords" when
  * its family has only ever had one member, because "King of Swords A" is a
- * letter nobody needs. Null for an id that names no creature.
+ * letter nobody needs. A named creature is "Red Cloak (A)", keeping the letter
+ * people knew it by, or just "Red Cloak" when the letter was never said. Null
+ * for an id that names no creature.
  */
 export function creatureLabel(groups: readonly LabelGroup[], id: string): string | null {
 	for (const group of groups) {
@@ -126,6 +144,7 @@ export function creatureLabel(groups: readonly LabelGroup[], id: string): string
 		const family = groups
 			.filter((g) => g.family === group.family)
 			.reduce((n, g) => n + g.creatures.length, 0);
+		if (creature.name) return family > 1 ? `${creature.name} (${creature.letter})` : creature.name;
 		return family > 1 ? `${group.name} ${creature.letter}` : group.name;
 	}
 	return null;

@@ -121,6 +121,7 @@ export {
 } from './scene';
 export {
 	MAX_CREATURES,
+	MAX_CREATURE_NAME,
 	MAX_HD,
 	clampHd,
 	creatureId,
@@ -135,6 +136,7 @@ export {
 export {
 	addCreatures,
 	findCreature,
+	nameCreature,
 	rejoinSplitGroups,
 	removeCreature,
 	setDown,

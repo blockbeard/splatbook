@@ -6,7 +6,14 @@
  * already depends on the table's types.
  */
 
-import { MAX_CREATURES, clampHd, letterIndex, makeCreatures, type Creature } from './creatures';
+import {
+	MAX_CREATURES,
+	MAX_CREATURE_NAME,
+	clampHd,
+	letterIndex,
+	makeCreatures,
+	type Creature
+} from './creatures';
 import { discardAll } from './moves';
 import { forgetPlacements } from './scene';
 import { nextLetterIndex, type CardTable, type Opponent } from './table';
@@ -119,6 +126,21 @@ export function setDown(table: CardTable, id: string, down: boolean): CardTable 
 	const found = findCreature(table, id);
 	if (!found || found.creature.down === down) return table;
 	return withCreature(table, id, (c) => ({ ...c, down }));
+}
+
+/**
+ * Give a creature a name, or take it away with an empty one. The letter and
+ * the id stay, so everything that points at the creature still does.
+ */
+export function nameCreature(table: CardTable, id: string, name: string): CardTable {
+	const found = findCreature(table, id);
+	if (!found) return table;
+	const trimmed = name.trim().replace(/\s+/g, ' ').slice(0, MAX_CREATURE_NAME);
+	if ((found.creature.name ?? '') === trimmed) return table;
+	return withCreature(table, id, (c) => {
+		const { name: _old, ...rest } = c;
+		return trimmed ? { ...rest, name: trimmed } : rest;
+	});
 }
 
 /**

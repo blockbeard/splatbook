@@ -59,8 +59,14 @@ export interface PollState {
 	hidden: boolean;
 	/** A Challenge is running, where latency is most visible. */
 	busy: boolean;
-	/** How long since the table last changed. */
+	/** How long since the table last changed, or since this client started asking. */
 	quietMs: number;
+	/**
+	 * Whether this client has seen the table change in the last
+	 * `POLL_RECENT_MS`. Not the same as a short `quietMs`, which opening the
+	 * page also gives.
+	 */
+	recent?: boolean;
 }
 
 /** Fastest and slowest this will ever ask. */
@@ -69,14 +75,24 @@ export const POLL_IDLE_MS = 3000;
 export const POLL_MAX_MS = 15000;
 
 /**
+ * How long a change keeps even the decks on the busy cadence. A Test of Fate is
+ * a run of moves (a card to the pile, another, the pile cleared), and on the
+ * idle cadence each one reached the rest of the table up to three seconds late
+ * (Session 14, phase 33).
+ */
+export const POLL_RECENT_MS = 120_000;
+
+/**
  * How long to wait before asking the server again — or `null` for "do not ask".
  *
  * D1 bills per query rather than per byte, so the only levers that reduce cost
  * are how often a client asks and how many clients are asking. Reading fewer
  * columns saves nothing. Hence: a hidden tab asks nothing at all (the pattern
  * `RollLog.svelte` already uses), a Challenge is asked about every second
- * because that is where a beat of delay shows, everything else every three, and
- * a table nobody has touched backs off by doubling to a fifteen-second ceiling.
+ * because that is where a beat of delay shows, and so is any table for two
+ * minutes after it last changed, since one move is usually followed by more.
+ * Everything else is asked about every three seconds, and a table nobody has
+ * touched backs off by doubling to a fifteen-second ceiling.
  *
  * Six clients at one second for a four-hour session is roughly 86,000 reads.
  * The backoff is what keeps a forgotten tab from costing that for a table
@@ -84,7 +100,7 @@ export const POLL_MAX_MS = 15000;
  */
 export function pollDelayMs(state: PollState): number | null {
 	if (state.hidden) return null;
-	const base = state.busy ? POLL_BUSY_MS : POLL_IDLE_MS;
+	const base = state.busy || state.recent ? POLL_BUSY_MS : POLL_IDLE_MS;
 	const doublings = Math.floor(Math.max(0, state.quietMs) / 60_000);
 	return Math.min(POLL_MAX_MS, base * 2 ** Math.min(doublings, 10));
 }

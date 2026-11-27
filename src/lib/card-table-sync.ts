@@ -18,7 +18,7 @@
  * all arrive as functions, so the whole loop is testable without a browser.
  */
 
-import { pollDelayMs } from './card-table-limits';
+import { POLL_RECENT_MS, pollDelayMs } from './card-table-limits';
 
 /** What a poll brings back. `null` means nothing has changed since the cursor. */
 export interface TableSnapshot {
@@ -69,10 +69,12 @@ export interface SyncOptions {
 /**
  * A polling transport.
  *
- * Three behaviours worth naming. It never has two requests in flight, so a slow
+ * Four behaviours worth naming. It never has two requests in flight, so a slow
  * response cannot stack up behind the interval. It measures quiet from the last
  * *change*, not the last poll, so a busy table stays responsive while a
- * forgotten tab backs off to the ceiling. And a hidden tab schedules a wake-up
+ * forgotten tab backs off to the ceiling. A change it has seen keeps it on the
+ * busy cadence for a while even outside a Challenge, since one move is usually
+ * followed by more. And a hidden tab schedules a wake-up
  * without asking anything, so returning to it is immediate but sitting on it
  * costs nothing.
  */
@@ -86,6 +88,8 @@ export function pollingTransport(opts: SyncOptions): TableTransport {
 	let inFlight = false;
 	let handle: unknown = null;
 	let lastChangeAt = now();
+	/** When a poll last brought a change; null until one has. */
+	let lastMoveAt: number | null = null;
 
 	function schedule(): void {
 		if (!running) return;
@@ -94,7 +98,8 @@ export function pollingTransport(opts: SyncOptions): TableTransport {
 			pollDelayMs({
 				hidden,
 				busy: opts.isBusy(),
-				quietMs: now() - lastChangeAt
+				quietMs: now() - lastChangeAt,
+				recent: lastMoveAt !== null && now() - lastMoveAt < POLL_RECENT_MS
 			}) ??
 			// Hidden: wake up on the slow cadence to notice becoming visible again,
 			// without asking the server anything in the meantime.
@@ -119,7 +124,7 @@ export function pollingTransport(opts: SyncOptions): TableTransport {
 				// see a join request arrive.
 				const moved = snapshot.version !== version;
 				version = snapshot.version;
-				if (moved) lastChangeAt = now();
+				if (moved) lastChangeAt = lastMoveAt = now();
 				opts.onUpdate(snapshot);
 			}
 		} catch (error) {

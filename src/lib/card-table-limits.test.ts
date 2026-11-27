@@ -15,6 +15,12 @@ describe('poll cadence', () => {
 		expect(state({ busy: false })).toBe(POLL_IDLE_MS);
 	});
 
+	it('asks as fast in the decks just after a change, so a Test of Fate shows at once', () => {
+		expect(state({ recent: true })).toBe(POLL_BUSY_MS);
+		expect(state({ recent: true, quietMs: 60_000 })).toBe(POLL_BUSY_MS * 2);
+		expect(state({ recent: false, quietMs: 60_000 })).toBe(POLL_IDLE_MS * 2);
+	});
+
 	it('backs off as a table goes quiet, so a forgotten tab costs little', () => {
 		expect(state({ busy: true, quietMs: 59_000 })).toBe(POLL_BUSY_MS);
 		expect(state({ busy: true, quietMs: 60_000 })).toBe(POLL_BUSY_MS * 2);

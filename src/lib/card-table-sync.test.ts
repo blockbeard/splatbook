@@ -177,6 +177,27 @@ describe('the polling transport', () => {
 		expect(h.delayOf()).toBe(POLL_BUSY_MS);
 	});
 
+	it('stays quick in the decks for two minutes after a change, not after opening', async () => {
+		const h = harness();
+		h.transport.start();
+		// Opening the page is not a change: the decks start on the idle cadence.
+		expect(h.delayOf()).toBe(POLL_IDLE_MS);
+
+		// A card goes to the Test of Fate pile: the next ones follow at once.
+		h.reply(snapshot(1));
+		await h.fire();
+		expect(h.delayOf()).toBe(POLL_BUSY_MS);
+		h.reply(null, null);
+		h.advance(60_000);
+		await h.fire();
+		expect(h.delayOf()).toBe(POLL_BUSY_MS * 2);
+
+		// Two minutes on, the table is back to the quiet backoff.
+		h.advance(60_000);
+		await h.fire();
+		expect(h.delayOf()).toBe(POLL_IDLE_MS * 4);
+	});
+
 	it('never waits longer than the ceiling', async () => {
 		const h = harness();
 		h.transport.start();
