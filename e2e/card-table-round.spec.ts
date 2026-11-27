@@ -353,17 +353,20 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 				await page.getByRole('button', { name: 'Put it down', exact: true }).click();
 				declared = true;
 				const mine = players.find((p) => p.page === page)!;
-				// Landed: face down in the minor slot, or, if it was the last answer,
-				// already turned over with what it was for.
+				// Down in their own minor zone — or, when they were the last one the
+				// table was waiting on, already turned over into the open with the
+				// rest. Waiting on the zone alone timed out whenever the shuffle made
+				// this player the last to answer.
 				await expect
 					.poll(async () => {
-						const v = (await projectionFor(context, token)).state;
-						return (
-							(v.zones[`seat:${mine.seat}:minor`]?.cards?.length ?? 0) > 0 ||
-							Object.values(v.plays).some((p) => p.by === mine.seat && p.action === 'Roughhouse')
-						);
+						const now = (await projectionFor(context, token)).state;
+						const down = now.zones[`seat:${mine.seat}:minor`]?.cards?.length ?? 0;
+						const turnedOver = Object.values(now.plays).filter(
+							(play) => play.by === mine.seat && play.kind === 'minor'
+						).length;
+						return down + turnedOver;
 					}, POLLED)
-					.toBe(true);
+					.toBeGreaterThan(0);
 				const after = await projectionFor(gmContext, token);
 				if (after.state.round.step === 'minor') {
 					// Declared to all; the card to nobody else.
@@ -424,7 +427,7 @@ test('a whole round, a GM and three players, one step at a time', async ({ brows
 	await phone.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
 	await expect(phone.locator('.guide')).toBeInViewport();
 	await phone.locator('.guide').getByRole('link', { name: 'Your move' }).click();
-	await expect(phone.locator('#move-heading')).toBeInViewport();
+	await expect(phone.locator('#your-hand')).toBeInViewport();
 	await shot(gm, 'round-over');
 	await phoneCheck('over');
 	await shot(phone, 'phone-over');

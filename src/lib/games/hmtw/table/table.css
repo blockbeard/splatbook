@@ -470,9 +470,22 @@ html.dark .ct {
 
 /* ---- Selection ----------------------------------------------------------- */
 
+/*
+ * Three states that used to be one black outline, told apart only by a pixel
+ * of weight: the card you have picked up, a card that would pay for the chosen
+ * action, and the card the keyboard is on. Picked up is now literally that —
+ * lifted out of the row, in a heavy ring — and the ring is a shadow, so the
+ * focus outline can still be drawn around it rather than replacing it.
+ */
 [data-game='hmtw'] .ct-card--selected {
-	outline: 2px solid var(--ct-mark);
-	outline-offset: 2px;
+	translate: 0 -0.6rem;
+	box-shadow:
+		0 0 0 2px var(--ct-table),
+		0 0 0 5px var(--ct-mark);
+}
+
+[data-game='hmtw'] .ct-card--selected:focus-visible {
+	outline-offset: 7px;
 }
 
 /*
@@ -501,7 +514,9 @@ html.dark .ct {
 
 @media (prefers-reduced-motion: no-preference) {
 	[data-game='hmtw'] .ct-card {
-		transition: transform 120ms ease;
+		transition:
+			transform 120ms ease,
+			translate 120ms ease;
 	}
 	[data-game='hmtw'] .ct-card:hover {
 		transform: translateY(-2px);

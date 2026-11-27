@@ -58,7 +58,10 @@ async function projectionFor(context: BrowserContext, token: string): Promise<Pr
 function assertUnseen(projection: Projection, cards: string[], who: string) {
 	const wire = JSON.stringify(projection);
 	for (const card of cards) {
-		expect(wire, `${who} was sent ${card}, which they may not see`).not.toContain(card);
+		// As a whole JSON string, quotes and all: a card id only ever travels as
+		// one, and the bare word matched field names too — a player dealt the
+		// Fool failed this on `foolDrawn`, which every projection carries.
+		expect(wire, `${who} was sent ${card}, which they may not see`).not.toContain(`"${card}"`);
 	}
 }
 
@@ -266,11 +269,16 @@ test('two seats play a round, and neither can see the other’s hand', async ({ 
 
 	// --- End the round. Hands and initiative go; the round waits for a deal. ---
 	await gm.locator('.guide').getByRole('button', { name: 'End the round' }).click();
+	// Asked of the hand, not of the discard pile: when the Fool came out during
+	// the round both decks are shuffled as it ends, the discards go back into
+	// them, and a pile this used to expect cards in is correctly empty.
 	await expect
-		.poll(async () => (await projectionFor(gmContext, token)).state.zones['discard:player'].count, {
-			timeout: 10_000
-		})
-		.toBeGreaterThan(0);
+		.poll(
+			async () =>
+				(await projectionFor(gmContext, token)).state.zones[`seat:${playerSeat}:hand`].count,
+			{ timeout: 10_000 }
+		)
+		.toBe(0);
 
 	await gmContext.close();
 	await playerContext.close();

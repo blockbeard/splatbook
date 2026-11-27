@@ -82,7 +82,24 @@ export function suggest(
 			// No shortcut here on purpose: dealing needs the GM's own draw count,
 			// and the checklist that decides it is a few inches below. A button
 			// that guessed the number would be the guide making a ruling.
-			return { text: 'Nobody has drawn yet. Set the draw and deal the round.', gmOnly: true };
+			//
+			// Said differently to the two sides of the screen, and differently
+			// between rounds: a player was reading the GM's instruction, and after
+			// the first round "nobody has drawn yet" was simply untrue.
+			if (round.number === 0) {
+				return {
+					text: runsTable
+						? 'Nobody has drawn yet. Set the draw and deal the round.'
+						: 'Nobody has drawn yet. Waiting for the GM to deal the round.',
+					gmOnly: true
+				};
+			}
+			return {
+				text: runsTable
+					? `Round ${round.number} is over. Set the draw and deal round ${round.number + 1}.`
+					: `Round ${round.number} is over. Waiting for the GM to deal round ${round.number + 1}.`,
+				gmOnly: true
+			};
 
 		case 'initiative': {
 			if (waiting.length === 0) {

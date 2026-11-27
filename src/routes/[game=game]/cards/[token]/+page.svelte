@@ -543,13 +543,29 @@
 		color: var(--ct-mark);
 		margin: 0.5rem 1.25rem;
 	}
-	/* Always in the layout, so a passing word does not shove the table down a
-	   line and back up again — the surest way to make somebody misclick. */
+	/*
+	 * Pinned to the foot of the screen, over the table. It used to be a line
+	 * under the title, which is two or three screens above the hand on a phone:
+	 * "someone got there first" was said where nobody playing a card could see
+	 * it. Out of the flow, so a passing word still cannot shove the table down
+	 * a line and back up again — the surest way to make somebody misclick — and
+	 * it takes no clicks itself, so it cannot sit on top of a button.
+	 */
 	.notice {
-		margin: 0.5rem 1.25rem;
-		min-block-size: 1.25rem;
-		font-size: 0.85rem;
-		color: var(--ct-quiet);
+		position: fixed;
+		inset-block-end: max(1rem, env(safe-area-inset-bottom));
+		inset-inline: 1rem;
+		z-index: 5;
+		inline-size: fit-content;
+		max-inline-size: min(34rem, calc(100vw - 2rem));
+		margin: 0 auto;
+		padding: 0.6rem 0.9rem;
+		font-family: 'IM Fell English', Georgia, serif;
+		color: var(--ct-mark);
+		background: var(--ct-table);
+		border: 1px solid var(--ct-rule-strong);
+		border-radius: 4px;
+		pointer-events: none;
 		opacity: 0;
 		transition: opacity 200ms ease;
 	}

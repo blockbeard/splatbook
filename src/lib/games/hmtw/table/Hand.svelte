@@ -106,6 +106,8 @@
 		display: flex;
 		gap: 0.4rem;
 		flex-wrap: wrap;
+		/* Room for a picked-up card to lift into without covering the label. */
+		padding-block-start: 0.75rem;
 	}
 	.hand__groups {
 		display: flex;

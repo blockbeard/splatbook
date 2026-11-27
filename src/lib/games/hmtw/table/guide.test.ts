@@ -46,9 +46,20 @@ describe('the guide', () => {
 	it('opens by asking for a deal, and offers no shortcut for it', () => {
 		// Dealing needs the GM's own draw count, and a button that guessed it
 		// would be the guide making a ruling rather than a suggestion.
-		const s = suggest(at('deal'), seats);
+		const fresh = at('deal');
+		fresh.round = { ...fresh.round, number: 0 };
+		const s = suggest(fresh, seats);
 		expect(s.text).toMatch(/nobody has drawn/i);
 		expect(s.action).toBeUndefined();
+	});
+
+	it('says a round is over between rounds, and tells players who they are waiting for', () => {
+		const between = at('deal');
+		expect(suggest(between, seats).text).toBe('Round 1 is over. Set the draw and deal round 2.');
+		expect(suggest({ ...between, viewer: 'daria' }, seats).text).toBe(
+			'Round 1 is over. Waiting for the GM to deal round 2.'
+		);
+		expect(suggest(between, seats).action).toBeUndefined();
 	});
 
 	it('asks whoever owes initiative to play it, and tells everyone else who is awaited', () => {
