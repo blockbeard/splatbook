@@ -251,6 +251,18 @@ suite('the scene and its creatures', () => {
 	});
 
 	it('says who went down, and who arrived', () => {
+		expect(
+			describe(
+				ev('name-creature', { was: 'Zombie A', label: 'Red Cloak (A)', named: true }),
+				nameOf
+			)
+		).toBe('Zombie A is now Red Cloak (A).');
+		expect(
+			describe(
+				ev('name-creature', { was: 'Red Cloak (A)', label: 'Zombie A', named: false }),
+				nameOf
+			)
+		).toBe('Red Cloak (A) is Zombie A again.');
 		expect(describe(ev('set-down', { label: 'Zombie B', down: true }), nameOf)).toBe(
 			'Zombie B is down.'
 		);

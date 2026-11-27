@@ -18,6 +18,7 @@ import { z } from 'zod';
 import type { CardTableModule, CardTableOutcome } from '../types';
 import {
 	MAX_CREATURES,
+	MAX_CREATURE_NAME,
 	MAX_HD,
 	MAX_SCENE_ZONES,
 	MAX_SCENE_ZONE_NAME,
@@ -25,6 +26,7 @@ import {
 	addCreatures,
 	creatureLabel,
 	findCreature,
+	nameCreature,
 	placeInScene,
 	rejoinSplitGroups,
 	placeable,
@@ -291,6 +293,12 @@ function buildCommandSchema() {
 		}),
 		/** Take off a creature added by mistake. */
 		z.strictObject({ type: z.literal('remove-creature'), creature: z.string().min(1).max(120) }),
+		/** "Zombie A is Red Cloak." An empty name takes it away. The GM's. */
+		z.strictObject({
+			type: z.literal('name-creature'),
+			creature: z.string().min(1).max(120),
+			name: z.string().max(MAX_CREATURE_NAME)
+		}),
 		/** "Zombie B, Health 3 → 2". Carries what it replaces, so a double click cannot land twice. */
 		z.strictObject({
 			type: z.literal('set-hd'),
@@ -343,7 +351,8 @@ const GM_ONLY = new Set<CardTableCommand['type']>([
 	'clear-scene-picture',
 	'clear-scene',
 	'add-creatures',
-	'remove-creature'
+	'remove-creature',
+	'name-creature'
 ]);
 
 /**
@@ -782,6 +791,17 @@ export const hmtwCardTable: CardTableModule = {
 				const next = removeCreature(table, parsed.data.creature);
 				if (next === table) return fail('no-such-creature');
 				return state(next, 'remove-creature', { label });
+			}
+			case 'name-creature': {
+				const { creature, name } = parsed.data;
+				if (!findCreature(table, creature)) return fail('no-such-creature');
+				const next = nameCreature(table, creature, name);
+				if (next === table) return fail('no-change');
+				return state(next, 'name-creature', {
+					was: creatureLabel(table.opponents, creature),
+					label: creatureLabel(next.opponents, creature),
+					named: !!findCreature(next, creature)?.creature.name
+				});
 			}
 			case 'set-hd': {
 				const { creature, pool, stat, from, to } = parsed.data;

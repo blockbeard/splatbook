@@ -254,6 +254,8 @@ export function describe(
 		}
 		case 'remove-creature':
 			return `${d.label} was taken off the table.`;
+		case 'name-creature':
+			return d.named ? `${d.was} is now ${d.label}.` : `${d.was} is ${d.label} again.`;
 		case 'set-hd': {
 			// The latest only, so a run of clicks reads out once, as where it ended.
 			const stat = d.stat === 'defense' ? 'Defense' : 'Health';

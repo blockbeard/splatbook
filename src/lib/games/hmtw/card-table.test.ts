@@ -415,6 +415,60 @@ describe('the scene and its creatures', () => {
 		expect((down.state as CardTable).opponents[0].creatures[0].down).toBe(true);
 	});
 
+	it('names a creature, keeping its letter (v21)', () => {
+		const t = arena();
+		const a = zombie(t, 'A');
+		expect(reduce(t, { type: 'name-creature', creature: a, name: 'Red Cloak' }, 'regan')).toEqual({
+			ok: false,
+			reason: 'gm-only'
+		});
+		const named = run(t, { type: 'name-creature', creature: a, name: '  Red   Cloak ' });
+		expect(named.data).toEqual({ was: 'Zombie A', label: 'Red Cloak (A)', named: true });
+		const nt = named.state as CardTable;
+		expect(nt.opponents[0].creatures[0]).toMatchObject({ id: a, letter: 'A', name: 'Red Cloak' });
+		// Everything that pointed at Zombie A still does, and says its new name.
+		const down = run(nt, { type: 'set-down', creature: a, down: true });
+		expect(down.data).toEqual({ label: 'Red Cloak (A)', down: true });
+		// The players see it too: a name is as public as the letter.
+		expect(
+			(hmtwCardTable.project(nt, 'regan') as { opponents: { creatures: { name?: string }[] }[] })
+				.opponents[0].creatures[0].name
+		).toBe('Red Cloak');
+		expect(reduce(nt, { type: 'name-creature', creature: a, name: 'Red Cloak' })).toEqual({
+			ok: false,
+			reason: 'no-change'
+		});
+		const cleared = run(nt, { type: 'name-creature', creature: a, name: '' });
+		expect(cleared.data).toEqual({ was: 'Red Cloak (A)', label: 'Zombie A', named: false });
+		expect((cleared.state as CardTable).opponents[0].creatures[0]).not.toHaveProperty('name');
+		expect(reduce(t, { type: 'name-creature', creature: 'zombies:Q', name: 'X' })).toEqual({
+			ok: false,
+			reason: 'no-such-creature'
+		});
+		expect(reduce(t, { type: 'name-creature', creature: a, name: 'x'.repeat(41) })).toEqual({
+			ok: false,
+			reason: 'malformed-command'
+		});
+	});
+
+	it('migrates a v20 table: creatures have no names yet, and a stored one is kept', () => {
+		const t = arena();
+		const old = {
+			...t,
+			schemaVersion: 20,
+			opponents: [
+				{
+					...t.opponents[0],
+					creatures: t.opponents[0].creatures.map((c, i) => (i === 1 ? { ...c, name: 'Lefty' } : c))
+				}
+			]
+		} as unknown as CardTable;
+		const migrated = hmtwCardTable.migrate(old, pack).state as CardTable;
+		expect(migrated.schemaVersion).toBe(TABLE_SCHEMA_VERSION);
+		expect(migrated.opponents[0].creatures[0]).not.toHaveProperty('name');
+		expect(migrated.opponents[0].creatures[1].name).toBe('Lefty');
+	});
+
 	it('no longer splits a group: one group, one initiative, wherever it stands', () => {
 		const t = arena();
 		const split = {

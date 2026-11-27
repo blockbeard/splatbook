@@ -145,6 +145,17 @@ test('the scene, lettered creatures and their HD, shared between two browsers', 
 	// There is no splitting a group, for anyone (phase 32).
 	await expect(gm.getByRole('button', { name: /Split off/ })).toHaveCount(0);
 
+	// --- The GM names Zombie C, and its letter stays beside the name (v21). ---
+	await expect(player.locator('.cr__rename')).toHaveCount(0);
+	await gm.locator('.cr__rename summary', { hasText: 'Zombie C' }).click();
+	await gm.getByLabel('A name for Zombie C').fill('Red Cloak');
+	await gm.locator('.cr__rename[open]').getByRole('button', { name: 'Save' }).click();
+	await expect(gm.locator('.cr__name', { hasText: 'Red Cloak (C)' })).toBeVisible();
+	await expect(player.locator('.cr__name', { hasText: 'Red Cloak (C)' })).toBeVisible(POLLED);
+	await expect(
+		player.getByRole('button', { name: 'Red Cloak (C): Health down one' })
+	).toBeVisible();
+
 	await shot(gm, 'gm-desktop');
 	await shot(player, 'player-desktop');
 

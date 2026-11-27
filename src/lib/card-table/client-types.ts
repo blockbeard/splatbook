@@ -33,6 +33,8 @@ export interface ProjectedTable {
 		creatures: {
 			id: string;
 			letter: string;
+			/** Given by the GM (v21): "Red Cloak (A)". */
+			name?: string;
 			down: boolean;
 			pools: {
 				name?: string;

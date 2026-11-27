@@ -9,7 +9,9 @@
 	otherwise bury the round under bookkeeping, which is the inversion phase 29
 	spent a batch of design commits undoing.
 
-	Adding, removing and placing creatures are the GM's. Health, Defense and
+	Adding, removing, naming and placing creatures are the GM's. A name
+	("Red Cloak") keeps the letter beside it, so "Red Cloak (A)" is still the
+	Zombie A anyone was talking about. Health, Defense and
 	Down are anyone's while the GM shows enemy Health, and the GM's alone while
 	it is hidden. There is no splitting: a group shares one initiative wherever
 	its creatures stand. Health and Defense changes say what they change *from*,
@@ -17,7 +19,7 @@
 -->
 <script lang="ts">
 	import type { ProjectedTable } from '$lib/card-table/client-types';
-	import { creatureLabel } from '../engine/creatures';
+	import { MAX_CREATURE_NAME, creatureLabel } from '../engine/creatures';
 	import ZonePicker from './ZonePicker.svelte';
 
 	type Group = ProjectedTable['opponents'][number];
@@ -57,6 +59,18 @@
 			.map(([name, n]) => `${name} ${n}`)
 			.join(', ');
 	});
+
+	/** What each name field holds, by creature, until it is sent. */
+	let naming = $state<Record<string, string>>({});
+
+	function sendName(creature: Group['creatures'][number], e: SubmitEvent) {
+		e.preventDefault();
+		const name = (naming[creature.id] ?? creature.name ?? '').trim();
+		if (name === (creature.name ?? '')) return;
+		onCommand({ type: 'name-creature', creature: creature.id, name });
+		const form = e.currentTarget as HTMLFormElement;
+		form.closest('details')?.removeAttribute('open');
+	}
 
 	function step(
 		creature: string,
@@ -127,6 +141,37 @@
 				>{creature.down ? 'Back up' : 'Down'}</button
 			>
 			{#if isGm && group.creatures.length > 1}
+				<details class="cr__rename">
+					<summary class="ct-btn ct-btn--quiet"
+						>{creature.name ? 'Rename' : 'Name'}<span class="sr-only"> {name}</span></summary
+					>
+					<form onsubmit={(e) => sendName(creature, e)}>
+						<label>
+							<span class="sr-only">A name for {name}</span>
+							<input
+								type="text"
+								class="ct-field"
+								maxlength={MAX_CREATURE_NAME}
+								placeholder="Red Cloak"
+								value={naming[creature.id] ?? creature.name ?? ''}
+								oninput={(e) => (naming[creature.id] = e.currentTarget.value)}
+							/>
+						</label>
+						<button type="submit" class="ct-btn" {disabled}>Save</button>
+						{#if creature.name}
+							<button
+								type="button"
+								class="ct-btn ct-btn--quiet"
+								{disabled}
+								onclick={(e) => {
+									onCommand({ type: 'name-creature', creature: creature.id, name: '' });
+									naming[creature.id] = '';
+									e.currentTarget.closest('details')?.removeAttribute('open');
+								}}>Clear the name</button
+							>
+						{/if}
+					</form>
+				</details>
 				<button
 					type="button"
 					class="ct-btn ct-btn--quiet"
@@ -273,6 +318,23 @@
 	.cr__step {
 		min-inline-size: 2.75rem;
 		padding-inline: 0;
+	}
+	.cr__rename > summary {
+		list-style: none;
+		cursor: pointer;
+	}
+	.cr__rename > summary::-webkit-details-marker {
+		display: none;
+	}
+	.cr__rename[open] {
+		flex-basis: 100%;
+	}
+	.cr__rename form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		align-items: center;
+		margin-block-start: 0.4rem;
 	}
 	.cr__actions,
 	.crs__gm,

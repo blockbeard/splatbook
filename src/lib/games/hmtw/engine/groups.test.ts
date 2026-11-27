@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	addCreatures,
 	findCreature,
+	nameCreature,
 	rejoinSplitGroups,
 	removeCreature,
 	setDown,
@@ -18,6 +19,7 @@ import {
 	type DeckDefinition
 } from './table';
 import { opponentZone, opponentZones } from './zones';
+import { creatureLabel, migrateCreature } from './creatures';
 
 const deck: DeckDefinition = {
 	minors: [{ id: 'm1', value: 1 }],
@@ -114,6 +116,43 @@ describe('going down', () => {
 		t = placeInScene(t, id(t, 'B'), 'nave');
 		t = setDown(t, id(t, 'B'), true);
 		expect(t.scene.at[id(t, 'B')]).toBe('nave');
+	});
+});
+
+describe('naming a creature (v21)', () => {
+	it('keeps the letter beside the name', () => {
+		const t = nameCreature(chapel(), id(chapel(), 'B'), 'Brother Ash');
+		expect(creatureLabel(t.opponents, id(t, 'B'))).toBe('Brother Ash (B)');
+		expect(creatureLabel(t.opponents, id(t, 'A'))).toBe('Skeleton A');
+		expect(letters(t)[0]).toEqual(['A', 'B', 'C', 'D', 'E']);
+	});
+
+	it('names a lone creature without a letter nobody said', () => {
+		const t = addOpponent(createTable(deck, ['gm']), {
+			id: 'king',
+			name: 'King of Swords',
+			count: 1
+		});
+		const king = t.opponents[0].creatures[0].id;
+		expect(creatureLabel(nameCreature(t, king, 'Grisha').opponents, king)).toBe('Grisha');
+	});
+
+	it('tidies the name, takes it away when empty, and ignores no change', () => {
+		const t = chapel();
+		const named = nameCreature(t, id(t, 'A'), '  Old\tBones  ');
+		expect(named.opponents[0].creatures[0].name).toBe('Old Bones');
+		expect(nameCreature(named, id(t, 'A'), 'Old Bones')).toBe(named);
+		expect(nameCreature(named, id(t, 'A'), ' ').opponents[0].creatures[0]).not.toHaveProperty(
+			'name'
+		);
+		expect(nameCreature(t, 'monks:Q', 'Nobody')).toBe(t);
+	});
+
+	it('keeps a stored name, and drops one that is not a string', () => {
+		const base = { id: 'x:A', letter: 'A', down: false, pools: [] };
+		expect(migrateCreature({ ...base, name: 'Lefty' })?.name).toBe('Lefty');
+		expect(migrateCreature({ ...base, name: 7 } as never)).not.toHaveProperty('name');
+		expect(migrateCreature(base)).not.toHaveProperty('name');
 	});
 });
 
