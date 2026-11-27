@@ -179,10 +179,9 @@
 				remember(snapshot.events);
 			},
 			isHidden: () => document.hidden,
-			// Decks mode is the quiet one; the Challenge is where a beat of delay
-			// would show, and it will say so when it exists.
 			// A Challenge is where a beat of delay shows, so it is asked about more
-			// often; the decks are quiet enough for the slower cadence.
+			// often. The decks are too for two minutes after any change, which the
+			// transport tracks itself.
 			isBusy: () => table.mode === 'challenge',
 			version
 		});
