@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **The four suit glyphs are redrawn as one set.** They were built from basic
+  shapes in different weights, and at card size the wand read as a slash and the
+  sword as a dagger. The new ones are solid silhouettes after Pamela Colman
+  Smith's aces: a stemmed cup, a coin with the star cut out, an upright sword
+  and a leafed wand. Same files, same single ink colour, so the card table and
+  the suit tables in the rules pick them up with no other change.
 - **A fresh Worker's first request is light enough for Workers Free.** Session
   14's 1102 was most likely a new isolate's first request: Wrangler's bundle
   loads each module the first time a request needs it, and the first request of
