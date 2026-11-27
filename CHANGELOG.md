@@ -94,6 +94,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Naming a creature.** The GM can give a creature a name, with Name beside
+  each one in a group. It reads "Red Cloak (A)": the letter stays, for the count
+  and for anyone who knew it as Zombie A, and the log, the scene, targets and
+  Health all follow it. In Session 14 the letters A to F were hard to keep
+  track of. (Card table schema v21.)
 - **Any legal action: "A talent, or something else".** Type a talent's name, or
   whatever the table ruled, and choose how the card is played: face up on your
   turn, readied, as a minor action, out of turn, discarded for a miscellaneous
@@ -635,6 +640,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Tests of Fate appear sooner.** Outside a Challenge the table was asked
+  about every three seconds, so each card of a Test of Fate reached everyone
+  else up to three seconds late. Now any change keeps the table on the
+  one-second cadence for two minutes, in the decks as in a Challenge.
 - **A seat request can't be missed.** For the GM, the line pinned to the top of
   a Challenge says who is asking for a seat, with Let in and Turn away. On a
   narrow window the list further down was below the bottom of the screen.
