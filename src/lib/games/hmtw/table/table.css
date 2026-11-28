@@ -312,22 +312,47 @@ html.dark .ct {
 	mix-blend-mode: multiply;
 }
 
-[data-game='hmtw'] .ct-card__band {
+/*
+ * The value and its suit, set as one line.
+ *
+ * The numeral is not in Fell. Fell has only old-style figures — 3, 4, 5, 7 and
+ * 9 hang below the line, 6 and 8 stand above it — and no lining set to switch
+ * to, so beside a suit glyph every card sat at its own height and no nudge
+ * could fix more than a few of them. EB Garamond 500 is an old-style face of
+ * Fell's own century with every figure the same height, and at medium weight
+ * it holds its own beside a solid glyph without going heavier than the plate.
+ *
+ * With one height to aim at, the glyph is centred on the figure rather than on
+ * its line box. Both sit on the baseline (a glyph has none, so its foot is
+ * used) and the glyph drops by half of what it stands taller by. --ct-fig-h is
+ * the figure's height in ems, measured off the face; it is the only number
+ * here that belongs to the font.
+ */
+[data-game='hmtw'] .ct-card__band,
+[data-game='hmtw'] .ct-card__mine {
+	--ct-fig-h: 0.65;
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	justify-content: center;
-	gap: 0.26rem;
-}
-
-[data-game='hmtw'] .ct-card__value {
-	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
-	font-size: 1.45rem;
+	font-family: 'EB Garamond', Georgia, serif;
+	font-weight: 500;
+	font-variant-numeric: lining-nums;
+	font-size: var(--ct-fig);
 	line-height: 1;
 }
 
-[data-game='hmtw'] .ct-card__band-suit {
-	inline-size: 1.35rem;
-	block-size: 1.35rem;
+[data-game='hmtw'] .ct-card__band .ct-glyph,
+[data-game='hmtw'] .ct-card__mine .ct-glyph {
+	flex: none;
+	inline-size: var(--ct-suit);
+	block-size: var(--ct-suit);
+	translate: 0 calc((var(--ct-suit) - var(--ct-fig) * var(--ct-fig-h)) / 2);
+}
+
+[data-game='hmtw'] .ct-card__band {
+	--ct-fig: 1.55rem;
+	--ct-suit: 1.35rem;
+	gap: 0.26rem;
 }
 
 /* The book's one red, on the numeral, exactly as it is on the typeset face. */
@@ -397,19 +422,16 @@ html.dark .ct {
 }
 
 [data-game='hmtw'] .ct-card__mine {
+	--ct-fig: 0.92rem;
+	--ct-suit: 0.68rem;
 	position: absolute;
 	inset-block-end: 0.25rem;
 	inset-inline-end: 0.3rem;
-	font-family: 'IM Fell Great Primer SC', 'IM Fell English SC', Georgia, serif;
-	font-size: 0.85rem;
-	line-height: 1;
 	color: var(--ct-card-ink);
 	background: var(--ct-card);
-	padding: 0.1rem 0.25rem;
+	padding: 0.14rem 0.25rem;
 	border: 1px solid var(--ct-card-ink);
 	border-radius: 2px;
-	display: flex;
-	align-items: center;
 	gap: 0.15rem;
 	z-index: 1;
 }
@@ -422,11 +444,6 @@ html.dark .ct {
 	mask: var(--ct-glyph) center / contain no-repeat;
 	-webkit-mask: var(--ct-glyph) center / contain no-repeat;
 	vertical-align: -0.12em;
-}
-
-[data-game='hmtw'] .ct-card__mine .ct-glyph {
-	inline-size: 0.72em;
-	block-size: 0.72em;
 }
 
 /* The public tag: what the card is for, where everyone can read it. */

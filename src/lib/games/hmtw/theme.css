@@ -21,6 +21,8 @@
  *   sidebar body          Sorts Mill Goudy     (for Goudy Old Style)
  *   sidebar headers       IM Fell English SC   (the vault's HamletOrNot role)
  *   app chrome            Sorts Mill Goudy     (the vault reads in Goudy too)
+ *   card-table figures    EB Garamond 500      (Fell has no lining figures —
+ *                                               see table/table.css)
  *
  * Every substituted stack lists the *authentic* face first, by local family
  * name: naming a family distributes nothing — it engages only fonts the
@@ -60,6 +62,7 @@
 @import '@fontsource/sorts-mill-goudy/400.css';
 @import '@fontsource/sorts-mill-goudy/400-italic.css';
 @import '@fontsource/libre-caslon-text/700.css';
+@import '@fontsource/eb-garamond/500.css';
 
 /*
  * CASLON ANTIQUE IS DELIBERATELY NOT USED for the h4 role, and this is the

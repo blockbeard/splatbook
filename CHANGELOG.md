@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Card values sit level with their suit.** The numerals were in IM Fell, which
+  has only old-style figures: 3, 4, 5, 7 and 9 hang below the line, 6 and 8
+  stand above it, and the face has no lining set to switch to. Beside a suit
+  glyph every card sat at a different height. The value is now set in EB
+  Garamond 500, whose figures are all one height, and the glyph is centred on
+  the figure itself. The owner's mark on a face-down card follows. One new
+  self-hosted font file (EB Garamond 500, OFL, already a dependency).
 - **The four suit glyphs are redrawn as one set.** They were built from basic
   shapes in different weights, and at card size the wand read as a slash and the
   sword as a dagger. The new ones are solid silhouettes after Pamela Colman
